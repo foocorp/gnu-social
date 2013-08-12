@@ -1,4 +1,4 @@
-# Translation of StatusNet - OpenID to Ukrainian (Українська)
+# Translation of StatusNet - OpenID to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:28+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:27+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:47+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
@@ -34,13 +34,13 @@ msgstr ""
 "Ви потрапляєте на цю сторінку лише при обробці запитів OpenID, не напряму."
 
 #. TRANS: Page notice. %s is a trustroot name.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%s has asked to verify your identity. Click Continue to verify your identity "
 "and login without creating a new password."
 msgstr ""
-"%s запрошує вас пройти перевірку на ідентичність. Натисніть «Продовжити», щоб "
-"перевірити вашу особу та увійти, не створюючи нового паролю."
+"%s звернувся з проханням до вас пройти перевірку на ідентичність. Натисніть "
+"«Продовжити», щоб перевірити вашу особу та увійти, не створюючи нового паролю."
 
 #. TRANS: Button text to continue OpenID identity verification.
 #. TRANS: button label for OAuth authorization page when needing OpenID authentication first.
@@ -49,16 +49,18 @@ msgid "Continue"
 msgstr "Продовжити"
 
 #. TRANS: Button text to cancel OpenID identity verification.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Cancel"
 msgstr "Скасувати"
 
+#. TRANS: Client exception thrown when an action is not available.
+msgid "Unavailable action."
+msgstr ""
+
 #. TRANS: Tooltip for main menu option "Login"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Login to the site."
-msgstr "Вхід на сайт"
+msgstr "Увійти на сайт."
 
 #. TRANS: Main menu option when not logged in to log in
 msgctxt "MENU"
@@ -76,10 +78,9 @@ msgid "Help"
 msgstr "Довідка"
 
 #. TRANS: Tooltip for main menu option "Search"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Search for people or text."
-msgstr "Пошук людей або текстів"
+msgstr "Пошук людей або текстів."
 
 #. TRANS: Main menu option when logged in or when the StatusNet instance is not private
 msgctxt "MENU"
@@ -94,26 +95,40 @@ msgid "OpenID"
 msgstr "OpenID"
 
 #. TRANS: OpenID plugin tooltip for logon menu item.
-#, fuzzy
 msgid "Login or register with OpenID."
-msgstr "Увійти або зареєструватися за допомогою OpenID"
+msgstr "Увійти або зареєструватися за допомогою OpenID."
 
 #. TRANS: OpenID plugin tooltip for user settings menu item.
-#, fuzzy
 msgid "Add or remove OpenIDs."
-msgstr "Додати або видалити OpenID"
+msgstr "Додати або видалити OpenID."
 
-#. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
+#. TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
 #, php-format
 msgid ""
-"* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
-"service."
+"(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
+"action.openidsettings%%)!"
+msgstr ""
+
+#. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
+"action.openidlogin%%)!)"
+msgstr ""
+
+#. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
+"openidlogin%%)!)"
 msgstr ""
 
 #. TRANS: Tooltip for OpenID configuration menu item.
-#, fuzzy
 msgid "OpenID configuration."
-msgstr "Конфігурація OpenID"
+msgstr "Конфігурація OpenID."
 
 #. TRANS: Plugin description.
 msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
@@ -121,7 +136,6 @@ msgstr ""
 "Використання <a href=\"http://openid.net/\">OpenID</a> для входу на сайт."
 
 #. TRANS: OpenID plugin logon form legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "OpenID login"
 msgstr "Вхід з OpenID"
@@ -146,9 +160,8 @@ msgstr "URL-адреса OpenID"
 
 #. TRANS: OpenID plugin logon form field instructions.
 #. TRANS: OpenID plugin logon form field title.
-#, fuzzy
 msgid "Your OpenID URL."
-msgstr "URL вашого OpenID"
+msgstr "URL вашого OpenID."
 
 #. TRANS: Client error message trying to log on with OpenID while already logged on.
 msgid "Already logged in."
@@ -161,9 +174,8 @@ msgstr ""
 "Виникли певні проблеми з токеном поточної сесії. Спробуйте знов, будь ласка."
 
 #. TRANS: Message given if user does not agree with the site's license.
-#, fuzzy
 msgid "You cannot register if you do not agree to the license."
-msgstr "Ви не зможете зареєструватися, якщо не погодитесь з умовами ліцензії."
+msgstr "Ви не можете зареєструватись, якщо не погодитеся з умовами ліцензії."
 
 #. TRANS: Messag given on an unknown error.
 msgid "An unknown error has occured."
@@ -171,7 +183,7 @@ msgstr "Виникла якась незрозуміла помилка."
 
 #. TRANS: Instructions given after a first successful logon using OpenID.
 #. TRANS: %s is the site name.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "OpenID to a local account. You can either create a new account, or connect "
@@ -182,10 +194,9 @@ msgstr ""
 "використати такий, що вже існує."
 
 #. TRANS: Title
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Account Setup"
-msgstr "Створення акаунту OpenID"
+msgstr "Налаштування акаунту OpenID"
 
 #. TRANS: Fieldset legend.
 msgid "Create new account"
@@ -260,13 +271,12 @@ msgstr "Автентифікацію за OpenID скасовано."
 #. TRANS: OpenID authentication failed; display the error message. %s is the error message.
 #. TRANS: OpenID authentication failed; display the error message.
 #. TRANS: %s is the error message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID authentication failed: %s."
-msgstr "Автентифікуватись за OpenID не вдалося: %s"
+msgstr "Автентифікація за OpenID не вдалася: %s"
 
 #. TRANS: Message displayed when OpenID authentication is aborted.
 #. TRANS: OpenID authentication error.
-#, fuzzy
 msgid ""
 "OpenID authentication aborted: You are not allowed to login to this site."
 msgstr "Автентифікацію за OpenID перервано: ви не можете увійти на цей сайт."
@@ -315,15 +325,15 @@ msgstr "Це недійсний OpenID."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID failure: %s."
-msgstr "Неуспіх OpenID: %s"
+msgstr "Невдача OpenID: %s."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not redirect to server: %s."
-msgstr "Не можу переадресувати на сервер: %s"
+msgstr "Не можу переадресувати на сервер: %s."
 
 #. TRANS: OpenID plugin user instructions.
 msgid ""
@@ -362,7 +372,6 @@ msgstr ""
 "OpenID-провайдера, просто натисніть кнопку внизу."
 
 #. TRANS: Title for OpenID bridge administration page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Settings"
 msgstr "Налаштування OpenID"
@@ -372,17 +381,14 @@ msgid "OpenID settings"
 msgstr "Налаштування OpenID"
 
 #. TRANS: Client error displayed when OpenID provider URL is too long.
-#, fuzzy
 msgid "Invalid provider URL. Maximum length is 255 characters."
 msgstr "Невірний URL OpenID-провайдера. Максимальна довжина — 255 символів."
 
 #. TRANS: Client error displayed when Launchpad team name is too long.
-#, fuzzy
 msgid "Invalid team name. Maximum length is 255 characters."
 msgstr "Невірна назва спільноти. Максимальна довжина — 255 символів."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Trusted provider"
 msgstr "Довірений OpenID-провайдер"
@@ -434,7 +440,6 @@ msgstr ""
 "Launchpad)."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Options"
 msgstr "Параметри"
@@ -452,7 +457,6 @@ msgstr ""
 "опція вимикає автентифікацію за паролем для всіх користувачів!"
 
 #. TRANS: Button text to save OpenID settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зберегти"
@@ -478,16 +482,14 @@ msgid "Error connecting user."
 msgstr "Помилка при підключенні користувача."
 
 #. TRANS: Message in case the user or the user profile cannot be saved in StatusNet.
-#, fuzzy
 msgid "Error updating profile."
-msgstr "Помилка при оновленні профілю"
+msgstr "Помилка при оновленні профілю."
 
 #. TRANS: Title after getting the status of the OpenID authorisation request.
 msgid "OpenID Login"
 msgstr "Вхід з OpenID"
 
 #. TRANS: Title of OpenID settings page for a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID settings"
 msgstr "Налаштування OpenID"
@@ -504,7 +506,6 @@ msgstr ""
 "акаунти."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Add OpenID"
 msgstr "Додати OpenID"
@@ -518,13 +519,11 @@ msgstr ""
 "натисніть «Додати»."
 
 #. TRANS: Button text for adding an OpenID URL.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Додати"
 
 #. TRANS: Header on OpenID settings page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Remove OpenID"
 msgstr "Видалити OpenID"
@@ -546,7 +545,6 @@ msgstr "Ви можете видалити ваш OpenID просто натис
 
 #. TRANS: Button text to remove an OpenID.
 #. TRANS: Button text to remove an OpenID trustroot.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Remove"
 msgstr "Видалити"
@@ -565,9 +563,8 @@ msgstr ""
 "на вхід."
 
 #. TRANS: Form validation error if no OpenID providers can be added.
-#, fuzzy
 msgid "Cannot add new providers."
-msgstr "Не вдається додати нового OpenID-провайдера."
+msgstr "Не вдається додати нових OpenID-провайдерів."
 
 #. TRANS: Unexpected form validation error.
 msgid "Something weird happened."
@@ -578,9 +575,8 @@ msgid "No such OpenID trustroot."
 msgstr "Серед довірених такого OpenID немає."
 
 #. TRANS: Success message after removing trustroots.
-#, fuzzy
 msgid "Trustroots removed."
-msgstr "Довірені OpenID видалено"
+msgstr "Довірені корені OpenID видалено."
 
 #. TRANS: Form validation error for a non-existing OpenID.
 msgid "No such OpenID."
@@ -623,12 +619,11 @@ msgid "Login with an [OpenID](%%doc.openid%%) account."
 msgstr "Увійти з [OpenID](%%doc.openid%%)."
 
 #. TRANS: OpenID plugin message. Title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Login"
 msgstr "Вхід з OpenID"
 
-#, fuzzy
+#. TRANS: Field label.
 msgctxt "LABEL"
 msgid "OpenID provider"
 msgstr "OpenID-провайдер"
@@ -647,9 +642,3 @@ msgstr ""
 msgctxt "BUTTON"
 msgid "Login"
 msgstr "Увійти"
-
-#~ msgid "Continue"
-#~ msgstr "Продовжити"
-
-#~ msgid "OpenID"
-#~ msgstr "OpenID"

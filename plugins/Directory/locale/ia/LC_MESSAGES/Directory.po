@@ -1,4 +1,4 @@
-# Translation of StatusNet - Directory to Interlingua (Interlingua)
+# Translation of StatusNet - Directory to Interlingua (interlingua)
 # Exported from translatewiki.net
 #
 # Author: McDutchie
@@ -9,33 +9,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:02+0000\n"
-"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:09+0000\n"
+"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 11:55:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 09:57:06+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Page title for user directory. %d is a page number.
 #, php-format
 msgid "User Directory, page %d"
 msgstr "Catalogo de usatores, pagina %d"
 
+#. TRANS: Page title for user directory.
 msgid "User directory"
 msgstr "Catalogo de usatores"
 
+#. TRANS: Page title for user directory. %s is the applied filter.
 #, php-format
 msgid "User directory - %s"
 msgstr "Catalogo de usatores - %s"
 
+#. TRANS: Page title for user directory.
+#. TRANS: %1$s is the applied filter, %2$d is a page number.
 #, php-format
-msgid "User directory - %s, page %d"
-msgstr "Catalogo de usatores - %s, pagina %d"
+msgid "User directory - %1$s, page %2$d"
+msgstr "Catalogo de usatores - %1$s, pagina %2$d"
 
+#. TRANS: %%site.name%% is the name of the StatusNet site.
 #, php-format
 msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
@@ -44,25 +50,43 @@ msgstr ""
 "Cerca personas in %%site.name%% per nomine, loco o interesses. Separa le "
 "terminos per spatios; illos debe haber 3 characteres o plus."
 
+#. TRANS: Fieldset legend.
 msgid "Search site"
 msgstr "Cercar in sito"
 
+#. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
 msgid "Keyword(s)"
 msgstr "Parola(s)-clave"
 
+#. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "Cercar"
 
+#. TRANS: Empty list message for user directory.
 #, php-format
 msgid "No users starting with %s"
 msgstr "Il non ha usatores de qui le nomine comencia con \"%s\""
 
+#. TRANS: Empty list message for user directory.
 #. TRANS: Empty list message for searching group directory.
 msgid "No results."
 msgstr "Nulle resultato."
+
+#. TRANS: Standard search suggestions shown when a search does not give any results.
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* Verifica que tote le parolas es orthographiate correctemente.\n"
+"* Proba differente parolas-clave.\n"
+"* Proba parolas-clave plus general.\n"
+"* Proba minus parolas-clave."
 
 #. TRANS: Title for group directory page. %d is a page number.
 #, php-format
@@ -86,12 +110,11 @@ msgid "Group directory - %1$s, page %2$d"
 msgstr "Catalogo de gruppos - %1$s, pagina %2$d"
 
 #. TRANS: Page instructions.
-#, fuzzy
 msgid ""
 "After you join a group you can send messages to all other members\n"
 "using the syntax \"!groupname\".\n"
 "\n"
-"Browse groups, or search for groups on by their name, location or topic.\n"
+"Browse groups, or search for groups by their name, location or topic.\n"
 "Separate the terms by spaces; they must be three characters or more."
 msgstr ""
 "Post adherer a un gruppo, tu pote inviar messages a tote le altere membros\n"
@@ -99,7 +122,7 @@ msgstr ""
 "\n"
 "Percurre le gruppos, o cerca gruppos per nomine, localitate o topico.\n"
 "Separa le terminos per spatios; illos debe consister de tres characteres o "
-"plus.\n"
+"plus."
 
 #. TRANS: Link to create a new group on the group list page.
 msgid "Create a new group"
@@ -114,18 +137,6 @@ msgstr "Cercar in gruppos"
 #, php-format
 msgid "No groups starting with %s."
 msgstr "Il non ha gruppos de que le nomine comencia con \"%s\"."
-
-#. TRANS: Help text for searching group directory.
-msgid ""
-"* Make sure all words are spelled correctly.\n"
-"* Try different keywords.\n"
-"* Try more general keywords.\n"
-"* Try fewer keywords."
-msgstr ""
-"* Verifica que tote le parolas es orthographiate correctemente.\n"
-"* Proba differente parolas-clave.\n"
-"* Proba parolas-clave plus general.\n"
-"* Proba minus parolas-clave."
 
 #. TRANS: Menu item text for user directory.
 msgctxt "MENU"
@@ -147,6 +158,14 @@ msgstr "Pseudonymo"
 #. TRANS: Column header in table for timestamp when user was created.
 msgid "Created"
 msgstr "Create le"
+
+#. TRANS: Column header for number of subscriptions.
+msgid "Subscriptions"
+msgstr "Subscriptiones"
+
+#. TRANS: Column header for number of notices.
+msgid "Notices"
+msgstr "Notas"
 
 #. TRANS: Column header in table for members of a group.
 msgid "Members"

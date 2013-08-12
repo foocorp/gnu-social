@@ -92,8 +92,6 @@ class ApiSearchAtomAction extends ApiPrivateAuthAction
      */
     function prepare($args)
     {
-        common_debug("in apisearchatom prepare()");
-
         parent::prepare($args);
 
         $this->query = $this->trimmed('q');

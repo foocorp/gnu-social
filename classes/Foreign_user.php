@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Foreign_user extends Memcached_DataObject
+class Foreign_user extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -23,20 +23,39 @@ class Foreign_user extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    // XXX:  This only returns a 1->1 single obj mapping.  Change?  Or make
-    // a getForeignUsers() that returns more than one? --Zach
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'int', 'size' => 'big', 'not null' => true, 'description' => 'unique numeric key on foreign service'),
+                'service' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to service'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'identifying URI'),
+                'nickname' => array('type' => 'varchar', 'length' => 255, 'description' => 'nickname on foreign service'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id', 'service'),
+            'foreign keys' => array(
+                'foreign_user_service_fkey' => array('foreign_service', array('service' => 'id')),
+            ),
+            'unique keys' => array(
+                'foreign_user_uri_key' => array('uri'),
+            ),
+        );
+    }
+
     static function getForeignUser($id, $service) {
+
         $fuser = new Foreign_user();
-        $fuser->whereAdd("service = $service");
-        $fuser->whereAdd("id = $id");
+
+        $fuser->id      = $id;
+        $fuser->service = $service;
+
         $fuser->limit(1);
 
-        if ($fuser->find()) {
-            $fuser->fetch();
-            return $fuser;
-        }
+        $result = $fuser->find(true);
 
-        return null;
+        return empty($result) ? null : $fuser;
     }
 
     static function getByNickname($nickname, $service)

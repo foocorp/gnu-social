@@ -1,6 +1,7 @@
-# Translation of StatusNet - LdapAuthorization to French (Français)
+# Translation of StatusNet - LdapAuthorization to French (français)
 # Exported from translatewiki.net
 #
+# Author: Hashar
 # Author: Peter17
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - LdapAuthorization\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 12:36+0000\n"
-"PO-Revision-Date: 2011-04-27 12:37:28+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:57+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:08:11+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87008); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:25+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-ldapauthorization\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -26,10 +27,12 @@ msgid ""
 "provider_name must be set. Use the provider_name from the LDAP "
 "Authentication plugin."
 msgstr ""
+"provider_name doit être défini. Utilisez l'attribut provider_name provenant "
+"du plugin d'authentification LDAP."
 
 #. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
 msgid "uniqueMember_attribute must be set."
-msgstr ""
+msgstr "uniqueMember_attribute doit être défini, vérifiez votre configuration."
 
 #. TRANS: Plugin description.
 msgid ""

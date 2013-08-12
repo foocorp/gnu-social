@@ -10,23 +10,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ShareNotice\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:17+0000\n"
-"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:58+0000\n"
+"Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-24 15:25:49+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:02+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-sharenotice\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Leave this message unchanged.
 #. TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
 #, php-format
 msgid "\"%s\""
 msgstr "\"%s\""
+
+#. TRANS: Truncation symbol.
+msgid "…"
+msgstr "…"
 
 #. TRANS: Tooltip for image to share a notice on Twitter.
 msgid "Share on Twitter"

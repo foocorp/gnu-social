@@ -1,0 +1,1 @@
+* * * * * /opt/local/bin/php /path/to/statusnet/plugins/EmailReminder/scripts/sendemailreminder.php -t all -a -q > /tmp/cron.log

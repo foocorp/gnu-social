@@ -52,8 +52,7 @@ class AwesomenessPlugin extends Plugin
             'author' => 'Jeroen De Dauw',
             'homepage' => 'http://status.net/wiki/Plugin:Awesomeness',
             // TRANS: Plugin description for a sample plugin.
-            'rawdescription' => _m(
-                'The Awesomeness plugin adds additional awesomeness ' .
+            'rawdescription' => _m('The Awesomeness plugin adds additional awesomeness ' .
                 'to a StatusNet installation.'
             )
         );

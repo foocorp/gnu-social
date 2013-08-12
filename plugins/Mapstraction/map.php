@@ -22,7 +22,7 @@
  * @category  Mapstraction
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -42,7 +42,7 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class MapAction extends OwnerDesignAction
+class MapAction extends Action
 {
     var $profile = null;
     var $page    = null;

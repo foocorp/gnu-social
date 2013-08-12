@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Oauth_application_user extends Memcached_DataObject
+class Oauth_application_user extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -23,6 +23,25 @@ class Oauth_application_user extends Memcached_DataObject
     }
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'user of the application'),
+                'application_id' => array('type' => 'int', 'not null' => true, 'description' => 'id of the application'),
+                'access_type' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'access type, bit 1 = read, bit 2 = write'),
+                'token' => array('type' => 'varchar', 'length' => 255, 'description' => 'request or access token'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('profile_id', 'application_id'),
+            'foreign keys' => array(
+                'oauth_application_user_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+                'oauth_application_user_application_id_fkey' => array('oauth_application', array('application_id' => 'id')),
+            ),
+        );
+    }
 
     static function getByUserAndToken($user, $token)
     {

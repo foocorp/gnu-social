@@ -1,4 +1,4 @@
-# Translation of StatusNet - Xmpp to Macedonian (Македонски)
+# Translation of StatusNet - Xmpp to Macedonian (македонски)
 # Exported from translatewiki.net
 #
 # Author: Bjankuloski06
@@ -9,29 +9,84 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Xmpp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:56+0000\n"
-"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:32+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:55+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:56+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-xmpp\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+#. TRANS: Presence announcement for XMPP.
+#. TRANS: Message for XMPP reconnect.
 msgid "Send me a message to post a notice"
 msgstr "Испрати ми порака за да објавам забелешка"
 
+#. TRANS: Plugin display name.
 msgid "XMPP/Jabber/GTalk"
 msgstr "XMPP/Jabber/GTalk"
 
+#. TRANS: Exception thrown when using too many @ signs in a Jabber ID.
+msgid "Invalid JID: too many @s."
+msgstr "Неважечки JID: премногу мајмунчиња (@)."
+
+#. TRANS: Exception thrown when using @ sign not followed by a Jabber ID.
+msgid "Invalid JID: @ but no node"
+msgstr "Неважежки JID: @, но нема јазол"
+
+#. TRANS: Exception thrown when using too long a Jabber ID (>1023).
+msgid "Invalid JID: node too long."
+msgstr "Неважечки JID: јазолот е предолг."
+
+#. TRANS: Exception thrown when using an invalid Jabber ID.
+#. TRANS: %s is the invalid Jabber ID.
+#, php-format
+msgid "Invalid JID node \"%s\"."
+msgstr "Неважечки јазол од JID „%s“."
+
+#. TRANS: Exception thrown when using too long a Jabber domain (>1023).
+msgid "Invalid JID: domain too long."
+msgstr "Неважечки JID: доменот е предолг."
+
+#. TRANS: Exception thrown when using an invalid Jabber domain name.
+#. TRANS: %s is the invalid domain name.
+#, php-format
+msgid "Invalid JID domain name \"%s\"."
+msgstr "Неважечко доменско име од JID „%s“."
+
+#. TRANS: Exception thrown when using an invalid Jabber resource.
+#. TRANS: %s is the invalid resource.
+#, php-format
+msgid "Invalid JID resource \"%s\"."
+msgstr "Неважечки ресурс од JID „%s“."
+
+#. TRANS: Link description to notice in conversation.
 #. TRANS: %s is a notice ID.
 #, php-format
 msgid "[%s]"
 msgstr "[%s]"
 
+#. TRANS: Exception thrown when the plugin configuration is incorrect.
+msgid "You must specify a server in the configuration."
+msgstr "Мора да наведете опслужувач во поставувањето."
+
+#. TRANS: Exception thrown when the plugin configuration is incorrect.
+msgid "You must specify a port in the configuration."
+msgstr "Мора да наведете порта во поставувањето."
+
+#. TRANS: Exception thrown when the plugin configuration is incorrect.
+msgid "You must specify a user in the configuration."
+msgstr "Мора да назначите корисник во поставувањето."
+
+#. TRANS: Exception thrown when the plugin configuration is incorrect.
+msgid "You must specify a password in the configuration."
+msgstr "Мора да назначите лозинка во поставувањето."
+
+#. TRANS: Plugin description.
 msgid ""
 "The XMPP plugin allows users to send and receive notices over the XMPP/"
 "Jabber network."

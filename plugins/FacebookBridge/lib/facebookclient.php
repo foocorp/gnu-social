@@ -23,7 +23,7 @@
  * @package   StatusNet
  * @author    Craig Andrews <candrews@integralblue.com>
  * @author    Zach Copley <zach@status.net>
- * @copyright 2009-2010 StatusNet, Inc.
+ * @copyright 2009-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -176,7 +176,8 @@ class Facebookclient
 
         // If it's not a reply, or if the user WANTS to send @-replies,
         // then, yeah, it can go to Facebook.
-        if (!preg_match('/@[a-zA-Z0-9_]{1,15}\b/u', $this->notice->content) ||
+
+        if (empty($this->notice->reply_to) ||
             ($this->flink->noticesync & FOREIGN_NOTICE_SEND_REPLY)) {
             return true;
         }
@@ -916,7 +917,7 @@ class Facebookclient
     static function addFacebookUser($fbuser)
     {
         // remove any existing, possibly outdated, record
-        $luser = Foreign_user::getForeignUser($fbuser['id'], FACEBOOK_SERVICE);
+        $luser = Foreign_user::getForeignUser($fbuser->id, FACEBOOK_SERVICE);
 
         if (!empty($luser)) {
 
@@ -927,8 +928,8 @@ class Facebookclient
                     LOG_INFO,
                     sprintf(
                         'Removed old Facebook user: %s, fbuid %d',
-                        $fbuid['name'],
-                        $fbuid['id']
+                        $fbuid->name,
+                        $fbuid->id
                     ),
                     __FILE__
                 );
@@ -937,9 +938,9 @@ class Facebookclient
 
         $fuser = new Foreign_user();
 
-        $fuser->nickname = $fbuser['name'];
-        $fuser->uri      = $fbuser['link'];
-        $fuser->id       = $fbuser['id'];
+        $fuser->nickname = $fbuser->username;
+        $fuser->uri      = $fbuser->link;
+        $fuser->id       = $fbuser->id;
         $fuser->service  = FACEBOOK_SERVICE;
         $fuser->created  = common_sql_now();
 
@@ -950,8 +951,8 @@ class Facebookclient
                 LOG_WARNING,
                     sprintf(
                         'Failed to add new Facebook user: %s, fbuid %d',
-                        $fbuser['name'],
-                        $fbuser['id']
+                        $fbuser->username,
+                        $fbuser->id
                     ),
                     __FILE__
             );
@@ -962,8 +963,8 @@ class Facebookclient
                 LOG_INFO,
                 sprintf(
                     'Added new Facebook user: %s, fbuid %d',
-                    $fbuser['name'],
-                    $fbuser['id']
+                    $fbuser->name,
+                    $fbuser->id
                 ),
                 __FILE__
             );

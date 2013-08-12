@@ -1,7 +1,8 @@
-# Translation of StatusNet - Blacklist to Russian (Русский)
+# Translation of StatusNet - Blacklist to Russian (русский)
 # Exported from translatewiki.net
 #
 # Author: Eleferen
+# Author: Express2000
 # Author: Lockal
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -10,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blacklist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:46+0000\n"
-"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:50+0000\n"
+"Language-Team: Russian <https://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:01+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-03-01 18:55:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-blacklist\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
@@ -65,10 +66,9 @@ msgid "Blacklist"
 msgstr "Чёрный список"
 
 #. TRANS: Tooltip for menu item in admin panel.
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Blacklist configuration."
-msgstr "Конфигурация чёрного списка"
+msgstr "Конфигурация чёрного списка."
 
 #. TRANS: Checkbox label in the blacklist user form.
 msgid "Add this nickname pattern to blacklist"
@@ -85,9 +85,9 @@ msgid "Users from \"%s\" are blocked."
 msgstr "Пользователи с «%s» заблокированы."
 
 #. TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-#, fuzzy, php-format
-msgid "Notices from nickname \"%s\" disallowed."
-msgstr "Сообщения от имени «%s» не допускаются."
+#, php-format
+msgid "Notices from nickname \"%s\" are disallowed."
+msgstr "Сообщения от имени \"%s\" не допускаются."
 
 #. TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.
 #, fuzzy, php-format
@@ -95,7 +95,6 @@ msgid "Cannot subscribe to nickname \"%s\"."
 msgstr "Нельзя подписаться на пользователя с именем «%s»."
 
 #. TRANS: Title of blacklist plugin administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Blacklist"
 msgstr "Чёрный список"
@@ -123,12 +122,10 @@ msgid "Patterns of URLs to block, one per line."
 msgstr "Шаблоны URL-адресов для блокировки, по одному на строку"
 
 #. TRANS: Button text in blacklist plugin administration panel to save settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Сохранить"
 
 #. TRANS: Button title in blacklist plugin administration panel to save settings.
-#, fuzzy
 msgid "Save site settings."
-msgstr "Сохранить настройки сайта"
+msgstr "Сохранить настройки сайта."

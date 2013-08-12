@@ -1,0 +1,145 @@
+# Translation of StatusNet - Poll to Spanish (español)
+# Exported from translatewiki.net
+#
+# Author: Armando-Martin
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Poll\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:37+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:15+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception thrown trying to view a non-existing poll.
+msgid "No such poll."
+msgstr "No existe tal encuesta."
+
+#. TRANS: Client exception thrown trying to view a non-existing poll notice.
+msgid "No such poll notice."
+msgstr "No existe esa nota de encuesta."
+
+#. TRANS: Page title for a poll.
+#. TRANS: %1$s is the nickname of the user that created the poll, %2$s is the poll question.
+#, php-format
+msgid "%1$s's poll: %2$s"
+msgstr "Encuesta de %1$s: %2$s"
+
+#. TRANS: Field label on the page to create a poll.
+msgid "Question"
+msgstr "Pregunta"
+
+#. TRANS: Field title on the page to create a poll.
+msgid "What question are people answering?"
+msgstr "¿A qué pregunta está respondiendo la gente?"
+
+#. TRANS: Field label for an answer option on the page to create a poll.
+#. TRANS: %d is the option number.
+#, php-format
+msgid "Option %d"
+msgstr "Opción %d"
+
+#. TRANS: Button text for saving a new poll.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Guardar"
+
+#. TRANS: Plugin description.
+msgid "Simple extension for supporting basic polls."
+msgstr "Extensión simple para dar soporte a encuestas básicas."
+
+#. TRANS: Exception thrown trying to respond to a poll without a poll reference.
+msgid "Invalid poll response: No poll reference."
+msgstr "Respuesta de encuesta no válida: no hay referencia de la encuesta."
+
+#. TRANS: Exception thrown trying to respond to a non-existing poll.
+msgid "Invalid poll response: Poll is unknown."
+msgstr "Respuesta de encuesta no válida: Encuesta desconocida."
+
+#. TRANS: Exception thrown when performing an unexpected action on a poll.
+#. TRANS: %s is the unexpected object type.
+#, php-format
+msgid "Unexpected type for poll plugin: %s."
+msgstr "Tipo inesperado para el complemento (plugin) de la encuesta: %s."
+
+#. TRANS: Error text displayed if no poll data could be found.
+msgid "Poll data is missing"
+msgstr "Faltan datos de la encuesta"
+
+#. TRANS: Application title.
+msgctxt "APPTITLE"
+msgid "Poll"
+msgstr "Encuesta"
+
+#. TRANS: Client exception thrown when responding to a poll with an invalid option.
+#. TRANS: Client exception thrown responding to a poll with an invalid answer.
+msgid "Invalid poll selection."
+msgstr "Selección de encuesta no válida."
+
+#. TRANS: Notice content voting for a poll.
+#. TRANS: %s is the chosen option in the poll.
+#. TRANS: Rendered version of the notice content voting for a poll.
+#. TRANS: %s a link to the poll with the chosen option as link description.
+#, php-format
+msgid "voted for \"%s\""
+msgstr "ha votado a favor de \"%s\""
+
+#. TRANS: Button text for submitting a poll response.
+msgctxt "BUTTON"
+msgid "Submit"
+msgstr "Enviar"
+
+#. TRANS: Notice content creating a poll.
+#. TRANS: %1$s is the poll question, %2$s is a link to the poll.
+#, php-format
+msgid "Poll: %1$s %2$s"
+msgstr "Encuesta: %1$s %2$s"
+
+#. TRANS: Rendered version of the notice content creating a poll.
+#. TRANS: %s is a link to the poll with the question as link description.
+#, php-format
+msgid "Poll: %s"
+msgstr "Encuesta: %s"
+
+#. TRANS: Title for poll page.
+msgid "New poll"
+msgstr "Nueva encuesta"
+
+#. TRANS: Client exception thrown trying to create a poll while not logged in.
+msgid "You must be logged in to post a poll."
+msgstr "Debe iniciar sesión para publicar una encuesta."
+
+#. TRANS: Client exception thrown trying to create a poll without a question.
+msgid "Poll must have a question."
+msgstr "La encuesta debe tener una pregunta."
+
+#. TRANS: Client exception thrown trying to create a poll with fewer than two options.
+msgid "Poll must have at least two options."
+msgstr "La encuesta debe tener al menos dos opciones."
+
+#. TRANS: Page title after sending a notice.
+msgid "Notice posted"
+msgstr "Aviso publicado"
+
+#. TRANS: Page title for poll response.
+msgid "Poll response"
+msgstr "Respuesta a encuesta"
+
+#. TRANS: Client exception thrown trying to respond to a poll while not logged in.
+msgid "You must be logged in to respond to a poll."
+msgstr "Debe iniciar sesión para responder a una encuesta."
+
+#. TRANS: Client exception thrown trying to respond to a non-existing poll.
+msgid "Invalid or missing poll."
+msgstr "Falta encuesta o no es válida."
+
+#. TRANS: Page title after sending a poll response.
+msgid "Poll results"
+msgstr "Resultados de la encuesta"

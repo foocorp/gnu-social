@@ -1,0 +1,73 @@
+# Translation of StatusNet - Sitemap to Zazaki (Zazaki)
+# Exported from translatewiki.net
+#
+# Author: Erdemaslancan
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Sitemap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:01+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:35+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title for sitemap.
+msgid "Sitemap"
+msgstr "Pusulay sita"
+
+#. TRANS: Instructions for sitemap.
+msgid "Sitemap settings for this StatusNet site"
+msgstr ""
+
+#. TRANS: Field label.
+msgid "Google key"
+msgstr "Google kesa"
+
+#. TRANS: Title for field label.
+msgid "Google Webmaster Tools verification key."
+msgstr ""
+
+#. TRANS: Field label.
+msgid "Yahoo key"
+msgstr "Yahoo kesa"
+
+#. TRANS: Title for field label.
+msgid "Yahoo! Site Explorer verification key."
+msgstr ""
+
+#. TRANS: Field label.
+msgid "Bing key"
+msgstr "Bing kesa"
+
+#. TRANS: Title for field label.
+msgid "Bing Webmaster Tools verification key."
+msgstr ""
+
+#. TRANS: Submit button text to save sitemap settings.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Star ke"
+
+#. TRANS: Submit button title to save sitemap settings.
+msgid "Save sitemap settings."
+msgstr ""
+
+#. TRANS: Menu item title/tooltip
+msgid "Sitemap configuration"
+msgstr ""
+
+#. TRANS: Menu item for site administration
+msgctxt "MENU"
+msgid "Sitemap"
+msgstr "Pusulay sita"
+
+#. TRANS: Plugin description.
+msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
+msgstr ""

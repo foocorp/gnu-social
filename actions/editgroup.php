@@ -23,8 +23,8 @@
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
- * @author   Zach Copley <zach@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @author    Zach Copley <zach@status.net>
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -45,7 +45,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class EditgroupAction extends GroupDesignAction
+class EditgroupAction extends GroupAction
 {
     var $msg;
 
@@ -139,12 +139,6 @@ class EditgroupAction extends GroupDesignAction
         $this->showPage();
     }
 
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
-    }
-
     function showContent()
     {
         $form = new GroupEditForm($this, $this->group);
@@ -165,7 +159,7 @@ class EditgroupAction extends GroupDesignAction
     function showScripts()
     {
         parent::showScripts();
-        $this->autofocus('nickname');
+        $this->autofocus('newnickname');
     }
 
     function trySave()
@@ -179,7 +173,7 @@ class EditgroupAction extends GroupDesignAction
 
         if (Event::handle('StartGroupSaveForm', array($this))) {
 
-            $nickname    = Nickname::normalize($this->trimmed('nickname'));
+            $nickname    = Nickname::normalize($this->trimmed('newnickname'));
             $fullname    = $this->trimmed('fullname');
             $homepage    = $this->trimmed('homepage');
             $description = $this->trimmed('description');

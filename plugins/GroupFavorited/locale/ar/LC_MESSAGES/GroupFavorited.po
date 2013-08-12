@@ -1,0 +1,50 @@
+# Translation of StatusNet - GroupFavorited to Arabic (العربية)
+# Exported from translatewiki.net
+#
+# Author: OsamaK
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - GroupFavorited\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:46+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:17+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-groupfavorited\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+#. TRANS: Menu item in the group navigation page.
+msgctxt "MENU"
+msgid "Popular"
+msgstr "محبوبة"
+
+#. TRANS: Tooltip for menu item in the group navigation page.
+#. TRANS: %s is the nickname of the group.
+#, php-format
+msgctxt "TOOLTIP"
+msgid "Popular notices in %s group"
+msgstr "إشعارات محبوبة في مجموعة %s"
+
+#. TRANS: Plugin description.
+msgid "This plugin adds a menu item for popular notices in groups."
+msgstr ""
+
+#. TRANS: %s is a group name.
+#, php-format
+msgid "Popular posts in %s group"
+msgstr ""
+
+#. TRANS: %1$s is a group name, %2$s is a group number.
+#, php-format
+msgid "Popular posts in %1$s group, page %2$d"
+msgstr ""

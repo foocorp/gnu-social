@@ -38,7 +38,7 @@ class MirrorSettingsAction extends SettingsAction
      */
     function title()
     {
-        // TRANS: Title.
+        // TRANS: Page title.
         return _m('Feed mirror settings');
     }
 
@@ -50,7 +50,7 @@ class MirrorSettingsAction extends SettingsAction
 
     function getInstructions()
     {
-        // TRANS: Instructions.
+        // TRANS: Page instructions.
         return _m('You can mirror updates from many RSS and Atom feeds ' .
                   'into your StatusNet timeline!');
     }
@@ -129,6 +129,7 @@ class MirrorSettingsAction extends SettingsAction
             header('Content-Type: text/html;charset=utf-8');
             $this->elementStart('html');
             $this->elementStart('head');
+            // TRANS: Title for page with form to add a mirror feed provider on.
             $this->element('title', null, _m('Provider add'));
             $this->elementEnd('head');
             $this->elementStart('body');
@@ -152,10 +153,17 @@ class MirrorSettingsAction extends SettingsAction
     {
     }
 
+    /**
+     * Show the local navigation menu
+     *
+     * This is the same for all settings, so we show it here.
+     *
+     * @return void
+     */
     function showLocalNav()
     {
-        $nav = new SubGroupNav($this, common_current_user());
-        $nav->show();
+        $menu = new SettingsNav($this);
+        $menu->show();
     }
 
     function showScripts()

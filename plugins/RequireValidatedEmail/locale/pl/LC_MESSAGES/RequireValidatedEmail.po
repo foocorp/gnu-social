@@ -1,0 +1,102 @@
+# Translation of StatusNet - RequireValidatedEmail to Polish (polski)
+# Exported from translatewiki.net
+#
+# Author: Woytecr
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - RequireValidatedEmail\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:51+0000\n"
+"Language-Team: Polish <https://translatewiki.net/wiki/Portal:pl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-18 16:19:28+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: pl\n"
+"X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ( (n%10 >= 2 && n%10 <= 4 && "
+"(n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
+msgid "You must validate your email address before posting."
+msgstr ""
+
+#. TRANS: Client exception thrown when trying to register without providing an e-mail address.
+msgid "You must provide an email address to register."
+msgstr ""
+
+#. TRANS: Plugin description.
+msgid "Disables posting without a validated email address."
+msgstr ""
+
+#. TRANS: Client exception thrown when trying to register while already logged in.
+msgid "You are already logged in."
+msgstr "Jesteś już zalogowany"
+
+#. TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
+msgid "Confirmation code not found."
+msgstr "Nie odnaleziono kodu potwierdzającego."
+
+#. TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
+msgid "No user for that confirmation code."
+msgstr ""
+
+#. TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+#. TRANS: %s is the invalid e-mail address.
+#, php-format
+msgid "Unrecognized address type %s."
+msgstr ""
+
+#. TRANS: Client error for an already confirmed email/jabber/sms address.
+msgid "That address has already been confirmed."
+msgstr "Adres został już potwierdzony."
+
+#. TRANS: Client exception thrown when trying to register with too short a password.
+msgid "Password too short."
+msgstr "Hasło jest za krótkie."
+
+#. TRANS: Client exception thrown when trying to register without providing the same password twice.
+msgid "Passwords do not match."
+msgstr "Hasła nie pasują do siebie."
+
+#. TRANS: Form instructions. %s is the nickname of the to be registered user.
+#, php-format
+msgid ""
+"You have confirmed the email address for your new user account %s. Use the "
+"form below to set your new password."
+msgstr ""
+
+#. TRANS: Page title.
+msgid "Set a password"
+msgstr "Ustaw hasło"
+
+#. TRANS: Form legend.
+msgid "Confirm email address"
+msgstr "Potwierdź adres e-mail"
+
+#. TRANS: Field label.
+msgid "New password"
+msgstr "Nowe hasło"
+
+#. TRANS: Field title for password field.
+msgid "6 or more characters."
+msgstr "6 lub więcej znaków."
+
+#. TRANS: Field label for repeat password field.
+msgctxt "LABEL"
+msgid "Confirm"
+msgstr "Potwierdź"
+
+#. TRANS: Field title for repeat password field.
+msgid "Same as password above."
+msgstr ""
+
+#. TRANS: Button text for completing registration by e-mail.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Zapisz"

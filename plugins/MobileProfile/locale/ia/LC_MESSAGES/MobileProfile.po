@@ -1,4 +1,4 @@
-# Translation of StatusNet - MobileProfile to Interlingua (Interlingua)
+# Translation of StatusNet - MobileProfile to Interlingua (interlingua)
 # Exported from translatewiki.net
 #
 # Author: McDutchie
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:08+0000\n"
-"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:14+0000\n"
+"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:27+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:36+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -24,53 +24,6 @@ msgstr ""
 #. TRANS: Client exception thrown when requesting a not supported media type.
 msgid "This page is not available in a media type you accept."
 msgstr "Iste pagina non es disponibile in un formato que tu accepta."
-
-#. TRANS: Menu item in mobile profile to go to start page of site.
-msgid "Home"
-msgstr "Initio"
-
-#. TRANS: Menu item in mobile profile to go to user account settings.
-msgid "Account"
-msgstr "Conto"
-
-#. TRANS: Menu item in mobile profile to connect to other services.
-msgid "Connect"
-msgstr "Connecter"
-
-#. TRANS: Menu item in mobile profile to manage site settings.
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Change site configuration"
-msgstr "Modificar le configuration del sito"
-
-#. TRANS: Menu item in mobile profile to invite other people.
-msgid "Invite"
-msgstr "Invitar"
-
-#. TRANS: Menu item in mobile profile log the current user off.
-msgid "Logout"
-msgstr "Clauder session"
-
-#. TRANS: Menu item in mobile profile to register with the site.
-msgid "Register"
-msgstr "Crear conto"
-
-#. TRANS: Menu item in mobile profile to log in.
-msgid "Login"
-msgstr "Aperir session"
-
-#. TRANS: Menu item in mobile profile to search the site.
-msgid "Search"
-msgstr "Cercar"
-
-#. TRANS: Field label in mobile profile to attach a file to a status.
-msgid "Attach"
-msgstr "Annexar"
-
-#. TRANS: Field title in mobile profile to attach a file to a status.
-msgid "Attach a file."
-msgstr "Annexar un file."
 
 #. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
 msgid "Switch to desktop site layout."

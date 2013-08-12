@@ -1,0 +1,59 @@
+# Translation of StatusNet - Imap to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Imap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:50+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:20+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-imap\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: E-mail subject in case of an error.
+msgid "Error"
+msgstr "Erro"
+
+#. TRANS: Exception thrown when the ImapManager is used incorrectly in the code.
+msgid ""
+"ImapManager should be created using its constructor, not using the static "
+"\"get()\" method."
+msgstr ""
+"ImapManager debería crearse mediante o seu construtor e non utilizando o "
+"método estático \"get()\"."
+
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+msgid "A mailbox must be specified."
+msgstr "Cómpre especificar unha caixa de correos."
+
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+msgid "A user must be specified."
+msgstr "Cómpre especificar un usuario."
+
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+msgid "A password must be specified."
+msgstr "Cómpre especificar un contrasinal."
+
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+#. TRANS: poll_frequency is a setting that should not be translated.
+msgid "A poll_frequency must be specified."
+msgstr "Cómpre especificar un poll_frequency."
+
+#. TRANS: Plugin description.
+msgid ""
+"The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for "
+"incoming mail containing user posts."
+msgstr ""
+"O complemento IMAP permite a StatusNet comprobar se as caixas de entrada POP "
+"ou IMAP posúen novas mensaxes que conteñan publicacións de usuario."

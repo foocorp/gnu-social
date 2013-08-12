@@ -40,7 +40,7 @@ if (!defined('STATUSNET')) {
  * @author   Zach Copley <zach@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
- **/
+ */
 class RSSCloudRequestNotifyAction extends Action
 {
     /**
@@ -87,6 +87,7 @@ class RSSCloudRequestNotifyAction extends Action
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            // TRANS: Form validation error displayed when POST is not used.
             $this->showResult(false, _m('Request must be POST.'));
             return;
         }
@@ -104,7 +105,8 @@ class RSSCloudRequestNotifyAction extends Action
         if (empty($this->protocol)) {
             $missing[] = 'protocol';
         } else if (strtolower($this->protocol) != 'http-post') {
-            $msg = _m('Only http-post notifications are supported at this time.');
+            // TRANS: Form validation error displayed when HTTP POST is not used.
+            $msg = _m('Only HTTP POST notifications are supported at this time.');
             $this->showResult(false, $msg);
             return;
         }
@@ -114,14 +116,18 @@ class RSSCloudRequestNotifyAction extends Action
         }
 
         if (!empty($missing)) {
-            // TRANS: %s is a comma separated list of parameters.
-            $msg = sprintf(_m('The following parameters were missing from the request body: %s.'),implode(', ', $missing));
+            // TRANS: List separator.
+            $separator = _m('SEPARATOR',', ');
+            // TRANS: Form validation error displayed when a request body is missing expected parameters.
+            // TRANS: %s is a list of parameters separated by a list separator (default: ", ").
+            $msg = sprintf(_m('The following parameters were missing from the request body: %s.'),implode($separator, $missing));
             $this->showResult(false, $msg);
             return;
         }
 
         if (empty($this->feeds)) {
-            $msg = _m('You must provide at least one valid profile feed url ' .
+            // TRANS: Form validation error displayed when not providing any valid profile feed URLs.
+            $msg = _m('You must provide at least one valid profile feed URL ' .
               '(url1, url2, url3 ... urlN).');
             $this->showResult(false, $msg);
             return;
@@ -131,21 +137,21 @@ class RSSCloudRequestNotifyAction extends Action
         // We only return one success or failure no matter how
         // many feeds the subscriber is trying to subscribe to
         foreach ($this->feeds as $feed) {
-
             if (!$this->validateFeed($feed)) {
-
                 $nh = $this->getNotifyUrl();
                 common_log(LOG_WARNING,
                            "RSSCloud plugin - $nh tried to subscribe to invalid feed: $feed");
 
+                // TRANS: Form validation error displayed when not providing a valid feed URL.
                 $msg = _m('Feed subscription failed: Not a valid feed.');
                 $this->showResult(false, $msg);
                 return;
             }
 
             if (!$this->testNotificationHandler($feed)) {
-                $msg = _m('Feed subscription failed - ' .
-                'notification handler doesn\'t respond correctly.');
+                // TRANS: Form validation error displayed when feed subscription failed.
+                $msg = _m('Feed subscription failed: ' .
+                'Notification handler does not respond correctly.');
                 $this->showResult(false, $msg);
                 return;
             }
@@ -158,6 +164,7 @@ class RSSCloudRequestNotifyAction extends Action
         // XXX: What to do about deleting stale subscriptions?
         // 25 hours seems harsh. WordPress doesn't ever remove
         // subscriptions.
+        // TRANS: Success message after subscribing to one or more feeds.
         $msg = _m('Thanks for the subscription. ' .
           'When the feed(s) update(s), you will be notified.');
 
@@ -222,7 +229,6 @@ class RSSCloudRequestNotifyAction extends Action
                        'RSSCloud plugin - Testing notification handler with challenge: ' .
                        $notifyUrl);
             return $notifier->challenge($notifyUrl, $feed);
-
         } else {
             common_log(LOG_INFO, 'RSSCloud plugin - Testing notification handler: ' .
                        $notifyUrl);
@@ -291,7 +297,6 @@ class RSSCloudRequestNotifyAction extends Action
             common_log(LOG_INFO, "RSSCloud plugin - $notifyUrl refreshed subscription" .
                          " to user $user->nickname (id: $user->id).");
         } else {
-
             $sub = new RSSCloudSubscription();
 
             $sub->subscribed = $user->id;

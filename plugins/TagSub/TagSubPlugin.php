@@ -192,7 +192,6 @@ class TagSubPlugin extends Plugin
      *
      * @return boolean hook return
      */
-
     function onEndSubGroupNav($widget)
     {
         $action = $widget->out;
@@ -218,11 +217,11 @@ class TagSubPlugin extends Plugin
 
             if (!empty($tags) && count($tags) > 0) {
                 $tagSubMenu = new TagSubMenu($menu->out, $user, $tags);
+                // TRANS: Menu item text for tags submenu.
                 $menu->submenu(_m('Tags'), $tagSubMenu);
             }
         }
 
         return true;
     }
-
 }

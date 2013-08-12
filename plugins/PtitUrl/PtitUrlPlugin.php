@@ -38,7 +38,8 @@ class PtitUrlPlugin extends UrlShortenerPlugin
     function onInitializePlugin(){
         parent::onInitializePlugin();
         if(!isset($this->serviceUrl)){
-            throw new Exception("must specify a serviceUrl");
+            // TRANS: Exception thrown when URL shortening plugin was configured incorrectly.
+            throw new Exception(_m('You must specify a serviceUrl for ptit URL shortening.'));
         }
     }
 
@@ -63,10 +64,10 @@ class PtitUrlPlugin extends UrlShortenerPlugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:PtitUrl',
                             'rawdescription' =>
+                            // TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
                             sprintf(_m('Uses <a href="http://%1$s/">%1$s</a> URL-shortener service.'),
                                     $this->shortenerName));
 
         return true;
     }
 }
-

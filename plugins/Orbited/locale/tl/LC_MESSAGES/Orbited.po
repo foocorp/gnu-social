@@ -1,0 +1,32 @@
+# Translation of StatusNet - Orbited to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Orbited\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:30+0000\n"
+"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:13+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-orbited\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Server exception thrown when no connection can be made to a queue server.
+msgid "Failed to connect to queue server."
+msgstr "Nabigong umugnay sa tagapaghain ng pila."
+
+#. TRANS: Plugin description.
+msgid "Plugin to make updates using Orbited and STOMP."
+msgstr ""
+"Pampasak upang makagawa ng mga pagsasapanahon sa pamamagitan ng Orbited at "
+"STOMP."

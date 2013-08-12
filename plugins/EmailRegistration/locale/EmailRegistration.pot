@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,67 +16,92 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. TRANS: Client exception trown when registration by e-mail is not allowed.
+#: emailregister.php:84
+msgid "Registration not allowed."
+msgstr ""
+
+#. TRANS: Client exception trown when trying to register without an invitation.
+#: emailregister.php:96 emailregister.php:138
+msgid "Sorry, only invited people can register."
+msgstr ""
+
 #. TRANS: Client exception thrown when no confirmation code was provided.
-#: emailregister.php:105
+#: emailregister.php:107
 msgid "No confirmation code."
 msgstr ""
 
+#. TRANS: Client exception trown when using an invitation multiple times.
+#: emailregister.php:115 emailregister.php:146
+msgid "Invitation already used."
+msgstr ""
+
 #. TRANS: Client exception thrown when given confirmation code was not issued.
-#: emailregister.php:116 emailregister.php:143
+#: emailregister.php:123 emailregister.php:155
 msgid "No such confirmation code."
 msgstr ""
 
 #. TRANS: Title for registration page.
-#: emailregister.php:158
+#: emailregister.php:170
 msgctxt "TITLE"
 msgid "Register"
 msgstr ""
 
 #. TRANS: Title for page where to register with a confirmation code.
-#: emailregister.php:164
+#: emailregister.php:176
 msgctxt "TITLE"
 msgid "Complete registration"
 msgstr ""
 
 #. TRANS: Confirmation text after initial registration.
 #. TRANS: %s an e-mail address.
-#: emailregister.php:226
+#: emailregister.php:237
 #, php-format
 msgid ""
 "An email was sent to %s to confirm that address. Check your email inbox for "
 "instructions."
 msgstr ""
 
+#. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
+#: emailregister.php:271
+msgid "No confirmation thing."
+msgstr ""
+
 #. TRANS: Error text when trying to register without agreeing to the terms.
-#: emailregister.php:264
+#: emailregister.php:276
 msgid "You must accept the terms of service and privacy policy to register."
 msgstr ""
 
 #. TRANS: Error text when trying to register without a password.
-#: emailregister.php:267
+#: emailregister.php:279
 msgid "You must set a password"
 msgstr ""
 
 #. TRANS: Error text when trying to register with too short a password.
-#: emailregister.php:270
+#: emailregister.php:282
 msgid "Password must be 6 or more characters."
 msgstr ""
 
 #. TRANS: Error text when trying to register without providing the same password twice.
-#: emailregister.php:273
+#: emailregister.php:285
 msgid "Passwords do not match."
+msgstr ""
+
+#. TRANS: Exception trown when using an invitation multiple times.
+#: emailregister.php:317
+msgid "Failed to register user."
 msgstr ""
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.
-#: emailregister.php:343
+#: emailregister.php:351
 #, php-format
 msgid "Confirm your registration on %s"
 msgstr ""
 
 #. TRANS: Body for confirmation e-mail.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
-#: emailregister.php:349
+#: emailregister.php:357
 #, php-format
 msgid ""
 "Someone (probably you) has requested an account on %1$s using this email "
@@ -174,18 +199,4 @@ msgstr ""
 #. TRANS: Plugin description.
 #: EmailRegistrationPlugin.php:201
 msgid "Use email only for registration."
-msgstr ""
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#: Email_confirmation.php:163
-#, php-format
-msgid "Could not save new greeting count for %d."
-msgstr ""
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#: Email_confirmation.php:176
-#, php-format
-msgid "Could not increment greeting count for %d."
 msgstr ""

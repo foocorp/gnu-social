@@ -4,7 +4,6 @@ if (php_sapi_name() != 'cli') {
     die('no');
 }
 
-
 define('INSTALLDIR', dirname(dirname(dirname(dirname(__FILE__)))));
 
 $longoptions = array('verify=', 'reset');

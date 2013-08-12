@@ -24,7 +24,7 @@
  * @author    Evan Prodromou <evan@status.net>
  * @author    Zach Copley <zach@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2008-2010 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -88,9 +88,19 @@ class SiteadminpanelAction extends AdminPanelAction
     function saveSettings()
     {
         static $settings = array(
-            'site' => array('name', 'broughtby', 'broughtbyurl',
-            'email', 'timezone', 'language',
-            'site', 'textlimit', 'dupelimit'),
+            'site' => array(
+                'name',
+                'broughtby',
+                'broughtbyurl',
+                'email',
+                'timezone',
+                'language',
+                'site',
+                'textlimit',
+                'dupelimit',
+                'logo',
+                'ssllogo'
+            )
         );
 
         $values = array();
@@ -144,6 +154,19 @@ class SiteadminpanelAction extends AdminPanelAction
             $this->clientError(_('Not a valid email address.'));
         }
 
+        // Validate logos
+        if (!empty($values['site']['logo']) &&
+            !Validate::uri($values['site']['logo'], array('allowed_schemes' => array('http', 'https')))) {
+            // TRANS: Client error displayed when a logo URL is not valid.
+            $this->clientError(_('Invalid logo URL.'));
+        }
+
+        if (!empty($values['site']['ssllogo']) &&
+            !Validate::uri($values['site']['ssllogo'], array('allowed_schemes' => array('https')))) {
+            // TRANS: Client error displayed when a SSL logo URL is invalid.
+            $this->clientError(_('Invalid SSL logo URL.'));
+        }
+
         // Validate timezone
 
         if (is_null($values['site']['timezone']) ||
@@ -173,7 +196,7 @@ class SiteadminpanelAction extends AdminPanelAction
 
         if (!Validate::number($values['site']['dupelimit'], array('min' => 1))) {
             // TRANS: Client error displayed trying to save site settings with a text limit below 1.
-            $this->clientError(_("Dupe limit must be one or more seconds."));
+            $this->clientError(_('Dupe limit must be one or more seconds.'));
         }
     }
 }
@@ -251,6 +274,8 @@ class SiteAdminPanelForm extends AdminForm
         $this->out->elementEnd('ul');
         $this->out->elementEnd('fieldset');
 
+        $this->showLogo();
+
         $this->out->elementStart('fieldset', array('id' => 'settings_admin_local'));
         // TRANS: Fieldset legend on site settings panel.
         $this->out->element('legend', null, _m('LEGEND','Local'));
@@ -277,7 +302,7 @@ class SiteAdminPanelForm extends AdminForm
                              _('Default language'),
                              get_nice_language_list(),
                              // TRANS: Dropdown title on site settings panel.
-                             _('Site language when autodetection from browser settings is not available'),
+                             _('The site language when autodetection from browser settings is not available.'),
                              false, $this->value('language'));
         $this->unli();
 
@@ -307,6 +332,35 @@ class SiteAdminPanelForm extends AdminForm
         $this->out->elementEnd('fieldset');
     }
 
+    function showLogo()
+    {
+        $this->out->elementStart('fieldset', array('id' => 'settings_site_logo'));
+        // TRANS: Fieldset legend for form to change logo.
+        $this->out->element('legend', null, _('Logo'));
+
+        $this->out->elementStart('ul', 'form_data');
+
+        $this->li();
+        $this->input('logo',
+                     // TRANS: Field label for StatusNet site logo.
+                     _('Site logo'),
+                     // TRANS: Title for field label for StatusNet site logo.
+                     'Logo for the site (full URL).');
+        $this->unli();
+
+        $this->li();
+        $this->input('ssllogo',
+                     // TRANS: Field label for SSL StatusNet site logo.
+                     _('SSL logo'),
+                     // TRANS: Title for field label for SSL StatusNet site logo.
+                     'Logo to show on SSL pages (full URL).');
+        $this->unli();
+
+        $this->out->elementEnd('ul');
+
+        $this->out->elementEnd('fieldset');
+    }
+
     /**
      * Action elements
      *
@@ -320,6 +374,6 @@ class SiteAdminPanelForm extends AdminForm
                            'submit',
                            null,
                            // TRANS: Button title for saving site settings.
-                           _('Save site settings'));
+                           _('Save the site settings.'));
     }
 }

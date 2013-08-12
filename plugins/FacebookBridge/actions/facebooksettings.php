@@ -201,10 +201,8 @@ class FacebooksettingsAction extends SettingsAction {
 
                 $msg = sprintf(
                     // TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
-                    _m(
-                        'Disconnecting your Faceboook would make it impossible to '
-                            . 'log in! Please [set a password](%s) first.'
-                    ),
+                    _m('Disconnecting your Faceboook would make it impossible to '.
+                       'log in! Please [set a password](%s) first.'),
                     common_local_url('passwordsettings')
                 );
 

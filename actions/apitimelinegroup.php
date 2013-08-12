@@ -106,10 +106,8 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
 
         $self = $this->getSelfUri();
 
-        $link = common_local_url(
-            'ApiTimelineGroup',
-            array('nickname' => $this->group->nickname)
-        );
+        $link = common_local_url('showgroup',
+                                 array('nickname' => $this->group->nickname));
 
         switch($this->format) {
         case 'xml':
@@ -135,7 +133,7 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
             $this->showJsonTimeline($this->notices);
             break;
         case 'as':
-            header('Content-Type: application/json; charset=utf-8');
+            header('Content-Type: ' . ActivityStreamJSONDocument::CONTENT_TYPE);
             $doc = new ActivityStreamJSONDocument($this->auth_user);
             $doc->setTitle($atom->title);
             $doc->addLink($link, 'alternate', 'text/html');

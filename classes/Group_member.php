@@ -3,7 +3,7 @@
  * Table Definition for group_member
  */
 
-class Group_member extends Memcached_DataObject
+class Group_member extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -12,6 +12,7 @@ class Group_member extends Memcached_DataObject
     public $group_id;                        // int(4)  primary_key not_null
     public $profile_id;                      // int(4)  primary_key not_null
     public $is_admin;                        // tinyint(1)
+    public $uri;                             // varchar(255)
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -20,6 +21,35 @@ class Group_member extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'group_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to user_group'),
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
+                'is_admin' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'is this user an admin?'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universal identifier'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('group_id', 'profile_id'),
+            'unique keys' => array(
+                'group_member_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'group_member_group_id_fkey' => array('user_group', array('group_id' => 'id')),
+                'group_member_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+            ),
+            'indexes' => array(
+                // @fixme probably we want a (profile_id, created) index here?
+                'group_member_profile_id_idx' => array('profile_id'),
+                'group_member_created_idx' => array('created'),
+                'group_member_profile_id_created_idx' => array('profile_id', 'created'),
+                'group_member_group_id_created_idx' => array('group_id', 'created'),
+            ),
+        );
+    }
 
     function pkeyGet($kv)
     {
@@ -43,6 +73,7 @@ class Group_member extends Memcached_DataObject
         $member->group_id   = $group_id;
         $member->profile_id = $profile_id;
         $member->created    = common_sql_now();
+        $member->uri        = self::newURI($profile_id, $group_id, $member->created);
 
         $result = $member->insert();
 
@@ -130,14 +161,20 @@ class Group_member extends Memcached_DataObject
     function asActivity()
     {
         $member = $this->getMember();
+
+        if (!$member) {
+            throw new Exception("No such member: " . $this->profile_id);
+        }
+
         $group  = $this->getGroup();
+
+        if (!$group) {
+            throw new Exception("No such group: " . $this->group_id);
+        }
 
         $act = new Activity();
 
-        $act->id = TagURI::mint('join:%d:%d:%s',
-                                $member->id,
-                                $group->id,
-                                common_date_iso8601($this->created));
+        $act->id = $this->getURI();
 
         $act->actor     = ActivityObject::fromProfile($member);
         $act->verb      = ActivityVerb::JOIN;
@@ -170,5 +207,22 @@ class Group_member extends Memcached_DataObject
     public function notify()
     {
         mail_notify_group_join($this->getGroup(), $this->getMember());
+    }
+
+    function getURI()
+    {
+        if (!empty($this->uri)) {
+            return $this->uri;
+        } else {
+            return self::newURI($this->profile_id, $this->group_id, $this->created);
+        }
+    }
+
+    static function newURI($profile_id, $group_id, $created)
+    {
+        return TagURI::mint('join:%d:%d:%s',
+                            $profile_id,
+                            $group_id,
+                            common_date_iso8601($created));
     }
 }

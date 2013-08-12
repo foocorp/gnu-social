@@ -55,6 +55,25 @@ require_once INSTALLDIR.'/lib/feedlist.php';
  */
 class ShowstreamAction extends ProfileAction
 {
+    var $notice;
+
+    function prepare($args)
+    {
+        parent::prepare($args);
+
+        $p = Profile::current();
+
+        if (empty($this->tag)) {
+            $stream = new ProfileNoticeStream($this->profile, $p);
+        } else {
+            $stream = new TaggedProfileNoticeStream($this->profile, $this->tag, $p);
+        }
+
+        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
+
+        return true;
+    }
+
     function isReadOnly($args)
     {
         return true;
@@ -65,11 +84,11 @@ class ShowstreamAction extends ProfileAction
         $base = $this->profile->getFancyName();
         if (!empty($this->tag)) {
             if ($this->page == 1) {
-                // TRANS: Page title showing tagged notices in one user's stream.
+                // TRANS: Page title showing tagged notices in one user's timeline.
                 // TRANS: %1$s is the username, %2$s is the hash tag.
                 return sprintf(_('Notices by %1$s tagged %2$s'), $base, $this->tag);
             } else {
-                // TRANS: Page title showing tagged notices in one user's stream.
+                // TRANS: Page title showing tagged notices in one user's timeline.
                 // TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
                 return sprintf(_('Notices by %1$s tagged %2$s, page %3$d'), $base, $this->tag, $this->page);
             }
@@ -77,7 +96,7 @@ class ShowstreamAction extends ProfileAction
             if ($this->page == 1) {
                 return $base;
             } else {
-                // TRANS: Extended page title showing tagged notices in one user's stream.
+                // TRANS: Extended page title showing tagged notices in one user's timeline.
                 // TRANS: %1$s is the username, %2$d is the page number.
                 return sprintf(_('Notices by %1$s, page %2$d'),
                                $base,
@@ -91,9 +110,6 @@ class ShowstreamAction extends ProfileAction
         // Looks like we're good; start output
 
         // For YADIS discovery, we also have a <meta> tag
-
-        header('X-XRDS-Location: '. common_local_url('xrds', array('nickname' =>
-                                                                   $this->user->nickname)));
 
         $this->showPage();
     }
@@ -127,7 +143,16 @@ class ShowstreamAction extends ProfileAction
                                           $this->user->nickname, $this->tag)));
         }
 
-        return array(new Feed(Feed::RSS1,
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelineUser',
+                                               array(
+                                                    'id' => $this->user->id,
+                                                    'format' => 'as')),
+                              // TRANS: Title for link to notice feed.
+                              // TRANS: %s is a user nickname.
+                              sprintf(_('Notice feed for %s (Activity Streams JSON)'),
+                                      $this->user->nickname)),
+                     new Feed(Feed::RSS1,
                               common_local_url('userrss',
                                                array('nickname' => $this->user->nickname)),
                               // TRANS: Title for link to notice feed.
@@ -162,11 +187,6 @@ class ShowstreamAction extends ProfileAction
 
     function extraHead()
     {
-        // for remote subscriptions etc.
-        $this->element('meta', array('http-equiv' => 'X-XRDS-Location',
-                                     'content' => common_local_url('xrds', array('nickname' =>
-                                                                                 $this->user->nickname))));
-
         if ($this->profile->bio) {
             $this->element('meta', array('name' => 'description',
                                          'content' => $this->profile->bio));
@@ -192,11 +212,16 @@ class ShowstreamAction extends ProfileAction
         $this->element('link', array('rel' => 'EditURI',
                                      'type' => 'application/rsd+xml',
                                      'href' => $rsd));
+
+        if ($this->page != 1) {
+            $this->element('link', array('rel' => 'canonical',
+                                         'href' => $this->profile->profileurl));
+        }
     }
 
     function showEmptyListMessage()
     {
-        // TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+        // TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
         $message = sprintf(_('This is the timeline for %1$s, but %1$s hasn\'t posted anything yet.'), $this->user->nickname) . ' ';
 
         if (common_logged_in()) {
@@ -205,7 +230,7 @@ class ShowstreamAction extends ProfileAction
                 // TRANS: Second sentence of empty list message for a stream for the user themselves.
                 $message .= _('Seen anything interesting recently? You haven\'t posted any notices yet, now would be a good time to start :)');
             } else {
-                // TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+                // TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
                 // TRANS: This message contains a Markdown link. Keep "](" together.
                 $message .= sprintf(_('You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%%?status_textarea=%2$s).'), $this->user->nickname, '@' . $this->user->nickname);
             }
@@ -223,13 +248,9 @@ class ShowstreamAction extends ProfileAction
 
     function showNotices()
     {
-        $notice = empty($this->tag)
-          ? $this->user->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1)
-            : $this->user->getTaggedNotices($this->tag, ($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1, 0, 0, null);
-
         $pnl = null;
-        if (Event::handle('ShowStreamNoticeList', array($notice, $this, &$pnl))) {
-            $pnl = new ProfileNoticeList($notice, $this);
+        if (Event::handle('ShowStreamNoticeList', array($this->notice, $this, &$pnl))) {
+            $pnl = new ProfileNoticeList($this->notice, $this);
         }
         $cnt = $pnl->show();
         if (0 == $cnt) {
@@ -248,17 +269,17 @@ class ShowstreamAction extends ProfileAction
     function showAnonymousMessage()
     {
         if (!(common_config('site','closed') || common_config('site','inviteonly'))) {
-            // TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+            // TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
             // TRANS: This message contains a Markdown link. Keep "](" together.
             $m = sprintf(_('**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                            'based on the Free Software [StatusNet](http://status.net/) tool. ' .
                            '[Join now](%%%%action.register%%%%) to follow **%s**\'s notices and many more! ([Read more](%%%%doc.help%%%%))'),
                          $this->user->nickname, $this->user->nickname);
         } else {
-            // TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+            // TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
             // TRANS: This message contains a Markdown link. Keep "](" together.
             $m = sprintf(_('**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
-                           'based on the Free Software [StatusNet](http://status.net/) tool. '),
+                           'based on the Free Software [StatusNet](http://status.net/) tool.'),
                          $this->user->nickname, $this->user->nickname);
         }
         $this->elementStart('div', array('id' => 'anon_notice'));
@@ -269,8 +290,10 @@ class ShowstreamAction extends ProfileAction
     function showSections()
     {
         parent::showSections();
-        $cloud = new PersonalTagCloudSection($this, $this->user);
-        $cloud->show();
+        if (!common_config('performance', 'high')) {
+            $cloud = new PersonalTagCloudSection($this, $this->user);
+            $cloud->show();
+        }
     }
 
     function noticeFormOptions()

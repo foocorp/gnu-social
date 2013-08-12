@@ -1,4 +1,4 @@
-# Translation of StatusNet - PoweredByStatusNet to Galician (Galego)
+# Translation of StatusNet - PoweredByStatusNet to Galician (galego)
 # Exported from translatewiki.net
 #
 # Author: Toliño
@@ -9,24 +9,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - PoweredByStatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:51+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:40+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-16 23:18:51+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:26+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-poweredbystatusnet\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Text output after site name.
-#, fuzzy
 msgid "powered by <a href=\"http://status.net/\">StatusNet</a>"
-msgstr ""
-"Produce un \"desenvolvido por <a href=\"http://status.net/\">StatusNet</a>\" "
-"despois do nome do sitio."
+msgstr "desenvolvido por <a href=\"http://status.net/\">StatusNet</a>"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -35,9 +32,3 @@ msgid ""
 msgstr ""
 "Produce un \"desenvolvido por <a href=\"http://status.net/\">StatusNet</a>\" "
 "despois do nome do sitio."
-
-#~ msgid "powered by %s"
-#~ msgstr "desenvolvido por %s"
-
-#~ msgid "StatusNet"
-#~ msgstr "StatusNet"

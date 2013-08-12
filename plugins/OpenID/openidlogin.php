@@ -136,6 +136,7 @@ class OpenidloginAction extends Action
         $provider = common_config('openid', 'trusted_provider');
         $appendUsername = common_config('openid', 'append_username');
         if ($provider) {
+            // TRANS: Field label.
             $this->element('label', array(), _m('LABEL','OpenID provider'));
             $this->element('span', array(), $provider);
             if ($appendUsername) {

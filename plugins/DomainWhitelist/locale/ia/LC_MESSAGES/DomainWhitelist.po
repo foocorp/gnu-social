@@ -1,4 +1,4 @@
-# Translation of StatusNet - DomainWhitelist to Interlingua (Interlingua)
+# Translation of StatusNet - DomainWhitelist to Interlingua (interlingua)
 # Exported from translatewiki.net
 #
 # Author: McDutchie
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - DomainWhitelist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:07+0000\n"
-"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:16+0000\n"
+"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:33+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -27,11 +27,54 @@ msgstr ""
 msgid "Email address must be in this domain: %s."
 msgstr "Le adresse de e-mail debe esser in iste dominio: %s."
 
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
+#. TRANS: %s are whitelisted e-mail domains separated by comma's (localisable).
+#, php-format
+msgid "Email address must be in one of these domains: %s."
+msgstr "Le adresse de e-mail debe esser in un de iste dominios: %s."
+
 #. TRANS: Separator for whitelisted domains.
 msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
+#. TRANS: Exception thrown when an e-mail address does not match the site's domain whitelist.
+msgid "That email address is not allowed on this site."
+msgstr "Iste adresse de e-mail non es permittite in iste sito."
+
+#. TRANS: Title for invitiation deletion dialog.
+msgid "Confirmation Required"
+msgstr "Confirmation necessari"
+
+#. TRANS: Confirmation text for invitation deletion dialog.
+msgid "Really delete this invitation?"
+msgstr "Es tu secur de voler deler iste invitation?"
+
 #. TRANS: Plugin description.
 msgid "Restrict domains for email users."
 msgstr "Restringer dominios pro usatores de e-mail."
+
+#. TRANS: Form legend.
+msgid "Invite collegues"
+msgstr "Invitar collegas"
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Message personal"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Si tu vole, adde un message personal al invitation."
+
+#. TRANS: Link description to action to add another item to a list.
+msgid "Add another item"
+msgstr "Adder un altere elemento"
+
+#. TRANS: Send button for inviting friends.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Inviar"
+
+#. TRANS: Submit button title.
+msgid "Send invitations."
+msgstr "Inviar invitationes."

@@ -1,8 +1,10 @@
-# Translation of StatusNet - QnA to French (Français)
+# Translation of StatusNet - QnA to French (français)
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Gomoko
 # Author: Iketsi
+# Author: JojoBoulix
 # Author: Od1n
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -11,14 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:58+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:44+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:49+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -27,6 +29,7 @@ msgstr ""
 msgid "New question"
 msgstr "Nouvelle question"
 
+#. TRANS: Client exception thrown trying to create a Question while not logged in.
 msgid "You must be logged in to post a question."
 msgstr "Vous devez être connecté pour pouvoir poster une question."
 
@@ -38,16 +41,21 @@ msgstr "La question doit avoir un titre."
 msgid "Question posted"
 msgstr "Question publiée"
 
+#. TRANS: Client exception thrown when requesting a non-existing answer.
+#. TRANS: Did we used to have it, and it got deleted?
 msgid "No such answer."
 msgstr "Réponse non trouvée."
 
+#. TRANS: Client exception thrown when requesting an answer that has no connected question.
 msgid "No question for this answer."
 msgstr "Pas question pour cette réponse."
 
+#. TRANS: Client exception thrown when requesting answer data for a non-existing user.
 #. TRANS: Client exception thrown trying to view a question of a non-existing user.
 msgid "No such user."
 msgstr "Utilisateur inexistant."
 
+#. TRANS: Client exception thrown when requesting answer data for a user without a profile.
 #. TRANS: Server exception thrown trying to view a question for a user for which the profile could not be loaded.
 msgid "User without a profile."
 msgstr "Utilisateur sans profil."
@@ -66,6 +74,7 @@ msgstr "Réviser la réponse"
 msgid "You must be logged in to answer to a question."
 msgstr "Vous devez être connecté pour pouvoir répondre à une question."
 
+#. TRANS: Client exception thrown trying to respond to a non-existing question.
 msgid "Invalid or missing answer."
 msgstr "Réponse invalide ou manquante."
 
@@ -75,14 +84,21 @@ msgstr "Réponse invalide ou manquante."
 msgid "Answer"
 msgstr "Réponse"
 
+#. TRANS: Form title for sending an answer.
+msgctxt "TITLE"
+msgid "Answer"
+msgstr "Réponse"
+
 #. TRANS: Client exception thrown trying to view a non-existing question.
 msgid "No such question."
 msgstr "Aucune question semblable."
 
 #. TRANS: Client exception thrown trying to view a non-existing question notice.
 msgid "No such question notice."
-msgstr ""
+msgstr "Aucun avis de question."
 
+#. TRANS: Page title for a question.
+#. TRANS: %1$s is the nickname of the user who asked the question, %2$s is the question.
 #, php-format
 msgid "%1$s's question: %2$s"
 msgstr "Question de %1$s : %2$s"
@@ -91,6 +107,7 @@ msgstr "Question de %1$s : %2$s"
 msgid "Close question"
 msgstr "Fermer la question"
 
+#. TRANS: Client exception thrown trying to close a question when not logged in
 msgid "You must be logged in to close a question."
 msgstr "Vous devez être connecté pour pouvoir clore une question."
 
@@ -98,10 +115,12 @@ msgstr "Vous devez être connecté pour pouvoir clore une question."
 msgid "Invalid or missing question."
 msgstr "Question invalide ou manquante."
 
-msgid "You didn't ask this question."
-msgstr "Vous n'avez pas posé la question."
+#. TRANS: Exception thrown trying to close another user's question.
+msgid "You did not ask this question."
+msgstr "Vous n’avez pas posé cette question."
 
 #. TRANS: Page title after sending an answer.
+#. TRANS: Page title after sending in a vote for a question or answer.
 msgid "Answers"
 msgstr "Réponses"
 
@@ -114,6 +133,8 @@ msgctxt "TITLE"
 msgid "Your answer"
 msgstr "Votre réponse"
 
+#. TRANS: Error message displayed when an answer has no content.
+#. TRANS: Error message displayed when answer data is not present.
 msgid "Answer data is missing."
 msgstr "Les données de réponse sont manquantes."
 
@@ -122,27 +143,29 @@ msgid "Question and Answers micro-app."
 msgstr "Micro-application Question and Answers"
 
 #. TRANS: Application title.
-#. TRANS: Form legend for revising the answer.
+msgctxt "TITLE"
 msgid "Question"
 msgstr "Question"
 
+#. TRANS: Exception thrown when there are too many activity objects.
 msgid "Too many activity objects."
 msgstr "Les objets d'activité sont trop nombreux."
 
+#. TRANS: Exception thrown when an incorrect object type is encountered.
 msgid "Wrong type for object."
 msgstr "Mauvais type d'objet."
 
+#. TRANS: Exception thrown when answering a non-existing question.
 msgid "Answer to unknown question."
 msgstr "Réponse à une question inconnue."
 
-msgid "Unknown object type received by QnA Plugin."
-msgstr "Le type d'objet reçu par le plugin QnA est inconnu."
-
+#. TRANS: Exception thrown when an object type is encountered that cannot be handled.
 msgid "Unknown object type."
 msgstr "Type d'objet inconnu."
 
+#. TRANS: Exception thrown when requesting a non-existing question notice.
 msgid "Unknown question notice."
-msgstr ""
+msgstr "Avis de question inconnu."
 
 #. TRANS: Exception thrown when performing an unexpected action on a question.
 #. TRANS: %s is the unpexpected object type.
@@ -150,39 +173,69 @@ msgstr ""
 msgid "Unexpected type for QnA plugin: %s."
 msgstr "Type inconnu pour le plugin de QnA : %s"
 
+#. TRANS: Error message displayed when question data is not present.
 msgid "Question data is missing."
 msgstr "Les données de la question sont manquantes."
 
+#. TRANS: Placeholder value for a possible answer to a question
+#. TRANS: by the logged in user.
 msgid "Your answer..."
 msgstr "Votre réponse..."
 
-#. TRANS: Link to full notice text if it is longer than what will be dispplayed.
-#. TRANS: %s a notice URI.
-#, php-format
-msgid "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
-msgstr "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
+#. TRANS: Link description for link to full notice text if it is longer than
+#. TRANS: what will be dispplayed.
+msgid "…"
+msgstr "…"
 
+#. TRANS: Title for link that is an ellipsis in English.
 msgid "more..."
 msgstr "plus..."
 
+#. TRANS: Exception thown when getting a question with a non-existing ID.
+#. TRANS: %s is the non-existing question ID.
 #, php-format
-msgid "%s revisions"
-msgstr "%s révisions"
+msgid "No question with ID %s"
+msgstr "Pas de question avec l'ID %s."
 
+#. TRANS: Exception thown when getting a profile with a non-existing ID.
+#. TRANS: %s is the non-existing profile ID.
+#. TRANS: Exception trown when getting a profile for a non-existing ID.
+#. TRANS: %s is the provided profile ID.
+#, php-format
+msgid "No profile with ID %s"
+msgstr "Aucun profil avec l'ID %s"
+
+#. TRANS: %s is the number of answer revisions.
+#, php-format
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] "%s révision"
+msgstr[1] "%s révisions"
+
+#. TRANS: Text for a question that was answered.
+#. TRANS: %1$s is the user that answered, %2$s is the question title,
+#. TRANS: %2$s is the answer content.
 #, php-format
 msgid "%1$s answered the question \"%2$s\": %3$s"
 msgstr "%1$s a répondu à la question \"%2$s\" : %3$s"
 
+#. TRANS: Text for a question that was answered.
+#. TRANS: %s is the question title.
 #. TRANS: Rendered version of the notice content answering a question.
 #. TRANS: %s a link to the question with question title as the link content.
 #, php-format
 msgid "answered \"%s\""
 msgstr "répondu « %s »"
 
+#. TRANS: Number of given answers to a question.
+#. TRANS: %s is the number of given answers.
 #, php-format
-msgid "%s answers"
-msgstr "%s réponses"
+msgid "%s answer"
+msgid_plural "%s answers"
+msgstr[0] "%s réponse"
+msgstr[1] "%s réponses"
 
+#. TRANS: Notification that a question cannot be answered anymore because it is closed.
 msgid "This question is closed."
 msgstr "Cette question est fermée."
 
@@ -192,11 +245,13 @@ msgstr "Cette question est fermée."
 msgid "Question: %s"
 msgstr "Question : %s"
 
+#. TRANS: Button text for submitting a revised answer.
 #. TRANS: Button text for submitting a poll response.
 msgctxt "BUTTON"
 msgid "Submit"
 msgstr "Soumettre"
 
+#. TRANS: Field label.
 msgid "Enter your answer"
 msgstr "Entrez votre réponse."
 
@@ -205,37 +260,48 @@ msgctxt "BUTTON"
 msgid "Answer"
 msgstr "Réponse"
 
+#. TRANS: Field label for a new question.
+msgctxt "LABEL"
 msgid "Title"
 msgstr "Titre"
 
-msgid "Title of your question"
-msgstr "Titre de votre question"
+#. TRANS: Field title for a new question.
+msgid "The title of your question."
+msgstr "Le titre de votre question."
 
+#. TRANS: Field label for question details.
+msgctxt "LABEL"
 msgid "Description"
 msgstr "Description"
 
-msgid "Your question in detail"
-msgstr "Votre question en détail"
+#. TRANS: Field title for question details.
+msgid "Your question in detail."
+msgstr "Votre question en détail."
 
 #. TRANS: Button text for saving a new question.
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Enregistrer"
 
-#. TRANS: Button text for closing a question
+#. TRANS: Form legend for revising the answer.
+msgctxt "LEGEND"
+msgid "Question"
+msgstr "Question"
+
+#. TRANS: Button text for closing a question.
 msgctxt "BUTTON"
 msgid "Close"
 msgstr "Fermer"
 
-#. TRANS: Title for button text for closing a question
-msgid "Close the question"
-msgstr "Fermer la question"
+#. TRANS: Title for button text for closing a question.
+msgid "Close the question to no one can answer it anymore."
+msgstr "Clôturer la question pur que personne ne puisse plus y répondre."
 
-#. TRANS: Button text for marking an answer as "best"
+#. TRANS: Button text for marking an answer as "best".
 msgctxt "BUTTON"
 msgid "Best"
 msgstr "Meilleure"
 
-#. TRANS: Title for button text marking an answer as "best"
-msgid "Mark as best answer"
-msgstr "Marquer comme meilleure réponse"
+#. TRANS: Title for button text marking an answer as "best".
+msgid "Mark this answer as the best answer."
+msgstr "Marquer cette réponse comme la meilleure."

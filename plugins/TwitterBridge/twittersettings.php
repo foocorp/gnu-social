@@ -54,6 +54,7 @@ class TwittersettingsAction extends ProfileSettingsAction
 
     function title()
     {
+        // TRANS: Title for page with Twitter integration settings.
         return _m('Twitter settings');
     }
 
@@ -65,6 +66,7 @@ class TwittersettingsAction extends ProfileSettingsAction
 
     function getInstructions()
     {
+        // TRANS: Instructions for page with Twitter integration settings.
         return _m('Connect your Twitter account to share your updates ' .
                   'with your Twitter friends and vice-versa.');
     }
@@ -106,57 +108,62 @@ class TwittersettingsAction extends ProfileSettingsAction
             $this->elementStart('ul', 'form_data');
             $this->elementStart('li', array('id' => 'settings_twitter_login_button'));
             $this->element('a', array('href' => common_local_url('twitterauthorization')),
+                           // TRANS: Link description to connect to a Twitter account.
                            'Connect my Twitter account');
             $this->elementEnd('li');
             $this->elementEnd('ul');
 
             $this->elementEnd('fieldset');
         } else {
+            // TRANS: Fieldset legend.
             $this->element('legend', null, _m('Twitter account'));
             $this->elementStart('p', array('id' => 'form_confirmed'));
             $this->element('a', array('href' => $fuser->uri), $fuser->nickname);
             $this->elementEnd('p');
             $this->element('p', 'form_note',
+                           // TRANS: Form note when a Twitter account has been connected.
                            _m('Connected Twitter account'));
             $this->elementEnd('fieldset');
 
             $this->elementStart('fieldset');
 
+            // TRANS: Fieldset legend.
             $this->element('legend', null, _m('Disconnect my account from Twitter'));
 
             if (!$user->password) {
-
                 $this->elementStart('p', array('class' => 'form_guide'));
-                // @todo FIXME: Bad i18n (patchwork in three parts).
-                $this->text(_m('Disconnecting your Twitter ' .
-                               'could make it impossible to log in! Please '));
-                $this->element('a',
-                    array('href' => common_local_url('passwordsettings')),
-                        _m('set a password'));
-
-                $this->text(_m(' first.'));
+                // TRANS: Form guide. %s is a URL to the password settings.
+                // TRANS: This message contains a Markdown link in the form [description](link).
+                $message = sprintf(_m('Disconnecting your Twitter account ' .
+                                      'could make it impossible to log in! Please ' .
+                                      '[set a password](%s) first.'),
+                                   common_local_url('passwordsettings'));
+                $message = common_markup_to_html($message);
+                $this->text($message);
                 $this->elementEnd('p');
             } else {
-                // TRANS: %1$s is the current website name.
+                // TRANS: Form instructions. %1$s is the StatusNet sitename.
                 $note = _m('Keep your %1$s account but disconnect from Twitter. ' .
                     'You can use your %1$s password to log in.');
-
                 $site = common_config('site', 'name');
 
                 $this->element('p', 'instructions',
                     sprintf($note, $site));
 
-                $this->submit('disconnect', _m('Disconnect'));
+                // TRANS: Button text for disconnecting a Twitter account.
+                $this->submit('disconnect', _m('BUTTON','Disconnect'));
             }
 
             $this->elementEnd('fieldset');
 
             $this->elementStart('fieldset', array('id' => 'settings_twitter_preferences'));
 
+            // TRANS: Fieldset legend.
             $this->element('legend', null, _m('Preferences'));
             $this->elementStart('ul', 'form_data');
             $this->elementStart('li');
             $this->checkbox('noticesend',
+                            // TRANS: Checkbox label.
                             _m('Automatically send my notices to Twitter.'),
                             ($flink) ?
                             ($flink->noticesync & FOREIGN_NOTICE_SEND) :
@@ -164,6 +171,7 @@ class TwittersettingsAction extends ProfileSettingsAction
             $this->elementEnd('li');
             $this->elementStart('li');
             $this->checkbox('replysync',
+                            // TRANS: Checkbox label.
                             _m('Send local "@" replies to Twitter.'),
                             ($flink) ?
                             ($flink->noticesync & FOREIGN_NOTICE_SEND_REPLY) :
@@ -171,6 +179,7 @@ class TwittersettingsAction extends ProfileSettingsAction
             $this->elementEnd('li');
             $this->elementStart('li');
             $this->checkbox('friendsync',
+                            // TRANS: Checkbox label.
                             _m('Subscribe to my Twitter friends here.'),
                             ($flink) ?
                             ($flink->friendsync & FOREIGN_FRIEND_RECV) :
@@ -180,6 +189,7 @@ class TwittersettingsAction extends ProfileSettingsAction
             if (common_config('twitterimport','enabled')) {
                 $this->elementStart('li');
                 $this->checkbox('noticerecv',
+                                // TRANS: Checkbox label.
                                 _m('Import my friends timeline.'),
                                 ($flink) ?
                                 ($flink->noticesync & FOREIGN_NOTICE_RECV) :
@@ -196,9 +206,11 @@ class TwittersettingsAction extends ProfileSettingsAction
             $this->elementEnd('ul');
 
             if ($flink) {
-                $this->submit('save', _m('Save'));
+                // TRANS: Button text for saving Twitter integration settings.
+                $this->submit('save', _m('BUTTON','Save'));
             } else {
-                $this->submit('add', _m('Add'));
+                // TRANS: Button text for adding Twitter integration.
+                $this->submit('add', _m('BUTTON','Add'));
             }
 
             $this->elementEnd('fieldset');
@@ -222,6 +234,7 @@ class TwittersettingsAction extends ProfileSettingsAction
         // CSRF protection
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->showForm(_m('There was a problem with your session token. '.
                                'Try again, please.'));
             return;
@@ -232,6 +245,7 @@ class TwittersettingsAction extends ProfileSettingsAction
         } else if ($this->arg('disconnect')) {
             $this->removeTwitterAccount();
         } else {
+            // TRANS: Client error displayed when the submitted form contains unexpected data.
             $this->showForm(_m('Unexpected form submission.'));
         }
     }
@@ -247,6 +261,7 @@ class TwittersettingsAction extends ProfileSettingsAction
         $flink = Foreign_link::getByUserID($user->id, TWITTER_SERVICE);
 
         if (empty($flink)) {
+            // TRANS: Client error displayed when trying to remove a connected Twitter account when there isn't one connected.
             $this->clientError(_m('No Twitter connection to remove.'));
             return;
         }
@@ -255,10 +270,12 @@ class TwittersettingsAction extends ProfileSettingsAction
 
         if (empty($result)) {
             common_log_db_error($flink, 'DELETE', __FILE__);
-            $this->serverError(_m('Couldn\'t remove Twitter user.'));
+            // TRANS: Server error displayed when trying to remove a connected Twitter account fails.
+            $this->serverError(_m('Could not remove Twitter user.'));
             return;
         }
 
+        // TRANS: Success message displayed after disconnecting a Twitter account.
         $this->showForm(_m('Twitter account disconnected.'), true);
     }
 
@@ -279,7 +296,9 @@ class TwittersettingsAction extends ProfileSettingsAction
 
         if (empty($flink)) {
             common_log_db_error($flink, 'SELECT', __FILE__);
-            $this->showForm(_m('Couldn\'t save Twitter preferences.'));
+            // @todo FIXME: Shouldn't this be a serverError()?
+            // TRANS: Server error displayed when saving Twitter integration preferences fails.
+            $this->showForm(_m('Could not save Twitter preferences.'));
             return;
         }
 
@@ -290,7 +309,9 @@ class TwittersettingsAction extends ProfileSettingsAction
 
         if ($result === false) {
             common_log_db_error($flink, 'UPDATE', __FILE__);
-            $this->showForm(_m('Couldn\'t save Twitter preferences.'));
+            // @todo FIXME: Shouldn't this be a serverError()?
+            // TRANS: Server error displayed when saving Twitter integration preferences fails.
+            $this->showForm(_m('Could not save Twitter preferences.'));
             return;
         }
 
@@ -298,6 +319,7 @@ class TwittersettingsAction extends ProfileSettingsAction
             $this->notifyDaemon($flink->foreign_id, $noticerecv);
         }
 
+        // TRANS: Success message after saving Twitter integration preferences.
         $this->showForm(_m('Twitter preferences saved.'), true);
     }
 
@@ -306,7 +328,6 @@ class TwittersettingsAction extends ProfileSettingsAction
      */
     function notifyDaemon($twitterUserId, $receiving)
     {
-        // todo... should use control signals rather than queues
+        // @todo... should use control signals rather than queues
     }
-
 }

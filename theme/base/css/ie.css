@@ -10,13 +10,11 @@ top:0;
 }
 
 .threaded-replies .form_notice textarea {
-    width: 385px;
+    width: 395px;
 }
 
 .form_notice .form_note + label {
 position:absolute;
-top:25px;
-left:83%;
 text-indent:-9999px;
 height:16px;
 width:16px;
@@ -50,10 +48,6 @@ display:block;
 .form_notice .success,
 .form_notice .notice-status {
     width: 468px; 
-}
-
-.threaded-replies .form_notice textarea {
-    width: 395px;
 }
 
 .notice-options input.submit {
@@ -99,22 +93,6 @@ line-height:auto;
     filter: alpha(opacity=0);
 }
 
-/* IE7 */ 
-
-*+html .input_forms {
-    margin-bottom: -20px;
-}
-
-/* IE6 */
-
-#content {
-    _width: 520px;
-}
-
-#aside_primary {
-    _width: 190px;
-}
-
-#content h1 {
-    _clear: left;
+.notice .addressees:before {
+    content: '\003E';
 }

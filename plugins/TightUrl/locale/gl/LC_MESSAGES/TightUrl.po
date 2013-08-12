@@ -1,4 +1,4 @@
-# Translation of StatusNet - TightUrl to Galician (Galego)
+# Translation of StatusNet - TightUrl to Galician (galego)
 # Exported from translatewiki.net
 #
 # Author: Toliño
@@ -9,18 +9,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TightUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:36+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:17+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-01 21:06:41+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:38+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-tighturl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Exception thrown when the TightUrl plugin has been configured incorrectly.
+msgid "You must specify a serviceUrl."
+msgstr "Cómpre especificar un serviceUrl."
+
+#. TRANS: Plugin description. %s is the shortener name.
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr ""

@@ -1,0 +1,37 @@
+# Translation of StatusNet - NoticeTitle to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: GreenFox
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NoticeTitle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:20+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:09+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Adds optional titles to notices."
+msgstr "Aggiunge titoli opzionali alle comunicazioni."
+
+#. TRANS: Exception thrown when a notice title is too long.
+#. TRANS: %d is the maximum number of characters allowed in a title (used for plural).
+#, php-format
+msgid "The notice title is too long (maximum %d character)."
+msgid_plural "The notice title is too long (maximum %d characters)."
+msgstr[0] "Il titolo della descrizione è troppo lungo (massimo %d caratteri)."
+msgstr[1] ""
+"I titoli della descrizione sono troppo lunghi (massimo %d caratteri)."
+
+#. TRANS: Page title. %1$s is the title, %2$s is the site name.
+#, php-format
+msgid "%1$s - %2$s"
+msgstr "%1$s - %2$s"

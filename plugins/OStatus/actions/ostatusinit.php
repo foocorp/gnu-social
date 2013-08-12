@@ -105,7 +105,7 @@ class OStatusInitAction extends Action
             // TRANS: Button text to join a group.
             $submit = _m('BUTTON','Join');
         } else if ($this->peopletag && $this->tagger) {
-            // TRANS: Form legend. %1$s is a list, %2$s is a tagger's name.
+            // TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
             $header = sprintf(_m('Subscribe to list %1$s by %2$s'), $this->peopletag, $this->tagger);
             // TRANS: Button text to subscribe to a list.
             $submit = _m('BUTTON','Subscribe');

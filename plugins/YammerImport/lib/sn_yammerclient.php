@@ -19,7 +19,7 @@
 
 /**
  * Basic client class for Yammer's OAuth/JSON API.
- * 
+ *
  * @package YammerImportPlugin
  * @author Brion Vibber <brion@status.net>
  */
@@ -69,7 +69,11 @@ class SN_YammerClient
         if ($response->isOk()) {
             return $response->getBody();
         } else {
-            throw new Exception("Yammer API returned HTTP code " . $response->getStatus() . ': ' . $response->getBody());
+            // TRANS: Exeption thrown when an external Yammer system gives an error.
+            // TRANS: %1$s is an HTTP error code, %2$s is the error message body.
+            throw new Exception(sprintf(_m('Yammer API returned HTTP code %1$s: %2$s'),
+                                $response->getStatus(),
+                                $response->getBody()));
         }
     }
 
@@ -106,7 +110,8 @@ class SN_YammerClient
         $data = json_decode($body, true);
         if ($data === null) {
             common_log(LOG_ERR, "Invalid JSON response from Yammer API: " . $body);
-            throw new Exception("Invalid JSON response from Yammer API");
+            // TRANS: Exeption thrown when an external Yammer system an invalid JSON response.
+            throw new Exception(_m('Invalid JSON response from Yammer API.'));
         }
         return $data;
     }
@@ -160,7 +165,8 @@ class SN_YammerClient
     public function requestToken()
     {
         if ($this->token || $this->tokenSecret) {
-            throw new Exception("Requesting a token, but already set up with a token");
+            // TRANS: Exeption thrown when a trust relationship has already been established.
+            throw new Exception(_m('Requesting a token, but already set up with a token.'));
         }
         $data = $this->fetchApi('oauth/request_token');
         $arr = array();

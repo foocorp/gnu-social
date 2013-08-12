@@ -9,17 +9,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:20+0000\n"
-"Language-Team: Hungarian <http://translatewiki.net/wiki/Portal:hu>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:20:32+0000\n"
+"Language-Team: Hungarian <//translatewiki.net/wiki/Portal:hu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:05+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: hu\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "hour"
+msgstr ""
+
+msgid "hrs"
+msgstr ""
+
+msgid "mins"
+msgstr ""
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -40,6 +49,12 @@ msgid ""
 "\"dtstart\" title=\"%2$s\">%3$s</a> - <abbr class=\"dtend\" title=\"%4$s\">%5"
 "$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
 "$s</span> </span>"
+msgstr ""
+
+msgid "Unexpected form submission."
+msgstr ""
+
+msgid "This action is AJAX only."
 msgstr ""
 
 #. TRANS: Client exception thrown when referring to a non-existing RSVP.
@@ -171,8 +186,8 @@ msgstr "Az esemény befejezésének ideje."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
-msgid "Location"
-msgstr "Helyszín"
+msgid "Where?"
+msgstr ""
 
 #. TRANS: Field title on event form.
 msgid "Event location."
@@ -382,3 +397,7 @@ msgstr ""
 #, php-format
 msgid "Yes: %1$d No: %2$d Maybe: %3$d"
 msgstr ""
+
+#~ msgctxt "LABEL"
+#~ msgid "Location"
+#~ msgstr "Helyszín"

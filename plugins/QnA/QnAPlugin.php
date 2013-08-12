@@ -175,7 +175,7 @@ class QnAPlugin extends MicroAppPlugin
 
     function appTitle() {
         // TRANS: Application title.
-        return _m('Question');
+        return _m('TITLE','Question');
     }
 
     function tag() {
@@ -202,12 +202,14 @@ class QnAPlugin extends MicroAppPlugin
     function saveNoticeFromActivity($activity, $actor, $options=array())
     {
         if (count($activity->objects) != 1) {
+            // TRANS: Exception thrown when there are too many activity objects.
             throw new Exception(_m('Too many activity objects.'));
         }
 
         $questionObj = $activity->objects[0];
 
         if ($questionObj->type != QnA_Question::OBJECT_TYPE) {
+            // TRANS: Exception thrown when an incorrect object type is encountered.
             throw new Exception(_m('Wrong type for object.'));
         }
 
@@ -226,12 +228,14 @@ class QnAPlugin extends MicroAppPlugin
             $question = QnA_Question::staticGet('uri', $questionObj->id);
             if (empty($question)) {
                 // FIXME: save the question
+                // TRANS: Exception thrown when answering a non-existing question.
                 throw new Exception(_m('Answer to unknown question.'));
             }
             $notice = QnA_Answer::saveNew($actor, $question, $options);
             break;
         default:
-            throw new Exception(_m('Unknown object type received by QnA Plugin.'));
+            // TRANS: Exception thrown when an object type is encountered that cannot be handled.
+            throw new Exception(_m('Unknown object type.'));
         }
 
         return $notice;
@@ -260,12 +264,14 @@ class QnAPlugin extends MicroAppPlugin
         }
 
         if (empty($question)) {
+            // TRANS: Exception thrown when an object type is encountered that cannot be handled.
             throw new Exception(_m('Unknown object type.'));
         }
 
         $notice = $question->getNotice();
 
         if (empty($notice)) {
+            // TRANS: Exception thrown when requesting a non-existing question notice.
             throw new Exception(_m('Unknown question notice.'));
         }
 
@@ -387,6 +393,7 @@ class QnAPlugin extends MicroAppPlugin
             $form->show();
 
         } else {
+            // TRANS: Error message displayed when question data is not present.
             $out->text(_m('Question data is missing.'));
         }
         $out->elementEnd('div');
@@ -395,7 +402,6 @@ class QnAPlugin extends MicroAppPlugin
         $out->elementStart('div', array('class' => 'entry-content'));
     }
 
-
     /**
      * Output the HTML for this kind of object in a list
      *
@@ -403,7 +409,7 @@ class QnAPlugin extends MicroAppPlugin
      *
      * @return boolean hook value
      *
-     * @fixme WARNING WARNING WARNING this closes a 'div' that is implicitly opened in BookmarkPlugin's showNotice implementation
+     * @todo FIXME: WARNING WARNING WARNING this closes a 'div' that is implicitly opened in BookmarkPlugin's showNotice implementation
      */
     function onStartShowNoticeItem($nli)
     {
@@ -427,12 +433,10 @@ class QnAPlugin extends MicroAppPlugin
         $nli->showNoticeOptions();
 
         if ($notice->object_type == QnA_Question::OBJECT_TYPE) {
-
             $user = common_current_user();
             $question = QnA_Question::getByNotice($notice);
 
             if (!empty($user)) {
-
                 $profile = $user->getProfile();
                 $answer = $question->getAnswer($profile);
 
@@ -447,6 +451,8 @@ class QnAPlugin extends MicroAppPlugin
                         'input',
                         array(
                             'class' => 'placeholder',
+                            // TRANS: Placeholder value for a possible answer to a question
+                            // TRANS: by the logged in user.
                             'value' => _m('Your answer...')
                         )
                     );
@@ -458,7 +464,6 @@ class QnAPlugin extends MicroAppPlugin
 
         return false;
     }
-
 
     function showNoticeAnswer($notice, $out)
     {
@@ -476,12 +481,13 @@ class QnAPlugin extends MicroAppPlugin
             $form = new QnashowanswerForm($out, $answer);
             $form->show();
         } else {
+            // TRANS: Error message displayed when answer data is not present.
             $out->text(_m('Answer data is missing.'));
         }
 
         $out->elementEnd('div');
 
-        // @fixme
+        // @todo FIXME
         $out->elementStart('div', array('class' => 'entry-content'));
     }
 
@@ -492,14 +498,15 @@ class QnAPlugin extends MicroAppPlugin
         if (Notice::contentTooLong($content)) {
             common_debug("content too long");
             $max = Notice::maxContent();
+            // TRANS: Link description for link to full notice text if it is longer than
+            // TRANS: what will be dispplayed.
+            $ellipsis = _m('…');
             $short = mb_substr($content, 0, $max - 1);
-            $short .= sprintf(
-                // TRANS: Link to full notice text if it is longer than what will be dispplayed.
-                // TRANS: %s a notice URI.
-                _m('<a href="%s" rel="more" title="%s">…</a>'),
-                $notice->uri,
-                _m('more...')
-            );
+            $short .= sprintf('<a href="%1$s" rel="more" title="%2$s">%3$s</a>',
+                              $notice->uri,
+                              // TRANS: Title for link that is an ellipsis in English.
+                              _m('more...'),
+                              $ellipsis);
         } else {
             $short = $content;
         }
@@ -513,7 +520,6 @@ class QnAPlugin extends MicroAppPlugin
      * @param HTMLOutputter $out
      * @return Widget
      */
-
     function entryForm($out)
     {
         return new QnanewquestionForm($out);
@@ -524,7 +530,6 @@ class QnAPlugin extends MicroAppPlugin
      *
      * @param Notice $notice
      */
-
     function deleteRelated($notice)
     {
         switch ($notice->object_type) {

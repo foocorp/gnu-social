@@ -1,6 +1,7 @@
-# Translation of StatusNet - EmailRegistration to Swedish (Svenska)
+# Translation of StatusNet - EmailRegistration to Swedish (svenska)
 # Exported from translatewiki.net
 #
+# Author: Ainali
 # Author: Lokal Profil
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,20 +10,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailRegistration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:14+0000\n"
-"Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:24+0000\n"
+"Language-Team: Swedish <https://translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-plugin-emailregistration\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Client exception trown when registration by e-mail is not allowed.
+msgid "Registration not allowed."
+msgstr ""
+
+#. TRANS: Client exception trown when trying to register without an invitation.
+msgid "Sorry, only invited people can register."
+msgstr ""
+
 #. TRANS: Client exception thrown when no confirmation code was provided.
 msgid "No confirmation code."
+msgstr ""
+
+#. TRANS: Client exception trown when using an invitation multiple times.
+msgid "Invitation already used."
 msgstr ""
 
 #. TRANS: Client exception thrown when given confirmation code was not issued.
@@ -46,10 +59,17 @@ msgid ""
 "An email was sent to %s to confirm that address. Check your email inbox for "
 "instructions."
 msgstr ""
+"Ett e-postmeddelande skickades till %s för att bekräfta att adressen. Kolla "
+"i inkorgen för instruktioner."
+
+#. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
+msgid "No confirmation thing."
+msgstr ""
 
 #. TRANS: Error text when trying to register without agreeing to the terms.
 msgid "You must accept the terms of service and privacy policy to register."
 msgstr ""
+"Du måste acceptera villkoren och sekretesspolicyn för att registrera dig."
 
 #. TRANS: Error text when trying to register without a password.
 msgid "You must set a password"
@@ -63,11 +83,15 @@ msgstr "Lösenordet måste vara minst 6 tecken."
 msgid "Passwords do not match."
 msgstr "Lösenorden matchar inte."
 
+#. TRANS: Exception trown when using an invitation multiple times.
+msgid "Failed to register user."
+msgstr ""
+
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.
 #, php-format
 msgid "Confirm your registration on %s"
-msgstr ""
+msgstr "Bekräfta din registrering på %s"
 
 #. TRANS: Body for confirmation e-mail.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
@@ -80,6 +104,12 @@ msgid ""
 "%2$s\n"
 "If it was not you, you can safely ignore this message."
 msgstr ""
+"Någon (förmodligen du) har begärt ett konto på %1$s med hjälp av denna e-"
+"postadress.\n"
+"För att bekräfta adressen, klicka på följande URL eller kopiera det i "
+"adressfältet i webbläsaren.\n"
+"%2$s\n"
+"Om det inte var du, kan du ignorera detta meddelande."
 
 #. TRANS: Form instructions.
 msgid "Enter your email address to register for an account."
@@ -153,16 +183,4 @@ msgstr ""
 
 #. TRANS: Plugin description.
 msgid "Use email only for registration."
-msgstr ""
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not save new greeting count for %d."
-msgstr ""
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not increment greeting count for %d."
 msgstr ""

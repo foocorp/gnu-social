@@ -103,7 +103,7 @@ class QnashowquestionForm extends Form
     function formLegend()
     {
         // TRANS: Form legend for revising the answer.
-        $this->out->element('legend', null, _m('Question'));
+        $this->out->element('legend', null, _m('LEGEND','Question'));
     }
 
     /**
@@ -114,7 +114,7 @@ class QnashowquestionForm extends Form
     function formData()
     {
         $this->out->hidden(
-            'qna-quesiton-id',
+            'qna-question-id',
             'question-' . $this->question->id,
             'id'
         );
@@ -147,12 +147,12 @@ class QnashowquestionForm extends Form
             if ($user->id == $this->question->profile_id) {
              $this->out->submit(
                 'qna-question-close',
-                // TRANS: Button text for closing a question
+                // TRANS: Button text for closing a question.
                 _m('BUTTON', 'Close'),
                 'submit',
                 'submit',
-                // TRANS: Title for button text for closing a question
-                _m('Close the question')
+                // TRANS: Title for button text for closing a question.
+                _m('Close the question to no one can answer it anymore.')
              );
             }
         }

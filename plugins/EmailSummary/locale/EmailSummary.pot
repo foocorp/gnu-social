@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,28 +16,29 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. TRANS: Subject for e-mail.
+#: useremailsummaryhandler.php:124
+#, php-format
+msgid "Your latest updates from %s"
+msgstr ""
+
 #. TRANS: Text in e-mail summary.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile name.
-#: useremailsummaryhandler.php:129
+#: useremailsummaryhandler.php:139
 #, php-format
 msgid "Recent updates from %1$s for %2$s:"
 msgstr ""
 
 #. TRANS: Link text for link to conversation view.
-#: useremailsummaryhandler.php:185
+#: useremailsummaryhandler.php:195
 msgid "in context"
 msgstr ""
 
 #. TRANS: Link text for link to e-mail settings.
 #. TRANS: %1$s is a link to the e-mail settings, %2$s is the StatusNet sitename.
-#: useremailsummaryhandler.php:197
+#: useremailsummaryhandler.php:207
 #, php-format
 msgid "<a href=\"%1$s\">change your email settings for %2$s</a>"
-msgstr ""
-
-#. TRANS: Subject for e-mail.
-#: useremailsummaryhandler.php:208
-msgid "Updates from your network"
 msgstr ""
 
 #. TRANS: Plugin description.

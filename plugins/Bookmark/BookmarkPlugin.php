@@ -148,6 +148,9 @@ class BookmarkPlugin extends MicroAppPlugin
 
         switch ($cls)
         {
+        case 'BookmarksAction':
+        case 'BookmarksrssAction':
+        case 'ApiTimelineBookmarksAction':
         case 'ShowbookmarkAction':
         case 'NewbookmarkAction':
         case 'BookmarkpopupAction':
@@ -180,6 +183,26 @@ class BookmarkPlugin extends MicroAppPlugin
      */
     function onRouterInitialized($m)
     {
+        if (common_config('singleuser', 'enabled')) {
+            $nickname = User::singleUserNickname();
+            $m->connect('bookmarks',
+                        array('action' => 'bookmarks', 'nickname' => $nickname));
+            $m->connect('bookmarks/rss',
+                        array('action' => 'bookmarksrss', 'nickname' => $nickname));
+        } else {
+            $m->connect(':nickname/bookmarks',
+                        array('action' => 'bookmarks'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
+            $m->connect(':nickname/bookmarks/rss',
+                        array('action' => 'bookmarksrss'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
+        }
+
+        $m->connect('api/bookmarks/:id.:format',
+                    array('action' => 'ApiTimelineBookmarks',
+                          'id' => Nickname::INPUT_FMT,
+                          'format' => '(xml|json|rss|atom|as)'));
+
         $m->connect('main/bookmark/new',
                     array('action' => 'newbookmark'),
                     array('id' => '[0-9]+'));
@@ -230,11 +253,13 @@ class BookmarkPlugin extends MicroAppPlugin
     {
         $versions[] = array('name' => 'Bookmark',
                             'version' => self::VERSION,
-                            'author' => 'Evan Prodromou',
+                            'author' => 'Evan Prodromou, Stephane Berube, Jean Baptiste Favre',
                             'homepage' => 'http://status.net/wiki/Plugin:Bookmark',
                             'description' =>
                             // TRANS: Plugin description.
-                            _m('Simple extension for supporting bookmarks.'));
+                            _m('Simple extension for supporting bookmarks. ') .
+                            'BookmarkList feature has been developped by Stephane Berube. ' .
+                            'Integration has been done by Jean Baptiste Favre.');
         return true;
     }
 
@@ -292,18 +317,61 @@ class BookmarkPlugin extends MicroAppPlugin
 
     function onStartOpenNoticeListItemElement($nli)
     {
+    	if (!$this->isMyNotice($nli->notice)) {
+    		return true;
+    	}
+    	
         $nb = Bookmark::getByNotice($nli->notice);
-        if (!empty($nb)) {
-            $id = (empty($nli->repeat)) ? $nli->notice->id : $nli->repeat->id;
-            $class = 'hentry notice bookmark';
-            if ($nli->notice->scope != 0 && $nli->notice->scope != 1) {
-                $class .= ' limited-scope';
-            }
-            $nli->out->elementStart('li', array('class' => $class,
-                                                 'id' => 'notice-' . $id));
-            Event::handle('EndOpenNoticeListItemElement', array($nli));
+        
+        if (empty($nb)) {
+        	$this->log(LOG_INFO, "Notice {$nli->notice->id} has bookmark class but no matching Bookmark record.");
+        	return true;
+        }
+	        
+	    $id = (empty($nli->repeat)) ? $nli->notice->id : $nli->repeat->id;
+	    $class = 'hentry notice bookmark';
+	    if ($nli->notice->scope != 0 && $nli->notice->scope != 1) {
+	    	$class .= ' limited-scope';
+	    }
+	    $nli->out->elementStart('li', array('class' => $class,
+	                                        'id' => 'notice-' . $id));
+	                                        
+	    Event::handle('EndOpenNoticeListItemElement', array($nli));
+	    return false;
+    }
+
+    /**
+     * Modify the default menu to link to our custom action
+     *
+     * Using event handlers, it's possible to modify the default UI for pages
+     * almost without limit. In this method, we add a menu item to the default
+     * primary menu for the interface to link to our action.
+     *
+     * The Action class provides a rich set of events to hook, as well as output
+     * methods.
+     *
+     * @param Action $action The current action handler. Use this to
+     * do any output.
+     *
+     * @return boolean hook value; true means continue processing, false means stop.
+     *
+     * @see Action
+     */
+    function onEndPersonalGroupNav($action)
+    {
+        $this->user = common_current_user();
+
+        if (!$this->user) {
+            // TRANS: Client error displayed when trying to display bookmarks for a non-existing user.
+            $this->clientError(_('No such user.'));
             return false;
         }
+
+        $action->menuItem(common_local_url('bookmarks', array('nickname' => $this->user->nickname)),
+                          // TRANS: Menu item in sample plugin.
+                          _m('Bookmarks'),
+                          // TRANS: Menu item title in sample plugin.
+                          _m('A list of your bookmarks'), false, 'nav_timeline_bookmarks');
         return true;
     }
 
@@ -322,7 +390,7 @@ class BookmarkPlugin extends MicroAppPlugin
 
         $options = array('uri' => $bookmark->id,
                          'url' => $bookmark->link,
-                         'is_local' => Notice::REMOTE_OMB,
+                         'is_local' => Notice::REMOTE,
                          'source' => 'ostatus');
 
         return self::_postBookmark($author->localProfile(), $activity, $options);
@@ -355,12 +423,15 @@ class BookmarkPlugin extends MicroAppPlugin
      */
     function deleteRelated($notice)
     {
-        $nb = Bookmark::getByNotice($notice);
+    	if ($this->isMyNotice($notice)) {
+    		
+        	$nb = Bookmark::getByNotice($notice);
 
-        if (!empty($nb)) {
-            $nb->delete();
-        }
-
+        	if (!empty($nb)) {
+            	$nb->delete();
+        	}
+    	}
+    	
         return true;
     }
 
@@ -539,5 +610,42 @@ class BookmarkPlugin extends MicroAppPlugin
     {
         // TRANS: Application title.
         return _m('TITLE','Bookmark');
+    }
+
+    function onEndUpgrade()
+    {
+        // Version 0.9.x of the plugin didn't stamp notices
+        // with verb and object-type (for obvious reasons). Update
+        // those notices here.
+
+        $notice = new Notice();
+        
+        $notice->whereAdd('exists (select uri from bookmark where bookmark.uri = notice.uri)');
+        $notice->whereAdd('((object_type is null) or (object_type = "' .ActivityObject::NOTE.'"))');
+
+        $notice->find();
+
+        while ($notice->fetch()) {
+            $original = clone($notice);
+            $notice->verb        = ActivityVerb::POST;
+            $notice->object_type = ActivityObject::BOOKMARK;
+            $notice->update($original);
+        }
+    }
+
+    public function activityObjectOutputJson(ActivityObject $obj, array &$out)
+    {
+        assert($obj->type == ActivityObject::BOOKMARK);
+
+        $bm = Bookmark::staticGet('uri', $obj->id);
+
+        if (empty($bm)) {
+            throw new ServerException("Unknown bookmark: " . $obj->id);
+        }
+
+        $out['displayName'] = $bm->title;
+        $out['targetUrl']   = $bm->url;
+
+        return true;
     }
 }

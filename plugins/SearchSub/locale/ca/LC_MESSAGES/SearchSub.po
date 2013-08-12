@@ -1,0 +1,219 @@
+# Translation of StatusNet - SearchSub to Catalan (català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SearchSub\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:55+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-searchsub\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Header for subscriptions overview for a user (first page).
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "%s's search subscriptions"
+msgstr "Subscripcions de cerca de %s"
+
+#. TRANS: Header for subscriptions overview for a user (not first page).
+#. TRANS: %1$s is a user nickname, %2$d is the page number.
+#, php-format
+msgid "%1$s's search subscriptions, page %2$d"
+msgstr ""
+
+#. TRANS: Page notice for page with an overview of all search subscriptions
+#. TRANS: of the logged in user's own profile.
+msgid ""
+"You have subscribed to receive all notices on this site matching the "
+"following searches:"
+msgstr ""
+
+#. TRANS: Page notice for page with an overview of all subscriptions of a user other
+#. TRANS: than the logged in user. %s is the user nickname.
+#, php-format
+msgid ""
+"%s has subscribed to receive all notices on this site matching the following "
+"searches:"
+msgstr ""
+
+#. TRANS: Search subscription list text when the logged in user has no search subscriptions.
+msgid ""
+"You are not subscribed to any text searches right now. You can push the "
+"\"Subscribe\" button on any notice text search to automatically receive any "
+"public messages on this site that match that search, even if you are not "
+"subscribed to the poster."
+msgstr ""
+
+#. TRANS: Search subscription list text when looking at the subscriptions for a of a user other
+#. TRANS: than the logged in user that has no search subscriptions. %s is the user nickname.
+#. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
+#. TRANS: as an anonymous user. %s is the user nickname.
+#, php-format
+msgid "%s is not subscribed to any searches."
+msgstr ""
+
+#. TRANS: Search subscription list item. %1$s is a URL to a notice search,
+#. TRANS: %2$s are the search criteria, %3$s is a datestring.
+#, php-format
+msgid "\"<a href=\"%1$s\">%2$s</a>\" since %3$s"
+msgstr ""
+
+#. TRANS: Error text shown a user tries to untrack a search query they're not subscribed to.
+#. TRANS: %s is the keyword for the search.
+#, php-format
+msgid "You are not tracking the search \"%s\"."
+msgstr ""
+
+#. TRANS: Message given having failed to cancel a search subscription by untrack command.
+#. TRANS: %s is the keyword for the query.
+#, php-format
+msgid "Could not end a search subscription for query \"%s\"."
+msgstr ""
+
+#. TRANS: Message given having removed a search subscription by untrack command.
+#. TRANS: %s is the keyword for the search.
+#, php-format
+msgid "You are no longer subscribed to the search \"%s\"."
+msgstr ""
+
+#. TRANS: Client error displayed trying to perform any request method other than POST.
+#. TRANS: Do not translate POST.
+msgid "This action only accepts POST requests."
+msgstr ""
+
+#. TRANS: Client error displayed when the session token is not okay.
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "No s'ha iniciat una sessió."
+
+#. TRANS: Client error displayed trying to subscribe to a non-existing profile.
+msgid "No such profile."
+msgstr "No existeix el perfil."
+
+#. TRANS: Page title when search subscription succeeded.
+msgid "Subscribed"
+msgstr "Subscrit"
+
+#. TRANS: Form legend.
+msgid "Unsubscribe from this search"
+msgstr "Cancel·la la subscripció d'aquesta cerca"
+
+#. TRANS: Button text for unsubscribing from a text search.
+msgctxt "BUTTON"
+msgid "Unsubscribe"
+msgstr "Cancel·la la subscripció"
+
+#. TRANS: Button title for unsubscribing from a text search.
+msgid "Unsubscribe from this search."
+msgstr "Cancel·la la subscripció d'aquesta cerca."
+
+#. TRANS: Page title when search unsubscription succeeded.
+msgid "Unsubscribed"
+msgstr "S'ha cancel·lat la subscripció"
+
+#. TRANS: Error text shown a user tries to track a search query they're already subscribed to.
+#, php-format
+msgid "You are already tracking the search \"%s\"."
+msgstr "Ja esteu seguint la cerca «%s»."
+
+#. TRANS: Message given having failed to set up a search subscription by track command.
+#, php-format
+msgid "Could not start a search subscription for query \"%s\"."
+msgstr "No s'ha pogut iniciar una subscripció de cerca de la consulta «%s»."
+
+#. TRANS: Message given having added a search subscription by track command.
+#, php-format
+msgid "You are subscribed to the search \"%s\"."
+msgstr "Esteu subscrit a la cerca «%s»."
+
+#. TRANS: Plugin description.
+msgid "Plugin to allow following all messages with a given search."
+msgstr ""
+"Connector per permetre seguir tots els missatges d'una cerca determinada."
+
+#. TRANS: SearchSub plugin menu item on user settings page.
+#. TRANS: Sub menu for searches.
+msgctxt "MENU"
+msgid "Searches"
+msgstr "Cerques"
+
+#. TRANS: SearchSub plugin tooltip for user settings menu item.
+msgid "Configure search subscriptions"
+msgstr "Configura les subscripcions de cerca"
+
+#. TRANS: Help message for IM/SMS command "track <word>"
+msgctxt "COMMANDHELP"
+msgid "Start following notices matching the given search query."
+msgstr ""
+"Inicia el seguiment d'avisos que coincideixen amb el criteri de cerca donat."
+
+#. TRANS: Help message for IM/SMS command "untrack <word>"
+msgctxt "COMMANDHELP"
+msgid "Stop following notices matching the given search query."
+msgstr ""
+"Atura el seguiment d'avisos que coincideixen amb el criteri de cerca donat."
+
+#. TRANS: Help message for IM/SMS command "track off"
+#. TRANS: Help message for IM/SMS command "untrack all"
+msgctxt "COMMANDHELP"
+msgid "Disable all tracked search subscriptions."
+msgstr "Inhabilita totes les subscripcions de cerca en seguiment."
+
+#. TRANS: Help message for IM/SMS command "tracks"
+#. TRANS: Help message for IM/SMS command "tracking"
+msgctxt "COMMANDHELP"
+msgid "List all your search subscriptions."
+msgstr "Llista totes les vostres subscripcions de cerca."
+
+#. TRANS: Error text shown a user tries to disable all a search subscriptions with track off command, but has none.
+msgid "You are not tracking any searches."
+msgstr "No esteu seguint cap cerca."
+
+#. TRANS: Separator for list of tracked searches.
+msgctxt "SEPARATOR"
+msgid "\", \""
+msgstr "\", \""
+
+#. TRANS: Message given having disabled all search subscriptions with 'track off'.
+#. TRANS: %s is a list of searches. Separator default is '", "'.
+#, php-format
+msgid "You are tracking searches for: \"%s\"."
+msgstr "Esteu seguint les cerques de: «%s»."
+
+#. TRANS: Form legend.
+msgid "Subscribe to this search"
+msgstr "Subscriu a aquesta cerca"
+
+#. TRANS: Button text for subscribing to a search.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Subscriu"
+
+#. TRANS: Button title for subscribing to a search.
+msgid "Subscribe to this search."
+msgstr "Subscriviu-vos a la cerca."
+
+#. TRANS: Message given having failed to cancel one of the search subs with 'track off' command.
+#. TRANS: %s is the search for which the subscription removal failed.
+#, php-format
+msgid "Error disabling search subscription for query \"%s\"."
+msgstr ""
+
+#. TRANS: Message given having disabled all search subscriptions with 'track off'.
+msgid "Disabled all your search subscriptions."
+msgstr ""

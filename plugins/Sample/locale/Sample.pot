@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,49 +17,58 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: hello.php:111 SamplePlugin.php:270
+#. TRANS: Page title for sample plugin.
+#. TRANS: Menu item in sample plugin.
+#: hello.php:112 SamplePlugin.php:270
 msgid "Hello"
 msgstr ""
 
-#: hello.php:113
+#. TRANS: Page title for sample plugin. %s is a user nickname.
+#: hello.php:115
 #, php-format
 msgid "Hello, %s!"
 msgstr ""
 
-#: hello.php:133
+#. TRANS: Message in sample plugin.
+#: hello.php:136
 msgid "Hello, stranger!"
 msgstr ""
 
-#: hello.php:136
+#. TRANS: Message in sample plugin. %s is a user nickname.
+#: hello.php:140
 #, php-format
 msgid "Hello, %s"
 msgstr ""
 
-#: hello.php:138
+#. TRANS: Message in sample plugin.
+#. TRANS: %d is the number of times a user is greeted.
+#: hello.php:144
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: SamplePlugin.php:270
+#. TRANS: Menu item title in sample plugin.
+#: SamplePlugin.php:272
 msgid "A warm greeting"
 msgstr ""
 
-#: SamplePlugin.php:281
+#. TRANS: Plugin description.
+#: SamplePlugin.php:284
 msgid "A sample plugin to show basics of development for new hackers."
 msgstr ""
 
 #. TRANS: Exception thrown when the user greeting count could not be saved in the database.
 #. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:164
+#: User_greeting_count.php:161
 #, php-format
 msgid "Could not save new greeting count for %d."
 msgstr ""
 
 #. TRANS: Exception thrown when the user greeting count could not be saved in the database.
 #. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:177
+#: User_greeting_count.php:174
 #, php-format
 msgid "Could not increment greeting count for %d."
 msgstr ""

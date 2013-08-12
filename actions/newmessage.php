@@ -175,7 +175,7 @@ class NewmessageAction extends Action
             return;
         } else if ($user->id == $this->other->id) {
             // TRANS: Client error displayed trying to send a direct message to self.
-            $this->clientError(_('Don\'t send a message to yourself; ' .
+            $this->clientError(_('Do not send a message to yourself; ' .
                 'just say it to yourself quietly instead.'), 403);
             return;
         }

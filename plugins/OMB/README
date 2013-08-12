@@ -1,0 +1,30 @@
+OMB (OpenMicroBlogging) plugin
+==============================
+
+This plugin encapsulates OpenMicroBlogging 0.1 functionality. OMB was the
+original federation protocol for StatusNet, but has been deprecated
+in favor of OStatus (see the OStatus plugin). This plugin is provided for
+backward-compatibility with older sites, and for posterity.
+
+External libraries
+------------------
+
+This is provided with the plugin, but you may wish to use a newer version of
+the library, if and when it becomes available.
+
+- libomb. a library for implementing OpenMicroBlogging 0.1
+  http://gitorious.org/libomb
+
+
+Installation
+------------
+
+[TODO]
+
+Offline Processing
+------------------
+
+Note: once you have a sizable number of users, sending OMB messages whenever
+someone posts a message can really slow down your site; it may cause posting
+to timeout. You may wish to enable queuing and handle OMB communication
+offline. See the "queues and daemons" section of the main StatusNet README.

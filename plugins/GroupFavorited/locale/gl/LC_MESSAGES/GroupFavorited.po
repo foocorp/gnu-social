@@ -1,5 +1,5 @@
-# Translation of StatusNet - GroupFavorited to Galician (Galego)
-# Expored from translatewiki.net
+# Translation of StatusNet - GroupFavorited to Galician (galego)
+# Exported from translatewiki.net
 #
 # Author: Toliño
 # --
@@ -9,45 +9,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupFavorited\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:07+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:47+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:36+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:17+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-groupfavorited\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: %s is a group name.
-#: groupfavoritedaction.php:48
-#, php-format
-msgid "Popular posts in %s group"
-msgstr ""
-
-#. TRANS: %1$s is a group name, %2$s is a group number.
-#: groupfavoritedaction.php:51
-#, php-format
-msgid "Popular posts in %1$s group, page %2$d"
-msgstr ""
-
 #. TRANS: Menu item in the group navigation page.
-#: GroupFavoritedPlugin.php:72
 msgctxt "MENU"
 msgid "Popular"
 msgstr "Populares"
 
 #. TRANS: Tooltip for menu item in the group navigation page.
 #. TRANS: %s is the nickname of the group.
-#: GroupFavoritedPlugin.php:75
 #, php-format
 msgctxt "TOOLTIP"
 msgid "Popular notices in %s group"
-msgstr ""
+msgstr "Notas populares no grupo %s"
 
 #. TRANS: Plugin description.
-#: GroupFavoritedPlugin.php:99
 msgid "This plugin adds a menu item for popular notices in groups."
 msgstr ""
+"Este complemento engade un elemento de menú para as notas populares nos "
+"grupos."
+
+#. TRANS: %s is a group name.
+#, php-format
+msgid "Popular posts in %s group"
+msgstr "Mensaxes populares no grupo %s"
+
+#. TRANS: %1$s is a group name, %2$s is a group number.
+#, php-format
+msgid "Popular posts in %1$s group, page %2$d"
+msgstr "Mensaxes populares no grupo %1$s, páxina %2$d"

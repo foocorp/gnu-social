@@ -52,8 +52,8 @@ class NeweventAction extends Action
     protected $title       = null;
     protected $location    = null;
     protected $description = null;
-    protected $startTime  = null;
-    protected $endTime    = null;
+    protected $startTime   = null;
+    protected $endTime     = null;
 
     /**
      * Returns the title of the action
@@ -89,67 +89,74 @@ class NeweventAction extends Action
             $this->checkSessionToken();
         }
 
-        $this->title       = $this->trimmed('title');
+        try {
 
-        if (empty($this->title)) {
-            // TRANS: Client exception thrown when trying to post an event without providing a title.
-            throw new ClientException(_m('Title required.'));
-        }
+            $this->title = $this->trimmed('title');
 
-        $this->location    = $this->trimmed('location');
-        $this->url         = $this->trimmed('url');
-        $this->description = $this->trimmed('description');
+            if (empty($this->title)) {
+                // TRANS: Client exception thrown when trying to post an event without providing a title.
+                throw new ClientException(_m('Title required.'));
+            }
 
-        $startDate = $this->trimmed('startdate');
+            $this->location    = $this->trimmed('location');
+            $this->url         = $this->trimmed('url');
+            $this->description = $this->trimmed('description');
+            $tz                = $this->trimmed('tz');
 
-        if (empty($startDate)) {
-            // TRANS: Client exception thrown when trying to post an event without providing a start date.
-            throw new ClientException(_m('Start date required.'));
-        }
+            $startDate = $this->trimmed('startdate');
 
-        $startTime = $this->trimmed('starttime');
+            if (empty($startDate)) {
+                // TRANS: Client exception thrown when trying to post an event without providing a start date.
+                throw new ClientException(_m('Start date required.'));
+            }
 
-        if (empty($startTime)) {
-            $startTime = '00:00';
-        }
+            $startTime = $this->trimmed('event-starttime');
 
-        $endDate   = $this->trimmed('enddate');
+            if (empty($startTime)) {
+                $startTime = '00:00';
+            }
 
-        if (empty($endDate)) {
-            // TRANS: Client exception thrown when trying to post an event without providing an end date.
-            throw new ClientException(_m('End date required.'));
-        }
+            $endDate   = $this->trimmed('enddate');
 
-        $endTime   = $this->trimmed('endtime');
+            if (empty($endDate)) {
+                // TRANS: Client exception thrown when trying to post an event without providing an end date.
+                throw new ClientException(_m('End date required.'));
+            }
 
-        if (empty($endTime)) {
-            $endTime = '00:00';
-        }
+            $endTime   = $this->trimmed('event-endtime');
 
-        $start = $startDate . ' ' . $startTime;
+            if (empty($endTime)) {
+                $endTime = '00:00';
+            }
 
-        common_debug("Event start: '$start'");
+            $start = $startDate . ' ' . $startTime . ' ' . $tz;
+            $end   = $endDate . ' ' . $endTime . ' ' . $tz;
 
-        $end = $endDate . ' ' . $endTime;
+            $this->startTime = strtotime($start);
+            $this->endTime   = strtotime($end);
 
-        common_debug("Event start: '$end'");
+            if ($this->startTime == 0) {
+                // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
+                // TRANS: %s is the data that could not be processed.
+                throw new ClientException(sprintf(_m('Could not parse date "%s".'),
+                                            $start));
+            }
 
-        $this->startTime = strtotime($start);
-        $this->endTime   = strtotime($end);
-
-        if ($this->startTime == 0) {
-            // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
-            // TRANS: %s is the data that could not be processed.
-            throw new Exception(sprintf(_m('Could not parse date "%s".'),
-                                        $start));
-        }
-
-
-        if ($this->endTime == 0) {
-            // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
-            // TRANS: %s is the data that could not be processed.
-            throw new Exception(sprintf(_m('Could not parse date "%s".'),
-                                        $end));
+            if ($this->endTime == 0) {
+                // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
+                // TRANS: %s is the data that could not be processed.
+                throw new ClientException(sprintf(_m('Could not parse date "%s".'),
+                                            $end));
+            }
+        } catch (ClientException $ce) {
+            if ($this->boolean('ajax')) {
+                $this->outputAjaxError($ce->getMessage());
+                return false;
+            } else {
+                $this->error = $ce->getMessage();
+                $this->showPage();
+                return false;
+            }
         }
 
         return true;
@@ -183,6 +190,7 @@ class NeweventAction extends Action
     function newEvent()
     {
         try {
+
             if (empty($this->title)) {
                 // TRANS: Client exception thrown when trying to post an event without providing a title.
                 throw new ClientException(_m('Event must have a title.'));
@@ -196,6 +204,11 @@ class NeweventAction extends Action
             if (empty($this->endTime)) {
                 // TRANS: Client exception thrown when trying to post an event without providing an end time.
                 throw new ClientException(_m('Event must have an end time.'));
+            }
+
+            if (!empty($this->url) && Validate::uri($this->url) === false) {
+                // TRANS: Client exception thrown when trying to post an event with an invalid URL.
+                throw new ClientException(_m('URL must be valid.'));
             }
 
             $options = array();
@@ -220,9 +233,14 @@ class NeweventAction extends Action
             RSVP::saveNew($profile, $event, RSVP::POSITIVE);
 
         } catch (ClientException $ce) {
-            $this->error = $ce->getMessage();
-            $this->showPage();
-            return;
+            if ($this->boolean('ajax')) {
+                $this->outputAjaxError($ce->getMessage());
+                return;
+            } else {
+                $this->error = $ce->getMessage();
+                $this->showPage();
+                return;
+            }
         }
 
         if ($this->boolean('ajax')) {
@@ -240,6 +258,23 @@ class NeweventAction extends Action
         } else {
             common_redirect($saved->bestUrl(), 303);
         }
+    }
+
+    // @todo factor this out into a base class
+    function outputAjaxError($msg)
+    {
+        header('Content-Type: text/xml;charset=utf-8');
+        $this->xw->startDocument('1.0', 'UTF-8');
+        $this->elementStart('html');
+        $this->elementStart('head');
+        // TRANS: Page title after an AJAX error occurs
+        $this->element('title', null, _('Ajax Error'));
+        $this->elementEnd('head');
+        $this->elementStart('body');
+        $this->element('p', array('id' => 'error'), $msg);
+        $this->elementEnd('body');
+        $this->elementEnd('html');
+        return;
     }
 
     /**

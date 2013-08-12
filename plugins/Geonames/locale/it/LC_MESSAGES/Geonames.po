@@ -1,0 +1,48 @@
+# Translation of StatusNet - Geonames to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: Ximo17
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Geonames\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:41+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:14+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Exception thrown when a geo names service is not used because of a recent timeout.
+msgid "Skipping due to recent web service timeout."
+msgstr "Saltato a causa di un recente timeout del servizio web."
+
+#. TRANS: Exception thrown when a geo names service does not return an expected response.
+#. TRANS: %s is an HTTP error code.
+#, php-format
+msgid "HTTP error code %s."
+msgstr "Codice di errore HTTP %s."
+
+#. TRANS: Exception thrown when a geo names service returns an empty body.
+msgid "Empty HTTP body in response."
+msgstr "Corpo vuoto HTTP in risposta."
+
+#. TRANS: Exception thrown when a geo names service return a specific error number and error text.
+#. TRANS: %1$s is an error code, %2$s is an error message.
+#, php-format
+msgid "Error #%1$s (\"%2$s\")."
+msgstr "Errore #%1$s (\"%2$s\")."
+
+#. TRANS: Plugin description.
+msgid ""
+"Uses <a href=\"http://geonames.org/\">Geonames</a> service to get human-"
+"readable names for locations based on user-provided lat/long pairs."
+msgstr ""
+"Utilizza il servizio di <a href=\"http://geonames.org/\">Geonames</a> per "
+"ottenere nomi leggibili dei luoghi, basati sui dati di latitudine e "
+"longitudine forniti dall'utente."

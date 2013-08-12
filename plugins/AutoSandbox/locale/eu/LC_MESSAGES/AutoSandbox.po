@@ -1,0 +1,43 @@
+# Translation of StatusNet - AutoSandbox to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AutoSandbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:43+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:49:46+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Automatically sandboxes newly registered members."
+msgstr "Erregistratzen diren erabiltzaile berriak automatikoki isolatzen ditu."
+
+#. TRANS: User instructions after registration.
+msgid ""
+"Note you will initially be \"sandboxed\" so your posts will not appear in "
+"the public timeline."
+msgstr ""
+"Izan kontutan haseran isolatua izango zarela, eta beraz zure oharrak ez "
+"direla denbora lerro publikoan azalduko."
+
+#. TRANS: User instructions after registration.
+#. TRANS: %s is a clickable e-mailaddress.
+#, php-format
+msgid ""
+"Note you will initially be \"sandboxed\" so your posts will not appear in "
+"the public timeline. Send a message to %s to speed up the unsandboxing "
+"process."
+msgstr ""
+"Izan kontutan haseran isolatua izango zarela, eta beraz zure oharrak ez "
+"direla denbora lerro publikoan azalduko. Isolamendutik ateratzeko prozesua "
+"arintzeko bidali mezu bat %s(e)ri."

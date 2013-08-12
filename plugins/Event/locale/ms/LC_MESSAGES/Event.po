@@ -9,27 +9,47 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:20+0000\n"
-"Language-Team: Malay <http://translatewiki.net/wiki/Portal:ms>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:29+0000\n"
+"Language-Team: Malay <https://translatewiki.net/wiki/Portal:ms>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ms\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. TRANS: 0 minutes abbreviated. Used in a list.
+msgid "(0 min)"
+msgstr ""
+
+#. TRANS: 30 minutes abbreviated. Used in a list.
+msgid "(30 min)"
+msgstr ""
+
+#. TRANS: 1 hour. Used in a list.
+msgid "(1 hour)"
+msgstr ""
+
+#, php-format
+msgid "(%.1f hours)"
+msgstr ""
+
+#, php-format
+msgid "(%d hours)"
+msgstr ""
+
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
-msgstr ""
+msgstr "Acara sudah wujud."
 
 #. TRANS: Event description. %1$s is a title, %2$s is start time, %3$s is end time,
 #. TRANS: %4$s is location, %5$s is a description.
 #, php-format
 msgid "\"%1$s\" %2$s - %3$s (%4$s): %5$s"
-msgstr ""
+msgstr "\"%1$s\" %2$s - %3$s (%4$s): %5$s"
 
 #. TRANS: Rendered event description. %1$s is a title, %2$s is start time, %3$s is start time,
 #. TRANS: %4$s is end time, %5$s is end time, %6$s is location, %7$s is description.
@@ -41,6 +61,22 @@ msgid ""
 "$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
 "$s</span> </span>"
 msgstr ""
+"<span class=\"vevent\"><span class=\"summary\">%1$s</span> <abbr class="
+"\"dtstart\" title=\"%2$s\">%3$s</a> - <abbr class=\"dtend\" title=\"%4$s\">%5"
+"$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
+"$s</span> </span>"
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr ""
+
+#. TRANS: Client error when submitting a form with unexpected information.
+msgid "Unexpected form submission."
+msgstr ""
+
+#. TRANS: Client error displayed when using an action in a non-AJAX way.
+msgid "This action is AJAX only."
+msgstr ""
 
 #. TRANS: Client exception thrown when referring to a non-existing RSVP.
 #. TRANS: RSVP stands for "Please reply".
@@ -48,8 +84,6 @@ msgstr ""
 msgid "No such RSVP."
 msgstr "RSVP ini tidak wujud."
 
-#. TRANS: Client exception thrown when referring to a non-existing event.
-#. TRANS: Client exception thrown when requesting a non-exsting event.
 #. TRANS: Client exception thrown when referring to a non-existing event.
 msgid "No such event."
 msgstr "Acara ini tidak wujud."
@@ -78,7 +112,6 @@ msgid "Cancel"
 msgstr "Batalkan"
 
 #. TRANS: Title for RSVP ("please respond") action.
-#, fuzzy
 msgctxt "TITLE"
 msgid "New RSVP"
 msgstr "RSVP baru"
@@ -90,7 +123,7 @@ msgstr "Anda mesti log masuk untuk membuat RSVP untuk acara."
 
 #. TRANS: Client exception thrown when using an invalid value for RSVP ("please respond").
 msgid "Unknown submit value."
-msgstr ""
+msgstr "Nilai serahan tidak dikenali."
 
 #. TRANS: Page title after creating an event.
 #. TRANS: Page title after sending a notice.
@@ -98,14 +131,13 @@ msgid "Event saved"
 msgstr "Acara disimpan"
 
 #. TRANS: Title for RSVP ("please respond") action.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Cancel RSVP"
 msgstr "Batalkan RSVP"
 
 #. TRANS: Content for a deleted RSVP list item (RSVP stands for "please respond").
 msgid "Deleted."
-msgstr ""
+msgstr "Dihapuskan."
 
 #. TRANS: Field label on form to RSVP ("please respond") for an event.
 msgid "RSVP:"
@@ -132,7 +164,6 @@ msgid "Title"
 msgstr "Tajuk"
 
 #. TRANS: Field title on event form.
-#, fuzzy
 msgid "Title of the event."
 msgstr "Nama acara"
 
@@ -142,19 +173,18 @@ msgid "Start date"
 msgstr "Tarikh mula"
 
 #. TRANS: Field title on event form.
-#, fuzzy
 msgid "Date the event starts."
-msgstr "Tarikh acara bermula"
+msgstr "Tarikh acara bermula."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
 msgid "Start time"
 msgstr "Waktu bermula"
 
-#. TRANS: Field title on event form.
-#, fuzzy
-msgid "Time the event starts."
-msgstr "Waktu acara bermula"
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, fuzzy, php-format
+msgid "Time the event starts (%s)."
+msgstr "Waktu acara bermula."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -162,9 +192,8 @@ msgid "End date"
 msgstr "Tarikh tamat"
 
 #. TRANS: Field title on event form.
-#, fuzzy
 msgid "Date the event ends."
-msgstr "Tarikh acara berakhir"
+msgstr "Tarikh acara berakhir."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -172,19 +201,17 @@ msgid "End time"
 msgstr "Waktu tamat"
 
 #. TRANS: Field title on event form.
-#, fuzzy
 msgid "Time the event ends."
-msgstr "Waktu acara berakhir"
+msgstr "Waktu acara berakhir."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
-msgid "Location"
-msgstr "Lokasi"
+msgid "Where?"
+msgstr ""
 
 #. TRANS: Field title on event form.
-#, fuzzy
 msgid "Event location."
-msgstr "Lokasi acara"
+msgstr "Lokasi acara."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -192,9 +219,8 @@ msgid "URL"
 msgstr "URL"
 
 #. TRANS: Field title on event form.
-#, fuzzy
 msgid "URL for more information."
-msgstr "URL untuk keterangan lanjut"
+msgstr "URL untuk keterangan lanjut."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -202,9 +228,8 @@ msgid "Description"
 msgstr "Keterangan"
 
 #. TRANS: Field title on event form.
-#, fuzzy
 msgid "Description of the event."
-msgstr "Keterangan acara"
+msgstr "Keterangan acara."
 
 #. TRANS: Button text to save an event..
 msgctxt "BUTTON"
@@ -216,69 +241,65 @@ msgid "Event invitations and RSVPs."
 msgstr "Jemputan dan RSVP acara."
 
 #. TRANS: Title for event application.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Event"
 msgstr "Acara"
 
 #. TRANS: Exception thrown when there are too many activity objects.
 msgid "Too many activity objects."
-msgstr ""
+msgstr "Terlalu banyak objek aktiviti."
 
 #. TRANS: Exception thrown when event plugin comes across a non-event type object.
 msgid "Wrong type for object."
-msgstr ""
+msgstr "Jenis yang salah untuk objek."
 
 #. TRANS: Exception thrown when trying to RSVP for an unknown event.
-#, fuzzy
 msgid "RSVP for unknown event."
-msgstr "acara yang tidak dikenali"
+msgstr "RSVP untuk acara yang tidak dikenali."
 
 #. TRANS: Exception thrown when event plugin comes across a undefined verb.
-#, fuzzy
 msgid "Unknown verb for events."
-msgstr "acara yang tidak dikenali"
+msgstr "Kata kerja tidak dikenali untuk acara."
 
 #. TRANS: Exception thrown when event plugin comes across a unknown object type.
 msgid "Unknown object type."
-msgstr ""
+msgstr "Jenis objek tidak dikenali."
 
 #. TRANS: Exception thrown when referring to a notice that is not an event an in event context.
-#, fuzzy
 msgid "Unknown event notice."
-msgstr "acara yang tidak dikenali"
+msgstr "Notis acara tidak diketahui."
 
 #. TRANS: Client exception thrown when trying to save an already existing RSVP ("please respond").
 msgid "RSVP already exists."
 msgstr "RSVP sudah ada."
 
 #. TRANS: Exception thrown when requesting an undefined verb for RSVP.
-#, fuzzy, php-format
+#, php-format
 msgid "Unknown verb \"%s\"."
-msgstr "acara yang tidak dikenali"
+msgstr "Kata kerja tidak diketahui \"%s\"."
 
 #. TRANS: Exception thrown when requesting an undefined code for RSVP.
 #, php-format
 msgid "Unknown code \"%s\"."
-msgstr ""
+msgstr "Kod tidak diketahui \"%s\"."
 
 #. TRANS: Server exception thrown when requesting a non-exsting notice for an RSVP ("please respond").
 #. TRANS: %s is the RSVP with the missing notice.
 #, php-format
 msgid "RSVP %s does not correspond to a notice in the database."
-msgstr ""
+msgstr "RSVP %s tidak berpadan dengan sebarang notis dalam pangkalan data."
 
 #. TRANS: Exception thrown when requesting a non-existing profile.
 #. TRANS: %s is the ID of the non-existing profile.
 #, php-format
 msgid "No profile with ID %s."
-msgstr ""
+msgstr "Tiada profil dengan ID %s."
 
 #. TRANS: Exception thrown when requesting a non-existing event.
 #. TRANS: %s is the ID of the non-existing event.
 #, php-format
 msgid "No event with ID %s."
-msgstr ""
+msgstr "Tiada acara dengan ID %s."
 
 #. TRANS: HTML version of an RSVP ("please respond") status for a user.
 #. TRANS: %1$s is a profile URL, %2$s a profile name,
@@ -288,6 +309,8 @@ msgid ""
 "<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> is attending <a "
 "href='%3$s'>%4$s</a>.</span>"
 msgstr ""
+"<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> akan menghadiri "
+"<a href='%3$s'>%4$s</a>.</span>"
 
 #. TRANS: HTML version of an RSVP ("please respond") status for a user.
 #. TRANS: %1$s is a profile URL, %2$s a profile name,
@@ -297,6 +320,8 @@ msgid ""
 "<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> is not attending "
 "<a href='%3$s'>%4$s</a>.</span>"
 msgstr ""
+"<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> tidak menghadiri "
+"<a href='%3$s'>%4$s</a>.</span>"
 
 #. TRANS: HTML version of an RSVP ("please respond") status for a user.
 #. TRANS: %1$s is a profile URL, %2$s a profile name,
@@ -306,12 +331,14 @@ msgid ""
 "<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> might attend <a "
 "href='%3$s'>%4$s</a>.</span>"
 msgstr ""
+"<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> mungkin "
+"menghadiri <a href='%3$s'>%4$s</a>.</span>"
 
 #. TRANS: Exception thrown when requesting a user's RSVP status for a non-existing response code.
 #. TRANS: %s is the non-existing response code.
 #, php-format
 msgid "Unknown response code %s."
-msgstr ""
+msgstr "Kod respons tidak diketahui %s."
 
 #. TRANS: Used as event title when not event title is available.
 #. TRANS: Used as: Username [is [not ] attending|might attend] an unknown event.
@@ -322,58 +349,61 @@ msgstr "acara yang tidak dikenali"
 #. TRANS: %1$s is a profile name, %2$s is an event title.
 #, php-format
 msgid "%1$s is attending %2$s."
-msgstr ""
+msgstr "%1$s akan menghadiri %2$s."
 
 #. TRANS: Plain text version of an RSVP ("please respond") status for a user.
 #. TRANS: %1$s is a profile name, %2$s is an event title.
 #, php-format
 msgid "%1$s is not attending %2$s."
-msgstr ""
+msgstr "%1$s tidak menghadiri %2$s."
 
 #. TRANS: Plain text version of an RSVP ("please respond") status for a user.
 #. TRANS: %1$s is a profile name, %2$s is an event title.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s might attend %2$s."
-msgstr "Anda mungkin menghadiri acara ini."
+msgstr "%1$s mungkin menghadiri %2$s."
 
 #. TRANS: Title for new event form.
-#, fuzzy
 msgctxt "TITLE"
 msgid "New event"
-msgstr "Acara ini tidak wujud."
+msgstr "Acara baru"
 
 #. TRANS: Client exception thrown when trying to post an event while not logged in.
 msgid "Must be logged in to post a event."
-msgstr ""
+msgstr "Mesti log masuk untuk mengirim acara."
 
 #. TRANS: Client exception thrown when trying to post an event without providing a title.
 msgid "Title required."
-msgstr ""
+msgstr "Nama diperlukan."
 
 #. TRANS: Client exception thrown when trying to post an event without providing a start date.
 msgid "Start date required."
-msgstr ""
+msgstr "Tarikh mula diperlukan."
 
 #. TRANS: Client exception thrown when trying to post an event without providing an end date.
 msgid "End date required."
-msgstr ""
+msgstr "Tarikh tamat diperlukan."
 
 #. TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
 #. TRANS: %s is the data that could not be processed.
 #, php-format
 msgid "Could not parse date \"%s\"."
-msgstr ""
+msgstr "Tarikh \"%s\" tidak dapat dihurai."
 
 #. TRANS: Client exception thrown when trying to post an event without providing a title.
 msgid "Event must have a title."
-msgstr ""
+msgstr "Acara mesti ada nama."
 
 #. TRANS: Client exception thrown when trying to post an event without providing a start time.
 msgid "Event must have a start time."
-msgstr ""
+msgstr "Acara mesti ada waktu mula."
 
 #. TRANS: Client exception thrown when trying to post an event without providing an end time.
 msgid "Event must have an end time."
+msgstr "Acara mesti ada waktu tamat."
+
+#. TRANS: Client exception thrown when trying to post an event with an invalid URL.
+msgid "URL must be valid."
 msgstr ""
 
 #. TRANS: Field label for event description.
@@ -387,13 +417,3 @@ msgstr "Lokasi:"
 #. TRANS: Field label for event description.
 msgid "Description:"
 msgstr "Keterangan:"
-
-#. TRANS: Field label for event description.
-msgid "Attending:"
-msgstr "Hadir:"
-
-#. TRANS: RSVP counts.
-#. TRANS: %1$d, %2$d and %3$d are numbers of RSVPs.
-#, php-format
-msgid "Yes: %1$d No: %2$d Maybe: %3$d"
-msgstr "Ya: %1$d Tidak: %2$d Mungkin: %3$d"

@@ -1,4 +1,4 @@
-# Translation of StatusNet - Bookmark to Catalan (Català)
+# Translation of StatusNet - Bookmark to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Dvdgmz
@@ -12,52 +12,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Bookmark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:52+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:56+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:03+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-bookmark\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Client exception thrown when a file upload is incorrect.
-msgid "Bad import file."
-msgstr "No s'ha importat bé el fitxer."
-
 #. TRANS: Client exception thrown when a bookmark in an import file is incorrectly formatted.
 msgid "No <A> tag in a <DT>."
-msgstr ""
+msgstr "No hi ha l'etiqueta <A> en un <DT>."
 
 #. TRANS: Client exception thrown when a bookmark in an import file is private.
 msgid "Skipping private bookmark."
-msgstr ""
+msgstr "S'omet l'adreça d'interès privada."
 
 #. TRANS: Client exception thrown when referring to a non-existing bookmark.
 msgid "No such bookmark."
-msgstr ""
+msgstr "No existeix l'adreça d'interès."
 
 #. TRANS: Title for bookmark.
 #. TRANS: %1$s is a user nickname, %2$s is a bookmark title.
 #, php-format
 msgid "%1$s's bookmark for \"%2$s\""
-msgstr ""
+msgstr "Adreça d'interès de %1$s per a «%2$s»"
 
 #. TRANS: Plugin description.
 msgid "Simple extension for supporting bookmarks."
-msgstr ""
+msgstr "Extensió simple per habilitar les adreces d'interès."
 
 #. TRANS: Link text in proile leading to import form.
 #. TRANS: Title for page to import del.icio.us bookmark backups on.
 msgid "Import del.icio.us bookmarks"
-msgstr "Importar adreces favorites de del.icio.us"
+msgstr "Importa adreces d'interès del del.icio.us"
 
 #. TRANS: Client exception thrown when a bookmark is formatted incorrectly.
 msgid "Expected exactly 1 link rel=related in a Bookmark."
-msgstr ""
+msgstr "S'esperava exactament 1 enllaç rel=related en una adreça d'interès."
 
 #. TRANS: Server exception thrown when a bookmark has multiple attachments.
 msgid "Bookmark notice with the wrong number of attachments."
@@ -66,13 +62,7 @@ msgstr "Avís d'adreça d'interès amb un nombre incorrecte d'adjuncions."
 #. TRANS: Application title.
 msgctxt "TITLE"
 msgid "Bookmark"
-msgstr "Adreça d'interès"
-
-#. TRANS: Exception thrown when a bookmark has no attachments.
-#. TRANS: %1$s is a bookmark ID, %2$s is a notice ID (number).
-#, php-format
-msgid "Bookmark %1$s (notice %2$d) has no attachments."
-msgstr ""
+msgstr "Adreça"
 
 #. TRANS: Title for mini-posting window loaded from bookmarklet.
 #. TRANS: %s is the StatusNet site name.
@@ -138,42 +128,46 @@ msgstr ""
 
 #. TRANS: Client exception thrown when trying to import bookmarks without having the rights to do so.
 msgid "You may not restore your account."
-msgstr ""
+msgstr "No podeu restaurar el compte."
 
 #. TRANS: Client exception thrown when trying to import bookmarks and upload fails.
 #. TRANS: Client exception thrown when a file upload has failed.
 msgid "No uploaded file."
-msgstr ""
+msgstr "No hi ha cap fitxer pujat."
 
 #. TRANS: Client exception thrown when an uploaded file is too large.
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini."
 msgstr ""
+"El fitxer pujat excedeix allò que s'especifica a la directiva "
+"upload_max_filesize de php.ini."
 
 #. TRANS: Client exception thrown when an uploaded file is too large.
 msgid ""
 "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
 "the HTML form."
 msgstr ""
+"El fitxer pujat excedeix allò que s'estableix a la directiva MAX_FILE_SIZE "
+"especificada al formulari HTML."
 
 #. TRANS: Client exception thrown when a file was only partially uploaded.
 msgid "The uploaded file was only partially uploaded."
-msgstr ""
+msgstr "El fitxer pujat només ho ha estat parcialment."
 
 #. TRANS: Client exception thrown when a temporary folder is not present.
 msgid "Missing a temporary folder."
-msgstr ""
+msgstr "Manca una carpeta temporal."
 
 #. TRANS: Client exception thrown when writing to disk is not possible.
 msgid "Failed to write file to disk."
-msgstr ""
+msgstr "No s'ha pogut escriure el fitxer al disc."
 
 #. TRANS: Client exception thrown when a file upload has been stopped.
 msgid "File upload stopped by extension."
-msgstr ""
+msgstr "Una extensió ha aturat la pujada del fitxer."
 
 #. TRANS: Client exception thrown when a file upload operation has failed.
 msgid "System error uploading file."
-msgstr ""
+msgstr "S'ha produït un error de sistema en pujar el fitxer."
 
 #. TRANS: Server exception thrown when a file upload cannot be found.
 #. TRANS: %s is the file that could not be found.
@@ -197,21 +191,27 @@ msgstr "No és un fitxer regular: «%s»."
 #. TRANS: %s is the file that could not be read.
 #, php-format
 msgid "File \"%s\" not readable."
-msgstr ""
+msgstr "El fitxer «%s» no es pot llegir."
 
 #. TRANS: Success message after importing bookmarks.
 msgid ""
 "Bookmarks have been imported. Your bookmarks should now appear in search and "
 "your profile page."
 msgstr ""
+"S'han importat les adreces d'interès. Les vostres adreces d'interès haurien "
+"d'aparèixer ara a la cerca i a la vostra pàgina de perfil."
 
 #. TRANS: Busy message for importing bookmarks.
 msgid "Bookmarks are being imported. Please wait a few minutes for results."
 msgstr ""
+"S'estan important les adreces d'interès. Espereu uns pocs minuts per a "
+"veure'n els resultats."
 
 #. TRANS: Form instructions for importing bookmarks.
 msgid "You can upload a backed-up delicious.com bookmarks file."
 msgstr ""
+"Podeu pujar una fitxer de còpia de seguretat d'adreces d'interès de "
+"delicious.com."
 
 #. TRANS: Button text on form to import bookmarks.
 msgctxt "BUTTON"
@@ -252,15 +252,15 @@ msgstr "Nou marcador"
 
 #. TRANS: Client exception thrown when trying to create a new bookmark while not logged in.
 msgid "Must be logged in to post a bookmark."
-msgstr ""
+msgstr "Cal haver iniciat una sessió per publicar una adreça d'interès."
 
 #. TRANS: Client exception thrown when trying to create a new bookmark without a title.
 msgid "Bookmark must have a title."
-msgstr ""
+msgstr "L'adreça d'interès cal que tingui un títol."
 
 #. TRANS: Client exception thrown when trying to create a new bookmark without a URL.
 msgid "Bookmark must have an URL."
-msgstr ""
+msgstr "L'adreça d'interès ha de tenir un URL."
 
 #. TRANS: Page title after posting a bookmark.
 msgid "Bookmark posted"
@@ -269,4 +269,4 @@ msgstr "S'ha publicat l'adreça d'interès"
 #. TRANS: %s is the filename that contains a backup for a user.
 #, php-format
 msgid "Getting backup from file \"%s\"."
-msgstr ""
+msgstr "S'està recuperant la còpia de seguretat del fitxer \"%s\"."

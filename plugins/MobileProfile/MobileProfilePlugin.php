@@ -49,6 +49,7 @@ class MobileProfilePlugin extends WAP20Plugin
 {
     public $DTD            = null;
     public $serveMobile    = false;
+    public $reallyMobile   = false;
     public $mobileFeatures = array();
 
     function __construct($DTD='http://www.wapforum.org/DTD/xhtml-mobile10.dtd')
@@ -110,6 +111,7 @@ class MobileProfilePlugin extends WAP20Plugin
                     'ipod',
                     'j2me',
                     'lg',
+                    'maemo',
                     'midp-',
                     'mobile',
                     'mot',
@@ -160,6 +162,7 @@ class MobileProfilePlugin extends WAP20Plugin
                         $this->setMobileFeatures($httpuseragent);
 
                         $this->serveMobile = true;
+                        $this->reallyMobile = true;
                         break;
                     }
                 }
@@ -201,21 +204,28 @@ class MobileProfilePlugin extends WAP20Plugin
 
         header('Content-Type: '.$type);
 
-        $action->extraHeaders();
-        if (preg_match("/.*\/.*xml/", $type)) {
-            // Required for XML documents
-            $action->xw->startDocument('1.0', 'UTF-8');
-        }
-        $action->xw->writeDTD('html',
-                        '-//WAPFORUM//DTD XHTML Mobile 1.0//EN',
-                        $this->DTD);
+        if ($this->reallyMobile) {
 
-        $language = $action->getLanguage();
+           $action->extraHeaders();
+           if (preg_match("/.*\/.*xml/", $type)) {
+               // Required for XML documents
+               $action->xw->startDocument('1.0', 'UTF-8');
+           }
+           $action->xw->writeDTD('html',
+                           '-//WAPFORUM//DTD XHTML Mobile 1.0//EN',
+                           $this->DTD);
 
-        $action->elementStart('html', array('xmlns' => 'http://www.w3.org/1999/xhtml',
+            $language = $action->getLanguage();
+
+            $action->elementStart('html', array('xmlns' => 'http://www.w3.org/1999/xhtml',
                                             'xml:lang' => $language));
 
-        return false;
+            return false;
+
+        } else {
+        return true;
+        }
+
     }
 
     function setMobileFeatures($useragent)
@@ -242,16 +252,14 @@ class MobileProfilePlugin extends WAP20Plugin
 
         $action->primaryCssLink();
 
+        $action->cssLink($this->path('mp-screen.css'),null,'screen');
         if (file_exists(Theme::file('css/mp-screen.css'))) {
             $action->cssLink('css/mp-screen.css', null, 'screen');
-        } else {
-            $action->cssLink($this->path('mp-screen.css'),null,'screen');
         }
 
+        $action->cssLink($this->path('mp-handheld.css'),null,'handheld');
         if (file_exists(Theme::file('css/mp-handheld.css'))) {
             $action->cssLink('css/mp-handheld.css', null, 'handheld');
-        } else {
-            $action->cssLink($this->path('mp-handheld.css'),null,'handheld');
         }
 
         // Allow other plugins to load their styles.
@@ -286,8 +294,16 @@ class MobileProfilePlugin extends WAP20Plugin
     function _showLogo($action)
     {
         $action->elementStart('address', 'vcard');
+        if (common_config('singleuser', 'enabled')) {
+            $user = User::singleUser();
+            $url = common_local_url('showstream', array('nickname' => $user->nickname));
+        } else {
+            $url = common_local_url('public');
+        }
+
         $action->elementStart('a', array('class' => 'url home bookmark',
-                                       'href' => common_local_url('public')));
+                                         'href' => $url));
+
         if (common_config('site', 'mobilelogo') ||
             file_exists(Theme::file('logo.png')) ||
             file_exists(Theme::file('mobilelogo.png'))) {
@@ -341,6 +357,16 @@ class MobileProfilePlugin extends WAP20Plugin
                 });
             });'
         );
+
+        if ($this->serveMobile) {
+            $action->inlineScript('
+                $(function() {
+        	        $(".checkbox-wrapper").unbind("click");
+                });'
+            );
+        }
+
+
     }
 
 

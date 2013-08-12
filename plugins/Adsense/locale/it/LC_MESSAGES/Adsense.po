@@ -1,8 +1,10 @@
-# Translation of StatusNet - Adsense to Italian (Italiano)
+# Translation of StatusNet - Adsense to Italian (italiano)
 # Exported from translatewiki.net
 #
 # Author: Milocasagrande
 # Author: Od1n
+# Author: Rippitippi
+# Author: Ximo17
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -10,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:33+0000\n"
-"Language-Team: Italian <http://translatewiki.net/wiki/Portal:it>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:32+0000\n"
+"Language-Team: Italian <https://translatewiki.net/wiki/Portal:it>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:53+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 10:22:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: it\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -27,7 +29,6 @@ msgid "AdSense configuration"
 msgstr "Configurazione AdSene"
 
 #. TRANS: Menu item for site administration
-#, fuzzy
 msgctxt "MENU"
 msgid "AdSense"
 msgstr "AdSense"
@@ -50,16 +51,14 @@ msgid "Client ID"
 msgstr "ID client"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Google client ID."
-msgstr "ID client Google"
+msgstr "Codice utente Google"
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Ad script URL"
 msgstr "URL script Ad"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Script URL (advanced)."
 msgstr "URL script (avanzato)"
 
@@ -68,7 +67,6 @@ msgid "Medium rectangle"
 msgstr "Rettangolo medio"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Medium rectangle slot code."
 msgstr "Rettangolo medio"
 
@@ -77,25 +75,24 @@ msgid "Rectangle"
 msgstr "Rettangolo"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Rectangle slot code."
-msgstr "Rettangolo"
+msgstr "Codice di apertura del rettangolo."
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Leaderboard"
-msgstr ""
+msgstr "Classifica"
 
 #. TRANS: Field title in AdSense administration panel.
 msgid "Leaderboard slot code."
-msgstr ""
+msgstr "Codice di apertura della bacheca principale."
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Skyscraper"
-msgstr ""
+msgstr "Banner"
 
 #. TRANS: Field title in AdSense administration panel.
 msgid "Wide skyscraper slot code."
-msgstr ""
+msgstr "Codice di apertura del banner esteso."
 
 #. TRANS: Button text to save settings in AdSense administration panel.
 msgctxt "BUTTON"
@@ -104,4 +101,4 @@ msgstr "Salva"
 
 #. TRANS: Button title to save settings in AdSense administration panel.
 msgid "Save AdSense settings."
-msgstr ""
+msgstr "Salva le impostazioni di AdSense."

@@ -36,7 +36,7 @@ if (!defined('STATUSNET')) {
 class BitlyUrlPlugin extends UrlShortenerPlugin
 {
     public $shortenerName = 'bit.ly';
-    public $serviceUrl = 'http://bit.ly/api?method=shorten&version=2.0.1&longUrl=%s';
+    public $serviceUrl = 'http://api.bit.ly/v3/shorten?longUrl=%s';
     public $login; // To set a site-default when admins or users don't override it.
     public $apiKey;
 
@@ -69,12 +69,10 @@ class BitlyUrlPlugin extends UrlShortenerPlugin
      * @return string shortened version of the url, or null if URL shortening failed
      */
     protected function shorten($url) {
+	common_log(LOG_INFO, "bit.ly call for $url");
         $response = $this->query($url);
-        if ($this->isOk($url, $response)) {
-            return $this->decode($url, $response->getBody());
-        } else {
-            return null;
-        }
+	common_log(LOG_INFO, "bit.ly answer for $url is ".$response->getBody());
+	return $this->decode($url, $response);
     }
 
     /**
@@ -126,42 +124,25 @@ class BitlyUrlPlugin extends UrlShortenerPlugin
     /**
      * JSON decode for API result
      */
-    protected function decode($url, $body)
+    protected function decode($url, $response)
     {
-        $json = json_decode($body, true);
-        return $json['results'][$url]['shortUrl'];
-    }
-
-    /**
-     * JSON decode for API result
-     */
-    protected function isOk($url, $response)
-    {
-        $code = 'unknown';
-        $msg = '';
+        $msg = "bit.ly returned unknown response with unknown message for $url";
         if ($response->isOk()) {
             $body = $response->getBody();
             common_log(LOG_INFO, $body);
             $json = json_decode($body, true);
-            if ($json['statusCode'] == 'OK') {
-                if (!isset($json['results'][$url])) {
-                    common_log(LOG_ERR, "bit.ly returned OK response, but didn't find expected URL $url in $body");
-                    return false;
+            if ($json['status_code'] == 200) {
+                if (isset($json['data']['url'])) {
+					common_log(LOG_INFO, "bit.ly returned ".$json['data']['url']." as short URL for $url");
+                    return $json['data']['url'];
                 }
-                $data = $json['results'][$url];
-                if (isset($data['shortUrl'])) {
-                    return true;
-                } else if (isset($data['statusCode']) && $data['statusCode'] == 'ERROR') {
-                    $code = $data['errorCode'];
-                    $msg = $data['errorMessage'];
-                }
-            } else if ($json['statusCode'] == 'ERROR') {
-                $code = $json['errorCode'];
-                $msg = $json['errorMessage'];
-            }
-            common_log(LOG_ERR, "bit.ly returned error $code $msg for $url");
-        }
-        return false;
+				$msg = "bit.ly returned ".$json['status_code']." response, but didn't find expected URL $url in $body";
+			}else{
+				$msg = "bit.ly returned ".$json['status_code']." response with ".$json['status_txt']." for $url";
+			}
+		}
+		common_log(LOG_ERR, $msg);
+		return null;
     }
 
     function onPluginVersion(&$versions)

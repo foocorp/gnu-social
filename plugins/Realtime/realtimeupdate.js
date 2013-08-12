@@ -1,6 +1,6 @@
 /*
  * StatusNet - a distributed open-source microblogging tool
- * Copyright (C) 2008, StatusNet, Inc.
+ * Copyright (C) 2009-2011, StatusNet, Inc.
  *
  * Add a notice encoded as JSON into the current timeline
  *
@@ -21,7 +21,7 @@
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -45,6 +45,8 @@
 RealtimeUpdate = {
      _userid: 0,
      _showurl: '',
+     _keepaliveurl: '',
+     _closeurl: '',
      _updatecounter: 0,
      _maxnotices: 50,
      _windowhasfocus: true,
@@ -390,11 +392,28 @@ RealtimeUpdate = {
       *
       * @access private
       */
-     initActions: function(url, timeline, path)
+    initActions: function(url, timeline, path, keepaliveurl, closeurl)
      {
         $('#notices_primary').prepend('<ul id="realtime_actions"><li id="realtime_playpause"></li><li id="realtime_timeline"></li></ul>');
 
         RealtimeUpdate._pluginPath = path;
+        RealtimeUpdate._keepaliveurl = keepaliveurl;
+        RealtimeUpdate._closeurl = closeurl;
+
+
+	 // On unload, let the server know we're no longer listening
+         $(window).unload(function() {
+            $.ajax({
+                type: 'POST',
+                url: RealtimeUpdate._closeurl});
+	 });
+
+	setInterval(function() {
+            $.ajax({
+                type: 'POST',
+                url: RealtimeUpdate._keepaliveurl});
+
+	}, 15 * 60 * 1000 ); // every 15 min; timeout in 30 min
 
         RealtimeUpdate.initPlayPause();
         RealtimeUpdate.initAddPopup(url, timeline, RealtimeUpdate._pluginPath);

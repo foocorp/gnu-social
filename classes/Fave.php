@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Fave extends Memcached_DataObject
+class Fave extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -12,6 +12,7 @@ class Fave extends Memcached_DataObject
     public $__table = 'fave';                            // table name
     public $notice_id;                       // int(4)  primary_key not_null
     public $user_id;                         // int(4)  primary_key not_null
+    public $uri;                             // varchar(255)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
     /* Static get */
@@ -20,6 +21,31 @@ class Fave extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice that is the favorite'),
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user who likes this notice'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('notice_id', 'user_id'),
+            'unique keys' => array(
+                'fave_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'fave_notice_id_fkey' => array('notice', array('notice_id' => 'id')),
+                'fave_user_id_fkey' => array('profile', array('user_id' => 'id')), // note: formerly referenced notice.id, but we can now record remote users' favorites
+            ),
+            'indexes' => array(
+                'fave_notice_id_idx' => array('notice_id'),
+                'fave_user_id_idx' => array('user_id', 'modified'),
+                'fave_modified_idx' => array('modified'),
+            ),
+        );
+    }
 
     /**
      * Save a favorite record.
@@ -39,12 +65,16 @@ class Fave extends Memcached_DataObject
 
             $fave->user_id   = $profile->id;
             $fave->notice_id = $notice->id;
-
+            $fave->modified  = common_sql_now();
+            $fave->uri       = self::newURI($fave->user_id,
+                                            $fave->notice_id,
+                                            $fave->modified);
             if (!$fave->insert()) {
                 common_log_db_error($fave, 'INSERT', __FILE__);
                 return false;
             }
-            self::blow('fave:by_notice:%d', $fave->notice_id);
+            self::blow('fave:list-ids:notice_id:%d', $fave->notice_id);
+            self::blow('popular');
 
             Event::handle('EndFavorNotice', array($profile, $notice));
         }
@@ -62,7 +92,8 @@ class Fave extends Memcached_DataObject
         if (Event::handle('StartDisfavorNotice', array($profile, $notice, &$result))) {
 
             $result = parent::delete();
-            self::blow('fave:by_notice:%d', $this->notice_id);
+            self::blow('fave:list-ids:notice_id:%d', $this->notice_id);
+            self::blow('popular');
 
             if ($result) {
                 Event::handle('EndDisfavorNotice', array($profile, $notice));
@@ -93,8 +124,17 @@ class Fave extends Memcached_DataObject
 
     function asActivity()
     {
-        $notice  = Notice::staticGet('id', $this->notice_id);
+        $notice = Notice::staticGet('id', $this->notice_id);
+
+        if (!$notice) {
+            throw new Exception("Fave for non-existent notice: " . $this->notice_id);
+        }
+
         $profile = Profile::staticGet('id', $this->user_id);
+
+        if (!$profile) {
+            throw new Exception("Fave by non-existent profile: " . $this->user_id);
+        }
 
         $act = new Activity();
 
@@ -102,10 +142,7 @@ class Fave extends Memcached_DataObject
 
         // FIXME: rationalize this with URL below
 
-        $act->id   = TagURI::mint('favor:%d:%d:%s',
-                                  $profile->id,
-                                  $notice->id,
-                                  common_date_iso8601($this->modified));
+        $act->id   = $this->getURI();
 
         $act->time    = strtotime($this->modified);
         // TRANS: Activity title when marking a notice as favorite.
@@ -157,30 +194,20 @@ class Fave extends Memcached_DataObject
         return $fav;
     }
 
-    /**
-     * Grab a list of profile who have favored this notice.
-     *
-     * @return ArrayWrapper masquerading as a Fave
-     */
-    static function byNotice($noticeId)
+    function getURI()
     {
-        $c = self::memcache();
-        $key = Cache::key('fave:by_notice:' . $noticeId);
-
-        $wrapper = $c->get($key);
-        if (!$wrapper) {
-            // @fixme caching & scalability!
-            $fave = new Fave();
-            $fave->notice_id = $noticeId;
-            $fave->find();
-
-            $list = array();
-            while ($fave->fetch()) {
-                $list[] = clone($fave);
-            }
-            $wrapper = new ArrayWrapper($list);
-            $c->set($key, $wrapper);
+        if (!empty($this->uri)) {
+            return $this->uri;
+        } else {
+            return self::newURI($this->user_id, $this->notice_id, $this->modified);
         }
-        return $wrapper;
+    }
+
+    static function newURI($profile_id, $notice_id, $modified)
+    {
+        return TagURI::mint('favor:%d:%d:%s',
+                            $profile_id,
+                            $notice_id,
+                            common_date_iso8601($modified));
     }
 }

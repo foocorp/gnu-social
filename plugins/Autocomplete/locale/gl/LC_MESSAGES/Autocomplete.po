@@ -1,0 +1,32 @@
+# Translation of StatusNet - Autocomplete to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Autocomplete\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:41+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:49:45+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-autocomplete\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "The autocomplete plugin adds autocompletion for @ replies."
+msgstr ""
+"O complemento de completar automaticamente engade o completado automático "
+"para as respostas @."
+
+#. TRANS: Client exception in autocomplete plugin.
+msgid "Access forbidden."
+msgstr "Acceso prohibido."

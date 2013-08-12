@@ -9,17 +9,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Realtime\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:00+0000\n"
-"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:47+0000\n"
+"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-09 19:00:58+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:10:45+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-realtime\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception. Do not translate POST.
+msgid "You have to POST it."
+msgstr "Kailangan mong IPASKIL iyan."
+
+#. TRANS: Client exception thrown when the channel key argument is missing.
+msgid "No channel key argument."
+msgstr "Walang susi sa katwiran ng kanal."
+
+#. TRANS: Client exception thrown when referring to a non-existing channel.
+msgid "No such channel."
+msgstr "Walang ganyang kanal."
 
 #. TRANS: Text label for realtime view "play" button, usually replaced by an icon.
 msgctxt "BUTTON"

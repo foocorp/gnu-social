@@ -31,7 +31,7 @@ define('NOTICE_INBOX_GC_MAX', 12800);
 define('NOTICE_INBOX_LIMIT', 1000);
 define('NOTICE_INBOX_SOFT_LIMIT', 1000);
 
-class Notice_inbox extends Memcached_DataObject
+class Notice_inbox extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -48,6 +48,27 @@ class Notice_inbox extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'description' => 'Obsolete; old entries here are converted to packed entries in the inbox table since 0.9',
+            'fields' => array(
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user receiving the message'),
+                'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice received'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the notice was created'),
+                'source' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'reason it is in the inbox, 1=subscription'),
+            ),
+            'primary key' => array('user_id', 'notice_id'),
+            'foreign keys' => array(
+                'notice_inbox_user_id_fkey' => array('user', array('user_id' => 'id')),
+                'notice_inbox_notice_id_fkey' => array('notice', array('notice_id' => 'id')),
+            ),
+            'indexes' => array(
+                'notice_inbox_notice_id_idx' => array('notice_id'),
+            ),
+        );
+    }
 
     function stream($user_id, $offset, $limit, $since_id, $max_id, $own=false)
     {

@@ -81,6 +81,19 @@ class Widget
     }
 
     /**
+     * Get HTMLOutputter
+     *
+     * Return the HTMLOutputter for the widget.
+     *
+     * @return HTMLOutputter the output helper
+     */
+
+    function getOut()
+    {
+        return $this->out;
+    }
+
+    /**
      * Delegate output methods to the outputter attribute.
      *
      * @param string $name      Name of the method

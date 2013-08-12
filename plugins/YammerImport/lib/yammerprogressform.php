@@ -60,39 +60,92 @@ class YammerProgressForm extends Form
 
         $labels = array(
             'init' => array(
-                'label' => _m("Initialize"),
+                // TRANS: Field label for a Yammer import initialise step.
+                'label' => _m('Initialize'),
+                // TRANS: "In progress" description.
                 'progress' => _m('No import running'),
+                // TRANS: "Complete" description for initialize state.
                 'complete' => _m('Initiated Yammer server connection...'),
             ),
             'requesting-auth' => array(
+                // TRANS: Field label for a Yammer import connect step.
                 'label' => _m('Connect to Yammer'),
+                // TRANS: "In progress" description.
                 'progress' => _m('Awaiting authorization...'),
+                // TRANS: "Complete" description for connect state.
                 'complete' => _m('Connected.'),
             ),
             'import-users' => array(
+                // TRANS: Field label for a Yammer user import users step.
                 'label' => _m('Import user accounts'),
-                'progress' => sprintf(_m("Importing %d user...", "Importing %d users...", $userCount), $userCount),
-                'complete' => sprintf(_m("Imported %d user.", "Imported %d users.", $userCount), $userCount),
+                // TRANS: "In progress" description.
+                // TRANS: %d is the number of users to be imported.
+                'progress' => sprintf(_m('Importing %d user...',
+                                         'Importing %d users...',
+                                         $userCount),
+                                      $userCount),
+                // TRANS: "Complete" description for step.
+                // TRANS: %d is the number of users imported.
+                'complete' => sprintf(_m('Imported %d user.',
+                                         'Imported %d users.',
+                                         $userCount),
+                                      $userCount),
             ),
             'import-groups' => array(
+                // TRANS: Field label for a Yammer group import step.
                 'label' => _m('Import user groups'),
-                'progress' => sprintf(_m("Importing %d group...", "Importing %d groups...", $groupCount), $groupCount),
-                'complete' => sprintf(_m("Imported %d group.", "Imported %d groups.", $groupCount), $groupCount),
+                // TRANS: "In progress" description.
+                // TRANS: %d is the number of groups to be imported.
+                'progress' => sprintf(_m('Importing %d group...',
+                                         'Importing %d groups...',
+                                         $groupCount),
+                                      $groupCount),
+                // TRANS: "Complete" description for step.
+                // TRANS: %d is the number of groups imported.
+                'complete' => sprintf(_m('Imported %d group.',
+                                         'Imported %d groups.',
+                                         $groupCount),
+                                      $groupCount),
             ),
             'fetch-messages' => array(
+                // TRANS: Field label for a Yammer import prepare notices step.
                 'label' => _m('Prepare public notices for import'),
-                'progress' => sprintf(_m("Preparing %d notice...", "Preparing %d notices...", $fetchedCount), $fetchedCount),
-                'complete' => sprintf(_m("Prepared %d notice.", "Prepared %d notices.", $fetchedCount), $fetchedCount),
+                // TRANS: "In progress" description.
+                // TRANS: %d is the number of notices to be prepared for import.
+                'progress' => sprintf(_m('Preparing %d notice...',
+                                         'Preparing %d notices...',
+                                         $fetchedCount),
+                                      $fetchedCount),
+                // TRANS: "Complete" description for step.
+                // TRANS: %d is the number of notices prepared for import.
+                'complete' => sprintf(_m('Prepared %d notice.',
+                                         'Prepared %d notices.',
+                                         $fetchedCount),
+                                      $fetchedCount),
             ),
             'save-messages' => array(
+                // TRANS: Field label for a Yammer import notices step.
                 'label' => _m('Import public notices'),
-                'progress' => sprintf(_m("Importing %d notice...", "Importing %d notices...", $savedCount), $savedCount),
-                'complete' => sprintf(_m("Imported %d notice.", "Imported %d notices.", $savedCount), $savedCount),
+                // TRANS: "In progress" description.
+                // TRANS: %d is the number of notices to be imported.
+                'progress' => sprintf(_m('Importing %d notice...',
+                                         'Importing %d notices...',
+                                         $savedCount),
+                                      $savedCount),
+                // TRANS: "Complete" description for step.
+                // TRANS: %d is the number of notices imported.
+                'complete' => sprintf(_m('Imported %d notice.',
+                                         'Imported %d notices.',
+                                         $savedCount),
+                                      $savedCount),
             ),
             'done' => array(
+                // TRANS: Field label for a Yammer import done step.
                 'label' => _m('Done'),
-                'progress' => sprintf(_m("Import is complete!")),
-                'complete' => sprintf(_m("Import is complete!")),
+                // TRANS: "In progress" description for done step.
+                'progress' => sprintf(_m('Import is complete!')),
+                // TRANS: "Complete" description for done step.
+                'complete' => sprintf(_m('Import is complete!')),
             )
         );
         $steps = array_keys($labels);
@@ -105,6 +158,7 @@ class YammerProgressForm extends Form
             $classes[] = 'yammer-running';
         }
         $this->out->elementStart('fieldset', array('class' => implode(' ', $classes)));
+        // TRANS: Fieldset legend.
         $this->out->element('legend', array(), _m('Import status'));
         foreach ($steps as $step => $state) {
             if ($state == 'init') {
@@ -129,7 +183,8 @@ class YammerProgressForm extends Form
                 $this->progressBar($state,
                                    'waiting',
                                    $labels[$state]['label'],
-                                   _m("Waiting..."));
+                                   // TRANS: Progress bar status.
+                                   _m('Waiting...'));
             }
         }
         $this->out->elementEnd('fieldset');
@@ -143,11 +198,13 @@ class YammerProgressForm extends Form
         $this->out->element('div', array('class' => 'import-status'), $status);
         if ($class == 'progress') {
             if ($state == 'done') {
+                // TRANS: Button text for resetting the import state.
                 $this->out->submit('abort-import', _m('Reset import state'));
             } else {
                 if ($error) {
                     $this->errorBox($error);
                 } else {
+                    // TRANS: Button text for pausing an import.
                     $this->out->submit('pause-import', _m('Pause import'));
                 }
             }
@@ -157,11 +214,15 @@ class YammerProgressForm extends Form
 
     private function errorBox($msg)
     {
-        $errline = sprintf(_m('Encountered error "%s"'), $msg);
+        // TRANS: Error message. %s are the error details.
+        $errline = sprintf(_m('Encountered error "%s".'), $msg);
         $this->out->elementStart('fieldset', array('class' => 'import-error'));
+        // TRANS: Fieldset legend for a paused import.
         $this->out->element('legend', array(), _m('Paused'));
         $this->out->element('p', array(), $errline);
+        // TRANS: Button text for continuing a paused import.
         $this->out->submit('continue-import', _m('Continue'));
+        // TRANS: Button text for aborting a paused import.
         $this->out->submit('abort-import', _m('Abort import'));
         $this->out->elementEnd('fieldset');
     }

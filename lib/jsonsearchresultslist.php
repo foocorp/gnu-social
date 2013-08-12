@@ -232,10 +232,15 @@ class ResultItem
         $this->id           = $this->notice->id;
         $this->from_user_id = $this->profile->id;
 
-        $user = User::staticGet('id', $this->profile->id);
+        $user = $this->profile->getUser();
 
-        $this->iso_language_code = $user->language;
-
+        if (empty($user)) {
+            // Gonna have to do till we can detect it
+            $this->iso_language_code = common_config('site', 'language');
+        } else {
+            $this->iso_language_code = $user->language;
+        }
+        
         $this->source = $this->getSourceLink($this->notice->source);
 
         $avatar = $this->profile->getAvatar(AVATAR_STREAM_SIZE);

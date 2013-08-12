@@ -1,0 +1,374 @@
+# Translation of StatusNet - FacebookBridge to Malagasy (Malagasy)
+# Exported from translatewiki.net
+#
+# Author: Jagwar
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - FacebookBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:34+0000\n"
+"Language-Team: Malagasy <https://translatewiki.net/wiki/Portal:mg>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: mg\n"
+"X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. TRANS: Client error displayed when trying to login while already logged in.
+msgid "Already logged in."
+msgstr "Efa tafiditra."
+
+#. TRANS: Form instructions.
+msgid "Login with your Facebook Account"
+msgstr "Hiditra amin'ny kaontinao Facebook"
+
+#. TRANS: Page title.
+#. TRANS: Alt text for "Login with Facebook" image.
+msgid "Login with Facebook"
+msgstr "Hiditra amin'i Facebook"
+
+#. TRANS: Title for "Login with Facebook" image.
+msgid "Login with Facebook."
+msgstr "Hiditra amin'i Facebook"
+
+#. TRANS: Title for Facebook administration panel.
+msgctxt "TITLE"
+msgid "Facebook integration settings"
+msgstr "Parametatra fampiaraha-mandeha amin'i Facebook"
+
+#. TRANS: Instruction for Facebook administration panel.
+msgid "Facebook integration settings"
+msgstr "Parametatra fampiarah-mandeha amin'i Facebook"
+
+#. TRANS: Client error displayed when providing too long a Facebook application ID.
+msgid "Invalid Facebook ID. Maximum length is 255 characters."
+msgstr ""
+"Hadisoana amin'ny isa mamantatra Facebook. 255 soratra ny halavan'ny ID "
+"farafahabetsany."
+
+#. TRANS: Client error displayed when providing too long a Facebook secret key.
+msgid "Invalid Facebook secret. Maximum length is 255 characters."
+msgstr ""
+"Hadisoana tamin'ny fehezanteny miafina Facebook. 255 soratra ny halavan'ilay "
+"fehezanteny farafahabetsany."
+
+#. TRANS: Fieldset legend.
+msgid "Facebook application settings"
+msgstr "Parametatry ny application Facebook"
+
+#. TRANS: Field label for Facebook application ID.
+msgid "Application ID"
+msgstr "ID ny application"
+
+#. TRANS: Field title for Facebook application ID.
+msgid "ID of your Facebook application."
+msgstr "Isa mamantatra ny application Facebook anao."
+
+#. TRANS: Field label for Facebook secret key.
+msgid "Secret"
+msgstr "Fehezanteny miafina"
+
+#. TRANS: Field title for Facebook secret key.
+msgid "Application secret."
+msgstr "Fehezanteny miafin'ilay application."
+
+#. TRANS: Button text to save Facebook integration settings.
+#. TRANS: Submit button to save synchronisation settings.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Tehirizina"
+
+#. TRANS: Button title to save Facebook integration settings.
+msgid "Save Facebook settings."
+msgstr "Hitahiry ny parametatra Facebook."
+
+#. TRANS: Client error displayed when the session token does not match or is not given.
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Nisy olana nitranga tamin'ny fidiranao. Andramo fanindroany azafady."
+
+#. TRANS: Page title for Facebook settings.
+msgctxt "TITLE"
+msgid "Facebook settings"
+msgstr "Parametatra Facebook"
+
+#. TRANS: Instructions for Facebook settings.
+msgid "Facebook settings"
+msgstr "Parametatra Facebook"
+
+#. TRANS: Form note. User is connected to facebook.
+msgid "Connected Facebook user"
+msgstr "Mpikambana Facebook efa tafiditra"
+
+#. TRANS: Checkbox label in Facebook settings.
+msgid "Publish my notices to Facebook."
+msgstr "Avoaka eo amin'i Facebook ny hevitro."
+
+#. TRANS: Checkbox label in Facebook settings.
+msgid "Send \"@\" replies to Facebook."
+msgstr "Alefa eo amin'i Facebook ny valinkafatra \"@\"."
+
+#. TRANS: Fieldset legend for form to disconnect from Facebook.
+msgid "Disconnect my account from Facebook"
+msgstr "Hivoaka amin'i Facebook"
+
+#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
+#, php-format
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set "
+"a password](%s) first."
+msgstr ""
+"Tsy hahatafitra anao ny fivoahanao amin'i Facebook ! Atsofohy aloha ny "
+"[hampiditra tenimiafina] (%s)"
+
+#. TRANS: Message displayed when initiating disconnect of a StatusNet user
+#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr ""
+"Hitazona ny kaontinao fa hivoaka amin'i Facebook. Azonao ampiasaina ny "
+"tenimafina %1$s rehefa hiditra ianao."
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Hivoaka"
+
+#. TRANS: Notice in case saving of synchronisation preferences fail.
+msgid "There was a problem saving your sync preferences."
+msgstr "Niolana nitranga teo ampitahirizana ny safidy sync anao."
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the system.
+msgid "Sync preferences saved."
+msgstr "Voatahiry ny safidy sync."
+
+#. TRANS: Server error displayed when deleting the link to a Facebook account fails.
+msgid "Could not delete link to Facebook."
+msgstr "Tsy afaka mamafa ilay rohy mankany amin'i Facebook."
+
+#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
+msgid "You have disconnected from Facebook."
+msgstr "Efa nivoaka tamin'i Facebook ianao"
+
+msgid "Unable to authenticate you with Facebook."
+msgstr ""
+
+#. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
+msgid ""
+"You must be logged into Facebook to register a local account using Facebook."
+msgstr ""
+"Mila tafiditra eo amin'i Facebook ianao mba hahafahanao manokatra kaonty eto "
+"antoerana amin'ny alalan'ny Facebook."
+
+#. TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+#. TRANS: in the same StatusNet site.
+msgid "There is already a local account linked with that Facebook account."
+msgstr "Efa misy kaonty antoerana ho an'io kaonty Facebook io eto."
+
+#. TRANS: Form validation error displayed when user has not agreed to the license.
+msgid "You cannot register if you do not agree to the license."
+msgstr "Tsy afaka misoratra anarana ianao raha tsy ekenao ny lisansa."
+
+#. TRANS: Form validation error displayed when an unhandled error occurs.
+msgid "An unknown error has occured."
+msgstr "Nisy hadisoana tsy fantatra nitranga."
+
+#. TRANS: Form instructions for connecting to Facebook.
+#. TRANS: %s is the site name.
+#, php-format
+msgid ""
+"This is the first time you have logged into %s so we must connect your "
+"Facebook to a local account. You can either create a new local account, or "
+"connect with an existing local account."
+msgstr ""
+"Voalohany indrindra ianao no miditra eto amin'i %s, izay ny antony idiranao "
+"eo amin'ny eto amin'ny alalan'ny kaonty Facebook anao. Na ianao manokatra "
+"kaonty eto antoerana, na ianao miditra amin'ny alalana kaonty efa misy."
+
+#. TRANS: Page title.
+msgid "Facebook Setup"
+msgstr "Configuration Facebook"
+
+#. TRANS: Fieldset legend.
+msgid "Connection options"
+msgstr "Safidim-pidirana"
+
+#. TRANS: %s is the name of the license used by the user for their status updates.
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"Mitondra ny lisansa %s ny lahatsoratro ary ny rakitro afatsy ireo "
+"fampahalalana tsy sarababembahoaka : tenimiafina, adiresy imailaka, adiresim-"
+"pifandraisana antsoratra mivantana ary ny niomerao telefaona."
+
+#. TRANS: Fieldset legend.
+msgid "Create new account"
+msgstr "Hanokatra kaonty vaovao"
+
+#. TRANS: Form instructions.
+msgid "Create a new user with this nickname."
+msgstr "Hamorona mpikambana vaovao miaraka amin'ilay solonanarana."
+
+#. TRANS: Field label.
+msgid "New nickname"
+msgstr "Solonanarana vaovao"
+
+#. TRANS: Field title.
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr "litera zanatsoratra 1 hatramin'ny 63, tsy misy teboteboka na fotsy."
+
+#. TRANS: Submit button to create a new account.
+msgctxt "BUTTON"
+msgid "Create"
+msgstr "Foronona"
+
+#. TRANS: Fieldset legend.
+msgid "Connect existing account"
+msgstr "Hiditra amin'ny kaonty efa misy"
+
+#. TRANS: Form instructions.
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Facebook."
+msgstr ""
+"Efa manana kaonty ianao eto, midira miaraka amin'ny anaram-pikambanao ary ny "
+"tenimiafina mba hampikambana azy amin'ny kaonty Facebook anao."
+
+#. TRANS: Field label.
+msgid "Existing nickname"
+msgstr "Solonanarana efa misy"
+
+#. TRANS: Field label.
+msgid "Password"
+msgstr "Tenimiafina"
+
+#. TRANS: Submit button to connect a Facebook account to an existing StatusNet account.
+msgctxt "BUTTON"
+msgid "Connect"
+msgstr "Hiditra"
+
+#. TRANS: Client error trying to register with registrations not allowed.
+#. TRANS: Client error trying to register with registrations 'invite only'.
+msgid "Registration not allowed."
+msgstr "Fidirana tsy nahazo alalana"
+
+#. TRANS: Client error trying to register with an invalid invitation code.
+msgid "Not a valid invitation code."
+msgstr "Kaodim-panasaina diso."
+
+#. TRANS: Form validation error displayed when picking a nickname that is not allowed.
+msgid "Nickname not allowed."
+msgstr "Solonanarana tsy ekena."
+
+#. TRANS: Form validation error displayed when picking a nickname that is already in use.
+msgid "Nickname already in use. Try another one."
+msgstr "Solonanarana efa miasa. Makà solonanarana hafa."
+
+#. TRANS: Server error displayed when connecting to Facebook fails.
+msgid "Error connecting user to Facebook."
+msgstr "Hadisoana teo am-pidirana ilay mpikambana teo amin'i Facebook."
+
+#. TRANS: Form validation error displayed when username/password combination is incorrect.
+msgid "Invalid username or password."
+msgstr "Solonanarana na tenimiafina diso."
+
+#. TRANS: Menu item for "Facebook" in administration panel.
+#. TRANS: Menu item for "Facebook" in user settings.
+msgctxt "MENU"
+msgid "Facebook"
+msgstr "Facebook"
+
+#. TRANS: Menu title for "Facebook" login.
+msgid "Login or register using Facebook."
+msgstr "Hisoratra anarana na hiditra amin'ny alalan'i Facebook"
+
+#. TRANS: Menu title for "Facebook" in administration panel.
+msgid "Facebook integration configuration."
+msgstr ""
+
+#. TRANS: Menu title for "Facebook" in user settings.
+msgid "Facebook settings."
+msgstr "Parametatra Facebook"
+
+#. TRANS: Plugin description.
+msgid "A plugin for integrating StatusNet with Facebook."
+msgstr "Plugin iray hampifanaraka an'i StatusNet amin'i Facebook."
+
+#. TRANS: E-mail subject.
+msgid "Your Facebook connection has been removed"
+msgstr "Nalàna ny fidiranao teo amin'i Facebook"
+
+#. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"Hi %1$s,\n"
+"\n"
+"We are sorry to inform you we are unable to publish your notice to\n"
+"Facebook, and have removed the connection between your %2$s account and\n"
+"Facebook.\n"
+"\n"
+"This may have happened because you have removed permission for %2$s\n"
+"to post on your behalf, or perhaps you have deactivated your Facebook\n"
+"account. You can reconnect your %2$s account to Facebook at any time by\n"
+"logging in with Facebook again.\n"
+"\n"
+"Sincerely,\n"
+"\n"
+"%2$s\n"
+msgstr ""
+"Miarahaba anao %1$s,\n"
+"\n"
+"Miala tsiny aminao izahay fa tsy nahavao ny satanao teo amin'i Facebook, ary "
+"nesorinao ny fidirana amin'ny kaontinao %2$s ary ny fidiranao amin'ny "
+"alalan'i Facebook.\n"
+"\n"
+"Mety mitranga izany raha nesorinao ny fanomezandalan'i %2$s mametraka "
+"hafatra amin'ny anaranao, na mety notapahanao ny kaontinao Facebook. Afaka "
+"miverina miditra amin'ny kaontinao %2$s amin'i Facebook ianao na ohaviana na "
+"ohaviana amin'ny alalan'ny fidiranao eo amin'ny tranonkala Facebook.\n"
+"\n"
+"Misaotra indrindra,\n"
+"\n"
+"%2$s \n"
+
+#. TRANS: E-mail subject. %s is the StatusNet sitename.
+#, php-format
+msgid "Contact the %s administrator to retrieve your account"
+msgstr "Mifandraisa amin'ny mpandrindran'i %s raha hiverina haka ny kaontinao"
+
+#. TRANS: E-mail body. %1$s is a username,
+#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail address.
+#, php-format
+msgid ""
+"Hi %1$s,\n"
+"\n"
+"We have noticed you have deauthorized the Facebook connection for your\n"
+"%2$s account.  You have not set a password for your %2$s account yet, so\n"
+"you will not be able to login. If you wish to continue using your %2$s\n"
+"account, please contact the site administrator (%3$s) to set a password.\n"
+"\n"
+"Sincerely,\n"
+"\n"
+"%2$s\n"
+msgstr ""
+"Miarahaba %1$s,\n"
+"\n"
+"Hitanay fa nanala ny fifandraisana amin'ny kaontinao %2$s sy Facebook ianao. "
+"Noho ianao tsy nampiditra tenimiafina ho an'ny kaontinao %2$s hatramin'izao, "
+"tsy havela hiditra ianao. Raha mbola te-hampiasa ny kaontinao ianao, dia "
+"mifandraisa amin'ny mpandrindran'ny tranonkala %3$s mba hampiditra "
+"tenimiafina iray.\n"
+"\n"
+"Misaotra indrindra,\n"
+"\n"
+"%2$s\n"

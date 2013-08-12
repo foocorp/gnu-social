@@ -123,7 +123,8 @@ class YammerRunner
     public function requestAuth()
     {
         if ($this->state->state != 'init') {
-            throw new ServerException("Cannot request Yammer auth; already there!");
+            // TRANS: Server exception thrown if a Yammer authentication request is already present.
+            throw new ServerException(_m('Cannot request Yammer auth; already there!'));
         }
 
         $data = $this->client->requestToken();
@@ -149,7 +150,8 @@ class YammerRunner
         if ($this->state() == 'requesting-auth') {
             return $this->client->authorizeUrl($this->state->oauth_token);
         } else {
-            throw new ServerException('Cannot get Yammer auth URL when not in requesting-auth state!');
+            // TRANS: Server exception thrown when requesting a Yammer authentication URL while in an incorrect state.
+            throw new ServerException(_m('Cannot get Yammer auth URL when not in requesting-auth state!'));
         }
     }
 
@@ -167,7 +169,9 @@ class YammerRunner
     public function saveAuthToken($verifier)
     {
         if ($this->state->state != 'requesting-auth') {
-            throw new ServerException("Cannot save auth token in Yammer import state {$this->state->state}");
+            // TRANS: Server exception thrown if a Yammer authentication token could not be saved in a certain import state.
+            // TRANS: %s is the import state in the which the error occurred.
+            throw new ServerException(_m('Cannot save auth token in Yammer import state %s.',$this->state->state));
         }
 
         $data = $this->client->accessToken($verifier);
@@ -324,7 +328,7 @@ class YammerRunner
         $stub->limit(20);
         $stub->orderBy('id');
         $stub->find();
-        
+
         if ($stub->N == 0) {
             common_log(LOG_INFO, "Finished saving Yammer messages; import complete!");
             $this->state->state = 'done';
@@ -353,7 +357,6 @@ class YammerRunner
         return $map->count();
     }
 
-
     /**
      * Count the number of Yammer groups we've mapped into our system!
      *
@@ -365,7 +368,6 @@ class YammerRunner
         return $map->count();
     }
 
-
     /**
      * Count the number of Yammer notices we've pulled down for pending import...
      *
@@ -376,7 +378,6 @@ class YammerRunner
         $map = new Yammer_notice_stub();
         return $map->count();
     }
-
 
     /**
      * Count the number of Yammer notices we've mapped into our system!
@@ -401,8 +402,8 @@ class YammerRunner
     /**
      * Record an error condition from a background run, which we should
      * display in progress state for the admin.
-     * 
-     * @param string $msg 
+     *
+     * @param string $msg
      */
     public function recordError($msg)
     {
@@ -428,7 +429,7 @@ class YammerRunner
 
     /**
      * Get the last recorded background error message, if any.
-     * 
+     *
      * @return string
      */
     public function lastError()

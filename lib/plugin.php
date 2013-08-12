@@ -159,7 +159,12 @@ class Plugin
         }
 
         if (empty($path)) {
-            $path = common_config('site', 'path') . '/plugins/';
+            // XXX: extra stat().
+            if (@file_exists(INSTALLDIR.'/local/plugins/'.$plugin.'/'.$relative)) {
+                $path = common_config('site', 'path') . '/local/plugins/';
+            } else {
+                $path = common_config('site', 'path') . '/plugins/';
+            }
         }
 
         if ($path[strlen($path)-1] != '/') {

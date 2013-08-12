@@ -56,6 +56,7 @@ class StrictTransportSecurityPlugin extends Plugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:StrictTransportSecurity',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The Strict Transport Security plugin implements the Strict Transport Security header, improving the security of HTTPS only sites.'));
         return true;
     }

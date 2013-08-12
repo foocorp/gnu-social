@@ -3,10 +3,11 @@
  * Table Definition for user_group
  */
 
-class User_group extends Memcached_DataObject
+class User_group extends Managed_DataObject
 {
     const JOIN_POLICY_OPEN = 0;
     const JOIN_POLICY_MODERATE = 1;
+    const CACHE_WINDOW = 201;
 
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -22,7 +23,6 @@ class User_group extends Memcached_DataObject
     public $homepage_logo;                   // varchar(255)
     public $stream_logo;                     // varchar(255)
     public $mini_logo;                       // varchar(255)
-    public $design_id;                       // int(4)
     public $created;                         // datetime   not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
     public $uri;                             // varchar(255)  unique_key
@@ -34,9 +34,49 @@ class User_group extends Memcached_DataObject
     function staticGet($k,$v=NULL) {
         return Memcached_DataObject::staticGet('User_group',$k,$v);
     }
+    
+    function multiGet($keyCol, $keyVals, $skipNulls=true)
+    {
+        return parent::multiGet('User_group', $keyCol, $keyVals, $skipNulls);
+    }
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+
+                'nickname' => array('type' => 'varchar', 'length' => 64, 'description' => 'nickname for addressing'),
+                'fullname' => array('type' => 'varchar', 'length' => 255, 'description' => 'display name'),
+                'homepage' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL, cached so we dont regenerate'),
+                'description' => array('type' => 'text', 'description' => 'group description'),
+                'location' => array('type' => 'varchar', 'length' => 255, 'description' => 'related physical location, if any'),
+
+                'original_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'original size logo'),
+                'homepage_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'homepage (profile) size logo'),
+                'stream_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'stream-sized logo'),
+                'mini_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'mini logo'),
+
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universal identifier'),
+                'mainpage' => array('type' => 'varchar', 'length' => 255, 'description' => 'page for group info to link to'),
+                'join_policy' => array('type' => 'int', 'size' => 'tiny', 'description' => '0=open; 1=requires admin approval'),      
+                'force_scope' => array('type' => 'int', 'size' => 'tiny', 'description' => '0=never,1=sometimes,-1=always'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'user_group_uri_key' => array('uri'),
+            ),
+            'indexes' => array(
+                'user_group_nickname_idx' => array('nickname'),
+            ),
+        );
+    }
 
     function defaultLogo($size)
     {
@@ -102,27 +142,52 @@ class User_group extends Memcached_DataObject
         return !in_array($nickname, $blacklist);
     }
 
-    function getMembers($offset=0, $limit=null)
-    {
-        $qry =
-          'SELECT profile.* ' .
-          'FROM profile JOIN group_member '.
-          'ON profile.id = group_member.profile_id ' .
-          'WHERE group_member.group_id = %d ' .
-          'ORDER BY group_member.created DESC ';
+    function getMembers($offset=0, $limit=null) {
+        $ids = null;
+        if (is_null($limit) || $offset + $limit > User_group::CACHE_WINDOW) {
+            $ids = $this->getMemberIDs($offset,
+                                       $limit);
+        } else {
+            $key = sprintf('group:member_ids:%d', $this->id);
+            $window = self::cacheGet($key);
+            if ($window === false) {
+                $window = $this->getMemberIDs(0,
+                                              User_group::CACHE_WINDOW);
+                self::cacheSet($key, $window);
+            }
 
-        if ($limit != null) {
-            if (common_config('db','type') == 'pgsql') {
-                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-            } else {
-                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
+            $ids = array_slice($window,
+                               $offset,
+                               $limit);
+        }
+
+        return Profile::multiGet('id', $ids);
+    }
+
+    function getMemberIDs($offset=0, $limit=null)
+    {
+        $gm = new Group_member();
+
+        $gm->selectAdd();
+        $gm->selectAdd('profile_id');
+
+        $gm->group_id = $this->id;
+
+        $gm->orderBy('created DESC');
+
+        if (!is_null($limit)) {
+            $gm->limit($offset, $limit);
+        }
+
+        $ids = array();
+
+        if ($gm->find()) {
+            while ($gm->fetch()) {
+                $ids[] = $gm->profile_id;
             }
         }
 
-        $members = new Profile();
-
-        $members->query(sprintf($qry, $this->id));
-        return $members;
+        return $ids;
     }
 
     /**
@@ -157,17 +222,44 @@ class User_group extends Memcached_DataObject
 
     function getMemberCount()
     {
-        // XXX: WORM cache this
+        $key = sprintf("group:member_count:%d", $this->id);
 
-        $members = $this->getMembers();
-        $member_count = 0;
+        $cnt = self::cacheGet($key);
 
-        /** $member->count() doesn't work. */
-        while ($members->fetch()) {
-            $member_count++;
+        if (is_integer($cnt)) {
+            return (int) $cnt;
         }
 
-        return $member_count;
+        $mem = new Group_member();
+        $mem->group_id = $this->id;
+
+        // XXX: why 'distinct'?
+
+        $cnt = (int) $mem->count('distinct profile_id');
+
+        self::cacheSet($key, $cnt);
+
+        return $cnt;
+    }
+
+    function getBlockedCount()
+    {
+        // XXX: WORM cache this
+
+        $block = new Group_block();
+        $block->group_id = $this->id;
+
+        return $block->count();
+    }
+
+    function getQueueCount()
+    {
+        // XXX: WORM cache this
+
+        $queue = new Group_join_queue();
+        $queue->group_id = $this->id;
+
+        return $queue->count();
     }
 
     function getAdmins($offset=0, $limit=null)
@@ -339,11 +431,6 @@ class User_group extends Memcached_DataObject
         return null;
     }
 
-    function getDesign()
-    {
-        return Design::staticGet('id', $this->design_id);
-    }
-
     function getUserMembers()
     {
         // XXX: cache this
@@ -495,6 +582,18 @@ class User_group extends Memcached_DataObject
         // MAGICALLY put fields into current scope
         // @fixme kill extract(); it makes debugging absurdly hard
 
+		$defaults = array('nickname' => null,
+						  'fullname' => null,
+						  'homepage' => null,
+						  'description' => null,
+						  'location' => null,
+						  'uri' => null,
+						  'mainpage' => null,
+						  'aliases' => array(),
+						  'userid' => null);
+		
+		$fields = array_merge($defaults, $fields);
+		
         extract($fields);
 
         $group = new User_group();

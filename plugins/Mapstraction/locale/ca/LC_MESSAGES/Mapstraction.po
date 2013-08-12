@@ -1,4 +1,4 @@
-# Translation of StatusNet - Mapstraction to Catalan (Català)
+# Translation of StatusNet - Mapstraction to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Toniher
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Mapstraction\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:57+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:05+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:16+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:30+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-mapstraction\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -39,13 +39,13 @@ msgstr ""
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s friends map"
-msgstr ""
+msgstr "Mapa d'amics de %s"
 
 #. TRANS: Page title.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
 #, php-format
 msgid "%1$s friends map, page %2$d"
-msgstr ""
+msgstr "Mapa d'amics de %1$s, pàgina %2$d"
 
 #. TRANS: Client error displayed when referring to a non-existing user.
 msgid "No such user."

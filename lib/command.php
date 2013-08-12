@@ -629,7 +629,7 @@ class MessageCommand extends Command
             return;
         } else if ($this->user->id == $other->id) {
             // TRANS: Error text shown when trying to send a direct message to self.
-            $channel->error($this->user, _('Don\'t send a message to yourself; just say it to yourself quietly instead.'));
+            $channel->error($this->user, _('Do not send a message to yourself; just say it to yourself quietly instead.'));
             return;
         }
         $message = Message::saveNew($this->user->id, $other->id, $this->text, $channel->source());

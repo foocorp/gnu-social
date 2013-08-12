@@ -58,7 +58,7 @@ $default =
               'sslserver' => null,
               'shorturllength' => 30,
               'dupelimit' => 60, // default for same person saying the same thing
-              'textlimit' => 140,
+              'textlimit' => 0, // in chars; 0 == no limit
               'indent' => true,
               'use_x_sendfile' => false,
               'notice' => null, // site wide notice text
@@ -66,7 +66,7 @@ $default =
               'minify' => true, // true to use the minified versions of JS files; false to use orig files. Can aid during development
               ),
         'db' =>
-        array('database' => 'YOU HAVE TO SET THIS IN config.php',
+          array('database' => null, // must be set
               'schema_location' => INSTALLDIR . '/classes',
               'class_location' => INSTALLDIR . '/classes',
               'require_prefix' => 'classes/',
@@ -277,7 +277,7 @@ $default =
               'allow_tagging' => array('all' => true), // equivalent to array('local' => true, 'remote' => true)
               'desclimit' => null),
         'oembed' =>
-        array('endpoint' => 'http://oohembed.com/oohembed/',
+        array('endpoint' => 'https://noembed.com/embed/',
               'order' => array('built-in', 'well-known', 'service', 'discovery'),
         ),
         'search' =>
@@ -286,20 +286,10 @@ $default =
         array('handle' => false,   // whether to handle sessions ourselves
               'debug' => false,    // debugging output for sessions
               'gc_limit' => 1000), // max sessions to expire at a time
-        'design' =>
-        array('backgroundcolor' => null, // null -> 'use theme default'
-              'contentcolor' => null,
-              'sidebarcolor' => null,
-              'textcolor' => null,
-              'linkcolor' => null,
-              'backgroundimage' => null,
-              'disposition' => null),
-        'custom_css' =>
-        array('enabled' => true,
-              'css' => ''),
         'notice' =>
         array('contentlimit' => null,
-              'defaultscope' => 0), // set to 0 for default open
+              'defaultscope' => null, // null means 1 if site/private, 0 otherwise
+              'hidespam' => false), // Whether to hide silenced users from timelines
         'message' =>
         array('contentlimit' => null),
         'location' =>
@@ -321,7 +311,8 @@ $default =
                                  'TagSub' => null,
                                  'OpenID' => null,
                                  'Directory' => null,
-                                 'ExtendedProfile' => null),
+                                 'ExtendedProfile' => null,
+                                 'Activity' => null),
               'locale_path' => false, // Set to a path to use *instead of* each plugin's own locale subdirectories
               'server' => null,
               'sslserver' => null,
@@ -330,7 +321,7 @@ $default =
               ),
         'pluginlist' => array(),
         'admin' =>
-        array('panels' => array('design', 'site', 'user', 'paths', 'access', 'sessions', 'sitenotice', 'license', 'plugins')),
+        array('panels' => array('site', 'user', 'paths', 'access', 'sessions', 'sitenotice', 'license', 'plugins')),
         'singleuser' =>
         array('enabled' => false,
               'nickname' => null),
@@ -360,4 +351,7 @@ $default =
               ),
         'router' =>
         array('cache' => true), // whether to cache the router object. Defaults to true, turn off for devel
+        'discovery' =>
+          array('cors' => false), // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
+        'performance' => array('high' => false) // disable some features for higher performance; default false
     );

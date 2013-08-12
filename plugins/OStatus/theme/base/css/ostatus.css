@@ -1,74 +1,39 @@
-/** theme: base for OStatus
- *
- * @package   StatusNet
- * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2010 StatusNet, Inc.
- * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
- */
-
-#form_ostatus_connect.dialogbox,
-#form_ostatus_sub.dialogbox {
-width:70%;
-background-image:none;
-}
-#form_ostatus_sub.dialogbox {
-width:65%;
-}
 #form_ostatus_connect.dialogbox .form_data label,
 #form_ostatus_sub.dialogbox .form_data label {
-width:34%;
+    display: block;
+    width: 100%;
+    text-align: left;
 }
+
 #form_ostatus_connect.dialogbox .form_data input,
 #form_ostatus_sub.dialogbox .form_data input {
-width:57%;
+    width: 90%;
+    padding: 4px;
+    margin: 0;
+    background-color: #fff !important;
+    border: 1px solid #888;
 }
+
 #form_ostatus_connect.dialogbox .form_data .form_guide,
 #form_ostatus_sub.dialogbox .form_data .form_guide {
-margin-left:36%;
+    margin-left: 0;
+    background-color: #fff !important;
 }
 
 #form_ostatus_connect.dialogbox #ostatus_nickname,
 #form_ostatus_sub.dialogbox #ostatus_nickname {
-display:none;
+    display: none;
 }
 
-#form_ostatus_connect.dialogbox .submit_dialogbox,
-#form_ostatus_sub.dialogbox .submit_dialogbox {
-min-width:96px;
+#form_ostatus_connect.dialogbox input.submit_dialogbox,
+#form_ostatus_sub.dialogbox input.submit_dialogbox {
+    padding: 4px;
 }
 
-#entity_remote_subscribe {
-padding:0;
-float:right;
-position:relative;
+.entity_remote_tag {
+    background-position: 5px -257px;
 }
 
-.section .entity_actions {
-margin-bottom:0;
-margin-right:7px;
-}
-
-#entity_remote_subscribe .dialogbox {
-width:405px;
-}
-
-.aside #entity_subscriptions .more,
-.aside #entity_groups .more {
-float:left;
-}
-
-.section #entity_remote_subscribe {
-border:0;
-}
-
-.section .entity_remote_subscribe {
-color:#002FA7;
-box-shadow:none;
--moz-box-shadow:none;
--webkit-box-shadow:none;
-background-color:transparent;
-background-position:0 -1183px;
-padding:0 0 0 23px;
-border:0;
+.section .entity_remote_tag {
+    background-position: 5px -257px;
 }

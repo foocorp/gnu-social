@@ -100,12 +100,13 @@ class Activity
     public $title;   // title of the activity
     public $categories = array(); // list of AtomCategory objects
     public $enclosures = array(); // list of enclosure URL references
+    public $attachments = array(); // list of attachments
 
     public $extra = array(); // extra elements as array(tag, attrs, content)
     public $source;  // ActivitySource object representing 'home feed'
     public $selfLink; // <link rel='self' type='application/atom+xml'>
     public $editLink; // <link rel='edit' type='application/atom+xml'>
-
+    public $generator; // ActivityObject representing the generating application
     /**
      * Turns a regular old Atom <entry> into a magical activity
      *
@@ -135,6 +136,9 @@ class Activity
         } else if ($entry->namespaceURI == Activity::RSS &&
                    $entry->localName == 'item') {
             $this->_fromRssItem($entry, $feed);
+        } else if ($entry->namespaceURI == Activity::SPEC &&
+                   $entry->localName == 'object') {
+            $this->_fromAtomEntry($entry, $feed);
         } else {
             // Low level exception. No need for i18n.
             throw new Exception("Unknown DOM element: {$entry->namespaceURI} {$entry->localName}");
@@ -168,14 +172,22 @@ class Activity
             // XXX: do other implied stuff here
         }
 
-        $objectEls = $entry->getElementsByTagNameNS(self::SPEC, self::OBJECT);
+        // get immediate object children
 
-        if ($objectEls->length > 0) {
-            for ($i = 0; $i < $objectEls->length; $i++) {
-                $objectEl = $objectEls->item($i);
-                $this->objects[] = new ActivityObject($objectEl);
+        $objectEls = ActivityUtils::children($entry, self::OBJECT, self::SPEC);
+
+        if (count($objectEls) > 0) {
+            foreach ($objectEls as $objectEl) {
+                // Special case for embedded activities
+                $objectType = ActivityUtils::childContent($objectEl, self::OBJECTTYPE, self::SPEC);
+                if (!empty($objectType) && $objectType == ActivityObject::ACTIVITY) {
+                    $this->objects[] = new Activity($objectEl);
+                } else {
+                    $this->objects[] = new ActivityObject($objectEl);
+                }
             }
         } else {
+            // XXX: really?
             $this->objects[] = new ActivityObject($entry);
         }
 
@@ -351,91 +363,100 @@ class Activity
         // actor
         $activity['actor'] = $this->actor->asArray();
 
-        // body
-        $activity['body'] = $this->content;
+        // content
+        $activity['content'] = $this->content;
 
-        // generator <-- We could use this when we know a notice is created
-        //               locally. Or if we know the upstream Generator.
+        // generator
 
-        // icon <-- I've decided to use the posting user's stream avatar here
-        //          for now (also included in the avatarLinks extension)
+        if (!empty($this->generator)) {
+            $activity['generator'] = $this->generator->asArray();
+        }
 
+        // icon <-- possibly a mini object representing verb?
+
+        // id
+        $activity['id'] = $this->id;
 
         // object
-        if ($this->verb == ActivityVerb::POST && count($this->objects) == 1) {
-            $activity['object'] = $this->objects[0]->asArray();
 
-            // Context stuff. For now I'm just sticking most of it
-            // in a property called "context"
-
-            if (!empty($this->context)) {
-
-                if (!empty($this->context->location)) {
-                    $loc = $this->context->location;
-
-                    // GeoJSON
-
-                    $activity['geopoint'] = array(
-                        'type'        => 'Point',
-                        'coordinates' => array($loc->lat, $loc->lon)
-                    );
-
-                }
-
-                $activity['to']      = $this->context->getToArray();
-                $activity['context'] = $this->context->asArray();
-            }
-
-            // Instead of adding enclosures as an extension to JSON
-            // Activities, it seems like we should be using the
-            // attachedObjects property of ActivityObject
-
-            $attachedObjects = array();
-
-            // XXX: OK, this is kinda cheating. We should probably figure out
-            // what kind of objects these are based on mime-type and then
-            // create specific object types. Right now this rely on
-            // duck-typing.  Also, we should include an embed code for
-            // video attachments.
-
-            foreach ($this->enclosures as $enclosure) {
-
-                if (is_string($enclosure)) {
-
-                    $attachedObjects[]['id']  = $enclosure;
-
-                } else {
-
-                    $attachedObjects[]['id']  = $enclosure->url;
-
-                    $mediaLink = new ActivityStreamsMediaLink(
-                        $enclosure->url,
-                        null,
-                        null,
-                        $enclosure->mimetype
-                        // XXX: Add 'size' as an extension to MediaLink?
-                    );
-
-                    $attachedObjects[]['mediaLink'] = $mediaLink->asArray(); // extension
-
-                    if ($enclosure->title) {
-                        $attachedObjects[]['displayName'] = $enclosure->title;
-                    }
-               }
-            }
-
-            if (!empty($attachedObjects)) {
-                $activity['object']['attachedObjects'] = $attachedObjects;
-            }
-
+        if (count($this->objects) == 0) {
+            common_log(LOG_ERR, "Can't save " . $this->id);
         } else {
-            $activity['object'] = array();
-            foreach($this->objects as $object) {
-                $activity['object'][] = $object->asArray();
+            if (count($this->objects) > 1) {
+                common_log(LOG_WARNING, "Ignoring " . (count($this->objects) - 1) . " extra objects in JSON output for activity " . $this->id);
+            }
+            $object = $this->objects[0];
+
+            if ($object instanceof Activity) {
+                // Sharing a post activity is more like sharing the original object
+                if (ActivityVerb::canonical($this->verb) == ActivityVerb::canonical(ActivityVerb::SHARE) &&
+                    ActivityVerb::canonical($object->verb) == ActivityVerb::canonical(ActivityVerb::POST)) {
+                    // XXX: Here's one for the obfuscation record books
+                    $object = $object->objects[0];
+                }
+            }
+
+            $activity['object'] = $object->asArray();
+
+            if ($object instanceof Activity) {
+                $activity['object']['objectType'] = 'activity';
+            }
+
+            foreach ($this->attachments as $attachment) {
+                if (empty($activity['object']['attachments'])) {
+                    $activity['object']['attachments'] = array();
+                }
+                $activity['object']['attachments'][] = $attachment->asArray();
+            }
+        }
+        
+        // Context stuff.
+
+        if (!empty($this->context)) {
+
+            if (!empty($this->context->location)) {
+                $loc = $this->context->location;
+
+                $activity['location'] = array(
+                    'objectType' => 'place',
+                    'position' => sprintf("%+02.5F%+03.5F/", $loc->lat, $loc->lon),
+                    'lat' => $loc->lat,
+                    'lon' => $loc->lon
+                );
+
+                $name = $loc->getName();
+
+                if ($name) {
+                    $activity['location']['displayName'] = $name;
+                }
+                    
+                $url = $loc->getURL();
+
+                if ($url) {
+                    $activity['location']['url'] = $url;
+                }
+            }
+
+            $activity['to']      = $this->context->getToArray();
+
+            $ctxarr = $this->context->asArray();
+
+            if (array_key_exists('inReplyTo', $ctxarr)) {
+                $activity['object']['inReplyTo'] = $ctxarr['inReplyTo'];
+                unset($ctxarr['inReplyTo']);
+            }
+
+            if (!array_key_exists('status_net', $activity)) {
+                $activity['status_net'] = array();
+            }
+
+            foreach ($ctxarr as $key => $value) {
+                $activity['status_net'][$key] = $value;
             }
         }
 
-        $activity['postedTime'] = self::iso8601Date($this->time); // Change to exactly be RFC3339?
+        // published
+        $activity['published'] = self::iso8601Date($this->time);
 
         // provider
         $provider = array(
@@ -454,25 +475,33 @@ class Activity
         // title
         $activity['title'] = $this->title;
 
-        // updatedTime <-- Should we use this to indicate the time we received
-        //                 a remote notice? Probably not.
+        // updated <-- Optional. Should we use this to indicate the time we r
+        //             eceived a remote notice? Probably not.
 
         // verb
-        //
-        // We can probably use the whole schema URL here but probably the
-        // relative simple name is easier to parse
-        $activity['verb'] = substr($this->verb, strrpos($this->verb, '/') + 1);
+
+        $activity['verb'] = ActivityVerb::canonical($this->verb);
+
+        // url
+        if ($this->link) {
+            $activity['url'] = $this->link;
+        }
 
         /* Purely extensions hereafter */
 
-        $tags = array();
-
-        // Use an Activity Object for term? Which object? Note?
-        foreach ($this->categories as $cat) {
-            $tags[] = $cat->term;
+        if ($activity['verb'] == 'post') {
+            $tags = array();
+            foreach ($this->categories as $cat) {
+                if (mb_strlen($cat->term) > 0) {
+                    // Couldn't figure out which object type to use, so...
+                    $tags[] = array('objectType' => 'http://activityschema.org/object/hashtag',
+                                    'displayName' => $cat->term);
+                }
+            }
+            if (count($tags) > 0) {
+                $activity['object']['tags'] = $tags;
+            }
         }
-
-        $activity['tags'] = $tags;
 
         // XXX: a bit of a hack... Since JSON isn't namespaced we probably
         // shouldn't be using 'statusnet:notice_info', but this will work
@@ -481,7 +510,15 @@ class Activity
         foreach ($this->extra as $e) {
             list($objectName, $props, $txt) = $e;
             if (!empty($objectName)) {
-                $activity[$objectName] = $props;
+                $parts = explode(":", $objectName);
+                if (count($parts) == 2 && $parts[0] == "statusnet") {
+                    if (!array_key_exists('status_net', $activity)) {
+                        $activity['status_net'] = array();
+                    }
+                    $activity['status_net'][$parts[1]] = $props;
+                } else {
+                    $activity[$objectName] = $props;
+                }
             }
         }
 
@@ -495,7 +532,7 @@ class Activity
         return $xs->getString();
     }
 
-    function outputTo($xs, $namespace=false, $author=true, $source=false)
+    function outputTo($xs, $namespace=false, $author=true, $source=false, $tag='entry')
     {
         if ($namespace) {
             $attrs = array('xmlns' => 'http://www.w3.org/2005/Atom',
@@ -510,16 +547,26 @@ class Activity
             $attrs = array();
         }
 
-        $xs->elementStart('entry', $attrs);
+        $xs->elementStart($tag, $attrs);
 
-        if ($this->verb == ActivityVerb::POST && count($this->objects) == 1) {
+        if ($tag != 'entry') {
+            $xs->element('activity:object-type', null, ActivityObject::ACTIVITY);
+        }
+
+        if ($this->verb == ActivityVerb::POST && count($this->objects) == 1 && $tag == 'entry') {
 
             $obj = $this->objects[0];
 			$obj->outputTo($xs, null);
 
         } else {
             $xs->element('id', null, $this->id);
-            $xs->element('title', null, $this->title);
+
+            if ($this->title) {
+                $xs->element('title', null, $this->title);
+            } else {
+                // Require element
+                $xs->element('title', null, "");
+            }
 
             $xs->element('content', array('type' => 'html'), $this->content);
 
@@ -544,23 +591,15 @@ class Activity
 
         if ($author) {
             $this->actor->outputTo($xs, 'author');
-
-            // XXX: Remove <activity:actor> ASAP! Author information
-            // has been moved to the author element in the Activity
-            // Streams spec. We're outputting actor only for backward
-            // compatibility with clients that can only parse
-            // activities based on older versions of the spec.
-
-            $depMsg = 'Deprecation warning: activity:actor is present '
-                . 'only for backward compatibility. It will be '
-                . 'removed in the next version of StatusNet.';
-            $xs->comment($depMsg);
-            $this->actor->outputTo($xs, 'activity:actor');
         }
 
-        if ($this->verb != ActivityVerb::POST || count($this->objects) != 1) {
+        if ($this->verb != ActivityVerb::POST || count($this->objects) != 1 || $tag != 'entry') {
             foreach($this->objects as $object) {
-                $object->outputTo($xs, 'activity:object');
+                if ($object instanceof Activity) {
+                    $object->outputTo($xs, false, true, true, 'activity:object');
+                } else {
+                    $object->outputTo($xs, 'activity:object');
+                }
             }
         }
 
@@ -694,7 +733,7 @@ class Activity
             $xs->element($tag, $attrs, $content);
         }
 
-        $xs->elementEnd('entry');
+        $xs->elementEnd($tag);
 
         return;
     }

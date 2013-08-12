@@ -22,7 +22,7 @@
  * @category  Personal
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -44,7 +44,7 @@ require_once INSTALLDIR.'/lib/feedlist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ShownoticeAction extends OwnerDesignAction
+class ShownoticeAction extends Action
 {
     /**
      * Notice object to show
@@ -214,7 +214,7 @@ class ShownoticeAction extends OwnerDesignAction
         if ($this->boolean('ajax')) {
             $this->showAjax();
         } else {
-            if ($this->notice->is_local == Notice::REMOTE_OMB) {
+            if ($this->notice->is_local == Notice::REMOTE) {
                 if (!empty($this->notice->url)) {
                     $target = $this->notice->url;
                 } else if (!empty($this->notice->uri) && preg_match('/^https?:/', $this->notice->uri)) {

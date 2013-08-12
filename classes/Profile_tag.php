@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Profile_tag extends Memcached_DataObject
+class Profile_tag extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -21,6 +21,30 @@ class Profile_tag extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+
+            'fields' => array(
+                'tagger' => array('type' => 'int', 'not null' => true, 'description' => 'user making the tag'),
+                'tagged' => array('type' => 'int', 'not null' => true, 'description' => 'profile tagged'),
+                'tag' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'hash tag associated with this notice'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date the tag was added'),
+            ),
+            'primary key' => array('tagger', 'tagged', 'tag'),
+            'foreign keys' => array(
+                'profile_tag_tagger_fkey' => array('profile', array('tagger' => 'id')),
+                'profile_tag_tagged_fkey' => array('profile', array('tagged' => 'id')),
+                'profile_tag_tag_fkey' => array('profile_list', array('tag' => 'tag')),
+            ),
+            'indexes' => array(
+                'profile_tag_modified_idx' => array('modified'),
+                'profile_tag_tagger_tag_idx' => array('tagger', 'tag'),
+                'profile_tag_tagged_idx' => array('tagged'),
+            ),
+        );
+    }
 
     function pkeyGet($kv) {
         return Memcached_DataObject::pkeyGet('Profile_tag', $kv);
@@ -55,20 +79,17 @@ class Profile_tag extends Memcached_DataObject
             return $tags;
         }
 
-        $profile_tag = new Profile_tag();
-        $profile_list->tagger = $tagger;
-        $profile_tag->tagged = $tagged;
+        $qry = 'select profile_list.* from profile_list left join '.
+               'profile_tag on (profile_list.tag = profile_tag.tag and '.
+               'profile_list.tagger = profile_tag.tagger) where '.
+               'profile_tag.tagger = %d and profile_tag.tagged = %d ';
+        $qry = sprintf($qry, $tagger, $tagged);
 
-        $profile_list->selectAdd();
+        if (!$include_priv) {
+            $qry .= ' and profile_list.private = 0';
+        }
 
-        // only fetch id, tag, mainpage and
-        // private hoping this will be faster
-        $profile_list->selectAdd('profile_list.id, ' .
-                                 'profile_list.tag, ' .
-                                 'profile_list.mainpage, ' .
-                                 'profile_list.private');
-        $profile_list->joinAdd($profile_tag);
-        $profile_list->find();
+        $profile_list->query($qry);
 
         Profile_list::setCache($key, $profile_list);
 
@@ -78,23 +99,26 @@ class Profile_tag extends Memcached_DataObject
     static function getTagsArray($tagger, $tagged, $auth_user_id=null)
     {
         $ptag = new Profile_tag();
-        $ptag->tagger = $tagger;
-        $ptag->tagged = $tagged;
 
-        if ($tagger != $auth_user_id) {
-            $list = new Profile_list();
-            $list->private = false;
-            $ptag->joinAdd($list);
-            $ptag->selectAdd();
-            $ptag->selectAdd('profile_tag.tag');
+        $qry = sprintf('select profile_tag.tag '.
+                       'from profile_tag join profile_list '.
+                       ' on (profile_tag.tagger = profile_list.tagger ' .
+                       '     and profile_tag.tag = profile_list.tag) ' .
+                       'where profile_tag.tagger = %d ' .
+                       'and   profile_tag.tagged = %d ',
+                       $tagger, $tagged);
+
+        if ($auth_user_id != $tagger) {
+            $qry .= 'and profile_list.private = 0';
         }
 
         $tags = array();
-        $ptag->find();
+
+        $ptag->query($qry);
+
         while ($ptag->fetch()) {
             $tags[] = $ptag->tag;
         }
-        $ptag->free();
 
         return $tags;
     }
@@ -169,7 +193,7 @@ class Profile_tag extends Memcached_DataObject
             if ($profile_list->taggedCount() >= common_config('peopletag', 'maxpeople')) {
                 // TRANS: Client exception thrown when trying to add more people than allowed to a list.
                 throw new ClientException(sprintf(_('You already have %1$d or more people in list %2$s, ' .
-                                                    'which is the maximum allowed number.' .
+                                                    'which is the maximum allowed number. ' .
                                                     'Try unlisting others first.'),
                                                     common_config('peopletag', 'maxpeople'), $tag));
                 return false;
@@ -260,8 +284,11 @@ class Profile_tag extends Memcached_DataObject
                'tag = "%s", tagger = "%s" ' .
                'WHERE tag = "%s" ' .
                'AND tagger = "%s"';
-        $result = $tags->query(sprintf($qry, $new->tag, $new->tagger,
-                                             $orig->tag, $orig->tagger));
+        $result = $tags->query(sprintf($qry,
+                                       $tags->escape($new->tag),
+                                       $tags->escape($new->tagger),
+                                       $tags->escape($orig->tag),
+                                       $tags->escape($orig->tagger)));
 
         if (!$result) {
             common_log_db_error($tags, 'UPDATE', __FILE__);
@@ -283,8 +310,8 @@ class Profile_tag extends Memcached_DataObject
         $profile->query('SELECT profile.* ' .
                         'FROM profile JOIN profile_tag ' .
                         'ON profile.id = profile_tag.tagged ' .
-                        'WHERE profile_tag.tagger = ' . $tagger . ' ' .
-                        'AND profile_tag.tag = "' . $tag . '" ');
+                        'WHERE profile_tag.tagger = ' . $profile->escape($tagger) . ' ' .
+                        'AND profile_tag.tag = "' . $profile->escape($tag) . '" ');
         $tagged = array();
         while ($profile->fetch()) {
             $tagged[] = clone($profile);

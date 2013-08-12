@@ -147,18 +147,18 @@ class SearchSub extends Managed_DataObject
         $keypart = sprintf('searchsub:by_profile:%d', $profile->id);
         $searchstring = self::cacheGet($keypart);
         
-        if ($searchstring !== false && !empty($searchstring)) {
-            $searches = explode(',', $searchstring);
+        if ($searchstring !== false) {
+        	if (!empty($searchstring)) {
+            	$searches = explode(',', $searchstring);
+        	}
         } else {
             $searchsub = new SearchSub();
             $searchsub->profile_id = $profile->id;
+            $searchsub->selectAdd();
+            $searchsub->selectAdd('search');
 
             if ($searchsub->find()) {
-                while ($searchsub->fetch()) {
-                    if (!empty($searchsub->search)) {
-                        $searches[] = $searchsub->search;
-                    }
-                }
+                $searches = $searchsub->fetchAll('search');
             }
 
             self::cacheSet($keypart, implode(',', $searches));

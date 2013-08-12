@@ -112,18 +112,6 @@ class RemovepeopletagAction extends Action
             return false;
         }
 
-        // OMB 0.1 doesn't have a mechanism for local-server-
-        // originated tag.
-
-        $omb01 = Remote_profile::staticGet('id', $tagged_id);
-
-        if (!empty($omb01)) {
-            // TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-            $this->clientError(_('You cannot (un)list an OMB 0.1 '.
-                                 'remote profile with this action.'));
-            return false;
-        }
-
         return true;
     }
 

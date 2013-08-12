@@ -1,0 +1,101 @@
+# Translation of StatusNet - UserFlag to Zazaki (Zazaki)
+# Exported from translatewiki.net
+#
+# Author: Erdemaslancan
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - UserFlag\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:23+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:51:36+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: AJAX form title for a flagged profile.
+msgid "Flagged for review"
+msgstr ""
+
+#. TRANS: Body text for AJAX form when a profile has been flagged for review.
+#. TRANS: Message added to a profile if it has been flagged for review.
+msgid "Flagged"
+msgstr "Desmale"
+
+#. TRANS: Plugin description.
+msgid ""
+"This plugin allows flagging of profiles for review and reviewing flagged "
+"profiles."
+msgstr ""
+
+#. TRANS: Form title for flagging a profile for review.
+msgid "Flag"
+msgstr "Desmal"
+
+#. TRANS: Form description.
+msgid "Flag profile for review."
+msgstr ""
+
+#. TRANS: Form title for action on a profile.
+msgid "Clear"
+msgstr "estern"
+
+#. TRANS: Form description for clearing flags from a profile.
+msgid "Clear all flags"
+msgstr ""
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr ""
+
+#. TRANS: Error message displayed when trying to review profile flags while not authorised.
+msgid "You cannot review profile flags."
+msgstr ""
+
+#. TRANS: Title for page with a list of profiles that were flagged for review.
+msgid "Flagged profiles"
+msgstr ""
+
+#. TRANS: Header for moderation menu with action buttons for flagged profiles (like 'sandbox', 'silence', ...).
+msgid "Moderate"
+msgstr "Modere"
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used for plural.
+#, php-format
+msgid "Flagged by %1$s and %2$d other"
+msgid_plural "Flagged by %1$s and %2$d others"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %s is a comma separated list of at most 5 user nicknames that flagged.
+#, php-format
+msgid "Flagged by %s"
+msgstr "Desmala %s"
+
+#. TRANS: Server exception given when flags could not be cleared.
+#. TRANS: %s is a profile nickname.
+#, php-format
+msgid "Could not clear flags for profile \"%s\"."
+msgstr ""
+
+#. TRANS: Title for AJAX form to indicated that flags were removed.
+msgid "Flags cleared"
+msgstr "Desmala estere ke"
+
+#. TRANS: Body element for "flags cleared" form.
+msgid "Cleared"
+msgstr ""
+
+#. TRANS: Server exception.
+#. TRANS: %d is a profile ID (number).
+#, php-format
+msgid "Could not flag profile \"%d\" for review."
+msgstr ""

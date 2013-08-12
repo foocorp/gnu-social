@@ -18,3 +18,4 @@ export MAILSUBJECT="Your new StatusNet site"
 export POSTINSTALL=/etc/statusnet/morestuff.sh
 export WEBUSER=www-data
 export WEBGROUP=www-data
+export TAGS=tag1,tag2,tag3

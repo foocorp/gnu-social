@@ -1,6 +1,7 @@
-# Translation of StatusNet - Event to Ukrainian (Українська)
+# Translation of StatusNet - Event to Ukrainian (українська)
 # Exported from translatewiki.net
 #
+# Author: AS
 # Author: Boogie
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,18 +10,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:21+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:30+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: 0 minutes abbreviated. Used in a list.
+msgid "(0 min)"
+msgstr ""
+
+#. TRANS: 30 minutes abbreviated. Used in a list.
+msgid "(30 min)"
+msgstr ""
+
+#. TRANS: 1 hour. Used in a list.
+msgid "(1 hour)"
+msgstr ""
+
+#, php-format
+msgid "(%.1f hours)"
+msgstr ""
+
+#, php-format
+msgid "(%d hours)"
+msgstr ""
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -47,14 +68,24 @@ msgstr ""
 "$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
 "$s</span> </span>"
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr ""
+
+#. TRANS: Client error when submitting a form with unexpected information.
+msgid "Unexpected form submission."
+msgstr ""
+
+#. TRANS: Client error displayed when using an action in a non-AJAX way.
+msgid "This action is AJAX only."
+msgstr ""
+
 #. TRANS: Client exception thrown when referring to a non-existing RSVP.
 #. TRANS: RSVP stands for "Please reply".
 #. TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
 msgid "No such RSVP."
 msgstr "Немає такого запиту на підтвердження запрошення."
 
-#. TRANS: Client exception thrown when referring to a non-existing event.
-#. TRANS: Client exception thrown when requesting a non-exsting event.
 #. TRANS: Client exception thrown when referring to a non-existing event.
 msgid "No such event."
 msgstr "Немає такого події."
@@ -80,7 +111,7 @@ msgstr "Ви могли б взяти участь у цьому заході."
 #. TRANS: Button text to cancel responding to an RSVP ("please respond") item.
 msgctxt "BUTTON"
 msgid "Cancel"
-msgstr "Відміна"
+msgstr "Скасувати"
 
 #. TRANS: Title for RSVP ("please respond") action.
 msgctxt "TITLE"
@@ -154,8 +185,9 @@ msgctxt "LABEL"
 msgid "Start time"
 msgstr "Час початку"
 
-#. TRANS: Field title on event form.
-msgid "Time the event starts."
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, fuzzy, php-format
+msgid "Time the event starts (%s)."
 msgstr "Час початку заходу."
 
 #. TRANS: Field label on event form.
@@ -178,8 +210,8 @@ msgstr "Час закінчення заходу."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
-msgid "Location"
-msgstr "Розташування"
+msgid "Where?"
+msgstr ""
 
 #. TRANS: Field title on event form.
 msgid "Event location."
@@ -374,6 +406,10 @@ msgstr "В події має бути зазначеним час початку
 msgid "Event must have an end time."
 msgstr "В події має бути зазначеним час закінчення."
 
+#. TRANS: Client exception thrown when trying to post an event with an invalid URL.
+msgid "URL must be valid."
+msgstr ""
+
 #. TRANS: Field label for event description.
 msgid "Time:"
 msgstr "Час:"
@@ -385,13 +421,3 @@ msgstr "Розташування:"
 #. TRANS: Field label for event description.
 msgid "Description:"
 msgstr "Опис:"
-
-#. TRANS: Field label for event description.
-msgid "Attending:"
-msgstr "Присутні:"
-
-#. TRANS: RSVP counts.
-#. TRANS: %1$d, %2$d and %3$d are numbers of RSVPs.
-#, php-format
-msgid "Yes: %1$d No: %2$d Maybe: %3$d"
-msgstr "Так: %1$d Ні: %2$d Можливо: %3$d"

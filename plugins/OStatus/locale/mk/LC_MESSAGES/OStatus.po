@@ -1,4 +1,4 @@
-# Translation of StatusNet - OStatus to Macedonian (Македонски)
+# Translation of StatusNet - OStatus to Macedonian (македонски)
 # Exported from translatewiki.net
 #
 # Author: Bjankuloski06
@@ -9,18 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:44+0000\n"
-"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:33+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:48+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:04+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+#. TRANS: String in the gettext speed test script. Unimportant.
 msgid "Feeds"
 msgstr "Канали"
 
@@ -30,8 +31,8 @@ msgid "Subscribe"
 msgstr "Претплати се"
 
 #. TRANS: Fieldset legend.
-msgid "Tag remote profile"
-msgstr "Означи далечински профил"
+msgid "List remote profile"
+msgstr "Заведи далечински профил"
 
 #. TRANS: Field label.
 msgctxt "LABEL"
@@ -56,8 +57,8 @@ msgstr "Преземи"
 msgid "Invalid URI."
 msgstr "Неважечка URI."
 
-#. TRANS: Error message in OStatus plugin.
-#. TRANS: Error text.
+#. TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+#. TRANS: and example.net, as these are official standard domain names for use in examples.
 msgid ""
 "Sorry, we could not reach that address. Please make sure that the OStatus "
 "address is like nickname@example.com or http://example.net/nickname."
@@ -125,10 +126,10 @@ msgid "Follow list"
 msgstr "Список на следења"
 
 #. TRANS: Success message for remote list follow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
-#, fuzzy, php-format
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
+#, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
-msgstr "%1$s престана да го следи списокот %2$s од %3$s."
+msgstr "%1$s сега следи луѓе на списокот %2$s од %3$s."
 
 #. TRANS: Exception thrown when subscription to remote list fails.
 msgid "Failed subscribing to remote list."
@@ -139,7 +140,7 @@ msgid "Unfollow list"
 msgstr "Престани со следење на списокот"
 
 #. TRANS: Success message for remote list unfollow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, php-format
 msgid "%1$s stopped following the list %2$s by %3$s."
 msgstr "%1$s престана да го следи списокот %2$s од %3$s."
@@ -147,7 +148,7 @@ msgstr "%1$s престана да го следи списокот %2$s од %3
 #. TRANS: Title for listing a remote profile.
 msgctxt "TITLE"
 msgid "List"
-msgstr ""
+msgstr "Наведи"
 
 #. TRANS: Success message for remote list addition through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the added list member, %3$s is the list name.
@@ -156,35 +157,34 @@ msgid "%1$s listed %2$s in the list %3$s."
 msgstr "%1$s го/ја наведе %2$s во списокот %3$s."
 
 #. TRANS: Exception thrown when subscribing to a remote list fails.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Could not complete subscription to remote profile's feed. List %s could not "
 "be saved."
 msgstr ""
 "Не можев да ја довршам претплатата на каналот на далечинскиот профил. Не "
-"можев да ја зачувам ознаката %s."
+"можев да го зачувам списокот %s."
 
 #. TRANS: Title for unlisting a remote profile.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Unlist"
-msgstr "Престани со следење на списокот"
+msgstr "Отстрани"
 
 #. TRANS: Success message for remote list removal through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the removed list member, %3$s is the list name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s removed %2$s from the list %3$s."
-msgstr "%1$s го/ја наведе %2$s во списокот %3$s."
+msgstr "%1$s го/ја отстрани %2$s од списокот %3$s."
 
 #. TRANS: Title for unliking a remote notice.
 msgid "Unlike"
-msgstr ""
+msgstr "Одбендисај"
 
 #. TRANS: Success message for remove a favorite notice through OStatus.
 #. TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s no longer likes %2$s."
-msgstr "%1$s престана да го/ја следи %2$s."
+msgstr "%1$s повеќе не ја бендисува забелешката %2$s."
 
 #. TRANS: Link text for link to remote subscribe.
 msgid "Remote"
@@ -200,9 +200,9 @@ msgstr "Поднова на профил"
 msgid "%s has updated their profile page."
 msgstr "%s ја поднови својата профилна страница."
 
-#. TRANS: Link text for a user to tag an OStatus user.
-msgid "Tag"
-msgstr "Означи"
+#. TRANS: Link text for a user to list an OStatus user.
+msgid "List"
+msgstr "Заведи"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -266,17 +266,16 @@ msgstr "Неважечки hub.topic %s. Списокот не постои."
 msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Добив неважечка URL-адреса за %1$s: „%2$s“"
 
-#. TRANS: Client error displayed when trying to tag a local object as if it is remote.
-msgid "You can use the local tagging!"
-msgstr "Можете да го користите локалното означување!"
+#. TRANS: Client error displayed when trying to list a local object as if it is remote.
+msgid "You can use the local list functionality!"
+msgstr "Можете да ја користите можноста за локално заведување!"
 
-#. TRANS: Header for tagging a remote object. %s is a remote object's name.
+#. TRANS: Header for listing a remote object. %s is a remote object's name.
 #, php-format
-msgid "Tag %s"
-msgstr "Означи го/ја %s"
+msgid "List %s"
+msgstr "Заведи %s"
 
-#. TRANS: Button text to tag a remote object.
-#, fuzzy
+#. TRANS: Button text to list a remote object.
 msgctxt "BUTTON"
 msgid "Go"
 msgstr "Оди"
@@ -286,18 +285,16 @@ msgid "User nickname"
 msgstr "Прекар на корисникот"
 
 #. TRANS: Field title.
-#, fuzzy
-msgid "Nickname of the user you want to tag."
-msgstr "Прекарот на корисникот што сакате да го означите."
+msgid "Nickname of the user you want to list."
+msgstr "Прекарот на корисникот што сакате да го заведете."
 
 #. TRANS: Field label.
 msgid "Profile Account"
 msgstr "Профилна сметка"
 
 #. TRANS: Field title.
-#, fuzzy
-msgid "Your account id (i.e. user@identi.ca)."
-msgstr "Вашата назнака (ID) на сметката (на пр. korisnik@identi.ca)"
+msgid "Your account id (for example user@identi.ca)."
+msgstr "Вашата назнака (ID) на сметката (на пр. korisnik@identi.ca)."
 
 #. TRANS: Client error displayed when remote profile could not be looked up.
 #. TRANS: Client error.
@@ -375,6 +372,7 @@ msgstr "Потврди"
 msgid "Subscribe to this user"
 msgstr "Претплати се на корисников"
 
+#. TRANS: Extra paragraph in remote profile view when already subscribed.
 msgid "You are already subscribed to this user."
 msgstr "Веќе сте претплатени на овој корисник."
 
@@ -419,7 +417,8 @@ msgstr ""
 msgid "Join group"
 msgstr "Зачлени се во групата"
 
-#. TRANS: Tooltip for field label "Join group".
+#. TRANS: Tooltip for field label "Join group". Do not translate the "example.net"
+#. TRANS: domain name in the URL, as it is an official standard domain name for examples.
 msgid "OStatus group's address, like http://example.net/group/nickname."
 msgstr ""
 "Адреса на групата на OStatus, како на пр. http://primer.net/group/prekar."
@@ -470,11 +469,11 @@ msgstr ""
 
 #. TRANS: Client exception.
 msgid "To the attention of user(s), not including this one."
-msgstr ""
+msgstr "Се обраќа вниманието на корисник/ци, не вклучувајќи го овој."
 
 #. TRANS: Client exception.
 msgid "Not to anyone in reply to anything."
-msgstr ""
+msgstr "Ова не е одговар никому за ништо."
 
 #. TRANS: Client exception.
 msgid "This is already a favorite."
@@ -490,31 +489,31 @@ msgstr "Забелешката не е бендисана!"
 
 #. TRANS: Client exception.
 msgid "Not a person object."
-msgstr ""
+msgstr "Објектот не е лице."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being tagged."
-msgstr ""
+msgid "Unidentified profile being listed."
+msgstr "Се заведува непрепознаен профил."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being tagged."
-msgstr ""
+msgid "This user is not the one being listed."
+msgstr "Ова не е корисникот што се заведува."
 
 #. TRANS: Client exception.
-msgid "The tag could not be saved."
-msgstr ""
+msgid "The listing could not be saved."
+msgstr "Не можев да го зачувам заведеното."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being untagged."
-msgstr ""
+msgid "Unidentified profile being unlisted."
+msgstr "Се отстранува непрепознаен профил од заведените."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being untagged."
-msgstr ""
+msgid "This user is not the one being unlisted."
+msgstr "Ова не е корисникот што се отстранува од заведените."
 
 #. TRANS: Client exception.
-msgid "The tag could not be deleted."
-msgstr ""
+msgid "The listing could not be deleted."
+msgstr "Не можев да го избришам заведеното."
 
 #. TRANS: Client exception.
 msgid "Cannot favorite/unfavorite without an object."
@@ -539,10 +538,10 @@ msgid "Subscribe to list"
 msgstr "Претплати се на списокот"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Address of the OStatus list, like http://example.net/user/all/tag."
 msgstr ""
-"Адреса на списокот од OStatus, како на пр. http://example.net/user/all/tag"
+"Адреса на списокот од OStatus, како на пр. http://primer.net/korisnik/site/"
+"oznaka."
 
 #. TRANS: Error text displayed when trying to subscribe to a list already a subscriber to.
 msgid "You are already subscribed to this list."
@@ -553,7 +552,6 @@ msgid "Confirm subscription to remote list"
 msgstr "Потврди претплата на далечинскиот список"
 
 #. TRANS: Instructions for OStatus list subscription form.
-#, fuzzy
 msgid ""
 "You can subscribe to lists from other supported sites. Paste the list's URI "
 "below:"
@@ -608,11 +606,10 @@ msgid "Cannot accept remote posts for a remote list."
 msgstr "Не можам да прифаќам далечински објави за далечински список."
 
 #. TRANS: Client error displayed when referring to a non-existing remote list.
-#, fuzzy
 msgid "Cannot read profile to set up list subscription."
 msgstr ""
-"Не можев да го прочитам профилот за да ја поставам претплатата на профилната "
-"ознака."
+"Не можев да го прочитам профилот за да ја воспоставам претплатата на "
+"списокот."
 
 #. TRANS: Client error displayed when trying to subscribe a group to a list.
 #. TRANS: Client error displayed when trying to unsubscribe a group from a list.
@@ -626,13 +623,13 @@ msgid "Could not subscribe remote user %1$s to list %2$s."
 msgstr "Не можев да го претплатам далечинскиот корисник %1$s на списокот %2$s."
 
 #. TRANS: Client error displayed when trying to unsubscribe from non-existing list.
-#, fuzzy
 msgid "Cannot read profile to cancel list subscription."
-msgstr "Не можам да го прочитам профилот за откажам членство во списокот."
+msgstr ""
+"Не можам да го прочитам профилот за да го откажам членство во списокот."
 
 #. TRANS: Client error displayed when trying to unsubscribe a remote user from a list fails.
 #. TRANS: %1$s is a profile URL, %2$s is a list name.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not unsubscribe remote user %1$s from list %2$s."
 msgstr "Не можев да го претплатам далечинскиот корисник %1$s на списокот %2$s."
 
@@ -655,7 +652,7 @@ msgctxt "BUTTON"
 msgid "Join"
 msgstr "Зачлени се"
 
-#. TRANS: Form legend. %1$s is a list, %2$s is a tagger's name.
+#. TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
 #, php-format
 msgid "Subscribe to list %1$s by %2$s"
 msgstr "Претплати се на списокот %1$s од %2$s"
@@ -699,6 +696,36 @@ msgstr "Нема наведено прекар на локален корисн�
 msgid "OStatus Connect"
 msgstr "OStatus - Поврзување"
 
+#. TRANS: Server exception. %s is a URL.
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Неважечка URL-адреса за аватарот: %s."
+
+#. TRANS: Server exception. %s is a URI.
+#, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr ""
+"Се обидов да го подновам аватарот за незачуваниот далечински профил %s."
+
+#. TRANS: Server exception. %s is a URL.
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Не можам да го добијам аватарот од %s."
+
+#. TRANS: Exception. %s is a URL.
+#, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr "Не можев да пронајдам каналска URL-адреса за профилната страница %s."
+
+#. TRANS: Exception.
+msgid "Not a valid webfinger address."
+msgstr "Ова не е важечка Webfinger-адреса"
+
+#. TRANS: Exception. %s is a webfinger address.
+#, php-format
+msgid "Could not find a valid profile for \"%s\"."
+msgstr "Не можев да пронајдам важечки профил за „%s“."
+
 #. TRANS: Server exception.
 msgid "Attempting to start PuSH subscription for feed with no hub."
 msgstr "Се обидов да ја започнам PuSH-претплатата за канал без средиште."
@@ -709,17 +736,17 @@ msgstr ""
 "Се обидувам да ставам крај на PuSH-претплатата за емитување без средиште."
 
 #. TRANS: Server exception. %s is a URI
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid ostatus_profile state: Two or more IDs set for %s."
 msgstr ""
-"Неважечка состојба на ostatus_profile: зададени се две или повеќе назнаки "
+"Неважечка состојба на ostatus_profile: Зададени се две или повеќе назнаки "
 "(ID) за %s."
 
 #. TRANS: Server exception. %s is a URI
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid ostatus_profile state: All IDs empty for %s."
 msgstr ""
-"Неважечка состојба на ostatus_profile: сите назнаки (ID) за %s се празни."
+"Неважечка состојба на ostatus_profile: Сите назнаки (ID) за %s се празни."
 
 #. TRANS: Server exception.
 #. TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
@@ -743,6 +770,20 @@ msgstr "Непознат формат на каналско емитување."
 msgid "RSS feed without a channel."
 msgstr "RSS-емитување без канал."
 
+#. TRANS: Client exception thrown when trying to share multiple activities at once.
+msgid "Can only handle share activities with exactly one object."
+msgstr "Може да работи само со активности за споделување со точно еден објект."
+
+#. TRANS: Client exception thrown when trying to share a non-activity object.
+msgid "Can only handle shared activities."
+msgstr "Може да работи само за активности за споделување."
+
+#. TRANS: Client exception thrown when saving an activity share fails.
+#. TRANS: %s is a share ID.
+#, php-format
+msgid "Failed to save activity %s."
+msgstr "Не можев да ја зачувам активноста %s."
+
 #. TRANS: Client exception. %s is a source URI.
 #, php-format
 msgid "No content for notice %s."
@@ -758,30 +799,9 @@ msgstr "Повеќе"
 msgid "Could not reach profile page %s."
 msgstr "Не можев да ја добијам профилната страница %s."
 
-#. TRANS: Exception. %s is a URL.
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Не можев да пронајдам каналска URL-адреса за профилната страница %s."
-
 #. TRANS: Feed sub exception.
 msgid "Cannot find enough profile information to make a feed."
 msgstr "Не можев да најдам доволно профилни податоци за да направам канал."
-
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Неважечка URL-адреса за аватарот: %s."
-
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr ""
-"Се обидов да го подновам аватарот за незачуваниот далечински профил %s."
-
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Не можам да го добијам аватарот од %s."
 
 #. TRANS: Server exception.
 msgid "No author ID URI found."
@@ -815,10 +835,6 @@ msgstr "Не можам да го зачувам локалниот список
 msgid "Cannot save OStatus profile."
 msgstr "Не можам да го зачувам профилот од OStatus."
 
-#. TRANS: Exception.
-msgid "Not a valid webfinger address."
-msgstr "Ова не е важечка Webfinger-адреса"
-
 #. TRANS: Exception. %s is a webfinger address.
 #, php-format
 msgid "Could not save profile for \"%s\"."
@@ -828,11 +844,6 @@ msgstr "Не можам да го зачувам профилот за „%s“.
 #, php-format
 msgid "Could not save OStatus profile for \"%s\"."
 msgstr "Не можам да го зачувам профилот на OStatus за „%s“."
-
-#. TRANS: Exception. %s is a webfinger address.
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Не можев да пронајдам важечки профил за „%s“."
 
 #. TRANS: Server exception.
 msgid "Could not store HTML content of long post as file."
@@ -921,41 +932,13 @@ msgid "This target does not understand leave events."
 msgstr "Оваа цел не разбира напуштање на настани."
 
 #. TRANS: Client exception.
-msgid "This target does not understand tag events."
-msgstr "Оваа цел не разбира означување на настани."
+msgid "This target does not understand list events."
+msgstr "Оваа цел не разбира заведување на настани."
 
 #. TRANS: Client exception.
-msgid "This target does not understand untag events."
-msgstr "Оваа цел не разбира отстранување на ознаки на настани."
+msgid "This target does not understand unlist events."
+msgstr "Оваа цел не разбира отстранување на заведени настани."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Примив Salmon-шамар од непознат учесник."
-
-#~ msgctxt "TITLE"
-#~ msgid "Tag"
-#~ msgstr "Означи"
-
-#~ msgctxt "TITLE"
-#~ msgid "Untag"
-#~ msgstr "Тргни ознака"
-
-#~ msgid "Disfavor"
-#~ msgstr "Откажи бендисана"
-
-#~ msgid "%1$s marked notice %2$s as no longer a favorite."
-#~ msgstr "%1$s повеќе не ја бендисува забелешката %2$s."
-
-#~ msgid ""
-#~ "OStatus user's address, like nickname@example.com or http://example.net/"
-#~ "nickname"
-#~ msgstr ""
-#~ "Адреса на корисникот на OStatus, како на пр. prekar@primer.com or http://"
-#~ "primer.net/prekar"
-
-#~ msgid "Continue"
-#~ msgstr "Продолжи"
-
-#~ msgid "Could not remove remote user %1$s from list %2$s."
-#~ msgstr ""
-#~ "Не можев да го отстранам далечинскиот корисник %1$s од списокот %2$s."

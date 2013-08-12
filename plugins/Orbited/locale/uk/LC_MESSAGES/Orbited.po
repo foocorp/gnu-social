@@ -1,0 +1,31 @@
+# Translation of StatusNet - Orbited to Ukrainian (українська)
+# Exported from translatewiki.net
+#
+# Author: Boogie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Orbited\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:31+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:13+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: uk\n"
+"X-Message-Group: #out-statusnet-plugin-orbited\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: Server exception thrown when no connection can be made to a queue server.
+msgid "Failed to connect to queue server."
+msgstr "Не вдалося підключитися до сервера у черзі."
+
+#. TRANS: Plugin description.
+msgid "Plugin to make updates using Orbited and STOMP."
+msgstr "Додаток, який дозволяє надсилати дописи за допомогою Orbited і STOMP."

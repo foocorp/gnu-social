@@ -1,0 +1,28 @@
+# Translation of StatusNet - ApiLogger to Colognian (Ripoarisch)
+# Exported from translatewiki.net
+#
+# Author: Purodha
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ApiLogger\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:40+0000\n"
+"Language-Team: Colognian <https://translatewiki.net/wiki/Portal:ksh>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-18 16:18:40+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ksh\n"
+"X-Message-Group: #out-statusnet-plugin-apilogger\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Allows random sampling of API requests."
+msgstr ""
+"Määt et müjjelesch, vun zohfälleje Oprohfe un dä <i lang=\"en\">API</i> "
+"Schteschproobe ze maache."

@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Foreign_service extends Memcached_DataObject
+class Foreign_service extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -22,4 +22,21 @@ class Foreign_service extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'numeric key for service'),
+                'name' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'description' => 'name of the service'),
+                'description' => array('type' => 'varchar', 'length' => 255, 'description' => 'description'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'foreign_service_name_key' => array('name'),
+            ),
+        );
+    }
 }

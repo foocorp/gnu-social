@@ -1,6 +1,8 @@
-# Translation of StatusNet - EmailSummary to French (Français)
+# Translation of StatusNet - EmailSummary to French (français)
 # Exported from translatewiki.net
 #
+# Author: Iketsi
+# Author: OngolaBoy
 # Author: Peter17
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,40 +11,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailSummary\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-31 21:06+0000\n"
-"PO-Revision-Date: 2011-03-31 21:09:12+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:26+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:07:04+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r85082); Translate extension (2011-03-11)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-07-01 11:18:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-emailsummary\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#. TRANS: Subject for e-mail.
 #, php-format
-msgid "Recent updates from %1s for %2s:"
-msgstr ""
+msgid "Your latest updates from %s"
+msgstr "Les dernières activités en provenance de %s"
 
+#. TRANS: Text in e-mail summary.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile name.
+#, php-format
+msgid "Recent updates from %1$s for %2$s:"
+msgstr "Dernières activités de %1$s pour %2$s:"
+
+#. TRANS: Link text for link to conversation view.
 msgid "in context"
-msgstr ""
+msgstr "dans le contexte"
 
+#. TRANS: Link text for link to e-mail settings.
+#. TRANS: %1$s is a link to the e-mail settings, %2$s is the StatusNet sitename.
 #, php-format
-msgid "<p><a href=\"%1s\">change your email settings for %2s</a></p>"
-msgstr ""
+msgid "<a href=\"%1$s\">change your email settings for %2$s</a>"
+msgstr "<a href=\"%1$s\">changer vos paramètres de messagerie pour %2$s</a>"
 
-msgid "Updates from your network"
-msgstr ""
-
+#. TRANS: Plugin description.
 msgid "Send an email summary of the inbox to users."
 msgstr ""
 "Envoyer un résumé de la boîte de réception par courrier électronique aux "
 "utilisateurs."
 
 #. TRANS: Checkbox label in e-mail preferences form.
-#, fuzzy
-msgid "Send me a periodic summary of updates from my network."
-msgstr ""
-"Envoyer un résumé de la boîte de réception par courrier électronique aux "
-"utilisateurs."
+msgid "Send me a periodic summary of updates from my network"
+msgstr "M'envoyer un rapport périodique des activités de mon réseau"

@@ -1,4 +1,4 @@
-# Translation of StatusNet - PoweredByStatusNet to Ukrainian (Українська)
+# Translation of StatusNet - PoweredByStatusNet to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
@@ -9,25 +9,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - PoweredByStatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:52+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:41+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-16 23:18:51+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:26+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-poweredbystatusnet\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
 #. TRANS: Text output after site name.
-#, fuzzy
 msgid "powered by <a href=\"http://status.net/\">StatusNet</a>"
-msgstr ""
-"Даний додаток виводить припис «працює на <a href=\"http://status.net/"
-"\">StatusNet</a>» після назви сайту."
+msgstr "працює на <a href=\"http://status.net/\">StatusNet</a>"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -36,9 +33,3 @@ msgid ""
 msgstr ""
 "Даний додаток виводить припис «працює на <a href=\"http://status.net/"
 "\">StatusNet</a>» після назви сайту."
-
-#~ msgid "powered by %s"
-#~ msgstr "працює на %s"
-
-#~ msgid "StatusNet"
-#~ msgstr "StatusNet"

@@ -405,6 +405,28 @@ class ActivityParseTests extends PHPUnit_Framework_TestCase
         $act = new Activity($entry, $feed);
         $this->assertEquals($act->actor->id, $expected);
     }
+
+    public function testBookmarkRelated()
+    {
+        global $_example11;
+        $dom = new DOMDocument();
+        $dom->loadXML($_example11);
+
+        $feed = $dom->documentElement;
+        $entry = $dom->getElementsByTagName('entry')->item(0);
+
+        $expected = 'http://blog.teambox.com/open-source-companies';
+
+        $links = ActivityUtils::getLinks($entry, 'related');
+
+        $this->assertFalse(empty($links));
+        $this->assertTrue(is_array($links));
+        $this->assertEquals(count($links), 1);
+
+        $url = $links[0]->getAttribute('href');
+
+        $this->assertEquals($url, $expected);
+    }
 }
 
 $_example1 = <<<EXAMPLE1
@@ -905,3 +927,90 @@ $_example10 = <<<EXAMPLE10
 </entry>
 </feed>
 EXAMPLE10;
+
+$_example11 = <<<EXAMPLE11
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:georss="http://www.georss.org/georss" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:media="http://purl.org/syndication/atommedia" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:ostatus="http://ostatus.org/schema/1.0" xmlns:statusnet="http://status.net/schema/api/1/">
+ <generator uri="http://status.net" version="0.9.7">StatusNet</generator>
+ <id>http://freelish.us/api/statuses/user_timeline/1.atom</id>
+ <title>demon timeline</title>
+ <subtitle>Updates from demon on freelish.us!</subtitle>
+ <logo>http://avatar.status.net/f/freelishus/1-96-20110331163048.jpeg</logo>
+ <updated>2011-05-30T09:36:03-04:00</updated>
+<author>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+ <uri>http://freelishus.status.net/user/1</uri>
+ <name>demon</name>
+ <link rel="alternate" type="text/html" href="http://freelish.us/demon"/>
+ <link rel="avatar" type="image/jpeg" media:width="192" media:height="192" href="http://avatar.status.net/f/freelishus/1-192-20110331163048.jpeg"/>
+ <link rel="avatar" type="image/jpeg" media:width="96" media:height="96" href="http://avatar.status.net/f/freelishus/1-96-20110331163048.jpeg"/>
+ <link rel="avatar" type="image/jpeg" media:width="48" media:height="48" href="http://avatar.status.net/f/freelishus/1-48-20110331163048.jpeg"/>
+ <link rel="avatar" type="image/jpeg" media:width="24" media:height="24" href="http://avatar.status.net/f/freelishus/1-24-20110331163049.jpeg"/>
+ <georss:point>45.50884 -73.58781</georss:point>
+ <poco:preferredUsername>demon</poco:preferredUsername>
+ <poco:displayName>Evan Prodromou</poco:displayName>
+ <poco:note>Montreal hacker and entrepreneur.</poco:note>
+ <poco:address>
+  <poco:formatted>Montreal, Quebec</poco:formatted>
+
+</poco:address>
+ <poco:urls>
+  <poco:type>homepage</poco:type>
+  <poco:value>http://evan.status.net/</poco:value>
+  <poco:primary>true</poco:primary>
+</poco:urls>
+ <statusnet:profile_info local_id="1"></statusnet:profile_info>
+</author>
+<!--Deprecation warning: activity:subject is present only for backward compatibility. It will be removed in the next version of StatusNet.-->
+<activity:subject>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+ <id>http://freelishus.status.net/user/1</id>
+ <title>Evan Prodromou</title>
+ <link rel="alternate" type="text/html" href="http://freelish.us/demon"/>
+ <link rel="avatar" type="image/jpeg" media:width="192" media:height="192" href="http://avatar.status.net/f/freelishus/1-192-20110331163048.jpeg"/>
+ <link rel="avatar" type="image/jpeg" media:width="96" media:height="96" href="http://avatar.status.net/f/freelishus/1-96-20110331163048.jpeg"/>
+ <link rel="avatar" type="image/jpeg" media:width="48" media:height="48" href="http://avatar.status.net/f/freelishus/1-48-20110331163048.jpeg"/>
+ <link rel="avatar" type="image/jpeg" media:width="24" media:height="24" href="http://avatar.status.net/f/freelishus/1-24-20110331163049.jpeg"/>
+ <georss:point>45.50884 -73.58781</georss:point>
+ <poco:preferredUsername>demon</poco:preferredUsername>
+ <poco:displayName>Evan Prodromou</poco:displayName>
+ <poco:note>Montreal hacker and entrepreneur.</poco:note>
+ <poco:address>
+  <poco:formatted>Montreal, Quebec</poco:formatted>
+
+</poco:address>
+ <poco:urls>
+  <poco:type>homepage</poco:type>
+  <poco:value>http://evan.status.net/</poco:value>
+  <poco:primary>true</poco:primary>
+</poco:urls>
+ <statusnet:profile_info local_id="1"></statusnet:profile_info>
+</activity:subject>
+ <link href="http://freelish.us/demon" rel="alternate" type="text/html"/>
+ <link href="http://freelish.us/main/sup#1" rel="http://api.friendfeed.com/2008/03#sup" type="application/json"/>
+ <link href="http://freelish.us/api/statuses/user_timeline/1.atom?max_id=13210408" rel="next" type="application/atom+xml"/>
+ <link href="http://freelish.us/main/push/hub" rel="hub"/>
+ <link href="http://freelish.us/main/salmon/user/1" rel="salmon"/>
+ <link href="http://freelish.us/main/salmon/user/1" rel="http://salmon-protocol.org/ns/salmon-replies"/>
+ <link href="http://freelish.us/main/salmon/user/1" rel="http://salmon-protocol.org/ns/salmon-mention"/>
+ <link href="http://freelish.us/api/statuses/user_timeline/1.atom" rel="self" type="application/atom+xml"/>
+
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/bookmark</activity:object-type>
+ <id>http://freelish.us/bookmark/9e930c3e-7ed9-47de-aba5-df6c60cec542</id>
+ <title>Why you should build an open-source startup | Teambox Blog</title>
+ <link rel="alternate" type="text/html" href="http://freelish.us/bookmark/9e930c3e-7ed9-47de-aba5-df6c60cec542"/>
+ <link rel="related" href="http://blog.teambox.com/open-source-companies"/>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2011-05-26T20:36:25+00:00</published>
+ <updated>2011-05-26T20:36:25+00:00</updated>
+ <link rel="ostatus:conversation" href="http://freelish.us/conversation/13835232"/>
+ <category term="opensource"></category>
+ <category term="startup"></category>
+ <link rel="self" type="application/atom+xml" href="http://freelish.us/api/statuses/show/13836862.atom"/>
+ <link rel="edit" type="application/atom+xml" href="http://freelish.us/api/statuses/show/13836862.atom"/>
+ <statusnet:notice_info local_id="13836862" source="web" favorite="false" repeated="false"></statusnet:notice_info>
+
+</entry>
+</feed>
+EXAMPLE11;

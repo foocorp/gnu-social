@@ -1,4 +1,4 @@
-# Translation of StatusNet - BitlyUrl to Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+# Translation of StatusNet - BitlyUrl to Norwegian Bokmål (‪norsk (bokmål)‬)
 # Exported from translatewiki.net
 #
 # Author: Nghtwlkr
@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - BitlyUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:44+0000\n"
-"Language-Team: Norwegian (bokmål)‬ <http://translatewiki.net/wiki/Portal:no>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:47+0000\n"
+"Language-Team: Norwegian Bokmål <https://translatewiki.net/wiki/Portal:nb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:00+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: no\n"
+"X-POT-Import-Date: 2011-12-03 13:48:51+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: nb\n"
 "X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -37,20 +37,17 @@ msgstr ""
 "tillater deg å bruke bit.lys sporingsfunksjoner og egendefinerte domener."
 
 #. TRANS: Client error displayed when using too long a key.
-#, fuzzy
 msgid "Invalid login. Maximum length is 255 characters."
-msgstr "Ugyldig pålogging. Maks lengde er 255 tegn."
+msgstr "Ugyldig brukernavn. Maks lengde er 255 tegn."
 
 #. TRANS: Client error displayed when using too long a key.
-#, fuzzy
 msgid "Invalid API key. Maximum length is 255 characters."
 msgstr "Ugyldig API-nøkkel. Maks lengde er 255 tegn."
 
 #. TRANS: Fieldset legend in administration panel for bit.ly username and API key.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Credentials"
-msgstr "Attester"
+msgstr "Påloggingsinformasjon"
 
 #. TRANS: Form guide in administration panel for bit.ly URL shortening.
 msgid "Leave these empty to use global default credentials."
@@ -78,9 +75,8 @@ msgid "Save bit.ly settings"
 msgstr "Lagre bit.ly-innstillinger"
 
 #. TRANS: Exception thrown when bit.ly URL shortening plugin was configured incorrectly.
-#, fuzzy
 msgid "You must specify a serviceUrl for bit.ly URL shortening."
-msgstr "Du må angi en serviceUrl for bit.ly-forkortelse."
+msgstr "Du må angi en serviceUrl for bit.ly URL-forkortelse."
 
 #. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
 #, php-format
@@ -92,6 +88,5 @@ msgid "bit.ly"
 msgstr "bit.ly"
 
 #. TRANS: Title for menu item in administration menus for bit.ly URL shortening settings.
-#, fuzzy
 msgid "bit.ly URL shortening."
-msgstr "bit.ly URL-forkortelse"
+msgstr "bit.ly URL-forkortelse."

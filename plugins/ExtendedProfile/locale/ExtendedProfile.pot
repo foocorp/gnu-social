@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. TRANS: Title for extended profile settings.
 #: actions/profiledetailsettings.php:29
 msgid "Extended profile settings"
 msgstr ""
@@ -26,6 +27,7 @@ msgid ""
 "You can update your personal profile info here so people know more about you."
 msgstr ""
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 #: actions/profiledetailsettings.php:63
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
@@ -35,49 +37,51 @@ msgstr ""
 msgid "Unexpected form submission."
 msgstr ""
 
-#: actions/profiledetailsettings.php:136
+#. TRANS: Success message after saving extended profile details.
+#: actions/profiledetailsettings.php:137
 msgid "Details saved."
 msgstr ""
 
 #. TRANS: Exception thrown when no date was entered in a required date field.
 #. TRANS: %s is the field name.
-#: actions/profiledetailsettings.php:147
+#: actions/profiledetailsettings.php:148
 #, php-format
 msgid "You must supply a date for \"%s\"."
 msgstr ""
 
 #. TRANS: Exception thrown on incorrect data input.
 #. TRANS: %1$s is a field name, %2$s is the incorrect input.
-#: actions/profiledetailsettings.php:159
+#: actions/profiledetailsettings.php:160
 #, php-format
 msgid "Invalid date entered for \"%1$s\": %2$s."
 msgstr ""
 
 #. TRANS: Exception thrown when entering an invalid URL.
 #. TRANS: %s is the invalid URL.
-#: actions/profiledetailsettings.php:275
+#: actions/profiledetailsettings.php:276
 #, php-format
 msgid "Invalid URL: %s."
 msgstr ""
 
-#: actions/profiledetailsettings.php:523 actions/profiledetailsettings.php:535
+#. TRANS: Server error displayed when a field could not be saved in the database.
+#: actions/profiledetailsettings.php:525 actions/profiledetailsettings.php:538
 msgid "Could not save profile details."
 msgstr ""
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: %s is an invalid tag.
-#: actions/profiledetailsettings.php:580
+#: actions/profiledetailsettings.php:583
 #, php-format
 msgid "Invalid tag: \"%s\"."
 msgstr ""
 
 #. TRANS: Server error thrown when user profile settings could not be saved.
-#: actions/profiledetailsettings.php:622
+#: actions/profiledetailsettings.php:625
 msgid "Could not save profile."
 msgstr ""
 
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
-#: actions/profiledetailsettings.php:631
+#: actions/profiledetailsettings.php:634
 msgid "Could not save tags."
 msgstr ""
 
@@ -124,19 +128,13 @@ msgstr ""
 msgid "Company"
 msgstr ""
 
-#. TRANS: Field label in experience area of extended profile (when did one start a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one start at a company).
-#. TRANS: Field label in education area of extended profile (when did one start an education).
-#. TRANS: Field label in education edit area of extended profile (when did one start an education).
+#. TRANS: Field label in extended profile (when did one start a position or education).
 #: lib/extendedprofilewidget.php:332 lib/extendedprofilewidget.php:380
 #: lib/extendedprofilewidget.php:426 lib/extendedprofilewidget.php:481
 msgid "Start"
 msgstr ""
 
-#. TRANS: Field label in experience area of extended profile (when did one end a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one terminate at a company).
-#. TRANS: Field label in education area of extended profile (when did one end a education).
-#. TRANS: Field label in education edit area of extended profile (when did one end an education).
+#. TRANS: Field label in extended profile (when did one end a position or education).
 #: lib/extendedprofilewidget.php:340 lib/extendedprofilewidget.php:388
 #: lib/extendedprofilewidget.php:434 lib/extendedprofilewidget.php:490
 msgid "End"
@@ -160,8 +158,7 @@ msgstr ""
 msgid "Institution"
 msgstr ""
 
-#. TRANS: Field label in education area of extended profile.
-#. TRANS: Field label in education edit area of extended profile.
+#. TRANS: Field label in extended profile for specifying an academic degree.
 #: lib/extendedprofilewidget.php:420 lib/extendedprofilewidget.php:464
 msgid "Degree"
 msgstr ""

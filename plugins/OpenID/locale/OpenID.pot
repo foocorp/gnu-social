@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #. TRANS: Button text to continue OpenID identity verification.
 #. TRANS: button label for OAuth authorization page when needing OpenID authentication first.
-#: openidtrust.php:136 OpenIDPlugin.php:664
+#: openidtrust.php:136 OpenIDPlugin.php:695
 msgctxt "BUTTON"
 msgid "Continue"
 msgstr ""
@@ -48,38 +48,43 @@ msgctxt "BUTTON"
 msgid "Cancel"
 msgstr ""
 
+#. TRANS: Client exception thrown when an action is not available.
+#: OpenIDPlugin.php:139
+msgid "Unavailable action."
+msgstr ""
+
 #. TRANS: Tooltip for main menu option "Login"
-#: OpenIDPlugin.php:218
+#: OpenIDPlugin.php:219
 msgctxt "TOOLTIP"
 msgid "Login to the site."
 msgstr ""
 
 #. TRANS: Main menu option when not logged in to log in
-#: OpenIDPlugin.php:221
+#: OpenIDPlugin.php:222
 msgctxt "MENU"
 msgid "Login"
 msgstr ""
 
 #. TRANS: Tooltip for main menu option "Help"
-#: OpenIDPlugin.php:226
+#: OpenIDPlugin.php:227
 msgctxt "TOOLTIP"
 msgid "Help me!"
 msgstr ""
 
 #. TRANS: Main menu option for help on the StatusNet site
-#: OpenIDPlugin.php:229
+#: OpenIDPlugin.php:230
 msgctxt "MENU"
 msgid "Help"
 msgstr ""
 
 #. TRANS: Tooltip for main menu option "Search"
-#: OpenIDPlugin.php:235
+#: OpenIDPlugin.php:236
 msgctxt "TOOLTIP"
 msgid "Search for people or text."
 msgstr ""
 
 #. TRANS: Main menu option when logged in or when the StatusNet instance is not private
-#: OpenIDPlugin.php:238
+#: OpenIDPlugin.php:239
 msgctxt "MENU"
 msgid "Search"
 msgstr ""
@@ -87,70 +92,90 @@ msgstr ""
 #. TRANS: OpenID plugin menu item on site logon page.
 #. TRANS: OpenID plugin menu item on user settings page.
 #. TRANS: OpenID configuration menu item.
-#: OpenIDPlugin.php:295 OpenIDPlugin.php:331 OpenIDPlugin.php:606
+#: OpenIDPlugin.php:296 OpenIDPlugin.php:332 OpenIDPlugin.php:542
+#: OpenIDPlugin.php:637
 msgctxt "MENU"
 msgid "OpenID"
 msgstr ""
 
 #. TRANS: OpenID plugin tooltip for logon menu item.
-#: OpenIDPlugin.php:297
+#: OpenIDPlugin.php:298
 msgid "Login or register with OpenID."
 msgstr ""
 
 #. TRANS: OpenID plugin tooltip for user settings menu item.
-#: OpenIDPlugin.php:333
+#: OpenIDPlugin.php:334
 msgid "Add or remove OpenIDs."
 msgstr ""
 
-#. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
-#: OpenIDPlugin.php:536
+#. TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#: OpenIDPlugin.php:484
 #, php-format
 msgid ""
-"* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
-"service."
+"(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
+"action.openidsettings%%)!"
+msgstr ""
+
+#. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#: OpenIDPlugin.php:489
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
+"action.openidlogin%%)!)"
+msgstr ""
+
+#. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#: OpenIDPlugin.php:497
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
+"openidlogin%%)!)"
 msgstr ""
 
 #. TRANS: Tooltip for OpenID configuration menu item.
-#: OpenIDPlugin.php:608
+#: OpenIDPlugin.php:639
 msgid "OpenID configuration."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: OpenIDPlugin.php:654
+#: OpenIDPlugin.php:685
 msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
 msgstr ""
 
 #. TRANS: OpenID plugin logon form legend.
-#: OpenIDPlugin.php:681 openidlogin.php:132
+#: OpenIDPlugin.php:712 openidlogin.php:132
 msgctxt "LEGEND"
 msgid "OpenID login"
 msgstr ""
 
 #. TRANS: Field label.
-#: OpenIDPlugin.php:689
+#: OpenIDPlugin.php:720
 msgid "OpenID provider"
 msgstr ""
 
 #. TRANS: Form guide.
-#: OpenIDPlugin.php:698 openidlogin.php:148
+#: OpenIDPlugin.php:729 openidlogin.php:149
 msgid "Enter your username."
 msgstr ""
 
 #. TRANS: Form guide.
-#: OpenIDPlugin.php:700 openidlogin.php:150
+#: OpenIDPlugin.php:731 openidlogin.php:151
 msgid "You will be sent to the provider's site for authentication."
 msgstr ""
 
 #. TRANS: OpenID plugin logon form field label.
 #. TRANS: Field label.
 #. TRANS: OpenID plugin logon form field label.
-#: OpenIDPlugin.php:704 openidsettings.php:110 openidlogin.php:154
+#: OpenIDPlugin.php:735 openidsettings.php:110 openidlogin.php:155
 msgid "OpenID URL"
 msgstr ""
 
 #. TRANS: OpenID plugin logon form field instructions.
 #. TRANS: OpenID plugin logon form field title.
-#: OpenIDPlugin.php:707 openidlogin.php:157
+#: OpenIDPlugin.php:738 openidlogin.php:158
 msgid "Your OpenID URL."
 msgstr ""
 
@@ -659,23 +684,24 @@ msgctxt "TITLE"
 msgid "OpenID Login"
 msgstr ""
 
-#: openidlogin.php:139
+#. TRANS: Field label.
+#: openidlogin.php:140
 msgctxt "LABEL"
 msgid "OpenID provider"
 msgstr ""
 
 #. TRANS: OpenID plugin logon form checkbox label for setting to put the OpenID information in a cookie.
-#: openidlogin.php:162
+#: openidlogin.php:163
 msgid "Remember me"
 msgstr ""
 
 #. TRANS: OpenID plugin logon form field title.
-#: openidlogin.php:164
+#: openidlogin.php:165
 msgid "Automatically login in the future; not for shared computers!"
 msgstr ""
 
 #. TRANS: OpenID plugin logon form button label to start logon with the data provided in the logon form.
-#: openidlogin.php:169
+#: openidlogin.php:170
 msgctxt "BUTTON"
 msgid "Login"
 msgstr ""

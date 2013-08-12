@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Profile_tag_subscription extends Memcached_DataObject
+class Profile_tag_subscription extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -21,6 +21,29 @@ class Profile_tag_subscription extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'profile_tag_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile_tag'),
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
+
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('profile_tag_id', 'profile_id'),
+            'foreign keys' => array(
+                'profile_tag_subscription_profile_list_id_fkey' => array('profile_list', array('profile_tag_id' => 'id')),
+                'profile_tag_subscription_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+            ),
+            'indexes' => array(
+                // @fixme probably we want a (profile_id, created) index here?
+                'profile_tag_subscription_profile_id_idx' => array('profile_id'),
+                'profile_tag_subscription_created_idx' => array('created'),
+            ),
+        );
+    }
 
     function pkeyGet($kv)
     {

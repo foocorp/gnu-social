@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,17 +68,17 @@ msgid "Save sitemap settings."
 msgstr ""
 
 #. TRANS: Menu item title/tooltip
-#: SitemapPlugin.php:211
+#: SitemapPlugin.php:205
 msgid "Sitemap configuration"
 msgstr ""
 
 #. TRANS: Menu item for site administration
-#: SitemapPlugin.php:213
+#: SitemapPlugin.php:207
 msgctxt "MENU"
 msgid "Sitemap"
 msgstr ""
 
 #. TRANS: Plugin description.
-#: SitemapPlugin.php:238
+#: SitemapPlugin.php:232
 msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
 msgstr ""

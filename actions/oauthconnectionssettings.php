@@ -32,7 +32,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 }
 
 require_once INSTALLDIR . '/lib/applicationlist.php';
-require_once INSTALLDIR . '/lib/apioauthstore.php';
+require_once INSTALLDIR . '/lib/statusnetoauthstore.php';
 
 /**
  * Show connected OAuth applications

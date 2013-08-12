@@ -1,0 +1,46 @@
+# Translation of StatusNet - LdapCommon to Macedonian (македонски)
+# Exported from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - LdapCommon\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:59+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:26+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-ldapcommon\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+msgid "A host must be specified."
+msgstr "Мора да наведете домаќин."
+
+#. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+msgid "\"basedn\" must be specified."
+msgstr "Мора да наведете „basedn“"
+
+#. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+msgid "The username attribute must be set."
+msgstr "Мора да се назначи атрибутот за корисничко име."
+
+#. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
+#. TRANS: %s is the error message.
+#, php-format
+msgid "Could not connect to LDAP server: %s"
+msgstr "Не можам да се поврзам со опслужувачот на LDAP: %s"
+
+#. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
+#. TRANS: %s is the error message.
+#, php-format
+msgid "Could not connect to LDAP server: %s."
+msgstr "Не можам да се поврзам со опслужувачот на LDAP: %s"

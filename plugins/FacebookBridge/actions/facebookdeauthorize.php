@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2010, StatusNet, Inc.
+ * Copyright (C) 2010-2011, StatusNet, Inc.
  *
  * An action that handles deauthorize callbacks from Facebook
  *
@@ -23,7 +23,7 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2010 StatusNet, Inc.
+ * @copyright 2010-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */

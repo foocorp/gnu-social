@@ -152,4 +152,54 @@ abstract class Managed_DataObject extends Memcached_DataObject
 
         return $style;
     }
+
+    function links()
+    {
+        $links = array();
+
+        $table = call_user_func(array(get_class($this), 'schemaDef'));
+
+        foreach ($table['foreign keys'] as $keyname => $keydef) {
+            if (count($keydef) == 2 && is_string($keydef[0]) && is_array($keydef[1]) && count($keydef[1]) == 1) {
+                if (isset($keydef[1][0])) {
+                    $links[$keydef[1][0]] = $keydef[0].':'.$keydef[1][1];
+                }
+            }
+        }
+        return $links;
+    }
+
+    /**
+     * Return a list of all primary/unique keys / vals that will be used for
+     * caching. This will understand compound unique keys, which
+     * Memcached_DataObject doesn't have enough info to handle properly.
+     *
+     * @return array of strings
+     */
+    function _allCacheKeys()
+    {
+        $table = call_user_func(array(get_class($this), 'schemaDef'));
+        $ckeys = array();
+
+        if (!empty($table['unique keys'])) {
+            $keyNames = $table['unique keys'];
+            foreach ($keyNames as $idx => $fields) {
+                $val = array();
+                foreach ($fields as $name) {
+                    $val[$name] = self::valueString($this->$name);
+                }
+                $ckeys[] = self::multicacheKey($this->tableName(), $val);
+            }
+        }
+
+        if (!empty($table['primary key'])) {
+            $fields = $table['primary key'];
+            $val = array();
+            foreach ($fields as $name) {
+                $val[$name] = self::valueString($this->$name);
+            }
+            $ckeys[] = self::multicacheKey($this->tableName(), $val);
+        }
+        return $ckeys;
+    }
 }

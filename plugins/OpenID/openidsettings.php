@@ -222,6 +222,22 @@ class OpenidsettingsAction extends SettingsAction
                                       // TRANS: Button text to remove an OpenID trustroot.
                                       'value' => _m('BUTTON','Remove')));
         $this->elementEnd('fieldset');
+        
+        $prefs = User_openid_prefs::staticGet('user_id', $user->id);
+
+        $this->elementStart('fieldset');
+        $this->element('legend', null, _m('LEGEND','Preferences'));
+        $this->elementStart('ul', 'form_data');
+        $this->checkBox('hide_profile_link', "Hide OpenID links from my profile", !empty($prefs) && $prefs->hide_profile_link);
+        $this->element('input', array('type' => 'submit',
+                                      'id' => 'settings_openid_prefs_save',
+                                      'name' => 'save_prefs',
+                                      'class' => 'submit',
+                                      // TRANS: Button text to save OpenID prefs
+                                      'value' => _m('BUTTON','Save')));
+        $this->elementEnd('ul');
+        $this->elementEnd('fieldset');
+
         $this->elementEnd('form');
     }
 
@@ -258,6 +274,8 @@ class OpenidsettingsAction extends SettingsAction
             $this->removeOpenid();
         } else if($this->arg('remove_trustroots')) {
             $this->removeTrustroots();
+        } else if($this->arg('save_prefs')) {
+            $this->savePrefs();
         } else {
             // TRANS: Unexpected form validation error.
             $this->showForm(_m('Something weird happened.'));
@@ -324,6 +342,45 @@ class OpenidsettingsAction extends SettingsAction
         $oid->delete();
         // TRANS: Success message after removing an OpenID.
         $this->showForm(_m('OpenID removed.'), true);
+        return;
+    }
+
+    /**
+     * Handles a request to save preferences
+     *
+     * Validates input and, if everything is OK, deletes the OpenID.
+     * Reloads the form with a success or error notification.
+     *
+     * @return void
+     */
+    function savePrefs()
+    {
+        $cur = common_current_user();
+
+        if (empty($cur)) {
+            throw new ClientException(_("Not logged in."));
+        }
+
+        $orig  = null;
+        $prefs = User_openid_prefs::staticGet('user_id', $cur->id);
+
+        if (empty($prefs)) {
+            $prefs          = new User_openid_prefs();
+            $prefs->user_id = $cur->id;
+            $prefs->created = common_sql_now();
+        } else {
+            $orig = clone($prefs);
+        }
+
+        $prefs->hide_profile_link = $this->boolean('hide_profile_link');
+
+        if (empty($orig)) {
+            $prefs->insert();
+        } else {
+            $prefs->update($orig);
+        }
+
+        $this->showForm(_m('OpenID preferences saved.'), true);
         return;
     }
 }

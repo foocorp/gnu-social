@@ -1,0 +1,45 @@
+# Translation of StatusNet - BlogspamNet to Lithuanian (lietuvių)
+# Exported from translatewiki.net
+#
+# Author: Eitvys200
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - BlogspamNet\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:55+0000\n"
+"Language-Team: Lithuanian <https://translatewiki.net/wiki/Portal:lt>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-30 18:14:59+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: lt\n"
+"X-Message-Group: #out-statusnet-plugin-blogspamnet\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: Server exception thrown when blogspam.net returns error status.
+#. TRANS: %1$s is the base URL, %2$s is the error (unknown contents; no period).
+#, php-format
+msgid "Error from %1$s: %2$s"
+msgstr "Klaida iš %1$s: %2$s"
+
+#. TRANS: Server exception thrown when blogspam.net returns spam status.
+#. TRANS: Does not end with period because of unknown contents for %s (spam match).
+#, php-format
+msgid "Spam checker results: %s"
+msgstr "Šlamštas tikrintuvo rezultatai: %s"
+
+#. TRANS: Server exception thrown when blogspam.net returns an unexpected status.
+#. TRANS: %1$s is the base URL, %2$s is the response (unknown contents; no period).
+#, php-format
+msgid "Unexpected response from %1$s: %2$s"
+msgstr "Netikėtas atsakymas iš %1$s: %2$s"
+
+#. TRANS: Plugin description.
+msgid "Plugin to check submitted notices with blogspam.net."
+msgstr ""

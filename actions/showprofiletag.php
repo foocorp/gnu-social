@@ -44,7 +44,11 @@ class ShowprofiletagAction extends Action
     {
         parent::prepare($args);
 
-        $tagger_arg = $this->arg('tagger');
+        if (common_config('singleuser', 'enabled')) {
+            $tagger_arg = User::singleUserNickname();
+        } else {
+            $tagger_arg = $this->arg('tagger');
+        }
         $tag_arg = $this->arg('tag');
         $tagger = common_canonical_nickname($tagger_arg);
         $tag = common_canonical_tag($tag_arg);
@@ -169,7 +173,18 @@ class ShowprofiletagAction extends Action
     function getFeeds()
     {
         #XXX: make these actually work
-        return array(new Feed(Feed::RSS2,
+        return array(new Feed(Feed::JSON,
+                common_local_url(
+                    'ApiTimelineList', array(
+                        'user' => $this->tagger->id,
+                        'id' => $this->peopletag->id,
+                        'format' => 'as'
+                    )
+                ),
+                // TRANS: Feed title.
+                // TRANS: %s is tagger's nickname.
+                sprintf(_('Feed for friends of %s (Activity Streams JSON)'), $this->tagger->nickname)),
+                new Feed(Feed::RSS2,
                 common_local_url(
                     'ApiTimelineList', array(
                         'user' => $this->tagger->id,
@@ -339,17 +354,7 @@ class ShowprofiletagAction extends Action
                 }
             }
 
-            if ($cnt > PROFILES_PER_MINILIST) {
-                $this->elementStart('p');
-                $this->element('a', array('href' => common_local_url('profiletagsubscribers',
-                                                                     array('nickname' => $this->tagger->nickname,
-                                                                           'profiletag' => $this->peopletag->tag)),
-                                          'class' => 'more'),
-                               // TRANS: Link for more "People following tag x"
-                               // TRANS: if there are more than the mini list's maximum.
-                               _('All subscribers'));
-                $this->elementEnd('p');
-            }
+            // FIXME: link to full list
 
             Event::handle('EndShowProfileTagSubscribersMiniList', array($this));
         }

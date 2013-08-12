@@ -74,7 +74,13 @@ class DeliciousBackupImporter extends QueueHandler
     {
         list($user, $body) = $data;
 
-        $doc = $this->importHTML($body);
+        try {
+            $doc = $this->importHTML($body);
+        } catch (ClientException $cex) {
+            // XXX: message to the user
+            common_log(LOG_WARNING, $cex->getMessage());
+            return true;
+        }
 
         // If we can't parse it, it's no good
 
@@ -85,8 +91,9 @@ class DeliciousBackupImporter extends QueueHandler
         $dls = $doc->getElementsByTagName('dl');
 
         if ($dls->length != 1) {
-            // TRANS: Client exception thrown when a file upload is incorrect.
-            throw new ClientException(_m('Bad import file.'));
+            // XXX: message to the user
+            common_log(LOG_WARNING, 'Bad input file');
+            return true;
         }
 
         $dl = $dls->item(0);

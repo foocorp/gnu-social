@@ -39,7 +39,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ListsNav extends Menu
+class ListsNav extends MoreMenu
 {
     var $profile=null;
     var $lists=null;
@@ -54,37 +54,39 @@ class ListsNav extends Menu
         $this->lists = $profile->getLists($user);
     }
 
-    function show()
+    function tag()
     {
-        $action = $this->actionName;
+        return 'lists';
+    }
 
-        $this->out->elementStart('ul', array('class' => 'nav'));
+    function getItems()
+    {
+        $items = array();
 
-        if (Event::handle('StartListsNav', array($this))) {
-
-            while ($this->lists->fetch()) {
+        while ($this->lists->fetch()) {
                 $mode = $this->lists->private ? 'private' : 'public';
-                $this->out->menuItem(($this->lists->mainpage) ?
-                                     $this->lists->mainpage :
-                                     common_local_url('showprofiletag',
-                                                      array('tagger' => $this->profile->nickname,
-                                                            'tag'    => $this->lists->tag)),
-                                     $this->lists->tag,
-                                     '',
-                                     $action == 'showprofiletag' &&
-                                     $this->action->arg('tagger') == $this->profile->nickname &&
-                                     $this->action->arg('tag')    == $this->lists->tag,
-                                     'nav_timeline_list_'.$this->lists->id,
-                                     'mode-' . $mode);
-            }
-            Event::handle('EndListsNav', array($this));
-        }
+                $items[] = array('showprofiletag',
+                                 array('tagger' => $this->profile->nickname,
+                                       'tag'    => $this->lists->tag),
+                                 $this->lists->tag,
+                                 '');
+         }
 
-        $this->out->elementEnd('ul');
+         return $items;
     }
 
     function hasLists()
     {
         return (!empty($this->lists) && $this->lists->N > 0);
+    }
+
+    function seeAllItem()
+    {
+        return array('peopletagsbyuser',
+                     array('nickname' => $this->profile->nickname),
+                     // TRANS: Link description for seeing all lists.
+                     _('See all'),
+                     // TRANS: Link title for seeing all lists.
+                     _('See all lists you have created.'));
     }
 }

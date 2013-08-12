@@ -251,35 +251,6 @@ class AdminPanelAction extends Action
         return;
     }
 
-    /**
-     * Delete a design setting
-     *
-     * // XXX: Maybe this should go in Design? --Z
-     *
-     * @return mixed $result false if something didn't work
-     */
-    function deleteSetting($section, $setting)
-    {
-        $config = new Config();
-
-        $config->section = $section;
-        $config->setting = $setting;
-
-        if ($config->find(true)) {
-            $result = $config->delete();
-            if (!$result) {
-                common_log_db_error($config, 'DELETE', __FILE__);
-                // TRANS: Client error message thrown if design settings could not be deleted in
-                // TRANS: the admin panel Design.
-                $this->clientError(_("Unable to delete design setting."));
-                return null;
-            }
-            return $result;
-        }
-
-        return null;
-    }
-
     function canAdmin($name)
     {
         $isOK = false;

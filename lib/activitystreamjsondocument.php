@@ -41,14 +41,29 @@ if (!defined('STATUSNET'))
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ActivityStreamJSONDocument
+class ActivityStreamJSONDocument extends JSONActivityCollection
 {
+    // Note: Lot of AS folks think the content type should be:
+    // 'application/stream+json; charset=utf-8', but this is more
+    // useful at the moment, because some programs actually understand
+    // it.
+    const CONTENT_TYPE = 'application/json; charset=utf-8';
 
     /* Top level array representing the document */
     protected $doc = array();
 
     /* The current authenticated user */
-    protected $cur = null;
+    protected $cur;
+
+    /* Title of the document */
+    protected $title;
+
+    /* Links associated with this document */
+    protected $links;
+
+    /* Count of items in this document */
+    // XXX This is cryptically referred to in the spec: "The Stream serialization MAY contain a count property."
+    protected $count;
 
     /**
      * Constructor
@@ -56,20 +71,26 @@ class ActivityStreamJSONDocument
      * @param User $cur the current authenticated user
      */
 
-    function __construct($cur = null)
+    function __construct($cur = null, $title = null, $items = null, $links = null, $url = null)
     {
+        parent::__construct($items, $url);
 
         $this->cur = $cur;
 
         /* Title of the JSON document */
-        $this->doc['title'] = null;
+        $this->title = $title;
 
-        /* Array of activity items */
-        $this->doc['items'] = array();
+        if (!empty($items)) {
+            $this->count = count($this->items);
+        }
 
         /* Array of links associated with the document */
-        $this->doc['links'] = array();
+        $this->links = empty($links) ? array() : $items;
 
+        /* URL of a document, this document? containing a list of all the items in the stream */
+        if (!empty($this->url)) {
+            $this->url = $this->url;
+        }
     }
 
     /**
@@ -80,8 +101,14 @@ class ActivityStreamJSONDocument
 
     function setTitle($title)
     {
-        $this->doc['title'] = $title;
+        $this->title = $title;
     }
+
+    function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
 
     /**
      * Add more than one Item to the document
@@ -115,7 +142,8 @@ class ActivityStreamJSONDocument
 
         $act          = $notice->asActivity($cur);
         $act->extra[] = $notice->noticeInfo($cur);
-        array_push($this->doc['items'], $act->asArray());
+        array_push($this->items, $act->asArray());
+        $this->count++;
     }
 
     /**
@@ -127,7 +155,7 @@ class ActivityStreamJSONDocument
     function addLink($url = null, $rel = null, $mediaType = null)
     {
         $link = new ActivityStreamsLink($url, $rel, $mediaType);
-        $this->doc['links'][] = $link->asArray();
+        array_push($this->links, $link->asArray());
     }
 
     /*
@@ -137,7 +165,13 @@ class ActivityStreamJSONDocument
      */
     function asString()
     {
-        return json_encode(array_filter($this->doc));
+        $this->doc['generator'] = 'StatusNet ' . STATUSNET_VERSION; // extension
+        $this->doc['title'] = $this->title;
+        $this->doc['url']   = $this->url;
+        $this->doc['totalItems'] = $this->count;
+        $this->doc['items'] = $this->items;
+        $this->doc['links'] = $this->links; // extension
+        return json_encode(array_filter($this->doc)); // filter out empty elements
     }
 
 }
@@ -160,16 +194,16 @@ class ActivityStreamsMediaLink extends ActivityStreamsLink
         $url       = null,
         $width     = null,
         $height    = null,
-        $mediaType = null,
-        $rel       = null,
+        $mediaType = null, // extension
+        $rel       = null, // extension
         $duration  = null
     )
     {
         parent::__construct($url, $rel, $mediaType);
         $this->linkDict = array(
-            'width'      => $width,
-            'height'     => $height,
-            'duration'   => $duration
+            'width'      => intval($width),
+            'height'     => intval($height),
+            'duration'   => intval($duration)
         );
     }
 
@@ -179,6 +213,49 @@ class ActivityStreamsMediaLink extends ActivityStreamsLink
             parent::asArray(),
             array_filter($this->linkDict)
         );
+    }
+}
+
+/*
+ * Collection primarily as the root of an Activity Streams doc but can be used as the value
+ * of extension properties in a variety of situations.
+ *
+ * A valid Collection object serialization MUST contain at least the url or items properties.
+ */
+class JSONActivityCollection {
+
+    /* Non-negative integer specifying the total number of activities within the stream */
+    protected $totalItems;
+
+    /* An array containing a listing of Objects of any object type */
+    protected $items;
+
+    /* IRI referencing a JSON document containing the full listing of objects in the collection */
+    protected $url;
+
+    /**
+     * Constructor
+     *
+     * @param array  $items       array of activity items
+     * @param string $url         url of a doc list all the objs in the collection
+     * @param int    $totalItems  total number of items in the collection
+     */
+    function __construct($items = null, $url = null)
+    {
+        $this->items      = empty($items) ? array() : $items;
+        $this->totalItems = count($items);
+        $this->url        = $url;
+    }
+
+    /**
+     * Get the total number of items in the collection
+     *
+     * @return int total the total
+     */
+    public function getTotalItems()
+    {
+        $this->totalItems = count($items);
+        return $this->totalItems;
     }
 }
 
@@ -215,3 +292,4 @@ class ActivityStreamsLink
         return array_filter($this->linkDict);
     }
 }
+

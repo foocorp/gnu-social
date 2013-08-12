@@ -1,6 +1,7 @@
-# Translation of StatusNet - SubMirror to French (Français)
+# Translation of StatusNet - SubMirror to French (français)
 # Exported from translatewiki.net
 #
+# Author: Gomoko
 # Author: IAlex
 # Author: Od1n
 # Author: Peter17
@@ -12,14 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:30+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:11+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:33+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -35,12 +36,15 @@ msgstr "Adresse URL de flux invalide : %s."
 msgid "Invalid profile for mirroring."
 msgstr "Profil invalide pour la mise en miroir."
 
+#. TRANS: Client error displayed when trying to mirror a StatusNet group feed.
 msgid "Cannot mirror a StatusNet group at this time."
 msgstr "Impossible de mettre en miroir un groupe StatusNet actuellement."
 
+#. TRANS: Client error displayed when trying to use another method than POST.
 msgid "This action only accepts POST requests."
 msgstr "Cette action n’accepte que les requêtes de type POST."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 "Un problème est survenu avec votre jeton de session. Veuillez essayer à "
@@ -50,27 +54,35 @@ msgstr ""
 msgid "Not logged in."
 msgstr "Non connecté."
 
+#. TRANS: Page title for subscribed feed mirror.
 msgid "Subscribed"
 msgstr "Abonné"
 
+#. TRANS: Client error displayed when trying to edit an object that is not a feed mirror.
 msgid "Requested invalid profile to edit."
 msgstr "Profil invalide demandé à modifier."
 
+#. TRANS: Client error displayed when providing invalid input when editing a mirror.
 msgid "Bad form data."
 msgstr "Données de formulaire erronées."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
-msgid "Requested edit of missing mirror."
-msgstr "Miroir inexistant demandé à modifier."
+msgid "The mirror request failed, because no result was retrieved."
+msgstr "Échec de la requête miroir, car aucun résultat n'a été récupéré."
 
+#. TRANS: Exception thrown when a feed provider could not be recognised.
+msgid "Internal form error: Unrecognized feed provider."
+msgstr "Erreur interne du formulaire: Fournisseur d'alimentation non reconnu."
+
+#. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
 msgstr "Impossible de vous abonner au flux."
 
-#. TRANS: Title.
+#. TRANS: Page title.
 msgid "Feed mirror settings"
 msgstr "Paramètres de miroir de flux"
 
-#. TRANS: Instructions.
+#. TRANS: Page instructions.
 msgid ""
 "You can mirror updates from many RSS and Atom feeds into your StatusNet "
 "timeline!"
@@ -78,9 +90,11 @@ msgstr ""
 "Vous pouvez mettre en miroir dans votre agenda StatusNet les mises à jour de "
 "nombreux flux RSS et Atom !"
 
+#. TRANS: Title for page with form to add a mirror feed provider on.
 msgid "Provider add"
 msgstr "Ajout de fournisseurs"
 
+#. TRANS: Plugin description.
 msgid "Pull feeds into your timeline!"
 msgstr "Importez des flux d’information dans votre agenda !"
 
@@ -93,50 +107,67 @@ msgstr "Mise en miroir"
 msgid "Configure mirroring of posts from other feeds"
 msgstr "Configurer la mise en miroir de messages provenant d’autres flux"
 
+#. TRANS: Label in profile statistics section, followed by a count.
 msgid "Mirrored feeds"
 msgstr "Flux en miroir"
 
+#. TRANS: Field label.
 msgid "Web page or feed URL:"
 msgstr "Adresse URL de la page Web ou du flux :"
 
+#. TRANS: Button text for adding a feed.
+#. TRANS: Button text for adding a Twitter feed mirror.
 msgctxt "BUTTON"
 msgid "Add feed"
 msgstr "Ajouter le flux"
 
+#. TRANS: Field label.
 msgid "Twitter username:"
 msgstr "Nom d’utilisateur Twitter :"
 
+#. TRANS: Field label (URL expectected).
 msgctxt "LABEL"
 msgid "Remote feed:"
 msgstr "Flux distant :"
 
+#. TRANS: Field label.
 msgctxt "LABEL"
 msgid "Local user"
 msgstr "Utilisateur local"
 
+#. TRANS: Fieldset legend for feed mirror setting.
 msgid "Mirroring style"
 msgstr "Style de mise en miroir"
 
+#. TRANS: Feed mirror style (radio button option).
 msgid ""
-"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+"Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
-"Répéter : référence le message de l’auteur d’origine (montré parfois comme « "
-"RT @blabla »)"
+"Répétition: référence du message de l’utilisateur d’origine (affiché parfois "
+"sous la forme \"RT @blah\")"
 
+#. TRANS: Feed mirror style (radio button option).
 msgid "Repost the content under my account"
 msgstr "Reposter le contenu sous mon compte"
 
+#. TRANS: Button text to save feed mirror settings.
+msgctxt "BUTTON"
 msgid "Save"
-msgstr "Sauvegarder"
+msgstr "Enregistrer"
 
+#. TRANS: Button text to stop mirroring a feed.
+msgctxt "BUTTON"
 msgid "Stop mirroring"
 msgstr "Arrêter le miroir"
 
+#. TRANS: Name for possible feed provider.
 msgid "Twitter"
 msgstr "Twitter"
 
+#. TRANS: Name for possible feed provider.
 msgid "RSS or Atom feed"
 msgstr "Flux RSS ou Atom"
 
+#. TRANS: Heading for feed mirroring selection form.
 msgid "Select a feed provider"
 msgstr "Sélectionner un fournisseur de flux"

@@ -38,9 +38,11 @@ class ActivityContext
     public $replyToUrl;
     public $location;
     public $attention = array();
+    public $attentionType = array();
     public $conversation;
     public $forwardID; // deprecated, use ActivityVerb::SHARE instead
     public $forwardUrl; // deprecated, use ActivityVerb::SHARE instead
+    public $scope;
 
     const THR     = 'http://purl.org/syndication/thread/1.0';
     const GEORSS  = 'http://www.georss.org/georss';
@@ -167,10 +169,14 @@ class ActivityContext
         $tos = array();
 
         foreach ($this->attention as $attnUrl) {
+            if (array_key_exists($attnUrl, $this->attentionType)) {
+                $type = ActivityObject::canonicalType($this->attentionType[$attnUrl]);
+            } else {
+                $type = ActivityObject::canonicalType(ActivityObject::PERSON);
+            }
             $to = array(
-                'objectType' => 'person',
-                'id'         => $attnUrl,
-                'url'        => $attnUrl
+                'objectType' => $type,
+                'id'         => $attnUrl
             );
             $tos[] = $to;
         }

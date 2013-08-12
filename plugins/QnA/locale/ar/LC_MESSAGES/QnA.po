@@ -1,0 +1,313 @@
+# Translation of StatusNet - QnA to Arabic (العربية)
+# Exported from translatewiki.net
+#
+# Author: OsamaK
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - QnA\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:43+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-qna\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+#. TRANS: Title for Question page.
+msgid "New question"
+msgstr "سؤال جديد"
+
+#. TRANS: Client exception thrown trying to create a Question while not logged in.
+msgid "You must be logged in to post a question."
+msgstr "يجب أن تلج لتنشر سؤالا."
+
+#. TRANS: Client exception thrown trying to create a question without a title.
+msgid "Question must have a title."
+msgstr "يجب أن يكون للسؤال عنوان."
+
+#. TRANS: Page title after sending a notice.
+msgid "Question posted"
+msgstr "نُشر السؤال"
+
+#. TRANS: Client exception thrown when requesting a non-existing answer.
+#. TRANS: Did we used to have it, and it got deleted?
+msgid "No such answer."
+msgstr ""
+
+#. TRANS: Client exception thrown when requesting an answer that has no connected question.
+msgid "No question for this answer."
+msgstr ""
+
+#. TRANS: Client exception thrown when requesting answer data for a non-existing user.
+#. TRANS: Client exception thrown trying to view a question of a non-existing user.
+msgid "No such user."
+msgstr ""
+
+#. TRANS: Client exception thrown when requesting answer data for a user without a profile.
+#. TRANS: Server exception thrown trying to view a question for a user for which the profile could not be loaded.
+msgid "User without a profile."
+msgstr ""
+
+#. TRANS: Page title.
+#. TRANS: %1$s is the user who answered a question, %2$s is the question.
+#, php-format
+msgid "%1$s's answer to \"%2$s\""
+msgstr "إجابة %1$s ل\"%2$s\""
+
+#. TRANS: Page title for revising a question
+msgid "Revise answer"
+msgstr "راجع الإجابة"
+
+#. TRANS: Client exception thrown trying to answer a question while not logged in.
+msgid "You must be logged in to answer to a question."
+msgstr "يجب أن تلج لتجيب سؤالا."
+
+#. TRANS: Client exception thrown trying to respond to a non-existing question.
+msgid "Invalid or missing answer."
+msgstr ""
+
+#. TRANS: Page title after sending an answer.
+#. TRANS: Page title for and answer to a question.
+#. TRANS: Form legend for showing the answer.
+msgid "Answer"
+msgstr "إجابة"
+
+#. TRANS: Form title for sending an answer.
+msgctxt "TITLE"
+msgid "Answer"
+msgstr "أجب"
+
+#. TRANS: Client exception thrown trying to view a non-existing question.
+msgid "No such question."
+msgstr ""
+
+#. TRANS: Client exception thrown trying to view a non-existing question notice.
+msgid "No such question notice."
+msgstr ""
+
+#. TRANS: Page title for a question.
+#. TRANS: %1$s is the nickname of the user who asked the question, %2$s is the question.
+#, php-format
+msgid "%1$s's question: %2$s"
+msgstr "سؤال %1$s: %2$s"
+
+#. TRANS: Page title for close a question
+msgid "Close question"
+msgstr "أغلق السؤال"
+
+#. TRANS: Client exception thrown trying to close a question when not logged in
+msgid "You must be logged in to close a question."
+msgstr ""
+
+#. TRANS: Client exception thrown trying to respond to a non-existing question.
+msgid "Invalid or missing question."
+msgstr ""
+
+#. TRANS: Exception thrown trying to close another user's question.
+msgid "You did not ask this question."
+msgstr ""
+
+#. TRANS: Page title after sending an answer.
+#. TRANS: Page title after sending in a vote for a question or answer.
+msgid "Answers"
+msgstr "الإجابات"
+
+#. TRANS: Page title after an AJAX error occurs on the post answer page.
+msgid "Ajax Error"
+msgstr "خطأ أجاكس"
+
+#. TRANS: Title for form to send answer to a question.
+msgctxt "TITLE"
+msgid "Your answer"
+msgstr "إجابتك"
+
+#. TRANS: Error message displayed when an answer has no content.
+#. TRANS: Error message displayed when answer data is not present.
+msgid "Answer data is missing."
+msgstr ""
+
+#. TRANS: Plugin description.
+msgid "Question and Answers micro-app."
+msgstr ""
+
+#. TRANS: Application title.
+msgctxt "TITLE"
+msgid "Question"
+msgstr "سؤال"
+
+#. TRANS: Exception thrown when there are too many activity objects.
+msgid "Too many activity objects."
+msgstr ""
+
+#. TRANS: Exception thrown when an incorrect object type is encountered.
+msgid "Wrong type for object."
+msgstr ""
+
+#. TRANS: Exception thrown when answering a non-existing question.
+msgid "Answer to unknown question."
+msgstr ""
+
+#. TRANS: Exception thrown when an object type is encountered that cannot be handled.
+msgid "Unknown object type."
+msgstr ""
+
+#. TRANS: Exception thrown when requesting a non-existing question notice.
+msgid "Unknown question notice."
+msgstr ""
+
+#. TRANS: Exception thrown when performing an unexpected action on a question.
+#. TRANS: %s is the unpexpected object type.
+#, php-format
+msgid "Unexpected type for QnA plugin: %s."
+msgstr ""
+
+#. TRANS: Error message displayed when question data is not present.
+msgid "Question data is missing."
+msgstr ""
+
+#. TRANS: Placeholder value for a possible answer to a question
+#. TRANS: by the logged in user.
+msgid "Your answer..."
+msgstr "إجابتك..."
+
+#. TRANS: Link description for link to full notice text if it is longer than
+#. TRANS: what will be dispplayed.
+msgid "…"
+msgstr "…"
+
+#. TRANS: Title for link that is an ellipsis in English.
+msgid "more..."
+msgstr "مزيد..."
+
+#. TRANS: Exception thown when getting a question with a non-existing ID.
+#. TRANS: %s is the non-existing question ID.
+#, php-format
+msgid "No question with ID %s"
+msgstr ""
+
+#. TRANS: Exception thown when getting a profile with a non-existing ID.
+#. TRANS: %s is the non-existing profile ID.
+#. TRANS: Exception trown when getting a profile for a non-existing ID.
+#. TRANS: %s is the provided profile ID.
+#, php-format
+msgid "No profile with ID %s"
+msgstr ""
+
+#. TRANS: %s is the number of answer revisions.
+#, php-format
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] ""
+msgstr[1] "مراجعة واحدة"
+msgstr[2] "مراجعتين"
+msgstr[3] "%s مراجعات"
+msgstr[4] "%s مراجعة"
+msgstr[5] ""
+
+#. TRANS: Text for a question that was answered.
+#. TRANS: %1$s is the user that answered, %2$s is the question title,
+#. TRANS: %2$s is the answer content.
+#, php-format
+msgid "%1$s answered the question \"%2$s\": %3$s"
+msgstr ""
+
+#. TRANS: Text for a question that was answered.
+#. TRANS: %s is the question title.
+#. TRANS: Rendered version of the notice content answering a question.
+#. TRANS: %s a link to the question with question title as the link content.
+#, php-format
+msgid "answered \"%s\""
+msgstr "أجاب \"%s\""
+
+#. TRANS: Number of given answers to a question.
+#. TRANS: %s is the number of given answers.
+#, php-format
+msgid "%s answer"
+msgid_plural "%s answers"
+msgstr[0] "لا توجد إجابات"
+msgstr[1] "جواب واحد"
+msgstr[2] "جوابان"
+msgstr[3] "%s إجابات"
+msgstr[4] "%s إجابة"
+msgstr[5] ""
+
+#. TRANS: Notification that a question cannot be answered anymore because it is closed.
+msgid "This question is closed."
+msgstr "هذا السؤال مغلق."
+
+#. TRANS: Rendered version of the notice content creating a question.
+#. TRANS: %s a link to the question as link description.
+#, php-format
+msgid "Question: %s"
+msgstr "سؤال: %s"
+
+#. TRANS: Button text for submitting a revised answer.
+#. TRANS: Button text for submitting a poll response.
+msgctxt "BUTTON"
+msgid "Submit"
+msgstr "أرسل"
+
+#. TRANS: Field label.
+msgid "Enter your answer"
+msgstr "أدخل إجابتك"
+
+#. TRANS: Button text for submitting a poll response.
+msgctxt "BUTTON"
+msgid "Answer"
+msgstr "أجب"
+
+#. TRANS: Field label for a new question.
+msgctxt "LABEL"
+msgid "Title"
+msgstr "العنوان"
+
+#. TRANS: Field title for a new question.
+msgid "The title of your question."
+msgstr "عنوان سؤالك."
+
+#. TRANS: Field label for question details.
+msgctxt "LABEL"
+msgid "Description"
+msgstr "الوصف"
+
+#. TRANS: Field title for question details.
+msgid "Your question in detail."
+msgstr "سؤالك بالتفصيل."
+
+#. TRANS: Button text for saving a new question.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "احفظ"
+
+#. TRANS: Form legend for revising the answer.
+msgctxt "LEGEND"
+msgid "Question"
+msgstr "سؤال"
+
+#. TRANS: Button text for closing a question.
+msgctxt "BUTTON"
+msgid "Close"
+msgstr "أغلق"
+
+#. TRANS: Title for button text for closing a question.
+msgid "Close the question to no one can answer it anymore."
+msgstr ""
+
+#. TRANS: Button text for marking an answer as "best".
+msgctxt "BUTTON"
+msgid "Best"
+msgstr "الأفضل"
+
+#. TRANS: Title for button text marking an answer as "best".
+msgid "Mark this answer as the best answer."
+msgstr "علّم هذه الإجابة أفضل إجابة."

@@ -24,7 +24,7 @@
  * @author    Evan Prodromou <evan@status.net>
  * @author    Zach Copley <zach@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2008-2010 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -92,7 +92,6 @@ class PathsadminpanelAction extends AdminPanelAction
                                  'site' => array('path', 'locale_path', 'ssl', 'sslserver'),
                                  'theme' => array('server', 'dir', 'path', 'sslserver', 'sslpath'),
                                  'avatar' => array('server', 'dir', 'path'),
-                                 'background' => array('server', 'dir', 'path', 'sslserver', 'sslpath'),
                                  'attachments' => array('server', 'dir', 'path', 'sslserver', 'sslpath')
                                  );
 
@@ -161,14 +160,6 @@ class PathsadminpanelAction extends AdminPanelAction
             // TRANS: Client error in Paths admin panel.
             // TRANS: %s is the avatar directory that could not be written to.
             $this->clientError(sprintf(_('Avatar directory not writable: %s.'), $values['avatar']['dir']));
-        }
-
-        // Validate background dir
-
-        if (empty($values['background']['dir']) || !is_writable($values['background']['dir'])) {
-            // TRANS: Client error in Paths admin panel.
-            // TRANS: %s is the background directory that could not be written to.
-            $this->clientError(sprintf(_('Background directory not writable: %s.'), $values['background']['dir']));
         }
 
         // Validate locales dir
@@ -364,61 +355,7 @@ class PathsAdminPanelForm extends AdminForm
         $this->out->elementEnd('fieldset');
 
         $this->out->elementStart('fieldset', array('id' =>
-                                                   'settings_design_background-paths'));
-        // TRANS: Fieldset legend in Paths admin panel.
-        $this->out->element('legend', null, _('Backgrounds'));
-        $this->out->elementStart('ul', 'form_data');
-
-        $this->li();
-        $this->input('server',
-                     // TRANS: Field label in Paths admin panel.
-                     _('Server'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Server for backgrounds.'),
-                     'background');
-        $this->unli();
-
-        $this->li();
-        $this->input('path',
-                     // TRANS: Field label in Paths admin panel.
-                     _('Path'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Web path to backgrounds.'),
-                     'background');
-        $this->unli();
-
-        $this->li();
-        $this->input('sslserver',
-                     // TRANS: Field label in Paths admin panel.
-                     _('SSL server'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Server for backgrounds on SSL pages.'),
-                     'background');
-        $this->unli();
-
-        $this->li();
-        $this->input('sslpath',
-                     // TRANS: Field label in Paths admin panel.
-                     _('SSL path'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Web path to backgrounds on SSL pages.'),
-                     'background');
-        $this->unli();
-
-        $this->li();
-        $this->input('dir',
-                     // TRANS: Field label in Paths admin panel.
-                     _('Directory'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Directory where backgrounds are located.'),
-                     'background');
-        $this->unli();
-
-        $this->out->elementEnd('ul');
-        $this->out->elementEnd('fieldset');
-
-        $this->out->elementStart('fieldset', array('id' =>
-                                                   'settings_design_attachments-paths'));
+                                                   'settings_attachments-paths'));
 
         // TRANS: Fieldset legens in Paths admin panel.
         $this->out->element('legend', null, _('Attachments'));
@@ -516,7 +453,7 @@ class PathsAdminPanelForm extends AdminForm
         // TRANS: Button text to store form data in the Paths admin panel.
         $this->out->submit('save', _m('BUTTON','Save'), 'submit',
                            // TRANS: Button title text to store form data in the Paths admin panel.
-                           'save', _('Save paths'));
+                           'save', _('Save path settings.'));
     }
 
     /**

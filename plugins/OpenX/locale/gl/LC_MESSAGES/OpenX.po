@@ -1,0 +1,94 @@
+# Translation of StatusNet - OpenX to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - OpenX\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:28+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:48:56+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-openx\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Menu item title.
+msgid "OpenX configuration."
+msgstr "Configuración do OpenX."
+
+#. TRANS: Menu item for site administration
+msgid "OpenX"
+msgstr "OpenX"
+
+#. TRANS: Plugin description.
+msgid "Plugin for <a href=\"http://www.openx.org/\">OpenX Ad Server</a>."
+msgstr ""
+"Complemento para o <a href=\"http://www.openx.org/\">servidor de publicidade "
+"OpenX</a>."
+
+#. TRANS: Page title for OpenX admin panel.
+msgctxt "TITLE"
+msgid "OpenX"
+msgstr "OpenX"
+
+#. TRANS: Instructions for OpenX admin panel.
+msgid "OpenX settings for this StatusNet site"
+msgstr "Configuración de OpenX para este sitio StatusNet"
+
+#. TRANS: Form label in OpenX admin panel.
+msgid "Ad script URL"
+msgstr "Enderezo URL da escritura do anuncio"
+
+#. TRANS: Tooltip for form label in OpenX admin panel.
+msgid "Script URL"
+msgstr "Enderezo URL da escritura"
+
+#. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
+msgid "Medium rectangle"
+msgstr "Rectángulo mediano"
+
+#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
+msgid "Medium rectangle zone"
+msgstr "Zona rectangular mediana"
+
+#. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
+msgid "Rectangle"
+msgstr "Rectángulo"
+
+#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
+msgid "Rectangle zone"
+msgstr "Zona rectangular"
+
+#. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
+msgid "Leaderboard"
+msgstr "Taboleiro de logros"
+
+#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
+msgid "Leaderboard zone"
+msgstr "Zona do taboleiro de logros"
+
+#. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
+msgid "Skyscraper"
+msgstr "Rañaceos"
+
+#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
+msgid "Wide skyscraper zone"
+msgstr "Zona do rañaceos"
+
+#. TRANS: Submit button text in OpenX admin panel.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Gardar"
+
+#. TRANS: Submit button title in OpenX admin panel.
+msgid "Save OpenX settings."
+msgstr "Gardar a configuración do OpenX."

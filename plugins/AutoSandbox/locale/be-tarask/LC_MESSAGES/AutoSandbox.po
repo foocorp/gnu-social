@@ -1,4 +1,4 @@
-# Translation of StatusNet - AutoSandbox to Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+# Translation of StatusNet - AutoSandbox to Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
 # Exported from translatewiki.net
 #
 # Author: EugeneZelenko
@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AutoSandbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:41+0000\n"
-"Language-Team: Belarusian (Taraškievica orthography) <http://translatewiki."
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:43+0000\n"
+"Language-Team: Belarusian (Taraškievica orthography) <https://translatewiki."
 "net/wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:59+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-plugin-autosandbox\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"

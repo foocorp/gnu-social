@@ -1,4 +1,4 @@
-# Translation of StatusNet - Sample to Russian (Русский)
+# Translation of StatusNet - Sample to Russian (русский)
 # Exported from translatewiki.net
 #
 # Author: Eleferen
@@ -10,33 +10,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Sample\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:12+0000\n"
-"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:55+0000\n"
+"Language-Team: Russian <https://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:20+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-sample\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Page title for sample plugin.
+#. TRANS: Menu item in sample plugin.
 msgid "Hello"
 msgstr "Привет"
 
+#. TRANS: Page title for sample plugin. %s is a user nickname.
 #, php-format
 msgid "Hello, %s!"
 msgstr "Здравствуйте, %s!"
 
+#. TRANS: Message in sample plugin.
 msgid "Hello, stranger!"
 msgstr "Привет, незнакомец!"
 
+#. TRANS: Message in sample plugin. %s is a user nickname.
 #, php-format
 msgid "Hello, %s"
 msgstr "Здравствуйте,%s"
 
+#. TRANS: Message in sample plugin.
+#. TRANS: %d is the number of times a user is greeted.
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
@@ -44,9 +51,11 @@ msgstr[0] "Я вас попривестствовал %d раз."
 msgstr[1] "Я вас поприветствовал %d раза."
 msgstr[2] "Я вас попривестствовал %d раз."
 
+#. TRANS: Menu item title in sample plugin.
 msgid "A warm greeting"
 msgstr ""
 
+#. TRANS: Plugin description.
 msgid "A sample plugin to show basics of development for new hackers."
 msgstr ""
 

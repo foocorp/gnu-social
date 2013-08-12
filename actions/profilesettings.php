@@ -185,7 +185,7 @@ class ProfilesettingsAction extends SettingsAction
             $this->checkbox('autosubscribe',
                             // TRANS: Checkbox label in form for profile settings.
                             _('Automatically subscribe to whoever '.
-                              'subscribes to me (best for non-humans).'),
+                              'subscribes to me (best for non-humans)'),
                             ($this->arg('autosubscribe')) ?
                             $this->boolean('autosubscribe') : $user->autosubscribe);
             $this->elementEnd('li');

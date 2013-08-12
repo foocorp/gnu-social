@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,33 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: WikiHowProfilePlugin.php:59
+#. TRANS: Plugin description.
+#: WikiHowProfilePlugin.php:60
 msgid ""
 "Fetches avatar and other profile information for WikiHow users when setting "
 "up an account via OpenID."
 msgstr ""
 
-#: WikiHowProfilePlugin.php:171
+#. TRANS: Exception thrown when fetching a WikiHow profile page fails.
+#: WikiHowProfilePlugin.php:126
+msgid "WikiHow profile page fetch failed."
+msgstr ""
+
+#. TRANS: Exception thrown when parsing a WikiHow profile page fails.
+#: WikiHowProfilePlugin.php:143
+msgid "HTML parse failure during check for WikiHow avatar."
+msgstr ""
+
+#. TRANS: Server exception thrown when an avatar URL is invalid.
+#. TRANS: %s is the invalid avatar URL.
+#: WikiHowProfilePlugin.php:176
 #, php-format
 msgid "Invalid avatar URL %s."
 msgstr ""
 
-#: WikiHowProfilePlugin.php:179
+#. TRANS: Exception thrown when fetching an avatar from a URL fails.
+#. TRANS: %s is a URL.
+#: WikiHowProfilePlugin.php:186
 #, php-format
 msgid "Unable to fetch avatar from %s."
 msgstr ""

@@ -1,6 +1,7 @@
 # Translation of StatusNet - UserLimit to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: ChrisiPK
 # Author: Giftpflanze
 # Author: The Evil IP address
 # --
@@ -10,22 +11,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserLimit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:49+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:25+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:51+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-userlimit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Error message given if creating a new user is not possible because a limit has been reached.
+#. TRANS: %d is the user limit (also available for plural).
 #, php-format
-msgid "Cannot register; maximum number of users (%d) reached."
-msgstr ""
+msgid ""
+"Cannot register because the maximum number of users (%d) for this site was "
+"reached."
+msgid_plural ""
+"Cannot register because the maximum number of users (%d) for this site was "
+"reached."
+msgstr[0] ""
+"Registrierung fehlgeschlagen; maximale Anzahl von Benutzern (%d) erreicht."
+msgstr[1] ""
 "Registrierung fehlgeschlagen; maximale Anzahl von Benutzern (%d) erreicht."
 
+#. TRANS: Plugin description.
 msgid "Limit the number of users who can register."
 msgstr "Beschränkung der Anzahl von Benutzern, die sich registrieren können."

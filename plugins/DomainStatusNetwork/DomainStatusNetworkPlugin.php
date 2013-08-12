@@ -97,8 +97,15 @@ class DomainStatusNetworkPlugin extends Plugin
 
         switch ($cls)
         {
+        case 'GlobalregisterAction':
+        case 'GloballoginAction':
+        case 'GlobalrecoverAction':
+            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            return false;
         case 'DomainStatusNetworkInstaller':
-            include_once $dir . '/' . strtolower($cls) . '.php';
+        case 'GlobalApiAction':
+        case 'FreeEmail':
+            include_once $dir . '/lib/' . strtolower($cls) . '.php';
             return false;
         default:
             return true;
@@ -133,6 +140,26 @@ class DomainStatusNetworkPlugin extends Plugin
         }
         $usn = Unavailable_status_network::staticGet('nickname', $nickname);
         if (!empty($usn)) {
+            return false;
+        }
+        return true;
+    }
+
+    function onRouterInitialized($m)
+    {
+        if (common_config('globalapi', 'enabled')) {
+            foreach (array('register', 'login', 'recover') as $method) {
+                $m->connect('api/statusnet/global/'.$method,
+                            array('action' => 'global'.$method));
+            }
+        }
+        return true;
+    }
+
+    function onLoginAction($action, &$login) {
+        $this->debug($action);
+        if (in_array($action, array('globalregister', 'globallogin', 'globalrecover'))) {
+            $login = true;
             return false;
         }
         return true;
@@ -194,6 +221,107 @@ class DomainStatusNetworkPlugin extends Plugin
                             // TRANS: Plugin description.
                             _m('A plugin that maps a single status_network to an email domain.'));
         return true;
+    }
+
+    static function userExists($email)
+    {
+        $domain = self::toDomain($email);
+
+        $sn = self::siteForDomain($domain);
+
+        if (empty($sn)) {
+            return false;
+        }
+
+        StatusNet::switchSite($sn->nickname);
+
+        $user = User::staticGet('email', $email);
+
+        return !empty($user);
+    }
+
+    static function registerEmail($email)
+    {
+        $domain = self::toDomain($email);
+
+        if (FreeEmail::isFree($domain)) {
+            throw new ClientException(_("Use your work email."));
+        }
+
+        $sn = self::siteForDomain($domain);
+
+        if (empty($sn)) {
+            $installer = new DomainStatusNetworkInstaller($domain);
+
+            // Do the thing
+            $installer->main();
+
+            $sn = $installer->getStatusNetwork();
+
+            $config = $installer->getConfig();
+
+            Status_network::$wildcard = $config['WILDCARD'];
+        }
+
+        StatusNet::switchSite($sn->nickname);
+
+        $confirm = EmailRegistrationPlugin::registerEmail($email);
+
+        return $confirm;
+    }
+
+    static function login($email, $password)
+    {
+        $domain = self::toDomain($email);
+
+        $sn = self::siteForDomain($domain);
+
+        if (empty($sn)) {
+            throw new ClientException(_("No such site."));
+        }
+
+        StatusNet::switchSite($sn->nickname);
+
+        $user = common_check_user($email, $password);
+
+        if (empty($user)) {
+            // TRANS: Form validation error displayed when trying to log in with incorrect credentials.
+            throw new ClientException(_('Incorrect username or password.'));
+        }
+
+        $loginToken = Login_token::makeNew($user);
+
+        if (empty($loginToken)) {
+            throw new ServerException(sprintf(_('Could not create new login token for user %s'), $user->nickname));
+        }
+
+        $url = common_local_url('otp', array('user_id' => $loginToken->user_id,
+                                             'token' => $loginToken->token));
+
+        if (empty($url)) {
+            throw new ServerException(sprintf(_('Could not create new OTP URL for user %s'), $user->nickname));
+        }
+
+        return $url;
+    }
+
+    static function recoverPassword($email)
+    {
+        $domain = self::toDomain($email);
+
+        $sn = self::siteForDomain($domain);
+
+        if (empty($sn)) {
+            throw new NoSuchUserException(array('email' => $email));
+        }
+
+        StatusNet::switchSite($sn->nickname);
+
+        $user = User::staticGet('email', $email);
+        
+        if (empty($user)) {
+            throw new ClientException(_('No such user.'));
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 # Translation of StatusNet - EmailRegistration to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: Majid Al-Dharrab
 # Author: OsamaK
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,27 +10,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailRegistration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:13+0000\n"
-"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:22+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-emailregistration\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
 "2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
 "99) ? 4 : 5 ) ) ) );\n"
 
+#. TRANS: Client exception trown when registration by e-mail is not allowed.
+msgid "Registration not allowed."
+msgstr "لا يُسمح بالتسجيل."
+
+#. TRANS: Client exception trown when trying to register without an invitation.
+msgid "Sorry, only invited people can register."
+msgstr "عذرًا، الأشخاص المدعوون وحدهم يستطيعون التسجيل."
+
 #. TRANS: Client exception thrown when no confirmation code was provided.
 msgid "No confirmation code."
 msgstr "لا رمز تأكيد."
 
+#. TRANS: Client exception trown when using an invitation multiple times.
+msgid "Invitation already used."
+msgstr ""
+
 #. TRANS: Client exception thrown when given confirmation code was not issued.
 msgid "No such confirmation code."
-msgstr "لا رمز تأكيد كهذا."
+msgstr "رمز التأكيد هذا غير موجود."
 
 #. TRANS: Title for registration page.
 msgctxt "TITLE"
@@ -51,6 +64,11 @@ msgstr ""
 "أرسل بريد إلكتروني إلى %s لتأكييد الحساب. راجع صندوق البريد الإلكتروني "
 "الوارد من أجل التعليمات."
 
+#. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
+#, fuzzy
+msgid "No confirmation thing."
+msgstr "لا رمز تأكيد."
+
 #. TRANS: Error text when trying to register without agreeing to the terms.
 msgid "You must accept the terms of service and privacy policy to register."
 msgstr "يجب أن تقبل بشروط الخدمة وبسياسة الخصوصية لتسجل."
@@ -66,6 +84,10 @@ msgstr "يجب أن تكون كلمة السر 6 حروف أو أكثر."
 #. TRANS: Error text when trying to register without providing the same password twice.
 msgid "Passwords do not match."
 msgstr "كلمتا السر غير متطابقتين."
+
+#. TRANS: Exception trown when using an invitation multiple times.
+msgid "Failed to register user."
+msgstr "فشل تسجيل المستخدم."
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.
@@ -157,20 +179,8 @@ msgstr "ليس عنوان بريد صالح."
 #. TRANS: %s is the StatusNet sitename.
 #, php-format
 msgid "Welcome to %s"
-msgstr ""
+msgstr "مرحبا بكم في %s"
 
 #. TRANS: Plugin description.
 msgid "Use email only for registration."
 msgstr "استخدام البريد فقط للتسجيل."
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not save new greeting count for %d."
-msgstr ""
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not increment greeting count for %d."
-msgstr ""

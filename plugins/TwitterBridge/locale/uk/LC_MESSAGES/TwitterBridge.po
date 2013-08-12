@@ -1,4 +1,4 @@
-# Translation of StatusNet - TwitterBridge to Ukrainian (Українська)
+# Translation of StatusNet - TwitterBridge to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
@@ -9,22 +9,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:46+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:22+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:51:38+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Title for page with Twitter integration settings.
 msgid "Twitter settings"
 msgstr "Налаштування Twitter"
 
+#. TRANS: Instructions for page with Twitter integration settings.
 msgid ""
 "Connect your Twitter account to share your updates with your Twitter friends "
 "and vice-versa."
@@ -32,27 +34,29 @@ msgstr ""
 "Підключіть ваш акаунт Twitter, щоб ділитися новими дописами з друзями в "
 "Twitter і навпаки."
 
+#. TRANS: Fieldset legend.
 msgid "Twitter account"
 msgstr "Акаунт Twitter"
 
+#. TRANS: Form note when a Twitter account has been connected.
 msgid "Connected Twitter account"
 msgstr "Під’єднаний акаунт Twitter"
 
+#. TRANS: Fieldset legend.
 msgid "Disconnect my account from Twitter"
 msgstr "Від’єднати мій акаунт від Twitter"
 
-msgid "Disconnecting your Twitter could make it impossible to log in! Please "
+#. TRANS: Form guide. %s is a URL to the password settings.
+#. TRANS: This message contains a Markdown link in the form [description](link).
+#, fuzzy, php-format
+msgid ""
+"Disconnecting your Twitter account could make it impossible to log in! "
+"Please [set a password](%s) first."
 msgstr ""
 "Якщо ви від’єднаєте свій Twitter, то це унеможливить вхід до системи у "
 "майбутньому! Будь ласка, "
 
-msgid "set a password"
-msgstr "встановіть пароль"
-
-msgid " first."
-msgstr " спочатку."
-
-#. TRANS: %1$s is the current website name.
+#. TRANS: Form instructions. %1$s is the StatusNet sitename.
 #, php-format
 msgid ""
 "Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
@@ -61,83 +65,171 @@ msgstr ""
 "Зберегти ваш акаунт %1$s, але від’єднати його від Twitter. Ви можете "
 "використовувати пароль від %1$s для входу на сайт."
 
+#. TRANS: Button text for disconnecting a Twitter account.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Disconnect"
 msgstr "Від’єднати"
 
+#. TRANS: Fieldset legend.
 msgid "Preferences"
 msgstr "Налаштування"
 
+#. TRANS: Checkbox label.
 msgid "Automatically send my notices to Twitter."
 msgstr "Автоматично пересилати мої дописи на Twitter."
 
+#. TRANS: Checkbox label.
 msgid "Send local \"@\" replies to Twitter."
 msgstr "Надіслати локальні «@» відповіді на Twitter."
 
+#. TRANS: Checkbox label.
 msgid "Subscribe to my Twitter friends here."
 msgstr "Підписатись до моїх друзів з Twitter тут."
 
+#. TRANS: Checkbox label.
 msgid "Import my friends timeline."
 msgstr "Імпортувати стрічку дописів моїх друзів."
 
+#. TRANS: Button text for saving Twitter integration settings.
+#. TRANS: Button text for saving the administrative Twitter bridge settings.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зберегти"
 
+#. TRANS: Button text for adding Twitter integration.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Add"
 msgstr "Додати"
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Виникли певні проблеми з токеном сесії. Спробуйте знов, будь ласка."
 
+#. TRANS: Client error displayed when the submitted form contains unexpected data.
 msgid "Unexpected form submission."
 msgstr "Несподіване представлення форми."
 
+#. TRANS: Client error displayed when trying to remove a connected Twitter account when there isn't one connected.
 msgid "No Twitter connection to remove."
 msgstr "Не виявлено з’єднань з Twitter для видалення."
 
-msgid "Couldn't remove Twitter user."
+#. TRANS: Server error displayed when trying to remove a connected Twitter account fails.
+#, fuzzy
+msgid "Could not remove Twitter user."
 msgstr "Не вдається видалити користувача Twitter."
 
+#. TRANS: Success message displayed after disconnecting a Twitter account.
 msgid "Twitter account disconnected."
 msgstr "Акаунт Twitter від’єднано."
 
-msgid "Couldn't save Twitter preferences."
+#. TRANS: Server error displayed when saving Twitter integration preferences fails.
+#, fuzzy
+msgid "Could not save Twitter preferences."
 msgstr "Не можу зберегти налаштування Twitter."
 
+#. TRANS: Success message after saving Twitter integration preferences.
 msgid "Twitter preferences saved."
 msgstr "Налаштування Twitter збережено."
 
+#. TRANS: Form validation error displayed when the checkbox to agree to the license has not been checked.
 msgid "You cannot register if you do not agree to the license."
 msgstr "Ви не зможете зареєструватись, якщо не погодитесь з умовами ліцензії."
 
+#. TRANS: Form validation error displayed when an unhandled error occurs.
 msgid "Something weird happened."
 msgstr "Сталося щось незрозуміле."
 
+#. TRANS: Server error displayed when linking to a Twitter account fails.
 msgid "Could not link your Twitter account."
 msgstr "Не вдається прив’язати ваш акаунт Twitter."
 
-msgid "Couldn't link your Twitter account: oauth_token mismatch."
+#. TRANS: Server error displayed when linking to a Twitter account fails because of an incorrect oauth_token.
+#, fuzzy
+msgid "Could not link your Twitter account: oauth_token mismatch."
 msgstr ""
 "Не вдається підключити ваш акаунт Twitter: невідповідність oauth_token."
 
-msgid "Couldn't link your Twitter account."
-msgstr "Не вдається підключити ваш акаунт Twitter."
-
-#, php-format
+#. TRANS: Page instruction. %s is the StatusNet sitename.
+#, fuzzy, php-format
 msgid ""
-"This is the first time you've logged into %s so we must connect your Twitter "
-"account to a local account. You can either create a new account, or connect "
-"with your existing account, if you have one."
+"This is the first time you have logged into %s so we must connect your "
+"Twitter account to a local account. You can either create a new account, or "
+"connect with your existing account, if you have one."
 msgstr ""
 "Ви вперше увійшли до сайту %s, отже ми мусимо приєднати ваш акаунт Twitter "
 "до акаунту на даному сайті. Ви маєте можливість створити новий акаунт або "
 "використати такий, що вже існує, якщо він у вас є."
 
+#. TRANS: Page title.
 msgid "Twitter Account Setup"
 msgstr "Створення акаунту за допомогою Twitter"
 
+#. TRANS: Fieldset legend.
 msgid "Connection options"
 msgstr "Опції з’єднання"
 
+#. TRANS: Fieldset legend.
+msgid "Create new account"
+msgstr "Створити новий акаунт"
+
+#. TRANS: Sub form introduction text.
+msgid "Create a new user with this nickname."
+msgstr "Створити нового користувача з цим нікнеймом."
+
+#. TRANS: Field label.
+msgid "New nickname"
+msgstr "Новий нікнейм"
+
+#. TRANS: Field title for nickname field.
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr "1-64 рядкові літери і цифри, ніякої пунктуації або інтервалів."
+
+#. TRANS: Field label.
+msgctxt "LABEL"
+msgid "Email"
+msgstr "Пошта"
+
+#. TRANS: Field title for e-mail address field.
+msgid "Used only for updates, announcements, and password recovery"
+msgstr ""
+"Використовується лише для надсилання оновлень, оголошень та відновлення "
+"пароля."
+
+#. TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Create"
+msgstr "Створити"
+
+#. TRANS: Fieldset legend.
+msgid "Connect existing account"
+msgstr "Приєднати акаунт, який вже існує"
+
+#. TRANS: Sub form introduction text.
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr ""
+"Якщо ви вже маєте акаунт, увійдіть з вашим ім’ям користувача та паролем, аби "
+"приєднати їх до Twitter."
+
+#. TRANS: Field label.
+msgid "Existing nickname"
+msgstr "Нікнейм, який вже існує"
+
+#. TRANS: Field label.
+msgid "Password"
+msgstr "Пароль"
+
+#. TRANS: Fieldset legend.
+msgid "License"
+msgstr ""
+
+#. TRANS: Text for license agreement checkbox.
+#. TRANS: %s is the license as configured for the StatusNet site.
 #, php-format
 msgid ""
 "My text and files are available under %s except this private data: password, "
@@ -146,119 +238,117 @@ msgstr ""
 "Мої дописи і файли доступні на умовах %s, окрім цих приватних даних: пароль, "
 "електронна адреса, адреса IM, телефонний номер."
 
-msgid "Create new account"
-msgstr "Створити новий акаунт"
-
-msgid "Create a new user with this nickname."
-msgstr "Створити нового користувача з цим нікнеймом."
-
-msgid "New nickname"
-msgstr "Новий нікнейм"
-
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
-msgstr "1-64 рядкові літери і цифри, ніякої пунктуації або інтервалів."
-
-msgctxt "LABEL"
-msgid "Email"
-msgstr "Пошта"
-
-msgid "Used only for updates, announcements, and password recovery"
-msgstr ""
-"Використовується лише для надсилання оновлень, оголошень та відновлення "
-"пароля."
-
-msgid "Create"
-msgstr "Створити"
-
-msgid "Connect existing account"
-msgstr "Приєднати акаунт, який вже існує"
-
-msgid ""
-"If you already have an account, login with your username and password to "
-"connect it to your Twitter account."
-msgstr ""
-"Якщо ви вже маєте акаунт, увійдіть з вашим ім’ям користувача та паролем, аби "
-"приєднати їх до Twitter."
-
-msgid "Existing nickname"
-msgstr "Нікнейм, який вже існує"
-
-msgid "Password"
-msgstr "Пароль"
-
+#. TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Під’єднати"
 
+#. TRANS: Client error displayed when trying to create a new user while creating new users is not allowed.
 msgid "Registration not allowed."
 msgstr "Реєстрацію не дозволено."
 
+#. TRANS: Client error displayed when trying to create a new user with an invalid invitation code.
 msgid "Not a valid invitation code."
 msgstr "Це не дійсний код запрошення."
 
+#. TRANS: Client error displayed when trying to create a new user with an invalid username.
 msgid "Nickname not allowed."
 msgstr "Нікнейм не допускається."
 
+#. TRANS: Client error displayed when trying to create a new user with a username that is already in use.
 msgid "Nickname already in use. Try another one."
 msgstr "Цей нікнейм вже використовується. Спробуйте інший."
 
+#. TRANS: Server error displayed when creating a new user has failed.
 msgid "Error registering user."
 msgstr "Помилка при реєстрації користувача."
 
+#. TRANS: Server error displayed when connecting a user to a Twitter user has failed.
+#. TRANS: Server error displayed connecting a user to a Twitter user has failed.
 msgid "Error connecting user to Twitter."
 msgstr "Помилка при підключенні користувача до Twitter."
 
+#. TRANS: Form validation error displayed when connecting an existing user to a Twitter user fails because
+#. TRANS: the provided username and/or password are incorrect.
 msgid "Invalid username or password."
 msgstr "Недійсне ім’я або пароль."
 
+#. TRANS: Page title for Twitter administration panel.
+#, fuzzy
+msgctxt "TITLE"
 msgid "Twitter"
 msgstr "Twitter"
 
+#. TRANS: Instructions for Twitter bridge administration page.
 msgid "Twitter bridge settings"
 msgstr "Налаштування містка з Twitter"
 
-msgid "Invalid consumer key. Max length is 255 characters."
+#. TRANS: Client error displayed when a consumer key is invalid because it is too long.
+#, fuzzy
+msgid "Invalid consumer key. Maximum length is 255 characters."
 msgstr "Невірний ключ споживача. Максимальна довжина — 255 символів."
 
-msgid "Invalid consumer secret. Max length is 255 characters."
+#. TRANS: Client error displayed when a consumer secret is invalid because it is too long.
+#, fuzzy
+msgid "Invalid consumer secret. Maximum length is 255 characters."
 msgstr "Невірний секретний код споживача. Максимальна довжина — 255 символів."
 
+#. TRANS: Fieldset legend for Twitter application settings.
 msgid "Twitter application settings"
 msgstr "Налаштування додатку для Twitter"
 
+#. TRANS: Field label for Twitter assigned consumer key.
 msgid "Consumer key"
 msgstr "Ключ споживача"
 
-msgid "Consumer key assigned by Twitter"
+#. TRANS: Field title for Twitter assigned consumer key.
+#, fuzzy
+msgid "The consumer key assigned by Twitter."
 msgstr "Ключ споживача, що він був наданий сервісом Twitter"
 
+#. TRANS: Field label for Twitter assigned consumer secret.
 msgid "Consumer secret"
 msgstr "Секретний код споживача"
 
-msgid "Consumer secret assigned by Twitter"
+#. TRANS: Field title for Twitter assigned consumer secret.
+#, fuzzy
+msgid "The consumer secret assigned by Twitter."
 msgstr "Секретний код споживача, що він був наданий сервісом Twitter"
 
-msgid "Note: a global consumer key and secret are set."
+#. TRANS: Form guide displayed when two required fields have already been provided.
+#, fuzzy
+msgid "Note: A global consumer key and secret are set."
 msgstr "Примітка: глобальний ключ споживача та секретний код встановлено."
 
+#. TRANS: Field label for Twitter application name.
 msgid "Integration source"
 msgstr "Джерело об’єднання"
 
-msgid "Name of your Twitter application"
+#. TRANS: Field title for Twitter application name.
+#, fuzzy
+msgid "The name of your Twitter application."
 msgstr "Назва вашого додатку для Twitter"
 
+#. TRANS: Fieldset legend for Twitter integration options.
 msgid "Options"
 msgstr "Параметри"
 
+#. TRANS: Checkbox label for global setting.
 msgid "Enable \"Sign-in with Twitter\""
 msgstr "Увімкнути «Увійти з допомогою Twitter»"
 
-msgid "Allow users to login with their Twitter credentials"
+#. TRANS: Checkbox title.
+#, fuzzy
+msgid "This allow users to login with their Twitter credentials."
 msgstr ""
 "Дозволити користувачам входити на сайт, використовуючи повноваження Twitter"
 
+#. TRANS: Checkbox label for global setting.
 msgid "Enable Twitter import"
 msgstr "Увімкнути імпорт з Twitter"
 
+#. TRANS: Checkbox title for global setting.
 msgid ""
 "Allow users to import their Twitter friends' timelines. Requires daemons to "
 "be manually configured."
@@ -266,18 +356,69 @@ msgstr ""
 "Дозволити користувачам імпортувати їхні стрічки дописів з Twitter. Це "
 "вимагає ручної настройки процесів типу «daemon»."
 
-msgid "Save Twitter settings"
-msgstr "Зберегти налаштування Twitter"
+#. TRANS: Button title for saving the administrative Twitter bridge settings.
+#, fuzzy
+msgid "Save the Twitter bridge settings."
+msgstr "Налаштування містка з Twitter"
 
-msgid "Login or register using Twitter"
+#. TRANS: Server exception thrown when an invalid URL scheme is detected.
+msgid "Invalid URL scheme for HTTP stream reader."
+msgstr ""
+
+#. TRANS: Exception thrown when input from an inexpected socket is encountered.
+msgid "Got input from unexpected socket!"
+msgstr ""
+
+#. TRANS: Exception thrown when an invalid state is encountered in handleLine.
+#. TRANS: %s is the invalid state.
+#, php-format
+msgid "Invalid state in handleLine: %s."
+msgstr ""
+
+#. TRANS: Exception thrown when an invalid response line is encountered.
+#. TRANS: %s is the invalid line.
+#, php-format
+msgid "Invalid HTTP response line: %s."
+msgstr ""
+
+#. TRANS: Exception thrown when an invalid response line part is encountered.
+#. TRANS: %1$s is the chunk, %2$s is the line.
+#, php-format
+msgid "Invalid HTTP response line chunk \"%1$s\": %2$s."
+msgstr ""
+
+#. TRANS: Exception thrown when an invalid response code is encountered.
+#. TRANS: %1$s is the response code, %2$s is the line.
+#, php-format
+msgid "Bad HTTP response code %1$s: %2$s."
+msgstr ""
+
+#. TRANS: Menu item in login navigation.
+#. TRANS: Menu item in connection settings navigation.
+#, fuzzy
+msgctxt "MENU"
+msgid "Twitter"
+msgstr "Twitter"
+
+#. TRANS: Title for menu item in login navigation.
+#, fuzzy
+msgid "Login or register using Twitter."
 msgstr "Увійти або зареєструватись з Twitter"
 
+#. TRANS: Title for menu item in connection settings navigation.
 msgid "Twitter integration options"
 msgstr "Параметри інтеграції з Twitter"
 
-msgid "Twitter bridge configuration"
+#. TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
+msgid "Twitter"
+msgstr "Twitter"
+
+#. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
+#, fuzzy
+msgid "Twitter bridge configuration page."
 msgstr "Налаштування містка з Twitter"
 
+#. TRANS: Plugin description.
 msgid ""
 "The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
 "with <a href=\"http://twitter.com/\">Twitter</a>."
@@ -285,15 +426,21 @@ msgstr ""
 "Додаток TwitterBridge дозволяє інтегрувати StatusNet-сумісний сайт з <a href="
 "\"http://twitter.com/\">Twitter</a>, встановлюючи так званий «місток»."
 
+#. TRANS: Client error displayed when trying to log in using Twitter while already logged in to StatusNet.
 msgid "Already logged in."
 msgstr "Тепер ви увійшли."
 
+#. TRANS: Title for login using Twitter page.
+#, fuzzy
+msgctxt "TITLE"
 msgid "Twitter Login"
 msgstr "Вхід Twitter"
 
+#. TRANS: Instructions for login using Twitter page.
 msgid "Login with your Twitter account"
 msgstr "Увійти за допомогою акаунту Twitter"
 
+#. TRANS: Alternative text for "sign in with Twitter" image.
 msgid "Sign in with Twitter"
 msgstr "Увійти з акаунтом Twitter"
 

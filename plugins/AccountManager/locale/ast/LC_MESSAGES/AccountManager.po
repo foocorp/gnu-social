@@ -1,4 +1,4 @@
-# Translation of StatusNet - AccountManager to Asturian (Asturianu)
+# Translation of StatusNet - AccountManager to Asturian (asturianu)
 # Exported from translatewiki.net
 #
 # Author: Xuacu
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AccountManager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:31+0000\n"
-"Language-Team: Asturian <http://translatewiki.net/wiki/Portal:ast>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:26+0000\n"
+"Language-Team: Asturian <https://translatewiki.net/wiki/Portal:ast>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-09 18:55:57+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 10:01:05+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ast\n"
 "X-Message-Group: #out-statusnet-plugin-accountmanager\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"

@@ -3,7 +3,7 @@
  * StatusNet - the distributed open-source microblogging tool
  * Copyright (C) 2011, StatusNet, Inc.
  *
- * Vote on a questino or answer
+ * Vote on a question or answer
  *
  * PHP version 5
  *
@@ -81,7 +81,7 @@ class Qnavote extends Action
 
         if (empty($this->user)) {
             // TRANS: Client exception thrown trying to answer a question while not logged in.
-            throw new ClientException(_m("You must be logged in to answer to a question."),
+            throw new ClientException(_m('You must be logged in to answer to a question.'),
                                       403);
         }
 
@@ -146,7 +146,7 @@ class Qnavote extends Action
             $this->xw->startDocument('1.0', 'UTF-8');
             $this->elementStart('html');
             $this->elementStart('head');
-            // TRANS: Page title after sending an answer.
+            // TRANS: Page title after sending in a vote for a question or answer.
             $this->element('title', null, _m('Answers'));
             $this->elementEnd('head');
             $this->elementStart('body');

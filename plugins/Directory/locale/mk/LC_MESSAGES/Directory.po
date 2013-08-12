@@ -1,4 +1,4 @@
-# Translation of StatusNet - Directory to Macedonian (Македонски)
+# Translation of StatusNet - Directory to Macedonian (македонски)
 # Exported from translatewiki.net
 #
 # Author: Bjankuloski06
@@ -9,33 +9,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:02+0000\n"
-"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:10+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 11:55:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 09:57:06+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+#. TRANS: Page title for user directory. %d is a page number.
 #, php-format
 msgid "User Directory, page %d"
 msgstr "Кориснички именик, стр. %d"
 
+#. TRANS: Page title for user directory.
 msgid "User directory"
 msgstr "Кориснички именик"
 
+#. TRANS: Page title for user directory. %s is the applied filter.
 #, php-format
 msgid "User directory - %s"
 msgstr "Кориснички именик - %s"
 
+#. TRANS: Page title for user directory.
+#. TRANS: %1$s is the applied filter, %2$d is a page number.
 #, php-format
-msgid "User directory - %s, page %d"
-msgstr "Кориснички именик - %s, стр. %d"
+msgid "User directory - %1$s, page %2$d"
+msgstr "Именик на корисници - %1$s, страница %2$d"
 
+#. TRANS: %%site.name%% is the name of the StatusNet site.
 #, php-format
 msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
@@ -44,25 +50,43 @@ msgstr ""
 "Пребарајте луѓе на %%site.name%% по име, местоположба или интереси. Одделете "
 "ги поимите со празни места; зборовите мора да имаат барем по 3 букви."
 
+#. TRANS: Fieldset legend.
 msgid "Search site"
 msgstr "Пребарај"
 
+#. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
 msgid "Keyword(s)"
 msgstr "Клучни зборови"
 
+#. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "Пребарај"
 
+#. TRANS: Empty list message for user directory.
 #, php-format
 msgid "No users starting with %s"
 msgstr "Нема корисници што почнуваат на %s"
 
+#. TRANS: Empty list message for user directory.
 #. TRANS: Empty list message for searching group directory.
 msgid "No results."
 msgstr "Нема резултати."
+
+#. TRANS: Standard search suggestions shown when a search does not give any results.
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* Проверете дали сите зборови се напишани како што треба.\n"
+"* Обидете се со други клучни зборови.\n"
+"* Обидете се со поопшти клучни зборови.\n"
+"* Обидете се помалку клучни зборови."
 
 #. TRANS: Title for group directory page. %d is a page number.
 #, php-format
@@ -86,12 +110,11 @@ msgid "Group directory - %1$s, page %2$d"
 msgstr "Именик на групи - %1$s, страница %2$d"
 
 #. TRANS: Page instructions.
-#, fuzzy
 msgid ""
 "After you join a group you can send messages to all other members\n"
 "using the syntax \"!groupname\".\n"
 "\n"
-"Browse groups, or search for groups on by their name, location or topic.\n"
+"Browse groups, or search for groups by their name, location or topic.\n"
 "Separate the terms by spaces; they must be three characters or more."
 msgstr ""
 "Откако ќе се зачлените во групата ќе можете да им испраќате пораки на сите "
@@ -101,7 +124,7 @@ msgstr ""
 "Групите можете да ги прелистувате или да ги пребарувате по име, место или "
 "тема.\n"
 "Одделете ги поимите со празни места. Секој поим мора да содржи барем три "
-"знака.\n"
+"знака."
 
 #. TRANS: Link to create a new group on the group list page.
 msgid "Create a new group"
@@ -116,18 +139,6 @@ msgstr "Пребарај групи"
 #, php-format
 msgid "No groups starting with %s."
 msgstr "Нема групи што почнуваат на %s."
-
-#. TRANS: Help text for searching group directory.
-msgid ""
-"* Make sure all words are spelled correctly.\n"
-"* Try different keywords.\n"
-"* Try more general keywords.\n"
-"* Try fewer keywords."
-msgstr ""
-"* Проверете дали сите зборови се напишани како што треба.\n"
-"* Обидете се со други клучни зборови.\n"
-"* Обидете се со поопшти клучни зборови.\n"
-"* Обидете се помалку клучни зборови.\n"
 
 #. TRANS: Menu item text for user directory.
 msgctxt "MENU"
@@ -149,6 +160,14 @@ msgstr "Прекар"
 #. TRANS: Column header in table for timestamp when user was created.
 msgid "Created"
 msgstr "Создадено"
+
+#. TRANS: Column header for number of subscriptions.
+msgid "Subscriptions"
+msgstr "Претплати"
+
+#. TRANS: Column header for number of notices.
+msgid "Notices"
+msgstr "Забелешки"
 
 #. TRANS: Column header in table for members of a group.
 msgid "Members"

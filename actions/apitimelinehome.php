@@ -169,7 +169,7 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
             $this->showJsonTimeline($this->notices);
             break;
         case 'as':
-            header('Content-Type: application/json; charset=utf-8');
+            header('Content-Type: ' . ActivityStreamJSONDocument::CONTENT_TYPE);
             $doc = new ActivityStreamJSONDocument($this->auth_user);
             $doc->setTitle($title);
             $doc->addLink($link, 'alternate', 'text/html');
@@ -192,7 +192,13 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
     {
         $notices = array();
 
-        $stream = new InboxNoticeStream($this->user);
+        $profile = null;
+
+        if (isset($this->auth_user)) {
+            $profile = $this->auth_user->getProfile();
+        }
+
+        $stream = new InboxNoticeStream($this->user, $profile);
         
         $notice = $stream->getNotices(($this->page-1) * $this->count,
                                       $this->count,

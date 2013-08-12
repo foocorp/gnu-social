@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Giftpflanze
+# Author: Marcel083
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,21 +10,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Aim\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:35+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:34+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:55+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:18:38+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-aim\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: No idea what the use case for this message is.
 msgid "Send me a message to post a notice"
-msgstr "Sende mir eine Nachricht um eine Nachricht zu schreiben"
+msgstr "Sende mir eine Nachricht um eine Notiz zu schreiben"
 
 #. TRANS: Display name.
 msgid "AIM"

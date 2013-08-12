@@ -2,6 +2,8 @@
 # Exported from translatewiki.net
 #
 # Author: Giftpflanze
+# Author: PtM
+# Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,17 +11,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:20+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:28+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: 0 minutes abbreviated. Used in a list.
+msgid "(0 min)"
+msgstr "(0 min)"
+
+#. TRANS: 30 minutes abbreviated. Used in a list.
+msgid "(30 min)"
+msgstr "(30 min)"
+
+#. TRANS: 1 hour. Used in a list.
+msgid "(1 hour)"
+msgstr "(1 Stunde)"
+
+#, php-format
+msgid "(%.1f hours)"
+msgstr "(%.1f Stunden)"
+
+#, php-format
+msgid "(%d hours)"
+msgstr "(%d Stunden)"
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -46,14 +68,24 @@ msgstr ""
 "$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
 "$s</span> </span>"
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "Nicht angemeldet."
+
+#. TRANS: Client error when submitting a form with unexpected information.
+msgid "Unexpected form submission."
+msgstr "Unerwartete Formulareingabe."
+
+#. TRANS: Client error displayed when using an action in a non-AJAX way.
+msgid "This action is AJAX only."
+msgstr "Diese Aktion ist auf AJAX beschränkt."
+
 #. TRANS: Client exception thrown when referring to a non-existing RSVP.
 #. TRANS: RSVP stands for "Please reply".
 #. TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
 msgid "No such RSVP."
 msgstr "Keine solche Antwortanfrage."
 
-#. TRANS: Client exception thrown when referring to a non-existing event.
-#. TRANS: Client exception thrown when requesting a non-exsting event.
 #. TRANS: Client exception thrown when referring to a non-existing event.
 msgid "No such event."
 msgstr "Kein solches Ereignis."
@@ -151,9 +183,10 @@ msgctxt "LABEL"
 msgid "Start time"
 msgstr "Startzeit"
 
-#. TRANS: Field title on event form.
-msgid "Time the event starts."
-msgstr "Zeit, an der das Ereignis anfängt."
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, php-format
+msgid "Time the event starts (%s)."
+msgstr "Zeit, an der das Ereignis anfängt (%s)."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -175,8 +208,8 @@ msgstr "Zeit, zu der das Ereignis zu Ende ist."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
-msgid "Location"
-msgstr "Örtlichkeit"
+msgid "Where?"
+msgstr "Wo?"
 
 #. TRANS: Field title on event form.
 msgid "Event location."
@@ -371,6 +404,10 @@ msgstr "Ereignis muss ein Startdatum haben."
 msgid "Event must have an end time."
 msgstr "Ereignis muss ein Enddatum haben."
 
+#. TRANS: Client exception thrown when trying to post an event with an invalid URL.
+msgid "URL must be valid."
+msgstr "URL muss gültig sein."
+
 #. TRANS: Field label for event description.
 msgid "Time:"
 msgstr "Zeit:"
@@ -382,13 +419,3 @@ msgstr "Örtlichkeit:"
 #. TRANS: Field label for event description.
 msgid "Description:"
 msgstr "Beschreibung:"
-
-#. TRANS: Field label for event description.
-msgid "Attending:"
-msgstr "Teilnehmende:"
-
-#. TRANS: RSVP counts.
-#. TRANS: %1$d, %2$d and %3$d are numbers of RSVPs.
-#, php-format
-msgid "Yes: %1$d No: %2$d Maybe: %3$d"
-msgstr "Ja: %1$d Nein: %2$d Vielleicht: %3$d"

@@ -51,7 +51,14 @@ class OStatusQueueHandler extends QueueHandler
         assert($notice instanceof Notice);
 
         $this->notice = $notice;
-        $this->user = User::staticGet($notice->profile_id);
+        $this->user = User::staticGet('id', $notice->profile_id);
+
+        try {
+            $profile = $this->notice->getProfile();
+        } catch (Exception $e) {
+            common_log(LOG_ERR, "Can't get profile for notice; skipping: " . $e->getMessage());
+            return true;
+        }
 
         $this->pushUser();
 
@@ -61,6 +68,13 @@ class OStatusQueueHandler extends QueueHandler
                 $this->pingReply($oprofile);
             } else {
                 $this->pushGroup($group->id);
+            }
+        }
+        
+        foreach ($notice->getReplies() as $profile_id) {
+            $oprofile = Ostatus_profile::staticGet('profile_id', $profile_id);
+            if ($oprofile) {
+                $this->pingReply($oprofile);
             }
         }
 

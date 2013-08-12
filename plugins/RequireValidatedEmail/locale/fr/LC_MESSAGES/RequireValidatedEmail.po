@@ -1,7 +1,8 @@
-# Translation of StatusNet - RequireValidatedEmail to French (Français)
+# Translation of StatusNet - RequireValidatedEmail to French (français)
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Crochet.david
 # Author: Od1n
 # Author: Peter17
 # --
@@ -11,37 +12,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:06+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:50+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:28+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#. TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
 msgid "You must validate your email address before posting."
 msgstr "Vous devez valider votre adresse électronique avant de poster."
 
+#. TRANS: Client exception thrown when trying to register without providing an e-mail address.
 msgid "You must provide an email address to register."
 msgstr "Vous devez fournir une adresse électronique avant de vous enregistrer."
 
+#. TRANS: Plugin description.
 msgid "Disables posting without a validated email address."
 msgstr ""
 "Désactive le postage pour ceux qui n’ont pas d’adresse électronique valide."
 
+#. TRANS: Client exception thrown when trying to register while already logged in.
 msgid "You are already logged in."
 msgstr "Votre session est déjà ouverte."
 
+#. TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
 msgid "Confirmation code not found."
 msgstr "Code de confirmation non trouvé."
 
+#. TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
 msgid "No user for that confirmation code."
 msgstr "Aucun utilisateur pour ce code de confirmation."
 
+#. TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+#. TRANS: %s is the invalid e-mail address.
 #, php-format
 msgid "Unrecognized address type %s."
 msgstr "Type d’adresse non reconnu : %s"
@@ -50,12 +59,15 @@ msgstr "Type d’adresse non reconnu : %s"
 msgid "That address has already been confirmed."
 msgstr "Cette adresse a déjà été confirmée."
 
+#. TRANS: Client exception thrown when trying to register with too short a password.
 msgid "Password too short."
 msgstr "Mot de passe trop court."
 
+#. TRANS: Client exception thrown when trying to register without providing the same password twice.
 msgid "Passwords do not match."
 msgstr "Les mots de passe ne correspondent pas."
 
+#. TRANS: Form instructions. %s is the nickname of the to be registered user.
 #, php-format
 msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
@@ -65,23 +77,32 @@ msgstr ""
 "s . Utilisez le formulaire ci-dessous pour définir votre nouveau mot de "
 "passe."
 
+#. TRANS: Page title.
 msgid "Set a password"
 msgstr "Définir un nouveau mot de passe"
 
-msgid "Confirm email"
-msgstr "Confirmer le courriel"
+#. TRANS: Form legend.
+msgid "Confirm email address"
+msgstr "Confirmer l’adresse de courriel"
 
+#. TRANS: Field label.
 msgid "New password"
 msgstr "Nouveau mot de passe"
 
+#. TRANS: Field title for password field.
 msgid "6 or more characters."
 msgstr "6 caractères ou plus."
 
+#. TRANS: Field label for repeat password field.
+msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Confirmer"
 
+#. TRANS: Field title for repeat password field.
 msgid "Same as password above."
 msgstr "Identique au mot de passe ci-dessus."
 
+#. TRANS: Button text for completing registration by e-mail.
+msgctxt "BUTTON"
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Sauvegarder"

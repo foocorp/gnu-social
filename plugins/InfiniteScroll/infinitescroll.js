@@ -9,7 +9,7 @@ jQuery(document).ready(function($){
                       'body#showfavorites li.nav_next a,'+
                       'body#showgroup li.nav_next a,'+
                       'body#favorited li.nav_next a',
-    loadingImg      : $('address .url')[0].href+'plugins/InfiniteScroll/ajax-loader.gif',
+    loadingImg      : ajax_loader_url,
     text            : "<em>Loading the next set of posts...</em>",
     donetext        : "<em>Congratulations, you\'ve reached the end of the Internet.</em>",
     navSelector     : "#pagination",

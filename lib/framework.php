@@ -19,13 +19,13 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-define('STATUSNET_BASE_VERSION', '1.0.0');
-define('STATUSNET_LIFECYCLE', 'alpha2'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
-define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . STATUSNET_LIFECYCLE);
+define('STATUSNET_BASE_VERSION', '1.1.1');
+define('STATUSNET_LIFECYCLE', 'release'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
+define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . '-' . STATUSNET_LIFECYCLE);
 
 define('LACONICA_VERSION', STATUSNET_VERSION); // compatibility
 
-define('STATUSNET_CODENAME', 'The Sounds of Science');
+define('STATUSNET_CODENAME', 'OK');
 
 define('AVATAR_PROFILE_SIZE', 96);
 define('AVATAR_STREAM_SIZE', 48);
@@ -34,6 +34,7 @@ define('AVATAR_MINI_SIZE', 24);
 define('NOTICES_PER_PAGE', 20);
 define('PROFILES_PER_PAGE', 20);
 define('MESSAGES_PER_PAGE', 20);
+define('GROUPS_PER_PAGE', 20);
 
 define('FOREIGN_NOTICE_SEND', 1);
 define('FOREIGN_NOTICE_RECV', 2);
@@ -151,9 +152,27 @@ function PEAR_ErrorToPEAR_Exception($err)
     if ($err->getCode() == DB_DATAOBJECT_ERROR_NODATA) {
         return;
     }
+
+    $msg      = $err->getMessage();
+    $userInfo = $err->getUserInfo();
+
+    // Log this; push the message up as an exception
+
+    common_log(LOG_ERR, "PEAR Error: $msg ($userInfo)");
+
+    // HACK: queue handlers get kicked by the long-query killer, and 
+    // keep the same broken connection. We die here to get a new
+    // process started.
+
+    if (php_sapi_name() == 'cli' && preg_match('/nativecode=2006/', $userInfo)) {
+        common_log(LOG_ERR, "Lost DB connection; dying.");
+        exit(100);
+    }
+
     if ($err->getCode()) {
         throw new PEAR_Exception($err->getMessage(), $err->getCode());
     }
     throw new PEAR_Exception($err->getMessage());
 }
+
 PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, 'PEAR_ErrorToPEAR_Exception');

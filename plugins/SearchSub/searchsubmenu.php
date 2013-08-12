@@ -45,7 +45,7 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 
-class SearchSubMenu extends Menu
+class SearchSubMenu extends MoreMenu
 {
     protected $user;
     protected $searches;
@@ -57,22 +57,54 @@ class SearchSubMenu extends Menu
         $this->searches = $searches;
     }
 
-    function show()
+    function tag()
     {
-        $this->out->elementStart('ul', array('class' => 'nav'));
+        return 'searchsubs';
+    }
 
+    function seeAllItem()
+    {
+        return array('searchsubs',
+                     array('nickname' => $this->user->nickname),
+                     _('See all'),
+                     _('See all searches you are following'));
+    }
+
+    function getItems()
+    {
+        $items = array();
+        
         foreach ($this->searches as $search) {
             if (!empty($search)) {
-                $this->out->menuItem(common_local_url('noticesearch',
-                                                      array('q' => $search)),
-                                     sprintf('"%s"', $search),
-                                     sprintf(_('Notices including %s'), $search),
-                                     $this->actionName == 'noticesearch' && $this->action->arg('q') == $search,
-                                     'nav_streams_search_'.$search);
+                $items[] = array('noticesearch',
+                                 array('q' => $search),
+                                 sprintf('"%s"', $search),
+                                 sprintf(_('Notices including %s'), $search));;
             }
         }
 
-        $this->out->elementEnd('ul');
+        return $items;
+    } 
+
+    function item($actionName, $args, $label, $description, $id=null, $cls=null)
+    {
+        if (empty($id)) {
+            $id = $this->menuItemID($actionName, $args);
+        }
+
+        if ($actionName == 'noticesearch') {
+            // Add 'q' as a search param, not part of the url path
+            $url = common_local_url($actionName, array(), $args);
+        } else {
+            $url = common_local_url($actionName, $args);
+        }
+
+        $this->out->menuItem($url,
+                             $label,
+                             $description,
+                             $this->isCurrent($actionName, $args),
+                             $id,
+                             $cls);
     }
-    
 }
+

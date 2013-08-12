@@ -70,6 +70,7 @@ abstract class FilteringNoticeStream extends NoticeStream
         // or we get nothing from upstream.
 
         $results = null;
+        $round = 0;
 
         do {
 
@@ -81,9 +82,13 @@ abstract class FilteringNoticeStream extends NoticeStream
                 break;
             }
 
-            while ($raw->fetch()) {
-                if ($this->filter($raw)) {
-                    $filtered[] = clone($raw);
+            $notices = $raw->fetchAll();
+            
+            $this->prefill($notices);
+
+            foreach ($notices as $notice) {
+                if ($this->filter($notice)) {
+                    $filtered[] = $notice;
                     if (count($filtered) >= $total) {
                         break;
                     }
@@ -93,9 +98,20 @@ abstract class FilteringNoticeStream extends NoticeStream
             // XXX: make these smarter; factor hit rate into $askFor
 
             $startAt += $askFor;
-            $askFor   = max($total - count($filtered), NOTICES_PER_PAGE);
+            
+            $hits = count($filtered);
 
-        } while (count($filtered) < $total && $results !== 0);
+            $lastAsk = $askFor;
+
+            if ($hits === 0) {
+                $askFor = max(min(2 * $askFor, NOTICES_PER_PAGE * 50), NOTICES_PER_PAGE);
+            } else {
+                $askFor = max(min(intval(ceil(($total - $hits)*$startAt/$hits)), NOTICES_PER_PAGE * 50), NOTICES_PER_PAGE);
+            }
+
+            $round++;
+
+        } while (count($filtered) < $total && $results >= $lastAsk);
 
         return new ArrayWrapper(array_slice($filtered, $offset, $limit));
     }
@@ -111,5 +127,10 @@ abstract class FilteringNoticeStream extends NoticeStream
         }
 
         return $ids;
+    }
+
+    function prefill($notices)
+    {
+        return;
     }
 }

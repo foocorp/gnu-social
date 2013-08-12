@@ -6,7 +6,7 @@
  *
  * LICENSE:
  *
- * Copyright (c) 2008, 2009, Alexey Borzov <avb@php.net>
+ * Copyright (c) 2008-2011, Alexey Borzov <avb@php.net>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,7 +37,7 @@
  * @package    HTTP_Request2
  * @author     Alexey Borzov <avb@php.net>
  * @license    http://opensource.org/licenses/bsd-license.php New BSD License
- * @version    CVS: $Id: Adapter.php 274684 2009-01-26 23:07:27Z avb $
+ * @version    SVN: $Id: Adapter.php 308322 2011-02-14 13:58:03Z avb $
  * @link       http://pear.php.net/package/HTTP_Request2
  */
 
@@ -50,13 +50,13 @@ require_once 'HTTP/Request2/Response.php';
  * Base class for HTTP_Request2 adapters
  *
  * HTTP_Request2 class itself only defines methods for aggregating the request
- * data, all actual work of sending the request to the remote server and 
+ * data, all actual work of sending the request to the remote server and
  * receiving its response is performed by adapters.
  *
  * @category   HTTP
  * @package    HTTP_Request2
  * @author     Alexey Borzov <avb@php.net>
- * @version    Release: 0.4.1
+ * @version    Release: 2.0.0RC1
  */
 abstract class HTTP_Request2_Adapter
 {
@@ -109,8 +109,8 @@ abstract class HTTP_Request2_Adapter
    /**
     * Calculates length of the request body, adds proper headers
     *
-    * @param    array   associative array of request headers, this method will 
-    *                   add proper 'Content-Length' and 'Content-Type' headers 
+    * @param    array   associative array of request headers, this method will
+    *                   add proper 'Content-Length' and 'Content-Type' headers
     *                   to this array (or remove them if not needed)
     */
     protected function calculateRequestLength(&$headers)
@@ -133,13 +133,15 @@ abstract class HTTP_Request2_Adapter
         if (in_array($this->request->getMethod(), self::$bodyDisallowed) ||
             0 == $this->contentLength
         ) {
-            unset($headers['content-type']);
             // No body: send a Content-Length header nonetheless (request #12900),
             // but do that only for methods that require a body (bug #14740)
             if (in_array($this->request->getMethod(), self::$bodyRequired)) {
                 $headers['content-length'] = 0;
             } else {
                 unset($headers['content-length']);
+                // if the method doesn't require a body and doesn't have a
+                // body, don't send a Content-Type header. (request #16799)
+                unset($headers['content-type']);
             }
         } else {
             if (empty($headers['content-type'])) {

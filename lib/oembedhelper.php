@@ -61,7 +61,7 @@ class oEmbedHelper
      * Some known hosts are whitelisted with API endpoints where we
      * know they exist but autodiscovery data isn't available.
      * If autodiscovery links are missing and we don't recognize the
-     * host, we'll pass it to oohembed.com's public service which
+     * host, we'll pass it to noembed.com's public service which
      * will either proxy or fake info on a lot of sites.
      *
      * A few hosts are blacklisted due to known problems with oohembed,
@@ -94,7 +94,7 @@ class oEmbedHelper
             case 'built-in':
                 common_log(LOG_INFO, 'Considering built-in oEmbed methods...');
                 // Blacklist: systems with no oEmbed API of their own, which are
-                // either missing from or broken on oohembed.com's proxy.
+                // either missing from or broken on noembed.com's proxy.
                 // we know how to look data up in another way...
                 if (array_key_exists($host, self::$functionMap)) {
                     common_log(LOG_INFO, 'We have a built-in method for ' . $host);
@@ -216,6 +216,10 @@ class oEmbedHelper
     {
         $params['url'] = $url;
         $params['format'] = 'json';
+        $key=common_config('oembed','apikey');
+        if(isset($key)) {
+            $params['key'] = common_config('oembed','apikey');
+        }
         $data = self::json($api, $params);
         return self::normalize($data);
     }

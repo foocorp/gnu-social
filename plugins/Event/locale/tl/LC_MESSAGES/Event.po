@@ -9,17 +9,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:21+0000\n"
-"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:30+0000\n"
+"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: 0 minutes abbreviated. Used in a list.
+msgid "(0 min)"
+msgstr "(0 minuto)"
+
+#. TRANS: 30 minutes abbreviated. Used in a list.
+msgid "(30 min)"
+msgstr "(30 minuto)"
+
+#. TRANS: 1 hour. Used in a list.
+msgid "(1 hour)"
+msgstr "(1 oras)"
+
+#, php-format
+msgid "(%.1f hours)"
+msgstr "(%.1f oras)"
+
+#, php-format
+msgid "(%d hours)"
+msgstr "(%d oras)"
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -46,14 +66,24 @@ msgstr ""
 "$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
 "$s</span> </span>"
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "Hindi nakalagda."
+
+#. TRANS: Client error when submitting a form with unexpected information.
+msgid "Unexpected form submission."
+msgstr "Hindi inaasahang pagpapasa ng pormularyo."
+
+#. TRANS: Client error displayed when using an action in a non-AJAX way.
+msgid "This action is AJAX only."
+msgstr "Ang galaw ay AJAX lang."
+
 #. TRANS: Client exception thrown when referring to a non-existing RSVP.
 #. TRANS: RSVP stands for "Please reply".
 #. TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
 msgid "No such RSVP."
 msgstr "Walang ganyang paghiling ng pagtugon."
 
-#. TRANS: Client exception thrown when referring to a non-existing event.
-#. TRANS: Client exception thrown when requesting a non-exsting event.
 #. TRANS: Client exception thrown when referring to a non-existing event.
 msgid "No such event."
 msgstr "Walang ganyang kaganapan."
@@ -152,9 +182,10 @@ msgctxt "LABEL"
 msgid "Start time"
 msgstr "Oras ng simula"
 
-#. TRANS: Field title on event form.
-msgid "Time the event starts."
-msgstr "Oras ng pagsisimula ng kaganapan."
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, php-format
+msgid "Time the event starts (%s)."
+msgstr "Oras ng pagsisimula ng kaganapan (%s)."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -176,8 +207,8 @@ msgstr "Oras ng pagwawakas ng kaganapan."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
-msgid "Location"
-msgstr "Kinalalagyan"
+msgid "Where?"
+msgstr "Saan?"
 
 #. TRANS: Field title on event form.
 msgid "Event location."
@@ -374,6 +405,10 @@ msgstr "Dapat na may isang oras ng simula ang kaganapan."
 msgid "Event must have an end time."
 msgstr "Dapat na may isang oras ng wakas ang kaganapan."
 
+#. TRANS: Client exception thrown when trying to post an event with an invalid URL.
+msgid "URL must be valid."
+msgstr "Dapat na katanggap-tanggap ang URL."
+
 #. TRANS: Field label for event description.
 msgid "Time:"
 msgstr "Oras:"
@@ -385,13 +420,3 @@ msgstr "Kinalalagyan:"
 #. TRANS: Field label for event description.
 msgid "Description:"
 msgstr "Paglalarawan:"
-
-#. TRANS: Field label for event description.
-msgid "Attending:"
-msgstr "Dadalo:"
-
-#. TRANS: RSVP counts.
-#. TRANS: %1$d, %2$d and %3$d are numbers of RSVPs.
-#, php-format
-msgid "Yes: %1$d No: %2$d Maybe: %3$d"
-msgstr "Oo: %1$d Hindi: %2$d Baka: %3$d"

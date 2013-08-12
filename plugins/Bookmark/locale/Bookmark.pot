@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. TRANS: Client exception thrown when a file upload is incorrect.
-#: deliciousbackupimporter.php:89
-msgid "Bad import file."
-msgstr ""
-
 #. TRANS: Client exception thrown when a bookmark in an import file is incorrectly formatted.
-#: deliciousbackupimporter.php:174
+#: deliciousbackupimporter.php:181
 msgid "No <A> tag in a <DT>."
 msgstr ""
 
 #. TRANS: Client exception thrown when a bookmark in an import file is private.
-#: deliciousbackupimporter.php:183
+#: deliciousbackupimporter.php:190
 msgid "Skipping private bookmark."
 msgstr ""
 
@@ -55,26 +50,19 @@ msgid "Import del.icio.us bookmarks"
 msgstr ""
 
 #. TRANS: Client exception thrown when a bookmark is formatted incorrectly.
-#: BookmarkPlugin.php:384
+#: BookmarkPlugin.php:395
 msgid "Expected exactly 1 link rel=related in a Bookmark."
 msgstr ""
 
 #. TRANS: Server exception thrown when a bookmark has multiple attachments.
-#: BookmarkPlugin.php:478
+#: BookmarkPlugin.php:489
 msgid "Bookmark notice with the wrong number of attachments."
 msgstr ""
 
 #. TRANS: Application title.
-#: BookmarkPlugin.php:541
+#: BookmarkPlugin.php:552
 msgctxt "TITLE"
 msgid "Bookmark"
-msgstr ""
-
-#. TRANS: Exception thrown when a bookmark has no attachments.
-#. TRANS: %1$s is a bookmark ID, %2$s is a notice ID (number).
-#: bookmarklistitem.php:75
-#, php-format
-msgid "Bookmark %1$s (notice %2$d) has no attachments."
 msgstr ""
 
 #. TRANS: Title for mini-posting window loaded from bookmarklet.
@@ -297,7 +285,7 @@ msgid "Bookmark must have an URL."
 msgstr ""
 
 #. TRANS: Page title after posting a bookmark.
-#: newbookmark.php:167
+#: newbookmark.php:178
 msgid "Bookmark posted"
 msgstr ""
 

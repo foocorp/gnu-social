@@ -1,0 +1,165 @@
+# Translation of StatusNet - Directory to Swedish (svenska)
+# Exported from translatewiki.net
+#
+# Author: Ainali
+# Author: Lokal Profil
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Directory\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:10+0000\n"
+"Language-Team: Swedish <https://translatewiki.net/wiki/Portal:sv>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-08-30 09:57:06+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: sv\n"
+"X-Message-Group: #out-statusnet-plugin-directory\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Page title for user directory. %d is a page number.
+#, php-format
+msgid "User Directory, page %d"
+msgstr ""
+
+#. TRANS: Page title for user directory.
+msgid "User directory"
+msgstr ""
+
+#. TRANS: Page title for user directory. %s is the applied filter.
+#, php-format
+msgid "User directory - %s"
+msgstr ""
+
+#. TRANS: Page title for user directory.
+#. TRANS: %1$s is the applied filter, %2$d is a page number.
+#, php-format
+msgid "User directory - %1$s, page %2$d"
+msgstr ""
+
+#. TRANS: %%site.name%% is the name of the StatusNet site.
+#, php-format
+msgid ""
+"Search for people on %%site.name%% by their name, location, or interests. "
+"Separate the terms by spaces;  they must be 3 characters or more."
+msgstr ""
+
+#. TRANS: Fieldset legend.
+msgid "Search site"
+msgstr "Sök webbplats"
+
+#. TRANS: Field label for user directory filter.
+#. TRANS: Field label for input of one or more keywords.
+msgid "Keyword(s)"
+msgstr "Nyckelord"
+
+#. TRANS: Button text.
+#. TRANS: Button text for searching group directory.
+msgctxt "BUTTON"
+msgid "Search"
+msgstr "Sök"
+
+#. TRANS: Empty list message for user directory.
+#, php-format
+msgid "No users starting with %s"
+msgstr ""
+
+#. TRANS: Empty list message for user directory.
+#. TRANS: Empty list message for searching group directory.
+msgid "No results."
+msgstr "Inga resultat."
+
+#. TRANS: Standard search suggestions shown when a search does not give any results.
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* Kontrollera att alla ord är korrekt stavade.\n"
+"* Prova olika nyckelord.\n"
+"* Prova mer allmänna nyckelord.\n"
+"* Prova färre nyckelord."
+
+#. TRANS: Title for group directory page. %d is a page number.
+#, php-format
+msgid "Group Directory, page %d"
+msgstr ""
+
+#. TRANS: Title for group directory page.
+msgid "Group directory"
+msgstr ""
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %s is the filter string.
+#, php-format
+msgid "Group directory - %s"
+msgstr ""
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %1$s is the filter string, %2$d is a page number.
+#, php-format
+msgid "Group directory - %1$s, page %2$d"
+msgstr ""
+
+#. TRANS: Page instructions.
+msgid ""
+"After you join a group you can send messages to all other members\n"
+"using the syntax \"!groupname\".\n"
+"\n"
+"Browse groups, or search for groups by their name, location or topic.\n"
+"Separate the terms by spaces; they must be three characters or more."
+msgstr ""
+
+#. TRANS: Link to create a new group on the group list page.
+msgid "Create a new group"
+msgstr "Skapa en ny grupp"
+
+#. TRANS: Fieldset legend.
+msgid "Search groups"
+msgstr "Sök grupper"
+
+#. TRANS: Empty list message for searching group directory.
+#. TRANS: %s is the search string.
+#, php-format
+msgid "No groups starting with %s."
+msgstr "Inga grupper som börjar med %s."
+
+#. TRANS: Menu item text for user directory.
+msgctxt "MENU"
+msgid "Directory"
+msgstr "Katalog"
+
+#. TRANS: Menu item title for user directory.
+msgid "User Directory."
+msgstr "Användarkatalog."
+
+#. TRANS: Plugin description.
+msgid "Add a user directory."
+msgstr "Lägga till en användarkatalog."
+
+#. TRANS: Column header in table for user nickname.
+msgid "Nickname"
+msgstr "Smeknamn"
+
+#. TRANS: Column header in table for timestamp when user was created.
+msgid "Created"
+msgstr "Skapad"
+
+#. TRANS: Column header for number of subscriptions.
+msgid "Subscriptions"
+msgstr ""
+
+#. TRANS: Column header for number of notices.
+msgid "Notices"
+msgstr ""
+
+#. TRANS: Column header in table for members of a group.
+msgid "Members"
+msgstr "Medlemmar"

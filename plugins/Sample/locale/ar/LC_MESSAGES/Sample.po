@@ -9,34 +9,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Sample\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:11+0000\n"
-"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:54+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:20+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-sample\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
 "2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
 "99) ? 4 : 5 ) ) ) );\n"
 
+#. TRANS: Page title for sample plugin.
+#. TRANS: Menu item in sample plugin.
 msgid "Hello"
 msgstr "مرحبا"
 
+#. TRANS: Page title for sample plugin. %s is a user nickname.
 #, php-format
 msgid "Hello, %s!"
 msgstr "مرحبا يا %s!"
 
+#. TRANS: Message in sample plugin.
 msgid "Hello, stranger!"
 msgstr "مرحبا أيها الغريب!"
 
+#. TRANS: Message in sample plugin. %s is a user nickname.
 #, php-format
 msgid "Hello, %s"
 msgstr "مرحبا يا %s"
 
+#. TRANS: Message in sample plugin.
+#. TRANS: %d is the number of times a user is greeted.
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
@@ -47,9 +54,11 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
+#. TRANS: Menu item title in sample plugin.
 msgid "A warm greeting"
 msgstr "تحية حارة"
 
+#. TRANS: Plugin description.
 msgid "A sample plugin to show basics of development for new hackers."
 msgstr ""
 

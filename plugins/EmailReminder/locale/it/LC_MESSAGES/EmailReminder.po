@@ -1,0 +1,49 @@
+# Translation of StatusNet - EmailReminder to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: Ximo17
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailReminder\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:26+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-19 11:23:04+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Send email reminders for various things."
+msgstr "Inviare e-mail promemoria per varie cose."
+
+#. TRANS: Server exception thrown when a reminder record could not be inserted into the database.
+msgid "Database error inserting reminder record."
+msgstr "Errore nel database nell'inserire i record di promemoria."
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Reminder - please confirm your registration!"
+msgstr "Promemoria - si prega di confermare la registrazione!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Second reminder - please confirm your registration!"
+msgstr "Secondo promemoria - si prega di confermare la registrazione!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Final reminder - please confirm your registration!"
+msgstr "Ultimo promemoria - si prega di confermare la registrazione!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Reminder - You have been invited to join %s!"
+msgstr "Promemoria - Sei stato invitato ad unirti a %s!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Final reminder - you have been invited to join %s!"
+msgstr "Ultimo promemoria - Sei stato invitato ad unirti a %s!"

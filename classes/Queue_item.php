@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Queue_item extends Memcached_DataObject
+class Queue_item extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -21,6 +21,23 @@ class Queue_item extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'frame' => array('type' => 'blob', 'not null' => true, 'description' => 'data: object reference or opaque string'),
+                'transport' => array('type' => 'varchar', 'length' => 8, 'not null' => true, 'description' => 'queue for what? "email", "xmpp", "sms", "irc", ...'), // @fixme 8 chars is too short; bump up.
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'claimed' => array('type' => 'datetime', 'description' => 'date this item was claimed'),
+            ),
+            'primary key' => array('id'),
+            'indexes' => array(
+                'queue_item_created_idx' => array('created'),
+            ),
+        );
+    }
 
     /**
      * @param mixed $transports name of a single queue or array of queues to pull from

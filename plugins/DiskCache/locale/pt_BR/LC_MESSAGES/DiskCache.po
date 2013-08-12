@@ -1,4 +1,4 @@
-# Translation of StatusNet - DiskCache to Brazilian Portuguese (Português do Brasil)
+# Translation of StatusNet - DiskCache to Brazilian Portuguese (português do Brasil)
 # Exported from translatewiki.net
 #
 # Author: Giro720
@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - DiskCache\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:04+0000\n"
-"Language-Team: Brazilian Portuguese <http://translatewiki.net/wiki/Portal:pt-"
-"br>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:12+0000\n"
+"Language-Team: Brazilian Portuguese <https://translatewiki.net/wiki/Portal:"
+"pt-br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-09 18:58:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:58+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: pt-br\n"
 "X-Message-Group: #out-statusnet-plugin-diskcache\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"

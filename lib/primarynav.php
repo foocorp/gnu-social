@@ -86,16 +86,6 @@ class PrimaryNav extends Menu
                                 'nav_login');
             }
 
-            if (!empty($user) || !common_config('site', 'private')) {
-                $this->action->menuItem(common_local_url('noticesearch'),
-                                // TRANS: Menu item in primary navigation panel.
-                                _m('MENU','Search'),
-                                // TRANS: Menu item title in primary navigation panel.
-                                _('Search the site.'),
-                                false,
-                                'nav_search');
-            }
-
             Event::handle('EndPrimaryNav', array($this->action));
         }
 

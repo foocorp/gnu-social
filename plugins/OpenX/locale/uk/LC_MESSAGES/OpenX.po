@@ -1,4 +1,4 @@
-# Translation of StatusNet - OpenX to Ukrainian (Українська)
+# Translation of StatusNet - OpenX to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
@@ -9,23 +9,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:30+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:29+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:48+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:48:56+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-openx\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
 #. TRANS: Menu item title.
-#, fuzzy
 msgid "OpenX configuration."
-msgstr "Конфігурація OpenX"
+msgstr "Конфігурація OpenX."
 
 #. TRANS: Menu item for site administration
 msgid "OpenX"
@@ -91,6 +90,5 @@ msgid "Save"
 msgstr "Зберегти"
 
 #. TRANS: Submit button title in OpenX admin panel.
-#, fuzzy
 msgid "Save OpenX settings."
-msgstr "Зберегти налаштування OpenX"
+msgstr "Зберегти налаштування OpenX."

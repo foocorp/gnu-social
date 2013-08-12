@@ -52,7 +52,6 @@ class RegisterThrottlePlugin extends Plugin
      *
      * Default is 3 registrations per hour, 5 per day, 10 per week.
      */
-
     public $regLimits = array(604800 => 10, // per week
                               86400 => 5, // per day
                               3600 => 3); // per hour
@@ -61,13 +60,11 @@ class RegisterThrottlePlugin extends Plugin
      * Disallow registration if a silenced user has registered from
      * this IP address.
      */
-
     public $silenced = true;
 
     /**
      * Whether we're enabled; prevents recursion.
      */
-
     static private $enabled = true;
 
     /**
@@ -77,13 +74,11 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onCheckSchema()
     {
         $schema = Schema::get();
 
         // For storing user-submitted flags on profiles
-
         $schema->ensureTable('registration_ip',
                              array(new ColumnDef('user_id', 'integer', null,
                                                  false, 'PRI'),
@@ -100,7 +95,6 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onAutoload($cls)
     {
         $dir = dirname(__FILE__);
@@ -124,13 +118,13 @@ class RegisterThrottlePlugin extends Plugin
      * @param Action $action Action that is being executed
      *
      * @return boolean hook value
-     *
      */
     function onStartRegistrationTry($action)
     {
         $ipaddress = $this->_getIpAddress();
 
         if (empty($ipaddress)) {
+            // TRANS: Server exception thrown when no IP address can be found for a registation attempt.
             throw new ServerException(_m('Cannot find IP address.'));
         }
 
@@ -146,7 +140,8 @@ class RegisterThrottlePlugin extends Plugin
                 $now     = time();
                 $this->debug("Comparing {$regtime} to {$now}");
                 if ($now - $regtime < $seconds) {
-                    throw new Exception(_m("Too many registrations. Take a break and try again later."));
+                    // TRANS: Exception thrown when too many user have registered from one IP address within a given time frame.
+                    throw new Exception(_m('Too many registrations. Take a break and try again later.'));
                 }
             }
         }
@@ -158,7 +153,8 @@ class RegisterThrottlePlugin extends Plugin
             foreach ($ids as $id) {
                 $profile = Profile::staticGet('id', $id);
                 if ($profile && $profile->isSilenced()) {
-                    throw new Exception(_m("A banned user has registered from this address."));
+                    // TRANS: Exception thrown when attempting to register from an IP address from which silenced users have registered.
+                    throw new Exception(_m('A banned user has registered from this address.'));
                 }
             }
         }
@@ -175,9 +171,7 @@ class RegisterThrottlePlugin extends Plugin
      * @param User $user new user
      *
      * @return boolean hook value
-     *
      */
-
     function onEndUserRegister($profile, $user)
     {
         $ipaddress = $this->_getIpAddress();
@@ -209,7 +203,6 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'RegisterThrottle',
@@ -217,6 +210,7 @@ class RegisterThrottlePlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:RegisterThrottle',
                             'description' =>
+                            // TRANS: Plugin description.
                             _m('Throttles excessive registration from a single IP address.'));
         return true;
     }
@@ -226,10 +220,10 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return string IP address or null if not found.
      */
-
     private function _getIpAddress()
     {
         $keys = array('HTTP_X_FORWARDED_FOR',
+                      'HTTP_X_CLIENT',
                       'CLIENT-IP',
                       'REMOTE_ADDR');
 
@@ -250,7 +244,6 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return Registration_ip nth registration or null if not found.
      */
-
     private function _getNthReg($ipaddress, $n)
     {
         $reg = new Registration_ip();
@@ -276,7 +269,6 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onEndGrantRole($profile, $role)
     {
         if (!self::$enabled) {
@@ -300,7 +292,6 @@ class RegisterThrottlePlugin extends Plugin
         $ids = Registration_ip::usersByIP($ri->ipaddress);
 
         foreach ($ids as $id) {
-
             if ($id == $profile->id) {
                 continue;
             }

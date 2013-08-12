@@ -30,6 +30,7 @@ class UserxrdAction extends XrdAction
     function prepare($args)
     {
         parent::prepare($args);
+        global $config;
 
         $this->uri = $this->trimmed('uri');
         $this->uri = self::normalize($this->uri);

@@ -1,7 +1,8 @@
-# Translation of StatusNet - UserFlag to French (Français)
+# Translation of StatusNet - UserFlag to French (français)
 # Exported from translatewiki.net
 #
 # Author: Peter17
+# Author: Tititou36
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserFlag\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:48+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:23+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:51:36+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-userflag\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -50,6 +51,7 @@ msgstr "Marquer le profil pour vérification."
 msgid "Clear"
 msgstr "Effacer"
 
+#. TRANS: Form description for clearing flags from a profile.
 msgid "Clear all flags"
 msgstr "Effacer tous les marquages"
 
@@ -57,6 +59,7 @@ msgstr "Effacer tous les marquages"
 msgid "Not logged in."
 msgstr "Non connecté."
 
+#. TRANS: Error message displayed when trying to review profile flags while not authorised.
 msgid "You cannot review profile flags."
 msgstr "Vous ne pouvez pas examiner les drapeaux de profil."
 
@@ -70,7 +73,7 @@ msgstr "Modérer"
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
-#. TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used for plural.
 #, php-format
 msgid "Flagged by %1$s and %2$d other"
 msgid_plural "Flagged by %1$s and %2$d others"
@@ -84,8 +87,9 @@ msgid "Flagged by %s"
 msgstr "Marqué par %s"
 
 #. TRANS: Server exception given when flags could not be cleared.
+#. TRANS: %s is a profile nickname.
 #, php-format
-msgid "Couldn't clear flags for profile \"%s\"."
+msgid "Could not clear flags for profile \"%s\"."
 msgstr "Impossible de supprimer les marquages pour le profil « %s »."
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
@@ -97,6 +101,7 @@ msgid "Cleared"
 msgstr "Effacé"
 
 #. TRANS: Server exception.
+#. TRANS: %d is a profile ID (number).
 #, php-format
-msgid "Couldn't flag profile \"%d\" for review."
+msgid "Could not flag profile \"%d\" for review."
 msgstr "Impossible de marquer le profil « %d » pour vérification."

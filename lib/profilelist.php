@@ -85,14 +85,20 @@ class ProfileList extends Widget
 
     function showProfiles()
     {
-        $cnt = 0;
+        // Note: we don't use fetchAll() because it's borked with query()
+
+        $profiles = array();
 
         while ($this->profile->fetch()) {
-            $cnt++;
-            if($cnt > PROFILES_PER_PAGE) {
-                break;
-            }
-            $pli = $this->newListItem($this->profile);
+            $profiles[] = clone($this->profile);
+        }
+
+        $cnt = count($profiles);
+
+        $max = min($cnt, $this->maxProfiles());
+
+        for ($i = 0; $i < $max; $i++) {
+            $pli = $this->newListItem($profiles[$i]);
             $pli->show();
         }
 
@@ -101,7 +107,17 @@ class ProfileList extends Widget
 
     function newListItem($profile)
     {
-        return new ProfileListItem($this->profile, $this->action);
+        return new ProfileListItem($profile, $this->action);
+    }
+
+    function maxProfiles()
+    {
+        return PROFILES_PER_PAGE;
+    }
+
+    function avatarSize()
+    {
+        return AVATAR_STREAM_SIZE;
     }
 }
 
@@ -186,7 +202,7 @@ class ProfileListItem extends Widget
         $avatar = $this->profile->getAvatar(AVATAR_STREAM_SIZE);
         $aAttrs = $this->linkAttributes();
         $this->out->elementStart('a', $aAttrs);
-        $this->out->element('img', array('src' => ($avatar) ? $avatar->displayUrl() : Avatar::defaultImage(AVATAR_STREAM_SIZE),
+        $this->out->element('img', array('src' => (!empty($avatar)) ? $avatar->displayUrl() : Avatar::defaultImage(AVATAR_STREAM_SIZE),
                                          'class' => 'photo avatar',
                                          'width' => AVATAR_STREAM_SIZE,
                                          'height' => AVATAR_STREAM_SIZE,
@@ -289,11 +305,10 @@ class ProfileListItem extends Widget
                 $usf = new UnsubscribeForm($this->out, $this->profile);
                 $usf->show();
             } else {
-                // We can't initiate sub for a remote OMB profile.
-                $remote = Remote_profile::staticGet('id', $this->profile->id);
-                if (empty($remote)) {
+                if (Event::handle('StartShowProfileListSubscribeButton', array($this))) {
                     $sf = new SubscribeForm($this->out, $this->profile);
                     $sf->show();
+                    Event::handle('EndShowProfileListSubscribeButton', array($this));
                 }
             }
             $this->out->elementEnd('li');

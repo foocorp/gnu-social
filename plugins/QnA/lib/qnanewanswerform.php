@@ -110,6 +110,7 @@ class QnanewanswerForm extends Form
         }
 
         $out->hidden('qna-question-id', $id, 'id');
+        // TRANS: Field label.
         $out->textarea('qna-answer', _m('Enter your answer'), null, null, 'answer');
     }
 
@@ -124,4 +125,3 @@ class QnanewanswerForm extends Form
         $this->out->submit('qna-answer-submit', _m('BUTTON', 'Answer'), 'submit', 'submit');
     }
 }
-

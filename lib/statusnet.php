@@ -113,6 +113,10 @@ class StatusNet
         StatusNet::initDefaults($server, $path);
         StatusNet::loadConfigFile($conffile);
 
+        $sprofile = common_config('site', 'profile');
+        if (!empty($sprofile)) {
+            StatusNet::loadSiteProfile($sprofile);
+        }
         // Load settings from database; note we need autoload for this
         Config::loadSettings();
 
@@ -296,14 +300,17 @@ class StatusNet
 
         $config['db'] = $default['db'];
 
-        // Backward compatibility
-
-        $config['site']['design'] =& $config['design'];
-
         if (function_exists('date_default_timezone_set')) {
             /* Work internally in UTC */
             date_default_timezone_set('UTC');
         }
+    }
+
+    public static function loadSiteProfile($name)
+    {
+        global $config;
+        $settings = SiteProfile::getSettings($name);
+        $config = array_merge($config, $settings);
     }
 
     protected function _sn_to_path($sn)
@@ -355,6 +362,7 @@ class StatusNet
             if (@file_exists($_config_file)) {
                 // Ignore 0-byte config files
                 if (filesize($_config_file) > 0) {
+                    common_log(LOG_INFO, "Including config file: " . $_config_file);
                     include($_config_file);
                     self::$have_config = true;
                 }
@@ -364,13 +372,6 @@ class StatusNet
         if (!self::$have_config) {
             throw new NoConfigException("No configuration file found.",
                                         $config_files);
-        }
-
-        // Fixup for statusnet.ini
-        $_db_name = substr($config['db']['database'], strrpos($config['db']['database'], '/') + 1);
-
-        if ($_db_name != 'statusnet' && !array_key_exists('ini_'.$_db_name, $config['db'])) {
-            $config['db']['ini_'.$_db_name] = INSTALLDIR.'/classes/statusnet.ini';
         }
 
         // Backwards compatibility
@@ -383,6 +384,7 @@ class StatusNet
                 $config['cache']['base'] = $config['memcached']['base'];
             }
         }
+
         if (array_key_exists('xmpp', $config)) {
             if ($config['xmpp']['enabled']) {
                 addPlugin('xmpp', array(
@@ -397,6 +399,12 @@ class StatusNet
                     'public' => $config['xmpp']['public']
                 ));
             }
+        }
+
+        // Check for database server; must exist!
+
+        if (empty($config['db']['database'])) {
+            throw new ServerException("No database server for this site.");
         }
     }
 

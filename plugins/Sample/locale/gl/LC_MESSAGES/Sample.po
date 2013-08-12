@@ -1,5 +1,5 @@
-# Translation of StatusNet - Sample to Galician (Galego)
-# Expored from translatewiki.net
+# Translation of StatusNet - Sample to Galician (galego)
+# Exported from translatewiki.net
 #
 # Author: Toliño
 # --
@@ -9,61 +9,63 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Sample\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:53+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:54+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:55+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-sample\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:164
-#, php-format
-msgid "Could not save new greeting count for %d."
-msgstr ""
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:177
-#, php-format
-msgid "Could not increment greeting count for %d."
-msgstr ""
-
-#: SamplePlugin.php:259 hello.php:111
+#. TRANS: Page title for sample plugin.
+#. TRANS: Menu item in sample plugin.
 msgid "Hello"
 msgstr "Ola"
 
-#: SamplePlugin.php:259
-msgid "A warm greeting"
-msgstr ""
-
-#: SamplePlugin.php:270
-msgid "A sample plugin to show basics of development for new hackers."
-msgstr ""
-
-#: hello.php:113
+#. TRANS: Page title for sample plugin. %s is a user nickname.
 #, php-format
 msgid "Hello, %s!"
-msgstr ""
+msgstr "Ola, %s!"
 
-#: hello.php:133
+#. TRANS: Message in sample plugin.
 msgid "Hello, stranger!"
-msgstr ""
+msgstr "Ola, estraño!"
 
-#: hello.php:136
+#. TRANS: Message in sample plugin. %s is a user nickname.
 #, php-format
 msgid "Hello, %s"
 msgstr "Ola, %s"
 
-#: hello.php:138
+#. TRANS: Message in sample plugin.
+#. TRANS: %d is the number of times a user is greeted.
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Saudeino %d vez."
+msgstr[1] "Saudeino %d veces."
+
+#. TRANS: Menu item title in sample plugin.
+msgid "A warm greeting"
+msgstr "Un cordial saúdo"
+
+#. TRANS: Plugin description.
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr ""
+"Un complemento de exemplo para mostrar os principios básicos de "
+"desenvolvemento aos novos programadores."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not save new greeting count for %d."
+msgstr "Non se puido gardar o número de saúdos enviados a %d."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not increment greeting count for %d."
+msgstr "Non se puido incrementar o número de saúdos enviados a %d."

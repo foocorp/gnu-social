@@ -1,7 +1,8 @@
-# Translation of StatusNet - ShareNotice to Polish (Polski)
-# Expored from translatewiki.net
+# Translation of StatusNet - ShareNotice to Polish (polski)
+# Exported from translatewiki.net
 #
 # Author: Raven
+# Author: Woytecr
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,45 +10,43 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ShareNotice\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:54+0000\n"
-"Language-Team: Polish <http://translatewiki.net/wiki/Portal:pl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:58+0000\n"
+"Language-Team: Polish <https://translatewiki.net/wiki/Portal:pl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:55+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:02+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: pl\n"
 "X-Message-Group: #out-statusnet-plugin-sharenotice\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ( (n%10 >= 2 && n%10 <= 4 && "
 "(n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#. TRANS: Leave this message unchanged.
 #. TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
-#: ShareNoticePlugin.php:106 ShareNoticePlugin.php:194
 #, php-format
 msgid "\"%s\""
 msgstr "\"%s\""
 
+#. TRANS: Truncation symbol.
+msgid "…"
+msgstr "…"
+
 #. TRANS: Tooltip for image to share a notice on Twitter.
-#: ShareNoticePlugin.php:130
 msgid "Share on Twitter"
 msgstr ""
 
 #. TRANS: Tooltip for image to share a notice on another platform (other than Twitter or Facebook).
 #. TRANS: %s is a host name.
-#: ShareNoticePlugin.php:163
 #, php-format
 msgid "Share on %s"
 msgstr ""
 
 #. TRANS: Tooltip for image to share a notice on Facebook.
-#: ShareNoticePlugin.php:186
 msgid "Share on Facebook"
-msgstr ""
+msgstr "Udostępnij na Facebooku"
 
 #. TRANS: Plugin description.
-#: ShareNoticePlugin.php:219
 msgid ""
 "This plugin allows sharing of notices to Twitter, Facebook and other "
 "platforms."

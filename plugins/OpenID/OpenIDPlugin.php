@@ -20,7 +20,7 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @author   Craig Andrews <candrews@integralblue.com>
+ * @author    Craig Andrews <candrews@integralblue.com>
  * @copyright 2009-2010 StatusNet, Inc.
  * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
@@ -135,7 +135,8 @@ class OpenIDPlugin extends Plugin
                     common_redirect(common_local_url('openidsettings'));
                     exit(0);
                 } else if ($action == 'recoverpassword') {
-                    throw new ClientException('Unavailable action.');
+                    // TRANS: Client exception thrown when an action is not available.
+                    throw new ClientException(_m('Unavailable action.'));
                 }
             }
         }
@@ -361,10 +362,9 @@ class OpenIDPlugin extends Plugin
             require_once dirname(__FILE__) . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         case 'User_openid':
-            require_once dirname(__FILE__) . '/User_openid.php';
-            return false;
+        case 'User_openid_prefs':
         case 'User_openid_trustroot':
-            require_once dirname(__FILE__) . '/User_openid_trustroot.php';
+            require_once dirname(__FILE__) . '/' . $cls . '.php';
             return false;
         case 'Auth_OpenID_TeamsExtension':
         case 'Auth_OpenID_TeamsRequest':
@@ -478,18 +478,24 @@ class OpenIDPlugin extends Plugin
         {
         case 'register':
             if (common_logged_in()) {
-                $instr = '(Have an [OpenID](http://openid.net/)? ' .
-                  '[Add an OpenID to your account](%%action.openidsettings%%)!';
+                // TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
+                // TRANS: This message contains Markdown links in the form (description)[link].
+                $instr = _m('(Have an [OpenID](http://openid.net/)? ' .
+                  '[Add an OpenID to your account](%%action.openidsettings%%)!');
             } else {
-                $instr = '(Have an [OpenID](http://openid.net/)? ' .
+                // TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
+                // TRANS: This message contains Markdown links in the form (description)[link].
+                $instr = _m('(Have an [OpenID](http://openid.net/)? ' .
                   'Try our [OpenID registration]'.
-                  '(%%action.openidlogin%%)!)';
+                  '(%%action.openidlogin%%)!)');
             }
             break;
         case 'login':
-            $instr = '(Have an [OpenID](http://openid.net/)? ' .
+            // TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
+            // TRANS: This message contains Markdown links in the form (description)[link].
+            $instr = _m('(Have an [OpenID](http://openid.net/)? ' .
               'Try our [OpenID login]'.
-              '(%%action.openidlogin%%)!)';
+              '(%%action.openidlogin%%)!)');
             break;
         default:
             return true;
@@ -529,15 +535,12 @@ class OpenIDPlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onEndLoadDoc($title, &$output)
-    {
-        if ($title == 'help') {
-            // TRANS: Item on help page. This message contains Markdown links in the form [description](link).
-            $menuitem = _m('* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this service.');
-
-            $output .= common_markup_to_html($menuitem);
-        }
-
+    function onEndDocsMenu(&$items) {
+        $items[] = array('doc', 
+                         array('title' => 'openid'),
+                         _m('MENU', 'OpenID'),
+                         _('Logging in with OpenID'),
+                         'nav_doc_openid');
         return true;
     }
 
@@ -569,6 +572,35 @@ class OpenIDPlugin extends Plugin
                                    new ColumnDef('created', 'datetime',
                                                  null, false),
                                    new ColumnDef('modified', 'timestamp')));
+
+        $schema->ensureTable('user_openid_prefs', User_openid_prefs::schemaDef());
+
+        /* These are used by JanRain OpenID library */
+
+        $schema->ensureTable('oid_associations',
+                             array(
+                                 'fields' => array(
+                                     'server_url' => array('type' => 'blob', 'not null' => true),
+                                     'handle' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'default' => ''), // character set latin1,
+                                     'secret' => array('type' => 'blob'),
+                                     'issued' => array('type' => 'int'),
+                                     'lifetime' => array('type' => 'int'),
+                                     'assoc_type' => array('type' => 'varchar', 'length' => 64),
+                                 ),
+                                 'primary key' => array(array('server_url', 255), 'handle'),
+                             ));
+        $schema->ensureTable('oid_nonces',
+                             array(
+                                 'fields' => array(
+                                     'server_url' => array('type' => 'varchar', 'length' => 2047),
+                                     'timestamp' => array('type' => 'int'),
+                                     'salt' => array('type' => 'char', 'length' => 40),
+                                 ),
+                                 'unique keys' => array(
+                                     'oid_nonces_server_url_timestamp_salt_key' => array(array('server_url', 255), 'timestamp', 'salt'),
+                                 ),
+                             ));
+
         return true;
     }
 
@@ -779,6 +811,37 @@ class OpenIDPlugin extends Plugin
         if (!empty($profile)) {
             $xrd->links[] = array('rel' => 'http://specs.openid.net/auth/2.0/provider',
                                   'href' => $profile->profileurl);
+        }
+
+        return true;
+    }
+
+    /**
+     * Add links in the user's profile block to their OpenID URLs.
+     *
+     * @param Profile $profile The profile being shown
+     * @param Array   &$links  Writeable array of arrays (href, text, image).
+     *
+     * @return boolean hook value (true)
+     */
+    
+    function onOtherAccountProfiles($profile, &$links)
+    {
+        $prefs = User_openid_prefs::staticGet('user_id', $profile->id);
+
+        if (empty($prefs) || !$prefs->hide_profile_link) {
+
+            $oid = new User_openid();
+
+            $oid->user_id = $profile->id;
+
+            if ($oid->find()) {
+                while ($oid->fetch()) {
+                    $links[] = array('href' => $oid->display,
+                                     'text' => _('OpenID'),
+                                     'image' => $this->path("icons/openid-16x16.gif"));
+                }
+            }
         }
 
         return true;

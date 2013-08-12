@@ -42,7 +42,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class NewApplicationAction extends OwnerDesignAction
+class NewApplicationAction extends Action
 {
     var $msg;
 
@@ -295,6 +295,7 @@ class NewApplicationAction extends OwnerDesignAction
             $app->uploadLogo();
         } catch (Exception $e) {
             $app->query('ROLLBACK');
+            // TRANS: Form validation error messages displayed when uploading an invalid application logo.
             $this->showForm(_('Invalid image.'));
 	        return;	 
 	}

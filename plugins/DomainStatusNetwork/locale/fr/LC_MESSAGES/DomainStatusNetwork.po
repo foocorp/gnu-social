@@ -1,0 +1,28 @@
+# Translation of StatusNet - DomainStatusNetwork to French (français)
+# Exported from translatewiki.net
+#
+# Author: Crochet.david
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - DomainStatusNetwork\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:15+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-18 16:19:16+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: fr\n"
+"X-Message-Group: #out-statusnet-plugin-domainstatusnetwork\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. TRANS: Plugin description.
+msgid "A plugin that maps a single status_network to an email domain."
+msgstr ""
+"Un plugin qui fait correspondre un status_network unique à un domaine de "
+"messagerie."

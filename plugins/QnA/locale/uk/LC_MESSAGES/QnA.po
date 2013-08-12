@@ -1,4 +1,4 @@
-# Translation of StatusNet - QnA to Ukrainian (Українська)
+# Translation of StatusNet - QnA to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:58+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:45+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:49+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
@@ -26,6 +26,7 @@ msgstr ""
 msgid "New question"
 msgstr "Нове запитання"
 
+#. TRANS: Client exception thrown trying to create a Question while not logged in.
 msgid "You must be logged in to post a question."
 msgstr "Ви маєте спочатку увійти, аби мати змогу поставити запитання."
 
@@ -37,16 +38,21 @@ msgstr "Запитання повинно мати заголовок."
 msgid "Question posted"
 msgstr "Запитання поставлено"
 
+#. TRANS: Client exception thrown when requesting a non-existing answer.
+#. TRANS: Did we used to have it, and it got deleted?
 msgid "No such answer."
 msgstr "Немає такої відповіді."
 
+#. TRANS: Client exception thrown when requesting an answer that has no connected question.
 msgid "No question for this answer."
 msgstr "Для цієї відповіді немає відповідного запитання."
 
+#. TRANS: Client exception thrown when requesting answer data for a non-existing user.
 #. TRANS: Client exception thrown trying to view a question of a non-existing user.
 msgid "No such user."
 msgstr "Такого користувача немає."
 
+#. TRANS: Client exception thrown when requesting answer data for a user without a profile.
 #. TRANS: Server exception thrown trying to view a question for a user for which the profile could not be loaded.
 msgid "User without a profile."
 msgstr "Користувач без профілю."
@@ -65,12 +71,18 @@ msgstr "Переглянути відповідь"
 msgid "You must be logged in to answer to a question."
 msgstr "Ви маєте спочатку увійти, аби мати змогу відповісти на запитання."
 
+#. TRANS: Client exception thrown trying to respond to a non-existing question.
 msgid "Invalid or missing answer."
 msgstr "Неправильна або відсутня відповідь."
 
 #. TRANS: Page title after sending an answer.
 #. TRANS: Page title for and answer to a question.
 #. TRANS: Form legend for showing the answer.
+msgid "Answer"
+msgstr "Відповідь"
+
+#. TRANS: Form title for sending an answer.
+msgctxt "TITLE"
 msgid "Answer"
 msgstr "Відповідь"
 
@@ -82,6 +94,8 @@ msgstr "Немає такого запитання."
 msgid "No such question notice."
 msgstr "Немає такого допису із запитанням."
 
+#. TRANS: Page title for a question.
+#. TRANS: %1$s is the nickname of the user who asked the question, %2$s is the question.
 #, php-format
 msgid "%1$s's question: %2$s"
 msgstr "%1$s має запитання: %2$s"
@@ -90,6 +104,7 @@ msgstr "%1$s має запитання: %2$s"
 msgid "Close question"
 msgstr "Закрити питання."
 
+#. TRANS: Client exception thrown trying to close a question when not logged in
 msgid "You must be logged in to close a question."
 msgstr "Ви маєте спочатку увійти, аби мати змогу закрити питання."
 
@@ -97,10 +112,12 @@ msgstr "Ви маєте спочатку увійти, аби мати змог�
 msgid "Invalid or missing question."
 msgstr "Неправильне або відсутнє запитання."
 
-msgid "You didn't ask this question."
+#. TRANS: Exception thrown trying to close another user's question.
+msgid "You did not ask this question."
 msgstr "Ви не ставили цього запитання."
 
 #. TRANS: Page title after sending an answer.
+#. TRANS: Page title after sending in a vote for a question or answer.
 msgid "Answers"
 msgstr "Відповіді"
 
@@ -113,6 +130,8 @@ msgctxt "TITLE"
 msgid "Your answer"
 msgstr "Ваша відповідь."
 
+#. TRANS: Error message displayed when an answer has no content.
+#. TRANS: Error message displayed when answer data is not present.
 msgid "Answer data is missing."
 msgstr "Дані відповіді відсутні."
 
@@ -121,25 +140,27 @@ msgid "Question and Answers micro-app."
 msgstr "Додаток для запитань і відповідей."
 
 #. TRANS: Application title.
-#. TRANS: Form legend for revising the answer.
+msgctxt "TITLE"
 msgid "Question"
 msgstr "Запитання"
 
+#. TRANS: Exception thrown when there are too many activity objects.
 msgid "Too many activity objects."
 msgstr "Занадто багато об’єктів діяльності."
 
+#. TRANS: Exception thrown when an incorrect object type is encountered.
 msgid "Wrong type for object."
 msgstr "Неправильний тип для об’єкта."
 
+#. TRANS: Exception thrown when answering a non-existing question.
 msgid "Answer to unknown question."
 msgstr "Відповідь на невідоме запитання."
 
-msgid "Unknown object type received by QnA Plugin."
-msgstr "Невідомий об'єкт типу отримано додатком запитань і відповідей."
-
+#. TRANS: Exception thrown when an object type is encountered that cannot be handled.
 msgid "Unknown object type."
 msgstr "Невідомий тип об’єкта."
 
+#. TRANS: Exception thrown when requesting a non-existing question notice.
 msgid "Unknown question notice."
 msgstr "Невідомий допис із запитанням."
 
@@ -149,39 +170,71 @@ msgstr "Невідомий допис із запитанням."
 msgid "Unexpected type for QnA plugin: %s."
 msgstr "Несподіваний тип для додатку QnA: %s ."
 
+#. TRANS: Error message displayed when question data is not present.
 msgid "Question data is missing."
 msgstr "Дані запитання відсутні."
 
+#. TRANS: Placeholder value for a possible answer to a question
+#. TRANS: by the logged in user.
 msgid "Your answer..."
 msgstr "Ваша відповідь..."
 
-#. TRANS: Link to full notice text if it is longer than what will be dispplayed.
-#. TRANS: %s a notice URI.
-#, php-format
-msgid "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
-msgstr "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
+#. TRANS: Link description for link to full notice text if it is longer than
+#. TRANS: what will be dispplayed.
+msgid "…"
+msgstr "…"
 
+#. TRANS: Title for link that is an ellipsis in English.
 msgid "more..."
 msgstr "ще..."
 
+#. TRANS: Exception thown when getting a question with a non-existing ID.
+#. TRANS: %s is the non-existing question ID.
 #, php-format
-msgid "%s revisions"
-msgstr "%s редагування"
+msgid "No question with ID %s"
+msgstr "Немає запитання з ідентифікатором %s"
 
+#. TRANS: Exception thown when getting a profile with a non-existing ID.
+#. TRANS: %s is the non-existing profile ID.
+#. TRANS: Exception trown when getting a profile for a non-existing ID.
+#. TRANS: %s is the provided profile ID.
+#, php-format
+msgid "No profile with ID %s"
+msgstr "Немає профілю з ідентифікатором %s"
+
+#. TRANS: %s is the number of answer revisions.
+#, php-format
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] "%s перегляд"
+msgstr[1] "%s переглядів"
+msgstr[2] "%s перегляд"
+
+#. TRANS: Text for a question that was answered.
+#. TRANS: %1$s is the user that answered, %2$s is the question title,
+#. TRANS: %2$s is the answer content.
 #, php-format
 msgid "%1$s answered the question \"%2$s\": %3$s"
 msgstr "%1$s відповів на запитання «%2$s»: %3$s"
 
+#. TRANS: Text for a question that was answered.
+#. TRANS: %s is the question title.
 #. TRANS: Rendered version of the notice content answering a question.
 #. TRANS: %s a link to the question with question title as the link content.
 #, php-format
 msgid "answered \"%s\""
 msgstr "відповіли на «%s»"
 
+#. TRANS: Number of given answers to a question.
+#. TRANS: %s is the number of given answers.
 #, php-format
-msgid "%s answers"
-msgstr "%s відповіді"
+msgid "%s answer"
+msgid_plural "%s answers"
+msgstr[0] "%s відповід"
+msgstr[1] "%s відповідей"
+msgstr[2] "%s відповіді"
 
+#. TRANS: Notification that a question cannot be answered anymore because it is closed.
 msgid "This question is closed."
 msgstr "Це питання закрито."
 
@@ -191,11 +244,13 @@ msgstr "Це питання закрито."
 msgid "Question: %s"
 msgstr "Запитання: %s"
 
+#. TRANS: Button text for submitting a revised answer.
 #. TRANS: Button text for submitting a poll response.
 msgctxt "BUTTON"
 msgid "Submit"
 msgstr "Надіслати"
 
+#. TRANS: Field label.
 msgid "Enter your answer"
 msgstr "Введіть вашу відповідь"
 
@@ -204,37 +259,48 @@ msgctxt "BUTTON"
 msgid "Answer"
 msgstr "Відповідь"
 
+#. TRANS: Field label for a new question.
+msgctxt "LABEL"
 msgid "Title"
 msgstr "Заголовок"
 
-msgid "Title of your question"
-msgstr "Заголовок для вашого запитання"
+#. TRANS: Field title for a new question.
+msgid "The title of your question."
+msgstr "Заголовок для вашого запитання."
 
+#. TRANS: Field label for question details.
+msgctxt "LABEL"
 msgid "Description"
 msgstr "Опис"
 
-msgid "Your question in detail"
-msgstr "Ваше запитання детальніше"
+#. TRANS: Field title for question details.
+msgid "Your question in detail."
+msgstr "Ваше запитання детальніше."
 
 #. TRANS: Button text for saving a new question.
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зберегти"
 
-#. TRANS: Button text for closing a question
+#. TRANS: Form legend for revising the answer.
+msgctxt "LEGEND"
+msgid "Question"
+msgstr "Запитання"
+
+#. TRANS: Button text for closing a question.
 msgctxt "BUTTON"
 msgid "Close"
 msgstr "Закрити"
 
-#. TRANS: Title for button text for closing a question
-msgid "Close the question"
-msgstr "Закрити питання."
+#. TRANS: Title for button text for closing a question.
+msgid "Close the question to no one can answer it anymore."
+msgstr "Закрити питання, щоб ніхто не більше не міг на нього відповісти."
 
-#. TRANS: Button text for marking an answer as "best"
+#. TRANS: Button text for marking an answer as "best".
 msgctxt "BUTTON"
 msgid "Best"
 msgstr "Краще"
 
-#. TRANS: Title for button text marking an answer as "best"
-msgid "Mark as best answer"
-msgstr "Позначити як кращу відповідь"
+#. TRANS: Title for button text marking an answer as "best".
+msgid "Mark this answer as the best answer."
+msgstr "Позначити цю відповідь як найкращу."

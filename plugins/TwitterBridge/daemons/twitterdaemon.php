@@ -23,7 +23,7 @@ define('INSTALLDIR', realpath(dirname(__FILE__) . '/../../..'));
 $shortoptions = 'fi::a';
 $longoptions = array('id::', 'foreground', 'all');
 
-$helptext = <<<END_OF_XMPP_HELP
+$helptext = <<<END_OF_TWITTERDAEMON_HELP
 Daemon script for receiving new notices from Twitter users.
 
     -i --id           Identity (default none)
@@ -31,11 +31,9 @@ Daemon script for receiving new notices from Twitter users.
                       (requires Stomp queue handler, status_network setup)
     -f --foreground   Stay in the foreground (default background)
 
-END_OF_XMPP_HELP;
+END_OF_TWITTERDAEMON_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
-
-require_once INSTALLDIR . '/lib/jabber.php';
 
 class TwitterDaemon extends SpawningDaemon
 {

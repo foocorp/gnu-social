@@ -1,0 +1,263 @@
+# Translation of StatusNet - Bookmark to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Bookmark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:56+0000\n"
+"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-10-10 14:11:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: eu\n"
+"X-Message-Group: #out-statusnet-plugin-bookmark\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception thrown when a bookmark in an import file is incorrectly formatted.
+msgid "No <A> tag in a <DT>."
+msgstr "Ez dago <A> etiketari <DT> batean."
+
+#. TRANS: Client exception thrown when a bookmark in an import file is private.
+msgid "Skipping private bookmark."
+msgstr "Lastermarka pribatutik irteten."
+
+#. TRANS: Client exception thrown when referring to a non-existing bookmark.
+msgid "No such bookmark."
+msgstr "Ez dago lastermarka hori."
+
+#. TRANS: Title for bookmark.
+#. TRANS: %1$s is a user nickname, %2$s is a bookmark title.
+#, php-format
+msgid "%1$s's bookmark for \"%2$s\""
+msgstr "%1$s(r)en \"%2$s\" lastermarkak"
+
+#. TRANS: Plugin description.
+msgid "Simple extension for supporting bookmarks."
+msgstr "Lastermarkak jasateko oinarrizko hedapena"
+
+#. TRANS: Link text in proile leading to import form.
+#. TRANS: Title for page to import del.icio.us bookmark backups on.
+msgid "Import del.icio.us bookmarks"
+msgstr "Inportatu del.icio.us-eko lastermarkak"
+
+#. TRANS: Client exception thrown when a bookmark is formatted incorrectly.
+msgid "Expected exactly 1 link rel=related in a Bookmark."
+msgstr "Lastermarka batean rel=related esteka bat espero zen."
+
+#. TRANS: Server exception thrown when a bookmark has multiple attachments.
+msgid "Bookmark notice with the wrong number of attachments."
+msgstr "Lastermarka oharra eranskin kopuru okerrarekin."
+
+#. TRANS: Application title.
+msgctxt "TITLE"
+msgid "Bookmark"
+msgstr "Lastermarka"
+
+#. TRANS: Title for mini-posting window loaded from bookmarklet.
+#. TRANS: %s is the StatusNet site name.
+#, php-format
+msgid "Bookmark on %s"
+msgstr "%s(e)n lastermarkak"
+
+#. TRANS: Client exception thrown when trying to save a new bookmark that already exists.
+msgid "Bookmark already exists."
+msgstr "Lastermarka hori existizen da jada."
+
+#. TRANS: Bookmark content.
+#. TRANS: %1$s is a title, %2$s is a short URL, %3$s is the bookmark description,
+#. TRANS: %4$s is space separated list of hash tags.
+#, php-format
+msgid "\"%1$s\" %2$s %3$s %4$s"
+msgstr "\"%1$s\" %2$s %3$s %4$s"
+
+#. TRANS: Rendered bookmark content.
+#. TRANS: %1$s is a URL, %2$s the bookmark title, %3$s is the bookmark description,
+#. TRANS: %4$s is space separated list of hash tags.
+#, php-format
+msgid ""
+"<span class=\"xfolkentry\"><a class=\"taggedlink\" href=\"%1$s\">%2$s</a> "
+"<span class=\"description\">%3$s</span> <span class=\"meta\">%4$s</span></"
+"span>"
+msgstr ""
+"<span class=\"xfolkentry\"><a class=\"taggedlink\" href=\"%1$s\">%2$s</a> "
+"<span class=\"description\">%3$s</span> <span class=\"meta\">%4$s</span></"
+"span>"
+
+#. TRANS: Field label on form for adding a new bookmark.
+msgctxt "LABEL"
+msgid "URL"
+msgstr "URL"
+
+#. TRANS: Button text for action to save a new bookmark.
+msgctxt "BUTTON"
+msgid "Add"
+msgstr "Gehitu"
+
+#. TRANS: Client exception thrown when an unknown URL is provided.
+msgid "Unknown URL."
+msgstr "URL ezezaguna."
+
+#. TRANS: Title of notice stream of notices with a given attachment (first page).
+#. TRANS: %s is the URL.
+#, php-format
+msgid "Notices linking to %s"
+msgstr "%s(r)a estekatzen duten oharrak"
+
+#. TRANS: Title of notice stream of notices with a given attachment (all but first page).
+#. TRANS: %1$s is the URL, %2$s is the page number.
+#, php-format
+msgid "Notices linking to %1$s, page %2$d"
+msgstr "%1$s(r)a estekatzen duten oharrak, %2$d. orria"
+
+#. TRANS: Client exception thrown when trying to import bookmarks without being logged in.
+msgid "Only logged-in users can import del.icio.us backups."
+msgstr ""
+"Izen emandako erabiltzaileek soilik inporta ditzakete del.icio.us "
+"babeskopiak."
+
+#. TRANS: Client exception thrown when trying to import bookmarks without having the rights to do so.
+msgid "You may not restore your account."
+msgstr "Ez zenuke zure kontua leheneratu behar."
+
+#. TRANS: Client exception thrown when trying to import bookmarks and upload fails.
+#. TRANS: Client exception thrown when a file upload has failed.
+msgid "No uploaded file."
+msgstr "Ez dago igotako fitxategirik."
+
+#. TRANS: Client exception thrown when an uploaded file is too large.
+msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini."
+msgstr ""
+"php.ini-ko upload_max_filesize aldagaia gainditzen du igotako fitxategiak."
+
+#. TRANS: Client exception thrown when an uploaded file is too large.
+msgid ""
+"The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
+"the HTML form."
+msgstr ""
+"HTML inprimakiko MAX_FILE_SIZE aldagaia gainditzen du igotako fitxategiak.."
+
+#. TRANS: Client exception thrown when a file was only partially uploaded.
+msgid "The uploaded file was only partially uploaded."
+msgstr "Igotako fitxategiaren zati bat soilik igo da."
+
+#. TRANS: Client exception thrown when a temporary folder is not present.
+msgid "Missing a temporary folder."
+msgstr "Karpeta tenporala falta da."
+
+#. TRANS: Client exception thrown when writing to disk is not possible.
+msgid "Failed to write file to disk."
+msgstr "Fitxategia diskoan idaztean akatsa."
+
+#. TRANS: Client exception thrown when a file upload has been stopped.
+msgid "File upload stopped by extension."
+msgstr "Fitxategi igoera gelditu egin da luzapen okerragatik."
+
+#. TRANS: Client exception thrown when a file upload operation has failed.
+msgid "System error uploading file."
+msgstr "Fitxateiga igotzean sistema akatsa."
+
+#. TRANS: Server exception thrown when a file upload cannot be found.
+#. TRANS: %s is the file that could not be found.
+#. TRANS: Exception thrown when a file upload cannot be found.
+#. TRANS: %s is the file that could not be found.
+#, php-format
+msgid "No such file \"%s\"."
+msgstr "Ez dago \"%s\" fitxategirik."
+
+#. TRANS: Server exception thrown when a file upload is incorrect.
+#. TRANS: %s is the irregular file.
+#. TRANS: Exception thrown when a file upload is incorrect.
+#. TRANS: %s is the irregular file.
+#, php-format
+msgid "Not a regular file: \"%s\"."
+msgstr "Ez da fitxategi erregularra: \"%s\"."
+
+#. TRANS: Server exception thrown when a file upload is not readable.
+#. TRANS: %s is the file that could not be read.
+#. TRANS: Exception thrown when a file upload is not readable.
+#. TRANS: %s is the file that could not be read.
+#, php-format
+msgid "File \"%s\" not readable."
+msgstr "\"%s\" fitxategia irakurtezina."
+
+#. TRANS: Success message after importing bookmarks.
+msgid ""
+"Bookmarks have been imported. Your bookmarks should now appear in search and "
+"your profile page."
+msgstr ""
+"Lastermarkak inportatu dira. Zure lastermarkak bilaketan eta zure profilean "
+"agertu beharko lukete."
+
+#. TRANS: Busy message for importing bookmarks.
+msgid "Bookmarks are being imported. Please wait a few minutes for results."
+msgstr "Lastermarkak inportatzen ari dira. Itxaron minutu gutxi batzuk."
+
+#. TRANS: Form instructions for importing bookmarks.
+msgid "You can upload a backed-up delicious.com bookmarks file."
+msgstr "Delicious.com-eko babeskopia fitxategi bat igo dezakezu."
+
+#. TRANS: Button text on form to import bookmarks.
+msgctxt "BUTTON"
+msgid "Upload"
+msgstr "Igo"
+
+#. TRANS: Button title on form to import bookmarks.
+msgid "Upload the file."
+msgstr "Fitxategia igo."
+
+#. TRANS: Field label on form for adding a new bookmark.
+msgctxt "LABEL"
+msgid "Title"
+msgstr "Titulua"
+
+#. TRANS: Field label on form for adding a new bookmark.
+msgctxt "LABEL"
+msgid "Notes"
+msgstr "Oharrak"
+
+#. TRANS: Field label on form for adding a new bookmark.
+msgctxt "LABEL"
+msgid "Tags"
+msgstr "Etiketak"
+
+#. TRANS: Field title on form for adding a new bookmark.
+msgid "Comma- or space-separated list of tags."
+msgstr "Koma edo espazioz banandutako etiketa zerrenda."
+
+#. TRANS: Button text for action to save a new bookmark.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Gorde"
+
+#. TRANS: Title for action to create a new bookmark.
+msgid "New bookmark"
+msgstr "Lastermarka berria"
+
+#. TRANS: Client exception thrown when trying to create a new bookmark while not logged in.
+msgid "Must be logged in to post a bookmark."
+msgstr "Lastermarka bat bidaltzeko saioa hasi behar duzu."
+
+#. TRANS: Client exception thrown when trying to create a new bookmark without a title.
+msgid "Bookmark must have a title."
+msgstr "Lastermarkak titulu bat behar du."
+
+#. TRANS: Client exception thrown when trying to create a new bookmark without a URL.
+msgid "Bookmark must have an URL."
+msgstr "Lastermarkak URL bat behar du."
+
+#. TRANS: Page title after posting a bookmark.
+msgid "Bookmark posted"
+msgstr "Lastermarka bidali da"
+
+#. TRANS: %s is the filename that contains a backup for a user.
+#, php-format
+msgid "Getting backup from file \"%s\"."
+msgstr "\"%s\" fitxategitik babeskopia lortzen."

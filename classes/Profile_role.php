@@ -27,7 +27,7 @@ if (!defined('STATUSNET')) {
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Profile_role extends Memcached_DataObject
+class Profile_role extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -42,6 +42,22 @@ class Profile_role extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'account having the role'),
+                'role' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'description' => 'string representing the role'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the role was granted'),
+            ),
+            'primary key' => array('profile_id', 'role'),
+            'foreign keys' => array(
+                'profile_role_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+            ),
+            'indexes' => array('profile_role_role_created_profile_id_idx' => array('role', 'created', 'profile_id')),
+        );
+    }
 
     function pkeyGet($kv)
     {

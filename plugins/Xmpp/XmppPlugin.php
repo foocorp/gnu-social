@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class XmppPlugin extends ImPlugin
 {
     public $server = null;
@@ -59,22 +58,22 @@ class XmppPlugin extends ImPlugin
     public $transport = 'xmpp';
 
     function getDisplayName(){
+        // TRANS: Plugin display name.
         return _m('XMPP/Jabber/GTalk');
     }
 
     /**
      * Splits a Jabber ID (JID) into node, domain, and resource portions.
-     * 
+     *
      * Based on validation routine submitted by:
      * @copyright 2009 Patrick Georgi <patrick@georgi-clan.de>
-     * @license Licensed under ISC-L, which is compatible with everything else that keeps the copyright notice intact. 
+     * @license Licensed under ISC-L, which is compatible with everything else that keeps the copyright notice intact.
      *
      * @param string $jid string to check
      *
      * @return array with "node", "domain", and "resource" indices
      * @throws Exception if input is not valid
      */
-
     protected function splitJid($jid)
     {
         $chars = '';
@@ -102,11 +101,11 @@ class XmppPlugin extends ImPlugin
         $chars .= "\x{340}\x{341}\x{200e}\x{200f}\x{202a}-\x{202e}\x{206a}-\x{206f}";
         /* C9 - Tagging characters */
         $chars .= "\x{e0001}\x{e0020}-\x{e007f}";
-    
+
         /* Nodeprep forbids some more characters */
         $nodeprepchars = $chars;
         $nodeprepchars .= "\x{22}\x{26}\x{27}\x{2f}\x{3a}\x{3c}\x{3e}\x{40}";
-    
+
         $parts = explode("/", $jid, 2);
         if (count($parts) > 1) {
             $resource = $parts[1];
@@ -117,10 +116,11 @@ class XmppPlugin extends ImPlugin
         } else {
             $resource = null;
         }
-    
+
         $node = explode("@", $parts[0]);
         if ((count($node) > 2) || (count($node) == 0)) {
-            throw new Exception("Invalid JID: too many @s");
+            // TRANS: Exception thrown when using too many @ signs in a Jabber ID.
+            throw new Exception(_m('Invalid JID: too many @s.'));
         } else if (count($node) == 1) {
             $domain = $node[0];
             $node = null;
@@ -128,47 +128,57 @@ class XmppPlugin extends ImPlugin
             $domain = $node[1];
             $node = $node[0];
             if ($node == '') {
-                throw new Exception("Invalid JID: @ but no node");
+            // TRANS: Exception thrown when using @ sign not followed by a Jabber ID.
+                throw new Exception(_m('Invalid JID: @ but no node'));
             }
         }
-    
+
         // Length limits per http://xmpp.org/rfcs/rfc3920.html#addressing
         if ($node !== null) {
             if (strlen($node) > 1023) {
-                throw new Exception("Invalid JID: node too long.");
+                // TRANS: Exception thrown when using too long a Jabber ID (>1023).
+                throw new Exception(_m('Invalid JID: node too long.'));
             }
             if (preg_match("/[".$nodeprepchars."]/u", $node)) {
-                throw new Exception("Invalid JID node '$node'");
+                // TRANS: Exception thrown when using an invalid Jabber ID.
+                // TRANS: %s is the invalid Jabber ID.
+                throw new Exception(sprintf(_m('Invalid JID node "%s".'),$node));
             }
         }
-    
+
         if (strlen($domain) > 1023) {
-            throw new Exception("Invalid JID: domain too long.");
+            // TRANS: Exception thrown when using too long a Jabber domain (>1023).
+            throw new Exception(_m('Invalid JID: domain too long.'));
         }
         if (!common_valid_domain($domain)) {
-            throw new Exception("Invalid JID domain name '$domain'");
+            // TRANS: Exception thrown when using an invalid Jabber domain name.
+            // TRANS: %s is the invalid domain name.
+            throw new Exception(sprintf(_m('Invalid JID domain name "%s".'),$domain));
         }
-    
+
         if ($resource !== null) {
             if (strlen($resource) > 1023) {
+                // TRANS: Exception thrown when using too long a resource (>1023).
                 throw new Exception("Invalid JID: resource too long.");
             }
             if (preg_match("/[".$chars."]/u", $resource)) {
-                throw new Exception("Invalid JID resource '$resource'");
+                // TRANS: Exception thrown when using an invalid Jabber resource.
+                // TRANS: %s is the invalid resource.
+                throw new Exception(sprintf(_m('Invalid JID resource "%s".'),$resource));
             }
         }
-    
+
         return array('node' => is_null($node) ? null : mb_strtolower($node),
                      'domain' => is_null($domain) ? null : mb_strtolower($domain),
                      'resource' => $resource);
     }
-    
+
     /**
      * Checks whether a string is a syntactically valid Jabber ID (JID),
      * either with or without a resource.
-     * 
+     *
      * Note that a bare domain can be a valid JID.
-     * 
+     *
      * @param string $jid string to check
      * @param bool $check_domain whether we should validate that domain...
      *
@@ -188,15 +198,15 @@ class XmppPlugin extends ImPlugin
             return false;
         }
     }
-    
+
     /**
      * Checks whether a string is a syntactically valid base Jabber ID (JID).
      * A base JID won't include a resource specifier on the end; since we
      * take it off when reading input we can't really use them reliably
      * to direct outgoing messages yet (sorry guys!)
-     * 
+     *
      * Note that a bare domain can be a valid JID.
-     * 
+     *
      * @param string $jid string to check
      * @param bool $check_domain whether we should validate that domain...
      *
@@ -225,7 +235,6 @@ class XmppPlugin extends ImPlugin
      *
      * @return string an equivalent JID in normalized (lowercase) form
      */
-
     function normalize($jid)
     {
         try {
@@ -308,7 +317,7 @@ class XmppPlugin extends ImPlugin
 
     function microiduri($screenname)
     {
-        return 'xmpp:' . $screenname;    
+        return 'xmpp:' . $screenname;
     }
 
     function sendMessage($screenname, $body)
@@ -320,7 +329,7 @@ class XmppPlugin extends ImPlugin
     {
         $msg   = $this->formatNotice($notice);
         $entry = $this->format_entry($notice);
-        
+
         $this->queuedConnection()->message($screenname, $msg, 'chat', null, $entry);
         return true;
     }
@@ -333,7 +342,6 @@ class XmppPlugin extends ImPlugin
      *
      * @return string Extra information (Atom, HTML, addresses) in string format
      */
-
     function format_entry($notice)
     {
         $profile = $notice->getProfile();
@@ -355,6 +363,7 @@ class XmppPlugin extends ImPlugin
         $xs->element('a', array(
             'href'=>common_local_url('conversation',
                 array('id' => $notice->conversation)).'#notice-'.$notice->id),
+             // TRANS: Link description to notice in conversation.
              // TRANS: %s is a notice ID.
              sprintf(_m('[%s]'),$notice->id));
         $xs->elementEnd('body');
@@ -371,38 +380,42 @@ class XmppPlugin extends ImPlugin
 
         if ($pl['type'] != 'chat') {
             $this->log(LOG_WARNING, "Ignoring message of type ".$pl['type']." from $from: " . $pl['xml']->toString());
-            return;
+            return true;
         }
 
         if (mb_strlen($pl['body']) == 0) {
             $this->log(LOG_WARNING, "Ignoring message with empty body from $from: "  . $pl['xml']->toString());
-            return;
+            return true;
         }
 
         $this->handleIncoming($from, $pl['body']);
-        
+
         return true;
     }
 
     /**
      * Build a queue-proxied XMPP interface object. Any outgoing messages
      * will be run back through us for enqueing rather than sent directly.
-     * 
+     *
      * @return Queued_XMPP
      * @throws Exception if server settings are invalid.
      */
     function queuedConnection(){
         if(!isset($this->server)){
-            throw new Exception("must specify a server");
+            // TRANS: Exception thrown when the plugin configuration is incorrect.
+            throw new Exception(_m('You must specify a server in the configuration.'));
         }
         if(!isset($this->port)){
-            throw new Exception("must specify a port");
+            // TRANS: Exception thrown when the plugin configuration is incorrect.
+            throw new Exception(_m('You must specify a port in the configuration.'));
         }
         if(!isset($this->user)){
-            throw new Exception("must specify a user");
+            // TRANS: Exception thrown when the plugin configuration is incorrect.
+            throw new Exception(_m('You must specify a user in the configuration.'));
         }
         if(!isset($this->password)){
-            throw new Exception("must specify a password");
+            // TRANS: Exception thrown when the plugin configuration is incorrect.
+            throw new Exception(_m('You must specify a password in the configuration.'));
         }
 
         return new Queued_XMPP($this, $this->host ?
@@ -420,6 +433,31 @@ class XmppPlugin extends ImPlugin
                                     );
     }
 
+    /**
+     * Add XMPP plugin daemon to the list of daemon to start
+     *
+     * @param array $daemons the list of daemons to run
+     *
+     * @return boolean hook return
+     */
+    function onGetValidDaemons($daemons)
+    {
+        if( isset($this->server) &&
+            isset($this->port)   &&
+            isset($this->user)   &&
+            isset($this->password) ){
+
+            array_push(
+                $daemons,
+                INSTALLDIR
+                . '/scripts/imdaemon.php'
+            );
+        }
+
+        return true;
+    }
+
+
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'XMPP',
@@ -427,6 +465,7 @@ class XmppPlugin extends ImPlugin
                             'author' => 'Craig Andrews, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:XMPP',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The XMPP plugin allows users to send and receive notices over the XMPP/Jabber network.'));
         return true;
     }

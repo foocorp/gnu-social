@@ -47,11 +47,13 @@ class AddTwitterMirrorForm extends AddMirrorForm
         $this->li();
         $this->doInput('addmirror-feedurl',
                        'screen_name',
+                       // TRANS: Field label.
                        _m('Twitter username:'),
                        $this->out->trimmed('screen_name'));
         $this->unli();
 
         $this->li();
+        // TRANS: Button text for adding a Twitter feed mirror.
         $this->out->submit('addmirror-save', _m('BUTTON','Add feed'));
         $this->unli();
         $this->out->elementEnd('ul');

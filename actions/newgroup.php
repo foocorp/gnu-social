@@ -122,7 +122,7 @@ class NewgroupAction extends Action
     {
         if (Event::handle('StartGroupSaveForm', array($this))) {
             try {
-                $nickname = Nickname::normalize($this->trimmed('nickname'));
+                $nickname = Nickname::normalize($this->trimmed('newnickname'));
             } catch (NicknameException $e) {
                 $this->showForm($e->getMessage());
             }

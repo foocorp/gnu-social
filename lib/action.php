@@ -229,7 +229,7 @@ class Action extends HTMLOutputter // lawsuit
                 Event::handle('EndShowLaconicaStyles', array($this));
             }
 
-            $this->cssLink(common_path('js/css/smoothness/jquery-ui.css'));
+            $this->cssLink(common_path('js/css/smoothness/jquery-ui.css', StatusNet::isHTTPS()));
 
             if (Event::handle('StartShowUAStyles', array($this))) {
                 $this->comment('[if IE]><link rel="stylesheet" type="text/css" '.
@@ -241,25 +241,13 @@ class Action extends HTMLOutputter // lawsuit
                                        'href="'.Theme::path('css/ie'.$ver.'.css', 'base').'?version='.STATUSNET_VERSION.'" /><![endif]');
                     }
                 }
-                $this->comment('[if IE]><link rel="stylesheet" type="text/css" '.
+                if (file_exists(Theme::file('css/ie.css'))) {
+                    $this->comment('[if IE]><link rel="stylesheet" type="text/css" '.
                                'href="'.Theme::path('css/ie.css', null).'?version='.STATUSNET_VERSION.'" /><![endif]');
+                }
                 Event::handle('EndShowUAStyles', array($this));
             }
 
-            if (Event::handle('StartShowDesign', array($this))) {
-
-                $user = common_current_user();
-
-                if (empty($user) || $user->viewdesigns) {
-                    $design = $this->getDesign();
-
-                    if (!empty($design)) {
-                        $design->showCSS($this);
-                    }
-                }
-
-                Event::handle('EndShowDesign', array($this));
-            }
             Event::handle('EndShowStyles', array($this));
 
             if (common_config('custom_css', 'enabled')) {
@@ -291,6 +279,13 @@ class Action extends HTMLOutputter // lawsuit
             $this->cssLink('css/display.css', $baseTheme, $media);
         }
         $this->cssLink('css/display.css', $mainTheme, $media);
+
+        // Additional styles for RTL languages
+        if (is_rtl(common_language())) {
+            if (file_exists(Theme::file('css/rtl.css'))) {
+                $this->cssLink('css/rtl.css', $mainTheme, $media);
+            }
+        }
     }
 
     /**
@@ -307,7 +302,7 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('jquery.form.min.js');
                     $this->script('jquery-ui.min.js');
                     $this->script('jquery.cookie.min.js');
-                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.min.js').'"); }');
+                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.min.js', StatusNet::isHTTPS()).'"); }');
                     $this->script('jquery.joverlay.min.js');
                     $this->script('jquery.infieldlabel.min.js');
                 } else {
@@ -315,7 +310,7 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('jquery.form.js');
                     $this->script('jquery-ui.min.js');
                     $this->script('jquery.cookie.js');
-                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.js').'"); }');
+                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.js', StatusNet::isHTTPS()).'"); }');
                     $this->script('jquery.joverlay.js');
                     $this->script('jquery.infieldlabel.js');
                 }
@@ -331,12 +326,17 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('xbImportNode.js');
                     $this->script('geometa.js');
                 }
+                // This route isn't available in single-user mode.
+                // Not sure why, but it causes errors here.
                 $this->inlineScript('var _peopletagAC = "' .
-                    common_local_url('peopletagautocomplete') . '";');
+                                    common_local_url('peopletagautocomplete') . '";');
                 $this->showScriptMessages();
-                // Frame-busting code to avoid clickjacking attacks.
+                // Anti-framing code to avoid clickjacking attacks in older browsers.
+                // This will show a blank page if the page is being framed, which is
+                // consistent with the behavior of the 'X-Frame-Options: SAMEORIGIN'
+                // header, which prevents framing in newer browser.
                 if (common_config('javascript', 'bustframes')) {
-                    $this->inlineScript('if (window.top !== window.self) { window.top.location.href = window.self.location.href; }');
+                    $this->inlineScript('if (window.top !== window.self) { document.write = ""; window.top.location = window.self.location; setTimeout(function () { document.body.innerHTML = ""; }, 1); window.self.onload = function () { document.body.innerHTML = ""; }; }');
                 }
                 Event::handle('EndShowStatusNetScripts', array($this));
                 Event::handle('EndShowLaconicaScripts', array($this));
@@ -584,6 +584,14 @@ class Action extends HTMLOutputter // lawsuit
     function showPrimaryNav()
     {
         $this->elementStart('div', array('id' => 'site_nav_global_primary'));
+
+        $user = common_current_user();
+
+        if (!empty($user) || !common_config('site', 'private')) {
+            $form = new SearchForm($this);
+            $form->show();
+        }
+
         $pn = new PrimaryNav($this);
         $pn->show();
         $this->elementEnd('div');
@@ -1362,15 +1370,22 @@ class Action extends HTMLOutputter // lawsuit
     {
         // Added @id to li for some control.
         // XXX: We might want to move this to htmloutputter.php
-        $lattrs = array();
+        $lattrs  = array();
+        $classes = array();
         if ($class !== null) {
-            $lattrs['class'] = $class;
-            if ($is_selected) {
-                $lattrs['class'] = trim('current ' . $lattrs['class']);
-            }
+            $classes[] = trim($class);
+        }
+        if ($is_selected) {
+            $classes[] = 'current';
         }
 
-        (is_null($id)) ? $lattrs : $lattrs['id'] = $id;
+        if (!empty($classes)) {
+            $lattrs['class'] = implode(' ', $classes);
+        }
+
+        if (!is_null($id)) {
+            $lattrs['id'] = $id;
+        }
 
         $this->elementStart('li', $lattrs);
         $attrs['href'] = $url;
@@ -1437,16 +1452,6 @@ class Action extends HTMLOutputter // lawsuit
     function getFeeds()
     {
         return null;
-    }
-
-    /**
-     * A design for this action
-     *
-     * @return Design a design object to use
-     */
-    function getDesign()
-    {
-        return Design::siteDesign();
     }
 
     /**

@@ -157,7 +157,8 @@ class User_flag_profile extends Memcached_DataObject
 
         if (!$ufp->insert()) {
             // TRANS: Server exception.
-            $msg = sprintf(_m('Couldn\'t flag profile "%d" for review.'),
+            // TRANS: %d is a profile ID (number).
+            $msg = sprintf(_m('Could not flag profile "%d" for review.'),
                            $profile_id);
             throw new ServerException($msg);
         }

@@ -33,6 +33,9 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class InfiniteScrollPlugin extends Plugin
 {
+
+    public $on_next_only = false;
+
     function __construct()
     {
         parent::__construct();
@@ -41,6 +44,7 @@ class InfiniteScrollPlugin extends Plugin
     function onEndShowScripts($action)
     {
         $action->inlineScript('var infinite_scroll_on_next_only = ' . ($this->on_next_only?'true':'false') . ';');
+        $action->inlineScript('var ajax_loader_url = "' . ($this->path('ajax-loader.gif')) . '";');
         $action->script($this->path('jquery.infinitescroll.js'));
         $action->script($this->path('infinitescroll.js'));
     }

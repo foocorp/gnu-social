@@ -1,9 +1,11 @@
-# Translation of StatusNet - FacebookBridge to French (Français)
+# Translation of StatusNet - FacebookBridge to French (français)
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Crochet.david
 # Author: Iketsi
 # Author: Od1n
+# Author: Peter17
 # Author: Phoenamandre
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -12,14 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:29+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:33+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -121,6 +123,7 @@ msgstr "Envoyer les réponses \"@\" sur Facebook."
 msgid "Disconnect my account from Facebook"
 msgstr "Déconnecter mon compte de Facebook"
 
+#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
 #, php-format
 msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please [set "
@@ -162,6 +165,9 @@ msgstr "Impossible de supprimer le lien vers Facebook."
 msgid "You have disconnected from Facebook."
 msgstr "Vous avez été déconnecté de Facebook."
 
+msgid "Unable to authenticate you with Facebook."
+msgstr "Impossible de vous authentifier avec Facebook."
+
 #. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
@@ -176,7 +182,7 @@ msgstr "Il existe déjà un compte local lié à ce compte Facebook."
 
 #. TRANS: Form validation error displayed when user has not agreed to the license.
 msgid "You cannot register if you do not agree to the license."
-msgstr "Vous ne pouvez pas vous inscrire si vous n'acceptez pas la licence."
+msgstr "Vous ne pouvez pas vous inscrire si vous n’acceptez pas la licence."
 
 #. TRANS: Form validation error displayed when an unhandled error occurs.
 msgid "An unknown error has occured."

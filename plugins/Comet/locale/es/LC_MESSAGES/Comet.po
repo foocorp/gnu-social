@@ -1,6 +1,7 @@
-# Translation of StatusNet - Comet to Spanish (Español)
+# Translation of StatusNet - Comet to Spanish (español)
 # Exported from translatewiki.net
 #
+# Author: Erchache2000
 # Author: Translationista
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,22 +10,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Comet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-31 21:06+0000\n"
-"PO-Revision-Date: 2011-03-31 21:09:04+0000\n"
-"Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:04+0000\n"
+"Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-24 15:24:57+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r85082); Translate extension (2011-03-11)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:53+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-comet\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Plugin description message. Bayeux is a protocol for transporting asynchronous messages
 #. TRANS: and Comet is a web application model.
-#, fuzzy
 msgid "Plugin to make updates using Comet and Bayeux."
 msgstr ""
-"Extensión para hacer actualizaciones en \"tiempo real\" utilizando Comet/"
+"Extensión para hacer actualizaciones en \"tiempo real\" utilizando Comet y "
 "Bayeux."

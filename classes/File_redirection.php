@@ -27,7 +27,7 @@ require_once INSTALLDIR.'/classes/File_oembed.php';
  * Table Definition for file_redirection
  */
 
-class File_redirection extends Memcached_DataObject
+class File_redirection extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -44,6 +44,23 @@ class File_redirection extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'url' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'short URL (or any other kind of redirect) for file (id)'),
+                'file_id' => array('type' => 'int', 'description' => 'short URL for what URL/file'),
+                'redirections' => array('type' => 'int', 'description' => 'redirect count'),
+                'httpcode' => array('type' => 'int', 'description' => 'HTTP status code (20x, 30x, etc.)'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('url'),
+            'foreign keys' => array(
+                'file_redirection_file_id_fkey' => array('file' => array('file_id' => 'id')),
+            ),
+        );
+    }
 
     static function _commonHttp($url, $redirs) {
         $request = new HTTPClient($url);

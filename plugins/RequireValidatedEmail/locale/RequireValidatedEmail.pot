@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,79 +16,99 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: RequireValidatedEmailPlugin.php:121
+#. TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
+#: RequireValidatedEmailPlugin.php:117
 msgid "You must validate your email address before posting."
 msgstr ""
 
-#: RequireValidatedEmailPlugin.php:142
+#. TRANS: Client exception thrown when trying to register without providing an e-mail address.
+#: RequireValidatedEmailPlugin.php:138
 msgid "You must provide an email address to register."
 msgstr ""
 
-#: RequireValidatedEmailPlugin.php:243
+#. TRANS: Plugin description.
+#: RequireValidatedEmailPlugin.php:237
 msgid "Disables posting without a validated email address."
 msgstr ""
 
-#: confirmfirstemail.php:69
+#. TRANS: Client exception thrown when trying to register while already logged in.
+#: confirmfirstemail.php:68
 msgid "You are already logged in."
 msgstr ""
 
+#. TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
 #: confirmfirstemail.php:77
 msgid "Confirmation code not found."
 msgstr ""
 
-#: confirmfirstemail.php:84
+#. TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
+#: confirmfirstemail.php:85
 msgid "No user for that confirmation code."
 msgstr ""
 
-#: confirmfirstemail.php:90
+#. TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+#. TRANS: %s is the invalid e-mail address.
+#: confirmfirstemail.php:93
 #, php-format
 msgid "Unrecognized address type %s."
 msgstr ""
 
 #. TRANS: Client error for an already confirmed email/jabber/sms address.
-#: confirmfirstemail.php:95
+#: confirmfirstemail.php:98
 msgid "That address has already been confirmed."
 msgstr ""
 
-#: confirmfirstemail.php:106
+#. TRANS: Client exception thrown when trying to register with too short a password.
+#: confirmfirstemail.php:110
 msgid "Password too short."
 msgstr ""
 
-#: confirmfirstemail.php:109
+#. TRANS: Client exception thrown when trying to register without providing the same password twice.
+#: confirmfirstemail.php:114
 msgid "Passwords do not match."
 msgstr ""
 
-#: confirmfirstemail.php:165
+#. TRANS: Form instructions. %s is the nickname of the to be registered user.
+#: confirmfirstemail.php:170
 #, php-format
 msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
 "form below to set your new password."
 msgstr ""
 
-#: confirmfirstemail.php:175
+#. TRANS: Page title.
+#: confirmfirstemail.php:181
 msgid "Set a password"
 msgstr ""
 
-#: confirmfirstemail.php:191
-msgid "Confirm email"
+#. TRANS: Form legend.
+#: confirmfirstemail.php:198
+msgid "Confirm email address"
 msgstr ""
 
-#: confirmfirstemail.php:209
+#. TRANS: Field label.
+#: confirmfirstemail.php:217
 msgid "New password"
 msgstr ""
 
-#: confirmfirstemail.php:210
+#. TRANS: Field title for password field.
+#: confirmfirstemail.php:219
 msgid "6 or more characters."
 msgstr ""
 
-#: confirmfirstemail.php:213
+#. TRANS: Field label for repeat password field.
+#: confirmfirstemail.php:223
+msgctxt "LABEL"
 msgid "Confirm"
 msgstr ""
 
-#: confirmfirstemail.php:214
+#. TRANS: Field title for repeat password field.
+#: confirmfirstemail.php:225
 msgid "Same as password above."
 msgstr ""
 
-#: confirmfirstemail.php:221
+#. TRANS: Button text for completing registration by e-mail.
+#: confirmfirstemail.php:233
+msgctxt "BUTTON"
 msgid "Save"
 msgstr ""

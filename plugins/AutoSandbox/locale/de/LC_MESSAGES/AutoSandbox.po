@@ -1,6 +1,7 @@
 # Translation of StatusNet - AutoSandbox to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: DaSch
 # Author: The Evil IP address
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AutoSandbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:41+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:43+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:59+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-autosandbox\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -35,12 +36,12 @@ msgstr ""
 
 #. TRANS: User instructions after registration.
 #. TRANS: %s is a clickable e-mailaddress.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline. Send a message to %s to speed up the unsandboxing "
 "process."
 msgstr ""
-"Beachte, dass du anfangs in die „Spielwiese“ gesetzt wirst, sodass deine "
-"Beiträge nicht in der öffentlichen Zeitleiste erscheinen. Schicke eine "
-"Nachricht an $contactlink, um schneller aus der Spielwiese rauszukommen."
+"Beachte, dass du anfangs in den „Sandkasten“ gesetzt wirst, das heißt dass "
+"deine Beiträge nicht in der öffentlichen Zeitleiste erscheinen. Schicke eine "
+"Nachricht an %s, um schneller aus dem Sandkasten rauszukommen."

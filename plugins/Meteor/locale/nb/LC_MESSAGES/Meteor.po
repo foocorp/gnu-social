@@ -1,4 +1,4 @@
-# Translation of StatusNet - Meteor to Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+# Translation of StatusNet - Meteor to Norwegian Bokmål (‪norsk (bokmål)‬)
 # Exported from translatewiki.net
 #
 # Author: Nghtwlkr
@@ -9,28 +9,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Meteor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 12:36+0000\n"
-"PO-Revision-Date: 2011-04-27 12:37:40+0000\n"
-"Language-Team: Norwegian (bokmål)‬ <http://translatewiki.net/wiki/Portal:no>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:11+0000\n"
+"Language-Team: Norwegian Bokmål <https://translatewiki.net/wiki/Portal:nb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:08:18+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87008); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: no\n"
+"X-POT-Import-Date: 2011-12-03 13:48:54+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: nb\n"
 "X-Message-Group: #out-statusnet-plugin-meteor\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Exception. %1$s is the control server, %2$s is the control port.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not connect to %1$s on %2$s."
 msgstr "Kunne ikke koble til %1$s på %2$s."
 
 #. TRANS: Exception. %s is the Meteor message that could not be added.
-#, fuzzy, php-format
+#, php-format
 msgid "Error adding meteor message \"%s\"."
-msgstr "Mislyktes å legge til meteormelding «%s»"
+msgstr "Mislyktes å legge til meteormelding «%s»."
 
 #. TRANS: Plugin description.
-msgid "Plugin to do \"real time\" updates using Comet/Bayeux."
-msgstr "Utvidelse for å gjøre «sanntids»-oppdateringer med Comet/Bayeux."
+msgid "Plugin to do \"real time\" updates using Meteor."
+msgstr "Utvidelse for å gjøre «sanntids»-oppdateringer med Meteor."

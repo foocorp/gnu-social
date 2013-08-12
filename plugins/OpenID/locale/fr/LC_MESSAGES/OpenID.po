@@ -1,9 +1,13 @@
-# Translation of StatusNet - OpenID to French (Français)
+# Translation of StatusNet - OpenID to French (français)
 # Exported from translatewiki.net
 #
 # Author: Crochet.david
+# Author: Gomoko
+# Author: JojoBoulix
+# Author: Lucky
 # Author: Od1n
 # Author: Peter17
+# Author: Valeryan 24
 # Author: Verdy p
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -12,14 +16,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:27+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:26+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:47+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -36,14 +40,13 @@ msgstr ""
 "directement."
 
 #. TRANS: Page notice. %s is a trustroot name.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%s has asked to verify your identity. Click Continue to verify your identity "
 "and login without creating a new password."
 msgstr ""
-"%s a demandé la vérification de votre identité. Veuillez cliquer sur « "
-"Continuer » pour vérifier votre identité et connectez-vous sans créer un "
-"nouveau mot de passe."
+"%s a demandé de vérifier de votre identité. Cliquer sur Continuer pour "
+"vérifier votre identité et connectez-vous sans créer un nouveau mot de passe."
 
 #. TRANS: Button text to continue OpenID identity verification.
 #. TRANS: button label for OAuth authorization page when needing OpenID authentication first.
@@ -52,13 +55,15 @@ msgid "Continue"
 msgstr "Continuer"
 
 #. TRANS: Button text to cancel OpenID identity verification.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Cancel"
 msgstr "Annuler"
 
+#. TRANS: Client exception thrown when an action is not available.
+msgid "Unavailable action."
+msgstr "Action non disponible."
+
 #. TRANS: Tooltip for main menu option "Login"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Login to the site."
 msgstr "Connexion au site"
@@ -79,7 +84,6 @@ msgid "Help"
 msgstr "Aide"
 
 #. TRANS: Tooltip for main menu option "Search"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Search for people or text."
 msgstr "Rechercher des personnes ou du texte"
@@ -97,24 +101,44 @@ msgid "OpenID"
 msgstr "OpenID"
 
 #. TRANS: OpenID plugin tooltip for logon menu item.
-#, fuzzy
 msgid "Login or register with OpenID."
-msgstr "Se connecter ou s’inscrire avec OpenID"
+msgstr "Se connecter ou s’inscrire avec OpenID."
 
 #. TRANS: OpenID plugin tooltip for user settings menu item.
-#, fuzzy
 msgid "Add or remove OpenIDs."
-msgstr "Ajouter ou retirer des identifiants OpenID"
+msgstr "Ajouter ou retirer des identifiants OpenID."
 
-#. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
+#. TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
 #, php-format
 msgid ""
-"* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
-"service."
+"(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
+"action.openidsettings%%)!"
 msgstr ""
+"(Avez-vous un [OpenID](http://openid.net/)? [Ajouter un OpenID à votre "
+"compte](%%action.openidsettings%%)!"
+
+#. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
+"action.openidlogin%%)!)"
+msgstr ""
+"(Ave-vous un [OpenID](http://openid.net/)? Essayez votre [inscription OpenID]"
+"(%%action.openidlogin%%)!)"
+
+#. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
+"openidlogin%%)!)"
+msgstr ""
+"(Avez-vous un [OpenID](http://openid.net/)? Essayez votre [identifiant "
+"OpenID](%%action.openidlogin%%)!)"
 
 #. TRANS: Tooltip for OpenID configuration menu item.
-#, fuzzy
 msgid "OpenID configuration."
 msgstr "Configuration d’OpenID"
 
@@ -124,7 +148,6 @@ msgstr ""
 "Utiliser <a href=\"http://openid.net/\">OpenID</a> pour se connecter au site."
 
 #. TRANS: OpenID plugin logon form legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "OpenID login"
 msgstr "Connexion OpenID"
@@ -149,7 +172,6 @@ msgstr "Adresse URL OpenID"
 
 #. TRANS: OpenID plugin logon form field instructions.
 #. TRANS: OpenID plugin logon form field title.
-#, fuzzy
 msgid "Your OpenID URL."
 msgstr "Votre URL OpenID"
 
@@ -165,7 +187,6 @@ msgstr ""
 "nouveau."
 
 #. TRANS: Message given if user does not agree with the site's license.
-#, fuzzy
 msgid "You cannot register if you do not agree to the license."
 msgstr "Vous ne pouvez pas vous inscrire si vous n’acceptez pas la licence."
 
@@ -175,19 +196,18 @@ msgstr "Une erreur inconnue s’est produite."
 
 #. TRANS: Instructions given after a first successful logon using OpenID.
 #. TRANS: %s is the site name.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "OpenID to a local account. You can either create a new account, or connect "
 "with your existing account, if you have one."
 msgstr ""
-"C’est la première fois que vous êtes connecté à %s via OpenID, il nous faut "
-"donc lier votre compte OpenID à un compte local. Vous pouvez soit créer un "
-"nouveau compte, soit vous connecter avec votre compte local existant si vous "
-"en avez un."
+"C’est la première fois que vous vous connectez à %s, il nous faut donc lier "
+"votre compte OpenID à un compte local. Vous pouvez soit créer un nouveau "
+"compte, soit vous connecter avec votre compte local existant, si vous en "
+"avez un."
 
 #. TRANS: Title
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Account Setup"
 msgstr "Configuration du compte OpenID"
@@ -266,17 +286,16 @@ msgstr "Authentification OpenID annulée."
 #. TRANS: OpenID authentication failed; display the error message. %s is the error message.
 #. TRANS: OpenID authentication failed; display the error message.
 #. TRANS: %s is the error message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID authentication failed: %s."
-msgstr "L’authentification OpenID a échoué : %s"
+msgstr "L’authentification OpenID a échoué : %s."
 
 #. TRANS: Message displayed when OpenID authentication is aborted.
 #. TRANS: OpenID authentication error.
-#, fuzzy
 msgid ""
 "OpenID authentication aborted: You are not allowed to login to this site."
 msgstr ""
-"L’authentification OpenID a été abandonnée : vous n'êtes pas autorisé à vous "
+"L’authentification OpenID a été abandonnée: Vous n'êtes pas autorisé à vous "
 "connecter à ce site."
 
 #. TRANS: OpenID plugin message. No new user registration is allowed on the site.
@@ -323,15 +342,15 @@ msgstr "Ce n’est pas un identifiant OpenID valide."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID failure: %s."
-msgstr "Échec d’OpenID : %s"
+msgstr "Échec OpenID: %s."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not redirect to server: %s."
-msgstr "Impossible de rediriger vers le serveur : %s"
+msgstr "Impossible de rediriger vers le serveur: %s."
 
 #. TRANS: OpenID plugin user instructions.
 msgid ""
@@ -371,29 +390,23 @@ msgstr ""
 "quelques secondes, essayez en cliquant le bouton ci-dessous."
 
 #. TRANS: Title for OpenID bridge administration page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Settings"
 msgstr "Paramètres OpenID"
 
 #. TRANS: Page instructions.
 msgid "OpenID settings"
-msgstr "Paramètres OpenID"
+msgstr "paramètres OpenID"
 
 #. TRANS: Client error displayed when OpenID provider URL is too long.
-#, fuzzy
 msgid "Invalid provider URL. Maximum length is 255 characters."
-msgstr ""
-"Adresse URL du fournisseur invalide. La taille maximale est de 255 "
-"caractères."
+msgstr "URL du fournisseur invalide. La taille maximale est de 255 caractères."
 
 #. TRANS: Client error displayed when Launchpad team name is too long.
-#, fuzzy
 msgid "Invalid team name. Maximum length is 255 characters."
 msgstr "Nom d’équipe invalide. La taille maximale est de 255 caractères."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Trusted provider"
 msgstr "Fournisseur de confiance"
@@ -446,7 +459,6 @@ msgstr ""
 "donnée (extension Launchpad)."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Options"
 msgstr "Options"
@@ -465,7 +477,6 @@ msgstr ""
 "utilisateurs !"
 
 #. TRANS: Button text to save OpenID settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Enregistrer"
@@ -491,16 +502,14 @@ msgid "Error connecting user."
 msgstr "Erreur lors de la connexion de l’utilisateur à OpenID."
 
 #. TRANS: Message in case the user or the user profile cannot be saved in StatusNet.
-#, fuzzy
 msgid "Error updating profile."
-msgstr "Erreur lors de la mise à jour du profil utilisateur"
+msgstr "Erreur de mise à jour du profil."
 
 #. TRANS: Title after getting the status of the OpenID authorisation request.
 msgid "OpenID Login"
 msgstr "Connexion OpenID"
 
 #. TRANS: Title of OpenID settings page for a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID settings"
 msgstr "Paramètres OpenID"
@@ -517,7 +526,6 @@ msgstr ""
 "OpenID associés à votre compte ici."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Add OpenID"
 msgstr "Ajouter OpenID"
@@ -531,13 +539,11 @@ msgstr ""
 "case ci-dessous et cliquez sur « Ajouter »."
 
 #. TRANS: Button text for adding an OpenID URL.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Ajouter"
 
 #. TRANS: Header on OpenID settings page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Remove OpenID"
 msgstr "Retirer OpenID"
@@ -561,10 +567,9 @@ msgstr ""
 
 #. TRANS: Button text to remove an OpenID.
 #. TRANS: Button text to remove an OpenID trustroot.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Remove"
-msgstr "Enlever"
+msgstr "Supprimer"
 
 #. TRANS: Fieldset legend.
 msgid "OpenID Trusted Sites"
@@ -580,7 +585,6 @@ msgstr ""
 "d’accéder à votre compte OpenID."
 
 #. TRANS: Form validation error if no OpenID providers can be added.
-#, fuzzy
 msgid "Cannot add new providers."
 msgstr "Impossible d’ajouter de nouveaux fournisseurs."
 
@@ -593,9 +597,8 @@ msgid "No such OpenID trustroot."
 msgstr "Racine de confiance OpenID inexistante."
 
 #. TRANS: Success message after removing trustroots.
-#, fuzzy
 msgid "Trustroots removed."
-msgstr "Racines de confiance retirées"
+msgstr "Certificats racine retirés"
 
 #. TRANS: Form validation error for a non-existing OpenID.
 msgid "No such OpenID."
@@ -636,12 +639,11 @@ msgid "Login with an [OpenID](%%doc.openid%%) account."
 msgstr "Connexion avec un compte [OpenID](%%doc.openid%%)."
 
 #. TRANS: OpenID plugin message. Title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Login"
 msgstr "Connexion OpenID"
 
-#, fuzzy
+#. TRANS: Field label.
 msgctxt "LABEL"
 msgid "OpenID provider"
 msgstr "Fournisseur OpenID"
@@ -660,9 +662,3 @@ msgstr ""
 msgctxt "BUTTON"
 msgid "Login"
 msgstr "Connexion"
-
-#~ msgid "Continue"
-#~ msgstr "Continuer"
-
-#~ msgid "OpenID"
-#~ msgstr "OpenID"

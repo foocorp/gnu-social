@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,38 +16,53 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. TRANS: Client exception. Do not translate POST.
+#: keepalivechannel.php:65 closechannel.php:65
+msgid "You have to POST it."
+msgstr ""
+
+#. TRANS: Client exception thrown when the channel key argument is missing.
+#: keepalivechannel.php:72 closechannel.php:72
+msgid "No channel key argument."
+msgstr ""
+
+#. TRANS: Client exception thrown when referring to a non-existing channel.
+#: keepalivechannel.php:79 closechannel.php:79
+msgid "No such channel."
+msgstr ""
+
 #. TRANS: Text label for realtime view "play" button, usually replaced by an icon.
-#: RealtimePlugin.php:336
+#: RealtimePlugin.php:421
 msgctxt "BUTTON"
 msgid "Play"
 msgstr ""
 
 #. TRANS: Tooltip for realtime view "play" button.
-#: RealtimePlugin.php:338
+#: RealtimePlugin.php:423
 msgctxt "TOOLTIP"
 msgid "Play"
 msgstr ""
 
 #. TRANS: Text label for realtime view "pause" button
-#: RealtimePlugin.php:340
+#: RealtimePlugin.php:425
 msgctxt "BUTTON"
 msgid "Pause"
 msgstr ""
 
 #. TRANS: Tooltip for realtime view "pause" button
-#: RealtimePlugin.php:342
+#: RealtimePlugin.php:427
 msgctxt "TOOLTIP"
 msgid "Pause"
 msgstr ""
 
 #. TRANS: Text label for realtime view "popup" button, usually replaced by an icon.
-#: RealtimePlugin.php:344
+#: RealtimePlugin.php:429
 msgctxt "BUTTON"
 msgid "Pop up"
 msgstr ""
 
 #. TRANS: Tooltip for realtime view "popup" button.
-#: RealtimePlugin.php:346
+#: RealtimePlugin.php:431
 msgctxt "TOOLTIP"
 msgid "Pop up in a window"
 msgstr ""

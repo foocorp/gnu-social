@@ -22,7 +22,7 @@
  * @category  Applications
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -42,7 +42,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class EditApplicationAction extends OwnerDesignAction
+class EditApplicationAction extends Action
 {
     var $msg   = null;
     var $owner = null;

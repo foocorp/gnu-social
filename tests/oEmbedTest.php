@@ -15,22 +15,22 @@ class oEmbedTest extends PHPUnit_Framework_TestCase
 
     public function setup()
     {
-        $this->old_oohembed = common_config('oohembed', 'endpoint');
+        $this->old_ohembed = common_config('ohembed', 'endpoint');
     }
 
     public function tearDown()
     {
-        $GLOBALS['config']['oohembed']['endpoint'] = $this->old_oohembed;
+        $GLOBALS['config']['oembed']['endpoint'] = $this->old_ohembed;
     }
 
     /**
-     * Test with oohembed DISABLED.
+     * Test with ohembed DISABLED.
      *
      * @dataProvider discoverableSources
      */
     public function testoEmbed($url, $expectedType)
     {
-        $GLOBALS['config']['oohembed']['endpoint'] = false;
+        $GLOBALS['config']['oembed']['endpoint'] = false;
         $this->_doTest($url, $expectedType);
     }
 
@@ -39,14 +39,14 @@ class oEmbedTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider fallbackSources
      */
-    public function testoohEmbed($url, $expectedType)
+    public function testnoEmbed($url, $expectedType)
     {
-        $GLOBALS['config']['oohembed']['endpoint'] = $this->_endpoint();
+        $GLOBALS['config']['oembed']['endpoint'] = $this->_endpoint();
         $this->_doTest($url, $expectedType);
     }
 
     /**
-     * Get default oohembed endpoint.
+     * Get default oembed endpoint.
      *
      * @return string
      */
@@ -55,7 +55,7 @@ class oEmbedTest extends PHPUnit_Framework_TestCase
         $default = array();
         $_server = 'localhost'; $_path = '';
         require INSTALLDIR . '/lib/default.php';
-        return $default['oohembed']['endpoint'];
+        return $default['oembed']['endpoint'];
     }
 
     /**
@@ -113,7 +113,6 @@ class oEmbedTest extends PHPUnit_Framework_TestCase
     static public function discoverableSources()
     {
         $sources = array(
-            array('http://identi.ca/attachment/34437400', 'photo'),
 
             array('http://www.youtube.com/watch?v=eUgLR232Cnw', 'video'),
             array('http://vimeo.com/9283184', 'video'),
@@ -125,16 +124,20 @@ class oEmbedTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Sample oEmbed targets that can be found via oohembed.com.
+     * Sample oEmbed targets that can be found via noembed.com.
      * Includes also discoverableSources() output.
      *
      * @return array
      */
     static public function fallbackSources()
     {
+
         $sources = array(
-            array('http://en.wikipedia.org/wiki/File:Wiki.png', 'link'), // @fixme in future there may be a native provider -- will change to 'photo'
+            array('https://github.com/git/git/commit/85e9c7e1d42849c5c3084a9da748608468310c0e', 'Github Commit'), // @fixme in future there may be a native provider -- will change to 'photo'
         );
+
+        $sources = array();
+
         return array_merge(self::discoverableSources(), $sources);
     }
 }

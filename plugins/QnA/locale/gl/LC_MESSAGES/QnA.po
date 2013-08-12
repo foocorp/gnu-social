@@ -1,0 +1,305 @@
+# Translation of StatusNet - QnA to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - QnA\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:44+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-qna\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title for Question page.
+msgid "New question"
+msgstr "Nova pregunta"
+
+#. TRANS: Client exception thrown trying to create a Question while not logged in.
+msgid "You must be logged in to post a question."
+msgstr "Ten que estar identificado para publicar unha pregunta."
+
+#. TRANS: Client exception thrown trying to create a question without a title.
+msgid "Question must have a title."
+msgstr "A pregunta debe ter un título."
+
+#. TRANS: Page title after sending a notice.
+msgid "Question posted"
+msgstr "Pregunta publicada"
+
+#. TRANS: Client exception thrown when requesting a non-existing answer.
+#. TRANS: Did we used to have it, and it got deleted?
+msgid "No such answer."
+msgstr "Non existe tal resposta."
+
+#. TRANS: Client exception thrown when requesting an answer that has no connected question.
+msgid "No question for this answer."
+msgstr "Non hai pregunta ningunha para esta resposta."
+
+#. TRANS: Client exception thrown when requesting answer data for a non-existing user.
+#. TRANS: Client exception thrown trying to view a question of a non-existing user.
+msgid "No such user."
+msgstr "Non existe tal usuario."
+
+#. TRANS: Client exception thrown when requesting answer data for a user without a profile.
+#. TRANS: Server exception thrown trying to view a question for a user for which the profile could not be loaded.
+msgid "User without a profile."
+msgstr "Usuario sen perfil."
+
+#. TRANS: Page title.
+#. TRANS: %1$s is the user who answered a question, %2$s is the question.
+#, php-format
+msgid "%1$s's answer to \"%2$s\""
+msgstr "Resposta de %1$s a \"%2$s\""
+
+#. TRANS: Page title for revising a question
+msgid "Revise answer"
+msgstr "Revisar a resposta"
+
+#. TRANS: Client exception thrown trying to answer a question while not logged in.
+msgid "You must be logged in to answer to a question."
+msgstr "Ten que estar identificado para responder unha pregunta."
+
+#. TRANS: Client exception thrown trying to respond to a non-existing question.
+msgid "Invalid or missing answer."
+msgstr "Falta a resposta ou esta é inválida."
+
+#. TRANS: Page title after sending an answer.
+#. TRANS: Page title for and answer to a question.
+#. TRANS: Form legend for showing the answer.
+msgid "Answer"
+msgstr "Resposta"
+
+#. TRANS: Form title for sending an answer.
+msgctxt "TITLE"
+msgid "Answer"
+msgstr "Resposta"
+
+#. TRANS: Client exception thrown trying to view a non-existing question.
+msgid "No such question."
+msgstr "Non existe esa pregunta."
+
+#. TRANS: Client exception thrown trying to view a non-existing question notice.
+msgid "No such question notice."
+msgstr "Non existe a nota desa pregunta."
+
+#. TRANS: Page title for a question.
+#. TRANS: %1$s is the nickname of the user who asked the question, %2$s is the question.
+#, php-format
+msgid "%1$s's question: %2$s"
+msgstr "Pregunta de %1$s: %2$s"
+
+#. TRANS: Page title for close a question
+msgid "Close question"
+msgstr "Pechar unha pregunta"
+
+#. TRANS: Client exception thrown trying to close a question when not logged in
+msgid "You must be logged in to close a question."
+msgstr "Ten que estar identificado para pechar unha pregunta."
+
+#. TRANS: Client exception thrown trying to respond to a non-existing question.
+msgid "Invalid or missing question."
+msgstr "Falta a pregunta ou esta é inválida."
+
+#. TRANS: Exception thrown trying to close another user's question.
+msgid "You did not ask this question."
+msgstr "Vostede non formulou esta pregunta."
+
+#. TRANS: Page title after sending an answer.
+#. TRANS: Page title after sending in a vote for a question or answer.
+msgid "Answers"
+msgstr "Respostas"
+
+#. TRANS: Page title after an AJAX error occurs on the post answer page.
+msgid "Ajax Error"
+msgstr "Houbo un erro de AJAX"
+
+#. TRANS: Title for form to send answer to a question.
+msgctxt "TITLE"
+msgid "Your answer"
+msgstr "A súa resposta"
+
+#. TRANS: Error message displayed when an answer has no content.
+#. TRANS: Error message displayed when answer data is not present.
+msgid "Answer data is missing."
+msgstr "Faltan os datos da resposta."
+
+#. TRANS: Plugin description.
+msgid "Question and Answers micro-app."
+msgstr "Microaplicación de preguntas e respostas."
+
+#. TRANS: Application title.
+msgctxt "TITLE"
+msgid "Question"
+msgstr "Pregunta"
+
+#. TRANS: Exception thrown when there are too many activity objects.
+msgid "Too many activity objects."
+msgstr "Demasiados obxectos de actividade."
+
+#. TRANS: Exception thrown when an incorrect object type is encountered.
+msgid "Wrong type for object."
+msgstr "Tipo incorrecto para o obxecto."
+
+#. TRANS: Exception thrown when answering a non-existing question.
+msgid "Answer to unknown question."
+msgstr "Resposta a unha pregunta descoñecida."
+
+#. TRANS: Exception thrown when an object type is encountered that cannot be handled.
+msgid "Unknown object type."
+msgstr "Tipo de obxecto descoñecido."
+
+#. TRANS: Exception thrown when requesting a non-existing question notice.
+msgid "Unknown question notice."
+msgstr "Nota de pregunta descoñecida."
+
+#. TRANS: Exception thrown when performing an unexpected action on a question.
+#. TRANS: %s is the unpexpected object type.
+#, php-format
+msgid "Unexpected type for QnA plugin: %s."
+msgstr ""
+"Tipo inesperado para o complemento da microaplicación de preguntas e "
+"respostas: %s."
+
+#. TRANS: Error message displayed when question data is not present.
+msgid "Question data is missing."
+msgstr "Faltan os datos da pregunta."
+
+#. TRANS: Placeholder value for a possible answer to a question
+#. TRANS: by the logged in user.
+msgid "Your answer..."
+msgstr "A súa resposta..."
+
+#. TRANS: Link description for link to full notice text if it is longer than
+#. TRANS: what will be dispplayed.
+msgid "…"
+msgstr "…"
+
+#. TRANS: Title for link that is an ellipsis in English.
+msgid "more..."
+msgstr "máis..."
+
+#. TRANS: Exception thown when getting a question with a non-existing ID.
+#. TRANS: %s is the non-existing question ID.
+#, php-format
+msgid "No question with ID %s"
+msgstr "Non hai ningunha pregunta co ID %s"
+
+#. TRANS: Exception thown when getting a profile with a non-existing ID.
+#. TRANS: %s is the non-existing profile ID.
+#. TRANS: Exception trown when getting a profile for a non-existing ID.
+#. TRANS: %s is the provided profile ID.
+#, php-format
+msgid "No profile with ID %s"
+msgstr "Non hai ningún perfil co ID %s"
+
+#. TRANS: %s is the number of answer revisions.
+#, php-format
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] "%s revisión"
+msgstr[1] "%s revisións"
+
+#. TRANS: Text for a question that was answered.
+#. TRANS: %1$s is the user that answered, %2$s is the question title,
+#. TRANS: %2$s is the answer content.
+#, php-format
+msgid "%1$s answered the question \"%2$s\": %3$s"
+msgstr "%1$s respondeu a pregunta \"%2$s\": %3$s"
+
+#. TRANS: Text for a question that was answered.
+#. TRANS: %s is the question title.
+#. TRANS: Rendered version of the notice content answering a question.
+#. TRANS: %s a link to the question with question title as the link content.
+#, php-format
+msgid "answered \"%s\""
+msgstr "respondeu \"%s\""
+
+#. TRANS: Number of given answers to a question.
+#. TRANS: %s is the number of given answers.
+#, php-format
+msgid "%s answer"
+msgid_plural "%s answers"
+msgstr[0] "%s resposta"
+msgstr[1] "%s respostas"
+
+#. TRANS: Notification that a question cannot be answered anymore because it is closed.
+msgid "This question is closed."
+msgstr "Esta pregunta está pechada."
+
+#. TRANS: Rendered version of the notice content creating a question.
+#. TRANS: %s a link to the question as link description.
+#, php-format
+msgid "Question: %s"
+msgstr "Pregunta: %s"
+
+#. TRANS: Button text for submitting a revised answer.
+#. TRANS: Button text for submitting a poll response.
+msgctxt "BUTTON"
+msgid "Submit"
+msgstr "Enviar"
+
+#. TRANS: Field label.
+msgid "Enter your answer"
+msgstr "Insira a súa resposta"
+
+#. TRANS: Button text for submitting a poll response.
+msgctxt "BUTTON"
+msgid "Answer"
+msgstr "Responder"
+
+#. TRANS: Field label for a new question.
+msgctxt "LABEL"
+msgid "Title"
+msgstr "Título"
+
+#. TRANS: Field title for a new question.
+msgid "The title of your question."
+msgstr "O título da súa pregunta."
+
+#. TRANS: Field label for question details.
+msgctxt "LABEL"
+msgid "Description"
+msgstr "Descrición"
+
+#. TRANS: Field title for question details.
+msgid "Your question in detail."
+msgstr "Os detalles da súa pregunta."
+
+#. TRANS: Button text for saving a new question.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Gardar"
+
+#. TRANS: Form legend for revising the answer.
+msgctxt "LEGEND"
+msgid "Question"
+msgstr "Pregunta"
+
+#. TRANS: Button text for closing a question.
+msgctxt "BUTTON"
+msgid "Close"
+msgstr "Pechar"
+
+#. TRANS: Title for button text for closing a question.
+msgid "Close the question to no one can answer it anymore."
+msgstr "Pechar a pregunta de xeito que ninguén poida enviar máis respostas."
+
+#. TRANS: Button text for marking an answer as "best".
+msgctxt "BUTTON"
+msgid "Best"
+msgstr "Mellor"
+
+#. TRANS: Title for button text marking an answer as "best".
+msgid "Mark this answer as the best answer."
+msgstr "Marcar esta resposta como a mellor."

@@ -260,7 +260,7 @@ class RecoverpasswordAction extends Action
         $this->elementStart('li');
          // TRANS: Field label for password reset form where the password has to be typed again.
         $this->password('confirm', _('Confirm'),
-                        // TRANS: Ttile for field label for password reset form where the password has to be typed again.
+                        // TRANS: Title for field label for password reset form where the password has to be typed again.
                         _('Same as password above.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
@@ -273,108 +273,25 @@ class RecoverpasswordAction extends Action
     function recoverPassword()
     {
         $nore = $this->trimmed('nicknameoremail');
+
         if (!$nore) {
             // TRANS: Form instructions for password recovery form.
             $this->showForm(_('Enter a nickname or email address.'));
             return;
         }
 
-        $user = User::staticGet('email', common_canonical_email($nore));
-
-        if (!$user) {
-            try {
-                $user = User::staticGet('nickname', common_canonical_nickname($nore));
-            } catch (NicknameException $e) {
-                // invalid
-            }
+        try {
+            User::recoverPassword($nore);
+            $this->mode = 'sent';
+            // TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
+            $this->msg = _('Instructions for recovering your password ' .
+                           'have been sent to the email address registered to your ' .
+                           'account.');
+            $this->success = true;
+        } catch (Exception $e) {
+            $this->success = false;
+            $this->msg = $e->getMessage();
         }
-
-        // See if it's an unconfirmed email address
-
-        if (!$user) {
-            // Warning: it may actually be legit to have multiple folks
-            // who have claimed, but not yet confirmed, the same address.
-            // We'll only send to the first one that comes up.
-            $confirm_email = new Confirm_address();
-            $confirm_email->address = common_canonical_email($nore);
-            $confirm_email->address_type = 'email';
-            $confirm_email->find();
-            if ($confirm_email->fetch()) {
-                $user = User::staticGet($confirm_email->user_id);
-            } else {
-                $confirm_email = null;
-            }
-        } else {
-            $confirm_email = null;
-        }
-
-        if (!$user) {
-            // TRANS: Information on password recovery form if no known username or e-mail address was specified.
-            $this->showForm(_('No user with that email address or username.'));
-            return;
-        }
-
-        // Try to get an unconfirmed email address if they used a user name
-
-        if (!$user->email && !$confirm_email) {
-            $confirm_email = new Confirm_address();
-            $confirm_email->user_id = $user->id;
-            $confirm_email->address_type = 'email';
-            $confirm_email->find();
-            if (!$confirm_email->fetch()) {
-                $confirm_email = null;
-            }
-        }
-
-        if (!$user->email && !$confirm_email) {
-            // TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
-            $this->clientError(_('No registered email address for that user.'));
-            return;
-        }
-
-        // Success! We have a valid user and a confirmed or unconfirmed email address
-
-        $confirm = new Confirm_address();
-        $confirm->code = common_confirmation_code(128);
-        $confirm->address_type = 'recover';
-        $confirm->user_id = $user->id;
-        $confirm->address = (!empty($user->email)) ? $user->email : $confirm_email->address;
-
-        if (!$confirm->insert()) {
-            common_log_db_error($confirm, 'INSERT', __FILE__);
-            // TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
-            $this->serverError(_('Error saving address confirmation.'));
-            return;
-        }
-
-         // @todo FIXME: needs i18n.
-        $body = "Hey, $user->nickname.";
-        $body .= "\n\n";
-        $body .= 'Someone just asked for a new password ' .
-                 'for this account on ' . common_config('site', 'name') . '.';
-        $body .= "\n\n";
-        $body .= 'If it was you, and you want to confirm, use the URL below:';
-        $body .= "\n\n";
-        $body .= "\t".common_local_url('recoverpassword',
-                                   array('code' => $confirm->code));
-        $body .= "\n\n";
-        $body .= 'If not, just ignore this message.';
-        $body .= "\n\n";
-        $body .= 'Thanks for your time, ';
-        $body .= "\n";
-        $body .= common_config('site', 'name');
-        $body .= "\n";
-
-        $headers = _mail_prepare_headers('recoverpassword', $user->nickname, $user->nickname);
-        // TRANS: Subject for password recovery e-mail.
-        mail_to_user($user, _('Password recovery requested'), $body, $headers, $confirm->address);
-
-        $this->mode = 'sent';
-        // TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
-        $this->msg = _('Instructions for recovering your password ' .
-                          'have been sent to the email address registered to your ' .
-                          'account.');
-        $this->success = true;
         $this->showPage();
     }
 

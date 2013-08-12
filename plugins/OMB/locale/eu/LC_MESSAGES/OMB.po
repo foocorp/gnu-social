@@ -1,0 +1,60 @@
+# Translation of StatusNet - OMB to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: An13sa
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - OMB\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:22+0000\n"
+"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-02 10:11:37+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: eu\n"
+"X-Message-Group: #out-statusnet-plugin-omb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Button text on page for remote subscribe.
+#. TRANS: Link text for link that will subscribe to a remote profile.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Harpidetu"
+
+#. TRANS: Button text on Authorise Subscription page.
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "Onartu"
+
+#. TRANS: Button text on Authorise Subscription page.
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "Baztertu"
+
+#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
+msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
+msgstr "Ezin zaitezke OMB 0.1 hurruneko profilera harpidetu ekintza honekin."
+
+#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
+msgid "You cannot list an OMB 0.1 remote profile with this action."
+msgstr "Ezin duzu OMB 0.1 hurruneko profil bat zerrendatu ekintza honekin."
+
+#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
+msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
+msgstr ""
+"Ezin duzu OMB 0.1 hurruneko profil bat (des)zerrendatu ekintza honekin."
+
+#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
+msgid "Could not delete subscription OMB token."
+msgstr "OMB token harpidetza ezin da ezabatu."
+
+#. TRANS: Plugin description.
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr "Frogako plugin bat, hacker berriei garapen oinarriak erakusteko."

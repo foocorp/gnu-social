@@ -22,7 +22,7 @@
  * @category  Personal
  * @package   StatusNet
  * @author    Shashi Gowda <connect2shashi@gmail.com>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -33,7 +33,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 require_once INSTALLDIR.'/lib/peopletaglist.php';
 
-class PeopletagsforuserAction extends OwnerDesignAction
+class PeopletagsforuserAction extends Action
 {
     var $page = null;
     var $tagged = null;
@@ -58,7 +58,12 @@ class PeopletagsforuserAction extends OwnerDesignAction
     {
         parent::prepare($args);
 
-        $nickname_arg = $this->arg('nickname');
+        if (common_config('singleuser', 'enabled')) {
+            $nickname_arg = User::singleUserNickname();
+        } else {
+            $nickname_arg = $this->arg('nickname');
+        }
+
         $nickname = common_canonical_nickname($nickname_arg);
 
         // Permanent redirect on non-canonical nickname
@@ -111,7 +116,7 @@ class PeopletagsforuserAction extends OwnerDesignAction
                     '(http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                     'based on the Free Software [StatusNet](http://status.net/) tool. ' .
                     'You can easily keep track of what they ' .
-                    'are doing by subscribing to the tag\'s timeline.' ), $this->tagged->nickname);
+                    'are doing by subscribing to the list\'s timeline.' ), $this->tagged->nickname);
         $this->elementStart('div', array('id' => 'anon_notice'));
         $this->raw(common_markup_to_html($notice));
         $this->elementEnd('div');

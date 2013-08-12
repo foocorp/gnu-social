@@ -1,0 +1,51 @@
+# Translation of StatusNet - Msn to Catalan (català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Msn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:18+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:48:56+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-msn\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: MSN bot status message.
+msgid "Send me a message to post a notice"
+msgstr "Envia'm un missatge per publicar un avís"
+
+#. TRANS: Server exception thrown when a message to be sent through MSN cannot be added to the database queue.
+msgid "Database error inserting queue item."
+msgstr ""
+
+#. TRANS: Display name of the MSN instant messaging service.
+msgid "MSN"
+msgstr "MSN"
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+msgid "Must specify a user."
+msgstr "Cal especificar un usuari."
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+msgid "Must specify a password."
+msgstr "Cal especificar una contrasenya."
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+msgid "Must specify a nickname."
+msgstr "Cal especificar un sobrenom."
+
+#. TRANS: Plugin description.
+msgid ""
+"The MSN plugin allows users to send and receive notices over the MSN network."
+msgstr ""

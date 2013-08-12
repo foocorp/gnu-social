@@ -1,5 +1,5 @@
-# Translation of StatusNet - CasAuthentication to Galician (Galego)
-# Expored from translatewiki.net
+# Translation of StatusNet - CasAuthentication to Galician (galego)
+# Exported from translatewiki.net
 #
 # Author: Toliño
 # --
@@ -9,64 +9,63 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - CasAuthentication\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-14 10:29+0000\n"
-"PO-Revision-Date: 2011-01-14 10:32:51+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:01+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-01-10 18:25:59+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r80246); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:52+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-casauthentication\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Menu item. CAS is Central Authentication Service.
-#: CasAuthenticationPlugin.php:83
 msgid "CAS"
-msgstr ""
+msgstr "Servizo de autenticación central (SAC)"
 
 #. TRANS: Tooltip for menu item. CAS is Central Authentication Service.
-#: CasAuthenticationPlugin.php:85
 msgid "Login or register with CAS."
-msgstr ""
+msgstr "Iniciar sesión ou rexistrarse co SAC."
 
 #. TRANS: Invitation to users with a CAS account to log in using the service.
 #. TRANS: "[CAS login]" is a link description. (%%action.caslogin%%) is the URL.
 #. TRANS: These two elements may not be separated.
-#: CasAuthenticationPlugin.php:101
 #, php-format
 msgid "(Have an account with CAS? Try our [CAS login](%%action.caslogin%%)!)"
 msgstr ""
+"(Ten unha conta co SAC? Probe o noso [rexistro SAC](%%action.caslogin%%)!)"
 
-#: CasAuthenticationPlugin.php:128
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
 msgid "Specifying a server is required."
-msgstr ""
+msgstr "Cómpre especificar un servidor."
 
-#: CasAuthenticationPlugin.php:131
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
 msgid "Specifying a port is required."
-msgstr ""
+msgstr "Cómpre especificar un porto."
 
-#: CasAuthenticationPlugin.php:134
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
 msgid "Specifying a path is required."
-msgstr ""
+msgstr "Cómpre especificar unha ruta."
 
 #. TRANS: Plugin description. CAS is Central Authentication Service.
-#: CasAuthenticationPlugin.php:154
 msgid ""
 "The CAS Authentication plugin allows for StatusNet to handle authentication "
 "through CAS (Central Authentication Service)."
 msgstr ""
+"O complemento de autenticación SAC permite a StatusNet manexar a "
+"autenticación a través do SAC (servizo de autenticación central)."
 
-#: caslogin.php:28
+#. TRANS: Client error displayed when trying to log in while already logged on.
 msgid "Already logged in."
 msgstr "Xa se identificou."
 
-#: caslogin.php:39
+#. TRANS: Server error displayed when trying to log in with incorrect username or password.
 msgid "Incorrect username or password."
 msgstr "Nome de usuario ou contrasinal incorrectos."
 
-#: caslogin.php:45
+#. TRANS: Server error displayed when login fails in CAS authentication plugin.
 msgid "Error setting user. You are probably not authorized."
 msgstr ""
 "Houbo un erro ao configurar o usuario. Probablemente non estea autorizado "

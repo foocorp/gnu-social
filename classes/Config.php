@@ -27,7 +27,7 @@ if (!defined('STATUSNET')) {
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Config extends Memcached_DataObject
+class Config extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -43,13 +43,29 @@ class Config extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'section' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'default' => '', 'description' => 'configuration section'),
+                'setting' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'default' => '', 'description' => 'configuration setting'),
+                'value' => array('type' => 'varchar', 'length' => 255, 'description' => 'configuration value'),
+            ),
+            'primary key' => array('section', 'setting'),
+        );
+    }
+
     const settingsKey = 'config:settings';
 
     static function loadSettings()
     {
-        $settings = self::_getSettings();
-        if (!empty($settings)) {
-            self::_applySettings($settings);
+        try {
+            $settings = self::_getSettings();
+            if (!empty($settings)) {
+                self::_applySettings($settings);
+            }
+        } catch (Exception $e) {
+            return;
         }
     }
 

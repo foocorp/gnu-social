@@ -23,7 +23,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Group_alias extends Memcached_DataObject
+class Group_alias extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -38,4 +38,22 @@ class Group_alias extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'alias' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'additional nickname for the group'),
+                'group_id' => array('type' => 'int', 'not null' => true, 'description' => 'group profile is blocked from'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date alias was created'),
+            ),
+            'primary key' => array('alias'),
+            'foreign keys' => array(
+                'group_alias_group_id_fkey' => array('user_group', array('group_id' => 'id')),
+            ),
+            'indexes' => array(
+                'group_alias_group_id_idx' => array('group_id'),
+            ),
+        );
+    }
 }

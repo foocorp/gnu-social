@@ -63,4 +63,13 @@ class ActivityVerb
 
     // For simple profile-update pings; no content to share.
     const UPDATE_PROFILE = 'http://ostatus.org/schema/1.0/update-profile';
+
+    static function canonical($verb) {
+        $ns = 'http://activitystrea.ms/schema/1.0/';
+        if (substr($verb, 0, mb_strlen($ns)) == $ns) {
+            return substr($verb, mb_strlen($ns));
+        } else {
+            return $verb;
+        }
+    }
 }

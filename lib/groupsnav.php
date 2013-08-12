@@ -44,7 +44,7 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class GroupsNav extends Menu
+class GroupsNav extends MoreMenu
 {
     protected $user;
     protected $groups;
@@ -61,33 +61,53 @@ class GroupsNav extends Menu
         return (!empty($this->groups) && ($this->groups->N > 0));
     }
 
-    /**
-     * Show the menu
-     *
-     * @return void
-     */
-    function show()
+    function tag()
     {
-        $action = $this->actionName;
+        return 'groups';
+    }
 
-        $this->out->elementStart('ul', array('class' => 'nav'));
+    function getItems()
+    {
+        $items = array();
 
-        if (Event::handle('StartGroupsNav', array($this))) {
-
-            while ($this->groups->fetch()) {
-                $this->out->menuItem(($this->groups->mainpage) ?
-                                     $this->groups->mainpage :
-                                     common_local_url('showgroup',
-                                                      array('nickname' => $this->groups->nickname)),
-                                     $this->groups->getBestName(),
-                                     '',
-                                     $action == 'showgroup' &&
-                                     $this->action->arg('nickname') == $this->groups->nickname,
-                                     'nav_timeline_group_'.$this->groups->nickname);
-            }
-            Event::handle('EndGroupsNav', array($this));
+        while ($this->groups->fetch()) {
+            $items[] = array('placeholder',
+                             array('nickname' => $this->groups->nickname,
+                                   'mainpage' => $this->groups->homeUrl()),
+                             $this->groups->getBestName(),
+                             $this->groups->getBestName()
+                            );
         }
 
-        $this->out->elementEnd('ul');
+        return $items;
+    }
+
+    function seeAllItem() {
+        return array('usergroups',
+                     array('nickname' => $this->user->nickname),
+                     // TRANS: Link description for seeing all groups.
+                     _('See all'),
+                     // TRANS: Link title for seeing all groups.
+                     _('See all groups you belong to.'));
+    }
+
+    function item($actionName, $args, $label, $description, $id=null, $cls=null)
+    {
+        if ($actionName != 'placeholder') {
+            return parent::item($actionName, $args, $label, $description, $id, $cls);
+        }
+
+        if (empty($id)) {
+            $id = $this->menuItemID('showgroup', array('nickname' => $args['nickname']));
+        }
+
+        $url = $args['mainpage'];
+
+        $this->out->menuItem($url,
+                             $label,
+                             $description,
+                             $this->isCurrent($actionName, $args),
+                             $id,
+                             $cls);
     }
 }

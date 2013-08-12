@@ -49,6 +49,8 @@ class Menu extends Widget
 {
     var $action     = null;
     var $actionName = null;
+    var $actionArgs = null;
+    
     /**
      * Construction
      *
@@ -60,12 +62,52 @@ class Menu extends Widget
 
         $this->action     = $action;
         $this->actionName = $action->trimmed('action');
+
+        $rtargs = $action->returnToArgs();
+
+        $this->actionArgs = $rtargs[1];
     }
 
-    function item($actionName, $args, $label, $description, $id=null)
+    function getItems()
+    {
+        return array();
+    }
+
+    function tag()
+    {
+        return null;
+    }
+    
+    function show()
+    {
+        $items = $this->getItems();
+        $tag = $this->tag();
+
+        $attrs = array('class' => 'nav');
+
+        if (!is_null($tag)) {
+            $attrs['id']  = 'nav_' . $tag;
+        }
+
+        if (Event::handle('StartNav', array($this, &$tag, &$items))) {
+
+            $this->out->elementStart('ul', $attrs);
+
+            foreach ($items as $item) {
+                list($actionName, $args, $label, $description, $id) = $item;
+                $this->item($actionName, $args, $label, $description, $id);
+            }
+        
+            $this->out->elementEnd('ul');
+            
+            Event::handle('EndNav', array($this, $tag, $items));
+        }
+    }
+    
+    function item($actionName, $args, $label, $description, $id=null, $cls=null)
     {
         if (empty($id)) {
-            $id = $this->menuItemID($actionName);
+            $id = $this->menuItemID($actionName, $args);
         }
 
         $url = common_local_url($actionName, $args);
@@ -73,13 +115,37 @@ class Menu extends Widget
         $this->out->menuItem($url,
                              $label,
                              $description,
-                             $actionName == $this->actionName,
-                             $id);
+                             $this->isCurrent($actionName, $args),
+                             $id,
+                             $cls);
     }
 
-    function menuItemID($actionName)
+    function isCurrent($actionName, $args)
     {
-        return sprintf('nav_%s', $actionName);
+        if ($actionName != $this->actionName) {
+            return false;
+        }
+
+        foreach ($this->actionArgs as $k => $v) {
+            if (!array_key_exists($k, $args) || $args[$k] != $v) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
+    function menuItemID($actionName, $args = null)
+    {
+        $id = sprintf('nav_%s', $actionName);
+        
+        if (!is_null($args)) {
+            foreach ($args as $key => $value) {
+                $id .= '_' . $key . '_' . $value;
+            }
+        }
+
+        return $id;
     }
 
     function submenu($label, $menu)

@@ -1,4 +1,4 @@
-# Translation of StatusNet - UserFlag to Portuguese (Português)
+# Translation of StatusNet - UserFlag to Portuguese (português)
 # Exported from translatewiki.net
 #
 # Author: GTNS
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserFlag\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:48+0000\n"
-"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:24+0000\n"
+"Language-Team: Portuguese <https://translatewiki.net/wiki/Portal:pt>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:51:36+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: pt\n"
 "X-Message-Group: #out-statusnet-plugin-userflag\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -50,6 +50,7 @@ msgstr "Sinalizar perfil para análise."
 msgid "Clear"
 msgstr "Limpar"
 
+#. TRANS: Form description for clearing flags from a profile.
 msgid "Clear all flags"
 msgstr "Limpar todas as sinalizações"
 
@@ -57,6 +58,7 @@ msgstr "Limpar todas as sinalizações"
 msgid "Not logged in."
 msgstr ""
 
+#. TRANS: Error message displayed when trying to review profile flags while not authorised.
 msgid "You cannot review profile flags."
 msgstr ""
 
@@ -70,7 +72,7 @@ msgstr "Moderar"
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
-#. TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used for plural.
 #, php-format
 msgid "Flagged by %1$s and %2$d other"
 msgid_plural "Flagged by %1$s and %2$d others"
@@ -84,8 +86,9 @@ msgid "Flagged by %s"
 msgstr "Sinalizado por %s"
 
 #. TRANS: Server exception given when flags could not be cleared.
-#, php-format
-msgid "Couldn't clear flags for profile \"%s\"."
+#. TRANS: %s is a profile nickname.
+#, fuzzy, php-format
+msgid "Could not clear flags for profile \"%s\"."
 msgstr "Não foi possível limpar as sinalizações do perfil \"%s\"."
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
@@ -97,6 +100,7 @@ msgid "Cleared"
 msgstr "Limpas"
 
 #. TRANS: Server exception.
-#, php-format
-msgid "Couldn't flag profile \"%d\" for review."
+#. TRANS: %d is a profile ID (number).
+#, fuzzy, php-format
+msgid "Could not flag profile \"%d\" for review."
 msgstr "Não foi possível sinalizar o perfil \"%d\" para análise."

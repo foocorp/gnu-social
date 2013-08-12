@@ -48,6 +48,16 @@ class ArrayWrapper
         }
     }
 
+	function fetchAll($k= false, $v = false, $method = false)
+	{
+		if ($k !== false || $v !== false || $method !== false)
+		{
+			$item =& $this->_items[$this->_i];
+			return $item->fetchAll($k, $v, $method);
+		}
+		return $this->_items;
+	}
+	
     function __set($name, $value)
     {
         $item =& $this->_items[$this->_i];

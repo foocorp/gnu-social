@@ -47,7 +47,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
-
 class XCachePlugin extends Plugin
 {
     /**
@@ -60,7 +59,6 @@ class XCachePlugin extends Plugin
      *
      * @return boolean hook success
      */
-
     function onStartCacheGet(&$key, &$value)
     {
         if (!xcache_isset($key)) {
@@ -84,7 +82,6 @@ class XCachePlugin extends Plugin
      *
      * @return boolean hook success
      */
-
     function onStartCacheSet(&$key, &$value, &$flag, &$expiry, &$success)
     {
         $success = xcache_set($key, serialize($value));
@@ -102,7 +99,6 @@ class XCachePlugin extends Plugin
      *
      * @return boolean hook success
      */
-
     function onStartCacheDelete(&$key, &$success)
     {
         $success = xcache_unset($key);
@@ -117,8 +113,8 @@ class XCachePlugin extends Plugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:XCache',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Use the <a href="http://xcache.lighttpd.net/">XCache</a> variable cache to cache query results.'));
         return true;
     }
 }
-

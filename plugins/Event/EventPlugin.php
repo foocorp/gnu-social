@@ -37,7 +37,7 @@ if (!defined('STATUSNET')) {
 /**
  * Event plugin
  *
- * @category  Sample
+ * @category  Event
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @copyright 2011 StatusNet, Inc.
@@ -82,6 +82,7 @@ class EventPlugin extends MicroappPlugin
         case 'CancelrsvpAction':
         case 'ShoweventAction':
         case 'ShowrsvpAction':
+        case 'TimelistAction':
             include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         case 'EventListItem':
@@ -89,6 +90,7 @@ class EventPlugin extends MicroappPlugin
         case 'EventForm':
         case 'RSVPForm':
         case 'CancelRSVPForm':
+        case 'EventTimeList':
             include_once $dir . '/'.strtolower($cls).'.php';
             break;
         case 'Happening':
@@ -121,6 +123,8 @@ class EventPlugin extends MicroappPlugin
         $m->connect('rsvp/:id',
                     array('action' => 'showrsvp'),
                     array('id' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'));
+        $m->connect('main/event/updatetimes',
+                    array('action' => 'timelist'));
         return true;
     }
 
@@ -180,13 +184,15 @@ class EventPlugin extends MicroappPlugin
 
         switch ($activity->verb) {
         case ActivityVerb::POST:
+        	// FIXME: get startTime, endTime, location and URL
             $notice = Happening::saveNew($actor,
-                                     $start_time,
-                                     $end_time,
-                                     $happeningObj->title,
-                                     null,
-                                     $happeningObj->summary,
-                                     $options);
+                                         $start_time,
+                                         $end_time,
+                                         $happeningObj->title,
+                                         null,
+                                         $happeningObj->summary,
+                                         null,
+                                         $options);
             break;
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
@@ -260,6 +266,9 @@ class EventPlugin extends MicroappPlugin
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
                               common_date_iso8601($happening->end_time));
 
+		// FIXME: add location
+		// FIXME: add URL
+		
         // XXX: probably need other stuff here
 
         return $obj;
@@ -340,7 +349,7 @@ class EventPlugin extends MicroappPlugin
 
     function onEndShowScripts($action)
     {
-        $action->inlineScript('$(document).ready(function() { $("#event-startdate").datepicker(); $("#event-enddate").datepicker(); });');
+        $action->script($this->path('event.js'));
     }
 
     function onEndShowStyles($action)

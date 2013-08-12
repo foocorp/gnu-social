@@ -1,4 +1,4 @@
-# Translation of StatusNet - SubMirror to Interlingua (Interlingua)
+# Translation of StatusNet - SubMirror to Interlingua (interlingua)
 # Exported from translatewiki.net
 #
 # Author: McDutchie
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:30+0000\n"
-"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:12+0000\n"
+"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:33+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,12 +32,15 @@ msgstr "URL de syndication invalide: %s."
 msgid "Invalid profile for mirroring."
 msgstr "Profilo invalide pro republication."
 
+#. TRANS: Client error displayed when trying to mirror a StatusNet group feed.
 msgid "Cannot mirror a StatusNet group at this time."
 msgstr "Al presente il es impossibile republicar un gruppo StatusNet."
 
+#. TRANS: Client error displayed when trying to use another method than POST.
 msgid "This action only accepts POST requests."
 msgstr "Iste action accepta solmente le requestas de typo POST."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Occurreva un problema con le indicio de tu session. Per favor reproba."
 
@@ -45,27 +48,37 @@ msgstr "Occurreva un problema con le indicio de tu session. Per favor reproba."
 msgid "Not logged in."
 msgstr "Tu non ha aperite un session."
 
+#. TRANS: Page title for subscribed feed mirror.
 msgid "Subscribed"
 msgstr "Subscribite"
 
+#. TRANS: Client error displayed when trying to edit an object that is not a feed mirror.
 msgid "Requested invalid profile to edit."
 msgstr "Requestava un profilo invalide a modificar."
 
+#. TRANS: Client error displayed when providing invalid input when editing a mirror.
 msgid "Bad form data."
 msgstr "Mal datos de formulario."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
-msgid "Requested edit of missing mirror."
-msgstr "Requestava le modification de un speculo mancante."
+msgid "The mirror request failed, because no result was retrieved."
+msgstr ""
+"Le requesta de reduplication ha fallite proque nulle requesta ha essite "
+"recipite."
 
+#. TRANS: Exception thrown when a feed provider could not be recognised.
+msgid "Internal form error: Unrecognized feed provider."
+msgstr "Error interne in formulario: Fornitor de syndication incognite."
+
+#. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
 msgstr "Non poteva subscriber al syndication."
 
-#. TRANS: Title.
+#. TRANS: Page title.
 msgid "Feed mirror settings"
 msgstr "Configuration de speculo de syndication"
 
-#. TRANS: Instructions.
+#. TRANS: Page instructions.
 msgid ""
 "You can mirror updates from many RSS and Atom feeds into your StatusNet "
 "timeline!"
@@ -73,9 +86,11 @@ msgstr ""
 "Tu pote republicar actualisationes de multe syndicationes RSS e Atom in tu "
 "chronologia de StatusNet!"
 
+#. TRANS: Title for page with form to add a mirror feed provider on.
 msgid "Provider add"
 msgstr "Addition de fornitor"
 
+#. TRANS: Plugin description.
 msgid "Pull feeds into your timeline!"
 msgstr "Importar syndicationes in tu chronologia!"
 
@@ -88,50 +103,67 @@ msgstr "Republication"
 msgid "Configure mirroring of posts from other feeds"
 msgstr "Configurar le republication de messages de altere syndicationes"
 
+#. TRANS: Label in profile statistics section, followed by a count.
 msgid "Mirrored feeds"
 msgstr "Speculos de syndicationes"
 
+#. TRANS: Field label.
 msgid "Web page or feed URL:"
 msgstr "URL de pagina web o syndication:"
 
+#. TRANS: Button text for adding a feed.
+#. TRANS: Button text for adding a Twitter feed mirror.
 msgctxt "BUTTON"
 msgid "Add feed"
 msgstr "Adder syndication"
 
+#. TRANS: Field label.
 msgid "Twitter username:"
 msgstr "Nomine de usator de Twitter:"
 
+#. TRANS: Field label (URL expectected).
 msgctxt "LABEL"
 msgid "Remote feed:"
 msgstr "Syndication remote:"
 
+#. TRANS: Field label.
 msgctxt "LABEL"
 msgid "Local user"
 msgstr "Usator local"
 
+#. TRANS: Fieldset legend for feed mirror setting.
 msgid "Mirroring style"
 msgstr "Stilo de republication"
 
+#. TRANS: Feed mirror style (radio button option).
 msgid ""
-"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+"Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
-"Repeter: referer al message del usator original (monstrate a vices como 'RT "
-"@pseudonymo')"
+"Repeter: referer al message del usator original (monstrate a vices como \"RT "
+"@pseudonymo\")"
 
+#. TRANS: Feed mirror style (radio button option).
 msgid "Repost the content under my account"
 msgstr "Republicar le contento sub mi conto"
 
+#. TRANS: Button text to save feed mirror settings.
+msgctxt "BUTTON"
 msgid "Save"
 msgstr "Salveguardar"
 
+#. TRANS: Button text to stop mirroring a feed.
+msgctxt "BUTTON"
 msgid "Stop mirroring"
-msgstr "Cessar le republication"
+msgstr "Cessar le reduplication"
 
+#. TRANS: Name for possible feed provider.
 msgid "Twitter"
 msgstr "Twitter"
 
+#. TRANS: Name for possible feed provider.
 msgid "RSS or Atom feed"
 msgstr "Syndication RSS o Atom"
 
+#. TRANS: Heading for feed mirroring selection form.
 msgid "Select a feed provider"
 msgstr "Selige un fornitor de syndicationes"

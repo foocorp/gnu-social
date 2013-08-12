@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2010, StatusNet, Inc.
+ * Copyright (C) 2010-2011, StatusNet, Inc.
  *
  * A plugin for integrating Facebook with StatusNet. Includes single-sign-on
  * and publishing notices to Facebook using Facebook's Graph API.
@@ -21,7 +21,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Pugin
+ * @category  Plugin
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
  * @copyright 2011 StatusNet, Inc.
@@ -41,7 +41,7 @@ define("FACEBOOK_SERVICE", 2);
  * @category  Plugin
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2010 StatusNet, Inc.
+ * @copyright 2010-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
@@ -103,11 +103,10 @@ class FacebookBridgePlugin extends Plugin
     {
         $dir = dirname(__FILE__);
 
-        //common_debug("class = " . $cls);
-
         switch ($cls)
         {
         case 'Facebook': // Facebook PHP SDK
+            include_once $dir . '/extlib/base_facebook.php';
             include_once $dir . '/extlib/facebook.php';
             return false;
         case 'FacebookloginAction':
@@ -277,8 +276,7 @@ class FacebookBridgePlugin extends Plugin
         if ($this->hasApplication()) {
             $action_name = $action->trimmed('action');
 
-            // CurrentUserDesignAction stores the current user in $cur
-            $user = $action->getCurrentUser();
+            $user = common_current_user();
 
             $flink = null;
 
@@ -352,26 +350,35 @@ class FacebookBridgePlugin extends Plugin
             $action->script('https://connect.facebook.net/en_US/all.js');
 
             $script = <<<ENDOFSCRIPT
-FB.init({appId: %1\$s, session: %2\$s, status: true, cookie: true, xfbml: true});
+function setCookie(name, value) {
+    var date = new Date();
+    date.setTime(date.getTime() + (5 * 60 * 1000)); // 5 mins
+    var expires = "; expires=" + date.toGMTString();
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+FB.init({appId: %1\$s, status: true, cookie: true, xfbml: true, oauth: true});
 
 $('#facebook_button').bind('click', function(event) {
 
     event.preventDefault();
 
     FB.login(function(response) {
-        if (response.session && response.perms) {
-            window.location.href = '%3\$s';
+        if (response.authResponse) {
+            // put the access token in a cookie for the next step
+            setCookie('fb_access_token', response.authResponse.accessToken);
+            window.location.href = '%2\$s';
         } else {
             // NOP (user cancelled login)
         }
-    }, {perms:'read_stream,publish_stream,offline_access,user_status,user_location,user_website,email'});
+    }, {scope:'read_stream,publish_stream,offline_access,user_status,user_location,user_website,email'});
 });
 ENDOFSCRIPT;
 
             $action->inlineScript(
-                sprintf($script,
+                sprintf(
+                    $script,
                     json_encode($this->facebook->getAppId()),
-                    json_encode($this->facebook->getSession()),
                     common_local_url('facebookfinishlogin')
                 )
             );
@@ -383,26 +390,30 @@ ENDOFSCRIPT;
      *
      * @param Action action the current action
      */
-    function onEndLogout($action)
+    function onStartLogout($action)
     {
         if ($this->hasApplication()) {
-            $session = $this->facebook->getSession();
-            $fbuser  = null;
-            $fbuid   = null;
 
-            if ($session) {
-                try {
-                    $fbuid  = $this->facebook->getUser();
-                    $fbuser = $this->facebook->api('/me');
-                 } catch (FacebookApiException $e) {
-                     common_log(LOG_ERROR, $e, __FILE__);
-                 }
-            }
+            $cur = common_current_user();
+            $flink = Foreign_link::getByUserID($cur->id, FACEBOOK_SERVICE);
 
-            if (!empty($fbuser)) {
+            if (!empty($flink)) {
+
+                $this->facebook->setAccessToken($flink->credentials);
+
+                if (common_config('singleuser', 'enabled')) {
+                    $user = User::singleUser();
+
+                    $destination = common_local_url(
+                        'showstream',
+                        array('nickname' => $user->nickname)
+                    );
+                } else {
+                    $destination = common_local_url('public');
+                }
 
                 $logoutUrl = $this->facebook->getLogoutUrl(
-                    array('next' => common_local_url('public'))
+                    array('next' => $destination)
                 );
 
                 common_log(
@@ -413,9 +424,14 @@ ENDOFSCRIPT;
                     ),
                     __FILE__
                 );
-                common_debug("LOGOUT URL = $logoutUrl");
+
+                $action->logout();
+
                 common_redirect($logoutUrl, 303);
+                return false; // probably never get here, but hey
             }
+
+            return true;
         }
     }
 
@@ -541,6 +557,69 @@ ENDOFSCRIPT;
         $client->unLike();
 
         return true;
+    }
+
+    /**
+     * Add links in the user's profile block to their Facebook profile URL.
+     *
+     * @param Profile $profile The profile being shown
+     * @param Array   &$links  Writeable array of arrays (href, text, image).
+     *
+     * @return boolean hook value (true)
+     */
+
+    function onOtherAccountProfiles($profile, &$links)
+    {
+        $fuser = null;
+
+        $flink = Foreign_link::getByUserID($profile->id, FACEBOOK_SERVICE);
+
+        if (!empty($flink)) {
+
+            $fuser = $this->getFacebookUser($flink->foreign_id);
+
+            if (!empty($fuser)) {
+                $links[] = array("href" => $fuser->link,
+                                 "text" => sprintf(_("%s on Facebook"), $fuser->name),
+                                 "image" => $this->path("images/f_logo.png"));
+            }
+        }
+
+        return true;
+    }
+
+    function getFacebookUser($id) {
+
+        $key = Cache::key(sprintf("FacebookBridgePlugin:userdata:%s", $id));
+
+        $c = Cache::instance();
+
+        if ($c) {
+            $obj = $c->get($key);
+            if ($obj) {
+                return $obj;
+            }
+        }
+
+        $url = sprintf("https://graph.facebook.com/%s", $id);
+        $client = new HTTPClient();
+        $resp = $client->get($url);
+
+        if (!$resp->isOK()) {
+            return null;
+        }
+
+        $user = json_decode($resp->getBody());
+
+        if ($user->error) {
+            return null;
+        }
+
+        if ($c) {
+            $c->set($key, $user);
+        }
+
+        return $user;
     }
 
     /*

@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SearchSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:15+0000\n"
-"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:56+0000\n"
+"Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:20+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-searchsub\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -79,16 +79,19 @@ msgid "\"<a href=\"%1$s\">%2$s</a>\" since %3$s"
 msgstr "<a href=\"%1$s\">%2$s</a>\" sinds %3$s"
 
 #. TRANS: Error text shown a user tries to untrack a search query they're not subscribed to.
+#. TRANS: %s is the keyword for the search.
 #, php-format
 msgid "You are not tracking the search \"%s\"."
 msgstr "U hebt geen abonnement op de zoekopdracht \"%s\"."
 
 #. TRANS: Message given having failed to cancel a search subscription by untrack command.
+#. TRANS: %s is the keyword for the query.
 #, php-format
 msgid "Could not end a search subscription for query \"%s\"."
 msgstr "Het opzeggen van het abonnement op de zoekopdracht \"%s\" is mislukt."
 
 #. TRANS: Message given having removed a search subscription by untrack command.
+#. TRANS: %s is the keyword for the search.
 #, php-format
 msgid "You are no longer subscribed to the search \"%s\"."
 msgstr "U hebt niet langer meer een abonnement op de zoekopdracht \"%s\"."
@@ -116,12 +119,18 @@ msgstr "Het profiel bestaat niet."
 msgid "Subscribed"
 msgstr "Geabonneerd"
 
+#. TRANS: Form legend.
 msgid "Unsubscribe from this search"
 msgstr "Abonnement op deze zoekopdracht opzeggen"
 
+#. TRANS: Button text for unsubscribing from a text search.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Uitschrijven"
+
+#. TRANS: Button title for unsubscribing from a text search.
+msgid "Unsubscribe from this search."
+msgstr "Het abonnement op deze zoekopdracht opzeggen."
 
 #. TRANS: Page title when search unsubscription succeeded.
 msgid "Unsubscribed"
@@ -148,6 +157,7 @@ msgid "Plugin to allow following all messages with a given search."
 msgstr "Plug-in om mededelingen via een zoekopdracht te volgen."
 
 #. TRANS: SearchSub plugin menu item on user settings page.
+#. TRANS: Sub menu for searches.
 msgctxt "MENU"
 msgid "Searches"
 msgstr "Zoekopdrachten"
@@ -178,26 +188,36 @@ msgctxt "COMMANDHELP"
 msgid "List all your search subscriptions."
 msgstr "Al uw abonnementen op zoekopdrachten beëindigen."
 
-msgid "Searches"
-msgstr "Zoekopdrachten"
-
 #. TRANS: Error text shown a user tries to disable all a search subscriptions with track off command, but has none.
 msgid "You are not tracking any searches."
 msgstr "U volgt geen zoekopdrachten."
 
-#. TRANS: Message given having disabled all search subscriptions with 'track off'.
-#, php-format
-msgid "You are tracking searches for: %s"
-msgstr "U volgt zoekopdrachten naar: %s."
+#. TRANS: Separator for list of tracked searches.
+msgctxt "SEPARATOR"
+msgid "\", \""
+msgstr "\", \""
 
+#. TRANS: Message given having disabled all search subscriptions with 'track off'.
+#. TRANS: %s is a list of searches. Separator default is '", "'.
+#, php-format
+msgid "You are tracking searches for: \"%s\"."
+msgstr "U volgt zoekopdrachten naar: \"%s\"."
+
+#. TRANS: Form legend.
 msgid "Subscribe to this search"
 msgstr "Deze zoekopdracht volgen"
 
+#. TRANS: Button text for subscribing to a search.
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr "Abonneren"
 
+#. TRANS: Button title for subscribing to a search.
+msgid "Subscribe to this search."
+msgstr "Deze zoekopdracht volgen."
+
 #. TRANS: Message given having failed to cancel one of the search subs with 'track off' command.
+#. TRANS: %s is the search for which the subscription removal failed.
 #, php-format
 msgid "Error disabling search subscription for query \"%s\"."
 msgstr ""

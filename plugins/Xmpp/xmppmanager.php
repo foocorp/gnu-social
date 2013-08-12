@@ -29,16 +29,14 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  * In a multi-site queuedaemon.php run, one connection will be instantiated
  * for each site being handled by the current process that has XMPP enabled.
  */
-
 class XmppManager extends ImManager
 {
     protected $lastping = null;
     protected $pingid = null;
 
     public $conn = null;
-    
+
     const PING_INTERVAL = 120;
-    
 
     /**
      * Initialize connection to server.
@@ -114,7 +112,7 @@ class XmppManager extends ImManager
      *
      * Side effect: kills process on exception from XMPP library.
      *
-     * @fixme non-dying error handling
+     * @todo FIXME: non-dying error handling
      */
     public function idle($timeout=0)
     {
@@ -165,6 +163,7 @@ class XmppManager extends ImManager
             }
 
             $this->conn->processUntil('session_start');
+            // TRANS: Presence announcement for XMPP.
             $this->send_presence(_m('Send me a message to post a notice'), 'available', null, 'available', 100);
         }
         return $this->conn;
@@ -204,6 +203,7 @@ class XmppManager extends ImManager
         common_log(LOG_NOTICE, 'XMPP reconnected');
 
         $this->conn->processUntil('session_start');
+        // TRANS: Message for XMPP reconnect.
         $this->send_presence(_m('Send me a message to post a notice'), 'available', null, 'available', 100);
     }
 
@@ -245,7 +245,7 @@ class XmppManager extends ImManager
 
     function special_presence($type, $to=null, $show=null, $status=null)
     {
-        // FIXME: why use this instead of send_presence()?
+        // @todo FIXME: why use this instead of send_presence()?
         $this->connect();
         if (!$this->conn || $this->conn->isDisconnected()) {
             return false;

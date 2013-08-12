@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,25 +16,37 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: WikiHashtagsPlugin.php:84
+#. TRANS: Link title for editing an article on WikiHashTags.
+#. TRANS: %s is the hash tag page to be edited.
+#: WikiHashtagsPlugin.php:83
 #, php-format
 msgid "Edit the article for #%s on WikiHashtags"
 msgstr ""
 
+#. TRANS: Link description for editing an article on WikiHashTags.
 #: WikiHashtagsPlugin.php:85
 msgid "Edit"
 msgstr ""
 
-#: WikiHashtagsPlugin.php:87
+#. TRANS: Link title for viewing the GFDL.
+#: WikiHashtagsPlugin.php:88
 msgid "Shared under the terms of the GNU Free Documentation License"
 msgstr ""
 
-#: WikiHashtagsPlugin.php:93
+#. TRANS: Link description for viewing the GFDL.
+#: WikiHashtagsPlugin.php:91
+msgid "GNU FDL"
+msgstr ""
+
+#. TRANS: Link description for editing an article on WikiHashTags.
+#. TRANS: %s is the hash tag page to be created.
+#: WikiHashtagsPlugin.php:97
 #, php-format
 msgid "Start the article for #%s on WikiHashtags"
 msgstr ""
 
-#: WikiHashtagsPlugin.php:110
+#. TRANS: Plugin description.
+#: WikiHashtagsPlugin.php:115
 msgid ""
 "Gets hashtag descriptions from <a href=\"http://hashtags.wikia.com/"
 "\">WikiHashtags</a>."

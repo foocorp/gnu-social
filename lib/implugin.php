@@ -258,7 +258,6 @@ abstract class ImPlugin extends Plugin
      */
     function sendConfirmationCode($screenname, $code, $user)
     {
-        // @todo FIXME: parameter 4 is not being used. Should para3 and para4 be a markdown link?
         // TRANS: Body text for confirmation code e-mail.
         // TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename,
         // TRANS: %3$s is the display name of an IM plugin.
@@ -268,7 +267,7 @@ abstract class ImPlugin extends Plugin
           ' . (If you cannot click it, copy-and-paste it into the ' .
           'address bar of your browser). If that user is not you, ' .
           'or if you did not request this confirmation, just ignore this message.'),
-          $user->nickname, common_config('site', 'name'), $this->getDisplayName(), common_local_url('confirmaddress', array('code' => $code)));
+          $user->nickname, common_config('site', 'name'), $this->getDisplayName(), common_local_url('confirmaddress', null, array('code' => $code)));
 
         return $this->sendMessage($screenname, $body);
     }
@@ -619,6 +618,11 @@ abstract class ImPlugin extends Plugin
     {
         $tables[] = 'User_im_prefs';
         return true;
+    }
+
+    function onHaveImPlugin(&$haveImPlugin) {
+        $haveImPlugin = true; // set flag true (we're loaded, after all!)
+        return false; // stop looking
     }
 
     function initialize()

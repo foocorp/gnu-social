@@ -1,5 +1,5 @@
-# Translation of StatusNet - Gravatar to Galician (Galego)
-# Expored from translatewiki.net
+# Translation of StatusNet - Gravatar to Galician (galego)
+# Exported from translatewiki.net
 #
 # Author: Toliño
 # --
@@ -9,64 +9,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Gravatar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-15 00:20+0000\n"
-"PO-Revision-Date: 2011-01-15 00:23:48+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:45+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-01-10 18:26:02+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r80364); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:17+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-gravatar\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: GravatarPlugin.php:60
-msgid "Set Gravatar"
-msgstr ""
-
-#: GravatarPlugin.php:63
-msgid "If you want to use your Gravatar image, click \"Add\"."
-msgstr ""
-
-#: GravatarPlugin.php:68
-msgid "Add"
-msgstr "Engadir"
-
-#: GravatarPlugin.php:78
-msgid "Remove Gravatar"
-msgstr ""
-
-#: GravatarPlugin.php:81
-msgid "If you want to remove your Gravatar image, click \"Remove\"."
-msgstr ""
-
-#: GravatarPlugin.php:86
-msgid "Remove"
-msgstr "Eliminar"
-
-#: GravatarPlugin.php:91
-msgid "To use a Gravatar first enter in an email address."
-msgstr ""
-
-#: GravatarPlugin.php:140
-msgid "You do not have an email address set in your profile."
-msgstr ""
-
-#: GravatarPlugin.php:158
-msgid "Failed to save Gravatar to the database."
-msgstr ""
-
-#: GravatarPlugin.php:162
-msgid "Gravatar added."
-msgstr ""
-
-#: GravatarPlugin.php:180
-msgid "Gravatar removed."
-msgstr ""
-
-#: GravatarPlugin.php:200
+#. TRANS: Plugin decsription.
 msgid ""
 "The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
 "com/\">Gravatar</a> with StatusNet."
 msgstr ""
+"O complemento Gravatar permite aos usuarios usar o seu <a href=\"http://www."
+"gravatar.com/\">Gravatar</a> co StatusNet."

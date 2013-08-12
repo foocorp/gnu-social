@@ -1,6 +1,7 @@
-# Translation of StatusNet - Adsense to Russian (Русский)
+# Translation of StatusNet - Adsense to Russian (русский)
 # Exported from translatewiki.net
 #
+# Author: Eleferen
 # Author: Lockal
 # Author: Сrower
 # --
@@ -10,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:34+0000\n"
-"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:33+0000\n"
+"Language-Team: Russian <https://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:53+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 10:22:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
@@ -28,7 +29,6 @@ msgid "AdSense configuration"
 msgstr "Конфигурация AdSense"
 
 #. TRANS: Menu item for site administration
-#, fuzzy
 msgctxt "MENU"
 msgid "AdSense"
 msgstr "AdSense"
@@ -51,18 +51,16 @@ msgid "Client ID"
 msgstr "ID клиента"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Google client ID."
-msgstr "ID клиента Google"
+msgstr "Идентификатор клиента Google."
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Ad script URL"
 msgstr "URL-адрес скрипта рекламы"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Script URL (advanced)."
-msgstr "URL-адрес скрипта (расширенная настройка)"
+msgstr "URL-адрес скрипта (расширенная настройка)."
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Medium rectangle"
@@ -101,12 +99,10 @@ msgid "Wide skyscraper slot code."
 msgstr "Слот-код широкого небоскреба"
 
 #. TRANS: Button text to save settings in AdSense administration panel.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Сохранить"
 
 #. TRANS: Button title to save settings in AdSense administration panel.
-#, fuzzy
 msgid "Save AdSense settings."
-msgstr "Сохранить настройки AdSense"
+msgstr "Сохранить настройки AdSense."

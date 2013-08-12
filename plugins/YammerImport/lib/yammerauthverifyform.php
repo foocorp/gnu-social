@@ -53,6 +53,7 @@ class YammerAuthVerifyForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend.
         $this->out->element('legend', null, _m('Connect to Yammer'));
     }
 
@@ -69,6 +70,7 @@ class YammerAuthVerifyForm extends Form
         $this->out->elementStart('fieldset');
 
         $this->out->elementStart('p');
+        // TRANS: Form instructions.
         $this->out->text(_m('Follow this link to confirm authorization at Yammer; you will be prompted to log in if necessary:'));
         $this->out->elementEnd('p');
 
@@ -84,18 +86,24 @@ class YammerAuthVerifyForm extends Form
         $this->out->element('a',
             array('href' => $this->runner->getAuthUrl(),
                   'target' => '_blank'),
+            // TRANS: Link description for a link in an external Yammer system.
             _m('Open Yammer authentication window'));
         $this->out->elementEnd('p');
-        
+
+        // TRANS: Form instructions.
         $this->out->element('p', array(), _m('Copy the verification code you are given below:'));
 
         $this->out->elementStart('ul', array('class' => 'form_data'));
         $this->out->elementStart('li');
+        // TRANS: Field label.
         $this->out->input('verify_token', _m('Verification code:'));
         $this->out->elementEnd('li');
         $this->out->elementEnd('ul');
-        
-        $this->out->submit('submit', _m('Continue'), 'submit', null, _m('Save code and begin import'));
+
+        // TRANS: Button text for saving  Yammer authorisation data and starting Yammer import.
+        $this->out->submit('submit', _m('BUTTON','Continue'),
+                           // TRANS: Button title for saving  Yammer authorisation data and starting Yammer import.
+                           'submit', null, _m('Save the verification code and begin import.'));
         $this->out->elementEnd('fieldset');
     }
 

@@ -78,14 +78,14 @@ class NewrsvpAction extends Action
         $eventId = $this->trimmed('event');
 
         if (empty($eventId)) {
-            // TRANS: Client exception thrown when requesting a non-exsting event.
+            // TRANS: Client exception thrown when referring to a non-existing event.
             throw new ClientException(_m('No such event.'));
         }
 
         $this->event = Happening::staticGet('id', $eventId);
 
         if (empty($this->event)) {
-            // TRANS: Client exception thrown when requesting a non-exsting event.
+            // TRANS: Client exception thrown when referring to a non-existing event.
             throw new ClientException(_m('No such event.'));
         }
 

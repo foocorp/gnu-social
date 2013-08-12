@@ -19,7 +19,7 @@
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Notice_tag extends Memcached_DataObject
+class Notice_tag extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -36,6 +36,27 @@ class Notice_tag extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    public static function schemaDef()
+    {
+        return array(
+            'description' => 'Hash tags',
+            'fields' => array(
+                'tag' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'hash tag associated with this notice'),
+                'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice tagged'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+            ),
+            'primary key' => array('tag', 'notice_id'),
+            'foreign keys' => array(
+                'notice_tag_notice_id_fkey' => array('notice', array('notice_id' => 'id')),
+            ),
+            'indexes' => array(
+                'notice_tag_created_idx' => array('created'),
+                'notice_tag_notice_id_idx' => array('notice_id'),
+                'notice_tag_tag_created_notice_id_idx' => array('tag', 'created', 'notice_id')
+            ),
+        );
+    }
+    
     static function getStream($tag, $offset=0, $limit=20, $sinceId=0, $maxId=0)
     {
         $stream = new TagNoticeStream($tag);

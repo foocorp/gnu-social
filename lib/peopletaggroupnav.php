@@ -79,7 +79,13 @@ class PeopletagGroupNav extends Widget
 	// FIXME: we should probably pass this in
 
         $action = $this->action->trimmed('action');
-        $nickname = $this->action->trimmed('tagger');
+
+        if (common_config('singleuser', 'enabled')) {
+            $nickname = User::singleUserNickname();
+        } else {
+            $nickname = $this->action->arg('tagger');
+        }
+
         $tag = $this->action->trimmed('tag');
 
         if ($nickname) {

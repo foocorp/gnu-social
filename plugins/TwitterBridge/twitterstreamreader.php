@@ -54,7 +54,7 @@ abstract class TwitterStreamReader extends JsonStreamReader
      *
      * @param string $url
      * @param array $params
-     * @return string 
+     * @return string
      */
     protected function oAuthUrl($url, $params=array())
     {
@@ -136,7 +136,7 @@ abstract class TwitterStreamReader extends JsonStreamReader
 
     /**
      * Call event handler callbacks for the given event.
-     * 
+     *
      * @param string $event
      * @param mixed $arg1 ... one or more params to pass on
      */
@@ -208,7 +208,7 @@ class TwitterSiteStream extends TwitterStreamReader
 {
     protected $userIds;
 
-    public function __construct(TwitterOAuthClient $auth, $baseUrl='http://betastream.twitter.com')
+    public function __construct(TwitterOAuthClient $auth, $baseUrl='https://sitestream.twitter.com')
     {
         parent::__construct($auth, $baseUrl);
     }

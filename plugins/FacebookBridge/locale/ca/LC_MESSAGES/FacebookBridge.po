@@ -1,4 +1,4 @@
-# Translation of StatusNet - FacebookBridge to Catalan (Català)
+# Translation of StatusNet - FacebookBridge to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Toniher
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:29+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:33+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -117,6 +117,7 @@ msgstr "Envia respostes amb «@» al Facebook."
 msgid "Disconnect my account from Facebook"
 msgstr "Desconnecta el meu compte del Facebook"
 
+#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
 #, php-format
 msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please [set "
@@ -155,6 +156,9 @@ msgstr "No s'ha pogut eliminar l'enllaç al Facebook."
 #. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
 msgid "You have disconnected from Facebook."
 msgstr "Us heu desconnectat del Facebook."
+
+msgid "Unable to authenticate you with Facebook."
+msgstr "No s'ha pogut autenticar-vos amb el Facebook."
 
 #. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
 msgid ""

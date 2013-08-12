@@ -1,0 +1,82 @@
+# Translation of StatusNet - DomainWhitelist to Arabic (العربية)
+# Exported from translatewiki.net
+#
+# Author: OsamaK
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - DomainWhitelist\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:16+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-02 10:11:33+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
+#. TRANS: %s is a whitelisted e-mail domain.
+#, php-format
+msgid "Email address must be in this domain: %s."
+msgstr ""
+
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
+#. TRANS: %s are whitelisted e-mail domains separated by comma's (localisable).
+#, php-format
+msgid "Email address must be in one of these domains: %s."
+msgstr ""
+
+#. TRANS: Separator for whitelisted domains.
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr "و "
+
+#. TRANS: Exception thrown when an e-mail address does not match the site's domain whitelist.
+msgid "That email address is not allowed on this site."
+msgstr ""
+
+#. TRANS: Title for invitiation deletion dialog.
+msgid "Confirmation Required"
+msgstr ""
+
+#. TRANS: Confirmation text for invitation deletion dialog.
+msgid "Really delete this invitation?"
+msgstr "أأحذف هذه الدعوة حقا؟"
+
+#. TRANS: Plugin description.
+msgid "Restrict domains for email users."
+msgstr ""
+
+#. TRANS: Form legend.
+msgid "Invite collegues"
+msgstr "دعوة أصدقاء"
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "رسالة شخصية"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "أضف إن شئت رسالة شخصية للدعوة."
+
+#. TRANS: Link description to action to add another item to a list.
+msgid "Add another item"
+msgstr "أرسل"
+
+#. TRANS: Send button for inviting friends.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "أرسل"
+
+#. TRANS: Submit button title.
+msgid "Send invitations."
+msgstr "أرسل الدعوات."

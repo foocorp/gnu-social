@@ -1,6 +1,7 @@
-# Translation of StatusNet - FacebookBridge to Breton (Brezhoneg)
+# Translation of StatusNet - FacebookBridge to Breton (brezhoneg)
 # Exported from translatewiki.net
 #
+# Author: Fulup
 # Author: Y-M D
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:29+0000\n"
-"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:33+0000\n"
+"Language-Team: Breton <https://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -35,12 +36,10 @@ msgid "Login with Facebook"
 msgstr "Kevreañ gant Facebook"
 
 #. TRANS: Title for "Login with Facebook" image.
-#, fuzzy
 msgid "Login with Facebook."
-msgstr "Kevreañ gant Facebook"
+msgstr "Kevreañ gant Facebook."
 
 #. TRANS: Title for Facebook administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Facebook integration settings"
 msgstr "Arventennoù enframmañ Facebook"
@@ -66,9 +65,8 @@ msgid "Application ID"
 msgstr "ID ar poellad"
 
 #. TRANS: Field title for Facebook application ID.
-#, fuzzy
 msgid "ID of your Facebook application."
-msgstr "ID ho poellad Facebook"
+msgstr "ID ho poellad Facebook."
 
 #. TRANS: Field label for Facebook secret key.
 msgid "Secret"
@@ -86,16 +84,14 @@ msgid "Save"
 msgstr "Enrollañ"
 
 #. TRANS: Button title to save Facebook integration settings.
-#, fuzzy
 msgid "Save Facebook settings."
-msgstr "Enrollañ arventennoù Facebook"
+msgstr "Enrollañ arventennoù Facebook."
 
 #. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Ur gudenn 'zo bet gant ho jedaouer dalc'h. Mar plij adklaskit."
 
 #. TRANS: Page title for Facebook settings.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Facebook settings"
 msgstr "Arventennoù Facebook"
@@ -120,6 +116,7 @@ msgstr "Kas respontoù \"@\" da Facebook."
 msgid "Disconnect my account from Facebook"
 msgstr "Digevreañ ma c'hont deus Facebook"
 
+#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
 #, php-format
 msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please [set "
@@ -156,6 +153,9 @@ msgstr "N'eus ket bet gallet diverkañ al liamm war-du Facebook."
 msgid "You have disconnected from Facebook."
 msgstr "Digevreet ho peus deus Facebook."
 
+msgid "Unable to authenticate you with Facebook."
+msgstr ""
+
 #. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
@@ -175,7 +175,7 @@ msgstr ""
 
 #. TRANS: Form validation error displayed when an unhandled error occurs.
 msgid "An unknown error has occured."
-msgstr "Ur gudenn dizanv a zo bet."
+msgstr "C'hoarvezet ez eus ur gudenn dianav."
 
 #. TRANS: Form instructions for connecting to Facebook.
 #. TRANS: %s is the site name.
@@ -188,7 +188,7 @@ msgstr ""
 
 #. TRANS: Page title.
 msgid "Facebook Setup"
-msgstr ""
+msgstr "Kefluniadur Facebook"
 
 #. TRANS: Fieldset legend.
 msgid "Connection options"

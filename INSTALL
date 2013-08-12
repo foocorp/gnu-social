@@ -1,0 +1,516 @@
+Prerequisites
+=============
+
+The following software packages are *required* for this software to
+run correctly.
+
+- PHP 5.2.3+. It may be possible to run this software on earlier
+  versions of PHP, but many of the functions used are only available
+  in PHP 5.2 or above. 5.2.6 or later is needed for XMPP background
+  daemons on 64-bit platforms. PHP 5.3.x should work correctly in this
+  release, but problems with some plugins are possible.
+- MySQL 5.x. The StatusNet database is stored, by default, in a MySQL
+  server. It has been primarily tested on 5.x servers, although it may
+  be possible to install on earlier (or later!) versions. The server
+  *must* support the MyISAM storage engine -- the default for most
+  MySQL servers -- *and* the InnoDB storage engine.
+- A Web server. Preferably, you should have Apache 2.2.x with the
+  mod_rewrite extension installed and enabled.
+
+Your PHP installation must include the following PHP extensions:
+
+- Curl. This is for fetching files by HTTP.
+- XMLWriter. This is for formatting XML and HTML output.
+- MySQL. For accessing the database.
+- GD. For scaling down avatar images.
+- mbstring. For handling Unicode (UTF-8) encoded strings.
+
+For some functionality, you will also need the following extensions:
+
+- Memcache. A client for the memcached server, which caches database
+  information in volatile memory. This is important for adequate
+  performance on high-traffic sites. You will also need a memcached
+  server to store the data in.
+- Mailparse. Efficient parsing of email requires this extension.
+  Submission by email or SMS-over-email uses this extension.
+- Sphinx Search. A client for the sphinx server, an alternative
+  to MySQL or Postgresql fulltext search. You will also need a
+  Sphinx server to serve the search queries.
+- bcmath or gmp. For Salmon signatures (part of OStatus). Needed
+  if you have OStatus configured.
+- gettext. For multiple languages. Default on many PHP installs;
+  will be emulated if not present.
+
+You will almost definitely get 2-3 times better performance from your
+site if you install a PHP bytecode cache/accelerator. Some well-known
+examples are: eaccelerator, Turck mmcache, xcache, apc. Zend Optimizer
+is a proprietary accelerator installed on some hosting sites.
+
+External libraries
+------------------
+
+A number of external PHP libraries are used to provide basic
+functionality and optional functionality for your system. For your
+convenience, they are available in the "extlib" directory of this
+package, and you do not have to download and install them. However,
+you may want to keep them up-to-date with the latest upstream version,
+and the URLs are listed here for your convenience.
+
+- DB_DataObject http://pear.php.net/package/DB_DataObject
+- Validate http://pear.php.net/package/Validate
+- OpenID from OpenIDEnabled (not the PEAR version!). We decided
+  to use the openidenabled.com version since it's more widely
+  implemented, and seems to be better supported.
+  http://openidenabled.com/php-openid/
+- PEAR DB. Although this is an older data access system (new
+  packages should probably use PHP DBO), the OpenID libraries
+  depend on PEAR DB so we use it here, too. DB_DataObject can
+  also use PEAR MDB2, which may give you better performance
+  but won't work with OpenID.
+  http://pear.php.net/package/DB
+- OAuth.php from http://oauth.googlecode.com/svn/code/php/
+- markdown.php from http://michelf.com/projects/php-markdown/
+- PEAR Mail, for sending out mail notifications
+  http://pear.php.net/package/Mail
+- PEAR Net_SMTP, if you use the SMTP factory for notifications
+  http://pear.php.net/package/Net_SMTP
+- PEAR Net_Socket, if you use the SMTP factory for notifications
+  http://pear.php.net/package/Net_Socket
+- XMPPHP, the follow-up to Class.Jabber.php. Probably the best XMPP
+  library available for PHP. http://xmpphp.googlecode.com/. Note that
+  as of this writing the version of this library that is available in
+  the extlib directory is *significantly different* from the upstream
+  version (patches have been submitted). Upgrading to the upstream
+  version may render your StatusNet site unable to send or receive XMPP
+  messages.
+- Facebook library. Used for the Facebook application.
+- PEAR Validate is used for URL and email validation.
+- Console_GetOpt for parsing command-line options.
+  predecessor to OStatus.
+- HTTP_Request2, a library for making HTTP requests.
+- PEAR Net_URL2 is an HTTP_Request2 dependency.
+
+A design goal of StatusNet is that the basic Web functionality should
+work on even the most restrictive commercial hosting services.
+However, additional functionality, such as receiving messages by
+Jabber/GTalk, require that you be able to run long-running processes
+on your account. In addition, posting by email or from SMS require
+that you be able to install a mail filter in your mail server.
+
+Installation
+============
+
+Installing the basic StatusNet Web component is relatively easy,
+especially if you've previously installed PHP/MySQL packages.
+
+1. Unpack the tarball you downloaded on your Web server. Usually a
+   command like this will work:
+
+       tar zxf statusnet-1.1.1.tar.gz
+
+   ...which will make a statusnet-1.1.1 subdirectory in your current
+   directory. (If you don't have shell access on your Web server, you
+   may have to unpack the tarball on your local computer and FTP the
+   files to the server.)
+
+2. Move the tarball to a directory of your choosing in your Web root
+   directory. Usually something like this will work:
+
+       mv statusnet-1.1.1 /var/www/statusnet
+
+   This will make your StatusNet instance available in the statusnet path of
+   your server, like "http://example.net/statusnet". "microblog" or
+   "statusnet" might also be good path names. If you know how to
+   configure virtual hosts on your web server, you can try setting up
+   "http://micro.example.net/" or the like.
+
+3. Make your target directory writeable by the Web server.
+
+       chmod a+w /var/www/statusnet/
+
+   On some systems, this will probably work:
+
+       chgrp www-data /var/www/statusnet/
+       chmod g+w /var/www/statusnet/
+
+   If your Web server runs as another user besides "www-data", try
+   that user's default group instead. As a last resort, you can create
+   a new group like "statusnet" and add the Web server's user to the group.
+
+4. You should also take this moment to make your avatar, background, and
+   file subdirectories writeable by the Web server. An insecure way to do
+   this is:
+
+       chmod a+w /var/www/statusnet/avatar
+       chmod a+w /var/www/statusnet/background
+       chmod a+w /var/www/statusnet/file
+
+   You can also make the avatar, background, and file directories
+   writeable by the Web server group, as noted above.
+
+5. Create a database to hold your microblog data. Something like this
+   should work:
+
+       mysqladmin -u "username" --password="password" create statusnet
+
+   Note that StatusNet must have its own database; you can't share the
+   database with another program. You can name it whatever you want,
+   though.
+
+   (If you don't have shell access to your server, you may need to use
+   a tool like PHPAdmin to create a database. Check your hosting
+   service's documentation for how to create a new MySQL database.)
+
+6. Create a new database account that StatusNet will use to access the
+   database. If you have shell access, this will probably work from the
+   MySQL shell:
+
+       GRANT ALL on statusnet.*
+       TO 'statusnetuser'@'localhost'
+       IDENTIFIED BY 'statusnetpassword';
+
+   You should change 'statusnetuser' and 'statusnetpassword' to your preferred new
+   username and password. You may want to test logging in to MySQL as
+   this new user.
+
+7. In a browser, navigate to the StatusNet install script; something like:
+
+       http://yourserver.example.com/statusnet/install.php
+
+   Enter the database connection information and your site name. The
+   install program will configure your site and install the initial,
+   almost-empty database.
+
+8. You should now be able to navigate to your microblog's main directory
+   and see the "Public Timeline", which will be empty. If not, magic
+   has happened! You can now register a new user, post some notices,
+   edit your profile, etc. However, you may want to wait to do that stuff
+   if you think you can set up "fancy URLs" (see below), since some
+   URLs are stored in the database.
+
+Fancy URLs
+----------
+
+By default, StatusNet will use URLs that include the main PHP program's
+name in them. For example, a user's home profile might be
+found at:
+
+    http://example.org/statusnet/index.php/statusnet/fred
+
+On certain systems that don't support this kind of syntax, they'll
+look like this:
+
+    http://example.org/statusnet/index.php?p=statusnet/fred
+
+It's possible to configure the software so it looks like this instead:
+
+    http://example.org/statusnet/fred
+
+These "fancy URLs" are more readable and memorable for users. To use
+fancy URLs, you must either have Apache 2.x with .htaccess enabled and
+mod_rewrite enabled, -OR- know how to configure "url redirection" in
+your server.
+
+1. Copy the htaccess.sample file to .htaccess in your StatusNet
+   directory. Note: if you have control of your server's httpd.conf or
+   similar configuration files, it can greatly improve performance to
+   import the .htaccess file into your conf file instead. If you're
+   not sure how to do it, you may save yourself a lot of headache by
+   just leaving the .htaccess file.
+
+2. Change the "RewriteBase" in the new .htaccess file to be the URL path
+   to your StatusNet installation on your server. Typically this will
+   be the path to your StatusNet directory relative to your Web root.
+
+3. Add or uncomment or change a line in your config.php file so it says:
+
+       $config['site']['fancy'] = true;
+
+You should now be able to navigate to a "fancy" URL on your server,
+like:
+
+    http://example.net/statusnet/main/register
+
+If you changed your HTTP server configuration, you may need to restart
+the server first.
+
+If it doesn't work, double-check that AllowOverride for the StatusNet
+directory is 'All' in your Apache configuration file. This is usually
+/etc/httpd.conf, /etc/apache/httpd.conf, or (on Debian and Ubuntu)
+/etc/apache2/sites-available/default. See the Apache documentation for
+.htaccess files for more details:
+
+    http://httpd.apache.org/docs/2.2/howto/htaccess.html
+
+Also, check that mod_rewrite is installed and enabled:
+
+    http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html
+
+Sphinx
+------
+
+To use a Sphinx server to search users and notices, you'll need to
+enable the SphinxSearch plugin. Add to your config.php:
+
+    addPlugin('SphinxSearch');
+    $config['sphinx']['server'] = 'searchhost.local';
+
+You also need to install, compile and enable the sphinx pecl extension for
+php on the client side, which itself depends on the sphinx development files.
+
+See plugins/SphinxSearch/README for more details and server setup.
+
+SMS
+---
+
+StatusNet supports a cheap-and-dirty system for sending update messages
+to mobile phones and for receiving updates from the mobile. Instead of
+sending through the SMS network itself, which is costly and requires
+buy-in from the wireless carriers, it simply piggybacks on the email
+gateways that many carriers provide to their customers. So, SMS
+configuration is essentially email configuration.
+
+Each user sends to a made-up email address, which they keep a secret.
+Incoming email that is "From" the user's SMS email address, and "To"
+the users' secret email address on the site's domain, will be
+converted to a notice and stored in the DB.
+
+For this to work, there *must* be a domain or sub-domain for which all
+(or most) incoming email can pass through the incoming mail filter.
+
+1. Run the SQL script carrier.sql in your StatusNet database. This will
+   usually work:
+
+       mysql -u "statusnetuser" --password="statusnetpassword" statusnet < db/carrier.sql
+
+   This will populate your database with a list of wireless carriers
+   that support email SMS gateways.
+
+2. Make sure the maildaemon.php file is executable:
+
+       chmod +x scripts/maildaemon.php
+
+   Note that "daemon" is kind of a misnomer here; the script is more
+   of a filter than a daemon.
+
+2. Edit /etc/aliases on your mail server and add the following line:
+
+       *: /path/to/statusnet/scripts/maildaemon.php
+
+3. Run whatever code you need to to update your aliases database. For
+   many mail servers (Postfix, Exim, Sendmail), this should work:
+
+       newaliases
+
+   You may need to restart your mail server for the new database to
+   take effect.
+
+4. Set the following in your config.php file:
+
+       $config['mail']['domain'] = 'yourdomain.example.net';
+
+At this point, post-by-email and post-by-SMS-gateway should work. Note
+that if your mail server is on a different computer from your email
+server, you'll need to have a full installation of StatusNet, a working
+config.php, and access to the StatusNet database from the mail server.
+
+XMPP
+----
+
+XMPP (eXtended Message and Presence Protocol, <http://xmpp.org/>) is the
+instant-messenger protocol that drives Jabber and GTalk IM. You can
+distribute messages via XMPP using the system below; however, you
+need to run the XMPP incoming daemon to allow incoming messages as
+well.
+
+1. You may want to strongly consider setting up your own XMPP server.
+   Ejabberd, OpenFire, and JabberD are all Open Source servers.
+   Jabber, Inc. provides a high-performance commercial server.
+
+2. You must register a Jabber ID (JID) with your new server. It helps
+   to choose a name like "update@example.com" or "notice" or something
+   similar.  Alternately, your "update JID" can be registered on a
+   publicly-available XMPP service, like jabber.org or GTalk.
+
+   StatusNet will not register the JID with your chosen XMPP server;
+   you need to do this manually, with an XMPP client like Gajim,
+   Telepathy, or Pidgin.im.
+
+3. Configure your site's XMPP variables, as described below in the
+   configuration section.
+
+On a default installation, your site can broadcast messages using
+XMPP. Users won't be able to post messages using XMPP unless you've
+got the XMPP daemon running.  See 'Queues and daemons' below for how
+to set that up. Also, once you have a sizable number of users, sending
+a lot of SMS, OStatus, and XMPP messages whenever someone posts a message
+can really slow down your site; it may cause posting to timeout.
+
+NOTE: stream_select(), a crucial function for network programming, is
+broken on PHP 5.2.x less than 5.2.6 on amd64-based servers. We don't
+work around this bug in StatusNet; current recommendation is to move
+off of amd64 to another server.
+
+Public feed
+-----------
+
+You can send *all* messages from your social networking site to a
+third-party service using XMPP. This can be useful for providing
+search, indexing, bridging, or other cool services.
+
+To configure a downstream site to receive your public stream, add
+their "JID" (Jabber ID) to your config.php as follows:
+
+    $config['xmpp']['public'][] = 'downstream@example.net';
+
+(Don't miss those square brackets at the end.) Note that your XMPP
+broadcasting must be configured as mentioned above. Although you can
+send out messages at "Web time", high-volume sites should strongly
+consider setting up queues and daemons.
+
+Queues and daemons
+------------------
+
+Some activities that StatusNet needs to do, like broadcast OStatus, SMS,
+and XMPP messages, can be 'queued' and done by off-line bots instead.
+For this to work, you must be able to run long-running offline
+processes, either on your main Web server or on another server you
+control. (Your other server will still need all the above
+prerequisites, with the exception of Apache.) Installing on a separate
+server is probably a good idea for high-volume sites.
+
+1. You'll need the "CLI" (command-line interface) version of PHP
+   installed on whatever server you use.
+
+2. If you're using a separate server for queues, install StatusNet
+   somewhere on the server. You don't need to worry about the
+   .htaccess file, but make sure that your config.php file is close
+   to, or identical to, your Web server's version.
+
+3. In your config.php files (both the Web server and the queues
+   server!), set the following variable:
+
+       $config['queue']['enabled'] = true;
+
+   You may also want to look at the 'daemon' section of this file for
+   more daemon options. Note that if you set the 'user' and/or 'group'
+   options, you'll need to create that user and/or group by hand.
+   They're not created automatically.
+
+4. On the queues server, run the command scripts/startdaemons.sh.
+
+This will run the queue handlers:
+
+* queuedaemon.php - polls for queued items for inbox processing and
+  pushing out to OStatus, SMS, XMPP, etc.
+* xmppdaemon.php - listens for new XMPP messages from users and stores
+  them as notices in the database; also pulls queued XMPP output from
+  queuedaemon.php to push out to clients.
+
+These two daemons will automatically restart in most cases of failure
+including memory leaks (if a memory_limit is set), but may still die
+or behave oddly if they lose connections to the XMPP or queue servers.
+
+Additional daemons may be also started by this script for certain
+plugins, such as the Twitter bridge.
+
+It may be a good idea to use a daemon-monitoring service, like 'monit',
+to check their status and keep them running.
+
+All the daemons write their process IDs (pids) to /var/run/ by
+default. This can be useful for starting, stopping, and monitoring the
+daemons.
+
+Since version 0.8.0, it's now possible to use a STOMP server instead of
+our kind of hacky home-grown DB-based queue solution. This is strongly
+recommended for best response time, especially when using XMPP.
+
+See the "queues" config section below for how to configure to use STOMP.
+As of this writing, the software has been tested with ActiveMQ 5.3.
+
+Themes
+------
+
+Older themes (version 0.9.x and below) no longer work with StatusNet
+1.0.x, due to major changes in the site layout. We ship with three new
+themes for this version, 'neo', 'neo-blue' and 'neo-light'.
+
+As of right now, your ability to change the theme is site-wide; users
+can't choose their own theme. Additionally, the only thing you can
+change in the theme is CSS stylesheets and some image files; you can't
+change the HTML output, like adding or removing menu items.
+
+You can choose a theme using the $config['site']['theme'] element in
+the config.php file. See below for details.
+
+You can add your own theme by making a sub-directory of the 'theme'
+subdirectory with the name of your theme. Each theme can have the
+following files:
+
+display.css: a CSS2 file for "default" styling for all browsers.
+ie6.css: a CSS2 file for override styling for fixing up Internet
+    Explorer 6.
+ie7.css: a CSS2 file for override styling for fixing up Internet
+    Explorer 7.
+logo.png: a logo image for the site.
+default-avatar-profile.png: a 96x96 pixel image to use as the avatar for
+    users who don't upload their own.
+default-avatar-stream.png: Ditto, but 48x48. For streams of notices.
+default-avatar-mini.png: Ditto ditto, but 24x24. For subscriptions
+    listing on profile pages.
+
+You may want to start by copying the files from the default theme to
+your own directory.
+
+Translation
+-----------
+
+Translations in StatusNet use the gettext system <http://www.gnu.org/software/gettext/>.
+Theoretically, you can add your own sub-directory to the locale/
+subdirectory to add a new language to your system. You'll need to
+compile the ".po" files into ".mo" files, however.
+
+Contributions of translation information to StatusNet are very easy:
+you can use the Web interface at translatewiki.net to add one
+or a few or lots of new translations -- or even new languages. You can
+also download more up-to-date .po files there, if you so desire.
+
+For info on helping with translations, see http://status.net/wiki/Translations
+
+Backups
+-------
+
+There is no built-in system for doing backups in StatusNet. You can make
+backups of a working StatusNet system by backing up the database and
+the Web directory. To backup the database use mysqldump <http://ur1.ca/7xo>
+and to backup the Web directory, try tar.
+
+Private
+-------
+
+The administrator can set the "private" flag for a site so that it's
+not visible to non-logged-in users. (This is the default for new installs of version 1.0!)
+
+This might be useful for workgroups who want to share a social
+networking site for project management, but host it on a public
+server.
+
+Total privacy is attempted but not guaranteed or ensured. Private sites
+currently don't work well with OStatus federation.
+
+Access to file attachments can also be restricted to logged-in users only.
+
+1. Add a directory outside the web root where your file uploads will be
+   stored. Usually a command like this will work:
+
+       mkdir /var/www/statusnet-files
+
+2. Make the file uploads directory writeable by the web server. An
+   insecure way to do this is:
+
+       chmod a+x /var/www/statusnet-files
+
+3. Tell StatusNet to use this directory for file uploads. Add a line
+   like this to your config.php:
+
+       $config['attachments']['dir'] = '/var/www/statusnet-files';

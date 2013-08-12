@@ -1,0 +1,46 @@
+# Translation of StatusNet - LdapCommon to Catalan (català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - LdapCommon\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:58+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:26+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-ldapcommon\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+msgid "A host must be specified."
+msgstr "Cal especificar un servidor central."
+
+#. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+msgid "\"basedn\" must be specified."
+msgstr "Cal especificar «basedn»."
+
+#. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+msgid "The username attribute must be set."
+msgstr ""
+
+#. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
+#. TRANS: %s is the error message.
+#, php-format
+msgid "Could not connect to LDAP server: %s"
+msgstr "No s'ha pogut connectar amb el servidor LDAP: %s"
+
+#. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
+#. TRANS: %s is the error message.
+#, php-format
+msgid "Could not connect to LDAP server: %s."
+msgstr "No s'ha pogut connectar amb el servidor LDAP: %s."

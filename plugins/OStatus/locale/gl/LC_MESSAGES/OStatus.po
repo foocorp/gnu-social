@@ -1,5 +1,5 @@
-# Translation of StatusNet - OStatus to Galician (Galego)
-# Expored from translatewiki.net
+# Translation of StatusNet - OStatus to Galician (galego)
+# Exported from translatewiki.net
 #
 # Author: Toliño
 # --
@@ -9,748 +9,945 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-14 10:29+0000\n"
-"PO-Revision-Date: 2011-01-14 10:33:50+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:32+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-01-10 18:26:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r80246); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:04+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Link description for link to subscribe to a remote user.
+#. TRANS: String in the gettext speed test script. Unimportant.
+msgid "Feeds"
+msgstr "Fontes de novas"
+
+#. TRANS: Link to subscribe to a remote entity.
 #. TRANS: Link text for a user to subscribe to an OStatus user.
-#: OStatusPlugin.php:223 OStatusPlugin.php:933
 msgid "Subscribe"
 msgstr "Subscribirse"
 
-#. TRANS: Link description for link to join a remote group.
-#: OStatusPlugin.php:242 OStatusPlugin.php:651 actions/ostatussub.php:109
-msgid "Join"
-msgstr "Unirse"
+#. TRANS: Fieldset legend.
+msgid "List remote profile"
+msgstr "Listar un perfil remoto"
 
-#. TRANSLATE: %s is a domain.
-#: OStatusPlugin.php:455
+#. TRANS: Field label.
+msgctxt "LABEL"
+msgid "Remote profile"
+msgstr "Perfil remoto"
+
+#. TRANS: Field title.
+#. TRANS: Tooltip for field label "Subscribe to".
+msgid ""
+"OStatus user's address, like nickname@example.com or http://example.net/"
+"nickname."
+msgstr ""
+"Enderezo dun usuario do OStatus, por exemplo alcume@example.com ou http://"
+"example.net/alcume."
+
+#. TRANS: Button text to fetch remote profile.
+msgctxt "BUTTON"
+msgid "Fetch"
+msgstr "Mostrar"
+
+#. TRANS: Exception in OStatus when invalid URI was entered.
+msgid "Invalid URI."
+msgstr "Enderezo URI inválido."
+
+#. TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+#. TRANS: and example.net, as these are official standard domain names for use in examples.
+msgid ""
+"Sorry, we could not reach that address. Please make sure that the OStatus "
+"address is like nickname@example.com or http://example.net/nickname."
+msgstr ""
+"Sentímolo, non atopamos ese enderezo. Asegúrese de que o enderezo do OStatus "
+"é da forma alcume@example.com ou http://example.net/alcume."
+
+#. TRANS: Title. %s is a domain name.
 #, php-format
 msgid "Sent from %s via OStatus"
-msgstr ""
+msgstr "Enviado desde %s a través do OStatus"
 
-#. TRANS: Exception.
-#: OStatusPlugin.php:527
+#. TRANS: Exception thrown when setup of remote subscription fails.
 msgid "Could not set up remote subscription."
-msgstr ""
+msgstr "Non se puido configurar a subscrición remota."
 
-#: OStatusPlugin.php:601
+#. TRANS: Title for unfollowing a remote profile.
+msgctxt "TITLE"
 msgid "Unfollow"
-msgstr ""
+msgstr "Deixar de seguir"
 
 #. TRANS: Success message for unsubscribe from user attempt through OStatus.
 #. TRANS: %1$s is the unsubscriber's name, %2$s is the unsubscribed user's name.
-#: OStatusPlugin.php:604
 #, php-format
 msgid "%1$s stopped following %2$s."
-msgstr ""
+msgstr "%1$s deixou seguir a %2$s."
 
-#: OStatusPlugin.php:632
+#. TRANS: Exception thrown when setup of remote group membership fails.
 msgid "Could not set up remote group membership."
-msgstr ""
+msgstr "Non se puido establecer a pertenza ao grupo remoto."
+
+#. TRANS: Title for joining a remote groep.
+msgctxt "TITLE"
+msgid "Join"
+msgstr "Unirse"
 
 #. TRANS: Success message for subscribe to group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the subscribed group's name.
-#: OStatusPlugin.php:654
 #, php-format
 msgid "%1$s has joined group %2$s."
-msgstr ""
+msgstr "%1$s uniuse ao grupo %2$s."
 
-#. TRANS: Exception.
-#: OStatusPlugin.php:663
+#. TRANS: Exception thrown when joining a remote group fails.
 msgid "Failed joining remote group."
-msgstr ""
+msgstr "Erro ao unirse ao grupo remoto."
 
-#: OStatusPlugin.php:703
+#. TRANS: Title for leaving a remote group.
+msgctxt "TITLE"
 msgid "Leave"
 msgstr "Deixar"
 
 #. TRANS: Success message for unsubscribe from group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the unsubscribed group's name.
-#: OStatusPlugin.php:706
 #, php-format
 msgid "%1$s has left group %2$s."
-msgstr ""
+msgstr "%1$s deixou o grupo %2$s."
 
-#: OStatusPlugin.php:781
-msgid "Disfavor"
+#. TRANS: Exception thrown when setup of remote list subscription fails.
+msgid "Could not set up remote list subscription."
+msgstr "Non se puido configurar a subscrición á lista remota."
+
+#. TRANS: Title for following a remote list.
+msgctxt "TITLE"
+msgid "Follow list"
+msgstr "Seguir a lista"
+
+#. TRANS: Success message for remote list follow through OStatus.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
+#, php-format
+msgid "%1$s is now following people listed in %2$s by %3$s."
+msgstr "%1$s está a seguir a xente da lista %2$s de %3$s."
+
+#. TRANS: Exception thrown when subscription to remote list fails.
+msgid "Failed subscribing to remote list."
+msgstr "Erro ao subscribirse á lista remota."
+
+#. TRANS: Title for unfollowing a remote list.
+msgid "Unfollow list"
+msgstr "Non seguir a lista"
+
+#. TRANS: Success message for remote list unfollow through OStatus.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
+#, php-format
+msgid "%1$s stopped following the list %2$s by %3$s."
+msgstr "%1$s deixou de seguir a lista %2$s de %3$s."
+
+#. TRANS: Title for listing a remote profile.
+msgctxt "TITLE"
+msgid "List"
+msgstr "Listar"
+
+#. TRANS: Success message for remote list addition through OStatus.
+#. TRANS: %1$s is the list creator's name, %2$s is the added list member, %3$s is the list name.
+#, php-format
+msgid "%1$s listed %2$s in the list %3$s."
+msgstr "%1$s incluíu a %2$s na lista %3$s."
+
+#. TRANS: Exception thrown when subscribing to a remote list fails.
+#, php-format
+msgid ""
+"Could not complete subscription to remote profile's feed. List %s could not "
+"be saved."
 msgstr ""
+"Non se puido completar a subscrición á fonte de novas do perfil remoto. A "
+"lista %s non se pode gardar."
+
+#. TRANS: Title for unlisting a remote profile.
+msgctxt "TITLE"
+msgid "Unlist"
+msgstr "Retirar da lista"
+
+#. TRANS: Success message for remote list removal through OStatus.
+#. TRANS: %1$s is the list creator's name, %2$s is the removed list member, %3$s is the list name.
+#, php-format
+msgid "%1$s removed %2$s from the list %3$s."
+msgstr "%1$s eliminou a %2$s na lista %3$s."
+
+#. TRANS: Title for unliking a remote notice.
+msgid "Unlike"
+msgstr "Deixar de gustar"
 
 #. TRANS: Success message for remove a favorite notice through OStatus.
 #. TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
-#: OStatusPlugin.php:784
 #, php-format
-msgid "%1$s marked notice %2$s as no longer a favorite."
-msgstr ""
+msgid "%1$s no longer likes %2$s."
+msgstr "%1$s xa non gusta de %2$s."
 
 #. TRANS: Link text for link to remote subscribe.
-#: OStatusPlugin.php:860
 msgid "Remote"
-msgstr ""
+msgstr "Remoto"
 
 #. TRANS: Title for activity.
-#: OStatusPlugin.php:900
 msgid "Profile update"
 msgstr "Actualización do perfil"
 
 #. TRANS: Ping text for remote profile update through OStatus.
 #. TRANS: %s is user that updated their profile.
-#: OStatusPlugin.php:903
 #, php-format
 msgid "%s has updated their profile page."
-msgstr ""
+msgstr "%s actualizou o seu perfil."
+
+#. TRANS: Link text for a user to list an OStatus user.
+msgid "List"
+msgstr "Listar"
 
 #. TRANS: Plugin description.
-#: OStatusPlugin.php:948
 msgid ""
 "Follow people across social networks that implement <a href=\"http://ostatus."
 "org/\">OStatus</a>."
 msgstr ""
-
-#: classes/FeedSub.php:252
-msgid "Attempting to start PuSH subscription for feed with no hub."
-msgstr ""
-
-#: classes/FeedSub.php:282
-msgid "Attempting to end PuSH subscription for feed with no hub."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:192
-#, php-format
-msgid "Invalid ostatus_profile state: both group and profile IDs set for %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:195
-#, php-format
-msgid "Invalid ostatus_profile state: both group and profile IDs empty for %s."
-msgstr ""
-
-#. TRANS: Server exception.
-#. TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
-#: classes/Ostatus_profile.php:285
-#, php-format
-msgid "Invalid actor passed to %1$s: %2$s."
-msgstr ""
-
-#. TRANS: Server exception.
-#: classes/Ostatus_profile.php:378
-msgid ""
-"Invalid type passed to Ostatus_profile::notify. It must be XML string or "
-"Activity entry."
-msgstr ""
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:409
-msgid "Unknown feed format."
-msgstr ""
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:433
-msgid "RSS feed without a channel."
-msgstr ""
+"Seguir xente a través das redes sociais que integren o <a href=\"http://"
+"ostatus.org/\">OStatus</a>."
 
 #. TRANS: Client exception.
-#: classes/Ostatus_profile.php:479
-msgid "Can't handle that kind of post."
-msgstr ""
-
-#. TRANS: Client exception. %s is a source URI.
-#: classes/Ostatus_profile.php:537
-#, php-format
-msgid "No content for notice %s."
-msgstr ""
-
-#. TRANS: Shown when a notice is longer than supported and/or when attachments are present. At runtime
-#. TRANS: this will usually be replaced with localised text from StatusNet core messages.
-#: classes/Ostatus_profile.php:572
-msgid "Show more"
-msgstr "Mostrar máis"
-
-#. TRANS: Exception. %s is a profile URL.
-#: classes/Ostatus_profile.php:765
-#, php-format
-msgid "Could not reach profile page %s."
-msgstr ""
-
-#. TRANS: Exception. %s is a URL.
-#: classes/Ostatus_profile.php:823
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr ""
-
-#. TRANS: Feed sub exception.
-#: classes/Ostatus_profile.php:922
-msgid "Can't find enough profile information to make a feed."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:986
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:997
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:1007
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr ""
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:1233
-msgid "Local user can't be referenced as remote."
-msgstr ""
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:1238
-msgid "Local group can't be referenced as remote."
-msgstr ""
-
-#. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1290 classes/Ostatus_profile.php:1301
-msgid "Can't save local profile."
-msgstr ""
-
-#. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1309
-msgid "Can't save OStatus profile."
-msgstr ""
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:1573 classes/Ostatus_profile.php:1601
-msgid "Not a valid webfinger address."
-msgstr ""
-
-#. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1683
-#, php-format
-msgid "Couldn't save profile for \"%s\"."
-msgstr ""
-
-#. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1702
-#, php-format
-msgid "Couldn't save ostatus_profile for \"%s\"."
-msgstr ""
-
-#. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1710
-#, php-format
-msgid "Couldn't find a valid profile for \"%s\"."
-msgstr ""
-
-#. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1753
-msgid "Could not store HTML content of long post as file."
-msgstr ""
-
-#. TRANS: Client exception. %s is a HTTP status code.
-#: classes/HubSub.php:212
-#, php-format
-msgid "Hub subscriber verification returned HTTP %s."
-msgstr ""
-
-#. TRANS: Exception. %1$s is a response status code, %2$s is the body of the response.
-#: classes/HubSub.php:359
-#, php-format
-msgid "Callback returned status: %1$s. Body: %2$s"
-msgstr ""
-
-#. TRANS: Client error. POST is a HTTP command. It should not be translated.
-#: lib/salmonaction.php:43
-msgid "This method requires a POST."
-msgstr ""
-
-#. TRANS: Client error. Do not translate "application/magic-envelope+xml"
-#: lib/salmonaction.php:48
-msgid "Salmon requires \"application/magic-envelope+xml\"."
-msgstr ""
-
-#. TRANS: Client error.
-#: lib/salmonaction.php:58
-msgid "Salmon signature verification failed."
-msgstr ""
-
-#. TRANS: Client error.
-#: lib/salmonaction.php:70
-msgid "Salmon post must be an Atom entry."
-msgstr ""
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:120
-msgid "Unrecognized activity type."
-msgstr ""
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:130
-msgid "This target doesn't understand posts."
-msgstr ""
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:136
-msgid "This target doesn't understand follows."
-msgstr ""
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:142
-msgid "This target doesn't understand unfollows."
-msgstr ""
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:148
-msgid "This target doesn't understand favorites."
-msgstr ""
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:154
-msgid "This target doesn't understand unfavorites."
-msgstr ""
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:160
-msgid "This target doesn't understand share events."
-msgstr ""
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:166
-msgid "This target doesn't understand joins."
-msgstr ""
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:172
-msgid "This target doesn't understand leave events."
-msgstr ""
-
-#. TRANS: Exception.
-#: lib/salmonaction.php:200
-msgid "Received a salmon slap from unidentified actor."
-msgstr ""
-
-#. TRANS: Exception.
-#: lib/discovery.php:110
-#, php-format
-msgid "Unable to find services for %s."
-msgstr ""
-
-#. TRANS: Exception.
-#: lib/magicenvelope.php:80
-msgid "Unable to locate signer public key."
-msgstr ""
-
-#. TRANS: Exception.
-#: lib/salmon.php:93
-msgid "Salmon invalid actor for signing."
-msgstr ""
-
-#: tests/gettext-speedtest.php:57
-msgid "Feeds"
-msgstr "Fontes de novas"
-
-#. TRANS: Client exception.
-#: actions/pushhub.php:70
 msgid "Publishing outside feeds not supported."
-msgstr ""
+msgstr "Non está soportada a publicación fóra das fontes de novas."
 
 #. TRANS: Client exception. %s is a mode.
-#: actions/pushhub.php:73
 #, php-format
 msgid "Unrecognized mode \"%s\"."
-msgstr ""
+msgstr "Non se recoñece o modo \"%s\"."
 
 #. TRANS: Client exception. %s is a topic.
-#: actions/pushhub.php:93
 #, php-format
 msgid ""
 "Unsupported hub.topic %s this hub only serves local user and group Atom "
 "feeds."
 msgstr ""
+"Non se soporta o hub.topic %s. Este centro de actividade serve unicamente "
+"aos usuarios locais e ás fontes de novas Atom."
 
-#. TRANS: Client exception.
-#: actions/pushhub.php:99
+#. TRANS: Client exception. %s is sync or async.
 #, php-format
 msgid "Invalid hub.verify \"%s\". It must be sync or async."
 msgstr ""
+"Verificación hub.verify inválida: \"%s\". Debe ser \"sync\" ou \"async\"."
 
-#. TRANS: Client exception.
-#: actions/pushhub.php:105
+#. TRANS: Client exception. %s is the invalid lease value.
 #, php-format
 msgid "Invalid hub.lease \"%s\". It must be empty or positive integer."
 msgstr ""
+"Arrendamento hub.lease inválido: \"%s\". Debe estar baleiro ou ser un "
+"enteiro positivo."
 
-#. TRANS: Client exception.
-#: actions/pushhub.php:113
+#. TRANS: Client exception. %s is the invalid hub secret.
 #, php-format
 msgid "Invalid hub.secret \"%s\". It must be under 200 bytes."
 msgstr ""
+"Frase secreta hub.secret inválida: \"%s\". Debe ser menos de 200 bytes."
 
-#. TRANS: Client exception.
-#: actions/pushhub.php:165
+#. TRANS: Client exception. %s is a feed URL.
 #, php-format
-msgid "Invalid hub.topic \"%s\". User doesn't exist."
-msgstr ""
+msgid "Invalid hub.topic \"%s\". User does not exist."
+msgstr "Tema hub.topic inválido: \"%s\". O usuario non existe."
 
-#. TRANS: Client exception.
-#: actions/pushhub.php:174
+#. TRANS: Client exception. %s is a feed URL.
 #, php-format
-msgid "Invalid hub.topic \"%s\". Group doesn't exist."
-msgstr ""
+msgid "Invalid hub.topic \"%s\". Group does not exist."
+msgstr "Tema hub.topic inválido: \"%s\". O grupo non existe."
+
+#. TRANS: Client exception. %s is a feed URL.
+#, php-format
+msgid "Invalid hub.topic %s; list does not exist."
+msgstr "Tema hub.topic inválido: \"%s\". A lista non existe."
 
 #. TRANS: Client exception.
 #. TRANS: %1$s is this argument to the method this exception occurs in, %2$s is a URL.
-#: actions/pushhub.php:199
 #, php-format
 msgid "Invalid URL passed for %1$s: \"%2$s\""
-msgstr ""
+msgstr "Pasóuselle un enderezo URL inválido a %1$s: \"%2$s\""
 
-#: actions/ownerxrd.php:39 actions/usersalmon.php:43
-msgid "No such user."
-msgstr ""
+#. TRANS: Client error displayed when trying to list a local object as if it is remote.
+msgid "You can use the local list functionality!"
+msgstr "Pode empregar a funcionalidade de lista local!"
 
-#. TRANS: Client error.
-#: actions/usersalmon.php:37 actions/groupsalmon.php:40
-msgid "No ID."
-msgstr ""
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:83
-msgid "In reply to unknown notice."
-msgstr ""
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:88
-msgid "In reply to a notice not by this user and not mentioning this user."
-msgstr ""
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:165
-msgid "Could not save new favorite."
-msgstr ""
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:197
-msgid "Can't favorite/unfavorite without an object."
-msgstr ""
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:209
-msgid "Can't handle that kind of object for liking/faving."
-msgstr ""
-
-#. TRANS: Client exception. %s is an object ID.
-#: actions/usersalmon.php:216
+#. TRANS: Header for listing a remote object. %s is a remote object's name.
 #, php-format
-msgid "Notice with ID %s unknown."
-msgstr ""
+msgid "List %s"
+msgstr "Listar %s"
 
-#. TRANS: Client exception. %1$s is a notice ID, %2$s is a user ID.
-#: actions/usersalmon.php:221
-#, php-format
-msgid "Notice with ID %1$s not posted by %2$s."
-msgstr ""
+#. TRANS: Button text to list a remote object.
+msgctxt "BUTTON"
+msgid "Go"
+msgstr "Ir"
 
 #. TRANS: Field label.
-#: actions/ostatusgroup.php:78
-msgid "Join group"
-msgstr "Unirse ao grupo"
+msgid "User nickname"
+msgstr "Alcume do usuario"
 
-#. TRANS: Tooltip for field label "Join group".
-#: actions/ostatusgroup.php:81
-msgid "OStatus group's address, like http://example.net/group/nickname."
-msgstr ""
+#. TRANS: Field title.
+msgid "Nickname of the user you want to list."
+msgstr "Alcume do usuario ao que quere listar."
 
-#. TRANS: Button text.
-#: actions/ostatusgroup.php:86 actions/ostatussub.php:75
-msgctxt "BUTTON"
-msgid "Continue"
-msgstr ""
+#. TRANS: Field label.
+msgid "Profile Account"
+msgstr "Conta de perfil"
 
-#: actions/ostatusgroup.php:105
-msgid "You are already a member of this group."
-msgstr ""
+#. TRANS: Field title.
+msgid "Your account id (for example user@identi.ca)."
+msgstr "O ID da súa conta (por exemplo, usuario@identi.ca)."
 
-#. TRANS: OStatus remote group subscription dialog error.
-#: actions/ostatusgroup.php:140
-msgid "Already a member!"
-msgstr ""
-
-#. TRANS: OStatus remote group subscription dialog error.
-#: actions/ostatusgroup.php:151
-msgid "Remote group join failed!"
-msgstr ""
-
-#. TRANS: OStatus remote group subscription dialog error.
-#: actions/ostatusgroup.php:155
-msgid "Remote group join aborted!"
-msgstr ""
-
-#. TRANS: Page title for OStatus remote group join form
-#: actions/ostatusgroup.php:167
-msgid "Confirm joining remote group"
-msgstr ""
-
-#. TRANS: Instructions.
-#: actions/ostatusgroup.php:178
-msgid ""
-"You can subscribe to groups from other supported sites. Paste the group's "
-"profile URI below:"
-msgstr ""
-
+#. TRANS: Client error displayed when remote profile could not be looked up.
 #. TRANS: Client error.
-#: actions/groupsalmon.php:47
-msgid "No such group."
-msgstr ""
+msgid "Could not look up OStatus account profile."
+msgstr "Non pode consultar o perfil da conta do OStatus."
 
+#. TRANS: Client error displayed when remote profile address could not be confirmed.
 #. TRANS: Client error.
-#: actions/groupsalmon.php:56
-msgid "Can't accept remote posts for a remote group."
-msgstr ""
+msgid "Could not confirm remote profile address."
+msgstr "Non se puido confirmar o enderezo do perfil remoto."
 
-#. TRANS: Client error.
-#: actions/groupsalmon.php:130
-msgid "Can't read profile to set up group membership."
-msgstr ""
+#. TRANS: Title for an OStatus list.
+msgid "OStatus list"
+msgstr "Lista de OStatus"
 
-#. TRANS: Client error.
-#: actions/groupsalmon.php:134 actions/groupsalmon.php:177
-msgid "Groups can't join groups."
-msgstr ""
+#. TRANS: Server exception thrown when referring to a non-existing or empty feed.
+msgid "Empty or invalid feed id."
+msgstr "O ID da fonte de novas é inválido ou está baleiro."
 
-#: actions/groupsalmon.php:147
-msgid "You have been blocked from that group by the admin."
-msgstr ""
-
-#. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
-#: actions/groupsalmon.php:162
+#. TRANS: Server exception. %s is a feed ID.
 #, php-format
-msgid "Could not join remote user %1$s to group %2$s."
-msgstr ""
+msgid "Unknown PuSH feed id %s"
+msgstr "Descoñécese o ID da fonte de novas %s"
 
-#: actions/groupsalmon.php:174
-msgid "Can't read profile to cancel group membership."
-msgstr ""
-
-#. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
-#: actions/groupsalmon.php:191
+#. TRANS: Client exception. %s is an invalid feed name.
 #, php-format
-msgid "Could not remove remote user %1$s from group %2$s."
-msgstr ""
+msgid "Bad hub.topic feed \"%s\"."
+msgstr "Fonte de novas hub.topic incorrecta: \"%s\"."
+
+#. TRANS: Client exception. %1$s the invalid token, %2$s is the topic for which the invalid token was given.
+#, php-format
+msgid "Bad hub.verify_token %1$s for %2$s."
+msgstr "Pase hub.verify_token incorrecto %1$s para %2$s."
+
+#. TRANS: Client exception. %s is an invalid topic.
+#, php-format
+msgid "Unexpected subscribe request for %s."
+msgstr "Solicitude de subscrición inesperada para %s."
+
+#. TRANS: Client exception. %s is an invalid topic.
+#, php-format
+msgid "Unexpected unsubscribe request for %s."
+msgstr "Solicitude de cancelación da subscrición inesperada para %s."
+
+#. TRANS: Client error displayed when referring to a non-existing user.
+#. TRANS: Client error.
+msgid "No such user."
+msgstr "Non existe tal usuario."
 
 #. TRANS: Field label for a field that takes an OStatus user address.
-#: actions/ostatussub.php:68
 msgid "Subscribe to"
 msgstr "Subscribirse a"
 
-#. TRANS: Tooltip for field label "Subscribe to".
-#: actions/ostatussub.php:71
-msgid ""
-"OStatus user's address, like nickname@example.com or http://example.net/"
-"nickname"
-msgstr ""
+#. TRANS: Button text.
+#. TRANS: Button text to continue joining a remote list.
+msgctxt "BUTTON"
+msgid "Continue"
+msgstr "Continuar"
 
 #. TRANS: Button text.
+msgid "Join"
+msgstr "Unirse"
+
 #. TRANS: Tooltip for button "Join".
-#: actions/ostatussub.php:112
 msgctxt "BUTTON"
 msgid "Join this group"
 msgstr "Unirse a este grupo"
 
 #. TRANS: Button text.
-#: actions/ostatussub.php:115
 msgctxt "BUTTON"
 msgid "Confirm"
 msgstr "Confirmar"
 
 #. TRANS: Tooltip for button "Confirm".
-#: actions/ostatussub.php:117
 msgid "Subscribe to this user"
 msgstr "Subscribirse a este usuario"
 
-#: actions/ostatussub.php:138
+#. TRANS: Extra paragraph in remote profile view when already subscribed.
 msgid "You are already subscribed to this user."
 msgstr "Xa está subscrito a este usuario."
 
-#: actions/ostatussub.php:167
-msgid "Photo"
-msgstr "Foto"
-
-#: actions/ostatussub.php:178
-msgid "Nickname"
-msgstr "Alcume"
-
-#: actions/ostatussub.php:199
-msgid "Location"
-msgstr "Localización"
-
-#: actions/ostatussub.php:208
-msgid "URL"
-msgstr "URL"
-
-#: actions/ostatussub.php:220
-msgid "Note"
-msgstr "Nota"
-
 #. TRANS: Error text.
-#: actions/ostatussub.php:256 actions/ostatussub.php:263
-#: actions/ostatussub.php:288
-msgid ""
-"Sorry, we could not reach that address. Please make sure that the OStatus "
-"address is like nickname@example.com or http://example.net/nickname."
-msgstr ""
-
-#. TRANS: Error text.
-#: actions/ostatussub.php:267 actions/ostatussub.php:271
-#: actions/ostatussub.php:275 actions/ostatussub.php:279
-#: actions/ostatussub.php:283
 msgid ""
 "Sorry, we could not reach that feed. Please try that OStatus address again "
 "later."
 msgstr ""
+"Sentímolo, non atopamos esa fonte de novas. Inténteo de novo con ese "
+"enderezo máis tarde."
 
 #. TRANS: OStatus remote subscription dialog error.
-#: actions/ostatussub.php:317
+#. TRANS: OStatus remote group subscription dialog error.
 msgid "Already subscribed!"
 msgstr "Xa está subscrito!"
 
 #. TRANS: OStatus remote subscription dialog error.
-#: actions/ostatussub.php:322
 msgid "Remote subscription failed!"
-msgstr ""
+msgstr "Erro na subscrición remota!"
 
-#: actions/ostatussub.php:369 actions/ostatusinit.php:64
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Houbo un erro co seu pase. Inténteo de novo."
 
 #. TRANS: Form title.
-#: actions/ostatussub.php:397 actions/ostatusinit.php:83
 msgid "Subscribe to user"
 msgstr "Subscribirse ao usuario"
 
-#. TRANS: Page title for OStatus remote subscription form
-#: actions/ostatussub.php:417
+#. TRANS: Page title for OStatus remote subscription form.
 msgid "Confirm"
 msgstr "Confirmar"
 
 #. TRANS: Instructions.
-#: actions/ostatussub.php:429
 msgid ""
 "You can subscribe to users from other supported sites. Paste their address "
 "or profile URI below:"
 msgstr ""
+"Pode subscribirse a usuarios doutros sitios soportados. Pegue o seu enderezo "
+"ou o URI do seu perfil a continuación:"
+
+#. TRANS: Field label.
+msgid "Join group"
+msgstr "Unirse ao grupo"
+
+#. TRANS: Tooltip for field label "Join group". Do not translate the "example.net"
+#. TRANS: domain name in the URL, as it is an official standard domain name for examples.
+msgid "OStatus group's address, like http://example.net/group/nickname."
+msgstr "Un enderezo de grupo do OStatus, como http://example.net/group/alcume."
+
+#. TRANS: Error text displayed when trying to join a remote group the user is already a member of.
+msgid "You are already a member of this group."
+msgstr "Xa forma parte dese grupo."
+
+#. TRANS: OStatus remote group subscription dialog error.
+msgid "Already a member!"
+msgstr "Xa é membro!"
+
+#. TRANS: OStatus remote group subscription dialog error.
+msgid "Remote group join failed!"
+msgstr "Erro ao unirse ao grupo remoto!"
+
+#. TRANS: Page title for OStatus remote group join form
+msgid "Confirm joining remote group"
+msgstr "Confirmar a unión ao grupo remoto"
+
+#. TRANS: Form instructions.
+msgid ""
+"You can subscribe to groups from other supported sites. Paste the group's "
+"profile URI below:"
+msgstr ""
+"Pode subscribirse a grupos doutros sitios soportados. Pegue o URI do perfil "
+"do grupo a continuación:"
+
+#. TRANS: Client error displayed trying to perform an action without providing an ID.
+#. TRANS: Client error.
+#. TRANS: Client error displayed trying to perform an action without providing an ID.
+msgid "No ID."
+msgstr "Sen ID."
+
+#. TRANS: Client exception thrown when an undefied activity is performed.
+#. TRANS: Client exception.
+msgid "Cannot handle that kind of post."
+msgstr "Non se pode manexar ese tipo de publicación."
+
+#. TRANS: Client exception.
+msgid "In reply to unknown notice."
+msgstr "En resposta a unha nota descoñecida."
+
+#. TRANS: Client exception.
+msgid "In reply to a notice not by this user and not mentioning this user."
+msgstr ""
+"En resposta a unha nota que non é deste usuario e que tampouco o menciona."
+
+#. TRANS: Client exception.
+msgid "To the attention of user(s), not including this one."
+msgstr "Á atención do(s) usuario(s), sen incluír este."
+
+#. TRANS: Client exception.
+msgid "Not to anyone in reply to anything."
+msgstr "A ninguén en resposta a nada."
+
+#. TRANS: Client exception.
+msgid "This is already a favorite."
+msgstr "Xa é dos favoritos."
+
+#. TRANS: Client exception.
+msgid "Could not save new favorite."
+msgstr "Non se puido gardar o novo favorito."
+
+#. TRANS: Client exception.
+msgid "Notice was not favorited!"
+msgstr "A nota non se engadiu aos favoritos!"
+
+#. TRANS: Client exception.
+msgid "Not a person object."
+msgstr "Non é un obxecto persoal."
+
+#. TRANS: Client exception.
+msgid "Unidentified profile being listed."
+msgstr "Hai listado un perfil non identificado."
+
+#. TRANS: Client exception.
+msgid "This user is not the one being listed."
+msgstr "Este non é o usuario que está listado."
+
+#. TRANS: Client exception.
+msgid "The listing could not be saved."
+msgstr "Non se pode gardar a lista."
+
+#. TRANS: Client exception.
+msgid "Unidentified profile being unlisted."
+msgstr "Hai retirado da lista un perfil non identificado."
+
+#. TRANS: Client exception.
+msgid "This user is not the one being unlisted."
+msgstr "Este non é o usuario que está retirado da lista."
+
+#. TRANS: Client exception.
+msgid "The listing could not be deleted."
+msgstr "Non se pode borrar a lista."
+
+#. TRANS: Client exception.
+msgid "Cannot favorite/unfavorite without an object."
+msgstr "Non se pode engadir ou eliminar dos favoritos sen un obxecto."
+
+#. TRANS: Client exception.
+msgid "Cannot handle that kind of object for liking/faving."
+msgstr ""
+"Non se pode manexar ese tipo de obxecto para gustar ou engadir aos favoritos."
+
+#. TRANS: Client exception. %s is an object ID.
+#, php-format
+msgid "Notice with ID %s unknown."
+msgstr "Descoñécese a nota co ID %s."
+
+#. TRANS: Client exception. %1$s is a notice ID, %2$s is a user ID.
+#, php-format
+msgid "Notice with ID %1$s not posted by %2$s."
+msgstr "A nota co ID %1$s non foi publicada por %2$s"
+
+#. TRANS: Field label.
+msgid "Subscribe to list"
+msgstr "Subscribirse á lista"
+
+#. TRANS: Field title.
+msgid "Address of the OStatus list, like http://example.net/user/all/tag."
+msgstr ""
+"Enderezo da lista do OStatus, como http://example.net/user/all/etiqueta."
+
+#. TRANS: Error text displayed when trying to subscribe to a list already a subscriber to.
+msgid "You are already subscribed to this list."
+msgstr "Xa está subscrito a esta lista."
+
+#. TRANS: Page title for OStatus remote list subscription form
+msgid "Confirm subscription to remote list"
+msgstr "Confirmar a subscrición á lista remota"
+
+#. TRANS: Instructions for OStatus list subscription form.
+msgid ""
+"You can subscribe to lists from other supported sites. Paste the list's URI "
+"below:"
+msgstr ""
+"Pode subscribirse a listas doutros sitios soportados. Pegue o URI da lista a "
+"continuación:"
 
 #. TRANS: Client error.
-#: actions/ostatusinit.php:42
+msgid "No such group."
+msgstr "Non existe tal grupo."
+
+#. TRANS: Client error.
+msgid "Cannot accept remote posts for a remote group."
+msgstr "Non se poden aceptar publicacións remotas para un grupo remoto."
+
+#. TRANS: Client error.
+msgid "Cannot read profile to set up group membership."
+msgstr "Non se pode ler o perfil para configurar a pertenza ao grupo."
+
+#. TRANS: Client error.
+#. TRANS: Client error displayed when trying to have a group join another group.
+msgid "Groups cannot join groups."
+msgstr "Os grupos non se poden unir aos grupos."
+
+#. TRANS: Client error displayed when trying to join a group the user is blocked from by a group admin.
+msgid "You have been blocked from that group by the admin."
+msgstr "O administrador bloqueouno nese grupo."
+
+#. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
+#, php-format
+msgid "Could not join remote user %1$s to group %2$s."
+msgstr "O usuario remoto %1$s non se puido engadir ao grupo %2$s."
+
+#. TRANS: Client error displayed when group membership cannot be cancelled
+#. TRANS: because the remote profile could not be read.
+msgid "Cannot read profile to cancel group membership."
+msgstr "Non se pode ler o perfil para cancelar a pertenza ao grupo."
+
+#. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
+#, php-format
+msgid "Could not remove remote user %1$s from group %2$s."
+msgstr "O usuario remoto %1$s non se puido eliminar do grupo %2$s."
+
+#. TRANS: Client error displayed when referring to a non-existing list.
+#. TRANS: Client error.
+msgid "No such list."
+msgstr "Non existe tal lista."
+
+#. TRANS: Client error displayed when trying to send a message to a remote list.
+msgid "Cannot accept remote posts for a remote list."
+msgstr "Non se poden aceptar publicacións remotas para unha lista remota."
+
+#. TRANS: Client error displayed when referring to a non-existing remote list.
+msgid "Cannot read profile to set up list subscription."
+msgstr "Non se pode ler o perfil para configurar a subscrición á lista."
+
+#. TRANS: Client error displayed when trying to subscribe a group to a list.
+#. TRANS: Client error displayed when trying to unsubscribe a group from a list.
+msgid "Groups cannot subscribe to lists."
+msgstr "Os grupos non se poden subscribir ás listas."
+
+#. TRANS: Server error displayed when subscribing a remote user to a list fails.
+#. TRANS: %1$s is a profile URI, %2$s is a list name.
+#, php-format
+msgid "Could not subscribe remote user %1$s to list %2$s."
+msgstr "O usuario remoto %1$s non se puido subscribir á lista %2$s."
+
+#. TRANS: Client error displayed when trying to unsubscribe from non-existing list.
+msgid "Cannot read profile to cancel list subscription."
+msgstr "Non se pode ler o perfil para cancelar a subscrición á lista."
+
+#. TRANS: Client error displayed when trying to unsubscribe a remote user from a list fails.
+#. TRANS: %1$s is a profile URL, %2$s is a list name.
+#, php-format
+msgid "Could not unsubscribe remote user %1$s from list %2$s."
+msgstr "O usuario remoto %1$s non puido cancelar a subscrición á lista %2$s."
+
+#. TRANS: Client error.
 msgid "You can use the local subscription!"
 msgstr "Pode usar a subscrición local!"
 
-#. TRANS: Form legend.
-#: actions/ostatusinit.php:98
+#. TRANS: Form title.
+msgctxt "TITLE"
+msgid "Subscribe to user"
+msgstr "Subscribirse ao usuario"
+
+#. TRANS: Form legend. %s is a group name.
 #, php-format
 msgid "Join group %s"
 msgstr "Unirse ao grupo \"%s\""
 
-#. TRANS: Button text.
-#: actions/ostatusinit.php:100
+#. TRANS: Button text to join a group.
 msgctxt "BUTTON"
 msgid "Join"
 msgstr "Unirse"
 
-#. TRANS: Form legend.
-#: actions/ostatusinit.php:103
+#. TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
 #, php-format
-msgid "Subscribe to %s"
-msgstr "Subscribirse a %s"
+msgid "Subscribe to list %1$s by %2$s"
+msgstr "Subscribirse á lista %1$s de %2$s"
 
-#. TRANS: Button text.
-#: actions/ostatusinit.php:105
+#. TRANS: Button text to subscribe to a list.
+#. TRANS: Button text to subscribe to a profile.
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr "Subscribirse"
 
-#. TRANS: Field label.
-#: actions/ostatusinit.php:118
-msgid "User nickname"
-msgstr "Alcume do usuario"
+#. TRANS: Form legend. %s is a nickname.
+#, php-format
+msgid "Subscribe to %s"
+msgstr "Subscribirse a %s"
 
-#: actions/ostatusinit.php:119
+#. TRANS: Field label.
+msgid "Group nickname"
+msgstr "Alcume do grupo"
+
+#. TRANS: Field title.
+msgid "Nickname of the group you want to join."
+msgstr "Alcume do grupo ao que se quere unir."
+
+#. TRANS: Field title.
 msgid "Nickname of the user you want to follow."
 msgstr "Alcume do usuario ao que quere seguir."
 
-#. TRANS: Field label.
-#: actions/ostatusinit.php:124
-msgid "Profile Account"
-msgstr "Conta de perfil"
-
 #. TRANS: Tooltip for field label "Profile Account".
-#: actions/ostatusinit.php:126
-msgid "Your account id (e.g. user@identi.ca)."
-msgstr ""
+msgid "Your account ID (e.g. user@identi.ca)."
+msgstr "O ID da súa conta (por exemplo, usuario@identi.ca)."
 
 #. TRANS: Client error.
-#: actions/ostatusinit.php:148
 msgid "Must provide a remote profile."
-msgstr ""
+msgstr "Cómpre especificar un perfil remoto."
 
 #. TRANS: Client error.
-#: actions/ostatusinit.php:160
-msgid "Couldn't look up OStatus account profile."
-msgstr ""
-
-#. TRANS: Client error.
-#: actions/ostatusinit.php:173
-msgid "Couldn't confirm remote profile address."
-msgstr ""
+msgid "No local user or group nickname provided."
+msgstr "Non se proporcionou ningún usuario local ou alcume de grupo."
 
 #. TRANS: Page title.
-#: actions/ostatusinit.php:218
 msgid "OStatus Connect"
-msgstr ""
+msgstr "Conexión OStatus"
 
-#: actions/pushcallback.php:50
-msgid "Empty or invalid feed id."
-msgstr ""
-
-#. TRANS: Server exception. %s is a feed ID.
-#: actions/pushcallback.php:56
+#. TRANS: Server exception. %s is a URL.
 #, php-format
-msgid "Unknown PuSH feed id %s"
-msgstr ""
+msgid "Invalid avatar URL %s."
+msgstr "O enderezo URL do avatar, %s, é incorrecto."
 
-#. TRANS: Client exception. %s is an invalid feed name.
-#: actions/pushcallback.php:96
+#. TRANS: Server exception. %s is a URI.
 #, php-format
-msgid "Bad hub.topic feed \"%s\"."
+msgid "Tried to update avatar for unsaved remote profile %s."
 msgstr ""
+"Intentouse actualizar o avatar asociado ao perfil remoto non gardado %s."
 
-#. TRANS: Client exception. %1$s the invalid token, %2$s is the topic for which the invalid token was given.
-#: actions/pushcallback.php:101
+#. TRANS: Server exception. %s is a URL.
 #, php-format
-msgid "Bad hub.verify_token %1$s for %2$s."
-msgstr ""
+msgid "Unable to fetch avatar from %s."
+msgstr "Non se puido recuperar o avatar desde %s."
 
-#. TRANS: Client exception. %s is an invalid topic.
-#: actions/pushcallback.php:108
+#. TRANS: Exception. %s is a URL.
 #, php-format
-msgid "Unexpected subscribe request for %s."
+msgid "Could not find a feed URL for profile page %s."
 msgstr ""
+"Non se puido atopar un enderezo URL de fonte de novas para a páxina de "
+"perfil %s."
 
-#. TRANS: Client exception. %s is an invalid topic.
-#: actions/pushcallback.php:113
+#. TRANS: Exception.
+msgid "Not a valid webfinger address."
+msgstr "O enderezo de webfinger é incorrecto."
+
+#. TRANS: Exception. %s is a webfinger address.
 #, php-format
-msgid "Unexpected unsubscribe request for %s."
+msgid "Could not find a valid profile for \"%s\"."
+msgstr "Non se puido gardar un perfil válido para \"%s\"."
+
+#. TRANS: Server exception.
+msgid "Attempting to start PuSH subscription for feed with no hub."
 msgstr ""
+"Intentando iniciar a subscrición PuSH para a fonte de novas sen centro de "
+"actividade."
+
+#. TRANS: Server exception.
+msgid "Attempting to end PuSH subscription for feed with no hub."
+msgstr ""
+"Intentando rematar a subscrición PuSH para a fonte de novas sen centro de "
+"actividade."
+
+#. TRANS: Server exception. %s is a URI
+#, php-format
+msgid "Invalid ostatus_profile state: Two or more IDs set for %s."
+msgstr ""
+"Estado ostatus_profile inválido: Hai definidos dous ou máis identificadores "
+"para %s."
+
+#. TRANS: Server exception. %s is a URI
+#, php-format
+msgid "Invalid ostatus_profile state: All IDs empty for %s."
+msgstr ""
+"Estado ostatus_profile inválido: Todos os identificadores están baleiros "
+"para %s."
+
+#. TRANS: Server exception.
+#. TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
+#, php-format
+msgid "Invalid actor passed to %1$s: %2$s."
+msgstr "Pasóuselle un tipo de actor inválido ao método %1$s: %2$s."
+
+#. TRANS: Server exception.
+msgid ""
+"Invalid type passed to Ostatus_profile::notify. It must be XML string or "
+"Activity entry."
+msgstr ""
+"Pasóuselle un tipo inválido ao método Ostatus_profile::notify. Debera ser "
+"unha cadea XML ou unha entrada de actividade."
+
+#. TRANS: Exception.
+msgid "Unknown feed format."
+msgstr "Formato de fonte de novas descoñecido."
+
+#. TRANS: Exception.
+msgid "RSS feed without a channel."
+msgstr "Fonte de novas RSS sen canle."
+
+#. TRANS: Client exception thrown when trying to share multiple activities at once.
+msgid "Can only handle share activities with exactly one object."
+msgstr "Pode manexar unicamente actividades con exactamente un obxecto."
+
+#. TRANS: Client exception thrown when trying to share a non-activity object.
+msgid "Can only handle shared activities."
+msgstr "Só pode manexar actividades compartidas."
+
+#. TRANS: Client exception thrown when saving an activity share fails.
+#. TRANS: %s is a share ID.
+#, php-format
+msgid "Failed to save activity %s."
+msgstr "Erro ao gardar a actividade %s."
+
+#. TRANS: Client exception. %s is a source URI.
+#, php-format
+msgid "No content for notice %s."
+msgstr "A nota %s non ten ningún contido."
+
+#. TRANS: Shown when a notice is longer than supported and/or when attachments are present. At runtime
+#. TRANS: this will usually be replaced with localised text from StatusNet core messages.
+msgid "Show more"
+msgstr "Mostrar máis"
+
+#. TRANS: Exception. %s is a profile URL.
+#, php-format
+msgid "Could not reach profile page %s."
+msgstr "Non se puido atopar a páxina de perfil %s."
+
+#. TRANS: Feed sub exception.
+msgid "Cannot find enough profile information to make a feed."
+msgstr ""
+"Non abonda a información de perfil atopada para xerar unha fonte de novas."
+
+#. TRANS: Server exception.
+msgid "No author ID URI found."
+msgstr "Non se atopou ningún URI de identificador de usuario."
+
+#. TRANS: Exception.
+msgid "No profile URI."
+msgstr "Ningún URI de perfil."
+
+#. TRANS: Exception.
+msgid "Local user cannot be referenced as remote."
+msgstr "O usuario local non se pode referenciar como remoto."
+
+#. TRANS: Exception.
+msgid "Local group cannot be referenced as remote."
+msgstr "O grupo local non se pode referenciar como remoto."
+
+#. TRANS: Exception.
+msgid "Local list cannot be referenced as remote."
+msgstr "A lista local non se pode referenciar como remota."
+
+#. TRANS: Server exception.
+msgid "Cannot save local profile."
+msgstr "Non se pode gardar o perfil local."
+
+#. TRANS: Server exception.
+msgid "Cannot save local list."
+msgstr "Non se pode gardar a lista local."
+
+#. TRANS: Server exception.
+msgid "Cannot save OStatus profile."
+msgstr "Non se pode gardar o perfil do OStatus."
+
+#. TRANS: Exception. %s is a webfinger address.
+#, php-format
+msgid "Could not save profile for \"%s\"."
+msgstr "Non se puido gardar o perfil de \"%s\"."
+
+#. TRANS: Exception. %s is a webfinger address.
+#, php-format
+msgid "Could not save OStatus profile for \"%s\"."
+msgstr "Non se puido gardar o perfil do OStatus para \"%s\"."
+
+#. TRANS: Server exception.
+msgid "Could not store HTML content of long post as file."
+msgstr "Non se puido almacenar como ficheiro o contido HTML da mensaxe longa."
+
+#. TRANS: Server exception.
+#. TRANS: %1$s is a protocol, %2$s is a URI.
+#, php-format
+msgid "Unrecognized URI protocol for profile: %1$s (%2$s)."
+msgstr "Protocolo URI non recoñecido para o perfil: %1$s (%2$s)."
+
+#. TRANS: Server exception. %s is a URI.
+#, php-format
+msgid "No URI protocol for profile: %s."
+msgstr "Non se atopou o protocolo URI para o perfil: %s."
+
+#. TRANS: Client exception. %s is a HTTP status code.
+#, php-format
+msgid "Hub subscriber verification returned HTTP %s."
+msgstr ""
+"A verificación de subscrición ao centro de actividade devolveu o código de "
+"estado HTTP %s."
+
+#. TRANS: Exception. %1$s is a response status code, %2$s is the body of the response.
+#, php-format
+msgid "Callback returned status: %1$s. Body: %2$s"
+msgstr "A chamada de retorno devolveu o seguinte estado: %1$s. Corpo: %2$s"
+
+#. TRANS: Exception.
+msgid "Unable to locate signer public key."
+msgstr "Non se puido atopar a clave pública do asinante."
+
+#. TRANS: Exception.
+msgid "Salmon invalid actor for signing."
+msgstr "O actor do protocolo Salmon é inválido para asinar."
+
+#. TRANS: Client error. POST is a HTTP command. It should not be translated.
+msgid "This method requires a POST."
+msgstr "Este método require un comando HTTP POST."
+
+#. TRANS: Client error. Do not translate "application/magic-envelope+xml".
+msgid "Salmon requires \"application/magic-envelope+xml\"."
+msgstr "O protocolo Salmon necesita \"application/magic-envelope+xml\"."
+
+#. TRANS: Client error.
+msgid "Salmon signature verification failed."
+msgstr "Erro na verificación de sinatura do protocolo Salmon."
+
+#. TRANS: Client error.
+msgid "Salmon post must be an Atom entry."
+msgstr "A publicación do protocolo Salmon debe ser unha entrada de Atom."
+
+#. TRANS: Client exception.
+msgid "Unrecognized activity type."
+msgstr "Non se recoñece o tipo de actividade."
+
+#. TRANS: Client exception.
+msgid "This target does not understand posts."
+msgstr "Este obxectivo non entende as publicacións."
+
+#. TRANS: Client exception.
+msgid "This target does not understand follows."
+msgstr "Este obxectivo non entende os seguimentos."
+
+#. TRANS: Client exception.
+msgid "This target does not understand unfollows."
+msgstr "Este obxectivo non entende a indicación de rematar o seguimento."
+
+#. TRANS: Client exception.
+msgid "This target does not understand favorites."
+msgstr "Este obxectivo non entende os favoritos."
+
+#. TRANS: Client exception.
+msgid "This target does not understand unfavorites."
+msgstr "Este obxectivo non entende a indicación de eliminar os favoritos."
+
+#. TRANS: Client exception.
+msgid "This target does not understand share events."
+msgstr "Este obxectivo non entende a indicación de compartir os eventos."
+
+#. TRANS: Client exception.
+msgid "This target does not understand joins."
+msgstr "Este obxectivo non entende as unións."
+
+#. TRANS: Client exception.
+msgid "This target does not understand leave events."
+msgstr "Este obxectivo non entende a indicación de deixar os eventos."
+
+#. TRANS: Client exception.
+msgid "This target does not understand list events."
+msgstr "Este obxectivo non entende a indicación de listar os eventos."
+
+#. TRANS: Client exception.
+msgid "This target does not understand unlist events."
+msgstr ""
+"Este obxectivo non entende a indicación de retirar da lista os eventos."
+
+#. TRANS: Exception.
+msgid "Received a salmon slap from unidentified actor."
+msgstr ""
+"Recibiuse unha labazada do protocolo Salmon desde un actor non identificado."

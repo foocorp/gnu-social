@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -56,7 +56,13 @@ class AllAction extends ProfileAction
     {
         parent::prepare($args);
 
-        $stream = new ThreadingInboxNoticeStream($this->user, Profile::current());
+        $user = common_current_user();
+
+        if (!empty($user) && $user->streamModeOnly()) {
+            $stream = new InboxNoticeStream($this->user, Profile::current());
+        } else {
+            $stream = new ThreadingInboxNoticeStream($this->user, Profile::current());
+        }
 
         $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
                                             NOTICES_PER_PAGE + 1);
@@ -85,7 +91,7 @@ class AllAction extends ProfileAction
     function title()
     {
         $user = common_current_user();
-        if ($user->id == $this->user->id) {
+        if (!empty($user) && $user->id == $this->user->id) {
             // TRANS: Title of a user's own start page.
             return _('Home timeline');
         } else {
@@ -99,6 +105,15 @@ class AllAction extends ProfileAction
     function getFeeds()
     {
         return array(
+            new Feed(Feed::JSON,
+                common_local_url(
+                    'ApiTimelineFriends', array(
+                        'format' => 'as',
+                        'id' => $this->user->nickname
+                    )
+                ),
+                // TRANS: %s is user nickname.
+                sprintf(_('Feed for friends of %s (Activity Streams JSON)'), $this->user->nickname)),
             new Feed(Feed::RSS1,
                 common_local_url(
                     'allrss', array(
@@ -145,7 +160,7 @@ class AllAction extends ProfileAction
                 $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) from their profile or [post something to them](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->user->nickname, $this->user->nickname, '@' . $this->user->nickname);
             }
         } else {
-            // TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+            // TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
             // TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
             $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->user->nickname);
         }
@@ -167,7 +182,11 @@ class AllAction extends ProfileAction
                 $profile = $current_user->getProfile();
             }
 
-            $nl = new ThreadedNoticeList($this->notice, $this, $profile);
+            if (!empty($current_user) && $current_user->streamModeOnly()) {
+                $nl = new NoticeList($this->notice, $this);
+            } else {
+                $nl = new ThreadedNoticeList($this->notice, $this, $profile);
+            }
 
             $cnt = $nl->show();
 
@@ -186,12 +205,29 @@ class AllAction extends ProfileAction
 
     function showSections()
     {
-        $ibs = new InviteButtonSection($this);
-        $ibs->show();
-        $pop = new PopularNoticeSection($this);
-        $pop->show();
-        //        $pop = new InboxTagCloudSection($this, $this->user);
-        //        $pop->show();
+        // Show invite button, as long as site isn't closed, and
+        // we have a logged in user.
+        if (common_config('invite', 'enabled') && !common_config('site', 'closed') && common_logged_in()) {
+            if (!common_config('site', 'private')) {
+                $ibs = new InviteButtonSection(
+                    $this,
+                    // TRANS: Button text for inviting more users to the StatusNet instance.
+                    // TRANS: Less business/enterprise-oriented language for public sites.
+                    _m('BUTTON', 'Send invite')
+                );
+            } else {
+                $ibs = new InviteButtonSection($this);
+            }
+            $ibs->show();
+        }
+        // XXX: make this a little more convenient
+
+        if (!common_config('performance', 'high')) {
+            $pop = new PopularNoticeSection($this, Profile::current());
+            $pop->show();
+            $pop = new InboxTagCloudSection($this, $this->user);
+            $pop->show();
+        }
     }
 }
 

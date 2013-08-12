@@ -95,8 +95,10 @@ class YammerImportPlugin extends Plugin
             $action_name = $nav->action->trimmed('action');
 
             $nav->out->menuItem(common_local_url('yammeradminpanel'),
-                                _m('Yammer'),
-                                _m('Yammer import'),
+                                // TRANS: Menu item for Yammer import.
+                                _m('MENU','Yammer'),
+                                // TRANS: Menu item title for Yammer import.
+                                _m('Yammer import module.'),
                                 $action_name == 'yammeradminpanel',
                                 'nav_yammer_admin_panel');
         }

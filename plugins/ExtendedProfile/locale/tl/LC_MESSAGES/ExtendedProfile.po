@@ -9,18 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:25+0000\n"
-"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:32+0000\n"
+"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:06+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Title for extended profile settings.
 msgid "Extended profile settings"
 msgstr "Dinugtungang mga katakdaan ng balangkas"
 
@@ -31,6 +32,7 @@ msgstr ""
 "Maisasapanahon mo rito ang kabatiran sa iyong pansariling balangkas upang "
 "makaalam pa ng mas marami ang mga tao tungkol sa iyo."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 "May isang suliranin sa iyong sesyon ng kahalip.  Mangyaring subukan uli."
@@ -39,6 +41,7 @@ msgstr ""
 msgid "Unexpected form submission."
 msgstr "Hindi inaasahang pagpapasa ng pormularyo."
 
+#. TRANS: Success message after saving extended profile details.
 msgid "Details saved."
 msgstr "Nasagip na ang mga detalye."
 
@@ -60,6 +63,7 @@ msgstr "Hindi katanggap-tanggap na ipinasok na petsa para sa \"%1$s\": %2$s."
 msgid "Invalid URL: %s."
 msgstr "Hindi katanggap-tanggap na URL: %s."
 
+#. TRANS: Server error displayed when a field could not be saved in the database.
 msgid "Could not save profile details."
 msgstr "Hindi masagip ang mga detalye ng balangkas."
 
@@ -111,17 +115,11 @@ msgstr "(%s)"
 msgid "Company"
 msgstr "Kumpanya"
 
-#. TRANS: Field label in experience area of extended profile (when did one start a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one start at a company).
-#. TRANS: Field label in education area of extended profile (when did one start an education).
-#. TRANS: Field label in education edit area of extended profile (when did one start an education).
+#. TRANS: Field label in extended profile (when did one start a position or education).
 msgid "Start"
 msgstr "Magsimula"
 
-#. TRANS: Field label in experience area of extended profile (when did one end a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one terminate at a company).
-#. TRANS: Field label in education area of extended profile (when did one end a education).
-#. TRANS: Field label in education edit area of extended profile (when did one end an education).
+#. TRANS: Field label in extended profile (when did one end a position or education).
 msgid "End"
 msgstr "Tapusin"
 
@@ -139,8 +137,7 @@ msgstr "Pangkasalukuyan"
 msgid "Institution"
 msgstr "Institusyon"
 
-#. TRANS: Field label in education area of extended profile.
-#. TRANS: Field label in education edit area of extended profile.
+#. TRANS: Field label in extended profile for specifying an academic degree.
 msgid "Degree"
 msgstr "Antas"
 

@@ -104,7 +104,7 @@ class UsergroupsAction extends ProfileAction
             return false;
         }
 
-        $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
+        $this->page = $this->trimmed('page', 1);
 
         return true;
     }

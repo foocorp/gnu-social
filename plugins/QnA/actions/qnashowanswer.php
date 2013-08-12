@@ -57,38 +57,42 @@ class QnashowanswerAction extends ShownoticeAction
      */
     function prepare($argarray)
     {
-        OwnerDesignAction::prepare($argarray);
+        Action::prepare($argarray);
 
         $this->id = $this->trimmed('id');
 
         $this->answer = QnA_Answer::staticGet('id', $this->id);
 
         if (empty($this->answer)) {
+            // TRANS: Client exception thrown when requesting a non-existing answer.
             throw new ClientException(_m('No such answer.'), 404);
         }
 
         $this->question = $this->answer->getQuestion();
 
         if (empty($this->question)) {
+            // TRANS: Client exception thrown when requesting an answer that has no connected question.
             throw new ClientException(_m('No question for this answer.'), 404);
         }
 
         $this->notice = Notice::staticGet('uri', $this->answer->uri);
 
         if (empty($this->notice)) {
-            // Did we used to have it, and it got deleted?
+            // TRANS: Did we used to have it, and it got deleted?
             throw new ClientException(_m('No such answer.'), 404);
         }
 
         $this->user = User::staticGet('id', $this->answer->profile_id);
 
         if (empty($this->user)) {
+            // TRANS: Client exception thrown when requesting answer data for a non-existing user.
             throw new ClientException(_m('No such user.'), 404);
         }
 
         $this->profile = $this->user->getProfile();
 
         if (empty($this->profile)) {
+            // TRANS: Client exception thrown when requesting answer data for a user without a profile.
             throw new ServerException(_m('User without a profile.'));
         }
 

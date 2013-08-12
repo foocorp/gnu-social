@@ -40,7 +40,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @link     http://status.net/
  */
 
-class EditpeopletagAction extends OwnerDesignAction
+class EditpeopletagAction extends Action
 {
     var $msg, $confirm, $confirm_args=array();
 
@@ -71,7 +71,11 @@ class EditpeopletagAction extends OwnerDesignAction
         }
 
         $id = $this->arg('id');
-        $tagger_arg = $this->arg('tagger');
+        if (common_config('singleuser', 'enabled')) {
+            $tagger_arg = User::singleUserNickname();
+        } else {
+            $tagger_arg = $this->arg('tagger');
+        }
         $tag_arg = $this->arg('tag');
 
         $tagger = common_canonical_nickname($tagger_arg);
@@ -293,7 +297,7 @@ class EditpeopletagAction extends OwnerDesignAction
 
         if (!$result) {
             common_log_db_error($this->group, 'UPDATE', __FILE__);
-            // TRANS: TRANS: Server error displayed when updating a list fails.
+            // TRANS: Server error displayed when updating a list fails.
             $this->serverError(_('Could not update list.'));
         }
 

@@ -84,7 +84,7 @@ class ClearFlagForm extends ProfileActionForm
 
     function description()
     {
-        // Form description for clearing flags from a profile.
+        // TRANS: Form description for clearing flags from a profile.
         return _m('Clear all flags');
     }
 }

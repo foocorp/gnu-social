@@ -56,8 +56,9 @@ class Status_network extends Safe_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    static $cache = null;
-    static $cacheInitialized = false;
+    // XXX: made public so Status_network_tag can eff with it
+    public static $cache = null;
+    public static $cacheInitialized = false;
     static $base = null;
     static $wildcard = null;
 
@@ -91,12 +92,18 @@ class Status_network extends Safe_DataObject
             // or a single-process script which is switching
             // configurations.
             $persist = php_sapi_name() != 'cli' || self::$cacheInitialized;
-            if (is_array($servers)) {
-                foreach($servers as $server) {
-                    self::$cache->addServer($server, 11211, $persist);
+            if (!is_array($servers)) {
+                $servers = array($servers);
+            } 
+            foreach($servers as $server) {
+                $parts = explode(':', $server);
+                $server = $parts[0];
+                if (count($parts) > 1) {
+                    $port = $parts[1];
+                } else {
+                    $port = 11211;
                 }
-            } else {
-                self::$cache->addServer($servers, 11211, $persist);
+                self::$cache->addServer($server, $port, $persist);
             }
             self::$cacheInitialized = true;
         }

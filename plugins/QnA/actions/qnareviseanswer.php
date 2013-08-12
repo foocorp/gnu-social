@@ -79,8 +79,8 @@ class QnareviseanswerAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            // TRANS: Client exception thrown trying to answer a question while not logged in.
             throw new ClientException(
+                // TRANS: Client exception thrown trying to answer a question while not logged in.
                 _m("You must be logged in to answer to a question."),
                 403
             );
@@ -92,8 +92,8 @@ class QnareviseanswerAction extends Action
         $this->question = $this->answer->getQuestion();
 
         if (empty($this->answer) || empty($this->question)) {
-            // TRANS: Client exception thrown trying to respond to a non-existing question.
             throw new ClientException(
+                // TRANS: Client exception thrown trying to respond to a non-existing question.
                 _m('Invalid or missing answer.'),
                 404
             );
@@ -243,7 +243,8 @@ class QnareviseanswerAction extends Action
         $this->xw->startDocument('1.0', 'UTF-8');
         $this->elementStart('html');
         $this->elementStart('head');
-        $this->element('title', null, _m('Answer'));
+        // TRANS: Form title for sending an answer.
+        $this->element('title', null, _m('TITLE','Answer'));
         $this->elementEnd('head');
         $this->elementStart('body');
         $form = new QnareviseanswerForm($this->answer, $this);

@@ -49,31 +49,66 @@ if (!defined('STATUSNET')) {
  */
 class GoogleAnalyticsPlugin extends Plugin
 {
-    var $code = null;
+    var $code;
+    var $domain;
+
+    const VERSION = '0.2';
 
     function __construct($code=null)
     {
-        $this->code = $code;
+        if (!empty($code)) {
+            global $config;
+            $config['googleanalytics']['code'] = $code;
+        }
+
         parent::__construct();
     }
 
     function onEndShowScripts($action)
     {
-        $js1 = 'var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");'.
-          'document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));';
-        $js2 = sprintf('try{'.
-                       'var pageTracker = _gat._getTracker("%s");'.
-                       'pageTracker._trackPageview();'.
-                       '} catch(err) {}',
-                       $this->code);
-        $action->inlineScript($js1);
-        $action->inlineScript($js2);
+        $code = common_config('googleanalytics', 'code');
+        if (empty($code)) {
+            $code = $this->code;
+        }
+        $domain = common_config('googleanalytics', 'domain');
+        if (empty($domain)) {
+            $domain = $this->domain;
+        }
+
+        $js = <<<ENDOFSCRIPT0
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', '{$code}']);
+_gaq.push(['_trackPageview']);
+
+ENDOFSCRIPT0;
+
+if (!empty($domain)) {
+        $js .= <<<ENDOFSCRIPT1
+
+_gaq.push(['_setDomainName', '{$domain}']);
+_gaq.push(['_setAllowHash', false]);
+
+ENDOFSCRIPT1;
+}
+
+        $js .= <<<ENDOFSCRIPT2
+
+(function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+ENDOFSCRIPT2;
+
+       $action->inlineScript($js);
     }
 
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'GoogleAnalytics',
-                            'version' => STATUSNET_VERSION,
+                            'version' => self::VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:GoogleAnalytics',
                             'rawdescription' =>

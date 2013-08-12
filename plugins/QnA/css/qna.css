@@ -1,5 +1,78 @@
-/* Why doesn't this work? */
-input.answer-placeholder {
-    margin-left: 0;
-    width: 95%;
+.question .answer-count, .qna-full-question .answer-count {
+    display: block;
+    clear: left;
+}
+
+.question .answer-count:before, .qna-full-question .answer-count:before {
+    content: '(';
+}
+
+.question .answer-count:after, .qna-full-question .answer-count:after {
+    content: ')';
+}
+
+.question .notice-answer {
+    margin-left: 10px;
+    padding-bottom: 10px;
+}
+
+ul.qna-dummy {
+    clear: left;
+    float: left;
+    list-style-type: none;
+    width: 458px;
+    margin-left: 59px;
+    padding-right: 2px;
+    border-left: 3px solid #ECECF2;
+    background: #fafafa;
+    font-size: 1em;
+}
+
+ul.qna-dummy + ul.threaded-replies li.notice:first-child, li.notice-answer + li.notice {
+    border-top: 2px dotted #eee;
+    margin-top: -10px;
+    padding-top: 10px;
+}
+
+.qna-dummy-placeholder input {
+    margin: 10px 0px 10px 10px;
+    width: 426px;
+    color: #888;
+    border: 1px solid #A6A6A6;
+    padding: 4px 4px 4px 6px;
+}
+
+.question fieldset, .qna-full-question fieldset {
+    margin: 0px;
+}
+
+.question fieldset legend, .qna-full-question fieldset legend, .answer fieldset legend {
+    display: none;
+}
+
+.question label[for=qna-answer], .qna-full-question label[for=qna-answer] {
+    display: none;
+}
+
+.question #qna-answer, .qna-full-question #qna-answer {
+    width: 426px;
+    height: 54px;
+    padding: 6px 5px;
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #A6A6A6;
+}
+
+.qna-full-question textarea {
+    width: 508px;
+}
+
+.question p.best:before, .answer p.best:before {
+    content: '[Best] ';
+}
+
+.question .question-closed {
+    display: block;
+    font-style: italic;
 }

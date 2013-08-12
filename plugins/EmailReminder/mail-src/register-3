@@ -1,0 +1,9 @@
+Hey, it's been three days!!
+
+Someone (probably you) has requested an account on %%site.name%% using this email address.
+
+To confirm the address, click the following URL or copy it into the address bar of your browser.
+
+> [%%arg.confirmurl%%](%%arg.confirmurl%%)
+
+If it was not you, you can safely ignore this message.

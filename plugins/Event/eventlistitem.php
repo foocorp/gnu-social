@@ -83,13 +83,33 @@ class EventListItem extends NoticeListItemAdapter
 
         $out->elementEnd('h3'); // VEVENT/H3 OUT
 
-        $startDate = strftime("%x", strtotime($event->start_time));
-        $startTime = strftime("%R", strtotime($event->start_time));
+        $now       = new DateTime();
+        $startDate = new DateTime($event->start_time);
+        $endDate   = new DateTime($event->end_time);
+        $userTz    = new DateTimeZone(common_timezone());
 
-        $endDate = strftime("%x", strtotime($event->end_time));
-        $endTime = strftime("%R", strtotime($event->end_time));
+        // Localize the time for the observer
+        $now->setTimeZone($userTz);
+        $startDate->setTimezone($userTz);
+        $endDate->setTimezone($userTz);
 
-        // FIXME: better dates
+        $thisYear  = $now->format('Y');
+        $startYear = $startDate->format('Y');
+        $endYear   = $endDate->format('Y');
+
+        $dateFmt = 'D, F j, '; // e.g.: Mon, Aug 31
+
+        if ($startYear != $thisYear || $endYear != $thisYear) {
+            $dateFmt .= 'Y,'; // append year if we need to think about years
+        }
+
+        $startDateStr = $startDate->format($dateFmt);
+        $endDateStr = $endDate->format($dateFmt);
+
+        $timeFmt = 'g:ia';
+
+        $startTimeStr = $startDate->format($timeFmt);
+        $endTimeStr = $endDate->format("{$timeFmt} (T)");
 
         $out->elementStart('div', 'event-times'); // VEVENT/EVENT-TIMES IN
 
@@ -98,16 +118,16 @@ class EventListItem extends NoticeListItemAdapter
 
         $out->element('abbr', array('class' => 'dtstart',
                                     'title' => common_date_iso8601($event->start_time)),
-                      $startDate . ' ' . $startTime);
-        $out->text(' - ');
-        if ($startDate == $endDate) {
+                      $startDateStr . ' ' . $startTimeStr);
+        $out->text(' – ');
+        if ($startDateStr == $endDateStr) {
             $out->element('span', array('class' => 'dtend',
                                         'title' => common_date_iso8601($event->end_time)),
-                          $endTime);
+                          $endTimeStr);
         } else {
             $out->element('span', array('class' => 'dtend',
                                         'title' => common_date_iso8601($event->end_time)),
-                          $endDate . ' ' . $endTime);
+                          $endDateStr . ' ' . $endTimeStr);
         }
 
         $out->elementEnd('div'); // VEVENT/EVENT-TIMES OUT
@@ -132,14 +152,38 @@ class EventListItem extends NoticeListItemAdapter
 
         $out->elementStart('div', 'event-rsvps');
         // TRANS: Field label for event description.
-        $out->element('strong', null, _m('Attending:'));
-        $out->element('span', 'event-rsvps',
-                      // TRANS: RSVP counts.
-                      // TRANS: %1$d, %2$d and %3$d are numbers of RSVPs.
-                      sprintf(_m('Yes: %1$d No: %2$d Maybe: %3$d'),
-                              count($rsvps[RSVP::POSITIVE]),
-                              count($rsvps[RSVP::NEGATIVE]),
-                              count($rsvps[RSVP::POSSIBLE])));
+
+        $out->text(_('Attending:'));
+        $out->elementStart('ul', 'attending-list');
+
+        foreach ($rsvps as $verb => $responses) {
+            $out->elementStart('li', 'rsvp-list');
+            switch ($verb)
+            {
+            case RSVP::POSITIVE:
+                $out->text(_('Yes:'));
+                break;
+            case RSVP::NEGATIVE:
+                $out->text(_('No:'));
+                break;
+            case RSVP::POSSIBLE:
+                $out->text(_('Maybe:'));
+                break;
+            }
+            $ids = array();
+            foreach ($responses as $response) {
+                $ids[] = $response->profile_id;
+            }
+            $ids = array_slice($ids, 0, ProfileMiniList::MAX_PROFILES + 1);
+            $profiles = Profile::pivotGet('id', $ids);
+            $profile  = new ArrayWrapper(array_values($profiles));
+            $minilist = new ProfileMiniList($profile, $out);
+            $minilist->show();
+
+            $out->elementEnd('li');
+        }
+
+        $out->elementEnd('ul');
         $out->elementEnd('div');
 
         $user = common_current_user();

@@ -5,6 +5,8 @@ file/*
 local/*
 _darcs/*
 logs/*
+log/*
+run/*
 config.php
 .htaccess
 httpd.conf
@@ -27,3 +29,4 @@ php.log
 .DS_Store
 nbproject
 *.mo
+

@@ -1,7 +1,8 @@
-# Translation of StatusNet - Directory to Ukrainian (Українська)
+# Translation of StatusNet - Directory to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
+# Author: Dim Grits
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,34 +10,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:03+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:10+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 11:55:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 09:57:06+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Page title for user directory. %d is a page number.
 #, php-format
 msgid "User Directory, page %d"
-msgstr "Каталог користувача, сторінка %d"
+msgstr "Каталог користувачів, сторінка %d"
 
+#. TRANS: Page title for user directory.
 msgid "User directory"
-msgstr "Каталог користувача"
+msgstr "Каталог користувачів"
 
+#. TRANS: Page title for user directory. %s is the applied filter.
 #, php-format
 msgid "User directory - %s"
-msgstr "Каталог користувача — %s"
+msgstr "Каталог користувачів — %s"
 
+#. TRANS: Page title for user directory.
+#. TRANS: %1$s is the applied filter, %2$d is a page number.
 #, php-format
-msgid "User directory - %s, page %d"
-msgstr "Каталог користувача — %s, сторінка %d"
+msgid "User directory - %1$s, page %2$d"
+msgstr "Каталог користувачів — %1$s, сторінка %2$d"
 
+#. TRANS: %%site.name%% is the name of the StatusNet site.
 #, php-format
 msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
@@ -46,25 +53,43 @@ msgstr ""
 "інтересами. Відокремлюйте пошукові умови інтервалами; вони повинні "
 "складатись з 3 або більше знаків."
 
+#. TRANS: Fieldset legend.
 msgid "Search site"
 msgstr "Пошук на сайті"
 
+#. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
 msgid "Keyword(s)"
 msgstr "Ключові слова"
 
+#. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "Пошук"
 
+#. TRANS: Empty list message for user directory.
 #, php-format
 msgid "No users starting with %s"
 msgstr "Немає користувачів, починаючи з %s"
 
+#. TRANS: Empty list message for user directory.
 #. TRANS: Empty list message for searching group directory.
 msgid "No results."
 msgstr "Немає результатів."
+
+#. TRANS: Standard search suggestions shown when a search does not give any results.
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* Переконайтеся, що всі слова написано правильно.\n"
+"* Спробуйте різні ключові слова.\n"
+"* Спробуйте узагальнити ключові слова.\n"
+"* Спробуйте зменшити кількість ключових слів."
 
 #. TRANS: Title for group directory page. %d is a page number.
 #, php-format
@@ -88,21 +113,20 @@ msgid "Group directory - %1$s, page %2$d"
 msgstr "Каталог спільноти — %1$s, сторінка %2$d"
 
 #. TRANS: Page instructions.
-#, fuzzy
 msgid ""
 "After you join a group you can send messages to all other members\n"
 "using the syntax \"!groupname\".\n"
 "\n"
-"Browse groups, or search for groups on by their name, location or topic.\n"
+"Browse groups, or search for groups by their name, location or topic.\n"
 "Separate the terms by spaces; they must be three characters or more."
 msgstr ""
-"Після того, як ви приєднаєтеся до спільноти, ви зможете надсилати "
-"повідомлення до всіх учасників даної спільноти використовуючи синтаксис «!"
-"spilnota» будь-де в тілі повідомлення.\n"
+"Після приєднання до групи ви зможете надсилати повідомлення всім учасникам "
+"даної групи, використовуючи синтаксис \"!groupname\".\n"
 "\n"
-"Огляньте або розшукайте інші спільноти за їхніми назвами, розташуванням або "
-"темою. Відокремлюйте пошукові запити пробілами; пошуковий запит має "
-"становити щонайменше три символи.\n"
+"Оглядайте або шукайте інші групи за їхніми назвами, розташуванням або "
+"тематикою. \n"
+"Відокремлюйте пошукові запити пробілами; пошуковий запит має становити "
+"щонайменше три символи."
 
 #. TRANS: Link to create a new group on the group list page.
 msgid "Create a new group"
@@ -117,18 +141,6 @@ msgstr "Пошук спільнот"
 #, php-format
 msgid "No groups starting with %s."
 msgstr "Немає спільнот, що починаються з %s."
-
-#. TRANS: Help text for searching group directory.
-msgid ""
-"* Make sure all words are spelled correctly.\n"
-"* Try different keywords.\n"
-"* Try more general keywords.\n"
-"* Try fewer keywords."
-msgstr ""
-"* Переконайтеся, що всі слова написано правильно.\n"
-"* Спробуйте різні ключові слова.\n"
-"* Спробуйте узагальнити ключові слова.\n"
-"* Спробуйте зменшити кількість ключових слів."
 
 #. TRANS: Menu item text for user directory.
 msgctxt "MENU"
@@ -150,6 +162,14 @@ msgstr "Псевдонім"
 #. TRANS: Column header in table for timestamp when user was created.
 msgid "Created"
 msgstr "Створено"
+
+#. TRANS: Column header for number of subscriptions.
+msgid "Subscriptions"
+msgstr "Підписки"
+
+#. TRANS: Column header for number of notices.
+msgid "Notices"
+msgstr "Дописи"
 
 #. TRANS: Column header in table for members of a group.
 msgid "Members"

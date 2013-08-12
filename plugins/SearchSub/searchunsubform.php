@@ -46,7 +46,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * @see      UnsubscribeForm
  */
-
 class SearchUnsubForm extends SearchSubForm
 {
     /**
@@ -54,37 +53,31 @@ class SearchUnsubForm extends SearchSubForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'search-unsubscribe-' . $this->search;
     }
-
 
     /**
      * class of the form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         // class to match existing styles...
         return 'form_user_unsubscribe ajax';
     }
 
-
     /**
      * Action of the form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('searchunsub', array('search' => $this->search));
     }
-
 
     /**
      * Legend of the Form
@@ -93,6 +86,7 @@ class SearchUnsubForm extends SearchSubForm
      */
     function formLegend()
     {
+        // TRANS: Form legend.
         $this->out->element('legend', null, _m('Unsubscribe from this search'));
     }
 
@@ -101,9 +95,14 @@ class SearchUnsubForm extends SearchSubForm
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _m('BUTTON','Unsubscribe'), 'submit', null, _m('Unsubscribe from this search'));
+        $this->out->submit('submit',
+                           // TRANS: Button text for unsubscribing from a text search.
+                           _m('BUTTON','Unsubscribe'),
+                           'submit',
+                           null,
+                           // TRANS: Button title for unsubscribing from a text search.
+                           _m('Unsubscribe from this search.'));
     }
 }

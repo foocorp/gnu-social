@@ -59,7 +59,13 @@ class HostMetaAction extends Action
             Event::handle('EndHostMetaLinks', array(&$xrd->links));
         }
 
+        // Output Cross-Origin Resource Sharing (CORS) header
+        if (common_config('discovery', 'cors')) {
+            header('Access-Control-Allow-Origin: *');
+        }
+
         header('Content-type: application/xrd+xml');
+
         print $xrd->toXML();
     }
 }

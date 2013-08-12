@@ -19,8 +19,8 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 
-$shortoptions = 'i:n:f:';
-$longoptions = array('id=', 'nickname=', 'file=');
+$shortoptions = 'i:n:f:a:j';
+$longoptions = array('id=', 'nickname=', 'file=', 'after=', 'json');
 
 $helptext = <<<END_OF_EXPORTACTIVITYSTREAM_HELP
 exportactivitystream.php [options]
@@ -28,7 +28,8 @@ Export a StatusNet user history to a file
 
   -i --id       ID of user to export
   -n --nickname nickname of the user to export
-  -f --file     file to export to (default STDOUT)
+  -j --json     Output JSON (default Atom)
+  -a --after    Only activities after the given date
 
 END_OF_EXPORTACTIVITYSTREAM_HELP;
 
@@ -36,8 +37,18 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 try {
     $user = getUser();
-    $actstr = new UserActivityStream($user, true, UserActivityStream::OUTPUT_RAW);
-    print $actstr->getString();
+    if (have_option('a', 'after')) {
+        $afterStr = get_option_value('a', 'after');
+        $after = strtotime($afterStr);
+        $actstr = new UserActivityStream($user, true, UserActivityStream::OUTPUT_RAW, $after);
+    } else {
+        $actstr = new UserActivityStream($user, true, UserActivityStream::OUTPUT_RAW);
+    }
+    if (have_option('j', 'json')) {
+        $actstr->writeJSON(STDOUT);
+    } else {
+        print $actstr->getString();
+    }
 } catch (Exception $e) {
     print $e->getMessage()."\n";
     exit(1);

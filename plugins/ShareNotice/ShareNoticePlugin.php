@@ -102,15 +102,18 @@ abstract class GenericNoticeShareTarget extends NoticeShareTarget
 
     protected function statusText()
     {
-        // TRANS: Leave this message unchanged.
+        // TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
         $pattern = _m('"%s"');
         $url = $this->notice->bestUrl();
         $suffix = ' ' . $url;
         $room = $this->maxLength() - mb_strlen($suffix) - (mb_strlen($pattern) - mb_strlen('%s'));
 
         $content = $this->notice->content;
+        // TRANS: Truncation symbol.
+        $truncation_symbol = _m('…');
+        $truncation_symbol_length = mb_strlen($truncation_symbol);
         if (mb_strlen($content) > $room) {
-            $content = mb_substr($content, 0, $room - 1) . '…';
+            $content = mb_substr($content, 0, $room - $truncation_symbol_length) . $truncation_symbol;
         }
 
         return sprintf($pattern, $content) . $suffix;

@@ -146,10 +146,14 @@ class OStatusGroupAction extends OStatusSubAction
         try {
             $user->joinGroup($group);
         } catch (Exception $e) {
+            common_log(LOG_ERR, "Exception on remote group join: " . $e->getMessage());
+            common_log(LOG_ERR, $e->getTraceAsString());
             // TRANS: OStatus remote group subscription dialog error.
             $this->showForm(_m('Remote group join failed!'));
             return;
         }
+
+        $this->success();
     }
 
     /**

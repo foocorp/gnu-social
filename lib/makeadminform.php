@@ -121,6 +121,6 @@ class MakeAdminForm extends Form
           'submit',
           null,
           // TRANS: Submit button title.
-          _m('TOOLTIP','Make this user an admin'));
+          _m('TOOLTIP','Make this user an admin.'));
     }
 }

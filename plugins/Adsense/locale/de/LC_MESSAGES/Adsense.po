@@ -4,6 +4,7 @@
 # Author: Fujnky
 # Author: Giftpflanze
 # Author: MF-Warburg
+# Author: Marcel083
 # Author: Michael
 # Author: The Evil IP address
 # --
@@ -13,14 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:33+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:31+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:53+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 10:22:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -52,7 +53,6 @@ msgid "Client ID"
 msgstr "Client-ID"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Google client ID."
 msgstr "Google-Client-ID"
 
@@ -61,7 +61,6 @@ msgid "Ad script URL"
 msgstr "Skript-URL"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Script URL (advanced)."
 msgstr "Skript-URL (erweitert)"
 
@@ -78,9 +77,8 @@ msgid "Rectangle"
 msgstr "Rechteck"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Rectangle slot code."
-msgstr "Rechteck"
+msgstr "Rectangle-Slot-Code."
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Leaderboard"
@@ -99,12 +97,10 @@ msgid "Wide skyscraper slot code."
 msgstr "Slotcode des weiten Hochhauses."
 
 #. TRANS: Button text to save settings in AdSense administration panel.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Speichern"
 
 #. TRANS: Button title to save settings in AdSense administration panel.
-#, fuzzy
 msgid "Save AdSense settings."
 msgstr "AdSense-Einstellungen speichern"

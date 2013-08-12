@@ -62,20 +62,24 @@ class PublicGroupNav extends Menu
         $this->action->elementStart('ul', array('class' => 'nav'));
 
         if (Event::handle('StartPublicGroupNav', array($this))) {
-            // TRANS: Menu item in search group navigation panel.
-            $this->out->menuItem(common_local_url('public'), _m('MENU','Public'),
-                // TRANS: Menu item title in search group navigation panel.
-                _('Public timeline'), $this->actionName == 'public', 'nav_timeline_public');
+            if (!common_config('singleuser', 'enabled')) {
+                // TRANS: Menu item in search group navigation panel.
+                $this->out->menuItem(common_local_url('public'), _m('MENU','Public'),
+                                     // TRANS: Menu item title in search group navigation panel.
+                                     _('Public timeline'), $this->actionName == 'public', 'nav_timeline_public');
+            }
 
             // TRANS: Menu item in search group navigation panel.
             $this->out->menuItem(common_local_url('groups'), _m('MENU','Groups'),
                 // TRANS: Menu item title in search group navigation panel.
                 _('User groups'), $this->actionName == 'groups', 'nav_groups');
 
-            // TRANS: Menu item in search group navigation panel.
-            $this->out->menuItem(common_local_url('publictagcloud'), _m('MENU','Recent tags'),
-                // TRANS: Menu item title in search group navigation panel.
-                _('Recent tags'), $this->actionName == 'publictagcloud', 'nav_recent-tags');
+            if (!common_config('performance', 'high')) {
+                // TRANS: Menu item in search group navigation panel.
+                $this->out->menuItem(common_local_url('publictagcloud'), _m('MENU','Recent tags'),
+                                     // TRANS: Menu item title in search group navigation panel.
+                                     _('Recent tags'), $this->actionName == 'publictagcloud', 'nav_recent-tags');
+            }
 
             if (count(common_config('nickname', 'featured')) > 0) {
                 // TRANS: Menu item in search group navigation panel.
@@ -84,10 +88,12 @@ class PublicGroupNav extends Menu
                     _('Featured users'), $this->actionName == 'featured', 'nav_featured');
             }
 
-            // TRANS: Menu item in search group navigation panel.
-            $this->out->menuItem(common_local_url('favorited'), _m('MENU','Popular'),
-                // TRANS: Menu item title in search group navigation panel.
-                _('Popular notices'), $this->actionName == 'favorited', 'nav_timeline_favorited');
+            if (!common_config('singleuser', 'enabled')) {
+                // TRANS: Menu item in search group navigation panel.
+                $this->out->menuItem(common_local_url('favorited'), _m('MENU','Popular'),
+                                     // TRANS: Menu item title in search group navigation panel.
+                                     _('Popular notices'), $this->actionName == 'favorited', 'nav_timeline_favorited');
+            }
 
             Event::handle('EndPublicGroupNav', array($this));
         }

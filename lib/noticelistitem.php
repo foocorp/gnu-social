@@ -144,10 +144,13 @@ class NoticeListItem extends Widget
             $user = common_current_user();
             if ($user) {
                 $this->out->elementStart('div', 'notice-options');
-                $this->showFaveForm();
-                $this->showReplyLink();
-                $this->showRepeatForm();
-                $this->showDeleteLink();
+                if (Event::handle('StartShowNoticeOptionItems', array($this))) {
+                    $this->showFaveForm();
+                    $this->showReplyLink();
+                    $this->showRepeatForm();
+                    $this->showDeleteLink();
+                    Event::handle('EndShowNoticeOptionItems', array($this));
+                }
                 $this->out->elementEnd('div');
             }
             Event::handle('EndShowNoticeOptions', array($this));
@@ -166,6 +169,9 @@ class NoticeListItem extends Widget
             $class = 'hentry notice';
             if ($this->notice->scope != 0 && $this->notice->scope != 1) {
                 $class .= ' limited-scope';
+            }
+            if (!empty($this->notice->source)) {
+                $class .= ' notice-source-'.$this->notice->source;
             }
             $this->out->elementStart('li', array('class' => $class,
                                                  'id' => 'notice-' . $id));
@@ -216,8 +222,14 @@ class NoticeListItem extends Widget
         $this->out->elementStart('a', $attrs);
         $this->showAvatar();
         $this->out->text(' ');
-        $this->out->element('span',array('class' => 'fn'),
-                            $this->profile->getBestName());
+        $user = common_current_user();
+        if (!empty($user) && $user->streamNicknames()) {
+            $this->out->element('span',array('class' => 'fn'),
+                                $this->profile->nickname);
+        } else {
+            $this->out->element('span',array('class' => 'fn'),
+                                $this->profile->getBestName());
+        }
         $this->out->elementEnd('a');
 
         $this->out->elementEnd('span');
@@ -229,31 +241,48 @@ class NoticeListItem extends Widget
 
     function showAddressees()
     {
-        $this->out->elementStart('span', 'addressees');
+        $ga = $this->getGroupAddressees();
+        $pa = $this->getProfileAddressees();
 
-        $cnt = $this->showGroupAddressees(true);
-        $cnt = $this->showProfileAddressees($cnt == 0);
+        $a = array_merge($ga, $pa);
 
-        $this->out->elementEnd('span', 'addressees');
+        if (!empty($a)) {
+            $this->out->elementStart('span', 'addressees');
+            $first = true;
+            foreach ($a as $addr) {
+                if (!$first) {
+                    // TRANS: Separator in profile addressees list.
+                    $this->out->text(_m('SEPARATOR',', '));
+                } else {
+                    // Start of profile addressees list.
+                    $first = false;
+                }
+                $text = $addr['text'];
+                unset($addr['text']);
+                $this->out->element('a', $addr, $text);
+            }
+            $this->out->elementEnd('span', 'addressees');
+        }
     }
 
-    function showGroupAddressees($first)
+    function getGroupAddressees()
     {
+        $ga = array();
+
         $groups = $this->getGroups();
 
+        $user = common_current_user();
+
+        $streamNicknames = !empty($user) && $user->streamNicknames();
+
         foreach ($groups as $group) {
-            if (!$first) {
-                $this->out->text( _m('SEPARATOR',', '));
-            } else {
-                $first = false;
-            }
-            $this->out->element('a', array('href' => $group->homeUrl(),
-                                           'title' => $group->nickname,
-                                           'class' => 'addressee group'),
-                                $group->getBestName());
+            $ga[] = array('href' => $group->homeUrl(),
+                          'title' => $group->nickname,
+                          'class' => 'addressee group',
+                          'text' => ($streamNicknames) ? $group->nickname : $group->getBestName());
         }
 
-        return count($groups);
+        return $ga;
     }
 
     function getGroups()
@@ -261,25 +290,24 @@ class NoticeListItem extends Widget
         return $this->notice->getGroups();
     }
 
-    function showProfileAddressees($first)
+    function getProfileAddressees()
     {
+        $pa = array();
+
         $replies = $this->getReplyProfiles();
 
+        $user = common_current_user();
+
+        $streamNicknames = !empty($user) && $user->streamNicknames();
+
         foreach ($replies as $reply) {
-            if (!$first) {
-                // TRANS: Separator in profile addressees list.
-                $this->out->text(_m('SEPARATOR',', '));
-            } else {
-                // TRANS: Start of profile addressees list.
-                $first = false;
-            }
-            $this->out->element('a', array('href' => $reply->profileurl,
-                                           'title' => $reply->nickname,
-                                           'class' => 'addressee account'),
-                                $reply->getBestName());
+            $pa[] = array('href' => $reply->profileurl,
+                          'title' => $reply->nickname,
+                          'class' => 'addressee account',
+                          'text' => ($streamNicknames) ? $reply->nickname : $reply->getBestName());
         }
 
-        return count($replies);
+        return $pa;
     }
 
     function getReplyProfiles()
@@ -592,6 +620,7 @@ class NoticeListItem extends Widget
 
             // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
             $this->out->raw(_('Repeated by'));
+            $this->out->raw(' ');
 
             $this->out->elementStart('a', $attrs);
             $this->out->element('span', 'fn nickname', $repeater->nickname);
@@ -618,7 +647,7 @@ class NoticeListItem extends Widget
             $this->out->elementStart('a', array('href' => $reply_url,
                                                 'class' => 'notice_reply',
                                                 // TRANS: Link title in notice list item to reply to a notice.
-                                                'title' => _('Reply to this notice')));
+                                                'title' => _('Reply to this notice.')));
             // TRANS: Link text in notice list item to reply to a notice.
             $this->out->text(_('Reply'));
             $this->out->text(' ');
@@ -646,7 +675,7 @@ class NoticeListItem extends Widget
             $this->out->element('a', array('href' => $deleteurl,
                                            'class' => 'notice_delete',
                                            // TRANS: Link title in notice list item to delete a notice.
-                                           'title' => _('Delete this notice')),
+                                           'title' => _('Delete this notice from the timeline.')),
                                            // TRANS: Link text in notice list item to delete a notice.
                                            _('Delete'));
         }
@@ -693,5 +722,18 @@ class NoticeListItem extends Widget
             $this->out->elementEnd('li');
             Event::handle('EndCloseNoticeListItemElement', array($this));
         }
+    }
+
+    /**
+     * Get the notice in question
+     *
+     * For hooks, etc., this may be useful
+     *
+     * @return Notice The notice we're showing
+     */
+
+    function getNotice()
+    {
+        return $this->notice;
     }
 }

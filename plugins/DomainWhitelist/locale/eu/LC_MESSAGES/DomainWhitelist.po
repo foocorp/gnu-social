@@ -1,0 +1,77 @@
+# Translation of StatusNet - DomainWhitelist to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - DomainWhitelist\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:16+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-02 10:11:33+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
+#. TRANS: %s is a whitelisted e-mail domain.
+#, php-format
+msgid "Email address must be in this domain: %s."
+msgstr "Eposta helbideak %s domeinukoa izan beharko du."
+
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
+#. TRANS: %s are whitelisted e-mail domains separated by comma's (localisable).
+#, php-format
+msgid "Email address must be in one of these domains: %s."
+msgstr "Eposta helbideak domeinu hauetakoren batean egon beharko du: %s."
+
+#. TRANS: Separator for whitelisted domains.
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr ", "
+
+#. TRANS: Exception thrown when an e-mail address does not match the site's domain whitelist.
+msgid "That email address is not allowed on this site."
+msgstr "Eposta helbide hori ez dago onartua gune hontan."
+
+#. TRANS: Title for invitiation deletion dialog.
+msgid "Confirmation Required"
+msgstr "Konfirmatzea Beharrezkoa"
+
+#. TRANS: Confirmation text for invitation deletion dialog.
+msgid "Really delete this invitation?"
+msgstr "Ziur gonbidapen hau ezabatu nahi duzula?"
+
+#. TRANS: Plugin description.
+msgid "Restrict domains for email users."
+msgstr "Eposta erabiltzaileentzat domeinuak murriztu."
+
+#. TRANS: Form legend.
+msgid "Invite collegues"
+msgstr "Gonbidatu lankideak"
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Mezu pertsonala"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Aukeran, gehitu mezu pertsonal bat gonbidapenari."
+
+#. TRANS: Link description to action to add another item to a list.
+msgid "Add another item"
+msgstr "Gehitu eremu berria"
+
+#. TRANS: Send button for inviting friends.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Bidali"
+
+#. TRANS: Submit button title.
+msgid "Send invitations."
+msgstr "Bidali gonbidapenak."

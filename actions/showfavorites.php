@@ -22,7 +22,7 @@
  * @category  Personal
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -44,7 +44,7 @@ require_once INSTALLDIR.'/lib/feedlist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ShowfavoritesAction extends OwnerDesignAction
+class ShowfavoritesAction extends Action
 {
     /** User we're getting the faves of */
     var $user = null;
@@ -165,7 +165,15 @@ class ShowfavoritesAction extends OwnerDesignAction
      */
     function getFeeds()
     {
-        return array(new Feed(Feed::RSS1,
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelineFavorites',
+                                               array(
+                                                    'id' => $this->user->nickname,
+                                                    'format' => 'as')),
+                              // TRANS: Feed link text. %s is a username.
+                              sprintf(_('Feed for favorites of %s (Activity Streams JSON)'),
+                                      $this->user->nickname)),
+                     new Feed(Feed::RSS1,
                               common_local_url('favoritesrss',
                                                array('nickname' => $this->user->nickname)),
                               // TRANS: Feed link text. %s is a username.

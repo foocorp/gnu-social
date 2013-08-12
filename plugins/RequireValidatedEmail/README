@@ -25,9 +25,6 @@ For example, to trust WikiHow and Wikipedia users:
      ),
   ));
 
-
-
 Todo:
 * add a more visible indicator that validation is still outstanding
 * test with XMPP, API posting
-

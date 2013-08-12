@@ -1,8 +1,10 @@
-# Translation of StatusNet - Irc to French (Français)
+# Translation of StatusNet - Irc to French (français)
 # Exported from translatewiki.net
 #
 # Author: Coyau
+# Author: Gomoko
 # Author: Hashar
+# Author: IAlex
 # Author: Od1n
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -11,14 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Irc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 12:36+0000\n"
-"PO-Revision-Date: 2011-04-27 12:37:25+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:54+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-17 22:40:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87008); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:23+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-irc\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -38,22 +40,28 @@ msgid ""
 "user is not you, or if you did not request this confirmation, just ignore "
 "this message."
 msgstr ""
+"L’utilisateur \"%1$s\" sur %2$s a déclaré que votre nom affiché %3$s lui "
+"appartient. Si c'est le cas, vous pouvez le confirmer en cliquant sur cette "
+"URL: %4$s. (Si vous ne pouvez pas cliquer dessus, copiez-collez l’URL dans "
+"la barre d’adresse de votre navigateur). Si cet utilisateur n’est pas vous, "
+"ou si vous n’avez pas vous-même demandé cette confirmation, veuillez "
+"simplement ignorer ce message."
 
 #. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
 msgid "You must specify a host."
-msgstr ""
+msgstr "Vous devez indiquer un hôte."
 
 #. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
 msgid "You must specify a username."
-msgstr ""
+msgstr "Vous devez indiquer un nom d'utilisateur"
 
 #. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
 msgid "You must specify a \"real name\"."
-msgstr ""
+msgstr "Vous devez indiquer un « vrai nom »."
 
 #. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
 msgid "You must specify a nickname."
-msgstr ""
+msgstr "Vous devez indiquer un pseudonyme."
 
 #. TRANS: Plugin description.
 msgid ""
@@ -66,13 +74,13 @@ msgstr ""
 #. TRANS: %d is the object ID for which the count could not be updated.
 #, php-format
 msgid "Could not increment attempts count for %d."
-msgstr ""
+msgstr "Impossible d'augmenter le décompte de l'objet %d"
 
 #. TRANS: Message given when using an unregistered IRC nickname.
-#, fuzzy
 msgid "Your nickname is not registered so IRC connectivity cannot be enabled."
 msgstr ""
-"Votre pseudo n'est pas enregistré, la connexion IRC ne peut pas être activée"
+"Votre pseudo n'est pas enregistré, la connexion IRC ne peut donc pas être "
+"activée"
 
 #. TRANS: Server error thrown on database error when deleting IRC nickname confirmation.
 msgid "Could not delete confirmation."
@@ -81,3 +89,5 @@ msgstr "Échec de la suppression de la confirmation."
 #. TRANS: Server exception thrown when an IRC waiting queue item could not be added to the database.
 msgid "Database error inserting IRC waiting queue item."
 msgstr ""
+"Erreur de base de données lors de l'insertion d'un élément de file d'attente "
+"IRC."

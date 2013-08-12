@@ -1,6 +1,9 @@
-# Translation of StatusNet - BitlyUrl to Spanish (Español)
-# Expored from translatewiki.net
+# Translation of StatusNet - BitlyUrl to Spanish (español)
+# Exported from translatewiki.net
 #
+# Author: Erchache2000
+# Author: Od1n
+# Author: Plaxed
 # Author: Translationista
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,72 +12,85 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - BitlyUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-09 14:04+0000\n"
-"PO-Revision-Date: 2010-10-09 14:07:16+0000\n"
-"Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:47+0000\n"
+"Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-10-03 20:54:25+0000\n"
-"X-Generator: MediaWiki 1.17alpha (r74529); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:48:51+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: BitlyUrlPlugin.php:48
-#, fuzzy
-msgid "You must specify a serviceUrl for bit.ly shortening."
-msgstr "Debes especificar un serviceUrl."
-
-#: BitlyUrlPlugin.php:171
-#, php-format
-msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
-msgstr ""
-"Utiliza el servicio de acortamiento de URL <a href=\"http://%1$s/\">%1$s</a>."
-
-#: BitlyUrlPlugin.php:212
-msgid "bit.ly"
-msgstr ""
-
-#: BitlyUrlPlugin.php:213 bitlyadminpanelaction.php:54
+#. TRANS: Title of administration panel.
 msgid "bit.ly URL shortening"
-msgstr ""
+msgstr "acortamiento de URL bit.ly"
 
-#: bitlyadminpanelaction.php:65
+#. TRANS: Instructions for administration panel.
+#. TRANS: This message contains Markdown links in the form [decsription](link).
 msgid ""
 "URL shortening with bit.ly requires [a bit.ly account and API key](http://"
 "bit.ly/a/your_api_key). This verifies that this is an authorized account, "
 "and allow you to use bit.ly's tracking features and custom domains."
 msgstr ""
+"URL acortado con bit.ly requiere [cuenta bit.ly y API key](http://bit.ly/a/"
+"your_api_key). Esto comprueba que tiene una cuenta autorizada y permite "
+"utilizar funciones de seguimiento y dominios personalizados de bit.ly."
 
-#: bitlyadminpanelaction.php:132
-msgid "Invalid login. Max length is 255 characters."
-msgstr ""
+#. TRANS: Client error displayed when using too long a key.
+msgid "Invalid login. Maximum length is 255 characters."
+msgstr "Acceso invalido. La longitud máxima es de 255 caracteres."
 
-#: bitlyadminpanelaction.php:138
-msgid "Invalid API key. Max length is 255 characters."
-msgstr ""
+#. TRANS: Client error displayed when using too long a key.
+msgid "Invalid API key. Maximum length is 255 characters."
+msgstr "Clave de API no válida. Longitud máxima es de 255 caracteres."
 
-#: bitlyadminpanelaction.php:191
+#. TRANS: Fieldset legend in administration panel for bit.ly username and API key.
+msgctxt "LEGEND"
 msgid "Credentials"
-msgstr ""
+msgstr "Credenciales"
 
-#: bitlyadminpanelaction.php:199
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
 msgid "Leave these empty to use global default credentials."
-msgstr ""
+msgstr "Dejelo vacío para usar las credenciales globales por defecto."
 
-#: bitlyadminpanelaction.php:202
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
 msgid "If you leave these empty, bit.ly will be unavailable to users."
-msgstr ""
+msgstr "Si se deja vacío, bit.ly no estarán disponibles para los usuarios."
 
-#: bitlyadminpanelaction.php:209
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
 msgid "Login name"
-msgstr ""
+msgstr "Nombre de usuario"
 
-#: bitlyadminpanelaction.php:218
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
 msgid "API key"
-msgstr ""
+msgstr "API key"
 
-#: bitlyadminpanelaction.php:236
+#. TRANS: Button text to save setting in administration panel for bit.ly URL shortening.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Guardar"
+
+#. TRANS: Button title to save setting in administration panel for bit.ly URL shortening.
 msgid "Save bit.ly settings"
+msgstr "Guardar configuración de bit.ly"
+
+#. TRANS: Exception thrown when bit.ly URL shortening plugin was configured incorrectly.
+msgid "You must specify a serviceUrl for bit.ly URL shortening."
+msgstr "Debe especificar un serviceUrl URL bit.ly"
+
+#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr ""
+"Utiliza el servicio de acortamiento de URL <a href=\"http://%1$s/\">%1$s</a>."
+
+#. TRANS: Menu item in administration menus for bit.ly URL shortening settings.
+msgid "bit.ly"
+msgstr "bit.ly"
+
+#. TRANS: Title for menu item in administration menus for bit.ly URL shortening settings.
+msgid "bit.ly URL shortening."
+msgstr "acortamiento de URL bit.ly."

@@ -9,54 +9,70 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RSSCloud\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:10+0000\n"
-"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:53+0000\n"
+"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:19+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-16 06:59:35+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-rsscloud\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Form validation error displayed when a URL parameter is missing.
 msgid "A URL parameter is required."
 msgstr "Kailangan ang isang parametro ng URL."
 
+#. TRANS: Form validation error displayed when HTTP GET is not used.
 msgid "This resource requires an HTTP GET."
 msgstr "Ang pinagkunang ito ay nangangailangan ng HTTP GET."
 
+#. TRANS: Form validation error displayed when HTTP POST is not used.
 msgid "This resource requires an HTTP POST."
 msgstr "Ang pinagkukunang ito ay nangangailangan ng HTTP POST."
 
+#. TRANS: Form validation error displayed when POST is not used.
 msgid "Request must be POST."
 msgstr "Ang hiling ay dapat na POST."
 
-msgid "Only http-post notifications are supported at this time."
-msgstr "Tanging mga pabatid na http-post lang ang tinatangkilik sa ngayon."
+#. TRANS: Form validation error displayed when HTTP POST is not used.
+msgid "Only HTTP POST notifications are supported at this time."
+msgstr ""
+"Tanging mga pabatid na HTTP POST lamang ang tinatangkilik sa panahong ito."
 
-#. TRANS: %s is a comma separated list of parameters.
+#. TRANS: List separator.
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr ", "
+
+#. TRANS: Form validation error displayed when a request body is missing expected parameters.
+#. TRANS: %s is a list of parameters separated by a list separator (default: ", ").
 #, php-format
 msgid "The following parameters were missing from the request body: %s."
 msgstr "Nawawala ang sumusunod na mga parametro mula sa katawan ng hiling: %s."
 
+#. TRANS: Form validation error displayed when not providing any valid profile feed URLs.
 msgid ""
-"You must provide at least one valid profile feed url (url1, url2, url3 ... "
+"You must provide at least one valid profile feed URL (url1, url2, url3 ... "
 "urlN)."
 msgstr ""
-"Dapat kang magbigay ng kahit na isang url ng pakain ng tanggap na talaksan "
-"(url1, url2, url3 ... urlN)."
+"Dapat kang magbigay ng kahit na isang katanggap-tanggap na URL ng pakain ng "
+"balangkas (url1, url2, url3 ... urlN)."
 
+#. TRANS: Form validation error displayed when not providing a valid feed URL.
 msgid "Feed subscription failed: Not a valid feed."
 msgstr "Nabigo ang pagtanggap ng pakain: Hindi isang tanggap na pakain."
 
+#. TRANS: Form validation error displayed when feed subscription failed.
 msgid ""
-"Feed subscription failed - notification handler doesn't respond correctly."
+"Feed subscription failed: Notification handler does not respond correctly."
 msgstr ""
-"Nabigo ang pagtanggap ng pakain - hindi tama ang pagtugon ng tagapaghawak ng "
+"Nabigo ang pagpapasipi ng pakain: Hindi tama ang pagtugon ng tagapaghawak ng "
 "pabatid."
 
+#. TRANS: Success message after subscribing to one or more feeds.
 msgid ""
 "Thanks for the subscription. When the feed(s) update(s), you will be "
 "notified."
@@ -64,6 +80,7 @@ msgstr ""
 "Salamat sa pagtatanggap.  Kapag nagsapanahon ang (mga) pakain, pababatiran "
 "ka."
 
+#. TRANS: Plugin description.
 msgid ""
 "The RSSCloud plugin enables your StatusNet instance to publish real-time "
 "updates for profile RSS feeds using the <a href=\"http://rsscloud.org/"

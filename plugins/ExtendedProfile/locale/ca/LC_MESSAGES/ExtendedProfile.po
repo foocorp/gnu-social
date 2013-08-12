@@ -1,4 +1,4 @@
-# Translation of StatusNet - ExtendedProfile to Catalan (Català)
+# Translation of StatusNet - ExtendedProfile to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Solde
@@ -10,33 +10,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:24+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:30+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:06+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Title for extended profile settings.
 msgid "Extended profile settings"
-msgstr ""
+msgstr "Paràmetres de perfil estès"
 
 #. TRANS: Usage instructions for profile settings.
 msgid ""
 "You can update your personal profile info here so people know more about you."
 msgstr ""
+"Podeu actualitzar la vostra informació personal a continuació per tal que la "
+"gent us conegui més."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
+"S'ha produït un problema amb el vostre testimoni de sessió. Torneu-ho a "
+"provar."
 
 #. TRANS: Message given submitting a form with an unknown action.
 msgid "Unexpected form submission."
-msgstr ""
+msgstr "Tramesa de formulari no esperada."
 
+#. TRANS: Success message after saving extended profile details.
 msgid "Details saved."
 msgstr "S'han desat els detalls."
 
@@ -56,16 +63,17 @@ msgstr ""
 #. TRANS: %s is the invalid URL.
 #, php-format
 msgid "Invalid URL: %s."
-msgstr ""
+msgstr "URL no vàlid: %s."
 
+#. TRANS: Server error displayed when a field could not be saved in the database.
 msgid "Could not save profile details."
-msgstr ""
+msgstr "No es poden desar els detalls de perfil."
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: %s is an invalid tag.
 #, php-format
 msgid "Invalid tag: \"%s\"."
-msgstr ""
+msgstr "Etiqueta no vàlida: «%s»."
 
 #. TRANS: Server error thrown when user profile settings could not be saved.
 msgid "Could not save profile."
@@ -85,47 +93,41 @@ msgstr "Edita"
 
 #. TRANS: Plugin description.
 msgid "UI extensions for additional profile fields."
-msgstr ""
+msgstr "Extensions d'interfície per a camps de perfil addicionals."
 
 #. TRANS: Link text on user profile page leading to extended profile page.
 msgid "More details..."
-msgstr ""
+msgstr "Més detalls..."
 
 #. TRANS: Title for extended profile entry deletion dialog.
 msgid "Confirmation Required"
-msgstr ""
+msgstr "Cal una confirmació"
 
 #. TRANS: Confirmation text for extended profile entry deletion dialog.
 msgid "Really delete this entry?"
-msgstr ""
+msgstr "Voleu eliminar aquesta entrada?"
 
 #. TRANS: Value between parentheses (phone number, website, or IM address).
 #, php-format
 msgid "(%s)"
-msgstr ""
+msgstr "(%s)"
 
 #. TRANS: Field label in experience area of extended profile.
 #. TRANS: Field label in experience edit area of extended profile (which company does one work for).
 msgid "Company"
 msgstr "Empresa"
 
-#. TRANS: Field label in experience area of extended profile (when did one start a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one start at a company).
-#. TRANS: Field label in education area of extended profile (when did one start an education).
-#. TRANS: Field label in education edit area of extended profile (when did one start an education).
+#. TRANS: Field label in extended profile (when did one start a position or education).
 msgid "Start"
 msgstr "Comença"
 
-#. TRANS: Field label in experience area of extended profile (when did one end a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one terminate at a company).
-#. TRANS: Field label in education area of extended profile (when did one end a education).
-#. TRANS: Field label in education edit area of extended profile (when did one end an education).
+#. TRANS: Field label in extended profile (when did one end a position or education).
 msgid "End"
 msgstr "Acaba"
 
 #. TRANS: Field value in experience area of extended profile (one still holds a position).
 msgid "(Current)"
-msgstr ""
+msgstr "(Actual)"
 
 #. TRANS: Checkbox label in experience edit area of extended profile (one still works at a company).
 msgid "Current"
@@ -137,8 +139,7 @@ msgstr "Actual"
 msgid "Institution"
 msgstr "Institució"
 
-#. TRANS: Field label in education area of extended profile.
-#. TRANS: Field label in education edit area of extended profile.
+#. TRANS: Field label in extended profile for specifying an academic degree.
 msgid "Degree"
 msgstr "Titolació"
 
@@ -149,7 +150,7 @@ msgstr "Descripció"
 
 #. TRANS: Link description in extended profile page to add another profile element.
 msgid "Add another item"
-msgstr ""
+msgstr "Afegeix un altre element"
 
 #. TRANS: Field label for undefined field in extended profile.
 #, php-format

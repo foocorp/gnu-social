@@ -1,4 +1,4 @@
-# Translation of StatusNet - ExtendedProfile to Ukrainian (Українська)
+# Translation of StatusNet - ExtendedProfile to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
@@ -9,19 +9,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:25+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:32+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:06+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Title for extended profile settings.
 msgid "Extended profile settings"
 msgstr "Розширені налаштування профілю"
 
@@ -32,6 +33,7 @@ msgstr ""
 "Тут ви можете заповнити свій особистий профіль і люди знатимуть про вас "
 "більше."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Виникли певні проблеми з токеном сесії. Спробуйте знов, будь ласка."
 
@@ -39,6 +41,7 @@ msgstr "Виникли певні проблеми з токеном сесії.
 msgid "Unexpected form submission."
 msgstr "Несподіване представлення форми."
 
+#. TRANS: Success message after saving extended profile details.
 msgid "Details saved."
 msgstr "Подробиці збережено."
 
@@ -60,6 +63,7 @@ msgstr "Неприпустиме значення дати для «%1$s»: %2$s
 msgid "Invalid URL: %s."
 msgstr "Невірний URL: %s."
 
+#. TRANS: Server error displayed when a field could not be saved in the database.
 msgid "Could not save profile details."
 msgstr "Не вдалося зберегти деталі профілю."
 
@@ -111,17 +115,11 @@ msgstr "(%s)"
 msgid "Company"
 msgstr "Компанія"
 
-#. TRANS: Field label in experience area of extended profile (when did one start a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one start at a company).
-#. TRANS: Field label in education area of extended profile (when did one start an education).
-#. TRANS: Field label in education edit area of extended profile (when did one start an education).
+#. TRANS: Field label in extended profile (when did one start a position or education).
 msgid "Start"
 msgstr "Почати"
 
-#. TRANS: Field label in experience area of extended profile (when did one end a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one terminate at a company).
-#. TRANS: Field label in education area of extended profile (when did one end a education).
-#. TRANS: Field label in education edit area of extended profile (when did one end an education).
+#. TRANS: Field label in extended profile (when did one end a position or education).
 msgid "End"
 msgstr "Кінець"
 
@@ -139,8 +137,7 @@ msgstr "Поточне"
 msgid "Institution"
 msgstr "Установа"
 
-#. TRANS: Field label in education area of extended profile.
-#. TRANS: Field label in education edit area of extended profile.
+#. TRANS: Field label in extended profile for specifying an academic degree.
 msgid "Degree"
 msgstr "Ступінь"
 

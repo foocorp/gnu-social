@@ -1,4 +1,4 @@
-# Translation of StatusNet - MobileProfile to Russian (Русский)
+# Translation of StatusNet - MobileProfile to Russian (русский)
 # Exported from translatewiki.net
 #
 # Author: Eleferen
@@ -11,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:08+0000\n"
-"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:14+0000\n"
+"Language-Team: Russian <https://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:27+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:36+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
@@ -27,54 +27,6 @@ msgstr ""
 #. TRANS: Client exception thrown when requesting a not supported media type.
 msgid "This page is not available in a media type you accept."
 msgstr "Страница недоступна для того типа, который вы задействовали."
-
-#. TRANS: Menu item in mobile profile to go to start page of site.
-msgid "Home"
-msgstr "Домой"
-
-#. TRANS: Menu item in mobile profile to go to user account settings.
-msgid "Account"
-msgstr "Аккаунт"
-
-#. TRANS: Menu item in mobile profile to connect to other services.
-msgid "Connect"
-msgstr "Подключиться"
-
-#. TRANS: Menu item in mobile profile to manage site settings.
-msgid "Admin"
-msgstr "Администратор"
-
-msgid "Change site configuration"
-msgstr "Изменить конфигурацию сайта"
-
-#. TRANS: Menu item in mobile profile to invite other people.
-msgid "Invite"
-msgstr "Пригласить"
-
-#. TRANS: Menu item in mobile profile log the current user off.
-msgid "Logout"
-msgstr "Выйти"
-
-#. TRANS: Menu item in mobile profile to register with the site.
-msgid "Register"
-msgstr "Регистрация"
-
-#. TRANS: Menu item in mobile profile to log in.
-msgid "Login"
-msgstr "Представиться"
-
-#. TRANS: Menu item in mobile profile to search the site.
-msgid "Search"
-msgstr "Поиск"
-
-#. TRANS: Field label in mobile profile to attach a file to a status.
-msgid "Attach"
-msgstr "Прикрепить"
-
-#. TRANS: Field title in mobile profile to attach a file to a status.
-#, fuzzy
-msgid "Attach a file."
-msgstr "Прикрепить файл"
 
 #. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
 msgid "Switch to desktop site layout."

@@ -1,6 +1,7 @@
-# Translation of StatusNet - Mapstraction to Spanish (Español)
-# Expored from translatewiki.net
+# Translation of StatusNet - Mapstraction to Spanish (español)
+# Exported from translatewiki.net
 #
+# Author: Armando-Martin
 # Author: Locos epraix
 # Author: Peter17
 # --
@@ -10,56 +11,56 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Mapstraction\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:14+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:05+0000\n"
 "Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:30+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-mapstraction\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: MapstractionPlugin.php:187
+#. TRANS: Header for Map widget that displays a map with geodata for notices.
 msgid "Map"
 msgstr "Mapa"
 
 #. TRANS: Clickable item to allow opening the map in full size.
-#: MapstractionPlugin.php:199
 msgid "Full size"
-msgstr ""
+msgstr "Tamaño completo"
 
-#: MapstractionPlugin.php:211
+#. TRANS: Plugin description.
 msgid ""
 "Show maps of users' and friends' notices with <a href=\"http://www."
 "mapstraction.com/\">Mapstraction</a>."
 msgstr ""
-
-#: map.php:72
-msgid "No such user."
-msgstr ""
-
-#: map.php:79
-msgid "User has no profile."
-msgstr "Usuario no tiene perfil."
+"Mostrar mapas de las notas de los usuarios y amigos con <a href=\"http://www."
+"mapstraction.com/\">Mapstraction</a>."
 
 #. TRANS: Page title.
 #. TRANS: %s is a user nickname.
-#: allmap.php:69
 #, php-format
 msgid "%s friends map"
-msgstr ""
+msgstr "Mapa de los amigos de %s"
 
 #. TRANS: Page title.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
-#: allmap.php:75
 #, php-format
 msgid "%1$s friends map, page %2$d"
-msgstr ""
+msgstr "Mapa de los amigos de %1$s, página %2$d"
 
-#: usermap.php:68
+#. TRANS: Client error displayed when referring to a non-existing user.
+msgid "No such user."
+msgstr "No existe ese usuario."
+
+#. TRANS: Error message displayed when referring to a user without a profile.
+msgid "User has no profile."
+msgstr "Usuario no tiene perfil."
+
+#. TRANS: Title for map widget.
+#. TRANS: %s is a user name.
 #, php-format
-msgid "%s map, page %d"
-msgstr ""
+msgid "%s map"
+msgstr "Mapa de %s"

@@ -83,17 +83,16 @@ class NoticeList extends Widget
         $this->out->elementStart('div', array('id' =>'notices_primary'));
         $this->out->elementStart('ol', array('class' => 'notices xoxo'));
 
-        $cnt = 0;
-
-        while ($this->notice->fetch() && $cnt <= NOTICES_PER_PAGE) {
-            $cnt++;
-
-            if ($cnt > NOTICES_PER_PAGE) {
-                break;
-            }
+		$notices = $this->notice->fetchAll();
+		$total   = count($notices);
+		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
+		
+    	self::prefill($notices);
+    	
+    	foreach ($notices as $notice) {
 
             try {
-                $item = $this->newListItem($this->notice);
+                $item = $this->newListItem($notice);
                 $item->show();
             } catch (Exception $e) {
                 // we log exceptions and continue
@@ -105,7 +104,7 @@ class NoticeList extends Widget
         $this->out->elementEnd('ol');
         $this->out->elementEnd('div');
 
-        return $cnt;
+        return $total;
     }
 
     /**
@@ -121,5 +120,38 @@ class NoticeList extends Widget
     function newListItem($notice)
     {
         return new NoticeListItem($notice, $this->out);
+    }
+    
+    static function prefill(&$notices, $avatarSize=AVATAR_STREAM_SIZE)
+    {
+        if (Event::handle('StartNoticeListPrefill', array(&$notices, $avatarSize))) {
+
+            // Prefill attachments
+            Notice::fillAttachments($notices);
+            // Prefill attachments
+            Notice::fillFaves($notices);
+            // Prefill repeat data
+            Notice::fillRepeats($notices);
+            // Prefill the profiles
+            $profiles = Notice::fillProfiles($notices);
+            // Prefill the avatars
+            Profile::fillAvatars($profiles, $avatarSize);
+    	
+            $p = Profile::current();
+    	
+            if (!empty($p)) {
+
+                $ids = array();
+    	
+                foreach ($notices as $notice) {
+                    $ids[] = $notice->id;
+                }
+    	
+                Memcached_DataObject::pivotGet('Fave', 'notice_id', $ids, array('user_id' => $p->id));
+                Memcached_DataObject::pivotGet('Notice', 'repeat_of', $ids, array('profile_id' => $p->id));
+            }
+
+            Event::handle('EndNoticeListPrefill', array(&$notices, &$profiles, $avatarSize));
+        }
     }
 }

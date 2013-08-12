@@ -1,0 +1,39 @@
+# Translation of StatusNet - Minify to Spanish (español)
+# Exported from translatewiki.net
+#
+# Author: Armando-Martin
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Minify\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:11+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:03+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid ""
+"The Minify plugin minifies StatusNet's CSS and JavaScript, removing "
+"whitespace and comments."
+msgstr ""
+"El complemento (plugin) Minify minimiza los archivos CSS y JavaScript de "
+"StatusNet, quitando espacios en blanco y comentarios."
+
+#. TRANS: Client error displayed when not providing a valid path in parameter "f".
+msgid "The parameter \"f\" is not a valid path."
+msgstr "El parámetro \"f\" no es una ruta válida."
+
+#. TRANS: Client error displayed when not providing parameter "f".
+msgid "The parameter \"f\" is required but missing."
+msgstr "El parámetro \"f\" es necesario, pero no existe."
+
+#. TRANS: Client error displayed when trying to minify an unsupported file type.
+msgid "File type not supported."
+msgstr "Tipo de archivo no soportado."

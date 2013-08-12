@@ -80,8 +80,8 @@ class QnanewanswerAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            // TRANS: Client exception thrown trying to answer a question while not logged in.
             throw new ClientException(
+                // TRANS: Client exception thrown trying to answer a question while not logged in.
                 _m("You must be logged in to answer to a question."),
                 403
             );
@@ -96,8 +96,8 @@ class QnanewanswerAction extends Action
         $this->question = QnA_Question::staticGet('id', $id);
 
         if (empty($this->question)) {
-            // TRANS: Client exception thrown trying to respond to a non-existing question.
             throw new ClientException(
+                // TRANS: Client exception thrown trying to respond to a non-existing question.
                 _m('Invalid or missing question.'),
                 404
             );
@@ -161,7 +161,6 @@ class QnanewanswerAction extends Action
             $this->elementEnd('head');
 
             $this->elementStart('body');
-
 
             $nli = new NoticeAnswerListItem($notice, $this, $this->question, $answer);
             $nli->show();
@@ -278,7 +277,6 @@ class QnanewanswerAction extends Action
         $this->msg = $msg;
         $this->showPage();
     }
-
 }
 
 class NoticeAnswerListItem extends NoticeListItem
@@ -344,10 +342,10 @@ class NoticeAnswerListItem extends NoticeListItem
             $form = new QnashowanswerForm($this->out, $this->answer);
             $form->show();
         } else {
+            // TRANS: Error message displayed when an answer has no content.
             $out->text(_m('Answer data is missing.'));
         }
 
         $this->out->elementEnd('p');
     }
-
 }

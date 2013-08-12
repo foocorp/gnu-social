@@ -1,7 +1,10 @@
 # Translation of StatusNet - EmailRegistration to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: ChrisiPK
+# Author: DaSch
 # Author: Giftpflanze
+# Author: Inkowik
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,21 +12,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailRegistration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:13+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:23+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-emailregistration\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Client exception trown when registration by e-mail is not allowed.
+msgid "Registration not allowed."
+msgstr "Registrierung nicht erlaubt."
+
+#. TRANS: Client exception trown when trying to register without an invitation.
+msgid "Sorry, only invited people can register."
+msgstr "Es tut uns leid, zum Registrieren benötigst du eine Einladung."
+
 #. TRANS: Client exception thrown when no confirmation code was provided.
 msgid "No confirmation code."
 msgstr "Kein Bestätigungscode."
+
+#. TRANS: Client exception trown when using an invitation multiple times.
+msgid "Invitation already used."
+msgstr "Einladung bereits verwendet."
 
 #. TRANS: Client exception thrown when given confirmation code was not issued.
 msgid "No such confirmation code."
@@ -49,6 +64,10 @@ msgstr ""
 "An %s wurde eine E-Mail versandt, um die Adresse zu bestätigen. Schaue in "
 "deinem Postfach nach weiteren Instruktionen."
 
+#. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
+msgid "No confirmation thing."
+msgstr "Kein Bestätigungscode."
+
 #. TRANS: Error text when trying to register without agreeing to the terms.
 msgid "You must accept the terms of service and privacy policy to register."
 msgstr ""
@@ -66,6 +85,10 @@ msgstr "Passwort muss mindestens 6 Zeichen lang sein."
 #. TRANS: Error text when trying to register without providing the same password twice.
 msgid "Passwords do not match."
 msgstr "Passwörter stimmen nicht überein."
+
+#. TRANS: Exception trown when using an invitation multiple times.
+msgid "Failed to register user."
+msgstr "Registrieren des Benutzers fehlgeschlagen"
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.
@@ -164,20 +187,8 @@ msgstr "Keine gültige E-Mail-Adresse."
 #. TRANS: %s is the StatusNet sitename.
 #, php-format
 msgid "Welcome to %s"
-msgstr ""
+msgstr "Willkommen bei %s"
 
 #. TRANS: Plugin description.
 msgid "Use email only for registration."
 msgstr "E-Mail nur für die Registrierung benutzen."
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not save new greeting count for %d."
-msgstr "Konnte neuen Begrüßungszähler für %d nicht speichern."
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not increment greeting count for %d."
-msgstr "Konnte Begrüßungszähler für %d nicht erhöhen."

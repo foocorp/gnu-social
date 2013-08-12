@@ -1,4 +1,4 @@
-# Translation of StatusNet - TagSub to Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
+# Translation of StatusNet - TagSub to Serbian (Cyrillic script) (‪српски (ћирилица)‬)
 # Exported from translatewiki.net
 #
 # Author: Rancher
@@ -9,25 +9,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TagSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:35+0000\n"
-"Language-Team: Serbian Cyrillic ekavian <http://translatewiki.net/wiki/"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:16+0000\n"
+"Language-Team: Serbian (Cyrillic script) <https://translatewiki.net/wiki/"
 "Portal:sr-ec>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:23+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:51:31+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: sr-ec\n"
 "X-Message-Group: #out-statusnet-plugin-tagsub\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Form legend.
 msgid "Unsubscribe from this tag"
 msgstr "Одјави ме с ове ознаке"
 
+#. TRANS: Submit button text to unsubscribe from a tag.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Одјави ме"
+
+#. TRANS: Submit button title to unsubscribe from a tag.
+msgid "Unsubscribe from this tag."
+msgstr "Одјави ме с ове ознаке"
 
 #. TRANS: Plugin description.
 msgid "Plugin to allow following all messages with a given tag."
@@ -42,15 +48,22 @@ msgstr "Ознаке"
 msgid "Configure tag subscriptions"
 msgstr "Подеси пријаве за ознаку"
 
+#. TRANS: Menu item text for tags submenu.
 msgid "Tags"
 msgstr "Ознаке"
 
+#. TRANS: Form legend.
 msgid "Subscribe to this tag"
 msgstr "Пријави ме на ову ознаку"
 
+#. TRANS: Submit button text to subscribe to a tag.
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr "Пријави ме"
+
+#. TRANS: Submit button title to subscribe to a tag.
+msgid "Subscribe to this tag."
+msgstr "Пријави ме на ову ознаку"
 
 #. TRANS: Page title when tag unsubscription succeeded.
 msgid "Unsubscribed"
@@ -126,9 +139,11 @@ msgstr ""
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
 #. TRANS: as an anonymous user. %s is the user nickname.
 #, php-format
-msgid "%s is not listening to any tags."
-msgstr "%s не слуша ниједну ознаку."
+msgid "%s is not following any tags."
+msgstr "%s не прати ниједну ознаку."
 
+#. TRANS: %1$s is a URL to a tag, %2$s is a tag,
+#. TRANS: %3$s a date string.
 #, php-format
-msgid "#<a href=\"%s\">%s</a> since %s"
-msgstr "#<a href=\"%s\">%s</a> од %s"
+msgid "#<a href=\"%1$s\">%2$s</a> since %3$s"
+msgstr "#<a href=\"%1$s\">%2$s</a> од %3$s"

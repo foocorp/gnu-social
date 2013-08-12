@@ -1,7 +1,8 @@
-# Translation of StatusNet - Mapstraction to Swedish (Svenska)
+# Translation of StatusNet - Mapstraction to Swedish (svenska)
 # Exported from translatewiki.net
 #
 # Author: Jamminjohn
+# Author: WikiPhoenix
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Mapstraction\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:58+0000\n"
-"Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:07+0000\n"
+"Language-Team: Swedish <https://translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:16+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:30+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-plugin-mapstraction\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -59,6 +60,6 @@ msgstr "Användaren har ingen profil."
 
 #. TRANS: Title for map widget.
 #. TRANS: %s is a user name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s map"
-msgstr "%s vänkarta"
+msgstr "%s karta"

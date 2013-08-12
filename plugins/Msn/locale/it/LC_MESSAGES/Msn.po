@@ -1,0 +1,51 @@
+# Translation of StatusNet - Msn to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: GreenFox
+# Author: Od1n
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Msn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:19+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:48:56+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: MSN bot status message.
+msgid "Send me a message to post a notice"
+msgstr "Mandami un messaggio per pubblicare una comunicazione."
+
+#. TRANS: Server exception thrown when a message to be sent through MSN cannot be added to the database queue.
+msgid "Database error inserting queue item."
+msgstr "Errore nel database inserendo l'elemento in coda."
+
+#. TRANS: Display name of the MSN instant messaging service.
+msgid "MSN"
+msgstr "MSN"
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+msgid "Must specify a user."
+msgstr "Devi specificare un utente."
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+msgid "Must specify a password."
+msgstr "Devi specificare una password."
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+msgid "Must specify a nickname."
+msgstr "È necessario specificare un soprannome."
+
+#. TRANS: Plugin description.
+msgid ""
+"The MSN plugin allows users to send and receive notices over the MSN network."
+msgstr ""
+"Il plugin per MSN consente agli utenti di inviare e ricevere notizie tramite "
+"la rete MSN."

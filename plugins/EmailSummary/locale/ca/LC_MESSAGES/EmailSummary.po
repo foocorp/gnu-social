@@ -1,4 +1,4 @@
-# Translation of StatusNet - EmailSummary to Catalan (Català)
+# Translation of StatusNet - EmailSummary to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Toniher
@@ -9,23 +9,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailSummary\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:15+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:26+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:47+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-07-01 11:18:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-emailsummary\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Subject for e-mail.
+#, php-format
+msgid "Your latest updates from %s"
+msgstr "Les vostres darreres actualitzacions de %s"
 
 #. TRANS: Text in e-mail summary.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile name.
 #, php-format
 msgid "Recent updates from %1$s for %2$s:"
-msgstr ""
+msgstr "Actualitzacions recents de %1$s per a %2$s:"
 
 #. TRANS: Link text for link to conversation view.
 msgid "in context"
@@ -36,10 +41,6 @@ msgstr "en context"
 #, php-format
 msgid "<a href=\"%1$s\">change your email settings for %2$s</a>"
 msgstr ""
-
-#. TRANS: Subject for e-mail.
-msgid "Updates from your network"
-msgstr "Actualitzacions de la vostra xarxa"
 
 #. TRANS: Plugin description.
 msgid "Send an email summary of the inbox to users."

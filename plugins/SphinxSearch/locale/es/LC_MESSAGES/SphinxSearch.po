@@ -1,0 +1,31 @@
+# Translation of StatusNet - SphinxSearch to Spanish (español)
+# Exported from translatewiki.net
+#
+# Author: Armando-Martin
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SphinxSearch\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:04+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:37+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Server exception thrown when a database name cannot be identified.
+msgid "Sphinx search could not identify database name."
+msgstr "La búsqueda Sphinx nn pudo identificar el nombre de la base de datos."
+
+#. TRANS: Server exception.
+msgid "Sphinx PHP extension must be installed."
+msgstr "La extensión PHP Sphinx debe ser instalada."
+
+#. TRANS: Plugin description.
+msgid "Plugin for Sphinx search backend."
+msgstr "Complemento (plugin) para el motor de búsquedas Sphinx."

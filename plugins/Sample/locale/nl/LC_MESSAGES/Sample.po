@@ -1,6 +1,7 @@
 # Translation of StatusNet - Sample to Dutch (Nederlands)
 # Exported from translatewiki.net
 #
+# Author: SPQRobin
 # Author: Siebrand
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,44 +10,54 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Sample\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:12+0000\n"
-"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:55+0000\n"
+"Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:20+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-sample\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Page title for sample plugin.
+#. TRANS: Menu item in sample plugin.
 msgid "Hello"
 msgstr "Hallo"
 
+#. TRANS: Page title for sample plugin. %s is a user nickname.
 #, php-format
 msgid "Hello, %s!"
 msgstr "Hallo, %s!"
 
+#. TRANS: Message in sample plugin.
 msgid "Hello, stranger!"
 msgstr "Hallo vreemdeling!"
 
+#. TRANS: Message in sample plugin. %s is a user nickname.
 #, php-format
 msgid "Hello, %s"
 msgstr "Hallo, %s"
 
+#. TRANS: Message in sample plugin.
+#. TRANS: %d is the number of times a user is greeted.
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
 msgstr[0] "Ik heb u voor de eerste keer gegroet."
 msgstr[1] "Ik heb u %d keer gegroet."
 
+#. TRANS: Menu item title in sample plugin.
 msgid "A warm greeting"
 msgstr "Een warme begroeting"
 
+#. TRANS: Plugin description.
 msgid "A sample plugin to show basics of development for new hackers."
 msgstr ""
-"Een voorbeeldplug-in als basis voor ontwikkelingen door nieuwe hackers."
+"Een voorbeeldplug-in om de basisprogrammeertechnieken te demonstreren aan "
+"nieuwe ontwikkelaars."
 
 #. TRANS: Exception thrown when the user greeting count could not be saved in the database.
 #. TRANS: %d is a user ID (number).

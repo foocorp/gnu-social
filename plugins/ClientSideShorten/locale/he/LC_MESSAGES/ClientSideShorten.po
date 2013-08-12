@@ -1,6 +1,7 @@
 # Translation of StatusNet - ClientSideShorten to Hebrew (עברית)
 # Exported from translatewiki.net
 #
+# Author: Amire80
 # Author: YaronSh
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ClientSideShorten\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:57+0000\n"
-"Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:03+0000\n"
+"Language-Team: Hebrew <https://translatewiki.net/wiki/Portal:he>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:36+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:52+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: he\n"
 "X-Message-Group: #out-statusnet-plugin-clientsideshorten\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -26,10 +27,9 @@ msgid ""
 "ClientSideShorten causes the web interface's notice form to automatically "
 "shorten URLs as they entered, and before the notice is submitted."
 msgstr ""
-"התוסף ClientSideShorten (קיצור מצד הלקוח) גורם לטופס ההתרעה שבמנשק המשתמש "
-"לקצר אוטומטית כתובות כאשר הן מוזנות ולפני שההתרעה נשלחת."
+"התוסף ClientSideShorten (קיצור מצד הלקוח) גורם לטופס הזנת העדכון בממשק הוובי "
+"לקצר אוטומטית כתובות כאשר הן מוזנות ולפני שהעדכון נשלח."
 
 #. TRANS: Client exception thrown when a text argument is not present.
-#, fuzzy
 msgid "\"text\" argument must be specified."
-msgstr "יש ציין את המשתנה 'text'"
+msgstr "יש ציין את המשתנה \"text\"."

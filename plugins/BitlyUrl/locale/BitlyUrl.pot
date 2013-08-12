@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,17 +83,17 @@ msgid "You must specify a serviceUrl for bit.ly URL shortening."
 msgstr ""
 
 #. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
-#: BitlyUrlPlugin.php:175
+#: BitlyUrlPlugin.php:156
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr ""
 
 #. TRANS: Menu item in administration menus for bit.ly URL shortening settings.
-#: BitlyUrlPlugin.php:217
+#: BitlyUrlPlugin.php:198
 msgid "bit.ly"
 msgstr ""
 
 #. TRANS: Title for menu item in administration menus for bit.ly URL shortening settings.
-#: BitlyUrlPlugin.php:219
+#: BitlyUrlPlugin.php:200
 msgid "bit.ly URL shortening."
 msgstr ""

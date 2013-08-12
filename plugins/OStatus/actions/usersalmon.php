@@ -201,12 +201,12 @@ class UsersalmonAction extends SalmonAction
 
             if (empty($tagged)) {
                 // TRANS: Client exception.
-                throw new ClientException(_m('Unidentified profile being tagged.'));
+                throw new ClientException(_m('Unidentified profile being listed.'));
             }
 
             if ($tagged->id !== $this->user->id) {
                 // TRANS: Client exception.
-                throw new ClientException(_m('This user is not the one being tagged.'));
+                throw new ClientException(_m('This user is not the one being listed.'));
             }
 
             // save the list
@@ -217,7 +217,7 @@ class UsersalmonAction extends SalmonAction
             $result = Profile_tag::setTag($ptag->tagger, $tagged->id, $ptag->tag);
             if (!$result) {
                 // TRANS: Client exception.
-                throw new ClientException(_m('The tag could not be saved.'));
+                throw new ClientException(_m('The listing could not be saved.'));
             }
         }
     }
@@ -235,12 +235,12 @@ class UsersalmonAction extends SalmonAction
 
             if (empty($tagged)) {
                 // TRANS: Client exception.
-                throw new ClientException(_m('Unidentified profile being untagged.'));
+                throw new ClientException(_m('Unidentified profile being unlisted.'));
             }
 
             if ($tagged->id !== $this->user->id) {
                 // TRANS: Client exception.
-                throw new ClientException(_m('This user is not the one being untagged.'));
+                throw new ClientException(_m('This user is not the one being unlisted.'));
             }
 
             // save the list
@@ -252,7 +252,7 @@ class UsersalmonAction extends SalmonAction
 
             if (!$result) {
                 // TRANS: Client exception.
-                throw new ClientException(_m('The tag could not be deleted.'));
+                throw new ClientException(_m('The listing could not be deleted.'));
             }
         }
     }

@@ -52,9 +52,10 @@ class AttachmentNoticeSection extends NoticeSection
     function getNotices()
     {
         $notice = new Notice;
-        $f2p = new File_to_post;
-        $f2p->file_id = $this->out->attachment->id;
-        $notice->joinAdd($f2p);
+
+        $notice->joinAdd(array('id', 'file_to_post:post_id'));
+        $notice->whereAdd(sprintf('file_to_post.file_id = %d', $this->out->attachment->id));
+
         $notice->orderBy('created desc');
         $notice->selectAdd('post_id as id');
         $notice->find();

@@ -47,7 +47,7 @@ if (!defined('STATUSNET')) {
 
 class TaggedProfileNoticeStream extends ScopingNoticeStream
 {
-    function __construct($profile, $tag, $userProfile)
+    function __construct($profile, $tag, $userProfile=-1)
     {
         if (is_int($userProfile) && $userProfile == -1) {
             $userProfile = Profile::current();

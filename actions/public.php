@@ -88,14 +88,20 @@ class PublicAction extends Action
 
         $this->userProfile = Profile::current();
 
-        $stream = new ThreadingPublicNoticeStream($this->userProfile);
+        $user = common_current_user();
+
+        if (!empty($user) && $user->streamModeOnly()) {
+            $stream = new PublicNoticeStream($this->userProfile);
+        } else {
+            $stream = new ThreadingPublicNoticeStream($this->userProfile);
+        }
 
         $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
                                             NOTICES_PER_PAGE + 1);
 
         if (!$this->notice) {
             // TRANS: Server error displayed when a public timeline cannot be retrieved.
-            $this->serverError(_('Could not retrieve public stream.'));
+            $this->serverError(_('Could not retrieve public timeline.'));
             return;
         }
 
@@ -153,6 +159,11 @@ class PublicAction extends Action
         $this->element('link', array('rel' => 'EditURI',
                                      'type' => 'application/rsd+xml',
                                      'href' => $rsd));
+
+        if ($this->page != 1) {
+            $this->element('link', array('rel' => 'canonical',
+                                         'href' => common_local_url('public')));
+        }
     }
 
     /**
@@ -162,19 +173,24 @@ class PublicAction extends Action
      */
     function getFeeds()
     {
-        return array(new Feed(Feed::RSS1, common_local_url('publicrss'),
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelinePublic',
+                                               array('format' => 'as')),
                               // TRANS: Link description for public timeline feed.
-                              _('Public Stream Feed (RSS 1.0)')),
+                              _('Public Timeline Feed (Activity Streams JSON)')),
+                    new Feed(Feed::RSS1, common_local_url('publicrss'),
+                              // TRANS: Link description for public timeline feed.
+                              _('Public Timeline Feed (RSS 1.0)')),
                      new Feed(Feed::RSS2,
                               common_local_url('ApiTimelinePublic',
                                                array('format' => 'rss')),
                               // TRANS: Link description for public timeline feed.
-                              _('Public Stream Feed (RSS 2.0)')),
+                              _('Public Timeline Feed (RSS 2.0)')),
                      new Feed(Feed::ATOM,
                               common_local_url('ApiTimelinePublic',
                                                array('format' => 'atom')),
                               // TRANS: Link description for public timeline feed.
-                              _('Public Stream Feed (Atom)')));
+                              _('Public Timeline Feed (Atom)')));
     }
 
     function showEmptyList()
@@ -208,7 +224,13 @@ class PublicAction extends Action
      */
     function showContent()
     {
-        $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
+        $user = common_current_user();
+
+        if (!empty($user) && $user->streamModeOnly()) {
+            $nl = new NoticeList($this->notice, $this);
+        } else {
+            $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
+        }
 
         $cnt = $nl->show();
 
@@ -222,12 +244,30 @@ class PublicAction extends Action
 
     function showSections()
     {
-        $ibs = new InviteButtonSection($this);
-        $ibs->show();
-        $pop = new PopularNoticeSection($this);
+        // Show invite button, as long as site isn't closed, and
+        // we have a logged in user.
+        if (common_config('invite', 'enabled') && !common_config('site', 'closed') && common_logged_in()) {
+            if (!common_config('site', 'private')) {
+                $ibs = new InviteButtonSection(
+                    $this,
+                    // TRANS: Button text for inviting more users to the StatusNet instance.
+                    // TRANS: Less business/enterprise-oriented language for public sites.
+                    _m('BUTTON', 'Send invite')
+                );
+            } else {
+                $ibs = new InviteButtonSection($this);
+            }
+            $ibs->show();
+        }
+
+        $p = Profile::current();
+
+        $pop = new PopularNoticeSection($this, $p);
         $pop->show();
-        $cloud = new PublicTagCloudSection($this);
-        $cloud->show();
+        if (!common_config('performance', 'high')) {
+            $cloud = new PublicTagCloudSection($this);
+            $cloud->show();
+        }
         $feat = new FeaturedUsersSection($this);
         $feat->show();
     }

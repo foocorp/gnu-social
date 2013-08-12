@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - DomainWhitelist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:07+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:14:12+0000\n"
 "Language-Team: Norwegian (bokmål)‬ <http://translatewiki.net/wiki/Portal:no>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:44:42+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: no\n"
 "X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
@@ -27,11 +27,55 @@ msgstr ""
 msgid "Email address must be in this domain: %s."
 msgstr "E-postadresser må være i dette domenet: %s."
 
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
+#. TRANS: %s are whitelisted e-mail domains separated by comma's (localisable).
+#, fuzzy, php-format
+msgid "Email address must be in one of these domains: %s."
+msgstr "E-postadresser må være i dette domenet: %s."
+
 #. TRANS: Separator for whitelisted domains.
 msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
+#. TRANS: Exception thrown when an e-mail address does not match the site's domain whitelist.
+#, fuzzy
+msgid "That email address is not allowed on this site."
+msgstr "E-postadresser må være i dette domenet: %s."
+
+#. TRANS: Title for invitiation deletion dialog.
+msgid "Confirmation Required"
+msgstr ""
+
+#. TRANS: Confirmation text for invitation deletion dialog.
+msgid "Really delete this invitation?"
+msgstr ""
+
 #. TRANS: Plugin description.
 msgid "Restrict domains for email users."
+msgstr ""
+
+#. TRANS: Form legend.
+msgid "Invite collegues"
+msgstr ""
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr ""
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr ""
+
+#. TRANS: Link description to action to add another item to a list.
+msgid "Add another item"
+msgstr ""
+
+#. TRANS: Send button for inviting friends.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr ""
+
+#. TRANS: Submit button title.
+msgid "Send invitations."
 msgstr ""

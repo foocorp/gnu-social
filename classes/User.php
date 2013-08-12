@@ -28,7 +28,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 require_once 'Validate.php';
 
-class User extends Memcached_DataObject
+class User extends Managed_DataObject
 {
     const SUBSCRIBE_POLICY_OPEN = 0;
     const SUBSCRIBE_POLICY_MODERATE = 1;
@@ -61,8 +61,6 @@ class User extends Memcached_DataObject
     public $subscribe_policy;                // tinyint(1)
     public $urlshorteningservice;            // varchar(50)   default_ur1.ca
     public $inboxed;                         // tinyint(1)
-    public $design_id;                       // int(4)
-    public $viewdesigns;                     // tinyint(1)   default_1
     public $private_stream;                  // tinyint(1)   default_0
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -72,6 +70,58 @@ class User extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'description' => 'local users',
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
+                'nickname' => array('type' => 'varchar', 'length' => 64, 'description' => 'nickname or username, duped in profile'),
+                'password' => array('type' => 'varchar', 'length' => 255, 'description' => 'salted password, can be null for OpenID users'),
+                'email' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for password recovery etc.'),
+                'incomingemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for post-by-email'),
+                'emailnotifysub' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of subscriptions'),
+                'emailnotifyfav' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of favorites'),
+                'emailnotifynudge' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of nudges'),
+                'emailnotifymsg' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of direct messages'),
+                'emailnotifyattn' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of @-replies'),
+                'emailmicroid' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'whether to publish email microid'),
+                'language' => array('type' => 'varchar', 'length' => 50, 'description' => 'preferred language'),
+                'timezone' => array('type' => 'varchar', 'length' => 50, 'description' => 'timezone'),
+                'emailpost' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Post by email'),
+                'sms' => array('type' => 'varchar', 'length' => 64, 'description' => 'sms phone number'),
+                'carrier' => array('type' => 'int', 'description' => 'foreign key to sms_carrier'),
+                'smsnotify' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to send notices to SMS'),
+                'smsreplies' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to send notices to SMS on replies'),
+                'smsemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'built from sms and carrier'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'autosubscribe' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'automatically subscribe to users who subscribe to us'),
+                'subscribe_policy' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => '0 = anybody can subscribe; 1 = require approval'),
+                'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'internal', 'description' => 'service to use for auto-shortening URLs'),
+                'inboxed' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'has an inbox been created for this user?'),
+                'private_stream' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to limit all notices to followers only'),
+
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'user_nickname_key' => array('nickname'),
+                'user_email_key' => array('email'),
+                'user_incomingemail_key' => array('incomingemail'),
+                'user_sms_key' => array('sms'),
+                'user_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'user_id_fkey' => array('profile', array('id' => 'id')),
+                'user_carrier_fkey' => array('sms_carrier', array('carrier' => 'id')),
+            ),
+            'indexes' => array(
+                'user_smsemail_idx' => array('smsemail'),
+            ),
+        );
+    }
 
     protected $_profile = -1;
 
@@ -293,7 +343,6 @@ class User extends Memcached_DataObject
         $user->emailmicroid = 1;
         $user->emailpost = 1;
         $user->jabbermicroid = 1;
-        $user->viewdesigns = 1;
 
         $user->created = common_sql_now();
 
@@ -687,7 +736,7 @@ class User extends Memcached_DataObject
 
         $profile = new Profile();
 
-        $cnt = $profile->query(sprintf($qry, $this->id, $tag));
+        $cnt = $profile->query(sprintf($qry, $this->id, $profile->escape($tag)));
 
         return $profile;
     }
@@ -709,14 +758,9 @@ class User extends Memcached_DataObject
 
         $profile = new Profile();
 
-        $profile->query(sprintf($qry, $this->id, $tag));
+        $profile->query(sprintf($qry, $this->id, $profile->escape($tag)));
 
         return $profile;
-    }
-
-    function getDesign()
-    {
-        return Design::staticGet('id', $this->design_id);
     }
 
     function hasRight($right)
@@ -937,7 +981,7 @@ class User extends Memcached_DataObject
             return $user->nickname;
         } catch (Exception $e) {
             if (common_config('singleuser', 'enabled') && common_config('singleuser', 'nickname')) {
-                common_log(LOG_WARN, "Warning: code attempting to pull single-user nickname when the account does not exist. If this is not setup time, this is probably a bug.");
+                common_log(LOG_WARNING, "Warning: code attempting to pull single-user nickname when the account does not exist. If this is not setup time, this is probably a bug.");
                 return common_config('singleuser', 'nickname');
             }
             throw $e;
@@ -1007,5 +1051,164 @@ class User extends Memcached_DataObject
         $vars = parent::__sleep();
         $skip = array('_profile');
         return array_diff($vars, $skip);
+    }
+
+    static function recoverPassword($nore)
+    {
+        $user = User::staticGet('email', common_canonical_email($nore));
+
+        if (!$user) {
+            try {
+                $user = User::staticGet('nickname', common_canonical_nickname($nore));
+            } catch (NicknameException $e) {
+                // invalid
+            }
+        }
+
+        // See if it's an unconfirmed email address
+
+        if (!$user) {
+            // Warning: it may actually be legit to have multiple folks
+            // who have claimed, but not yet confirmed, the same address.
+            // We'll only send to the first one that comes up.
+            $confirm_email = new Confirm_address();
+            $confirm_email->address = common_canonical_email($nore);
+            $confirm_email->address_type = 'email';
+            $confirm_email->find();
+            if ($confirm_email->fetch()) {
+                $user = User::staticGet($confirm_email->user_id);
+            } else {
+                $confirm_email = null;
+            }
+        } else {
+            $confirm_email = null;
+        }
+
+        if (!$user) {
+            // TRANS: Information on password recovery form if no known username or e-mail address was specified.
+            throw new ClientException(_('No user with that email address or username.'));
+            return;
+        }
+
+        // Try to get an unconfirmed email address if they used a user name
+
+        if (!$user->email && !$confirm_email) {
+            $confirm_email = new Confirm_address();
+            $confirm_email->user_id = $user->id;
+            $confirm_email->address_type = 'email';
+            $confirm_email->find();
+            if (!$confirm_email->fetch()) {
+                $confirm_email = null;
+            }
+        }
+
+        if (!$user->email && !$confirm_email) {
+            // TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+            throw new ClientException(_('No registered email address for that user.'));
+            return;
+        }
+
+        // Success! We have a valid user and a confirmed or unconfirmed email address
+
+        $confirm = new Confirm_address();
+        $confirm->code = common_confirmation_code(128);
+        $confirm->address_type = 'recover';
+        $confirm->user_id = $user->id;
+        $confirm->address = (!empty($user->email)) ? $user->email : $confirm_email->address;
+
+        if (!$confirm->insert()) {
+            common_log_db_error($confirm, 'INSERT', __FILE__);
+            // TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+            throw new ServerException(_('Error saving address confirmation.'));
+            return;
+        }
+
+         // @todo FIXME: needs i18n.
+        $body = "Hey, $user->nickname.";
+        $body .= "\n\n";
+        $body .= 'Someone just asked for a new password ' .
+                 'for this account on ' . common_config('site', 'name') . '.';
+        $body .= "\n\n";
+        $body .= 'If it was you, and you want to confirm, use the URL below:';
+        $body .= "\n\n";
+        $body .= "\t".common_local_url('recoverpassword',
+                                   array('code' => $confirm->code));
+        $body .= "\n\n";
+        $body .= 'If not, just ignore this message.';
+        $body .= "\n\n";
+        $body .= 'Thanks for your time, ';
+        $body .= "\n";
+        $body .= common_config('site', 'name');
+        $body .= "\n";
+
+        $headers = _mail_prepare_headers('recoverpassword', $user->nickname, $user->nickname);
+        // TRANS: Subject for password recovery e-mail.
+        mail_to_user($user, _('Password recovery requested'), $body, $headers, $confirm->address);
+    }
+
+    function streamModeOnly()
+    {
+        if (common_config('oldschool', 'enabled')) {
+            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            if (!empty($osp)) {
+                return $osp->stream_mode_only;
+            }
+        }
+
+        return false;
+    }
+
+    function conversationTree()
+    {
+        if (common_config('oldschool', 'enabled')) {
+            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            if (!empty($osp)) {
+                return $osp->conversation_tree;
+            }
+        }
+
+        return false;
+    }
+
+    function streamNicknames()
+    {
+        if (common_config('oldschool', 'enabled')) {
+            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            if (!empty($osp)) {
+                return $osp->stream_nicknames;
+            }
+        }
+        return false;
+    }
+
+    function registrationActivity()
+    {
+        $profile = $this->getProfile();
+
+        $service = new ActivityObject();
+
+        $service->type  = ActivityObject::SERVICE;
+        $service->title = common_config('site', 'name');
+        $service->link  = common_root_url();
+        $service->id    = $service->link;
+
+        $act = new Activity();
+
+        $act->actor = ActivityObject::fromProfile($profile);
+        $act->verb = ActivityVerb::JOIN;
+
+        $act->objects[] = $service;
+
+        $act->id = TagURI::mint('user:register:%d',
+                                $this->id);
+
+        $act->time = strtotime($this->created);
+
+        $act->title = _("Register");
+
+        $act->content = sprintf(_('%1$s joined %2$s.'),
+                                $profile->getBestName(),
+                                $service->title);
+        return $act;
     }
 }

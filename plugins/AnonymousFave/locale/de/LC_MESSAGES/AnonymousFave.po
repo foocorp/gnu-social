@@ -1,6 +1,7 @@
 # Translation of StatusNet - AnonymousFave to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: DaSch
 # Author: The Evil IP address
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,29 +10,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AnonymousFave\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:37+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:35+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:56+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:09+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
-#, fuzzy, php-format
+#, php-format
 msgid "Could not update favorite tally for notice ID %d."
-msgstr "Konnte Favoritenzähler der Nachrichten-ID %d nicht aktualisieren."
+msgstr ""
+"Konnte Favoritenzähler der Nachricht mit der ID %d nicht aktualisieren."
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
-#, fuzzy, php-format
+#, php-format
 msgid "Could not create favorite tally for notice ID %d."
-msgstr "Konnte keinen Favoritenzähler der Nachrichten-ID %d erstellen."
+msgstr ""
+"Konnte keinen Favoritenzähler für die Nachricht mit der ID %d erstellen."
 
 #. TRANS: Client error.
 msgid ""
@@ -61,7 +64,6 @@ msgid "Favored"
 msgstr "Favorisiert"
 
 #. TRANS: Server exception.
-#, fuzzy
 msgid "Could not create anonymous user session."
 msgstr "Konnte keine anonyme Benutzer-Sitzung erstellen."
 

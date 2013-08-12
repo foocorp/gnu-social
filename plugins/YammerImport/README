@@ -139,8 +139,6 @@ File type and size limitations on attachments will be applied, so beware some
 attachments may not make it through.
 
 
-
-
 Code structure
 ==============
 
@@ -179,4 +177,3 @@ Yammer_notice_stub: data object for temporary storage of fetched Yammer messages
 Yammer_user,
 Yammer_group,
 Yammer_notice: data objects mapping original Yammer item IDs to their local copies.
-

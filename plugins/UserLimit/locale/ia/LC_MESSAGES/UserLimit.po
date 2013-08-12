@@ -1,4 +1,4 @@
-# Translation of StatusNet - UserLimit to Interlingua (Interlingua)
+# Translation of StatusNet - UserLimit to Interlingua (interlingua)
 # Exported from translatewiki.net
 #
 # Author: McDutchie
@@ -9,23 +9,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserLimit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:49+0000\n"
-"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:25+0000\n"
+"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:51+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-userlimit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Error message given if creating a new user is not possible because a limit has been reached.
+#. TRANS: %d is the user limit (also available for plural).
 #, php-format
-msgid "Cannot register; maximum number of users (%d) reached."
-msgstr ""
-"Impossibile crear conto; le numero maxime de usatores (%d) ha essite "
-"attingite."
+msgid ""
+"Cannot register because the maximum number of users (%d) for this site was "
+"reached."
+msgid_plural ""
+"Cannot register because the maximum number of users (%d) for this site was "
+"reached."
+msgstr[0] ""
+"Impossibile crear conto; le numero maxime de usatores (%d) pro iste sito ha "
+"essite attingite."
+msgstr[1] ""
+"Impossibile crear conto; le numero maxime de usatores (%d) pro iste sito ha "
+"essite attingite."
 
+#. TRANS: Plugin description.
 msgid "Limit the number of users who can register."
 msgstr "Limitar le numero de usatores que pote registrar se."

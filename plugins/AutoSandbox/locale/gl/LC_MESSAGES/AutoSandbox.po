@@ -1,0 +1,46 @@
+# Translation of StatusNet - AutoSandbox to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AutoSandbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:43+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:49:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-autosandbox\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Automatically sandboxes newly registered members."
+msgstr "Sitúa de xeito automático aos novos usuarios nunha zona de probas."
+
+#. TRANS: User instructions after registration.
+msgid ""
+"Note you will initially be \"sandboxed\" so your posts will not appear in "
+"the public timeline."
+msgstr ""
+"Teña en conta que inicialmente será enviado a unha zona de probas, de xeito "
+"que as súas mensaxes non apareceran na liña temporal pública."
+
+#. TRANS: User instructions after registration.
+#. TRANS: %s is a clickable e-mailaddress.
+#, php-format
+msgid ""
+"Note you will initially be \"sandboxed\" so your posts will not appear in "
+"the public timeline. Send a message to %s to speed up the unsandboxing "
+"process."
+msgstr ""
+"Teña en conta que inicialmente será enviado a unha zona de probas, de xeito "
+"que as súas mensaxes non apareceran na liña temporal pública. Envíe unha "
+"mensaxe a %s para acelerar o proceso de abandonar a zona de probas."

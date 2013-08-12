@@ -53,6 +53,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 class Theme
 {
+    const FALLBACK = 'neo';
+
     var $name = null;
     var $dir  = null;
     var $path = null;
@@ -99,7 +101,19 @@ class Theme
         if (file_exists($fulldir) && is_dir($fulldir)) {
             $this->dir = $fulldir;
             $this->path = $this->relativeThemePath('theme', 'theme', $name);
+            return;
         }
+
+        // Ruh roh. Fall back to default, then.
+
+        common_log(LOG_WARNING, sprintf("Unable to find theme '%s', falling back to default theme '%s'",
+                                        $name,
+                                        Theme::FALLBACK));
+
+        $this->name = Theme::FALLBACK;
+        $this->dir  = $instroot.'/'.Theme::FALLBACK;
+        $this->path = $this->relativeThemePath('theme', 'theme', Theme::FALLBACK);
+
     }
 
     /**

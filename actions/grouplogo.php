@@ -23,7 +23,7 @@
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @author    Zach Copley <zach@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -49,7 +49,7 @@ define('MAX_ORIGINAL', 480);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class GrouplogoAction extends GroupDesignAction
+class GrouplogoAction extends GroupAction
 {
     var $mode = null;
     var $imagefile = null;
@@ -456,11 +456,5 @@ class GrouplogoAction extends GroupDesignAction
         }
 
         $this->autofocus('avatarfile');
-    }
-
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
     }
 }

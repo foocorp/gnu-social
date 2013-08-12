@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,54 +16,71 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: LoggingAggregator.php:85
+#. TRANS: Form validation error displayed when a URL parameter is missing.
+#: LoggingAggregator.php:86
 msgid "A URL parameter is required."
 msgstr ""
 
-#: LoggingAggregator.php:93
+#. TRANS: Form validation error displayed when HTTP GET is not used.
+#: LoggingAggregator.php:94
 msgid "This resource requires an HTTP GET."
 msgstr ""
 
+#. TRANS: Form validation error displayed when HTTP POST is not used.
 #: LoggingAggregator.php:104
 msgid "This resource requires an HTTP POST."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:90
+#. TRANS: Form validation error displayed when POST is not used.
+#: RSSCloudRequestNotify.php:91
 msgid "Request must be POST."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:107
-msgid "Only http-post notifications are supported at this time."
+#. TRANS: Form validation error displayed when HTTP POST is not used.
+#: RSSCloudRequestNotify.php:109
+msgid "Only HTTP POST notifications are supported at this time."
 msgstr ""
 
-#. TRANS: %s is a comma separated list of parameters.
-#: RSSCloudRequestNotify.php:118
+#. TRANS: List separator.
+#: RSSCloudRequestNotify.php:120
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr ""
+
+#. TRANS: Form validation error displayed when a request body is missing expected parameters.
+#. TRANS: %s is a list of parameters separated by a list separator (default: ", ").
+#: RSSCloudRequestNotify.php:123
 #, php-format
 msgid "The following parameters were missing from the request body: %s."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:124
+#. TRANS: Form validation error displayed when not providing any valid profile feed URLs.
+#: RSSCloudRequestNotify.php:130
 msgid ""
-"You must provide at least one valid profile feed url (url1, url2, url3 ... "
+"You must provide at least one valid profile feed URL (url1, url2, url3 ... "
 "urlN)."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:141
+#. TRANS: Form validation error displayed when not providing a valid feed URL.
+#: RSSCloudRequestNotify.php:146
 msgid "Feed subscription failed: Not a valid feed."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:147
+#. TRANS: Form validation error displayed when feed subscription failed.
+#: RSSCloudRequestNotify.php:153
 msgid ""
-"Feed subscription failed - notification handler doesn't respond correctly."
+"Feed subscription failed: Notification handler does not respond correctly."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:161
+#. TRANS: Success message after subscribing to one or more feeds.
+#: RSSCloudRequestNotify.php:168
 msgid ""
 "Thanks for the subscription. When the feed(s) update(s), you will be "
 "notified."
 msgstr ""
 
-#: RSSCloudPlugin.php:245
+#. TRANS: Plugin description.
+#: RSSCloudPlugin.php:241
 msgid ""
 "The RSSCloud plugin enables your StatusNet instance to publish real-time "
 "updates for profile RSS feeds using the <a href=\"http://rsscloud.org/"

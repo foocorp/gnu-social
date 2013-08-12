@@ -1,0 +1,52 @@
+# Translation of StatusNet - EmailReminder to Macedonian (македонски)
+# Exported from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailReminder\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:26+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-19 11:23:04+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-emailreminder\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#. TRANS: Plugin description.
+msgid "Send email reminders for various things."
+msgstr "Испраќај потсетници за разни нешта по е-пошта."
+
+#. TRANS: Server exception thrown when a reminder record could not be inserted into the database.
+msgid "Database error inserting reminder record."
+msgstr "Грешка во базата при вметнувањето на евиденцијата за потсетување."
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Reminder - please confirm your registration!"
+msgstr "Потсетување - потврдете ја Вашата регистрација!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Second reminder - please confirm your registration!"
+msgstr "Последно потсетување - потврдете ја Вашата регистрација!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Final reminder - please confirm your registration!"
+msgstr "Последно потсетување - потврдете ја Вашата регистрација!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Reminder - You have been invited to join %s!"
+msgstr "Потсетување - Имате покана да се придружите на %s!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Final reminder - you have been invited to join %s!"
+msgstr "Последно потсетување - Имате покана да се придружите на %s!"

@@ -86,4 +86,9 @@ class DefaultProfileBlock extends AccountProfileBlock
     {
         return null;
     }
+
+    function otherProfiles()
+    {
+        return array();
+    }
 }

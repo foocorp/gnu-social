@@ -55,9 +55,7 @@ class Yammer_state extends Memcached_DataObject
      * @param mixed  $v Value to lookup
      *
      * @return Yammer_state object found, or null for no hits
-     *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Yammer_state', $k, $v);
@@ -90,7 +88,6 @@ class Yammer_state extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('id'              => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
@@ -114,7 +111,6 @@ class Yammer_state extends Memcached_DataObject
      *
      * @return array list of key field names
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -132,7 +128,6 @@ class Yammer_state extends Memcached_DataObject
      *         'K' for primary key: for compound keys, add an entry for each component;
      *         'U' for unique keys: compound keys are not well supported here.
      */
-
     function keyTypes()
     {
         return array('id' => 'K');
@@ -148,7 +143,6 @@ class Yammer_state extends Memcached_DataObject
      *
      * @return array magic three-false array that stops auto-incrementing.
      */
-
     function sequenceKey()
     {
         return array(false, false, false);

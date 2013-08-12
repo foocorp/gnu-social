@@ -1,4 +1,4 @@
-# Translation of StatusNet - RequireValidatedEmail to Catalan (Català)
+# Translation of StatusNet - RequireValidatedEmail to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Toniher
@@ -9,73 +9,95 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:06+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:50+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:28+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
 msgid "You must validate your email address before posting."
 msgstr ""
 
+#. TRANS: Client exception thrown when trying to register without providing an e-mail address.
 msgid "You must provide an email address to register."
 msgstr ""
 
+#. TRANS: Plugin description.
 msgid "Disables posting without a validated email address."
 msgstr ""
 
+#. TRANS: Client exception thrown when trying to register while already logged in.
 msgid "You are already logged in."
-msgstr ""
+msgstr "Ja heu iniciat una sessió."
 
+#. TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
 msgid "Confirmation code not found."
-msgstr ""
+msgstr "No s'ha trobat el codi de confirmació."
 
+#. TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
 msgid "No user for that confirmation code."
-msgstr ""
+msgstr "No hi ha cap usuari per a aquest codi de confirmació."
 
+#. TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+#. TRANS: %s is the invalid e-mail address.
 #, php-format
 msgid "Unrecognized address type %s."
-msgstr ""
+msgstr "Tipus d'adreça no reconeguda %s."
 
 #. TRANS: Client error for an already confirmed email/jabber/sms address.
 msgid "That address has already been confirmed."
-msgstr ""
+msgstr "Ja s'ha confirmat l'adreça."
 
+#. TRANS: Client exception thrown when trying to register with too short a password.
 msgid "Password too short."
-msgstr ""
+msgstr "La contrasenya és massa curta."
 
+#. TRANS: Client exception thrown when trying to register without providing the same password twice.
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Les contrasenyes no coincideixen."
 
+#. TRANS: Form instructions. %s is the nickname of the to be registered user.
 #, php-format
 msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
 "form below to set your new password."
 msgstr ""
+"Heu confirmat l'adreça electrònica del vostre nou compte d'usuari %s. "
+"Utilitzeu el formulari a sota per definir una contrasenya nova."
 
+#. TRANS: Page title.
 msgid "Set a password"
 msgstr "Definiu una contrasenya"
 
-msgid "Confirm email"
+#. TRANS: Form legend.
+msgid "Confirm email address"
 msgstr "Confirmeu l'adreça electrònica"
 
+#. TRANS: Field label.
 msgid "New password"
 msgstr "Contrasenya nova"
 
+#. TRANS: Field title for password field.
 msgid "6 or more characters."
 msgstr "6 o més caràcters."
 
+#. TRANS: Field label for repeat password field.
+msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Confirma"
 
+#. TRANS: Field title for repeat password field.
 msgid "Same as password above."
 msgstr "La mateixa que la contrasenya de dalt."
 
+#. TRANS: Button text for completing registration by e-mail.
+msgctxt "BUTTON"
 msgid "Save"
 msgstr "Desa"

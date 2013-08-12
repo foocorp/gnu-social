@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class SubscriptionThrottlePlugin extends Plugin
 {
     public $subLimits = array(86400 => 100,
@@ -61,7 +60,6 @@ class SubscriptionThrottlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartSubscribe($user, $other)
     {
         foreach ($this->subLimits as $seconds => $limit) {
@@ -71,7 +69,8 @@ class SubscriptionThrottlePlugin extends Plugin
                 $subtime = strtotime($sub->created);
                 $now     = time();
                 if ($now - $subtime < $seconds) {
-                    throw new Exception(_m("Too many subscriptions. Take a break and try again later."));
+                    // TRANS: Exception thrown when subscribing too quickly.
+                    throw new Exception(_m('Too many subscriptions. Take a break and try again later.'));
                 }
             }
         }
@@ -82,22 +81,22 @@ class SubscriptionThrottlePlugin extends Plugin
     /**
      * Filter group joins to see if they're coming too fast.
      *
-     * @param Group $group The group being joined
-     * @param User  $user  The user joining
+     * @param Group   $group   The group being joined
+     * @param Profile $profile The profile joining
      *
      * @return boolean hook value
      */
-
-    function onStartJoinGroup($group, $user)
+    function onStartJoinGroup($group, $profile)
     {
         foreach ($this->groupLimits as $seconds => $limit) {
-            $mem = $this->_getNthMem($user, $limit);
+            $mem = $this->_getNthMem($profile, $limit);
             if (!empty($mem)) {
 
                 $jointime = strtotime($mem->created);
                 $now      = time();
                 if ($now - $jointime < $seconds) {
-                    throw new Exception(_m("Too many memberships. Take a break and try again later."));
+                    // TRANS: Exception thrown when joing groups too quickly.
+                    throw new Exception(_m('Too many memberships. Take a break and try again later.'));
                 }
             }
         }
@@ -113,7 +112,6 @@ class SubscriptionThrottlePlugin extends Plugin
      *
      * @return Subscription a subscription or null
      */
-
     private function _getNthSub($user, $n)
     {
         $sub = new Subscription();
@@ -132,17 +130,16 @@ class SubscriptionThrottlePlugin extends Plugin
     /**
      * Get the Nth most recent group membership for this user
      *
-     * @param User    $user The user to get memberships for
-     * @param integer $n    How far to count back
+     * @param Profile $profile The user to get memberships for
+     * @param integer $n       How far to count back
      *
      * @return Group_member a membership or null
      */
-
-    private function _getNthMem($user, $n)
+    private function _getNthMem($profile, $n)
     {
         $mem = new Group_member();
 
-        $mem->profile_id = $user->id;
+        $mem->profile_id = $profile->id;
         $mem->orderBy('created DESC');
         $mem->limit($n - 1, 1);
 
@@ -160,7 +157,6 @@ class SubscriptionThrottlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'SubscriptionThrottle',
@@ -168,8 +164,8 @@ class SubscriptionThrottlePlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:SubscriptionThrottle',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Configurable limits for subscriptions and group memberships.'));
         return true;
     }
 }
-

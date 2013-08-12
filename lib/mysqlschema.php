@@ -298,6 +298,16 @@ class MysqlSchema extends Schema
         return "{$tableName}_{$columnName}_idx";
     }
 
+    /**
+     * MySQL doesn't take 'DROP CONSTRAINT', need to treat primary keys as
+     * if they were indexes here, but can use 'PRIMARY KEY' special name.
+     *
+     * @param array $phrase
+     */
+    function appendAlterDropPrimary(array &$phrase)
+    {
+        $phrase[] = 'DROP PRIMARY KEY';
+    }
 
     /**
      * MySQL doesn't take 'DROP CONSTRAINT', need to treat unique keys as

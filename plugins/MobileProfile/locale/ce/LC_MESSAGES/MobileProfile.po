@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:07+0000\n"
-"Language-Team: Chechen <http://translatewiki.net/wiki/Portal:ce>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:13+0000\n"
+"Language-Team: Chechen <https://translatewiki.net/wiki/Portal:ce>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:27+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:36+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ce\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -24,54 +24,6 @@ msgstr ""
 #. TRANS: Client exception thrown when requesting a not supported media type.
 msgid "This page is not available in a media type you accept."
 msgstr "Агlо схьа ца гойту ишта тайпнара чун, ахьа лелош йолу."
-
-#. TRANS: Menu item in mobile profile to go to start page of site.
-msgid "Home"
-msgstr "Цlехьа"
-
-#. TRANS: Menu item in mobile profile to go to user account settings.
-msgid "Account"
-msgstr "Дlавазвалар"
-
-#. TRANS: Menu item in mobile profile to connect to other services.
-msgid "Connect"
-msgstr "Зlе тасар"
-
-#. TRANS: Menu item in mobile profile to manage site settings.
-msgid "Admin"
-msgstr "Адаманкуьйгалхо"
-
-msgid "Change site configuration"
-msgstr ""
-
-#. TRANS: Menu item in mobile profile to invite other people.
-msgid "Invite"
-msgstr "Схьакхайкха"
-
-#. TRANS: Menu item in mobile profile log the current user off.
-msgid "Logout"
-msgstr "Ара валар"
-
-#. TRANS: Menu item in mobile profile to register with the site.
-msgid "Register"
-msgstr "Дlавазвалар"
-
-#. TRANS: Menu item in mobile profile to log in.
-msgid "Login"
-msgstr "Вовзийта хьой"
-
-#. TRANS: Menu item in mobile profile to search the site.
-msgid "Search"
-msgstr "Лаха"
-
-#. TRANS: Field label in mobile profile to attach a file to a status.
-msgid "Attach"
-msgstr "Тlечlагlде"
-
-#. TRANS: Field title in mobile profile to attach a file to a status.
-#, fuzzy
-msgid "Attach a file."
-msgstr "Тlечlагlйе хlума"
 
 #. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
 msgid "Switch to desktop site layout."

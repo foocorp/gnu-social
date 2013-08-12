@@ -5,14 +5,6 @@
 There are a number of options for getting in contact with responsible
 people for %%site.name%%.
 
-Post a notice
--------------
-
-If you have a question about how to do something, just post a notice
-with your question. People here like to answer messages. Watch the
-[public timeline](%%action.public%%) for answers; they'll usually start
-with "@" plus your user name.
-
 Bugs
 ----
 
@@ -25,4 +17,10 @@ Email
 
 You can reach the responsible party for this server at [%%site.email%%](mailto:%%site.email%%).
 
+Post a notice
+-------------
+
+If you have a question about how to do something, just post a notice
+with your question. Watch your inbox [public timeline](%%action.top%%)
+for answers.
 

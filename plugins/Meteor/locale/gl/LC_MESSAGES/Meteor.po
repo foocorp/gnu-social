@@ -1,0 +1,37 @@
+# Translation of StatusNet - Meteor to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Meteor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:11+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:48:54+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-meteor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Exception. %1$s is the control server, %2$s is the control port.
+#, php-format
+msgid "Could not connect to %1$s on %2$s."
+msgstr "Non se puido conectar a %1$s en %2$s."
+
+#. TRANS: Exception. %s is the Meteor message that could not be added.
+#, php-format
+msgid "Error adding meteor message \"%s\"."
+msgstr "Erro ao engadir unha mensaxe de Meteor \"%s\"."
+
+#. TRANS: Plugin description.
+msgid "Plugin to do \"real time\" updates using Meteor."
+msgstr ""
+"Complemento para facer actualizacións \"en tempo real\" mediante Meteor."

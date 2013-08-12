@@ -115,21 +115,25 @@ class DirectoryPlugin extends Plugin
     {
 
         $m->connect(
-            'directory/users',
+            'directory/users/:filter',
             array('action' => 'userdirectory'),
-            array('filter' => 'all')
+            array('filter' => '[0-9a-zA-Z]|(0-9)')
         );
 
         $m->connect(
-            'directory/users/:filter',
-            array('action' => 'userdirectory'),
-            array('filter' => '([0-9a-zA-Z_]{1,64}|0-9)')
+            'directory/users',
+            array('action' => 'userdirectory')
         );
 
         $m->connect(
             'groups/:filter',
             array('action' => 'groupdirectory'),
-            array('filter' => '([0-9a-zA-Z_]{1,64}|0-9)')
+            array('filter' => '[0-9a-zA-Z]|(0-9)')
+        );
+
+        $m->connect(
+            'groups',
+            array('action' => 'groupdirectory')
         );
 
         return true;

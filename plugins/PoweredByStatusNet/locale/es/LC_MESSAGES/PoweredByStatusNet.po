@@ -1,6 +1,7 @@
-# Translation of StatusNet - PoweredByStatusNet to Spanish (Español)
-# Expored from translatewiki.net
+# Translation of StatusNet - PoweredByStatusNet to Spanish (español)
+# Exported from translatewiki.net
 #
+# Author: Armando-Martin
 # Author: Peter17
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,30 +10,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - PoweredByStatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:47+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:40+0000\n"
 "Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:51+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:26+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-poweredbystatusnet\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: %s is a URL to status.net with "StatusNet" (localised) as link text.
-#: PoweredByStatusNetPlugin.php:51
-#, php-format
-msgid "powered by %s"
-msgstr ""
+#. TRANS: Text output after site name.
+msgid "powered by <a href=\"http://status.net/\">StatusNet</a>"
+msgstr "Desarrollado por <a href=\"http://status.net/\">StatusNet</a>"
 
-#: PoweredByStatusNetPlugin.php:53
-msgid "StatusNet"
-msgstr "StatusNet"
-
-#: PoweredByStatusNetPlugin.php:66
+#. TRANS: Plugin description.
 msgid ""
 "Outputs \"powered by <a href=\"http://status.net/\">StatusNet</a>\" after "
 "site name."
 msgstr ""
+"Añade la frase \"desarrollado por <a href=\"http://status.net/\">StatusNet</"
+"a>\" tras el nombre del sitio."

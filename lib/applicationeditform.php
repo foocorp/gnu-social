@@ -350,10 +350,10 @@ class ApplicationEditForm extends Form
         // TRANS: Button label in the "Edit application" form.
         $this->out->submit('cancel', _m('BUTTON','Cancel'), 'submit form_action-primary',
                            // TRANS: Submit button title.
-                           'cancel', _('Cancel'));
+                           'cancel', _('Cancel application changes.'));
         // TRANS: Button label in the "Edit application" form.
         $this->out->submit('save', _m('BUTTON','Save'), 'submit form_action-secondary',
                            // TRANS: Submit button title.
-                           'save', _('Save'));
+                           'save', _('Save application changes.'));
     }
 }

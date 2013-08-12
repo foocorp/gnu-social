@@ -1,6 +1,7 @@
-# Translation of StatusNet - Geonames to Spanish (Español)
+# Translation of StatusNet - Geonames to Spanish (español)
 # Exported from translatewiki.net
 #
+# Author: Armando-Martin
 # Author: Translationista
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Geonames\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-09 18:34+0000\n"
-"PO-Revision-Date: 2011-04-09 18:37:13+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:40+0000\n"
 "Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-24 15:25:03+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r85732); Translate extension (2011-03-11)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:14+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-geonames\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -24,22 +25,24 @@ msgstr ""
 #. TRANS: Exception thrown when a geo names service is not used because of a recent timeout.
 msgid "Skipping due to recent web service timeout."
 msgstr ""
+"Omitiendo debido a recientes tiempos de espera excedidos por parte del "
+"servicio web."
 
 #. TRANS: Exception thrown when a geo names service does not return an expected response.
 #. TRANS: %s is an HTTP error code.
 #, php-format
 msgid "HTTP error code %s."
-msgstr ""
+msgstr "Código de error HTTP  %s ."
 
 #. TRANS: Exception thrown when a geo names service returns an empty body.
 msgid "Empty HTTP body in response."
-msgstr ""
+msgstr "Cuerpo de HTTP vacío en la respuesta."
 
 #. TRANS: Exception thrown when a geo names service return a specific error number and error text.
 #. TRANS: %1$s is an error code, %2$s is an error message.
 #, php-format
 msgid "Error #%1$s (\"%2$s\")."
-msgstr ""
+msgstr "Error #%1$s (\"%2$s\")."
 
 #. TRANS: Plugin description.
 msgid ""

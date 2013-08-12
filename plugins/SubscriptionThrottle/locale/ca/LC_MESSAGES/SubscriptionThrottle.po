@@ -1,4 +1,4 @@
-# Translation of StatusNet - SubscriptionThrottle to Catalan (Català)
+# Translation of StatusNet - SubscriptionThrottle to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Toniher
@@ -9,23 +9,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubscriptionThrottle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:31+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:12+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:27:35+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-subscriptionthrottle\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Exception thrown when subscribing too quickly.
 msgid "Too many subscriptions. Take a break and try again later."
 msgstr "Massa subscripcions. Prengueu alè i torneu-ho a provar més endavant."
 
+#. TRANS: Exception thrown when joing groups too quickly.
 msgid "Too many memberships. Take a break and try again later."
 msgstr "Masses pertinències. Prengueu alè i torneu-ho a provar més endavant."
 
+#. TRANS: Plugin description.
 msgid "Configurable limits for subscriptions and group memberships."
-msgstr ""
+msgstr "Configura els límits de subscripció i pertinència a grups."

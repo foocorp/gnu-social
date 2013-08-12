@@ -248,6 +248,21 @@ class WebInstaller extends Installer
                     </li>
                 </ul>
             </fieldset>
+            <fieldset id="settings_profile">
+                <legend>Site profile</legend>
+                <ul class="form_data">
+                    <li>
+                        <label for="site_profile">Type of site</label>
+                        <select id="site_profile" name="site_profile">
+                            <option value="private">Private</option>
+                            <option value="community">Community</option>
+                            <option value ="public">Public</option>
+                            <option value ="singleuser">Single User</option>
+                        </select>
+                        <p class="form_guide">Initial access settings for your site</p>
+                    </li>
+                </ul>
+            </fieldset>
             <input type="submit" name="submit" class="submit" value="Submit" />
         </fieldset>
     </form>
@@ -284,7 +299,7 @@ STR;
     /**
      * Read and validate input data.
      * May output side effects.
-     * 
+     *
      * @return boolean success
      */
     function prepare()
@@ -304,6 +319,8 @@ STR;
         $this->adminEmail   = $post->string('admin_email');
         $this->adminUpdates = $post->string('admin_updates');
 
+        $this->siteProfile = $post->string('site_profile');
+
         $this->server = $_SERVER['HTTP_HOST'];
         $this->path = substr(dirname($_SERVER['PHP_SELF']), 1);
 
@@ -315,12 +332,16 @@ STR;
         if (!$this->validateAdmin()) {
             $fail = true;
         }
-        
+
         if ($this->adminPass != $adminPass2) {
             $this->updateStatus("Administrator passwords do not match. Did you mistype?", true);
             $fail = true;
         }
-        
+
+        if (!$this->validateSiteProfile()) {
+            $fail = true;
+        }
+
         return !$fail;
     }
 
@@ -335,10 +356,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     <head>
         <title>Install StatusNet</title>
 	<link rel="shortcut icon" href="favicon.ico"/>
-        <link rel="stylesheet" type="text/css" href="theme/default/css/display.css" media="screen, projection, tv"/>
+        <link rel="stylesheet" type="text/css" href="theme/base/css/display.css" media="screen, projection, tv"/>
+        <link rel="stylesheet" type="text/css" href="theme/neo/css/display.css" media="screen, projection, tv"/>
         <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/base/css/ie.css" /><![endif]-->
         <!--[if lte IE 6]><link rel="stylesheet" type="text/css" theme/base/css/ie6.css" /><![endif]-->
-        <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/default/css/ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" theme/base/css/ie7.css" /><![endif]-->
         <script src="js/jquery.min.js"></script>
         <script src="js/install.js"></script>
     </head>
@@ -347,22 +369,34 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
             <div id="header">
                 <address id="site_contact" class="vcard">
                     <a class="url home bookmark" href=".">
-                        <img class="logo photo" src="theme/default/logo.png" alt="StatusNet"/>
+                        <img class="logo photo" src="theme/neo/logo.png" alt="StatusNet"/>
                         <span class="fn org">StatusNet</span>
                     </a>
                 </address>
+                <div id="site_nav_global_primary"></div>
             </div>
             <div id="core">
+             <div id="aside_primary_wrapper">
+              <div id="content_wrapper">
+               <div id="site_nav_local_views_wrapper">
+                <div id="site_nav_local_views"></div>
+
                 <div id="content">
                      <div id="content_inner">
                         <h1>Install StatusNet</h1>
-<?php 
+<?php
 $installer = new WebInstaller();
 $installer->main();
 ?>
                    </div>
                 </div>
+
+                <div id="aside_primary" class="aside"></div>
+               </div>
+              </div>
+             </div>
             </div>
+            <div id="footer"></div>
         </div>
     </body>
 </html>

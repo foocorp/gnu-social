@@ -1,9 +1,12 @@
 # Translation of StatusNet - FacebookBridge to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: ChrisiPK
 # Author: Fujnky
 # Author: Giftpflanze
+# Author: Kghbln
 # Author: MF-Warburg
+# Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -11,14 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:29+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:33+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -75,7 +78,7 @@ msgstr "Geheimnis"
 
 #. TRANS: Field title for Facebook secret key.
 msgid "Application secret."
-msgstr "Anwendungs-Geheimnis."
+msgstr "Geheimer Schlüssel der Anwendung"
 
 #. TRANS: Button text to save Facebook integration settings.
 #. TRANS: Submit button to save synchronisation settings.
@@ -116,6 +119,7 @@ msgstr "\"@\"-Antworten zu Facebook senden."
 msgid "Disconnect my account from Facebook"
 msgstr "Mein Konto von Facebook trennen"
 
+#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
 #, php-format
 msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please [set "
@@ -156,6 +160,9 @@ msgstr "Konnte die Verbindung zu Facebook nicht löschen."
 #. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
 msgid "You have disconnected from Facebook."
 msgstr "Du bist nun nicht mehr mit Facebook verbunden."
+
+msgid "Unable to authenticate you with Facebook."
+msgstr "Konnte dich nicht mit Facebook authentifizieren."
 
 #. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
 msgid ""

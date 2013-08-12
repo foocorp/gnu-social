@@ -29,7 +29,7 @@ require_once INSTALLDIR.'/classes/File_to_post.php';
 /**
  * Table Definition for file
  */
-class File extends Memcached_DataObject
+class File extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -51,25 +51,30 @@ class File extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function isProtected($url) {
-        return 'http://www.facebook.com/login.php' === $url;
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true),
+                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'destination URL after following redirections'),
+                'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
+                'size' => array('type' => 'int', 'description' => 'size of resource when available'),
+                'title' => array('type' => 'varchar', 'length' => 255, 'description' => 'title of resource when available'),
+                'date' => array('type' => 'int', 'description' => 'date of resource according to http query'),
+                'protected' => array('type' => 'int', 'description' => 'true when URL is private (needs login)'),
+                'filename' => array('type' => 'varchar', 'length' => 255, 'description' => 'if a local file, name of the file'),
+
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'file_url_key' => array('url'),
+            ),
+        );
     }
 
-    /**
-     * Get the attachments for a particlar notice.
-     *
-     * @param int $post_id
-     * @return array of File objects
-     */
-    static function getAttachments($post_id) {
-        $file = new File();
-        $query = "select file.* from file join file_to_post on (file_id = file.id) where post_id = " . $file->escape($post_id);
-        $file = Memcached_DataObject::cachedQuery('File', $query);
-        $att = array();
-        while ($file->fetch()) {
-            $att[] = clone($file);
-        }
-        return $att;
+    function isProtected($url) {
+        return 'http://www.facebook.com/login.php' === $url;
     }
 
     /**
@@ -80,14 +85,22 @@ class File extends Memcached_DataObject
      * @return File
      */
     function saveNew(array $redir_data, $given_url) {
-        $x = new File;
-        $x->url = $given_url;
-        if (!empty($redir_data['protected'])) $x->protected = $redir_data['protected'];
-        if (!empty($redir_data['title'])) $x->title = $redir_data['title'];
-        if (!empty($redir_data['type'])) $x->mimetype = $redir_data['type'];
-        if (!empty($redir_data['size'])) $x->size = intval($redir_data['size']);
-        if (isset($redir_data['time']) && $redir_data['time'] > 0) $x->date = intval($redir_data['time']);
-        $file_id = $x->insert();
+
+        // I don't know why we have to keep doing this but I'm adding this last check to avoid
+        // uniqueness bugs.
+
+        $x = File::staticGet('url', $given_url);
+        
+        if (empty($x)) {
+            $x = new File;
+            $x->url = $given_url;
+            if (!empty($redir_data['protected'])) $x->protected = $redir_data['protected'];
+            if (!empty($redir_data['title'])) $x->title = $redir_data['title'];
+            if (!empty($redir_data['type'])) $x->mimetype = $redir_data['type'];
+            if (!empty($redir_data['size'])) $x->size = intval($redir_data['size']);
+            if (isset($redir_data['time']) && $redir_data['time'] > 0) $x->date = intval($redir_data['time']);
+            $file_id = $x->insert();
+        }
 
         $x->saveOembed($redir_data, $given_url);
         return $x;
@@ -187,7 +200,7 @@ class File extends Memcached_DataObject
         }
 
         if (empty($x)) {
-            $x = File::staticGet($file_id);
+            $x = File::staticGet('id', $file_id);
             if (empty($x)) {
                 // @todo FIXME: This could possibly be a clearer message :)
                 // TRANS: Server exception thrown when... Robin thinks something is impossible!
@@ -204,13 +217,20 @@ class File extends Memcached_DataObject
     function isRespectsQuota($user,$fileSize) {
 
         if ($fileSize > common_config('attachments', 'file_quota')) {
+            // TRANS: Message used to be inserted as %2$s in  the text "No file may
+            // TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+            // TRANS: %1$d is the number of bytes of an uploaded file.
+            $fileSizeText = sprintf(_m('%1$d byte','%1$d bytes',$fileSize),$fileSize);
+
+            $fileQuota = common_config('attachments', 'file_quota');
             // TRANS: Message given if an upload is larger than the configured maximum.
-            // TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-            // TRANS: %1$s is used for plural.
-            return sprintf(_m('No file may be larger than %1$d byte and the file you sent was %2$d bytes. Try to upload a smaller version.',
-                              'No file may be larger than %1$d bytes and the file you sent was %2$d bytes. Try to upload a smaller version.',
-                              common_config('attachments', 'file_quota')),
-                           common_config('attachments', 'file_quota'), $fileSize);
+            // TRANS: %1$d (used for plural) is the byte limit for uploads,
+            // TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+            // TRANS: gettext support multiple plurals in the same message, unfortunately...
+            return sprintf(_m('No file may be larger than %1$d byte and the file you sent was %2$s. Try to upload a smaller version.',
+                              'No file may be larger than %1$d bytes and the file you sent was %2$s. Try to upload a smaller version.',
+                              $fileQuota),
+                           $fileQuota, $fileSizeText);
         }
 
         $query = "select sum(size) as total from file join file_to_post on file_to_post.file_id = file.id join notice on file_to_post.post_id = notice.id where profile_id = {$user->id} and file.url like '%/notice/%/file'";

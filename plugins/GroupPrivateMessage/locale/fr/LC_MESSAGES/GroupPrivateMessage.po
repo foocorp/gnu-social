@@ -1,9 +1,11 @@
-# Translation of StatusNet - GroupPrivateMessage to French (Français)
+# Translation of StatusNet - GroupPrivateMessage to French (français)
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Gomoko
 # Author: Iketsi
 # Author: Od1n
+# Author: Verdy p
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -11,14 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupPrivateMessage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:43+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:48+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:27:30+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:48:53+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -139,7 +141,7 @@ msgstr "Membre"
 
 #. TRANS: Dropdown option in group settings page for who can send private messages.
 msgid "Admin"
-msgstr "Admin"
+msgstr "Administrateur"
 
 #. TRANS: Dropdown title in group settings page for who can send private messages to the group.
 msgid "Who can send private messages to the group."
@@ -156,7 +158,7 @@ msgstr "Message"
 
 #. TRANS: Client exception thrown when a private group message has to be forced.
 msgid "Forced notice to private group message."
-msgstr ""
+msgstr "Avis forcé pour un message de groupe privé."
 
 #. TRANS: Indicator on the group page that the group is (essentially) private.
 msgid "Private"

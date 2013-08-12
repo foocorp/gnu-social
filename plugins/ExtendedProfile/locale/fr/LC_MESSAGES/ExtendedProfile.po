@@ -1,7 +1,8 @@
-# Translation of StatusNet - ExtendedProfile to French (Français)
+# Translation of StatusNet - ExtendedProfile to French (français)
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Crochet.david
 # Author: Iketsi
 # Author: Od1n
 # --
@@ -11,18 +12,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:24+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:31+0000\n"
+"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:50:06+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#. TRANS: Title for extended profile settings.
 msgid "Extended profile settings"
 msgstr "Paramètres de profil étendus"
 
@@ -33,6 +35,7 @@ msgstr ""
 "Vous pouvez mettre à jour les informations de votre profil pour qu’on en "
 "sache plus à votre sujet."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 "Un problème est survenu avec votre session. Merci d'essayer de nouveau."
@@ -41,6 +44,7 @@ msgstr ""
 msgid "Unexpected form submission."
 msgstr "Soumission de formulaire inattendue."
 
+#. TRANS: Success message after saving extended profile details.
 msgid "Details saved."
 msgstr "Détails enregistrés."
 
@@ -62,6 +66,7 @@ msgstr "Date invalide entrée pour \"%1$s\": %2$s."
 msgid "Invalid URL: %s."
 msgstr "URL invalide : %s."
 
+#. TRANS: Server error displayed when a field could not be saved in the database.
 msgid "Could not save profile details."
 msgstr "Impossible de sauvegarder les détails du profil."
 
@@ -115,17 +120,11 @@ msgstr "(%s)"
 msgid "Company"
 msgstr "Société"
 
-#. TRANS: Field label in experience area of extended profile (when did one start a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one start at a company).
-#. TRANS: Field label in education area of extended profile (when did one start an education).
-#. TRANS: Field label in education edit area of extended profile (when did one start an education).
+#. TRANS: Field label in extended profile (when did one start a position or education).
 msgid "Start"
 msgstr "Début"
 
-#. TRANS: Field label in experience area of extended profile (when did one end a position).
-#. TRANS: Field label in experience edit area of extended profile (when did one terminate at a company).
-#. TRANS: Field label in education area of extended profile (when did one end a education).
-#. TRANS: Field label in education edit area of extended profile (when did one end an education).
+#. TRANS: Field label in extended profile (when did one end a position or education).
 msgid "End"
 msgstr "Fin"
 
@@ -143,8 +142,7 @@ msgstr "Actuel"
 msgid "Institution"
 msgstr "Institution"
 
-#. TRANS: Field label in education area of extended profile.
-#. TRANS: Field label in education edit area of extended profile.
+#. TRANS: Field label in extended profile for specifying an academic degree.
 msgid "Degree"
 msgstr "Diplôme"
 
@@ -214,7 +212,7 @@ msgstr "Bio"
 
 #. TRANS: Field label for extended profile properties.
 msgid "Tags"
-msgstr ""
+msgstr "Balises"
 
 #. TRANS: Field label for extended profile properties.
 msgid "Contact"

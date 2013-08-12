@@ -1,4 +1,4 @@
-# Translation of StatusNet - AnonymousFave to Galician (Galego)
+# Translation of StatusNet - AnonymousFave to Galician (galego)
 # Exported from translatewiki.net
 #
 # Author: Toliño
@@ -9,34 +9,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AnonymousFave\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:37+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:36+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:56+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:09+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
-#, fuzzy, php-format
+#, php-format
 msgid "Could not update favorite tally for notice ID %d."
-msgstr "Non se puido eliminar o favorito."
+msgstr "Non se puido actualizar o favorito do aviso con ID %d."
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
-#, fuzzy, php-format
+#, php-format
 msgid "Could not create favorite tally for notice ID %d."
-msgstr "Non se puido crear o favorito."
+msgstr "Non se puido crear o favorito do aviso con ID %d."
 
 #. TRANS: Client error.
 msgid ""
 "Could not disfavor notice! Please make sure your browser has cookies enabled."
 msgstr ""
+"Non se puido eliminar a nota dos favoritos! Asegúrese de que o navegador ten "
+"as cookies habilitadas."
 
 #. TRANS: Client error.
 msgid "There was a problem with your session token. Try again, please."
@@ -56,21 +58,22 @@ msgstr "Engadir aos favoritos"
 
 #. TRANS: Label for tally for number of times a notice was favored.
 msgid "Favored"
-msgstr ""
+msgstr "Favorita"
 
 #. TRANS: Server exception.
-#, fuzzy
 msgid "Could not create anonymous user session."
-msgstr "Non se puido crear o favorito."
+msgstr "Non se puido crear a sesión de usuario anónimo."
 
 #. TRANS: Plugin description.
 msgid "Allow anonymous users to favorite notices."
-msgstr ""
+msgstr "Permitir aos usuarios anónimos marcar notas como favoritas."
 
 #. TRANS: Client error.
 msgid ""
 "Could not favor notice! Please make sure your browser has cookies enabled."
 msgstr ""
+"Non se puido engadir a nota aos favoritos! Asegúrese de que o navegador ten "
+"as cookies habilitadas."
 
 #. TRANS: Client error.
 msgid "This notice is already a favorite!"

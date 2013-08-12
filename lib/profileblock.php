@@ -61,6 +61,7 @@ abstract class ProfileBlock extends Widget
         $this->showName();
         $this->showLocation();
         $this->showHomepage();
+        $this->showOtherProfiles();
         $this->showDescription();
         $this->showTags();
     }
@@ -122,8 +123,41 @@ abstract class ProfileBlock extends Widget
 
     function showHomepage()
     {
+        $homepage = $this->homepage();
+
         if (!empty($homepage)) {
-            $this->out->element('a', 'profile_block_homepage', $homepage);
+            $this->out->element('a',
+                                array('href' => $homepage,
+                                      'rel' => 'me',
+                                      'class' => 'profile_block_homepage'),
+                                $homepage);
+        }
+    }
+
+    function showOtherProfiles()
+    {
+        $otherProfiles = $this->otherProfiles();
+
+        if (!empty($otherProfiles)) {
+
+            $this->out->elementStart('ul',
+                                     array('class' => 'profile_block_otherprofile_list'));
+
+            foreach ($otherProfiles as $otherProfile) {
+                $this->out->elementStart('li');
+                $this->out->elementStart('a',
+                                         array('href' => $otherProfile['href'],
+                                               'rel' => 'me',
+                                               'class' => 'profile_block_otherprofile',
+                                               'title' => $otherProfile['text']));
+                $this->out->element('img',
+                                    array('src' => $otherProfile['image'],
+                                          'class' => 'profile_block_otherprofile_icon'));
+                $this->out->elementEnd('a');
+                $this->out->elementEnd('li');
+            }
+
+            $this->out->elementEnd('ul');
         }
     }
 

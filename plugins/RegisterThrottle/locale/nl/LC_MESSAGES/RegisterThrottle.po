@@ -10,26 +10,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RegisterThrottle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:03+0000\n"
-"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:50+0000\n"
+"Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-09 19:01:00+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:00+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-registerthrottle\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Server exception thrown when no IP address can be found for a registation attempt.
 msgid "Cannot find IP address."
 msgstr "Het IP-adres kon niet gevonden worden."
 
+#. TRANS: Exception thrown when too many user have registered from one IP address within a given time frame.
 msgid "Too many registrations. Take a break and try again later."
 msgstr "Te veel registraties. Wacht even en probeer het later opnieuw."
 
+#. TRANS: Exception thrown when attempting to register from an IP address from which silenced users have registered.
 msgid "A banned user has registered from this address."
 msgstr "Er is een geblokkeerde gebruiker die vanaf dit adres is geregistreerd."
 
+#. TRANS: Plugin description.
 msgid "Throttles excessive registration from a single IP address."
 msgstr "Beperkt excessieve aantallen registraties vanaf één IP-adres."

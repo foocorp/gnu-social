@@ -181,13 +181,13 @@ class SalmonAction extends Action
     function handleTag()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m('This target does not understand tag events.'));
+        throw new ClientException(_m('This target does not understand list events.'));
     }
 
     function handleUntag()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m('This target does not understand untag events.'));
+        throw new ClientException(_m('This target does not understand unlist events.'));
     }
 
     /**

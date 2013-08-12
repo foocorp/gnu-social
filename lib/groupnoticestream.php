@@ -46,14 +46,48 @@ if (!defined('STATUSNET')) {
  */
 class GroupNoticeStream extends ScopingNoticeStream
 {
+    var $group;
+    var $userProfile;
+
     function __construct($group, $profile = -1)
     {
         if (is_int($profile) && $profile == -1) {
             $profile = Profile::current();
         }
+        $this->group = $group;
+        $this->userProfile = $profile;
+
         parent::__construct(new CachingNoticeStream(new RawGroupNoticeStream($group),
                                                     'user_group:notice_ids:' . $group->id),
                             $profile);
+    }
+
+    function getNoticeIds($offset, $limit, $since_id, $max_id)
+    {
+        if ($this->impossibleStream()) {
+            return array();
+        } else {
+            return parent::getNoticeIds($offset, $limit, $since_id, $max_id);
+        }
+    }
+
+    function getNotices($offset, $limit, $sinceId = null, $maxId = null)
+    {
+        if ($this->impossibleStream()) {
+            return new ArrayWrapper(array());
+        } else {
+            return parent::getNotices($offset, $limit, $sinceId, $maxId);
+        }
+    }
+
+    function impossibleStream() 
+    {
+        if ($this->group->force_scope &&
+            (empty($this->userProfile) || !$this->userProfile->isMember($this->group))) {
+            return true;
+        }
+
+        return false;
     }
 }
 

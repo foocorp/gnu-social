@@ -1,0 +1,86 @@
+# Translation of StatusNet - AnonymousFave to Arabic (العربية)
+# Exported from translatewiki.net
+#
+# Author: OsamaK
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AnonymousFave\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:35+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:49:09+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#, php-format
+msgid "Could not update favorite tally for notice ID %d."
+msgstr ""
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#, php-format
+msgid "Could not create favorite tally for notice ID %d."
+msgstr ""
+
+#. TRANS: Client error.
+msgid ""
+"Could not disfavor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+
+#. TRANS: Client error.
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Client error.
+msgid "This notice is not a favorite!"
+msgstr "هذا الإشعار ليس مفضلًا!"
+
+#. TRANS: Server error.
+msgid "Could not delete favorite."
+msgstr "تعذّر حذف المفضلة."
+
+#. TRANS: Title.
+msgid "Add to favorites"
+msgstr "أضف إلى المفضلات"
+
+#. TRANS: Label for tally for number of times a notice was favored.
+msgid "Favored"
+msgstr "مفضل"
+
+#. TRANS: Server exception.
+msgid "Could not create anonymous user session."
+msgstr ""
+
+#. TRANS: Plugin description.
+msgid "Allow anonymous users to favorite notices."
+msgstr "اسمح للمستخدمين المجهولين بتفضيل الإشعارات."
+
+#. TRANS: Client error.
+msgid ""
+"Could not favor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+
+#. TRANS: Client error.
+msgid "This notice is already a favorite!"
+msgstr "هذا الإشعار مفضل سابقا!"
+
+#. TRANS: Server error.
+msgid "Could not create favorite."
+msgstr "تعذّر إنشاء مفضلة."
+
+#. TRANS: Title.
+msgid "Disfavor favorite"
+msgstr "إلغاء التفضيل"

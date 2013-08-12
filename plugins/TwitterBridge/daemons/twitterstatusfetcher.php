@@ -136,7 +136,8 @@ class TwitterStatusFetcher extends ParallelizingDaemon
         // a new connection if there isn't one already
         $conn = &$flink->getDatabaseConnection();
 
-        $this->getTimeline($flink);
+        $this->getTimeline($flink, 'home_timeline');
+        $this->getTimeline($flink, 'mentions_timeline');
 
         $flink->last_friendsync = common_sql_now();
         $flink->update();
@@ -149,65 +150,68 @@ class TwitterStatusFetcher extends ParallelizingDaemon
         unset($_DB_DATAOBJECT['CONNECTIONS']);
     }
 
-    function getTimeline($flink)
+    function getTimeline($flink, $timelineUri = 'home_timeline')
     {
         if (empty($flink)) {
-            common_log(LOG_WARNING, $this->name() .
+            common_log(LOG_ERR, $this->name() .
                        " - Can't retrieve Foreign_link for foreign ID $fid");
             return;
         }
 
-        common_debug($this->name() . ' - Trying to get timeline for Twitter user ' .
-                     $flink->foreign_id);
+        common_log(LOG_DEBUG, $this->name() . ' - Trying to get ' . $timelineUri .
+                   ' timeline for Twitter user ' . $flink->foreign_id);
 
         $client = null;
 
         if (TwitterOAuthClient::isPackedToken($flink->credentials)) {
             $token = TwitterOAuthClient::unpackToken($flink->credentials);
             $client = new TwitterOAuthClient($token->key, $token->secret);
-            common_debug($this->name() . ' - Grabbing friends timeline with OAuth.');
+            common_log(LOG_DEBUG, $this->name() . ' - Grabbing ' . $timelineUri . ' timeline with OAuth.');
         } else {
-            common_debug("Skipping friends timeline for $flink->foreign_id since not OAuth.");
+            common_log(LOG_ERR, "Skipping " . $timelineUri . " timeline for " .
+                       $flink->foreign_id . " since not OAuth.");
         }
 
         $timeline = null;
 
-        $lastId = Twitter_synch_status::getLastId($flink->foreign_id, 'home_timeline');
+        $lastId = Twitter_synch_status::getLastId($flink->foreign_id, $timelineUri);
 
-        common_debug("Got lastId value '{$lastId}' for foreign id '{$flink->foreign_id}' and timeline 'home_timeline'");
+        common_log(LOG_DEBUG, "Got lastId value '" . $lastId . "' for foreign id '" .
+                     $flink->foreign_id . "' and timeline '" . $timelineUri. "'");
 
         try {
-            $timeline = $client->statusesHomeTimeline($lastId);
+            $timeline = $client->statusesTimeline($lastId, $timelineUri);
         } catch (Exception $e) {
-            common_log(LOG_WARNING, $this->name() .
-                       ' - Twitter client unable to get friends timeline for user ' .
-                       $flink->user_id . ' - code: ' .
-                       $e->getCode() . 'msg: ' . $e->getMessage());
+            common_log(LOG_ERR, $this->name() .
+                       ' - Unable to get ' . $timelineUri . ' timeline for user ' . $flink->user_id .
+                       ' - code: ' . $e->getCode() . 'msg: ' . $e->getMessage());
         }
 
         if (empty($timeline)) {
-            common_log(LOG_WARNING, $this->name() .  " - Empty timeline.");
+            common_log(LOG_WARNING, $this->name() .  " - Empty '" . $timelineUri . "' timeline.");
             return;
         }
 
-        common_debug(LOG_INFO, $this->name() . ' - Retrieved ' . sizeof($timeline) . ' statuses from Twitter.');
-
-        $importer = new TwitterImport();
-
-        // Reverse to preserve order
-
-        foreach (array_reverse($timeline) as $status) {
-            $notice = $importer->importStatus($status);
-
-            if (!empty($notice)) {
-                Inbox::insertNotice($flink->user_id, $notice->id);
-            }
-        }
+        common_log(LOG_INFO, $this->name() .
+                   ' - Retrieved ' . sizeof($timeline) . ' statuses from ' . $timelineUri . ' timeline' .
+                   ' - for user ' . $flink->user_id);
 
         if (!empty($timeline)) {
+            $qm = QueueManager::get();
+
+            // Reverse to preserve order
+            foreach (array_reverse($timeline) as $status) {
+                $data = array(
+                    'status' => $status,
+                    'for_user' => $flink->foreign_id,
+                );
+                $qm->enqueue($data, 'tweetin');
+            }
+
             $lastId = twitter_id($timeline[0]);
-            Twitter_synch_status::setLastId($flink->foreign_id, 'home_timeline', $lastId);
-            common_debug("Set lastId value '$lastId' for foreign id '{$flink->foreign_id}' and timeline 'home_timeline'");
+            Twitter_synch_status::setLastId($flink->foreign_id, $timelineUri, $lastId);
+            common_debug("Set lastId value '$lastId' for foreign id '{$flink->foreign_id}' and timeline '" .
+                         $timelineUri . "'");
         }
 
         // Okay, record the time we synced with Twitter for posterity
@@ -233,5 +237,5 @@ if (have_option('d') || have_option('debug')) {
     $debug = true;
 }
 
-$fetcher = new TwitterStatusFetcher($id, 60, 2, $debug);
+$fetcher = new TwitterStatusFetcher($id, POLL_INTERVAL, MAXCHILDREN, $debug);
 $fetcher->runOnce();

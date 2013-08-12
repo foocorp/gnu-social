@@ -42,6 +42,7 @@ class YammeradminpanelAction extends AdminPanelAction
      */
     function title()
     {
+        // TRANS: Page title for Yammer import administration panel.
         return _m('Yammer Import');
     }
 
@@ -52,6 +53,7 @@ class YammeradminpanelAction extends AdminPanelAction
      */
     function getInstructions()
     {
+        // TRANS: Instructions for Yammer import administration panel.
         return _m('This Yammer import tool is still undergoing testing, ' .
                   'and is incomplete in some areas. ' .
                 'Currently user subscriptions and group memberships are not ' .
@@ -99,6 +101,7 @@ class YammeradminpanelAction extends AdminPanelAction
 
                 $form = new YammerProgressForm($this, $this->runner);
             } else if ($this->subaction == 'pause-import') {
+                // TRANS: Error message about an import job being paused from the admin panel.
                 $this->runner->recordError(_m('Paused from admin panel.'));
                 $form = $this->statusForm();
             } else if ($this->subaction == 'continue-import') {
@@ -111,7 +114,8 @@ class YammeradminpanelAction extends AdminPanelAction
             } else if ($this->subaction == 'progress') {
                 $form = $this->statusForm();
             } else {
-                throw new ClientException('Invalid POST');
+                // TRANS: Client exception thrown when encountering an unhandled sub action.
+                throw new ClientException(_m('Invalid POST'));
             }
             return $this->showAjaxForm($form);
         }
@@ -132,6 +136,7 @@ class YammeradminpanelAction extends AdminPanelAction
     {
         $this->startHTML('text/xml;charset=utf-8');
         $this->elementStart('head');
+        // TRANS: Page title for Yammer import administration panel.
         $this->element('title', null, _m('Yammer import'));
         $this->elementEnd('head');
         $this->elementStart('body');

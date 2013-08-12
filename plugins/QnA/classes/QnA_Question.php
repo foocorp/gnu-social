@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      DB_DataObject
  */
-
 class QnA_Question extends Managed_DataObject
 {
     const OBJECT_TYPE = 'http://activityschema.org/object/question';
@@ -150,7 +149,9 @@ class QnA_Question extends Managed_DataObject
     {
         $profile = Profile::staticGet('id', $this->profile_id);
         if (empty($profile)) {
-            throw new Exception("No profile with ID {$this->profile_id}");
+            // TRANS: Exception trown when getting a profile for a non-existing ID.
+            // TRANS: %s is the provided profile ID.
+            throw new Exception(sprintf(_m('No profile with ID %s'),$this->profile_id));
         }
         return $profile;
     }
@@ -235,12 +236,15 @@ class QnA_Question extends Managed_DataObject
 
         if (!empty($cnt)) {
             $out->elementStart('span', 'answer-count');
-            $out->text(sprintf(_m('%s answers'), $cnt));
+            // TRANS: Number of given answers to a question.
+            // TRANS: %s is the number of given answers.
+            $out->text(sprintf(_m('%s answer','%s answers',$cnt), $cnt));
             $out->elementEnd('span');
         }
 
         if (!empty($question->closed)) {
             $out->elementStart('span', 'question-closed');
+            // TRANS: Notification that a question cannot be answered anymore because it is closed.
             $out->text(_m('This question is closed.'));
             $out->elementEnd('span');
         }
@@ -298,7 +302,6 @@ class QnA_Question extends Managed_DataObject
             $uriLen    = mb_strlen($q->uri);
             $targetLen = $max - ($uriLen + 15);
             $title = mb_substr($q->title, 0, $targetLen) . '…';
-
         }
 
         $content = $title . ' ' . $q->uri;

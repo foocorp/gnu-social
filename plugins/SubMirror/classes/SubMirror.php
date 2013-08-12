@@ -117,7 +117,7 @@ class SubMirror extends Memcached_DataObject
 
     function keyTypes()
     {
-        // @fixme keys
+        // @todo FIXME keys
         // need a sane key for reverse lookup too
         return array('subscriber' => 'K', 'subscribed' => 'K');
     }
@@ -157,7 +157,7 @@ class SubMirror extends Memcached_DataObject
     {
         $profile = Profile::staticGet('id', $this->subscriber);
         if (!$profile) {
-            common_log(LOG_ERROR, "SubMirror plugin skipping auto-repeat of notice $notice->id for missing user $profile->id");
+            common_log(LOG_ERR, "SubMirror plugin skipping auto-repeat of notice $notice->id for missing user $profile->id");
             return false;
         }
 

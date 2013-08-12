@@ -1,0 +1,117 @@
+# Translation of StatusNet - Activity to Polish (polski)
+# Exported from translatewiki.net
+#
+# Author: BeginaFelicysym
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Activity\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:30+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-30 18:15:05+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ( (n%10 >= 2 && n%10 <= 4 && "
+"(n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: Text for "joined list" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a group home URL, %4$s is a group name.
+#. TRANS: Text for "joined group" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a group URL, %4$s is a group name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> joined the group <a href=\"%3$s\">%4$s</a>."
+msgstr "<a href=\"%1$s\">%2$s</a> dołączył do grupy <a href=\"%3$s\">%4$s</a>."
+
+#. TRANS: Text for "started following" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a profile URL, %4$s is a profile name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> started following <a href=\"%3$s\">%4$s</a>."
+msgstr "<a href=\"%1$s\">%2$s</a> zaczął obserwować <a href=\"%3$s\">%4$s</a>."
+
+#. TRANS: Text for "started following" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is a profile name, %4$s is a profile URL.
+#, php-format
+msgid "%1$s (%2$s) started following %3$s (%4$s)."
+msgstr "%1$s (%2$s) zaczął obserwować %3$s (%4$s)."
+
+#. TRANS: Text for "stopped following" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a profile URL, %4$s is a profile name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> stopped following <a href=\"%3$s\">%4$s</a>."
+msgstr ""
+"<a href=\"%1$s\">%2$s</a> zakończył obserwację <a href=\"%3$s\">%4$s</a>."
+
+#. TRANS: Text for "stopped following" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is a profile name, %4$s is a profile URL.
+#, php-format
+msgid "%1$s (%2$s) stopped following %3$s (%4$s)."
+msgstr "%1$s (%2$s) zakończył obserwację %3$s (%4$s)."
+
+#. TRANS: Text for "liked" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a notice URL, %4$s is an author name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> liked <a href=\"%3$s\">%4$s's update</a>."
+msgstr ""
+"<a href=\"%1$s\">%2$s</a> polubił <a href=\"%3$s\">aktualizację użytkownika %"
+"4$s</a>."
+
+#. TRANS: Text for "liked" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is an author name, %4$s is a notice URL.
+#, php-format
+msgid "%1$s (%2$s) liked %3$s's status (%4$s)."
+msgstr "%1$s (%2$s) polubił status (%4$s) użytkownika %3$s."
+
+#. TRANS: Text for "stopped liking" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a notice URL, %4$s is an author name.
+#, php-format
+msgid ""
+"<a href=\"%1$s\">%2$s</a> stopped liking <a href=\"%3$s\">%4$s's update</a>."
+msgstr ""
+"<a href=\"%1$s\">%2$s</a> przestał lubić <a href=\"%3$s\">aktualizację "
+"użytkownika %4$s</a>."
+
+#. TRANS: Text for "stopped liking" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is an author name, %4$s is a notice URL.
+#, php-format
+msgid "%1$s (%2$s) stopped liking %3$s's status (%4$s)."
+msgstr "%1$s (%2$s) przestał lubić status (%4$s) użytkownika %3$s."
+
+#. TRANS: Text for "joined group" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is a group name, %4$s is a group URL.
+#, php-format
+msgid "%1$s (%2$s) joined the group %3$s (%4$s)."
+msgstr "%1$s (%2$s) dołączył do grupy %3$s (%4$s)."
+
+#. TRANS: Text for "left group" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a group URL, %4$s is a group name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> left the group <a href=\"%3$s\">%4$s</a>."
+msgstr "<a href=\"%1$s\">%2$s</a> opuścił grupę <a href=\"%3$s\">%4$s</a>."
+
+#. TRANS: Text for "left group" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is a group name, %4$s is a group URL.
+#, php-format
+msgid "%1$s (%2$s) left the group %3$s (%4$s)."
+msgstr "%1$s (%2$s) opuścił grupę %3$s (%4$s)."
+
+#. TRANS: Plugin description.
+msgid "Emits notices when social activities happen."
+msgstr "Wysyła ogłoszenia, gdy się dzieją się zdarzenia towarzyskie."

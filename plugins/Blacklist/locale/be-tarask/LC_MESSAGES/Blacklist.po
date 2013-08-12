@@ -1,4 +1,4 @@
-# Translation of StatusNet - Blacklist to Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+# Translation of StatusNet - Blacklist to Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
 # Exported from translatewiki.net
 #
 # Author: EugeneZelenko
@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blacklist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:46+0000\n"
-"Language-Team: Belarusian (Taraškievica orthography) <http://translatewiki."
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:48+0000\n"
+"Language-Team: Belarusian (Taraškievica orthography) <https://translatewiki."
 "net/wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:01+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-03-01 18:55:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-plugin-blacklist\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -85,7 +85,7 @@ msgstr "Карыстальнік з «%s» заблякаваны."
 
 #. TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
 #, fuzzy, php-format
-msgid "Notices from nickname \"%s\" disallowed."
+msgid "Notices from nickname \"%s\" are disallowed."
 msgstr "Паведамленьні ад карыстальніка «%s» забароненыя."
 
 #. TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.

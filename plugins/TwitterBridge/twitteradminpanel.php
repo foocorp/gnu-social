@@ -49,7 +49,8 @@ class TwitteradminpanelAction extends AdminPanelAction
      */
     function title()
     {
-        return _m('Twitter');
+        // TRANS: Page title for Twitter administration panel.
+        return _m('TITLE','Twitter');
     }
 
     /**
@@ -59,6 +60,7 @@ class TwitteradminpanelAction extends AdminPanelAction
      */
     function getInstructions()
     {
+        // TRANS: Instructions for Twitter bridge administration page.
         return _m('Twitter bridge settings');
     }
 
@@ -147,13 +149,15 @@ class TwitteradminpanelAction extends AdminPanelAction
 
         if (mb_strlen($values['twitter']['consumer_key']) > 255) {
             $this->clientError(
-                _m("Invalid consumer key. Max length is 255 characters.")
+                // TRANS: Client error displayed when a consumer key is invalid because it is too long.
+                _m('Invalid consumer key. Maximum length is 255 characters.')
             );
         }
 
         if (mb_strlen($values['twitter']['consumer_secret']) > 255) {
             $this->clientError(
-                _m("Invalid consumer secret. Max length is 255 characters.")
+                // TRANS: Client error displayed when a consumer secret is invalid because it is too long.
+                _m('Invalid consumer secret. Maximum length is 255 characters.')
             );
         }
     }
@@ -209,14 +213,17 @@ class TwitterAdminPanelForm extends AdminForm
             'fieldset',
             array('id' => 'settings_twitter-application')
         );
+        // TRANS: Fieldset legend for Twitter application settings.
         $this->out->element('legend', null, _m('Twitter application settings'));
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
         $this->input(
             'consumer_key',
+            // TRANS: Field label for Twitter assigned consumer key.
             _m('Consumer key'),
-            _m('Consumer key assigned by Twitter'),
+            // TRANS: Field title for Twitter assigned consumer key.
+            _m('The consumer key assigned by Twitter.'),
             'twitter'
         );
         $this->unli();
@@ -224,8 +231,10 @@ class TwitterAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'consumer_secret',
-             _m('Consumer secret'),
-            _m('Consumer secret assigned by Twitter'),
+            // TRANS: Field label for Twitter assigned consumer secret.
+            _m('Consumer secret'),
+            // TRANS: Field title for Twitter assigned consumer secret.
+            _m('The consumer secret assigned by Twitter.'),
             'twitter'
         );
         $this->unli();
@@ -235,15 +244,18 @@ class TwitterAdminPanelForm extends AdminForm
 
         if (!empty($globalConsumerKey) && !empty($globalConsumerSec)) {
             $this->li();
-            $this->out->element('p', 'form_guide', _m('Note: a global consumer key and secret are set.'));
+            // TRANS: Form guide displayed when two required fields have already been provided.
+            $this->out->element('p', 'form_guide', _m('Note: A global consumer key and secret are set.'));
             $this->unli();
         }
 
         $this->li();
         $this->input(
             'source',
-             _m('Integration source'),
-            _m('Name of your Twitter application'),
+            // TRANS: Field label for Twitter application name.
+            _m('Integration source'),
+            // TRANS: Field title for Twitter application name.
+            _m('The name of your Twitter application.'),
             'integration'
         );
         $this->unli();
@@ -255,6 +267,7 @@ class TwitterAdminPanelForm extends AdminForm
             'fieldset',
             array('id' => 'settings_twitter-options')
         );
+        // TRANS: Fieldset legend for Twitter integration options.
         $this->out->element('legend', null, _m('Options'));
 
         $this->out->elementStart('ul', 'form_data');
@@ -262,17 +275,21 @@ class TwitterAdminPanelForm extends AdminForm
         $this->li();
 
         $this->out->checkbox(
+            // TRANS: Checkbox label for global setting.
             'signin', _m('Enable "Sign-in with Twitter"'),
             (bool) $this->value('signin', 'twitter'),
-            _m('Allow users to login with their Twitter credentials')
+            // TRANS: Checkbox title.
+            _m('This allow users to login with their Twitter credentials.')
         );
         $this->unli();
 
         if (Event::handle('TwitterBridgeAdminImportControl')) {
             $this->li();
             $this->out->checkbox(
+                // TRANS: Checkbox label for global setting.
                 'enabled', _m('Enable Twitter import'),
                 (bool) $this->value('enabled', 'twitterimport'),
+                // TRANS: Checkbox title for global setting.
                 _m('Allow users to import their Twitter friends\' timelines. Requires daemons to be manually configured.')
             );
             $this->unli();
@@ -290,6 +307,9 @@ class TwitterAdminPanelForm extends AdminForm
      */
     function formActions()
     {
-        $this->out->submit('submit', _m('Save'), 'submit', null, _m('Save Twitter settings'));
+        // TRANS: Button text for saving the administrative Twitter bridge settings.
+        $this->out->submit('submit', _m('BUTTON','Save'), 'submit', null,
+        // TRANS: Button title for saving the administrative Twitter bridge settings.
+        _m('Save the Twitter bridge settings.'));
     }
 }

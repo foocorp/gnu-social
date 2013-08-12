@@ -107,9 +107,11 @@ class Schema
     {
         $td = $this->getTableDef($table);
 
-        foreach ($td->columns as $cd) {
-            if ($cd->name == $column) {
-                return $cd;
+        if (!empty($td) && !empty($td->columns)) {
+            foreach ($td->columns as $cd) {
+                if ($cd->name == $column) {
+                    return $cd;
+                }
             }
         }
 
@@ -560,9 +562,15 @@ class Schema
         $uniques = $this->diffArrays($old, $def, 'unique keys');
         $indexes = $this->diffArrays($old, $def, 'indexes');
         $foreign = $this->diffArrays($old, $def, 'foreign keys');
+        $fulltext = $this->diffArrays($old, $def, 'fulltext indexes');
 
         // Drop any obsolete or modified indexes ahead...
         foreach ($indexes['del'] + $indexes['mod'] as $indexName) {
+            $this->appendDropIndex($statements, $tableName, $indexName);
+        }
+
+        // Drop any obsolete or modified fulltext indexes ahead...
+        foreach ($fulltext['del'] + $fulltext['mod'] as $indexName) {
             $this->appendDropIndex($statements, $tableName, $indexName);
         }
 
@@ -579,6 +587,10 @@ class Schema
             $this->appendAlterDropUnique($phrase, $keyName);
         }
 
+        if (isset($old['primary key']) && (!isset($def['primary key']) || $def['primary key'] != $old['primary key'])) {
+            $this->appendAlterDropPrimary($phrase);
+        }
+
         foreach ($fields['add'] as $columnName) {
             $this->appendAlterAddColumn($phrase, $columnName,
                     $def['fields'][$columnName]);
@@ -592,6 +604,10 @@ class Schema
 
         foreach ($fields['del'] as $columnName) {
             $this->appendAlterDropColumn($phrase, $columnName);
+        }
+
+        if (isset($def['primary key']) && (!isset($old['primary key']) || $old['primary key'] != $def['primary key'])) {
+            $this->appendAlterAddPrimary($phrase, $def['primary key']);
         }
 
         foreach ($uniques['mod'] + $uniques['add'] as $keyName) {
@@ -612,6 +628,11 @@ class Schema
         // Now create any indexes...
         foreach ($indexes['mod'] + $indexes['add'] as $indexName) {
             $this->appendCreateIndex($statements, $tableName, $indexName, $def['indexes'][$indexName]);
+        }
+
+        foreach ($fulltext['mod'] + $fulltext['add'] as $indexName) {
+            $colDef = $def['fulltext indexes'][$indexName];
+            $this->appendCreateFulltextIndex($statements, $tableName, $indexName, $colDef);
         }
 
         return $statements;
@@ -711,6 +732,19 @@ class Schema
         $sql[] = 'ADD';
         $this->appendForeignKeyDef($sql, $keyName, $def);
         $phrase[] = implode(' ', $sql);
+    }
+
+    function appendAlterAddPrimary(array &$phrase, array $def)
+    {
+        $sql = array();
+        $sql[] = 'ADD';
+        $this->appendPrimaryKeyDef($sql, $def);
+        $phrase[] = implode(' ', $sql);
+    }
+
+    function appendAlterDropPrimary(array &$phrase)
+    {
+        $phrase[] = 'DROP CONSTRAINT PRIMARY KEY';
     }
 
     function appendAlterDropUnique(array &$phrase, $keyName)

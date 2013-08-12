@@ -36,8 +36,8 @@ class OStatusTagAction extends OStatusInitAction
         parent::prepare($args);
 
         if (common_logged_in()) {
-            // TRANS: Client error displayed when trying to tag a local object as if it is remote.
-            $this->clientError(_m('You can use the local tagging!'));
+            // TRANS: Client error displayed when trying to list a local object as if it is remote.
+            $this->clientError(_m('You can use the local list functionality!'));
             return false;
         }
 
@@ -51,9 +51,9 @@ class OStatusTagAction extends OStatusInitAction
 
     function showContent()
     {
-        // TRANS: Header for tagging a remote object. %s is a remote object's name.
-        $header = sprintf(_m('Tag %s'), $this->nickname);
-        // TRANS: Button text to tag a remote object.
+        // TRANS: Header for listing a remote object. %s is a remote object's name.
+        $header = sprintf(_m('List %s'), $this->nickname);
+        // TRANS: Button text to list a remote object.
         $submit = _m('BUTTON','Go');
         $this->elementStart('form', array('id' => 'form_ostatus_connect',
                                           'method' => 'post',
@@ -68,7 +68,7 @@ class OStatusTagAction extends OStatusInitAction
         // TRANS: Field label.
         $this->input('nickname', _m('User nickname'), $this->nickname,
                      // TRANS: Field title.
-                     _m('Nickname of the user you want to tag.'));
+                     _m('Nickname of the user you want to list.'));
         $this->elementEnd('li');
         $this->elementStart('li', array('id' => 'ostatus_profile'));
         // TRANS: Field label.

@@ -141,7 +141,7 @@ class MessageForm extends Form
         unset($mutual_users);
 
         if (count($mutual) == 1) {
-            // TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+            // TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
             $mutual[0] = _('No mutual subscribers.');
         }
 

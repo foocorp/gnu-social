@@ -1,0 +1,30 @@
+# Translation of StatusNet - FollowEveryone to Breton (brezhoneg)
+# Exported from translatewiki.net
+#
+# Author: Y-M D
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - FollowEveryone\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:37+0000\n"
+"Language-Team: Breton <https://translatewiki.net/wiki/Portal:br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:08+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: br\n"
+"X-Message-Group: #out-statusnet-plugin-followeveryone\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. TRANS: Checkbox label in form for profile settings.
+msgid "Follow everyone"
+msgstr "Heuliañ an holl"
+
+#. TRANS: Plugin description.
+msgid "New users follow everyone at registration and are followed in return."
+msgstr ""

@@ -172,11 +172,8 @@ class FavoritedAction extends Action
      */
     function showContent()
     {
-        $pop = new Popularity();
-        $pop->offset = ($this->page - 1) * NOTICES_PER_PAGE;
-        $pop->limit  = NOTICES_PER_PAGE;
-        $pop->expiry = 600;
-        $notice = $pop->getNotices();
+        $stream = new PopularNoticeStream(Profile::current());
+        $notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE+1);
 
         $nl = new NoticeList($notice, $this);
 

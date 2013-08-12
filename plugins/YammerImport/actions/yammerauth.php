@@ -33,7 +33,6 @@ if (!defined('STATUSNET')) {
 
 class YammerauthAction extends AdminPanelAction
 {
-
     /**
      * Show the Yammer admin panel form
      *
@@ -42,7 +41,7 @@ class YammerauthAction extends AdminPanelAction
     function prepare($args)
     {
         parent::prepare($args);
-        
+
         $this->verify_token = $this->trim('verify_token');
     }
 
@@ -55,7 +54,6 @@ class YammerauthAction extends AdminPanelAction
      *
      * @return void
      */
-
     function handle($args)
     {
         if ($this->verify_token) {
@@ -68,6 +66,7 @@ class YammerauthAction extends AdminPanelAction
 
         $this->startHTML('text/xml;charset=utf-8');
         $this->elementStart('head');
+        // TRANS: Page title for Yammer administration panel.
         $this->element('title', null, _m('Connect to Yammer'));
         $this->elementEnd('head');
         $this->elementStart('body');
@@ -76,4 +75,3 @@ class YammerauthAction extends AdminPanelAction
         $this->elementEnd('html');
     }
 }
-

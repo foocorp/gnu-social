@@ -1,4 +1,4 @@
-# Translation of StatusNet - SubMirror to Ukrainian (Українська)
+# Translation of StatusNet - SubMirror to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:30+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:12+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:33+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
@@ -33,12 +33,15 @@ msgstr "Помилкова URL-адреса стрічки: %s."
 msgid "Invalid profile for mirroring."
 msgstr "Помилковий профіль для віддзеркалення."
 
+#. TRANS: Client error displayed when trying to mirror a StatusNet group feed.
 msgid "Cannot mirror a StatusNet group at this time."
 msgstr "На даний момент не можу віддзеркалювати спільноту на сайті StatusNet."
 
+#. TRANS: Client error displayed when trying to use another method than POST.
 msgid "This action only accepts POST requests."
 msgstr "Ця дія приймає запити лише за формою POST."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Виникли певні проблеми з токеном сесії. Спробуйте знов, будь ласка."
 
@@ -46,27 +49,35 @@ msgstr "Виникли певні проблеми з токеном сесії.
 msgid "Not logged in."
 msgstr "Ви не увійшли до системи."
 
+#. TRANS: Page title for subscribed feed mirror.
 msgid "Subscribed"
 msgstr "Підписані"
 
+#. TRANS: Client error displayed when trying to edit an object that is not a feed mirror.
 msgid "Requested invalid profile to edit."
 msgstr "Було запитано невірний профіль для редагування."
 
+#. TRANS: Client error displayed when providing invalid input when editing a mirror.
 msgid "Bad form data."
 msgstr "Невірні дані форми."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
-msgid "Requested edit of missing mirror."
-msgstr "Запитано редагування зниклого дзеркала."
+msgid "The mirror request failed, because no result was retrieved."
+msgstr ""
 
+#. TRANS: Exception thrown when a feed provider could not be recognised.
+msgid "Internal form error: Unrecognized feed provider."
+msgstr ""
+
+#. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
 msgstr "Не можу підписатися до веб-стрічки."
 
-#. TRANS: Title.
+#. TRANS: Page title.
 msgid "Feed mirror settings"
 msgstr "Налаштування дзеркала веб-стрічки"
 
-#. TRANS: Instructions.
+#. TRANS: Page instructions.
 msgid ""
 "You can mirror updates from many RSS and Atom feeds into your StatusNet "
 "timeline!"
@@ -74,9 +85,11 @@ msgstr ""
 "Ви маєте можливість віддзеркалювати оновлення багатьох веб-стрічок формату "
 "RSS або Atom одразу до стрічки своїх дописів на сайті StatusNet!"
 
+#. TRANS: Title for page with form to add a mirror feed provider on.
 msgid "Provider add"
 msgstr "Додати провайдера"
 
+#. TRANS: Plugin description.
 msgid "Pull feeds into your timeline!"
 msgstr "Стягування веб-каналів до вашої стрічки повідомлень!"
 
@@ -89,50 +102,70 @@ msgstr "Дзеркала"
 msgid "Configure mirroring of posts from other feeds"
 msgstr "Конфігурація віддзеркалення дописів з інших веб-стрічок"
 
+#. TRANS: Label in profile statistics section, followed by a count.
 msgid "Mirrored feeds"
 msgstr "Дзеркала"
 
+#. TRANS: Field label.
 msgid "Web page or feed URL:"
 msgstr "Веб-сторінка або ж URL-адреса стрічки:"
 
+#. TRANS: Button text for adding a feed.
+#. TRANS: Button text for adding a Twitter feed mirror.
 msgctxt "BUTTON"
 msgid "Add feed"
 msgstr "Додати веб-стрічку"
 
+#. TRANS: Field label.
 msgid "Twitter username:"
 msgstr "Ім’я користувача Twitter:"
 
+#. TRANS: Field label (URL expectected).
 msgctxt "LABEL"
 msgid "Remote feed:"
 msgstr "Віддалена веб-стрічка:"
 
+#. TRANS: Field label.
 msgctxt "LABEL"
 msgid "Local user"
 msgstr "Тутешній користувач"
 
+#. TRANS: Fieldset legend for feed mirror setting.
 msgid "Mirroring style"
 msgstr "Форма віддзеркалення"
 
+#. TRANS: Feed mirror style (radio button option).
+#, fuzzy
 msgid ""
-"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+"Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
 "Повторення: посилання до оригінального допису користувача (щось на зразок «RT "
 "@pupkin»)"
 
+#. TRANS: Feed mirror style (radio button option).
 msgid "Repost the content under my account"
 msgstr "Повторення змісту під моїм акаунтом"
 
+#. TRANS: Button text to save feed mirror settings.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зберегти"
 
+#. TRANS: Button text to stop mirroring a feed.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Stop mirroring"
 msgstr "Зупинити віддзеркалення"
 
+#. TRANS: Name for possible feed provider.
 msgid "Twitter"
 msgstr "Twitter"
 
+#. TRANS: Name for possible feed provider.
 msgid "RSS or Atom feed"
 msgstr "Стрічка у форматі RSS або Atom"
 
+#. TRANS: Heading for feed mirroring selection form.
 msgid "Select a feed provider"
 msgstr "Виберіть канал постачальника"

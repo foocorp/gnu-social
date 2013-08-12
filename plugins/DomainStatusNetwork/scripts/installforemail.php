@@ -39,39 +39,24 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 $email = $args[0];
 
-$domain = DomainStatusNetworkPlugin::toDomain($email);
+$sendWelcome = have_option('w', 'welcome');
 
-$sn = DomainStatusNetworkPlugin::siteForDomain($domain);
-
-if (empty($sn)) {
-    $installer = new DomainStatusNetworkInstaller($domain);
-
-    $installer->verbose = have_option('v', 'verbose');
-
-    // Do the thing
-    $installer->main();
-
-    $sn = $installer->getStatusNetwork();
-
-    $config = $installer->getConfig();
-
-    Status_network::$wildcard = $config['WILDCARD'];
+if ($sendWelcome && have_option('t', 'template')) {
+    $template = get_option_value('t', 'template');
 }
 
-StatusNet::switchSite($sn->nickname);
+try {
 
-$confirm = EmailRegistrationPlugin::registerEmail($email);
+    $confirm = DomainStatusNetworkPlugin::registerEmail($email);
 
-if (have_option('w', 'welcome')) {
-    if (have_option('t', 'template')) {
-        // use the provided template
-        EmailRegistrationPlugin::sendConfirmEmail($confirm, get_option_value('t', 'template'));
-    } else {
-        // use the default template
-        EmailRegistrationPlugin::sendConfirmEmail($confirm);
+    if ($sendWelcome) {
+        EmailRegistrationPlugin::sendConfirmEmail($confirm, $template);
     }
+
+    $confirmUrl = common_local_url('register', array('code' => $confirm->code));
+
+    print $confirmUrl."\n";
+
+} catch (Exception $e) {
+    print "ERROR: " . $e->getMessage() . "\n";
 }
-
-$confirmUrl = common_local_url('register', array('code' => $confirm->code));
-
-print $confirmUrl."\n";

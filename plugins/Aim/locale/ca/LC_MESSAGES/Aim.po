@@ -1,7 +1,9 @@
-# Translation of StatusNet - Aim to Catalan (Català)
+# Translation of StatusNet - Aim to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Dvdgmz
+# Author: Gemmaa
+# Author: Toniher
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,25 +11,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Aim\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:35+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:33+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:55+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:18:38+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-aim\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: No idea what the use case for this message is.
 msgid "Send me a message to post a notice"
-msgstr ""
+msgstr "Envia'm un missatge per publicar un avís"
 
 #. TRANS: Display name.
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. TRANS: Exception thrown in AIM plugin when user has not been specified.
 msgid "Must specify a user."
@@ -41,3 +43,5 @@ msgstr "Has d'especificar una contrassenya"
 msgid ""
 "The AIM plugin allows users to send and receive notices over the AIM network."
 msgstr ""
+"El connector XMPP permet als usuaris enviar i rebre avisos des de la xarxa "
+"XMPP/Jabber."

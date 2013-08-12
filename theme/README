@@ -1,41 +1,8 @@
-/** Howto: create a StatusNet theme
- *
- * @package   StatusNet
- * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2010 StatusNet, Inc.
- * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 unported
- * @link      http://status.net/
- */
+* To use a theme other than neo, add this to config.php:
+$config['site']['theme'] = 'yourthemename';
 
-== Location of key paths and files ==
-<pre><nowiki>
-base/css/
-base/css/display.css                #layout, typography rules
-base/images/                        #common icons, illustrations
-base/images/icons/icons-01.png      #main icons file (combined into a single file)
+* To use/import the base theme, add this to your theme.ini file:
+include=base
 
-default/css/
-default/css/display.css             #imports the base stylesheet for layout and adds background images and colour rules
-default/logo.png                    #default site logo for this theme
-default/mobilelogo.png              #default logo for the mobile output
-default/default-avatar-mini.png     #24x24 default avatar for minilists
-default/default-avatar-stream.png   #48x48 default avatar for notice timelines
-default/default-avatar-profile.png  #96x96 default avatar for the profile page
-</nowiki></pre>
-
-== How to create your own theme ==
-
-You probably want to do one of the following:
-
-* If you just want to change the text, link, background, content, sidebar colours, background image:
-** Do this from the Admin->Design settings (recommended!). You could also create a directory and a file structure like the default theme, search and replace with your own values. This is more work, but, you can do this if you plan to make additional *minimal* changes.
-
-* If you want to change the background images and colours:
-# Create a directory and a file structure like the default theme.
-# Have your stylesheet import base/css/display.css and add your own styles below. It is okay to add *minimal* changes here.
-
-* If you want to create a different layout, typography, background images and colours:
-** Create your own theme directory (base or default) with stylesheets and images like.
-
-Finally, enable your theme by selecting it from the Admin->Design interface. You can set site's logo from here as well.
-
+* To include an external CSS resource (e.g. for a webfont), add this to the top of your theme.ini file:
+external[]="yourexternalURL"

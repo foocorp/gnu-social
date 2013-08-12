@@ -1,0 +1,269 @@
+# Translation of StatusNet - Bookmark to Spanish (español)
+# Exported from translatewiki.net
+#
+# Author: Erchache2000
+# Author: Fitoschido
+# Author: Od1n
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Bookmark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:56+0000\n"
+"Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-10-10 14:11:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: es\n"
+"X-Message-Group: #out-statusnet-plugin-bookmark\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception thrown when a bookmark in an import file is incorrectly formatted.
+msgid "No <A> tag in a <DT>."
+msgstr "No hay etiqueta <A> en un <DT>."
+
+#. TRANS: Client exception thrown when a bookmark in an import file is private.
+msgid "Skipping private bookmark."
+msgstr "Se omitirá el marcador privado."
+
+#. TRANS: Client exception thrown when referring to a non-existing bookmark.
+msgid "No such bookmark."
+msgstr "No hay tal marcador."
+
+#. TRANS: Title for bookmark.
+#. TRANS: %1$s is a user nickname, %2$s is a bookmark title.
+#, php-format
+msgid "%1$s's bookmark for \"%2$s\""
+msgstr "Marcador de %1$s para \" %2$s \""
+
+#. TRANS: Plugin description.
+msgid "Simple extension for supporting bookmarks."
+msgstr "Extensión simple para soporte de marcadores."
+
+#. TRANS: Link text in proile leading to import form.
+#. TRANS: Title for page to import del.icio.us bookmark backups on.
+msgid "Import del.icio.us bookmarks"
+msgstr "Importar favoritos de del.icio.us"
+
+#. TRANS: Client exception thrown when a bookmark is formatted incorrectly.
+msgid "Expected exactly 1 link rel=related in a Bookmark."
+msgstr "Se espera exáctamente 1 link rel=related en el marcador."
+
+#. TRANS: Server exception thrown when a bookmark has multiple attachments.
+msgid "Bookmark notice with the wrong number of attachments."
+msgstr "Aviso de marcardor con un número incorrecto de datos adjuntos."
+
+#. TRANS: Application title.
+msgctxt "TITLE"
+msgid "Bookmark"
+msgstr "Marcador"
+
+#. TRANS: Title for mini-posting window loaded from bookmarklet.
+#. TRANS: %s is the StatusNet site name.
+#, php-format
+msgid "Bookmark on %s"
+msgstr "Marcador en %s"
+
+#. TRANS: Client exception thrown when trying to save a new bookmark that already exists.
+msgid "Bookmark already exists."
+msgstr "Ya existe el marcador."
+
+#. TRANS: Bookmark content.
+#. TRANS: %1$s is a title, %2$s is a short URL, %3$s is the bookmark description,
+#. TRANS: %4$s is space separated list of hash tags.
+#, php-format
+msgid "\"%1$s\" %2$s %3$s %4$s"
+msgstr "\"%1$s\" %2$s %3$s %4$s"
+
+#. TRANS: Rendered bookmark content.
+#. TRANS: %1$s is a URL, %2$s the bookmark title, %3$s is the bookmark description,
+#. TRANS: %4$s is space separated list of hash tags.
+#, php-format
+msgid ""
+"<span class=\"xfolkentry\"><a class=\"taggedlink\" href=\"%1$s\">%2$s</a> "
+"<span class=\"description\">%3$s</span> <span class=\"meta\">%4$s</span></"
+"span>"
+msgstr ""
+"<span class=\"xfolkentry\"><a class=\"taggedlink\" href=\"%1$s\">%2$s</a> "
+"<span class=\"description\">%3$s</span> <span class=\"meta\">%4$s</span></"
+"span>"
+
+#. TRANS: Field label on form for adding a new bookmark.
+msgctxt "LABEL"
+msgid "URL"
+msgstr "URL"
+
+#. TRANS: Button text for action to save a new bookmark.
+msgctxt "BUTTON"
+msgid "Add"
+msgstr "Añadir"
+
+#. TRANS: Client exception thrown when an unknown URL is provided.
+msgid "Unknown URL."
+msgstr "URL desconocida."
+
+#. TRANS: Title of notice stream of notices with a given attachment (first page).
+#. TRANS: %s is the URL.
+#, php-format
+msgid "Notices linking to %s"
+msgstr "Mensajes enlazados a %s"
+
+#. TRANS: Title of notice stream of notices with a given attachment (all but first page).
+#. TRANS: %1$s is the URL, %2$s is the page number.
+#, php-format
+msgid "Notices linking to %1$s, page %2$d"
+msgstr "Mensajes enlazados a %1$s, página %2$d"
+
+#. TRANS: Client exception thrown when trying to import bookmarks without being logged in.
+msgid "Only logged-in users can import del.icio.us backups."
+msgstr ""
+"Sólo usuarios registrados pueden importar copias de seguridad de del.icio.us."
+
+#. TRANS: Client exception thrown when trying to import bookmarks without having the rights to do so.
+msgid "You may not restore your account."
+msgstr "No se puede restaurar tu cuenta."
+
+#. TRANS: Client exception thrown when trying to import bookmarks and upload fails.
+#. TRANS: Client exception thrown when a file upload has failed.
+msgid "No uploaded file."
+msgstr "Ningún archivo cargado."
+
+#. TRANS: Client exception thrown when an uploaded file is too large.
+msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini."
+msgstr ""
+"El archivo subido sobrepasa la directiva upload_max_filesize en php.ini"
+
+#. TRANS: Client exception thrown when an uploaded file is too large.
+msgid ""
+"The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
+"the HTML form."
+msgstr ""
+"El archivo subido sobrepasa la directiva MAX_FILE_SIZE que se especificó en "
+"el formulario HTML."
+
+#. TRANS: Client exception thrown when a file was only partially uploaded.
+msgid "The uploaded file was only partially uploaded."
+msgstr "El archivo subido sólo fue parcialmente subido."
+
+#. TRANS: Client exception thrown when a temporary folder is not present.
+msgid "Missing a temporary folder."
+msgstr "Falta una carpeta temporal."
+
+#. TRANS: Client exception thrown when writing to disk is not possible.
+msgid "Failed to write file to disk."
+msgstr "No se pudo escribir el archivo en el disco."
+
+#. TRANS: Client exception thrown when a file upload has been stopped.
+msgid "File upload stopped by extension."
+msgstr "La subida de archivos se detuvo por una extensión."
+
+#. TRANS: Client exception thrown when a file upload operation has failed.
+msgid "System error uploading file."
+msgstr "Error del sistema al subir el archivo"
+
+#. TRANS: Server exception thrown when a file upload cannot be found.
+#. TRANS: %s is the file that could not be found.
+#. TRANS: Exception thrown when a file upload cannot be found.
+#. TRANS: %s is the file that could not be found.
+#, php-format
+msgid "No such file \"%s\"."
+msgstr "No hay tal archivo \" %s \"."
+
+#. TRANS: Server exception thrown when a file upload is incorrect.
+#. TRANS: %s is the irregular file.
+#. TRANS: Exception thrown when a file upload is incorrect.
+#. TRANS: %s is the irregular file.
+#, php-format
+msgid "Not a regular file: \"%s\"."
+msgstr "No es un archivo regular: \" %s \"."
+
+#. TRANS: Server exception thrown when a file upload is not readable.
+#. TRANS: %s is the file that could not be read.
+#. TRANS: Exception thrown when a file upload is not readable.
+#. TRANS: %s is the file that could not be read.
+#, php-format
+msgid "File \"%s\" not readable."
+msgstr "Archivo \" %s \" no legible."
+
+#. TRANS: Success message after importing bookmarks.
+msgid ""
+"Bookmarks have been imported. Your bookmarks should now appear in search and "
+"your profile page."
+msgstr ""
+"Marcadores han sido importados. Tus marcadores deben aparecer ahora en la "
+"búsqueda y la página de perfil."
+
+#. TRANS: Busy message for importing bookmarks.
+msgid "Bookmarks are being imported. Please wait a few minutes for results."
+msgstr ""
+"Los marcadores se están importando. Por favor, espere unos minutos para "
+"obtener los resultados."
+
+#. TRANS: Form instructions for importing bookmarks.
+msgid "You can upload a backed-up delicious.com bookmarks file."
+msgstr ""
+"Puede cargar una copia de seguridad del archivo de marcadores de delicious."
+"com."
+
+#. TRANS: Button text on form to import bookmarks.
+msgctxt "BUTTON"
+msgid "Upload"
+msgstr "Subir"
+
+#. TRANS: Button title on form to import bookmarks.
+msgid "Upload the file."
+msgstr "Subir este archivo"
+
+#. TRANS: Field label on form for adding a new bookmark.
+msgctxt "LABEL"
+msgid "Title"
+msgstr "Título"
+
+#. TRANS: Field label on form for adding a new bookmark.
+msgctxt "LABEL"
+msgid "Notes"
+msgstr "Notas"
+
+#. TRANS: Field label on form for adding a new bookmark.
+msgctxt "LABEL"
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. TRANS: Field title on form for adding a new bookmark.
+msgid "Comma- or space-separated list of tags."
+msgstr "Lista de etiquetas, separada por comas o espacio."
+
+#. TRANS: Button text for action to save a new bookmark.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Guardar"
+
+#. TRANS: Title for action to create a new bookmark.
+msgid "New bookmark"
+msgstr "Marcador nuevo"
+
+#. TRANS: Client exception thrown when trying to create a new bookmark while not logged in.
+msgid "Must be logged in to post a bookmark."
+msgstr "Debe haber iniciado sesión publicar un marcador."
+
+#. TRANS: Client exception thrown when trying to create a new bookmark without a title.
+msgid "Bookmark must have a title."
+msgstr "Marcador debe tener un título."
+
+#. TRANS: Client exception thrown when trying to create a new bookmark without a URL.
+msgid "Bookmark must have an URL."
+msgstr "Marcador debe tener una dirección URL."
+
+#. TRANS: Page title after posting a bookmark.
+msgid "Bookmark posted"
+msgstr "Marcador publicado"
+
+#. TRANS: %s is the filename that contains a backup for a user.
+#, php-format
+msgid "Getting backup from file \"%s\"."
+msgstr "Obtener copia de seguridad del archivo \" %s \"."

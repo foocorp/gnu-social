@@ -117,12 +117,14 @@ class TwitterauthorizationAction extends Action
             $token = $this->trimmed('token');
 
             if (!$token || $token != common_session_token()) {
+                // TRANS: Client error displayed when the session token does not match or is not given.
                 $this->showForm(_m('There was a problem with your session token. Try again, please.'));
                 return;
             }
 
             if ($this->arg('create')) {
                 if (!$this->boolean('license')) {
+                    // TRANS: Form validation error displayed when the checkbox to agree to the license has not been checked.
                     $this->showForm(_m('You cannot register if you do not agree to the license.'),
                                     $this->trimmed('newname'));
                     return;
@@ -132,6 +134,7 @@ class TwitterauthorizationAction extends Action
                 $this->connectNewUser();
             } else {
                 common_debug('Twitter bridge - ' . print_r($this->args, true));
+                // TRANS: Form validation error displayed when an unhandled error occurs.
                 $this->showForm(_m('Something weird happened.'),
                                 $this->trimmed('newname'));
             }
@@ -157,7 +160,6 @@ class TwitterauthorizationAction extends Action
     function authorizeRequestToken()
     {
         try {
-
             // Get a new request token and authorize it
 
             $client  = new TwitterOAuthClient();
@@ -169,7 +171,6 @@ class TwitterauthorizationAction extends Action
             $_SESSION['twitter_request_token_secret'] = $req_tok->secret;
 
             $auth_link = $client->getAuthorizeLink($req_tok, $this->signin);
-
         } catch (OAuthClientException $e) {
             $msg = sprintf(
                 'OAuth client error - code: %1s, msg: %2s',
@@ -178,6 +179,7 @@ class TwitterauthorizationAction extends Action
             );
             common_log(LOG_INFO, 'Twitter bridge - ' . $msg);
             $this->serverError(
+                // TRANS: Server error displayed when linking to a Twitter account fails.
                 _m('Could not link your Twitter account.')
             );
         }
@@ -198,7 +200,8 @@ class TwitterauthorizationAction extends Action
 
         if ($_SESSION['twitter_request_token'] != $this->oauth_token) {
             $this->serverError(
-                _m('Couldn\'t link your Twitter account: oauth_token mismatch.')
+                // TRANS: Server error displayed when linking to a Twitter account fails because of an incorrect oauth_token.
+                _m('Could not link your Twitter account: oauth_token mismatch.')
             );
         }
 
@@ -226,7 +229,8 @@ class TwitterauthorizationAction extends Action
             );
             common_log(LOG_INFO, 'Twitter bridge - ' . $msg);
             $this->serverError(
-                _m('Couldn\'t link your Twitter account.')
+                // TRANS: Server error displayed when linking to a Twitter account fails.
+                _m('Could not link your Twitter account.')
             );
         }
 
@@ -297,7 +301,8 @@ class TwitterauthorizationAction extends Action
 
         if (empty($flink_id)) {
             common_log_db_error($flink, 'INSERT', __FILE__);
-            $this->serverError(_m('Couldn\'t link your Twitter account.'));
+            // TRANS: Server error displayed when linking to a Twitter account fails.
+            $this->serverError(_m('Could not link your Twitter account.'));
         }
 
         return $flink_id;
@@ -309,12 +314,14 @@ class TwitterauthorizationAction extends Action
             $this->element('div', array('class' => 'error'), $this->error);
         } else {
             $this->element('div', 'instructions',
-                           sprintf(_m('This is the first time you\'ve logged into %s so we must connect your Twitter account to a local account. You can either create a new account, or connect with your existing account, if you have one.'), common_config('site', 'name')));
+                           // TRANS: Page instruction. %s is the StatusNet sitename.
+                           sprintf(_m('This is the first time you have logged into %s so we must connect your Twitter account to a local account. You can either create a new account, or connect with your existing account, if you have one.'), common_config('site', 'name')));
         }
     }
 
     function title()
     {
+        // TRANS: Page title.
         return _m('Twitter Account Setup');
     }
 
@@ -348,7 +355,77 @@ class TwitterauthorizationAction extends Action
                                           'class' => 'form_settings',
                                           'action' => common_local_url('twitterauthorization')));
         $this->elementStart('fieldset', array('id' => 'settings_twitter_connect_options'));
+        // TRANS: Fieldset legend.
         $this->element('legend', null, _m('Connection options'));
+
+        $this->hidden('access_token_key', $this->access_token->key);
+        $this->hidden('access_token_secret', $this->access_token->secret);
+        $this->hidden('twuid', $this->twuid);
+        $this->hidden('tw_fields_screen_name', $this->tw_fields['screen_name']);
+        $this->hidden('tw_fields_name', $this->tw_fields['fullname']);
+        $this->hidden('token', common_session_token());
+
+        // Don't allow new account creation if site is flagged as invite only
+	if (common_config('site', 'inviteonly') == false) {
+            $this->elementStart('fieldset');
+            $this->element('legend', null,
+                           // TRANS: Fieldset legend.
+                           _m('Create new account'));
+            $this->element('p', null,
+                           // TRANS: Sub form introduction text.
+                          _m('Create a new user with this nickname.'));
+            $this->elementStart('ul', 'form_data');
+
+            // Hook point for captcha etc
+            Event::handle('StartRegistrationFormData', array($this));
+
+            $this->elementStart('li');
+            // TRANS: Field label.
+            $this->input('newname', _m('New nickname'),
+                         ($this->username) ? $this->username : '',
+                         // TRANS: Field title for nickname field.
+                         _m('1-64 lowercase letters or numbers, no punctuation or spaces.'));
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            // TRANS: Field label.
+            $this->input('email', _m('LABEL','Email'), $this->getEmail(),
+                         // TRANS: Field title for e-mail address field.
+                         _m('Used only for updates, announcements, '.
+                           'and password recovery'));
+            $this->elementEnd('li');
+
+            // Hook point for captcha etc
+            Event::handle('EndRegistrationFormData', array($this));
+
+            $this->elementEnd('ul');
+            // TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
+            $this->submit('create', _m('BUTTON','Create'));
+            $this->elementEnd('fieldset');
+        }
+
+        $this->elementStart('fieldset');
+        $this->element('legend', null,
+                       // TRANS: Fieldset legend.
+                       _m('Connect existing account'));
+        $this->element('p', null,
+                       // TRANS: Sub form introduction text.
+                       _m('If you already have an account, login with your username and password to connect it to your Twitter account.'));
+        $this->elementStart('ul', 'form_data');
+        $this->elementStart('li');
+        // TRANS: Field label.
+        $this->input('nickname', _m('Existing nickname'));
+        $this->elementEnd('li');
+        $this->elementStart('li');
+        // TRANS: Field label.
+        $this->password('password', _m('Password'));
+        $this->elementEnd('li');
+        $this->elementEnd('ul');
+        $this->elementEnd('fieldset');
+
+        $this->elementStart('fieldset');
+        $this->element('legend', null,
+                       // TRANS: Fieldset legend.
+                       _m('License'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         $this->element('input', array('type' => 'checkbox',
@@ -357,6 +434,8 @@ class TwitterauthorizationAction extends Action
                                       'name' => 'license',
                                       'value' => 'true'));
         $this->elementStart('label', array('class' => 'checkbox', 'for' => 'license'));
+        // TRANS: Text for license agreement checkbox.
+        // TRANS: %s is the license as configured for the StatusNet site.
         $message = _m('My text and files are available under %s ' .
                      'except this private data: password, ' .
                      'email address, IM address, and phone number.');
@@ -369,57 +448,9 @@ class TwitterauthorizationAction extends Action
         $this->elementEnd('label');
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->hidden('access_token_key', $this->access_token->key);
-        $this->hidden('access_token_secret', $this->access_token->secret);
-        $this->hidden('twuid', $this->twuid);
-        $this->hidden('tw_fields_screen_name', $this->tw_fields['screen_name']);
-        $this->hidden('tw_fields_name', $this->tw_fields['fullname']);
-
-        $this->elementStart('fieldset');
-        $this->hidden('token', common_session_token());
-        $this->element('legend', null,
-                       _m('Create new account'));
-        $this->element('p', null,
-                       _m('Create a new user with this nickname.'));
-        $this->elementStart('ul', 'form_data');
-
-        // Hook point for captcha etc
-        Event::handle('StartRegistrationFormData', array($this));
-
-        $this->elementStart('li');
-        $this->input('newname', _m('New nickname'),
-                     ($this->username) ? $this->username : '',
-                     _m('1-64 lowercase letters or numbers, no punctuation or spaces.'));
-        $this->elementEnd('li');
-        $this->elementStart('li');
-        $this->input('email', _m('LABEL','Email'), $this->getEmail(),
-                     _m('Used only for updates, announcements, '.
-                       'and password recovery'));
-        $this->elementEnd('li');
-
-        // Hook point for captcha etc
-        Event::handle('EndRegistrationFormData', array($this));
-
-        $this->elementEnd('ul');
-        $this->submit('create', _m('Create'));
         $this->elementEnd('fieldset');
-
-        $this->elementStart('fieldset');
-        $this->element('legend', null,
-                       _m('Connect existing account'));
-        $this->element('p', null,
-                       _m('If you already have an account, login with your username and password to connect it to your Twitter account.'));
-        $this->elementStart('ul', 'form_data');
-        $this->elementStart('li');
-        $this->input('nickname', _m('Existing nickname'));
-        $this->elementEnd('li');
-        $this->elementStart('li');
-        $this->password('password', _m('Password'));
-        $this->elementEnd('li');
-        $this->elementEnd('ul');
-        $this->submit('connect', _m('Connect'));
-        $this->elementEnd('fieldset');
-
+        // TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
+        $this->submit('connect', _m('BUTTON','Connect'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
@@ -463,6 +494,7 @@ class TwitterauthorizationAction extends Action
         }
 
         if (common_config('site', 'closed')) {
+            // TRANS: Client error displayed when trying to create a new user while creating new users is not allowed.
             $this->clientError(_m('Registration not allowed.'));
             return;
         }
@@ -472,6 +504,7 @@ class TwitterauthorizationAction extends Action
         if (common_config('site', 'inviteonly')) {
             $code = $_SESSION['invitecode'];
             if (empty($code)) {
+                // TRANS: Client error displayed when trying to create a new user while creating new users is not allowed.
                 $this->clientError(_m('Registration not allowed.'));
                 return;
             }
@@ -479,6 +512,7 @@ class TwitterauthorizationAction extends Action
             $invite = Invitation::staticGet($code);
 
             if (empty($invite)) {
+                // TRANS: Client error displayed when trying to create a new user with an invalid invitation code.
                 $this->clientError(_m('Not a valid invitation code.'));
                 return;
             }
@@ -492,11 +526,13 @@ class TwitterauthorizationAction extends Action
         }
 
         if (!User::allowed_nickname($nickname)) {
+            // TRANS: Client error displayed when trying to create a new user with an invalid username.
             $this->showForm(_m('Nickname not allowed.'));
             return;
         }
 
         if (User::staticGet('nickname', $nickname)) {
+            // TRANS: Client error displayed when trying to create a new user with a username that is already in use.
             $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
         }
@@ -517,6 +553,7 @@ class TwitterauthorizationAction extends Action
         $user = User::register($args);
 
         if (empty($user)) {
+            // TRANS: Server error displayed when creating a new user has failed.
             $this->serverError(_m('Error registering user.'));
             return;
         }
@@ -528,6 +565,7 @@ class TwitterauthorizationAction extends Action
         save_twitter_user($this->twuid, $this->tw_fields['screen_name']);
 
         if (!$result) {
+            // TRANS: Server error displayed when connecting a user to a Twitter user has failed.
             $this->serverError(_m('Error connecting user to Twitter.'));
             return;
         }
@@ -550,6 +588,8 @@ class TwitterauthorizationAction extends Action
         $password = $this->trimmed('password');
 
         if (!common_check_user($nickname, $password)) {
+            // TRANS: Form validation error displayed when connecting an existing user to a Twitter user fails because
+            // TRANS: the provided username and/or password are incorrect.
             $this->showForm(_m('Invalid username or password.'));
             return;
         }
@@ -568,6 +608,7 @@ class TwitterauthorizationAction extends Action
         save_twitter_user($this->twuid, $this->tw_fields['screen_name']);
 
         if (!$result) {
+            // TRANS: Server error displayed connecting a user to a Twitter user has failed.
             $this->serverError(_m('Error connecting user to Twitter.'));
             return;
         }
@@ -588,6 +629,7 @@ class TwitterauthorizationAction extends Action
         $result = $this->flinkUser($user->id, $this->twuid);
 
         if (empty($result)) {
+            // TRANS: Server error displayed connecting a user to a Twitter user has failed.
             $this->serverError(_m('Error connecting user to Twitter.'));
             return;
         }

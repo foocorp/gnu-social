@@ -1,4 +1,4 @@
-# Translation of StatusNet - AnonymousFave to Catalan (Català)
+# Translation of StatusNet - AnonymousFave to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Toniher
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AnonymousFave\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:36+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:35+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:56+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:09+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -37,10 +37,14 @@ msgstr ""
 msgid ""
 "Could not disfavor notice! Please make sure your browser has cookies enabled."
 msgstr ""
+"No s'ha pogut marcar l'avís com a no preferit. Assegureu-vos que el "
+"navegador té habilitades les galetes."
 
 #. TRANS: Client error.
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
+"S'ha produït un problema amb el vostre testimoni de sessió. Torneu-ho a "
+"provar."
 
 #. TRANS: Client error.
 msgid "This notice is not a favorite!"

@@ -1,4 +1,4 @@
-# Translation of StatusNet - OpenID to Macedonian (Македонски)
+# Translation of StatusNet - OpenID to Macedonian (македонски)
 # Exported from translatewiki.net
 #
 # Author: Bjankuloski06
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:27+0000\n"
-"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:27+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:47+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
@@ -33,12 +33,12 @@ msgstr ""
 "не директно."
 
 #. TRANS: Page notice. %s is a trustroot name.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%s has asked to verify your identity. Click Continue to verify your identity "
 "and login without creating a new password."
 msgstr ""
-"%s  побара да го потврдите Вашиот идентитет. Кликнете на „Продолжи“ за да "
+"%s побара да го потврдите Вашиот идентитет. Кликнете на „Продолжи“ за да "
 "потврдите и да се најавите без да треба да ставате нова лозинка."
 
 #. TRANS: Button text to continue OpenID identity verification.
@@ -48,13 +48,15 @@ msgid "Continue"
 msgstr "Продолжи"
 
 #. TRANS: Button text to cancel OpenID identity verification.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Cancel"
 msgstr "Откажи"
 
+#. TRANS: Client exception thrown when an action is not available.
+msgid "Unavailable action."
+msgstr "Дејството е недостапно."
+
 #. TRANS: Tooltip for main menu option "Login"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Login to the site."
 msgstr "Најава на мреж. место"
@@ -75,10 +77,9 @@ msgid "Help"
 msgstr "Помош"
 
 #. TRANS: Tooltip for main menu option "Search"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Search for people or text."
-msgstr "Пребарување на луѓе или текст"
+msgstr "Пребарување на луѓе или текст."
 
 #. TRANS: Main menu option when logged in or when the StatusNet instance is not private
 msgctxt "MENU"
@@ -93,33 +94,52 @@ msgid "OpenID"
 msgstr "OpenID"
 
 #. TRANS: OpenID plugin tooltip for logon menu item.
-#, fuzzy
 msgid "Login or register with OpenID."
-msgstr "Најава или регистрација со OpenID"
+msgstr "Најава или регистрација со OpenID."
 
 #. TRANS: OpenID plugin tooltip for user settings menu item.
-#, fuzzy
 msgid "Add or remove OpenIDs."
-msgstr "Додај или отстрани OpenID-ја"
+msgstr "Додај или отстрани OpenID-ја."
 
-#. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
+#. TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
 #, php-format
 msgid ""
-"* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
-"service."
+"(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
+"action.openidsettings%%)!"
 msgstr ""
+"(Имате [OpenID](http://openid.net/)? [Додајте ѝ OpenID на сметката](%%action."
+"openidsettings%%)!"
+
+#. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
+"action.openidlogin%%)!)"
+msgstr ""
+"(Имате [OpenID](http://openid.net/)? Ви предлагаме да се [регистрирате со "
+"OpenID](%%action.openidlogin%%)!)"
+
+#. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
+"openidlogin%%)!)"
+msgstr ""
+"(Имате [OpenID](http://openid.net/)? Ви предлагаме да се [најавите со OpenID]"
+"(%%action.openidlogin%%)!)"
 
 #. TRANS: Tooltip for OpenID configuration menu item.
-#, fuzzy
 msgid "OpenID configuration."
-msgstr "Поставки за OpenID"
+msgstr "Поставки за OpenID."
 
 #. TRANS: Plugin description.
 msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
 msgstr "Користете <a href=\"http://openid.net/\">OpenID</a> за најава."
 
 #. TRANS: OpenID plugin logon form legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "OpenID login"
 msgstr "Најава со OpenID"
@@ -144,9 +164,8 @@ msgstr "URL на OpenID"
 
 #. TRANS: OpenID plugin logon form field instructions.
 #. TRANS: OpenID plugin logon form field title.
-#, fuzzy
 msgid "Your OpenID URL."
-msgstr "URL-адреса на Вашиот OpenID"
+msgstr "URL-адреса на Вашиот OpenID."
 
 #. TRANS: Client error message trying to log on with OpenID while already logged on.
 msgid "Already logged in."
@@ -158,7 +177,6 @@ msgid "There was a problem with your session token. Try again, please."
 msgstr "Се појави проблем со жетонот на Вашата сесија. Обидете се подоцна."
 
 #. TRANS: Message given if user does not agree with the site's license.
-#, fuzzy
 msgid "You cannot register if you do not agree to the license."
 msgstr "Не можете да се регистрирате ако не се согласувате со лиценцата."
 
@@ -168,7 +186,7 @@ msgstr "Се појави непозната грешка."
 
 #. TRANS: Instructions given after a first successful logon using OpenID.
 #. TRANS: %s is the site name.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "OpenID to a local account. You can either create a new account, or connect "
@@ -179,10 +197,9 @@ msgstr ""
 "се поврзете со Вашата постоечка сметка (ако ја имате)."
 
 #. TRANS: Title
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Account Setup"
-msgstr "Поставување на OpenID-сметка"
+msgstr "Воспоставување на OpenID-сметка"
 
 #. TRANS: Fieldset legend.
 msgid "Create new account"
@@ -255,17 +272,16 @@ msgstr "Потврдувањето на OpenID е откажано."
 #. TRANS: OpenID authentication failed; display the error message. %s is the error message.
 #. TRANS: OpenID authentication failed; display the error message.
 #. TRANS: %s is the error message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID authentication failed: %s."
-msgstr "Потврдувањето на OpenID не успеа: %s"
+msgstr "Заверката на OpenID не успеа: %s"
 
 #. TRANS: Message displayed when OpenID authentication is aborted.
 #. TRANS: OpenID authentication error.
-#, fuzzy
 msgid ""
 "OpenID authentication aborted: You are not allowed to login to this site."
 msgstr ""
-"Потврдата за OpenID е откажана: не Ви е дозволено да се најавите на ова "
+"Заверката на OpenID е откажана: Не Ви е дозволено да се најавувате на ова "
 "мреж. место."
 
 #. TRANS: OpenID plugin message. No new user registration is allowed on the site.
@@ -312,15 +328,15 @@ msgstr "Ова не е важечки OpenID."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID failure: %s."
-msgstr "OpenID не успеа: %s"
+msgstr "OpenID не успеа: %s."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not redirect to server: %s."
-msgstr "Не можев да пренасочам кон опслужувачот: %s"
+msgstr "Не можев да пренасочам кон опслужувачот: %s."
 
 #. TRANS: OpenID plugin user instructions.
 msgid ""
@@ -359,7 +375,6 @@ msgstr ""
 "тогаш пристиснете го копчето подолу."
 
 #. TRANS: Title for OpenID bridge administration page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Settings"
 msgstr "Нагодувања за OpenID"
@@ -369,17 +384,14 @@ msgid "OpenID settings"
 msgstr "Нагодувања за OpenID"
 
 #. TRANS: Client error displayed when OpenID provider URL is too long.
-#, fuzzy
 msgid "Invalid provider URL. Maximum length is 255 characters."
-msgstr "Неважечка URL-адреса за услужителот. Дозволени се највеќе 255 знаци."
+msgstr "Неважечка URL-адреса за услужникот. Дозволени се највеќе 255 знаци."
 
 #. TRANS: Client error displayed when Launchpad team name is too long.
-#, fuzzy
 msgid "Invalid team name. Maximum length is 255 characters."
 msgstr "Неважечко екипно име. Дозволени се највеќе 255 знаци."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Trusted provider"
 msgstr "Услужник од доверба"
@@ -429,10 +441,9 @@ msgstr ""
 "Дозволувај само најави на корисници од дадената екипа (додаток „Launchpad“)."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Options"
-msgstr "Нагодувања"
+msgstr "Поставки"
 
 #. TRANS: Checkbox label.
 msgid "Enable OpenID-only mode"
@@ -447,7 +458,6 @@ msgstr ""
 "ја оневозможува потврдата на лозинка за сите корисници!"
 
 #. TRANS: Button text to save OpenID settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зачувај"
@@ -473,16 +483,14 @@ msgid "Error connecting user."
 msgstr "Грешка при поврзувањето на корисникот."
 
 #. TRANS: Message in case the user or the user profile cannot be saved in StatusNet.
-#, fuzzy
 msgid "Error updating profile."
-msgstr "Грешка при подновувањето на профилот"
+msgstr "Грешка при подновувањето на профилот."
 
 #. TRANS: Title after getting the status of the OpenID authorisation request.
 msgid "OpenID Login"
-msgstr "OpenID-Најава"
+msgstr "Најава на OpenID"
 
 #. TRANS: Title of OpenID settings page for a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID settings"
 msgstr "Нагодувања за OpenID"
@@ -499,7 +507,6 @@ msgstr ""
 "OpenID-ја."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Add OpenID"
 msgstr "Додај OpenID"
@@ -513,13 +520,11 @@ msgstr ""
 "полето подолу и кликнете на „Додај“."
 
 #. TRANS: Button text for adding an OpenID URL.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Додај"
 
 #. TRANS: Header on OpenID settings page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Remove OpenID"
 msgstr "Отстрани OpenID"
@@ -540,7 +545,6 @@ msgstr "Отстранувањето на OpenID од сметката се вр
 
 #. TRANS: Button text to remove an OpenID.
 #. TRANS: Button text to remove an OpenID trustroot.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Remove"
 msgstr "Отстрани"
@@ -559,9 +563,8 @@ msgstr ""
 "OpenID, тогаш отстранете го од списоков."
 
 #. TRANS: Form validation error if no OpenID providers can be added.
-#, fuzzy
 msgid "Cannot add new providers."
-msgstr "Не можам да додадам нови услужители."
+msgstr "Не можам да додадам нови услужници."
 
 #. TRANS: Unexpected form validation error.
 msgid "Something weird happened."
@@ -572,9 +575,8 @@ msgid "No such OpenID trustroot."
 msgstr "Нема таков довербен извор (trustroot) за OpenID"
 
 #. TRANS: Success message after removing trustroots.
-#, fuzzy
 msgid "Trustroots removed."
-msgstr "Довербените извори (trustroots) се отстранети"
+msgstr "Довербените извори (trustroots) се отстранети."
 
 #. TRANS: Form validation error for a non-existing OpenID.
 msgid "No such OpenID."
@@ -616,15 +618,14 @@ msgid "Login with an [OpenID](%%doc.openid%%) account."
 msgstr "Најава со сметка на [OpenID](%%doc.openid%%)."
 
 #. TRANS: OpenID plugin message. Title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Login"
-msgstr "OpenID-Најава"
+msgstr "OpenID - Најава"
 
-#, fuzzy
+#. TRANS: Field label.
 msgctxt "LABEL"
 msgid "OpenID provider"
-msgstr "Услужител за OpenID"
+msgstr "Услужник за OpenID"
 
 #. TRANS: OpenID plugin logon form checkbox label for setting to put the OpenID information in a cookie.
 msgid "Remember me"
@@ -633,15 +634,9 @@ msgstr "Запомни ме"
 #. TRANS: OpenID plugin logon form field title.
 msgid "Automatically login in the future; not for shared computers!"
 msgstr ""
-"Отсега врши автоматска најава. Не треба да се користи за јавни сметачи!"
+"Отсега врши автоматска најава (не треба да се користи на јавни сметачи!)"
 
 #. TRANS: OpenID plugin logon form button label to start logon with the data provided in the logon form.
 msgctxt "BUTTON"
 msgid "Login"
 msgstr "Најава"
-
-#~ msgid "Continue"
-#~ msgstr "Продолжи"
-
-#~ msgid "OpenID"
-#~ msgstr "OpenID"

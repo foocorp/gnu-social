@@ -1,0 +1,84 @@
+# Translation of StatusNet - Irc to Spanish (español)
+# Exported from translatewiki.net
+#
+# Author: Armando-Martin
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Irc\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:54+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:23+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Service name for IRC.
+msgid "IRC"
+msgstr "IRC"
+
+#. TRANS: Body text for e-mail confirmation message for IRC.
+#. TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename,
+#. TRANS: %3$s is the plugin display name ("IRC"), %4$s is the confirm address URL.
+#, php-format
+msgid ""
+"User \"%1$s\" on %2$s has said that your %3$s screenname belongs to them. If "
+"that's true, you can confirm by clicking on this URL: %4$s . (If you cannot "
+"click it, copy-and-paste it into the address bar of your browser). If that "
+"user is not you, or if you did not request this confirmation, just ignore "
+"this message."
+msgstr ""
+"El usuario \"%1$s\" de  %2$s  ha dicho que su pseudónimo  %3$s le pertenece. "
+"Si eso es cierto, puede confirmarlo haciendo clic en esta dirección URL:  %4"
+"$s  . (Si no puede hacer clic en esa dirección, cópiela y péguela en la "
+"barra de direcciones del navegador). Si el usuario no es usted, o si no "
+"pidió esta confirmación, simplemente ignore este mensaje."
+
+#. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
+msgid "You must specify a host."
+msgstr "Debe especificar un servidor (host)."
+
+#. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
+msgid "You must specify a username."
+msgstr "Debe especificar un nombre de usuario."
+
+#. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
+msgid "You must specify a \"real name\"."
+msgstr "Debe especificar un \"nombre real\"."
+
+#. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
+msgid "You must specify a nickname."
+msgstr "Debe especificar un alias."
+
+#. TRANS: Plugin description.
+msgid ""
+"The IRC plugin allows users to send and receive notices over an IRC network."
+msgstr ""
+"El complemento (plugin) IRC permite a los usuarios enviar y recibir mensajes "
+"mediante una red IRC."
+
+#. TRANS: Exception thrown when an IRC attempts count could not be updated.
+#. TRANS: %d is the object ID for which the count could not be updated.
+#, php-format
+msgid "Could not increment attempts count for %d."
+msgstr "No se pudo incrementar el número de intentos de %d."
+
+#. TRANS: Message given when using an unregistered IRC nickname.
+msgid "Your nickname is not registered so IRC connectivity cannot be enabled."
+msgstr ""
+"Su pseudónimo (nickname) no está registrado, por lo que no se puede "
+"habilitar la conectividad IRC."
+
+#. TRANS: Server error thrown on database error when deleting IRC nickname confirmation.
+msgid "Could not delete confirmation."
+msgstr "No se pudo eliminar la confirmación."
+
+#. TRANS: Server exception thrown when an IRC waiting queue item could not be added to the database.
+msgid "Database error inserting IRC waiting queue item."
+msgstr ""
+"Error de base de datos al insertar un elemento en la cola de espera de IRC."

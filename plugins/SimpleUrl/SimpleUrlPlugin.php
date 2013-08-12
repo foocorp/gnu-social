@@ -38,7 +38,8 @@ class SimpleUrlPlugin extends UrlShortenerPlugin
     function onInitializePlugin(){
         parent::onInitializePlugin();
         if(!isset($this->serviceUrl)){
-            throw new Exception("must specify a serviceUrl");
+            // TRANS: Exception thrown when the SimpleUrl plugin has been configured incorrectly.
+            throw new Exception(_m('You must specify a serviceUrl.'));
         }
     }
 
@@ -53,10 +54,10 @@ class SimpleUrlPlugin extends UrlShortenerPlugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:SimpleUrl',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             sprintf(_m('Uses <a href="http://%1$s/">%1$s</a> URL-shortener service.'),
                                     $this->shortenerName));
 
         return true;
     }
 }
-

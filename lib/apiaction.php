@@ -215,32 +215,10 @@ class ApiAction extends Action
             Avatar::defaultImage(AVATAR_STREAM_SIZE);
 
         $twitter_user['url'] = ($profile->homepage) ? $profile->homepage : null;
-        $twitter_user['protected'] = ($user->private_stream) ? true : false;
+        $twitter_user['protected'] = (!empty($user) && $user->private_stream) ? true : false;
         $twitter_user['followers_count'] = $profile->subscriberCount();
 
-        $design = null;
-
         // Note: some profiles don't have an associated user
-
-        $defaultDesign = Design::siteDesign();
-
-        if (!empty($user)) {
-            $design = $user->getDesign();
-        }
-
-        if (empty($design)) {
-            $design = $defaultDesign;
-        }
-
-        $color = Design::toWebColor(empty($design->backgroundcolor) ? $defaultDesign->backgroundcolor : $design->backgroundcolor);
-        $twitter_user['profile_background_color'] = ($color == null) ? '' : '#'.$color->hexValue();
-        $color = Design::toWebColor(empty($design->textcolor) ? $defaultDesign->textcolor : $design->textcolor);
-        $twitter_user['profile_text_color'] = ($color == null) ? '' : '#'.$color->hexValue();
-        $color = Design::toWebColor(empty($design->linkcolor) ? $defaultDesign->linkcolor : $design->linkcolor);
-        $twitter_user['profile_link_color'] = ($color == null) ? '' : '#'.$color->hexValue();
-        $color = Design::toWebColor(empty($design->sidebarcolor) ? $defaultDesign->sidebarcolor : $design->sidebarcolor);
-        $twitter_user['profile_sidebar_fill_color'] = ($color == null) ? '' : '#'.$color->hexValue();
-        $twitter_user['profile_sidebar_border_color'] = '';
 
         $twitter_user['friends_count'] = $profile->subscriptionCount();
 
@@ -259,26 +237,17 @@ class ApiAction extends Action
 
         $twitter_user['utc_offset'] = $t->format('Z');
         $twitter_user['time_zone'] = $timezone;
-
-        $twitter_user['profile_background_image_url']
-            = empty($design->backgroundimage)
-            ? '' : ($design->disposition & BACKGROUND_ON)
-            ? Design::url($design->backgroundimage) : '';
-
-        $twitter_user['profile_background_tile']
-            = (bool)($design->disposition & BACKGROUND_TILE);
-
         $twitter_user['statuses_count'] = $profile->noticeCount();
 
         // Is the requesting user following this user?
         $twitter_user['following'] = false;
-        $twitter_user['statusnet:blocking'] = false;
+        $twitter_user['statusnet_blocking'] = false;
         $twitter_user['notifications'] = false;
 
         if (isset($this->auth_user)) {
 
             $twitter_user['following'] = $this->auth_user->isSubscribed($profile);
-            $twitter_user['statusnet:blocking']  = $this->auth_user->hasBlocked($profile);
+            $twitter_user['statusnet_blocking']  = $this->auth_user->hasBlocked($profile);
 
             // Notifications on?
             $sub = Subscription::pkeyGet(array('subscriber' =>
@@ -406,6 +375,7 @@ class ApiAction extends Action
         // StatusNet-specific
 
         $twitter_status['statusnet_html'] = $notice->rendered;
+        $twitter_status['statusnet_conversation_id'] = intval($notice->conversation);
 
         return $twitter_status;
     }
@@ -988,9 +958,9 @@ class ApiAction extends Action
         $to_profile = $message->getTo();
 
         $dmsg['id'] = intval($message->id);
-        $dmsg['sender_id'] = intval($from_profile);
+        $dmsg['sender_id'] = intval($from_profile->id);
         $dmsg['text'] = trim($message->content);
-        $dmsg['recipient_id'] = intval($to_profile);
+        $dmsg['recipient_id'] = intval($to_profile->id);
         $dmsg['created_at'] = $this->dateTwitter($message->created);
         $dmsg['sender_screen_name'] = $from_profile->nickname;
         $dmsg['recipient_screen_name'] = $to_profile->nickname;

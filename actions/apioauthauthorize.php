@@ -22,7 +22,7 @@
  * @category  API
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2010 StatusNet, Inc.
+ * @copyright 2010-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -35,7 +35,7 @@ require_once INSTALLDIR . '/lib/apioauth.php';
 require_once INSTALLDIR . '/lib/info.php';
 
 /**
- * Authorize an Oputh request token
+ * Authorize an OAuth request token
  *
  * @category API
  * @package  StatusNet
@@ -196,12 +196,6 @@ class ApiOauthAuthorizeAction extends Action
                 )
             );
 
-            // XXX: Make sure we have a oauth_token_association table. The table
-            // is now in the main schema, but because it is being added with
-            // a point release, it's unlikely to be there. This code can be
-            // removed as of 1.0.
-            $this->ensureOauthTokenAssociationTable();
-
             $tokenAssoc = new Oauth_token_association();
 
             $tokenAssoc->profile_id     = $user->id;
@@ -293,30 +287,6 @@ class ApiOauthAuthorizeAction extends Action
             // TRANS: Client error given on when invalid data was passed through a form in the OAuth API.
             $this->clientError(_('Unexpected form submission.'));
         }
-    }
-
-    // XXX Remove this function when we hit 1.0
-    function ensureOauthTokenAssociationTable()
-    {
-        $schema = Schema::get();
-
-        $reqTokenCols = array(
-            new ColumnDef('profile_id', 'integer', null, true, 'PRI'),
-            new ColumnDef('application_id', 'integer', null, true, 'PRI'),
-            new ColumnDef('token', 'varchar', 255, true, 'PRI'),
-            new ColumnDef('created', 'datetime', null, false),
-            new ColumnDef(
-                'modified',
-                'timestamp',
-                null,
-                false,
-                null,
-                'CURRENT_TIMESTAMP',
-                'on update CURRENT_TIMESTAMP'
-            )
-        );
-
-        $schema->ensureTable('oauth_token_association', $reqTokenCols);
     }
 
     /**

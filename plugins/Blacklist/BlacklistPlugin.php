@@ -505,14 +505,16 @@ class BlacklistPlugin extends Plugin
             }
         }
 
-        $nickname = strtolower($actor->poco->preferredUsername);
+        if (!empty($actor->poco)) {
+            $nickname = strtolower($actor->poco->preferredUsername);
 
-        if (!empty($nickname)) {
-            if (!$this->_checkNickname($nickname)) {
-                // TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-                $msg = sprintf(_m("Notices from nickname \"%s\" disallowed."),
-                               $nickname);
-                throw new ClientException($msg);
+            if (!empty($nickname)) {
+                if (!$this->_checkNickname($nickname)) {
+                    // TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
+                    $msg = sprintf(_m("Notices from nickname \"%s\" are disallowed."),
+                                   $nickname);
+                    throw new ClientException($msg);
+                }
             }
         }
 

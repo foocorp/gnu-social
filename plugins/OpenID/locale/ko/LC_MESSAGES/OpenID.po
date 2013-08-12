@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:27+0000\n"
-"Language-Team: Korean <http://translatewiki.net/wiki/Portal:ko>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:26+0000\n"
+"Language-Team: Korean <https://translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:47+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -51,6 +51,10 @@ msgstr "계속"
 msgctxt "BUTTON"
 msgid "Cancel"
 msgstr "취소"
+
+#. TRANS: Client exception thrown when an action is not available.
+msgid "Unavailable action."
+msgstr ""
 
 #. TRANS: Tooltip for main menu option "Login"
 #, fuzzy
@@ -101,11 +105,28 @@ msgstr "오픈아이디로 로그인 또는 가입"
 msgid "Add or remove OpenIDs."
 msgstr "오픈아이디 추가 또는 제거"
 
-#. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
+#. TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
 #, php-format
 msgid ""
-"* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
-"service."
+"(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
+"action.openidsettings%%)!"
+msgstr ""
+
+#. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
+"action.openidlogin%%)!)"
+msgstr ""
+
+#. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
+"openidlogin%%)!)"
 msgstr ""
 
 #. TRANS: Tooltip for OpenID configuration menu item.
@@ -615,6 +636,7 @@ msgctxt "TITLE"
 msgid "OpenID Login"
 msgstr "오픈아이디 로그인"
 
+#. TRANS: Field label.
 #, fuzzy
 msgctxt "LABEL"
 msgid "OpenID provider"
@@ -632,9 +654,3 @@ msgstr "앞으로는 자동으로 로그인합니다. 공용 컴퓨터에서는 
 msgctxt "BUTTON"
 msgid "Login"
 msgstr "로그인"
-
-#~ msgid "Continue"
-#~ msgstr "계속"
-
-#~ msgid "OpenID"
-#~ msgstr "오픈아이디"

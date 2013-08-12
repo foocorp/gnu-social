@@ -1,4 +1,4 @@
-# Translation of StatusNet - UserFlag to Russian (Русский)
+# Translation of StatusNet - UserFlag to Russian (русский)
 # Exported from translatewiki.net
 #
 # Author: Byulent
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserFlag\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:48+0000\n"
-"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:24+0000\n"
+"Language-Team: Russian <https://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:51:36+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-userflag\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
@@ -51,6 +51,7 @@ msgstr "Профиль помечен для просмотра"
 msgid "Clear"
 msgstr "Очистить"
 
+#. TRANS: Form description for clearing flags from a profile.
 msgid "Clear all flags"
 msgstr "Очистить все флаги"
 
@@ -58,6 +59,7 @@ msgstr "Очистить все флаги"
 msgid "Not logged in."
 msgstr ""
 
+#. TRANS: Error message displayed when trying to review profile flags while not authorised.
 msgid "You cannot review profile flags."
 msgstr ""
 
@@ -71,7 +73,7 @@ msgstr "Модерировать"
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
-#. TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used for plural.
 #, php-format
 msgid "Flagged by %1$s and %2$d other"
 msgid_plural "Flagged by %1$s and %2$d others"
@@ -86,8 +88,9 @@ msgid "Flagged by %s"
 msgstr "Отмечено %s"
 
 #. TRANS: Server exception given when flags could not be cleared.
-#, php-format
-msgid "Couldn't clear flags for profile \"%s\"."
+#. TRANS: %s is a profile nickname.
+#, fuzzy, php-format
+msgid "Could not clear flags for profile \"%s\"."
 msgstr "Не снимать отметки для профиля %s"
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
@@ -99,6 +102,7 @@ msgid "Cleared"
 msgstr "Снято"
 
 #. TRANS: Server exception.
-#, php-format
-msgid "Couldn't flag profile \"%d\" for review."
+#. TRANS: %d is a profile ID (number).
+#, fuzzy, php-format
+msgid "Could not flag profile \"%d\" for review."
 msgstr "Невозможно отметить профиль %d для просмотра."

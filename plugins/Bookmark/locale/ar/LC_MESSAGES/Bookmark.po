@@ -1,6 +1,7 @@
 # Translation of StatusNet - Bookmark to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: Majid Al-Dharrab
 # Author: Mutarjem horr
 # Author: OsamaK
 # --
@@ -10,23 +11,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Bookmark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:52+0000\n"
-"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:56+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:03+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-bookmark\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
 "2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
 "99) ? 4 : 5 ) ) ) );\n"
-
-#. TRANS: Client exception thrown when a file upload is incorrect.
-msgid "Bad import file."
-msgstr "ملف الاستيراد غير صحيح."
 
 #. TRANS: Client exception thrown when a bookmark in an import file is incorrectly formatted.
 msgid "No <A> tag in a <DT>."
@@ -38,13 +35,13 @@ msgstr ""
 
 #. TRANS: Client exception thrown when referring to a non-existing bookmark.
 msgid "No such bookmark."
-msgstr "لا يوجد علامة قراءة كهذه."
+msgstr "العلامة المقصودة غير موجودة."
 
 #. TRANS: Title for bookmark.
 #. TRANS: %1$s is a user nickname, %2$s is a bookmark title.
 #, php-format
 msgid "%1$s's bookmark for \"%2$s\""
-msgstr ""
+msgstr "علامة %1$s ل%2$s\""
 
 #. TRANS: Plugin description.
 msgid "Simple extension for supporting bookmarks."
@@ -53,7 +50,7 @@ msgstr ""
 #. TRANS: Link text in proile leading to import form.
 #. TRANS: Title for page to import del.icio.us bookmark backups on.
 msgid "Import del.icio.us bookmarks"
-msgstr "إستيراد علامات القراءة من del.icio.us"
+msgstr "استورد علامات من del.icio.us"
 
 #. TRANS: Client exception thrown when a bookmark is formatted incorrectly.
 msgid "Expected exactly 1 link rel=related in a Bookmark."
@@ -66,30 +63,24 @@ msgstr ""
 #. TRANS: Application title.
 msgctxt "TITLE"
 msgid "Bookmark"
-msgstr "علامة القراءة"
-
-#. TRANS: Exception thrown when a bookmark has no attachments.
-#. TRANS: %1$s is a bookmark ID, %2$s is a notice ID (number).
-#, php-format
-msgid "Bookmark %1$s (notice %2$d) has no attachments."
-msgstr ""
+msgstr "علامة"
 
 #. TRANS: Title for mini-posting window loaded from bookmarklet.
 #. TRANS: %s is the StatusNet site name.
 #, php-format
 msgid "Bookmark on %s"
-msgstr "ضع علامة قراءة على %s"
+msgstr "ضع علامة في %s"
 
 #. TRANS: Client exception thrown when trying to save a new bookmark that already exists.
 msgid "Bookmark already exists."
-msgstr "علامة القراءة موجودة سابقاّ"
+msgstr "العلامة موجودة سابقاّ"
 
 #. TRANS: Bookmark content.
 #. TRANS: %1$s is a title, %2$s is a short URL, %3$s is the bookmark description,
 #. TRANS: %4$s is space separated list of hash tags.
 #, php-format
 msgid "\"%1$s\" %2$s %3$s %4$s"
-msgstr ""
+msgstr "\"%1$s\" %2$s %3$s %4$s"
 
 #. TRANS: Rendered bookmark content.
 #. TRANS: %1$s is a URL, %2$s the bookmark title, %3$s is the bookmark description,
@@ -100,11 +91,14 @@ msgid ""
 "<span class=\"description\">%3$s</span> <span class=\"meta\">%4$s</span></"
 "span>"
 msgstr ""
+"<span class=\"xfolkentry\"><a class=\"taggedlink\" href=\"%1$s\">%2$s</a> "
+"<span class=\"description\">%3$s</span> <span class=\"meta\">%4$s</span></"
+"span>"
 
 #. TRANS: Field label on form for adding a new bookmark.
 msgctxt "LABEL"
 msgid "URL"
-msgstr ""
+msgstr "المسار"
 
 #. TRANS: Button text for action to save a new bookmark.
 msgctxt "BUTTON"
@@ -119,13 +113,13 @@ msgstr ""
 #. TRANS: %s is the URL.
 #, php-format
 msgid "Notices linking to %s"
-msgstr ""
+msgstr "الإشعار التي تصل ب%s"
 
 #. TRANS: Title of notice stream of notices with a given attachment (all but first page).
 #. TRANS: %1$s is the URL, %2$s is the page number.
 #, php-format
 msgid "Notices linking to %1$s, page %2$d"
-msgstr ""
+msgstr "الإشعار التي تصل ب%1$s، الصفحة %2$d"
 
 #. TRANS: Client exception thrown when trying to import bookmarks without being logged in.
 msgid "Only logged-in users can import del.icio.us backups."
@@ -133,7 +127,7 @@ msgstr ""
 
 #. TRANS: Client exception thrown when trying to import bookmarks without having the rights to do so.
 msgid "You may not restore your account."
-msgstr "لن يسمح لك بإستعادة حسابك."
+msgstr "لا يسمح لك باستعادة حسابك."
 
 #. TRANS: Client exception thrown when trying to import bookmarks and upload fails.
 #. TRANS: Client exception thrown when a file upload has failed.
@@ -152,7 +146,7 @@ msgstr ""
 
 #. TRANS: Client exception thrown when a file was only partially uploaded.
 msgid "The uploaded file was only partially uploaded."
-msgstr "لقد تم تحميل الملف جزئياّ فقط."
+msgstr "لقد تم تحميل الملف جزئيًا فقط."
 
 #. TRANS: Client exception thrown when a temporary folder is not present.
 msgid "Missing a temporary folder."
@@ -198,11 +192,11 @@ msgstr "الملف \"%s\" غير قابل للقراءة."
 msgid ""
 "Bookmarks have been imported. Your bookmarks should now appear in search and "
 "your profile page."
-msgstr ""
+msgstr "استوردت العلامات. ستظهر علاماتك الآن عند البحث وفي صفحتك الشخصية."
 
 #. TRANS: Busy message for importing bookmarks.
 msgid "Bookmarks are being imported. Please wait a few minutes for results."
-msgstr ""
+msgstr "يستورد العلامات. الرجاء الانتظار دقائق معدودة لتظهر النتيجة."
 
 #. TRANS: Form instructions for importing bookmarks.
 msgid "You can upload a backed-up delicious.com bookmarks file."
@@ -220,7 +214,7 @@ msgstr "حمّل الملف."
 #. TRANS: Field label on form for adding a new bookmark.
 msgctxt "LABEL"
 msgid "Title"
-msgstr "الإسم"
+msgstr "العنوان"
 
 #. TRANS: Field label on form for adding a new bookmark.
 msgctxt "LABEL"
@@ -234,7 +228,7 @@ msgstr "الوسوم"
 
 #. TRANS: Field title on form for adding a new bookmark.
 msgid "Comma- or space-separated list of tags."
-msgstr "لائحة وسومات منفصلة بفاصلة أو بفراغ."
+msgstr "قائمة بوسوم مفصولة بفاصلة أو بفراغ."
 
 #. TRANS: Button text for action to save a new bookmark.
 msgctxt "BUTTON"
@@ -243,11 +237,11 @@ msgstr "احفظ"
 
 #. TRANS: Title for action to create a new bookmark.
 msgid "New bookmark"
-msgstr "علامة قراءة جديدة"
+msgstr "علامة جديدة"
 
 #. TRANS: Client exception thrown when trying to create a new bookmark while not logged in.
 msgid "Must be logged in to post a bookmark."
-msgstr "يجب أن تكون مسجل الدخول كي تعلن عن علامة قراءة."
+msgstr "يجب أن تكون والجا لتنشر العلامات."
 
 #. TRANS: Client exception thrown when trying to create a new bookmark without a title.
 msgid "Bookmark must have a title."
@@ -255,13 +249,13 @@ msgstr "يجب تسمية علامة القراءة."
 
 #. TRANS: Client exception thrown when trying to create a new bookmark without a URL.
 msgid "Bookmark must have an URL."
-msgstr ""
+msgstr "يجب أن تحتوي العلامة على مسار."
 
 #. TRANS: Page title after posting a bookmark.
 msgid "Bookmark posted"
-msgstr ""
+msgstr "أرسلت العلامة"
 
 #. TRANS: %s is the filename that contains a backup for a user.
 #, php-format
 msgid "Getting backup from file \"%s\"."
-msgstr ""
+msgstr "جلب النسخة الاحتياطية من \"%s\"."

@@ -1,0 +1,191 @@
+# Translation of StatusNet - EmailRegistration to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailRegistration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:23+0000\n"
+"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: eu\n"
+"X-Message-Group: #out-statusnet-plugin-emailregistration\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception trown when registration by e-mail is not allowed.
+msgid "Registration not allowed."
+msgstr "Ezin da izen eman."
+
+#. TRANS: Client exception trown when trying to register without an invitation.
+msgid "Sorry, only invited people can register."
+msgstr "Barkatu, soilik gonbidatuak erregitra daitezke."
+
+#. TRANS: Client exception thrown when no confirmation code was provided.
+msgid "No confirmation code."
+msgstr "Ez dago baieztatze koderik."
+
+#. TRANS: Client exception trown when using an invitation multiple times.
+msgid "Invitation already used."
+msgstr "Gonbidapen hau dagoeneko erabili da."
+
+#. TRANS: Client exception thrown when given confirmation code was not issued.
+msgid "No such confirmation code."
+msgstr "Baieztapen kode hori falta da."
+
+#. TRANS: Title for registration page.
+msgctxt "TITLE"
+msgid "Register"
+msgstr "Izen eman"
+
+#. TRANS: Title for page where to register with a confirmation code.
+msgctxt "TITLE"
+msgid "Complete registration"
+msgstr "Izen ematea osatu"
+
+#. TRANS: Confirmation text after initial registration.
+#. TRANS: %s an e-mail address.
+#, php-format
+msgid ""
+"An email was sent to %s to confirm that address. Check your email inbox for "
+"instructions."
+msgstr ""
+"Mezu bat bidali da %s helbidea baieztatzeko. Begiratu zure sarrera "
+"postontzia argibideetarako."
+
+#. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
+msgid "No confirmation thing."
+msgstr "Konfirmazio kode okerra."
+
+#. TRANS: Error text when trying to register without agreeing to the terms.
+msgid "You must accept the terms of service and privacy policy to register."
+msgstr ""
+"Izen emateko erabilera baldintzak eta pribazitate politika onartu behar "
+"dituzu."
+
+#. TRANS: Error text when trying to register without a password.
+msgid "You must set a password"
+msgstr "Pasahitza zehaztu behar duzu."
+
+#. TRANS: Error text when trying to register with too short a password.
+msgid "Password must be 6 or more characters."
+msgstr "Pasahitzak 6 edo karaktere gehiago behar ditu."
+
+#. TRANS: Error text when trying to register without providing the same password twice.
+msgid "Passwords do not match."
+msgstr "Pasahitzak ez datoz bat."
+
+#. TRANS: Exception trown when using an invitation multiple times.
+msgid "Failed to register user."
+msgstr "Izen ematean akatsa."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Confirm your registration on %s"
+msgstr "Erregistro baieztapena %s-en"
+
+#. TRANS: Body for confirmation e-mail.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
+#, php-format
+msgid ""
+"Someone (probably you) has requested an account on %1$s using this email "
+"address.\n"
+"To confirm the address, click the following URL or copy it into the address "
+"bar of your browser.\n"
+"%2$s\n"
+"If it was not you, you can safely ignore this message."
+msgstr ""
+"Norbaitek (ziurrenik zuk)  email kontu hau erabiliz %1$s gunean izen eman "
+"nahi du.\n"
+"Helbidea baieztatzeko, hurrengo URLan klik egin edo kopiatu ezazu zure "
+"nabigatzailearen helbide barran.\n"
+"%2$s\n"
+"Ez bazara zu izan, ez egin kasurik mezu honi."
+
+#. TRANS: Form instructions.
+msgid "Enter your email address to register for an account."
+msgstr "Sartu zure eposta helbidea izen emateko."
+
+#. TRANS: Field label on form for registering an account.
+msgctxt "LABEL"
+msgid "E-mail address"
+msgstr "Email helbidea"
+
+#. TRANS: Button text for registering an account.
+#. TRANS: Button text for action to register.
+msgctxt "BUTTON"
+msgid "Register"
+msgstr "Izen eman"
+
+#. TRANS: Form instructions.
+msgid "Enter a password to confirm your new account."
+msgstr "Sartu pasahitz bat zure kontu berria baieztatzeko."
+
+#. TRANS: Field label in e-mail registration form.
+msgctxt "LABEL"
+msgid "User name"
+msgstr "Erabiltzaile izena"
+
+#. TRANS: Field label.
+msgid "Email address"
+msgstr "Email helbidea"
+
+#. TRANS: Field label on account registration page.
+msgid "Password"
+msgstr "Pasahitza"
+
+#. TRANS: Field title on account registration page.
+msgid "6 or more characters."
+msgstr "6 edo karaktere gehiago."
+
+#. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
+msgctxt "PASSWORD"
+msgid "Confirm"
+msgstr "Baieztatu"
+
+#. TRANS: Field title on account registration page.
+msgid "Same as password above."
+msgstr "Gaineko pasahitzaren berdina."
+
+#. TRANS: Checkbox title for terms of service and privacy policy.
+#, php-format
+msgid ""
+"I agree to the <a href=\"%1$s\">Terms of service</a> and <a href=\"%1$s"
+"\">Privacy policy</a> of this site."
+msgstr ""
+"Ados nago gune hontako <a href=\"%1$s\">erabilera baldintzekin</a> eta <a "
+"href=\"%1$s\">pribazitate politikarekin</a>."
+
+#. TRANS: Error text when trying to register with an already registered e-mail address.
+#. TRANS: %s is the URL to recover password at.
+#, php-format
+msgid ""
+"A user with that email address already exists. You can use the <a href=\"%s"
+"\">password recovery</a> tool to recover a missing password."
+msgstr ""
+"Dagoeneko badago email kontu horrekin erabiltzaile bat. <a href=\"%s"
+"\">Pasahitz berreskuratze</a> tresna erabil dezakezu pasahitz berri bat "
+"lortzeko."
+
+#. TRANS: Error text when trying to register with an invalid e-mail address.
+msgid "Not a valid email address."
+msgstr "Email helbide horrek ez du balio."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Welcome to %s"
+msgstr "Ongi etorri %s-ra"
+
+#. TRANS: Plugin description.
+msgid "Use email only for registration."
+msgstr "Erabili eposta izen ematekosoilik."

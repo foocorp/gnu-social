@@ -1,4 +1,4 @@
-# Translation of StatusNet - EmailRegistration to Catalan (Català)
+# Translation of StatusNet - EmailRegistration to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Dvdgmz
@@ -11,21 +11,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailRegistration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:13+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:23+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-emailregistration\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Client exception trown when registration by e-mail is not allowed.
+msgid "Registration not allowed."
+msgstr "No es permet el registre."
+
+#. TRANS: Client exception trown when trying to register without an invitation.
+msgid "Sorry, only invited people can register."
+msgstr "Només es poden registrar les persones convidades."
+
 #. TRANS: Client exception thrown when no confirmation code was provided.
 msgid "No confirmation code."
 msgstr "No hi ha cap codi de confirmació."
+
+#. TRANS: Client exception trown when using an invitation multiple times.
+msgid "Invitation already used."
+msgstr "Ja s'ha utilitzat la invitació."
 
 #. TRANS: Client exception thrown when given confirmation code was not issued.
 msgid "No such confirmation code."
@@ -39,7 +51,7 @@ msgstr "Registrar-se"
 #. TRANS: Title for page where to register with a confirmation code.
 msgctxt "TITLE"
 msgid "Complete registration"
-msgstr ""
+msgstr "Registre complet"
 
 #. TRANS: Confirmation text after initial registration.
 #. TRANS: %s an e-mail address.
@@ -48,6 +60,10 @@ msgid ""
 "An email was sent to %s to confirm that address. Check your email inbox for "
 "instructions."
 msgstr ""
+
+#. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
+msgid "No confirmation thing."
+msgstr "No hi ha res de confirmació."
 
 #. TRANS: Error text when trying to register without agreeing to the terms.
 msgid "You must accept the terms of service and privacy policy to register."
@@ -61,17 +77,21 @@ msgstr "Cal que defineixis una contrassenya"
 
 #. TRANS: Error text when trying to register with too short a password.
 msgid "Password must be 6 or more characters."
-msgstr ""
+msgstr "La contrasenya ha de tenir 6 o més caràcters."
 
 #. TRANS: Error text when trying to register without providing the same password twice.
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Les contrasenyes no coincideixen."
+
+#. TRANS: Exception trown when using an invitation multiple times.
+msgid "Failed to register user."
+msgstr "No s'ha pogut registrar l'usuari."
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.
 #, php-format
 msgid "Confirm your registration on %s"
-msgstr ""
+msgstr "Confirmeu el vostre registre a %s"
 
 #. TRANS: Body for confirmation e-mail.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
@@ -87,7 +107,7 @@ msgstr ""
 
 #. TRANS: Form instructions.
 msgid "Enter your email address to register for an account."
-msgstr ""
+msgstr "Introduïu la vostra adreça electrònica per registrar un compte."
 
 #. TRANS: Field label on form for registering an account.
 msgctxt "LABEL"
@@ -158,20 +178,8 @@ msgstr "No és una adreça de correu electrònic vàlida."
 #. TRANS: %s is the StatusNet sitename.
 #, php-format
 msgid "Welcome to %s"
-msgstr ""
+msgstr "Us donem la benvinguda a %s"
 
 #. TRANS: Plugin description.
 msgid "Use email only for registration."
-msgstr ""
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not save new greeting count for %d."
-msgstr ""
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not increment greeting count for %d."
-msgstr ""
+msgstr "Utilitza el correu electrònic només per al registre."

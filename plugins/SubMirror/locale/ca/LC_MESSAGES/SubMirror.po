@@ -1,0 +1,163 @@
+# Translation of StatusNet - SubMirror to Catalan (català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SubMirror\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:11+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-19 11:23:33+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-submirror\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client error displayed when entering an invalid URL for a feed.
+#. TRANS: %s is the invalid feed URL.
+#, php-format
+msgid "Invalid feed URL: %s."
+msgstr "L'URL del canal no és vàlid: %s."
+
+#. TRANS: Error message returned to user when setting up feed mirroring,
+#. TRANS: but we were unable to resolve the given URL to a working feed.
+msgid "Invalid profile for mirroring."
+msgstr ""
+
+#. TRANS: Client error displayed when trying to mirror a StatusNet group feed.
+msgid "Cannot mirror a StatusNet group at this time."
+msgstr ""
+
+#. TRANS: Client error displayed when trying to use another method than POST.
+msgid "This action only accepts POST requests."
+msgstr ""
+
+#. TRANS: Client error displayed when the session token does not match or is not given.
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "No s'ha iniciat una sessió."
+
+#. TRANS: Page title for subscribed feed mirror.
+msgid "Subscribed"
+msgstr "Subscrit"
+
+#. TRANS: Client error displayed when trying to edit an object that is not a feed mirror.
+msgid "Requested invalid profile to edit."
+msgstr ""
+
+#. TRANS: Client error displayed when providing invalid input when editing a mirror.
+msgid "Bad form data."
+msgstr ""
+
+#. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
+msgid "The mirror request failed, because no result was retrieved."
+msgstr ""
+
+#. TRANS: Exception thrown when a feed provider could not be recognised.
+msgid "Internal form error: Unrecognized feed provider."
+msgstr ""
+
+#. TRANS: Exception thrown when a subscribing to a feed fails.
+msgid "Could not subscribe to feed."
+msgstr "No s'ha pogut subscriure al canal."
+
+#. TRANS: Page title.
+msgid "Feed mirror settings"
+msgstr ""
+
+#. TRANS: Page instructions.
+msgid ""
+"You can mirror updates from many RSS and Atom feeds into your StatusNet "
+"timeline!"
+msgstr ""
+
+#. TRANS: Title for page with form to add a mirror feed provider on.
+msgid "Provider add"
+msgstr ""
+
+#. TRANS: Plugin description.
+msgid "Pull feeds into your timeline!"
+msgstr "Publica canals en la vostra línia temporal!"
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr ""
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+msgid "Configure mirroring of posts from other feeds"
+msgstr ""
+
+#. TRANS: Label in profile statistics section, followed by a count.
+msgid "Mirrored feeds"
+msgstr ""
+
+#. TRANS: Field label.
+msgid "Web page or feed URL:"
+msgstr "Pàgina web o canal URL:"
+
+#. TRANS: Button text for adding a feed.
+#. TRANS: Button text for adding a Twitter feed mirror.
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr "Afegeix un canal"
+
+#. TRANS: Field label.
+msgid "Twitter username:"
+msgstr "Nom d'usuari al Twitter:"
+
+#. TRANS: Field label (URL expectected).
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr "Canal remot:"
+
+#. TRANS: Field label.
+msgctxt "LABEL"
+msgid "Local user"
+msgstr "Usuari local"
+
+#. TRANS: Fieldset legend for feed mirror setting.
+msgid "Mirroring style"
+msgstr ""
+
+#. TRANS: Feed mirror style (radio button option).
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
+msgstr ""
+
+#. TRANS: Feed mirror style (radio button option).
+msgid "Repost the content under my account"
+msgstr ""
+
+#. TRANS: Button text to save feed mirror settings.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Desa"
+
+#. TRANS: Button text to stop mirroring a feed.
+msgctxt "BUTTON"
+msgid "Stop mirroring"
+msgstr ""
+
+#. TRANS: Name for possible feed provider.
+msgid "Twitter"
+msgstr "Twitter"
+
+#. TRANS: Name for possible feed provider.
+msgid "RSS or Atom feed"
+msgstr "Canal RSS o Atom"
+
+#. TRANS: Heading for feed mirroring selection form.
+msgid "Select a feed provider"
+msgstr "Seleccioneu un proveïdor de canals"

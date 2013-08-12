@@ -57,7 +57,7 @@ class UserEmailSummaryHandler extends QueueHandler
      */
     function transport()
     {
-        return 'sitesum';
+        return 'usersum';
     }
 
     /**
@@ -102,7 +102,9 @@ class UserEmailSummaryHandler extends QueueHandler
             return true;
         }
 
-        $notice = $user->ownFriendsTimeline(0, self::MAX_NOTICES, $since_id);
+        $stream = new InboxNoticeStream($user, $user->getProfile());
+
+        $notice = $stream->getNotices(0, self::MAX_NOTICES, $since_id);
 
         if (empty($notice) || $notice->N == 0) {
             common_log(LOG_WARNING, sprintf('Not sending email summary for user %s; no notices.', $user_id));
@@ -118,8 +120,16 @@ class UserEmailSummaryHandler extends QueueHandler
             $new_top = $notice->_items[0]->id;
         }
 
-        $out = new XMLStringer();
+        // TRANS: Subject for e-mail.
+        $subject = sprintf(_m('Your latest updates from %s'), common_config('site', 'name'));
 
+        $out = new XMLStringer(true);
+
+        $out->elementStart('html');
+        $out->elementStart('head');
+        $out->element('title', null, $subject);
+        $out->elementEnd('head');
+        $out->elementStart('body');
         $out->elementStart('div', array('width' => '100%',
                                         'style' => 'background-color: #ffffff; border: 4px solid #4c609a; padding: 10px;'));
 
@@ -199,14 +209,18 @@ class UserEmailSummaryHandler extends QueueHandler
                           common_config('site', 'name'))."</p>");
 
         $out->elementEnd('div');
+        $out->elementEnd('body');
+        $out->elementEnd('html');
 
         $body = $out->getString();
 
         // FIXME: do something for people who don't like HTML email
 
-        // TRANS: Subject for e-mail.
-        mail_to_user($user, _m('Updates from your network'), $body,
-                     array('Content-Type' => 'text/html; charset=UTF-8'));
+        mail_to_user($user,
+                     $subject,
+                     $body,
+                     array('Content-Type' => 'text/html; charset=utf-8',
+                           'Mime-Version' => '1.0'));
 
         if (empty($ess)) {
             $ess = new Email_summary_status();

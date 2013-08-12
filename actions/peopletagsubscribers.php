@@ -22,7 +22,7 @@
  * @category  Group
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -42,7 +42,7 @@ require_once(INSTALLDIR.'/lib/profilelist.php');
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class PeopletagsubscribersAction extends OwnerDesignAction
+class PeopletagsubscribersAction extends Action
 {
     var $page = null;
     var $peopletag = null;
@@ -58,7 +58,12 @@ class PeopletagsubscribersAction extends OwnerDesignAction
         parent::prepare($args);
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
 
-        $tagger_arg = $this->arg('tagger');
+        if (common_config('singleuser', 'enabled')) {
+            $tagger_arg = User::singleUserNickname();
+        } else {
+            $tagger_arg = $this->arg('tagger');
+        }
+
         $tag_arg = $this->arg('tag');
         $tagger = common_canonical_nickname($tagger_arg);
         $tag = common_canonical_tag($tag_arg);

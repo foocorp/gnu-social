@@ -76,17 +76,18 @@ class ThreadedNoticeList extends NoticeList
         $this->out->element('h2', null, _m('HEADER','Notices'));
         $this->out->elementStart('ol', array('class' => 'notices threaded-notices xoxo'));
 
-        $cnt = 0;
+		$notices = $this->notice->fetchAll();
+		$total = count($notices);
+		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
+		
+    	self::prefill(self::_allNotices($notices));
+    	
         $conversations = array();
-        while ($this->notice->fetch() && $cnt <= NOTICES_PER_PAGE) {
-            $cnt++;
-
-            if ($cnt > NOTICES_PER_PAGE) {
-                break;
-            }
+        
+        foreach ($notices as $notice) {
 
             // Collapse repeats into their originals...
-            $notice = $this->notice;
+            
             if ($notice->repeat_of) {
                 $orig = Notice::staticGet('id', $notice->repeat_of);
                 if ($orig) {
@@ -119,7 +120,22 @@ class ThreadedNoticeList extends NoticeList
         $this->out->elementEnd('ol');
         $this->out->elementEnd('div');
 
-        return $cnt;
+        return $total;
+    }
+
+    function _allNotices($notices)
+    {
+        $convId = array();
+        foreach ($notices as $notice) {
+            $convId[] = $notice->conversation;
+        }
+        $convId = array_unique($convId);
+        $allMap = Memcached_DataObject::listGet('Notice', 'conversation', $convId);
+        $allArray = array();
+        foreach ($allMap as $convId => $convNotices) {
+            $allArray = array_merge($allArray, $convNotices);
+        }
+        return $allArray;
     }
 
     /**
@@ -468,9 +484,9 @@ class ThreadedNoticeListFavesItem extends NoticeListActorsItem
 {
     function getProfiles()
     {
-        $fave = Fave::byNotice($this->notice->id);
+        $faves = $this->notice->getFaves();
         $profiles = array();
-        while ($fave->fetch()) {
+        foreach ($faves as $fave) {
             $profiles[] = $fave->user_id;
         }
         return $profiles;
@@ -542,13 +558,24 @@ class ThreadedNoticeListRepeatsItem extends NoticeListActorsItem
 {
     function getProfiles()
     {
-        $rep = $this->notice->repeatStream();
+        $repeats = $this->notice->getRepeats();
 
         $profiles = array();
-        while ($rep->fetch()) {
+
+        foreach ($repeats as $rep) {
             $profiles[] = $rep->profile_id;
         }
+
         return $profiles;
+    }
+
+    function magicList($items)
+    {
+        if (count($items) > 4) {
+            return parent::magicList(array_slice($items, 0, 3));
+        } else {
+            return parent::magicList($items);
+        }
     }
 
     function getListMessage($count, $you)
@@ -556,12 +583,21 @@ class ThreadedNoticeListRepeatsItem extends NoticeListActorsItem
         if ($count == 1 && $you) {
             // darn first person being different from third person!
             // TRANS: List message for notice repeated by logged in user.
-            return _m('REPEATLIST', 'You have repeated this notice.');
+            return _m('REPEATLIST', 'You repeated this.');
+        } else if ($count > 4) {
+            // TRANS: List message for when more than 4 people repeat something.
+            // TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
+            // TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
+            return sprintf(_m('%%s and %d other repeated this.',
+                              '%%s and %d others repeated this.',
+                              $count - 3),
+                           $count - 3);
         } else {
-            // TRANS: List message for repeated notices.
-            // TRANS: %d is the number of users that have repeated a notice.
-            return sprintf(_m('One person has repeated this notice.',
-                              '%d people have repeated this notice.',
+            // TRANS: List message for favoured notices.
+            // TRANS: %%s is a list of users liking a notice.
+            // TRANS: Plural is based on the number of of users that have favoured a notice.
+            return sprintf(_m('%%s repeated this.',
+                              '%%s repeated this.',
                               $count),
                            $count);
         }

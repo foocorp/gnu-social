@@ -130,17 +130,21 @@ class SortableSubscriptionList extends SubscriptionList
 
     function showProfiles()
     {
-        $cnt = 0;
+        // Note: we don't use fetchAll() because it's borked with query()
+
+        $profiles = array();
 
         while ($this->profile->fetch()) {
-            $cnt++;
-            if($cnt > PROFILES_PER_PAGE) {
-                break;
-            }
+            $profiles[] = clone($this->profile);
+        }
 
-            $odd = ($cnt % 2 == 0); // for zebra striping
+        $cnt = count($profiles);
 
-            $pli = $this->newListItem($this->profile, $odd);
+        $max = min($cnt, $this->maxProfiles());
+
+        for ($i = 0; $i < $max; $i++) {
+            $odd = ($i % 2 == 0); // for zebra striping
+            $pli = $this->newListItem($profiles[$i], $odd);
             $pli->show();
         }
 

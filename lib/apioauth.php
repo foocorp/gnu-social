@@ -31,7 +31,7 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 require_once INSTALLDIR . '/lib/apiaction.php';
-require_once INSTALLDIR . '/lib/apioauthstore.php';
+require_once INSTALLDIR . '/lib/statusnetoauthstore.php';
 
 /**
  * Base action for API OAuth enpoints. Clean up the

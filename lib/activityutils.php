@@ -104,8 +104,9 @@ class ActivityUtils
     {
         $els = $element->childNodes;
         $out = array();
-
-        foreach ($els as $link) {
+        
+        for ($i = 0; $i < $els->length; $i++) {
+            $link = $els->item($i);
             if ($link->localName == self::LINK && $link->namespaceURI == self::ATOM) {
                 $linkRel = $link->getAttribute(self::REL);
                 $linkType = $link->getAttribute(self::TYPE);
@@ -142,6 +143,34 @@ class ActivityUtils
                 }
             }
         }
+    }
+
+    /**
+     * Gets all immediate child elements with the given tag
+     *
+     * @param DOMElement $element   element to pick at
+     * @param string     $tag       tag to look for
+     * @param string     $namespace Namespace to look under
+     *
+     * @return array found element or null
+     */
+
+    static function children(DOMNode $element, $tag, $namespace=self::ATOM)
+    {
+        $results = array();
+
+        $els = $element->childNodes;
+
+        if (!empty($els) && $els->length > 0) {
+            for ($i = 0; $i < $els->length; $i++) {
+                $el = $els->item($i);
+                if ($el->localName == $tag && $el->namespaceURI == $namespace) {
+                    $results[] = $el;
+                }
+            }
+        }
+
+        return $results;
     }
 
     /**

@@ -23,7 +23,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Group_block extends Memcached_DataObject
+class Group_block extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -39,6 +39,24 @@ class Group_block extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'group_id' => array('type' => 'int', 'not null' => true, 'description' => 'group profile is blocked from'),
+                'blocked' => array('type' => 'int', 'not null' => true, 'description' => 'profile that is blocked'),
+                'blocker' => array('type' => 'int', 'not null' => true, 'description' => 'user making the block'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date of blocking'),
+            ),
+            'primary key' => array('group_id', 'blocked'),
+            'foreign keys' => array(
+                'group_block_group_id_fkey' => array('user_group', array('group_id' => 'id')),
+                'group_block_blocked_fkey' => array('profile', array('blocked' => 'id')),
+                'group_block_blocker_fkey' => array('user', array('blocker' => 'id')),
+            ),
+        );
+    }
 
     function pkeyGet($kv)
     {

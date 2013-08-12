@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,22 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: RegisterThrottlePlugin.php:134
+#. TRANS: Server exception thrown when no IP address can be found for a registation attempt.
+#: RegisterThrottlePlugin.php:128
 msgid "Cannot find IP address."
 msgstr ""
 
-#: RegisterThrottlePlugin.php:149
+#. TRANS: Exception thrown when too many user have registered from one IP address within a given time frame.
+#: RegisterThrottlePlugin.php:144
 msgid "Too many registrations. Take a break and try again later."
 msgstr ""
 
-#: RegisterThrottlePlugin.php:161
+#. TRANS: Exception thrown when attempting to register from an IP address from which silenced users have registered.
+#: RegisterThrottlePlugin.php:157
 msgid "A banned user has registered from this address."
 msgstr ""
 
-#: RegisterThrottlePlugin.php:220
+#. TRANS: Plugin description.
+#: RegisterThrottlePlugin.php:214
 msgid "Throttles excessive registration from a single IP address."
 msgstr ""

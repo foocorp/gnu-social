@@ -1,0 +1,54 @@
+# Translation of StatusNet - Msn to Arabic (العربية)
+# Exported from translatewiki.net
+#
+# Author: Imksa
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Msn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:18+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:48:56+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-msn\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+#. TRANS: MSN bot status message.
+msgid "Send me a message to post a notice"
+msgstr "أرسل لي رسالة لأرسل إشعارًا"
+
+#. TRANS: Server exception thrown when a message to be sent through MSN cannot be added to the database queue.
+msgid "Database error inserting queue item."
+msgstr "خطأ في قاعدة بيانات إدراج بند قائمة الانتظار."
+
+#. TRANS: Display name of the MSN instant messaging service.
+msgid "MSN"
+msgstr ""
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+msgid "Must specify a user."
+msgstr "يجب تحديد مستخدم."
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+msgid "Must specify a password."
+msgstr "يجب تحديد كلمة مرور."
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+msgid "Must specify a nickname."
+msgstr "يجب تحديد اسم مستعار."
+
+#. TRANS: Plugin description.
+msgid ""
+"The MSN plugin allows users to send and receive notices over the MSN network."
+msgstr ""
+"البرنامج المساعد MSN يسمح للمستخدمين بإرسال وتلقى إشعارات عبر شبكة MSN."

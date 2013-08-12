@@ -1,5 +1,5 @@
-# Translation of StatusNet - Blacklist to Galician (Galego)
-# Expored from translatewiki.net
+# Translation of StatusNet - Blacklist to Galician (galego)
+# Exported from translatewiki.net
 #
 # Author: Toliño
 # --
@@ -9,123 +9,118 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blacklist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:34+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:49+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 17:54:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-03-01 18:55:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-blacklist\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Exception thrown if the Blacklist plugin configuration is incorrect.
+#. TRANS: %1$s is a configuration section, %2$s is a configuration setting.
+#, php-format
+msgid "Unknown data type for config %1$s + %2$s."
+msgstr "Tipo de datos descoñecido para a configuración %1$s + %2$s."
+
 #. TRANS: Validation failure for URL. %s is the URL.
-#: BlacklistPlugin.php:149
 #, php-format
 msgid "You may not register with homepage \"%s\"."
-msgstr ""
+msgstr "Non se pode rexistrar coa páxina de inicio \"%s\"."
 
 #. TRANS: Validation failure for nickname. %s is the nickname.
-#: BlacklistPlugin.php:160
 #, php-format
 msgid "You may not register with nickname \"%s\"."
-msgstr ""
+msgstr "Non se pode rexistrar co alcume \"%s\"."
 
 #. TRANS: Validation failure for URL. %s is the URL.
-#: BlacklistPlugin.php:185
 #, php-format
 msgid "You may not use homepage \"%s\"."
-msgstr ""
+msgstr "Non pode usar a páxina de inicio \"%s\"."
 
 #. TRANS: Validation failure for nickname. %s is the nickname.
-#: BlacklistPlugin.php:196
 #, php-format
 msgid "You may not use nickname \"%s\"."
-msgstr ""
+msgstr "Non pode usar o alcume \"%s\"."
 
 #. TRANS: Validation failure for URL. %s is the URL.
-#: BlacklistPlugin.php:239
 #, php-format
 msgid "You may not use URL \"%s\" in notices."
-msgstr ""
+msgstr "Non pode usar o enderezo URL \"%s\" nas notas."
 
-#: BlacklistPlugin.php:343
+#. TRANS: Plugin description.
 msgid "Keeps a blacklist of forbidden nickname and URL patterns."
 msgstr ""
+"Mantén unha lista negra cos patróns de alcumes e de enderezos URL prohibidos."
 
 #. TRANS: Menu item in admin panel.
-#: BlacklistPlugin.php:381
-#, fuzzy
 msgctxt "MENU"
 msgid "Blacklist"
 msgstr "Lista negra"
 
 #. TRANS: Tooltip for menu item in admin panel.
-#: BlacklistPlugin.php:383
-#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Blacklist configuration"
-msgstr "Configuración da lista negra"
+msgid "Blacklist configuration."
+msgstr "Configuración da lista negra."
 
-#. TRANS: Checkbox with text label in the delete user form.
-#: BlacklistPlugin.php:410
+#. TRANS: Checkbox label in the blacklist user form.
 msgid "Add this nickname pattern to blacklist"
-msgstr ""
+msgstr "Engadir o patrón deste alcume á lista negra"
 
-#. TRANS: Checkbox with text label in the delete user form.
-#: BlacklistPlugin.php:420
+#. TRANS: Checkbox label in the blacklist user form.
 msgid "Add this homepage pattern to blacklist"
-msgstr ""
+msgstr "Engadir o patrón desta páxina de inicio á lista negra"
 
 #. TRANS: Exception thrown trying to post a notice while having set a blocked homepage URL. %s is the blocked URL.
 #. TRANS: Client exception thrown trying to subscribe to a person with a blocked homepage or site URL. %s is the blocked URL.
-#: BlacklistPlugin.php:499 BlacklistPlugin.php:534
 #, php-format
-msgid "Users from \"%s\" blocked."
-msgstr ""
+msgid "Users from \"%s\" are blocked."
+msgstr "Os usuarios de \"%s\" están bloqueados."
 
 #. TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-#: BlacklistPlugin.php:510
 #, php-format
-msgid "Posts from nickname \"%s\" disallowed."
-msgstr ""
+msgid "Notices from nickname \"%s\" are disallowed."
+msgstr "As notas do alcume \"%s\" non están permitidas."
 
 #. TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.
-#: BlacklistPlugin.php:545
 #, php-format
-msgid "Can't subscribe to nickname \"%s\"."
-msgstr ""
+msgid "Cannot subscribe to nickname \"%s\"."
+msgstr "Non pode subscribirse ao alcume \"%s\"."
 
-#: blacklistadminpanel.php:52
+#. TRANS: Title of blacklist plugin administration panel.
+msgctxt "TITLE"
 msgid "Blacklist"
 msgstr "Lista negra"
 
-#: blacklistadminpanel.php:62
+#. TRANS: Instructions for blacklist plugin administration panel.
 msgid "Blacklisted URLs and nicknames"
-msgstr ""
+msgstr "Enderezos URL e alcumes na lista negra"
 
-#: blacklistadminpanel.php:174
+#. TRANS: Field label in blacklist plugin administration panel.
 msgid "Nicknames"
 msgstr "Alcumes"
 
-#: blacklistadminpanel.php:176
-msgid "Patterns of nicknames to block, one per line"
-msgstr ""
+#. TRANS: Field title in blacklist plugin administration panel.
+msgid "Patterns of nicknames to block, one per line."
+msgstr "Patróns de alcumes a bloquear, un por liña."
 
-#: blacklistadminpanel.php:182
+#. TRANS: Field label in blacklist plugin administration panel.
 msgid "URLs"
 msgstr "Enderezos URL"
 
-#: blacklistadminpanel.php:184
-msgid "Patterns of URLs to block, one per line"
-msgstr ""
+#. TRANS: Field title in blacklist plugin administration panel.
+msgid "Patterns of URLs to block, one per line."
+msgstr "Patróns de enderezos URL a bloquear, un por liña."
 
-#: blacklistadminpanel.php:198
+#. TRANS: Button text in blacklist plugin administration panel to save settings.
+msgctxt "BUTTON"
 msgid "Save"
 msgstr "Gardar"
 
-#: blacklistadminpanel.php:201
-msgid "Save site settings"
-msgstr "Gardar a configuración do sitio"
+#. TRANS: Button title in blacklist plugin administration panel to save settings.
+msgid "Save site settings."
+msgstr "Gardar a configuración do sitio."

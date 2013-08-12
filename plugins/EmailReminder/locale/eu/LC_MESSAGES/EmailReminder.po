@@ -1,0 +1,52 @@
+# Translation of StatusNet - EmailReminder to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailReminder\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:25+0000\n"
+"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-19 11:23:04+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: eu\n"
+"X-Message-Group: #out-statusnet-plugin-emailreminder\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Send email reminders for various things."
+msgstr "Bidali email ohartarazpenak gauza anitzetarako."
+
+#. TRANS: Server exception thrown when a reminder record could not be inserted into the database.
+msgid "Database error inserting reminder record."
+msgstr "Datubase akatsa ohartarazpe aukera txertatzean."
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Reminder - please confirm your registration!"
+msgstr "Ohartarazpena -  mesedez baieztatu zure izen ematea!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Second reminder - please confirm your registration!"
+msgstr "Bigarren ohartarazpena - mesedez baieztatu zure izen ematea!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Final reminder - please confirm your registration!"
+msgstr "Azken ohartarazpena - mesedez baieztatu zure izen ematea!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Reminder - You have been invited to join %s!"
+msgstr "Ohartarazpena - gonbidatuta zaude %s gunearekin bat egitera!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Final reminder - you have been invited to join %s!"
+msgstr "Azken ohartarazpena - gonbidatuta zaude %s gunearekin bat egitera!"

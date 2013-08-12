@@ -71,7 +71,6 @@ class Notice_to_status extends Memcached_DataObject
      * @return Notice_to_status object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Notice_to_status', $k, $v);
@@ -85,7 +84,6 @@ class Notice_to_status extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
@@ -102,7 +100,6 @@ class Notice_to_status extends Memcached_DataObject
      *
      * @return array list of key field names
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -120,7 +117,6 @@ class Notice_to_status extends Memcached_DataObject
      *         'K' for primary key: for compound keys, add an entry for each component;
      *         'U' for unique keys: compound keys are not well supported here.
      */
-
     function keyTypes()
     {
         return array('notice_id' => 'K', 'status_id' => 'U');
@@ -136,7 +132,6 @@ class Notice_to_status extends Memcached_DataObject
      *
      * @return array magic three-false array that stops auto-incrementing.
      */
-
     function sequenceKey()
     {
         return array(false, false, false);
@@ -151,7 +146,6 @@ class Notice_to_status extends Memcached_DataObject
      *
      * @return Notice_to_status new object for this value
      */
-
     static function saveNew($notice_id, $status_id)
     {
         if (empty($notice_id)) {

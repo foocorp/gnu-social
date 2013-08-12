@@ -22,7 +22,7 @@
  * @category  Application
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -40,7 +40,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ShowApplicationAction extends OwnerDesignAction
+class ShowApplicationAction extends Action
 {
     /**
      * Application to show
@@ -251,21 +251,24 @@ class ShowApplicationAction extends OwnerDesignAction
         $this->elementStart('div', 'entity_data');
         // TRANS: Header on the OAuth application page.
         $this->element('h2', null, _('Application info'));
-        $this->element('div',
-                       'entity_consumer_key',
-                       $consumer->consumer_key);
 
-        $this->element('div',
-                       'entity_consumer_secret',
-                       $consumer->consumer_secret);
-
-        $this->element('div',
-                       'entity_request_token_url',
-                       common_local_url('ApiOauthRequestToken'));
-
-        $this->element('div', 'entity_access_token_url', common_local_url('ApiOauthAccessToken'));
-
-        $this->element('div', 'entity_authorize_url', common_local_url('ApiOauthAuthorize'));
+        $this->elementStart('dl');
+        // TRANS: Field label on application page.
+        $this->element('dt', null, _('Consumer key'));
+        $this->element('dd', null, $consumer->consumer_key);
+        // TRANS: Field label on application page.
+        $this->element('dt', null, _('Consumer secret'));
+        $this->element('dd', null, $consumer->consumer_secret);
+        // TRANS: Field label on application page.
+        $this->element('dt', null, _('Request token URL'));
+        $this->element('dd', null, common_local_url('ApiOauthRequestToken'));
+        // TRANS: Field label on application page.
+        $this->element('dt', null, _('Access token URL'));
+        $this->element('dd', null, common_local_url('ApiOauthAccessToken'));
+        // TRANS: Field label on application page.
+        $this->element('dt', null, _('Authorize URL'));
+        $this->element('dd', null, common_local_url('ApiOauthAuthorize'));
+        $this->elementEnd('dl');
 
         $this->element('p', 'note',
             // TRANS: Note on the OAuth application page about signature support.

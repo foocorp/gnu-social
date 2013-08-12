@@ -35,7 +35,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * This class provides an interface for our JS-side code to pull info on
  * links from other sites, using either native oEmbed, our own custom
- * handlers, or the oohEmbed.com offsite proxy service as configured.
+ * handlers, or the noembed.com offsite proxy service as configured.
  *
  * @category  oEmbed
  * @package   StatusNet

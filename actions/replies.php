@@ -22,7 +22,7 @@
  * @category  Personal
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -44,7 +44,7 @@ require_once INSTALLDIR.'/lib/feedlist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class RepliesAction extends OwnerDesignAction
+class RepliesAction extends Action
 {
     var $page = null;
     var $notice;
@@ -85,8 +85,11 @@ class RepliesAction extends OwnerDesignAction
 
         common_set_returnto($this->selfUrl());
 
-        $this->notice = $this->user->getReplies(($this->page-1) * NOTICES_PER_PAGE,
-             NOTICES_PER_PAGE + 1);
+        $stream = new ReplyNoticeStream($this->user->id,
+                                        Profile::current());
+
+        $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE,
+                                            NOTICES_PER_PAGE + 1);
 
         if($this->page > 1 && $this->notice->N == 0){
             // TRANS: Server error when page not found (404)
@@ -140,7 +143,16 @@ class RepliesAction extends OwnerDesignAction
      */
     function getFeeds()
     {
-        return array(new Feed(Feed::RSS1,
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelineMentions',
+                                               array(
+                                                    'id' => $this->user->nickname,
+                                                    'format' => 'as')),
+                              // TRANS: Link for feed with replies for a user.
+                              // TRANS: %s is a user nickname.
+                              sprintf(_('Replies feed for %s (Activity Streams JSON)'),
+                                      $this->user->nickname)),
+                     new Feed(Feed::RSS1,
                               common_local_url('repliesrss',
                                                array('nickname' => $this->user->nickname)),
                               // TRANS: Link for feed with replies for a user.

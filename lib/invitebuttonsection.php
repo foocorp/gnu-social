@@ -46,6 +46,19 @@ if (!defined('STATUSNET')) {
  */
 class InviteButtonSection extends Section
 {
+    protected $buttonText;
+
+    function __construct($out = null, $buttonText = null)
+    {
+        $this->out = $out;
+        if (empty($buttonText)) {
+            // TRANS: Default button text for inviting more users to the StatusNet instance.
+            $this->buttonText = _m('BUTTON', 'Invite more colleagues');
+        } else {
+            $this->buttonText = $buttonText;
+        }
+    }
+
     function showTitle()
     {
         return false;
@@ -53,11 +66,14 @@ class InviteButtonSection extends Section
 
     function showContent()
     {
-        $this->out->element('a',
-                            array('href' => common_local_url('invite'),
-                                  'class' => 'invite_button'),
-                            // TRANS: Button text for inviting more users to the StatusNet instance.
-                            _m('BUTTON','Invite more colleagues'));
+        $this->out->element(
+            'a',
+            array(
+                'href' => common_local_url('invite'),
+                'class' => 'invite_button'
+            ),
+            $this->buttonText
+        );
         return false;
     }
 }

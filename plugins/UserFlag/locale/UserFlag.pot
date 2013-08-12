@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,6 +50,7 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
+#. TRANS: Form description for clearing flags from a profile.
 #: clearflagform.php:88
 msgid "Clear all flags"
 msgstr ""
@@ -59,24 +60,25 @@ msgstr ""
 msgid "Not logged in."
 msgstr ""
 
-#: adminprofileflag.php:89
+#. TRANS: Error message displayed when trying to review profile flags while not authorised.
+#: adminprofileflag.php:90
 msgid "You cannot review profile flags."
 msgstr ""
 
 #. TRANS: Title for page with a list of profiles that were flagged for review.
-#: adminprofileflag.php:126
+#: adminprofileflag.php:127
 msgid "Flagged profiles"
 msgstr ""
 
 #. TRANS: Header for moderation menu with action buttons for flagged profiles (like 'sandbox', 'silence', ...).
-#: adminprofileflag.php:243
+#: adminprofileflag.php:244
 msgid "Moderate"
 msgstr ""
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
-#. TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
-#: adminprofileflag.php:389
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used for plural.
+#: adminprofileflag.php:390
 #, php-format
 msgid "Flagged by %1$s and %2$d other"
 msgid_plural "Flagged by %1$s and %2$d others"
@@ -85,15 +87,16 @@ msgstr[1] ""
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %s is a comma separated list of at most 5 user nicknames that flagged.
-#: adminprofileflag.php:393
+#: adminprofileflag.php:394
 #, php-format
 msgid "Flagged by %s"
 msgstr ""
 
 #. TRANS: Server exception given when flags could not be cleared.
+#. TRANS: %s is a profile nickname.
 #: clearflag.php:105
 #, php-format
-msgid "Couldn't clear flags for profile \"%s\"."
+msgid "Could not clear flags for profile \"%s\"."
 msgstr ""
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
@@ -107,7 +110,8 @@ msgid "Cleared"
 msgstr ""
 
 #. TRANS: Server exception.
-#: User_flag_profile.php:160
+#. TRANS: %d is a profile ID (number).
+#: User_flag_profile.php:161
 #, php-format
-msgid "Couldn't flag profile \"%d\" for review."
+msgid "Could not flag profile \"%d\" for review."
 msgstr ""

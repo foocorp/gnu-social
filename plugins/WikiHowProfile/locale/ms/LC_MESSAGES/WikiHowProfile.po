@@ -9,18 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - WikiHowProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:52+0000\n"
-"Language-Team: Malay <http://translatewiki.net/wiki/Portal:ms>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:28+0000\n"
+"Language-Team: Malay <https://translatewiki.net/wiki/Portal:ms>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:54+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:54+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ms\n"
 "X-Message-Group: #out-statusnet-plugin-wikihowprofile\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. TRANS: Plugin description.
 msgid ""
 "Fetches avatar and other profile information for WikiHow users when setting "
 "up an account via OpenID."
@@ -28,10 +29,22 @@ msgstr ""
 "Mengambil avatar dan maklumat profil yang lain untuk pengguna WikiHow "
 "apabila membuka akaun melalui OpenID."
 
+#. TRANS: Exception thrown when fetching a WikiHow profile page fails.
+msgid "WikiHow profile page fetch failed."
+msgstr ""
+
+#. TRANS: Exception thrown when parsing a WikiHow profile page fails.
+msgid "HTML parse failure during check for WikiHow avatar."
+msgstr ""
+
+#. TRANS: Server exception thrown when an avatar URL is invalid.
+#. TRANS: %s is the invalid avatar URL.
 #, php-format
 msgid "Invalid avatar URL %s."
 msgstr "URL avatar %s tidak sah."
 
+#. TRANS: Exception thrown when fetching an avatar from a URL fails.
+#. TRANS: %s is a URL.
 #, php-format
 msgid "Unable to fetch avatar from %s."
 msgstr "Avatar tidak dapat diambil dari %s."

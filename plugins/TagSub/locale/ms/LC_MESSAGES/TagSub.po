@@ -9,24 +9,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TagSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:35+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:46+0000\n"
 "Language-Team: Malay <http://translatewiki.net/wiki/Portal:ms>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:23+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-06-05 21:52:06+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ms\n"
 "X-Message-Group: #out-statusnet-plugin-tagsub\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. TRANS: Form legend.
 msgid "Unsubscribe from this tag"
 msgstr ""
 
+#. TRANS: Submit button text to unsubscribe from a tag.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Berhenti melanggan"
+
+#. TRANS: Submit button title to unsubscribe from a tag.
+msgid "Unsubscribe from this tag."
+msgstr ""
 
 #. TRANS: Plugin description.
 msgid "Plugin to allow following all messages with a given tag."
@@ -41,15 +47,22 @@ msgstr "Tag"
 msgid "Configure tag subscriptions"
 msgstr ""
 
+#. TRANS: Menu item text for tags submenu.
 #, fuzzy
 msgid "Tags"
 msgstr "Tag"
 
+#. TRANS: Form legend.
 msgid "Subscribe to this tag"
 msgstr ""
 
+#. TRANS: Submit button text to subscribe to a tag.
 msgctxt "BUTTON"
 msgid "Subscribe"
+msgstr ""
+
+#. TRANS: Submit button title to subscribe to a tag.
+msgid "Subscribe to this tag."
 msgstr ""
 
 #. TRANS: Page title when tag unsubscription succeeded.
@@ -116,10 +129,12 @@ msgstr ""
 #. TRANS: than the logged in user that has no tag subscriptions. %s is the user nickname.
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
 #. TRANS: as an anonymous user. %s is the user nickname.
-#, php-format
-msgid "%s is not listening to any tags."
+#, fuzzy, php-format
+msgid "%s is not following any tags."
 msgstr "%s tidak mendengari mana-mana tag pun."
 
-#, php-format
-msgid "#<a href=\"%s\">%s</a> since %s"
+#. TRANS: %1$s is a URL to a tag, %2$s is a tag,
+#. TRANS: %3$s a date string.
+#, fuzzy, php-format
+msgid "#<a href=\"%1$s\">%2$s</a> since %3$s"
 msgstr "#<a href=\"%s\">%s</a> sejak %s"

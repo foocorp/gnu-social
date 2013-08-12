@@ -76,7 +76,7 @@ class AttachmentList extends Widget
      */
     function show()
     {
-        $att = File::getAttachments($this->notice->id);
+    	$att = $this->notice->attachments();
         if (empty($att)) return 0;
         $this->showListStart();
 

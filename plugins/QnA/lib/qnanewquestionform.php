@@ -106,18 +106,22 @@ class QnanewquestionForm extends Form
         $this->li();
         $this->out->input(
             'qna-question-title',
-            _m('Title'),
+            // TRANS: Field label for a new question.
+            _m('LABEL','Title'),
             $this->title,
-            _m('Title of your question'),
+            // TRANS: Field title for a new question.
+            _m('The title of your question.'),
             'title'
         );
         $this->unli();
         $this->li();
         $this->out->textarea(
             'qna-question-description',
-            _m('Description'),
+            // TRANS: Field label for question details.
+            _m('LABEL','Description'),
             $this->description,
-            _m('Your question in detail'),
+            // TRANS: Field title for question details.
+            _m('Your question in detail.'),
             'description'
         );
         $this->unli();

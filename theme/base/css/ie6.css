@@ -1,30 +1,30 @@
-/**
- * @package   StatusNet
- * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2009-2010 StatusNet, Inc.
- * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
- * @link      http://status.net/
- */
-/* IE6 specific styles */
-address {
-margin-left:7px;
-}
-address .fn {
-display:none;
-}
-
-#wrap {
-width:1003px;
-margin:0 auto;
-}
+/* LTE IE6 styles */
 
 #content {
-width:66%;
+    width: 520px;
 }
+
 #aside_primary {
-padding:1.8%;
-width:24%;
+    width: 220px;
 }
+
+#content h1 {
+    clear: left;
+}
+
+address .fn {
+    display: none;
+}
+
+#header-search {
+    width: 240px;
+}
+
+#header-search input {
+    height: 20px;
+    font-size: 12px;
+}
+
 .entity_profile .entity_nickname,
 .entity_profile .entity_location,
 .entity_profile .entity_url,
@@ -38,10 +38,23 @@ margin-bottom:123px;
 .entity_actions {
 width:20%;
 }
+
 .notice div.entry-content {
-width:65%;
-margin-left:30px;
+    margin-left: 30px;
 }
+
+.notice-source-activity div.entry-content {
+    margin-left: 0;
+} 
+
+.threaded-replies {
+    margin-left: 30px;
+}
+
+#content .notice .threaded-replies .notice div.entry-content {
+    margin-left: 18px;
+}
+
 .notice-options a {
 width:16px;
 }

@@ -77,11 +77,6 @@ class XrdAction extends Action
                                                                'format' => 'atom')),
                               'type' => 'application/atom+xml');
 
-        // hCard
-        $xrd->links[] = array('rel' => Discovery::HCARD,
-                              'type' => 'text/html',
-                              'href' => common_local_url('hcard', array('nickname' => $nick)));
-
         // XFN
         $xrd->links[] = array('rel' => 'http://gmpg.org/xfn/11',
                               'type' => 'text/html',

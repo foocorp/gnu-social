@@ -1,4 +1,4 @@
-# Translation of StatusNet - PtitUrl to Russian (Русский)
+# Translation of StatusNet - PtitUrl to Russian (русский)
 # Exported from translatewiki.net
 #
 # Author: Eleferen
@@ -9,19 +9,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - PtitUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:53+0000\n"
-"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:42+0000\n"
+"Language-Team: Russian <https://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:08:31+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:27+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-ptiturl\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Exception thrown when URL shortening plugin was configured incorrectly.
+msgid "You must specify a serviceUrl for ptit URL shortening."
+msgstr ""
+
+#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr "Использование службы сокращения URL <a href=\"http://%1$s/\">%1$s</a>."

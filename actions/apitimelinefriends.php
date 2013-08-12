@@ -266,16 +266,15 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
             $this->showJsonTimeline($this->notices);
             break;
         case 'as':
-            header('Content-Type: application/json; charset=utf-8');
-            $doc = new ActivityStreamJSONDocument($this->auth_user);
-            $doc->setTitle($title);
-            $doc->addLink($link,'alternate', 'text/html');
+            header('Content-Type: ' . ActivityStreamJSONDocument::CONTENT_TYPE);
+            $doc = new ActivityStreamJSONDocument($this->auth_user, $title);
+            $doc->addLink($link, 'alternate', 'text/html');
             $doc->addItemsFromNotices($this->notices);
             $this->raw($doc->asString());
             break;
         default:
             // TRANS: Client error displayed when coming across a non-supported API method.
-            $this->clientError(_('API method not found.'), $code = 404);
+            $this->clientError(_('API method not found.'), 404);
             break;
         }
     }
@@ -289,7 +288,13 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
     {
         $notices = array();
 
-        $stream = new InboxNoticeStream($this->user);
+        $profile = null;
+
+        if (isset($this->auth_user)) {
+            $profile = $this->auth_user->getProfile();
+        }
+
+        $stream = new InboxNoticeStream($this->user, $profile);
         
         $notice = $stream->getNotices(($this->page-1) * $this->count,
                                       $this->count,

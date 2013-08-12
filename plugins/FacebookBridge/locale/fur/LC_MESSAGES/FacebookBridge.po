@@ -1,4 +1,4 @@
-# Translation of StatusNet - FacebookBridge to Friulian (Furlan)
+# Translation of StatusNet - FacebookBridge to Friulian (furlan)
 # Exported from translatewiki.net
 #
 # Author: Klenje
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:29+0000\n"
-"Language-Team: Friulian <http://translatewiki.net/wiki/Portal:fur>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:34+0000\n"
+"Language-Team: Friulian <https://translatewiki.net/wiki/Portal:fur>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fur\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -114,6 +114,7 @@ msgstr "Mande lis rispuestis cun \"@\" a Facebook."
 msgid "Disconnect my account from Facebook"
 msgstr ""
 
+#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
 #, php-format
 msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please [set "
@@ -147,6 +148,9 @@ msgstr ""
 
 #. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
 msgid "You have disconnected from Facebook."
+msgstr ""
+
+msgid "Unable to authenticate you with Facebook."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to connect to Facebook while not logged in.

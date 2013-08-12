@@ -3,7 +3,7 @@
  * Table Definition for local_group
  */
 
-class Local_group extends Memcached_DataObject
+class Local_group extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -20,15 +20,31 @@ class Local_group extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function sequenceKey()
+    public static function schemaDef()
     {
-        return array(false, false, false);
+        return array(
+            'description' => 'Record for a user group on the local site, with some additional info not in user_group',
+            'fields' => array(
+                'group_id' => array('type' => 'int', 'not null' => true, 'description' => 'group represented'),
+                'nickname' => array('type' => 'varchar', 'length' => 64, 'description' => 'group represented'),
+
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('group_id'),
+            'foreign keys' => array(
+                'local_group_group_id_fkey' => array('user_group', array('group_id' => 'id')),
+            ),
+            'unique keys' => array(
+                'local_group_nickname_key' => array('nickname'),
+            ),
+        );
     }
 
     function setNickname($nickname)
     {
         $this->decache();
-        $qry = 'UPDATE local_group set nickname = "'.$nickname.'" where group_id = ' . $this->group_id;
+        $qry = 'UPDATE local_group set nickname = "'.$this->escape($nickname).'" where group_id = ' . $this->group_id;
 
         $result = $this->query($qry);
 

@@ -1,6 +1,7 @@
 # Translation of StatusNet - Directory to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: DRIHEM
 # Author: Mutarjem horr
 # Author: OsamaK
 # --
@@ -10,35 +11,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:02+0000\n"
-"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:08+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 11:55:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 09:57:06+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
 "2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
 "99) ? 4 : 5 ) ) ) );\n"
 
+#. TRANS: Page title for user directory. %d is a page number.
 #, php-format
 msgid "User Directory, page %d"
 msgstr "دليل المستخدمين، الصفحة %d"
 
+#. TRANS: Page title for user directory.
 msgid "User directory"
 msgstr "دليل المستخدمين"
 
+#. TRANS: Page title for user directory. %s is the applied filter.
 #, php-format
 msgid "User directory - %s"
 msgstr "دليل المستخدمين - %s"
 
+#. TRANS: Page title for user directory.
+#. TRANS: %1$s is the applied filter, %2$d is a page number.
 #, php-format
-msgid "User directory - %s, page %d"
-msgstr "دليل المستخدمين - %s، الصفحة %d"
+msgid "User directory - %1$s, page %2$d"
+msgstr "دليل المستخدمين - %1$s، الصفحة %2$d"
 
+#. TRANS: %%site.name%% is the name of the StatusNet site.
 #, php-format
 msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
@@ -47,25 +54,43 @@ msgstr ""
 "ابحث عن أشخاص على %%site.name%% بدلالة الاسم أو الموقع أو الاهتمامات. افصل "
 "عبارات البحث بمسافات؛ ويجب أن تتكون تلك العبارات من 3 أحرف أو أكثر."
 
+#. TRANS: Fieldset legend.
 msgid "Search site"
 msgstr "ابحث في الموقع"
 
+#. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
 msgid "Keyword(s)"
 msgstr "الكلمات المفتاحية"
 
+#. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "ابحث"
 
+#. TRANS: Empty list message for user directory.
 #, php-format
 msgid "No users starting with %s"
 msgstr "لا يوجد مستخدمون يبدؤون ب%s"
 
+#. TRANS: Empty list message for user directory.
 #. TRANS: Empty list message for searching group directory.
 msgid "No results."
 msgstr "لا توجد نتائج."
+
+#. TRANS: Standard search suggestions shown when a search does not give any results.
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* تأكد من أن كل الكلمات صحيحة التهجئة.\n"
+"* حاول بكلمات أخرى.\n"
+"* حاول بكلمات أكثر عمومًا.\n"
+"* حاول بكلمات أقل."
 
 #. TRANS: Title for group directory page. %d is a page number.
 #, php-format
@@ -93,9 +118,14 @@ msgid ""
 "After you join a group you can send messages to all other members\n"
 "using the syntax \"!groupname\".\n"
 "\n"
-"Browse groups, or search for groups on by their name, location or topic.\n"
+"Browse groups, or search for groups by their name, location or topic.\n"
 "Separate the terms by spaces; they must be three characters or more."
 msgstr ""
+"بعد إنضمامك إلى مجموعة يمكنك أن ترسل الرسائل إلى جميع الأعضاء بأستخدام الأمر "
+"\"!groupname\".\n"
+"\n"
+"تصفح المجموعات أو إبحث عن المجموعات عن طريق إسمها، مكانها أو الموضوع.\n"
+"قم بفصل العبارات بمسافات، يجب أن تتكون من ثلاثة أحرف أو أكثر."
 
 #. TRANS: Link to create a new group on the group list page.
 msgid "Create a new group"
@@ -110,18 +140,6 @@ msgstr "ابحث في المجموعات"
 #, php-format
 msgid "No groups starting with %s."
 msgstr "لا توجد مجموعات تبدء بــ %s."
-
-#. TRANS: Help text for searching group directory.
-msgid ""
-"* Make sure all words are spelled correctly.\n"
-"* Try different keywords.\n"
-"* Try more general keywords.\n"
-"* Try fewer keywords."
-msgstr ""
-"* تأكد من أن كل الكلمات صحيحة التهجئة.\n"
-"*حاول بكلمات متعددة.\n"
-"* حاول بكلمات أكثر عموماّ.\n"
-"* حاول بكلمات أقل."
 
 #. TRANS: Menu item text for user directory.
 msgctxt "MENU"
@@ -142,7 +160,15 @@ msgstr "الاسم المستعار"
 
 #. TRANS: Column header in table for timestamp when user was created.
 msgid "Created"
-msgstr "تم إنشاءه"
+msgstr "أنشئ في"
+
+#. TRANS: Column header for number of subscriptions.
+msgid "Subscriptions"
+msgstr "الاشتراكات"
+
+#. TRANS: Column header for number of notices.
+msgid "Notices"
+msgstr "الإشعارات"
 
 #. TRANS: Column header in table for members of a group.
 msgid "Members"

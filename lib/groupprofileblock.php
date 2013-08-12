@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Profile block to show for a group
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class GroupProfileBlock extends ProfileBlock
 {
     protected $group = null;
@@ -68,7 +67,7 @@ class GroupProfileBlock extends ProfileBlock
 
     function url()
     {
-        return $this->group->mainpage;
+        return $this->group->homeUrl();
     }
 
     function location()
@@ -84,6 +83,11 @@ class GroupProfileBlock extends ProfileBlock
     function description()
     {
         return $this->group->description;
+    }
+
+    function otherProfiles()
+    {
+        return array();
     }
 
     function showActions()
@@ -112,12 +116,33 @@ class GroupProfileBlock extends ProfileBlock
                 Event::handle('EndGroupSubscribe', array($this, $this->group));
             }
             $this->out->elementEnd('li');
+            if ($cur && $cur->isAdmin($this->group)) {
+                $this->out->elementStart('li', 'entity_edit');
+                $this->out->element('a', array('href' => common_local_url('editgroup',
+                                                                          array('nickname' => $this->group->nickname)),
+                                               // TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
+                                               // TRANS: %s is the nickname of the group.
+                                               'title' => sprintf(_m('TOOLTIP','Edit %s group properties'), $this->group->nickname)),
+                                    // TRANS: Link text for link on user profile.
+                                    _m('BUTTON','Edit'));
+                $this->out->elementEnd('li');
+                $this->out->elementStart('li', 'entity_edit');
+                $this->out->element('a', array('href' => common_local_url('grouplogo',
+                                                                          array('nickname' => $this->group->nickname)),
+                                               // TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
+                                               // TRANS: %s is the nickname of the group.
+                                               'title' => sprintf(_m('TOOLTIP','Add or edit %s logo'), $this->group->nickname)),
+                                    // TRANS: Link text for link on user profile.
+                                    _m('MENU','Logo'));
+                $this->out->elementEnd('li');
+            }
             if ($cur && $cur->hasRight(Right::DELETEGROUP)) {
                 $this->out->elementStart('li', 'entity_delete');
                 $df = new DeleteGroupForm($this->out, $this->group);
                 $df->show();
                 $this->out->elementEnd('li');
             }
+
             Event::handle('EndGroupActionsList', array($this, $this->group));
         }
         $this->out->elementEnd('ul');
@@ -132,5 +157,24 @@ class GroupProfileBlock extends ProfileBlock
             Event::handle('EndShowGroupProfileBlock', array($this->out, $this->group));
         }
         $this->out->elementEnd('div');
+    }
+
+    function showName()
+    {
+        parent::showName();
+        $this->showAliases();
+    }
+
+    function showAliases()
+    {
+        $aliases = $this->group->getAliases();
+
+        if (!empty($aliases)) {
+            $this->out->elementStart('ul', 'group_aliases');
+            foreach ($aliases as $alias) {
+                $this->out->element('li', 'group_alias', $alias);
+            }
+            $this->out->elementEnd('ul');
+        }
     }
 }

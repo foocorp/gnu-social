@@ -54,7 +54,7 @@ class GroupTagCloudSection extends TagCloudSection
     {
         // TRANS: Title for group tag cloud section.
         // TRANS: %s is a group name.
-        return sprintf(_('Tags in %s group\'s notices'), $this->group->nickname);
+        return _('Tags');
     }
 
     function getTags()

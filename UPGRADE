@@ -1,0 +1,117 @@
+Upgrading
+=========
+
+If you've been using StatusNet 1.0 or lower, or if you've
+been tracking the "git" version of the software, you will probably
+want to upgrade and keep your existing data. Try these step-by-step
+instructions; read to the end first before trying them.
+
+0. Download StatusNet and set up all the prerequisites as if you were
+   doing a new install.
+1. Make backups of both your database and your Web directory. UNDER NO
+   CIRCUMSTANCES should you try to do an upgrade without a known-good
+   backup. You have been warned.
+2. Shut down Web access to your site, either by turning off your Web
+   server or by redirecting all pages to a "sorry, under maintenance"
+   page.
+3. Shut down XMPP access to your site, typically by shutting down the
+   xmppdaemon.php process and all other daemons that you're running.
+   If you've got "monit" or "cron" automatically restarting your
+   daemons, make sure to turn that off, too.
+4. Shut down SMS and email access to your site. The easy way to do
+   this is to comment out the line piping incoming email to your
+   maildaemon.php file, and running something like "newaliases".
+5. Once all writing processes to your site are turned off, make a
+   final backup of the Web directory and database.
+6. Move your StatusNet directory to a backup spot, like "statusnet.bak".
+7. Unpack your StatusNet 1.1.1 tarball and move it to "statusnet" or
+   wherever your code used to be.
+8. Copy the config.php file and the contents of the avatar/, background/,
+   file/, and local/ subdirectories from your old directory to your new
+   directory.
+9. Copy htaccess.sample to .htaccess in the new directory. Change the
+   RewriteBase to use the correct path.
+10. Upgrade the database.
+
+    NOTE: this step is destructive and cannot be
+    reversed. YOU CAN EASILY DESTROY YOUR SITE WITH THIS STEP. Don't
+    do it without a known-good backup!
+
+    In your new StatusNet 1.1.1 directory and AFTER YOU MAKE A
+    BACKUP run the upgrade.php script like this:
+
+        php ./scripts/upgrade.php
+
+11. Use mysql or psql client to log into your database and make sure that
+    the notice, user, profile, subscription etc. tables are non-empty.
+12. Turn back on the Web server, and check that things still work.
+13. Turn back on XMPP bots and email maildaemon.
+
+NOTE: the 1.0.0 version of StatusNet changed the URLs for all admin
+panels from /admin/* to /panel/*. This now allows the (popular)
+username 'admin', but blocks the considerably less popular username
+'panel'. If you have an existing user named 'panel', you should rename
+them before upgrading.
+
+UTF-8 Database
+--------------
+
+If you are upgrading from a 0.8.x or 0.9.x version, you can safely
+skip this section.
+
+StatusNet 0.7.4 introduced a fix for some incorrectly-stored
+international characters ("UTF-8"). This fix is not
+backwards-compatible; installations from before 0.7.4 will show
+non-ASCII characters of old notices incorrectly. This section explains
+what to do.
+
+0. You can disable the new behaviour by setting the 'db''utf8' config
+   option to "false". You should only do this until you're ready to
+   convert your DB to the new format.
+1. When you're ready to convert, you can run the fixup_utf8.php script
+   in the scripts/ subdirectory. If you've had the "new behaviour"
+   enabled (probably a good idea), you can give the ID of the first
+   "new" notice as a parameter, and only notices before that one will
+   be converted. Notices are converted in reverse chronological order,
+   so the most recent (and visible) ones will be converted first. The
+   script should work whether or not you have the 'db''utf8' config
+   option enabled.
+2. When you're ready, set $config['db']['utf8'] to true, so that
+   new notices will be stored correctly.
+
+Older versions
+==============
+
+IMPORTANT NOTE: StatusNet 0.7.4 introduced a fix for some
+incorrectly-stored international characters ("UTF-8"). For new
+installations, it will now store non-ASCII characters correctly.
+However, older installations will have the incorrect storage, and will
+consequently show up "wrong" in browsers. See below for how to deal
+with this situation.
+
+NOTE: the database definition file, laconica.ini, has been renamed to
+statusnet.ini (since this is the recommended database name). If you
+have a line in your config.php pointing to the old name, you'll need
+to update it.
+
+Note that the XMPP bots have changed since version 0.5; see above for
+details.
+
+Privacy
+=======
+
+With StatusNet 1.0, our default install profile is for private sites.
+
+If you did not specify the privacy level of your site previously, it
+was public. Now, it's private.
+
+If you upgrade a public site, you will need to reset the privacy
+level. You can do this in your config.php:
+
+       $config['site']['private'] = false;
+
+...or with setconfig.php in the db:
+
+       php setconfig.php site private false
+
+...or with the site admin panel.

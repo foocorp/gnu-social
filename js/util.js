@@ -638,13 +638,23 @@ var SN = { // StatusNet
             // Find the notice we're replying to...
             var id = $($('.notice_id', notice)[0]).text();
             var parentNotice = notice;
+            var stripForm = true; // strip a couple things out of reply forms that are inline
 
             // Find the threaded replies view we'll be adding to...
             var list = notice.closest('.notices');
-            if (list.hasClass('threaded-replies')) {
+            if (list.closest('.old-school').length) {
+            	// We're replying to an old-school conversation thread;
+            	// use the old-style ping into the top form.
+            	SN.U.switchInputFormTab("status")
+            	replyForm = $('#input_form_status').find('form');
+            	stripForm = false;
+            } else if (list.hasClass('threaded-replies')) {
                 // We're replying to a reply; use reply form on the end of this list.
                 // We'll add our form at the end of this; grab the root notice.
                 parentNotice = list.closest('.notice');
+
+		        // See if the form's already open...
+		        var replyForm = $('.notice-reply-form', list);
             } else {
                 // We're replying to a parent notice; pull its threaded list
                 // and we'll add on the end of it. Will add if needed.
@@ -658,18 +668,21 @@ var SN = { // StatusNet
                         SN.U.NoticeInlineReplyPlaceholder(notice);
                     }
                 }
-            }
 
-            // See if the form's already open...
-            var replyForm = $('.notice-reply-form', list);
+		        // See if the form's already open...
+		        var replyForm = $('.notice-reply-form', list);
+            }
 
             var nextStep = function() {
                 // Override...?
                 replyForm.find('input[name=inreplyto]').val(id);
-                replyForm.find('#notice_to').attr('disabled', 'disabled').hide();
-                replyForm.find('#notice_private').attr('disabled', 'disabled').hide();
-                replyForm.find('label[for=notice_to]').hide();
-                replyForm.find('label[for=notice_private]').hide();
+                if (stripForm) {
+                	// Don't do this for old-school reply form, as they don't come back!
+	                replyForm.find('#notice_to').attr('disabled', 'disabled').hide();
+    	            replyForm.find('#notice_private').attr('disabled', 'disabled').hide();
+    	            replyForm.find('label[for=notice_to]').hide();
+    	            replyForm.find('label[for=notice_private]').hide();
+    	        }
 
                 // Set focus...
                 var text = replyForm.find('textarea');
@@ -1422,7 +1435,15 @@ var SN = { // StatusNet
                     SN.Init.NoticeFormSetup(form);
                 })
                 .find('.notice_data-text').focus();
-	}
+	},
+
+        showMoreMenuItems: function(menuid) {
+            $('#'+menuid+' .more_link').remove();
+            var selector = '#'+menuid+' .extended_menu';
+            var extended = $(selector);
+            extended.removeClass('extended_menu');
+            return void(0);
+        }
     },
 
     Init: {

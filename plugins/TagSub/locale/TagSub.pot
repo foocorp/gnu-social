@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,13 +16,20 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: tagunsubform.php:96 tagunsubform.php:107
+#. TRANS: Form legend.
+#: tagunsubform.php:90
 msgid "Unsubscribe from this tag"
 msgstr ""
 
-#: tagunsubform.php:107
+#. TRANS: Submit button text to unsubscribe from a tag.
+#: tagunsubform.php:101
 msgctxt "BUTTON"
 msgid "Unsubscribe"
+msgstr ""
+
+#. TRANS: Submit button title to unsubscribe from a tag.
+#: tagunsubform.php:103
+msgid "Unsubscribe from this tag."
 msgstr ""
 
 #. TRANS: Plugin description.
@@ -31,27 +38,35 @@ msgid "Plugin to allow following all messages with a given tag."
 msgstr ""
 
 #. TRANS: SubMirror plugin menu item on user settings page.
-#: TagSubPlugin.php:203
+#: TagSubPlugin.php:202
 msgctxt "MENU"
 msgid "Tags"
 msgstr ""
 
 #. TRANS: SubMirror plugin tooltip for user settings menu item.
-#: TagSubPlugin.php:205
+#: TagSubPlugin.php:204
 msgid "Configure tag subscriptions"
 msgstr ""
 
+#. TRANS: Menu item text for tags submenu.
 #: TagSubPlugin.php:221
 msgid "Tags"
 msgstr ""
 
-#: tagsubform.php:116 tagsubform.php:140
+#. TRANS: Form legend.
+#: tagsubform.php:108
 msgid "Subscribe to this tag"
 msgstr ""
 
-#: tagsubform.php:140
+#. TRANS: Submit button text to subscribe to a tag.
+#: tagsubform.php:131
 msgctxt "BUTTON"
 msgid "Subscribe"
+msgstr ""
+
+#. TRANS: Submit button title to subscribe to a tag.
+#: tagsubform.php:133
+msgid "Subscribe to this tag."
 msgstr ""
 
 #. TRANS: Page title when tag unsubscription succeeded.
@@ -131,10 +146,12 @@ msgstr ""
 #. TRANS: as an anonymous user. %s is the user nickname.
 #: tagsubsaction.php:124 tagsubsaction.php:130
 #, php-format
-msgid "%s is not listening to any tags."
+msgid "%s is not following any tags."
 msgstr ""
 
-#: tagsubsaction.php:168
+#. TRANS: %1$s is a URL to a tag, %2$s is a tag,
+#. TRANS: %3$s a date string.
+#: tagsubsaction.php:170
 #, php-format
-msgid "#<a href=\"%s\">%s</a> since %s"
+msgid "#<a href=\"%1$s\">%2$s</a> since %3$s"
 msgstr ""

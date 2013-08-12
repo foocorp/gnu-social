@@ -1,0 +1,48 @@
+# Translation of StatusNet - ShareNotice to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ShareNotice\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:57+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:49:02+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
+#, php-format
+msgid "\"%s\""
+msgstr ""
+
+#. TRANS: Truncation symbol.
+msgid "…"
+msgstr "…"
+
+#. TRANS: Tooltip for image to share a notice on Twitter.
+msgid "Share on Twitter"
+msgstr "Partekatu Twitterren"
+
+#. TRANS: Tooltip for image to share a notice on another platform (other than Twitter or Facebook).
+#. TRANS: %s is a host name.
+#, php-format
+msgid "Share on %s"
+msgstr "Partekatu %s(e)n"
+
+#. TRANS: Tooltip for image to share a notice on Facebook.
+msgid "Share on Facebook"
+msgstr "Partekatu Facebooken"
+
+#. TRANS: Plugin description.
+msgid ""
+"This plugin allows sharing of notices to Twitter, Facebook and other "
+"platforms."
+msgstr ""

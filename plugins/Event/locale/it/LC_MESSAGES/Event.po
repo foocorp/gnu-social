@@ -1,0 +1,417 @@
+# Translation of StatusNet - Event to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: Od1n
+# Author: Ximo17
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Event\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:29+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: 0 minutes abbreviated. Used in a list.
+msgid "(0 min)"
+msgstr "(0 min)"
+
+#. TRANS: 30 minutes abbreviated. Used in a list.
+msgid "(30 min)"
+msgstr "(30 min)"
+
+#. TRANS: 1 hour. Used in a list.
+msgid "(1 hour)"
+msgstr "(1 ora)"
+
+#, php-format
+msgid "(%.1f hours)"
+msgstr "(%.1f ore)"
+
+#, php-format
+msgid "(%d hours)"
+msgstr "(%d ore)"
+
+#. TRANS: Client exception thrown when trying to create an event that already exists.
+msgid "Event already exists."
+msgstr "Evento già esistente."
+
+#. TRANS: Event description. %1$s is a title, %2$s is start time, %3$s is end time,
+#. TRANS: %4$s is location, %5$s is a description.
+#, php-format
+msgid "\"%1$s\" %2$s - %3$s (%4$s): %5$s"
+msgstr "\"%1$s\" %2$s - %3$s (%4$s): %5$s"
+
+#. TRANS: Rendered event description. %1$s is a title, %2$s is start time, %3$s is start time,
+#. TRANS: %4$s is end time, %5$s is end time, %6$s is location, %7$s is description.
+#. TRANS: Class names should not be translated.
+#, php-format
+msgid ""
+"<span class=\"vevent\"><span class=\"summary\">%1$s</span> <abbr class="
+"\"dtstart\" title=\"%2$s\">%3$s</a> - <abbr class=\"dtend\" title=\"%4$s\">%5"
+"$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
+"$s</span> </span>"
+msgstr ""
+"<span class=\"vevent\"><span class=\"summary\">%1$s</span> <abbr class="
+"\"dtstart\" title=\"%2$s\">%3$s</a> - <abbr class=\"dtend\" title=\"%4$s\">%5"
+"$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
+"$s</span> </span>"
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "Accesso non effettuato."
+
+#. TRANS: Client error when submitting a form with unexpected information.
+msgid "Unexpected form submission."
+msgstr "Invio del modulo inaspettato."
+
+#. TRANS: Client error displayed when using an action in a non-AJAX way.
+msgid "This action is AJAX only."
+msgstr "Questa azione è solo per AJAX."
+
+#. TRANS: Client exception thrown when referring to a non-existing RSVP.
+#. TRANS: RSVP stands for "Please reply".
+#. TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
+msgid "No such RSVP."
+msgstr "Questa RSVP non esiste."
+
+#. TRANS: Client exception thrown when referring to a non-existing event.
+msgid "No such event."
+msgstr "Questo evento non esiste."
+
+#. TRANS: Title for event.
+#. TRANS: %1$s is a user nickname, %2$s is an event title.
+#, php-format
+msgid "%1$s's RSVP for \"%2$s\""
+msgstr "RSVP di %1$s a \"%2$s\""
+
+#. TRANS: Possible status for RSVP ("please respond") item.
+msgid "You will attend this event."
+msgstr "Parteciperai a quest'evento."
+
+#. TRANS: Possible status for RSVP ("please respond") item.
+msgid "You will not attend this event."
+msgstr "Non parteciperai a quest'evento."
+
+#. TRANS: Possible status for RSVP ("please respond") item.
+msgid "You might attend this event."
+msgstr "Forse parteciperai a questo evento."
+
+#. TRANS: Button text to cancel responding to an RSVP ("please respond") item.
+msgctxt "BUTTON"
+msgid "Cancel"
+msgstr "Annulla"
+
+#. TRANS: Title for RSVP ("please respond") action.
+msgctxt "TITLE"
+msgid "New RSVP"
+msgstr "Nuovo RSVP"
+
+#. TRANS: Client exception thrown when trying to RSVP ("please respond") while not logged in.
+#. TRANS: Client exception thrown when trying tp RSVP ("please respond") while not logged in.
+msgid "You must be logged in to RSVP for an event."
+msgstr "Devi eseguire l'accesso per rispondere ad un evento."
+
+#. TRANS: Client exception thrown when using an invalid value for RSVP ("please respond").
+msgid "Unknown submit value."
+msgstr "Valore di invio sconosciuto."
+
+#. TRANS: Page title after creating an event.
+#. TRANS: Page title after sending a notice.
+msgid "Event saved"
+msgstr "Evento salvato"
+
+#. TRANS: Title for RSVP ("please respond") action.
+msgctxt "TITLE"
+msgid "Cancel RSVP"
+msgstr "Annulla RSVP"
+
+#. TRANS: Content for a deleted RSVP list item (RSVP stands for "please respond").
+msgid "Deleted."
+msgstr "Cancellato."
+
+#. TRANS: Field label on form to RSVP ("please respond") for an event.
+msgid "RSVP:"
+msgstr "RSVP:"
+
+#. TRANS: Button text for RSVP ("please respond") reply to confirm attendence.
+msgctxt "BUTTON"
+msgid "Yes"
+msgstr "Sì"
+
+#. TRANS: Button text for RSVP ("please respond") reply to deny attendence.
+msgctxt "BUTTON"
+msgid "No"
+msgstr "No"
+
+#. TRANS: Button text for RSVP ("please respond") reply to indicate one might attend.
+msgctxt "BUTTON"
+msgid "Maybe"
+msgstr "Forse"
+
+#. TRANS: Field label on event form.
+msgctxt "LABEL"
+msgid "Title"
+msgstr "Titolo"
+
+#. TRANS: Field title on event form.
+msgid "Title of the event."
+msgstr "Titolo dell'evento."
+
+#. TRANS: Field label on event form.
+msgctxt "LABEL"
+msgid "Start date"
+msgstr "Data di inizio"
+
+#. TRANS: Field title on event form.
+msgid "Date the event starts."
+msgstr "Data di inizio dell'evento."
+
+#. TRANS: Field label on event form.
+msgctxt "LABEL"
+msgid "Start time"
+msgstr "Ora di inizio"
+
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, php-format
+msgid "Time the event starts (%s)."
+msgstr "Ora di inizio dell'evento ( %s )."
+
+#. TRANS: Field label on event form.
+msgctxt "LABEL"
+msgid "End date"
+msgstr "Data del termine"
+
+#. TRANS: Field title on event form.
+msgid "Date the event ends."
+msgstr "Data in cui termina l'evento."
+
+#. TRANS: Field label on event form.
+msgctxt "LABEL"
+msgid "End time"
+msgstr "Ora del termine"
+
+#. TRANS: Field title on event form.
+msgid "Time the event ends."
+msgstr "Ora in cui termina l'evento."
+
+#. TRANS: Field label on event form.
+msgctxt "LABEL"
+msgid "Where?"
+msgstr "Dove?"
+
+#. TRANS: Field title on event form.
+msgid "Event location."
+msgstr "Luogo dell'evento."
+
+#. TRANS: Field label on event form.
+msgctxt "LABEL"
+msgid "URL"
+msgstr "URL"
+
+#. TRANS: Field title on event form.
+msgid "URL for more information."
+msgstr "URL per ulteriori informazioni."
+
+#. TRANS: Field label on event form.
+msgctxt "LABEL"
+msgid "Description"
+msgstr "Descrizione"
+
+#. TRANS: Field title on event form.
+msgid "Description of the event."
+msgstr "Descrizione dell'evento."
+
+#. TRANS: Button text to save an event..
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Salva"
+
+#. TRANS: Plugin description.
+msgid "Event invitations and RSVPs."
+msgstr "Inviti e RSVP all'evento."
+
+#. TRANS: Title for event application.
+msgctxt "TITLE"
+msgid "Event"
+msgstr "Evento"
+
+#. TRANS: Exception thrown when there are too many activity objects.
+msgid "Too many activity objects."
+msgstr "Troppi oggetti dell'attività."
+
+#. TRANS: Exception thrown when event plugin comes across a non-event type object.
+msgid "Wrong type for object."
+msgstr "Tipo di oggetto sbagliato."
+
+#. TRANS: Exception thrown when trying to RSVP for an unknown event.
+msgid "RSVP for unknown event."
+msgstr "RSVP ad un evento sconosciuto."
+
+#. TRANS: Exception thrown when event plugin comes across a undefined verb.
+msgid "Unknown verb for events."
+msgstr "Verbo sconosciuto per gli eventi."
+
+#. TRANS: Exception thrown when event plugin comes across a unknown object type.
+msgid "Unknown object type."
+msgstr "Tipo di oggetto sconosciuto."
+
+#. TRANS: Exception thrown when referring to a notice that is not an event an in event context.
+msgid "Unknown event notice."
+msgstr "Avviso di evento sconosciuto."
+
+#. TRANS: Client exception thrown when trying to save an already existing RSVP ("please respond").
+msgid "RSVP already exists."
+msgstr "RSVP già esistente."
+
+#. TRANS: Exception thrown when requesting an undefined verb for RSVP.
+#, php-format
+msgid "Unknown verb \"%s\"."
+msgstr "Verbo sconosciuto \"%s\"."
+
+#. TRANS: Exception thrown when requesting an undefined code for RSVP.
+#, php-format
+msgid "Unknown code \"%s\"."
+msgstr "Codice sconosciuto \"%s\"."
+
+#. TRANS: Server exception thrown when requesting a non-exsting notice for an RSVP ("please respond").
+#. TRANS: %s is the RSVP with the missing notice.
+#, php-format
+msgid "RSVP %s does not correspond to a notice in the database."
+msgstr "RSVP  %s  non corrisponde a un avviso nel database."
+
+#. TRANS: Exception thrown when requesting a non-existing profile.
+#. TRANS: %s is the ID of the non-existing profile.
+#, php-format
+msgid "No profile with ID %s."
+msgstr "Nessun profilo con ID %s."
+
+#. TRANS: Exception thrown when requesting a non-existing event.
+#. TRANS: %s is the ID of the non-existing event.
+#, php-format
+msgid "No event with ID %s."
+msgstr "Nessun evento con ID %s."
+
+#. TRANS: HTML version of an RSVP ("please respond") status for a user.
+#. TRANS: %1$s is a profile URL, %2$s a profile name,
+#. TRANS: %3$s is an event URL, %4$s an event title.
+#, php-format
+msgid ""
+"<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> is attending <a "
+"href='%3$s'>%4$s</a>.</span>"
+msgstr ""
+"<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> parteciperà a <a "
+"href='%3$s'>%4$s</a>.</span>"
+
+#. TRANS: HTML version of an RSVP ("please respond") status for a user.
+#. TRANS: %1$s is a profile URL, %2$s a profile name,
+#. TRANS: %3$s is an event URL, %4$s an event title.
+#, php-format
+msgid ""
+"<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> is not attending "
+"<a href='%3$s'>%4$s</a>.</span>"
+msgstr ""
+"<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> non parteciperà a "
+"<a href='%3$s'>%4$s</a>.</span>"
+
+#. TRANS: HTML version of an RSVP ("please respond") status for a user.
+#. TRANS: %1$s is a profile URL, %2$s a profile name,
+#. TRANS: %3$s is an event URL, %4$s an event title.
+#, php-format
+msgid ""
+"<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> might attend <a "
+"href='%3$s'>%4$s</a>.</span>"
+msgstr ""
+"<span class='automatic event-rsvp'><a href='%1$s'>%2$s</a> forse parteciperà "
+"a <a href='%3$s'>%4$s</a>.</span>"
+
+#. TRANS: Exception thrown when requesting a user's RSVP status for a non-existing response code.
+#. TRANS: %s is the non-existing response code.
+#, php-format
+msgid "Unknown response code %s."
+msgstr "Codice di risposta sconosciuto  %s."
+
+#. TRANS: Used as event title when not event title is available.
+#. TRANS: Used as: Username [is [not ] attending|might attend] an unknown event.
+msgid "an unknown event"
+msgstr "un evento sconosciuto"
+
+#. TRANS: Plain text version of an RSVP ("please respond") status for a user.
+#. TRANS: %1$s is a profile name, %2$s is an event title.
+#, php-format
+msgid "%1$s is attending %2$s."
+msgstr "%1$s parteciperà a %2$s."
+
+#. TRANS: Plain text version of an RSVP ("please respond") status for a user.
+#. TRANS: %1$s is a profile name, %2$s is an event title.
+#, php-format
+msgid "%1$s is not attending %2$s."
+msgstr "%1$s non parteciperà a %2$s."
+
+#. TRANS: Plain text version of an RSVP ("please respond") status for a user.
+#. TRANS: %1$s is a profile name, %2$s is an event title.
+#, php-format
+msgid "%1$s might attend %2$s."
+msgstr "%1$s forse parteciperà a %2$s."
+
+#. TRANS: Title for new event form.
+msgctxt "TITLE"
+msgid "New event"
+msgstr "Nuovo evento"
+
+#. TRANS: Client exception thrown when trying to post an event while not logged in.
+msgid "Must be logged in to post a event."
+msgstr "Bisogna effettuare l'accesso per poter inserire un evento."
+
+#. TRANS: Client exception thrown when trying to post an event without providing a title.
+msgid "Title required."
+msgstr "Titolo richiesto."
+
+#. TRANS: Client exception thrown when trying to post an event without providing a start date.
+msgid "Start date required."
+msgstr "Necessaria data di inizio."
+
+#. TRANS: Client exception thrown when trying to post an event without providing an end date.
+msgid "End date required."
+msgstr "Necessaria data di termine."
+
+#. TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
+#. TRANS: %s is the data that could not be processed.
+#, php-format
+msgid "Could not parse date \"%s\"."
+msgstr "Impossibile analizzare il dato \"%s\"."
+
+#. TRANS: Client exception thrown when trying to post an event without providing a title.
+msgid "Event must have a title."
+msgstr "L'evento deve avere un titolo."
+
+#. TRANS: Client exception thrown when trying to post an event without providing a start time.
+msgid "Event must have a start time."
+msgstr "L'evento deve avere un orario di inizio."
+
+#. TRANS: Client exception thrown when trying to post an event without providing an end time.
+msgid "Event must have an end time."
+msgstr "L'evento deve avere un orario di termine."
+
+#. TRANS: Client exception thrown when trying to post an event with an invalid URL.
+msgid "URL must be valid."
+msgstr "La URL deve essere valida."
+
+#. TRANS: Field label for event description.
+msgid "Time:"
+msgstr "Ora:"
+
+#. TRANS: Field label for event description.
+msgid "Location:"
+msgstr "Luogo:"
+
+#. TRANS: Field label for event description.
+msgid "Description:"
+msgstr "Descrizione:"

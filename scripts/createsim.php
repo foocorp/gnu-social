@@ -20,20 +20,33 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 
-$shortoptions = 'u:n:b:g:j:t:x:z:';
-$longoptions = array('users=', 'notices=', 'subscriptions=', 'groups=', 'joins=', 'tags=', 'prefix=');
+$shortoptions = 'b:g:j:n:t:u:w:x:z:';
+$longoptions = array(
+    'subscriptions=',
+    'groups=',
+    'joins=',
+    'notices=',
+    'tags=',
+    'users=',
+    'words=',
+    'prefix=',
+    'groupprefix=',
+    'faves='
+);
 
 $helptext = <<<END_OF_CREATESIM_HELP
 Creates a lot of test users and notices to (loosely) simulate a real server.
 
-    -u --users         Number of users (default 100)
-    -n --notices       Average notices per user (default 100)
     -b --subscriptions Average subscriptions per user (default no. users/20)
     -g --groups        Number of groups (default 20)
     -j --joins         Number of groups per user (default 5)
+    -f --faves         Number of faves per user (default notices/10)
+    -n --notices       Average notices per user (default 100)
     -t --tags          Number of distinct hash tags (default 10000)
-    -x --prefix        User name prefix (default 'testuser')
+    -u --users         Number of users (default 100)
     -w --words         Words file (default '/usr/share/dict/words')
+    -x --prefix        User name prefix (default 'testuser')
+    -z --groupprefix   Group name prefix (default 'testgroup')
 
 END_OF_CREATESIM_HELP;
 
@@ -72,7 +85,7 @@ function newNotice($i, $tagmax)
 {
     global $userprefix;
 
-    $options = array('scope' => common_config('notice', 'defaultscope'));
+    $options = array('scope' => Notice::defaultScope());
 
     $n = rand(0, $i - 1);
     $user = User::staticGet('nickname', sprintf('%s%d', $userprefix, $n));
@@ -101,6 +114,39 @@ function newNotice($i, $tagmax)
                 $options['scope'] |= Notice::ADDRESSEE_SCOPE;
             }
         }
+    } else {
+        $is_directed = rand(0, 4);
+
+        if ($is_directed == 0) {
+            $subs = $user->getSubscriptions(0, 100)->fetchAll();
+            if (count($subs) > 0) {
+                $seen = array();
+                $f = rand(0, 9);
+                if ($f <= 6) {
+                    $addrs = 1;
+                } else if ($f <= 8) {
+                    $addrs = 2;
+                } else {
+                    $addrs = 3;
+                }
+                for ($m = 0; $m < $addrs; $m++) {
+                    $x = rand(0, count($subs) - 1);
+                    if ($seen[$x]) {
+                        continue;
+                    }
+                    if ($subs[$x]->id == $user->id) {
+                        continue;
+                    }
+                    $seen[$x] = true;
+                    $rprofile = $subs[$x];
+                    $content = "@".$rprofile->nickname." ".$content;
+                }
+                $private_to_addressees = rand(0, 4);
+                if ($private_to_addressees == 0) {
+                    $options['scope'] |= Notice::ADDRESSEE_SCOPE;
+                }
+            }
+        }
     }
 
     $has_hash = rand(0, 2);
@@ -118,7 +164,7 @@ function newNotice($i, $tagmax)
     if ($in_group == 0) {
         $groups = $user->getGroups();
         if ($groups->N > 0) {
-            $gval = rand(0, $group->N - 1);
+            $gval = rand(0, $groups->N - 1);
             $groups->fetch(); // go to 0th
             for ($i = 0; $i < $gval; $i++) {
                 $groups->fetch();
@@ -138,7 +184,29 @@ function newNotice($i, $tagmax)
         $options['scope'] |= Notice::SITE_SCOPE;
     }
 
-    $notice = Notice::saveNew($user->id, $content, 'system', $options);
+    $notice = Notice::saveNew($user->id, $content, 'createsim', $options);
+}
+
+function newMessage($i)
+{
+    global $userprefix;
+
+    $n = rand(0, $i - 1);
+    $user = User::staticGet('nickname', sprintf('%s%d', $userprefix, $n));
+
+    $content = testNoticeContent();
+
+    $friends = $user->mutuallySubscribedUsers()->fetchAll();
+
+    if (count($friends) == 0) {
+        return;
+    }
+
+    $j = rand(0, count($friends) - 1);
+    
+    $other = $friends[$j];
+
+    $message = Message::saveNew($user->id, $other->id, $content, 'createsim');
 }
 
 function newSub($i)
@@ -207,10 +275,54 @@ function newJoin($u, $g)
     }
 }
 
+function newFave($u)
+{
+    global $userprefix;
+    global $groupprefix;
+
+    $userNumber = rand(0, $u - 1);
+
+    $userNick = sprintf('%s%d', $userprefix, $userNumber);
+
+    $user = User::staticGet('nickname', $userNick);
+
+    if (empty($user)) {
+        throw new Exception("Can't find user '$userNick'.");
+    }
+
+    // NB: it's OK to like your own stuff!
+
+    $otherNumber = rand(0, $u - 1);
+
+    $otherNick = sprintf('%s%d', $userprefix, $otherNumber);
+
+    $other = User::staticGet('nickname', $otherNick);
+
+    if (empty($other)) {
+        throw new Exception("Can't find user '$otherNick'.");
+    }
+
+    $notices = $other->getNotices()->fetchAll();
+
+    if (count($notices) == 0) {
+        return;
+    }
+
+    $idx = rand(0, count($notices) - 1);
+
+    $notice = $notices[$idx];
+
+    if ($user->hasFave($notice)) {
+        return;
+    }
+
+    Fave::addNew($user->getProfile(), $notice);
+}
+
 function testNoticeContent()
 {
     global $words;
-    
+
     if (is_null($words)) {
         return "test notice content";
     }
@@ -224,15 +336,15 @@ function testNoticeContent()
     }
 
     $text = implode(' ', $parts);
-    
+
     if (mb_strlen($text) > 80) {
         $text = substr($text, 0, 77) . "...";
     }
-    
+
     return $text;
 }
 
-function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $tagmax)
+function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $messageavg, $tagmax)
 {
     global $config;
     $config['site']['dupelimit'] = -1;
@@ -260,7 +372,7 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $tagmax)
 
     // # registrations + # notices + # subs
 
-    $events = $usercount + $groupcount + ($usercount * ($noticeavg + $subsavg + $joinsavg));
+    $events = $usercount + $groupcount + ($usercount * ($noticeavg + $subsavg + $joinsavg + $favesavg + $messageavg));
 
     $events -= $preuser;
     $events -= $pregroup;
@@ -270,8 +382,10 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $tagmax)
     $nt = $gt + ($usercount * $noticeavg);
     $st = $nt + ($usercount * $subsavg);
     $jt = $st + ($usercount * $joinsavg);
+    $ft = $jt + ($usercount * $favesavg);
+    $mt = $ft + ($usercount * $messageavg);
 
-    printfv("$events events ($ut, $gt, $nt, $st, $jt)\n");
+    printfv("$events events ($ut, $gt, $nt, $st, $jt, $ft, $mt)\n");
 
     for ($i = 0; $i < $events; $i++)
     {
@@ -294,30 +408,44 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $tagmax)
         } else if ($e > $st && $e <= $jt) {
             printfv("$i Making a new group join\n");
             newJoin($n, $g);
+        } else if ($e > $jt && $e <= $ft) {
+            printfv("$i Making a new fave\n");
+            newFave($n);
+        } else if ($e > $ft && $e <= $mt) {
+            printfv("$i Making a new message\n");
+            newMessage($n);
         } else {
             printfv("No event for $i!");
         }
     }
 }
 
+$defaultWordsfile = '/usr/share/dict/words';
+
 $usercount   = (have_option('u', 'users')) ? get_option_value('u', 'users') : 100;
 $groupcount  = (have_option('g', 'groups')) ? get_option_value('g', 'groups') : 20;
 $noticeavg   = (have_option('n', 'notices')) ? get_option_value('n', 'notices') : 100;
 $subsavg     = (have_option('b', 'subscriptions')) ? get_option_value('b', 'subscriptions') : max($usercount/20, 10);
 $joinsavg    = (have_option('j', 'joins')) ? get_option_value('j', 'joins') : 5;
+$favesavg    = (have_option('f', 'faves')) ? get_option_value('f', 'faves') : max($noticeavg/10, 5);
+$messageavg  = (have_option('m', 'messages')) ? get_option_value('m', 'messages') : max($noticeavg/10, 5);
 $tagmax      = (have_option('t', 'tags')) ? get_option_value('t', 'tags') : 10000;
 $userprefix  = (have_option('x', 'prefix')) ? get_option_value('x', 'prefix') : 'testuser';
 $groupprefix = (have_option('z', 'groupprefix')) ? get_option_value('z', 'groupprefix') : 'testgroup';
-$wordsfile   = (have_option('w', 'words')) ? get_option_value('w', 'words') : '/usr/share/dict/words';
+$wordsfile   = (have_option('w', 'words')) ? get_option_value('w', 'words') : $defaultWordsfile;
 
 if (is_readable($wordsfile)) {
     $words = file($wordsfile);
 } else {
+   if ($wordsfile != $defaultWordsfile) {
+      // user specified words file couldn't be read
+      throw new Exception("Couldn't read words file: {$wordsfile}.");
+    }
     $words = null;
 }
 
 try {
-    main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $tagmax);
+    main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $messageavg, $tagmax);
 } catch (Exception $e) {
     printfv("Got an exception: ".$e->getMessage());
 }

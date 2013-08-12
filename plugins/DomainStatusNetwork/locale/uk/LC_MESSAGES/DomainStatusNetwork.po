@@ -1,0 +1,28 @@
+# Translation of StatusNet - DomainStatusNetwork to Ukrainian (українська)
+# Exported from translatewiki.net
+#
+# Author: Boogie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - DomainStatusNetwork\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:16+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-18 16:19:16+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: uk\n"
+"X-Message-Group: #out-statusnet-plugin-domainstatusnetwork\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: Plugin description.
+msgid "A plugin that maps a single status_network to an email domain."
+msgstr ""
+"Додаток який «прив’язує» окремий StatusNet-сумісний сайт до поштового домену."

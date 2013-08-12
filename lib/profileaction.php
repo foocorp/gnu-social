@@ -23,7 +23,7 @@
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -46,7 +46,7 @@ require_once INSTALLDIR.'/lib/groupminilist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ProfileAction extends OwnerDesignAction
+class ProfileAction extends Action
 {
     var $page    = null;
     var $profile = null;
@@ -84,6 +84,13 @@ class ProfileAction extends OwnerDesignAction
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'));
             return false;
+        }
+
+        $user = common_current_user();
+
+        if ($this->profile->hasRole(Profile_role::SILENCED) &&
+            (empty($user) || !$user->hasRight(Right::SILENCEUSER))) {
+            throw new ClientException(_('This profile has been silenced by site moderators'), 403);
         }
 
         $this->tag = $this->trimmed('tag');
@@ -259,7 +266,7 @@ class ProfileAction extends OwnerDesignAction
             // TRANS: H2 text for user group membership statistics.
             $this->statsSectionLink('usergroups', _('Groups'));
             $this->text(' ');
-            $this->text($this->profile->getGroups()->N);
+            $this->text($this->profile->getGroups(0, null)->N);
             $this->elementEnd('h2');
 
             if ($groups) {

@@ -86,6 +86,7 @@ class AdminprofileflagAction extends Action
         // User must have the right to review flags
 
         if (!$user->hasRight(UserFlagPlugin::REVIEWFLAGS)) {
+            // TRANS: Error message displayed when trying to review profile flags while not authorised.
             $this->clientError(_m('You cannot review profile flags.'));
             return false;
         }
@@ -385,7 +386,7 @@ class FlaggedProfileListItem extends ProfileListItem
                 $flagging_users = implode(', ', $lnks);
                 // TRANS: Message displayed on a profile if it has been flagged.
                 // TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
-                // TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
+                // TRANS: %2$d is a positive integer of additional flagging users. Also used for plural.
                 $text .= sprintf(_m('Flagged by %1$s and %2$d other', 'Flagged by %1$s and %2$d others', $others), $flagging_users, $others);
             } else {
                 // TRANS: Message displayed on a profile if it has been flagged.

@@ -1,0 +1,35 @@
+# Translation of StatusNet - InfiniteScroll to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - InfiniteScroll\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:51+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:21+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-infinitescroll\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin dscription.
+msgid ""
+"Infinite Scroll adds the following functionality to your StatusNet "
+"installation: When a user scrolls towards the bottom of the page, the next "
+"page of notices is automatically retrieved and appended. This means they "
+"never need to click \"Next Page\", which dramatically increases stickiness."
+msgstr ""
+"Infinite Scroll engade a seguinte funcionalizade á súa instalación de "
+"StatusNet: Cando un usuario se despraza ata o pé da páxina, recupérase e "
+"engádese a seguinte páxina de notas. Isto significa que non é necesario "
+"premer en \"Páxina seguinte\", algo que aumenta considerablemente a "
+"capacidade de retención."

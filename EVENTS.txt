@@ -1418,3 +1418,41 @@ StartShowInvitationSuccess: Right before showing invitations success msg
 EndShowInvitationSuccess: After showing invitations success msg
 - $action: invitation action
 
+StartUpgrade: when starting a site upgrade
+
+EndUpgrade: when ending a site upgrade; good place to do your own upgrades
+
+HaveIMPlugin: is there an IM plugin loaded?
+- &$haveIMPlugin: set me to true if you're loaded!
+
+StartShowNoticeOptionItems: Before showing first controls in a notice list item; inside the div
+- $nli: NoticeListItem being shown
+
+EndShowNoticeOptionItems: After showing last controls in a notice list item; inside the div
+- $nli: NoticeListItem being shown
+
+StartNoticeInScope: Before checking if a notice should be visible to a user
+- $notice: The notice to check
+- $profile: The profile to check for scope
+- &$bResult: The boolean result; fill this in if you want to skip
+
+EndNoticeInScope: After checking if a notice should be visible to a user
+- $notice: The notice to check
+- $profile: The profile to check for scope
+- &$bResult: The boolean result; overwrite this if you so desire
+
+StartNoticeListPrefill: Before pre-filling a list of notices with extra data
+- &$notices: Notices to be pre-filled
+- $avatarSize: The avatar size for the list
+
+EndNoticeListPrefill: After pre-filling a list of notices with extra data
+- &$notices: Notices that were pre-filled
+- &$profiles: Profiles that were pre-filled 
+- $avatarSize: The avatar size for the list
+
+OtherAccountProfiles: Hook to add account profiles to a user account profile block
+- $profile: the Profile being shown
+- &$others: Modifiable array of profile info arrays. Each one has the following fields:
+            href: link to the profile
+            text: text for the profile
+            image: mini image for the profile

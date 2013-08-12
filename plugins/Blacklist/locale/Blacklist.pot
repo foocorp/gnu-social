@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,19 +82,19 @@ msgstr ""
 
 #. TRANS: Exception thrown trying to post a notice while having set a blocked homepage URL. %s is the blocked URL.
 #. TRANS: Client exception thrown trying to subscribe to a person with a blocked homepage or site URL. %s is the blocked URL.
-#: BlacklistPlugin.php:502 BlacklistPlugin.php:537
+#: BlacklistPlugin.php:502 BlacklistPlugin.php:539
 #, php-format
 msgid "Users from \"%s\" are blocked."
 msgstr ""
 
 #. TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-#: BlacklistPlugin.php:513
+#: BlacklistPlugin.php:514
 #, php-format
-msgid "Notices from nickname \"%s\" disallowed."
+msgid "Notices from nickname \"%s\" are disallowed."
 msgstr ""
 
 #. TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.
-#: BlacklistPlugin.php:548
+#: BlacklistPlugin.php:550
 #, php-format
 msgid "Cannot subscribe to nickname \"%s\"."
 msgstr ""

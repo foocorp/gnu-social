@@ -1,0 +1,59 @@
+# Translation of StatusNet - ModPlus to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: GreenFox
+# Author: Ximo17
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ModPlus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:16+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-02 10:11:36+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Error message displayed when referring to a user without a profile.
+msgid "User has no profile."
+msgstr "L'utente non ha un profilo."
+
+#. TRANS: Remote profile action page title.
+#. TRANS: %1$s is a username, %2$s is a hostname.
+#, php-format
+msgid "%1$s on %2$s"
+msgstr "%1$s su %2$s"
+
+#. TRANS: Message on remote profile page.
+#. TRANS: This message contains Markdown links in the form [description](link).
+#. TRANS: %1$s is a profile nickname, %2$s is a hostname, %3$s is a URL.
+#, php-format
+msgid ""
+"This remote profile is registered on another site; see [%1$s's original "
+"profile page on %2$s](%3$s)."
+msgstr ""
+"Questo profilo remoto è registrato su un altro sito, visualizza [la pagina "
+"del profilo originale di %1$s su %2$s] (%3$s)."
+
+#. TRANS: Message on blocked remote profile page.
+msgid ""
+"Site moderators have silenced this profile, which prevents delivery of new "
+"messages to any users on this site."
+msgstr ""
+"I moderatori del sito hanno ridotto al silenzio questo profilo, questo "
+"impedisce la spedizione di nuovi messaggi verso gli utilizzatori di questo "
+"sito."
+
+#. TRANS: Plugin description.
+msgid "UI extension for profile moderation actions."
+msgstr ""
+"Estensione dell'interfaccia utente per le azioni di moderazione del profilo."
+
+#. TRANS: Label for access to remote profile options.
+msgid "Remote profile options..."
+msgstr "Opzioni di profilo remoto..."

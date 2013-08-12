@@ -1,6 +1,7 @@
-# Translation of StatusNet - Core to Swedish (Svenska)
+# Translation of StatusNet - Core to Swedish (svenska)
 # Exported from translatewiki.net
 #
+# Author: Ainali
 # Author: Jamminjohn
 # Author: Kjell
 # Author: McDutchie
@@ -14,17 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:45+0000\n"
-"Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:37+0000\n"
+"Language-Team: Swedish <https://translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -38,14 +39,6 @@ msgstr ""
 "fungera korrekt. Webbplatsadministratörerna känner säkert till problemet, "
 "men du kan kontakta dem på %2$s för försäkra dig. Annars vänta ett par "
 "minuter och försök igen."
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
-msgstr ""
-"Ett viktigt fel uppstod, förmodligen relaterat till e-postinställningar. "
-"Kontrollera loggfiler för mer info."
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -108,12 +101,11 @@ msgstr "Inaktivera nya registreringar."
 msgid "Closed"
 msgstr "Stängd"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
-msgstr "Spara inställningar för åtkomst"
+#. TRANS: Button title to save access settings in site admin panel.
+msgid "Save access settings."
+msgstr "Spara åtkomstinställningar."
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
-#. TRANS: Button text for saving theme settings.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -129,7 +121,6 @@ msgstr "Spara inställningar för åtkomst"
 #. TRANS: Button text for saving "Other settings" in profile.
 #. TRANS: Button text to save user settings in user admin panel.
 #. TRANS: Button label in the "Edit application" form.
-#. TRANS: Button text on profile design page to save settings.
 #. TRANS: Text for save button on group edit form.
 #. TRANS: Button text to save tags for a profile.
 msgctxt "BUTTON"
@@ -168,10 +159,6 @@ msgstr "Ingen sådan profil."
 msgid "No such list."
 msgstr "Ingen sådan lista."
 
-#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr "Du kan inte lista en OMB 0,1-fjärrprofil med denna åtgärd."
-
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
 #, php-format
@@ -203,7 +190,6 @@ msgstr "Ingen sådan sida"
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a user's delivery device setting.
 #. TRANS: Client error displayed if a user could not be found.
-#. TRANS: Client error when user not found updating a profile background image.
 #. TRANS: Client error displayed updating profile image without having a user object.
 #. TRANS: Client error displayed when making an Atom API request for an unknown user.
 #. TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
@@ -229,14 +215,11 @@ msgstr "Ingen sådan sida"
 #. TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed without providing a user nickname.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for an object that is not a user.
-#. TRANS: Client error displayed when trying to get a user hCard for a non-existing user.
 #. TRANS: Client error displayed trying to make a micro summary without providing a valid user.
 #. TRANS: Client error displayed trying to send a direct message to a non-existing user.
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
 #. TRANS: Client error displayed when referring to non-existing user.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing user.
-#. TRANS: Form validation error on page for remote subscribe when no user was provided.
-#. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
@@ -245,7 +228,6 @@ msgstr "Ingen sådan sida"
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
 #. TRANS: Client error displayed when user not found for an action.
-#. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
 #. TRANS: Client error displayed when trying to access a mailbox without providing a user.
@@ -254,15 +236,21 @@ msgid "No such user."
 msgstr "Ingen sådan användare."
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "%s tidslinje"
+msgstr "Hemtidslinje"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s's home timeline"
-msgstr "%s tidslinje"
+msgstr "%ss hemtidslinje"
+
+#. TRANS: %s is user nickname.
+#. TRANS: Feed title.
+#. TRANS: %s is tagger's nickname.
+#, php-format
+msgid "Feed for friends of %s (Activity Streams JSON)"
+msgstr "Flöden för %ss vänner (Activity Streams JSON)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -307,7 +295,7 @@ msgstr ""
 "Var den första att [skriva i detta ämne](%%%%action.newnotice%%%%?"
 "status_textarea=%s)!"
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -321,6 +309,12 @@ msgstr ""
 "Varför inte [registrera ett konto](%%action.register%%) och bli först att "
 "posta en!"
 
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Less business/enterprise-oriented language for public sites.
+msgctxt "BUTTON"
+msgid "Send invite"
+msgstr "Skicka inbjudning"
+
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
 #. TRANS: %s is a username.
@@ -328,8 +322,6 @@ msgstr ""
 #. TRANS: Menu item title in administrator navigation panel.
 #. TRANS: %s is a username.
 #. TRANS: Menu item title in personal group navigation menu.
-#. TRANS: %s is a username.
-#. TRANS: Menu item title in settings navigation panel.
 #. TRANS: %s is a username.
 #, php-format
 msgid "%s and friends"
@@ -368,7 +360,6 @@ msgstr "Du måste ange ett värdet på parametern 'device': sms, im, none"
 #. TRANS: Server error thrown on database error updating SMS preferences.
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
 #. TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-#. TRANS: Server exception thrown on Profile design page when updating design settings fails.
 msgid "Could not update user."
 msgstr "Kunde inte uppdatera användare."
 
@@ -383,7 +374,6 @@ msgstr "Kunde inte spara profil."
 
 #. TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
 #. TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-#. TRANS: Form validation error in design settings form. POST should remain untranslated.
 #, php-format
 msgid ""
 "The server was unable to handle that much POST data (%s byte) due to its "
@@ -397,24 +387,6 @@ msgstr[0] ""
 msgstr[1] ""
 "Servern kunde inte hantera så mycket POST-data (%s byte) på grund av sin "
 "nuvarande konfiguration."
-
-#. TRANS: Client error displayed when saving design settings fails because of an empty id.
-#. TRANS: Client error displayed when saving design settings fails because of an empty result.
-#. TRANS: Client error displayed when a database error occurs inserting profile colours.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error displayed when group design settings could not be saved because of an application issue.
-#. TRANS: Form validation error on Profile design page when saving design settings has failed.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-msgid "Unable to save your design settings."
-msgstr "Kunde inte spara dina utseendeinställningar."
-
-#. TRANS: Error displayed when updating design settings fails.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-#. TRANS: Error message displayed if design settings could not be saved.
-#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
-msgid "Could not update your design."
-msgstr "Kunde inte uppdatera din profils utseende."
 
 #. TRANS: Title for Atom feed.
 msgctxt "ATOM"
@@ -462,6 +434,20 @@ msgstr "Blockering av användare misslyckades."
 msgid "Unblock user failed."
 msgstr "Hävning av blockering av användare misslyckades."
 
+#. TRANS: Client exception thrown when no conversation ID is given.
+msgid "No conversation ID."
+msgstr "Inget konversations-ID."
+
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, php-format
+msgid "No conversation with ID %d."
+msgstr "Ingen konversation med ID %d."
+
+#. TRANS: Title for conversion timeline.
+msgctxt "TITLE"
+msgid "Conversation"
+msgstr "Konversation"
+
 #. TRANS: Title. %s is a user nickname.
 #, php-format
 msgid "Direct messages from %s"
@@ -505,6 +491,8 @@ msgid "Cannot send direct messages to users who aren't your friend."
 msgstr "Kan inte skicka direktmeddelanden till användare som inte är din vän."
 
 #. TRANS: Client error displayed trying to direct message self (403).
+#. TRANS: Client error displayed trying to send a direct message to self.
+#. TRANS: Error text shown when trying to send a direct message to self.
 msgid ""
 "Do not send a message to yourself; just say it to yourself quietly instead."
 msgstr ""
@@ -735,7 +723,6 @@ msgstr "grupper på %s"
 
 #. TRANS: Client error displayed when trying to edit a group without being an admin.
 #. TRANS: Client error displayed trying to edit a group while not being a group admin.
-#. TRANS: Client error displayed trying to change group design settings without being a (group) admin.
 #. TRANS: Client error displayed when trying to change group logo settings while not being a group admin.
 msgid "You must be an admin to edit the group."
 msgstr "Du måste vara en administratör för att redigera gruppen."
@@ -845,7 +832,6 @@ msgstr "Databasfel vid infogning av oauth_token_association."
 
 #. TRANS: Client error given on when invalid data was passed through a form in the OAuth API.
 #. TRANS: Unexpected validation error on avatar upload form.
-#. TRANS: Client error displayed when the submitted form contains unexpected data.
 #. TRANS: Client error displayed submitting invalid form data for edit application.
 #. TRANS: Message given submitting a form with an unknown action in e-mail settings.
 #. TRANS: Form validation error message when an unsupported argument is used.
@@ -854,7 +840,6 @@ msgstr "Databasfel vid infogning av oauth_token_association."
 #. TRANS: Client error when submitting a form with unexpected information.
 #. TRANS: Client error displayed when unexpected data is posted in the password recovery form.
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
-#. TRANS: Unknown form validation error in design settings form.
 msgid "Unexpected form submission."
 msgstr "Oväntat inskick av formulär."
 
@@ -899,7 +884,6 @@ msgstr "Konto"
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
-#. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Nickname"
@@ -1211,10 +1195,7 @@ msgstr "Du måste vara inloggad för att lämna en grupp."
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
 #. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
 #. TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
-#. TRANS: Client error displayed trying to change group design settings while providing a nickname for a non-existing group.
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
-#. TRANS: Client error displayed when trying to view group members for a non-existing group.
-#. TRANS: Client error displayed when trying to view group members for an object that is not a group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
 #. TRANS: Client error displayed when requesting a group RSS feed for group that does not exist.
@@ -1225,10 +1206,10 @@ msgstr "Du måste vara inloggad för att lämna en grupp."
 #. TRANS: Client error displayed when trying to leave a non-local group.
 #. TRANS: Client error displayed when trying to leave a non-existing group.
 #. TRANS: Client error displayed when providing an invalid group ID on the Make Admin page.
-#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
-#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 #. TRANS: Command exception text shown when a group is requested that does not exist.
 #. TRANS: Error text shown when trying to leave a group that does not exist.
+#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
+#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 msgid "No such group."
 msgstr "Ingen sådan grupp."
 
@@ -1298,6 +1279,7 @@ msgid "Join request canceled."
 msgstr "Anslutningsbegäran avbruten."
 
 #. TRANS: Client error displayed trying to approve subscription for a non-existing request.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s is not in the moderation queue for your subscriptions."
 msgstr "%s är inte i moderationskön för dina prenumerationer."
@@ -1378,7 +1360,7 @@ msgstr "Okänd grupp."
 
 #. TRANS: Client exception thrown when trying to subscribe to an already subscribed group.
 msgid "Already a member."
-msgstr "Redan medlem."
+msgstr "Redan en medlem."
 
 #. TRANS: Client exception thrown when trying to subscribe to group while blocked from that group.
 msgid "Blocked by admin."
@@ -1449,7 +1431,6 @@ msgstr "Ingen sådan bilaga."
 #. TRANS: Client error displayed trying to get an avatar without providing a nickname.
 #. TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
 #. TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
-#. TRANS: Client error displayed trying to change group design settings without providing a group nickname.
 #. TRANS: Client error displayed when trying to change group logo settings without providing a nickname.
 #. TRANS: Client error displayed when trying to view group members without providing a group nickname.
 #. TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
@@ -1746,6 +1727,16 @@ msgstr "Adressen \"%s\" har blivit bekräftad för ditt konto."
 msgid "Conversation"
 msgstr "Konversationer"
 
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+msgid "Conversation feed (Activity Streams JSON)"
+msgstr "Konversationsflöde (Activity Streams JSON)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+msgid "Conversation feed (RSS 2.0)"
+msgstr "Konversationsflöde (RSS 2.0)"
+
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
 msgctxt "TITLE"
@@ -1809,7 +1800,7 @@ msgid "Enter \"%s\" to confirm that you want to delete your account."
 msgstr "Ange \"%s\" för att bekräfta att du vill ta bort ditt konto."
 
 #. TRANS: Button title for user account deletion.
-msgid "Permanently delete your account"
+msgid "Permanently delete your account."
 msgstr "Ta bort ditt konto permanent."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -1955,150 +1946,6 @@ msgstr "Ta inte bort den här användaren."
 msgid "Delete this user."
 msgstr "Ta bort den här användaren."
 
-#. TRANS: Message used as title for design settings for the site.
-msgid "Design"
-msgstr "Utseende"
-
-#. TRANS: Instructions for design adminsitration panel.
-msgid "Design settings for this StatusNet site"
-msgstr "Utseendeinställningar för den här StatusNet-webbplatsen"
-
-#. TRANS: Client error displayed when a logo URL does is not valid.
-msgid "Invalid logo URL."
-msgstr "Ogiltig webbadress för logtyp."
-
-#. TRANS: Client error displayed when an SSL logo URL is invalid.
-msgid "Invalid SSL logo URL."
-msgstr "Ogiltig webbadress för SSL-logtyp."
-
-#. TRANS: Client error displayed when a theme is submitted through the form that is not in the theme list.
-#. TRANS: %s is the chosen unavailable theme.
-#, php-format
-msgid "Theme not available: %s."
-msgstr "Tema inte tillgängligt: %s."
-
-#. TRANS: Fieldset legend for form to change logo.
-msgid "Change logo"
-msgstr "Byt logotyp"
-
-#. TRANS: Field label for StatusNet site logo.
-msgid "Site logo"
-msgstr "Webbplatslogotyp"
-
-#. TRANS: Field label for SSL StatusNet site logo.
-msgid "SSL logo"
-msgstr "SSL-logotyp"
-
-#. TRANS: Fieldset legend for form change StatusNet site's theme.
-msgid "Change theme"
-msgstr "Byt tema"
-
-#. TRANS: Field label for dropdown to choose site theme.
-msgid "Site theme"
-msgstr "Webbplatstema"
-
-#. TRANS: Title for field label for dropdown to choose site theme.
-msgid "Theme for the site."
-msgstr "Tema för webbplatsen."
-
-#. TRANS: Field label for uploading a cutom theme.
-msgid "Custom theme"
-msgstr "Anpassat tema"
-
-#. TRANS: Form instructions for uploading a cutom StatusNet theme.
-msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-msgstr "Du kan ladda upp ett eget StatusNet-tema som ett .ZIP-arkiv."
-
-#. TRANS: Fieldset legend for theme background image.
-msgid "Change background image"
-msgstr "Ändra bakgrundsbild"
-
-#. TRANS: Field label for background image on theme designer page.
-#. TRANS: Field label for background color selector.
-#. TRANS: Label on profile design page for setting a profile page background colour.
-msgid "Background"
-msgstr "Bakgrund"
-
-#. TRANS: Form guide for background image upload form on theme designer page.
-#, php-format
-msgid ""
-"You can upload a background image for the site. The maximum file size is %1"
-"$s."
-msgstr ""
-"Du kan ladda upp en bakgrundsbild för denna webbplats. Den maximala "
-"filstorleken är %1$s."
-
-#. TRANS: Used as radio button label to add a background image.
-msgid "On"
-msgstr "På"
-
-#. TRANS: Used as radio button label to not add a background image.
-msgid "Off"
-msgstr "Av"
-
-#. TRANS: Form guide for turning background image on or off on theme designer page.
-#. TRANS: Form guide for a set of radio buttons on the profile design page that will enable or disable
-#. TRANS: use of the uploaded profile image.
-msgid "Turn background image on or off."
-msgstr "Sätt på eller stäng av bakgrundsbild."
-
-#. TRANS: Checkbox label to title background image on theme designer page.
-#. TRANS: Checkbox label on profile design page that will cause the profile image to be tiled.
-msgid "Tile background image"
-msgstr "Upprepa bakgrundsbild"
-
-#. TRANS: Fieldset legend for theme colors.
-msgid "Change colors"
-msgstr "Byt färger"
-
-#. TRANS: Field label for content color selector.
-#. TRANS: Label on profile design page for setting a profile page content colour.
-msgid "Content"
-msgstr "Innehåll"
-
-#. TRANS: Field label for sidebar color selector.
-#. TRANS: Label on profile design page for setting a profile page sidebar colour.
-msgid "Sidebar"
-msgstr "Sidofält"
-
-#. TRANS: Field label for text color selector.
-#. TRANS: Label on profile design page for setting a profile page text colour.
-msgid "Text"
-msgstr "Text"
-
-#. TRANS: Field label for link color selector.
-#. TRANS: Label on profile design page for setting a profile page links colour.
-msgid "Links"
-msgstr "Länkar"
-
-#. TRANS: Fieldset legend for advanced theme design settings.
-msgid "Advanced"
-msgstr "Avancerat"
-
-#. TRANS: Field label for custom CSS.
-msgid "Custom CSS"
-msgstr "Anpassad CSS"
-
-#. TRANS: Button text for resetting theme settings.
-msgctxt "BUTTON"
-msgid "Use defaults"
-msgstr "Använd standardvärden"
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default.
-msgid "Restore default designs."
-msgstr "Återställ standardutseende."
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-msgid "Reset back to default."
-msgstr "Återställ till standard."
-
-#. TRANS: Title for button for saving theme settings.
-#. TRANS: Title for button on profile design page to save settings.
-msgid "Save design."
-msgstr "Spara utseende."
-
 #. TRANS: Client error displayed when trying to remove favorite status for a notice that is not a favorite.
 msgid "This notice is not a favorite!"
 msgstr "Denna notis är inte en favorit!"
@@ -2112,6 +1959,79 @@ msgstr "Lägg till i favoriter"
 #, php-format
 msgid "No such document \"%s\"."
 msgstr "Inget sådant dokument \"%s\"."
+
+#. TRANS: Menu item in administrator navigation panel.
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in personal group navigation menu.
+msgctxt "MENU"
+msgid "Home"
+msgstr "Hem"
+
+msgctxt "MENU"
+msgid "Docs"
+msgstr ""
+
+#. TRANS: Secondary navigation menu item leading to help on StatusNet.
+msgctxt "MENU"
+msgid "Help"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "Getting started"
+msgstr "Inställningar sparade."
+
+#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
+msgctxt "MENU"
+msgid "About"
+msgstr "Om"
+
+#, fuzzy
+msgid "About this site"
+msgstr "Häv blockering av denna användare"
+
+#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
+msgctxt "MENU"
+msgid "FAQ"
+msgstr "Vanliga frågor"
+
+msgid "Frequently asked questions"
+msgstr ""
+
+#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
+#. TRANS: StatusNet site, where to report bugs, ...
+msgctxt "MENU"
+msgid "Contact"
+msgstr "Kontakt"
+
+#, fuzzy
+msgid "Contact info"
+msgstr "Kontakt"
+
+#, fuzzy
+msgctxt "MENU"
+msgid "Tags"
+msgstr "Taggar"
+
+msgid "Using tags"
+msgstr ""
+
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in search group navigation panel.
+#. TRANS: Menu item in local navigation menu.
+msgctxt "MENU"
+msgid "Groups"
+msgstr "Grupper"
+
+#, fuzzy
+msgid "Using groups"
+msgstr "Användargrupper"
+
+msgctxt "MENU"
+msgid "API"
+msgstr ""
+
+msgid "RESTful API"
+msgstr ""
 
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
@@ -2275,7 +2195,7 @@ msgstr ""
 "Ställa om en publik tagg som privat kommer permanent ta bort alla befintliga "
 "prenumerationer på den. Vill du fortfarande fortsätta?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Kunde inte uppdatera lista."
 
@@ -2580,40 +2500,6 @@ msgstr "Inga bilagor."
 msgid "No uploaded attachments."
 msgstr "Inga uppladdade bilagor."
 
-#. TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
-msgid "Not expecting this response!"
-msgstr "Väntade mig inte denna respons!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that does not exist.
-msgid "User being listened to does not exist."
-msgstr "Användaren som lyssnas på existerar inte."
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
-#. TRANS: Client error displayed when using remote subscribe for a local entity.
-msgid "You can use the local subscription!"
-msgstr "Du kan använda den lokala prenumerationen!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
-msgid "That user has blocked you from subscribing."
-msgstr "Denna användaren har blockerat dig från att prenumerera."
-
-#. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
-msgid "You are not authorized."
-msgstr "Du har inte tillstånd."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
-msgid "Could not convert request token to access token."
-msgstr "Kunde inte konvertera token för begäran till token för åtkomst."
-
-#. TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
-msgid "Remote service uses unknown version of OMB protocol."
-msgstr "Fjärrtjänsten använder en okänd version av OMB-protokollet."
-
-#. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
-#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
-msgid "Error updating remote profile."
-msgstr "Fel vid uppdatering av fjärrprofil."
-
 #. TRANS: Client error displayed when requesting a non-existent file.
 msgid "No such file."
 msgstr "Ingen sådan fil."
@@ -2700,30 +2586,6 @@ msgstr "Databasfel vid blockering av användare från grupp."
 #. TRANS: Client error displayed trying to find a user by ID without providing an ID.
 msgid "No ID."
 msgstr "Ingen ID."
-
-#. TRANS: Client error displayed trying to change group design settings while not logged in.
-msgid "You must be logged in to edit a group."
-msgstr "Du måste vara inloggad för att redigera en grupp."
-
-#. TRANS: Title group design settings page.
-msgid "Group design"
-msgstr "Gruppens utseende"
-
-#. TRANS: Instructions for group design settings page.
-msgid ""
-"Customize the way your group looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-"Anpassa hur din grupp ser ut genom att välja bakgrundbild och färgpalett."
-
-#. TRANS: Form validation error displayed when group design settings could not be updated because of an application issue.
-msgid "Unable to update your design settings."
-msgstr "Det gick inte att uppdatera utseendeinställningarna."
-
-#. TRANS: Form text to confirm saved group design settings.
-#. TRANS: Confirmation message on Profile design page when saving design settings has succeeded.
-msgid "Design preferences saved."
-msgstr "Utseendeinställningar sparade."
 
 #. TRANS: Title for group logo settings page.
 #. TRANS: Group logo form legend.
@@ -2899,8 +2761,8 @@ msgstr "Inställningar för snabbmeddelanden"
 #. TRANS: the order and formatting of link text and link should remain unchanged.
 #, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 "Du kan skicka och ta emot meddelanden via [snabbmeddelanden](%%doc.im%%). "
 "Konfigurera adresser och inställningarna nedan."
@@ -3101,28 +2963,6 @@ msgstr ""
 "Använd detta formulär för att bjuda in dina vänner och kollegor att använda "
 "denna tjänst."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "E-postadresser"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-msgid "Addresses of friends to invite (one per line)."
-msgstr "Adresser till vänner att bjuda in (en per rad)."
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "Personligt meddelande"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "Om du vill, skriv ett personligt meddelande till inbjudan."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "Skicka"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -3253,12 +3093,6 @@ msgstr "Webbadress för en bild som visas med licensen."
 msgid "Save license settings."
 msgstr "Spara licensinsällningar."
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Redan inloggad."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Felaktigt användarnamn eller lösenord."
@@ -3277,9 +3111,8 @@ msgid "Login to site"
 msgstr "Logga in på webbplatsen"
 
 #. TRANS: Field label on login page.
-#, fuzzy
 msgid "Username or email address"
-msgstr "Smeknamn eller e-postadress"
+msgstr "Användarnamn eller e-postadress"
 
 #. TRANS: Checkbox label label on login page.
 #. TRANS: Checkbox label on account registration page.
@@ -3369,6 +3202,7 @@ msgstr "Webbadress till källa krävs."
 msgid "Could not create application."
 msgstr "Kunde inte skapa applikation."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Ogiltig bild."
 
@@ -3404,14 +3238,6 @@ msgstr "Inget innehåll!"
 #. TRANS: Form validation error displayed trying to send a direct message without specifying a recipient.
 msgid "No recipient specified."
 msgstr "Ingen mottagare angiven."
-
-#. TRANS: Client error displayed trying to send a direct message to self.
-#. TRANS: Error text shown when trying to send a direct message to self.
-msgid ""
-"Don't send a message to yourself; just say it to yourself quietly instead."
-msgstr ""
-"Skicka inte meddelande till dig själv; viska lite tyst till dig själv "
-"istället."
 
 #. TRANS: Page title after sending a direct message.
 msgid "Message sent"
@@ -3616,6 +3442,33 @@ msgstr "Endast %s-webbadresser över vanlig HTTP."
 msgid "Not a supported data format."
 msgstr "Ett dataformat som inte stödjs"
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Inställningar för snabbmeddelanden"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr "Om du gillar det på \"det gamla sättet\", kan du ange det här."
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Inställningar sparade."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr "Visa smeknamn (inte fullständiga namn) i tidslinjer"
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Spara"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Personsökning"
@@ -3623,6 +3476,11 @@ msgstr "Personsökning"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Notissökning"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Redan inloggad."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -3693,7 +3551,7 @@ msgid "Confirm"
 msgstr "Bekräfta"
 
 #. TRANS: Field title on page where to change password.
-#. TRANS: Ttile for field label for password reset form where the password has to be typed again.
+#. TRANS: Title for field label for password reset form where the password has to be typed again.
 #. TRANS: Field title on account registration page.
 msgid "Same as password above."
 msgstr "Samma lösenord som ovan."
@@ -3750,12 +3608,6 @@ msgstr "Katalog med teman är inte läsbar: %s."
 #, php-format
 msgid "Avatar directory not writable: %s."
 msgstr "Katalog med avatarer är inte skrivbar: %s."
-
-#. TRANS: Client error in Paths admin panel.
-#. TRANS: %s is the background directory that could not be written to.
-#, php-format
-msgid "Background directory not writable: %s."
-msgstr "Katalog med bakgrunder är inte skrivbar: %s."
 
 #. TRANS: Client error in Paths admin panel.
 #. TRANS: %s is the locales directory that could not be read from.
@@ -3869,30 +3721,6 @@ msgstr "Katalog med avatarer"
 msgid "Directory where avatars are located."
 msgstr "Katalog där avatarer finns."
 
-#. TRANS: Fieldset legend in Paths admin panel.
-msgid "Backgrounds"
-msgstr "Bakgrunder"
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds."
-msgstr "Server för bakgrunder."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds."
-msgstr "Websökväg till bakgrunder."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds on SSL pages."
-msgstr "Server för bakgrunder på SSL-sidor."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds on SSL pages."
-msgstr "Webbsökväg till bakgrunder på SSL-sidor."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Directory where backgrounds are located."
-msgstr "Katalog där bakgrunder finns."
-
 #. TRANS: Fieldset legens in Paths admin panel.
 msgid "Attachments"
 msgstr "Bilagor"
@@ -3948,8 +3776,8 @@ msgid "Server to direct SSL requests to."
 msgstr "Server att dirigera SSL-begäran till."
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-msgid "Save paths"
-msgstr "Spara sökvägar"
+msgid "Save path settings."
+msgstr "Spara sökvägsinställningar."
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -4082,13 +3910,13 @@ msgid ""
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Dessa är listor som skapats av **%s**. Listor är hur du sorterar liknande "
 "personer på %%site.name%%, en [mikroblogg](http://sv.wikipedia.org/wiki/"
-"Mikroblogg)-tjänst baserat på den fria programvara [StatusNet](http://status."
-"net/). Du kan enkelt hålla reda på vad de gör genom att prenumerera på i "
-"listans tidslinje."
+"Mikroblogg)-tjänst baserat på den fria programvaran [StatusNet](http://"
+"status.net/). Du kan enkelt hålla reda på vad de gör genom att prenumerera "
+"på i listans tidslinje."
 
 #. TRANS: Message displayed on page that displays lists by a user when there are none.
 #. TRANS: This message contains Markdown links in the form [description](links).
@@ -4116,11 +3944,11 @@ msgid ""
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Dessa är listor för **%s**. Listor är hur du sorterar liknande personer på %%"
 "site.name%%, en [mikroblogg](http://sv.wikipedia.org/wiki/Mikroblogg)-tjänst "
-"baserat på den fria programvara [StatusNet](http://status.net/). Du kan "
+"baserat på den fria programvaran [StatusNet](http://status.net/). Du kan "
 "enkelt hålla reda på vad de gör genom att prenumerera på i listans tidslinje."
 
 #. TRANS: Message displayed on page that displays lists a user was added to when there are none.
@@ -4223,17 +4051,6 @@ msgstr ""
 "Alla standardinsticksmoduler har inaktiverats från platsens "
 "konfigurationsfil."
 
-#. TRANS: Client error displayed if the notice posted has too many characters.
-msgid "Invalid notice content."
-msgstr "Ogiltigt notisinnehåll."
-
-#. TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-#. TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-#, php-format
-msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-msgstr ""
-"Licensen för notiser \"%1$s\" är inte förenlig webbplatslicensen \"%2$s\"."
-
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #, php-format
@@ -4328,6 +4145,8 @@ msgid "Share my current location when posting notices"
 msgstr "Dela min nuvarande plats när jag skickar notiser"
 
 #. TRANS: Field label in form for profile settings.
+#. TRANS: Title for group tag cloud section.
+#. TRANS: %s is a group name.
 msgid "Tags"
 msgstr "Taggar"
 
@@ -4357,10 +4176,10 @@ msgstr "I vilken tidszon befinner du dig normalt?"
 
 #. TRANS: Checkbox label in form for profile settings.
 msgid ""
-"Automatically subscribe to whoever subscribes to me (best for non-humans)."
+"Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""
 "Prenumerera automatiskt på den som prenumererar på mig (bäst för icke-"
-"människor)."
+"människa) "
 
 #. TRANS: Dropdown field label on profile settings, for what policies to apply when someone else tries to subscribe to your updates.
 msgid "Subscription policy"
@@ -4428,11 +4247,6 @@ msgstr "Kunde inte spara platsinställningar."
 msgid "Could not save tags."
 msgstr "Kunde inte spara taggar."
 
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Inställningar sparade."
-
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
 msgid "Restore account"
@@ -4445,8 +4259,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "Bortom sidbegränsningen (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
-msgstr "Kunde inte hämta publik ström."
+msgid "Could not retrieve public timeline."
+msgstr "Kunde inte hämta offentlig tidslinje."
 
 #. TRANS: Title for all public timeline pages but the first.
 #. TRANS: %d is the page number.
@@ -4460,16 +4274,20 @@ msgid "Public timeline"
 msgstr "Publik tidslinje"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
-msgstr "Publikt flöde av ström (RSS 1.0)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
+msgstr "Offentlig tidslinjeflöde (Activity Streams JSON)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
-msgstr "Publikt flöde av ström (RSS 2.0)"
+msgid "Public Timeline Feed (RSS 1.0)"
+msgstr "Offentlig tidslinjeflöde (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
-msgstr "Publikt flöde av ström (Atom)"
+msgid "Public Timeline Feed (RSS 2.0)"
+msgstr "Offentlig tidslinjeflöde (RSS 2.0)"
+
+#. TRANS: Link description for public timeline feed.
+msgid "Public Timeline Feed (Atom)"
+msgstr "Offentlig tidslinjeflöde (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
 #, php-format
@@ -4517,47 +4335,6 @@ msgstr ""
 "Detta är %%site.name%%, en [mikroblogg](http://sv.wikipedia.org/wiki/"
 "Mikroblogg)tjänst baserad på den fria programvaran [StatusNet](http://status."
 "net/)."
-
-#. TRANS: Title for page with public list cloud.
-msgid "Public list cloud"
-msgstr "Publikt listmoln"
-
-#. TRANS: Page notice for page with public list cloud.
-#. TRANS: %s is a StatusNet sitename.
-#, php-format
-msgid "These are largest lists on %s"
-msgstr "Dessa är de största listorna på %s"
-
-#. TRANS: Empty list message on page with public list cloud.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, php-format
-msgid "No one has [listed](%%doc.tags%%) anyone yet."
-msgstr "Ingen har [listat] (%%doc.tags%%) någon ännu."
-
-#. TRANS: Additional empty list message on page with public list cloud for logged in users.
-msgid "Be the first to list someone!"
-msgstr "Var den första att lista någon!"
-
-#. TRANS: Additional empty list message on page with public list cloud for anonymous users.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, php-format
-msgid ""
-"Why not [register an account](%%action.register%%) and be the first to list "
-"someone!"
-msgstr ""
-"Varför inte [registrera ett konto] (%%action.register%%) och bli den första "
-"att lista någon!"
-
-#. TRANS: DT element on on page with public list cloud.
-msgid "List cloud"
-msgstr "Listmoln"
-
-#. TRANS: Link title for number of listed people. %d is the number of listed people.
-#, php-format
-msgid "1 person listed"
-msgid_plural "%d people listed"
-msgstr[0] " 1 person listad"
-msgstr[1] " %d personer listade"
 
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
 #, php-format
@@ -4683,7 +4460,6 @@ msgid "6 or more characters, and do not forget it!"
 msgstr "6 eller fler tecken, och glöm inte bort det!"
 
 #. TRANS: Button text for password reset form.
-#. TRANS: Button text on profile design page to reset all colour settings to default without saving.
 msgctxt "BUTTON"
 msgid "Reset"
 msgstr "Återställ"
@@ -4691,18 +4467,6 @@ msgstr "Återställ"
 #. TRANS: Form instructions for password recovery form.
 msgid "Enter a nickname or email address."
 msgstr "Skriv in ett smeknamn eller en e-postadress."
-
-#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
-msgid "No user with that email address or username."
-msgstr "Ingen användare med den e-postadressen eller användarnamn."
-
-#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
-msgid "No registered email address for that user."
-msgstr "Ingen registrerad e-postadress för den användaren."
-
-#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
-msgid "Error saving address confirmation."
-msgstr "Fel vid sparande av adressbekräftelse."
 
 #. TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
 msgid ""
@@ -4883,76 +4647,6 @@ msgstr ""
 "(Du kommer få ett meddelande med e-post inom kort med instruktioner hur du "
 "bekräftar din e-postadress.)"
 
-#. TRANS: Page notice for remote subscribe. This message contains Markdown links.
-#. TRANS: Ensure to keep the correct markup of [link description](link).
-#, php-format
-msgid ""
-"To subscribe, you can [login](%%action.login%%), or [register](%%action."
-"register%%) a new  account. If you already have an account  on a [compatible "
-"microblogging site](%%doc.openmublog%%),  enter your profile URL below."
-msgstr ""
-"För att prenumerera kan du [logga in](%%action.login%%) eller [registrera](%%"
-"action.register%%) ett nytt konto. Om du redan har ett konto på en "
-"[kompatibel mikrobloggwebbplats](%%doc.openmublog%%), fyll i din profils URL "
-"nedan."
-
-#. TRANS: Page title for Remote subscribe.
-msgid "Remote subscribe"
-msgstr "Fjärrprenumerera"
-
-#. TRANS: Field legend on page for remote subscribe.
-msgid "Subscribe to a remote user"
-msgstr "Prenumerera på en fjärranvändare"
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "User nickname"
-msgstr "Användarens smeknamn"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "Nickname of the user you want to follow."
-msgstr "Smeknamn på den användare som du vill följa."
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "Profile URL"
-msgstr "Profil-URL"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "URL of your profile on another compatible microblogging service."
-msgstr "Webbadressen till din profil på en annan kompatibel mikrobloggtjänst."
-
-#. TRANS: Button text on page for remote subscribe.
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Prenumerera"
-
-#. TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
-msgid "Invalid profile URL (bad format)."
-msgstr "Ogiltig profil-URL (dåligt format)."
-
-#. TRANS: Form validation error on page for remote subscribe when no the provided profile URL
-#. TRANS: does not contain expected data.
-msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-msgstr ""
-"Inte en giltig profil-URL (inget YADIS-dokument eller ogiltig XRDS "
-"definerad)."
-
-#. TRANS: Form validation error on page for remote subscribe.
-msgid "That is a local profile! Login to subscribe."
-msgstr "Det är en lokal profil! Logga in för att prenumerera."
-
-#. TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
-msgid "Could not get a request token."
-msgstr "Kunde inte få en förfrågan-token."
-
-#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr ""
-"Du kan inte lägga till eller ta bort en OMB 0.1-fjärrprofil från en lista "
-"med denna åtgärd."
-
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
 #, php-format
@@ -5005,6 +4699,12 @@ msgstr "Svarat till %s"
 #, php-format
 msgid "Replies to %1$s, page %2$d"
 msgstr "Svar till %1$s, sida %2$s"
+
+#. TRANS: Link for feed with replies for a user.
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "Replies feed for %s (Activity Streams JSON)"
+msgstr "Flöde med svar för %s (Activity Streams JSON)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
@@ -5125,10 +4825,10 @@ msgstr "Flöde kommer att återställas. Vänta några minuter för resultat."
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
-"Du kan ladda upp ett säkerhetskopierat flöde i <a href=\"http://"
+"Du kan ladda upp en säkerhetskopierat tidslinje i <a href=\"http://"
 "activitystrea.ms/\">Activity Streams</a>-format."
 
 #. TRANS: Title for submit button to confirm upload of a user backup file for account restore.
@@ -5241,6 +4941,26 @@ msgstr "Återställ nyckel & hemlighet"
 msgid "Application info"
 msgstr "Information om applikation"
 
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr "Nyckel för konsument"
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr "Hemlighet för konsument"
+
+#. TRANS: Field label on application page.
+msgid "Request token URL"
+msgstr "URL för begäran-token"
+
+#. TRANS: Field label on application page.
+msgid "Access token URL"
+msgstr "URL för åtkomst-token"
+
+#. TRANS: Field label on application page.
+msgid "Authorize URL"
+msgstr "Tillåt URL"
+
 #. TRANS: Note on the OAuth application page about signature support.
 msgid ""
 "Note: HMAC-SHA1 signatures are supported. The plaintext signature method is "
@@ -5262,6 +4982,11 @@ msgstr "%1$ss favoritnotiser, sida %2$d"
 #. TRANS: Server error displayed when favourite notices could not be retrieved from the database.
 msgid "Could not retrieve favorite notices."
 msgstr "Kunde inte hämta favoritnotiser."
+
+#. TRANS: Feed link text. %s is a username.
+#, php-format
+msgid "Feed for favorites of %s (Activity Streams JSON)"
+msgstr "Flöde för %ss favoriter (Activity Streams JSON)"
 
 #. TRANS: Feed link text. %s is a username.
 #, php-format
@@ -5326,6 +5051,11 @@ msgstr "%1$s grupp, sida %2$d"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
+msgid "Notice feed for %s group (Activity Streams JSON)"
+msgstr "Flöde av notiser för %ss grupp (Activity Streams JSON)"
+
+#. TRANS: Tooltip for feed link. %s is a group nickname.
+#, php-format
 msgid "Notice feed for %s group (RSS 1.0)"
 msgstr "Flöde av notiser för %s grupp (RSS 1.0)"
 
@@ -5344,42 +5074,8 @@ msgstr "Flöde av notiser för %s grupp (Atom)"
 msgid "FOAF for %s group"
 msgstr "FOAF för %s grupp"
 
-#. TRANS: Header for mini list of group members on a group page (h2).
-msgid "Members"
-msgstr "Medlemmar"
-
-#. TRANS: Description for mini list of group members on a group page when the group has no members.
-#. TRANS: Content of "Listed" page if there are no listed users.
-#. TRANS: Content of "People following tag x" if there are no subscribed users.
-#. TRANS: Empty list message for tags.
-#. TRANS: Text for user subscription statistics if the user has no subscriptions.
-#. TRANS: Text for user subscriber statistics if user has no subscribers.
-#. TRANS: Text for user user group membership statistics if user is not a member of any group.
-#. TRANS: Default content for section/sidebar widget.
-msgid "(None)"
-msgstr "(Ingen)"
-
-#. TRANS: Link to all group members from mini list of group members if group has more than n members.
-msgid "All members"
-msgstr "Alla medlemmar"
-
-#. TRANS: Header for group statistics on a group page (h2).
-#. TRANS: H2 text for user statistics.
-msgid "Statistics"
-msgstr "Statistik"
-
-#. TRANS: Label for group creation date.
-msgctxt "LABEL"
-msgid "Created"
-msgstr "Skapad"
-
-#. TRANS: Label for member count in statistics on group page.
-msgctxt "LABEL"
-msgid "Members"
-msgstr "Medlemmar"
-
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
 #, php-format
@@ -5397,24 +5093,19 @@ msgstr ""
 "del av denna grupp och många fler! ([Läs mer](%%%%doc.help%%%%))"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. Its members share short messages about "
-"their life and interests. "
+"their life and interests."
 msgstr ""
 "**%s** är en användargrupp på %%%%site.name%%%%, en [mikroblogg](http://sv."
 "wikipedia.org/wiki/Mikroblogg)tjänst baserad den fria programvaran "
 "[StatusNet](http://status.net/). Dess medlemmar delar korta meddelande om "
 "sina liv och intressen. "
-
-#. TRANS: Title for list of group administrators on a group page.
-msgctxt "TITLE"
-msgid "Admins"
-msgstr "Administratörer"
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5510,8 +5201,20 @@ msgstr ""
 "följa denna tidslinje!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr "Listade"
+
+#. TRANS: Content of "Listed" page if there are no listed users.
+#. TRANS: Content of "People following tag x" if there are no subscribed users.
+#. TRANS: Description for mini list of group members on a group page when the group has no members.
+#. TRANS: Empty list message for tags.
+#. TRANS: Text for user subscription statistics if the user has no subscriptions.
+#. TRANS: Text for user subscriber statistics if user has no subscribers.
+#. TRANS: Text for user user group membership statistics if user is not a member of any group.
+#. TRANS: Default content for section/sidebar widget.
+msgid "(None)"
+msgstr "(Ingen)"
 
 #. TRANS: Link for more "People in list x by a user"
 #. TRANS: if there are more than the mini list's maximum.
@@ -5523,24 +5226,19 @@ msgstr "Visa alla"
 msgid "Subscribers"
 msgstr "Prenumeranter"
 
-#. TRANS: Link for more "People following tag x"
-#. TRANS: if there are more than the mini list's maximum.
-msgid "All subscribers"
-msgstr "Alla prenumeranter"
-
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "Notiser av %1$s taggade %2$s"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Notiser av %1$s taggade %2$s , sida %3$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5551,6 +5249,12 @@ msgstr "Notiser av %1$s, sida %2$d"
 #, php-format
 msgid "Notice feed for %1$s tagged %2$s (RSS 1.0)"
 msgstr "Flöde av notiser för %1$s taggade %2$s (RSS 1.0)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "Notice feed for %s (Activity Streams JSON)"
+msgstr "Flöde av notiser för %s (Activity Streams JSON)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
@@ -5576,7 +5280,7 @@ msgstr "Flöde av notiser för %s (Atom)"
 msgid "FOAF for %s"
 msgstr "FOAF för %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "Detta är tidslinjen för %1$s, men %1$s har inte skrivit något ännu."
@@ -5589,7 +5293,7 @@ msgstr ""
 "Sett något intressant nyligen? Du har inte postat några notiser än. Varför "
 "inte börja nu?"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5599,7 +5303,7 @@ msgstr ""
 "Var den första att [skriva i detta ämne](%%%%action.newnotice%%%%?"
 "status_textarea=%s)!"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5613,13 +5317,13 @@ msgstr ""
 "[StatusNet](http://status.net/). [Gå med nu](%%%%action.register%%%%) för "
 "att följa **%s**s notiser och många fler! ([Läs mer](%%%%doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
-"[StatusNet](http://status.net/) tool. "
+"[StatusNet](http://status.net/) tool."
 msgstr ""
 "**%s** har ett konto på %%%%site.name%%%%, en [mikroblogg](http://sv."
 "wikipedia.org/wiki/Mikroblogg)tjänst baserad på den fria programvaran "
@@ -5655,6 +5359,14 @@ msgstr "Webbplatsnamnet måste vara minst ett tecken långt."
 #. TRANS: Client error displayed trying to save site settings without a contact address.
 msgid "You must have a valid contact email address."
 msgstr "Du måste ha en giltig e-postadress."
+
+#. TRANS: Client error displayed when a logo URL is not valid.
+msgid "Invalid logo URL."
+msgstr "Ogiltig webbadress för logtyp."
+
+#. TRANS: Client error displayed when a SSL logo URL is invalid.
+msgid "Invalid SSL logo URL."
+msgstr "Ogiltig webbadress för SSL-logtyp."
 
 #. TRANS: Client error displayed trying to save site settings with an invalid language code.
 #. TRANS: %s is the invalid language code.
@@ -5726,10 +5438,11 @@ msgid "Default language"
 msgstr "Standardspråk"
 
 #. TRANS: Dropdown title on site settings panel.
-msgid "Site language when autodetection from browser settings is not available"
+msgid ""
+"The site language when autodetection from browser settings is not available."
 msgstr ""
-"Webbplatsspråk när automatisk identifiering av inställningar i webbläsaren "
-"inte är tillgänglig"
+"Webbplatsspråket, vid automatisk identifiering av inställningar i "
+"webbläsaren, är inte tillgänglig."
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
@@ -5753,9 +5466,21 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 "Hur länge användare måste vänta (i sekunder) för att posta samma sak igen."
 
+#. TRANS: Fieldset legend for form to change logo.
+msgid "Logo"
+msgstr "Logotyp"
+
+#. TRANS: Field label for StatusNet site logo.
+msgid "Site logo"
+msgstr "Webbplatslogotyp"
+
+#. TRANS: Field label for SSL StatusNet site logo.
+msgid "SSL logo"
+msgstr "SSL-logotyp"
+
 #. TRANS: Button title for saving site settings.
-msgid "Save site settings"
-msgstr "Spara webbplatsinställningar"
+msgid "Save the site settings."
+msgstr "Spara webbplatsinställningar."
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -5781,7 +5506,7 @@ msgstr "Text för webbplatsnotis"
 msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr "Notistext för hela webbplatsen (max 255 tecken; HTML tillåts)"
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 msgid "Save site notice."
 msgstr "Spara webbplatsnotis."
 
@@ -5974,7 +5699,7 @@ msgstr "URL för rapport"
 msgid "Snapshots will be sent to this URL."
 msgstr "Ögonblicksbilder kommer att skickas till denna webbadress."
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 msgid "Save snapshot settings."
 msgstr "Spara inställningar för ögonblicksbild."
 
@@ -6007,10 +5732,6 @@ msgstr "Prenumeranter på %1$s som väntar på godkännande, sida %2$d"
 msgid "A list of users awaiting approval to subscribe to you."
 msgstr ""
 "En lista med användare som väntar på godkännande för att prenumerera på dig."
-
-#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-msgstr "Du kan inte prenumerera på en 0MB 0.1-fjärrprofil med denna åtgärd."
 
 #. TRANS: Page title when subscription succeeded.
 msgid "Subscribed"
@@ -6107,13 +5828,12 @@ msgstr "Det är dessa personer vars notiser %s lyssnar på."
 #. TRANS: This message contains Markdown URLs. The link description is between
 #. TRANS: square brackets, and the link between parentheses. Do not separate "]("
 #. TRANS: and do not change the URL part.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "You're not listening to anyone's notices right now, try subscribing to "
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
 "members in groups you're interested in and in our [featured users](%%action."
-"featured%%). If you're a [Twitter user](%%action.twittersettings%%), you can "
-"automatically subscribe to people you already follow there."
+"featured%%)."
 msgstr ""
 "Du lyssnar inte på någons notiser just nu. Prova att prenumerera på personer "
 "du känner. Prova [personsökning](%%action.peoplesearch%%), leta bland "
@@ -6149,6 +5869,12 @@ msgstr "SMS"
 #, php-format
 msgid "Notices tagged with %1$s, page %2$d"
 msgstr "Notiser taggade med %1$s, sida %2$d"
+
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
+#, php-format
+msgid "Notice feed for tag %s (Activity Streams JSON)"
+msgstr "Flöde av notiser för tagg %s (Activity Streams JSON)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -6251,18 +5977,6 @@ msgstr "Prenumeration avslutad"
 #, php-format
 msgid "%1$s unsubscribed from list %2$s by %3$s"
 msgstr "%1$s struken från listan %2$s av %3$s"
-
-#. TRANS: Client error displayed when trying to update profile with an incompatible license.
-#. TRANS: %1$s is the license incompatible with site license %2$s.
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr ""
-"Licensen för lyssnarströmmen \"%1$s\" är inte förenlig med webbplatslicensen "
-"\"%2$s\"."
 
 #. TRANS: Title of URL settings tab in profile settings.
 msgid "URL settings"
@@ -6400,153 +6114,9 @@ msgstr "Inbjudningar aktiverade"
 msgid "Whether to allow users to invite new users."
 msgstr "Hurvida användare skall tillåtas bjuda in nya användare."
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 msgid "Save user settings."
 msgstr "Spara användarinställningar."
-
-#. TRANS: Page title.
-msgid "Authorize subscription"
-msgstr "Godkänn prenumeration"
-
-#. TRANS: Page notice on "Authorize subscription" page.
-msgid ""
-"Please check these details to make sure that you want to subscribe to this "
-"user’s notices. If you didn’t just ask to subscribe to someone’s notices, "
-"click \"Reject\"."
-msgstr ""
-"Vänligen kontrollera dessa detaljer för att försäkra dig om att du vill "
-"prenumerera på denna användares notiser. Om du inte bett om att prenumerera "
-"på någons meddelanden, klicka på \"Avvisa\"."
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to accept a group membership request on approve group form.
-#. TRANS: Submit button text to accept a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Accept"
-msgstr "Acceptera"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#. TRANS: Button title to subscribe to a user.
-msgid "Subscribe to this user."
-msgstr "Prenumerera på denna användaren."
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to reject a group membership request on approve group form.
-#. TRANS: Submit button text to reject a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Reject"
-msgstr "Avvisa"
-
-#. TRANS: Title for button on Authorise Subscription page.
-msgid "Reject this subscription."
-msgstr "Avvisa den här prenumerationen."
-
-#. TRANS: Client error displayed for an empty authorisation request.
-msgid "No authorization request!"
-msgstr "Ingen begäran om godkännande!"
-
-#. TRANS: Accept message header from Authorise subscription page.
-msgid "Subscription authorized"
-msgstr "Prenumeration godkänd"
-
-#. TRANS: Accept message text from Authorise subscription page.
-msgid ""
-"The subscription has been authorized, but no callback URL was passed. Check "
-"with the site's instructions for details on how to authorize the "
-"subscription. Your subscription token is:"
-msgstr ""
-"Prenumerationen har godkänts, men ingen anrops-URL har gått igenom. Kolla "
-"med webbplatsens instruktioner hur du bekräftar en prenumeration. Din "
-"prenumerations-token är:"
-
-#. TRANS: Reject message header from Authorise subscription page.
-msgid "Subscription rejected"
-msgstr "Prenumeration avvisad"
-
-#. TRANS: Reject message from Authorise subscription page.
-msgid ""
-"The subscription has been rejected, but no callback URL was passed. Check "
-"with the site's instructions for details on how to fully reject the "
-"subscription."
-msgstr ""
-"Prenumerationen har blivit avvisad, men ingen URL har gått igenom. Kolla med "
-"webbplatsens instruktioner för detaljer om hur du fullständingt avvisar "
-"prenumerationen."
-
-#. TRANS: Exception thrown when no valid user is found for an authorisation request.
-#. TRANS: %s is a listener URI.
-#, php-format
-msgid "Listener URI \"%s\" not found here."
-msgstr "URI för lyssnare \"%s\" hittades inte här."
-
-#. TRANS: Exception thrown when listenee URI is too long for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is too long."
-msgstr "URI för lyssnare \"%s\" är för lång."
-
-#. TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is a local user."
-msgstr "URI för lyssnare \"%s\" är en lokal användare."
-
-#. TRANS: Exception thrown when profile URL is a local user for an authorisation request.
-#. TRANS: %s is a profile URL.
-#, php-format
-msgid "Profile URL \"%s\" is for a local user."
-msgstr "Profil-URL \"%s\" är för en lokal användare."
-
-#. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Avatar URL \"%s\" is not valid."
-msgstr "Avatar-URL \"%s\" är inte giltig."
-
-#. TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Cannot read avatar URL \"%s\"."
-msgstr "Kan inte läsa avatar-URL \"%s\"."
-
-#. TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Wrong image type for avatar URL \"%s\"."
-msgstr "Fel bildtyp för avatar-URL \"%s\"."
-
-#. TRANS: Title for profile design page.
-#. TRANS: Page title for profile design page.
-msgid "Profile design"
-msgstr "Profilutseende"
-
-#. TRANS: Instructions for Profile design page.
-#. TRANS: Instructions for profile design page.
-msgid ""
-"Customize the way your profile looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-"Anpassa hur din profil ser ut genom att välja bakgrundbild och färgpalett."
-
-#. TRANS: Succes message on Profile design page when finding an easter egg.
-msgid "Enjoy your hotdog!"
-msgstr "Smaklig måltid!"
-
-#. TRANS: Form legend on Profile design page.
-msgid "Design settings"
-msgstr "Utseendeinställningar"
-
-#. TRANS: Checkbox label on Profile design page.
-msgid "View profile designs"
-msgstr "Visa profilutseenden"
-
-#. TRANS: Title for checkbox on Profile design page.
-msgid "Show or hide profile designs."
-msgstr "Visa eller göm profilutseenden."
-
-#. TRANS: Form legend on Profile design page for form to choose a background image.
-msgid "Background file"
-msgstr "Fil för bakgrund"
 
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
@@ -6589,11 +6159,11 @@ msgstr "StatusNet %s"
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
 #, php-format
 msgid ""
-"This site is powered by %1$s version %2$s, Copyright 2008-2010 StatusNet, "
+"This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
 "Denna webbplats drivs med %1$s version %2$s, Copyright 2008-2010 StatusNet, "
-"Inc. och medarbetare."
+"Inc. och bidragsgivare."
 
 #. TRANS: Header for StatusNet contributors section on the version page.
 msgid "Contributors"
@@ -6604,11 +6174,12 @@ msgid "License"
 msgstr "Licens"
 
 #. TRANS: Content part of StatusNet version page.
+#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
 "Software Foundation, either version 3 of the License, or (at your option) "
-"any later version. "
+"any later version."
 msgstr ""
 "StatusNet är fri programvara: du kan distribuera det och/eller modifiera den "
 "under GNU Affero General Public License såsom publicerad av Free Software "
@@ -6616,11 +6187,12 @@ msgstr ""
 "senare version. "
 
 #. TRANS: Content part of StatusNet version page.
+#, fuzzy
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License "
-"for more details. "
+"for more details."
 msgstr ""
 "Detta program distribueras i hopp om att det kommer att vara användbart, men "
 "UTAN NÅGRA GARANTIER; även utan underförstådda garantier om SÄLJBARHET eller "
@@ -6680,16 +6252,26 @@ msgstr "Webbadressen '%s' kan inte bearbeta"
 msgid "Robin thinks something is impossible."
 msgstr "Robin tycker att något är omöjligt"
 
-#. TRANS: Message given if an upload is larger than the configured maximum.
-#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-#. TRANS: %1$s is used for plural.
+#. TRANS: Message used to be inserted as %2$s in  the text "No file may
+#. TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+#. TRANS: %1$d is the number of bytes of an uploaded file.
 #, php-format
+msgid "%1$d byte"
+msgid_plural "%1$d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: Message given if an upload is larger than the configured maximum.
+#. TRANS: %1$d (used for plural) is the byte limit for uploads,
+#. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+#. TRANS: gettext support multiple plurals in the same message, unfortunately...
+#, fuzzy, php-format
 msgid ""
-"No file may be larger than %1$d byte and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgid_plural ""
-"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgstr[0] ""
 "Ingen fil får vara större än %1$d byte och den fil du skickade var %2$d "
 "byte. Försök att ladda upp en mindre version."
@@ -6764,6 +6346,11 @@ msgstr "Kunde inte uppdatera lokal grupp."
 #, php-format
 msgid "Could not create login token for %s"
 msgstr "Kunde inte skapa inloggnings-token för %s"
+
+#. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
+#, php-format
+msgid "Cannot instantiate class %s."
+msgstr "Kan inte initiera klass %s."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
@@ -6917,10 +6504,10 @@ msgstr ""
 "antalet taggar. Försök använda eller stryka några befintliga taggar."
 
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
-"allowed number.Try unlisting others first."
+"allowed number. Try unlisting others first."
 msgstr ""
 "Du har redan %1$d eller flera personer i listan %2$s, vilket är den högsta "
 "tillåtna antalet. Prova ta bort andra från listan först."
@@ -6942,7 +6529,6 @@ msgid "Unable to save tag."
 msgstr "Kunde inte spara tagg."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#. TRANS: Error message displayed to a banned user when they try to subscribe.
 msgid "You have been banned from subscribing."
 msgstr "Du har blivit utestängd från att prenumerera."
 
@@ -6960,10 +6546,6 @@ msgstr "Inte prenumerant!"
 
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 msgid "Could not delete self-subscription."
-msgstr "Kunde inte spara prenumeration."
-
-#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
-msgid "Could not delete subscription OMB token."
 msgstr "Kunde inte spara prenumeration."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
@@ -6998,6 +6580,18 @@ msgstr "Ingen enskild användare definierad för enanvändarläge."
 #. TRANS: Server exception.
 msgid "Single-user mode code called when not enabled."
 msgstr "Enanvändarlägeskod anropad när den inte var aktiverad."
+
+#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
+msgid "No user with that email address or username."
+msgstr "Ingen användare med den e-postadressen eller användarnamn."
+
+#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+msgid "No registered email address for that user."
+msgstr "Ingen registrerad e-postadress för den användaren."
+
+#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+msgid "Error saving address confirmation."
+msgstr "Fel vid sparande av adressbekräftelse."
 
 #. TRANS: Server exception thrown when creating a group failed.
 msgid "Could not create group."
@@ -7264,22 +6858,8 @@ msgstr "showForm() är inte implementerat."
 msgid "saveSettings() not implemented."
 msgstr "saveSetting() är inte implementerat."
 
-#. TRANS: Client error message thrown if design settings could not be deleted in
-#. TRANS: the admin panel Design.
-msgid "Unable to delete design setting."
-msgstr "Kunde inte ta bort utseendeinställning."
-
 #. TRANS: Header in administrator navigation panel.
-#. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
-msgid "Home"
-msgstr "Hem"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in personal group navigation menu.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
 msgid "Home"
 msgstr "Hem"
 
@@ -7296,17 +6876,6 @@ msgstr "Grundläggande webbplatskonfiguration"
 msgctxt "MENU"
 msgid "Site"
 msgstr "Webbplats"
-
-#. TRANS: Menu item title in administrator navigation panel.
-msgid "Design configuration"
-msgstr "Konfiguration av utseende"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
-msgid "Design"
-msgstr "Utseende"
 
 #. TRANS: Menu item title in administrator navigation panel.
 msgid "User configuration"
@@ -7406,41 +6975,6 @@ msgstr "Ingen användare för den token."
 msgid "Could not authenticate you."
 msgstr "Kunde inte autentisera dig."
 
-#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
-msgid "Could not create anonymous consumer."
-msgstr "Kunde inte skapa anonym konsument."
-
-#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
-msgid "Could not create anonymous OAuth application."
-msgstr "Kunde inte skapa anonym OAuth-applikation."
-
-#. TRANS: Exception thrown when no token association could be found.
-msgid ""
-"Could not find a profile and application associated with the request token."
-msgstr ""
-"Kunde inte hitta en profil och applikation som är associerade med begäran-"
-"token."
-
-#. TRANS: Exception thrown when no access token can be issued.
-msgid "Could not issue access token."
-msgstr "Kunde inte utfärda åtkomst-token."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error inserting OAuth application user."
-msgstr "Databasfel vid infogning av OAuth-applikationsanvändare."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error updating OAuth application user."
-msgstr "Databasfel vid uppdatering av OAuth-applikationsanvändare."
-
-#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
-msgid "Tried to revoke unknown token."
-msgstr "Försökte återkalla okänd token."
-
-#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
-msgid "Failed to delete revoked token."
-msgstr "Det gick inte att ta bort återkallad token."
-
 #. TRANS: Form input field label for application icon.
 msgid "Icon"
 msgstr "Ikon"
@@ -7522,13 +7056,12 @@ msgstr ""
 "Standardåtkomst för denna applikation: skrivskyddad, eller läs och skriv"
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "Avbryt"
+msgid "Cancel application changes."
+msgstr "Avbryt applikationsändringar."
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Spara"
+msgid "Save application changes."
+msgstr "Spara applikationsändringar."
 
 #. TRANS: Name for an anonymous application in application list.
 msgid "Unknown application"
@@ -7562,6 +7095,18 @@ msgstr "Åtkomsttoken som börjar med: %s"
 msgctxt "BUTTON"
 msgid "Revoke"
 msgstr "Återkalla"
+
+#. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "Acceptera"
+
+#. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "Avvisa"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
@@ -8109,6 +7654,11 @@ msgstr "Du kanske vill köra installeraren för att åtgärda detta."
 msgid "Go to the installer."
 msgstr "Gå till installeraren."
 
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Notiser"
+
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr "Databasfel"
@@ -8118,13 +7668,6 @@ msgstr "Databasfel"
 msgctxt "MENU"
 msgid "Public"
 msgstr "Publikt"
-
-#. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in search group navigation panel.
-#. TRANS: Menu item in local navigation menu.
-msgctxt "MENU"
-msgid "Groups"
-msgstr "Grupper"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item title in local navigation menu.
@@ -8141,51 +7684,12 @@ msgstr "Ta bort"
 msgid "Delete this user"
 msgstr "Ta bort denna användare"
 
-#. TRANS: Form legend of form for changing the page design.
-msgid "Change design"
-msgstr "Ändra utseende"
-
-#. TRANS: Fieldset legend on profile design page to change profile page colours.
-msgid "Change colours"
-msgstr "Byt färger"
-
-#. TRANS: Button text on profile design page to immediately reset all colour settings to default.
-msgid "Use defaults"
-msgstr "Använd standardvärden"
-
-#. TRANS: Label in form on profile design page.
-#. TRANS: Field contains file name on user's computer that could be that user's custom profile background image.
-msgid "Upload file"
-msgstr "Ladda upp fil"
-
-#. TRANS: Instructions for form on profile design page.
-msgid ""
-"You can upload your personal background image. The maximum file size is 2MB."
-msgstr ""
-"Du kan ladda upp din personliga bakgrundbild. Den maximala filstorleken är "
-"2MB."
-
-#. TRANS: Radio button on profile design page that will enable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "On"
-msgstr "På"
-
-#. TRANS: Radio button on profile design page that will disable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "Off"
-msgstr "Av"
-
-#. TRANS: Success message displayed if design settings were saved after clicking "Use defaults".
-msgid "Design defaults restored."
-msgstr "Standardvärden för utseende återställda."
-
 #. TRANS: Exception. %s is an ID.
 #, php-format
 msgid "Unable to find services for %s."
 msgstr "Det gick inte att hitta tjänster för %s."
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 msgid "Disfavor this notice"
 msgstr "Avmarkera denna notis som favorit"
 
@@ -8194,8 +7698,11 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "Ta bort märkning som favorit"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+msgid "Remove this notice from your list of favorite notices."
+msgstr "Ta bort denna notis från din lista med favoritnotiser."
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "Markera denna notis som favorit"
 
@@ -8203,6 +7710,10 @@ msgstr "Markera denna notis som favorit"
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "Markera som favorit"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+msgid "Add this notice to your list of favorite notices."
+msgstr "Lägg till denna notis till din lista med favoritnotiser."
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -8219,6 +7730,10 @@ msgstr "Atom"
 #. TRANS: Feed type name. FOAF stands for Friend of a Friend.
 msgid "FOAF"
 msgstr "FOAF"
+
+#. TRANS: Feed type name. See http://activitystrea.ms/
+msgid "Activity Streams"
+msgstr "Activity Streams"
 
 #. TRANS: Client exception thrown when an imported feed does not have an author.
 msgid "No author in the feed."
@@ -8251,6 +7766,27 @@ msgstr "Välj en tagg för att begränsa listan."
 msgid "Grant this user the \"%s\" role"
 msgstr "Bevilja denna användare \"%s\"-rollen"
 
+#. TRANS: Header for mini list of group members on a group page (h2).
+msgid "Members"
+msgstr "Medlemmar"
+
+#. TRANS: Link to all group members from mini list of group members if group has more than n members.
+msgid "All members"
+msgstr "Alla medlemmar"
+
+#. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
+msgid "Pending"
+msgstr "Väntande"
+
+#. TRANS: Header for mini list of users that are blocked in a group page (h2).
+msgid "Blocked"
+msgstr "Blockerad"
+
+#. TRANS: Title for list of group administrators on a group page.
+msgctxt "TITLE"
+msgid "Admins"
+msgstr "Administratörer"
+
 #. TRANS: Button text for the form that will block a user from a group.
 msgctxt "BUTTON"
 msgid "Block"
@@ -8258,8 +7794,9 @@ msgstr "Blockera"
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
-msgstr "Blockera denna användare"
+msgid "Block this user so that they can no longer post messages to it."
+msgstr ""
+"Blockera denna användare så de inte längre kan skicka meddelanden till den."
 
 #. TRANS: Field title on group edit form.
 msgid "URL of the homepage or blog of the group or topic."
@@ -8314,63 +7851,9 @@ msgctxt "GROUPADMIN"
 msgid "Admin"
 msgstr "Administratör"
 
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Group"
-msgstr "Grupp"
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group"
-msgstr "%s grupp"
-
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Members"
-msgstr "Medlemmar"
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group members"
-msgstr "%s gruppmedlemmar"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %d is the number of pending members.
-#, php-format
-msgctxt "MENU"
-msgid "Pending members (%d)"
-msgid_plural "Pending members (%d)"
-msgstr[0] "Väntande medlemmar (%d) "
-msgstr[1] "Väntande medlemmar (%d)"
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s pending members"
-msgstr "%s väntande medlemmar"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Blocked"
-msgstr "Blockerade"
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s blocked users"
-msgstr "%s blockerade användare"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Admin"
-msgstr "Administratör"
+#. TRANS: Group actions header (h2). Text hidden by default.
+msgid "Group actions"
+msgstr "Åtgärder för grupp"
 
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
@@ -8379,11 +7862,6 @@ msgctxt "TOOLTIP"
 msgid "Edit %s group properties"
 msgstr "Redigera %s gruppegenskaper"
 
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Logo"
-msgstr "Logotyp"
-
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
 #, php-format
@@ -8391,16 +7869,10 @@ msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr "Lägg till eller redigera %s logotyp"
 
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "Add or edit %s design"
-msgstr "Lägg till eller redigera %s utseende"
-
-#. TRANS: Group actions header (h2). Text hidden by default.
-msgid "Group actions"
-msgstr "Åtgärder för grupp"
+#. TRANS: Link text for link on user profile.
+msgctxt "MENU"
+msgid "Logo"
+msgstr "Logotyp"
 
 #. TRANS: Title for groups with the most members section.
 msgid "Popular groups"
@@ -8410,11 +7882,19 @@ msgstr "Populära grupper"
 msgid "Active groups"
 msgstr "Aktiva grupper"
 
-#. TRANS: Title for group tag cloud section.
-#. TRANS: %s is a group name.
-#, php-format
-msgid "Tags in %s group's notices"
-msgstr "Taggar i %s grupps notiser"
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
+msgid "See all"
+msgstr "Visa alla"
+
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
+msgstr "Se alla grupper som du tillhör."
+
+#. TRANS: Menu item title in personal group navigation menu.
+#. TRANS: %s is a username.
+msgid "Back to top"
+msgstr ""
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -8505,10 +7985,40 @@ msgctxt "TITLE"
 msgid "Trends"
 msgstr "Trender"
 
-#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Default button text for inviting more users to the StatusNet instance.
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Bjud in fler kollegor"
+
+#. TRANS: Form legend.
+msgid "Invite collegues"
+msgstr "Bjud in kollegor"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "E-postadresser"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr "Adresser till vänner att bjuda in (en per rad)."
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Personligt meddelande"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Om du vill, skriv ett personligt meddelande till inbjudan."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Skicka"
+
+#. TRANS: Submit button title.
+msgid "Send invitations."
+msgstr "Skicka inbjudningar."
 
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
@@ -8519,6 +8029,10 @@ msgstr "Gå med"
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Leave"
+
+#. TRANS: Link title for seeing all lists.
+msgid "See all lists you have created."
+msgstr "Se alla listor som du har skapat."
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -8579,8 +8093,8 @@ msgstr ""
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
 #, php-format
-msgid "%1$s is now listening to your notices on %2$s."
-msgstr "%1$s lyssnar nu på dina notiser på %2$s."
+msgid "%1$s is now following you on %2$s."
+msgstr "%1$s följer nu dig på %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -8802,7 +8316,7 @@ msgstr "%1$s (@%2$s) skickade en notis för din uppmärksamhet"
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8844,6 +8358,10 @@ msgstr ""
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
+#, fuzzy, php-format
+msgid "%1$s has joined your group %2$s on %3$s"
+msgstr "%1$s har gått med i din grupp %2$s på %3$s."
+
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is a block of profile info about the subscriber.
@@ -8933,8 +8451,8 @@ msgstr "Gör till administratör"
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
-msgstr "Gör denna användare till administratör"
+msgid "Make this user an admin."
+msgstr "Gör denna användare till administratör."
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
 msgid "There was a database error while saving your file. Please try again."
@@ -8982,7 +8500,7 @@ msgstr "Skicka en direktnotis"
 msgid "Select recipient:"
 msgstr "Välj mottagare:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Inga ömsesidiga prenumeranter."
 
@@ -9050,6 +8568,10 @@ msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 "Du måste implementera antingen adaptNoticeListItem() eller showNotice()."
 
+#. TRANS: Link description to show more items in a list.
+msgid "More ▼"
+msgstr "Mer ▼"
+
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
 msgstr "Smeknamn kan inte vara tomt."
@@ -9099,10 +8621,6 @@ msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr " ▸ "
-
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
 msgstr "N"
@@ -9141,16 +8659,16 @@ msgid "Repeated by"
 msgstr "Upprepad av"
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
-msgstr "Svara på denna notis"
+msgid "Reply to this notice."
+msgstr "Svara på denna notis."
 
 #. TRANS: Link text in notice list item to reply to a notice.
 msgid "Reply"
 msgstr "Svara"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
-msgstr "Ta bort denna notis"
+msgid "Delete this notice from the timeline."
+msgstr "Ta bort denna notis från tidslinjen."
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
 msgid "Notice repeated."
@@ -9172,26 +8690,6 @@ msgstr "Knuffa"
 #. TRANS: Button title to nudge/ping another user.
 msgid "Send a nudge to this user."
 msgstr "Skicka en knuff till denna användare."
-
-#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
-msgid "Error inserting new profile."
-msgstr "Fel vid infogning av ny profil."
-
-#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
-msgid "Error inserting avatar."
-msgstr "Fel vid infogning av avatar."
-
-#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
-msgid "Error inserting remote profile."
-msgstr "Fel vid infogning av fjärrprofil."
-
-#. TRANS: Exception thrown when a notice is denied because it has been sent before.
-msgid "Duplicate notice."
-msgstr "Duplicera notis."
-
-#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
-msgid "Could not insert new subscription."
-msgstr "Kunde inte infoga ny prenumeration."
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
 msgid "No oEmbed API endpoint available."
@@ -9269,10 +8767,6 @@ msgstr "Redigera"
 #, php-format
 msgid "Edit %s list by you."
 msgstr "Redigera %s-listan av dig."
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
-msgstr "Taggade"
 
 #. TRANS: Title for link to edit list settings.
 msgid "Edit list settings."
@@ -9416,9 +8910,13 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Aktivera"
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
-msgstr "(Beskrivningar av insticksmoduler inte tillgängliga när inaktiverade.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
+msgstr ""
+"(Beskrivningar av insticksmoduler inte tillgängliga när den har blivit "
+"inaktiverad.)"
 
 #. TRANS: Menu item in primary navigation panel.
 msgctxt "MENU"
@@ -9428,6 +8926,11 @@ msgstr "Inställningar"
 #. TRANS: Menu item title in primary navigation panel.
 msgid "Change your personal settings."
 msgstr "Ändra dina personliga inställningar."
+
+#. TRANS: Menu item in primary navigation panel.
+msgctxt "MENU"
+msgid "Admin"
+msgstr "Administratör"
 
 #. TRANS: Menu item title in primary navigation panel.
 msgid "Site configuration."
@@ -9446,14 +8949,8 @@ msgstr "Logga ut från webbplatsen."
 msgid "Login to the site."
 msgstr "Logga in på webbplatsen."
 
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Search"
-msgstr "Sök"
-
-#. TRANS: Menu item title in primary navigation panel.
-msgid "Search the site."
-msgstr "Sök på webbplatsen."
+msgid "This profile has been silenced by site moderators"
+msgstr ""
 
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
@@ -9463,6 +8960,10 @@ msgstr "Följer"
 msgid "Followers"
 msgstr "Prenumeranter"
 
+#. TRANS: H2 text for user statistics.
+msgid "Statistics"
+msgstr "Statistik"
+
 #. TRANS: Label for user statistics.
 msgid "User ID"
 msgstr "Användar-ID"
@@ -9470,10 +8971,6 @@ msgstr "Användar-ID"
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr "Medlem sedan"
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Notiser"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -9560,27 +9057,26 @@ msgid "Keyword(s)"
 msgstr "Nyckelord"
 
 #. TRANS: Button text for searching site.
+#. TRANS: Button text for search button on search form.
 #. TRANS: Button text to search profiles.
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "Sök"
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
 "* Try more general keywords.\n"
 "* Try fewer keywords."
 msgstr ""
-" * Kontrollera att alla ord är korrekt stavade.\n"
-" * Prova olika nyckelord.\n"
-" * Prova mer allmänna nyckelord.\n"
-" * Prova färre nyckelord.\n"
-" "
+"* Kontrollera att alla ord är korrekt stavade.\n"
+"* Prova olika nyckelord.\n"
+"* Prova mer allmänna nyckelord.\n"
+"* Prova färre nyckelord."
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can also try your search on other engines:\n"
 "\n"
@@ -9599,8 +9095,7 @@ msgstr ""
 " * [Google] (http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)\n"
 " * [Yahoo] (http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%"
 "s)\n"
-" * [Collecta] (http://collecta.com/#q=%s)\n"
-" "
+" * [Collecta] (http://collecta.com/#q=%s)"
 
 #. TRANS: Menu item in search group navigation panel.
 msgctxt "MENU"
@@ -9624,21 +9119,6 @@ msgstr "Hitta innehåll i notiser"
 msgid "Find groups on this site"
 msgstr "Hitta grupper på denna webbplats"
 
-#. TRANS: Secondary navigation menu item leading to help on StatusNet.
-msgctxt "MENU"
-msgid "Help"
-msgstr "Hjälp"
-
-#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
-msgctxt "MENU"
-msgid "About"
-msgstr "Om"
-
-#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
-msgctxt "MENU"
-msgid "FAQ"
-msgstr "Vanliga frågor"
-
 #. TRANS: Secondary navigation menu item leading to Terms of Service.
 msgctxt "MENU"
 msgid "TOS"
@@ -9658,17 +9138,6 @@ msgstr "Källa"
 msgctxt "MENU"
 msgid "Version"
 msgstr "Version"
-
-#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
-#. TRANS: StatusNet site, where to report bugs, ...
-msgctxt "MENU"
-msgid "Contact"
-msgstr "Kontakt"
-
-#. TRANS: Secondary navigation menu item. Leads to information about embedding a timeline widget.
-msgctxt "MENU"
-msgid "Badge"
-msgstr "Emblem"
 
 #. TRANS: Default title for section/sidebar widget.
 msgid "Untitled section"
@@ -9714,10 +9183,6 @@ msgstr "E-post"
 msgid "Change email handling"
 msgstr "Ändra e-posthantering"
 
-#. TRANS: Menu item title in settings navigation panel.
-msgid "Design your profile"
-msgstr "Designa din profil"
-
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "URL"
@@ -9754,6 +9219,15 @@ msgstr "Anslutningar"
 msgid "Authorized connected applications"
 msgstr "Tillåt anslutna applikationer"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr "Gamla skolan"
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9762,6 +9236,41 @@ msgstr "Tysta ned"
 #. TRANS: Description of form to silence a user.
 msgid "Silence this user"
 msgstr "Tysta ned denna användare"
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
+msgid "Could not create anonymous consumer."
+msgstr "Kunde inte skapa anonym konsument."
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
+msgid "Could not create anonymous OAuth application."
+msgstr "Kunde inte skapa anonym OAuth-applikation."
+
+#. TRANS: Exception thrown when no token association could be found.
+msgid ""
+"Could not find a profile and application associated with the request token."
+msgstr ""
+"Kunde inte hitta en profil och applikation som är associerade med begäran-"
+"token."
+
+#. TRANS: Exception thrown when no access token can be issued.
+msgid "Could not issue access token."
+msgstr "Kunde inte utfärda åtkomst-token."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error inserting OAuth application user."
+msgstr "Databasfel vid infogning av OAuth-applikationsanvändare."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error updating OAuth application user."
+msgstr "Databasfel vid uppdatering av OAuth-applikationsanvändare."
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+msgid "Tried to revoke unknown token."
+msgstr "Försökte återkalla okänd token."
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+msgid "Failed to delete revoked token."
+msgstr "Det gick inte att ta bort återkallad token."
 
 #. TRANS: Menu item in local navigation menu.
 msgctxt "MENU"
@@ -9818,6 +9327,16 @@ msgstr "Bjud in vänner och kollegor att gå med dig på %s."
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Prenumerera på denna användare"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Prenumerera"
+
+#. TRANS: Button title to subscribe to a user.
+msgid "Subscribe to this user."
+msgstr "Prenumerera på denna användaren."
 
 #. TRANS: Title of personal tag cloud section.
 msgid "People Tagcloud as self-tagged"
@@ -9937,17 +9456,28 @@ msgstr[0] "%%s gillar detta. "
 msgstr[1] "%%s gillar detta."
 
 #. TRANS: List message for notice repeated by logged in user.
+#, fuzzy
 msgctxt "REPEATLIST"
-msgid "You have repeated this notice."
+msgid "You repeated this."
 msgstr "Du har upprepat denna notis."
 
-#. TRANS: List message for repeated notices.
-#. TRANS: %d is the number of users that have repeated a notice.
-#, php-format
-msgid "One person has repeated this notice."
-msgid_plural "%d people have repeated this notice."
-msgstr[0] " En person har upprepat denna notis."
-msgstr[1] "%d personer har upprepat denna notis."
+#. TRANS: List message for when more than 4 people repeat something.
+#. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
+#. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
+#, fuzzy, php-format
+msgid "%%s and %d other repeated this."
+msgid_plural "%%s and %d others repeated this."
+msgstr[0] "%%s och %d andra gillar detta. "
+msgstr[1] "%%s och %d andra gillar detta."
+
+#. TRANS: List message for favoured notices.
+#. TRANS: %%s is a list of users liking a notice.
+#. TRANS: Plural is based on the number of of users that have favoured a notice.
+#, fuzzy, php-format
+msgid "%%s repeated this."
+msgid_plural "%%s repeated this."
+msgstr[0] "%%s gillar detta. "
+msgstr[1] "%%s gillar detta."
 
 #. TRANS: Form legend.
 #, php-format
@@ -10039,7 +9569,6 @@ msgid "Unsilence this user"
 msgstr "Häv nedtystning av denna användare"
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "Avsluta prenumerationen på denna användare"
 
@@ -10048,6 +9577,10 @@ msgstr "Avsluta prenumerationen på denna användare"
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Avsluta pren."
+
+#. TRANS: Button title on unsubscribe form.
+msgid "Unsubscribe from this user."
+msgstr "Avsluta prenumerationen på denna användare."
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -10130,8 +9663,6 @@ msgstr "Ogiltig XML, saknar XRD-rot."
 msgid "Getting backup from file '%s'."
 msgstr "Hämtar säkerhetskopia från filen '%s'."
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s och vänner, sida %2$d"
-
-#~ msgid "You and friends"
-#~ msgstr "Du och vänner"
+#
+#~ msgid " "
+#~ msgstr " "

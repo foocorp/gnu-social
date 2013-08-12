@@ -1,4 +1,4 @@
-# Translation of StatusNet - RegisterThrottle to Ukrainian (Українська)
+# Translation of StatusNet - RegisterThrottle to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
@@ -10,27 +10,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RegisterThrottle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:04+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:50+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-09 19:01:00+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:00+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-registerthrottle\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Server exception thrown when no IP address can be found for a registation attempt.
 msgid "Cannot find IP address."
 msgstr "Не вдається знайти IP-адресу."
 
+#. TRANS: Exception thrown when too many user have registered from one IP address within a given time frame.
 msgid "Too many registrations. Take a break and try again later."
 msgstr "Забагато реєстрацій. Випийте поки що кави і повертайтесь пізніше."
 
+#. TRANS: Exception thrown when attempting to register from an IP address from which silenced users have registered.
 msgid "A banned user has registered from this address."
 msgstr "Заблокований користувач був зареєстрований з цієї адреси."
 
+#. TRANS: Plugin description.
 msgid "Throttles excessive registration from a single IP address."
 msgstr "Цей додаток обмежує кількість реєстрацій з певної IP-адреси."

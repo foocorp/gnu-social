@@ -82,7 +82,9 @@ class CliInstaller extends Installer
             '--admin-nick' => 'adminNick',
             '--admin-pass' => 'adminPass',
             '--admin-email' => 'adminEmail',
-            '--admin-updates' => 'adminUpdates'
+            '--admin-updates' => 'adminUpdates',
+
+            '--site-profile' => 'siteProfile'
         );
         foreach ($map as $arg => $target) {
             if (substr($arg, 0, 2) == '--') {
@@ -169,6 +171,8 @@ install_cli.php - StatusNet command-line installer
        --admin-email     Initial email address for admin user
        --admin-updates   'yes' (default) or 'no', whether to subscribe
                          admin to update@status.net (default yes)
+       
+       --site-profile    site profile ['public', 'private' (default), 'community', 'singleuser']
        
        --skip-config     Don't write a config.php -- use with caution,
                          requires a global configuration file.

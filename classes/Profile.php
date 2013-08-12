@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -24,7 +24,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Profile extends Memcached_DataObject
+class Profile extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -49,6 +49,46 @@ class Profile extends Memcached_DataObject
         return Memcached_DataObject::staticGet('Profile',$k,$v);
     }
 
+    public static function schemaDef()
+    {
+        $def = array(
+            'description' => 'local and remote users have profiles',
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'nickname' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'nickname or username', 'collate' => 'utf8_general_ci'),
+                'fullname' => array('type' => 'varchar', 'length' => 255, 'description' => 'display name', 'collate' => 'utf8_general_ci'),
+                'profileurl' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL, cached so we dont regenerate'),
+                'homepage' => array('type' => 'varchar', 'length' => 255, 'description' => 'identifying URL', 'collate' => 'utf8_general_ci'),
+                'bio' => array('type' => 'text', 'description' => 'descriptive biography', 'collate' => 'utf8_general_ci'),
+                'location' => array('type' => 'varchar', 'length' => 255, 'description' => 'physical location', 'collate' => 'utf8_general_ci'),
+                'lat' => array('type' => 'numeric', 'precision' => 10, 'scale' => 7, 'description' => 'latitude'),
+                'lon' => array('type' => 'numeric', 'precision' => 10, 'scale' => 7, 'description' => 'longitude'),
+                'location_id' => array('type' => 'int', 'description' => 'location id if possible'),
+                'location_ns' => array('type' => 'int', 'description' => 'namespace for location'),
+
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'indexes' => array(
+                'profile_nickname_idx' => array('nickname'),
+            )
+        );
+
+        // Add a fulltext index
+
+        if (common_config('search', 'type') == 'fulltext') {
+            $def['fulltext indexes'] = array('nickname' => array('nickname', 'fullname', 'location', 'bio', 'homepage'));
+        }
+
+        return $def;
+    }
+
+	function multiGet($keyCol, $keyVals, $skipNulls=true)
+	{
+	    return parent::multiGet('Profile', $keyCol, $keyVals, $skipNulls);
+	}
+	
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
@@ -63,22 +103,59 @@ class Profile extends Memcached_DataObject
         return $this->_user;
     }
 
+    protected $_avatars;
+
     function getAvatar($width, $height=null)
     {
         if (is_null($height)) {
             $height = $width;
         }
 
-        $avatar = null;
+        $avatar = $this->_getAvatar($width);
 
-        if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
-            $avatar = Avatar::pkeyGet(array('profile_id' => $this->id,
-                                            'width' => $width,
-                                            'height' => $height));
-            Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
+        if (empty($avatar)) {
+
+            if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
+                $avatar = Avatar::pkeyGet(
+                    array(
+                        'profile_id' => $this->id,
+                        'width'      => $width,
+                        'height'     => $height
+                    )
+                );
+                Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
+            }
+
+            $this->_fillAvatar($width, $avatar);
         }
 
         return $avatar;
+    }
+
+    // XXX: @Fix me gargargar
+    function _getAvatar($width)
+    {
+        if (empty($this->_avatars)) {
+            $this->_avatars = array();
+        }
+
+        // GAR! I cannot figure out where _avatars gets pre-filled with the avatar from
+        // the previously used profile! Please shoot me now! --Zach
+        if (array_key_exists($width, $this->_avatars)) {
+            // Don't return cached avatar unless it's really for this profile
+            if ($this->_avatars[$width]->profile_id == $this->id) {
+                return $this->_avatars[$width];
+            }
+        }
+
+        return null;
+    }
+
+    function _fillAvatar($width, $avatar)
+    {
+      //common_debug("Storing avatar of width: {$avatar->width} and profile_id {$avatar->profile_id} in profile {$this->id}.");
+        $this->_avatars[$width] = $avatar;
+
     }
 
     function getOriginalAvatar()
@@ -225,9 +302,14 @@ class Profile extends Memcached_DataObject
 
     function isMember($group)
     {
-        $gm = Group_member::pkeyGet(array('profile_id' => $this->id,
-                                          'group_id' => $group->id));
-        return (!empty($gm));
+    	$groups = $this->getGroups(0, null);
+    	$gs = $groups->fetchAll();
+    	foreach ($gs as $g) {
+    	    if ($group->id == $g->id) {
+    	        return true;
+    	    }
+    	}
+    	return false;
     }
 
     function isAdmin($group)
@@ -268,16 +350,11 @@ class Profile extends Memcached_DataObject
             self::cacheSet($keypart, implode(',', $ids));
         }
 
-        $groups = array();
-
-        foreach ($ids as $id) {
-            $group = User_group::staticGet('id', $id);
-            if (!empty($group)) {
-                $groups[] = $group;
-            }
+        if (!is_null($offset) && !is_null($limit)) {
+            $ids = array_slice($ids, $offset, $limit);
         }
 
-        return new ArrayWrapper($groups);
+        return User_group::multiGet('id', $ids);
     }
 
     function isTagged($peopletag)
@@ -383,41 +460,55 @@ class Profile extends Memcached_DataObject
         return new ArrayWrapper($lists);
     }
 
+    /**
+     * Get tags that other people put on this profile, in reverse-chron order
+     *
+     * @param (Profile|User) $auth_user  Authorized user (used for privacy)
+     * @param int            $offset     Offset from latest
+     * @param int            $limit      Max number to get
+     * @param datetime       $since_id   max date
+     * @param datetime       $max_id     min date
+     *
+     * @return Profile_list resulting lists
+     */
+
     function getOtherTags($auth_user=null, $offset=0, $limit=null, $since_id=0, $max_id=0)
     {
-        $lists = new Profile_list();
+        $list = new Profile_list();
 
-        $tags = new Profile_tag();
-        $tags->tagged = $this->id;
+        $qry = sprintf('select profile_list.*, unix_timestamp(profile_tag.modified) as "cursor" ' .
+                       'from profile_tag join profile_list '.
+                       'on (profile_tag.tagger = profile_list.tagger ' .
+                       '    and profile_tag.tag = profile_list.tag) ' .
+                       'where profile_tag.tagged = %d ',
+                       $this->id);
 
-        $lists->joinAdd($tags);
-        #@fixme: postgres (round(date_part('epoch', my_date)))
-        $lists->selectAdd('unix_timestamp(profile_tag.modified) as "cursor"');
 
         if ($auth_user instanceof User || $auth_user instanceof Profile) {
-            $lists->whereAdd('( ( profile_list.private = false ) ' .
-                             'OR ( profile_list.tagger = ' . $auth_user->id . ' AND ' .
-                             'profile_list.private = true ) )');
+            $qry .= sprintf('AND ( ( profile_list.private = false ) ' .
+                            'OR ( profile_list.tagger = %d AND ' .
+                            'profile_list.private = true ) )',
+                            $auth_user->id);
         } else {
-            $lists->private = false;
+            $qry .= 'AND profile_list.private = 0 ';
         }
 
-        if ($since_id>0) {
-           $lists->whereAdd('cursor > '.$since_id);
+        if ($since_id > 0) {
+            $qry .= sprintf('AND (cursor > %d) ', $since_id);
         }
 
-        if ($max_id>0) {
-            $lists->whereAdd('cursor <= '.$max_id);
+        if ($max_id > 0) {
+            $qry .= sprintf('AND (cursor < %d) ', $max_id);
         }
 
-        if($offset>=0 && !is_null($limit)) {
-            $lists->limit($offset, $limit);
+        $qry .= 'ORDER BY profile_tag.modified DESC ';
+
+        if ($offset >= 0 && !is_null($limit)) {
+            $qry .= sprintf('LIMIT %d OFFSET %d ', $limit, $offset);
         }
 
-        $lists->orderBy('profile_tag.modified DESC');
-        $lists->find();
-
-        return $lists;
+        $list->query($qry);
+        return $list;
     }
 
     function getPrivateTags($offset=0, $limit=null, $since_id=0, $max_id=0)
@@ -463,7 +554,8 @@ class Profile extends Memcached_DataObject
         $lists = new Profile_list();
         $subs = new Profile_tag_subscription();
 
-        $lists->joinAdd($subs);
+        $lists->joinAdd('id', 'profile_tag_subscription:profile_tag_id');
+
         #@fixme: postgres (round(date_part('epoch', my_date)))
         $lists->selectAdd('unix_timestamp(profile_tag_subscription.created) as "cursor"');
 
@@ -503,6 +595,8 @@ class Profile extends Memcached_DataObject
             if (Event::handle('StartJoinGroup', array($group, $this))) {
                 $join = Group_member::join($group->id, $this->id);
                 self::blow('profile:groups:%d', $this->id);
+                self::blow('group:member_ids:%d', $group->id);
+                self::blow('group:member_count:%d', $group->id);
                 Event::handle('EndJoinGroup', array($group, $this));
             }
         }
@@ -523,6 +617,8 @@ class Profile extends Memcached_DataObject
         if (Event::handle('StartLeaveGroup', array($group, $this))) {
             Group_member::leave($group->id, $this->id);
             self::blow('profile:groups:%d', $this->id);
+            self::blow('group:member_ids:%d', $group->id);
+            self::blow('group:member_count:%d', $group->id);
             Event::handle('EndLeaveGroup', array($group, $this));
         }
     }
@@ -590,7 +686,7 @@ class Profile extends Memcached_DataObject
         $profile = new Profile();
         $tagged = array();
 
-        $cnt = $profile->query(sprintf($qry, $this->id, $this->id, $tag));
+        $cnt = $profile->query(sprintf($qry, $this->id, $this->id, $profile->escape($tag)));
 
         while ($profile->fetch()) {
             $tagged[] = clone($profile);
@@ -728,7 +824,7 @@ class Profile extends Memcached_DataObject
 
         $faves = new Fave();
         $faves->user_id = $this->id;
-        $cnt = (int) $faves->count('distinct notice_id');
+        $cnt = (int) $faves->count('notice_id');
 
         if (!empty($c)) {
             $c->set(Cache::key('profile:fave_count:'.$this->id), $cnt);
@@ -1047,11 +1143,27 @@ class Profile extends Memcached_DataObject
     function silence()
     {
         $this->grantRole(Profile_role::SILENCED);
+        if (common_config('notice', 'hidespam')) {
+            $this->flushVisibility();
+        }
     }
 
     function unsilence()
     {
         $this->revokeRole(Profile_role::SILENCED);
+        if (common_config('notice', 'hidespam')) {
+            $this->flushVisibility();
+        }
+    }
+
+    function flushVisibility()
+    {
+        // Get all notices
+        $stream = new ProfileNoticeStream($this, $this);
+        $ids = $stream->getNoticeIds(0, CachingNoticeStream::CACHE_WINDOW);
+        foreach ($ids as $id) {
+            self::blow('notice:in-scope-for:%d:null', $id);
+        }
     }
 
     /**
@@ -1082,6 +1194,8 @@ class Profile extends Memcached_DataObject
             case Right::SILENCEUSER:
             case Right::DELETEUSER:
             case Right::DELETEGROUP:
+            case Right::TRAINSPAM:
+            case Right::REVIEWSPAM:
                 $result = $this->hasRole(Profile_role::MODERATOR);
                 break;
             case Right::CONFIGURESITE:
@@ -1240,13 +1354,8 @@ class Profile extends Memcached_DataObject
 
             if (!empty($user)) {
                 $uri = $user->uri;
-            } else {
-                // return OMB profile if any
-                $remote = Remote_profile::staticGet('id', $this->id);
-                if (!empty($remote)) {
-                    $uri = $remote->uri;
-                }
             }
+
             Event::handle('EndGetProfileUri', array($this, &$uri));
         }
 
@@ -1291,11 +1400,6 @@ class Profile extends Memcached_DataObject
             $user = User::staticGet('uri', $uri);
             if (!empty($user)) {
                 $profile = $user->getProfile();
-            } else {
-                $remote_profile = Remote_profile::staticGet('uri', $uri);
-                if (!empty($remote_profile)) {
-                    $profile = Profile::staticGet('id', $remote_profile->profile_id);
-                }
             }
             Event::handle('EndGetProfileFromURI', array($uri, $profile));
         }
@@ -1367,7 +1471,37 @@ class Profile extends Memcached_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_user');
+        $skip = array('_user', '_avatars');
         return array_diff($vars, $skip);
+    }
+    
+    static function fillAvatars(&$profiles, $width)
+    {
+    	$ids = array();
+    	foreach ($profiles as $profile) {
+            if (!empty($profile)) {
+                $ids[] = $profile->id;
+            }
+    	}
+    	
+    	$avatars = Avatar::pivotGet('profile_id', $ids, array('width' => $width,
+															  'height' => $width));
+    	
+    	foreach ($profiles as $profile) {
+            if (!empty($profile)) { // ???
+                $profile->_fillAvatar($width, $avatars[$profile->id]);
+            }
+    	}
+    }
+    
+    // Can't seem to find how to fix this.
+
+    function getProfile()
+    {
+        return $this;
+    }
+
+    static function pivotGet($key, $values, $otherCols=array()) {
+        return Memcached_DataObject::pivotGet('Profile', $key, $values, $otherCols);
     }
 }

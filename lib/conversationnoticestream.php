@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Cache
+ * @category  NoticeStream
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @copyright 2011 StatusNet, Inc.
@@ -52,8 +52,7 @@ class ConversationNoticeStream extends ScopingNoticeStream
             $profile = Profile::current();
         }
 
-        parent::__construct(new CachingNoticeStream(new RawConversationNoticeStream($id),
-                                                    'notice:conversation_ids:'.$id),
+        parent::__construct(new RawConversationNoticeStream($id),
                             $profile);
     }
 }
@@ -77,32 +76,35 @@ class RawConversationNoticeStream extends NoticeStream
         $this->id = $id;
     }
 
+    function getNotices($offset, $limit, $sinceId = null, $maxId = null)
+    {
+        $all = Memcached_DataObject::listGet('Notice', 'conversation', array($this->id));
+        $notices = $all[$this->id];
+        // Re-order in reverse-chron
+        usort($notices, array('RawConversationNoticeStream', '_reverseChron'));
+        // FIXME: handle since and max
+        $wanted = array_slice($notices, $offset, $limit);
+        return new ArrayWrapper($wanted);
+    }
+
     function getNoticeIds($offset, $limit, $since_id, $max_id)
     {
-        $notice = new Notice();
-
-        $notice->selectAdd(); // clears it
-        $notice->selectAdd('id');
-
-        $notice->conversation = $this->id;
-
-        $notice->orderBy('created DESC, id DESC');
-
-        if (!is_null($offset)) {
-            $notice->limit($offset, $limit);
-        }
-
-        Notice::addWhereSinceId($notice, $since_id);
-        Notice::addWhereMaxId($notice, $max_id);
-
-        $ids = array();
-
-        if ($notice->find()) {
-            while ($notice->fetch()) {
-                $ids[] = $notice->id;
-            }
-        }
-
+        $notice = $this->getNotices($offset, $limit, $since_id, $max_id);
+        $ids = $notice->fetchAll('id');
         return $ids;
+    }
+
+    function _reverseChron($a, $b)
+    {
+        $at = strtotime($a->created);
+        $bt = strtotime($b->created);
+        
+        if ($at == $bt) {
+            return 0;
+        } else if ($at > $bt) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 }

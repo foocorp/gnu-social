@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -413,7 +413,7 @@ function common_remembered_user()
         return null;
     }
 
-    $rm = Remember_me::staticGet($code);
+    $rm = Remember_me::staticGet('code', $code);
 
     if (!$rm) {
         common_log(LOG_WARNING, 'No such remember code: ' . $code);
@@ -427,7 +427,7 @@ function common_remembered_user()
         return null;
     }
 
-    $user = User::staticGet($rm->user_id);
+    $user = User::staticGet('id', $rm->user_id);
 
     if (!$user) {
         common_log(LOG_WARNING, 'No such user for rememberme: ' . $rm->user_id);
@@ -1040,7 +1040,9 @@ function common_linkify($url) {
  */
 function common_shorten_links($text, $always = false, User $user=null)
 {
-    $user = common_current_user();
+    if ($user === null) {
+        $user = common_current_user();
+    }
 
     $maxLength = User_urlshortener_prefs::maxNoticeLength($user);
 
@@ -1127,8 +1129,11 @@ function common_tag_link($tag)
 
 function common_canonical_tag($tag)
 {
+  // only alphanum
+  $tag = preg_replace('/[^\pL\pN]/u', '', $tag);
   $tag = mb_convert_case($tag, MB_CASE_LOWER, "UTF-8");
-  return str_replace(array('-', '_', '.'), '', $tag);
+  $tag = substr($tag, 0, 64);
+  return $tag;
 }
 
 function common_valid_profile_tag($str)
@@ -1234,12 +1239,12 @@ function common_local_url($action, $args=null, $params=null, $fragment=null, $ad
         $ssl = common_is_sensitive($action);
 
         if (common_config('site','fancy')) {
-            $url = common_path(mb_substr($path, 1), $ssl, $addSession);
+            $url = common_path($path, $ssl, $addSession);
         } else {
             if (mb_strpos($path, '/index.php') === 0) {
-                $url = common_path(mb_substr($path, 1), $ssl, $addSession);
+                $url = common_path($path, $ssl, $addSession);
             } else {
-                $url = common_path('index.php'.$path, $ssl, $addSession);
+                $url = common_path('index.php/'.$path, $ssl, $addSession);
             }
         }
         Event::handle('EndLocalURL', array(&$action, &$params, &$fragment, &$addSession, &$url));
@@ -1304,11 +1309,11 @@ function common_inject_session($url, $serverpart = null)
 {
     if (common_have_session()) {
 
-	if (empty($serverpart)) {
-	    $serverpart = parse_url($url, PHP_URL_HOST);
-	}
+        if (empty($serverpart)) {
+            $serverpart = parse_url($url, PHP_URL_HOST);
+        }
 
-        $currentServer = $_SERVER['HTTP_HOST'];
+        $currentServer = (array_key_exists('HTTP_HOST', $_SERVER)) ? $_SERVER['HTTP_HOST'] : null;
 
         // Are we pointing to another server (like an SSL server?)
 
@@ -1456,6 +1461,7 @@ function common_redirect($url, $code=307)
 
     header('HTTP/1.1 '.$code.' '.$status[$code]);
     header("Location: $url");
+    header("Connection: close");
 
     $xo = new XMLOutputter();
     $xo->startXML('a',
@@ -1470,8 +1476,7 @@ function common_redirect($url, $code=307)
 
 function common_enqueue_notice($notice)
 {
-    static $localTransports = array('omb',
-                                    'ping');
+    static $localTransports = array('ping');
 
     $transports = array();
     if (common_config('sms', 'enabled')) {
@@ -1502,16 +1507,18 @@ function common_enqueue_notice($notice)
 }
 
 /**
- * Broadcast profile updates to OMB and other remote subscribers.
+ * Legacy function to broadcast profile updates to OMB remote subscribers.
+ *
+ * XXX: This probably needs killing, but there are several bits of code
+ *      that broadcast profile changes that need to be dealt with. AFAIK
+ *      this function is only used for OMB. -z
  *
  * Since this may be slow with a lot of subscribers or bad remote sites,
  * this is run through the background queues if possible.
  */
 function common_broadcast_profile(Profile $profile)
 {
-    $qm = QueueManager::get();
-    $qm->enqueue($profile, "profile");
-    return true;
+    Event::handle('BroadcastProfile', array($profile));
 }
 
 function common_profile_url($nickname)
@@ -2009,20 +2016,20 @@ function common_user_property($property)
 
 function common_profile_uri($profile)
 {
-    if (!$profile) {
-        return null;
-    }
-    $user = User::staticGet($profile->id);
-    if ($user) {
-        return $user->uri;
+    $uri = null;
+
+    if (!empty($profile)) {
+        if (Event::handle('StartCommonProfileURI', array($profile, &$uri))) {
+            $user = User::staticGet($profile->id);
+            if (!empty($user)) {
+                $uri = $user->uri;
+            }
+            Event::handle('EndCommonProfileURI', array($profile, &$uri));
+        }
     }
 
-    $remote = Remote_profile::staticGet($profile->id);
-    if ($remote) {
-        return $remote->uri;
-    }
     // XXX: this is a very bad profile!
-    return null;
+    return $uri;
 }
 
 function common_canonical_sms($sms)
@@ -2158,7 +2165,11 @@ function common_shorten_url($long_url, User $user=null, $force = false)
             } else {
                 $shortenedUrl = common_local_url('redirecturl',
                                                  array('id' => $f->id));
-                return $shortenedUrl;
+                if ((mb_strlen($shortenedUrl) < mb_strlen($long_url)) || $force) {
+                    return $shortenedUrl;
+                } else {
+                    return $long_url;
+                }
             }
         } else {
             return $long_url;
@@ -2307,4 +2318,32 @@ function common_log_perf_counters()
 function common_is_email($str)
 {
     return (strpos($str, '@') !== false);
+}
+
+function common_init_stats()
+{
+    global $_mem, $_ts;
+
+    $_mem = memory_get_usage(true);
+    $_ts  = microtime(true);
+}
+
+function common_log_delta($comment=null)
+{
+    global $_mem, $_ts;
+
+    $mold = $_mem;
+    $told = $_ts;
+
+    $_mem = memory_get_usage(true);
+    $_ts  = microtime(true);
+
+    $mtotal = $_mem - $mold;
+    $ttotal = $_ts - $told;
+
+    if (empty($comment)) {
+        $comment = 'Delta';
+    }
+
+    common_debug(sprintf("%s: %d %d", $comment, $mtotal, round($ttotal * 1000000)));
 }

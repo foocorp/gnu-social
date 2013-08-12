@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:30+0000\n"
-"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:12+0000\n"
+"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:33+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,12 +32,15 @@ msgstr "Hindi tanggap na URL ng pasubo: %s."
 msgid "Invalid profile for mirroring."
 msgstr "Hindi tanggap na balangkas para sa pagsasalamin."
 
+#. TRANS: Client error displayed when trying to mirror a StatusNet group feed.
 msgid "Cannot mirror a StatusNet group at this time."
 msgstr "Hindi maisalamin sa ngayon ang isang pangkat ng StatusNet."
 
+#. TRANS: Client error displayed when trying to use another method than POST.
 msgid "This action only accepts POST requests."
 msgstr "Ang galaw na ito ay tumatanggap lamang ng mga kahilingan ng PAGPASKIL."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "May isang suliranin sa iyong token ng sesyon. Pakisubukan uli."
 
@@ -45,27 +48,36 @@ msgstr "May isang suliranin sa iyong token ng sesyon. Pakisubukan uli."
 msgid "Not logged in."
 msgstr "Hindi nakalagda."
 
+#. TRANS: Page title for subscribed feed mirror.
 msgid "Subscribed"
 msgstr "Tumanggap ng sipi"
 
+#. TRANS: Client error displayed when trying to edit an object that is not a feed mirror.
 msgid "Requested invalid profile to edit."
 msgstr "Hiniling na pamamatnugutang hindi tanggap na balangkas."
 
+#. TRANS: Client error displayed when providing invalid input when editing a mirror.
 msgid "Bad form data."
 msgstr "Datong may masamang anyo."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
-msgid "Requested edit of missing mirror."
-msgstr "Hiniling na pagpatnugot ng nawawalang salamin."
+msgid "The mirror request failed, because no result was retrieved."
+msgstr "Nabigo ang paghiling ng salamin, sapagkat walang nabawing resulta."
 
+#. TRANS: Exception thrown when a feed provider could not be recognised.
+msgid "Internal form error: Unrecognized feed provider."
+msgstr ""
+"Kamalian ng panloob na pormularyo: Hindi nakikilalang tagapagbigay ng pakain."
+
+#. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
 msgstr "Hindi magawang makatanggap ng pakain."
 
-#. TRANS: Title.
+#. TRANS: Page title.
 msgid "Feed mirror settings"
 msgstr "Mga katakdaan ng salamin ng pakain"
 
-#. TRANS: Instructions.
+#. TRANS: Page instructions.
 msgid ""
 "You can mirror updates from many RSS and Atom feeds into your StatusNet "
 "timeline!"
@@ -73,9 +85,11 @@ msgstr ""
 "Maisasalamin mo ang mga pagsasapanahon mula sa maraming mga pakain ng RSS at "
 "Atom sa iyong guhit ng panahon ng StatusNet!"
 
+#. TRANS: Title for page with form to add a mirror feed provider on.
 msgid "Provider add"
 msgstr "Dagdag ng tagapagbigay"
 
+#. TRANS: Plugin description.
 msgid "Pull feeds into your timeline!"
 msgstr "Hilahin ang mga pakain papasok sa iyong guhit ng panahon!"
 
@@ -88,50 +102,67 @@ msgstr "Sinasalamin"
 msgid "Configure mirroring of posts from other feeds"
 msgstr "Iayos ang pagsasalamin ng mga pagpapaskil mula sa ibang mga pakain"
 
+#. TRANS: Label in profile statistics section, followed by a count.
 msgid "Mirrored feeds"
 msgstr "Naisalaming mga pasubo"
 
+#. TRANS: Field label.
 msgid "Web page or feed URL:"
 msgstr "URL ng pahina sa web o pakain:"
 
+#. TRANS: Button text for adding a feed.
+#. TRANS: Button text for adding a Twitter feed mirror.
 msgctxt "BUTTON"
 msgid "Add feed"
 msgstr "Idagdag ang pakain"
 
+#. TRANS: Field label.
 msgid "Twitter username:"
 msgstr "Pangalan ng tagagamit sa Twitter:"
 
+#. TRANS: Field label (URL expectected).
 msgctxt "LABEL"
 msgid "Remote feed:"
 msgstr "Pakaing malayo:"
 
+#. TRANS: Field label.
 msgctxt "LABEL"
 msgid "Local user"
 msgstr "Katutubong tagagamit"
 
+#. TRANS: Fieldset legend for feed mirror setting.
 msgid "Mirroring style"
 msgstr "Estilo ng pagsasalamin"
 
+#. TRANS: Feed mirror style (radio button option).
 msgid ""
-"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+"Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
-"Ulitin: sangguniin ang orihinal na pagpapaskil ng tagagamit (minsang "
-"ipinapakita bilang 'RT @blah')"
+"Ulitin: tukuyin ang orihinal na paskil ng tagagamit (minsang ipinapakita "
+"bilang \"RT @blah\")"
 
+#. TRANS: Feed mirror style (radio button option).
 msgid "Repost the content under my account"
 msgstr "Muling ipaskil ang nilalaman sa ilalim ng aking akawnt"
 
+#. TRANS: Button text to save feed mirror settings.
+msgctxt "BUTTON"
 msgid "Save"
 msgstr "Sagipin"
 
+#. TRANS: Button text to stop mirroring a feed.
+msgctxt "BUTTON"
 msgid "Stop mirroring"
-msgstr "Ihinto ang pagsasalamin"
+msgstr "Ihinto ang pagpapasalamin"
 
+#. TRANS: Name for possible feed provider.
 msgid "Twitter"
 msgstr "Twitter"
 
+#. TRANS: Name for possible feed provider.
 msgid "RSS or Atom feed"
 msgstr "RSS o pasubong Atom"
 
+#. TRANS: Heading for feed mirroring selection form.
 msgid "Select a feed provider"
 msgstr "Pumili ng isang tagapagbigay ng pasubo"

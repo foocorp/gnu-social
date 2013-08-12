@@ -233,7 +233,6 @@ abstract class QueueManager extends IoManager
 
         if (Event::handle('StartInitializeQueueManager', array($this))) {
             $this->connect('distrib', 'DistribQueueHandler');
-            $this->connect('omb', 'OmbQueueHandler');
             $this->connect('ping', 'PingQueueHandler');
             if (common_config('sms', 'enabled')) {
                 $this->connect('sms', 'SmsQueueHandler');
@@ -245,9 +244,6 @@ abstract class QueueManager extends IoManager
             $this->connect('actimp', 'ActivityImporter');
             $this->connect('acctmove', 'AccountMover');
             $this->connect('actmove', 'ActivityMover');
-
-            // Broadcasting profile updates to OMB remote subscribers
-            $this->connect('profile', 'ProfileQueueHandler');
 
             // For compat with old plugins not registering their own handlers.
             $this->connect('plugin', 'PluginQueueHandler');

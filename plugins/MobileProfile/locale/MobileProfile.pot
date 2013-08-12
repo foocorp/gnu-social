@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,80 +17,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: Client exception thrown when requesting a not supported media type.
-#: MobileProfilePlugin.php:197
+#: MobileProfilePlugin.php:200
 msgid "This page is not available in a media type you accept."
 msgstr ""
 
-#. TRANS: Menu item in mobile profile to go to start page of site.
-#: MobileProfilePlugin.php:315
-msgid "Home"
-msgstr ""
-
-#. TRANS: Menu item in mobile profile to go to user account settings.
-#: MobileProfilePlugin.php:318
-msgid "Account"
-msgstr ""
-
-#. TRANS: Menu item in mobile profile to connect to other services.
-#: MobileProfilePlugin.php:321
-msgid "Connect"
-msgstr ""
-
-#. TRANS: Menu item in mobile profile to manage site settings.
-#: MobileProfilePlugin.php:325
-msgid "Admin"
-msgstr ""
-
-#: MobileProfilePlugin.php:326
-msgid "Change site configuration"
-msgstr ""
-
-#. TRANS: Menu item in mobile profile to invite other people.
-#: MobileProfilePlugin.php:331
-msgid "Invite"
-msgstr ""
-
-#. TRANS: Menu item in mobile profile log the current user off.
-#: MobileProfilePlugin.php:335
-msgid "Logout"
-msgstr ""
-
-#. TRANS: Menu item in mobile profile to register with the site.
-#: MobileProfilePlugin.php:340
-msgid "Register"
-msgstr ""
-
-#. TRANS: Menu item in mobile profile to log in.
-#: MobileProfilePlugin.php:344
-msgid "Login"
-msgstr ""
-
-#. TRANS: Menu item in mobile profile to search the site.
-#: MobileProfilePlugin.php:349
-msgid "Search"
-msgstr ""
-
-#. TRANS: Field label in mobile profile to attach a file to a status.
-#: MobileProfilePlugin.php:377
-msgid "Attach"
-msgstr ""
-
-#. TRANS: Field title in mobile profile to attach a file to a status.
-#: MobileProfilePlugin.php:382
-msgid "Attach a file."
-msgstr ""
-
 #. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
-#: MobileProfilePlugin.php:423
+#: MobileProfilePlugin.php:377
 msgid "Switch to desktop site layout."
 msgstr ""
 
 #. TRANS: Link to switch site layout from desktop to mobile mode. Appears at very bottom of page.
-#: MobileProfilePlugin.php:427
+#: MobileProfilePlugin.php:381
 msgid "Switch to mobile site layout."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: MobileProfilePlugin.php:465
+#: MobileProfilePlugin.php:419
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr ""

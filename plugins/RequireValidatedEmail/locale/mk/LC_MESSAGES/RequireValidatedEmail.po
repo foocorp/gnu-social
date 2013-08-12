@@ -1,4 +1,4 @@
-# Translation of StatusNet - RequireValidatedEmail to Macedonian (Македонски)
+# Translation of StatusNet - RequireValidatedEmail to Macedonian (македонски)
 # Exported from translatewiki.net
 #
 # Author: Bjankuloski06
@@ -9,38 +9,46 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:06+0000\n"
-"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:51+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:28+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+#. TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
 msgid "You must validate your email address before posting."
 msgstr ""
 "Пред да почнете да објавувате ќе мора да ја потврдите Вашата е-поштенска "
 "адреса."
 
+#. TRANS: Client exception thrown when trying to register without providing an e-mail address.
 msgid "You must provide an email address to register."
 msgstr "За да се регистрирате, ќе мора да наведете е-поштенска адреса."
 
+#. TRANS: Plugin description.
 msgid "Disables posting without a validated email address."
 msgstr "Оневозможува објавување без потврдена е-пошта."
 
+#. TRANS: Client exception thrown when trying to register while already logged in.
 msgid "You are already logged in."
 msgstr "Веќе сте најавени."
 
+#. TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
 msgid "Confirmation code not found."
 msgstr "Потврдниот код не е пронајден."
 
+#. TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
 msgid "No user for that confirmation code."
 msgstr "Нема корисник за тој потврден код."
 
+#. TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+#. TRANS: %s is the invalid e-mail address.
 #, php-format
 msgid "Unrecognized address type %s."
 msgstr "Непознат тип на адреса %s."
@@ -49,12 +57,15 @@ msgstr "Непознат тип на адреса %s."
 msgid "That address has already been confirmed."
 msgstr "Таа адреса е веќе потврдена."
 
+#. TRANS: Client exception thrown when trying to register with too short a password.
 msgid "Password too short."
 msgstr "Лозинката е прекратка."
 
+#. TRANS: Client exception thrown when trying to register without providing the same password twice.
 msgid "Passwords do not match."
 msgstr "Лозинките не се совпаѓаат."
 
+#. TRANS: Form instructions. %s is the nickname of the to be registered user.
 #, php-format
 msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
@@ -63,23 +74,32 @@ msgstr ""
 "Ја потврдивте е-поштата за Вашата нова корисничка сметка %s. Задајте нова "
 "лозинка во образецот подолу."
 
+#. TRANS: Page title.
 msgid "Set a password"
 msgstr "Задајте лозинка"
 
-msgid "Confirm email"
+#. TRANS: Form legend.
+msgid "Confirm email address"
 msgstr "Потврдете е-пошта"
 
+#. TRANS: Field label.
 msgid "New password"
 msgstr "Нова лозинка"
 
+#. TRANS: Field title for password field.
 msgid "6 or more characters."
 msgstr "барем 6 знаци."
 
+#. TRANS: Field label for repeat password field.
+msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Потврди"
 
+#. TRANS: Field title for repeat password field.
 msgid "Same as password above."
 msgstr "Исто како лозинката погоре."
 
+#. TRANS: Button text for completing registration by e-mail.
+msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зачувај"

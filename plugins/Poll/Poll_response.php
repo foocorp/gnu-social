@@ -46,6 +46,7 @@ class Poll_response extends Managed_DataObject
 {
     public $__table = 'poll_response'; // table name
     public $id;          // char(36) primary key not null -> UUID
+    public $uri;          // varchar(255)
     public $poll_id;     // char(36) -> poll.id UUID
     public $profile_id;  // int -> profile.id
     public $selection;   // int -> choice #
@@ -200,12 +201,10 @@ class Poll_response extends Managed_DataObject
         $rendered = sprintf(_m('voted for "%s"'), $link);
 
         $tags    = array();
-        $replies = array();
 
         $options = array_merge(array('urls' => array(),
                                      'rendered' => $rendered,
                                      'tags' => $tags,
-                                     'replies' => $replies,
                                      'reply_to' => $poll->getNotice()->id,
                                      'object_type' => PollPlugin::POLL_RESPONSE_OBJECT),
                                $options);

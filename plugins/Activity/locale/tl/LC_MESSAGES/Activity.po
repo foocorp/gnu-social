@@ -1,0 +1,121 @@
+# Translation of StatusNet - Activity to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Activity\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:30+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-30 18:15:05+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Text for "joined list" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a group home URL, %4$s is a group name.
+#. TRANS: Text for "joined group" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a group URL, %4$s is a group name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> joined the group <a href=\"%3$s\">%4$s</a>."
+msgstr ""
+"Sumali si <a href=\"%1$s\">%2$s</a> sa pangkat na <a href=\"%3$s\">%4$s</a>."
+
+#. TRANS: Text for "started following" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a profile URL, %4$s is a profile name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> started following <a href=\"%3$s\">%4$s</a>."
+msgstr ""
+"Nagsimulang sundan ni <a href=\"%1$s\">%2$s</a> si <a href=\"%3$s\">%4$s</a>."
+
+#. TRANS: Text for "started following" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is a profile name, %4$s is a profile URL.
+#, php-format
+msgid "%1$s (%2$s) started following %3$s (%4$s)."
+msgstr "Nagsimulang sundan ni %1$s (%2$s) si %3$s (%4$s)."
+
+#. TRANS: Text for "stopped following" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a profile URL, %4$s is a profile name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> stopped following <a href=\"%3$s\">%4$s</a>."
+msgstr ""
+"Huminto si <a href=\"%1$s\">%2$s</a> sa pagsunod kay <a href=\"%3$s\">%4$s</"
+"a>."
+
+#. TRANS: Text for "stopped following" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is a profile name, %4$s is a profile URL.
+#, php-format
+msgid "%1$s (%2$s) stopped following %3$s (%4$s)."
+msgstr "Huminto si %1$s (%2$s) sa pagsunod kay %3$s (%4$s)."
+
+#. TRANS: Text for "liked" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a notice URL, %4$s is an author name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> liked <a href=\"%3$s\">%4$s's update</a>."
+msgstr ""
+"Nagustuhan ni <a href=\"%1$s\">%2$s</a> ang <a href=\"%3$s\">pagsasapanahon "
+"ni %4$s</a>."
+
+#. TRANS: Text for "liked" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is an author name, %4$s is a notice URL.
+#, php-format
+msgid "%1$s (%2$s) liked %3$s's status (%4$s)."
+msgstr "Nagustuhan ni %1$s (%2$s) ang katayuan ni %3$s (%4$s)."
+
+#. TRANS: Text for "stopped liking" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a notice URL, %4$s is an author name.
+#, php-format
+msgid ""
+"<a href=\"%1$s\">%2$s</a> stopped liking <a href=\"%3$s\">%4$s's update</a>."
+msgstr ""
+"Huminto sa paggusto si <a href=\"%1$s\">%2$s</a> kay <a href=\"%3$s\">%4$s's "
+"update</a>."
+
+#. TRANS: Text for "stopped liking" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is an author name, %4$s is a notice URL.
+#, php-format
+msgid "%1$s (%2$s) stopped liking %3$s's status (%4$s)."
+msgstr "Huminto si %1$s (%2$s) sa paggusto ng katayuan ni %3$s (%4$s)."
+
+#. TRANS: Text for "joined group" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is a group name, %4$s is a group URL.
+#, php-format
+msgid "%1$s (%2$s) joined the group %3$s (%4$s)."
+msgstr "Sumali si %1$s (%2$s) sa pangkat na %3$s (%4$s)."
+
+#. TRANS: Text for "left group" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a group URL, %4$s is a group name.
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> left the group <a href=\"%3$s\">%4$s</a>."
+msgstr ""
+"Umalis si <a href=\"%1$s\">%2$s</a> mula sa pangkat na <a href=\"%3$s\">%4"
+"$s</a>."
+
+#. TRANS: Text for "left group" item in activity plugin.
+#. TRANS: %1$s is a profile name, %2$s is a profile URL,
+#. TRANS: %3$s is a group name, %4$s is a group URL.
+#, php-format
+msgid "%1$s (%2$s) left the group %3$s (%4$s)."
+msgstr "Umalis si %1$s (%2$s) mula sa pangkat na %3$s (%4$s)."
+
+#. TRANS: Plugin description.
+msgid "Emits notices when social activities happen."
+msgstr "Nagbubuga ng mga pabatid kapag nagaganap ang mga gawaing panlipunan."

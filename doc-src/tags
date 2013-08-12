@@ -17,10 +17,6 @@ latin characters are not supported, and non-roman scripts are right out.
 The HTML for the notice will link to a stream of all the other notices
 with that tag. This can be a great way to keep track of a conversation.
 
-The most popular current tags on the site can be found in the [public
-tag cloud](%%action.publictagcloud%%). Their size shows their
-popularity and recency.
-
 Tagging yourself
 ----------------
 
@@ -55,19 +51,3 @@ subscribed to, but the timeline can be viewed. To create a new
 private prepend a '.' to the tag in the tags editing box. To set
 an existing public tag as private or vice-versa, go to the tag's
 edit page.
-
-The most used public tags are displayed in the
-[public people tag cloud](%%action.publicpeopletagcloud%%). Their
-size shows their frequency of use.
-
-Remote people tags
-------------------
-
-You can even [tag remote users](%%action.profilesettings%%). Just
-enter the remote profile's URI and click on the "Fetch" button to
-fetch the profile, you can then add tags and save them.
-
-Subscribing to the timeline of a people tag on another server also
-works. Just copy the URL of the people tag's timeline page to the
-[OStatus subscription](%%action.ostatussub%%) form.
-

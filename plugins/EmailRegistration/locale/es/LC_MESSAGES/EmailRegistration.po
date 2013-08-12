@@ -1,0 +1,193 @@
+# Translation of StatusNet - EmailRegistration to Spanish (español)
+# Exported from translatewiki.net
+#
+# Author: Armando-Martin
+# Author: Erchache2000
+# Author: Od1n
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailRegistration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:23+0000\n"
+"Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: es\n"
+"X-Message-Group: #out-statusnet-plugin-emailregistration\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception trown when registration by e-mail is not allowed.
+msgid "Registration not allowed."
+msgstr "Registro no permitido."
+
+#. TRANS: Client exception trown when trying to register without an invitation.
+msgid "Sorry, only invited people can register."
+msgstr "Disculpa, sólo personas invitadas pueden registrarse."
+
+#. TRANS: Client exception thrown when no confirmation code was provided.
+msgid "No confirmation code."
+msgstr "Ningún código de confirmación."
+
+#. TRANS: Client exception trown when using an invitation multiple times.
+msgid "Invitation already used."
+msgstr "Invitación ya utilizada."
+
+#. TRANS: Client exception thrown when given confirmation code was not issued.
+msgid "No such confirmation code."
+msgstr "No hay tal código de confirmación."
+
+#. TRANS: Title for registration page.
+msgctxt "TITLE"
+msgid "Register"
+msgstr "Registrarse"
+
+#. TRANS: Title for page where to register with a confirmation code.
+msgctxt "TITLE"
+msgid "Complete registration"
+msgstr "Completar el registro"
+
+#. TRANS: Confirmation text after initial registration.
+#. TRANS: %s an e-mail address.
+#, php-format
+msgid ""
+"An email was sent to %s to confirm that address. Check your email inbox for "
+"instructions."
+msgstr ""
+"Fue enviado un correo electrónico a  %s  para confirmar esa dirección. "
+"Compruebe su bandeja de entrada de correo electrónico para obtener "
+"instrucciones."
+
+#. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
+msgid "No confirmation thing."
+msgstr "Ningún código de confirmación."
+
+#. TRANS: Error text when trying to register without agreeing to the terms.
+msgid "You must accept the terms of service and privacy policy to register."
+msgstr ""
+"Debe aceptar los términos del servicio y política de privacidad para "
+"registrarse."
+
+#. TRANS: Error text when trying to register without a password.
+msgid "You must set a password"
+msgstr "Debe establecer una contraseña"
+
+#. TRANS: Error text when trying to register with too short a password.
+msgid "Password must be 6 or more characters."
+msgstr "La contraseña debe tener 6 o más caracteres."
+
+#. TRANS: Error text when trying to register without providing the same password twice.
+msgid "Passwords do not match."
+msgstr "Las contraseñas no coinciden."
+
+#. TRANS: Exception trown when using an invitation multiple times.
+msgid "Failed to register user."
+msgstr "Error al registrar usuario."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Confirm your registration on %s"
+msgstr "Confirma tu registro en %s"
+
+#. TRANS: Body for confirmation e-mail.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
+#, php-format
+msgid ""
+"Someone (probably you) has requested an account on %1$s using this email "
+"address.\n"
+"To confirm the address, click the following URL or copy it into the address "
+"bar of your browser.\n"
+"%2$s\n"
+"If it was not you, you can safely ignore this message."
+msgstr ""
+"Alguien (probablemente usted) ha solicitado una cuenta en  %1$s  usando esta "
+"dirección de correo electrónico. Para confirmar la dirección, haga clic en "
+"la siguiente dirección URL o copiarlo en la barra de direcciones del "
+"navegador. %2$s Si no fue usted, usted puede ignorar este mensaje."
+
+#. TRANS: Form instructions.
+msgid "Enter your email address to register for an account."
+msgstr ""
+"Introduzca su dirección de correo electrónico para registrar una cuenta."
+
+#. TRANS: Field label on form for registering an account.
+msgctxt "LABEL"
+msgid "E-mail address"
+msgstr "Dirección de correo electrónico"
+
+#. TRANS: Button text for registering an account.
+#. TRANS: Button text for action to register.
+msgctxt "BUTTON"
+msgid "Register"
+msgstr "Registrarse"
+
+#. TRANS: Form instructions.
+msgid "Enter a password to confirm your new account."
+msgstr "Introduzca una contraseña para confirmar tu nueva cuenta."
+
+#. TRANS: Field label in e-mail registration form.
+msgctxt "LABEL"
+msgid "User name"
+msgstr "Nombre de usuario"
+
+#. TRANS: Field label.
+msgid "Email address"
+msgstr "Dirección de correo electrónico"
+
+#. TRANS: Field label on account registration page.
+msgid "Password"
+msgstr "Contraseña"
+
+#. TRANS: Field title on account registration page.
+msgid "6 or more characters."
+msgstr "6 o más caracteres."
+
+#. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
+msgctxt "PASSWORD"
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. TRANS: Field title on account registration page.
+msgid "Same as password above."
+msgstr "Igual a la contraseña anterior"
+
+#. TRANS: Checkbox title for terms of service and privacy policy.
+#, php-format
+msgid ""
+"I agree to the <a href=\"%1$s\">Terms of service</a> and <a href=\"%1$s"
+"\">Privacy policy</a> of this site."
+msgstr ""
+"Estoy de acuerdo con los <a href=\"%1$s\">Términos de servicio</a> y la <a "
+"href=\"%1$s\">Política de protección de datos</a> de este sitio."
+
+#. TRANS: Error text when trying to register with an already registered e-mail address.
+#. TRANS: %s is the URL to recover password at.
+#, php-format
+msgid ""
+"A user with that email address already exists. You can use the <a href=\"%s"
+"\">password recovery</a> tool to recover a missing password."
+msgstr ""
+"Ya existe un usuario con esa dirección de correo electrónico. Puede utilizar "
+"la herramienta de <a href=\"<span class=\" notranslate\"=\"\">%s \"> "
+"recuperación de contraseñas </a> para recuperar una contraseña de falta."
+
+#. TRANS: Error text when trying to register with an invalid e-mail address.
+msgid "Not a valid email address."
+msgstr "Correo electrónico no válido"
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Welcome to %s"
+msgstr "Bienvenido a %s"
+
+#. TRANS: Plugin description.
+msgid "Use email only for registration."
+msgstr "Usar el correo electrónico sólo para el registro."

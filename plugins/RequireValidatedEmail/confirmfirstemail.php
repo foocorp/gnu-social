@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Action for confirming first email registration
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class ConfirmfirstemailAction extends Action
 {
     public $confirm;
@@ -59,13 +58,13 @@ class ConfirmfirstemailAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
         $user = common_current_user();
 
         if (!empty($user)) {
+            // TRANS: Client exception thrown when trying to register while already logged in.
             throw new ClientException(_m('You are already logged in.'));
         }
 
@@ -74,6 +73,7 @@ class ConfirmfirstemailAction extends Action
         $this->confirm = Confirm_address::staticGet('code', $this->code);
 
         if (empty($this->confirm)) {
+            // TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
             throw new ClientException(_m('Confirmation code not found.'));
             return;
         }
@@ -81,12 +81,15 @@ class ConfirmfirstemailAction extends Action
         $this->user = User::staticGet('id', $this->confirm->user_id);
 
         if (empty($this->user)) {
+            // TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
             throw new ServerException(_m('No user for that confirmation code.'));
         }
 
         $type = $this->confirm->address_type;
 
         if ($type != 'email') {
+            // TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+            // TRANS: %s is the invalid e-mail address.
             throw new ServerException(sprintf(_m('Unrecognized address type %s.'), $type));
         }
 
@@ -103,10 +106,12 @@ class ConfirmfirstemailAction extends Action
             $confirm  = $this->trimmed('confirm');
 
             if (strlen($password) < 6) {
+                // TRANS: Client exception thrown when trying to register with too short a password.
                 throw new ClientException(_m('Password too short.'));
                 return;
             } else if (0 != strcmp($password, $confirm)) {
-                throw new ClientException(_m("Passwords do not match."));
+                // TRANS: Client exception thrown when trying to register without providing the same password twice.
+                throw new ClientException(_m('Passwords do not match.'));
                 return;
             }
 
@@ -123,10 +128,9 @@ class ConfirmfirstemailAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
-        $homepage = common_local_url('all', 
+        $homepage = common_local_url('all',
                                      array('nickname' => $this->user->nickname));
 
         if ($this->isPost()) {
@@ -162,6 +166,7 @@ class ConfirmfirstemailAction extends Action
     function showContent()
     {
         $this->element('p', 'instructions',
+                       // TRANS: Form instructions. %s is the nickname of the to be registered user.
                        sprintf(_m('You have confirmed the email address for your new user account %s. '.
                                  'Use the form below to set your new password.'),
                                $this->user->nickname));
@@ -172,6 +177,7 @@ class ConfirmfirstemailAction extends Action
 
     function title()
     {
+        // TRANS: Page title.
         return _m('Set a password');
     }
 }
@@ -188,7 +194,8 @@ class ConfirmFirstEmailForm extends Form
 
     function formLegend()
     {
-        return _m('Confirm email');
+        // TRANS: Form legend.
+        return _m('Confirm email address');
     }
 
     function action()
@@ -206,11 +213,15 @@ class ConfirmFirstEmailForm extends Form
     {
         $this->out->elementStart('ul', 'form_data');
         $this->out->elementStart('li');
+        // TRANS: Field label.
         $this->out->password('password', _m('New password'),
+                             // TRANS: Field title for password field.
                              _m('6 or more characters.'));
         $this->out->elementEnd('li');
         $this->out->elementStart('li');
-        $this->out->password('confirm', _m('Confirm'),
+        // TRANS: Field label for repeat password field.
+        $this->out->password('confirm', _m('LABEL','Confirm'),
+                             // TRANS: Field title for repeat password field.
                              _m('Same as password above.'));
         $this->out->elementEnd('li');
         $this->out->elementEnd('ul');
@@ -218,6 +229,7 @@ class ConfirmFirstEmailForm extends Form
 
     function formActions()
     {
-        $this->out->submit('save', _m('Save'));
+        // TRANS: Button text for completing registration by e-mail.
+        $this->out->submit('save', _m('BUTTON','Save'));
     }
 }

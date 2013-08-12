@@ -116,7 +116,7 @@ class Happening extends Managed_DataObject
         );
     }
 
-    function saveNew($profile, $start_time, $end_time, $title, $location, $description, $url, $options=array())
+    static function saveNew($profile, $start_time, $end_time, $title, $location, $description, $url, $options=array())
     {
         if (array_key_exists('uri', $options)) {
             $other = Happening::staticGet('uri', $options['uri']);
@@ -155,7 +155,7 @@ class Happening extends Managed_DataObject
         // XXX: does this get truncated?
 
         // TRANS: Event description. %1$s is a title, %2$s is start time, %3$s is end time,
-	// TRANS: %4$s is location, %5$s is a description.
+        // TRANS: %4$s is location, %5$s is a description.
         $content = sprintf(_m('"%1$s" %2$s - %3$s (%4$s): %5$s'),
                            $title,
                            common_exact_date($ev->start_time),
@@ -164,8 +164,8 @@ class Happening extends Managed_DataObject
                            $description);
 
         // TRANS: Rendered event description. %1$s is a title, %2$s is start time, %3$s is start time,
-	// TRANS: %4$s is end time, %5$s is end time, %6$s is location, %7$s is description.
-	// TRANS: Class names should not be translated.
+        // TRANS: %4$s is end time, %5$s is end time, %6$s is location, %7$s is description.
+        // TRANS: Class names should not be translated.
         $rendered = sprintf(_m('<span class="vevent">'.
                               '<span class="summary">%1$s</span> '.
                               '<abbr class="dtstart" title="%2$s">%3$s</a> - '.

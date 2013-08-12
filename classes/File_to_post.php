@@ -25,7 +25,7 @@ require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
  * Table Definition for file_to_post
  */
 
-class File_to_post extends Memcached_DataObject
+class File_to_post extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -40,6 +40,25 @@ class File_to_post extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'file_id' => array('type' => 'int', 'not null' => true, 'description' => 'id of URL/file'),
+                'post_id' => array('type' => 'int', 'not null' => true, 'description' => 'id of the notice it belongs to'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('file_id', 'post_id'),
+            'foreign keys' => array(
+                'file_to_post_file_id_fkey' => array('file', array('file_id' => 'id')),
+                'file_to_post_post_id_fkey' => array('notice', array('post_id' => 'id')),
+            ),
+            'indexes' => array(
+                'post_id_idx' => array('post_id'),
+            ),
+        );
+    }
 
     function processNew($file_id, $notice_id) {
         static $seen = array();

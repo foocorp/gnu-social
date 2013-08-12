@@ -29,7 +29,7 @@
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Inbox extends Memcached_DataObject
+class Inbox extends Managed_DataObject
 {
     const BOXCAR = 128;
     const MAX_NOTICES = 1024;
@@ -47,9 +47,18 @@ class Inbox extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function sequenceKey()
+    public static function schemaDef()
     {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user receiving the notice'),
+                'notice_ids' => array('type' => 'blob', 'description' => 'packed list of notice ids'),
+            ),
+            'primary key' => array('user_id'),
+            'foreign keys' => array(
+                'inbox_user_id_fkey' => array('user', array('user_id' => 'id')),
+            ),
+        );
     }
 
     /**

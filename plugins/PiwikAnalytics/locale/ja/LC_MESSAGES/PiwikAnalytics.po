@@ -1,0 +1,27 @@
+# Translation of StatusNet - PiwikAnalytics to Japanese (日本語)
+# Exported from translatewiki.net
+#
+# Author: Shirayuki
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - PiwikAnalytics\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:35+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:14+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Plugin description.
+msgid ""
+"Use <a href=\"http://piwik.org/\">Piwik</a> Open Source web analytics "
+"software."
+msgstr ""
+"<a href=\"http://piwik.org/\">Piwik</a> オープン ソース ウェブ解析ソフトウェ"
+"アを使用します。"

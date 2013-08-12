@@ -25,7 +25,7 @@ require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
  * Table Definition for file_thumbnail
  */
 
-class File_thumbnail extends Memcached_DataObject
+class File_thumbnail extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -43,9 +43,21 @@ class File_thumbnail extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function sequenceKey()
+    public static function schemaDef()
     {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'file_id' => array('type' => 'int', 'not null' => true, 'description' => 'thumbnail for what URL/file'),
+                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL of thumbnail'),
+                'width' => array('type' => 'int', 'description' => 'width of thumbnail'),
+                'height' => array('type' => 'int', 'description' => 'height of thumbnail'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('file_id'),
+            'foreign keys' => array(
+                'file_thumbnail_file_id_fkey' => array('file', array('file_id' => 'id')),
+            )
+        );
     }
 
     /**

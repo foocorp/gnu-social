@@ -2973,7 +2973,7 @@ X-OIM-Sequence-Num: 1
         // <wsse:BinarySecurityToken Id="Compact1">t=tick&p=</wsse:BinarySecurityToken>
         // <wst:BinarySecret>binary secret</wst:BinarySecret>
         // RST2: messenger.msn.com
-        // <wsse:BinarySecurityToken Id="PPToken2">t=tick</wsse:BinarySecurityToken>
+        // <wsse:BinarySecurityToken Id="Compact2">t=tick</wsse:BinarySecurityToken>
         // RST3: contacts.msn.com
         // <wsse:BinarySecurityToken Id="Compact3">t=tick&p=</wsse:BinarySecurityToken>
         // RST4: messengersecure.live.com
@@ -2985,7 +2985,7 @@ X-OIM-Sequence-Num: 1
         preg_match("#".
             "<wsse\:BinarySecurityToken Id=\"Compact1\">(.*)</wsse\:BinarySecurityToken>(.*)".
             "<wst\:BinarySecret>(.*)</wst\:BinarySecret>(.*)".
-            "<wsse\:BinarySecurityToken Id=\"PPToken2\">(.*)</wsse\:BinarySecurityToken>(.*)".
+            "<wsse\:BinarySecurityToken Id=\"Compact2\">(.*)</wsse\:BinarySecurityToken>(.*)".
             "<wsse\:BinarySecurityToken Id=\"Compact3\">(.*)</wsse\:BinarySecurityToken>(.*)".
             "<wsse\:BinarySecurityToken Id=\"Compact4\">(.*)</wsse\:BinarySecurityToken>(.*)".
             "<wsse\:BinarySecurityToken Id=\"Compact5\">(.*)</wsse\:BinarySecurityToken>(.*)".

@@ -1,4 +1,4 @@
-# Translation of StatusNet - Event to Macedonian (Македонски)
+# Translation of StatusNet - Event to Macedonian (македонски)
 # Exported from translatewiki.net
 #
 # Author: Bjankuloski06
@@ -9,17 +9,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:20+0000\n"
-"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:29+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#. TRANS: 0 minutes abbreviated. Used in a list.
+msgid "(0 min)"
+msgstr "(0 мин)"
+
+#. TRANS: 30 minutes abbreviated. Used in a list.
+msgid "(30 min)"
+msgstr "(30 мин)"
+
+#. TRANS: 1 hour. Used in a list.
+msgid "(1 hour)"
+msgstr "(1 час)"
+
+#, php-format
+msgid "(%.1f hours)"
+msgstr "(%.1f часа)"
+
+#, php-format
+msgid "(%d hours)"
+msgstr "(%d часа)"
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -46,14 +66,24 @@ msgstr ""
 "$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
 "$s</span> </span>"
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "Не сте најавени."
+
+#. TRANS: Client error when submitting a form with unexpected information.
+msgid "Unexpected form submission."
+msgstr "Неочекувано поднесување на образец."
+
+#. TRANS: Client error displayed when using an action in a non-AJAX way.
+msgid "This action is AJAX only."
+msgstr "Ова дејство е само за AJAX."
+
 #. TRANS: Client exception thrown when referring to a non-existing RSVP.
 #. TRANS: RSVP stands for "Please reply".
 #. TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
 msgid "No such RSVP."
 msgstr "Нема таков одѕив."
 
-#. TRANS: Client exception thrown when referring to a non-existing event.
-#. TRANS: Client exception thrown when requesting a non-exsting event.
 #. TRANS: Client exception thrown when referring to a non-existing event.
 msgid "No such event."
 msgstr "Нема таков настан."
@@ -151,9 +181,10 @@ msgctxt "LABEL"
 msgid "Start time"
 msgstr "Време на почеток"
 
-#. TRANS: Field title on event form.
-msgid "Time the event starts."
-msgstr "Во колку часот почнува настанот."
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, php-format
+msgid "Time the event starts (%s)."
+msgstr "Во колку часот почнува настанот (%s)."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -175,8 +206,8 @@ msgstr "Во колку часот завршува настанот."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
-msgid "Location"
-msgstr "Место"
+msgid "Where?"
+msgstr "Каде?"
 
 #. TRANS: Field title on event form.
 msgid "Event location."
@@ -262,7 +293,7 @@ msgstr "Одзивот %s не соодветствува на забелешк�
 #. TRANS: %s is the ID of the non-existing profile.
 #, php-format
 msgid "No profile with ID %s."
-msgstr "Нема профил со ID %s."
+msgstr "Нема профил со назнака %s."
 
 #. TRANS: Exception thrown when requesting a non-existing event.
 #. TRANS: %s is the ID of the non-existing event.
@@ -371,6 +402,10 @@ msgstr "Настанот мора да има почетно време."
 msgid "Event must have an end time."
 msgstr "Настанот мора да има завршно време."
 
+#. TRANS: Client exception thrown when trying to post an event with an invalid URL.
+msgid "URL must be valid."
+msgstr "URL-адресата мора да е важечка."
+
 #. TRANS: Field label for event description.
 msgid "Time:"
 msgstr "Време:"
@@ -382,13 +417,3 @@ msgstr "Место:"
 #. TRANS: Field label for event description.
 msgid "Description:"
 msgstr "Опис:"
-
-#. TRANS: Field label for event description.
-msgid "Attending:"
-msgstr "Присуство:"
-
-#. TRANS: RSVP counts.
-#. TRANS: %1$d, %2$d and %3$d are numbers of RSVPs.
-#, php-format
-msgid "Yes: %1$d No: %2$d Maybe: %3$d"
-msgstr "Да: %1$d Не: %2$d Можеби: %3$d"

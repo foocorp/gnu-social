@@ -1,0 +1,30 @@
+# Translation of StatusNet - StrictTransportSecurity to Hebrew (עברית)
+# Exported from translatewiki.net
+#
+# Author: Amire80
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - StrictTransportSecurity\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:10+0000\n"
+"Language-Team: Hebrew <https://translatewiki.net/wiki/Portal:he>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: he\n"
+"X-Message-Group: #out-statusnet-plugin-stricttransportsecurity\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid ""
+"The Strict Transport Security plugin implements the Strict Transport "
+"Security header, improving the security of HTTPS only sites."
+msgstr ""
+"תוסף אבטחת תעבורה הדוקה מיישם את הכותרת אבטחת תעבורה הדוקה (Strict Transport "
+"Security), שמשפת את האבטחה באתרים שפועלים רק ב־HTTPS."

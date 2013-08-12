@@ -1,0 +1,73 @@
+/** theme: neo-blue
+ *
+ * @package   StatusNet
+ * @author    Samantha Doherty <sammy@status.net>
+ * @copyright 2011 StatusNet, Inc.
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
+ * @link      http://status.net/
+ */
+
+@media screen, projection, tv {
+
+body { 
+    background: #7e89a4;
+}
+
+#wrap {
+    border: none;
+    padding: 0px 10px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.7);
+    background: #fff;
+}
+
+#header {
+    padding-top: 7px;
+}
+
+#site_nav_global_primary {
+    top: 0px;
+    right: -14px;
+    padding-top: 5px;
+    height: 30px;
+    width: 986px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7);
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    border-bottom-left-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -moz-border-radius-bottomright: 4px;
+    border-bottom-right-radius: 4px;
+    z-index: 98;
+    border-bottom: 1px solid #fff;
+    border-left: 1px solid #516499;
+    border-right: 1px solid #516499;
+}
+
+#site_nav_global_primary a:hover {
+    background: #4c619c;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;    
+}
+
+#site_notice { 
+    margin: 45px 0px 0px 0px;
+    background-color: #f2f2f2; /* XXX */
+}
+
+#core {
+    border-top: none;
+    margin-top: 3px;
+}
+
+.input_forms {
+    background-color: #fff;
+    left: 0px;
+    padding: 18px 0px 0px 0px;
+}
+
+}/*end of @media screen, projection, tv*/

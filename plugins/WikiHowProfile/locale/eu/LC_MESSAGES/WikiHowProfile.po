@@ -1,0 +1,45 @@
+# Translation of StatusNet - WikiHowProfile to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - WikiHowProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:28+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-19 11:23:54+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid ""
+"Fetches avatar and other profile information for WikiHow users when setting "
+"up an account via OpenID."
+msgstr ""
+
+#. TRANS: Exception thrown when fetching a WikiHow profile page fails.
+msgid "WikiHow profile page fetch failed."
+msgstr ""
+
+#. TRANS: Exception thrown when parsing a WikiHow profile page fails.
+msgid "HTML parse failure during check for WikiHow avatar."
+msgstr ""
+
+#. TRANS: Server exception thrown when an avatar URL is invalid.
+#. TRANS: %s is the invalid avatar URL.
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Abatarraren %s URL helbidea okerra da."
+
+#. TRANS: Exception thrown when fetching an avatar from a URL fails.
+#. TRANS: %s is a URL.
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Ezin izan da abatarra lortu %s helbidetik."

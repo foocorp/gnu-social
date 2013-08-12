@@ -1,4 +1,4 @@
-# Translation of StatusNet - EmailSummary to Ukrainian (Українська)
+# Translation of StatusNet - EmailSummary to Ukrainian (українська)
 # Exported from translatewiki.net
 #
 # Author: Boogie
@@ -9,18 +9,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailSummary\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:15+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:27+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:47+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-07-01 11:18:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-emailsummary\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: Subject for e-mail.
+#, php-format
+msgid "Your latest updates from %s"
+msgstr ""
 
 #. TRANS: Text in e-mail summary.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile name.
@@ -37,10 +42,6 @@ msgstr "у контексті"
 #, php-format
 msgid "<a href=\"%1$s\">change your email settings for %2$s</a>"
 msgstr "<a href=\"%1$s\">змінити налаштування електронної пошти для %2$s</a>"
-
-#. TRANS: Subject for e-mail.
-msgid "Updates from your network"
-msgstr "Оновлення з вашої мережі"
 
 #. TRANS: Plugin description.
 msgid "Send an email summary of the inbox to users."

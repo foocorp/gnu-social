@@ -73,6 +73,7 @@ class ApprovesubAction extends Action
 
         if (empty($this->request)) {
             // TRANS: Client error displayed trying to approve subscription for a non-existing request.
+            // TRANS: %s is a user nickname.
             $this->clientError(sprintf(_('%s is not in the moderation queue for your subscriptions.'), $this->profile->nickname), 403);
         }
 

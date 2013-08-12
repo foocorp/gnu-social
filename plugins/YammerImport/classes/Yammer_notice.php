@@ -48,7 +48,6 @@ class Yammer_notice extends Yammer_common
      * @return Yammer_notice object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Yammer_notice', $k, $v);
@@ -57,7 +56,6 @@ class Yammer_notice extends Yammer_common
     /**
      * Return schema definition to set this table up in onCheckSchema
      */
-
     static function schemaDef()
     {
         return self::doSchemaDef('notice_id');
@@ -71,7 +69,6 @@ class Yammer_notice extends Yammer_common
      *
      * @return Yammer_notice new object for this value
      */
-
     static function record($orig_id, $notice_id)
     {
         return self::doRecord('Yammer_notice', 'notice_id', $orig_id, $notice_id);

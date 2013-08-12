@@ -8,19 +8,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #. TRANS: Title for Question page.
 #: actions/qnanewquestion.php:62
 msgid "New question"
 msgstr ""
 
+#. TRANS: Client exception thrown trying to create a Question while not logged in.
 #: actions/qnanewquestion.php:81
 msgid "You must be logged in to post a question."
 msgstr ""
@@ -35,27 +37,32 @@ msgstr ""
 msgid "Question posted"
 msgstr ""
 
-#: actions/qnashowanswer.php:67 actions/qnashowanswer.php:80
+#. TRANS: Client exception thrown when requesting a non-existing answer.
+#. TRANS: Did we used to have it, and it got deleted?
+#: actions/qnashowanswer.php:68 actions/qnashowanswer.php:82
 msgid "No such answer."
 msgstr ""
 
-#: actions/qnashowanswer.php:73
+#. TRANS: Client exception thrown when requesting an answer that has no connected question.
+#: actions/qnashowanswer.php:75
 msgid "No question for this answer."
 msgstr ""
 
+#. TRANS: Client exception thrown when requesting answer data for a non-existing user.
 #. TRANS: Client exception thrown trying to view a question of a non-existing user.
-#: actions/qnashowanswer.php:86 actions/qnashowquestion.php:83
+#: actions/qnashowanswer.php:89 actions/qnashowquestion.php:83
 msgid "No such user."
 msgstr ""
 
+#. TRANS: Client exception thrown when requesting answer data for a user without a profile.
 #. TRANS: Server exception thrown trying to view a question for a user for which the profile could not be loaded.
-#: actions/qnashowanswer.php:92 actions/qnashowquestion.php:90
+#: actions/qnashowanswer.php:96 actions/qnashowquestion.php:90
 msgid "User without a profile."
 msgstr ""
 
 #. TRANS: Page title.
 #. TRANS: %1$s is the user who answered a question, %2$s is the question.
-#: actions/qnashowanswer.php:114
+#: actions/qnashowanswer.php:118
 #, php-format
 msgid "%1$s's answer to \"%2$s\""
 msgstr ""
@@ -71,6 +78,7 @@ msgstr ""
 msgid "You must be logged in to answer to a question."
 msgstr ""
 
+#. TRANS: Client exception thrown trying to respond to a non-existing question.
 #: actions/qnareviseanswer.php:97
 msgid "Invalid or missing answer."
 msgstr ""
@@ -79,8 +87,14 @@ msgstr ""
 #. TRANS: Page title for and answer to a question.
 #. TRANS: Form legend for showing the answer.
 #: actions/qnareviseanswer.php:163 actions/qnareviseanswer.php:207
-#: actions/qnareviseanswer.php:246 actions/qnanewanswer.php:63
-#: actions/qnavote.php:63 lib/qnashowanswerform.php:113
+#: actions/qnanewanswer.php:63 actions/qnavote.php:63
+#: lib/qnashowanswerform.php:113
+msgid "Answer"
+msgstr ""
+
+#. TRANS: Form title for sending an answer.
+#: actions/qnareviseanswer.php:247
+msgctxt "TITLE"
 msgid "Answer"
 msgstr ""
 
@@ -94,6 +108,8 @@ msgstr ""
 msgid "No such question notice."
 msgstr ""
 
+#. TRANS: Page title for a question.
+#. TRANS: %1$s is the nickname of the user who asked the question, %2$s is the question.
 #: actions/qnashowquestion.php:157
 #, php-format
 msgid "%1$s's question: %2$s"
@@ -104,6 +120,7 @@ msgstr ""
 msgid "Close question"
 msgstr ""
 
+#. TRANS: Client exception thrown trying to close a question when not logged in
 #: actions/qnaclosequestion.php:85
 msgid "You must be logged in to close a question."
 msgstr ""
@@ -114,28 +131,32 @@ msgstr ""
 msgid "Invalid or missing question."
 msgstr ""
 
-#: actions/qnaclosequestion.php:137
-msgid "You didn't ask this question."
+#. TRANS: Exception thrown trying to close another user's question.
+#: actions/qnaclosequestion.php:136
+msgid "You did not ask this question."
 msgstr ""
 
 #. TRANS: Page title after sending an answer.
-#: actions/qnaclosequestion.php:156 actions/qnanewanswer.php:160
+#. TRANS: Page title after sending in a vote for a question or answer.
+#: actions/qnaclosequestion.php:155 actions/qnanewanswer.php:160
 #: actions/qnavote.php:150
 msgid "Answers"
 msgstr ""
 
 #. TRANS: Page title after an AJAX error occurs on the post answer page.
-#: actions/qnanewanswer.php:227
+#: actions/qnanewanswer.php:226
 msgid "Ajax Error"
 msgstr ""
 
 #. TRANS: Title for form to send answer to a question.
-#: actions/qnanewanswer.php:250
+#: actions/qnanewanswer.php:249
 msgctxt "TITLE"
 msgid "Your answer"
 msgstr ""
 
-#: actions/qnanewanswer.php:347 QnAPlugin.php:479
+#. TRANS: Error message displayed when an answer has no content.
+#. TRANS: Error message displayed when answer data is not present.
+#: actions/qnanewanswer.php:346 QnAPlugin.php:485
 msgid "Answer data is missing."
 msgstr ""
 
@@ -145,150 +166,197 @@ msgid "Question and Answers micro-app."
 msgstr ""
 
 #. TRANS: Application title.
-#. TRANS: Form legend for revising the answer.
-#: QnAPlugin.php:178 lib/qnashowquestionform.php:106
+#: QnAPlugin.php:178
+msgctxt "TITLE"
 msgid "Question"
 msgstr ""
 
-#: QnAPlugin.php:205
+#. TRANS: Exception thrown when there are too many activity objects.
+#: QnAPlugin.php:206
 msgid "Too many activity objects."
 msgstr ""
 
-#: QnAPlugin.php:211
+#. TRANS: Exception thrown when an incorrect object type is encountered.
+#: QnAPlugin.php:213
 msgid "Wrong type for object."
 msgstr ""
 
-#: QnAPlugin.php:229
+#. TRANS: Exception thrown when answering a non-existing question.
+#: QnAPlugin.php:232
 msgid "Answer to unknown question."
 msgstr ""
 
-#: QnAPlugin.php:234
-msgid "Unknown object type received by QnA Plugin."
-msgstr ""
-
-#: QnAPlugin.php:263
+#. TRANS: Exception thrown when an object type is encountered that cannot be handled.
+#: QnAPlugin.php:238 QnAPlugin.php:268
 msgid "Unknown object type."
 msgstr ""
 
-#: QnAPlugin.php:269
+#. TRANS: Exception thrown when requesting a non-existing question notice.
+#: QnAPlugin.php:275
 msgid "Unknown question notice."
 msgstr ""
 
 #. TRANS: Exception thrown when performing an unexpected action on a question.
 #. TRANS: %s is the unpexpected object type.
-#: QnAPlugin.php:365
+#: QnAPlugin.php:371
 #, php-format
 msgid "Unexpected type for QnA plugin: %s."
 msgstr ""
 
-#: QnAPlugin.php:390
+#. TRANS: Error message displayed when question data is not present.
+#: QnAPlugin.php:397
 msgid "Question data is missing."
 msgstr ""
 
-#: QnAPlugin.php:450
+#. TRANS: Placeholder value for a possible answer to a question
+#. TRANS: by the logged in user.
+#: QnAPlugin.php:456
 msgid "Your answer..."
 msgstr ""
 
-#. TRANS: Link to full notice text if it is longer than what will be dispplayed.
-#. TRANS: %s a notice URI.
-#: QnAPlugin.php:499
-#, php-format
-msgid "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
+#. TRANS: Link description for link to full notice text if it is longer than
+#. TRANS: what will be dispplayed.
+#: QnAPlugin.php:503
+msgid "…"
 msgstr ""
 
-#: QnAPlugin.php:501
+#. TRANS: Title for link that is an ellipsis in English.
+#: QnAPlugin.php:508
 msgid "more..."
 msgstr ""
 
-#: classes/QnA_Answer.php:229
+#. TRANS: Exception thown when getting a question with a non-existing ID.
+#. TRANS: %s is the non-existing question ID.
+#: classes/QnA_Answer.php:179
 #, php-format
-msgid "%s revisions"
+msgid "No question with ID %s"
 msgstr ""
 
-#: classes/QnA_Answer.php:245
+#. TRANS: Exception thown when getting a profile with a non-existing ID.
+#. TRANS: %s is the non-existing profile ID.
+#. TRANS: Exception trown when getting a profile for a non-existing ID.
+#. TRANS: %s is the provided profile ID.
+#: classes/QnA_Answer.php:190 classes/QnA_Question.php:154
+#, php-format
+msgid "No profile with ID %s"
+msgstr ""
+
+#. TRANS: %s is the number of answer revisions.
+#: classes/QnA_Answer.php:235
+#, php-format
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: Text for a question that was answered.
+#. TRANS: %1$s is the user that answered, %2$s is the question title,
+#. TRANS: %2$s is the answer content.
+#: classes/QnA_Answer.php:255
 #, php-format
 msgid "%1$s answered the question \"%2$s\": %3$s"
 msgstr ""
 
+#. TRANS: Text for a question that was answered.
+#. TRANS: %s is the question title.
 #. TRANS: Rendered version of the notice content answering a question.
 #. TRANS: %s a link to the question with question title as the link content.
-#: classes/QnA_Answer.php:288 classes/QnA_Answer.php:295
+#: classes/QnA_Answer.php:296 classes/QnA_Answer.php:303
 #, php-format
 msgid "answered \"%s\""
 msgstr ""
 
-#: classes/QnA_Question.php:238
+#. TRANS: Number of given answers to a question.
+#. TRANS: %s is the number of given answers.
+#: classes/QnA_Question.php:241
 #, php-format
-msgid "%s answers"
-msgstr ""
+msgid "%s answer"
+msgid_plural "%s answers"
+msgstr[0] ""
+msgstr[1] ""
 
-#: classes/QnA_Question.php:244
+#. TRANS: Notification that a question cannot be answered anymore because it is closed.
+#: classes/QnA_Question.php:248
 msgid "This question is closed."
 msgstr ""
 
 #. TRANS: Rendered version of the notice content creating a question.
 #. TRANS: %s a link to the question as link description.
-#: classes/QnA_Question.php:309
+#: classes/QnA_Question.php:312
 #, php-format
 msgid "Question: %s"
 msgstr ""
 
+#. TRANS: Button text for submitting a revised answer.
 #. TRANS: Button text for submitting a poll response.
 #: lib/qnareviseanswerform.php:119 lib/qnavoteform.php:118
 msgctxt "BUTTON"
 msgid "Submit"
 msgstr ""
 
-#: lib/qnanewanswerform.php:113
+#. TRANS: Field label.
+#: lib/qnanewanswerform.php:114
 msgid "Enter your answer"
 msgstr ""
 
 #. TRANS: Button text for submitting a poll response.
-#: lib/qnanewanswerform.php:124
+#: lib/qnanewanswerform.php:125
 msgctxt "BUTTON"
 msgid "Answer"
 msgstr ""
 
-#: lib/qnanewquestionform.php:109
+#. TRANS: Field label for a new question.
+#: lib/qnanewquestionform.php:110
+msgctxt "LABEL"
 msgid "Title"
 msgstr ""
 
-#: lib/qnanewquestionform.php:111
-msgid "Title of your question"
+#. TRANS: Field title for a new question.
+#: lib/qnanewquestionform.php:113
+msgid "The title of your question."
 msgstr ""
 
-#: lib/qnanewquestionform.php:118
+#. TRANS: Field label for question details.
+#: lib/qnanewquestionform.php:121
+msgctxt "LABEL"
 msgid "Description"
 msgstr ""
 
-#: lib/qnanewquestionform.php:120
-msgid "Your question in detail"
+#. TRANS: Field title for question details.
+#: lib/qnanewquestionform.php:124
+msgid "Your question in detail."
 msgstr ""
 
 #. TRANS: Button text for saving a new question.
-#: lib/qnanewquestionform.php:143
+#: lib/qnanewquestionform.php:147
 msgctxt "BUTTON"
 msgid "Save"
 msgstr ""
 
-#. TRANS: Button text for closing a question
+#. TRANS: Form legend for revising the answer.
+#: lib/qnashowquestionform.php:106
+msgctxt "LEGEND"
+msgid "Question"
+msgstr ""
+
+#. TRANS: Button text for closing a question.
 #: lib/qnashowquestionform.php:151
 msgctxt "BUTTON"
 msgid "Close"
 msgstr ""
 
-#. TRANS: Title for button text for closing a question
+#. TRANS: Title for button text for closing a question.
 #: lib/qnashowquestionform.php:155
-msgid "Close the question"
+msgid "Close the question to no one can answer it anymore."
 msgstr ""
 
-#. TRANS: Button text for marking an answer as "best"
+#. TRANS: Button text for marking an answer as "best".
 #: lib/qnashowanswerform.php:150
 msgctxt "BUTTON"
 msgid "Best"
 msgstr ""
 
-#. TRANS: Title for button text marking an answer as "best"
+#. TRANS: Title for button text marking an answer as "best".
 #: lib/qnashowanswerform.php:154
-msgid "Mark as best answer"
+msgid "Mark this answer as the best answer."
 msgstr ""

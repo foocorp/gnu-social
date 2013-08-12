@@ -1,0 +1,39 @@
+# Translation of StatusNet - NoticeTitle to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NoticeTitle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:20+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:09+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-noticetitle\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Adds optional titles to notices."
+msgstr "Engade títulos opcionais ás notas."
+
+#. TRANS: Exception thrown when a notice title is too long.
+#. TRANS: %d is the maximum number of characters allowed in a title (used for plural).
+#, php-format
+msgid "The notice title is too long (maximum %d character)."
+msgid_plural "The notice title is too long (maximum %d characters)."
+msgstr[0] "O título da nota é longo de máis (o máximo é %d carácter)."
+msgstr[1] "O título da nota é longo de máis (o máximo son %d caracteres)."
+
+#. TRANS: Page title. %1$s is the title, %2$s is the site name.
+#, php-format
+msgid "%1$s - %2$s"
+msgstr "%1$s - %2$s"

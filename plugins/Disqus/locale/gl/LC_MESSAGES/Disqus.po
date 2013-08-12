@@ -1,5 +1,5 @@
-# Translation of StatusNet - Disqus to Galician (Galego)
-# Expored from translatewiki.net
+# Translation of StatusNet - Disqus to Galician (galego)
+# Exported from translatewiki.net
 #
 # Author: Toliño
 # --
@@ -9,39 +9,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Disqus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-14 23:32+0000\n"
-"PO-Revision-Date: 2011-01-14 23:35:47+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:13+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-01-14 13:21:12+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r80343); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:49:59+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-disqus\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: User notification that JavaScript is required for Disqus comment display.
-#: DisqusPlugin.php:143
+#. TRANS: This message contains Markdown links in the form [description](link).
 #, php-format
 msgid ""
 "Please enable JavaScript to view the [comments powered by Disqus](http://"
 "disqus.com/?ref_noscript=%s)."
 msgstr ""
+"Active o JavaScript para ollar os [comentarios mediante Disqus](http://"
+"disqus.com/?ref_noscript=%s)."
 
 #. TRANS: This message is followed by a Disqus logo. Alt text is "Disqus".
-#: DisqusPlugin.php:151
 msgid "Comments powered by "
-msgstr ""
+msgstr "Comentarios proporcionados por "
 
 #. TRANS: Plugin supplied feature for Disqus comments to notices.
-#: DisqusPlugin.php:204
 msgid "Comments"
 msgstr "Comentarios"
 
 #. TRANS: Plugin description.
-#: DisqusPlugin.php:245
 msgid ""
 "Use <a href=\"http://disqus.com/\">Disqus</a> to add commenting to notice "
 "pages."
 msgstr ""
+"Usa <a href=\"http://disqus.com/\">Disqus</a> para engadir comentarios ás "
+"páxinas das notas."

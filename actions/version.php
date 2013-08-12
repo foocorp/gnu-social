@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * Show version information for this software and plugins
  *
@@ -42,7 +42,7 @@ if (!defined('STATUSNET')) {
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
  * @author   Craig Andrews <candrews@integralblue.com>
- * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
+ * @copyright 2009-2011 Free Software Foundation, Inc http://www.fsf.org
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link     http://status.net/
  */
@@ -149,7 +149,7 @@ class VersionAction extends Action
         // TRANS: Content part of StatusNet version page.
         // TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
         $this->raw(sprintf(_('This site is powered by %1$s version %2$s, '.
-                             'Copyright 2008-2010 StatusNet, Inc. '.
+                             'Copyright 2008-2011 StatusNet, Inc. '.
                              'and contributors.'),
                            XMLStringer::estring('a', array('href' => 'http://status.net/'),
                                                 // TRANS: Engine name.
@@ -160,6 +160,7 @@ class VersionAction extends Action
         // TRANS: Header for StatusNet contributors section on the version page.
         $this->element('h2', null, _('Contributors'));
 
+        sort($this->contributors);
         $this->element('p', null, implode(', ', $this->contributors));
 
         // TRANS: Header for StatusNet license section on the version page.
@@ -170,14 +171,14 @@ class VersionAction extends Action
                        _('StatusNet is free software: you can redistribute it and/or modify '.
                          'it under the terms of the GNU Affero General Public License as published by '.
                          'the Free Software Foundation, either version 3 of the License, or '.
-                         '(at your option) any later version. '));
+                         '(at your option) any later version.'));
 
         $this->element('p', null,
                        // TRANS: Content part of StatusNet version page.
                        _('This program is distributed in the hope that it will be useful, '.
                          'but WITHOUT ANY WARRANTY; without even the implied warranty of '.
                          'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the '.
-                         'GNU Affero General Public License for more details. '));
+                         'GNU Affero General Public License for more details.'));
 
         $this->elementStart('p');
         // TRANS: Content part of StatusNet version page.
@@ -277,6 +278,7 @@ class VersionAction extends Action
                               'mEDI',
                               'Brett Taylor',
                               'Brigitte Schuster',
-                              'Brion Vibber',
-                              'Siebrand Mazeland');
+                              'Brion Vibber (StatusNet)',
+                              'Siebrand Mazeland',
+                              'Samantha Doherty (StatusNet)');
 }

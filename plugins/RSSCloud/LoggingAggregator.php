@@ -44,7 +44,7 @@ if (!defined('STATUSNET')) {
  * @author   Zach Copley <zach@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
- **/
+ */
 class LoggingAggregatorAction extends Action
 {
     var $challenge = null;
@@ -82,25 +82,25 @@ class LoggingAggregatorAction extends Action
         parent::handle($args);
 
         if (empty($this->url)) {
+            // TRANS: Form validation error displayed when a URL parameter is missing.
             $this->showError(_m('A URL parameter is required.'));
             return;
         }
 
         if (!empty($this->challenge)) {
-
             // must be a GET
             if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+                // TRANS: Form validation error displayed when HTTP GET is not used.
                 $this->showError(_m('This resource requires an HTTP GET.'));
                 return;
             }
 
             header('Content-Type: text/xml');
             echo $this->challenge;
-
         } else {
-
             // must be a POST
             if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+                // TRANS: Form validation error displayed when HTTP POST is not used.
                 $this->showError(_m('This resource requires an HTTP POST.'));
                 return;
             }

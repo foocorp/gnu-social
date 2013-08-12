@@ -146,19 +146,19 @@ class QnashowanswerForm extends Form
                 if (empty($this->answer->best)) {
                     $this->out->submit(
                         'qna-best-answer',
-                        // TRANS: Button text for marking an answer as "best"
+                        // TRANS: Button text for marking an answer as "best".
                         _m('BUTTON', 'Best'),
                         'submit',
                         'best',
-                        // TRANS: Title for button text marking an answer as "best"
-                        _m('Mark as best answer')
+                        // TRANS: Title for button text marking an answer as "best".
+                        _m('Mark this answer as the best answer.')
                     );
 
                 }
             }
 
             /*
-             * @fixme: Revise is disabled until we figure out the
+             * @todo FIXME: Revise is disabled until we figure out the
              *         Ostatus bits This comment is just a reminder
              *         that the UI for this works.
              */
@@ -166,12 +166,12 @@ class QnashowanswerForm extends Form
             if ($user->id == $this->answer->profile_id) {
                 $this->out->submit(
                     'revise',
-                    // TRANS: Button text for revising an answer
+                    // TRANS: Button text for revising an answer.
                     _m('BUTTON', 'Revise'),
                     'submit',
                     null,
-                    // TRANS: Title for button text for revising an answer
-                    _m('Revise your answer')
+                    // TRANS: Title for button text for revising an answer.
+                    _m('Revise your answer.')
                 );
             }
              */

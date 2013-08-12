@@ -43,7 +43,7 @@ require_once INSTALLDIR.'/lib/publicgroupnav.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class GroupqueueAction extends GroupDesignAction
+class GroupqueueAction extends GroupAction
 {
     var $page = null;
 
@@ -130,12 +130,6 @@ class GroupqueueAction extends GroupDesignAction
         $this->element('p', 'instructions',
                        // TRANS: Page notice for group members page.
                        _('A list of users awaiting approval to join this group.'));
-    }
-
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
     }
 
     function showContent()

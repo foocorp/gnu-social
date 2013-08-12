@@ -132,9 +132,7 @@ class SubscriptionsAction extends GalleryAction
                 // TRANS: and do not change the URL part.
                 $message = _('You\'re not listening to anyone\'s notices right now, try subscribing to people you know. '.
                              'Try [people search](%%action.peoplesearch%%), look for members in groups you\'re interested '.
-                             'in and in our [featured users](%%action.featured%%). '.
-                             'If you\'re a [Twitter user](%%action.twittersettings%%), you can automatically subscribe to '.
-                             'people you already follow there.');
+                             'in and in our [featured users](%%action.featured%%).');
             } else {
                 // TRANS: Subscription list text when looking at the subscriptions for a of a user other
                 // TRANS: than the logged in user that has no subscriptions. %s is the user nickname.

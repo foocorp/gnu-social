@@ -1,0 +1,55 @@
+# Translation of StatusNet - EmailReminder to Arabic (العربية)
+# Exported from translatewiki.net
+#
+# Author: Majid Al-Dharrab
+# Author: OsamaK
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailReminder\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:25+0000\n"
+"Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-19 11:23:04+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-emailreminder\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+#. TRANS: Plugin description.
+msgid "Send email reminders for various things."
+msgstr "يرسل رسائل تذكيرية لأمور عديدة."
+
+#. TRANS: Server exception thrown when a reminder record could not be inserted into the database.
+msgid "Database error inserting reminder record."
+msgstr ""
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Reminder - please confirm your registration!"
+msgstr "تذكير: يرجى تأكيد تسجيلك!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Second reminder - please confirm your registration!"
+msgstr "التذكير الثاني: يرجى تأكيد تسجيلك!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Final reminder - please confirm your registration!"
+msgstr "التذكير النهائي: يرجى تأكيد تسجيلك!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Reminder - You have been invited to join %s!"
+msgstr "تذكير: لقد وصلتك دعوة للتسجيل في %s!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Final reminder - you have been invited to join %s!"
+msgstr "التذكير النهائي: لقد وصلتك دعوة للتسجيل في %s!"

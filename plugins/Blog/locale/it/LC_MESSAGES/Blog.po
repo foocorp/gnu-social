@@ -1,0 +1,93 @@
+# Translation of StatusNet - Blog to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: Ximo17
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Blog\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:54+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-02-25 15:25:35+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception thrown when trying to post a blog entry while not logged in.
+msgid "Must be logged in to post a blog entry."
+msgstr "Bisogna effettuare l'accesso per poter scrivere qualcosa nel blog."
+
+#. TRANS: Client exception thrown when trying to post a blog entry without providing a title.
+msgid "Title required."
+msgstr "Titolo richiesto."
+
+#. TRANS: Client exception thrown when trying to post a blog entry without providing content.
+msgid "Content required."
+msgstr "Contenuto richiesto."
+
+#. TRANS: Page title after sending a notice.
+msgid "Blog entry saved"
+msgstr "Voce del blog salvata"
+
+#. TRANS: Plugin description.
+msgid "Let users write and share long-form texts."
+msgstr ""
+"Consentire agli utenti di scrivere e condividere testi con un formato lungo."
+
+#. TRANS: Blog application title.
+msgctxt "TITLE"
+msgid "Blog"
+msgstr "Blog"
+
+#. TRANS: Exception thrown when there are too many activity objects.
+msgid "Too many activity objects."
+msgstr "Troppi oggetti dell'attività."
+
+#. TRANS: Exception thrown when blog plugin comes across a non-blog entry type object.
+msgid "Wrong type for object."
+msgstr "Tipo di oggetto sbagliato."
+
+#. TRANS: Exception thrown when blog plugin comes across a undefined verb.
+msgid "Unknown verb for blog entries."
+msgstr "Verbo sconosciuto per le voci del blog."
+
+#. TRANS: Exception thrown when requesting a non-existing blog entry for notice.
+#, php-format
+msgid "No blog entry for notice %s."
+msgstr "Nessuna voce del blog per la notizia  %s ."
+
+#. TRANS: Client exception thrown when referring to a non-existing blog entry.
+msgid "No such entry."
+msgstr "Nessuna voce."
+
+#. TRANS: Title for a blog entry without a title.
+msgid "Untitled"
+msgstr "Senza titolo"
+
+#. TRANS: Field label on blog entry form.
+msgctxt "LABEL"
+msgid "Title"
+msgstr "Titolo"
+
+#. TRANS: Field title on blog entry form.
+msgid "Title of the blog entry."
+msgstr "Titolo della voce del blog."
+
+#. TRANS: Field label on blog entry form.
+msgctxt "LABEL"
+msgid "Text"
+msgstr "Testo"
+
+#. TRANS: Field title on blog entry form.
+msgid "Text of the blog entry."
+msgstr "Testo della voce del blog."
+
+#. TRANS: Button text to save a blog entry.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Salva"

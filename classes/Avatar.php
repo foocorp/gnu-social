@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Avatar extends Memcached_DataObject
+class Avatar extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -27,6 +27,37 @@ class Avatar extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+	static function pivotGet($keyCol, $keyVals, $otherCols)
+	{
+	    return Memcached_DataObject::pivotGet('Avatar', $keyCol, $keyVals, $otherCols);
+	}
+	
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
+                'original' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'uploaded by user or generated?'),
+                'width' => array('type' => 'int', 'not null' => true, 'description' => 'image width'),
+                'height' => array('type' => 'int', 'not null' => true, 'description' => 'image height'),
+                'mediatype' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'description' => 'file type'),
+                'filename' => array('type' => 'varchar', 'length' => 255, 'description' => 'local filename, if local'),
+                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'avatar location'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('profile_id', 'width', 'height'),
+            'unique keys' => array(
+                'avatar_url_key' => array('url'),
+            ),
+            'foreign keys' => array(
+                'avatar_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+            ),
+            'indexes' => array(
+                'avatar_profile_id_idx' => array('profile_id'),
+            ),
+        );
+    }
     // We clean up the file, too
 
     function delete()

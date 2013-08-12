@@ -1,0 +1,440 @@
+# Translation of StatusNet - TwitterBridge to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TwitterBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:21+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:51:38+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title for page with Twitter integration settings.
+msgid "Twitter settings"
+msgstr "Twitter aukerak"
+
+#. TRANS: Instructions for page with Twitter integration settings.
+msgid ""
+"Connect your Twitter account to share your updates with your Twitter friends "
+"and vice-versa."
+msgstr ""
+
+#. TRANS: Fieldset legend.
+msgid "Twitter account"
+msgstr "Twitter kontua"
+
+#. TRANS: Form note when a Twitter account has been connected.
+msgid "Connected Twitter account"
+msgstr "Kontektaturiko Twitter kontua"
+
+#. TRANS: Fieldset legend.
+msgid "Disconnect my account from Twitter"
+msgstr "Deskonektatu nere kontua Twitterretik"
+
+#. TRANS: Form guide. %s is a URL to the password settings.
+#. TRANS: This message contains a Markdown link in the form [description](link).
+#, php-format
+msgid ""
+"Disconnecting your Twitter account could make it impossible to log in! "
+"Please [set a password](%s) first."
+msgstr ""
+
+#. TRANS: Form instructions. %1$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
+"password to log in."
+msgstr ""
+"Mantendu zure %1$s kontua baina Twitterretik deskonektatu. Zure %1$s "
+"pasahitza erabiliko duzu saioa hasteko."
+
+#. TRANS: Button text for disconnecting a Twitter account.
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Eten."
+
+#. TRANS: Fieldset legend.
+msgid "Preferences"
+msgstr "Hobespenak"
+
+#. TRANS: Checkbox label.
+msgid "Automatically send my notices to Twitter."
+msgstr "Automatikoki bidali nere oharrak Twitterrera."
+
+#. TRANS: Checkbox label.
+msgid "Send local \"@\" replies to Twitter."
+msgstr "Bidali \"@\" lokalen erantzuntak Twitterrera."
+
+#. TRANS: Checkbox label.
+msgid "Subscribe to my Twitter friends here."
+msgstr "Harpidetu nere Twitter kontaktuetara hemen."
+
+#. TRANS: Checkbox label.
+msgid "Import my friends timeline."
+msgstr "Importatu nere lagunen denbora lerroa."
+
+#. TRANS: Button text for saving Twitter integration settings.
+#. TRANS: Button text for saving the administrative Twitter bridge settings.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Gorde"
+
+#. TRANS: Button text for adding Twitter integration.
+msgctxt "BUTTON"
+msgid "Add"
+msgstr "Gehitu"
+
+#. TRANS: Client error displayed when the session token does not match or is not given.
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Zure saio tokenarekin arazo bat egon da. Saiatu berriro, mesedez."
+
+#. TRANS: Client error displayed when the submitted form contains unexpected data.
+msgid "Unexpected form submission."
+msgstr "Ustekabeko inprimaki bidalketa."
+
+#. TRANS: Client error displayed when trying to remove a connected Twitter account when there isn't one connected.
+msgid "No Twitter connection to remove."
+msgstr "Ez dago Twitter koneksiorik ezabatzeko."
+
+#. TRANS: Server error displayed when trying to remove a connected Twitter account fails.
+msgid "Could not remove Twitter user."
+msgstr "Ezin izan da Twitter erabiltzailea ezabatu."
+
+#. TRANS: Success message displayed after disconnecting a Twitter account.
+msgid "Twitter account disconnected."
+msgstr "Twitter kontua deskonektaturik."
+
+#. TRANS: Server error displayed when saving Twitter integration preferences fails.
+msgid "Could not save Twitter preferences."
+msgstr "Ezin izan dira Twitter hobespenak gorde."
+
+#. TRANS: Success message after saving Twitter integration preferences.
+msgid "Twitter preferences saved."
+msgstr "Twitter hobespenak gorderik."
+
+#. TRANS: Form validation error displayed when the checkbox to agree to the license has not been checked.
+msgid "You cannot register if you do not agree to the license."
+msgstr "Ezin duzu izenik eman ez bazaude lizentziarekin ados."
+
+#. TRANS: Form validation error displayed when an unhandled error occurs.
+msgid "Something weird happened."
+msgstr "Zerbait arraroa gertatu da."
+
+#. TRANS: Server error displayed when linking to a Twitter account fails.
+msgid "Could not link your Twitter account."
+msgstr "Ezin izan da zure Twitter kontua estekatu."
+
+#. TRANS: Server error displayed when linking to a Twitter account fails because of an incorrect oauth_token.
+msgid "Could not link your Twitter account: oauth_token mismatch."
+msgstr "Ezin izan da zure Twitter kontua estekatu: oauth_token doitugabea."
+
+#. TRANS: Page instruction. %s is the StatusNet sitename.
+#, php-format
+msgid ""
+"This is the first time you have logged into %s so we must connect your "
+"Twitter account to a local account. You can either create a new account, or "
+"connect with your existing account, if you have one."
+msgstr ""
+"%s gunean sartzen zaren lehen aldia da, zure Twitter kontua kontu lokal "
+"batekin lotuko dugu. Bestela kontu berri bat sor dezakezu, edo lehendik "
+"beste kontu bat bazenuen, kontu harekin lotu."
+
+#. TRANS: Page title.
+msgid "Twitter Account Setup"
+msgstr "Twitter Kontu Kudeaketa"
+
+#. TRANS: Fieldset legend.
+msgid "Connection options"
+msgstr "Koneksio aukerak"
+
+#. TRANS: Fieldset legend.
+msgid "Create new account"
+msgstr "Sortu kontu berria"
+
+#. TRANS: Sub form introduction text.
+msgid "Create a new user with this nickname."
+msgstr "Sortu erabiltzaile berria goitizen honentzat."
+
+#. TRANS: Field label.
+msgid "New nickname"
+msgstr "Goitizen berria"
+
+#. TRANS: Field title for nickname field.
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr "1-64 letra xehe edo zenbaki, puntuazio edo espaziorik gabe."
+
+#. TRANS: Field label.
+msgctxt "LABEL"
+msgid "Email"
+msgstr "Eposta"
+
+#. TRANS: Field title for e-mail address field.
+msgid "Used only for updates, announcements, and password recovery"
+msgstr ""
+"Eguneraketetarako, iragarkietarako eta pasahitza berreskuratzeko soilik "
+"erabiltzen da."
+
+#. TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
+msgctxt "BUTTON"
+msgid "Create"
+msgstr "Sortu"
+
+#. TRANS: Fieldset legend.
+msgid "Connect existing account"
+msgstr "Konektatu sortutako kontua"
+
+#. TRANS: Sub form introduction text.
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr ""
+"Dagoeneko kontu bat baduzu, hasi saioa zure erabiltzaile eta pasahitzarekin "
+"zure Twitterrera konektatzeko."
+
+#. TRANS: Field label.
+msgid "Existing nickname"
+msgstr "Goitizena existitzen da"
+
+#. TRANS: Field label.
+msgid "Password"
+msgstr "Pasahitza"
+
+#. TRANS: Fieldset legend.
+msgid "License"
+msgstr "Lizentzia"
+
+#. TRANS: Text for license agreement checkbox.
+#. TRANS: %s is the license as configured for the StatusNet site.
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"Nire testu eta fitxategiak %s lizentziapean daude, datu pribatu hauek izan "
+"ezik: pasahitza, helbide elektronikoa, BM helbidea eta telefono zenbakia."
+
+#. TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
+msgctxt "BUTTON"
+msgid "Connect"
+msgstr "Konektatu"
+
+#. TRANS: Client error displayed when trying to create a new user while creating new users is not allowed.
+msgid "Registration not allowed."
+msgstr "Erregistroa ez dago baimenduta."
+
+#. TRANS: Client error displayed when trying to create a new user with an invalid invitation code.
+msgid "Not a valid invitation code."
+msgstr "Gonbidapen kodea ez da baliozkoa."
+
+#. TRANS: Client error displayed when trying to create a new user with an invalid username.
+msgid "Nickname not allowed."
+msgstr "Goitizen hori ez da onartzen."
+
+#. TRANS: Client error displayed when trying to create a new user with a username that is already in use.
+msgid "Nickname already in use. Try another one."
+msgstr "Goitizen hori hartua dago. Saiatu beste batekin."
+
+#. TRANS: Server error displayed when creating a new user has failed.
+msgid "Error registering user."
+msgstr "Akatsa erabiltzailea erregistratzerakoan."
+
+#. TRANS: Server error displayed when connecting a user to a Twitter user has failed.
+#. TRANS: Server error displayed connecting a user to a Twitter user has failed.
+msgid "Error connecting user to Twitter."
+msgstr "Akatsa erabiltzailea Twitterrera konektatzean."
+
+#. TRANS: Form validation error displayed when connecting an existing user to a Twitter user fails because
+#. TRANS: the provided username and/or password are incorrect.
+msgid "Invalid username or password."
+msgstr "Baliogabeko erabiltzaile edo pasahitza."
+
+#. TRANS: Page title for Twitter administration panel.
+msgctxt "TITLE"
+msgid "Twitter"
+msgstr "Twitter"
+
+#. TRANS: Instructions for Twitter bridge administration page.
+msgid "Twitter bridge settings"
+msgstr "Twitter bridge aukerak"
+
+#. TRANS: Client error displayed when a consumer key is invalid because it is too long.
+msgid "Invalid consumer key. Maximum length is 255 characters."
+msgstr "Kontsumitzaile gako okerra. Luzera maximoa 255 karakterekoa da."
+
+#. TRANS: Client error displayed when a consumer secret is invalid because it is too long.
+msgid "Invalid consumer secret. Maximum length is 255 characters."
+msgstr "Kontsumitzaile sekretu okerra. Luzera maximoa 255 karakterekoa da."
+
+#. TRANS: Fieldset legend for Twitter application settings.
+msgid "Twitter application settings"
+msgstr "Twitter aplikazio aukerak"
+
+#. TRANS: Field label for Twitter assigned consumer key.
+msgid "Consumer key"
+msgstr "Kontsumitzaile gakoa"
+
+#. TRANS: Field title for Twitter assigned consumer key.
+msgid "The consumer key assigned by Twitter."
+msgstr "Twitterrek emandako kontsumitzaile gakoa."
+
+#. TRANS: Field label for Twitter assigned consumer secret.
+msgid "Consumer secret"
+msgstr "Kontsumitzaile sekretua"
+
+#. TRANS: Field title for Twitter assigned consumer secret.
+msgid "The consumer secret assigned by Twitter."
+msgstr "Twitterrek emandako kontsumitzaile sekretua."
+
+#. TRANS: Form guide displayed when two required fields have already been provided.
+msgid "Note: A global consumer key and secret are set."
+msgstr "Oharra: kontsumitzaile gako eta sekretu orokorra ezarriak."
+
+#. TRANS: Field label for Twitter application name.
+msgid "Integration source"
+msgstr "Integrazio iturburua."
+
+#. TRANS: Field title for Twitter application name.
+msgid "The name of your Twitter application."
+msgstr "Zure Twitter aplikazioaren izena."
+
+#. TRANS: Fieldset legend for Twitter integration options.
+msgid "Options"
+msgstr "Hobespenak"
+
+#. TRANS: Checkbox label for global setting.
+msgid "Enable \"Sign-in with Twitter\""
+msgstr "Gaitu \"Sartu Twitterrekin\""
+
+#. TRANS: Checkbox title.
+msgid "This allow users to login with their Twitter credentials."
+msgstr "Twitterreko kontuarekin saio hasteko aukera ematen du."
+
+#. TRANS: Checkbox label for global setting.
+msgid "Enable Twitter import"
+msgstr "Gaitu Twitter inportazioa"
+
+#. TRANS: Checkbox title for global setting.
+msgid ""
+"Allow users to import their Twitter friends' timelines. Requires daemons to "
+"be manually configured."
+msgstr ""
+"Twitterreko lagunen denbora-lerroak inportatzen uzten du. Daemonak "
+"beharrezkoak eskuz konfiguratzeko."
+
+#. TRANS: Button title for saving the administrative Twitter bridge settings.
+msgid "Save the Twitter bridge settings."
+msgstr "Gorde Twitter bridge aukerak."
+
+#. TRANS: Server exception thrown when an invalid URL scheme is detected.
+msgid "Invalid URL scheme for HTTP stream reader."
+msgstr "URL amarru baliogabea HTTP jario irakurgailuarentzat."
+
+#. TRANS: Exception thrown when input from an inexpected socket is encountered.
+msgid "Got input from unexpected socket!"
+msgstr ""
+
+#. TRANS: Exception thrown when an invalid state is encountered in handleLine.
+#. TRANS: %s is the invalid state.
+#, php-format
+msgid "Invalid state in handleLine: %s."
+msgstr ""
+
+#. TRANS: Exception thrown when an invalid response line is encountered.
+#. TRANS: %s is the invalid line.
+#, php-format
+msgid "Invalid HTTP response line: %s."
+msgstr "HTTP erantzun lerro baliogabea: %s."
+
+#. TRANS: Exception thrown when an invalid response line part is encountered.
+#. TRANS: %1$s is the chunk, %2$s is the line.
+#, php-format
+msgid "Invalid HTTP response line chunk \"%1$s\": %2$s."
+msgstr ""
+
+#. TRANS: Exception thrown when an invalid response code is encountered.
+#. TRANS: %1$s is the response code, %2$s is the line.
+#, php-format
+msgid "Bad HTTP response code %1$s: %2$s."
+msgstr "HTTP erantzun okerraren kodea %1$s: %2$s."
+
+#. TRANS: Menu item in login navigation.
+#. TRANS: Menu item in connection settings navigation.
+msgctxt "MENU"
+msgid "Twitter"
+msgstr "Twitter"
+
+#. TRANS: Title for menu item in login navigation.
+msgid "Login or register using Twitter."
+msgstr "Saioa hasi edo erregistratu Twitter erabiliz."
+
+#. TRANS: Title for menu item in connection settings navigation.
+msgid "Twitter integration options"
+msgstr "Twitter integrazio aukerak"
+
+#. TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
+msgid "Twitter"
+msgstr "Twitter"
+
+#. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
+msgid "Twitter bridge configuration page."
+msgstr "Twitter bridge konfigurazio orria."
+
+#. TRANS: Plugin description.
+msgid ""
+"The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
+"with <a href=\"http://twitter.com/\">Twitter</a>."
+msgstr ""
+
+#. TRANS: Client error displayed when trying to log in using Twitter while already logged in to StatusNet.
+msgid "Already logged in."
+msgstr "Dagoeneko saioa hasita."
+
+#. TRANS: Title for login using Twitter page.
+msgctxt "TITLE"
+msgid "Twitter Login"
+msgstr "Twitter Saio Hasera"
+
+#. TRANS: Instructions for login using Twitter page.
+msgid "Login with your Twitter account"
+msgstr "Saioa hasi zure Twitter kontuarekin"
+
+#. TRANS: Alternative text for "sign in with Twitter" image.
+msgid "Sign in with Twitter"
+msgstr "Erregistratu Twitterrekin"
+
+#. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
+msgid "Your Twitter bridge has been disabled"
+msgstr ""
+
+#. TRANS: Mail body after forwarding notices to Twitter has stopped working.
+#. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the
+#. TRANS: Twitter settings, %3$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
+"disabled. We no longer seem to have permission to update your Twitter "
+"status. Did you maybe revoke %3$s's access?\n"
+"\n"
+"You can re-enable your Twitter bridge by visiting your Twitter settings "
+"page:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Regards,\n"
+"%3$s"
+msgstr ""
+
+#. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+#. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
+#, php-format
+msgid "RT @%1$s %2$s"
+msgstr "RT @%1$s %2$s"

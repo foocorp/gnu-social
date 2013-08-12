@@ -57,7 +57,7 @@ class QnashowquestionAction extends ShownoticeAction
      */
     function prepare($argarray)
     {
-        OwnerDesignAction::prepare($argarray);
+        Action::prepare($argarray);
 
         $this->id = $this->trimmed('id');
 
@@ -115,13 +115,7 @@ class QnashowquestionAction extends ShownoticeAction
         }
 
         if (count($answerIds) > 0) {
-            $notice = new Notice();
-            $notice->query(
-                sprintf(
-                    'SELECT notice.* FROM notice WHERE notice.id IN (%s)',
-                    implode(',', $answerIds)
-                )
-            );
+            $notice = Notice::multiGet('id', $answerIds);
 
             $nli = new NoticeList($notice, $this);
             $nli->show();
@@ -151,9 +145,9 @@ class QnashowquestionAction extends ShownoticeAction
      */
     function title()
     {
-        // TRANS: Page title for a question.
-        // TRANS: %1$s is the nickname of the user who asked the question, %2$s is the question.
         return sprintf(
+            // TRANS: Page title for a question.
+            // TRANS: %1$s is the nickname of the user who asked the question, %2$s is the question.
             _m('%1$s\'s question: %2$s'),
             $this->user->nickname,
             $this->question->title
@@ -167,7 +161,6 @@ class QnashowquestionAction extends ShownoticeAction
     {
         return Action::lastModified();
     }
-
 
     /**
      * @fixme combine the notice time with question update time

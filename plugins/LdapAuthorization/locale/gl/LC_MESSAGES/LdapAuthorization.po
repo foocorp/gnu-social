@@ -1,0 +1,42 @@
+# Translation of StatusNet - LdapAuthorization to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - LdapAuthorization\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:57+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:25+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-ldapauthorization\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+msgid ""
+"provider_name must be set. Use the provider_name from the LDAP "
+"Authentication plugin."
+msgstr ""
+"Cómpre definir \"provider_name\". Use o atributo \"provider_name\" do "
+"complemento de autenticación LDAP."
+
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+msgid "uniqueMember_attribute must be set."
+msgstr "Cómpre definir \"uniqueMember_attribute\"."
+
+#. TRANS: Plugin description.
+msgid ""
+"The LDAP Authorization plugin allows for StatusNet to handle authorization "
+"through LDAP."
+msgstr ""
+"O complemento de autenticación LDAP permite a StatusNet manexar a "
+"autorización a través do LDAP."

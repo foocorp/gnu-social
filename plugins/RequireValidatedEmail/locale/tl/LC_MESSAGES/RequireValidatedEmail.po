@@ -9,38 +9,46 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:07+0000\n"
-"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:51+0000\n"
+"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:28+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
 msgid "You must validate your email address before posting."
 msgstr "Kailangan patunayan mo ang iyong tirahan ng e-liham bago magpaskil."
 
+#. TRANS: Client exception thrown when trying to register without providing an e-mail address.
 msgid "You must provide an email address to register."
 msgstr "Dapat kang magbigay ng isang tirahan ng e-liham upang makapagpatala."
 
+#. TRANS: Plugin description.
 msgid "Disables posting without a validated email address."
 msgstr ""
 "Hindi nagpapagana ng pagpapaskil na walang isang napatunayang tirahan ng e-"
 "liham."
 
+#. TRANS: Client exception thrown when trying to register while already logged in.
 msgid "You are already logged in."
 msgstr "Nakalagda ka na."
 
+#. TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
 msgid "Confirmation code not found."
 msgstr "Hindi natagpuan ang kodigo ng pagtitiyak."
 
+#. TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
 msgid "No user for that confirmation code."
 msgstr "Walang tagagamit para sa ganyang kodigo ng paniniyak."
 
+#. TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+#. TRANS: %s is the invalid e-mail address.
 #, php-format
 msgid "Unrecognized address type %s."
 msgstr "Hindi nakikilalang uri ng tirahan na %s."
@@ -49,12 +57,15 @@ msgstr "Hindi nakikilalang uri ng tirahan na %s."
 msgid "That address has already been confirmed."
 msgstr "Natiyak na ang ganyang tirahan."
 
+#. TRANS: Client exception thrown when trying to register with too short a password.
 msgid "Password too short."
 msgstr "Napakaikli ng hudyat."
 
+#. TRANS: Client exception thrown when trying to register without providing the same password twice.
 msgid "Passwords do not match."
 msgstr "Hindi magkatugma ang mga hudyat."
 
+#. TRANS: Form instructions. %s is the nickname of the to be registered user.
 #, php-format
 msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
@@ -64,23 +75,32 @@ msgstr ""
 "na %s.  Gamitin ang pormularyong nasa ibaba upang maitakda ang bago mong "
 "hudyat."
 
+#. TRANS: Page title.
 msgid "Set a password"
 msgstr "Magtakda ng isang hudyat"
 
-msgid "Confirm email"
-msgstr "Tiyakin ang e-liham"
+#. TRANS: Form legend.
+msgid "Confirm email address"
+msgstr "Patotohanan ang tirahan ng e-liham"
 
+#. TRANS: Field label.
 msgid "New password"
 msgstr "Bagong hudyat"
 
+#. TRANS: Field title for password field.
 msgid "6 or more characters."
 msgstr "6 o mahigit pang mga panitik."
 
+#. TRANS: Field label for repeat password field.
+msgctxt "LABEL"
 msgid "Confirm"
-msgstr "Pagtibayin"
+msgstr "Patunayan"
 
+#. TRANS: Field title for repeat password field.
 msgid "Same as password above."
 msgstr "Katulad ng hudyat na nasa itaas."
 
+#. TRANS: Button text for completing registration by e-mail.
+msgctxt "BUTTON"
 msgid "Save"
 msgstr "Sagipin"

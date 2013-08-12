@@ -162,4 +162,72 @@ class DocAction extends Action
             Event::handle('EndLoadDoc', array($this->title, &$this->output));
         }
     }
+
+    function showLocalNav()
+    {
+        $menu = new DocNav($this);
+        $menu->show();
+    }
+}
+
+class DocNav extends Menu
+{
+    function show()
+    {
+        $stub = new HomeStubNav($this->action);
+        $this->submenu(_m('MENU','Home'), $stub);
+
+        $docs = new DocListNav($this->action);
+        $this->submenu(_m('MENU','Docs'), $docs);
+    }
+}
+
+class DocListNav extends Menu
+{
+    function getItems()
+    {
+        $items = array();
+
+        if (Event::handle('StartDocsMenu', array(&$items))) {
+
+            $items = array(array('doc',
+                                 array('title' => 'help'),
+                                 _m('MENU', 'Help'),
+                                 _('Getting started'),
+                                 'nav_doc_help'),
+                           array('doc',
+                                 array('title' => 'about'),
+                                 _m('MENU', 'About'),
+                                 _('About this site'),
+                                 'nav_doc_about'),
+                           array('doc',
+                                 array('title' => 'faq'),
+                                 _m('MENU', 'FAQ'),
+                                 _('Frequently asked questions'),
+                                 'nav_doc_faq'),
+                           array('doc',
+                                 array('title' => 'contact'),
+                                 _m('MENU', 'Contact'),
+                                 _('Contact info'),
+                                 'nav_doc_contact'),
+                           array('doc',
+                                 array('title' => 'tags'),
+                                 _m('MENU', 'Tags'),
+                                 _('Using tags'),
+                                 'nav_doc_tags'),
+                           array('doc',
+                                 array('title' => 'groups'),
+                                 _m('MENU', 'Groups'),
+                                 _('Using groups'),
+                                 'nav_doc_groups'),
+                           array('doc',
+                                 array('title' => 'api'),
+                                 _m('MENU', 'API'),
+                                 _('RESTful API'),
+                                 'nav_doc_api'));
+
+            Event::handle('EndDocsMenu', array(&$items));
+        }
+        return $items;
+    }
 }

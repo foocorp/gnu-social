@@ -1,0 +1,53 @@
+# Translation of StatusNet - EmailReminder to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: ChrisiPK
+# Author: Inkowik
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailReminder\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:25+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-19 11:23:04+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-emailreminder\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Send email reminders for various things."
+msgstr "E-Mail-Erinnerungen für verschiedene Sachen schicken."
+
+#. TRANS: Server exception thrown when a reminder record could not be inserted into the database.
+msgid "Database error inserting reminder record."
+msgstr "Datenbankfehler beim Einfügen des Erinnerungsdatensatzes."
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Reminder - please confirm your registration!"
+msgstr "Erinnerung - bitte bestätige deine Registrierung!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Second reminder - please confirm your registration!"
+msgstr "Zweite Erinnerung - Bitte bestätige deine Registrierung!"
+
+#. TRANS: Subject for reminder e-mail.
+msgid "Final reminder - please confirm your registration!"
+msgstr "Letzte Erinnerung - Bitte bestätige deine Registrierung!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Reminder - You have been invited to join %s!"
+msgstr "Erinnerung - Du wurdest eingeladen, %s beizutreten!"
+
+#. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#, php-format
+msgid "Final reminder - you have been invited to join %s!"
+msgstr "Letzte Erinnerung - Du wurdest eingeladen, %s beizutreten"

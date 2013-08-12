@@ -1,0 +1,54 @@
+# Translation of StatusNet - WikiHashtags to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - WikiHashtags\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:27+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-19 11:23:53+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-wikihashtags\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Link title for editing an article on WikiHashTags.
+#. TRANS: %s is the hash tag page to be edited.
+#, php-format
+msgid "Edit the article for #%s on WikiHashtags"
+msgstr "Editar o artigo \"#%s\" en WikiHashtags"
+
+#. TRANS: Link description for editing an article on WikiHashTags.
+msgid "Edit"
+msgstr "Editar"
+
+#. TRANS: Link title for viewing the GFDL.
+msgid "Shared under the terms of the GNU Free Documentation License"
+msgstr "Difundido baixo os termos da licenza de documentación libre de GNU"
+
+#. TRANS: Link description for viewing the GFDL.
+msgid "GNU FDL"
+msgstr "GNU FDL"
+
+#. TRANS: Link description for editing an article on WikiHashTags.
+#. TRANS: %s is the hash tag page to be created.
+#, php-format
+msgid "Start the article for #%s on WikiHashtags"
+msgstr "Crear o artigo \"#%s\" en WikiHashtags"
+
+#. TRANS: Plugin description.
+msgid ""
+"Gets hashtag descriptions from <a href=\"http://hashtags.wikia.com/"
+"\">WikiHashtags</a>."
+msgstr ""
+"Obtén as descricións das etiquetas desde <a href=\"http://hashtags.wikia.com/"
+"\">WikiHashtags</a>."

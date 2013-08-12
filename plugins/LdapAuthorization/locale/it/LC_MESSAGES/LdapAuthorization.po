@@ -1,0 +1,39 @@
+# Translation of StatusNet - LdapAuthorization to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: GreenFox
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - LdapAuthorization\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:57+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:25+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+msgid ""
+"provider_name must be set. Use the provider_name from the LDAP "
+"Authentication plugin."
+msgstr ""
+"provider_name deve essere definito. Utilizzate l'attributo provider_name "
+"proveniente dall'estensione LDAP Authentication"
+
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+msgid "uniqueMember_attribute must be set."
+msgstr "uniqueMember_attribute deve essere definito."
+
+#. TRANS: Plugin description.
+msgid ""
+"The LDAP Authorization plugin allows for StatusNet to handle authorization "
+"through LDAP."
+msgstr ""
+"L'estensione LDAP Authentication permette a StatusNet di gestire "
+"l'autenticazione attraverso LDAP."

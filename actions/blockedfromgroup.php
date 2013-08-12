@@ -40,7 +40,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class BlockedfromgroupAction extends GroupDesignAction
+class BlockedfromgroupAction extends GroupAction
 {
     var $page = null;
 
@@ -120,12 +120,6 @@ class BlockedfromgroupAction extends GroupDesignAction
         $this->element('p', 'instructions',
                        // TRANS: Instructions for list of users blocked from a group.
                        _('A list of the users blocked from joining this group.'));
-    }
-
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
     }
 
     function showContent()

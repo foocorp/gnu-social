@@ -1,6 +1,7 @@
 # Translation of StatusNet - NoticeTitle to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: ChrisiPK
 # Author: The Evil IP address
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - NoticeTitle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:15+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:19+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:46+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-05 21:51:09+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-noticetitle\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -30,8 +31,8 @@ msgstr "Fügt Nachrichten optionale Titel hinzu."
 #, php-format
 msgid "The notice title is too long (maximum %d character)."
 msgid_plural "The notice title is too long (maximum %d characters)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Der Nachrichtentitel ist zu lang (maximal %d Zeichen)."
+msgstr[1] "Der Nachrichtentitel ist zu lang (maximal %d Zeichen)."
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format

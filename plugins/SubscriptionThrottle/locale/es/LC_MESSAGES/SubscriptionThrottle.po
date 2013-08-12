@@ -1,6 +1,7 @@
-# Translation of StatusNet - SubscriptionThrottle to Spanish (Español)
+# Translation of StatusNet - SubscriptionThrottle to Spanish (español)
 # Exported from translatewiki.net
 #
+# Author: Armando-Martin
 # Author: Translationista
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,24 +10,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubscriptionThrottle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-31 21:06+0000\n"
-"PO-Revision-Date: 2011-03-31 21:10:38+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:12+0000\n"
 "Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:10:02+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r85082); Translate extension (2011-03-11)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:27:35+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-subscriptionthrottle\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Exception thrown when subscribing too quickly.
 msgid "Too many subscriptions. Take a break and try again later."
-msgstr ""
+msgstr "Demasiadas subscripciones. Haga una pausa e inténtelo más tarde."
 
+#. TRANS: Exception thrown when joing groups too quickly.
 msgid "Too many memberships. Take a break and try again later."
-msgstr ""
+msgstr "Demasiados miembros. Haga una pausa e inténtelo más tarde."
 
+#. TRANS: Plugin description.
 msgid "Configurable limits for subscriptions and group memberships."
 msgstr ""
 "Límites configurables para las suscripciones y adhesiones a los grupos."

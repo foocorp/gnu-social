@@ -187,9 +187,9 @@ class AccessAdminPanelForm extends AdminForm
      */
     function formActions()
     {
-        // TRANS: Title for button to save access settings in site admin panel.
-        $title = _('Save access settings');
-        // TRANS: Tooltip for button to save access settings in site admin panel.
+        // TRANS: Button title to save access settings in site admin panel.
+        $title = _('Save access settings.');
+        // TRANS: Button text to save access settings in site admin panel.
         $this->out->submit('submit', _m('BUTTON', 'Save'), 'submit', null, $title);
     }
 }

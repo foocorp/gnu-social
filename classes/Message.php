@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Message extends Memcached_DataObject
+class Message extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -26,6 +26,39 @@ class Message extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier'),
+                'from_profile' => array('type' => 'int', 'not null' => true, 'description' => 'who the message is from'),
+                'to_profile' => array('type' => 'int', 'not null' => true, 'description' => 'who the message is to'),
+                'content' => array('type' => 'text', 'description' => 'message content'),
+                'rendered' => array('type' => 'text', 'description' => 'HTML version of the content'),
+                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+                'source' => array('type' => 'varchar', 'length' => 32, 'description' => 'source of comment, like "web", "im", or "clientname"'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'message_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'message_from_profile_fkey' => array('profile', array('from_profile' => 'id')),
+                'message_to_profile_fkey' => array('profile', array('to_profile' => 'id')),
+            ),
+            'indexes' => array(
+                // @fixme these are really terrible indexes, since you can only sort on one of them at a time.
+                // looks like we really need a (to_profile, created) for inbox and a (from_profile, created) for outbox
+                'message_from_idx' => array('from_profile'),
+                'message_to_idx' => array('to_profile'),
+                'message_created_idx' => array('created'),
+            ),
+        );
+    }
 
     function getFrom()
     {
@@ -105,5 +138,83 @@ class Message extends Memcached_DataObject
         $to   = User::staticGet('id', $this->to_profile);
 
         mail_notify_message($this, $from, $to);
+    }
+
+    function getSource()
+    {
+        $ns = new Notice_source();
+        if (!empty($this->source)) {
+            switch ($this->source) {
+            case 'web':
+            case 'xmpp':
+            case 'mail':
+            case 'omb':
+            case 'system':
+            case 'api':
+                $ns->code = $this->source;
+                break;
+            default:
+                $ns = Notice_source::staticGet($this->source);
+                if (!$ns) {
+                    $ns = new Notice_source();
+                    $ns->code = $this->source;
+                    $app = Oauth_application::staticGet('name', $this->source);
+                    if ($app) {
+                        $ns->name = $app->name;
+                        $ns->url  = $app->source_url;
+                    }
+                }
+                break;
+            }
+        }
+        return $ns;
+    }
+
+    function asActivity()
+    {
+        $act = new Activity();
+
+        if (Event::handle('StartMessageAsActivity', array($this, &$act))) {
+
+            $act->id      = TagURI::mint(sprintf('activity:message:%d', $this->id));
+            $act->time    = strtotime($this->created);
+            $act->link    = $this->url;
+
+            $profile = Profile::staticGet('id', $this->from_profile);
+
+            if (empty($profile)) {
+                throw new Exception(sprintf("Sender profile not found: %d", $this->from_profile));
+            }
+            
+            $act->actor            = ActivityObject::fromProfile($profile);
+            $act->actor->extra[]   = $profile->profileInfo(null);
+
+            $act->verb = ActivityVerb::POST;
+
+            $act->objects[] = ActivityObject::fromMessage($this);
+
+            $ctx = new ActivityContext();
+
+            $rprofile = Profile::staticGet('id', $this->to_profile);
+
+            if (empty($rprofile)) {
+                throw new Exception(sprintf("Receiver profile not found: %d", $this->to_profile));
+            }
+
+            $ctx->attention[] = $rprofile->getUri();
+            $ctx->attentionType[$rprofile->getUri()] = ActivityObject::PERSON;
+
+            $act->context = $ctx;
+
+            $source = $this->getSource();
+
+            if ($source) {
+                $act->generator = ActivityObject::fromNoticeSource($source);
+            }
+
+            Event::handle('EndMessageAsActivity', array($this, &$act));
+        }
+
+        return $act;
     }
 }

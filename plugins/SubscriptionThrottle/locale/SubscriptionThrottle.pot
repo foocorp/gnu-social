@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,14 +16,17 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: SubscriptionThrottlePlugin.php:74
+#. TRANS: Exception thrown when subscribing too quickly.
+#: SubscriptionThrottlePlugin.php:73
 msgid "Too many subscriptions. Take a break and try again later."
 msgstr ""
 
-#: SubscriptionThrottlePlugin.php:100
+#. TRANS: Exception thrown when joing groups too quickly.
+#: SubscriptionThrottlePlugin.php:99
 msgid "Too many memberships. Take a break and try again later."
 msgstr ""
 
-#: SubscriptionThrottlePlugin.php:171
+#. TRANS: Plugin description.
+#: SubscriptionThrottlePlugin.php:168
 msgid "Configurable limits for subscriptions and group memberships."
 msgstr ""

@@ -115,7 +115,15 @@ class ApiTimelineRetweetsOfMeAction extends ApiAuthAction
              array('nickname' => $this->auth_user->nickname)
         );
 
-        $strm = $this->auth_user->repeatsOfMe($offset, $limit, $this->since_id, $this->max_id);
+        // This is a really bad query for some reason
+
+        if (!common_config('performance', 'high')) {
+            $strm = $this->auth_user->repeatsOfMe($offset, $limit, $this->since_id, $this->max_id);
+        } else {
+            $strm = new Notice();
+            $strm->whereAdd('0 = 1');
+            $strm->find();
+        }
 
         switch ($this->format) {
         case 'xml':
@@ -137,7 +145,7 @@ class ApiTimelineRetweetsOfMeAction extends ApiAuthAction
             $this->raw($atom->getString());
             break;
         case 'as':
-            header('Content-Type: application/json; charset=utf-8');
+            header('Content-Type: ' . ActivityStreamJSONDocument::CONTENT_TYPE);
             $doc = new ActivityStreamJSONDocument($this->auth_user);
             $doc->setTitle($title);
             $doc->addLink($link, 'alternate', 'text/html');

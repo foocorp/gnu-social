@@ -108,6 +108,13 @@ class HTMLOutputter extends XMLOutputter
 
         header('Content-Type: '.$type);
 
+	// Output anti-framing headers to prevent clickjacking (respected by newer
+        // browsers).
+	if (common_config('javascript', 'bustframes')) {
+            header('X-XSS-Protection: 1; mode=block'); // detect XSS Reflection attacks
+            header('X-Frame-Options: SAMEORIGIN'); // no rendering if origin mismatch
+        }
+
         $this->extraHeaders();
         if (preg_match("/.*\/.*xml/", $type)) {
             // Required for XML documents

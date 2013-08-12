@@ -79,9 +79,6 @@ class SecondaryNav extends Menu
                                  // TRANS: Secondary navigation menu item leading to e-mail contact information on the
                                  // TRANS: StatusNet site, where to report bugs, ...
                                  _m('MENU','Contact'));
-            $this->out->menuItem(common_local_url('doc', array('title' => 'badge')),
-                                 // TRANS: Secondary navigation menu item. Leads to information about embedding a timeline widget.
-                                 _m('MENU','Badge'));
             Event::handle('EndSecondaryNav', array($this->action));
         }
         $this->out->elementEnd('ul');

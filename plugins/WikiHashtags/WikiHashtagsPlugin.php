@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      Event
  */
-
 class WikiHashtagsPlugin extends Plugin
 {
     const VERSION = '0.1';
@@ -57,12 +56,10 @@ class WikiHashtagsPlugin extends Plugin
         $name = $action->trimmed('action');
 
         if ($name == 'tag') {
-
             $taginput = $action->trimmed('tag');
             $tag = common_canonical_tag($taginput);
 
             if (!empty($tag)) {
-
                 $url = sprintf('http://hashtags.wikia.com/index.php?title=%s&action=render',
                                urlencode($tag));
                 $editurl = sprintf('http://hashtags.wikia.com/index.php?title=%s&action=edit',
@@ -81,15 +78,22 @@ class WikiHashtagsPlugin extends Plugin
                     $action->raw($html);
                     $action->elementStart('p');
                     $action->element('a', array('href' => $editurl,
+                                                // TRANS: Link title for editing an article on WikiHashTags.
+                                                // TRANS: %s is the hash tag page to be edited.
                                                 'title' => sprintf(_m('Edit the article for #%s on WikiHashtags'), $tag)),
+                                     // TRANS: Link description for editing an article on WikiHashTags.
                                      _m('Edit'));
                     $action->element('a', array('href' => 'http://www.gnu.org/copyleft/fdl.html',
+                                                // TRANS: Link title for viewing the GFDL.
                                                 'title' => _m('Shared under the terms of the GNU Free Documentation License'),
                                                 'rel' => 'license'),
-                                     'GNU FDL');
+                                     // TRANS: Link description for viewing the GFDL.
+                                     _m('GNU FDL'));
                     $action->elementEnd('p');
                 } else {
                     $action->element('a', array('href' => $editurl),
+                                     // TRANS: Link description for editing an article on WikiHashTags.
+                                     // TRANS: %s is the hash tag page to be created.
                                      sprintf(_m('Start the article for #%s on WikiHashtags'), $tag));
                 }
 
@@ -107,6 +111,7 @@ class WikiHashtagsPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:WikiHashtags',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Gets hashtag descriptions from <a href="http://hashtags.wikia.com/">WikiHashtags</a>.'));
         return true;
     }

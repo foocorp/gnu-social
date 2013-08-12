@@ -94,6 +94,15 @@ class AccountProfileBlock extends ProfileBlock
         return $this->profile->bio;
     }
 
+    function otherProfiles()
+    {
+        $others = array();
+
+        Event::handle('OtherAccountProfiles', array($this->profile, &$others));
+        
+        return $others;
+    }
+
     function showTags()
     {
         $cur = common_current_user();
@@ -138,9 +147,6 @@ class AccountProfileBlock extends ProfileBlock
             if (Event::handle('StartProfilePageActionsElements', array($this->out, $this->profile))) {
                 if (empty($cur)) { // not logged in
                     if (Event::handle('StartProfileRemoteSubscribe', array($this->out, $this->profile))) {
-                        $this->out->elementStart('li', 'entity_subscribe');
-                        $this->showRemoteSubscribeLink();
-                        $this->out->elementEnd('li');
                         Event::handle('EndProfileRemoteSubscribe', array($this->out, $this->profile));
                     }
                 } else {
@@ -296,16 +302,6 @@ class AccountProfileBlock extends ProfileBlock
             $rf->show();
         }
         $this->out->elementEnd('li');
-    }
-
-    function showRemoteSubscribeLink()
-    {
-        $url = common_local_url('remotesubscribe',
-                                array('nickname' => $this->profile->nickname));
-        $this->out->element('a', array('href' => $url,
-                                  'class' => 'entity_remote_subscribe'),
-                       // TRANS: Link text for link that will subscribe to a remote profile.
-                       _m('BUTTON','Subscribe'));
     }
 
     function show()

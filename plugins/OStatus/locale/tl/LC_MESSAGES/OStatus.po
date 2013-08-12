@@ -9,18 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:44+0000\n"
-"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:34+0000\n"
+"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:48+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:04+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: String in the gettext speed test script. Unimportant.
 msgid "Feeds"
 msgstr "Mga pasubo"
 
@@ -30,8 +31,8 @@ msgid "Subscribe"
 msgstr "Pumayag na tumanggap ng sipi"
 
 #. TRANS: Fieldset legend.
-msgid "Tag remote profile"
-msgstr "Tatakan ang malayong balangkas"
+msgid "List remote profile"
+msgstr "Ilista ang malayong balangkas"
 
 #. TRANS: Field label.
 msgctxt "LABEL"
@@ -56,8 +57,8 @@ msgstr "Salukin"
 msgid "Invalid URI."
 msgstr "Hindi katanggap-tanggap na URI."
 
-#. TRANS: Error message in OStatus plugin.
-#. TRANS: Error text.
+#. TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+#. TRANS: and example.net, as these are official standard domain names for use in examples.
 msgid ""
 "Sorry, we could not reach that address. Please make sure that the OStatus "
 "address is like nickname@example.com or http://example.net/nickname."
@@ -126,10 +127,11 @@ msgid "Follow list"
 msgstr "Sundan ang talaan"
 
 #. TRANS: Success message for remote list follow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
-#, fuzzy, php-format
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
+#, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
-msgstr "Tumigil si %1$s sa pagsunod sa talaang %2$s ni %3$s."
+msgstr ""
+"Sinusundan na ngayon ni %1$s ang mga taong nakatala sa loob ng %2$s ni %3$s."
 
 #. TRANS: Exception thrown when subscription to remote list fails.
 msgid "Failed subscribing to remote list."
@@ -140,7 +142,7 @@ msgid "Unfollow list"
 msgstr "Huwag sundan ang talaan"
 
 #. TRANS: Success message for remote list unfollow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, php-format
 msgid "%1$s stopped following the list %2$s by %3$s."
 msgstr "Tumigil si %1$s sa pagsunod sa talaang %2$s ni %3$s."
@@ -148,7 +150,7 @@ msgstr "Tumigil si %1$s sa pagsunod sa talaang %2$s ni %3$s."
 #. TRANS: Title for listing a remote profile.
 msgctxt "TITLE"
 msgid "List"
-msgstr ""
+msgstr "Itala"
 
 #. TRANS: Success message for remote list addition through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the added list member, %3$s is the list name.
@@ -157,35 +159,34 @@ msgid "%1$s listed %2$s in the list %3$s."
 msgstr "Itinala ni %1$s si %2$s sa loob ng talaang %3$s."
 
 #. TRANS: Exception thrown when subscribing to a remote list fails.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Could not complete subscription to remote profile's feed. List %s could not "
 "be saved."
 msgstr ""
-"Hindi mabuo ang pagpapasipi sa pasubo ng malayong balangkas. Hindi masasagip "
-"ang tatak na %s."
+"Hindi mabuo ang pagpapasipi sa pagpapasipi ng malayong balangkas. Hindi "
+"masasagip ang talaang %s."
 
 #. TRANS: Title for unlisting a remote profile.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Unlist"
-msgstr "Huwag sundan ang talaan"
+msgstr "Huwag itala"
 
 #. TRANS: Success message for remote list removal through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the removed list member, %3$s is the list name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s removed %2$s from the list %3$s."
-msgstr "Itinala ni %1$s si %2$s sa loob ng talaang %3$s."
+msgstr "Tinanggal ni %1$s ang %2$s mula sa talaang %3$s."
 
 #. TRANS: Title for unliking a remote notice.
 msgid "Unlike"
-msgstr ""
+msgstr "Huwag gustuhin"
 
 #. TRANS: Success message for remove a favorite notice through OStatus.
 #. TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s no longer likes %2$s."
-msgstr "Tumigil si %1$s sa pagsunod kay %2$s."
+msgstr "Hindi na gusto ni %1$s ang %2$s."
 
 #. TRANS: Link text for link to remote subscribe.
 msgid "Remote"
@@ -201,9 +202,9 @@ msgstr "Pagsasapanahon ng balangkas"
 msgid "%s has updated their profile page."
 msgstr "Si %s ay nagsapanahon ng kanilang pahina ng balangkas."
 
-#. TRANS: Link text for a user to tag an OStatus user.
-msgid "Tag"
-msgstr "Tatakan"
+#. TRANS: Link text for a user to list an OStatus user.
+msgid "List"
+msgstr "Ilista"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -275,38 +276,35 @@ msgstr "Hindi katanggap-tanggap na hub.topic na %s; hindi umiiral ang talaan."
 msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Hindi katanggap-tanggap na URL ang ipinasa para sa %1$s: \"%2$s\""
 
-#. TRANS: Client error displayed when trying to tag a local object as if it is remote.
-msgid "You can use the local tagging!"
-msgstr "Maaari mong gamitin ang katutubong pagtatatak!"
+#. TRANS: Client error displayed when trying to list a local object as if it is remote.
+msgid "You can use the local list functionality!"
+msgstr "Maaari mong gamitin ang katungkulan ng katutubong listahan!"
 
-#. TRANS: Header for tagging a remote object. %s is a remote object's name.
+#. TRANS: Header for listing a remote object. %s is a remote object's name.
 #, php-format
-msgid "Tag %s"
-msgstr "Tatakan si %s"
+msgid "List %s"
+msgstr "Ilista ang %s"
 
-#. TRANS: Button text to tag a remote object.
-#, fuzzy
+#. TRANS: Button text to list a remote object.
 msgctxt "BUTTON"
 msgid "Go"
-msgstr "Pumunta"
+msgstr "Gawin"
 
 #. TRANS: Field label.
 msgid "User nickname"
 msgstr "Palayaw ng tagagamit"
 
 #. TRANS: Field title.
-#, fuzzy
-msgid "Nickname of the user you want to tag."
-msgstr "Palayaw ng tagagamit na nais mong tatakan."
+msgid "Nickname of the user you want to list."
+msgstr "Palayaw ng tagagamit na nais mong ilista."
 
 #. TRANS: Field label.
 msgid "Profile Account"
 msgstr "Akawnt ng Balangkas"
 
 #. TRANS: Field title.
-#, fuzzy
-msgid "Your account id (i.e. user@identi.ca)."
-msgstr "ID ng akawnt mo (katulad ng user@identi.ca)."
+msgid "Your account id (for example user@identi.ca)."
+msgstr "Ang ID mo ng akawnt (halimbawa na ang user@identi.ca)."
 
 #. TRANS: Client error displayed when remote profile could not be looked up.
 #. TRANS: Client error.
@@ -384,6 +382,7 @@ msgstr "Tiyakin"
 msgid "Subscribe to this user"
 msgstr "Magpasipi sa tagagamit na ito"
 
+#. TRANS: Extra paragraph in remote profile view when already subscribed.
 msgid "You are already subscribed to this user."
 msgstr "Tumatanggap ka na ng sipi mula sa tagagamit na ito."
 
@@ -429,7 +428,8 @@ msgstr ""
 msgid "Join group"
 msgstr "Sumali sa pangkat"
 
-#. TRANS: Tooltip for field label "Join group".
+#. TRANS: Tooltip for field label "Join group". Do not translate the "example.net"
+#. TRANS: domain name in the URL, as it is an official standard domain name for examples.
 msgid "OStatus group's address, like http://example.net/group/nickname."
 msgstr ""
 "Tirahan ng pangkat ng OStatus, katulad ng http://example.net/group/nickname."
@@ -481,11 +481,11 @@ msgstr ""
 
 #. TRANS: Client exception.
 msgid "To the attention of user(s), not including this one."
-msgstr ""
+msgstr "Para sa pagpansin ng (mga) tagagamit, hindi kasama ang isang ito."
 
 #. TRANS: Client exception.
 msgid "Not to anyone in reply to anything."
-msgstr ""
+msgstr "Hindi para sa sinuman bilang pagtugon sa anumang bagay."
 
 #. TRANS: Client exception.
 msgid "This is already a favorite."
@@ -501,31 +501,31 @@ msgstr "Hindi kinagiliwan ang pabatid!"
 
 #. TRANS: Client exception.
 msgid "Not a person object."
-msgstr ""
+msgstr "Hindi isang bagay ng tao."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being tagged."
-msgstr ""
+msgid "Unidentified profile being listed."
+msgstr "Inililistang balangkas na hindi pa nakikilala."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being tagged."
-msgstr ""
+msgid "This user is not the one being listed."
+msgstr "Hindi ito ang tagagamit na inililista."
 
 #. TRANS: Client exception.
-msgid "The tag could not be saved."
-msgstr ""
+msgid "The listing could not be saved."
+msgstr "Hindi masasagip ang listahan."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being untagged."
-msgstr ""
+msgid "Unidentified profile being unlisted."
+msgstr "Inaalis sa lista na balangkas na hindi pa nakikilala."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being untagged."
-msgstr ""
+msgid "This user is not the one being unlisted."
+msgstr "Hindi ito ang tagagamit na inaalis mula sa listahan."
 
 #. TRANS: Client exception.
-msgid "The tag could not be deleted."
-msgstr ""
+msgid "The listing could not be deleted."
+msgstr "Hindi mabura ang listahan."
 
 #. TRANS: Client exception.
 msgid "Cannot favorite/unfavorite without an object."
@@ -551,11 +551,9 @@ msgid "Subscribe to list"
 msgstr "Tumanggap ng sipi mula sa talaan"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Address of the OStatus list, like http://example.net/user/all/tag."
 msgstr ""
-"Tirahan ng tatak ng talaan ng OStatus, katulad ng http://example.net/user/"
-"all/tag"
+"Tirahan ng talaan ng OStatus, katulad ng http://example.net/user/all/tag."
 
 #. TRANS: Error text displayed when trying to subscribe to a list already a subscriber to.
 msgid "You are already subscribed to this list."
@@ -566,13 +564,12 @@ msgid "Confirm subscription to remote list"
 msgstr "Tiyakin ang pagpapasipi sa malayong talaan"
 
 #. TRANS: Instructions for OStatus list subscription form.
-#, fuzzy
 msgid ""
 "You can subscribe to lists from other supported sites. Paste the list's URI "
 "below:"
 msgstr ""
 "Maaari kang magpasipi sa mga talaan mula sa iba pang mga sityong "
-"tinatangkilik.  Idikit ang tirahan o URI ng balangkas ng talaang nasa ibaba:"
+"tinatangkilik.  Idikit ang URI ng mga talaan sa ibaba:"
 
 #. TRANS: Client error.
 msgid "No such group."
@@ -624,10 +621,8 @@ msgstr ""
 "Hindi matanggap ang malalayong mga paskil para sa isang malayong talaan."
 
 #. TRANS: Client error displayed when referring to a non-existing remote list.
-#, fuzzy
 msgid "Cannot read profile to set up list subscription."
-msgstr ""
-"Hindi mabasa ang balangkas upang maihanda ang tatak ng pagsapi sa pangkat."
+msgstr "Hindi mabasa ang balangkas upang maihanda ang talaan ng pagpapasipi."
 
 #. TRANS: Client error displayed when trying to subscribe a group to a list.
 #. TRANS: Client error displayed when trying to unsubscribe a group from a list.
@@ -641,15 +636,17 @@ msgid "Could not subscribe remote user %1$s to list %2$s."
 msgstr "Hindi mapasipian ang malayong tagagamit na si %1$s sa talaang %2$s."
 
 #. TRANS: Client error displayed when trying to unsubscribe from non-existing list.
-#, fuzzy
 msgid "Cannot read profile to cancel list subscription."
-msgstr "Hindi mabasa ang balangkas upang huwag ituloy ang kasapian sa talaan."
+msgstr ""
+"Hindi mabasa ang balangkas upang huwat maituloy ang talaan ng pagpapasipi."
 
 #. TRANS: Client error displayed when trying to unsubscribe a remote user from a list fails.
 #. TRANS: %1$s is a profile URL, %2$s is a list name.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not unsubscribe remote user %1$s from list %2$s."
-msgstr "Hindi mapasipian ang malayong tagagamit na si %1$s sa talaang %2$s."
+msgstr ""
+"Hindi matanggap sa pagpapasipi ang malayong tagagamit na si %1$s mula sa "
+"talaang %2$s."
 
 #. TRANS: Client error.
 msgid "You can use the local subscription!"
@@ -670,7 +667,7 @@ msgctxt "BUTTON"
 msgid "Join"
 msgstr "Sumali"
 
-#. TRANS: Form legend. %1$s is a list, %2$s is a tagger's name.
+#. TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
 #, php-format
 msgid "Subscribe to list %1$s by %2$s"
 msgstr "Magpasipi sa talaang %1$s ni %2$s"
@@ -714,6 +711,39 @@ msgstr "Walang ibinigay na palayaw ng katutubong tagagamit o pangkat."
 msgid "OStatus Connect"
 msgstr "Ugnay sa OStatus"
 
+#. TRANS: Server exception. %s is a URL.
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Hindi katanggap-tanggap na URL ng abatar ang %s."
+
+#. TRANS: Server exception. %s is a URI.
+#, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr ""
+"Sinubok na isapanahon ang huwaran para sa hindi nasagip na malayong "
+"balangkas na %s."
+
+#. TRANS: Server exception. %s is a URL.
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Hindi nagawang damputin ang huwaran mula sa %s."
+
+#. TRANS: Exception. %s is a URL.
+#, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr ""
+"Hindi makahanap ng isang URL ng pasubo para sa pahina ng balangkas na %s."
+
+#. TRANS: Exception.
+msgid "Not a valid webfinger address."
+msgstr "Hindi isang katanggap-tanggap na tirahan ng daliri ng web."
+
+#. TRANS: Exception. %s is a webfinger address.
+#, php-format
+msgid "Could not find a valid profile for \"%s\"."
+msgstr ""
+"Hindi makahanap ng isang katanggap-tanggap na balangkas para sa \"%s\"."
+
 #. TRANS: Server exception.
 msgid "Attempting to start PuSH subscription for feed with no hub."
 msgstr ""
@@ -727,18 +757,18 @@ msgstr ""
 "sindirit."
 
 #. TRANS: Server exception. %s is a URI
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid ostatus_profile state: Two or more IDs set for %s."
 msgstr ""
-"Hindi katanggap-tanggap na katayuan ng ostatus_profile: dalawa o mahigit "
-"pang mga ID ang nakatakda para sa %s."
+"Hindi katanggap-tanggap na katayuan ng ostatus_profile: Dalawa o mahigit "
+"pang mga ID na nakatakda para sa %s."
 
 #. TRANS: Server exception. %s is a URI
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid ostatus_profile state: All IDs empty for %s."
 msgstr ""
-"Hindi katanggap-tanggap na katayuan ng ostatus_profile: lahat ng mga ID ay "
-"walang laman ang mga ID ng para sa %s."
+"Hindi katanggap-tanggap na katayuan ng ostatus_profile: Lahat ng mga ID ay "
+"walang laman para sa %s."
 
 #. TRANS: Server exception.
 #. TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
@@ -762,6 +792,22 @@ msgstr "Hindi nalalamang anyo ng pasubo."
 msgid "RSS feed without a channel."
 msgstr "Pasubong RSS na walang libuyan."
 
+#. TRANS: Client exception thrown when trying to share multiple activities at once.
+msgid "Can only handle share activities with exactly one object."
+msgstr ""
+"Makapanghahawak lamang ng mga gawaing pinagsasaluhan na mayroong isang bagay "
+"lang talaga."
+
+#. TRANS: Client exception thrown when trying to share a non-activity object.
+msgid "Can only handle shared activities."
+msgstr "Makapanghahawak lamang ng mga gawaing pinagsasaluhan."
+
+#. TRANS: Client exception thrown when saving an activity share fails.
+#. TRANS: %s is a share ID.
+#, php-format
+msgid "Failed to save activity %s."
+msgstr "Nabigo sa pagsagip ng gawaing %s."
+
 #. TRANS: Client exception. %s is a source URI.
 #, php-format
 msgid "No content for notice %s."
@@ -777,34 +823,11 @@ msgstr "Magpakita ng marami pa"
 msgid "Could not reach profile page %s."
 msgstr "Hindi maabot ang pahina ng balangkas na %s."
 
-#. TRANS: Exception. %s is a URL.
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr ""
-"Hindi makahanap ng isang URL ng pasubo para sa pahina ng balangkas na %s."
-
 #. TRANS: Feed sub exception.
 msgid "Cannot find enough profile information to make a feed."
 msgstr ""
 "Hindi makahanap ng sapat na kabatiran ng balangkas upang makagawa ng isang "
 "pasubo."
-
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Hindi katanggap-tanggap na URL ng abatar ang %s."
-
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr ""
-"Sinubok na isapanahon ang huwaran para sa hindi nasagip na malayong "
-"balangkas na %s."
-
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Hindi nagawang damputin ang huwaran mula sa %s."
 
 #. TRANS: Server exception.
 msgid "No author ID URI found."
@@ -838,10 +861,6 @@ msgstr "Hindi masagip ang katutubong talaan."
 msgid "Cannot save OStatus profile."
 msgstr "Hindi masagip ang balangkas ng OStatus."
 
-#. TRANS: Exception.
-msgid "Not a valid webfinger address."
-msgstr "Hindi isang katanggap-tanggap na tirahan ng daliri ng web."
-
 #. TRANS: Exception. %s is a webfinger address.
 #, php-format
 msgid "Could not save profile for \"%s\"."
@@ -851,12 +870,6 @@ msgstr "Hindi masagip ang balangkas para sa \"%s\"."
 #, php-format
 msgid "Could not save OStatus profile for \"%s\"."
 msgstr "Hindi masagip ang balangkas ng Ostatus para sa \"%s\"."
-
-#. TRANS: Exception. %s is a webfinger address.
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr ""
-"Hindi makahanap ng isang katanggap-tanggap na balangkas para sa \"%s\"."
 
 #. TRANS: Server exception.
 msgid "Could not store HTML content of long post as file."
@@ -948,46 +961,16 @@ msgstr ""
 "Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng paglisan."
 
 #. TRANS: Client exception.
-msgid "This target does not understand tag events."
+msgid "This target does not understand list events."
 msgstr ""
-"Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng pagtatatak."
+"Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng paglilista."
 
 #. TRANS: Client exception.
-msgid "This target does not understand untag events."
+msgid "This target does not understand unlist events."
 msgstr ""
-"Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng hindi "
-"pagtatatak."
+"Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng pagtatanggal "
+"mula sa listahan."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Tumanggap ng isang sampal ng salmon mula sa hindi nakikilalang aktor."
-
-#~ msgctxt "TITLE"
-#~ msgid "Tag"
-#~ msgstr "Tatak"
-
-#~ msgctxt "TITLE"
-#~ msgid "Untag"
-#~ msgstr "Huwag tatakan"
-
-#~ msgid "Disfavor"
-#~ msgstr "Ayawan"
-
-#~ msgid "%1$s marked notice %2$s as no longer a favorite."
-#~ msgstr ""
-#~ "Minarkahan ni %1$s ang pabatid na %2$s bilang hindi na isang "
-#~ "kinagigiliwan."
-
-#~ msgid ""
-#~ "OStatus user's address, like nickname@example.com or http://example.net/"
-#~ "nickname"
-#~ msgstr ""
-#~ "Tirahan ng tagagamit ng OStatus, katulad ng nickname@example.com o http://"
-#~ "example.net/nickname"
-
-#~ msgid "Continue"
-#~ msgstr "Ipagpatuloy"
-
-#~ msgid "Could not remove remote user %1$s from list %2$s."
-#~ msgstr ""
-#~ "Hindi matanggal ang malayong tagagamit na si %1$s mula sa talaang %2$s."

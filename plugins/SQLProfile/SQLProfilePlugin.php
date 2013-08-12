@@ -38,6 +38,7 @@ class SQLProfilePlugin extends Plugin
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:SQLProfile',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Debug tool to watch for poorly indexed DB queries.'));
 
         return true;

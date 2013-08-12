@@ -39,8 +39,6 @@ $daemons = array();
 
 $daemons[] = INSTALLDIR.'/scripts/queuedaemon.php';
 
-$daemons[] = INSTALLDIR.'/scripts/imdaemon.php';
-
 if (Event::handle('GetValidDaemons', array(&$daemons))) {
     foreach ($daemons as $daemon) {
         print $daemon . ' ';

@@ -1,6 +1,7 @@
-# Translation of StatusNet - Event to Breton (Brezhoneg)
+# Translation of StatusNet - Event to Breton (brezhoneg)
 # Exported from translatewiki.net
 #
+# Author: Fulup
 # Author: Y-M D
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,21 +10,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:20+0000\n"
-"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:27+0000\n"
+"Language-Team: Breton <https://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#. TRANS: 0 minutes abbreviated. Used in a list.
+msgid "(0 min)"
+msgstr "(0 mun)"
+
+#. TRANS: 30 minutes abbreviated. Used in a list.
+msgid "(30 min)"
+msgstr "(30 mun)"
+
+#. TRANS: 1 hour. Used in a list.
+msgid "(1 hour)"
+msgstr "(1 eurvezh)"
+
+#, php-format
+msgid "(%.1f hours)"
+msgstr ""
+
+#, php-format
+msgid "(%d hours)"
+msgstr ""
+
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
-msgstr "An darvoud zo anezhañ dija."
+msgstr "An darvoud-mañ zo anezhañ c'hoazh."
 
 #. TRANS: Event description. %1$s is a title, %2$s is start time, %3$s is end time,
 #. TRANS: %4$s is location, %5$s is a description.
@@ -42,14 +63,24 @@ msgid ""
 "$s</span> </span>"
 msgstr ""
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "Digevreet."
+
+#. TRANS: Client error when submitting a form with unexpected information.
+msgid "Unexpected form submission."
+msgstr ""
+
+#. TRANS: Client error displayed when using an action in a non-AJAX way.
+msgid "This action is AJAX only."
+msgstr ""
+
 #. TRANS: Client exception thrown when referring to a non-existing RSVP.
 #. TRANS: RSVP stands for "Please reply".
 #. TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
 msgid "No such RSVP."
 msgstr "N'eus ket eus an RSVP-se."
 
-#. TRANS: Client exception thrown when referring to a non-existing event.
-#. TRANS: Client exception thrown when requesting a non-exsting event.
 #. TRANS: Client exception thrown when referring to a non-existing event.
 msgid "No such event."
 msgstr "N'eus ket eus an darvoud-se."
@@ -105,7 +136,7 @@ msgstr "Nullañ an RSVP"
 
 #. TRANS: Content for a deleted RSVP list item (RSVP stands for "please respond").
 msgid "Deleted."
-msgstr ""
+msgstr "Bet diverket."
 
 #. TRANS: Field label on form to RSVP ("please respond") for an event.
 msgid "RSVP:"
@@ -149,9 +180,10 @@ msgctxt "LABEL"
 msgid "Start time"
 msgstr "Eurvezh kregiñ"
 
-#. TRANS: Field title on event form.
-msgid "Time the event starts."
-msgstr ""
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, fuzzy, php-format
+msgid "Time the event starts (%s)."
+msgstr "An eurvezh evit pehini e krog an darvoud."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -169,12 +201,12 @@ msgstr "Eurvezh echuiñ"
 
 #. TRANS: Field title on event form.
 msgid "Time the event ends."
-msgstr ""
+msgstr "An eurvezh evit pehini ec'h echu an darvoud."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
-msgid "Location"
-msgstr "Lec'hiadur"
+msgid "Where?"
+msgstr "Pelec'h ?"
 
 #. TRANS: Field title on event form.
 msgid "Event location."
@@ -366,6 +398,10 @@ msgstr ""
 msgid "Event must have an end time."
 msgstr ""
 
+#. TRANS: Client exception thrown when trying to post an event with an invalid URL.
+msgid "URL must be valid."
+msgstr ""
+
 #. TRANS: Field label for event description.
 msgid "Time:"
 msgstr "Deiziad :"
@@ -377,13 +413,3 @@ msgstr "Lec'hiadur :"
 #. TRANS: Field label for event description.
 msgid "Description:"
 msgstr "Deskrivadur :"
-
-#. TRANS: Field label for event description.
-msgid "Attending:"
-msgstr ""
-
-#. TRANS: RSVP counts.
-#. TRANS: %1$d, %2$d and %3$d are numbers of RSVPs.
-#, php-format
-msgid "Yes: %1$d No: %2$d Maybe: %3$d"
-msgstr "Ya : %1$d Nann : %2$d Marteze : %3$d"

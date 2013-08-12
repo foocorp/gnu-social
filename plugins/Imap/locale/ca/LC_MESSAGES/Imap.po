@@ -1,0 +1,55 @@
+# Translation of StatusNet - Imap to Catalan (català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Imap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:49+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:20+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-imap\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: E-mail subject in case of an error.
+msgid "Error"
+msgstr "Error"
+
+#. TRANS: Exception thrown when the ImapManager is used incorrectly in the code.
+msgid ""
+"ImapManager should be created using its constructor, not using the static "
+"\"get()\" method."
+msgstr ""
+
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+msgid "A mailbox must be specified."
+msgstr "Cal especificar una bústia de correu."
+
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+msgid "A user must be specified."
+msgstr "Cal especificar un usuari."
+
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+msgid "A password must be specified."
+msgstr "Cal especificar una contrasenya."
+
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+#. TRANS: poll_frequency is a setting that should not be translated.
+msgid "A poll_frequency must be specified."
+msgstr "Cal especificar una freqüència de les enquestes (poll_frequency)."
+
+#. TRANS: Plugin description.
+msgid ""
+"The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for "
+"incoming mail containing user posts."
+msgstr ""

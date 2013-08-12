@@ -1,0 +1,53 @@
+# Translation of StatusNet - EmailSummary to Galician (galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailSummary\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:27+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-07-01 11:18:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-emailsummary\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Subject for e-mail.
+#, php-format
+msgid "Your latest updates from %s"
+msgstr "As súas últimas actualizacións desde %s"
+
+#. TRANS: Text in e-mail summary.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile name.
+#, php-format
+msgid "Recent updates from %1$s for %2$s:"
+msgstr "Actualizacións recentes desde %1$s para %2$s:"
+
+#. TRANS: Link text for link to conversation view.
+msgid "in context"
+msgstr "no contexto"
+
+#. TRANS: Link text for link to e-mail settings.
+#. TRANS: %1$s is a link to the e-mail settings, %2$s is the StatusNet sitename.
+#, php-format
+msgid "<a href=\"%1$s\">change your email settings for %2$s</a>"
+msgstr ""
+"<a href=\"%1$s\">cambiar a configuración do correo electrónico para %2$s</a>"
+
+#. TRANS: Plugin description.
+msgid "Send an email summary of the inbox to users."
+msgstr ""
+"Enviar aos usuarios por correo electrónico un resumo da caixa de entrada."
+
+#. TRANS: Checkbox label in e-mail preferences form.
+msgid "Send me a periodic summary of updates from my network"
+msgstr "Enviádeme un resumo periódico coas actualizacións da miña rede"

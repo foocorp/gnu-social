@@ -49,6 +49,7 @@ class Feed
     const RSS2 = 2;
     const ATOM = 3;
     const FOAF = 4;
+    const JSON = 5; // Activity Streams
 
     var $type = null;
     var $url = null;
@@ -72,6 +73,8 @@ class Feed
             return 'application/atom+xml';
          case Feed::FOAF:
             return 'application/rdf+xml';
+         case Feed::JSON:
+            return 'application/stream+json';
          default:
             return null;
         }
@@ -92,6 +95,9 @@ class Feed
          case Feed::FOAF:
             // TRANS: Feed type name. FOAF stands for Friend of a Friend.
             return _('FOAF');
+         case Feed::JSON:
+            // TRANS: Feed type name. See http://activitystrea.ms/
+            return _('Activity Streams');
          default:
             return null;
         }
@@ -103,6 +109,7 @@ class Feed
          case Feed::RSS1:
          case Feed::RSS2:
          case Feed::ATOM:
+         case Feed::JSON:
             return 'alternate';
          case Feed::FOAF:
             return 'meta';
