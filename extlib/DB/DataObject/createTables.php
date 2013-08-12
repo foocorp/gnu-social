@@ -16,7 +16,7 @@
 // | Author:  Alan Knowles <alan@akbkhome.com>
 // +----------------------------------------------------------------------+
 //
-// $Id: createTables.php 277015 2009-03-12 05:51:03Z alan_k $
+// $Id: createTables.php 315758 2011-08-30 08:11:59Z alan_k $
 //
 
 // since this version doesnt use overload, 
@@ -27,13 +27,17 @@ define('DB_DATAOBJECT_NO_OVERLOAD',1);
 //require_once 'DB/DataObject/Generator.php';
 require_once 'DB/DataObject/Generator.php';
 
+if (php_sapi_name() != 'cli') {
+    PEAR::raiseError("\nERROR: You must turn use the cli sapi to run this", null, PEAR_ERROR_DIE);
+}
+
 if (!ini_get('register_argc_argv')) {
     PEAR::raiseError("\nERROR: You must turn register_argc_argv On in you php.ini file for this to work\neg.\n\nregister_argc_argv = On\n\n", null, PEAR_ERROR_DIE);
     exit;
 }
 
 if (!@$_SERVER['argv'][1]) {
-    PEAR::raiseError("\nERROR: createTable.php usage:\n\nC:\php\pear\DB\DataObjects\createTable.php example.ini\n\n", null, PEAR_ERROR_DIE);
+    PEAR::raiseError("\nERROR: createTable.php usage:\n\n" .$_SERVER['argv'][0] . " example.ini\n\n", null, PEAR_ERROR_DIE);
     exit;
 }
 
