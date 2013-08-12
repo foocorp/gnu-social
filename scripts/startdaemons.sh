@@ -41,6 +41,6 @@ for f in $DAEMONS; do
 
          echo "Starting $f..."
 	 php $f $ARGSD
-	 echo "DONE.\n"
+	 echo "DONE."
 
 done
