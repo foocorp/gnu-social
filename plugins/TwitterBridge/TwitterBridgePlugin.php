@@ -249,7 +249,7 @@ class TwitterBridgePlugin extends Plugin
      *
      * @return boolean hook return
      */
-    function onGetValidDaemons($daemons)
+    function onGetValidDaemons(&$daemons)
     {
         if (self::hasKeys()) {
             array_push(

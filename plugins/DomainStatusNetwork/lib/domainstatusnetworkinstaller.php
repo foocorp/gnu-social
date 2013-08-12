@@ -267,6 +267,9 @@ class DomainStatusNetworkInstaller extends Installer
     function createDatabase()
     {
         // Create the New DB
+        /* FIXME
+         * Extension 'mysql_' is deprecated since PHP 5.5 - use mysqli instead.
+         */
         $res = mysql_connect($this->host, $this->rootname, $this->rootpass);
         if (!$res) {
             throw new ServerException("Cannot connect to {$this->host} as {$this->rootname}.");

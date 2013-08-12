@@ -147,7 +147,7 @@ class IrcPlugin extends ImPlugin {
      * @return boolean
      */
     public function onStartImDaemonIoManagers(&$classes) {
-        parent::onStartImDaemonIoManagers(&$classes);
+        parent::onStartImDaemonIoManagers($classes);
         $classes[] = new IrcManager($this); // handles sending/receiving
         return true;
     }

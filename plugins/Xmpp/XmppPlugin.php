@@ -310,7 +310,7 @@ class XmppPlugin extends ImPlugin
 
     function onStartImDaemonIoManagers(&$classes)
     {
-        parent::onStartImDaemonIoManagers(&$classes);
+        parent::onStartImDaemonIoManagers($classes);
         $classes[] = new XmppManager($this); // handles pings/reconnects
         return true;
     }
@@ -440,7 +440,7 @@ class XmppPlugin extends ImPlugin
      *
      * @return boolean hook return
      */
-    function onGetValidDaemons($daemons)
+    function onGetValidDaemons(&$daemons)
     {
         if( isset($this->server) &&
             isset($this->port)   &&

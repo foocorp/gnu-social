@@ -109,7 +109,7 @@ class AimPlugin extends ImPlugin
 
     function onStartImDaemonIoManagers(&$classes)
     {
-        parent::onStartImDaemonIoManagers(&$classes);
+        parent::onStartImDaemonIoManagers($classes);
         $classes[] = new AimManager($this); // handles sending/receiving
         return true;
     }
