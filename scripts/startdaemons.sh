@@ -39,8 +39,8 @@ DAEMONS=`php $DIR/getvaliddaemons.php $ARGSG`
 
 for f in $DAEMONS; do
 
-         printf "Starting $f...";
+         echo "Starting $f..."
 	 php $f $ARGSD
-	 printf "DONE.\n"
+	 echo "DONE.\n"
 
 done
