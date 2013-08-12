@@ -30,7 +30,7 @@ class Memcached_DataObject extends Safe_DataObject
      * @param mixed $v key field value, or leave out for primary key lookup
      * @return mixed Memcached_DataObject subtype or false
      */
-    function &staticGet($cls, $k, $v=null)
+    static function staticGet($cls, $k, $v=null)
     {
         if (is_null($v)) {
             $v = $k;
