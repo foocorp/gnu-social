@@ -27,6 +27,7 @@
  * @author   Craig Andrews <candrews@integralblue.com>
  * @author   Eric Helgeson <helfire@Erics-MBP.local>
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @author   Robin Millette <millette@controlyourself.ca>
  * @author   Sarven Capadisli <csarven@status.net>
  * @author   Tom Adams <tom@holizz.com>
@@ -168,6 +169,13 @@ class WebInstaller extends Installer
             }
         }
 
+        $ssl = array('always'=>null, 'never'=>null);
+        if (!empty($_SERVER['HTTPS'])) {
+            $ssl['always'] = 'checked="checked"';
+        } else {
+            $ssl['never'] = 'checked="checked"';
+        }
+
         echo<<<E_O_T
     <form method="post" action="install.php" class="form_settings" id="form_install">
         <fieldset>
@@ -184,6 +192,12 @@ class WebInstaller extends Installer
                         <input type="radio" name="fancy" id="fancy-enable" value="enable" checked='checked' /> enable<br />
                         <input type="radio" name="fancy" id="fancy-disable" value="" /> disable<br />
                         <p class="form_guide" id='fancy-form_guide'>Enable fancy (pretty) URLs. Auto-detection failed, it depends on Javascript.</p>
+                    </li>
+                    <li>
+                        <label for="ssl">Server SSL</label>
+                        <input type="radio" name="ssl" id="ssl-always" value="always" {$ssl['always']} /> enable<br />
+                        <input type="radio" name="ssl" id="ssl-never" value="never" {$ssl['never']} /> disable<br />
+                        <p class="form_guide" id="ssl-form_guide">Enabling SSL (https://) requires extra webserver configuration and certificate generation not offered by this installation.</p>
                     </li>
                 </ul>
             </fieldset>
@@ -321,6 +335,8 @@ STR;
 
         $this->siteProfile = $post->string('site_profile');
 
+        $this->ssl = $post->string('ssl');
+
         $this->server = $_SERVER['HTTP_HOST'];
         $this->path = substr(dirname($_SERVER['PHP_SELF']), 1);
 
@@ -335,6 +351,11 @@ STR;
 
         if ($this->adminPass != $adminPass2) {
             $this->updateStatus("Administrator passwords do not match. Did you mistype?", true);
+            $fail = true;
+        }
+
+        if (!in_array($this->ssl, array('never', 'sometimes', 'always'))) {
+            $this->updateStatus("Bad value for server SSL enabling.");
             $fail = true;
         }
 

@@ -28,6 +28,7 @@
  * @author   Craig Andrews <candrews@integralblue.com>
  * @author   Eric Helgeson <helfire@Erics-MBP.local>
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @author   Robin Millette <millette@controlyourself.ca>
  * @author   Sarven Capadisli <csarven@status.net>
  * @author   Tom Adams <tom@holizz.com>
@@ -42,7 +43,7 @@
 abstract class Installer
 {
     /** Web site info */
-    public $sitename, $server, $path, $fancy, $siteProfile;
+    public $sitename, $server, $path, $fancy, $siteProfile, $ssl;
     /** DB info */
     public $host, $database, $dbtype, $username, $password, $db;
     /** Administrator info */
@@ -412,6 +413,9 @@ abstract class Installer
             'sitename' => $this->sitename,
             'server' => $this->server,
             'path' => $this->path,
+            'ssl' => in_array($this->ssl, array('never', 'sometimes', 'always'))
+                     ? $this->ssl
+                     : 'never',
             'db_database' => $this->db['database'],
             'db_type' => $this->db['type']
         ));
@@ -426,6 +430,7 @@ abstract class Installer
                 // site location
                 "\$config['site']['server'] = {$vals['server']};\n".
                 "\$config['site']['path'] = {$vals['path']}; \n\n".
+                "\$config['site']['ssl'] = {$vals['ssl']}; \n\n".
 
                 // checks if fancy URLs are enabled
                 ($this->fancy ? "\$config['site']['fancy'] = true;\n\n":'').

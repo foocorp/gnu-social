@@ -21,8 +21,9 @@
  * @package  Installation
  *
  * @author   Brion Vibber <brion@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
- * @version  0.9.x
+ * @version  1.1.x
  * @link     http://status.net
  */
 
@@ -72,6 +73,7 @@ class CliInstaller extends Installer
             '--path'     => 'path',
             '--sitename' => 'sitename',
             '--fancy'    => 'fancy',
+            '--ssl'      => 'ssl',
 
             '--dbtype'   => 'dbtype',
             '--host'     => 'host',
@@ -106,6 +108,7 @@ class CliInstaller extends Installer
         $this->dbtype = 'mysql';
         $this->adminUpdates = true;
         $this->verbose = true;
+        // ssl is defaulted in lib/installer.php
 
         foreach ($options as $option) {
             $arg = $option[0];
@@ -159,6 +162,8 @@ install_cli.php - StatusNet command-line installer
     -p --path=<path>     Use <path> as path name
        --sitename        User-friendly site name (required)
        --fancy           Whether to use fancy URLs (default no)
+       --ssl             Server SSL enabled (default never), 
+                         [never | sometimes | always]
 
        --dbtype          'mysql' (default) or 'pgsql'
        --host            Database hostname (required)
