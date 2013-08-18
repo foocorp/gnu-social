@@ -22,7 +22,7 @@
  * @maintainer Brion Vibber <brion@status.net>
  */
 
-class SubMirror extends Memcached_DataObject
+class SubMirror extends Managed_DataObject
 {
     public $__table = 'submirror';
 
@@ -33,11 +33,6 @@ class SubMirror extends Memcached_DataObject
 
     public $created;
     public $modified;
-
-    public /*static*/ function staticGet($k, $v=null)
-    {
-        return parent::staticGet(__CLASS__, $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

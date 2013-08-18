@@ -48,7 +48,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-class Twitter_synch_status extends Memcached_DataObject
+class Twitter_synch_status extends Managed_DataObject
 {
     public $__table = 'twitter_synch_status'; // table name
     public $foreign_id;                         // int(4)  primary_key not_null
@@ -65,7 +65,7 @@ class Twitter_synch_status extends Memcached_DataObject
      *
      * @return Twitter_synch_status object found, or null for no hits
      */
-    function staticGet($k, $v=null)
+    static function staticGet($k, $v=null)
     {
         throw new Exception("Use pkeyGet() for this class.");
     }

@@ -40,27 +40,12 @@ if (!defined('STATUSNET')) {
  * down in reverse chronological order, then go back over them from oldest to
  * newest and actually save them into our notice table.
  */
-class Yammer_notice_stub extends Memcached_DataObject
+class Yammer_notice_stub extends Managed_DataObject
 {
     public $__table = 'yammer_notice_stub'; // table name
     public $id;                             // int  primary_key not_null
     public $json_data;                      // text
     public $created;                        // datetime
-
-    /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup
-     * @param mixed  $v Value to lookup
-     *
-     * @return Yammer_notice_stub object found, or null for no hits
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Yammer_notice_stub', $k, $v);
-    }
 
     /**
      * Return schema definition to set this table up in onCheckSchema

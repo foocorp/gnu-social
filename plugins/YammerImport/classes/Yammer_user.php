@@ -38,22 +38,6 @@ class Yammer_user extends Yammer_common
     public $user_id;                 // int
 
     /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup
-     * @param mixed  $v Value to lookup
-     *
-     * @return Yammer_user object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Yammer_user', $k, $v);
-    }
-
-    /**
      * Return schema definition to set this table up in onCheckSchema
      */
     static function schemaDef()

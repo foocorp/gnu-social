@@ -53,28 +53,12 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  * @see      DB_DataObject
  */
 
-class Notice_to_status extends Memcached_DataObject
+class Notice_to_status extends Managed_DataObject
 {
     public $__table = 'notice_to_status'; // table name
     public $notice_id;                    // int(4)  primary_key not_null
     public $status_id;                    // int(4)
     public $created;                      // datetime
-
-    /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup
-     * @param mixed  $v Value to lookup
-     *
-     * @return Notice_to_status object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Notice_to_status', $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

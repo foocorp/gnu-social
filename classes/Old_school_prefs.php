@@ -81,8 +81,4 @@ class Old_school_prefs extends Managed_DataObject
             ),
         );
     }
-
-    function staticGet($k,$v=NULL) {
-        return Memcached_DataObject::staticGet('Old_school_prefs',$k,$v);
-    }
 }

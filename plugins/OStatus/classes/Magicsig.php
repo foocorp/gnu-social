@@ -33,7 +33,7 @@ if (!defined('STATUSNET')) {
 
 require_once 'Crypt/RSA.php';
 
-class Magicsig extends Memcached_DataObject
+class Magicsig extends Managed_DataObject
 {
     const PUBLICKEYREL = 'magic-public-key';
 
@@ -80,32 +80,6 @@ class Magicsig extends Memcached_DataObject
     {
         $this->alg = $alg;
     }
-
-    /**
-     * Fetch a Magicsig object from the cache or database on a field match.
-     *
-     * @param string $k
-     * @param mixed $v
-     * @return Magicsig
-     */
-    public /*static*/ function staticGet($k, $v=null)
-    {
-        $obj =  parent::staticGet(__CLASS__, $k, $v);
-        if (!empty($obj)) {
-            $obj = Magicsig::fromString($obj->keypair);
-
-            // Double check keys: Crypt_RSA did not
-            // consistently generate good keypairs.
-            // We've also moved to 1024 bit keys.
-            if (strlen($obj->publicKey->modulus->toBits()) != 1024) {
-                $obj->delete();
-                return false;
-            }
-        }
-
-        return $obj;
-    }
-
 
     function table()
     {

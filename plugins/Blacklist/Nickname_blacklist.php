@@ -44,27 +44,11 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-class Nickname_blacklist extends Memcached_DataObject
+class Nickname_blacklist extends Managed_DataObject
 {
     public $__table = 'nickname_blacklist'; // table name
     public $pattern;                        // string pattern
     public $created;                        // datetime
-
-    /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup
-     * @param mixed  $v Value to lookup
-     *
-     * @return Nickname_blacklist object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Nickname_blacklist', $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

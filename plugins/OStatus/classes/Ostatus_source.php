@@ -25,18 +25,13 @@ if (!defined('STATUSNET')) {
  * @package OStatusPlugin
  * @maintainer Brion Vibber <brion@status.net>
  */
-class Ostatus_source extends Memcached_DataObject
+class Ostatus_source extends Managed_DataObject
 {
     public $__table = 'ostatus_source';
 
     public $notice_id; // notice we're referring to
     public $profile_uri; // uri of the ostatus_profile this came through -- may be a group feed
     public $method; // push or salmon
-
-    public /*static*/ function staticGet($k, $v=null)
-    {
-        return parent::staticGet(__CLASS__, $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

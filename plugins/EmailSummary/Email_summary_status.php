@@ -46,7 +46,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-class Email_summary_status extends Memcached_DataObject
+class Email_summary_status extends Managed_DataObject
 {
     public $__table = 'email_summary_status'; // table name
     public $user_id;                         // int(4)  primary_key not_null
@@ -54,20 +54,6 @@ class Email_summary_status extends Memcached_DataObject
     public $last_summary_id;                 // int(4)  null
     public $created;                         // datetime not_null
     public $modified;                        // datetime not_null
-
-    /**
-     * Get an instance by key
-     *
-     * @param string $k Key to use to lookup (usually 'user_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return Email_summary_status object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('email_summary_status', $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

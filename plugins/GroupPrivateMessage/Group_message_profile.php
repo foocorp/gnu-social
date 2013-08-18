@@ -44,27 +44,12 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-class Group_message_profile extends Memcached_DataObject
+class Group_message_profile extends Managed_DataObject
 {
     public $__table = 'group_message_profile'; // table name
     public $to_profile;                        // int
     public $group_message_id;                  // char(36)  primary_key not_null
     public $created;
-
-    /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup (usually 'user_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return Group_message object found, or null for no hits
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Group_message_profile', $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

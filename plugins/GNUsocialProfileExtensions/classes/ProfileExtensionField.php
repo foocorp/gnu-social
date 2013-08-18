@@ -32,7 +32,7 @@ if (!defined('STATUSNET')) {
 
 require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 
-class GNUsocialPhoto extends Memcached_DataObject
+class GNUsocialPhoto extends Managed_DataObject
 {
     public $__table = 'GNUsocialPhoto';
     public $id;         // int(11)
@@ -42,17 +42,6 @@ class GNUsocialPhoto extends Memcached_DataObject
     public $thumb_uri;  // varchar(512)
 	public $title;      // varchar(512)
 	public $photo_description; // text
-    
-
-    /**
-     *
-     * k key
-     * v value
-     */
-    function staticGet($k,$v=NULL)
-    {
-        return Memcached_DataObject::staticGet('GNUsocialPhoto',$k,$v);
-    }
 
 /*    function delete()
     {

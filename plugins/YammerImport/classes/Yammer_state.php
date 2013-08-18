@@ -31,7 +31,7 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-class Yammer_state extends Memcached_DataObject
+class Yammer_state extends Managed_DataObject
 {
     public $__table = 'yammer_state'; // table name
     public $id;                       // int  primary_key not_null
@@ -45,21 +45,6 @@ class Yammer_state extends Memcached_DataObject
     public $messages_newest;          // newest message ID we've imported
     public $created;                  // datetime
     public $modified;                 // datetime
-
-    /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup
-     * @param mixed  $v Value to lookup
-     *
-     * @return Yammer_state object found, or null for no hits
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Yammer_state', $k, $v);
-    }
 
     /**
      * Return schema definition to set this table up in onCheckSchema

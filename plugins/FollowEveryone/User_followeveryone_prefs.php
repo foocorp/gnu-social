@@ -52,26 +52,11 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-class User_followeveryone_prefs extends Memcached_DataObject
+class User_followeveryone_prefs extends Managed_DataObject
 {
     public $__table = 'user_followeveryone_prefs'; // table name
     public $user_id;                               // int(4)  primary_key not_null
     public $followeveryone;                        // tinyint(1)
-
-    /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup (usually 'user_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return User_followeveryone_prefs object found, or null for no hits
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('User_followeveryone_prefs', $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

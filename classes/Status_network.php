@@ -42,7 +42,7 @@ class Status_network extends Safe_DataObject
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
     /* Static get */
-    function staticGet($k,$v=NULL) {
+    static function staticGet($k,$v=NULL) {
         $i = DB_DataObject::staticGet('Status_network',$k,$v);
 
         // Don't use local process cache; if we're fetching multiple

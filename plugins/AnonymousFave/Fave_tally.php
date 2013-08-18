@@ -44,7 +44,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class Fave_tally extends Memcached_DataObject
+class Fave_tally extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -53,9 +53,6 @@ class Fave_tally extends Memcached_DataObject
     public $notice_id;                       // int(4)  primary_key not_null
     public $count;                           // int(4)  not_null
     public $modified;                        // datetime   not_null default_0000-00-00%2000%3A00%3A00
-
-    /* Static get */
-    function staticGet($k, $v = NULL) { return Memcached_DataObject::staticGet('Fave_tally', $k, $v); }
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE

@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Msn_waiting_message extends Memcached_DataObject {
+class Msn_waiting_message extends Managed_DataObject {
 
     public $__table = 'msn_waiting_message'; // table name
     public $id;                              // int primary_key not_null auto_increment
@@ -12,11 +12,6 @@ class Msn_waiting_message extends Memcached_DataObject {
     public $message;                         // text not_null
     public $created;                         // datetime() not_null
     public $claimed;                         // datetime()
-
-    /* Static get */
-    public function staticGet($k, $v = null) {
-        return Memcached_DataObject::staticGet('Msn_waiting_message', $k, $v);
-    }
 
     /**
     * return table definition for DB_DataObject

@@ -59,7 +59,7 @@ class FeedDBException extends FeedSubException
  * Higher-level behavior building OStatus stuff on top is handled
  * under Ostatus_profile.
  */
-class FeedSub extends Memcached_DataObject
+class FeedSub extends Managed_DataObject
 {
     public $__table = 'feedsub';
 
@@ -77,11 +77,6 @@ class FeedSub extends Memcached_DataObject
 
     public $created;
     public $modified;
-
-    public /*static*/ function staticGet($k, $v=null)
-    {
-        return parent::staticGet(__CLASS__, $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

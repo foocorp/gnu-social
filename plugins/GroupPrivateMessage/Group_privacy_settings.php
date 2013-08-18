@@ -44,7 +44,7 @@ if (!defined('STATUSNET')) {
  *
  * @see      DB_DataObject
  */
-class Group_privacy_settings extends Memcached_DataObject
+class Group_privacy_settings extends Managed_DataObject
 {
     public $__table = 'group_privacy_settings';
     /** ID of the group. */
@@ -69,21 +69,6 @@ class Group_privacy_settings extends Memcached_DataObject
     const EVERYONE = 1;
     const MEMBER   = 2;
     const ADMIN    = 4;
-
-    /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup (usually 'user_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return User_greeting_count object found, or null for no hits
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Group_privacy_settings', $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

@@ -35,12 +35,12 @@ if (!defined('STATUSNET')) {
  * Common base class for the Yammer import mappings for users, groups, and notices.
  *
  * Child classes must override these static methods, since we need to run
- * on PHP 5.2.x which has no late static binding:
+ * on PHP 5.2.x which has no late static binding: (not really anymore)
  * - staticGet (as our other classes)
  * - schemaDef (call self::doSchemaDef)
  * - record (call self::doRecord)
  */
-class Yammer_common extends Memcached_DataObject
+class Yammer_common extends Managed_DataObject
 {
     public $__table = 'yammer_XXXX'; // table name
     public $__field = 'XXXX_id';     // field name to save into
@@ -133,13 +133,13 @@ class Yammer_common extends Memcached_DataObject
      */
     protected static function doRecord($class, $field, $orig_id, $local_id)
     {
-        $map = parent::staticGet($class, 'id', $orig_id);
+        $map = Memcached_DataObject::staticGet($class, 'id', $orig_id);
 
         if (!empty($map)) {
             return $map;
         }
 
-        $map = parent::staticGet($class, $field, $local_id);
+        $map = Memcached_DataObject::staticGet($class, $field, $local_id);
 
         if (!empty($map)) {
             return $map;

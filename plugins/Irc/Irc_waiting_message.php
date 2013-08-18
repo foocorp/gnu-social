@@ -5,7 +5,7 @@
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Irc_waiting_message extends Memcached_DataObject {
+class Irc_waiting_message extends Managed_DataObject {
 
     public $__table = 'irc_waiting_message'; // table name
     public $id;                              // int primary_key not_null auto_increment
@@ -14,11 +14,6 @@ class Irc_waiting_message extends Memcached_DataObject {
     public $attempts;                        // int not_null
     public $created;                         // datetime() not_null
     public $claimed;                         // datetime()
-
-    /* Static get */
-    public function staticGet($k, $v = null) {
-        return Memcached_DataObject::staticGet('Irc_waiting_message', $k, $v);
-    }
 
     /**
     * return table definition for DB_DataObject

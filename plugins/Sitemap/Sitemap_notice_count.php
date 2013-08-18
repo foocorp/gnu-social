@@ -51,7 +51,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-class Sitemap_notice_count extends Memcached_DataObject
+class Sitemap_notice_count extends Managed_DataObject
 {
     public $__table = 'sitemap_notice_count'; // table name
 
@@ -59,22 +59,6 @@ class Sitemap_notice_count extends Memcached_DataObject
     public $notice_count;                      // int(4)
     public $created;
     public $modified;
-
-    /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup (usually 'notice_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return Sitemap_notice_count object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Sitemap_notice_count', $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

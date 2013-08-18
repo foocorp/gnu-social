@@ -42,26 +42,12 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class Registration_ip extends Memcached_DataObject
+class Registration_ip extends Managed_DataObject
 {
     public $__table = 'registration_ip';     // table name
     public $user_id;                         // int(4)  primary_key not_null
     public $ipaddress;                       // varchar(15)
     public $created;                         // timestamp
-
-    /**
-     * Get an instance by key
-     *
-     * @param string $k Key to use to lookup (usually 'user_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return User_greeting_count object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Registration_ip', $k, $v);
-    }
 
     /**
      * return table definition for DB_DataObject

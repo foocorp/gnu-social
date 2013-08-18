@@ -32,7 +32,7 @@ if (!defined('STATUSNET')) {
 
 require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 
-class GNUsocialProfileExtensionField extends Memcached_DataObject
+class GNUsocialProfileExtensionField extends Managed_DataObject
 {
     public $__table = 'GNUsocialProfileExtensionField';
     public $id;          // int(11)
@@ -40,17 +40,6 @@ class GNUsocialProfileExtensionField extends Memcached_DataObject
     public $title;       // varchar(256)
     public $description; // text
     public $type;        // varchar(256)
-
-    /**
-     *
-     * k key
-     * v value
-     */
-    function staticGet($k,$v=NULL)
-    {
-        return Memcached_DataObject::staticGet('GNUsocialProfileExtensionField',$k,$v);
-    }
-
 
     function table()
     {

@@ -26,7 +26,7 @@ if (!defined('STATUSNET')) {
  * @package Hub
  * @author Brion Vibber <brion@status.net>
  */
-class HubSub extends Memcached_DataObject
+class HubSub extends Managed_DataObject
 {
     public $__table = 'hubsub';
 
@@ -39,11 +39,6 @@ class HubSub extends Memcached_DataObject
     public $sub_end;
     public $created;
     public $modified;
-
-    public /*static*/ function staticGet($topic, $callback)
-    {
-        return parent::staticGet(__CLASS__, 'hashkey', self::hashkey($topic, $callback));
-    }
 
     protected static function hashkey($topic, $callback)
     {

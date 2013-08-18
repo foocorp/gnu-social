@@ -33,7 +33,7 @@ if (!defined('STATUSNET')) {
 
 require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 
-class GNUsocialPhotoAlbum extends Memcached_DataObject
+class GNUsocialPhotoAlbum extends Managed_DataObject
 {
     public $__table = 'GNUsocialPhotoAlbum';
     public $album_id;          // int(11) -- Unique identifier for the album
@@ -41,13 +41,6 @@ class GNUsocialPhotoAlbum extends Memcached_DataObject
     public $album_name;        // varchar(256) -- Title for this album
     public $album_description; // text -- A description of the album
     
-
-    function staticGet($k,$v=NULL)
-    {
-        return Memcached_DataObject::staticGet('GNUsocialPhotoAlbum',$k,$v);
-    }
-
-
     /* TODO: Primary key on both album_id, profile_id / foriegn key on profile_id */
     function table()
     {
