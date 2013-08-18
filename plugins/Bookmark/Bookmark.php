@@ -53,72 +53,36 @@ class Bookmark extends Managed_DataObject
     public $uri;         // varchar(255)
     public $created;     // datetime
 
-    /**
-     * Get an instance by compound key
-     *
-     * This is a utility method to get a single instance with a given set of
-     * key-value pairs. Usually used for the primary key for a compound key; thus
-     * the name.
-     *
-     * @param array $kv array of key-value mappings
-     *
-     * @return Bookmark object found, or null for no hits
-     *
-     */
-    function pkeyGet($kv)
+    public static function schemaDef()
     {
-        return Memcached_DataObject::pkeyGet('Bookmark', $kv);
-    }
-
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
-    {
-        return array('id' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'profile_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'url' => DB_DATAOBJECT_STR,
-                     'title' => DB_DATAOBJECT_STR,
-                     'description' => DB_DATAOBJECT_STR,
-                     'uri' => DB_DATAOBJECT_STR,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE +
-                     DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * @return array list of key field names
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * @return array associative array of key definitions
-     */
-    function keyTypes()
-    {
-        return array('id' => 'K',
-                     'uri' => 'U');
-    }
-
-    /**
-     * Magic formula for non-autoincrementing integer primary keys
-     *
-     * @return array magic three-false array that stops auto-incrementing.
-     */
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'char',
+                            'length' => 36,
+                            'not null' => true),
+                'profile_id' => array('type' => 'int', 'not null' => true),
+                'uri' => array('type' => 'varchar',
+                            'length' => 255,
+                            'not null' => true),
+                'url' => array('type' => 'varchar',
+                            'length' => 255,
+                            'not null' => true),
+                'title' => array('type' => 'varchar', 'length' => 255),
+                'description' => array('type' => 'text'),
+                'created' => array('type' => 'datetime', 'not null' => true),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'bookmark_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'bookmark_profile_id_fkey' => array('profile', array('profile_id' => 'id'))
+            ),
+            'indexes' => array('bookmark_created_idx' => array('created'),
+                            'bookmark_url_idx' => array('url'),
+                            'bookmark_profile_id_idx' => array('profile_id'),
+            ),
+        );
     }
 
     /**
