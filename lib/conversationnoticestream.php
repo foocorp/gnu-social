@@ -78,7 +78,7 @@ class RawConversationNoticeStream extends NoticeStream
 
     function getNotices($offset, $limit, $sinceId = null, $maxId = null)
     {
-        $all = Memcached_DataObject::listGet('Notice', 'conversation', array($this->id));
+        $all = Notice::listGet('conversation', array($this->id));
         $notices = $all[$this->id];
         // Re-order in reverse-chron
         usort($notices, array('RawConversationNoticeStream', '_reverseChron'));

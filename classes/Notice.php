@@ -823,7 +823,7 @@ class Notice extends Managed_DataObject
             return $this->_attachments;
         }
 		
-		$f2ps = Memcached_DataObject::listGet('File_to_post', 'post_id', array($this->id));
+        $f2ps = File_to_post::listGet('post_id', array($this->id));
 		
 		$ids = array();
 		
@@ -1380,7 +1380,7 @@ class Notice extends Managed_DataObject
             return $this->_replies;
         }
 
-        $replyMap = Memcached_DataObject::listGet('Reply', 'notice_id', array($this->id));
+        $replyMap = Reply::listGet('notice_id', array($this->id));
 
         $ids = array();
 
@@ -1458,7 +1458,7 @@ class Notice extends Managed_DataObject
             return $this->_groups;
         }
         
-        $gis = Memcached_DataObject::listGet('Group_inbox', 'notice_id', array($this->id));
+        $gis = Group_inbox::listGet('notice_id', array($this->id));
 
         $ids = array();
 
@@ -2607,7 +2607,7 @@ class Notice extends Managed_DataObject
 	{
         $ids = self::_idsOf($notices);
 		
-		$gis = Memcached_DataObject::listGet('Group_inbox', 'notice_id', $ids);
+        $gis = Group_inbox::listGet('notice_id', $ids);
 		
         $gids = array();
 
@@ -2648,7 +2648,7 @@ class Notice extends Managed_DataObject
     {
         $ids = self::_idsOf($notices);
 
-		$f2pMap = Memcached_DataObject::listGet('File_to_post', 'post_id', $ids);
+        $f2pMap = File_to_post::listGet('post_id', $ids);
 		
 		$fileIds = array();
 		
@@ -2686,7 +2686,7 @@ class Notice extends Managed_DataObject
         if (isset($this->_faves) && is_array($this->_faves)) {
             return $this->_faves;
         }
-        $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', array($this->id));
+        $faveMap = Fave::listGet('notice_id', array($this->id));
         $this->_faves = $faveMap[$this->id];
         return $this->_faves;
     }
@@ -2699,7 +2699,7 @@ class Notice extends Managed_DataObject
     static function fillFaves(&$notices)
     {
         $ids = self::_idsOf($notices);
-        $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', $ids);
+        $faveMap = Fave::listGet('notice_id', $ids);
         $cnt = 0;
         $faved = array();
         foreach ($faveMap as $id => $faves) {
@@ -2717,7 +2717,7 @@ class Notice extends Managed_DataObject
     static function fillReplies(&$notices)
     {
         $ids = self::_idsOf($notices);
-        $replyMap = Memcached_DataObject::listGet('Reply', 'notice_id', $ids);
+        $replyMap = Reply::listGet('notice_id', $ids);
         foreach ($notices as $notice) {
             $replies = $replyMap[$notice->id];
             $ids = array();
@@ -2735,7 +2735,7 @@ class Notice extends Managed_DataObject
         if (isset($this->_repeats) && is_array($this->_repeats)) {
             return $this->_repeats;
         }
-        $repeatMap = Memcached_DataObject::listGet('Notice', 'repeat_of', array($this->id));
+        $repeatMap = Notice::listGet('repeat_of', array($this->id));
         $this->_repeats = $repeatMap[$this->id];
         return $this->_repeats;
     }
@@ -2748,7 +2748,7 @@ class Notice extends Managed_DataObject
     static function fillRepeats(&$notices)
     {
         $ids = self::_idsOf($notices);
-        $repeatMap = Memcached_DataObject::listGet('Notice', 'repeat_of', $ids);
+        $repeatMap = Notice::listGet('repeat_of', $ids);
         foreach ($notices as $notice) {
         	$repeats = $repeatMap[$notice->id];
             $notice->_setRepeats($repeats);

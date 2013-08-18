@@ -376,7 +376,7 @@ class UserActivityStream extends AtomUserNoticeFeed
 
     function getMessagesTo()
     {
-        $msgMap = Memcached_DataObject::listGet('Message', 'to_profile', array($this->user->id));
+        $msgMap = Message::listGet('to_profile', array($this->user->id));
 
         $messages = $msgMap[$this->user->id];
 
@@ -389,7 +389,7 @@ class UserActivityStream extends AtomUserNoticeFeed
 
     function getMessagesFrom()
     {
-        $msgMap = Memcached_DataObject::listGet('Message', 'from_profile', array($this->user->id));
+        $msgMap = Message::listGet('from_profile', array($this->user->id));
 
         $messages = $msgMap[$this->user->id];
 

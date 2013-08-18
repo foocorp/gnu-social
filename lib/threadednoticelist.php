@@ -130,7 +130,7 @@ class ThreadedNoticeList extends NoticeList
             $convId[] = $notice->conversation;
         }
         $convId = array_unique($convId);
-        $allMap = Memcached_DataObject::listGet('Notice', 'conversation', $convId);
+        $allMap = Notice::listGet('conversation', $convId);
         $allArray = array();
         foreach ($allMap as $convId => $convNotices) {
             $allArray = array_merge($allArray, $convNotices);

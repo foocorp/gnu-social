@@ -267,7 +267,7 @@ class Memcached_DataObject extends Safe_DataObject
         return $pkey;
     }
 
-    function listGet($cls, $keyCol, $keyVals)
+    static function listGetClass($cls, $keyCol, $keyVals)
     {
         $pkeyMap = array_fill_keys($keyVals, array());
         $result = array_fill_keys($keyVals, array());
@@ -312,7 +312,7 @@ class Memcached_DataObject extends Safe_DataObject
             }
             $i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
             if ($i->find()) {
-                sprintf("listGet() got {$i->N} results for class $cls key $keyCol");
+                sprintf(__CLASS__ . "() got {$i->N} results for class $cls key $keyCol");
                 while ($i->fetch()) {
                     $copy = clone($i);
                     $copy->encache();
