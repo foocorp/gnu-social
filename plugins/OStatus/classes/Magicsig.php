@@ -81,37 +81,19 @@ class Magicsig extends Managed_DataObject
         $this->alg = $alg;
     }
 
-    function table()
+    public static function schemaDef()
     {
         return array(
-            'user_id' => DB_DATAOBJECT_INT,
-            'keypair' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-            'alg'     => DB_DATAOBJECT_STR
+            'fields' => array(
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user id'),
+                'keypair' => array('type' => 'text', 'description' => 'keypair text representation', 'collate' => 'utf8_general_ci'),
+                'alg' => array('type' => 'varchar', 'length' => 64, 'description' => 'algorithm'),
+            ),
+            'primary key' => array('user_id'),
+            'foreign keys' => array(
+                'magicsig_user_id_fkey' => array('user', array('user_id' => 'id')),
+            ),
         );
-    }
-
-    static function schemaDef()
-    {
-        return array(new ColumnDef('user_id', 'integer',
-                                   null, false, 'PRI'),
-                     new ColumnDef('keypair', 'text',
-                                   false, false),
-                     new ColumnDef('alg', 'varchar',
-                                   64, false));
-    }
-
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    function keyTypes()
-    {
-        return array('user_id' => 'K');
-    }
-
-    function sequenceKey() {
-        return array(false, false, false);
     }
 
     /**
