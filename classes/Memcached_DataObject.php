@@ -542,7 +542,7 @@ class Memcached_DataObject extends Safe_DataObject
         return $ckeys;
     }
 
-    function multicache($cls, $kv)
+    static function multicache($cls, $kv)
     {
         ksort($kv);
         $c = self::memcache();
