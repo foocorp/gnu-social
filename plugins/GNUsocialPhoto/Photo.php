@@ -46,7 +46,7 @@ class Photo extends Managed_DataObject
     public $description;       // text
     public $profile_id;        // int
 
-    public function getByNotice($notice)
+    public static function getByNotice($notice)
     {
         return self::staticGet('uri', $notice->uri);
     }

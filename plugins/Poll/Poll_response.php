@@ -102,7 +102,7 @@ class Poll_response extends Managed_DataObject
      *
      * @return Poll_response found response or null
      */
-    function getByNotice($notice)
+    static function getByNotice($notice)
     {
         return self::staticGet('uri', $notice->uri);
     }

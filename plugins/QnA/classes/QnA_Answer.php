@@ -120,7 +120,7 @@ class QnA_Answer extends Managed_DataObject
      *
      * @return QnA_Answer found response or null
      */
-    function getByNotice($notice)
+    static function getByNotice($notice)
     {
         $answer = self::staticGet('uri', $notice->uri);
         if (empty($answer)) {

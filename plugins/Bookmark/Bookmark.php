@@ -144,7 +144,7 @@ class Bookmark extends Memcached_DataObject
      *
      * @return Bookmark found bookmark or null
      */
-    function getByNotice($notice)
+    static function getByNotice($notice)
     {
         return self::staticGet('uri', $notice->uri);
     }

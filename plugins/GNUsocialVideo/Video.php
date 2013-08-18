@@ -43,7 +43,7 @@ class Video extends Managed_DataObject
     public $url;               // varchar (255)
     public $profile_id;        // int
 
-    public function getByNotice($notice)
+    public static function getByNotice($notice)
     {
         return self::staticGet('uri', $notice->uri);
     }

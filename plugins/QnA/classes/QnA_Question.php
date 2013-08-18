@@ -114,7 +114,7 @@ class QnA_Question extends Managed_DataObject
      *
      * @return Question found question or null
      */
-    function getByNotice($notice)
+    static function getByNotice($notice)
     {
         return self::staticGet('uri', $notice->uri);
     }
