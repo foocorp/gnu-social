@@ -81,6 +81,31 @@ class Magicsig extends Managed_DataObject
         $this->alg = $alg;
     }
 
+    /**
+     * Fetch a Magicsig object from the cache or database on a field match.
+     *
+     * @param string $k
+     * @param mixed $v
+     * @return Magicsig
+     */
+    static function getKV($k, $v=null)
+    {
+        $obj =  parent::getKV($k, $v);
+        if (!empty($obj)) {
+            $obj = Magicsig::fromString($obj->keypair);
+
+            // Double check keys: Crypt_RSA did not
+            // consistently generate good keypairs.
+            // We've also moved to 1024 bit keys.
+            if (strlen($obj->publicKey->modulus->toBits()) != 1024) {
+                $obj->delete();
+                return false;
+            }
+        }
+
+        return $obj;
+    }
+
     public static function schemaDef()
     {
         return array(
