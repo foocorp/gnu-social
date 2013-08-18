@@ -69,23 +69,6 @@ class Profile_detail extends Managed_DataObject
     public $created;
     public $modified;
 
-    /**
-     * Get an instance by compound key
-     *
-     * This is a utility method to get a single instance with a given set of
-     * key-value pairs. Usually used for the primary key for a compound key; thus
-     * the name.
-     *
-     * @param array $kv array of key-value mappings
-     *
-     * @return Bookmark object found, or null for no hits
-     *
-     */
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Profile_detail', $kv);
-    }
-
     static function schemaDef()
     {
         return array(

@@ -14,10 +14,6 @@ class Group_join_queue extends Managed_DataObject
     public $group_id;
     public $created;
 
-    /* Pkey get */
-    function pkeyGet($k)
-    { return Memcached_DataObject::pkeyGet('Group_join_queue',$k); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

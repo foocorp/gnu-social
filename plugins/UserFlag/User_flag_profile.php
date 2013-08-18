@@ -109,18 +109,6 @@ class User_flag_profile extends Managed_DataObject
     }
 
     /**
-     * Get a single object with multiple keys
-     *
-     * @param array $kv Map of key-value pairs
-     *
-     * @return User_flag_profile found object or null
-     */
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('User_flag_profile', $kv);
-    }
-
-    /**
      * Check if a flag exists for given profile and user
      *
      * @param integer $profile_id Profile to check for

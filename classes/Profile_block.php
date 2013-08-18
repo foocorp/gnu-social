@@ -56,8 +56,7 @@ class Profile_block extends Managed_DataObject
 
     function get($blocker, $blocked)
     {
-        return Memcached_DataObject::pkeyGet('Profile_block',
-                                             array('blocker' => $blocker,
-                                                   'blocked' => $blocked));
+        return Profile_block::pkeyGet(array('blocker' => $blocker,
+                                            'blocked' => $blocked));
      }
 }

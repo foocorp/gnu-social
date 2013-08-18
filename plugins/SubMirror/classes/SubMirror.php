@@ -204,11 +204,6 @@ class SubMirror extends Managed_DataObject
         return $saved;
     }
 
-    public /*static*/ function pkeyGet($v)
-    {
-        return parent::pkeyGet(__CLASS__, $v);
-    }
-
     /**
      * Get the mirroring setting for a pair of profiles, if existing.
      *

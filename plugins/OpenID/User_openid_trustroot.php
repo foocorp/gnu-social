@@ -21,11 +21,6 @@ class User_openid_trustroot extends Managed_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('User_openid_trustroot', $kv);
-    }
-
     function table()
     {
         $db = $this->getDatabaseConnection();

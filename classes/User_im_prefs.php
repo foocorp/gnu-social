@@ -45,11 +45,6 @@ class User_im_prefs extends Managed_DataObject
     public $created;                         // datetime   not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('User_im_prefs', $kv);
-    }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

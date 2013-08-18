@@ -133,13 +133,13 @@ class Yammer_common extends Managed_DataObject
      */
     protected static function doRecord($class, $field, $orig_id, $local_id)
     {
-        $map = Memcached_DataObject::staticGet($class, 'id', $orig_id);
+        $map = Memcached_DataObject::getClassKV($class, 'id', $orig_id);
 
         if (!empty($map)) {
             return $map;
         }
 
-        $map = Memcached_DataObject::staticGet($class, $field, $local_id);
+        $map = Memcached_DataObject::getClassKV($class, $field, $local_id);
 
         if (!empty($map)) {
             return $map;

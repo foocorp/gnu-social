@@ -57,19 +57,6 @@ class RSVP extends Managed_DataObject
     public $created;           // datetime
 
     /**
-     * Get an instance by compound key
-     *
-     * @param array $kv array of key-value mappings
-     *
-     * @return Bookmark object found, or null for no hits
-     */
-
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('RSVP', $kv);
-    }
-
-    /**
      * Add the compound profile_id/event_id index to our cache keys
      * since the DB_DataObject stuff doesn't understand compound keys
      * except for the primary.

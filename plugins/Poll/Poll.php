@@ -54,23 +54,6 @@ class Poll extends Managed_DataObject
     public $created;     // datetime
 
     /**
-     * Get an instance by compound key
-     *
-     * This is a utility method to get a single instance with a given set of
-     * key-value pairs. Usually used for the primary key for a compound key; thus
-     * the name.
-     *
-     * @param array $kv array of key-value mappings
-     *
-     * @return Bookmark object found, or null for no hits
-     *
-     */
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Poll', $kv);
-    }
-
-    /**
      * The One True Thingy that must be defined and declared.
      */
     public static function schemaDef()

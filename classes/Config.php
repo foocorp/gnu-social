@@ -133,11 +133,6 @@ class Config extends Managed_DataObject
         return $result;
     }
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Config', $kv);
-    }
-
     static function save($section, $setting, $value)
     {
         $result = null;

@@ -68,11 +68,6 @@ class Notice_tag extends Managed_DataObject
         }
     }
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Notice_tag', $kv);
-    }
-
 	static function url($tag)
 	{
 		if (common_config('singleuser', 'enabled')) {

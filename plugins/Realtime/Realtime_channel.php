@@ -62,18 +62,6 @@ class Realtime_channel extends Managed_DataObject
     public $modified;      // modified date
 
     /**
-     * Get an instance by compound key
-     *
-     * @param array $kv array of key-value mappings
-     *
-     * @return Realtime_channel object found, or null for no hits
-     */
-    function pkeyGet($kv)
-    {
-        return Managed_DataObject::pkeyGet('Realtime_channel', $kv);
-    }
-
-    /**
      * The One True Thingy that must be defined and declared.
      */
     public static function schemaDef()

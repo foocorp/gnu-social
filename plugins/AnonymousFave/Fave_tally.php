@@ -119,18 +119,6 @@ class Fave_tally extends Managed_DataObject
     }
 
     /**
-     * Get a single object with multiple keys
-     *
-     * @param array $kv Map of key-value pairs
-     *
-     * @return User_flag_profile found object or null
-     */
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Fave_tally', $kv);
-    }
-
-    /**
      * Increment a notice's tally
      *
      * @param integer $noticeID ID of notice we're tallying

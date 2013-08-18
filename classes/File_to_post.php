@@ -84,11 +84,6 @@ class File_to_post extends Managed_DataObject
         }
     }
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('File_to_post', $kv);
-    }
-
     function delete()
     {
         $f = File::getKV('id', $this->file_id);

@@ -1242,9 +1242,8 @@ class Profile extends Managed_DataObject
     {
         // XXX: not really a pkey, but should work
 
-        $notice = Memcached_DataObject::pkeyGet('Notice',
-                                                array('profile_id' => $this->id,
-                                                      'repeat_of' => $notice_id));
+        $notice = Notice::pkeyGet(array('profile_id' => $this->id,
+                                        'repeat_of' => $notice_id));
 
         return !empty($notice);
     }

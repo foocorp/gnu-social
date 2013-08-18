@@ -41,11 +41,6 @@ class Profile_tag_subscription extends Managed_DataObject
         );
     }
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Profile_tag_subscription', $kv);
-    }
-
     static function add($peopletag, $profile)
     {
         if ($peopletag->private) {

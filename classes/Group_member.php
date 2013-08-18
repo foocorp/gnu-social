@@ -48,11 +48,6 @@ class Group_member extends Managed_DataObject
         );
     }
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Group_member', $kv);
-    }
-
     /**
      * Method to add a user to a group.
      * In most cases, you should call Profile->joinGroup() instead.

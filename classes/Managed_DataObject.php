@@ -41,9 +41,25 @@ abstract class Managed_DataObject extends Memcached_DataObject
      */
     static function getKV($k,$v=NULL)
     {
-        return parent::getKV(get_called_class(),$k,$v);
+        return parent::getClassKV(get_called_class(), $k, $v);
     }
 
+    /**
+     * Get an instance by compound key
+     *
+     * This is a utility method to get a single instance with a given set of
+     * key-value pairs. Usually used for the primary key for a compound key; thus
+     * the name.
+     *
+     * @param array $kv array of key-value mappings
+     *
+     * @return get_called_class() object if found, or null for no hits
+     *
+     */
+    static function pkeyGet($kv)
+    {
+        return parent::pkeyGetClass(get_called_class(), $kv);
+    }
 
     /**
      * get/set an associative array of table columns

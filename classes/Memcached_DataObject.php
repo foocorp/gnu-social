@@ -30,14 +30,14 @@ class Memcached_DataObject extends Safe_DataObject
      * @param mixed $v key field value, or leave out for primary key lookup
      * @return mixed Memcached_DataObject subtype or false
      */
-    static function getKV($cls, $k, $v=null)
+    static function getClassKV($cls, $k, $v=null)
     {
         if (is_null($v)) {
             $v = $k;
             $keys = self::pkeyCols($cls);
             if (count($keys) > 1) {
-                // FIXME: maybe call pkeyGet() ourselves?
-                throw new Exception('Use pkeyGet() for compound primary keys');
+                // FIXME: maybe call pkeyGetClass() ourselves?
+                throw new Exception('Use pkeyGetClass() for compound primary keys');
             }
             $k = $keys[0];
         }
@@ -352,7 +352,7 @@ class Memcached_DataObject extends Safe_DataObject
     /**
      * @todo FIXME: Should this return false on lookup fail to match getKV?
      */
-    function pkeyGet($cls, $kv)
+    static function pkeyGetClass($cls, $kv)
     {
         $i = Memcached_DataObject::multicache($cls, $kv);
         if ($i !== false) { // false == cache miss
@@ -681,7 +681,9 @@ class Memcached_DataObject extends Safe_DataObject
                         'update',
                         'find');
         $ignoreStatic = array('getKV',
+                              'getClassKV',
                               'pkeyGet',
+                              'pkeyGetClass',
                               'cachedQuery');
         $here = get_class($this); // if we get confused
         $bt = debug_backtrace();

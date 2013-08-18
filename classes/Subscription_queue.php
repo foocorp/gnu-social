@@ -14,10 +14,6 @@ class Subscription_queue extends Managed_DataObject
     public $subscribed;
     public $created;
 
-    /* Pkey get */
-    function pkeyGet($k)
-    { return Memcached_DataObject::pkeyGet('Subscription_queue',$k); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

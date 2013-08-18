@@ -40,11 +40,6 @@ class Reply extends Managed_DataObject
             ),
         );
     }    
-
-	function pkeyGet($kv)
-	{
-		return Memcached_DataObject::pkeyGet('Reply',$kv);   
-	}
 	
     /**
      * Wrapper for record insertion to update related caches

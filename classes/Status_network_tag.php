@@ -60,9 +60,9 @@ class Status_network_tag extends Safe_DataObject
         return $i;
     }
 
-    function pkeyGet($kv)
+    static function pkeyGet($kv)
     {
-        return Memcached_DataObject::pkeyGet('Status_network_tag', $kv);
+        return Memcached_DataObject::pkeyGetClass('Status_network_tag', $kv);
     }
 
     /**

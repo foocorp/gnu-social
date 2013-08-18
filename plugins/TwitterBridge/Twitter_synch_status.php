@@ -58,32 +58,6 @@ class Twitter_synch_status extends Managed_DataObject
     public $modified;                        // datetime not_null
 
     /**
-     * Get an instance by key
-     *
-     * @param string $k Key to use to lookup (usually 'foreign_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return Twitter_synch_status object found, or null for no hits
-     */
-    static function staticGet($k, $v=null)
-    {
-        throw new Exception("Use pkeyGet() for this class.");
-    }
-
-    /**
-     * Get an instance by compound primary key
-     *
-     * @param array $kv key-value pair array
-     *
-     * @return Twitter_synch_status object found, or null for no hits
-     *
-     */
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Twitter_synch_status', $kv);
-    }
-
-    /**
      * return table definition for DB_DataObject
      *
      * DB_DataObject needs to know something about the table to manipulate

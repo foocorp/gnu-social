@@ -87,19 +87,6 @@ class Profile_list extends Managed_DataObject
     }
 
     /**
-     * return a profile_list record, given its tag and tagger.
-     *
-     * @param array $kv ideally array('tag' => $tag, 'tagger' => $tagger)
-     *
-     * @return Profile_list a Profile_list object with the given tag and tagger.
-     */
-
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Profile_list', $kv);
-    }
-
-    /**
      * get the tagger of this profile_list object
      *
      * @return Profile the tagger

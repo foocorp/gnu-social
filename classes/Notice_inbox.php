@@ -76,11 +76,6 @@ class Notice_inbox extends Managed_DataObject
         throw new Exception('Notice_inbox no longer used; use Inbox');
     }
 
-    function &pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Notice_inbox', $kv);
-    }
-
     static function gc($user_id)
     {
         throw new Exception('Notice_inbox no longer used; use Inbox');

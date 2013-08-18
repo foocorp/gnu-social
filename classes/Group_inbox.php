@@ -37,9 +37,4 @@ class Group_inbox extends Managed_DataObject
             ),
         );
     }
-
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Group_inbox', $kv);
-    }
 }

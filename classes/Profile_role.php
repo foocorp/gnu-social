@@ -56,11 +56,6 @@ class Profile_role extends Managed_DataObject
         );
     }
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Profile_role', $kv);
-    }
-
     const OWNER         = 'owner';
     const MODERATOR     = 'moderator';
     const ADMINISTRATOR = 'administrator';

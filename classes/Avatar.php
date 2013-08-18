@@ -64,11 +64,6 @@ class Avatar extends Managed_DataObject
         }
     }
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Avatar', $kv);
-    }
-
     /**
      * Where should the avatar go for this user?
      */

@@ -55,11 +55,6 @@ class Group_block extends Managed_DataObject
         );
     }
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Group_block', $kv);
-    }
-
     static function isBlocked($group, $profile)
     {
         $block = Group_block::pkeyGet(array('group_id' => $group->id,

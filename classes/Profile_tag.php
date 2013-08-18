@@ -42,10 +42,6 @@ class Profile_tag extends Managed_DataObject
         );
     }
 
-    function pkeyGet($kv) {
-        return Memcached_DataObject::pkeyGet('Profile_tag', $kv);
-    }
-
     function links()
     {
         return array('tagger,tag' => 'profile_list:tagger,tag');

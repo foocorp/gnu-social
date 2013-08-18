@@ -99,11 +99,6 @@ class Fave extends Managed_DataObject
         return $result;
     }
 
-    function pkeyGet($kv)
-    {
-        return Memcached_DataObject::pkeyGet('Fave', $kv);
-    }
-
     function stream($user_id, $offset=0, $limit=NOTICES_PER_PAGE, $own=false, $since_id=0, $max_id=0)
     {
         $stream = new FaveNoticeStream($user_id, $own);
