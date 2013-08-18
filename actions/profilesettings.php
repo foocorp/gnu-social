@@ -409,7 +409,7 @@ class ProfilesettingsAction extends SettingsAction
 
                 $exists = false;
 
-                $prefs = User_location_prefs::staticGet('user_id', $user->id);
+                $prefs = User_location_prefs::getKV('user_id', $user->id);
 
                 if (empty($prefs)) {
                     $prefs = new User_location_prefs();
@@ -471,7 +471,7 @@ class ProfilesettingsAction extends SettingsAction
     function nicknameExists($nickname)
     {
         $user = common_current_user();
-        $other = User::staticGet('nickname', $nickname);
+        $other = User::getKV('nickname', $nickname);
         if (!$other) {
             return false;
         } else {

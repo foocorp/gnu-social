@@ -29,7 +29,7 @@ class TagrssAction extends Rss10Action
     function prepare($args) {
         parent::prepare($args);
         $tag = common_canonical_tag($this->trimmed('tag'));
-        $this->tag = Notice_tag::staticGet('tag', $tag);
+        $this->tag = Notice_tag::getKV('tag', $tag);
         if (!$this->tag) {
             // TRANS: Client error when requesting a tag feed for a non-existing tag.
             $this->clientError(_('No such tag.'));

@@ -113,7 +113,7 @@ class Subscription extends Managed_DataObject
         }
 
         if (Event::handle('StartSubscribe', array($subscriber, $other))) {
-            $otherUser = User::staticGet('id', $other->id);
+            $otherUser = User::getKV('id', $other->id);
             if ($otherUser && $otherUser->subscribe_policy == User::SUBSCRIBE_POLICY_MODERATE && !$force) {
                 $sub = Subscription_queue::saveNew($subscriber, $other);
                 $sub->notify();
@@ -187,11 +187,11 @@ class Subscription extends Managed_DataObject
 
     function notifyEmail()
     {
-        $subscribedUser = User::staticGet('id', $this->subscribed);
+        $subscribedUser = User::getKV('id', $this->subscribed);
 
         if (!empty($subscribedUser)) {
 
-            $subscriber = Profile::staticGet('id', $this->subscriber);
+            $subscriber = Profile::getKV('id', $this->subscriber);
 
             mail_subscribe_notify_profile($subscribedUser, $subscriber);
         }
@@ -255,8 +255,8 @@ class Subscription extends Managed_DataObject
 
     function asActivity()
     {
-        $subscriber = Profile::staticGet('id', $this->subscriber);
-        $subscribed = Profile::staticGet('id', $this->subscribed);
+        $subscriber = Profile::getKV('id', $this->subscriber);
+        $subscribed = Profile::getKV('id', $this->subscribed);
 
         if (empty($subscriber)) {
             throw new Exception(sprintf(_('No profile for the subscriber: %d'), $this->subscriber));

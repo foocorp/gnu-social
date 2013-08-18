@@ -40,7 +40,7 @@ class GroupsalmonAction extends SalmonAction
             $this->clientError(_m('No ID.'));
         }
 
-        $this->group = User_group::staticGet('id', $id);
+        $this->group = User_group::getKV('id', $id);
 
         if (empty($this->group)) {
             // TRANS: Client error.
@@ -50,7 +50,7 @@ class GroupsalmonAction extends SalmonAction
 
         $this->target = $this->group;
 
-        $oprofile = Ostatus_profile::staticGet('group_id', $id);
+        $oprofile = Ostatus_profile::getKV('group_id', $id);
         if ($oprofile) {
             // TRANS: Client error.
             $this->clientError(_m('Cannot accept remote posts for a remote group.'));

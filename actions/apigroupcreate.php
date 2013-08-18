@@ -297,13 +297,13 @@ class ApiGroupCreateAction extends ApiAuthAction
      */
     function groupNicknameExists($nickname)
     {
-        $local = Local_group::staticGet('nickname', $nickname);
+        $local = Local_group::getKV('nickname', $nickname);
 
         if (!empty($local)) {
             return true;
         }
 
-        $alias = Group_alias::staticGet('alias', $nickname);
+        $alias = Group_alias::getKV('alias', $nickname);
 
         if (!empty($alias)) {
             return true;

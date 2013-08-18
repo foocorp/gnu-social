@@ -31,7 +31,7 @@ class UserrssAction extends Rss10Action
     {
         parent::prepare($args);
         $nickname   = $this->trimmed('nickname');
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
         $this->tag  = $this->trimmed('tag');
 
         if (!$this->user) {

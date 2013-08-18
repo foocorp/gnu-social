@@ -67,7 +67,7 @@ class ApiStatusesRetweetAction extends ApiAuthAction
 
         $id = $this->trimmed('id');
 
-        $this->original = Notice::staticGet('id', $id);
+        $this->original = Notice::getKV('id', $id);
 
         if (empty($this->original)) {
             // TRANS: Client error displayed trying to repeat a non-existing notice through the API.

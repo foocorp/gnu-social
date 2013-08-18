@@ -104,7 +104,7 @@ class Poll_response extends Managed_DataObject
      */
     static function getByNotice($notice)
     {
-        return self::staticGet('uri', $notice->uri);
+        return self::getKV('uri', $notice->uri);
     }
 
     /**
@@ -114,7 +114,7 @@ class Poll_response extends Managed_DataObject
      */
     function getNotice()
     {
-        return Notice::staticGet('uri', $this->uri);
+        return Notice::getKV('uri', $this->uri);
     }
 
     function bestUrl()
@@ -128,7 +128,7 @@ class Poll_response extends Managed_DataObject
      */
     function getPoll()
     {
-        return Poll::staticGet('id', $this->poll_id);
+        return Poll::getKV('id', $this->poll_id);
     }
     /**
      * Save a new poll notice

@@ -99,7 +99,7 @@ class ShowfavoritesAction extends Action
 
         $nickname = common_canonical_nickname($this->arg('nickname'));
 
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed when trying to display favourite notices for a non-existing user.

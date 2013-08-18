@@ -74,7 +74,7 @@ class DomainStatusNetworkPlugin extends Plugin
         }
 
         try {
-            $sn = Status_network::staticGet('nickname', $nickname);
+            $sn = Status_network::getKV('nickname', $nickname);
         } catch (Exception $e) {
             $this->log(LOG_ERR, $e->getMessage());
             return;
@@ -134,11 +134,11 @@ class DomainStatusNetworkPlugin extends Plugin
 
     static function nicknameAvailable($nickname)
     {
-        $sn = Status_network::staticGet('nickname', $nickname);
+        $sn = Status_network::getKV('nickname', $nickname);
         if (!empty($sn)) {
             return false;
         }
-        $usn = Unavailable_status_network::staticGet('nickname', $nickname);
+        $usn = Unavailable_status_network::getKV('nickname', $nickname);
         if (!empty($usn)) {
             return false;
         }
@@ -203,7 +203,7 @@ class DomainStatusNetworkPlugin extends Plugin
         $snt = Status_network_tag::withTag('domain='.$domain);
 
         while ($snt->fetch()) {
-            $sn = Status_network::staticGet('site_id', $snt->site_id);
+            $sn = Status_network::getKV('site_id', $snt->site_id);
             if (!empty($sn)) {
                 return $sn;
             }
@@ -235,7 +235,7 @@ class DomainStatusNetworkPlugin extends Plugin
 
         StatusNet::switchSite($sn->nickname);
 
-        $user = User::staticGet('email', $email);
+        $user = User::getKV('email', $email);
 
         return !empty($user);
     }
@@ -317,7 +317,7 @@ class DomainStatusNetworkPlugin extends Plugin
 
         StatusNet::switchSite($sn->nickname);
 
-        $user = User::staticGet('email', $email);
+        $user = User::getKV('email', $email);
         
         if (empty($user)) {
             throw new ClientException(_('No such user.'));

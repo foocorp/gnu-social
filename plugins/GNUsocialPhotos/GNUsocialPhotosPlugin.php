@@ -114,7 +114,7 @@ class GNUsocialPhotosPlugin extends Plugin
     function onEndNoticeAsActivity($notice, &$activity)
     {
         common_log(LOG_INFO, 'photo plugin: EndNoticeAsActivity');
-        $photo = GNUsocialPhoto::staticGet('notice_id', $notice->id);
+        $photo = GNUsocialPhoto::getKV('notice_id', $notice->id);
         if(!$photo) {
             common_log(LOG_INFO, 'not a photo.');
             return true;
@@ -166,7 +166,7 @@ class GNUsocialPhotosPlugin extends Plugin
 
     function onStartShowNoticeItem($action)
     {
-        $photo = GNUsocialPhoto::staticGet('notice_id', $action->notice->id);
+        $photo = GNUsocialPhoto::getKV('notice_id', $action->notice->id);
         if($photo) { 
             $action->out->elementStart('div', 'entry-title');
             $action->showAuthor();

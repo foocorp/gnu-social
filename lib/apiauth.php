@@ -183,7 +183,7 @@ class ApiAuthAction extends ApiAction
             }
 
 
-            $appUser = Oauth_application_user::staticGet('token', $access_token);
+            $appUser = Oauth_application_user::getKV('token', $access_token);
 
             if (!empty($appUser)) {
                 // If access_type == 0 we have either a request token
@@ -196,7 +196,7 @@ class ApiAuthAction extends ApiAction
 
                     // Set the auth user
                     if (Event::handle('StartSetApiUser', array(&$user))) {
-                        $user = User::staticGet('id', $appUser->profile_id);
+                        $user = User::getKV('id', $appUser->profile_id);
                         if (!empty($user)) {
                             if (!$user->hasRight(Right::API)) {
                                 // TRANS: Authorization exception thrown when a user without API access tries to access the API.

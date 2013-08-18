@@ -38,7 +38,7 @@ class UsersalmonAction extends SalmonAction
             $this->clientError(_m('No ID.'));
         }
 
-        $this->user = User::staticGet('id', $id);
+        $this->user = User::getKV('id', $id);
 
         if (empty($this->user)) {
             // TRANS: Client error displayed when referring to a non-existing user.
@@ -80,7 +80,7 @@ class UsersalmonAction extends SalmonAction
         $context = $this->activity->context;
 
         if (!empty($context->replyToID)) {
-            $notice = Notice::staticGet('uri', $context->replyToID);
+            $notice = Notice::getKV('uri', $context->replyToID);
             if (empty($notice)) {
                 // TRANS: Client exception.
                 throw new ClientException(_m('In reply to unknown notice.'));
@@ -102,7 +102,7 @@ class UsersalmonAction extends SalmonAction
             throw new ClientException(_m('Not to anyone in reply to anything.'));
         }
 
-        $existing = Notice::staticGet('uri', $this->activity->objects[0]->id);
+        $existing = Notice::getKV('uri', $this->activity->objects[0]->id);
 
         if (!empty($existing)) {
             common_log(LOG_ERR, "Not saving notice '{$existing->uri}'; already exists.");
@@ -197,7 +197,7 @@ class UsersalmonAction extends SalmonAction
                 return false;
             }
             // this is a peopletag
-            $tagged = User::staticGet('uri', $this->activity->objects[0]->id);
+            $tagged = User::getKV('uri', $this->activity->objects[0]->id);
 
             if (empty($tagged)) {
                 // TRANS: Client exception.
@@ -231,7 +231,7 @@ class UsersalmonAction extends SalmonAction
                 return false;
             }
             // this is a peopletag
-            $tagged = User::staticGet('uri', $this->activity->objects[0]->id);
+            $tagged = User::getKV('uri', $this->activity->objects[0]->id);
 
             if (empty($tagged)) {
                 // TRANS: Client exception.
@@ -281,7 +281,7 @@ class UsersalmonAction extends SalmonAction
             throw new ClientException(_m('Cannot handle that kind of object for liking/faving.'));
         }
 
-        $notice = Notice::staticGet('uri', $object->id);
+        $notice = Notice::getKV('uri', $object->id);
 
         if (empty($notice)) {
             // TRANS: Client exception. %s is an object ID.

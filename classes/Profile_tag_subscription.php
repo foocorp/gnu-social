@@ -73,7 +73,7 @@ class Profile_tag_subscription extends Managed_DataObject
                 throw new Exception(_('Adding list subscription failed.'));
             }
 
-            $ptag = Profile_list::staticGet('id', $peopletag->id);
+            $ptag = Profile_list::getKV('id', $peopletag->id);
             $ptag->subscriberCount(true);
 
             Event::handle('EndSubscribePeopletag', array($peopletag, $profile));
@@ -114,7 +114,7 @@ class Profile_tag_subscription extends Managed_DataObject
         $subs->find();
 
         while($subs->fetch()) {
-            $profile = Profile::staticGet('id', $subs->profile_id);
+            $profile = Profile::getKV('id', $subs->profile_id);
             Event::handle('StartUnsubscribePeopletag', array($profile_list, $profile));
             // Delete anyway
             $subs->delete();

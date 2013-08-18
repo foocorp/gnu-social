@@ -90,7 +90,7 @@ class groupRssAction extends Rss10Action
             return false;
         }
 
-        $local = Local_group::staticGet('nickname', $nickname);
+        $local = Local_group::getKV('nickname', $nickname);
 
         if (!$local) {
             // TRANS: Client error displayed when requesting a group RSS feed for group that does not exist.
@@ -98,7 +98,7 @@ class groupRssAction extends Rss10Action
             return false;
         }
 
-        $this->group = User_group::staticGet('id', $local->group_id);
+        $this->group = User_group::getKV('id', $local->group_id);
 
         if (!$this->group) {
             // TRANS: Client error displayed when requesting a group RSS feed for an object that is not a group.

@@ -40,14 +40,14 @@ class PeopletagsalmonAction extends SalmonAction
             $this->clientError(_m('No ID.'));
         }
 
-        $this->peopletag = Profile_list::staticGet('id', $id);
+        $this->peopletag = Profile_list::getKV('id', $id);
 
         if (empty($this->peopletag)) {
             // TRANS: Client error displayed when referring to a non-existing list.
             $this->clientError(_m('No such list.'));
         }
 
-        $oprofile = Ostatus_profile::staticGet('peopletag_id', $id);
+        $oprofile = Ostatus_profile::getKV('peopletag_id', $id);
 
         if (!empty($oprofile)) {
             // TRANS: Client error displayed when trying to send a message to a remote list.

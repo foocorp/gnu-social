@@ -111,7 +111,7 @@ class InviteAction extends Action
 
             foreach ($addresses as $email) {
                 $email = common_canonical_email($email);
-                $other = User::staticGet('email', $email);
+                $other = User::getKV('email', $email);
                 if ($other) {
                     if ($user->isSubscribed($other)) {
                         $this->already[] = $other;

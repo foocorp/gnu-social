@@ -197,7 +197,7 @@ class EventPlugin extends MicroappPlugin
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
         case RSVP::POSSIBLE:
-            $happening = Happening::staticGet('uri', $happeningObj->id);
+            $happening = Happening::getKV('uri', $happeningObj->id);
             if (empty($happening)) {
                 // FIXME: save the event
                 // TRANS: Exception thrown when trying to RSVP for an unknown event.

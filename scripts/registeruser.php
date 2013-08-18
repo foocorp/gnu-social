@@ -49,7 +49,7 @@ if (empty($nickname) || empty($password)) {
 
 try {
 
-    $user = User::staticGet('nickname', $nickname);
+    $user = User::getKV('nickname', $nickname);
 
     if (!empty($user)) {
         throw new Exception("A user named '$nickname' already exists.");

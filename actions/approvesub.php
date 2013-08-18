@@ -61,7 +61,7 @@ class ApprovesubAction extends Action
             return false;
         }
         if ($this->arg('profile_id')) {
-            $this->profile = Profile::staticGet('id', $this->arg('profile_id'));
+            $this->profile = Profile::getKV('id', $this->arg('profile_id'));
         } else {
             // TRANS: Client error displayed trying to approve subscriptionswithout specifying a profile to approve.
             $this->clientError(_('Must specify a profile.'));

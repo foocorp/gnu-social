@@ -399,7 +399,7 @@ abstract class MicroAppPlugin extends Plugin
                 $uri      = $target->uri;
                 $original = null;
                 if (!empty($activity->context->replyToID)) {
-                    $original = Notice::staticGet('uri',
+                    $original = Notice::getKV('uri',
                                                   $activity->context->replyToID);
                 }
                 if (!in_array($uri, $activity->context->attention) &&

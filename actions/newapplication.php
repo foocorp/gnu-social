@@ -317,7 +317,7 @@ class NewApplicationAction extends Action
      */
     function nameExists($name)
     {
-        $app = Oauth_application::staticGet('name', $name);
+        $app = Oauth_application::getKV('name', $name);
         return !empty($app);
     }
 }

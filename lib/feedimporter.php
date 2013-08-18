@@ -142,7 +142,7 @@ class FeedImporter extends QueueHandler
 
     function userFromAuthor($author)
     {
-        $user = User::staticGet('uri', $author->id);
+        $user = User::getKV('uri', $author->id);
 
         if (empty($user)) {
             $attrs =

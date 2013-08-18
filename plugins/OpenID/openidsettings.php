@@ -223,7 +223,7 @@ class OpenidsettingsAction extends SettingsAction
                                       'value' => _m('BUTTON','Remove')));
         $this->elementEnd('fieldset');
         
-        $prefs = User_openid_prefs::staticGet('user_id', $user->id);
+        $prefs = User_openid_prefs::getKV('user_id', $user->id);
 
         $this->elementStart('fieldset');
         $this->element('legend', null, _m('LEGEND','Preferences'));
@@ -326,7 +326,7 @@ class OpenidsettingsAction extends SettingsAction
     {
         $openid_url = $this->trimmed('openid_url');
 
-        $oid = User_openid::staticGet('canonical', $openid_url);
+        $oid = User_openid::getKV('canonical', $openid_url);
 
         if (!$oid) {
             // TRANS: Form validation error for a non-existing OpenID.
@@ -362,7 +362,7 @@ class OpenidsettingsAction extends SettingsAction
         }
 
         $orig  = null;
-        $prefs = User_openid_prefs::staticGet('user_id', $cur->id);
+        $prefs = User_openid_prefs::getKV('user_id', $cur->id);
 
         if (empty($prefs)) {
             $prefs          = new User_openid_prefs();

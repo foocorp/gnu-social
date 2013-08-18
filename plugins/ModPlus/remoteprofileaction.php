@@ -12,7 +12,7 @@ class RemoteProfileAction extends ShowstreamAction
 
         $id = $this->arg('id');
         $this->user = false;
-        $this->profile = Profile::staticGet('id', $id);
+        $this->profile = Profile::getKV('id', $id);
 
         if (!$this->profile) {
             // TRANS: Error message displayed when referring to a user without a profile.
@@ -20,7 +20,7 @@ class RemoteProfileAction extends ShowstreamAction
             return false;
         }
 
-        $user = User::staticGet('id', $this->profile->id);
+        $user = User::getKV('id', $this->profile->id);
         if ($user) {
             // This is a local user -- send to their regular profile.
             $url = common_local_url('showstream', array('nickname' => $user->nickname));

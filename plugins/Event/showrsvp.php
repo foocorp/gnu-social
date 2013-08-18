@@ -53,7 +53,7 @@ class ShowrsvpAction extends ShownoticeAction
     {
         $this->id = $this->trimmed('id');
 
-        $this->rsvp = RSVP::staticGet('id', $this->id);
+        $this->rsvp = RSVP::getKV('id', $this->id);
 
         if (empty($this->rsvp)) {
             // TRANS: Client exception thrown when referring to a non-existing RSVP.

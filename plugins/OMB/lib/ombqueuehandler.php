@@ -50,7 +50,7 @@ class OmbQueueHandler extends QueueHandler
 
     function is_remote($notice)
     {
-        $user = User::staticGet($notice->profile_id);
+        $user = User::getKV($notice->profile_id);
         return is_null($user);
     }
 }

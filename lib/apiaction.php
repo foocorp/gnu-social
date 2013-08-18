@@ -279,7 +279,7 @@ class ApiAction extends Action
         $base = $this->twitterSimpleStatusArray($notice, $include_user);
 
         if (!empty($notice->repeat_of)) {
-            $original = Notice::staticGet('id', $notice->repeat_of);
+            $original = Notice::getKV('id', $notice->repeat_of);
             if (!empty($original)) {
                 $original_array = $this->twitterSimpleStatusArray($original, $include_user);
                 $base['retweeted_status'] = $original_array;
@@ -321,7 +321,7 @@ class ApiAction extends Action
         $replier_profile = null;
 
         if ($notice->reply_to) {
-            $reply = Notice::staticGet(intval($notice->reply_to));
+            $reply = Notice::getKV(intval($notice->reply_to));
             if ($reply) {
                 $replier_profile = $reply->getProfile();
             }
@@ -431,7 +431,7 @@ class ApiAction extends Action
 
     function twitterListArray($list)
     {
-        $profile = Profile::staticGet('id', $list->tagger);
+        $profile = Profile::getKV('id', $list->tagger);
 
         $twitter_list = array();
         $twitter_list['id'] = $list->id;
@@ -1468,29 +1468,29 @@ class ApiAction extends Action
         if (empty($id)) {
             // Twitter supports these other ways of passing the user ID
             if (self::is_decimal($this->arg('id'))) {
-                return User::staticGet($this->arg('id'));
+                return User::getKV($this->arg('id'));
             } else if ($this->arg('id')) {
                 $nickname = common_canonical_nickname($this->arg('id'));
-                return User::staticGet('nickname', $nickname);
+                return User::getKV('nickname', $nickname);
             } else if ($this->arg('user_id')) {
                 // This is to ensure that a non-numeric user_id still
                 // overrides screen_name even if it doesn't get used
                 if (self::is_decimal($this->arg('user_id'))) {
-                    return User::staticGet('id', $this->arg('user_id'));
+                    return User::getKV('id', $this->arg('user_id'));
                 }
             } else if ($this->arg('screen_name')) {
                 $nickname = common_canonical_nickname($this->arg('screen_name'));
-                return User::staticGet('nickname', $nickname);
+                return User::getKV('nickname', $nickname);
             } else {
                 // Fall back to trying the currently authenticated user
                 return $this->auth_user;
             }
 
         } else if (self::is_decimal($id)) {
-            return User::staticGet($id);
+            return User::getKV($id);
         } else {
             $nickname = common_canonical_nickname($id);
-            return User::staticGet('nickname', $nickname);
+            return User::getKV('nickname', $nickname);
         }
     }
 
@@ -1500,28 +1500,28 @@ class ApiAction extends Action
 
             // Twitter supports these other ways of passing the user ID
             if (self::is_decimal($this->arg('id'))) {
-                return Profile::staticGet($this->arg('id'));
+                return Profile::getKV($this->arg('id'));
             } else if ($this->arg('id')) {
                 // Screen names currently can only uniquely identify a local user.
                 $nickname = common_canonical_nickname($this->arg('id'));
-                $user = User::staticGet('nickname', $nickname);
+                $user = User::getKV('nickname', $nickname);
                 return $user ? $user->getProfile() : null;
             } else if ($this->arg('user_id')) {
                 // This is to ensure that a non-numeric user_id still
                 // overrides screen_name even if it doesn't get used
                 if (self::is_decimal($this->arg('user_id'))) {
-                    return Profile::staticGet('id', $this->arg('user_id'));
+                    return Profile::getKV('id', $this->arg('user_id'));
                 }
             } else if ($this->arg('screen_name')) {
                 $nickname = common_canonical_nickname($this->arg('screen_name'));
-                $user = User::staticGet('nickname', $nickname);
+                $user = User::getKV('nickname', $nickname);
                 return $user ? $user->getProfile() : null;
             }
         } else if (self::is_decimal($id)) {
-            return Profile::staticGet($id);
+            return Profile::getKV($id);
         } else {
             $nickname = common_canonical_nickname($id);
-            $user = User::staticGet('nickname', $nickname);
+            $user = User::getKV('nickname', $nickname);
             return $user ? $user->getProfile() : null;
         }
     }
@@ -1530,21 +1530,21 @@ class ApiAction extends Action
     {
         if (empty($id)) {
             if (self::is_decimal($this->arg('id'))) {
-                return User_group::staticGet('id', $this->arg('id'));
+                return User_group::getKV('id', $this->arg('id'));
             } else if ($this->arg('id')) {
                 return User_group::getForNickname($this->arg('id'));
             } else if ($this->arg('group_id')) {
                 // This is to ensure that a non-numeric group_id still
                 // overrides group_name even if it doesn't get used
                 if (self::is_decimal($this->arg('group_id'))) {
-                    return User_group::staticGet('id', $this->arg('group_id'));
+                    return User_group::getKV('id', $this->arg('group_id'));
                 }
             } else if ($this->arg('group_name')) {
                 return User_group::getForNickname($this->arg('group_name'));
             }
 
         } else if (self::is_decimal($id)) {
-            return User_group::staticGet('id', $id);
+            return User_group::getKV('id', $id);
         } else {
             return User_group::getForNickname($id);
         }
@@ -1561,7 +1561,7 @@ class ApiAction extends Action
 
         if($id) {
             if (is_numeric($id)) {
-                $list = Profile_list::staticGet('id', $id);
+                $list = Profile_list::getKV('id', $id);
 
                 // only if the list with the id belongs to the tagger
                 if(empty($list) || $list->tagger != $tagger->id) {

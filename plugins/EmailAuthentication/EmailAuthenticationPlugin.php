@@ -38,7 +38,7 @@ class EmailAuthenticationPlugin extends Plugin
     {
         if(strpos($nickname, '@'))
         {
-            $user = User::staticGet('email',$nickname);
+            $user = User::getKV('email',$nickname);
             if($user && isset($user->email))
             {
                 if(common_check_user($user->nickname,$password))

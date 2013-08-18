@@ -112,7 +112,7 @@ class NewmessageAction extends Action
 
         if ($this->to) {
 
-            $this->other = User::staticGet('id', $this->to);
+            $this->other = User::getKV('id', $this->to);
 
             if (!$this->other) {
                 // TRANS: Client error displayed trying to send a direct message to a non-existing user.

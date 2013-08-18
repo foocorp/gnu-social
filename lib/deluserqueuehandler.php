@@ -43,7 +43,7 @@ class DelUserQueueHandler extends QueueHandler
             return true;
         }
 
-        $user = User::staticGet('id', $user->id);
+        $user = User::getKV('id', $user->id);
         if (!$user) {
             common_log(LOG_INFO, "User {$user->nickname} was deleted before we got here.");
             return true;

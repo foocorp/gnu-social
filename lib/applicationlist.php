@@ -202,7 +202,7 @@ class ConnectedAppsList extends Widget
 
     function showConnection()
     {
-        $app = Oauth_application::staticGet('id', $this->connection->application_id);
+        $app = Oauth_application::getKV('id', $this->connection->application_id);
 
         $this->out->elementStart(
             'li',

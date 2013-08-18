@@ -64,12 +64,12 @@ class ApiFavoriteCreateAction extends ApiAuthAction
         parent::prepare($args);
 
         $this->user   = $this->auth_user;
-        $this->notice = Notice::staticGet($this->arg('id'));
+        $this->notice = Notice::getKV($this->arg('id'));
         if ($this->notice->repeat_of != '' ) {
                 common_log(LOG_DEBUG, 'Trying to Fave '.$this->notice->id.', repeat of '.$this->notice->repeat_of);
                 common_log(LOG_DEBUG, 'Will Fave '.$this->notice->repeat_of.' instead');
                 $real_notice_id = $this->notice->repeat_of;
-                $this->notice = Notice::staticGet($real_notice_id);
+                $this->notice = Notice::getKV($real_notice_id);
         }
 
         return true;
@@ -163,7 +163,7 @@ class ApiFavoriteCreateAction extends ApiAuthAction
      */
     function notify($fave, $notice, $user)
     {
-        $other = User::staticGet('id', $notice->profile_id);
+        $other = User::getKV('id', $notice->profile_id);
         if ($other && $other->id != $user->id) {
             if ($other->email && $other->emailnotifyfav) {
                 mail_notify_fave($other, $user, $notice);

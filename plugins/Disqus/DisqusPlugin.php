@@ -104,7 +104,7 @@ class DisqusPlugin extends Plugin
     {
         if (get_class($action) == 'ShownoticeAction') {
 
-            $profile = Profile::staticGet('id', $action->notice->profile_id);
+            $profile = Profile::getKV('id', $action->notice->profile_id);
 
             if ($this->isAllowedRichEdit($profile)) {
 
@@ -192,7 +192,7 @@ ENDOFSCRIPT;
             return;
         }
 
-        $profile = Profile::staticGet('id', $noticeListItem->notice->profile_id);
+        $profile = Profile::getKV('id', $noticeListItem->notice->profile_id);
 
         if ($this->isAllowedRichEdit($profile)) {
             $noticeUrl = $noticeListItem->notice->bestUrl();
@@ -221,7 +221,7 @@ ENDOFSCRIPT;
     private function isAllowedRichEdit($profile)
     {
         if ($this->restricted) {
-            $user = User::staticGet($profile->id);
+            $user = User::getKV($profile->id);
             return !empty($user) && $user->hasRole('richedit');
         } else {
             return true;

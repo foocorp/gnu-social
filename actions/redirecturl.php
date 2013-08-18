@@ -70,7 +70,7 @@ class RedirecturlAction extends Action
             throw new ClientException(_('No id parameter.'));
         }
 
-        $this->file = File::staticGet('id', $this->id);
+        $this->file = File::getKV('id', $this->id);
 
         if (empty($this->file)) {
             // TRANS: Client exception thrown when an invalid ID parameter was provided for a file.

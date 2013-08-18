@@ -228,7 +228,7 @@ class SyncTwitterFriendsDaemon extends ParallelizingDaemon
 
                 // Get associated user and subscribe her
 
-                $friend_user = User::staticGet('id', $friend_flink->user_id);
+                $friend_user = User::getKV('id', $friend_flink->user_id);
 
                 if (!empty($friend_user)) {
                     $result = subs_subscribe_to($user, $friend_user);

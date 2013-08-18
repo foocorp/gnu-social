@@ -38,7 +38,7 @@ class ShowvideoAction extends ShownoticeAction
     {
         OwnerDesignAction::prepare($args);
         $this->id = $this->trimmed('id');
-        $this->vid = Video::staticGet('id', $this->id);
+        $this->vid = Video::getKV('id', $this->id);
 
         if (empty($this->vid)) {
             throw new ClientException(_('No such video.'), 404);
@@ -50,7 +50,7 @@ class ShowvideoAction extends ShownoticeAction
             throw new ClientException(_('No such video'), 404);
         }
 
-        $this->user = User::staticGet('id', $this->vid->profile_id);
+        $this->user = User::getKV('id', $this->vid->profile_id);
 
         if (empty($this->user)) {
             throw new ClientException(_('No such user.'), 404);

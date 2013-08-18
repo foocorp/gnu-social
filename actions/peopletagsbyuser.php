@@ -95,7 +95,7 @@ class PeopletagsbyuserAction extends Action
             return false;
         }
 
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed trying to perform an action related to a non-existing user.

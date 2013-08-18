@@ -53,7 +53,7 @@ class ShowblogentryAction extends ShownoticeAction
     {
         $this->id = $this->trimmed('id');
 
-        $this->entry = Blog_entry::staticGet('id', $this->id);
+        $this->entry = Blog_entry::getKV('id', $this->id);
 
         if (empty($this->entry)) {
             // TRANS: Client exception thrown when referring to a non-existing blog entry.

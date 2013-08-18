@@ -38,14 +38,14 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 if (have_option('i', 'id')) {
     $id = get_option_value('i', 'id');
-    $profile = Profile::staticGet('id', $id);
+    $profile = Profile::getKV('id', $id);
     if (empty($profile)) {
         print "Can't find user with ID $id\n";
         exit(1);
     }
 } else if (have_option('n', 'nickname')) {
     $nickname = get_option_value('n', 'nickname');
-    $user = User::staticGet('nickname', $nickname);
+    $user = User::getKV('nickname', $nickname);
     if (empty($user)) {
         print "Can't find user with nickname '$nickname'\n";
         exit(1);

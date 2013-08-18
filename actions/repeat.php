@@ -65,7 +65,7 @@ class RepeatAction extends Action
             return false;
         }
 
-        $this->notice = Notice::staticGet('id', $id);
+        $this->notice = Notice::getKV('id', $id);
 
         if (empty($this->notice)) {
             // TRANS: Client error displayed when trying to repeat a non-existing notice.

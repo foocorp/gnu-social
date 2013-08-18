@@ -55,7 +55,7 @@ class AccountProfileBlock extends ProfileBlock
     {
         parent::__construct($out);
         $this->profile = $profile;
-        $this->user    = User::staticGet('id', $profile->id);
+        $this->user    = User::getKV('id', $profile->id);
     }
 
     function avatar()

@@ -89,7 +89,7 @@ class ThreadedNoticeList extends NoticeList
             // Collapse repeats into their originals...
             
             if ($notice->repeat_of) {
-                $orig = Notice::staticGet('id', $notice->repeat_of);
+                $orig = Notice::getKV('id', $notice->repeat_of);
                 if ($orig) {
                     $notice = $orig;
                 }
@@ -436,7 +436,7 @@ abstract class NoticeListActorsItem extends NoticeListItem
                 // TRANS: Reference to the logged in user in favourite list.
                 array_unshift($links, _m('FAVELIST', 'You'));
             } else {
-                $profile = Profile::staticGet('id', $id);
+                $profile = Profile::getKV('id', $id);
                 if ($profile) {
                     $links[] = sprintf('<a href="%s">%s</a>',
                                        htmlspecialchars($profile->profileurl),

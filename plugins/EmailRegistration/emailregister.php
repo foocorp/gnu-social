@@ -107,7 +107,7 @@ class EmailregisterAction extends Action
                     throw new ClientException(_m('No confirmation code.'));
                 }
 
-                $this->invitation = Invitation::staticGet('code', $this->code);
+                $this->invitation = Invitation::getKV('code', $this->code);
 
                 if (!empty($this->invitation)) {
                     if (!empty($this->invitation->registered_user_id)) {
@@ -116,7 +116,7 @@ class EmailregisterAction extends Action
                     }
                 } else {
 
-                    $this->confirmation = Confirm_address::staticGet('code', $this->code);
+                    $this->confirmation = Confirm_address::getKV('code', $this->code);
 
                     if (empty($this->confirmation)) {
                         // TRANS: Client exception thrown when given confirmation code was not issued.
@@ -139,7 +139,7 @@ class EmailregisterAction extends Action
                 }
                 $this->state = self::NEWREGISTER;
             } else {
-                $this->invitation = Invitation::staticGet('code', $this->code);
+                $this->invitation = Invitation::getKV('code', $this->code);
                 if (!empty($this->invitation)) {
                     if (!empty($this->invitation->registered_user_id)) {
                         // TRANS: Client exception trown when using an invitation multiple times.
@@ -148,7 +148,7 @@ class EmailregisterAction extends Action
                     $this->state = self::CONFIRMINVITE;
                 } else {
                     $this->state = self::CONFIRMREGISTER;
-                    $this->confirmation = Confirm_address::staticGet('code', $this->code);
+                    $this->confirmation = Confirm_address::getKV('code', $this->code);
 
                     if (empty($this->confirmation)) {
                         // TRANS: Client exception thrown when given confirmation code was not issued.

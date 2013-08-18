@@ -94,7 +94,7 @@ class AddpeopletagAction extends Action
 
         $tagged_id = $this->arg('tagged');
 
-        $this->tagged = Profile::staticGet('id', $tagged_id);
+        $this->tagged = Profile::getKV('id', $tagged_id);
 
         if (empty($this->tagged)) {
             // TRANS: Client error displayed trying to perform an action related to a non-existing profile.
@@ -103,7 +103,7 @@ class AddpeopletagAction extends Action
         }
 
         $id = $this->arg('peopletag_id');
-        $this->peopletag = Profile_list::staticGet('id', $id);
+        $this->peopletag = Profile_list::getKV('id', $id);
 
         if (empty($this->peopletag)) {
             // TRANS: Client error displayed trying to reference a non-existing list.
@@ -130,7 +130,7 @@ class AddpeopletagAction extends Action
                                 $this->peopletag->tag);
 
         if (!$ptag) {
-            $user = User::staticGet('id', $id);
+            $user = User::getKV('id', $id);
             if ($user) {
                 $this->clientError(
                         // TRANS: Client error displayed when an unknown error occurs when adding a user to a list.

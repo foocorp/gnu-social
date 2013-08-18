@@ -168,7 +168,7 @@ class EmailReminderPlugin extends Plugin
         $inviterurl = null;
 
         if ($type == UserInviteReminderHandler::INVITE_REMINDER) {
-            $user = User::staticGet($object->user_id);
+            $user = User::getKV($object->user_id);
             if (!empty($user)) {
                 $profile    = $user->getProfile();
                 $inviter    = $profile->getBestName();

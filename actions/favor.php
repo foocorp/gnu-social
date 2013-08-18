@@ -69,7 +69,7 @@ class FavorAction extends Action
             return;
         }
         $id     = $this->trimmed('notice');
-        $notice = Notice::staticGet($id);
+        $notice = Notice::getKV($id);
         $token  = $this->trimmed('token-'.$notice->id);
         if (!$token || $token != common_session_token()) {
             // TRANS: Client error displayed when the session token does not match or is not given.
@@ -117,7 +117,7 @@ class FavorAction extends Action
      */
     function notify($notice, $user)
     {
-        $other = User::staticGet('id', $notice->profile_id);
+        $other = User::getKV('id', $notice->profile_id);
         if ($other && $other->id != $user->id) {
             if ($other->email && $other->emailnotifyfav) {
                 mail_notify_fave($other, $user, $notice);

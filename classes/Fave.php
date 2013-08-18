@@ -80,8 +80,8 @@ class Fave extends Managed_DataObject
 
     function delete()
     {
-        $profile = Profile::staticGet('id', $this->user_id);
-        $notice  = Notice::staticGet('id', $this->notice_id);
+        $profile = Profile::getKV('id', $this->user_id);
+        $notice  = Notice::getKV('id', $this->notice_id);
 
         $result = null;
 
@@ -120,13 +120,13 @@ class Fave extends Managed_DataObject
 
     function asActivity()
     {
-        $notice = Notice::staticGet('id', $this->notice_id);
+        $notice = Notice::getKV('id', $this->notice_id);
 
         if (!$notice) {
             throw new Exception("Fave for non-existent notice: " . $this->notice_id);
         }
 
-        $profile = Profile::staticGet('id', $this->user_id);
+        $profile = Profile::getKV('id', $this->user_id);
 
         if (!$profile) {
             throw new Exception("Fave by non-existent profile: " . $this->user_id);

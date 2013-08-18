@@ -235,9 +235,9 @@ function common_check_user($nickname, $password)
     if (Event::handle('StartCheckPassword', array($nickname, $password, &$authenticatedUser))) {
 
         if (common_is_email($nickname)) {
-            $user = User::staticGet('email', common_canonical_email($nickname));
+            $user = User::getKV('email', common_canonical_email($nickname));
         } else {
-            $user = User::staticGet('nickname', common_canonical_nickname($nickname));
+            $user = User::getKV('nickname', common_canonical_nickname($nickname));
         }
 
         if (!empty($user)) {
@@ -315,7 +315,7 @@ function common_set_user($user)
         return true;
     } else if (is_string($user)) {
         $nickname = $user;
-        $user = User::staticGet('nickname', $nickname);
+        $user = User::getKV('nickname', $nickname);
     } else if (!($user instanceof User)) {
         return false;
     }
@@ -413,7 +413,7 @@ function common_remembered_user()
         return null;
     }
 
-    $rm = Remember_me::staticGet('code', $code);
+    $rm = Remember_me::getKV('code', $code);
 
     if (!$rm) {
         common_log(LOG_WARNING, 'No such remember code: ' . $code);
@@ -427,7 +427,7 @@ function common_remembered_user()
         return null;
     }
 
-    $user = User::staticGet('id', $rm->user_id);
+    $user = User::getKV('id', $rm->user_id);
 
     if (!$user) {
         common_log(LOG_WARNING, 'No such user for rememberme: ' . $rm->user_id);
@@ -484,7 +484,7 @@ function common_current_user()
             common_ensure_session();
             $id = isset($_SESSION['userid']) ? $_SESSION['userid'] : false;
             if ($id) {
-                $user = User::staticGet($id);
+                $user = User::getKV($id);
                 if ($user) {
                 	$_cur = $user;
                 	return $_cur;
@@ -675,7 +675,7 @@ function common_find_mentions($text, $notice)
 {
     $mentions = array();
 
-    $sender = Profile::staticGet('id', $notice->profile_id);
+    $sender = Profile::getKV('id', $notice->profile_id);
 
     if (empty($sender)) {
         return $mentions;
@@ -690,14 +690,14 @@ function common_find_mentions($text, $notice)
         // Is it a reply?
 
         if (!empty($notice) && !empty($notice->reply_to)) {
-            $originalNotice = Notice::staticGet('id', $notice->reply_to);
+            $originalNotice = Notice::getKV('id', $notice->reply_to);
             if (!empty($originalNotice)) {
-                $originalAuthor = Profile::staticGet('id', $originalNotice->profile_id);
+                $originalAuthor = Profile::getKV('id', $originalNotice->profile_id);
 
                 $ids = $originalNotice->getReplies();
 
                 foreach ($ids as $id) {
-                    $repliedTo = Profile::staticGet('id', $id);
+                    $repliedTo = Profile::getKV('id', $id);
                     if (!empty($repliedTo)) {
                         $originalMentions[$repliedTo->nickname] = $repliedTo;
                     }
@@ -729,7 +729,7 @@ function common_find_mentions($text, $notice)
             }
 
             if (!empty($mentioned)) {
-                $user = User::staticGet('id', $mentioned->id);
+                $user = User::getKV('id', $mentioned->id);
 
                 if ($user) {
                     $url = common_local_url('userbyid', array('id' => $user->id));
@@ -979,7 +979,7 @@ function common_linkify($url) {
 
     // Check to see whether this is a known "attachment" URL.
 
-    $f = File::staticGet('url', $longurl);
+    $f = File::getKV('url', $longurl);
 
     if (empty($f)) {
         if (common_config('attachments', 'process_links')) {
@@ -993,7 +993,7 @@ function common_linkify($url) {
             $is_attachment = true;
             $attachment_id = $f->id;
 
-            $thumb = File_thumbnail::staticGet('file_id', $f->id);
+            $thumb = File_thumbnail::getKV('file_id', $f->id);
             if (!empty($thumb)) {
                 $has_thumb = true;
             }
@@ -1150,7 +1150,7 @@ function common_valid_profile_tag($str)
  */
 function common_group_link($sender_id, $nickname)
 {
-    $sender = Profile::staticGet($sender_id);
+    $sender = Profile::getKV($sender_id);
     $group = User_group::getForNickname($nickname, $sender);
     if ($sender && $group && $sender->isMember($group)) {
         $attrs = array('href' => $group->permalink(),
@@ -1217,9 +1217,9 @@ function common_relative_profile($sender, $nickname, $dt=null)
         return $recipient;
     }
     // If this is a local user, try to find a local user with that nickname.
-    $sender = User::staticGet($sender->id);
+    $sender = User::getKV($sender->id);
     if ($sender) {
-        $recipient_user = User::staticGet('nickname', $nickname);
+        $recipient_user = User::getKV('nickname', $nickname);
         if ($recipient_user) {
             return $recipient_user->getProfile();
         }
@@ -2020,7 +2020,7 @@ function common_profile_uri($profile)
 
     if (!empty($profile)) {
         if (Event::handle('StartCommonProfileURI', array($profile, &$uri))) {
-            $user = User::staticGet($profile->id);
+            $user = User::getKV($profile->id);
             if (!empty($user)) {
                 $uri = $user->uri;
             }

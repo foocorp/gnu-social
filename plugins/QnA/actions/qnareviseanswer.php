@@ -88,7 +88,7 @@ class QnareviseanswerAction extends Action
 
         $id = substr($this->trimmed('id'), 7);
 
-        $this->answer   = QnA_Answer::staticGet('id', $id);
+        $this->answer   = QnA_Answer::getKV('id', $id);
         $this->question = $this->answer->getQuestion();
 
         if (empty($this->answer) || empty($this->question)) {

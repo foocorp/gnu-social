@@ -95,7 +95,7 @@ class RemovepeopletagAction extends Action
 
         $tagged_id = $this->arg('tagged');
 
-        $this->tagged = Profile::staticGet('id', $tagged_id);
+        $this->tagged = Profile::getKV('id', $tagged_id);
 
         if (empty($this->tagged)) {
             // TRANS: Client error displayed when referring to a non-existing profile.
@@ -104,7 +104,7 @@ class RemovepeopletagAction extends Action
         }
 
         $id = $this->arg('peopletag_id');
-        $this->peopletag = Profile_list::staticGet('id', $id);
+        $this->peopletag = Profile_list::getKV('id', $id);
 
         if (empty($this->peopletag)) {
             // TRANS: Client error displayed trying to reference a non-existing list.
@@ -132,7 +132,7 @@ class RemovepeopletagAction extends Action
                                 $this->peopletag->tag);
 
         if (!$ptag) {
-            $user = User::staticGet('id', $this->tagged->id);
+            $user = User::getKV('id', $this->tagged->id);
             if ($user) {
                 $this->clientError(
                         // TRANS: Client error displayed when an unknown error occurs while delisting a user.

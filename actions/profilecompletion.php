@@ -94,7 +94,7 @@ class ProfilecompletionAction extends Action
         }
 
         $id = $this->arg('peopletag_id');
-        $this->peopletag = Profile_list::staticGet('id', $id);
+        $this->peopletag = Profile_list::getKV('id', $id);
 
         if (empty($this->peopletag)) {
             // TRANS: Client error displayed trying to reference a non-existing list.

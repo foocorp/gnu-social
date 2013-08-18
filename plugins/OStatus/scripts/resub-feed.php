@@ -44,7 +44,7 @@ if (empty($args[0]) || !Validate::uri($args[0])) {
 $feedurl = $args[0];
 
 
-$sub = FeedSub::staticGet('uri', $feedurl);
+$sub = FeedSub::getKV('uri', $feedurl);
 if (!$sub) {
     print "Feed $feedurl is not subscribed.\n";
     exit(1);
@@ -69,7 +69,7 @@ if ($ok) {
     print "Could not confirm.\n";
 }
 
-$sub2 = FeedSub::staticGet('uri', $feedurl);
+$sub2 = FeedSub::getKV('uri', $feedurl);
 
 print "\n";
 print "New state:\n";

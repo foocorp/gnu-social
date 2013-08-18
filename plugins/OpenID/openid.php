@@ -102,9 +102,9 @@ function oid_link_user($id, $canonical, $display)
 function oid_get_user($openid_url)
 {
     $user = null;
-    $oid = User_openid::staticGet('canonical', $openid_url);
+    $oid = User_openid::getKV('canonical', $openid_url);
     if ($oid) {
-        $user = User::staticGet('id', $oid->user_id);
+        $user = User::getKV('id', $oid->user_id);
     }
     return $user;
 }

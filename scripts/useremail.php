@@ -37,14 +37,14 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 if (have_option('i', 'id')) {
     $id = get_option_value('i', 'id');
-    $user = User::staticGet('id', $id);
+    $user = User::getKV('id', $id);
     if (empty($user)) {
         print "Can't find user with ID $id\n";
         exit(1);
     }
 } else if (have_option('n', 'nickname')) {
     $nickname = get_option_value('n', 'nickname');
-    $user = User::staticGet('nickname', $nickname);
+    $user = User::getKV('nickname', $nickname);
     if (empty($user)) {
         print "Can't find user with nickname '$nickname'\n";
         exit(1);
@@ -84,7 +84,7 @@ if (have_option('e', 'email')) {
         if (empty($unconfirmed_email->user_id)) {
             print "No users with email $user->email\n";
         } else {
-            $user=User::staticGet('id', $unconfirmed_email->user_id);
+            $user=User::getKV('id', $unconfirmed_email->user_id);
             print "Unconfirmed Address: $user->id $user->nickname\n";
         }
         exit(0);

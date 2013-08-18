@@ -83,7 +83,7 @@ class SubscribepeopletagAction extends Action
 
         $id = intval($this->arg('id'));
         if ($id) {
-            $this->peopletag = Profile_list::staticGet('id', $id);
+            $this->peopletag = Profile_list::getKV('id', $id);
         } else {
             // TRANS: Client error displayed when trying to perform an action without providing an ID.
             $this->clientError(_('No ID given.'), 404);
@@ -96,7 +96,7 @@ class SubscribepeopletagAction extends Action
             return false;
         }
 
-        $this->tagger = Profile::staticGet('id', $this->peopletag->tagger);
+        $this->tagger = Profile::getKV('id', $this->peopletag->tagger);
 
         return true;
     }

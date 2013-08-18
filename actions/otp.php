@@ -71,7 +71,7 @@ class OtpAction extends Action
             return false;
         }
 
-        $this->user = User::staticGet('id', $id);
+        $this->user = User::getKV('id', $id);
 
         if (empty($this->user)) {
             // TRANS: Client error displayed trying to use "one time password login" without using an existing user.
@@ -87,7 +87,7 @@ class OtpAction extends Action
             return false;
         }
 
-        $this->lt = Login_token::staticGet('user_id', $id);
+        $this->lt = Login_token::getKV('user_id', $id);
 
         if (empty($this->lt)) {
             // TRANS: Client error displayed trying to use "one time password login" without requesting a login token.

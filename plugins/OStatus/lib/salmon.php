@@ -112,10 +112,10 @@ class Salmon
     {
         $magic_env = new $class();
 
-        $user = User::staticGet('id', $actor->id);
+        $user = User::getKV('id', $actor->id);
         if ($user->id) {
             // Use local key
-            $magickey = Magicsig::staticGet('user_id', $user->id);
+            $magickey = Magicsig::getKV('user_id', $user->id);
             if (!$magickey) {
                 // No keypair yet, let's generate one.
                 $magickey = new Magicsig();

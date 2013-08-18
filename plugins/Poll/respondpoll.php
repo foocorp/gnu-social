@@ -90,7 +90,7 @@ class RespondPollAction extends Action
         }
 
         $id = $this->trimmed('id');
-        $this->poll = Poll::staticGet('id', $id);
+        $this->poll = Poll::getKV('id', $id);
         if (empty($this->poll)) {
             // TRANS: Client exception thrown trying to respond to a non-existing poll.
             throw new ClientException(_m('Invalid or missing poll.'), 404);

@@ -59,7 +59,7 @@ class AtomListNoticeFeed extends AtomNoticeFeed
     function __construct($list, $cur = null, $indent = true) {
         parent::__construct($cur, $indent);
         $this->list = $list;
-        $this->tagger = Profile::staticGet('id', $list->tagger);
+        $this->tagger = Profile::getKV('id', $list->tagger);
 
         // TRANS: Title in atom list notice feed. %1$s is a list name, %2$s is a tagger's nickname.
         $title = sprintf(_('Timeline for people in list %1$s by %2$s'), $list->tag, $this->tagger->nickname);

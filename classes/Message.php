@@ -59,23 +59,23 @@ class Message extends Managed_DataObject
 
     function getFrom()
     {
-        return Profile::staticGet('id', $this->from_profile);
+        return Profile::getKV('id', $this->from_profile);
     }
 
     function getTo()
     {
-        return Profile::staticGet('id', $this->to_profile);
+        return Profile::getKV('id', $this->to_profile);
     }
 
     static function saveNew($from, $to, $content, $source) {
-        $sender = Profile::staticGet('id', $from);
+        $sender = Profile::getKV('id', $from);
 
         if (!$sender->hasRight(Right::NEWMESSAGE)) {
             // TRANS: Client exception thrown when a user tries to send a direct message while being banned from sending them.
             throw new ClientException(_('You are banned from sending direct messages.'));
         }
 
-        $user = User::staticGet('id', $sender->id);
+        $user = User::getKV('id', $sender->id);
 
         $msg = new Message();
 
@@ -131,8 +131,8 @@ class Message extends Managed_DataObject
 
     function notify()
     {
-        $from = User::staticGet('id', $this->from_profile);
-        $to   = User::staticGet('id', $this->to_profile);
+        $from = User::getKV('id', $this->from_profile);
+        $to   = User::getKV('id', $this->to_profile);
 
         mail_notify_message($this, $from, $to);
     }
@@ -151,11 +151,11 @@ class Message extends Managed_DataObject
                 $ns->code = $this->source;
                 break;
             default:
-                $ns = Notice_source::staticGet($this->source);
+                $ns = Notice_source::getKV($this->source);
                 if (!$ns) {
                     $ns = new Notice_source();
                     $ns->code = $this->source;
-                    $app = Oauth_application::staticGet('name', $this->source);
+                    $app = Oauth_application::getKV('name', $this->source);
                     if ($app) {
                         $ns->name = $app->name;
                         $ns->url  = $app->source_url;
@@ -177,7 +177,7 @@ class Message extends Managed_DataObject
             $act->time    = strtotime($this->created);
             $act->link    = $this->url;
 
-            $profile = Profile::staticGet('id', $this->from_profile);
+            $profile = Profile::getKV('id', $this->from_profile);
 
             if (empty($profile)) {
                 throw new Exception(sprintf("Sender profile not found: %d", $this->from_profile));
@@ -192,7 +192,7 @@ class Message extends Managed_DataObject
 
             $ctx = new ActivityContext();
 
-            $rprofile = Profile::staticGet('id', $this->to_profile);
+            $rprofile = Profile::getKV('id', $this->to_profile);
 
             if (empty($rprofile)) {
                 throw new Exception(sprintf("Receiver profile not found: %d", $this->to_profile));

@@ -74,7 +74,7 @@ class FinishremotesubscribeAction extends Action
 
         /* Create user objects for both users. Do it early for request
            validation. */
-        $user = User::staticGet('uri', $service->getListeneeURI());
+        $user = User::getKV('uri', $service->getListeneeURI());
 
         if (!$user) {
             // TRANS: Client error displayed when subscribing to a remote profile that does not exist.
@@ -82,7 +82,7 @@ class FinishremotesubscribeAction extends Action
             return;
         }
 
-        $other = User::staticGet('uri', $service->getListenerURI());
+        $other = User::getKV('uri', $service->getListenerURI());
 
         if ($other) {
             // TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
@@ -90,12 +90,12 @@ class FinishremotesubscribeAction extends Action
             return;
         }
 
-        $remote = Remote_profile::staticGet('uri', $service->getListenerURI());
+        $remote = Remote_profile::getKV('uri', $service->getListenerURI());
         if ($remote) {
             // Note remote profile may not have been saved yet.
             // @fixme not convinced this is correct at all!
 
-            $profile = Profile::staticGet($remote->id);
+            $profile = Profile::getKV($remote->id);
 
             if ($user->hasBlocked($profile)) {
                 // TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
@@ -132,7 +132,7 @@ class FinishremotesubscribeAction extends Action
 
         /* The service URLs are not accessible from datastore, so setting them
            after insertion of the profile. */
-        $remote = Remote_profile::staticGet('uri', $service->getListenerURI());
+        $remote = Remote_profile::getKV('uri', $service->getListenerURI());
         $orig_remote = clone($remote);
 
         $remote->postnoticeurl    =

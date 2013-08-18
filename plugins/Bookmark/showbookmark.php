@@ -52,14 +52,14 @@ class ShowbookmarkAction extends ShownoticeAction
     {
         $this->id = $this->trimmed('id');
 
-        $this->bookmark = Bookmark::staticGet('id', $this->id);
+        $this->bookmark = Bookmark::getKV('id', $this->id);
 
         if (empty($this->bookmark)) {
             // TRANS: Client exception thrown when referring to a non-existing bookmark.
             throw new ClientException(_m('No such bookmark.'), 404);
         }
 
-        $notice = Notice::staticGet('uri', $this->bookmark->uri);
+        $notice = Notice::getKV('uri', $this->bookmark->uri);
 
         if (empty($notice)) {
             // Did we used to have it, and it got deleted?

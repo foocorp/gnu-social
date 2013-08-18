@@ -198,7 +198,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
 
         if (!empty($this->nickname) && ($this->nickname != $orig->nickname)) {
             common_log(LOG_INFO, "Saving local group info.");
-            $local = Local_group::staticGet('group_id', $this->group->id);
+            $local = Local_group::getKV('group_id', $this->group->id);
             $local->setNickname($this->nickname);
         }
 
@@ -220,14 +220,14 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
 
     function nicknameExists($nickname)
     {
-        $group = Local_group::staticGet('nickname', $nickname);
+        $group = Local_group::getKV('nickname', $nickname);
 
         if (!empty($group) &&
             $group->group_id != $this->group->id) {
             return true;
         }
 
-        $alias = Group_alias::staticGet('alias', $nickname);
+        $alias = Group_alias::getKV('alias', $nickname);
 
         if (!empty($alias) &&
             $alias->group_id != $this->group->id) {

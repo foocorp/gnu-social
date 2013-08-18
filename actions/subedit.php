@@ -51,7 +51,7 @@ class SubeditAction extends Action
             return false;
         }
 
-        $this->profile = Profile::staticGet('id', $id);
+        $this->profile = Profile::getKV('id', $id);
 
         if (!$this->profile) {
             // TRANS: Client error displayed trying a change a subscription for a non-existant profile ID.

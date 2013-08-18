@@ -105,7 +105,7 @@ class Notice_title extends Managed_DataObject
      */
     static function fromNotice($notice)
     {
-        $nt = Notice_title::staticGet('notice_id', $notice->id);
+        $nt = Notice_title::getKV('notice_id', $notice->id);
         if (empty($nt)) {
             return null;
         } else {

@@ -345,7 +345,7 @@ class NewnoticeAction extends Action
         if (!$content) {
             $replyto = $this->trimmed('replyto');
             $inreplyto = $this->trimmed('inreplyto');
-            $profile = Profile::staticGet('nickname', $replyto);
+            $profile = Profile::getKV('nickname', $replyto);
             if ($profile) {
                 $content = '@' . $profile->nickname . ' ';
             }

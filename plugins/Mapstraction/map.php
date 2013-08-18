@@ -66,7 +66,7 @@ class MapAction extends Action
             return false;
         }
 
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed when referring to a non-existing user.
@@ -151,7 +151,7 @@ class MapAction extends Action
         $arr['source'] = $arr['source'];
 
         if (!empty($notice->reply_to)) {
-            $reply_to = Notice::staticGet('id', $notice->reply_to);
+            $reply_to = Notice::getKV('id', $notice->reply_to);
             if (!empty($reply_to)) {
                 $arr['in_reply_to_status_url'] = $reply_to->bestUrl();
             }

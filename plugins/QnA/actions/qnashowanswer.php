@@ -61,7 +61,7 @@ class QnashowanswerAction extends ShownoticeAction
 
         $this->id = $this->trimmed('id');
 
-        $this->answer = QnA_Answer::staticGet('id', $this->id);
+        $this->answer = QnA_Answer::getKV('id', $this->id);
 
         if (empty($this->answer)) {
             // TRANS: Client exception thrown when requesting a non-existing answer.
@@ -75,14 +75,14 @@ class QnashowanswerAction extends ShownoticeAction
             throw new ClientException(_m('No question for this answer.'), 404);
         }
 
-        $this->notice = Notice::staticGet('uri', $this->answer->uri);
+        $this->notice = Notice::getKV('uri', $this->answer->uri);
 
         if (empty($this->notice)) {
             // TRANS: Did we used to have it, and it got deleted?
             throw new ClientException(_m('No such answer.'), 404);
         }
 
-        $this->user = User::staticGet('id', $this->answer->profile_id);
+        $this->user = User::getKV('id', $this->answer->profile_id);
 
         if (empty($this->user)) {
             // TRANS: Client exception thrown when requesting answer data for a non-existing user.

@@ -69,8 +69,8 @@ class EditApplicationAction extends Action
 
         $id = (int)$this->arg('id');
 
-        $this->app   = Oauth_application::staticGet($id);
-        $this->owner = User::staticGet($this->app->owner);
+        $this->app   = Oauth_application::getKV($id);
+        $this->owner = User::getKV($this->app->owner);
         $cur         = common_current_user();
 
         if ($cur->id != $this->owner->id) {
@@ -302,7 +302,7 @@ class EditApplicationAction extends Action
      */
     function nameExists($name)
     {
-        $newapp = Oauth_application::staticGet('name', $name);
+        $newapp = Oauth_application::getKV('name', $name);
         if (empty($newapp)) {
             return false;
         } else {

@@ -827,7 +827,7 @@ class OpenIDPlugin extends Plugin
     
     function onOtherAccountProfiles($profile, &$links)
     {
-        $prefs = User_openid_prefs::staticGet('user_id', $profile->id);
+        $prefs = User_openid_prefs::getKV('user_id', $profile->id);
 
         if (empty($prefs) || !$prefs->hide_profile_link) {
 

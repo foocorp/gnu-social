@@ -109,13 +109,13 @@ if (have_option('all')) {
         }
     }
 } else {
-    $user = User::staticGet('nickname', $nickname);
+    $user = User::getKV('nickname', $nickname);
     $users = array($user->id);
 }
 
 $output = array();
 foreach ($users as $id) {
-    $user = User::staticGet('id', $id);
+    $user = User::getKV('id', $id);
     if (!$user) {
         throw new Exception("No user for id $id");
     }

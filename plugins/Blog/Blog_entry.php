@@ -218,12 +218,12 @@ class Blog_entry extends Managed_DataObject
 
     static function fromNotice($notice)
     {
-        return Blog_entry::staticGet('uri', $notice->uri);
+        return Blog_entry::getKV('uri', $notice->uri);
     }
 
     function getNotice()
     {
-        return Notice::staticGet('uri', $this->uri);
+        return Notice::getKV('uri', $this->uri);
     }
 
     function asActivityObject()

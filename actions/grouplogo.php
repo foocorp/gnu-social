@@ -90,11 +90,11 @@ class GrouplogoAction extends GroupAction
         $groupid = $this->trimmed('groupid');
 
         if ($groupid) {
-            $this->group = User_group::staticGet('id', $groupid);
+            $this->group = User_group::getKV('id', $groupid);
         } else {
-            $local = Local_group::staticGet('nickname', $nickname);
+            $local = Local_group::getKV('nickname', $nickname);
             if ($local) {
-                $this->group = User_group::staticGet('id', $local->group_id);
+                $this->group = User_group::getKV('id', $local->group_id);
             }
         }
 

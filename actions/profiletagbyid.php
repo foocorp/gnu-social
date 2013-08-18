@@ -60,7 +60,7 @@ class ProfiletagbyidAction extends Action
 
         common_debug("Peopletag id $id by user id $tagger_id");
 
-        $this->peopletag = Profile_list::staticGet('id', $id);
+        $this->peopletag = Profile_list::getKV('id', $id);
 
         if (!$this->peopletag) {
             // TRANS: Client error displayed trying to reference a non-existing list.
@@ -68,7 +68,7 @@ class ProfiletagbyidAction extends Action
             return false;
         }
 
-        $user = User::staticGet('id', $tagger_id);
+        $user = User::getKV('id', $tagger_id);
         if (!$user) {
             // remote peopletag, permanently redirect
             common_redirect($this->peopletag->permalink(), 301);

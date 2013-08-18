@@ -159,7 +159,7 @@ class UTF8FixerUpper
                 continue;
             }
 
-            $notice = Notice::staticGet('id', $id);
+            $notice = Notice::getKV('id', $id);
             $notice->decache();
             $notice->free();
 
@@ -223,7 +223,7 @@ class UTF8FixerUpper
                 continue;
             }
 
-            $profile = Profile::staticGet('id', $id);
+            $profile = Profile::getKV('id', $id);
             $profile->decache();
             $profile->free();
 
@@ -287,7 +287,7 @@ class UTF8FixerUpper
                 continue;
             }
 
-            $user_group = User_group::staticGet('id', $id);
+            $user_group = User_group::getKV('id', $id);
             $user_group->decache();
             $user_group->free();
 
@@ -344,7 +344,7 @@ class UTF8FixerUpper
                 continue;
             }
 
-            $message = Message::staticGet('id', $id);
+            $message = Message::getKV('id', $id);
             $message->decache();
             $message->free();
 

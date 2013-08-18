@@ -64,7 +64,7 @@ class AnonDisfavorAction extends RedirectingAction
         }
 
         $id     = $this->trimmed('notice');
-        $notice = Notice::staticGet($id);
+        $notice = Notice::getKV($id);
         $token  = $this->trimmed('token-' . $notice->id);
 
         if (!$token || $token != common_session_token()) {

@@ -105,7 +105,7 @@ class Happening extends Managed_DataObject
     static function saveNew($profile, $start_time, $end_time, $title, $location, $description, $url, $options=array())
     {
         if (array_key_exists('uri', $options)) {
-            $other = Happening::staticGet('uri', $options['uri']);
+            $other = Happening::getKV('uri', $options['uri']);
             if (!empty($other)) {
                 // TRANS: Client exception thrown when trying to create an event that already exists.
                 throw new ClientException(_m('Event already exists.'));
@@ -189,12 +189,12 @@ class Happening extends Managed_DataObject
 
     function getNotice()
     {
-        return Notice::staticGet('uri', $this->uri);
+        return Notice::getKV('uri', $this->uri);
     }
 
     static function fromNotice($notice)
     {
-        return Happening::staticGet('uri', $notice->uri);
+        return Happening::getKV('uri', $notice->uri);
     }
 
     function getRSVPs()

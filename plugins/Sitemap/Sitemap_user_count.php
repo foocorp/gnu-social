@@ -212,7 +212,7 @@ class Sitemap_user_count extends Managed_DataObject
 
     static function updateCount($d, $n)
     {
-        $suc = Sitemap_user_count::staticGet('registration_date', DB_DataObject_Cast::date($d));
+        $suc = Sitemap_user_count::getKV('registration_date', DB_DataObject_Cast::date($d));
 
         if (empty($suc)) {
             // TRANS: Exception thrown when a registration date cannot be found.

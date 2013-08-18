@@ -57,7 +57,7 @@ class RecoverpasswordAction extends Action
     function checkCode()
     {
         $code = $this->trimmed('code');
-        $confirm = Confirm_address::staticGet('code', $code);
+        $confirm = Confirm_address::getKV('code', $code);
 
         if (!$confirm) {
             // TRANS: Client error displayed when password recovery code is not correct.
@@ -70,7 +70,7 @@ class RecoverpasswordAction extends Action
             return;
         }
 
-        $user = User::staticGet($confirm->user_id);
+        $user = User::getKV($confirm->user_id);
 
         if (!$user) {
             // TRANS: Server error displayed trying to recover password without providing a user.
@@ -137,7 +137,7 @@ class RecoverpasswordAction extends Action
         common_ensure_session();
         $user_id = $_SESSION['tempuser'];
         if ($user_id) {
-            $user = User::staticGet($user_id);
+            $user = User::getKV($user_id);
         }
         return $user;
     }

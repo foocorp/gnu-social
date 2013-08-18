@@ -70,10 +70,10 @@ class GroupAction extends Action
             return false;
         }
 
-        $local = Local_group::staticGet('nickname', $nickname);
+        $local = Local_group::getKV('nickname', $nickname);
 
         if (!$local) {
-            $alias = Group_alias::staticGet('alias', $nickname);
+            $alias = Group_alias::getKV('alias', $nickname);
             if ($alias) {
                 $args = array('id' => $alias->group_id);
                 if ($this->page != 1) {
@@ -89,7 +89,7 @@ class GroupAction extends Action
             }
         }
 
-        $this->group = User_group::staticGet('id', $local->group_id);
+        $this->group = User_group::getKV('id', $local->group_id);
 
         if (!$this->group) {
             // TRANS: Client error displayed if no local group with a given name was found requesting group page.

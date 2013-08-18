@@ -68,7 +68,7 @@ class DisfavorAction extends Action
             return;
         }
         $id     = $this->trimmed('notice');
-        $notice = Notice::staticGet($id);
+        $notice = Notice::getKV($id);
         $token  = $this->trimmed('token-'.$notice->id);
         if (!$token || $token != common_session_token()) {
             // TRANS: Client error displayed when the session token does not match or is not given.

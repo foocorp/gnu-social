@@ -78,7 +78,7 @@ class BookmarkforurlAction extends Action
             throw new ClientException(_('Invalid URL.'), 400);
         }
 
-        $f = File::staticGet('url', $this->url);
+        $f = File::getKV('url', $this->url);
 
         if (empty($url)) { 
            $f = File::processNew($this->url);
@@ -87,11 +87,11 @@ class BookmarkforurlAction extends Action
         // How about now?
 
         if (!empty($f)) {
-            $this->oembed    = File_oembed::staticGet('file_id', $f->id);
+            $this->oembed    = File_oembed::getKV('file_id', $f->id);
             if (!empty($this->oembed)) {
                 $this->title = $this->oembed->title;
             }
-            $this->thumbnail = File_thumbnail::staticGet('file_id', $f->id);
+            $this->thumbnail = File_thumbnail::getKV('file_id', $f->id);
         }
 
         return true;

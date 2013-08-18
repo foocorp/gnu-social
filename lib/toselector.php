@@ -145,7 +145,7 @@ class ToSelector extends Widget
             }
             break;
         case 'profile':
-            $profile = Profile::staticGet('id', $value);
+            $profile = Profile::getKV('id', $value);
             $options['replies'] = array($profile->getUri());
             if ($private) {
                 $options['scope'] = Notice::ADDRESSEE_SCOPE;

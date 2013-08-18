@@ -93,7 +93,7 @@ class QnanewanswerAction extends Action
 
         $id = substr($this->trimmed('id'), 9);
 
-        $this->question = QnA_Question::staticGet('id', $id);
+        $this->question = QnA_Question::getKV('id', $id);
 
         if (empty($this->question)) {
             throw new ClientException(

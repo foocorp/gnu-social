@@ -153,7 +153,7 @@ class Notice extends Managed_DataObject
     function getProfile()
     {
         if (is_int($this->_profile) && $this->_profile == -1) {
-            $this->_setProfile(Profile::staticGet('id', $this->profile_id));
+            $this->_setProfile(Profile::getKV('id', $this->profile_id));
 
             if (empty($this->_profile)) {
                 // TRANS: Server exception thrown when a user profile for a notice cannot be found.
@@ -177,10 +177,10 @@ class Notice extends Managed_DataObject
 
         // @fixme we have some cases where things get re-run and so the
         // insert fails.
-        $deleted = Deleted_notice::staticGet('id', $this->id);
+        $deleted = Deleted_notice::getKV('id', $this->id);
 
         if (!$deleted) {
-            $deleted = Deleted_notice::staticGet('uri', $this->uri);
+            $deleted = Deleted_notice::getKV('uri', $this->uri);
         }
 
         if (!$deleted) {
@@ -340,8 +340,8 @@ class Notice extends Managed_DataObject
             $is_local = Notice::LOCAL_PUBLIC;
         }
 
-        $profile = Profile::staticGet('id', $profile_id);
-        $user = User::staticGet('id', $profile_id);
+        $profile = Profile::getKV('id', $profile_id);
+        $user = User::getKV('id', $profile_id);
         if ($user) {
             // Use the local user's shortening preferences, if applicable.
             $final = $user->shortenLinks($content);
@@ -420,7 +420,7 @@ class Notice extends Managed_DataObject
 
             // Check for a private one
 
-            $repeat = Notice::staticGet('id', $repeat_of);
+            $repeat = Notice::getKV('id', $repeat_of);
 
             if (empty($repeat)) {
                 // TRANS: Client exception thrown in notice when trying to repeat a missing or deleted notice.
@@ -540,7 +540,7 @@ class Notice extends Managed_DataObject
         // Force the scope for private groups
 
         foreach ($groups as $groupId) {
-            $group = User_group::staticGet('id', $groupId);
+            $group = User_group::getKV('id', $groupId);
             if (!empty($group)) {
                 if ($group->force_scope) {
                     $notice->scope |= Notice::GROUP_SCOPE;
@@ -647,16 +647,16 @@ class Notice extends Managed_DataObject
             self::blow('notice:list-ids:repeat_of:%d', $this->repeat_of);
         }
 
-        $original = Notice::staticGet('id', $this->repeat_of);
+        $original = Notice::getKV('id', $this->repeat_of);
 
         if (!empty($original)) {
-            $originalUser = User::staticGet('id', $original->profile_id);
+            $originalUser = User::getKV('id', $original->profile_id);
             if (!empty($originalUser)) {
                 $this->blowStream('user:repeats_of_me:%d', $originalUser->id);
             }
         }
 
-        $profile = Profile::staticGet($this->profile_id);
+        $profile = Profile::getKV($this->profile_id);
 
         if (!empty($profile)) {
             $profile->blowNoticeCount();
@@ -723,7 +723,7 @@ class Notice extends Managed_DataObject
         if ($lastStr !== false) {
             $window     = explode(',', $lastStr);
             $lastID     = $window[0];
-            $lastNotice = Notice::staticGet('id', $lastID);
+            $lastNotice = Notice::getKV('id', $lastID);
             if (empty($lastNotice) // just weird
                 || strtotime($lastNotice->created) >= strtotime($this->created)) {
                 $c->delete($lastKey);
@@ -770,7 +770,7 @@ class Notice extends Managed_DataObject
     }
 
     static function checkDupes($profile_id, $content) {
-        $profile = Profile::staticGet($profile_id);
+        $profile = Profile::getKV($profile_id);
         if (empty($profile)) {
             return false;
         }
@@ -798,7 +798,7 @@ class Notice extends Managed_DataObject
     }
 
     static function checkEditThrottle($profile_id) {
-        $profile = Profile::staticGet($profile_id);
+        $profile = Profile::getKV($profile_id);
         if (empty($profile)) {
             return false;
         }
@@ -1018,7 +1018,7 @@ class Notice extends Managed_DataObject
             $originalProfile = null;
             if ($this->repeat_of) {
                 // Check blocks against the original notice's poster as well.
-                $original = Notice::staticGet('id', $this->repeat_of);
+                $original = Notice::getKV('id', $this->repeat_of);
                 if ($original) {
                     $originalProfile = $original->getProfile();
                 }
@@ -1026,7 +1026,7 @@ class Notice extends Managed_DataObject
 
             foreach ($ni as $id => $source) {
                 try {
-                    $user = User::staticGet('id', $id);
+                    $user = User::getKV('id', $id);
                     if (empty($user) ||
                         $user->hasBlocked($profile) ||
                         ($originalProfile && $user->hasBlocked($originalProfile))) {
@@ -1145,7 +1145,7 @@ class Notice extends Managed_DataObject
 
         $groups = array();
         foreach (array_unique($group_ids) as $id) {
-            $group = User_group::staticGet('id', $id);
+            $group = User_group::getKV('id', $id);
             if ($group) {
                 common_log(LOG_ERR, "Local delivery to group id $id, $group->nickname");
                 $result = $this->addToGroupInbox($group);
@@ -1259,7 +1259,7 @@ class Notice extends Managed_DataObject
             return;
         }
 
-        $sender = Profile::staticGet($this->profile_id);
+        $sender = Profile::getKV($this->profile_id);
 
         foreach (array_unique($uris) as $uri) {
 
@@ -1300,7 +1300,7 @@ class Notice extends Managed_DataObject
             return array();
         }
 
-        $sender = Profile::staticGet($this->profile_id);
+        $sender = Profile::getKV($this->profile_id);
 
         $replied = array();
 
@@ -1338,7 +1338,7 @@ class Notice extends Managed_DataObject
 
                 // Don't save replies from blocked profile to local user
 
-                $mentioned_user = User::staticGet('id', $mentioned->id);
+                $mentioned_user = User::getKV('id', $mentioned->id);
                 if (!empty($mentioned_user) && $mentioned_user->hasBlocked($sender)) {
                     continue;
                 }
@@ -1429,7 +1429,7 @@ class Notice extends Managed_DataObject
         $recipientIds = $this->getReplies();
 
         foreach ($recipientIds as $recipientId) {
-            $user = User::staticGet('id', $recipientId);
+            $user = User::getKV('id', $recipientId);
             if (!empty($user)) {
                 mail_notify_attn($user, $this);
             }
@@ -1510,7 +1510,7 @@ class Notice extends Managed_DataObject
             $act->verb = $this->verb;
 
             if ($this->repeat_of) {
-                $repeated = Notice::staticGet('id', $this->repeat_of);
+                $repeated = Notice::getKV('id', $this->repeat_of);
                 if (!empty($repeated)) {
                     $act->objects[] = $repeated->asActivity($cur);
                 }
@@ -1546,7 +1546,7 @@ class Notice extends Managed_DataObject
             $ctx = new ActivityContext();
 
             if (!empty($this->reply_to)) {
-                $reply = Notice::staticGet('id', $this->reply_to);
+                $reply = Notice::getKV('id', $this->reply_to);
                 if (!empty($reply)) {
                     $ctx->replyToID  = $reply->uri;
                     $ctx->replyToUrl = $reply->bestUrl();
@@ -1558,7 +1558,7 @@ class Notice extends Managed_DataObject
             $conv = null;
 
             if (!empty($this->conversation)) {
-                $conv = Conversation::staticGet('id', $this->conversation);
+                $conv = Conversation::getKV('id', $this->conversation);
                 if (!empty($conv)) {
                     $ctx->conversation = $conv->uri;
                 }
@@ -1567,7 +1567,7 @@ class Notice extends Managed_DataObject
             $reply_ids = $this->getReplies();
 
             foreach ($reply_ids as $id) {
-                $rprofile = Profile::staticGet('id', $id);
+                $rprofile = Profile::getKV('id', $id);
                 if (!empty($rprofile)) {
                     $ctx->attention[] = $rprofile->getUri();
                     $ctx->attentionType[$rprofile->getUri()] = ActivityObject::PERSON;
@@ -1598,7 +1598,7 @@ class Notice extends Managed_DataObject
             $repeat = null;
 
             if (!empty($this->repeat_of)) {
-                $repeat = Notice::staticGet('id', $this->repeat_of);
+                $repeat = Notice::getKV('id', $this->repeat_of);
                 if (!empty($repeat)) {
                     $ctx->forwardID  = $repeat->uri;
                     $ctx->forwardUrl = $repeat->bestUrl();
@@ -1640,7 +1640,7 @@ class Notice extends Managed_DataObject
                     $act->source->updated = self::utcDate($notice->created);
                 }
 
-                $user = User::staticGet('id', $profile->id);
+                $user = User::getKV('id', $profile->id);
 
                 if (!empty($user)) {
                     $act->source->links['license'] = common_config('license', 'url');
@@ -1784,7 +1784,7 @@ class Notice extends Managed_DataObject
         // return it if it does
 
         if (!empty($reply_to)) {
-            $reply_notice = Notice::staticGet('id', $reply_to);
+            $reply_notice = Notice::getKV('id', $reply_to);
             if (!empty($reply_notice)) {
                 return $reply_notice;
             }
@@ -1809,7 +1809,7 @@ class Notice extends Managed_DataObject
 
         // Figure out who that is.
 
-        $sender = Profile::staticGet('id', $profile_id);
+        $sender = Profile::getKV('id', $profile_id);
         if (empty($sender)) {
             return null;
         }
@@ -1875,7 +1875,7 @@ class Notice extends Managed_DataObject
      */
     function repeat($repeater_id, $source)
     {
-        $author = Profile::staticGet('id', $this->profile_id);
+        $author = Profile::getKV('id', $this->profile_id);
 
         // TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
         // TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
@@ -2109,7 +2109,7 @@ class Notice extends Managed_DataObject
         // have to wait
         Event::handle('StartNoticeDistribute', array($this));
 
-        $user = User::staticGet('id', $this->profile_id);
+        $user = User::getKV('id', $this->profile_id);
         if (!empty($user)) {
             Inbox::insertNotice($user->id, $this->id);
         }
@@ -2180,11 +2180,11 @@ class Notice extends Managed_DataObject
                 $ns->code = $this->source;
                 break;
             default:
-                $ns = Notice_source::staticGet($this->source);
+                $ns = Notice_source::getKV($this->source);
                 if (!$ns) {
                     $ns = new Notice_source();
                     $ns->code = $this->source;
-                    $app = Oauth_application::staticGet('name', $this->source);
+                    $app = Oauth_application::getKV('name', $this->source);
                     if ($app) {
                         $ns->name = $app->name;
                         $ns->url  = $app->source_url;
@@ -2257,12 +2257,12 @@ class Notice extends Managed_DataObject
             return false;
         }
 
-        $notice = Notice::staticGet('id', $id);
+        $notice = Notice::getKV('id', $id);
         if ($notice) {
             return $notice->created;
         }
 
-        $deleted = Deleted_notice::staticGet('id', $id);
+        $deleted = Deleted_notice::getKV('id', $id);
         if ($deleted) {
             return $deleted->created;
         }
@@ -2542,7 +2542,7 @@ class Notice extends Managed_DataObject
             if (empty($this->reply_to)) {
                 $this->_original = null;
             } else {
-                $this->_original = Notice::staticGet('id', $this->reply_to);
+                $this->_original = Notice::getKV('id', $this->reply_to);
             }
         }
         return $this->_original;

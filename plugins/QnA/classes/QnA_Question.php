@@ -116,12 +116,12 @@ class QnA_Question extends Managed_DataObject
      */
     static function getByNotice($notice)
     {
-        return self::staticGet('uri', $notice->uri);
+        return self::getKV('uri', $notice->uri);
     }
 
     function getNotice()
     {
-        return Notice::staticGet('uri', $this->uri);
+        return Notice::getKV('uri', $this->uri);
     }
 
     function bestUrl()
@@ -131,7 +131,7 @@ class QnA_Question extends Managed_DataObject
 
     function getProfile()
     {
-        $profile = Profile::staticGet('id', $this->profile_id);
+        $profile = Profile::getKV('id', $this->profile_id);
         if (empty($profile)) {
             // TRANS: Exception trown when getting a profile for a non-existing ID.
             // TRANS: %s is the provided profile ID.
@@ -183,7 +183,7 @@ class QnA_Question extends Managed_DataObject
 
     static function fromNotice($notice)
     {
-        return QnA_Question::staticGet('uri', $notice->uri);
+        return QnA_Question::getKV('uri', $notice->uri);
     }
 
     function asHTML()

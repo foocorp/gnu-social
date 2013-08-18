@@ -71,8 +71,8 @@ class ShowApplicationAction extends Action
 
         $id = (int)$this->arg('id');
 
-        $this->application  = Oauth_application::staticGet($id);
-        $this->owner        = User::staticGet($this->application->owner);
+        $this->application  = Oauth_application::getKV($id);
+        $this->owner        = User::getKV($this->application->owner);
 
         if (!common_logged_in()) {
             // TRANS: Client error displayed trying to display an OAuth application while not logged in.
@@ -174,7 +174,7 @@ class ShowApplicationAction extends Action
         $this->elementStart('div', 'entity_statistics');
         $defaultAccess = ($this->application->access_type & Oauth_application::$writeAccess)
             ? 'read-write' : 'read-only';
-        $profile = Profile::staticGet($this->application->owner);
+        $profile = Profile::getKV($this->application->owner);
 
         $appUsers = new Oauth_application_user();
         $appUsers->application_id = $this->application->id;

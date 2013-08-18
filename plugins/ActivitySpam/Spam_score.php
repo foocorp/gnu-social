@@ -74,7 +74,7 @@ class Spam_score extends Managed_DataObject
     function save($notice, $result) {
 
         $orig  = null;
-        $score = Spam_score::staticGet('notice_id', $notice->id);
+        $score = Spam_score::getKV('notice_id', $notice->id);
 
         if (empty($score)) {
             $score = new Spam_score();
@@ -184,7 +184,7 @@ class Spam_score extends Managed_DataObject
         
         if ($score->find()) {
             while ($score->fetch()) {
-                $notice = Notice::staticGet('id', $score->notice_id);
+                $notice = Notice::getKV('id', $score->notice_id);
                 if (!empty($notice)) {
                     $orig = clone($score);
                     $score->notice_created = $notice->created;

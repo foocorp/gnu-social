@@ -88,7 +88,7 @@ class UsergroupsAction extends ProfileAction
             return false;
         }
 
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed requesting groups for a non-existing user.

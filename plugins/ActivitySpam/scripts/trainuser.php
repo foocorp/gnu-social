@@ -38,7 +38,7 @@ function trainUser($filter, $user, $category) {
 
     printfnq("Training user %s\n", $user->nickname);
 
-    $profile = Profile::staticGet('id', $user->id);
+    $profile = Profile::getKV('id', $user->id);
 
     $str = new ProfileNoticeStream($profile, $profile);
 

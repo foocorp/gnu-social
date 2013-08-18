@@ -175,7 +175,7 @@ abstract class MessageListItem extends Widget
             $this->out->element('span', 'device', $source_name);
             break;
         default:
-            $ns = Notice_source::staticGet($source);
+            $ns = Notice_source::getKV($source);
             if ($ns) {
                 $this->out->elementStart('span', 'device');
                 $this->out->element('a', array('href' => $ns->url,

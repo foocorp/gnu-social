@@ -41,7 +41,7 @@ if (mb_strlen($password) < 6) {
     exit(1);
 }
 
-$user = User::staticGet('nickname', $nickname);
+$user = User::getKV('nickname', $nickname);
 
 if (!$user) {
     print "No such user '$nickname'.\n";

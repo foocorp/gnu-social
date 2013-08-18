@@ -64,7 +64,7 @@ class PeopletagEditForm extends Form
         parent::__construct($out);
 
         $this->peopletag = $peopletag;
-        $this->tagger    = Profile::staticGet('id', $peopletag->tagger);
+        $this->tagger    = Profile::getKV('id', $peopletag->tagger);
     }
 
     /**

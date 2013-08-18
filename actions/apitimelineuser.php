@@ -414,7 +414,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         common_debug("Note ID is {$note->id}");
 
         if (!empty($note->id)) {
-            $notice = Notice::staticGet('uri', trim($note->id));
+            $notice = Notice::getKV('uri', trim($note->id));
 
             if (!empty($notice)) {
                 // TRANS: Client error displayed when using another format than AtomPub.
@@ -445,7 +445,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
                 if (!empty($profile)) {
                     $options['replies'][] = $uri;
                 } else {
-                    $group = User_group::staticGet('uri', $uri);
+                    $group = User_group::getKV('uri', $uri);
                     if (!empty($group)) {
                         $options['groups'][] = $group->id;
                     } else {
@@ -459,7 +459,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             // @fixme what about conversation ID?
 
             if (!empty($activity->context->replyToID)) {
-                $orig = Notice::staticGet('uri',
+                $orig = Notice::getKV('uri',
                                           $activity->context->replyToID);
                 if (!empty($orig)) {
                     $options['reply_to'] = $orig->id;

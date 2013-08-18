@@ -74,7 +74,7 @@ class ConfirmaddressAction extends Action
             $this->clientError(_('No confirmation code.'));
             return;
         }
-        $confirm = Confirm_address::staticGet('code', $code);
+        $confirm = Confirm_address::getKV('code', $code);
         if (!$confirm) {
             // TRANS: Client error displayed when providing a non-existing confirmation code in the contact address confirmation action.
             $this->clientError(_('Confirmation code not found.'));
@@ -110,7 +110,7 @@ class ConfirmaddressAction extends Action
 
             if ($type == 'sms') {
                 $cur->carrier  = ($confirm->address_extra)+0;
-                $carrier       = Sms_carrier::staticGet($cur->carrier);
+                $carrier       = Sms_carrier::getKV($cur->carrier);
                 $cur->smsemail = $carrier->toEmailAddress($cur->sms);
             }
 

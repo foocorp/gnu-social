@@ -56,7 +56,7 @@ class OfflineBackupQueueHandler extends QueueHandler
     {
         $userId = $object;
 
-        $user = User::staticGet($userId);
+        $user = User::getKV($userId);
 
         common_log(LOG_INFO, "Making backup file for user ".$user->nickname);
 

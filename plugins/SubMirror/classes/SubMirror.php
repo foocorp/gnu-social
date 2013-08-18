@@ -150,7 +150,7 @@ class SubMirror extends Managed_DataObject
      */
     public function mirrorNotice($notice)
     {
-        $profile = Profile::staticGet('id', $this->subscriber);
+        $profile = Profile::getKV('id', $this->subscriber);
         if (!$profile) {
             common_log(LOG_ERR, "SubMirror plugin skipping auto-repeat of notice $notice->id for missing user $profile->id");
             return false;

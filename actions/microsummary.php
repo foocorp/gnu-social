@@ -56,7 +56,7 @@ class MicrosummaryAction extends Action
         parent::handle($args);
 
         $nickname = common_canonical_nickname($this->arg('nickname'));
-        $user     = User::staticGet('nickname', $nickname);
+        $user     = User::getKV('nickname', $nickname);
 
         if (!$user) {
             // TRANS: Client error displayed trying to make a micro summary without providing a valid user.

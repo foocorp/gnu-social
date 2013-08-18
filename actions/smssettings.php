@@ -120,7 +120,7 @@ class SmssettingsAction extends SettingsAction
         } else {
             $confirm = $this->getConfirmation();
             if ($confirm) {
-                $carrier = Sms_carrier::staticGet($confirm->address_extra);
+                $carrier = Sms_carrier::getKV($confirm->address_extra);
                 $this->element('p', 'form_unconfirmed',
                                $confirm->address . ' (' . $carrier->name . ')');
                 $this->element('p', 'form_guide',
@@ -366,7 +366,7 @@ class SmssettingsAction extends SettingsAction
             return;
         }
 
-        $carrier = Sms_carrier::staticGet($carrier_id);
+        $carrier = Sms_carrier::getKV($carrier_id);
 
         mail_confirm_sms($confirm->code,
                          $user->nickname,
@@ -473,7 +473,7 @@ class SmssettingsAction extends SettingsAction
     {
         $user = common_current_user();
 
-        $other = User::staticGet('sms', $sms);
+        $other = User::getKV('sms', $sms);
 
         if (!$other) {
             return false;

@@ -44,13 +44,13 @@ if (empty($nickname) || empty($groupname)) {
 
 try {
 
-    $user = User::staticGet('nickname', $nickname);
+    $user = User::getKV('nickname', $nickname);
 
     if (empty($user)) {
         throw new Exception("No user named '$nickname'.");
     }
 
-    $group = User_group::staticGet('nickname', $groupname);
+    $group = User_group::getKV('nickname', $groupname);
 
     if (empty($group)) {
         throw new Exception("No group named '$groupname'.");

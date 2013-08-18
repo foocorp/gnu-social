@@ -133,7 +133,7 @@ class Foreign_link extends Managed_DataObject
 
     function getUser()
     {
-        return User::staticGet($this->user_id);
+        return User::getKV($this->user_id);
     }
 
     // Make sure we only ever delete one record at a time

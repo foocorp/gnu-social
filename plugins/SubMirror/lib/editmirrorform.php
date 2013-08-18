@@ -144,7 +144,7 @@ class EditMirrorForm extends Form
     {
         // Ok this is a bit of a hack. ;)
         if (class_exists('Ostatus_profile')) {
-            $oprofile = Ostatus_profile::staticGet('profile_id', $profile->id);
+            $oprofile = Ostatus_profile::getKV('profile_id', $profile->id);
             if ($oprofile) {
                 return $oprofile->feeduri;
             }

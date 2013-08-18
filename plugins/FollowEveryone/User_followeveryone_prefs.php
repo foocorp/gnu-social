@@ -120,7 +120,7 @@ class User_followeveryone_prefs extends Managed_DataObject
 
     static function followEveryone($user_id)
     {
-        $ufep = self::staticGet('user_id', $user_id);
+        $ufep = self::getKV('user_id', $user_id);
 
         if (empty($ufep)) {
             return true;
@@ -131,7 +131,7 @@ class User_followeveryone_prefs extends Managed_DataObject
 
     static function savePref($user_id, $followEveryone)
     {
-        $ufep = self::staticGet('user_id', $user_id);
+        $ufep = self::getKV('user_id', $user_id);
 
         if (empty($ufep)) {
             $ufep = new User_followeveryone_prefs();

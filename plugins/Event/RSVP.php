@@ -123,7 +123,7 @@ class RSVP extends Managed_DataObject
     function saveNew($profile, $event, $verb, $options=array())
     {
         if (array_key_exists('uri', $options)) {
-            $other = RSVP::staticGet('uri', $options['uri']);
+            $other = RSVP::getKV('uri', $options['uri']);
             if (!empty($other)) {
                 // TRANS: Client exception thrown when trying to save an already existing RSVP ("please respond").
                 throw new ClientException(_m('RSVP already exists.'));
@@ -228,7 +228,7 @@ class RSVP extends Managed_DataObject
 
     function getNotice()
     {
-        $notice = Notice::staticGet('uri', $this->uri);
+        $notice = Notice::getKV('uri', $this->uri);
         if (empty($notice)) {
             // TRANS: Server exception thrown when requesting a non-exsting notice for an RSVP ("please respond").
             // TRANS: %s is the RSVP with the missing notice.
@@ -239,7 +239,7 @@ class RSVP extends Managed_DataObject
 
     static function fromNotice($notice)
     {
-        return RSVP::staticGet('uri', $notice->uri);
+        return RSVP::getKV('uri', $notice->uri);
     }
 
     static function forEvent($event)
@@ -273,7 +273,7 @@ class RSVP extends Managed_DataObject
                        RSVP::POSSIBLE => array());
 
         foreach ($ids as $id) {
-            $rsvp = RSVP::staticGet('id', $id);
+            $rsvp = RSVP::getKV('id', $id);
             if (!empty($rsvp)) {
                 $verb = self::verbFor($rsvp->response);
                 $rsvps[$verb][] = $rsvp;
@@ -285,7 +285,7 @@ class RSVP extends Managed_DataObject
 
     function getProfile()
     {
-        $profile = Profile::staticGet('id', $this->profile_id);
+        $profile = Profile::getKV('id', $this->profile_id);
         if (empty($profile)) {
             // TRANS: Exception thrown when requesting a non-existing profile.
             // TRANS: %s is the ID of the non-existing profile.
@@ -296,7 +296,7 @@ class RSVP extends Managed_DataObject
 
     function getEvent()
     {
-        $event = Happening::staticGet('id', $this->event_id);
+        $event = Happening::getKV('id', $this->event_id);
         if (empty($event)) {
             // TRANS: Exception thrown when requesting a non-existing event.
             // TRANS: %s is the ID of the non-existing event.
@@ -307,7 +307,7 @@ class RSVP extends Managed_DataObject
 
     function asHTML()
     {
-        $event = Happening::staticGet('id', $this->event_id);
+        $event = Happening::getKV('id', $this->event_id);
 
         return self::toHTML($this->getProfile(),
                             $event,
@@ -316,7 +316,7 @@ class RSVP extends Managed_DataObject
 
     function asString()
     {
-        $event = Happening::staticGet('id', $this->event_id);
+        $event = Happening::getKV('id', $this->event_id);
 
         return self::toString($this->getProfile(),
                               $event,

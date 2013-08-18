@@ -51,7 +51,7 @@ class JoinListItem extends SystemListItem
         $notice = $this->nli->notice;
         $out    = $this->nli->out;
 
-        $mem = Group_member::staticGet('uri', $notice->uri);
+        $mem = Group_member::getKV('uri', $notice->uri);
 
         if (!empty($mem)) {
             $out->elementStart('div', 'join-activity');

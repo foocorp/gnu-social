@@ -111,7 +111,7 @@ class RequireValidatedEmailPlugin extends Plugin
      */
     function onStartNoticeSave($notice)
     {
-        $user = User::staticGet('id', $notice->profile_id);
+        $user = User::getKV('id', $notice->profile_id);
         if (!empty($user)) { // it's a remote notice
             if (!$this->validated($user)) {
                 // TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
@@ -272,7 +272,7 @@ class RequireValidatedEmailPlugin extends Plugin
     {
         if ($right == Right::CREATEGROUP ||
             ($this->disallowLogin && ($right == Right::WEBLOGIN || $right == Right::API))) {
-            $user = User::staticGet('id', $profile->id);
+            $user = User::getKV('id', $profile->id);
             if ($user && !$this->validated($user)) {
                 $result = false;
                 return false;

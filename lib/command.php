@@ -76,7 +76,7 @@ class Command
             if(substr($this->other,0,1)=='#'){
                 // A specific notice_id #123
 
-                $notice = Notice::staticGet(substr($arg,1));
+                $notice = Notice::getKV(substr($arg,1));
                 if (!$notice) {
                     // TRANS: Command exception text shown when a notice ID is requested that does not exist.
                     throw new CommandException(_('Notice with that id does not exist.'));
@@ -85,7 +85,7 @@ class Command
 
             if (Validate::uri($this->other)) {
                 // A specific notice by URI lookup
-                $notice = Notice::staticGet('uri', $arg);
+                $notice = Notice::getKV('uri', $arg);
             }
 
             if (!$notice) {
@@ -139,7 +139,7 @@ class Command
     {
         $user = null;
         if (Event::handle('StartCommandGetUser', array($this, $arg, &$user))) {
-            $user = User::staticGet('nickname', Nickname::normalize($arg));
+            $user = User::getKV('nickname', Nickname::normalize($arg));
         }
         Event::handle('EndCommandGetUser', array($this, $arg, &$user));
         if (!$user){
@@ -310,7 +310,7 @@ class FavCommand extends Command
         // @fixme favorite notification should be triggered
         // at a lower level
 
-        $other = User::staticGet('id', $notice->profile_id);
+        $other = User::getKV('id', $notice->profile_id);
 
         if ($other && $other->id != $this->user->id) {
             if ($other->email && $other->emailnotifyfav) {
@@ -770,7 +770,7 @@ class SubCommand extends Command
 
         $target = $this->getProfile($this->other);
 
-        $remote = Remote_profile::staticGet('id', $target->id);
+        $remote = Remote_profile::getKV('id', $target->id);
         if ($remote) {
             // TRANS: Command exception text shown when trying to subscribe to an OMB profile using the subscribe command.
             throw new CommandException(_("Can't subscribe to OMB profiles by command."));

@@ -151,7 +151,7 @@ class RegisterThrottlePlugin extends Plugin
         if ($this->silenced) {
             $ids = Registration_ip::usersByIP($ipaddress);
             foreach ($ids as $id) {
-                $profile = Profile::staticGet('id', $id);
+                $profile = Profile::getKV('id', $id);
                 if ($profile && $profile->isSilenced()) {
                     // TRANS: Exception thrown when attempting to register from an IP address from which silenced users have registered.
                     throw new Exception(_m('A banned user has registered from this address.'));
@@ -283,7 +283,7 @@ class RegisterThrottlePlugin extends Plugin
             return true;
         }
 
-        $ri = Registration_ip::staticGet('user_id', $profile->id);
+        $ri = Registration_ip::getKV('user_id', $profile->id);
 
         if (empty($ri)) {
             return true;
@@ -296,7 +296,7 @@ class RegisterThrottlePlugin extends Plugin
                 continue;
             }
 
-            $other = Profile::staticGet('id', $id);
+            $other = Profile::getKV('id', $id);
 
             if (empty($other)) {
                 continue;

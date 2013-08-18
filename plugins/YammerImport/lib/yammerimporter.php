@@ -45,9 +45,9 @@ class YammerImporter
 
         $profileId = $this->findImportedUser($data['orig_id']);
         if ($profileId) {
-            return Profile::staticGet('id', $profileId);
+            return Profile::getKV('id', $profileId);
         } else {
-            $user = User::staticGet('nickname', $nickname);
+            $user = User::getKV('nickname', $nickname);
             if ($user) {
                 common_log(LOG_WARN, "Copying Yammer profile info onto existing user $nickname");
                 $profile = $user->getProfile();
@@ -82,12 +82,12 @@ class YammerImporter
 
         $groupId = $this->findImportedGroup($data['orig_id']);
         if ($groupId) {
-            return User_group::staticGet('id', $groupId);
+            return User_group::getKV('id', $groupId);
         } else {
-            $local = Local_group::staticGet('nickname', $nickname);
+            $local = Local_group::getKV('nickname', $nickname);
             if ($local) {
                 common_log(LOG_WARN, "Copying Yammer group info onto existing group $nickname");
-                $group = User_group::staticGet('id', $local->group_id);
+                $group = User_group::getKV('id', $local->group_id);
                 $this->savePropertiesOn($group, $data['options'],
                         array('fullname', 'description'));
             } else {
@@ -130,11 +130,11 @@ class YammerImporter
 
         $noticeId = $this->findImportedNotice($data['orig_id']);
         if ($noticeId) {
-            return Notice::staticGet('id', $noticeId);
+            return Notice::getKV('id', $noticeId);
         } else {
-            $notice = Notice::staticGet('uri', $data['options']['uri']);
+            $notice = Notice::getKV('uri', $data['options']['uri']);
             $content = $data['content'];
-            $user = User::staticGet($data['profile']);
+            $user = User::getKV($data['profile']);
 
             // Fetch file attachments and add the URLs...
             $uploads = array();
@@ -156,7 +156,7 @@ class YammerImporter
 
             // Save "likes" as favorites...
             foreach ($data['faves'] as $nickname) {
-                $user = User::staticGet('nickname', $nickname);
+                $user = User::getKV('nickname', $nickname);
                 if ($user) {
                     Fave::addNew($user->getProfile(), $notice);
                 }
@@ -331,7 +331,7 @@ class YammerImporter
                 $options['groups'] = array($groupId);
 
                 // @fixme if we see a group link inline, don't add this?
-                $group = User_group::staticGet('id', $groupId);
+                $group = User_group::getKV('id', $groupId);
                 if ($group) {
                     $content .= ' !' . $group->nickname;
                 }
@@ -365,19 +365,19 @@ class YammerImporter
 
     private function findImportedUser($origId)
     {
-        $map = Yammer_user::staticGet('id', $origId);
+        $map = Yammer_user::getKV('id', $origId);
         return $map ? $map->user_id : null;
     }
 
     private function findImportedGroup($origId)
     {
-        $map = Yammer_group::staticGet('id', $origId);
+        $map = Yammer_group::getKV('id', $origId);
         return $map ? $map->group_id : null;
     }
 
     private function findImportedNotice($origId)
     {
-        $map = Yammer_notice::staticGet('id', $origId);
+        $map = Yammer_notice::getKV('id', $origId);
         return $map ? $map->notice_id : null;
     }
 

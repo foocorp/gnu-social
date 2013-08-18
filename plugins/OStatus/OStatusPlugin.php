@@ -600,7 +600,7 @@ class OStatusPlugin extends Plugin
      */
     function onStartFeedSubReceive($feedsub, $feed)
     {
-        $oprofile = Ostatus_profile::staticGet('feeduri', $feedsub->uri);
+        $oprofile = Ostatus_profile::getKV('feeduri', $feedsub->uri);
         if ($oprofile) {
             $oprofile->processFeed($feed, 'push');
         } else {
@@ -619,7 +619,7 @@ class OStatusPlugin extends Plugin
      */
     function onFeedSubSubscriberCount($feedsub, &$count)
     {
-        $oprofile = Ostatus_profile::staticGet('feeduri', $feedsub->uri);
+        $oprofile = Ostatus_profile::getKV('feeduri', $feedsub->uri);
         if ($oprofile) {
             $count += $oprofile->subscriberCount();
         }
@@ -642,13 +642,13 @@ class OStatusPlugin extends Plugin
      */
     function onStartSubscribe($subscriber, $other)
     {
-        $user = User::staticGet('id', $subscriber->id);
+        $user = User::getKV('id', $subscriber->id);
 
         if (empty($user)) {
             return true;
         }
 
-        $oprofile = Ostatus_profile::staticGet('profile_id', $other->id);
+        $oprofile = Ostatus_profile::getKV('profile_id', $other->id);
 
         if (empty($oprofile)) {
             return true;
@@ -673,13 +673,13 @@ class OStatusPlugin extends Plugin
      */
     function onEndSubscribe($subscriber, $other)
     {
-        $user = User::staticGet('id', $subscriber->id);
+        $user = User::getKV('id', $subscriber->id);
 
         if (empty($user)) {
             return true;
         }
 
-        $oprofile = Ostatus_profile::staticGet('profile_id', $other->id);
+        $oprofile = Ostatus_profile::getKV('profile_id', $other->id);
 
         if (empty($oprofile)) {
             return true;
@@ -705,13 +705,13 @@ class OStatusPlugin extends Plugin
      */
     function onEndUnsubscribe($profile, $other)
     {
-        $user = User::staticGet('id', $profile->id);
+        $user = User::getKV('id', $profile->id);
 
         if (empty($user)) {
             return true;
         }
 
-        $oprofile = Ostatus_profile::staticGet('profile_id', $other->id);
+        $oprofile = Ostatus_profile::getKV('profile_id', $other->id);
 
         if (empty($oprofile)) {
             return true;
@@ -758,7 +758,7 @@ class OStatusPlugin extends Plugin
      */
     function onStartJoinGroup($group, $profile)
     {
-        $oprofile = Ostatus_profile::staticGet('group_id', $group->id);
+        $oprofile = Ostatus_profile::getKV('group_id', $group->id);
         if ($oprofile) {
             if (!$oprofile->subscribe()) {
                 // TRANS: Exception thrown when setup of remote group membership fails.
@@ -813,7 +813,7 @@ class OStatusPlugin extends Plugin
      */
     function onEndLeaveGroup($group, $profile)
     {
-        $oprofile = Ostatus_profile::staticGet('group_id', $group->id);
+        $oprofile = Ostatus_profile::getKV('group_id', $group->id);
         if ($oprofile) {
             // Drop the PuSH subscription if there are no other subscribers.
             $oprofile->garbageCollect();
@@ -856,7 +856,7 @@ class OStatusPlugin extends Plugin
 
     function onStartSubscribePeopletag($peopletag, $user)
     {
-        $oprofile = Ostatus_profile::staticGet('peopletag_id', $peopletag->id);
+        $oprofile = Ostatus_profile::getKV('peopletag_id', $peopletag->id);
         if ($oprofile) {
             if (!$oprofile->subscribe()) {
                 // TRANS: Exception thrown when setup of remote list subscription fails.
@@ -864,7 +864,7 @@ class OStatusPlugin extends Plugin
             }
 
             $sub = $user->getProfile();
-            $tagger = Profile::staticGet($peopletag->tagger);
+            $tagger = Profile::getKV($peopletag->tagger);
 
             $act = new Activity();
             $act->id = TagURI::mint('subscribe_peopletag:%d:%d:%s',
@@ -908,13 +908,13 @@ class OStatusPlugin extends Plugin
 
     function onEndUnsubscribePeopletag($peopletag, $user)
     {
-        $oprofile = Ostatus_profile::staticGet('peopletag_id', $peopletag->id);
+        $oprofile = Ostatus_profile::getKV('peopletag_id', $peopletag->id);
         if ($oprofile) {
             // Drop the PuSH subscription if there are no other subscribers.
             $oprofile->garbageCollect();
 
-            $sub = Profile::staticGet($user->id);
-            $tagger = Profile::staticGet($peopletag->tagger);
+            $sub = Profile::getKV($user->id);
+            $tagger = Profile::getKV($peopletag->tagger);
 
             $act = new Activity();
             $act->id = TagURI::mint('unsubscribe_peopletag:%d:%d:%s',
@@ -949,13 +949,13 @@ class OStatusPlugin extends Plugin
      */
     function onEndFavorNotice(Profile $profile, Notice $notice)
     {
-        $user = User::staticGet('id', $profile->id);
+        $user = User::getKV('id', $profile->id);
 
         if (empty($user)) {
             return true;
         }
 
-        $oprofile = Ostatus_profile::staticGet('profile_id', $notice->profile_id);
+        $oprofile = Ostatus_profile::getKV('profile_id', $notice->profile_id);
 
         if (empty($oprofile)) {
             return true;
@@ -986,7 +986,7 @@ class OStatusPlugin extends Plugin
      */
     function onEndTagProfile($ptag)
     {
-        $oprofile = Ostatus_profile::staticGet('profile_id', $ptag->tagged);
+        $oprofile = Ostatus_profile::getKV('profile_id', $ptag->tagged);
 
         if (empty($oprofile)) {
             return true;
@@ -1000,7 +1000,7 @@ class OStatusPlugin extends Plugin
         $act = new Activity();
 
         $tagger = $plist->getTagger();
-        $tagged = Profile::staticGet('id', $ptag->tagged);
+        $tagged = Profile::getKV('id', $ptag->tagged);
 
         $act->verb = ActivityVerb::TAG;
         $act->id   = TagURI::mint('tag_profile:%d:%d:%s',
@@ -1043,7 +1043,7 @@ class OStatusPlugin extends Plugin
      */
     function onEndUntagProfile($ptag)
     {
-        $oprofile = Ostatus_profile::staticGet('profile_id', $ptag->tagged);
+        $oprofile = Ostatus_profile::getKV('profile_id', $ptag->tagged);
 
         if (empty($oprofile)) {
             return true;
@@ -1057,7 +1057,7 @@ class OStatusPlugin extends Plugin
         $act = new Activity();
 
         $tagger = $plist->getTagger();
-        $tagged = Profile::staticGet('id', $ptag->tagged);
+        $tagged = Profile::getKV('id', $ptag->tagged);
 
         $act->verb = ActivityVerb::UNTAG;
         $act->id   = TagURI::mint('untag_profile:%d:%d:%s',
@@ -1095,13 +1095,13 @@ class OStatusPlugin extends Plugin
      */
     function onEndDisfavorNotice(Profile $profile, Notice $notice)
     {
-        $user = User::staticGet('id', $profile->id);
+        $user = User::getKV('id', $profile->id);
 
         if (empty($user)) {
             return true;
         }
 
-        $oprofile = Ostatus_profile::staticGet('profile_id', $notice->profile_id);
+        $oprofile = Ostatus_profile::getKV('profile_id', $notice->profile_id);
 
         if (empty($oprofile)) {
             return true;
@@ -1133,7 +1133,7 @@ class OStatusPlugin extends Plugin
 
     function onStartGetProfileUri($profile, &$uri)
     {
-        $oprofile = Ostatus_profile::staticGet('profile_id', $profile->id);
+        $oprofile = Ostatus_profile::getKV('profile_id', $profile->id);
         if (!empty($oprofile)) {
             $uri = $oprofile->uri;
             return false;
@@ -1148,7 +1148,7 @@ class OStatusPlugin extends Plugin
 
     function onStartUserGroupPermalink($group, &$url)
     {
-        $oprofile = Ostatus_profile::staticGet('group_id', $group->id);
+        $oprofile = Ostatus_profile::getKV('group_id', $group->id);
         if ($oprofile) {
             // @fixme this should probably be in the user_group table
             // @fixme this uri not guaranteed to be a profile page
@@ -1207,7 +1207,7 @@ class OStatusPlugin extends Plugin
      */
     function onEndBroadcastProfile(Profile $profile)
     {
-        $user = User::staticGet('id', $profile->id);
+        $user = User::getKV('id', $profile->id);
 
         // Find foreign accounts I'm subscribed to that support Salmon pings.
         //
@@ -1255,7 +1255,7 @@ class OStatusPlugin extends Plugin
     {
         if (!common_logged_in()) {
 
-            $profileUser = User::staticGet('id', $item->profile->id);
+            $profileUser = User::getKV('id', $item->profile->id);
 
             if (!empty($profileUser)) {
 
@@ -1312,9 +1312,9 @@ class OStatusPlugin extends Plugin
      */
     public static function localGroupFromUrl($url)
     {
-        $group = User_group::staticGet('uri', $url);
+        $group = User_group::getKV('uri', $url);
         if ($group) {
-            $local = Local_group::staticGet('group_id', $group->id);
+            $local = Local_group::getKV('group_id', $group->id);
             if ($local) {
                 return $group->id;
             }
@@ -1334,7 +1334,7 @@ class OStatusPlugin extends Plugin
 
     public function onStartProfileGetAtomFeed($profile, &$feed)
     {
-        $oprofile = Ostatus_profile::staticGet('profile_id', $profile->id);
+        $oprofile = Ostatus_profile::getKV('profile_id', $profile->id);
 
         if (empty($oprofile)) {
             return true;
@@ -1349,7 +1349,7 @@ class OStatusPlugin extends Plugin
         // Don't want to do Web-based discovery on our own server,
         // so we check locally first.
 
-        $user = User::staticGet('uri', $uri);
+        $user = User::getKV('uri', $uri);
 
         if (!empty($user)) {
             $profile = $user->getProfile();
@@ -1392,7 +1392,7 @@ class OStatusPlugin extends Plugin
                               'href' => $salmon_url);
 
         // Get this user's keypair
-        $magickey = Magicsig::staticGet('user_id', $user->id);
+        $magickey = Magicsig::getKV('user_id', $user->id);
         if (!$magickey) {
             // No keypair yet, let's generate one.
             $magickey = new Magicsig();

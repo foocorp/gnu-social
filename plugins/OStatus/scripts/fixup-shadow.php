@@ -53,7 +53,7 @@ while ($user->fetch()) {
         echo " - skipping\n";
     } else {
         echo " - removing bogus ostatus_profile entry...";
-        $evil = Ostatus_profile::staticGet('uri', $uri);
+        $evil = Ostatus_profile::getKV('uri', $uri);
         $evil->delete();
         echo "  ok\n";
     }
@@ -77,7 +77,7 @@ while ($group->fetch()) {
         echo " - skipping\n";
     } else {
         echo " - removing bogus ostatus_profile entry...";
-        $evil = Ostatus_profile::staticGet('uri', $uri);
+        $evil = Ostatus_profile::getKV('uri', $uri);
         $evil->delete();
         echo "  ok\n";
     }
@@ -109,7 +109,7 @@ while ($group->fetch()) {
     $uri = $group->uri;
     if (preg_match('!/group/(\d+)/id!', $uri, $matches)) {
         $id = intval($matches[1]);
-        $local = Local_group::staticGet('group_id', $id);
+        $local = Local_group::getKV('group_id', $id);
         if ($local) {
             $nick = $local->nickname;
         } else {
@@ -120,7 +120,7 @@ while ($group->fetch()) {
             echo " - skipping\n";
         } else {
             echo " - removing bogus user_group entry...";
-            $evil = User_group::staticGet('id', $group->id);
+            $evil = User_group::getKV('id', $group->id);
             $evil->delete();
             echo "  ok\n";
         }
@@ -155,7 +155,7 @@ while ($oprofile->fetch()) {
     $uri = $oprofile->uri;
     if (preg_match('!/group/(\d+)/id!', $oprofile->uri, $matches)) {
         $id = intval($matches[1]);
-        $group = Local_group::staticGet('group_id', $id);
+        $group = Local_group::getKV('group_id', $id);
         if ($group) {
             $nick = $group->nickname;
         } else {
@@ -164,7 +164,7 @@ while ($oprofile->fetch()) {
         echo "group $id ($nick) hidden by $uri";
     } else if (preg_match('!/user/(\d+)!', $uri, $matches)) {
         $id = intval($matches[1]);
-        $user = User::staticGet('id', $id);
+        $user = User::getKV('id', $id);
         if ($user) {
             $nick = $user->nickname;
         } else {

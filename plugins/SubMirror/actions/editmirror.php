@@ -98,7 +98,7 @@ class EditMirrorAction extends BaseMirrorAction
 
         if ($this->delete) {
             $mirror->delete();
-            $oprofile = Ostatus_profile::staticGet('profile_id', $this->profile->id);
+            $oprofile = Ostatus_profile::getKV('profile_id', $this->profile->id);
             if ($oprofile) {
                 $oprofile->garbageCollect();
             }

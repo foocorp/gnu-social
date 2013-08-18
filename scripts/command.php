@@ -51,14 +51,14 @@ function interpretCommand($user, $body)
 
 if (have_option('i', 'id')) {
     $id = get_option_value('i', 'id');
-    $user = User::staticGet('id', $id);
+    $user = User::getKV('id', $id);
     if (empty($user)) {
         print "Can't find user with ID $id\n";
         exit(1);
     }
 } else if (have_option('n', 'nickname')) {
     $nickname = get_option_value('n', 'nickname');
-    $user = User::staticGet('nickname', $nickname);
+    $user = User::getKV('nickname', $nickname);
     if (empty($user)) {
         print "Can't find user with nickname '$nickname'\n";
         exit(1);

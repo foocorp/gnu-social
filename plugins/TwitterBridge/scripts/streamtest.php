@@ -113,7 +113,7 @@ function siteStreamForOwner(User $user)
 }
 
 
-$user = User::staticGet('nickname', $nickname);
+$user = User::getKV('nickname', $nickname);
 global $myuser;
 $myuser = $user;
 

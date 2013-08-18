@@ -66,7 +66,7 @@ class NudgeAction extends Action
         }
 
         $user  = common_current_user();
-        $other = User::staticGet('nickname', $this->arg('nickname'));
+        $other = User::getKV('nickname', $this->arg('nickname'));
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             common_redirect(common_local_url('showstream',

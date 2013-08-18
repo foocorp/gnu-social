@@ -39,9 +39,9 @@ abstract class Managed_DataObject extends Memcached_DataObject
      * @return get_called_class() object if found, or null for no hits
      *
      */
-    static function staticGet($k,$v=NULL)
+    static function getKV($k,$v=NULL)
     {
-        return parent::staticGet(get_called_class(),$k,$v);
+        return parent::getKV(get_called_class(),$k,$v);
     }
 
 

@@ -225,7 +225,7 @@ class QnAPlugin extends MicroAppPlugin
             );
             break;
         case Answer::ObjectType:
-            $question = QnA_Question::staticGet('uri', $questionObj->id);
+            $question = QnA_Question::getKV('uri', $questionObj->id);
             if (empty($question)) {
                 // FIXME: save the question
                 // TRANS: Exception thrown when answering a non-existing question.
@@ -308,7 +308,7 @@ class QnAPlugin extends MicroAppPlugin
                 $class .= ' limited-scope';
             }
 
-            $question = QnA_Question::staticGet('uri', $nli->notice->uri);
+            $question = QnA_Question::getKV('uri', $nli->notice->uri);
 
             if (!empty($question->closed)) {
                 $class .= ' closed';
@@ -328,7 +328,7 @@ class QnAPlugin extends MicroAppPlugin
 
             $cls = array('hentry', 'notice', 'answer');
 
-            $answer = QnA_Answer::staticGet('uri', $nli->notice->uri);
+            $answer = QnA_Answer::getKV('uri', $nli->notice->uri);
 
             if (!empty($answer) && !empty($answer->best)) {
                 $cls[] = 'best';

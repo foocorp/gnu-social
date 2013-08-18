@@ -58,7 +58,7 @@ class FoafGroupAction extends Action
             return false;
         }
 
-        $local = Local_group::staticGet('nickname', $this->nickname);
+        $local = Local_group::getKV('nickname', $this->nickname);
 
         if (!$local) {
             // TRANS: Client error displayed when requesting Friends of a Friend feed for a non-local group.
@@ -66,7 +66,7 @@ class FoafGroupAction extends Action
             return false;
         }
 
-        $this->group = User_group::staticGet('id', $local->group_id);
+        $this->group = User_group::getKV('id', $local->group_id);
 
         if (!$this->group) {
             // TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.

@@ -45,10 +45,10 @@ class PhotoAction extends Action
 
         $args = $this->returnToArgs();
         $this->photoid = $args[1]['photoid'];
-        $this->photo = GNUsocialPhoto::staticGet('id', $this->photoid);
-        $this->notice = Notice::staticGet('id', $this->photo->notice_id);
+        $this->photo = GNUsocialPhoto::getKV('id', $this->photoid);
+        $this->notice = Notice::getKV('id', $this->photo->notice_id);
 
-        $this->user = Profile::staticGet('id', $this->notice->profile_id);
+        $this->user = Profile::getKV('id', $this->notice->profile_id);
         
         $notices = Notice::conversationStream((int)$this->notice->conversation, null, null); 
         $this->conversation = new ConversationTree($notices, $this);

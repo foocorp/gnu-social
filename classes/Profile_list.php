@@ -107,7 +107,7 @@ class Profile_list extends Managed_DataObject
 
     function getTagger()
     {
-        return Profile::staticGet('id', $this->tagger);
+        return Profile::getKV('id', $this->tagger);
     }
 
     /**
@@ -683,7 +683,7 @@ class Profile_list extends Managed_DataObject
 
         if (!isset($mainpage) || empty($mainpage)) {
             $orig = clone($ptag);
-            $user = User::staticGet('id', $ptag->tagger);
+            $user = User::getKV('id', $ptag->tagger);
             if(!empty($user)) {
                 $ptag->mainpage = common_local_url('showprofiletag', array('tag' => $ptag->tag, 'tagger' => $user->nickname));
             } else {

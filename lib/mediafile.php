@@ -158,7 +158,7 @@ class MediaFile
 
     function maybeAddRedir($file_id, $url)
     {
-        $file_redir = File_redirection::staticGet('url', $url);
+        $file_redir = File_redirection::getKV('url', $url);
 
         if (empty($file_redir)) {
 

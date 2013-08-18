@@ -112,7 +112,7 @@ function updateGroupUrls()
         while ($group->fetch()) {
             try {
                 printfv("Updating group {$group->nickname}...");
-                $orig = User_group::staticGet('id', $group->id);
+                $orig = User_group::getKV('id', $group->id);
                 if (!empty($group->original_logo)) {
                     $group->original_logo = Avatar::url(basename($group->original_logo));
                     $group->homepage_logo = Avatar::url(basename($group->homepage_logo));

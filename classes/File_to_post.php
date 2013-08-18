@@ -69,7 +69,7 @@ class File_to_post extends Managed_DataObject
                 $f2p->post_id = $notice_id;
                 $f2p->insert();
                 
-                $f = File::staticGet($file_id);
+                $f = File::getKV($file_id);
 
                 if (!empty($f)) {
                     $f->blowCache();
@@ -91,7 +91,7 @@ class File_to_post extends Managed_DataObject
 
     function delete()
     {
-        $f = File::staticGet('id', $this->file_id);
+        $f = File::getKV('id', $this->file_id);
         if (!empty($f)) {
             $f->blowCache();
         }

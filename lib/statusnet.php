@@ -148,7 +148,7 @@ class StatusNet
             return true;
         }
 
-        $sn = Status_network::staticGet('nickname', $nickname);
+        $sn = Status_network::getKV('nickname', $nickname);
         if (empty($sn)) {
             return false;
             throw new Exception("No such site nickname '$nickname'");

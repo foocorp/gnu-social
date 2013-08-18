@@ -57,7 +57,7 @@ class InboxNoticeStream extends ScopingNoticeStream
             $profile = Profile::current();
         }
         // Note: we don't use CachingNoticeStream since RawInboxNoticeStream
-        // uses Inbox::staticGet(), which is cached.
+        // uses Inbox::getKV(), which is cached.
         parent::__construct(new RawInboxNoticeStream($user), $profile);
     }
 }
@@ -85,7 +85,7 @@ class RawInboxNoticeStream extends NoticeStream
     function __construct($user)
     {
         $this->user  = $user;
-        $this->inbox = Inbox::staticGet('user_id', $user->id);
+        $this->inbox = Inbox::getKV('user_id', $user->id);
     }
 
     /**

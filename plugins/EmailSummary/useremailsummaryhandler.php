@@ -70,7 +70,7 @@ class UserEmailSummaryHandler extends QueueHandler
     {
         // Skip if they've asked not to get summaries
 
-        $ess = Email_summary_status::staticGet('user_id', $user_id);
+        $ess = Email_summary_status::getKV('user_id', $user_id);
 
         if (!empty($ess) && !$ess->send_summary) {
             common_log(LOG_INFO, sprintf('Not sending email summary for user %s by request.', $user_id));
@@ -83,7 +83,7 @@ class UserEmailSummaryHandler extends QueueHandler
             $since_id = $ess->last_summary_id;
         }
 
-        $user = User::staticGet('id', $user_id);
+        $user = User::getKV('id', $user_id);
 
         if (empty($user)) {
             common_log(LOG_INFO, sprintf('Not sending email summary for user %s; no such user.', $user_id));
@@ -145,7 +145,7 @@ class UserEmailSummaryHandler extends QueueHandler
                                           'style' => 'border: none; border-collapse: collapse;', 'cellpadding' => '6'));
 
         while ($notice->fetch()) {
-            $profile = Profile::staticGet('id', $notice->profile_id);
+            $profile = Profile::getKV('id', $notice->profile_id);
 
             if (empty($profile)) {
                 continue;
@@ -185,7 +185,7 @@ class UserEmailSummaryHandler extends QueueHandler
                           common_date_string($notice->created));
             $out->elementEnd('a');
             if ($notice->hasConversation()) {
-                $conv = Conversation::staticGet('id', $notice->conversation);
+                $conv = Conversation::getKV('id', $notice->conversation);
                 $convurl = $conv->uri;
                 if (!empty($convurl)) {
                     $out->text(' ');

@@ -98,7 +98,7 @@ class OldschoolsettingsAction extends SettingsAction
     {
         $user = common_current_user();
 
-        $osp = Old_school_prefs::staticGet('user_id', $user->id);
+        $osp = Old_school_prefs::getKV('user_id', $user->id);
         $orig = null;
 
         if (!empty($osp)) {

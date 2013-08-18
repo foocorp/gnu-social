@@ -73,7 +73,7 @@ class NoticeListItem extends Widget
     {
         parent::__construct($out);
         if (!empty($notice->repeat_of)) {
-            $original = Notice::staticGet('id', $notice->repeat_of);
+            $original = Notice::getKV('id', $notice->repeat_of);
             if (empty($original)) { // could have been deleted
                 $this->notice = $notice;
             } else {
@@ -571,7 +571,7 @@ class NoticeListItem extends Widget
     function showContext()
     {
         if ($this->notice->hasConversation()) {
-            $conv = Conversation::staticGet(
+            $conv = Conversation::getKV(
                 'id',
                 $this->notice->conversation
             );
@@ -607,7 +607,7 @@ class NoticeListItem extends Widget
     {
         if (!empty($this->repeat)) {
 
-            $repeater = Profile::staticGet('id', $this->repeat->profile_id);
+            $repeater = Profile::getKV('id', $this->repeat->profile_id);
 
             $attrs = array('href' => $repeater->profileurl,
                            'class' => 'url');

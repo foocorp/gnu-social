@@ -578,7 +578,7 @@ class EmailsettingsAction extends SettingsAction
     {
         $user = common_current_user();
 
-        $other = User::staticGet('email', $email);
+        $other = User::getKV('email', $email);
 
         if (!$other) {
             return false;

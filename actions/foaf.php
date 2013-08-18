@@ -54,7 +54,7 @@ class FoafAction extends Action
             return false;
         }
 
-        $this->user = User::staticGet('nickname', $this->nickname);
+        $this->user = User::getKV('nickname', $this->nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed when requesting Friends of a Friend feed for an object that is not a user.
@@ -170,7 +170,7 @@ class FoafAction extends Action
 
         if ($sub->find()) {
             while ($sub->fetch()) {
-                $profile = Profile::staticGet('id', $sub->subscriber);
+                $profile = Profile::getKV('id', $sub->subscriber);
                 if (empty($profile)) {
                     common_debug('Got a bad subscription: '.print_r($sub,true));
                     continue;
@@ -207,7 +207,7 @@ class FoafAction extends Action
             if ($local == 'local') {
                 $foaf_url = common_local_url('foaf', array('nickname' => $nickname));
             }
-            $profile = Profile::staticGet($id);
+            $profile = Profile::getKV($id);
             $this->elementStart('Agent', array('rdf:about' => $uri));
             if ($type == BOTH) {
                 $this->element('knows', array('rdf:resource' => $this->user->uri));
@@ -284,7 +284,7 @@ class FoafAction extends Action
 
             if ($sub->find()) {
                 while ($sub->fetch()) {
-                    $profile = Profile::staticGet('id', $sub->subscribed);
+                    $profile = Profile::getKV('id', $sub->subscribed);
                     if (empty($profile)) {
                         common_debug('Got a bad subscription: '.print_r($sub,true));
                         continue;

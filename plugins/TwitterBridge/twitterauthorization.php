@@ -471,7 +471,7 @@ class TwitterauthorizationAction extends Action
         if (common_config('site', 'inviteonly')) {
             $code = $_SESSION['invitecode'];
             if ($code) {
-                $invite = Invitation::staticGet($code);
+                $invite = Invitation::getKV($code);
 
                 if ($invite && $invite->address_type == 'email') {
                     return $invite->address;
@@ -509,7 +509,7 @@ class TwitterauthorizationAction extends Action
                 return;
             }
 
-            $invite = Invitation::staticGet($code);
+            $invite = Invitation::getKV($code);
 
             if (empty($invite)) {
                 // TRANS: Client error displayed when trying to create a new user with an invalid invitation code.
@@ -531,7 +531,7 @@ class TwitterauthorizationAction extends Action
             return;
         }
 
-        if (User::staticGet('nickname', $nickname)) {
+        if (User::getKV('nickname', $nickname)) {
             // TRANS: Client error displayed when trying to create a new user with a username that is already in use.
             $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
@@ -594,7 +594,7 @@ class TwitterauthorizationAction extends Action
             return;
         }
 
-        $user = User::staticGet('nickname', $nickname);
+        $user = User::getKV('nickname', $nickname);
 
         if (!empty($user)) {
             common_debug('TwitterBridge Plugin - ' .
@@ -715,7 +715,7 @@ class TwitterauthorizationAction extends Action
         if (!User::allowed_nickname($str)) {
             return false;
         }
-        if (User::staticGet('nickname', $str)) {
+        if (User::getKV('nickname', $str)) {
             return false;
         }
         return true;

@@ -86,7 +86,7 @@ class File extends Managed_DataObject
         // I don't know why we have to keep doing this but I'm adding this last check to avoid
         // uniqueness bugs.
 
-        $x = File::staticGet('url', $given_url);
+        $x = File::getKV('url', $given_url);
         
         if (empty($x)) {
             $x = new File;
@@ -119,7 +119,7 @@ class File extends Managed_DataObject
             && (('text/html' === substr($redir_data['type'], 0, 9) || 'application/xhtml+xml' === substr($redir_data['type'], 0, 21)))
             && ($oembed_data = File_oembed::_getOembed($given_url))) {
 
-            $fo = File_oembed::staticGet('file_id', $this->id);
+            $fo = File_oembed::getKV('file_id', $this->id);
 
             if (empty($fo)) {
                 File_oembed::saveNew($oembed_data, $this->id);
@@ -153,9 +153,9 @@ class File extends Managed_DataObject
         if (empty($given_url)) return -1;   // error, no url to process
         $given_url = File_redirection::_canonUrl($given_url);
         if (empty($given_url)) return -1;   // error, no url to process
-        $file = File::staticGet('url', $given_url);
+        $file = File::getKV('url', $given_url);
         if (empty($file)) {
-            $file_redir = File_redirection::staticGet('url', $given_url);
+            $file_redir = File_redirection::getKV('url', $given_url);
             if (empty($file_redir)) {
                 // @fixme for new URLs this also looks up non-redirect data
                 // such as target content type, size, etc, which we need
@@ -197,7 +197,7 @@ class File extends Managed_DataObject
         }
 
         if (empty($x)) {
-            $x = File::staticGet('id', $file_id);
+            $x = File::getKV('id', $file_id);
             if (empty($x)) {
                 // @todo FIXME: This could possibly be a clearer message :)
                 // TRANS: Server exception thrown when... Robin thinks something is impossible!
@@ -391,7 +391,7 @@ class File extends Managed_DataObject
             if(in_array($mimetype,$notEnclosureMimeTypes)){
                 // Never treat generic HTML links as an enclosure type!
                 // But if we have oEmbed info, we'll consider it golden.
-                $oembed = File_oembed::staticGet('file_id',$this->id);
+                $oembed = File_oembed::getKV('file_id',$this->id);
                 if($oembed && in_array($oembed->type, array('photo', 'video'))){
                     $mimetype = strtolower($oembed->mimetype);
                     $semicolon = strpos($mimetype,';');
@@ -433,7 +433,7 @@ class File extends Managed_DataObject
      */
     function getThumbnail()
     {
-        return File_thumbnail::staticGet('file_id', $this->id);
+        return File_thumbnail::getKV('file_id', $this->id);
     }
 
     /**

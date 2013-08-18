@@ -441,7 +441,7 @@ class TwitterBridgePlugin extends Plugin
      */
     function onStartDeleteOwnNotice(User $user, Notice $notice)
     {
-        $n2s = Notice_to_status::staticGet('notice_id', $notice->id);
+        $n2s = Notice_to_status::getKV('notice_id', $notice->id);
 
         if (!empty($n2s)) {
 

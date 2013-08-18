@@ -84,14 +84,14 @@ class NewgroupmessageAction extends Action
             return false;
         }
 
-        $localGroup = Local_group::staticGet('nickname', $nickname);
+        $localGroup = Local_group::getKV('nickname', $nickname);
 
         if (empty($localGroup)) {
             // TRANS: Client exception thrown when trying to send a private group message to a non-existing group.
             throw new ClientException(_m('No such group.'), 404);
         }
 
-        $this->group = User_group::staticGet('id', $localGroup->group_id);
+        $this->group = User_group::getKV('id', $localGroup->group_id);
 
         if (empty($this->group)) {
             // TRANS: Client exception thrown when trying to send a private group message to a non-existing group.

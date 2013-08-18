@@ -51,7 +51,7 @@ class OStatusQueueHandler extends QueueHandler
         assert($notice instanceof Notice);
 
         $this->notice = $notice;
-        $this->user = User::staticGet('id', $notice->profile_id);
+        $this->user = User::getKV('id', $notice->profile_id);
 
         try {
             $profile = $this->notice->getProfile();
@@ -63,7 +63,7 @@ class OStatusQueueHandler extends QueueHandler
         $this->pushUser();
 
         foreach ($notice->getGroups() as $group) {
-            $oprofile = Ostatus_profile::staticGet('group_id', $group->id);
+            $oprofile = Ostatus_profile::getKV('group_id', $group->id);
             if ($oprofile) {
                 $this->pingReply($oprofile);
             } else {
@@ -72,17 +72,17 @@ class OStatusQueueHandler extends QueueHandler
         }
         
         foreach ($notice->getReplies() as $profile_id) {
-            $oprofile = Ostatus_profile::staticGet('profile_id', $profile_id);
+            $oprofile = Ostatus_profile::getKV('profile_id', $profile_id);
             if ($oprofile) {
                 $this->pingReply($oprofile);
             }
         }
 
         if (!empty($this->notice->reply_to)) {
-            $replyTo = Notice::staticGet('id', $this->notice->reply_to);
+            $replyTo = Notice::getKV('id', $this->notice->reply_to);
             if (!empty($replyTo)) {
                 foreach($replyTo->getReplies() as $profile_id) {
-                    $oprofile = Ostatus_profile::staticGet('profile_id', $profile_id);
+                    $oprofile = Ostatus_profile::getKV('profile_id', $profile_id);
                     if ($oprofile) {
                         $this->pingReply($oprofile);
                     }
@@ -91,7 +91,7 @@ class OStatusQueueHandler extends QueueHandler
         }
 
         foreach ($notice->getProfileTags() as $ptag) {
-            $oprofile = Ostatus_profile::staticGet('peopletag_id', $ptag->id);
+            $oprofile = Ostatus_profile::getKV('peopletag_id', $ptag->id);
             if (!$oprofile) {
                 $this->pushPeopletag($ptag);
             }
@@ -243,7 +243,7 @@ class OStatusQueueHandler extends QueueHandler
 
     function groupFeedForNotice($group_id)
     {
-        $group = User_group::staticGet('id', $group_id);
+        $group = User_group::getKV('id', $group_id);
 
         $atom = new AtomGroupNoticeFeed($group);
         $atom->addEntryFromNotice($this->notice);

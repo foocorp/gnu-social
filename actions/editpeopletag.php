@@ -93,9 +93,9 @@ class EditpeopletagAction extends Action
 
         $user = null;
         if ($id) {
-            $this->peopletag = Profile_list::staticGet('id', $id);
+            $this->peopletag = Profile_list::getKV('id', $id);
             if (!empty($this->peopletag)) {
-                $user = User::staticGet('id', $this->peopletag->tagger);
+                $user = User::getKV('id', $this->peopletag->tagger);
             }
         } else {
             if (!$tagger) {
@@ -104,7 +104,7 @@ class EditpeopletagAction extends Action
                 return false;
             }
 
-            $user = User::staticGet('nickname', $tagger);
+            $user = User::getKV('nickname', $tagger);
             $this->peopletag = Profile_list::pkeyGet(array('tagger' => $user->id, 'tag' => $tag));
         }
 

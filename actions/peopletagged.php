@@ -85,7 +85,7 @@ class PeopletaggedAction extends Action
             return false;
         }
 
-        $user = User::staticGet('nickname', $tagger);
+        $user = User::getKV('nickname', $tagger);
 
         if (!$user) {
             // TRANS: Client error displayed when referring to non-existing user.

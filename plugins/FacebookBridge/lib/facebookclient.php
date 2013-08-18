@@ -897,7 +897,7 @@ class Facebookclient
      */
     static function facebookStatusId($notice)
     {
-        $n2i = Notice_to_item::staticGet('notice_id', $notice->id);
+        $n2i = Notice_to_item::getKV('notice_id', $notice->id);
 
         if (empty($n2i)) {
             return null;
@@ -979,7 +979,7 @@ class Facebookclient
      */
     function streamRemove()
     {
-        $n2i = Notice_to_item::staticGet('notice_id', $this->notice->id);
+        $n2i = Notice_to_item::getKV('notice_id', $this->notice->id);
 
         if (!empty($this->flink) && !empty($n2i)) {
             try {
@@ -1034,7 +1034,7 @@ class Facebookclient
      */
     function like()
     {
-        $n2i = Notice_to_item::staticGet('notice_id', $this->notice->id);
+        $n2i = Notice_to_item::getKV('notice_id', $this->notice->id);
 
         if (!empty($this->flink) && !empty($n2i)) {
             try {
@@ -1085,7 +1085,7 @@ class Facebookclient
      */
     function unLike()
     {
-        $n2i = Notice_to_item::staticGet('notice_id', $this->notice->id);
+        $n2i = Notice_to_item::getKV('notice_id', $this->notice->id);
 
         if (!empty($this->flink) && !empty($n2i)) {
             try {

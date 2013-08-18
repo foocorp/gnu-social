@@ -69,7 +69,7 @@ class UserbyidAction extends Action
             // TRANS: Client error displayed trying to find a user by ID without providing an ID.
             $this->clientError(_('No ID.'));
         }
-        $user = User::staticGet($id);
+        $user = User::getKV($id);
         if (!$user) {
             // TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
             $this->clientError(_('No such user.'));

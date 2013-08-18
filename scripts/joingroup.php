@@ -41,15 +41,15 @@ try {
     $lgroup = null;
     if (have_option('G', 'group-id')) {
         $gid = get_option_value('G', 'group-id');
-        $lgroup = Local_group::staticGet('group_id', $gid);
+        $lgroup = Local_group::getKV('group_id', $gid);
     } else if (have_option('g', 'group')) {
         $gnick = get_option_value('g', 'group');
-        $lgroup = Local_group::staticGet('nickname', $gnick);
+        $lgroup = Local_group::getKV('nickname', $gnick);
     }
     if (empty($lgroup)) {
         throw new Exception("No such local group: $gnick");
     }
-    $group = User_group::staticGet('id', $lgroup->group_id);
+    $group = User_group::getKV('id', $lgroup->group_id);
     $user->joinGroup($group);
     print "OK\n";
 } catch (Exception $e) {

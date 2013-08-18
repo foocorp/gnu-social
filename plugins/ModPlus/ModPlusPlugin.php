@@ -134,7 +134,7 @@ class ModPlusPlugin extends Plugin
      */
     protected function showProfileOptions(HTMLOutputter $out, $profile)
     {
-        $isRemote = !(User::staticGet('id', $profile->id));
+        $isRemote = !(User::getKV('id', $profile->id));
         if ($isRemote) {
             $target = common_local_url('remoteprofile', array('id' => $profile->id));
             // TRANS: Label for access to remote profile options.

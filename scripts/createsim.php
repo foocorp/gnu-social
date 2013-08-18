@@ -73,7 +73,7 @@ function newGroup($i, $j)
     // Pick a random user to be the admin
 
     $n = rand(0, max($j - 1, 0));
-    $user = User::staticGet('nickname', sprintf('%s%d', $userprefix, $n));
+    $user = User::getKV('nickname', sprintf('%s%d', $userprefix, $n));
 
     $group = User_group::register(array('nickname' => sprintf('%s%d', $groupprefix, $i),
                                         'local'    => true,
@@ -88,7 +88,7 @@ function newNotice($i, $tagmax)
     $options = array('scope' => Notice::defaultScope());
 
     $n = rand(0, $i - 1);
-    $user = User::staticGet('nickname', sprintf('%s%d', $userprefix, $n));
+    $user = User::getKV('nickname', sprintf('%s%d', $userprefix, $n));
 
     $is_reply = rand(0, 1);
 
@@ -192,7 +192,7 @@ function newMessage($i)
     global $userprefix;
 
     $n = rand(0, $i - 1);
-    $user = User::staticGet('nickname', sprintf('%s%d', $userprefix, $n));
+    $user = User::getKV('nickname', sprintf('%s%d', $userprefix, $n));
 
     $content = testNoticeContent();
 
@@ -216,7 +216,7 @@ function newSub($i)
 
     $fromnick = sprintf('%s%d', $userprefix, $f);
 
-    $from = User::staticGet('nickname', $fromnick);
+    $from = User::getKV('nickname', $fromnick);
 
     if (empty($from)) {
         throw new Exception("Can't find user '$fromnick'.");
@@ -233,7 +233,7 @@ function newSub($i)
 
     $tunic = sprintf('%s%d', $userprefix, $t);
 
-    $to = User::staticGet('nickname', $tunic);
+    $to = User::getKV('nickname', $tunic);
 
     if (empty($to)) {
         throw new Exception("Can't find user '$tunic'.");
@@ -254,7 +254,7 @@ function newJoin($u, $g)
 
     $userNick = sprintf('%s%d', $userprefix, $userNumber);
 
-    $user = User::staticGet('nickname', $userNick);
+    $user = User::getKV('nickname', $userNick);
 
     if (empty($user)) {
         throw new Exception("Can't find user '$fromnick'.");
@@ -264,7 +264,7 @@ function newJoin($u, $g)
 
     $groupNick = sprintf('%s%d', $groupprefix, $groupNumber);
 
-    $group = User_group::staticGet('nickname', $groupNick);
+    $group = User_group::getKV('nickname', $groupNick);
 
     if (empty($group)) {
         throw new Exception("Can't find group '$groupNick'.");
@@ -284,7 +284,7 @@ function newFave($u)
 
     $userNick = sprintf('%s%d', $userprefix, $userNumber);
 
-    $user = User::staticGet('nickname', $userNick);
+    $user = User::getKV('nickname', $userNick);
 
     if (empty($user)) {
         throw new Exception("Can't find user '$userNick'.");
@@ -296,7 +296,7 @@ function newFave($u)
 
     $otherNick = sprintf('%s%d', $userprefix, $otherNumber);
 
-    $other = User::staticGet('nickname', $otherNick);
+    $other = User::getKV('nickname', $otherNick);
 
     if (empty($other)) {
         throw new Exception("Can't find user '$otherNick'.");

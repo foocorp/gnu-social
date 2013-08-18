@@ -42,7 +42,8 @@ class Status_network extends Safe_DataObject
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
     /* Static get */
-    static function staticGet($k,$v=NULL) {
+    static function getKV($k,$v=NULL) {
+        // TODO: This must probably be turned into a non-static call
         $i = DB_DataObject::staticGet('Status_network',$k,$v);
 
         // Don't use local process cache; if we're fetching multiple
@@ -118,7 +119,7 @@ class Status_network extends Safe_DataObject
     static function memGet($k, $v)
     {
         if (!self::$cache) {
-            return self::staticGet($k, $v);
+            return self::getKV($k, $v);
         }
 
         $ck = self::cacheKey($k, $v);
@@ -126,7 +127,7 @@ class Status_network extends Safe_DataObject
         $sn = self::$cache->get($ck);
 
         if (empty($sn)) {
-            $sn = self::staticGet($k, $v);
+            $sn = self::getKV($k, $v);
             if (!empty($sn)) {
                 self::$cache->set($ck, clone($sn));
             }

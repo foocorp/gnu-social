@@ -67,7 +67,7 @@ class DeleteuserAction extends ProfileFormAction
             return false;
         }
 
-        $this->user = User::staticGet('id', $this->profile->id);
+        $this->user = User::getKV('id', $this->profile->id);
 
         if (empty($this->user)) {
             // TRANS: Client error displayed when trying to delete a non-local user.

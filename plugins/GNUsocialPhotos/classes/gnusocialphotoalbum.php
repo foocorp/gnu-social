@@ -69,13 +69,13 @@ class GNUsocialPhotoAlbum extends Managed_DataObject
 
     function getPageLink()
     {
-        $profile = Profile::StaticGet('id', $this->profile_id);
+        $profile = Profile::getKV('id', $this->profile_id);
         return '/' . $profile->nickname . '/photos/' . $this->album_id;
     }
 
     function getThumbUri()
     {
-        $photo = GNUsocialPhoto::staticGet('album_id', $this->album_id);
+        $photo = GNUsocialPhoto::getKV('album_id', $this->album_id);
         if (empty($photo))
             return '/theme/default/default-avatar-profile.png'; //For now...
         return $photo->thumb_uri;
@@ -84,7 +84,7 @@ class GNUsocialPhotoAlbum extends Managed_DataObject
     static function newAlbum($profile_id, $album_name, $album_description)
     {
         //TODO: Should use foreign key instead...
-        if (!Profile::staticGet('id', $profile_id)){
+        if (!Profile::getKV('id', $profile_id)){
             //Is this a bit extreme?
             throw new ServerException(_m('No such user exists with id ' . $profile_id . ', couldn\'t create album.'));
         }

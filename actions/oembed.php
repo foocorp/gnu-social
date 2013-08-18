@@ -73,7 +73,7 @@ class OembedAction extends Action
                 case 'shownotice':
                     $oembed['type']='link';
                     $id = $proxy_args['notice'];
-                    $notice = Notice::staticGet($id);
+                    $notice = Notice::getKV($id);
                     if(empty($notice)){
                         // TRANS: Server error displayed in oEmbed action when notice not found.
                         // TRANS: %s is a notice.
@@ -96,13 +96,13 @@ class OembedAction extends Action
                     break;
                 case 'attachment':
                     $id = $proxy_args['attachment'];
-                    $attachment = File::staticGet($id);
+                    $attachment = File::getKV($id);
                     if(empty($attachment)){
                         // TRANS: Server error displayed in oEmbed action when attachment not found.
                         // TRANS: %d is an attachment ID.
                         $this->serverError(sprintf(_('Attachment %s not found.'),$id), 404);
                     }
-                    if(empty($attachment->filename) && $file_oembed = File_oembed::staticGet('file_id', $attachment->id)){
+                    if(empty($attachment->filename) && $file_oembed = File_oembed::getKV('file_id', $attachment->id)){
                         // Proxy the existing oembed information
                         $oembed['type']=$file_oembed->type;
                         $oembed['provider']=$file_oembed->provider;

@@ -68,7 +68,7 @@ class DeletegroupAction extends RedirectingAction
         $nickname_arg = $this->trimmed('nickname');
         $id = intval($this->arg('id'));
         if ($id) {
-            $this->group = User_group::staticGet('id', $id);
+            $this->group = User_group::getKV('id', $id);
         } else if ($nickname_arg) {
             $nickname = common_canonical_nickname($nickname_arg);
 
@@ -80,7 +80,7 @@ class DeletegroupAction extends RedirectingAction
                 return false;
             }
 
-            $local = Local_group::staticGet('nickname', $nickname);
+            $local = Local_group::getKV('nickname', $nickname);
 
             if (!$local) {
                 // TRANS: Client error when trying to delete a non-local group.
@@ -88,7 +88,7 @@ class DeletegroupAction extends RedirectingAction
                 return false;
             }
 
-            $this->group = User_group::staticGet('id', $local->group_id);
+            $this->group = User_group::getKV('id', $local->group_id);
         } else {
             // TRANS: Client error when trying to delete a group without providing a nickname or ID for the group.
             $this->clientError(_('No nickname or ID.'), 404);

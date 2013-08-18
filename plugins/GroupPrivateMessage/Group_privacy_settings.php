@@ -126,7 +126,7 @@ class Group_privacy_settings extends Managed_DataObject
 
     function forGroup($group)
     {
-        $gps = Group_privacy_settings::staticGet('group_id', $group->id);
+        $gps = Group_privacy_settings::getKV('group_id', $group->id);
 
         if (empty($gps)) {
             // make a fake one with defaults

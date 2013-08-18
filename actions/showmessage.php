@@ -69,7 +69,7 @@ class ShowmessageAction extends Action
         $this->page = 1;
 
         $id            = $this->trimmed('message');
-        $this->message = Message::staticGet('id', $id);
+        $this->message = Message::getKV('id', $id);
 
         if (!$this->message) {
             // TRANS: Client error displayed requesting a single message that does not exist.

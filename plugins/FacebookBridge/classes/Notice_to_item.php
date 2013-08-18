@@ -137,13 +137,13 @@ class Notice_to_item extends Managed_DataObject
      */
     static function saveNew($notice_id, $item_id)
     {
-        $n2i = Notice_to_item::staticGet('notice_id', $notice_id);
+        $n2i = Notice_to_item::getKV('notice_id', $notice_id);
 
         if (!empty($n2i)) {
             return $n2i;
         }
 
-        $n2i = Notice_to_item::staticGet('item_id', $item_id);
+        $n2i = Notice_to_item::getKV('item_id', $item_id);
 
         if (!empty($n2i)) {
             return $n2i;

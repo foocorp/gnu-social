@@ -165,7 +165,7 @@ class EmailSummaryPlugin extends Plugin
 
         if (!empty($user)) {
 
-            $ess = Email_summary_status::staticGet('user_id', $user->id);
+            $ess = Email_summary_status::getKV('user_id', $user->id);
 
             if (empty($ess)) {
 

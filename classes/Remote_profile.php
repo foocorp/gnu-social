@@ -42,7 +42,7 @@ class Remote_profile extends Managed_DataObject
 
     function hasRight($right)
     {
-        $profile = Profile::staticGet($this->id);
+        $profile = Profile::getKV($this->id);
         if ($profile) {
             return $profile->hasright($right);
         } else {

@@ -521,7 +521,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $reply = Notice::saveNew($this->author1->id, $text, 'test', array('uri' => null, 'reply_to' => $orig->id));
 
-        $conv = Conversation::staticGet('id', $reply->conversation);
+        $conv = Conversation::getKV('id', $reply->conversation);
 
         $entry = $reply->asAtomEntry();
 

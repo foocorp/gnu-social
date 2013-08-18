@@ -133,7 +133,7 @@ class Homepage_blacklist extends Managed_DataObject
         $toInsert = array_diff($newPatterns, $oldPatterns);
 
         foreach ($toDelete as $pattern) {
-            $nb = Homepage_blacklist::staticGet('pattern', $pattern);
+            $nb = Homepage_blacklist::getKV('pattern', $pattern);
             if (!empty($nb)) {
                 $nb->delete();
             }
@@ -151,7 +151,7 @@ class Homepage_blacklist extends Managed_DataObject
 
     static function ensurePattern($pattern)
     {
-        $hb = Homepage_blacklist::staticGet('pattern', $pattern);
+        $hb = Homepage_blacklist::getKV('pattern', $pattern);
 
         if (empty($nb)) {
             $hb = new Homepage_blacklist();

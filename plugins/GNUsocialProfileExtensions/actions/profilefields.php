@@ -54,7 +54,7 @@ class ProfilefieldsAdminPanelAction extends AdminPanelAction
 
     function saveSettings()
     {
-        $field = GNUsocialProfileExtensionField::staticGet('id', $this->trimmed('id'));
+        $field = GNUsocialProfileExtensionField::getKV('id', $this->trimmed('id'));
         if (!$field)
             $field = new GNUsocialProfileExtensionField();
         $field->title = $this->trimmed('title');
@@ -110,7 +110,7 @@ class ProfilefieldsAdminForm extends AdminForm
         $fieldsettitle = _("New Profile Field");
         //Edit a field
         if ($this->out->trimmed('edit')) { 
-            $field = GNUsocialProfileExtensionField::staticGet('id', $this->out->trimmed('edit'));
+            $field = GNUsocialProfileExtensionField::getKV('id', $this->out->trimmed('edit'));
             $title = $field->title;
             $description = $field->description;
             $type = $field->type;

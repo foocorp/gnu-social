@@ -65,7 +65,7 @@ class RepliesAction extends Action
 
         $nickname = common_canonical_nickname($this->arg('nickname'));
 
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed when trying to reply to a non-exsting user.

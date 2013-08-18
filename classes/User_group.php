@@ -415,13 +415,13 @@ class User_group extends Managed_DataObject
 
         // If not, check local groups.
 
-        $group = Local_group::staticGet('nickname', $nickname);
+        $group = Local_group::getKV('nickname', $nickname);
         if (!empty($group)) {
-            return User_group::staticGet('id', $group->group_id);
+            return User_group::getKV('id', $group->group_id);
         }
-        $alias = Group_alias::staticGet('alias', $nickname);
+        $alias = Group_alias::getKV('alias', $nickname);
         if (!empty($alias)) {
-            return User_group::staticGet('id', $alias->group_id);
+            return User_group::getKV('id', $alias->group_id);
         }
         return null;
     }
@@ -565,7 +565,7 @@ class User_group extends Managed_DataObject
 
     static function register($fields) {
         if (!empty($fields['userid'])) {
-            $profile = Profile::staticGet('id', $fields['userid']);
+            $profile = Profile::getKV('id', $fields['userid']);
             if ($profile && !$profile->hasRight(Right::CREATEGROUP)) {
                 common_log(LOG_WARNING, "Attempted group creation from banned user: " . $profile->nickname);
 
@@ -736,7 +736,7 @@ class User_group extends Managed_DataObject
             // or we'll miss clearing some cache keys; that can make it hard
             // to create a new group with one of those names or aliases.
             $this->setAliases(array());
-            $local = Local_group::staticGet('group_id', $this->id);
+            $local = Local_group::getKV('group_id', $this->id);
             if ($local) {
                 $local->delete();
             }

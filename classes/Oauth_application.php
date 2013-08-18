@@ -37,7 +37,7 @@ class Oauth_application extends Managed_DataObject
 
     function getConsumer()
     {
-        return Consumer::staticGet('consumer_key', $this->consumer_key);
+        return Consumer::getKV('consumer_key', $this->consumer_key);
     }
 
     static function maxDesc()

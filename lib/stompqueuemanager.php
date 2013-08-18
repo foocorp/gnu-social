@@ -656,7 +656,7 @@ class StompQueueManager extends QueueManager
      */
     protected function updateSiteConfig($nickname)
     {
-        $sn = Status_network::staticGet('nickname', $nickname);
+        $sn = Status_network::getKV('nickname', $nickname);
         if ($sn) {
             $this->switchSite($nickname);
             if (!in_array($nickname, $this->sites)) {

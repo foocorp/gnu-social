@@ -53,8 +53,8 @@ $dry = have_option('dry-run');
 $sub = get_blocked_subs();
 $count = $sub->N;
 while ($sub->fetch()) {
-    $subber = Profile::staticGet('id', $sub->subscriber);
-    $subbed = Profile::staticGet('id', $sub->subscribed);
+    $subber = Profile::getKV('id', $sub->subscriber);
+    $subbed = Profile::getKV('id', $sub->subscribed);
     if (!$subber || !$subbed) {
         print "Bogus entry! $sub->subscriber subbed to $sub->subscribed\n";
         continue;

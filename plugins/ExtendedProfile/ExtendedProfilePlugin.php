@@ -116,7 +116,7 @@ class ExtendedProfilePlugin extends Plugin
     }
 
     function onEndShowAccountProfileBlock(HTMLOutputter $out, Profile $profile) {
-        $user = User::staticGet('id', $profile->id);
+        $user = User::getKV('id', $profile->id);
         if ($user) {
             $url = common_local_url('profiledetail', array('nickname' => $user->nickname));
             // TRANS: Link text on user profile page leading to extended profile page.

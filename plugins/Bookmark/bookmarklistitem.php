@@ -105,7 +105,7 @@ class BookmarkListItem extends NoticeListItemAdapter
             $out->elementStart('ul', array('class' => 'bookmark-tags'));
 
             foreach ($replies as $reply) {
-                $other = Profile::staticGet('id', $reply);
+                $other = Profile::getKV('id', $reply);
                 if (!empty($other)) {
                     $out->elementStart('li');
                     $out->element('a', array('rel' => 'tag',

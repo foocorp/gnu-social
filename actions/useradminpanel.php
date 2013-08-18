@@ -157,7 +157,7 @@ class UseradminpanelAction extends AdminPanelAction
         // Validate default subscription
 
         if (!empty($values['newuser']['default'])) {
-            $defuser = User::staticGet('nickname', trim($values['newuser']['default']));
+            $defuser = User::getKV('nickname', trim($values['newuser']['default']));
             if (empty($defuser)) {
                 $this->clientError(
                     sprintf(

@@ -65,7 +65,7 @@ class HubPrepQueueHandler extends QueueHandler
             while (count($pushCallbacks) && $n < self::ROLLING_BATCH) {
                 $n++;
                 $callback = array_shift($pushCallbacks);
-                $sub = HubSub::staticGet($topic, $callback);
+                $sub = HubSub::getKV($topic, $callback);
                 if (!$sub) {
                     common_log(LOG_ERR, "Skipping PuSH delivery for deleted(?) consumer $callback on $topic");
                     continue;

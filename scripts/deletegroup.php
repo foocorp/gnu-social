@@ -37,19 +37,19 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 if (have_option('i', 'id')) {
     $id = get_option_value('i', 'id');
-    $group = User_group::staticGet('id', $id);
+    $group = User_group::getKV('id', $id);
     if (empty($group)) {
         print "Can't find group with ID $id\n";
         exit(1);
     }
 } else if (have_option('n', 'nickname')) {
     $nickname = get_option_value('n', 'nickname');
-    $local = Local_group::staticGet('nickname', $nickname);
+    $local = Local_group::getKV('nickname', $nickname);
     if (empty($local)) {
         print "Can't find group with nickname '$nickname'\n";
         exit(1);
     }
-    $group = User_group::staticGet('id', $local->group_id);
+    $group = User_group::getKV('id', $local->group_id);
 } else {
     print "You must provide either an ID or a nickname.\n";
     print "\n";

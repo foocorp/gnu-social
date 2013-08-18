@@ -68,7 +68,7 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
         $this->group = $this->getTargetGroup($this->arg('id'));
 
         if (empty($this->group)) {
-            $alias = Group_alias::staticGet(
+            $alias = Group_alias::getKV(
                 'alias',
                 common_canonical_nickname($this->arg('id'))
             );

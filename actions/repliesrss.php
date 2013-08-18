@@ -31,7 +31,7 @@ class RepliesrssAction extends Rss10Action
     {
         parent::prepare($args);
         $nickname = $this->trimmed('nickname');
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.

@@ -292,7 +292,7 @@ class UserauthorizationAction extends Action
         $nickname = $_GET['omb_listenee_nickname'];
         $profile  = $_GET['omb_listenee_profile'];
 
-        $user = User::staticGet('uri', $listener);
+        $user = User::getKV('uri', $listener);
         if (!$user) {
             // TRANS: Exception thrown when no valid user is found for an authorisation request.
             // TRANS: %s is a listener URI.
@@ -307,7 +307,7 @@ class UserauthorizationAction extends Action
                                         $listenee));
         }
 
-        $other = User::staticGet('uri', $listenee);
+        $other = User::getKV('uri', $listenee);
         if ($other) {
             // TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
             // TRANS: %s is a listenee URI.
@@ -315,7 +315,7 @@ class UserauthorizationAction extends Action
                                         $listenee));
         }
 
-        $remote = Remote_profile::staticGet('uri', $listenee);
+        $remote = Remote_profile::getKV('uri', $listenee);
         if ($remote) {
             $sub             = new Subscription();
             $sub->subscriber = $user->id;

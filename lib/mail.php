@@ -609,11 +609,11 @@ function mail_notify_nudge($from, $to)
 function mail_notify_message($message, $from=null, $to=null)
 {
     if (is_null($from)) {
-        $from = User::staticGet('id', $message->from_profile);
+        $from = User::getKV('id', $message->from_profile);
     }
 
     if (is_null($to)) {
-        $to = User::staticGet('id', $message->to_profile);
+        $to = User::getKV('id', $message->to_profile);
     }
 
     if (is_null($to->email) || !$to->emailnotifymsg) {
@@ -824,7 +824,7 @@ function mail_notify_group_join($group, $joiner)
     $admin = $group->getAdmins();
     while ($admin->fetch()) {
         // We need a local user for email notifications...
-        $adminUser = User::staticGet('id', $admin->id);
+        $adminUser = User::getKV('id', $admin->id);
         // @fixme check for email preference?
         if ($adminUser && $adminUser->email) {
             // use the recipient's localization
@@ -871,7 +871,7 @@ function mail_notify_group_join_pending($group, $joiner)
     $admin = $group->getAdmins();
     while ($admin->fetch()) {
         // We need a local user for email notifications...
-        $adminUser = User::staticGet('id', $admin->id);
+        $adminUser = User::getKV('id', $admin->id);
         // @fixme check for email preference?
         if ($adminUser && $adminUser->email) {
             // use the recipient's localization

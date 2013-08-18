@@ -43,7 +43,7 @@ if (!have_option('--notice')) {
 
 $notice_id = get_option_value('--notice');
 
-$notice = Notice::staticGet('id', $notice_id);
+$notice = Notice::getKV('id', $notice_id);
 $profile = $notice->getProfile();
 $entry = $notice->asAtomEntry(true);
 

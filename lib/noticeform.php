@@ -131,7 +131,7 @@ class NoticeForm extends Form
 
         if (empty($this->to_profile) &&
             !empty($this->inreplyto)) {
-            $notice = Notice::staticGet('id', $this->inreplyto);
+            $notice = Notice::getKV('id', $this->inreplyto);
             if (!empty($notice)) {
                 $this->to_profile = $notice->getProfile();
             }

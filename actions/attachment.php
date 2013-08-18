@@ -65,7 +65,7 @@ class AttachmentAction extends Action
         parent::prepare($args);
 
         if ($id = $this->trimmed('attachment')) {
-            $this->attachment = File::staticGet($id);
+            $this->attachment = File::getKV($id);
         }
 
         if (empty($this->attachment)) {

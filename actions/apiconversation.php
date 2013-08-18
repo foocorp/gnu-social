@@ -69,7 +69,7 @@ class ApiconversationAction extends ApiAuthAction
             throw new ClientException(_('No conversation ID.'));
         }
 
-        $this->conversation = Conversation::staticGet('id', $convId);
+        $this->conversation = Conversation::getKV('id', $convId);
 
         if (empty($this->conversation)) {
             // TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).

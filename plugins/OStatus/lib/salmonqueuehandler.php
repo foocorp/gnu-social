@@ -39,7 +39,7 @@ class SalmonQueueHandler extends QueueHandler
         assert(is_string($data['salmonuri']));
         assert(is_string($data['entry']));
 
-        $actor = Profile::staticGet($data['actor']);
+        $actor = Profile::getKV($data['actor']);
 
         $salmon = new Salmon();
         $salmon->post($data['salmonuri'], $data['entry'], $actor);

@@ -72,14 +72,14 @@ class ShowgroupmessageAction extends Action
 
         $id = $this->trimmed('id');
 
-        $this->gm = Group_message::staticGet('id', $id);
+        $this->gm = Group_message::getKV('id', $id);
 
         if (empty($this->gm)) {
             // TRANS: Client exception thrown when trying to view a non-existing group private message.
             throw new ClientException(_m('No such message.'), 404);
         }
 
-        $this->group = User_group::staticGet('id', $this->gm->to_group);
+        $this->group = User_group::getKV('id', $this->gm->to_group);
 
         if (empty($this->group)) {
             // TRANS: Server exception thrown when trying to view group private messages for a non-exsting group.
@@ -91,7 +91,7 @@ class ShowgroupmessageAction extends Action
             throw new ClientException(_m('Cannot read message.'), 403);
         }
 
-        $this->sender = Profile::staticGet('id', $this->gm->from_profile);
+        $this->sender = Profile::getKV('id', $this->gm->from_profile);
 
         if (empty($this->sender)) {
             // TRANS: Server exception thrown when trying to view a group private message without a sender.

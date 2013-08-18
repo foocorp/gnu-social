@@ -103,7 +103,7 @@ class SubscribeAction extends Action
 
         $other_id = $this->arg('subscribeto');
 
-        $this->other = Profile::staticGet('id', $other_id);
+        $this->other = Profile::getKV('id', $other_id);
 
         if (empty($this->other)) {
             // TRANS: Client error displayed trying to subscribe to a non-existing profile.

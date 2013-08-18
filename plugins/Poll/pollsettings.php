@@ -65,7 +65,7 @@ class PollSettingsAction extends SettingsAction
     {
         $user = common_current_user();
 
-        $prefs = User_poll_prefs::staticGet('user_id', $user->id);
+        $prefs = User_poll_prefs::getKV('user_id', $user->id);
 
         $form = new PollPrefsForm($this, $prefs);
 
@@ -84,7 +84,7 @@ class PollSettingsAction extends SettingsAction
     {
         $user = common_current_user();
 
-        $upp = User_poll_prefs::staticGet('user_id', $user->id);
+        $upp = User_poll_prefs::getKV('user_id', $user->id);
         $orig = null;
 
         if (!empty($upp)) {

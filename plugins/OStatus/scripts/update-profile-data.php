@@ -51,7 +51,7 @@ function showProfileInfo($oprofile) {
 }
 
 function fixProfile($uri) {
-    $oprofile = Ostatus_profile::staticGet('uri', $uri);
+    $oprofile = Ostatus_profile::getKV('uri', $uri);
 
     if (!$oprofile) {
         print "No OStatus remote profile known for URI $uri\n";

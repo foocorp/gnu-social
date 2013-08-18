@@ -130,7 +130,7 @@ class Bookmark extends Managed_DataObject
      */
     static function getByNotice($notice)
     {
-        return self::staticGet('uri', $notice->uri);
+        return self::getKV('uri', $notice->uri);
     }
 
     /**
@@ -182,7 +182,7 @@ class Bookmark extends Managed_DataObject
         }
 
         if (array_key_exists('uri', $options)) {
-            $other = Bookmark::staticGet('uri', $options['uri']);
+            $other = Bookmark::getKV('uri', $options['uri']);
             if (!empty($other)) {
                 // TRANS: Client exception thrown when trying to save a new bookmark that already exists.
                 throw new ClientException(_m('Bookmark already exists.'));
@@ -270,7 +270,7 @@ class Bookmark extends Managed_DataObject
         // Use user's preferences for short URLs, if possible
 
         try {
-            $user = User::staticGet('id', $profile->id);
+            $user = User::getKV('id', $profile->id);
 
             $shortUrl = File_redirection::makeShort($url,
                                                     empty($user) ? null : $user);

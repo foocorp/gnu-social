@@ -63,7 +63,7 @@ class CancelgroupAction extends Action
         $nickname_arg = $this->trimmed('nickname');
         $id = intval($this->arg('id'));
         if ($id) {
-            $this->group = User_group::staticGet('id', $id);
+            $this->group = User_group::getKV('id', $id);
         } else if ($nickname_arg) {
             $nickname = common_canonical_nickname($nickname_arg);
 
@@ -74,7 +74,7 @@ class CancelgroupAction extends Action
                 return false;
             }
 
-            $local = Local_group::staticGet('nickname', $nickname);
+            $local = Local_group::getKV('nickname', $nickname);
 
             if (!$local) {
                 // TRANS: Client error displayed when trying to leave a non-local group.
@@ -82,7 +82,7 @@ class CancelgroupAction extends Action
                 return false;
             }
 
-            $this->group = User_group::staticGet('id', $local->group_id);
+            $this->group = User_group::getKV('id', $local->group_id);
         } else {
             // TRANS: Client error displayed when trying to leave a group without providing a group name or group ID.
             $this->clientError(_('No nickname or ID.'), 404);
@@ -103,7 +103,7 @@ class CancelgroupAction extends Action
         }
         if ($this->arg('profile_id')) {
             if ($cur->isAdmin($this->group)) {
-                $this->profile = Profile::staticGet('id', $this->arg('profile_id'));
+                $this->profile = Profile::getKV('id', $this->arg('profile_id'));
             } else {
                 // TRANS: Client error displayed when trying to approve or cancel a group join request without
                 // TRANS: being a group administrator.

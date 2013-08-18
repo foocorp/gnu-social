@@ -64,7 +64,7 @@ class AtompubshowsubscriptionAction extends ApiAuthAction
         parent::prepare($argarray);
         $subscriberId = $this->trimmed('subscriber');
 
-        $this->_subscriber = Profile::staticGet('id', $subscriberId);
+        $this->_subscriber = Profile::getKV('id', $subscriberId);
 
         if (empty($this->_subscriber)) {
             // TRANS: Client exception thrown when trying to display a subscription for a non-existing profile ID.
@@ -75,7 +75,7 @@ class AtompubshowsubscriptionAction extends ApiAuthAction
 
         $subscribedId = $this->trimmed('subscribed');
 
-        $this->_subscribed = Profile::staticGet('id', $subscribedId);
+        $this->_subscribed = Profile::getKV('id', $subscribedId);
 
         if (empty($this->_subscribed)) {
             // TRANS: Client exception thrown when trying to display a subscription for a non-existing profile ID.

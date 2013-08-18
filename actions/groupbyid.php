@@ -76,7 +76,7 @@ class GroupbyidAction extends Action
 
         common_debug("Got ID $id");
 
-        $this->group = User_group::staticGet('id', $id);
+        $this->group = User_group::getKV('id', $id);
 
         if (!$this->group) {
             // TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.

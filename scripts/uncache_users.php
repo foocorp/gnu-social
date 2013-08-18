@@ -38,7 +38,7 @@ $memc = Cache::instance();
 
 foreach ($ids as $id) {
 
-	$user = User::staticGet('id', $id);
+	$user = User::getKV('id', $id);
 
 	if (!$user) {
 		common_log(LOG_WARNING, 'No such user: ' . $id);

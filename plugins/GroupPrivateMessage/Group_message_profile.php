@@ -126,15 +126,15 @@ class Group_message_profile extends Managed_DataObject
 
     function notifyByMail()
     {
-        $to = User::staticGet('id', $this->to_profile);
+        $to = User::getKV('id', $this->to_profile);
 
         if (empty($to) || is_null($to->email) || !$to->emailnotifymsg) {
             return true;
         }
 
-        $gm = Group_message::staticGet('id', $this->group_message_id);
+        $gm = Group_message::getKV('id', $this->group_message_id);
 
-        $from_profile = Profile::staticGet('id', $gm->from_profile);
+        $from_profile = Profile::getKV('id', $gm->from_profile);
 
         $group = $gm->getGroup();
 

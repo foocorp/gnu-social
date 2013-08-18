@@ -217,7 +217,7 @@ class ResultItem
         $replier_profile = null;
 
         if ($this->notice->reply_to) {
-            $reply = Notice::staticGet(intval($this->notice->reply_to));
+            $reply = Notice::getKV(intval($this->notice->reply_to));
             if ($reply) {
                 $replier_profile = $reply->getProfile();
             }
@@ -273,7 +273,7 @@ class ResultItem
         case 'api':
             break;
         default:
-            $ns = Notice_source::staticGet($source);
+            $ns = Notice_source::getKV($source);
             if ($ns) {
                 $source_name = '<a href="' . $ns->url . '">' . $ns->name . '</a>';
             }

@@ -89,7 +89,7 @@ class PeopletagGroupNav extends Widget
         $tag = $this->action->trimmed('tag');
 
         if ($nickname) {
-            $user = User::staticGet('nickname', $nickname);
+            $user = User::getKV('nickname', $nickname);
             $user_profile = $user->getProfile();
 
             if ($tag) {

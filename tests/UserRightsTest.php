@@ -16,7 +16,7 @@ class UserRightsTest extends PHPUnit_Framework_TestCase
 
     function setUp()
     {
-        $user = User::staticGet('nickname', 'userrightstestuser');
+        $user = User::getKV('nickname', 'userrightstestuser');
         if ($user) {
             // Leftover from a broken test run?
             $profile = $user->getProfile();

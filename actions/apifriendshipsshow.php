@@ -68,17 +68,17 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
         $target_screen_name = $this->trimmed('target_screen_name');
 
         if (!empty($source_id)) {
-            $this->source = User::staticGet($source_id);
+            $this->source = User::getKV($source_id);
         } elseif (!empty($source_screen_name)) {
-            $this->source = User::staticGet('nickname', $source_screen_name);
+            $this->source = User::getKV('nickname', $source_screen_name);
         } else {
             $this->source = $this->auth_user;
         }
 
         if (!empty($target_id)) {
-            $this->target = User::staticGet($target_id);
+            $this->target = User::getKV($target_id);
         } elseif (!empty($target_screen_name)) {
-            $this->target = User::staticGet('nickname', $target_screen_name);
+            $this->target = User::getKV('nickname', $target_screen_name);
         }
 
         return true;

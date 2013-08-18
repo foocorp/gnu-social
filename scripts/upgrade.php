@@ -124,7 +124,7 @@ function fixupNoticeConversation()
             if (empty($notice->reply_to)) {
                 $notice->conversation = $notice->id;
             } else {
-                $reply = Notice::staticGet('id', $notice->reply_to);
+                $reply = Notice::getKV('id', $notice->reply_to);
 
                 if (empty($reply)) {
                     $notice->conversation = $notice->id;
@@ -159,7 +159,7 @@ function fixupGroupURI()
 
     if ($group->find()) {
         while ($group->fetch()) {
-            $orig = User_group::staticGet('id', $group->id);
+            $orig = User_group::getKV('id', $group->id);
             $group->uri = $group->getUri();
             $group->update($orig);
         }
@@ -281,7 +281,7 @@ function initNoticeReshare()
     if ($notice->find()) {
         while ($notice->fetch()) {
             try {
-                $orig = Notice::staticGet('id', $notice->id);
+                $orig = Notice::getKV('id', $notice->id);
                 $notice->verb = ActivityVerb::SHARE;
                 $notice->object_type = ActivityObject::ACTIVITY;
                 $notice->update($orig);

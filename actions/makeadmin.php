@@ -74,7 +74,7 @@ class MakeadminAction extends RedirectingAction
             $this->clientError(_('No profile specified.'));
             return false;
         }
-        $this->profile = Profile::staticGet('id', $id);
+        $this->profile = Profile::getKV('id', $id);
         if (empty($this->profile)) {
             // TRANS: Client error displayed when specifying an invalid profile ID on the Make Admin page.
             $this->clientError(_('No profile with that ID.'));
@@ -86,7 +86,7 @@ class MakeadminAction extends RedirectingAction
             $this->clientError(_('No group specified.'));
             return false;
         }
-        $this->group = User_group::staticGet('id', $group_id);
+        $this->group = User_group::getKV('id', $group_id);
         if (empty($this->group)) {
             // TRANS: Client error displayed when providing an invalid group ID on the Make Admin page.
             $this->clientError(_('No such group.'));

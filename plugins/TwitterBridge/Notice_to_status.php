@@ -135,7 +135,7 @@ class Notice_to_status extends Managed_DataObject
         if (empty($notice_id)) {
             throw new Exception("Invalid notice_id $notice_id");
         }
-        $n2s = Notice_to_status::staticGet('notice_id', $notice_id);
+        $n2s = Notice_to_status::getKV('notice_id', $notice_id);
 
         if (!empty($n2s)) {
             return $n2s;
@@ -144,7 +144,7 @@ class Notice_to_status extends Managed_DataObject
         if (empty($status_id)) {
             throw new Exception("Invalid status_id $status_id");
         }
-        $n2s = Notice_to_status::staticGet('status_id', $status_id);
+        $n2s = Notice_to_status::getKV('status_id', $status_id);
 
         if (!empty($n2s)) {
             return $n2s;

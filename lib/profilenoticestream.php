@@ -82,7 +82,7 @@ class ProfileNoticeStream extends ScopingNoticeStream
 
     function impossibleStream() 
     {
-        $user = User::staticGet('id', $this->streamProfile->id);
+        $user = User::getKV('id', $this->streamProfile->id);
 
         // If it's a private stream, and no user or not a subscriber
 

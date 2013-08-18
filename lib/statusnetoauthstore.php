@@ -28,7 +28,7 @@ class ApiStatusNetOAuthDataStore extends OAuthDataStore
 {
     function lookup_consumer($consumerKey)
     {
-        $con = Consumer::staticGet('consumer_key', $consumerKey);
+        $con = Consumer::getKV('consumer_key', $consumerKey);
 
         if (!$con) {
 
@@ -146,7 +146,7 @@ class ApiStatusNetOAuthDataStore extends OAuthDataStore
             common_debug('Request token found.', __FILE__);
 
             // find the app and profile associated with this token
-            $tokenAssoc = Oauth_token_association::staticGet('token', $rt->tok);
+            $tokenAssoc = Oauth_token_association::getKV('token', $rt->tok);
 
             if (!$tokenAssoc) {
                 throw new Exception(

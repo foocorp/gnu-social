@@ -65,7 +65,7 @@ class AtompubshowmembershipAction extends ApiAuthAction
 
         $profileId = $this->trimmed('profile');
 
-        $this->_profile = Profile::staticGet('id', $profileId);
+        $this->_profile = Profile::getKV('id', $profileId);
 
         if (empty($this->_profile)) {
             // TRANS: Client exception.
@@ -74,7 +74,7 @@ class AtompubshowmembershipAction extends ApiAuthAction
 
         $groupId = $this->trimmed('group');
 
-        $this->_group = User_group::staticGet('id', $groupId);
+        $this->_group = User_group::getKV('id', $groupId);
 
         if (empty($this->_group)) {
             // TRANS: Client exception thrown when referencing a non-existing group.

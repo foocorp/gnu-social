@@ -157,8 +157,8 @@ class Profile_tag extends Managed_DataObject
             return $ptag;
         }
 
-        $tagger_profile = Profile::staticGet('id', $tagger);
-        $tagged_profile = Profile::staticGet('id', $tagged);
+        $tagger_profile = Profile::getKV('id', $tagger);
+        $tagged_profile = Profile::getKV('id', $tagged);
 
         if (Event::handle('StartTagProfile', array($tagger_profile, $tagged_profile, $tag))) {
 

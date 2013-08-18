@@ -167,7 +167,7 @@ class OauthconnectionssettingsAction extends SettingsAction
             return false;
         }
 
-        $app = Oauth_application::staticGet('id', $appUser->application_id);
+        $app = Oauth_application::getKV('id', $appUser->application_id);
 
         $datastore = new ApiStatusNetOAuthDataStore();
         $datastore->revoke_token($appUser->token, 1);

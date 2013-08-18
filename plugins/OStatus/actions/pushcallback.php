@@ -51,7 +51,7 @@ class PushCallbackAction extends Action
             throw new ServerException(_m('Empty or invalid feed id.'), 400);
         }
 
-        $feedsub = FeedSub::staticGet('id', $feedid);
+        $feedsub = FeedSub::getKV('id', $feedid);
         if (!$feedsub) {
             // TRANS: Server exception. %s is a feed ID.
             throw new ServerException(sprintf(_m('Unknown PuSH feed id %s'),$feedid), 400);
@@ -91,7 +91,7 @@ class PushCallbackAction extends Action
             throw new ClientException(sprintf(_m('Bad hub.mode "$s".',$mode)), 404);
         }
 
-        $feedsub = FeedSub::staticGet('uri', $topic);
+        $feedsub = FeedSub::getKV('uri', $topic);
         if (!$feedsub) {
             // TRANS: Client exception. %s is an invalid feed name.
             throw new ClientException(sprintf(_m('Bad hub.topic feed "%s".'),$topic), 404);

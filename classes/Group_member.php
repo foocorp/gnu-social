@@ -106,7 +106,7 @@ class Group_member extends Managed_DataObject
 
     function getMember()
     {
-        $member = Profile::staticGet('id', $this->profile_id);
+        $member = Profile::getKV('id', $this->profile_id);
 
         if (empty($member)) {
             // TRANS: Exception thrown providing an invalid profile ID.
@@ -119,7 +119,7 @@ class Group_member extends Managed_DataObject
 
     function getGroup()
     {
-        $group  = User_group::staticGet('id', $this->group_id);
+        $group  = User_group::getKV('id', $this->group_id);
 
         if (empty($group)) {
             // TRANS: Exception thrown providing an invalid group ID.

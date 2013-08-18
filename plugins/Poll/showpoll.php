@@ -52,7 +52,7 @@ class ShowPollAction extends ShownoticeAction
     {
         $this->id = $this->trimmed('id');
 
-        $this->poll = Poll::staticGet('id', $this->id);
+        $this->poll = Poll::getKV('id', $this->id);
 
         if (empty($this->poll)) {
             // TRANS: Client exception thrown trying to view a non-existing poll.

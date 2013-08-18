@@ -40,7 +40,7 @@ class YammerRunner
      */
     public static function init()
     {
-        $state = Yammer_state::staticGet('id', 1);
+        $state = Yammer_state::getKV('id', 1);
         if (!$state) {
             $state = self::initState();
         }
@@ -302,7 +302,7 @@ class YammerRunner
             $this->state->state = 'save-messages';
         } else {
             foreach ($messages as $item) {
-                $stub = Yammer_notice_stub::staticGet($item['id']);
+                $stub = Yammer_notice_stub::getKV($item['id']);
                 if (!$stub) {
                     Yammer_notice_stub::record($item['id'], $item);
                 }

@@ -77,7 +77,7 @@ class BookmarksAction extends Action
             $nickname = $nickname[1]['nickname'];
         }
         
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed when trying to display bookmarks for a non-existing user.

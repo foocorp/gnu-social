@@ -269,7 +269,7 @@ class RSSCloudRequestNotifyAction extends Action
         $valid = '%^' . $path . '(?<id>.*)\.rss$%';
 
         if (preg_match($valid, $feed, $matches)) {
-            $user = User::staticGet('id', $matches['id']);
+            $user = User::getKV('id', $matches['id']);
             if (!empty($user)) {
                 return $user;
             }

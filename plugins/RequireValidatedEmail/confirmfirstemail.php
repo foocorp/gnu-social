@@ -70,7 +70,7 @@ class ConfirmfirstemailAction extends Action
 
         $this->code = $this->trimmed('code');
 
-        $this->confirm = Confirm_address::staticGet('code', $this->code);
+        $this->confirm = Confirm_address::getKV('code', $this->code);
 
         if (empty($this->confirm)) {
             // TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
@@ -78,7 +78,7 @@ class ConfirmfirstemailAction extends Action
             return;
         }
 
-        $this->user = User::staticGet('id', $this->confirm->user_id);
+        $this->user = User::getKV('id', $this->confirm->user_id);
 
         if (empty($this->user)) {
             // TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.

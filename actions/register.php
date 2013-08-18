@@ -83,7 +83,7 @@ class RegisterAction extends Action
         }
 
         if (!empty($this->code)) {
-            $this->invite = Invitation::staticGet('code', $this->code);
+            $this->invite = Invitation::getKV('code', $this->code);
             if (empty($this->invite)) {
             // TRANS: Client error displayed when trying to register to an invite-only site without a valid invitation.
                 $this->clientError(_('Sorry, invalid invitation code.'));
@@ -181,7 +181,7 @@ class RegisterAction extends Action
             $code = $this->trimmed('code');
 
             if ($code) {
-                $invite = Invitation::staticGet($code);
+                $invite = Invitation::getKV($code);
             }
 
             if (common_config('site', 'inviteonly') && !($code && $invite)) {
@@ -294,7 +294,7 @@ class RegisterAction extends Action
      */
     function nicknameExists($nickname)
     {
-        $user = User::staticGet('nickname', $nickname);
+        $user = User::getKV('nickname', $nickname);
         return is_object($user);
     }
 
@@ -313,7 +313,7 @@ class RegisterAction extends Action
         if (!$email || strlen($email) == 0) {
             return false;
         }
-        $user = User::staticGet('email', $email);
+        $user = User::getKV('email', $email);
         return is_object($user);
     }
 
@@ -409,7 +409,7 @@ class RegisterAction extends Action
         $invite = null;
 
         if ($code) {
-            $invite = Invitation::staticGet($code);
+            $invite = Invitation::getKV($code);
         }
 
         if (common_config('site', 'inviteonly') && !($code && $invite)) {

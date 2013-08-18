@@ -30,7 +30,7 @@ class Memcached_DataObject extends Safe_DataObject
      * @param mixed $v key field value, or leave out for primary key lookup
      * @return mixed Memcached_DataObject subtype or false
      */
-    static function staticGet($cls, $k, $v=null)
+    static function getKV($cls, $k, $v=null)
     {
         if (is_null($v)) {
             $v = $k;
@@ -350,7 +350,7 @@ class Memcached_DataObject extends Safe_DataObject
     }
 
     /**
-     * @todo FIXME: Should this return false on lookup fail to match staticGet?
+     * @todo FIXME: Should this return false on lookup fail to match getKV?
      */
     function pkeyGet($cls, $kv)
     {
@@ -680,7 +680,7 @@ class Memcached_DataObject extends Safe_DataObject
                         'delete',
                         'update',
                         'find');
-        $ignoreStatic = array('staticGet',
+        $ignoreStatic = array('getKV',
                               'pkeyGet',
                               'cachedQuery');
         $here = get_class($this); // if we get confused

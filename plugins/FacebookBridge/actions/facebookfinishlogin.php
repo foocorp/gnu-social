@@ -345,7 +345,7 @@ class FacebookfinishloginAction extends Action
                 return;
             }
 
-            $invite = Invitation::staticGet($code);
+            $invite = Invitation::getKV($code);
 
             if (empty($invite)) {
                 // TRANS: Client error trying to register with an invalid invitation code.
@@ -367,7 +367,7 @@ class FacebookfinishloginAction extends Action
             return;
         }
 
-        if (User::staticGet('nickname', $nickname)) {
+        if (User::getKV('nickname', $nickname)) {
             // TRANS: Form validation error displayed when picking a nickname that is already in use.
             $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
@@ -503,7 +503,7 @@ class FacebookfinishloginAction extends Action
             return;
         }
 
-        $user = User::staticGet('nickname', $nickname);
+        $user = User::getKV('nickname', $nickname);
 
         $this->tryLinkUser($user);
 
@@ -648,7 +648,7 @@ class FacebookfinishloginAction extends Action
             return false;
         }
 
-        if (User::staticGet('nickname', $str)) {
+        if (User::getKV('nickname', $str)) {
             return false;
         }
 
@@ -666,7 +666,7 @@ class FacebookfinishloginAction extends Action
      function isNewEmail($email)
      {
          // we shouldn't have to validate the format
-         $result = User::staticGet('email', $email);
+         $result = User::getKV('email', $email);
 
          if (empty($result)) {
              return true;

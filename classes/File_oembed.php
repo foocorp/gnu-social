@@ -113,9 +113,9 @@ class File_oembed extends Managed_DataObject
             $file_oembed->url = $data->url;
             $given_url = File_redirection::_canonUrl($file_oembed->url);
             if (! empty($given_url)){
-                $file = File::staticGet('url', $given_url);
+                $file = File::getKV('url', $given_url);
                 if (empty($file)) {
-                    $file_redir = File_redirection::staticGet('url', $given_url);
+                    $file_redir = File_redirection::getKV('url', $given_url);
                     if (empty($file_redir)) {
                         $redir_data = File_redirection::where($given_url);
                         $file_oembed->mimetype = $redir_data['type'];
@@ -129,7 +129,7 @@ class File_oembed extends Managed_DataObject
         }
         $file_oembed->insert();
         if (!empty($data->thumbnail_url) || ($data->type == 'photo')) {
-            $ft = File_thumbnail::staticGet('file_id', $file_id);
+            $ft = File_thumbnail::getKV('file_id', $file_id);
             if (!empty($ft)) {
                 common_log(LOG_WARNING, "Strangely, a File_thumbnail object exists for new file $file_id",
                            __FILE__);

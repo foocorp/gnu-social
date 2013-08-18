@@ -174,7 +174,7 @@ class ModLogPlugin extends Plugin
                 $action->element('td', null, sprintf(($ml->is_grant) ? _('+%s') : _('-%s'), $ml->role));
                 $action->elementStart('td');
                 if ($ml->moderator_id) {
-                    $mod = Profile::staticGet('id', $ml->moderator_id);
+                    $mod = Profile::getKV('id', $ml->moderator_id);
                     if (empty($mod)) {
                         $action->text(_('[unknown]'));
                     } else {

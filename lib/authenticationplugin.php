@@ -128,12 +128,12 @@ abstract class AuthenticationPlugin extends Plugin
     {
         if($provider_name == $this->provider_name && $this->autoregistration){
             $suggested_nickname = $this->suggestNicknameForUsername($nickname);
-            $test_user = User::staticGet('nickname', $suggested_nickname);
+            $test_user = User::getKV('nickname', $suggested_nickname);
             if($test_user) {
                 //someone already exists with the suggested nickname, so used the passed nickname
                 $suggested_nickname = common_nicknamize($nickname);
             }
-            $test_user = User::staticGet('nickname', $suggested_nickname);
+            $test_user = User::getKV('nickname', $suggested_nickname);
             if($test_user) {
                 //someone already exists with the suggested nickname
                 //not much else we can do
@@ -155,14 +155,14 @@ abstract class AuthenticationPlugin extends Plugin
         if($user_username->find() && $user_username->fetch()){
             $authenticated = $this->checkPassword($user_username->username, $password);
             if($authenticated){
-                $authenticatedUser = User::staticGet('id', $user_username->user_id);
+                $authenticatedUser = User::getKV('id', $user_username->user_id);
                 return false;
             }
         }else{
             //$nickname is the username used to login
             //$suggested_nickname is the nickname the auth provider suggests for that username
             $suggested_nickname = $this->suggestNicknameForUsername($nickname);
-            $user = User::staticGet('nickname', $suggested_nickname);
+            $user = User::getKV('nickname', $suggested_nickname);
             if($user){
                 //make sure this user isn't claimed
                 $user_username = new User_username();

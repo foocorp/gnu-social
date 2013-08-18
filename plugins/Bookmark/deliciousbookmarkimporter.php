@@ -65,7 +65,7 @@ class DeliciousBookmarkImporter extends QueueHandler
      */
     function handle($data)
     {
-        $profile = Profile::staticGet('id', $data['profile_id']);
+        $profile = Profile::getKV('id', $data['profile_id']);
 
         try {
             $saved = Bookmark::saveNew($profile,

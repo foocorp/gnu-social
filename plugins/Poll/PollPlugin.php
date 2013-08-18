@@ -235,7 +235,7 @@ class PollPlugin extends MicroAppPlugin
                     // TRANS: Exception thrown trying to respond to a poll without a poll reference.
                     throw new Exception(_m('Invalid poll response: No poll reference.'));
                 }
-                $poll = Poll::staticGet('uri', $pollUri);
+                $poll = Poll::getKV('uri', $pollUri);
                 if (!$poll) {
                     // TRANS: Exception thrown trying to respond to a non-existing poll.
                     throw new Exception(_m('Invalid poll response: Poll is unknown.'));
@@ -503,9 +503,9 @@ class PollPlugin extends MicroAppPlugin
     function onEndNoticeWhoGets($notice, &$ni) {
         if ($notice->object_type == self::POLL_RESPONSE_OBJECT) {
             foreach ($ni as $id => $source) {
-                $user = User::staticGet('id', $id);
+                $user = User::getKV('id', $id);
                 if (!empty($user)) {
-                    $pollPrefs = User_poll_prefs::staticGet('user_id', $user->id);
+                    $pollPrefs = User_poll_prefs::getKV('user_id', $user->id);
                     if (!empty($pollPrefs) && ($pollPrefs->hide_responses)) {
                         unset($ni[$id]);
                     }

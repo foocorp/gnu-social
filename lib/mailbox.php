@@ -51,7 +51,7 @@ class MailboxAction extends Action
         parent::prepare($args);
 
         $nickname   = common_canonical_nickname($this->arg('nickname'));
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
         $this->page = $this->trimmed('page');
 
         if (!$this->page) {

@@ -74,7 +74,7 @@ class Session extends Managed_DataObject
     {
         self::logdeb("Fetching session '$id'");
 
-        $session = Session::staticGet('id', $id);
+        $session = Session::getKV('id', $id);
 
         if (empty($session)) {
             self::logdeb("Couldn't find '$id'");
@@ -91,7 +91,7 @@ class Session extends Managed_DataObject
     {
         self::logdeb("Writing session '$id'");
 
-        $session = Session::staticGet('id', $id);
+        $session = Session::getKV('id', $id);
 
         if (empty($session)) {
             self::logdeb("'$id' doesn't yet exist; inserting.");
@@ -140,7 +140,7 @@ class Session extends Managed_DataObject
     {
         self::logdeb("Deleting session $id");
 
-        $session = Session::staticGet('id', $id);
+        $session = Session::getKV('id', $id);
 
         if (empty($session)) {
             self::logdeb("Can't find '$id' to delete.");

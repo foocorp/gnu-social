@@ -214,7 +214,7 @@ class PhotouploadAction extends Action
         $thumb_uri = 'http://' . common_config('site', 'server') . '/file/thumb.' . $filename;
         $profile_id = $cur->id;
        
-        $album = GNUsocialPhotoAlbum::staticGet('album_id', $this->trimmed('album'));
+        $album = GNUsocialPhotoAlbum::getKV('album_id', $this->trimmed('album'));
         if ($album->profile_id != $profile_id) {
             $this->showForm(_('Error: This is not your album!'));
             return;
@@ -241,13 +241,13 @@ class PhotouploadAction extends Action
         if(empty($cur)) return;
         
         $album_id = $this->trimmed('album');
-        $album = GNUsocialPhotoAlbum::staticGet('album_id', $album_id);
+        $album = GNUsocialPhotoAlbum::getKV('album_id', $album_id);
         if (empty($album)) {
             $this->showForm(_('This album does not exist or has been deleted.'));
             return;
         }
         //Check if the album has any photos in it before deleting
-        $photos = GNUsocialPhoto::staticGet('album_id', $album_id);
+        $photos = GNUsocialPhoto::getKV('album_id', $album_id);
         if(empty($photos)) {
             $album->delete();
             $this->showForm(_('Album deleted'), true);

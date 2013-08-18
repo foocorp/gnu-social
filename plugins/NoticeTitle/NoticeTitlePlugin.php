@@ -279,7 +279,7 @@ class NoticeTitlePlugin extends Plugin
      */
     function onNoticeDeleteRelated($notice)
     {
-        $nt = Notice_title::staticGet('notice_id', $notice->id);
+        $nt = Notice_title::getKV('notice_id', $notice->id);
 
         if (!empty($nt)) {
             $nt->delete();

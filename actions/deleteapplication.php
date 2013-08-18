@@ -64,7 +64,7 @@ class DeleteapplicationAction extends Action
         }
 
         $id        = (int)$this->arg('id');
-        $this->app = Oauth_application::staticGet('id', $id);
+        $this->app = Oauth_application::getKV('id', $id);
 
         if (empty($this->app)) {
             // TRANS: Client error displayed trying to delete an application that does not exist.

@@ -109,7 +109,7 @@ class User_urlshortener_prefs extends Managed_DataObject
             return null;
         }
 
-        $prefs = User_urlshortener_prefs::staticGet('user_id', $user->id);
+        $prefs = User_urlshortener_prefs::getKV('user_id', $user->id);
 
         return $prefs;
     }

@@ -80,7 +80,7 @@ class ProfileFormAction extends RedirectingAction
             return false;
         }
 
-        $this->profile = Profile::staticGet('id', $id);
+        $this->profile = Profile::getKV('id', $id);
 
         if (!$this->profile) {
             // TRANS: Client error displayed when trying to change user options without specifying an existing user to work on.

@@ -41,7 +41,7 @@ class TagprofileAction extends Action
         if (!$id) {
             $this->profile = false;
         } else {
-            $this->profile = Profile::staticGet('id', $id);
+            $this->profile = Profile::getKV('id', $id);
 
             if (!$this->profile) {
                 // TRANS: Client error displayed when referring to non-existing profile ID.

@@ -72,7 +72,7 @@ class GroupunblockAction extends Action
             $this->clientError(_('No profile specified.'));
             return false;
         }
-        $this->profile = Profile::staticGet('id', $id);
+        $this->profile = Profile::getKV('id', $id);
         if (empty($this->profile)) {
             // TRANS: Client error displayed when trying to unblock a user from a group without providing an existing profile.
             $this->clientError(_('No profile with that ID.'));
@@ -84,7 +84,7 @@ class GroupunblockAction extends Action
             $this->clientError(_('No group specified.'));
             return false;
         }
-        $this->group = User_group::staticGet('id', $group_id);
+        $this->group = User_group::getKV('id', $group_id);
         if (empty($this->group)) {
             // TRANS: Client error displayed when trying to unblock a user from a non-existing group.
             $this->clientError(_('No such group.'));

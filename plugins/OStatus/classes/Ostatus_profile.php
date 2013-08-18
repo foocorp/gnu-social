@@ -83,7 +83,7 @@ class Ostatus_profile extends Managed_DataObject
     public function localProfile()
     {
         if ($this->profile_id) {
-            return Profile::staticGet('id', $this->profile_id);
+            return Profile::getKV('id', $this->profile_id);
         }
         return null;
     }
@@ -95,7 +95,7 @@ class Ostatus_profile extends Managed_DataObject
     public function localGroup()
     {
         if ($this->group_id) {
-            return User_group::staticGet('id', $this->group_id);
+            return User_group::getKV('id', $this->group_id);
         }
         return null;
     }
@@ -107,7 +107,7 @@ class Ostatus_profile extends Managed_DataObject
     public function localPeopletag()
     {
         if ($this->peopletag_id) {
-            return Profile_list::staticGet('id', $this->peopletag_id);
+            return Profile_list::getKV('id', $this->peopletag_id);
         }
         return null;
     }
@@ -228,7 +228,7 @@ class Ostatus_profile extends Managed_DataObject
      */
     public function garbageCollect()
     {
-        $feedsub = FeedSub::staticGet('uri', $this->feeduri);
+        $feedsub = FeedSub::getKV('uri', $this->feeduri);
         return $feedsub->garbageCollect();
     }
 
@@ -549,7 +549,7 @@ class Ostatus_profile extends Managed_DataObject
 
         $sourceUri = $activity->id;
 
-        $dupe = Notice::staticGet('uri', $sourceUri);
+        $dupe = Notice::getKV('uri', $sourceUri);
         if ($dupe) {
             common_log(LOG_INFO, "OStatus: ignoring duplicate post: $sourceUri");
             return $dupe;
@@ -651,7 +651,7 @@ class Ostatus_profile extends Managed_DataObject
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
             if (!empty($activity->context->replyToID)) {
-                $orig = Notice::staticGet('uri',
+                $orig = Notice::getKV('uri',
                                           $activity->context->replyToID);
                 if (!empty($orig)) {
                     $options['reply_to'] = $orig->id;
@@ -722,7 +722,7 @@ class Ostatus_profile extends Managed_DataObject
         // protecting against duplicate saves. It isn't required to be a URL;
         // tag: URIs for instance are found in Google Buzz feeds.
         $sourceUri = $note->id;
-        $dupe = Notice::staticGet('uri', $sourceUri);
+        $dupe = Notice::getKV('uri', $sourceUri);
         if ($dupe) {
             common_log(LOG_INFO, "OStatus: ignoring duplicate post: $sourceUri");
             return $dupe;
@@ -821,7 +821,7 @@ class Ostatus_profile extends Managed_DataObject
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
             if (!empty($activity->context->replyToID)) {
-                $orig = Notice::staticGet('uri',
+                $orig = Notice::getKV('uri',
                                           $activity->context->replyToID);
                 if (!empty($orig)) {
                     $options['reply_to'] = $orig->id;
@@ -902,7 +902,7 @@ class Ostatus_profile extends Managed_DataObject
         $replies = array();
         foreach (array_unique($attention_uris) as $recipient) {
             // Is the recipient a local user?
-            $user = User::staticGet('uri', $recipient);
+            $user = User::getKV('uri', $recipient);
             if ($user) {
                 // @todo FIXME: Sender verification, spam etc?
                 $replies[] = $recipient;
@@ -910,10 +910,10 @@ class Ostatus_profile extends Managed_DataObject
             }
 
             // Is the recipient a local group?
-            // $group = User_group::staticGet('uri', $recipient);
+            // $group = User_group::getKV('uri', $recipient);
             $id = OStatusPlugin::localGroupFromUrl($recipient);
             if ($id) {
-                $group = User_group::staticGet('id', $id);
+                $group = User_group::getKV('id', $id);
                 if ($group) {
                     // Deliver to all members of this local group if allowed.
                     $profile = $sender->localProfile();
@@ -1052,7 +1052,7 @@ class Ostatus_profile extends Managed_DataObject
      */
     static function getFromProfileURL($profile_url)
     {
-        $profile = Profile::staticGet('profileurl', $profile_url);
+        $profile = Profile::getKV('profileurl', $profile_url);
 
         if (empty($profile)) {
             return null;
@@ -1060,7 +1060,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // Is it a known Ostatus profile?
 
-        $oprofile = Ostatus_profile::staticGet('profile_id', $profile->id);
+        $oprofile = Ostatus_profile::getKV('profile_id', $profile->id);
 
         if (!empty($oprofile)) {
             return $oprofile;
@@ -1068,7 +1068,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // Is it a local user?
 
-        $user = User::staticGet('id', $profile->id);
+        $user = User::getKV('id', $profile->id);
 
         if (!empty($user)) {
             // @todo i18n FIXME: use sprintf and add i18n (?)
@@ -1392,7 +1392,7 @@ class Ostatus_profile extends Managed_DataObject
     protected static function getActivityObjectProfile($object)
     {
         $uri = self::getActivityObjectProfileURI($object);
-        return Ostatus_profile::staticGet('uri', $uri);
+        return Ostatus_profile::getKV('uri', $uri);
     }
 
     /**
@@ -1448,7 +1448,7 @@ class Ostatus_profile extends Managed_DataObject
             throw new Exception(_m('No profile URI.'));
         }
 
-        $user = User::staticGet('uri', $homeuri);
+        $user = User::getKV('uri', $homeuri);
         if ($user) {
             // TRANS: Exception.
             throw new Exception(_m('Local user cannot be referenced as remote.'));
@@ -1459,9 +1459,9 @@ class Ostatus_profile extends Managed_DataObject
             throw new Exception(_m('Local group cannot be referenced as remote.'));
         }
 
-        $ptag = Profile_list::staticGet('uri', $homeuri);
+        $ptag = Profile_list::getKV('uri', $homeuri);
         if ($ptag) {
-            $local_user = User::staticGet('id', $ptag->tagger);
+            $local_user = User::getKV('id', $ptag->tagger);
             if (!empty($local_user)) {
                 // TRANS: Exception.
                 throw new Exception(_m('Local list cannot be referenced as remote.'));
@@ -1862,14 +1862,14 @@ class Ostatus_profile extends Managed_DataObject
                 // TRANS: Exception.
                 throw new Exception(_m('Not a valid webfinger address.'));
             }
-            $oprofile = Ostatus_profile::staticGet('uri', $uri);
+            $oprofile = Ostatus_profile::getKV('uri', $uri);
             if (!empty($oprofile)) {
                 return $oprofile;
             }
         }
 
         // Try looking it up
-        $oprofile = Ostatus_profile::staticGet('uri', 'acct:'.$addr);
+        $oprofile = Ostatus_profile::getKV('uri', 'acct:'.$addr);
 
         if (!empty($oprofile)) {
             self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->uri);
@@ -2047,7 +2047,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // First, try to query it
 
-        $oprofile = Ostatus_profile::staticGet('uri', $uri);
+        $oprofile = Ostatus_profile::getKV('uri', $uri);
 
         // If unfound, do discovery stuff
 

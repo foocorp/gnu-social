@@ -48,7 +48,7 @@ function cleanupChannels()
         $keys = $rc->fetchAll();
 
         foreach ($keys as $key) {
-            $rc = Realtime_channel::staticGet('channel_key', $key);
+            $rc = Realtime_channel::getKV('channel_key', $key);
             if (!empty($rc)) {
                 printfv("Deleting realtime channel '$key'\n");
                 $rc->delete();

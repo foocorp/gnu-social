@@ -90,7 +90,7 @@ class Qnavote extends Action
         }
 
         $id = $this->trimmed('id');
-        $this->question = QnA_Question::staticGet('id', $id);
+        $this->question = QnA_Question::getKV('id', $id);
         if (empty($this->question)) {
             // TRANS: Client exception thrown trying to respond to a non-existing question.
             throw new ClientException(_m('Invalid or missing question.'), 404);

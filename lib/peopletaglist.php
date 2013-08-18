@@ -107,7 +107,7 @@ class PeopletagListItem extends Widget
         parent::__construct($out);
         $this->peopletag  = $peopletag;
         $this->current = $current;
-        $this->profile = Profile::staticGet('id', $this->peopletag->tagger);
+        $this->profile = Profile::getKV('id', $this->peopletag->tagger);
     }
 
     /**

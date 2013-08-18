@@ -179,7 +179,7 @@ class RealtimePlugin extends Plugin
             return true;
         }
 
-        $user = User::staticGet('id', $notice->profile_id);
+        $user = User::getKV('id', $notice->profile_id);
 
         if (!empty($user)) {
             $paths[] = array('showstream', $user->nickname, null);
@@ -208,7 +208,7 @@ class RealtimePlugin extends Plugin
         $ni = $notice->whoGets();
 
         foreach (array_keys($ni) as $user_id) {
-            $user = User::staticGet('id', $user_id);
+            $user = User::getKV('id', $user_id);
             $paths[] = array('all', $user->nickname, null);
         }
 
@@ -219,7 +219,7 @@ class RealtimePlugin extends Plugin
 
         if ($reply->find()) {
             while ($reply->fetch()) {
-                $user = User::staticGet('id', $reply->profile_id);
+                $user = User::getKV('id', $reply->profile_id);
                 if (!empty($user)) {
                     $paths[] = array('replies', $user->nickname, null);
                 }
@@ -234,7 +234,7 @@ class RealtimePlugin extends Plugin
 
         if ($gi->find()) {
             while ($gi->fetch()) {
-                $ug = User_group::staticGet('id', $gi->group_id);
+                $ug = User_group::getKV('id', $gi->group_id);
                 $paths[] = array('showgroup', $ug->nickname, null);
             }
         }
@@ -265,7 +265,7 @@ class RealtimePlugin extends Plugin
                     if (is_null($channel->user_id)) {
                         $profile = null;
                     } else {
-                        $profile = Profile::staticGet('id', $channel->user_id);
+                        $profile = Profile::getKV('id', $channel->user_id);
                     }
                     if ($notice->inScope($profile)) {
                         $this->log(LOG_INFO, 
@@ -345,7 +345,7 @@ class RealtimePlugin extends Plugin
         // Add needed repeat data
 
         if (!empty($notice->repeat_of)) {
-            $original = Notice::staticGet('id', $notice->repeat_of);
+            $original = Notice::getKV('id', $notice->repeat_of);
             if (!empty($original)) {
                 $arr['retweeted_status']['url'] = $original->bestUrl();
                 $arr['retweeted_status']['html'] = htmlspecialchars($original->rendered);
@@ -385,7 +385,7 @@ class RealtimePlugin extends Plugin
         $convurl = null;
 
         if ($notice->hasConversation()) {
-            $conv = Conversation::staticGet(
+            $conv = Conversation::getKV(
                 'id',
                 $notice->conversation
             );

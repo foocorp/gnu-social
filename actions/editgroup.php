@@ -89,11 +89,11 @@ class EditgroupAction extends GroupAction
         $groupid = $this->trimmed('groupid');
 
         if ($groupid) {
-            $this->group = User_group::staticGet('id', $groupid);
+            $this->group = User_group::getKV('id', $groupid);
         } else {
-            $local = Local_group::staticGet('nickname', $nickname);
+            $local = Local_group::getKV('nickname', $nickname);
             if ($local) {
-                $this->group = User_group::staticGet('id', $local->group_id);
+                $this->group = User_group::getKV('id', $local->group_id);
             }
         }
 
@@ -288,7 +288,7 @@ class EditgroupAction extends GroupAction
 
             if ($nickname != $orig->nickname) {
                 common_log(LOG_INFO, "Saving local group info.");
-                $local = Local_group::staticGet('group_id', $this->group->id);
+                $local = Local_group::getKV('group_id', $this->group->id);
                 $local->setNickname($nickname);
             }
 
@@ -309,14 +309,14 @@ class EditgroupAction extends GroupAction
 
     function nicknameExists($nickname)
     {
-        $group = Local_group::staticGet('nickname', $nickname);
+        $group = Local_group::getKV('nickname', $nickname);
 
         if (!empty($group) &&
             $group->group_id != $this->group->id) {
             return true;
         }
 
-        $alias = Group_alias::staticGet('alias', $nickname);
+        $alias = Group_alias::getKV('alias', $nickname);
 
         if (!empty($alias) &&
             $alias->group_id != $this->group->id) {

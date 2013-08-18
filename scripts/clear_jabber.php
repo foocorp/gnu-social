@@ -38,14 +38,14 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 if (have_option('i', 'id')) {
     $id = get_option_value('i', 'id');
-    $user = User::staticGet('id', $id);
+    $user = User::getKV('id', $id);
     if (empty($user)) {
         print "Can't find user with ID $id\n";
         exit(1);
     }
 } else if (have_option('n', 'nickname')) {
     $nickname = get_option_value('n', 'nickname');
-    $user = User::staticGet('nickname', $nickname);
+    $user = User::getKV('nickname', $nickname);
     if (empty($user)) {
         print "Can't find user with nickname '$nickname'\n";
         exit(1);
@@ -67,7 +67,7 @@ if (have_option('i', 'id')) {
 
 function clear_jabber($id)
 {
-    $user = User::staticGet('id', $id);
+    $user = User::getKV('id', $id);
     if ($user && $user->jabber) {
         echo "clearing user $id's user.jabber, was: $user->jabber";
         if (have_option('dry-run')) {

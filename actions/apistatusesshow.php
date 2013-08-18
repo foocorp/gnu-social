@@ -82,7 +82,7 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
             $this->notice_id = (int)$this->arg('id');
         }
 
-        $this->notice = Notice::staticGet((int)$this->notice_id);
+        $this->notice = Notice::getKV((int)$this->notice_id);
 
         return true;
     }
@@ -147,7 +147,7 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
             // XXX: Twitter just sets a 404 header and doens't bother
             // to return an err msg
 
-            $deleted = Deleted_notice::staticGet($this->notice_id);
+            $deleted = Deleted_notice::getKV($this->notice_id);
 
             if (!empty($deleted)) {
                 $this->clientError(

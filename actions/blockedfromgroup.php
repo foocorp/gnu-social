@@ -74,7 +74,7 @@ class BlockedfromgroupAction extends GroupAction
             return false;
         }
 
-        $local = Local_group::staticGet('nickname', $nickname);
+        $local = Local_group::getKV('nickname', $nickname);
 
         if (!$local) {
             // TRANS: Client error displayed when requesting a list of blocked users for a non-local group.
@@ -82,7 +82,7 @@ class BlockedfromgroupAction extends GroupAction
             return false;
         }
 
-        $this->group = User_group::staticGet('id', $local->group_id);
+        $this->group = User_group::getKV('id', $local->group_id);
 
         if (!$this->group) {
             // TRANS: Client error displayed when requesting a list of blocked users for a non-existing group.

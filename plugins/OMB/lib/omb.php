@@ -113,7 +113,7 @@ function omb_broadcast_notice($notice)
 
 function omb_broadcast_profile($profile)
 {
-    $user = User::staticGet('id', $profile->id);
+    $user = User::getKV('id', $profile->id);
 
     if (!$user) {
         return false;
@@ -216,7 +216,7 @@ function profile_to_omb_profile($uri, $profile, $force = false)
 function notice_to_omb_notice($notice)
 {
     /* Create an OMB_Notice for $notice. */
-    $user = User::staticGet('id', $notice->profile_id);
+    $user = User::getKV('id', $notice->profile_id);
 
     if (!$user) {
         return null;

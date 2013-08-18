@@ -169,7 +169,7 @@ class AdminprofileflagAction extends Action
 
         if ($ufp->find()) {
             while ($ufp->fetch()) {
-                $profile = Profile::staticGet('id', $ufp->profile_id);
+                $profile = Profile::getKV('id', $ufp->profile_id);
                 if (!empty($profile)) {
                     $profiles[] = $profile;
                 }
@@ -354,7 +354,7 @@ class FlaggedProfileListItem extends ProfileListItem
 
         if ($ufp->find()) { // XXX: this should always happen
             while ($ufp->fetch()) {
-                $user = User::staticGet('id', $ufp->user_id);
+                $user = User::getKV('id', $ufp->user_id);
                 if (!empty($user)) { // XXX: this would also be unusual
                     $flaggers[] = clone($user);
                 }

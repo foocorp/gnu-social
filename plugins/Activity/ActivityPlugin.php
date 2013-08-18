@@ -202,10 +202,10 @@ class ActivityPlugin extends Plugin
     {
         // Only do this if config is enabled
         if(!$this->StopLike) return true;
-        $user = User::staticGet('id', $profile->id);
+        $user = User::getKV('id', $profile->id);
 
         if (!empty($user)) {
-            $author = Profile::staticGet('id', $notice->profile_id);
+            $author = Profile::getKV('id', $notice->profile_id);
             // TRANS: Text for "stopped liking" item in activity plugin.
             // TRANS: %1$s is a profile URL, %2$s is a profile name,
             // TRANS: %3$s is a notice URL, %4$s is an author name.
@@ -370,9 +370,9 @@ class ActivityPlugin extends Plugin
     {
         switch ($notice->verb) {
         case ActivityVerb::FAVORITE:
-            $fave = Fave::staticGet('uri', $notice->uri);
+            $fave = Fave::getKV('uri', $notice->uri);
             if (!empty($fave)) {
-                $notice = Notice::staticGet('id', $fave->notice_id);
+                $notice = Notice::getKV('id', $fave->notice_id);
                 if (!empty($notice)) {
                     $cur = common_current_user();
                     $target = $notice->asActivity($cur);
@@ -390,7 +390,7 @@ class ActivityPlugin extends Plugin
             // FIXME: do something here
             break;
         case ActivityVerb::JOIN:
-            $mem = Group_member::staticGet('uri', $notice->uri);
+            $mem = Group_member::getKV('uri', $notice->uri);
             if (!empty($mem)) {
                 $group = $mem->getGroup();
                 $activity->objects = array(ActivityObject::fromGroup($group));
@@ -400,9 +400,9 @@ class ActivityPlugin extends Plugin
             // FIXME: ????
             break;
         case ActivityVerb::FOLLOW:
-            $sub = Subscription::staticGet('uri', $notice->uri);
+            $sub = Subscription::getKV('uri', $notice->uri);
             if (!empty($sub)) {
-                $profile = Profile::staticGet('id', $sub->subscribed);
+                $profile = Profile::getKV('id', $sub->subscribed);
                 if (!empty($profile)) {
                     $activity->objects = array(ActivityObject::fromProfile($profile));
                 }

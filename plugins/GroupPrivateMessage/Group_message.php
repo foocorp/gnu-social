@@ -151,7 +151,7 @@ class Group_message extends Managed_DataObject
 
     function distribute()
     {
-        $group = User_group::staticGet('id', $this->to_group);
+        $group = User_group::getKV('id', $this->to_group);
 
         $member = $group->getMembers();
 
@@ -162,7 +162,7 @@ class Group_message extends Managed_DataObject
 
     function getGroup()
     {
-        $group = User_group::staticGet('id', $this->to_group);
+        $group = User_group::getKV('id', $this->to_group);
         if (empty($group)) {
             // TRANS: Exception thrown when trying to send group private message to a non-existing group.
             throw new ServerException(_m('No group for group message.'));
@@ -172,7 +172,7 @@ class Group_message extends Managed_DataObject
 
     function getSender()
     {
-        $sender = Profile::staticGet('id', $this->from_profile);
+        $sender = Profile::getKV('id', $this->from_profile);
         if (empty($sender)) {
             // TRANS: Exception thrown when trying to send group private message without having a sender.
             throw new ServerException(_m('No sender for group message.'));

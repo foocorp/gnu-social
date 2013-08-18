@@ -68,7 +68,7 @@ class ApiUserShowAction extends ApiPrivateAuthAction
         // XXX: email field deprecated in Twitter's API
 
         if (!empty($email)) {
-            $this->user = User::staticGet('email', $email);
+            $this->user = User::getKV('email', $email);
         } else {
             $this->user = $this->getTargetUser($this->arg('id'));
         }

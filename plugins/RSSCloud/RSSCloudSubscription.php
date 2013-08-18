@@ -36,7 +36,7 @@ class RSSCloudSubscription extends Memcached_DataObject {
     var $created;                         // datestamp()
     var $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('DataObjects_Grp',$k,$v); }
+    static function getKV($k,$v=NULL) { return DB_DataObject::staticGet('DataObjects_Grp',$k,$v); }
 
     function table()
     {

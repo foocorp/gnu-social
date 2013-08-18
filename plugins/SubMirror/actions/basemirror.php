@@ -77,7 +77,7 @@ abstract class BaseMirrorAction extends Action
     protected function validateProfile($id)
     {
         $id = intval($id);
-        $profile = Profile::staticGet('id', $id);
+        $profile = Profile::getKV('id', $id);
         if ($profile && $profile->id != $this->user->id) {
             return $profile;
         }

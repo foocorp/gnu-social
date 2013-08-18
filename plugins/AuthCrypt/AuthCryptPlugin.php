@@ -54,7 +54,7 @@ class AuthCryptPlugin extends AuthenticationPlugin
      */
 
     function checkPassword($username, $password) {
-        $user = User::staticGet('nickname', common_canonical_nickname($username));
+        $user = User::getKV('nickname', common_canonical_nickname($username));
 
         // crypt cuts the second parameter to its appropriate length based on hash scheme
         if (!empty($user) && $user->password === crypt($password, $user->password)) {
@@ -76,7 +76,7 @@ class AuthCryptPlugin extends AuthenticationPlugin
             return false;
         }
 
-        $user = User::staticGet('nickname', $username);
+        $user = User::getKV('nickname', $username);
         if (empty($user)) {
             return false;
         }

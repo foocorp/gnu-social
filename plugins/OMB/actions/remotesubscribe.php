@@ -157,7 +157,7 @@ class RemotesubscribeAction extends Action
             return;
         }
 
-        $user = User::staticGet('nickname', $this->nickname);
+        $user = User::getKV('nickname', $this->nickname);
 
         $this->profile_url = $this->trimmed('profile_url');
 
@@ -187,7 +187,7 @@ class RemotesubscribeAction extends Action
 
         if ($service->getServiceURI(OAUTH_ENDPOINT_REQUEST) ==
             common_local_url('requesttoken') ||
-            User::staticGet('uri', $service->getRemoteUserURI())) {
+            User::getKV('uri', $service->getRemoteUserURI())) {
             // TRANS: Form validation error on page for remote subscribe.
             $this->showForm(_('That is a local profile! Login to subscribe.'));
             return;

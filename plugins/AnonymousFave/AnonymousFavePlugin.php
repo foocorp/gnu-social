@@ -272,7 +272,7 @@ class AnonymousFavePlugin extends Plugin
             $parts = explode('-', $anon);
             $id = $parts[1];
             // Do Profile lookup by ID instead of nickname for safety/performance
-            $profile = Profile::staticGet('id', $id);
+            $profile = Profile::getKV('id', $id);
         } else {
             $profile = AnonymousFavePlugin::createAnonProfile();
             // Obfuscate so it's hard to figure out the Profile ID
@@ -294,7 +294,7 @@ class AnonymousFavePlugin extends Plugin
      */
     function hasAnonFaving($item)
     {
-        $profile = Profile::staticGet('id', $item->notice->profile_id);
+        $profile = Profile::getKV('id', $item->notice->profile_id);
         if (in_array($profile->nickname, $this->restricted)) {
             return false;
         }

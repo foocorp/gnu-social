@@ -122,7 +122,7 @@ class QnA_Answer extends Managed_DataObject
      */
     static function getByNotice($notice)
     {
-        $answer = self::staticGet('uri', $notice->uri);
+        $answer = self::getKV('uri', $notice->uri);
         if (empty($answer)) {
             throw new Exception("No answer with URI {$notice->uri}");
         }
@@ -136,12 +136,12 @@ class QnA_Answer extends Managed_DataObject
      */
     function getNotice()
     {
-        return Notice::staticGet('uri', $this->uri);
+        return Notice::getKV('uri', $this->uri);
     }
 
     static function fromNotice($notice)
     {
-        return QnA_Answer::staticGet('uri', $notice->uri);
+        return QnA_Answer::getKV('uri', $notice->uri);
     }
 
     function bestUrl()
@@ -156,7 +156,7 @@ class QnA_Answer extends Managed_DataObject
      */
     function getQuestion()
     {
-        $question = QnA_Question::staticGet('id', $this->question_id);
+        $question = QnA_Question::getKV('id', $this->question_id);
         if (empty($question)) {
             // TRANS: Exception thown when getting a question with a non-existing ID.
             // TRANS: %s is the non-existing question ID.
@@ -167,7 +167,7 @@ class QnA_Answer extends Managed_DataObject
 
     function getProfile()
     {
-        $profile = Profile::staticGet('id', $this->profile_id);
+        $profile = Profile::getKV('id', $this->profile_id);
         if (empty($profile)) {
             // TRANS: Exception thown when getting a profile with a non-existing ID.
             // TRANS: %s is the non-existing profile ID.

@@ -65,7 +65,7 @@ class FavoritesrssAction extends Rss10Action
         parent::prepare($args);
 
         $nickname   = $this->trimmed('nickname');
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.

@@ -211,7 +211,7 @@ class Sitemap_notice_count extends Managed_DataObject
 
     static function updateCount($d, $n)
     {
-        $snc = Sitemap_notice_count::staticGet('notice_date', DB_DataObject_Cast::date($d));
+        $snc = Sitemap_notice_count::getKV('notice_date', DB_DataObject_Cast::date($d));
 
         if (empty($snc)) {
             // TRANS: Exception

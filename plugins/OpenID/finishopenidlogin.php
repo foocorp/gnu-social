@@ -222,7 +222,7 @@ class FinishopenidloginAction extends Action
         if (common_config('site', 'inviteonly')) {
             $code = $_SESSION['invitecode'];
             if ($code) {
-                $invite = Invitation::staticGet($code);
+                $invite = Invitation::getKV($code);
 
                 if ($invite && $invite->address_type == 'email') {
                     return $invite->address;
@@ -335,7 +335,7 @@ class FinishopenidloginAction extends Action
                 return;
             }
 
-            $invite = Invitation::staticGet($code);
+            $invite = Invitation::getKV($code);
 
             if (empty($invite)) {
                 // TRANS: OpenID plugin message. No new user registration is allowed on the site without an invitation code, and the one provided was not valid.
@@ -357,7 +357,7 @@ class FinishopenidloginAction extends Action
             return;
         }
 
-        if (User::staticGet('nickname', $nickname)) {
+        if (User::getKV('nickname', $nickname)) {
             // TRANS: OpenID plugin message. The entered new user name is already used.
             $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
@@ -447,7 +447,7 @@ class FinishopenidloginAction extends Action
 
         // They're legit!
 
-        $user = User::staticGet('nickname', $nickname);
+        $user = User::getKV('nickname', $nickname);
 
         list($display, $canonical, $sreg) = $this->getSavedValues();
 
@@ -536,7 +536,7 @@ class FinishopenidloginAction extends Action
         if (!User::allowed_nickname($str)) {
             return false;
         }
-        if (User::staticGet('nickname', $str)) {
+        if (User::getKV('nickname', $str)) {
             return false;
         }
         return true;

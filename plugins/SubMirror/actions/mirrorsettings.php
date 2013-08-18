@@ -91,7 +91,7 @@ class MirrorSettingsAction extends SettingsAction
 
     function showFeedForm($mirror)
     {
-        $profile = Profile::staticGet('id', $mirror->subscribed);
+        $profile = Profile::getKV('id', $mirror->subscribed);
         if ($profile) {
             $form = new EditMirrorForm($this, $profile);
             $form->show();

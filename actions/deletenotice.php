@@ -54,7 +54,7 @@ class DeletenoticeAction extends Action
         }
 
         $notice_id    = $this->trimmed('notice');
-        $this->notice = Notice::staticGet($notice_id);
+        $this->notice = Notice::getKV($notice_id);
 
         if (!$this->notice) {
             // TRANS: Error message displayed trying to delete a non-existing notice.

@@ -55,7 +55,7 @@ class ActivityMover extends QueueHandler
     {
         list ($act, $sink, $userURI, $remoteURI) = $data;
 
-        $user   = User::staticGet('uri', $userURI);
+        $user   = User::getKV('uri', $userURI);
         $remote = Profile::fromURI($remoteURI);
 
         try {
@@ -92,7 +92,7 @@ class ActivityMover extends QueueHandler
                        "{$act->actor->id} to {$remote->nickname}.");
             // push it, then delete local
             $sink->postActivity($act);
-            $notice = Notice::staticGet('uri', $act->objects[0]->id);
+            $notice = Notice::getKV('uri', $act->objects[0]->id);
             if (!empty($notice)) {
                 $fave = Fave::pkeyGet(array('user_id' => $user->id,
                                             'notice_id' => $notice->id));
@@ -105,7 +105,7 @@ class ActivityMover extends QueueHandler
                        "{$act->actor->id} to {$remote->nickname}.");
             // XXX: send a reshare, not a post
             $sink->postActivity($act);
-            $notice = Notice::staticGet('uri', $act->objects[0]->id);
+            $notice = Notice::getKV('uri', $act->objects[0]->id);
             if (!empty($notice)) {
                 $notice->delete();
             }
@@ -115,7 +115,7 @@ class ActivityMover extends QueueHandler
                        "Moving group join of {$act->objects[0]->id} by ".
                        "{$act->actor->id} to {$remote->nickname}.");
             $sink->postActivity($act);
-            $group = User_group::staticGet('uri', $act->objects[0]->id);
+            $group = User_group::getKV('uri', $act->objects[0]->id);
             if (!empty($group)) {
                 $user->leaveGroup($group);
             }
@@ -131,7 +131,7 @@ class ActivityMover extends QueueHandler
                     Subscription::cancel($user->getProfile(), $other);
                 }
             } else {
-                $otherUser = User::staticGet('uri', $act->actor->id);
+                $otherUser = User::getKV('uri', $act->actor->id);
                 if (!empty($otherUser)) {
                     $this->log(LOG_INFO,
                                "Changing sub to {$act->objects[0]->id}".

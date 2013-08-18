@@ -27,7 +27,7 @@ class OMBOAuthDataStore extends OAuthDataStore
     // We keep a record of who's contacted us
     function lookup_consumer($consumer_key)
     {
-        $con = Consumer::staticGet('consumer_key', $consumer_key);
+        $con = Consumer::getKV('consumer_key', $consumer_key);
         if (!$con) {
             $con = new Consumer();
             $con->consumer_key = $consumer_key;
@@ -126,7 +126,7 @@ class OMBOAuthDataStore extends OAuthDataStore
                 common_debug('request token "'.$rt->tok.'" updated', __FILE__);
                 // Update subscription
                 // XXX: mixing levels here
-                $sub = Subscription::staticGet('token', $rt->tok);
+                $sub = Subscription::getKV('token', $rt->tok);
                 if (!$sub) {
                     return null;
                 }
@@ -218,9 +218,9 @@ class OMBOAuthDataStore extends OAuthDataStore
     public function getProfile($identifier_uri) {
         /* getProfile is only used for remote profiles by libomb.
            @TODO: Make it work with local ones anyway. */
-        $remote = Remote_profile::staticGet('uri', $identifier_uri);
+        $remote = Remote_profile::getKV('uri', $identifier_uri);
         if (!$remote) throw new Exception('No such remote profile');
-        $profile = Profile::staticGet('id', $remote->id);
+        $profile = Profile::getKV('id', $remote->id);
         if (!$profile) throw new Exception('No profile for remote user');
 
         require_once dirname(__FILE__) . '/omb.php';
@@ -242,11 +242,11 @@ class OMBOAuthDataStore extends OAuthDataStore
                                                 $omb_profile->getProfileURL()) {
             throw new Exception('Not implemented');
         } else {
-            $remote = Remote_profile::staticGet('uri', $omb_profile->getIdentifierURI());
+            $remote = Remote_profile::getKV('uri', $omb_profile->getIdentifierURI());
 
             if ($remote) {
                 $exists = true;
-                $profile = Profile::staticGet($remote->id);
+                $profile = Profile::getKV($remote->id);
                 $orig_remote = clone($remote);
                 $orig_profile = clone($profile);
                 // XXX: compare current postNotice and updateProfile URLs to the ones
@@ -346,15 +346,15 @@ class OMBOAuthDataStore extends OAuthDataStore
      * @access public
      **/
     public function saveNotice(&$omb_notice) {
-        if (Notice::staticGet('uri', $omb_notice->getIdentifierURI())) {
+        if (Notice::getKV('uri', $omb_notice->getIdentifierURI())) {
             // TRANS: Exception thrown when a notice is denied because it has been sent before.
             throw new Exception(_('Duplicate notice.'));
         }
         $author_uri = $omb_notice->getAuthor()->getIdentifierURI();
         common_log(LOG_DEBUG, $author_uri, __FILE__);
-        $author = Remote_profile::staticGet('uri', $author_uri);
+        $author = Remote_profile::getKV('uri', $author_uri);
         if (!$author) {
-            $author = User::staticGet('uri', $author_uri);
+            $author = User::getKV('uri', $author_uri);
         }
         if (!$author) {
             throw new Exception('No such user.');
@@ -406,9 +406,9 @@ class OMBOAuthDataStore extends OAuthDataStore
 
     private function _getAnyProfile($uri)
     {
-        $user = Remote_profile::staticGet('uri', $uri);
+        $user = Remote_profile::getKV('uri', $uri);
         if (!$user) {
-            $user = User::staticGet('uri', $uri);
+            $user = User::getKV('uri', $uri);
         }
         if (!$user) {
             throw new Exception('No such user.');
@@ -503,7 +503,7 @@ class OMBOAuthDataStore extends OAuthDataStore
 
         if ($subscribed instanceof User) {
             mail_subscribe_notify_profile($subscribed,
-                                          Profile::staticGet($subscriber->id));
+                                          Profile::getKV($subscriber->id));
         }
     }
 }

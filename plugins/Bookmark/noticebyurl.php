@@ -62,7 +62,7 @@ class NoticebyurlAction extends Action
     {
         parent::prepare($argarray);
 
-        $this->file = File::staticGet('id', $this->trimmed('id'));
+        $this->file = File::getKV('id', $this->trimmed('id'));
 
         if (empty($this->file)) {
             // TRANS: Client exception thrown when an unknown URL is provided.

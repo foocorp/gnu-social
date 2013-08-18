@@ -65,7 +65,7 @@ class XrdsAction extends Action
     {
         parent::prepare($args);
         $nickname = $this->trimmed('nickname');
-        $this->user     = User::staticGet('nickname', $nickname);
+        $this->user     = User::getKV('nickname', $nickname);
         if (!$this->user) {
             // TRANS: Client error displayed providing a non-existing nickname.
             $this->clientError(_('No such user.'));

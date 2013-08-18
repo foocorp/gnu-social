@@ -37,7 +37,7 @@ $email = get_option_value('e', 'email');
 $parts = explode('@', $email);
 $nickname = common_nicknamize($parts[0]);
 
-$user = User::staticGet('nickname', $nickname);
+$user = User::getKV('nickname', $nickname);
 
 if (!empty($user)) {
     $confirm = new Confirm_address();

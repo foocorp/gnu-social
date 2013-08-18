@@ -82,14 +82,14 @@ class CancelrsvpAction extends Action
             throw new ClientException(_m('No such RSVP.'));
         }
 
-        $this->rsvp = RSVP::staticGet('id', $rsvpId);
+        $this->rsvp = RSVP::getKV('id', $rsvpId);
 
         if (empty($this->rsvp)) {
             // TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
             throw new ClientException(_m('No such RSVP.'));
         }
 
-        $this->event = Happening::staticGet('id', $this->rsvp->event_id);
+        $this->event = Happening::getKV('id', $this->rsvp->event_id);
 
         if (empty($this->event)) {
             // TRANS: Client exception thrown when referring to a non-existing event.

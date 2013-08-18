@@ -53,7 +53,7 @@ class ShoweventAction extends ShownoticeAction
     {
         $this->id = $this->trimmed('id');
 
-        $this->event = Happening::staticGet('id', $this->id);
+        $this->event = Happening::getKV('id', $this->id);
 
         if (empty($this->event)) {
             // TRANS: Client exception thrown when referring to a non-existing event.

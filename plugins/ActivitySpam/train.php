@@ -79,7 +79,7 @@ class TrainAction extends Action
 
         $id = $this->trimmed('notice');
 
-        $this->notice = Notice::staticGet('id', $id);
+        $this->notice = Notice::getKV('id', $id);
 
         if (empty($this->notice)) {
             throw new ClientException(_("No such notice."));

@@ -254,7 +254,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             if (!empty($this->in_reply_to_status_id)) {
                 // Check whether notice actually exists
 
-                $reply = Notice::staticGet($this->in_reply_to_status_id);
+                $reply = Notice::getKV($this->in_reply_to_status_id);
 
                 if ($reply) {
                     $reply_to = $this->in_reply_to_status_id;

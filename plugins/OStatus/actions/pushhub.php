@@ -109,7 +109,7 @@ class PushHubAction extends Action
             throw new ClientException(sprintf(_m('Invalid hub.secret "%s". It must be under 200 bytes.'),$secret));
         }
 
-        $sub = HubSub::staticGet($topic, $callback);
+        $sub = HubSub::getKV($topic, $callback);
         if (!$sub) {
             // Creating a new one!
             $sub = new HubSub();
@@ -155,7 +155,7 @@ class PushHubAction extends Action
             $groupFeed = common_local_url('ApiTimelineGroup', $params);
 
             if ($feed == $userFeed) {
-                $user = User::staticGet('id', $id);
+                $user = User::getKV('id', $id);
                 if (!$user) {
                     // TRANS: Client exception. %s is a feed URL.
                     throw new ClientException(sprintt(_m('Invalid hub.topic "%s". User does not exist.'),$feed));
@@ -164,7 +164,7 @@ class PushHubAction extends Action
                 }
             }
             if ($feed == $groupFeed) {
-                $user = User_group::staticGet('id', $id);
+                $user = User_group::getKV('id', $id);
                 if (!$user) {
                     // TRANS: Client exception. %s is a feed URL.
                     throw new ClientException(sprintf(_m('Invalid hub.topic "%s". Group does not exist.'),$feed));
@@ -179,8 +179,8 @@ class PushHubAction extends Action
             $listFeed = common_local_url('ApiTimelineList', $params);
 
             if ($feed == $listFeed) {
-                $list = Profile_list::staticGet('id', $id);
-                $user = User::staticGet('id', $user);
+                $list = Profile_list::getKV('id', $id);
+                $user = User::getKV('id', $user);
                 if (!$list || !$user || $list->tagger != $user->id) {
                     // TRANS: Client exception. %s is a feed URL.
                     throw new ClientException(sprintf(_m('Invalid hub.topic %s; list does not exist.'),$feed));
@@ -221,6 +221,6 @@ class PushHubAction extends Action
      */
     protected function getSub($feed, $callback)
     {
-        return HubSub::staticGet($feed, $callback);
+        return HubSub::getKV($feed, $callback);
     }
 }

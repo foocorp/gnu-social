@@ -190,7 +190,7 @@ class OMBPlugin extends Plugin
      */
     function onStartGetProfileUri($profile, &$uri)
     {
-        $remote = Remote_profile::staticGet('id', $this->id);
+        $remote = Remote_profile::getKV('id', $this->id);
         if (!empty($remote)) {
             $uri = $remote->uri;
             return false;
@@ -206,7 +206,7 @@ class OMBPlugin extends Plugin
      */
     function onStartShowProfileListSubscribeButton($action)
     {
-        $remote = Remote_profile::staticGet('id', $action->profile->id);
+        $remote = Remote_profile::getKV('id', $action->profile->id);
         if (empty($remote)) {
             false;
         }
@@ -225,7 +225,7 @@ class OMBPlugin extends Plugin
         // OMB 0.1 doesn't have a mechanism for local-server-
         // originated subscription.
 
-        $omb01 = Remote_profile::staticGet('id', $other_id);
+        $omb01 = Remote_profile::getKV('id', $other_id);
 
         if (!empty($omb01)) {
             throw new ClientException(
@@ -252,7 +252,7 @@ class OMBPlugin extends Plugin
         // OMB 0.1 doesn't have a mechanism for local-server-
         // originated tag.
 
-        $omb01 = Remote_profile::staticGet('id', $tagged_profile->id);
+        $omb01 = Remote_profile::getKV('id', $tagged_profile->id);
 
         if (!empty($omb01)) {
             $this->clientError(
@@ -276,7 +276,7 @@ class OMBPlugin extends Plugin
         // OMB 0.1 doesn't have a mechanism for local-server-
         // originated tag.
 
-        $omb01 = Remote_profile::staticGet('id', $ptag->tagged);
+        $omb01 = Remote_profile::getKV('id', $ptag->tagged);
 
         if (!empty($omb01)) {
             $this->clientError(
@@ -339,9 +339,9 @@ class OMBPlugin extends Plugin
      */
     function onStartGetProfileFromURI($uri, &$profile)
     {
-        $remote_profile = Remote_profile::staticGet('uri', $uri);
+        $remote_profile = Remote_profile::getKV('uri', $uri);
         if (!empty($remote_profile)) {
-            $profile = Profile::staticGet('id', $remote_profile->profile_id);
+            $profile = Profile::getKV('id', $remote_profile->profile_id);
             return false;
         }
 
@@ -357,7 +357,7 @@ class OMBPlugin extends Plugin
      */
     function onStartCommonProfileURI($profile, &$uri)
     {
-        $remote = Remote_profile::staticGet($profile->id);
+        $remote = Remote_profile::getKV($profile->id);
         if ($remote) {
             $uri = $remote->uri;
             return false;

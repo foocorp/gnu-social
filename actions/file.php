@@ -35,7 +35,7 @@ class FileAction extends Action
             // TRANS: Client error displayed when no notice ID was given trying do display a file.
             $this->clientError(_('No notice ID.'));
         }
-        $notice = Notice::staticGet('id', $this->id);
+        $notice = Notice::getKV('id', $this->id);
         if (empty($notice)) {
             // TRANS: Client error displayed when an invalid notice ID was given trying do display a file.
             $this->clientError(_('No notice.'));

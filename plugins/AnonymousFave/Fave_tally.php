@@ -198,7 +198,7 @@ class Fave_tally extends Managed_DataObject
      */
     static function ensureTally($noticeID)
     {
-        $tally = Fave_tally::staticGet('notice_id', $noticeID);
+        $tally = Fave_tally::getKV('notice_id', $noticeID);
 
         if (!$tally) {
             $tally = new Fave_tally();

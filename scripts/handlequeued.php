@@ -44,7 +44,7 @@ if (!$handler) {
     exit(1);
 }
 
-$notice = Notice::staticGet('id', $noticeId);
+$notice = Notice::getKV('id', $noticeId);
 if (empty($notice)) {
     print "Invalid notice id $noticeId\n";
     exit(1);

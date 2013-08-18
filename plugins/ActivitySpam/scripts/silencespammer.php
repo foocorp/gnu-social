@@ -64,7 +64,7 @@ function silencespammer($filter, $user, $minimum, $percent) {
 
     printfnq("Testing user %s\n", $user->nickname);
 
-    $profile = Profile::staticGet('id', $user->id);
+    $profile = Profile::getKV('id', $user->id);
 
     if ($profile->isSilenced()) {
 	printfnq("Already silenced %s\n", $user->nickname);

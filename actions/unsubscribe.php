@@ -80,7 +80,7 @@ class UnsubscribeAction extends Action
             return;
         }
 
-        $other = Profile::staticGet('id', $other_id);
+        $other = Profile::getKV('id', $other_id);
 
         if (!$other) {
             // TRANS: Client error displayed when trying to unsubscribe while providing a non-existing profile ID.

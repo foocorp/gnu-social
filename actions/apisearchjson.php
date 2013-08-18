@@ -126,7 +126,7 @@ class ApiSearchJSONAction extends ApiPrivateAuthAction
             $stream = new TagNoticeStream(substr($q, 1), $this->auth_profile);
         } else if ($this->isAnURL($q)) {
             $canon = File_redirection::_canonUrl($q);
-            $file = File::staticGet('url', $canon);
+            $file = File::getKV('url', $canon);
             if (!empty($file)) {
                 $stream = new FileNoticeStream($file, $this->auth_profile);
             }

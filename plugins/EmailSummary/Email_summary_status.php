@@ -118,7 +118,7 @@ class Email_summary_status extends Managed_DataObject
      */
     static function getSendSummary($user_id)
     {
-        $ess = Email_summary_status::staticGet('user_id', $user_id);
+        $ess = Email_summary_status::getKV('user_id', $user_id);
 
         if (!empty($ess)) {
             return $ess->send_summary;
@@ -136,7 +136,7 @@ class Email_summary_status extends Managed_DataObject
      */
     static function getLastSummaryID($user_id)
     {
-        $ess = Email_summary_status::staticGet('user_id', $user_id);
+        $ess = Email_summary_status::getKV('user_id', $user_id);
 
         if (!empty($ess)) {
             return $ess->last_summary_id;

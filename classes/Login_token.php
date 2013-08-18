@@ -57,7 +57,7 @@ class Login_token extends Managed_DataObject
 
     function makeNew($user)
     {
-        $login_token = Login_token::staticGet('user_id', $user->id);
+        $login_token = Login_token::getKV('user_id', $user->id);
 
         if (!empty($login_token)) {
             $login_token->delete();

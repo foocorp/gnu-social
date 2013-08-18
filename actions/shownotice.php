@@ -100,7 +100,7 @@ class ShownoticeAction extends Action
             return false;
         }
 
-        $this->user = User::staticGet('id', $this->profile->id);
+        $this->user = User::getKV('id', $this->profile->id);
 
         $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
 
@@ -117,11 +117,11 @@ class ShownoticeAction extends Action
     {
         $id = $this->arg('notice');
 
-        $notice = Notice::staticGet('id', $id);
+        $notice = Notice::getKV('id', $id);
 
         if (empty($notice)) {
             // Did we used to have it, and it got deleted?
-            $deleted = Deleted_notice::staticGet($id);
+            $deleted = Deleted_notice::getKV($id);
             if (!empty($deleted)) {
                 // TRANS: Client error displayed trying to show a deleted notice.
                 $this->clientError(_('Notice deleted.'), 410);
@@ -290,7 +290,7 @@ class ShownoticeAction extends Action
      */
     function extraHead()
     {
-        $user = User::staticGet($this->profile->id);
+        $user = User::getKV($this->profile->id);
 
         if (!$user) {
             return;

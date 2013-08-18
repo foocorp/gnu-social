@@ -498,7 +498,7 @@ class BookmarkPlugin extends MicroAppPlugin
             if (!empty($other)) {
                 $options['replies'][] = $replyURI;
             } else {
-                $group = User_group::staticGet('uri', $replyURI);
+                $group = User_group::getKV('uri', $replyURI);
                 if (!empty($group)) {
                     $options['groups'][] = $replyURI;
                 }
@@ -509,7 +509,7 @@ class BookmarkPlugin extends MicroAppPlugin
         // @fixme what about conversation ID?
 
         if (!empty($activity->context->replyToID)) {
-            $orig = Notice::staticGet('uri',
+            $orig = Notice::getKV('uri',
                                       $activity->context->replyToID);
             if (!empty($orig)) {
                 $options['reply_to'] = $orig->id;
@@ -637,7 +637,7 @@ class BookmarkPlugin extends MicroAppPlugin
     {
         assert($obj->type == ActivityObject::BOOKMARK);
 
-        $bm = Bookmark::staticGet('uri', $obj->id);
+        $bm = Bookmark::getKV('uri', $obj->id);
 
         if (empty($bm)) {
             throw new ServerException("Unknown bookmark: " . $obj->id);

@@ -54,7 +54,7 @@ class GalleryAction extends ProfileAction
             return false;
         }
 
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed when trying to perform a gallery action with an unknown user.

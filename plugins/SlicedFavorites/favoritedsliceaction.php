@@ -143,7 +143,7 @@ class FavoritedSliceAction extends FavoritedAction
         $ids = array();
         foreach ($nicks as $nick) {
             // not the most efficient way for a big list!
-            $user = User::staticGet('nickname', $nick);
+            $user = User::getKV('nickname', $nick);
             if ($user) {
                 $ids[] = intval($user->id);
             }

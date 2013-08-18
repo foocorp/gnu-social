@@ -56,7 +56,7 @@ class ApiUserProfileImageAction extends ApiPrivateAuthAction
     function prepare($args)
     {
         parent::prepare($args);
-        $this->user = User::staticGet('nickname', $this->arg('screen_name'));
+        $this->user = User::getKV('nickname', $this->arg('screen_name'));
         $this->size = $this->arg('size');
 
         return true;

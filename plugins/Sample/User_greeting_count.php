@@ -130,7 +130,7 @@ class User_greeting_count extends Managed_DataObject
      */
     static function inc($user_id)
     {
-        $gc = User_greeting_count::staticGet('user_id', $user_id);
+        $gc = User_greeting_count::getKV('user_id', $user_id);
 
         if (empty($gc)) {
             $gc = new User_greeting_count();

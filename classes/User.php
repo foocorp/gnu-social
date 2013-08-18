@@ -128,7 +128,7 @@ class User extends Managed_DataObject
     function getProfile()
     {
         if (is_int($this->_profile) && $this->_profile == -1) { // invalid but distinct from null
-            $this->_profile = Profile::staticGet('id', $this->id);
+            $this->_profile = Profile::getKV('id', $this->id);
             if (empty($this->_profile)) {
                 throw new UserNoProfileException($this);
             }
@@ -222,7 +222,7 @@ class User extends Managed_DataObject
 
     function getCarrier()
     {
-        return Sms_carrier::staticGet('id', $this->carrier);
+        return Sms_carrier::getKV('id', $this->carrier);
     }
 
     /**
@@ -315,7 +315,7 @@ class User extends Managed_DataObject
         // Users who respond to invite email have proven their ownership of that address
 
         if (!empty($code)) {
-            $invite = Invitation::staticGet($code);
+            $invite = Invitation::getKV($code);
             if ($invite && $invite->address && $invite->address_type == 'email' && $invite->address == $email) {
                 $user->email = $invite->address;
             }
@@ -432,7 +432,7 @@ class User extends Managed_DataObject
             $defnick = common_config('newuser', 'default');
 
             if (!empty($defnick)) {
-                $defuser = User::staticGet('nickname', $defnick);
+                $defuser = User::getKV('nickname', $defnick);
                 if (empty($defuser)) {
                     common_log(LOG_WARNING, sprintf("Default user %s does not exist.", $defnick),
                                __FILE__);
@@ -452,7 +452,7 @@ class User extends Managed_DataObject
             $welcome = common_config('newuser', 'welcome');
 
             if (!empty($welcome)) {
-                $welcomeuser = User::staticGet('nickname', $welcome);
+                $welcomeuser = User::getKV('nickname', $welcome);
                 if (empty($welcomeuser)) {
                     common_log(LOG_WARNING, sprintf("Welcome user %s does not exist.", $defnick),
                                __FILE__);
@@ -483,7 +483,7 @@ class User extends Managed_DataObject
 
         if ($invites->find()) {
             while ($invites->fetch()) {
-                $other = User::staticGet($invites->user_id);
+                $other = User::getKV($invites->user_id);
                 subs_subscribe_to($other, $this);
             }
         }
@@ -874,7 +874,7 @@ class User extends Managed_DataObject
             $share = common_config('location', 'sharedefault');
 
             // Check if user has a personal setting for this
-            $prefs = User_location_prefs::staticGet('user_id', $this->id);
+            $prefs = User_location_prefs::getKV('user_id', $this->id);
 
             if (!empty($prefs)) {
                 $share = $prefs->share_location;
@@ -900,7 +900,7 @@ class User extends Managed_DataObject
             $pr->limit(1);
 
             if ($pr->find(true)) {
-                $owner = User::staticGet('id', $pr->profile_id);
+                $owner = User::getKV('id', $pr->profile_id);
             } else {
                 $owner = null;
             }
@@ -930,7 +930,7 @@ class User extends Managed_DataObject
             $nickname = common_config('singleuser', 'nickname');
 
             if (!empty($nickname)) {
-                $user = User::staticGet('nickname', $nickname);
+                $user = User::getKV('nickname', $nickname);
             }
 
             // if there was no nickname or no user by that nickname,
@@ -1051,11 +1051,11 @@ class User extends Managed_DataObject
 
     static function recoverPassword($nore)
     {
-        $user = User::staticGet('email', common_canonical_email($nore));
+        $user = User::getKV('email', common_canonical_email($nore));
 
         if (!$user) {
             try {
-                $user = User::staticGet('nickname', common_canonical_nickname($nore));
+                $user = User::getKV('nickname', common_canonical_nickname($nore));
             } catch (NicknameException $e) {
                 // invalid
             }
@@ -1072,7 +1072,7 @@ class User extends Managed_DataObject
             $confirm_email->address_type = 'email';
             $confirm_email->find();
             if ($confirm_email->fetch()) {
-                $user = User::staticGet($confirm_email->user_id);
+                $user = User::getKV($confirm_email->user_id);
             } else {
                 $confirm_email = null;
             }
@@ -1145,7 +1145,7 @@ class User extends Managed_DataObject
     function streamModeOnly()
     {
         if (common_config('oldschool', 'enabled')) {
-            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            $osp = Old_school_prefs::getKV('user_id', $this->id);
             if (!empty($osp)) {
                 return $osp->stream_mode_only;
             }
@@ -1157,7 +1157,7 @@ class User extends Managed_DataObject
     function conversationTree()
     {
         if (common_config('oldschool', 'enabled')) {
-            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            $osp = Old_school_prefs::getKV('user_id', $this->id);
             if (!empty($osp)) {
                 return $osp->conversation_tree;
             }
@@ -1169,7 +1169,7 @@ class User extends Managed_DataObject
     function streamNicknames()
     {
         if (common_config('oldschool', 'enabled')) {
-            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            $osp = Old_school_prefs::getKV('user_id', $this->id);
             if (!empty($osp)) {
                 return $osp->stream_nicknames;
             }

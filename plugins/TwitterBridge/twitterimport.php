@@ -90,7 +90,7 @@ class TwitterImport
         $statusUri = $this->makeStatusURI($status->user->screen_name, $statusId);
 
         // check to see if we've already imported the status
-        $n2s = Notice_to_status::staticGet('status_id', $statusId);
+        $n2s = Notice_to_status::getKV('status_id', $statusId);
 
         if (!empty($n2s)) {
             common_log(
@@ -98,7 +98,7 @@ class TwitterImport
                 $this->name() .
                 " - Ignoring duplicate import: {$statusId}"
             );
-            return Notice::staticGet('id', $n2s->notice_id);
+            return Notice::getKV('id', $n2s->notice_id);
         }
 
         // If it's a retweet, save it as a repeat!
@@ -149,11 +149,11 @@ class TwitterImport
         $replyTo = twitter_id($status, 'in_reply_to_status_id');
         if (!empty($replyTo)) {
             common_log(LOG_INFO, "Status {$statusId} is a reply to status {$replyTo}");
-            $n2s = Notice_to_status::staticGet('status_id', $replyTo);
+            $n2s = Notice_to_status::getKV('status_id', $replyTo);
             if (empty($n2s)) {
                 common_log(LOG_INFO, "Couldn't find local notice for status {$replyTo}");
             } else {
-                $reply = Notice::staticGet('id', $n2s->notice_id);
+                $reply = Notice::getKV('id', $n2s->notice_id);
                 if (empty($reply)) {
                     common_log(LOG_INFO, "Couldn't find local notice for status {$replyTo}");
                 } else {
@@ -215,7 +215,7 @@ class TwitterImport
 
 
     /**
-     * Look up a Profile by profileurl field.  Profile::staticGet() was
+     * Look up a Profile by profileurl field.  Profile::getKV() was
      * not working consistently.
      *
      * @param string $nickname   local nickname of the Twitter user
@@ -305,7 +305,7 @@ class TwitterImport
 
             // check for remote profile
 
-            $remote_pro = Remote_profile::staticGet('uri', $profileurl);
+            $remote_pro = Remote_profile::getKV('uri', $profileurl);
 
             if (empty($remote_pro)) {
                 $remote_pro = new Remote_profile();
@@ -440,7 +440,7 @@ class TwitterImport
 
         common_debug($this->name() . " - Updating avatar: $size");
 
-        $profile = Profile::staticGet($profile_id);
+        $profile = Profile::getKV($profile_id);
 
         if (empty($profile)) {
             common_debug($this->name() . " - Couldn't get profile: $profile_id!");
@@ -679,7 +679,7 @@ class TwitterImport
         foreach ($status->entities->user_mentions as $mention) {
             $flink = Foreign_link::getByForeignID($mention->id, TWITTER_SERVICE);
             if (!empty($flink)) {
-                $user = User::staticGet('id', $flink->user_id);
+                $user = User::getKV('id', $flink->user_id);
                 if (!empty($user)) {
                     $reply = new Reply();
                     $reply->notice_id  = $notice->id;

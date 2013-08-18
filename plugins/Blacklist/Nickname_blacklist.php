@@ -124,7 +124,7 @@ class Nickname_blacklist extends Managed_DataObject
         $toInsert = array_diff($newPatterns, $oldPatterns);
 
         foreach ($toDelete as $pattern) {
-            $nb = Nickname_blacklist::staticGet('pattern', $pattern);
+            $nb = Nickname_blacklist::getKV('pattern', $pattern);
             if (!empty($nb)) {
                 $nb->delete();
             }
@@ -142,7 +142,7 @@ class Nickname_blacklist extends Managed_DataObject
 
     static function ensurePattern($pattern)
     {
-        $nb = Nickname_blacklist::staticGet('pattern', $pattern);
+        $nb = Nickname_blacklist::getKV('pattern', $pattern);
 
         if (empty($nb)) {
             $nb = new Nickname_blacklist();

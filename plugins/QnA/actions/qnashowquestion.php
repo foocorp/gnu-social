@@ -61,7 +61,7 @@ class QnashowquestionAction extends ShownoticeAction
 
         $this->id = $this->trimmed('id');
 
-        $this->question = QnA_Question::staticGet('id', $this->id);
+        $this->question = QnA_Question::getKV('id', $this->id);
 
         if (empty($this->question)) {
             // TRANS: Client exception thrown trying to view a non-existing question.
@@ -76,7 +76,7 @@ class QnashowquestionAction extends ShownoticeAction
             throw new ClientException(_m('No such question notice.'), 404);
         }
 
-        $this->user = User::staticGet('id', $this->question->profile_id);
+        $this->user = User::getKV('id', $this->question->profile_id);
 
         if (empty($this->user)) {
             // TRANS: Client exception thrown trying to view a question of a non-existing user.

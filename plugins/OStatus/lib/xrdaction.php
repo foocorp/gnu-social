@@ -101,7 +101,7 @@ class XrdAction extends Action
                               'href' => $salmon_url);
 
         // Get this user's keypair
-        $magickey = Magicsig::staticGet('user_id', $this->user->id);
+        $magickey = Magicsig::getKV('user_id', $this->user->id);
         if (!$magickey) {
             // No keypair yet, let's generate one.
             $magickey = new Magicsig();

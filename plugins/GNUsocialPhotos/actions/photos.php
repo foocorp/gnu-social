@@ -48,7 +48,7 @@ class PhotosAction extends Action
         if (common_valid_profile_tag($username) == 0) {
             $this->user = null;
         } else {
-            $this->user = Profile::staticGet('nickname', $username);
+            $this->user = Profile::getKV('nickname', $username);
         }
         return true;
     }
@@ -120,7 +120,7 @@ class PhotosAction extends Action
     
     function showAlbum($album_id)
     {
-        $album = GNUSocialPhotoAlbum::staticGet('album_id', $album_id);
+        $album = GNUSocialPhotoAlbum::getKV('album_id', $album_id);
         if (!$album) {
             return;
         }

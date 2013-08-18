@@ -71,7 +71,7 @@ class Attachment_thumbnailAction extends AttachmentAction
      */
     function showCore()
     {
-        $file_thumbnail = File_thumbnail::staticGet('file_id', $this->attachment->id);
+        $file_thumbnail = File_thumbnail::getKV('file_id', $this->attachment->id);
         if (empty($file_thumbnail->url)) {
             return;
         }

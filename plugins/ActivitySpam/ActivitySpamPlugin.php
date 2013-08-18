@@ -151,7 +151,7 @@ class ActivitySpamPlugin extends Plugin
     }
 
     function onNoticeDeleteRelated($notice) {
-        $score = Spam_score::staticGet('notice_id', $notice->id);
+        $score = Spam_score::getKV('notice_id', $notice->id);
         if (!empty($score)) {
             $score->delete();
         }
@@ -185,7 +185,7 @@ class ActivitySpamPlugin extends Plugin
 
             if (!empty($notice)) {
 
-                $score = Spam_score::staticGet('notice_id', $notice->id);
+                $score = Spam_score::getKV('notice_id', $notice->id);
 
                 if (empty($score)) {
                     // If it's empty, we can train it.
@@ -263,7 +263,7 @@ class ActivitySpamPlugin extends Plugin
         if ($this->hideSpam) {
             if ($bResult) {
 
-                $score = Spam_score::staticGet('notice_id', $notice->id);
+                $score = Spam_score::getKV('notice_id', $notice->id);
 
                 if (!empty($score) && $score->is_spam) {
                     if (empty($profile) ||

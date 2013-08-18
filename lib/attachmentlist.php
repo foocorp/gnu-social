@@ -152,7 +152,7 @@ class AttachmentListItem extends Widget
     {
         parent::__construct($out);
         $this->attachment  = $attachment;
-        $this->oembed = File_oembed::staticGet('file_id', $this->attachment->id);
+        $this->oembed = File_oembed::getKV('file_id', $this->attachment->id);
     }
 
     function title() {
@@ -222,7 +222,7 @@ class AttachmentListItem extends Widget
      */
     function getThumbInfo()
     {
-        $thumbnail = File_thumbnail::staticGet('file_id', $this->attachment->id);
+        $thumbnail = File_thumbnail::getKV('file_id', $this->attachment->id);
         if ($thumbnail) {
             $maxWidth = common_config('attachments', 'thumb_width');
             $maxHeight = common_config('attachments', 'thumb_height');

@@ -35,7 +35,7 @@ class EnjitQueueHandler extends QueueHandler
     function handle($notice)
     {
 
-        $profile = Profile::staticGet($notice->profile_id);
+        $profile = Profile::getKV($notice->profile_id);
 
         $this->log(LOG_INFO, "Posting Notice ".$notice->id." from ".$profile->nickname);
 

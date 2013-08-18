@@ -73,7 +73,7 @@ class AvatarbynicknameAction extends Action
             return;
         }
 
-        $user = User::staticGet('nickname', $nickname);
+        $user = User::getKV('nickname', $nickname);
         if (!$user) {
             // TRANS: Client error displayed trying to get an avatar for a non-existing user.
             $this->clientError(_('No such user.'));

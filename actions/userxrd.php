@@ -43,15 +43,15 @@ class UserxrdAction extends XrdAction
                 // @fixme if domain checking is added, ensure that it will not
                 //        cause problems with sites that have changed domains!
                 $nick = common_canonical_nickname($nick);
-                $this->user = User::staticGet('nickname', $nick);
+                $this->user = User::getKV('nickname', $nick);
             }
         } else {
-            $this->user = User::staticGet('uri', $this->uri);
+            $this->user = User::getKV('uri', $this->uri);
             if (empty($this->user)) {
                 // try and get it by profile url
-                $profile = Profile::staticGet('profileurl', $this->uri);
+                $profile = Profile::getKV('profileurl', $this->uri);
                 if (!empty($profile)) {
-                    $this->user = User::staticGet('id', $profile->id);
+                    $this->user = User::getKV('id', $profile->id);
                 }
             }
         }

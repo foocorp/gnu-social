@@ -170,7 +170,7 @@ abstract class ImPlugin extends Plugin
     {
         $user_im_prefs = $this->getUserImPrefsFromScreenname($screenname);
         if($user_im_prefs){
-            $user = User::staticGet('id', $user_im_prefs->user_id);
+            $user = User::getKV('id', $user_im_prefs->user_id);
             $user_im_prefs->free();
             return $user;
         }else{
@@ -321,7 +321,7 @@ abstract class ImPlugin extends Plugin
         $ni = $notice->whoGets();
 
         foreach ($ni as $user_id => $reason) {
-            $user = User::staticGet($user_id);
+            $user = User::getKV($user_id);
             if (empty($user)) {
                 // either not a local user, or just not found
                 continue;
@@ -535,7 +535,7 @@ abstract class ImPlugin extends Plugin
 
     function onStartEnqueueNotice($notice, &$transports)
     {
-        $profile = Profile::staticGet($notice->profile_id);
+        $profile = Profile::getKV($notice->profile_id);
 
         if (!$profile) {
             common_log(LOG_WARNING, 'Refusing to broadcast notice with ' .

@@ -188,7 +188,7 @@ class DomainStatusNetworkInstaller extends Installer
 
         // Re-fetch; stupid auto-increment integer isn't working
 
-        $sn = Status_network::staticGet('nickname', $sn->nickname);
+        $sn = Status_network::getKV('nickname', $sn->nickname);
 
         if (empty($sn)) {
             throw new ServerException("Created {$this->nickname} status_network and could not find it again.");

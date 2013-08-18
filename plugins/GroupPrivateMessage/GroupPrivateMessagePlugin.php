@@ -245,7 +245,7 @@ class GroupPrivateMessagePlugin extends Plugin
         $gps = null;
 
         if (!empty($form->group)) {
-            $gps = Group_privacy_settings::staticGet('group_id', $form->group->id);
+            $gps = Group_privacy_settings::getKV('group_id', $form->group->id);
         }
 
         $form->out->elementStart('li');
@@ -286,7 +286,7 @@ class GroupPrivateMessagePlugin extends Plugin
         $gps = null;
 
         if (!empty($action->group)) {
-            $gps = Group_privacy_settings::staticGet('group_id', $action->group->id);
+            $gps = Group_privacy_settings::getKV('group_id', $action->group->id);
         }
 
         $orig = null;
@@ -441,7 +441,7 @@ class GroupPrivateMessagePlugin extends Plugin
                                "but group ".$group->nickname." does not allow them.");
                 }
 
-                $user = User::staticGet('id', $notice->profile_id);
+                $user = User::getKV('id', $notice->profile_id);
 
                 if (empty($user)) {
                     common_log(LOG_WARNING,

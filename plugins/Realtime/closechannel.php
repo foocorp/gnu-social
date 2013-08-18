@@ -72,7 +72,7 @@ class ClosechannelAction extends Action
             throw new ClientException(_m('No channel key argument.'));
         }
 
-        $this->channel = Realtime_channel::staticGet('channel_key', $this->channelKey);
+        $this->channel = Realtime_channel::getKV('channel_key', $this->channelKey);
 
         if (empty($this->channel)) {
             // TRANS: Client exception thrown when referring to a non-existing channel.

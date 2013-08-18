@@ -102,7 +102,7 @@ class EmailRegistrationPlugin extends Plugin
 
     static function registerEmail($email)
     {
-        $old = User::staticGet('email', $email);
+        $old = User::getKV('email', $email);
 
         if (!empty($old)) {
             // TRANS: Error text when trying to register with an already registered e-mail address.
@@ -147,7 +147,7 @@ class EmailRegistrationPlugin extends Plugin
 
         $n = 0;
 
-        while (User::staticGet('nickname', $nickname)) {
+        while (User::getKV('nickname', $nickname)) {
             $n++;
             $nickname = $original . $n;
         }

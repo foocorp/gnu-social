@@ -553,7 +553,7 @@ class ActivityObject
             $object->title   = $ptag->tag;
             $object->summary = $ptag->description;
             $object->link    = $ptag->homeUrl();
-            $object->owner   = Profile::staticGet('id', $ptag->tagger);
+            $object->owner   = Profile::getKV('id', $ptag->tagger);
             $object->poco    = PoCo::fromProfile($object->owner);
             Event::handle('EndActivityObjectFromPeopletag', array($ptag, &$object));
         }

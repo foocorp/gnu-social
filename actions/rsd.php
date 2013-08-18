@@ -107,7 +107,7 @@ class RsdAction extends Action
                 return false;
             }
 
-            $this->user = User::staticGet('nickname', $nickname);
+            $this->user = User::getKV('nickname', $nickname);
 
             if (empty($this->user)) {
                 // TRANS: Client error.

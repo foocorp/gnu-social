@@ -74,7 +74,7 @@ class AutoSandboxPlugin extends Plugin
          $instr = _m('Note you will initially be "sandboxed" so your posts will not appear in the public timeline.');
 
          if (isset($this->contact)) {
-             $contactuser = User::staticGet('nickname', $this->contact);
+             $contactuser = User::getKV('nickname', $this->contact);
              if (!empty($contactuser)) {
                  $contactlink = "@<a href=\"$contactuser->uri\">$contactuser->nickname</a>";
                  // TRANS: User instructions after registration.

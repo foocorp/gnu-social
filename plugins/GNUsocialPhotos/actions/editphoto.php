@@ -42,7 +42,7 @@ class EditphotoAction extends Action
         $args = $this->returnToArgs();
         $this->user = common_current_user();
         $this->photoid = $args[1]['photoid'];
-        $this->photo = GNUsocialPhoto::staticGet('id', $this->photoid);
+        $this->photo = GNUsocialPhoto::getKV('id', $this->photoid);
         return true;
     }
 
@@ -166,7 +166,7 @@ class EditphotoAction extends Action
 
         $profile_id = $cur->id;
        
-        $album = GNUsocialPhotoAlbum::staticGet('album_id', $this->trimmed('album'));
+        $album = GNUsocialPhotoAlbum::getKV('album_id', $this->trimmed('album'));
         if ($album->profile_id != $profile_id) {
             $this->showForm(_('Error: This is not your album!'));
             return;
@@ -188,7 +188,7 @@ class EditphotoAction extends Action
         //For redirection
         $oldalbum = $this->album_id;
 
-        $notice = Notice::staticGet('id', $this->photo->notice_id);
+        $notice = Notice::getKV('id', $this->photo->notice_id);
 
         $this->photo->delete();
         

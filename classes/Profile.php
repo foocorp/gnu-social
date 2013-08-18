@@ -92,7 +92,7 @@ class Profile extends Managed_DataObject
     function getUser()
     {
         if (is_int($this->_user) && $this->_user == -1) {
-            $this->_user = User::staticGet('id', $this->id);
+            $this->_user = User::getKV('id', $this->id);
         }
 
         return $this->_user;
@@ -440,7 +440,7 @@ class Profile extends Managed_DataObject
         $lists = array();
 
         foreach ($ids as $id) {
-            $list = Profile_list::staticGet('id', $id);
+            $list = Profile_list::getKV('id', $id);
             if (!empty($list) &&
                 ($showPrivate || !$list->private)) {
 
@@ -637,7 +637,7 @@ class Profile extends Managed_DataObject
         $profiles = array();
 
         while ($subs->fetch()) {
-            $profile = Profile::staticGet($subs->subscribed);
+            $profile = Profile::getKV($subs->subscribed);
             if ($profile) {
                 $profiles[] = $profile;
             }
@@ -655,7 +655,7 @@ class Profile extends Managed_DataObject
         $profiles = array();
 
         while ($subs->fetch()) {
-            $profile = Profile::staticGet($subs->subscriber);
+            $profile = Profile::getKV($subs->subscriber);
             if ($profile) {
                 $profiles[] = $profile;
             }
@@ -958,7 +958,7 @@ class Profile extends Managed_DataObject
         $sub->find();
 
         while ($sub->fetch()) {
-            $other = Profile::staticGet('id', $sub->subscribed);
+            $other = Profile::getKV('id', $sub->subscribed);
             if (empty($other)) {
                 continue;
             }
@@ -973,7 +973,7 @@ class Profile extends Managed_DataObject
         $subd->find();
 
         while ($subd->fetch()) {
-            $other = Profile::staticGet('id', $subd->subscriber);
+            $other = Profile::getKV('id', $subd->subscriber);
             if (empty($other)) {
                 continue;
             }
@@ -1345,7 +1345,7 @@ class Profile extends Managed_DataObject
         if (Event::handle('StartGetProfileUri', array($this, &$uri))) {
 
             // check for a local user first
-            $user = User::staticGet('id', $this->id);
+            $user = User::getKV('id', $this->id);
 
             if (!empty($user)) {
                 $uri = $user->uri;
@@ -1375,7 +1375,7 @@ class Profile extends Managed_DataObject
         $feed = null;
 
         if (Event::handle('StartProfileGetAtomFeed', array($this, &$feed))) {
-            $user = User::staticGet('id', $this->id);
+            $user = User::getKV('id', $this->id);
             if (!empty($user)) {
                 $feed = common_local_url('ApiTimelineUser', array('id' => $user->id,
                                                                   'format' => 'atom'));
@@ -1392,7 +1392,7 @@ class Profile extends Managed_DataObject
 
         if (Event::handle('StartGetProfileFromURI', array($uri, &$profile))) {
             // Get a local user or remote (OMB 0.1) profile
-            $user = User::staticGet('uri', $uri);
+            $user = User::getKV('uri', $uri);
             if (!empty($user)) {
                 $profile = $user->getProfile();
             }

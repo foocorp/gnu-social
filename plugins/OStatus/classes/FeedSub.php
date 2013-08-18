@@ -170,7 +170,7 @@ class FeedSub extends Managed_DataObject
     public function localProfile()
     {
         if ($this->profile_id) {
-            return Profile::staticGet('id', $this->profile_id);
+            return Profile::getKV('id', $this->profile_id);
         }
         return null;
     }
@@ -182,7 +182,7 @@ class FeedSub extends Managed_DataObject
     public function localGroup()
     {
         if ($this->group_id) {
-            return User_group::staticGet('id', $this->group_id);
+            return User_group::getKV('id', $this->group_id);
         }
         return null;
     }
@@ -194,7 +194,7 @@ class FeedSub extends Managed_DataObject
      */
     public static function ensureFeed($feeduri)
     {
-        $current = self::staticGet('uri', $feeduri);
+        $current = self::getKV('uri', $feeduri);
         if ($current) {
             return $current;
         }

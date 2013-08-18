@@ -214,7 +214,7 @@ class OStatusInitAction extends Action
     function targetProfile()
     {
         if ($this->nickname) {
-            $user = User::staticGet('nickname', $this->nickname);
+            $user = User::getKV('nickname', $this->nickname);
             if ($user) {
                 return common_local_url('userbyid', array('id' => $user->id));
             } else {
@@ -222,7 +222,7 @@ class OStatusInitAction extends Action
                 $this->clientError(_m('No such user.'));
             }
         } else if ($this->group) {
-            $group = Local_group::staticGet('nickname', $this->group);
+            $group = Local_group::getKV('nickname', $this->group);
             if ($group) {
                 return common_local_url('groupbyid', array('id' => $group->group_id));
             } else {
@@ -230,7 +230,7 @@ class OStatusInitAction extends Action
                 $this->clientError(_m('No such group.'));
             }
         } else if ($this->peopletag && $this->tagger) {
-            $user = User::staticGet('nickname', $this->tagger);
+            $user = User::getKV('nickname', $this->tagger);
             if (empty($user)) {
                 // TRANS: Client error.
                 $this->clientError(_m('No such user.'));

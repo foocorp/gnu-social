@@ -70,7 +70,7 @@ class ProfileAction extends Action
             return false;
         }
 
-        $this->user = User::staticGet('nickname', $nickname);
+        $this->user = User::getKV('nickname', $nickname);
 
         if (!$this->user) {
             // TRANS: Client error displayed when calling a profile action without specifying a user.

@@ -79,7 +79,7 @@ class PeopletagsubscriptionsAction extends Action
             return false;
         }
 
-        $user = User::staticGet('nickname', $nickname);
+        $user = User::getKV('nickname', $nickname);
 
         if (!$user) {
             // TRANS: Client error displayed trying to perform an action related to a non-existing user.

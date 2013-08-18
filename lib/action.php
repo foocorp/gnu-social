@@ -545,7 +545,7 @@ class Action extends HTMLOutputter // lawsuit
                     // if logo is an uploaded file, try to fall back to HTTPS file URL
                     $httpUrl = common_config('site', 'logo');
                     if (!empty($httpUrl)) {
-                        $f = File::staticGet('url', $httpUrl);
+                        $f = File::getKV('url', $httpUrl);
                         if (!empty($f) && !empty($f->filename)) {
                             // this will handle the HTTPS case
                             $logoUrl = File::url($f->filename);
