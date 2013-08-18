@@ -74,6 +74,19 @@ class SiteProfile
 abstract class SiteProfileSettings
 {
     abstract static function getSettings();
+
+    static function defaultPlugins() {
+        return array(
+            'Bookmark'                => null,
+            'Event'                   => null,
+            'OpenID'                  => null,
+            'Poll'                    => null,
+            'QnA'                     => null,
+            'SearchSub'               => null,
+            'StrictTransportSecurity' => null,
+            'TagSub'                  => null,
+        );
+    }
 }
 
 /**
@@ -98,22 +111,14 @@ class PublicSite extends SiteProfileSettings
                 )
             ),
             'plugins' => array(
-                'default' => array(
-                    'Bookmark'                => null,
+                'default' => array_merge(self::defaultPlugins(), array(
                     'ClientSideShorten'       => null,
                     'Directory'               => null,
-                    'Event'                   => null,
                     'ExtendedProfile'         => null,
                     'Geonames'                => null,
                     'Gravatar'                => null,
-                    'OpenID'                  => null,
                     'OStatus'                 => null,
-                    'Poll'                    => null,
-                    'QnA'                     => null,
-                    'SearchSub'               => null,
-                    'StrictTransportSecurity' => null,
-                    'TagSub'                  => null
-                )
+                ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
         );
@@ -143,24 +148,16 @@ class PrivateSite extends SiteProfileSettings
                 )
             ),
             'plugins' => array(
-                'default' => array(
-                    'Bookmark'                => null,
+                'default' => array_merge(self::defaultPlugins(), array(
                     'ClientSideShorten'       => null,
                     'Directory'               => null,
-                    'Event'                   => null,
                     'ExtendedProfile'         => null,
                     'EmailRegistration'       => null,
                     'Geonames'                => null,
                     'Gravatar'                => null,
                     'NewMenu'                 => null,
                     'MobileProfile'           => null,
-                    'OpenID'                  => null,
-                    'Poll'                    => null,
-                    'QnA'                     => null,
-                    'SearchSub'               => null,
-                    'StrictTransportSecurity' => null,
-                    'TagSub'                  => null
-                )
+                ))
              ),
             'profile'       => array('delete' => 'true'),
             'license'       => array('type'   => 'private'),
@@ -205,21 +202,13 @@ class CommunitySite extends SiteProfileSettings
                 )
             ),
             'plugins' => array(
-                'default' => array(
-                    'Bookmark'                => null,
+                'default' => array_merge(self::defaultPlugins(), array(
                     'ClientSideShorten'       => null,
                     'Directory'               => null,
-                    'Event'                   => null,
                     'Geonames'                => null,
                     'Gravatar'                => null,
-                    'OpenID'                  => null,
                     'OStatus'                 => null,
-                    'Poll'                    => null,
-                    'QnA'                     => null,
-                    'SearchSub'               => null,
-                    'StrictTransportSecurity' => null,
-                    'TagSub'                  => null
-                )
+                ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
         );
@@ -249,23 +238,15 @@ class SingleuserSite extends SiteProfileSettings
                 )
             ),
             'plugins' => array(
-                'default' => array(
-                    'Bookmark'                => null,
+                'default' => array_merge(self::defaultPlugins(), array(
                     'ClientSideShorten'       => null,
-                    'Event'                   => null,
                     'Geonames'                => null,
                     'NewMenu'                 => null,
                     'MobileProfile'           => null,
-                    'OpenID'                  => null,
                     'OStatus'                 => null,
-                    'Poll'                    => null,
-                    'QnA'                     => null,
-                    'SearchSub'               => null,
-                    'StrictTransportSecurity' => null,
-                    'TagSub'                  => null,
                     'TwitterBridge'           => null,
                     'FacebookBridge'          => null,
-                )
+                ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
         );
