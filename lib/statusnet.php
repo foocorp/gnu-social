@@ -222,27 +222,27 @@ class StatusNet
      *
      * @return bool
      */
-    public function haveConfig()
+    public static function haveConfig()
     {
         return self::$have_config;
     }
 
-    public function isApi()
+    public static function isApi()
     {
         return self::$is_api;
     }
 
-    public function setApi($mode)
+    public static function setApi($mode)
     {
         self::$is_api = $mode;
     }
 
-    public function isAjax()
+    public static function isAjax()
     {
         return self::$is_ajax;
     }
 
-    public function setAjax($mode)
+    public static function setAjax($mode)
     {
         self::$is_ajax = $mode;
     }
