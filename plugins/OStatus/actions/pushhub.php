@@ -203,7 +203,8 @@ class PushHubAction extends Action
         $url = $this->arg($arg);
         $params = array('domain_check' => false, // otherwise breaks my local tests :P
                         'allowed_schemes' => array('http', 'https'));
-        if (Validate::uri($url, $params)) {
+        $validate = new Validate;
+        if ($validate->uri($url, $params)) {
             return $url;
         } else {
             // TRANS: Client exception.

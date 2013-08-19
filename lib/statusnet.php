@@ -313,7 +313,7 @@ class StatusNet
         $config = array_merge($config, $settings);
     }
 
-    protected function _sn_to_path($sn)
+    protected static function _sn_to_path($sn)
     {
         $past_root = substr($sn, 1);
         $last_slash = strrpos($past_root, '/');
@@ -331,7 +331,7 @@ class StatusNet
      *
      * @throws NoConfigException
      */
-    protected function loadConfigFile($conffile=null)
+    protected static function loadConfigFile($conffile=null)
     {
         global $_server, $_path, $config;
 
