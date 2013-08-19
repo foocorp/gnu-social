@@ -32,6 +32,9 @@ class Memcached_DataObject extends Safe_DataObject
      */
     static function getClassKV($cls, $k, $v=null)
     {
+        if (!is_a($cls, __CLASS__, true)) {
+            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
+        }
         if (is_null($v)) {
             $v = $k;
             $keys = self::pkeyCols($cls);
@@ -41,13 +44,9 @@ class Memcached_DataObject extends Safe_DataObject
             }
             $k = $keys[0];
         }
-        $i = Memcached_DataObject::getcached($cls, $k, $v);
+        $i = self::getcached($cls, $k, $v);
         if ($i === false) { // false == cache miss
-            $i = DB_DataObject::factory($cls);
-            if (empty($i)) {
-                $i = false;
-                return $i;
-            }
+            $i = new $cls;
             $result = $i->get($k, $v);
             if ($result) {
                 // Hit!
@@ -106,6 +105,9 @@ class Memcached_DataObject extends Safe_DataObject
      */
     static function pivotGet($cls, $keyCol, $keyVals, $otherCols = array())
     {
+        if (!is_a($cls, __CLASS__, true)) {
+            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
+        }
         if (is_array($keyCol)) {
             foreach ($keyVals as $keyVal) {
                 $result[implode(',', $keyVal)] = null;
@@ -140,11 +142,7 @@ class Memcached_DataObject extends Safe_DataObject
         }
 
         if (count($toFetch) > 0) {
-            $i = DB_DataObject::factory($cls);
-            if (empty($i)) {
-                // TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
-                throw new Exception(sprintf(_('Cannot instantiate class %s.'),$cls));
-            }
+            $i = new $cls;
             foreach ($otherCols as $otherKeyCol => $otherKeyVal) {
                 $i->$otherKeyCol = $otherKeyVal;
             }
@@ -248,11 +246,10 @@ class Memcached_DataObject extends Safe_DataObject
 
     static function pkeyCols($cls)
     {
-        $i = DB_DataObject::factory($cls);
-        if (empty($i)) {
-            // TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
-            throw new Exception(sprintf(_('Cannot instantiate class %s.'),$cls));
+        if (!is_a($cls, __CLASS__, true)) {
+            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
         }
+        $i = new $cls;
         $types = $i->keyTypes();
         ksort($types);
 
@@ -269,6 +266,9 @@ class Memcached_DataObject extends Safe_DataObject
 
     static function listGetClass($cls, $keyCol, $keyVals)
     {
+        if (!is_a($cls, __CLASS__, true)) {
+            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
+        }
         $pkeyMap = array_fill_keys($keyVals, array());
         $result = array_fill_keys($keyVals, array());
 
@@ -305,11 +305,7 @@ class Memcached_DataObject extends Safe_DataObject
         }
 
         if (count($toFetch) > 0) {
-            $i = DB_DataObject::factory($cls);
-            if (empty($i)) {
-                // TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
-                throw new Exception(sprintf(_('Cannot instantiate class %s.'),$cls));
-            }
+            $i = new $cls;
             $i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
             if ($i->find()) {
                 sprintf(__CLASS__ . "() got {$i->N} results for class $cls key $keyCol");
@@ -354,14 +350,14 @@ class Memcached_DataObject extends Safe_DataObject
      */
     static function pkeyGetClass($cls, $kv)
     {
+        if (!is_a($cls, __CLASS__, true)) {
+            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
+        }
         $i = Memcached_DataObject::multicache($cls, $kv);
         if ($i !== false) { // false == cache miss
             return $i;
         } else {
-            $i = DB_DataObject::factory($cls);
-            if (empty($i) || PEAR::isError($i)) {
-                return false;
-            }
+            $i = new $cls;
             foreach ($kv as $k => $v) {
                 if (is_null($v)) {
                     // XXX: possible SQL injection...? Don't

@@ -155,10 +155,10 @@ class Profile extends Managed_DataObject
 
     function getOriginalAvatar()
     {
-        $avatar = DB_DataObject::factory('avatar');
-        $avatar->profile_id = $this->id;
-        $avatar->original = true;
-        if ($avatar->find(true)) {
+        $pkey = array('profile_id' => $this->id,
+                      'original'   => true);
+        $avatar = Avatar::pkeyGet($pkey);
+        if (!empty($avatar)) {
             return $avatar;
         } else {
             return null;
