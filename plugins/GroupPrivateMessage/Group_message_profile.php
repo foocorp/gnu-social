@@ -48,56 +48,25 @@ class Group_message_profile extends Managed_DataObject
 {
     public $__table = 'group_message_profile'; // table name
     public $to_profile;                        // int
-    public $group_message_id;                  // char(36)  primary_key not_null
-    public $created;
+    public $group_message_id;                  // varchar(36)  primary_key not_null
+    public $created;                           // datetime()   not_null
+    public $modified;                          // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('to_profile' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'group_message_id' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has, since it
-     * won't appear in StatusNet's own keys list. In most cases, this will
-     * simply reference your keyTypes() function.
-     *
-     * @return array list of key field names
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * @return array associative array of key definitions, field name to type:
-     *         'K' for primary key: for compound keys, add an entry for each component;
-     *         'U' for unique keys: compound keys are not well supported here.
-     */
-    function keyTypes()
-    {
-        return array('to_profile' => 'K', 'group_message_id' => 'K');
-    }
-
-    /**
-     * No sequence keys in this table.
-     */
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'to_profile' => array('type' => 'int', 'not null' => true, 'description' => 'id of group direct message'),
+                'group_message_id' => array('type' => 'varchar', 'not null' => true, 'length' => 36, 'description' => 'group message uuid'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('to_profile', 'group_message_id'),
+            'foreign keys' => array(
+                'group_message_profile_to_profile_fkey' => array('profile', array('to_profile' => 'id')),
+                'group_message_profile_group_message_id_fkey' => array('group_message', array('group_message_id' => 'id')),
+            ),
+        );
     }
 
     function send($gm, $profile)

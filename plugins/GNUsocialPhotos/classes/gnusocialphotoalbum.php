@@ -38,33 +38,31 @@ class GNUsocialPhotoAlbum extends Managed_DataObject
     public $__table = 'GNUsocialPhotoAlbum';
     public $album_id;          // int(11) -- Unique identifier for the album
     public $profile_id;        // int(11) -- Profile ID for the owner of the album
-    public $album_name;        // varchar(256) -- Title for this album
+    public $album_name;        // varchar(255) -- Title for this album
     public $album_description; // text -- A description of the album
+    public $created;           // datetime()   not_null
+    public $modified;          // timestamp()   not_null default_CURRENT_TIMESTAMP
     
     /* TODO: Primary key on both album_id, profile_id / foriegn key on profile_id */
-    function table()
+    public static function schemaDef()
     {
-        return array('album_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'profile_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'album_name' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'album_description' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
-    }
-    
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    
-    /* Using album_id as the primary key for now.. */
-    function keyTypes()
-    {
-        return array('album_id' => 'K');
-    }
-
-    function sequenceKey()
-    {
-        return array('album_id', true, false);
+        return array(
+            'fields' => array(
+                'album_id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique identifier for the album'),
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'Profile ID for the owner of the album'),
+                'album_name' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'Title for this album'),
+                'album_description' => array('type' => 'text', 'not null' => true, 'description' => 'A description for this album'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('user_id'),
+            'foreign keys' => array(
+                'gnusocialphotoalbum_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+            ),
+            'indexes' => array(
+                'gnusocialphotoalbum_album_name_idx' => array('album_name'),
+            ),
+        );
     }
 
     function getPageLink()

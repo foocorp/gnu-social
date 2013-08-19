@@ -49,51 +49,25 @@ class Notice_title extends Managed_DataObject
     const MAXCHARS = 255;
 
     public $__table = 'notice_title'; // table name
-    public $notice_id;                         // int(4)  primary_key not_null
+    public $notice_id;                         // int(11)  primary_key not_null
     public $title;                             // varchar(255)
+    public $created;                           // datetime()   not_null
+    public $modified;                          // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'title' => DB_DATAOBJECT_STR);
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * @return array list of key field names
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * @return array list mapping field names to key types
-     */
-    function keyTypes()
-    {
-        return array('notice_id' => 'K');
-    }
-
-    /**
-     * Magic formula for non-autoincrementing integer primary keys
-     *
-     * @return array magic three-false array that stops auto-incrementing.
-     */
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice id this title relates to'),
+                'title' => array('type' => 'varchar', 'length' => Notice_title::MAXCHARS, 'description' => 'title to notice'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('notice_id'),
+            'foreign keys' => array(
+                'notice_title_notice_id_fkey' => array('notice', array('notice_id' => 'id')),
+            ),
+        );
     }
 
     /**

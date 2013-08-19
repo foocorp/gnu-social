@@ -19,6 +19,23 @@ class User_username extends Managed_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'provider_name' => array('type' => 'varchar', 'length' => 255, 'description' => 'provider name'),
+                'username' => array('type' => 'varchar', 'length' => 255, 'description' => 'username'),
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice id this title relates to'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('provider_name', 'username'),
+            'foreign keys' => array(
+                'user_username_user_id_fkey' => array('user', array('user_id' => 'id')),
+            ),
+        );
+    }
+
     /**
     * Register a user with a username on a given provider
     * @param User User object
@@ -39,19 +56,5 @@ class User_username extends Managed_DataObject
         }else{
             return false;
         }
-    }
-
-    function table() {
-        return array(
-            'user_id'     => DB_DATAOBJECT_INT,
-            'username'   => DB_DATAOBJECT_STR,
-            'provider_name'   => DB_DATAOBJECT_STR ,
-            'created'   => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME
-        );
-    }
-
-    // now define the keys.
-    function keys() {
-        return array('provider_name' => 'K', 'username' => 'K');
     }
 }

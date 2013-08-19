@@ -79,12 +79,7 @@ class RegisterThrottlePlugin extends Plugin
         $schema = Schema::get();
 
         // For storing user-submitted flags on profiles
-        $schema->ensureTable('registration_ip',
-                             array(new ColumnDef('user_id', 'integer', null,
-                                                 false, 'PRI'),
-                                   new ColumnDef('ipaddress', 'varchar', 15, false, 'MUL'),
-                                   new ColumnDef('created', 'timestamp', null, false, 'MUL')));
-
+        $schema->ensureTable('registration_ip', Registration_ip::schemaDef());
         return true;
     }
 

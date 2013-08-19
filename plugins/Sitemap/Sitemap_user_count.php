@@ -53,55 +53,20 @@ class Sitemap_user_count extends Managed_DataObject
 
     public $registration_date;               // date primary_key not_null
     public $user_count;                      // int(4)
-    public $created;
-    public $modified;
+    public $created;                         // datetime()   not_null
+    public $modified;                        // datetime   not_null default_0000-00-00%2000%3A00%3A00
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('registration_date' => DB_DATAOBJECT_DATE + DB_DATAOBJECT_NOTNULL,
-                     'user_count' => DB_DATAOBJECT_INT,
-                     'created'   => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'modified'  => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has; this function
-     * defines them.
-     *
-     * @return array key definitions
-     */
-
-    function keys()
-    {
-        return array('registration_date' => 'K');
-    }
-
-    function sequenceKey()
-    {
-        return array(false, false, false);
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * Our caching system uses the same key definitions, but uses a different
-     * method to get them.
-     *
-     * @return array key definitions
-     */
-    function keyTypes()
-    {
-        return $this->keys();
+        return array(
+            'fields' => array(
+                'registration_date' => array('type' => 'date', 'not null' => true, 'description' => 'record date'),
+                'user_count' => array('type' => 'int', 'not null' => true, 'description' => 'the user count of the recorded date'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('registration_date'),
+        );
     }
 
     static function getAll()

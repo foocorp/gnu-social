@@ -160,15 +160,7 @@ class IrcPlugin extends ImPlugin {
         $schema = Schema::get();
 
         // For storing messages while sessions become ready
-        $schema->ensureTable('irc_waiting_message',
-                             array(new ColumnDef('id', 'integer', null,
-                                                 false, 'PRI', null, null, true),
-                                   new ColumnDef('data', 'blob', null, false),
-                                   new ColumnDef('prioritise', 'tinyint', 1, false),
-                                   new ColumnDef('attempts', 'integer', null, false),
-                                   new ColumnDef('created', 'datetime', null, false),
-                                   new ColumnDef('claimed', 'datetime')));
-
+        $schema->ensureTable('irc_waiting_message', Irc_waiting_message::schemaDef());
         return true;
     }
 

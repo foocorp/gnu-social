@@ -37,22 +37,29 @@ class GNUsocialProfileExtensionField extends Managed_DataObject
     public $__table = 'GNUsocialProfileExtensionField';
     public $id;          // int(11)
     public $systemname;  // varchar(64)
-    public $title;       // varchar(256)
+    public $title;       // varchar(255)
     public $description; // text
-    public $type;        // varchar(256)
+    public $type;        // varchar(255)
+    public $created;     // datetime()   not_null
+    public $modified;    // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    function table()
+    public static function schemaDef()
     {
-        return array('id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'systemname' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'title' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'description' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'type' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
-    }
-    
-    function keys()
-    {
-        return array_keys($this->keyTypes());
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique ID for extension field'),
+                'systemname' => array('type' => 'varchar', 'not null' => true, 'length' => 64, 'description' => 'field systemname'),
+                'title' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'field title'),
+                'description' => array('type' => 'text', 'not null' => true, 'description' => 'field description'),
+                'type' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'field type'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'indexes' => array(
+                'gnusocialprofileextensionfield_title_idx' => array('title'),
+            ),
+        );
     }
 
     function keyTypes()

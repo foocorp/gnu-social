@@ -47,59 +47,44 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 class Group_message extends Managed_DataObject
 {
     public $__table = 'group_message'; // table name
-    public $id;                        // char(36)  primary_key not_null
+    public $id;                        // varchar(36)  primary_key not_null
     public $uri;                       // varchar(255)
     public $from_profile;              // int
     public $to_group;                  // int
     public $content;
     public $rendered;
     public $url;
-    public $created;
+    public $created;                   // datetime()   not_null
+    public $modified;                  // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('id' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'from_profile' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'to_group' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'content' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'rendered' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'url' => DB_DATAOBJECT_STR,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has, since it
-     * won't appear in StatusNet's own keys list. In most cases, this will
-     * simply reference your keyTypes() function.
-     *
-     * @return array list of key field names
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * @return array associative array of key definitions, field name to type:
-     *         'K' for primary key: for compound keys, add an entry for each component;
-     *         'U' for unique keys: compound keys are not well supported here.
-     */
-    function keyTypes()
-    {
-        return array('id' => 'K', 'uri' => 'U');
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'varchar', 'not null' => true, 'length' => 36, 'description' => 'message uuid'),
+                'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'message uri'),
+                'url' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'representation url'),
+                'from_profile' => array('type' => 'int', 'not null' => true, 'description' => 'sending profile ID'),
+                'to_group' => array('type' => 'int', 'not null' => true, 'description' => 'receiving group ID'),
+                'content' => array('type' => 'text', 'not null' => true, 'description' => 'message content'),
+                'rendered' => array('type' => 'text', 'not null' => true, 'description' => 'rendered message'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'group_message_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'group_message_from_profile_fkey' => array('profile', array('from_profile' => 'id')),
+                'group_message_to_group_fkey' => array('user_group', array('to_group' => 'id')),
+            ),
+            'indexes' => array(
+                'group_message_from_profile_idx' => array('from_profile'),
+                'group_message_to_group_idx' => array('to_group'),
+                'group_message_url_idx' => array('url'),
+            ),
+        );
     }
 
     static function send($user, $group, $text)

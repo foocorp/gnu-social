@@ -47,38 +47,20 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 class Nickname_blacklist extends Managed_DataObject
 {
     public $__table = 'nickname_blacklist'; // table name
-    public $pattern;                        // string pattern
-    public $created;                        // datetime
+    public $pattern;                        // varchar(255) pattern
+    public $created;                        // datetime not_null
+    public $modified;                       // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('pattern' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * @return array key definitions
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * @return array key definitions
-     */
-    function keyTypes()
-    {
-        return array('pattern' => 'K');
+        return array(
+            'fields' => array(
+                'pattern' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'blacklist pattern'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('pattern'),
+        );
     }
 
     /**

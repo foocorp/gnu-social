@@ -170,23 +170,7 @@ class SamplePlugin extends Plugin
         $schema = Schema::get();
 
         // For storing user-submitted flags on profiles
-
-        $schema->ensureTable('user_greeting_count',
-            array(
-                'fields' => array(
-                    'user_id' => array('type' => 'int', 'not null' => true),
-                    'greeting_count' => array('type' => 'int'),
-                ),
-                'primary key' => array('user_id'),
-                'foreign keys' => array(
-                    // Not all databases will support foreign keys, but even
-                    // when not enforced it's helpful to include these definitions
-                    // as documentation.
-                    'user_greeting_count_user_id_fkey' => array('user', array('user_id' => 'id')),
-                ),
-            )
-        );
-
+        $schema->ensureTable('user_greeting_count', User_greeting_count::schemaDef());
         return true;
     }
 

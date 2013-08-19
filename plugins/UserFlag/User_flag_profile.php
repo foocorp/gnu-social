@@ -50,62 +50,31 @@ class User_flag_profile extends Managed_DataObject
     /* the code below is auto generated do not remove the above tag */
 
     public $__table = 'user_flag_profile';               // table name
-    public $profile_id;                      // int(4)  primary_key not_null
-    public $user_id;                         // int(4)  primary_key not_null
-    public $created;                         // datetime   not_null default_0000-00-00%2000%3A00%3A00
-    public $cleared;                         // datetime   not_null default_0000-00-00%2000%3A00%3A00
+    public $profile_id;                      // int(11)  primary_key not_null
+    public $user_id;                         // int(11)  primary_key not_null
+    public $cleared;                         // datetime   default_0000-00-00%2000%3A00%3A00
+    public $created;                         // datetime()   not_null
+    public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
         return array(
-                     'profile_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'user_id'    => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'created'    => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'cleared'    => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME
-                     );
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * @return array of key names
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * @return array map of key definitions
-     */
-    function keyTypes()
-    {
-        return array('profile_id' => 'K', 'user_id' => 'K');
-    }
-
-    /**
-     * Magic formula for non-autoincrementing integer primary keys
-     *
-     * If a table has a single integer column as its primary key, DB_DataObject
-     * assumes that the column is auto-incrementing and makes a sequence table
-     * to do this incrementation. Since we don't need this for our class, we
-     * overload this method and return the magic formula that DB_DataObject needs.
-     *
-     * @return array magic three-false array that stops auto-incrementing.
-     */
-    function sequenceKey()
-    {
-        return array(false, false, false);
+            'fields' => array(
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'profile id flagged'),
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user id of the actor'),
+                'cleared' => array('type' => 'datetime', 'description' => 'when flag was removed'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('profile_id', 'user_id'),
+            'indexes' => array(
+                'user_flag_profile_cleared_idx' => array('cleared'),
+                'user_flag_profile_created_idx' => array('created'),
+            ),
+        );
     }
 
     /**

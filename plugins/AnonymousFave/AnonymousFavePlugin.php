@@ -80,22 +80,7 @@ class AnonymousFavePlugin extends Plugin
         $schema = Schema::get();
 
         // For storing total number of times a notice has been faved
-
-        $schema->ensureTable('fave_tally',
-            array(
-                new ColumnDef('notice_id', 'integer', null,  false, 'PRI'),
-                new ColumnDef('count', 'integer', null, false),
-                new ColumnDef(
-                    'modified',
-                    'timestamp',
-                    null,
-                    false,
-                    null,
-                    'CURRENT_TIMESTAMP',
-                    'on update CURRENT_TIMESTAMP'
-                )
-            )
-        );
+        $schema->ensureTable('fave_tally', Fave_tally::schemaDef());
 
         return true;
     }

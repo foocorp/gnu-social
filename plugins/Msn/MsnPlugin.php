@@ -133,14 +133,7 @@ class MsnPlugin extends ImPlugin {
         $schema = Schema::get();
 
         // For storing messages while sessions become ready
-        $schema->ensureTable('msn_waiting_message',
-                             array(new ColumnDef('id', 'integer', null,
-                                                 false, 'PRI', null, null, true),
-                                   new ColumnDef('screenname', 'varchar', 255, false),
-                                   new ColumnDef('message', 'text', null, false),
-                                   new ColumnDef('created', 'datetime', null, false),
-                                   new ColumnDef('claimed', 'datetime')));
-
+        $schema->ensureTable('msn_waiting_message', Msn_waiting_message::schemaGet());
         return true;
     }
 

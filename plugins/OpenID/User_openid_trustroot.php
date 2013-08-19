@@ -21,27 +21,16 @@ class User_openid_trustroot extends Managed_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function table()
+    public static function schemaDef()
     {
-        $db = $this->getDatabaseConnection();
-        $dbtype = $db->phptype; // Database type is stored here. Crazy but true.
-
-        return array('trustroot' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'user_id'   => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'created'   => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'modified'  => ($dbtype == 'mysql' || $dbtype == 'mysqli') ?
-                     DB_DATAOBJECT_MYSQLTIMESTAMP + DB_DATAOBJECT_NOTNULL :
-                     DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME
-                     );
-    }
-
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    function keyTypes()
-    {
-        return array('trustroot' => 'K', 'user_id' => 'K');
+        return array(
+            'fields' => array(
+                'trustroot' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'OpenID trustroot string'),
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'User ID for OpenID trustroot owner'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('trustroot', 'user_id'),
+        );
     }
 }

@@ -114,11 +114,7 @@ class FollowEveryonePlugin extends Plugin
         $schema = Schema::get();
 
         // For storing user-submitted flags on profiles
-        $schema->ensureTable('user_followeveryone_prefs',
-                             array(new ColumnDef('user_id', 'integer', null,
-                                                 true, 'PRI'),
-                                   new ColumnDef('followeveryone', 'tinyint', null,
-                                                 false, null, 1)));
+        $schema->ensureTable('user_followeveryone_prefs', User_followeveryone_prefs::schemaDef());
 
         return true;
     }

@@ -80,27 +80,8 @@ class BlacklistPlugin extends Plugin
         $schema = Schema::get();
 
         // For storing blacklist patterns for nicknames
-        $schema->ensureTable('nickname_blacklist',
-                             array(new ColumnDef('pattern',
-                                                 'varchar',
-                                                 255,
-                                                 false,
-                                                 'PRI'),
-                                   new ColumnDef('created',
-                                                 'datetime',
-                                                 null,
-                                                 false)));
-
-        $schema->ensureTable('homepage_blacklist',
-                             array(new ColumnDef('pattern',
-                                                 'varchar',
-                                                 255,
-                                                 false,
-                                                 'PRI'),
-                                   new ColumnDef('created',
-                                                 'datetime',
-                                                 null,
-                                                 false)));
+        $schema->ensureTable('nickname_blacklist', Nickname_blacklist::schemaDef());
+        $schema->ensureTable('homepage_blacklist', Homepage_blacklist::schemaDef());
 
         return true;
     }

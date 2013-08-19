@@ -180,22 +180,8 @@ class SitemapPlugin extends Plugin
     {
         $schema = Schema::get();
 
-        $schema->ensureTable('sitemap_user_count',
-                             array(new ColumnDef('registration_date', 'date', null,
-                                                 true, 'PRI'),
-                                   new ColumnDef('user_count', 'integer'),
-                                   new ColumnDef('created', 'datetime',
-                                                 null, false),
-                                   new ColumnDef('modified', 'timestamp')));
-
-        $schema->ensureTable('sitemap_notice_count',
-                             array(new ColumnDef('notice_date', 'date', null,
-                                                 true, 'PRI'),
-                                   new ColumnDef('notice_count', 'integer'),
-                                   new ColumnDef('created', 'datetime',
-                                                 null, false),
-                                   new ColumnDef('modified', 'timestamp')));
-
+        $schema->ensureTable('sitemap_user_count', Sitemap_user_count::schemaDef());
+        $schema->ensureTable('sitemap_notice_count', Sitemap_notice_count::schemaDef());
         return true;
     }
 

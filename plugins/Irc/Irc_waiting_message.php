@@ -12,66 +12,27 @@ class Irc_waiting_message extends Managed_DataObject {
     public $data;                            // blob not_null
     public $prioritise;                      // tinyint(1) not_null
     public $attempts;                        // int not_null
-    public $created;                         // datetime() not_null
     public $claimed;                         // datetime()
+    public $created;                         // datetime()   not_null
+    public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /**
-    * return table definition for DB_DataObject
-    *
-    * DB_DataObject needs to know something about the table to manipulate
-    * instances. This method provides all the DB_DataObject needs to know.
-    *
-    * @return array array of column definitions
-    */
-    public function table() {
-        return array('id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'data' => DB_DATAOBJECT_BLOB + DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'prioritise' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'created' => DB_DATAOBJECT_TIME + DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'claimed' => DB_DATAOBJECT_TIME + DB_DATAOBJECT_STR);
-    }
-
-    /**
-    * return key definitions for DB_DataObject
-    *
-    * DB_DataObject needs to know about keys that the table has, since it
-    * won't appear in StatusNet's own keys list. In most cases, this will
-    * simply reference your keyTypes() function.
-    *
-    * @return array list of key field names
-    */
-    public function keys() {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-    * return key definitions for Memcached_DataObject
-    *
-    * Our caching system uses the same key definitions, but uses a different
-    * method to get them. This key information is used to store and clear
-    * cached data, so be sure to list any key that will be used for static
-    * lookups.
-    *
-    * @return array associative array of key definitions, field name to type:
-    *         'K' for primary key: for compound keys, add an entry for each component;
-    *         'U' for unique keys: compound keys are not well supported here.
-    */
-    public function keyTypes() {
-        return array('id' => 'K');
-    }
-
-    /**
-    * Magic formula for non-autoincrementing integer primary keys
-    *
-    * If a table has a single integer column as its primary key, DB_DataObject
-    * assumes that the column is auto-incrementing and makes a sequence table
-    * to do this incrementation. Since we don't need this for our class, we
-    * overload this method and return the magic formula that DB_DataObject needs.
-    *
-    * @return array magic three-false array that stops auto-incrementing.
-    */
-    public function sequenceKey() {
-        return array(false, false, false);
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique ID for entry'),
+                'data' => array('type' => 'blob', 'not null' => true, 'description' => 'data blob'),
+                'prioritise' => array('type' => 'int', 'size' => 'tiny', 'description' => 'tinyint priority value'),
+                'attempts' => array('type' => 'int', 'not null' => true, 'description' => 'attempts count'),
+                'claimed' => array('type' => 'datetime', 'description' => 'date this irc message was claimed'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'indexes' => array(
+                'irc_waiting_message_prioritise_idx' => array('prioritise'),
+            ),
+        );
     }
 
     /**

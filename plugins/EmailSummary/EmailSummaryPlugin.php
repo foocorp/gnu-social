@@ -55,19 +55,7 @@ class EmailSummaryPlugin extends Plugin
         $schema = Schema::get();
 
         // For storing user-submitted flags on profiles
-        $schema->ensureTable('email_summary_status',
-                             array(new ColumnDef('user_id', 'integer', null,
-                                                 false, 'PRI'),
-                                   new ColumnDef('send_summary', 'tinyint', null,
-                                                 false, null, 1),
-                                   new ColumnDef('last_summary_id', 'integer', null,
-                                                 true),
-                                   new ColumnDef('created', 'datetime', null,
-                                                 false),
-                                   new ColumnDef('modified', 'datetime', null,
-                                                 false),
-                             )
-        );
+        $schema->ensureTable('email_summary_status', Email_summary_status::schemaDef());
         return true;
     }
 

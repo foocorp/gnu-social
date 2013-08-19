@@ -59,17 +59,8 @@ class GNUsocialProfileExtensionsPlugin extends Plugin
     function onCheckSchema()
     {
         $schema = Schema::get();
-        $schema->ensureTable('GNUsocialProfileExtensionField',
-                                array(new ColumnDef('id', 'int(11)', null, false, 'PRI', null, null, true),
-                                      new ColumnDef('systemname', 'varchar(64)', null, false),
-                                      new ColumnDef('title', 'varchar(256)', null, false),
-                                      new ColumnDef('description', 'text', null, false),
-                                      new ColumnDef('type', 'varchar(256)', null, false)));
-        $schema->ensureTable('GNUsocialProfileExtensionResponse',
-                                array(new ColumnDef('id', 'int(11)', null, false, 'PRI', null, null, true),
-                                      new ColumnDef('extension_id', 'int(11)', null, false),
-                                      new ColumnDef('profile_id', 'int(11)', null, false),
-                                      new ColumnDef('value', 'text', null, false)));
+        $schema->ensureTable('GNUsocialProfileExtensionField', GNUsocialProfileExtensionField::schemaDef());
+        $schema->ensureTable('GNUsocialProfileExtensionResponse', GNUsocialProfileExtensionResponse::schemaDef());
                                           
     }
 

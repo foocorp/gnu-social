@@ -70,58 +70,21 @@ class Group_privacy_settings extends Managed_DataObject
     const MEMBER   = 2;
     const ADMIN    = 4;
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('group_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'allow_privacy' => DB_DATAOBJECT_INT,
-                     'allow_sender' => DB_DATAOBJECT_INT,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'modified' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has, since it
-     * won't appear in StatusNet's own keys list. In most cases, this will
-     * simply reference your keyTypes() function.
-     *
-     * @return array list of key field names
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * @return array associative array of key definitions, field name to type:
-     *         'K' for primary key: for compound keys, add an entry for each component;
-     *         'U' for unique keys: compound keys are not well supported here.
-     */
-    function keyTypes()
-    {
-        return array('group_id' => 'K');
-    }
-
-    /**
-     * Magic formula for non-autoincrementing integer primary keys
-     *
-     * @return array magic three-false array that stops auto-incrementing.
-     */
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'group_id' => array('type' => 'int', 'not null' => true, 'description' => 'group_privacy_settings'),
+                'allow_privacy' => array('type' => 'int', 'not null' => true, 'description' => 'sometimes=-1, never=0, always=1'),
+                'allow_sender' => array('type' => 'int', 'not null' => true, 'description' => 'list of bit-mappy values in source code'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('group_id'),
+            'foreign keys' => array(
+                'group_privacy_settings_group_id_fkey' => array('user_group', array('group_id' => 'id')),
+            ),
+        );
     }
 
     function forGroup($group)

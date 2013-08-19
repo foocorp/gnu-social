@@ -61,69 +61,9 @@ class GroupPrivateMessagePlugin extends Plugin
         $schema = Schema::get();
 
         // For storing user-submitted flags on profiles
-
-        $schema->ensureTable('group_privacy_settings',
-                             array(new ColumnDef('group_id',
-                                                 'integer',
-                                                 null,
-                                                 false,
-                                                 'PRI'),
-                                   new ColumnDef('allow_privacy',
-                                                 'integer'),
-                                   new ColumnDef('allow_sender',
-                                                 'integer'),
-                                   new ColumnDef('created',
-                                                 'datetime'),
-                                   new ColumnDef('modified',
-                                                 'timestamp')));
-
-        $schema->ensureTable('group_message',
-                             array(new ColumnDef('id',
-                                                 'char',
-                                                 36,
-                                                 false,
-                                                 'PRI'),
-                                   new ColumnDef('uri',
-                                                 'varchar',
-                                                 255,
-                                                 false,
-                                                 'UNI'),
-                                   new ColumnDef('from_profile',
-                                                 'integer',
-                                                 null,
-                                                 false,
-                                                 'MUL'),
-                                   new ColumnDef('to_group',
-                                                 'integer',
-                                                 null,
-                                                 false,
-                                                 'MUL'),
-                                   new ColumnDef('content',
-                                                 'text'),
-                                   new ColumnDef('rendered',
-                                                 'text'),
-                                   new ColumnDef('url',
-                                                 'varchar',
-                                                 255,
-                                                 false,
-                                                 'UNI'),
-                                   new ColumnDef('created',
-                                                 'datetime')));
-
-        $schema->ensureTable('group_message_profile',
-                             array(new ColumnDef('to_profile',
-                                                 'integer',
-                                                 null,
-                                                 false,
-                                                 'PRI'),
-                                   new ColumnDef('group_message_id',
-                                                 'char',
-                                                 36,
-                                                 false,
-                                                 'PRI'),
-                                   new ColumnDef('created',
-                                                 'datetime')));
-
+        $schema->ensureTable('group_privacy_settings', Group_privacy_settings::schemaDef());
+        $schema->ensureTable('group_message', Group_message::schemaDef());
+        $schema->ensureTable('group_message_profile', Group_message_profile::schemaDef());
         return true;
     }
 

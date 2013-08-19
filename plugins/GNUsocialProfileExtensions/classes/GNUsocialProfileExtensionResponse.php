@@ -39,28 +39,29 @@ class GNUsocialProfileExtensionResponse extends Managed_DataObject
     public $extension_id; // int(11)
     public $profile_id;   // int(11)
     public $value;     // text
+    public $created;      // datetime()   not_null
+    public $modified;     // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    function table()
+    public static function schemaDef()
     {
-        return array('id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'extension_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'profile_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'value' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
-    }
-    
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    function keyTypes()
-    {
-        return array('id' => 'K');
-    }
-
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique ID for extension response'),
+                'extension_id' => array('type' => 'int', 'not null' => true, 'description' => 'The extension field ID'),
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'Profile id that made the response'),
+                'value' => array('type' => 'text', 'not null' => true, 'description' => 'response entry'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'foreign keys' => array(
+                'gnusocialprofileextensionresponse_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+                'gnusocialprofileextensionresponse_extension_id_fkey' => array('GNUsocialProfileExtensionField', array('extension_id' => 'id')),
+            ),
+            'indexes' => array(
+                'gnusocialprofileextensionresponse_extension_id_idx' => array('extension_id'),
+            ),
+        );
     }
 
     static function newResponse($extension_id, $profile_id, $value)

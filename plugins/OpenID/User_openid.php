@@ -22,41 +22,27 @@ class User_openid extends Managed_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function table()
+    public static function schemaDef()
     {
-        $db = $this->getDatabaseConnection();
-        $dbtype = $db->phptype; // Database type is stored here. Crazy but true.
-
-        return array('canonical' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'display'   => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'user_id'   => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'created'   => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'modified'  => ($dbtype == 'mysql' || $dbtype == 'mysqli') ?
-                     DB_DATAOBJECT_MYSQLTIMESTAMP + DB_DATAOBJECT_NOTNULL :
-                     DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME
-                     );
-    }
-
-    /**
-     * List primary and unique keys in this table.
-     * Unique keys used for lookup *MUST* be listed to ensure proper caching.
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    function keyTypes()
-    {
-        return array('canonical' => 'K', 'display' => 'U', 'user_id' => 'U');
-    }
-
-    /**
-     * No sequence keys in this table.
-     */
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'canonical' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'OpenID canonical string'),
+                'display' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'OpenID display string'),
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'User ID for OpenID owner'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('canonical'),
+            'unique keys' => array(
+                'user_openid_display_key' => array('display'),
+            ),
+            'indexes' => array(
+                'user_openid_user_id_idx' => array('user_id'),
+            ),
+            'foreign keys' => array(
+                'user_openid_user_id_fkey' => array('user', array('user_id' => 'id')),
+            ),
+        );
     }
 
     static function hasOpenID($user_id)

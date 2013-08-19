@@ -60,17 +60,7 @@ class UserFlagPlugin extends Plugin
         $schema = Schema::get();
 
         // For storing user-submitted flags on profiles
-
-        $schema->ensureTable('user_flag_profile',
-                             array(new ColumnDef('profile_id', 'integer', null,
-                                                 false, 'PRI'),
-                                   new ColumnDef('user_id', 'integer', null,
-                                                 false, 'PRI'),
-                                   new ColumnDef('created', 'datetime', null,
-                                                 false, 'MUL'),
-                                   new ColumnDef('cleared', 'datetime', null,
-                                                 true, 'MUL')));
-
+        $schema->ensureTable('user_flag_profile', User_flag_profile::schemaDef());
         return true;
     }
 

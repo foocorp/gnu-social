@@ -250,16 +250,7 @@ abstract class AuthenticationPlugin extends Plugin
 
     function onCheckSchema() {
         $schema = Schema::get();
-        $schema->ensureTable('user_username',
-                             array(new ColumnDef('provider_name', 'varchar',
-                                                 '255', false, 'PRI'),
-                                   new ColumnDef('username', 'varchar',
-                                                 '255', false, 'PRI'),
-                                   new ColumnDef('user_id', 'integer',
-                                                 null, false),
-                                   new ColumnDef('created', 'datetime',
-                                                 null, false),
-                                   new ColumnDef('modified', 'timestamp')));
+        $schema->ensureTable('user_username', User_username::schemaDef());
         return true;
     }
 

@@ -71,20 +71,8 @@ class GNUsocialPhotosPlugin extends Plugin
     function onCheckSchema()
     {
         $schema = Schema::get();
-        $schema->ensureTable('GNUsocialPhoto',
-                                array(new ColumnDef('id', 'int(11)', null, false, 'PRI', null, null, true),
-                                      new ColumnDef('notice_id', 'int(11)', null, false),
-                                      new ColumnDef('album_id', 'int(11)', null, false),
-                                      new ColumnDef('uri', 'varchar(512)', null, false),
-                                      new ColumnDef('thumb_uri', 'varchar(512)', null, false),
-                                      new ColumnDef('title', 'varchar(512)', null, false),
-                                      new ColumnDef('photo_description', 'text', null, false)));
-        $schema->ensureTable('GNUsocialPhotoAlbum',
-                                array(new ColumnDef('album_id', 'int(11)', null, false, 'PRI', null, null, true),
-                                      new ColumnDef('profile_id', 'int(11)', null, false),
-                                      new ColumnDef('album_name', 'varchar(256)', null, false),
-                                      new ColumnDef('album_description', 'text', null, false)));
-                                          
+        $schema->ensureTable('GNUsocialPhoto', GNUsocialPhoto::schemaDef());
+        $schema->ensureTable('GNUsocialPhotoAlbum', GNUsocialPhotoAlbum::schemaDef());
     }
 
     function onRouterInitialized($m)

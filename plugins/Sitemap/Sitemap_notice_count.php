@@ -57,49 +57,20 @@ class Sitemap_notice_count extends Managed_DataObject
 
     public $notice_date;                       // date primary_key not_null
     public $notice_count;                      // int(4)
-    public $created;
-    public $modified;
+    public $created;                           // datetime()   not_null
+    public $modified;                          // datetime   not_null default_0000-00-00%2000%3A00%3A00
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('notice_date' => DB_DATAOBJECT_DATE + DB_DATAOBJECT_NOTNULL,
-                     'notice_count' => DB_DATAOBJECT_INT,
-                     'created'   => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'modified'  => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has; this function
-     * defines them.
-     *
-     * @return array key definitions
-     */
-    function keys()
-    {
-        return array('notice_date' => 'K');
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * Our caching system uses the same key definitions, but uses a different
-     * method to get them.
-     *
-     * @return array key definitions
-     */
-    function keyTypes()
-    {
-        return $this->keys();
+        return array(
+            'fields' => array(
+                'notice_date' => array('type' => 'date', 'not null' => true, 'description' => 'record date'),
+                'notice_count' => array('type' => 'int', 'not null' => true, 'description' => 'the notice count'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('notice_date'),
+        );
     }
 
     static function getAll()

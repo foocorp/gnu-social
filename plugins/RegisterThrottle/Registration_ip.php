@@ -47,59 +47,27 @@ class Registration_ip extends Managed_DataObject
     public $__table = 'registration_ip';     // table name
     public $user_id;                         // int(4)  primary_key not_null
     public $ipaddress;                       // varchar(15)
-    public $created;                         // timestamp
+    public $created;                         // datetime()   not_null
+    public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('user_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'ipaddress' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'created' => DB_DATAOBJECT_MYSQLTIMESTAMP + DB_DATAOBJECT_NOTNULL);
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has; this function
-     * defines them.
-     *
-     * @return array key definitions
-     */
-    function keys()
-    {
-        return array('user_id' => 'K');
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * Our caching system uses the same key definitions, but uses a different
-     * method to get them.
-     *
-     * @return array key definitions
-     */
-    function keyTypes()
-    {
-        return $this->keys();
-    }
-
-    /**
-     * Magic formula for non-autoincrementing integer primary keys
-     *
-     * If a table has a single integer column as its primary key, DB_DataObject
-     * assumes that the column is auto-incrementing and makes a sequence table
-     * to do this incrementation. Since we don't need this for our class, we
-     * overload this method and return the magic formula that DB_DataObject needs.
-     *
-     * @return array magic three-false array that stops auto-incrementing.
-     */
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user id this registration relates to'),
+                'ipaddress' => array('type' => 'varchar', 'length' => 45, 'description' => 'IP address, max 45+null in IPv6'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('user_id'),
+            'foreign keys' => array(
+                'registration_ip_user_id_fkey' => array('user', array('user_id' => 'id')),
+            ),
+            'indexes' => array(
+                'registration_ip_ipaddress_idx' => array('ipaddress'),
+                'registration_ip_created_idx' => array('created'),
+            ),
+        );
     }
 
     /**

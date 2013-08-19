@@ -38,10 +38,12 @@ class GNUsocialPhoto extends Managed_DataObject
     public $id;         // int(11)
     public $notice_id;  // int(11)
     public $album_id;   // int(11)
-    public $uri;        // varchar(512)
-    public $thumb_uri;  // varchar(512)
-	public $title;      // varchar(512)
+    public $uri;        // varchar(255)
+    public $thumb_uri;  // varchar(255)
+	public $title;      // varchar(255)
 	public $photo_description; // text
+    public $created;           // datetime()   not_null
+    public $modified;          // timestamp()   not_null default_CURRENT_TIMESTAMP
 
 /*    function delete()
     {
@@ -54,34 +56,32 @@ class GNUsocialPhoto extends Managed_DataObject
         return parent::delete();
     } */
 
-
-    /*
-     * TODO: Foriegn key on album_id.
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'album_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'thumb_uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'title' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'photo_description' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
-    }
-    
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    function keyTypes()
-    {
-        return array('notice_id' => 'K');
-    }
-
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique ID for Photo'),
+                'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'Notice ID for the related notice'),
+                'album_id' => array('type' => 'int', 'not null' => true, 'description' => 'The parent album ID'),
+                'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'unique address for this photo'),
+                'thumb_uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'unique address for this photo thumbnail'),
+                'title' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'The Photo title'),
+                'photo_description' => array('type' => 'text', 'not null' => true, 'description' => 'A description for this photo'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'gnusocialphoto_uri' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'gnusocialphoto_notice_id_fkey' => array('notice', array('notice_id' => 'id')),
+                'gnusocialphoto_album_id_fkey' => array('GNUsocialPhotoAlbum', array('album_id' => 'id')),
+            ),
+            'indexes' => array(
+                'gnusocialphoto_title_idx' => array('title'),
+            ),
+        );
     }
 
     function saveNew($profile_id, $album_id, $thumb_uri, $uri, $source, $insert_now, $title = null, $photo_description = null)

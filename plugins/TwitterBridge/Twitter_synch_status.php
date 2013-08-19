@@ -51,75 +51,24 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 class Twitter_synch_status extends Managed_DataObject
 {
     public $__table = 'twitter_synch_status'; // table name
-    public $foreign_id;                         // int(4)  primary_key not_null
+    public $foreign_id;                      // bigint primary_key not_null
     public $timeline;                        // varchar(255)  primary_key not_null
     public $last_id;                         // bigint not_null
-    public $created;                         // datetime not_null
-    public $modified;                        // datetime not_null
+    public $created;                         // datetime()   not_null
+    public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('foreign_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'timeline' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'last_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'modified' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL
-                     );
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has, since it
-     * won't appear in StatusNet's own keys list. In most cases, this will
-     * simply reference your keyTypes() function.
-     *
-     * @return array list of key field names
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * Our caching system uses the same key definitions, but uses a different
-     * method to get them. This key information is used to store and clear
-     * cached data, so be sure to list any key that will be used for static
-     * lookups.
-     *
-     * @return array associative array of key definitions, field name to type:
-     *         'K' for primary key: for compound keys, add an entry for each component;
-     *         'U' for unique keys: compound keys are not well supported here.
-     */
-    function keyTypes()
-    {
-        return array('foreign_id' => 'K',
-                     'timeline' => 'K');
-    }
-
-    /**
-     * Magic formula for non-autoincrementing integer primary keys
-     *
-     * If a table has a single integer column as its primary key, DB_DataObject
-     * assumes that the column is auto-incrementing and makes a sequence table
-     * to do this incrementation. Since we don't need this for our class, we
-     * overload this method and return the magic formula that DB_DataObject needs.
-     *
-     * @return array magic three-false array that stops auto-incrementing.
-     */
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'foreign_id' => array('type' => 'int', 'size' => 'big', 'not null' => true, 'description' => 'Foreign message ID'),
+                'timeline' => array('type' => 'varchar', 'length' => 255, 'description' => 'timeline name'),
+                'last_id' => array('type' => 'int', 'size' => 'big', 'not null' => true, 'description' => 'last id fetched'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('foreign_id', 'timeline'),
+        );
     }
 
     static function getLastId($foreign_id, $timeline)

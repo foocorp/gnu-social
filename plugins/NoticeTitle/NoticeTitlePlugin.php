@@ -71,18 +71,7 @@ class NoticeTitlePlugin extends Plugin
         $schema = Schema::get();
 
         // For storing titles for notices
-
-        $schema->ensureTable('notice_title',
-                             array(new ColumnDef('notice_id',
-                                                 'integer',
-                                                 null,
-                                                 true,
-                                                 'PRI'),
-                                   new ColumnDef('title',
-                                                 'varchar',
-                                                 Notice_title::MAXCHARS,
-                                                 false)));
-
+        $schema->ensureTable('notice_title', Notice_title::schemaDef());
         return true;
     }
 
