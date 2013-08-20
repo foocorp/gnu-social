@@ -111,7 +111,7 @@ class Magicsig extends Managed_DataObject
         return array(
             'fields' => array(
                 'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user id'),
-                'keypair' => array('type' => 'text', 'description' => 'keypair text representation', 'collate' => 'utf8_general_ci'),
+                'keypair' => array('type' => 'text', 'description' => 'keypair text representation'),
                 'alg' => array('type' => 'varchar', 'length' => 64, 'description' => 'algorithm'),
             ),
             'primary key' => array('user_id'),
