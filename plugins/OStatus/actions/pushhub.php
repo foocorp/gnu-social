@@ -109,7 +109,7 @@ class PushHubAction extends Action
             throw new ClientException(sprintf(_m('Invalid hub.secret "%s". It must be under 200 bytes.'),$secret));
         }
 
-        $sub = HubSub::getKV($topic, $callback);
+        $sub = HubSub::getByHashkey($topic, $callback);
         if (!$sub) {
             // Creating a new one!
             $sub = new HubSub();
@@ -222,6 +222,6 @@ class PushHubAction extends Action
      */
     protected function getSub($feed, $callback)
     {
-        return HubSub::getKV($feed, $callback);
+        return HubSub::getByHashkey($feed, $callback);
     }
 }

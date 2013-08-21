@@ -45,6 +45,11 @@ class HubSub extends Managed_DataObject
         return sha1($topic . '|' . $callback);
     }
 
+    public static function getByHashkey($topic, $callback)
+    {
+        return self::getKV('hashkey', self::hashkey($topic, $callback));
+    }
+
     public static function schemaDef()
     {
         return array(
@@ -158,7 +163,7 @@ class HubSub extends Managed_DataObject
             throw new ClientException(sprintf(_m('Hub subscriber verification returned HTTP %s.'),$status));
         }
 
-        $old = HubSub::getKV($this->topic, $this->callback);
+        $old = HubSub::getByHashkey($this->topic, $this->callback);
         if ($mode == 'subscribe') {
             if ($old) {
                 $this->update($old);
@@ -244,7 +249,7 @@ class HubSub extends Managed_DataObject
         // destroy the result data for the parent query.
         // @fixme use clone() again when it's safe to copy an
         // individual item from a multi-item query again.
-        $sub = HubSub::getKV($this->topic, $this->callback);
+        $sub = HubSub::getByHashkey($this->topic, $this->callback);
         $data = array('sub' => $sub,
                       'atom' => $atom,
                       'retries' => $retries);
