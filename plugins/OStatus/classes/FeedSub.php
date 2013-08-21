@@ -78,89 +78,27 @@ class FeedSub extends Managed_DataObject
     public $created;
     public $modified;
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'huburi' =>  DB_DATAOBJECT_STR,
-                     'secret' => DB_DATAOBJECT_STR,
-                     'verify_token' => DB_DATAOBJECT_STR,
-                     'sub_state' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'sub_start' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
-                     'sub_end' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
-                     'last_update' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'modified' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-    }
-
-    static function schemaDef()
-    {
-        return array(new ColumnDef('id', 'integer',
-                                   /*size*/ null,
-                                   /*nullable*/ false,
-                                   /*key*/ 'PRI',
-                                   /*default*/ null,
-                                   /*extra*/ null,
-                                   /*auto_increment*/ true),
-                     new ColumnDef('uri', 'varchar',
-                                   255, false, 'UNI'),
-                     new ColumnDef('huburi', 'text',
-                                   null, true),
-                     new ColumnDef('verify_token', 'text',
-                                   null, true),
-                     new ColumnDef('secret', 'text',
-                                   null, true),
-                     new ColumnDef('sub_state', "enum('subscribe','active','unsubscribe','inactive')",
-                                   null, false),
-                     new ColumnDef('sub_start', 'datetime',
-                                   null, true),
-                     new ColumnDef('sub_end', 'datetime',
-                                   null, true),
-                     new ColumnDef('last_update', 'datetime',
-                                   null, false),
-                     new ColumnDef('created', 'datetime',
-                                   null, false),
-                     new ColumnDef('modified', 'datetime',
-                                   null, false));
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has; this function
-     * defines them.
-     *
-     * @return array key definitions
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * Our caching system uses the same key definitions, but uses a different
-     * method to get them.
-     *
-     * @return array key definitions
-     */
-    function keyTypes()
-    {
-        return array('id' => 'K', 'uri' => 'U');
-    }
-
-    function sequenceKey()
-    {
-        return array('id', true, false);
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'FeedSub local unique id'),
+                'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'FeedSub uri'),
+                'huburi' => array('type' => 'text', 'description' => 'FeedSub hub-uri'),
+                'verify_token' => array('type' => 'text', 'description' => 'FeedSub verify-token'),
+                'secret' => array('type' => 'text', 'description' => 'FeedSub stored secret'),
+                'sub_state' => array('type' => 'enum("subscribe","active","unsubscribe","inactive")', 'not null' => true, 'description' => 'subscription state'),
+                'sub_start' => array('type' => 'datetime', 'description' => 'subscription start'),
+                'sub_end' => array('type' => 'datetime', 'description' => 'subscription end'),
+                'last_update' => array('type' => 'datetime', 'not null' => true, 'description' => 'when this record was last updated'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'feedsub_uri_key' => array('uri'),
+            ),
+        );
     }
 
     /**

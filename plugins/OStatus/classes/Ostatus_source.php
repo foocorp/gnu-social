@@ -32,62 +32,29 @@ class Ostatus_source extends Managed_DataObject
     public $notice_id; // notice we're referring to
     public $profile_uri; // uri of the ostatus_profile this came through -- may be a group feed
     public $method; // push or salmon
+    public $created;
+    public $modified;
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'profile_uri' => DB_DATAOBJECT_STR,
-                     'method' => DB_DATAOBJECT_STR);
-    }
-
-    static function schemaDef()
-    {
-        return array(new ColumnDef('notice_id', 'integer',
-                                   null, false, 'PRI'),
-                     new ColumnDef('profile_uri', 'varchar',
-                                   255, false),
-                     new ColumnDef('method', "ENUM('push','salmon')",
-                                   null, false));
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has; this function
-     * defines them.
-     *
-     * @return array key definitions
-     */
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * Our caching system uses the same key definitions, but uses a different
-     * method to get them.
-     *
-     * @return array key definitions
-     */
-    function keyTypes()
-    {
-        return array('notice_id' => 'K');
-    }
-
-    function sequenceKey()
-    {
-        return array(false, false, false);
-    }
+        return array(
+            'fields' => array(
+                'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'Notice ID relation'),
+                'profile_uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'Profile URI'),
+                'method' => array('type' => 'enum("push","salmon")', 'not null' => true, 'description' => 'source method'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('notice_id'),
+            'foreign keys' => array(
+               'ostatus_source_notice_id_fkey' => array('notice', array('notice_id' => 'id')),
+               // not in profile table yet 'ostatus_source_profile_uri_fkey' => array('profile', array('profile_uri' => 'uri')),
+            ),
+            'indexes' => array(
+                'ostatus_source_profile_uri_idx' => array('profile_uri'),
+            ),
+        );
+   }
 
     /**
      * Save a remote notice source record; this helps indicate how trusted we are.

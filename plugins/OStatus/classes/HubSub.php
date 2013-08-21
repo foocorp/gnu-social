@@ -45,74 +45,25 @@ class HubSub extends Managed_DataObject
         return sha1($topic . '|' . $callback);
     }
 
-    /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
-     *
-     * @return array array of column definitions
-     */
-    function table()
+    public static function schemaDef()
     {
-        return array('hashkey' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'topic' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'callback' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'secret' => DB_DATAOBJECT_STR,
-                     'lease' =>  DB_DATAOBJECT_INT,
-                     'sub_start' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
-                     'sub_end' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'modified' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-    }
-
-    static function schemaDef()
-    {
-        return array(new ColumnDef('hashkey', 'char',
-                                   /*size*/40,
-                                   /*nullable*/false,
-                                   /*key*/'PRI'),
-                     new ColumnDef('topic', 'varchar',
-                                   /*size*/255,
-                                   /*nullable*/false,
-                                   /*key*/'MUL'),
-                     new ColumnDef('callback', 'varchar',
-                                   255, false),
-                     new ColumnDef('secret', 'text',
-                                   null, true),
-                     new ColumnDef('lease', 'int',
-                                   null, true),
-                     new ColumnDef('sub_start', 'datetime',
-                                   null, true),
-                     new ColumnDef('sub_end', 'datetime',
-                                   null, true),
-                     new ColumnDef('created', 'datetime',
-                                   null, false),
-                     new ColumnDef('modified', 'datetime',
-                                   null, false));
-    }
-
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    function sequenceKey()
-    {
-        return array(false, false, false);
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has; this function
-     * defines them.
-     *
-     * @return array key definitions
-     */
-    function keyTypes()
-    {
-        return array('hashkey' => 'K');
+        return array(
+            'fields' => array(
+                'hashkey' => array('type' => 'char', 'not null' => true, 'length' => 40, 'description' => 'HubSub hashkey'),
+                'topic' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'HubSub topic'),
+                'callback' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'HubSub callback'),
+                'secret' => array('type' => 'text', 'description' => 'HubSub stored secret'),
+                'lease' => array('type' => 'int', 'not null' => true, 'description' => 'HubSub leasetime'),
+                'sub_start' => array('type' => 'datetime', 'description' => 'subscription start'),
+                'sub_end' => array('type' => 'datetime', 'description' => 'subscription end'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('hashkey'),
+            'indexes' => array(
+                'hubsub_topic_idx' => array('topic'),
+            ),
+        );
     }
 
     /**
