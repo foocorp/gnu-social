@@ -82,7 +82,7 @@ class FeedSub extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'int', 'not null' => true, 'description' => 'FeedSub local unique id'),
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'FeedSub local unique id'),
                 'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'FeedSub uri'),
                 'huburi' => array('type' => 'text', 'description' => 'FeedSub hub-uri'),
                 'verify_token' => array('type' => 'text', 'description' => 'FeedSub verify-token'),

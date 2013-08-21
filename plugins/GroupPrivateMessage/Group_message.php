@@ -47,7 +47,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 class Group_message extends Managed_DataObject
 {
     public $__table = 'group_message'; // table name
-    public $id;                        // varchar(36)  primary_key not_null
+    public $id;                        // char(36)  primary_key not_null
     public $uri;                       // varchar(255)
     public $from_profile;              // int
     public $to_group;                  // int
@@ -61,7 +61,7 @@ class Group_message extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'varchar', 'not null' => true, 'length' => 36, 'description' => 'message uuid'),
+                'id' => array('type' => 'char', 'not null' => true, 'length' => 36, 'description' => 'message uuid'),
                 'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'message uri'),
                 'url' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'representation url'),
                 'from_profile' => array('type' => 'int', 'not null' => true, 'description' => 'sending profile ID'),

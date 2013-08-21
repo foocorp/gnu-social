@@ -20,7 +20,7 @@ class Irc_waiting_message extends Managed_DataObject {
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique ID for entry'),
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'Unique ID for entry'),
                 'data' => array('type' => 'blob', 'not null' => true, 'description' => 'data blob'),
                 'prioritise' => array('type' => 'int', 'size' => 'tiny', 'description' => 'tinyint priority value'),
                 'attempts' => array('type' => 'int', 'not null' => true, 'description' => 'attempts count'),

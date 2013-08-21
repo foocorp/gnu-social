@@ -18,7 +18,7 @@ class Msn_waiting_message extends Managed_DataObject {
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique ID for entry'),
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'Unique ID for entry'),
                 'screenname' => array('type' => 'varchar', 'length' => 255, 'description' => 'from screenname'),
                 'message' => array('type' => 'text', 'not null' => true, 'description' => 'MSN message text'),
                 'claimed' => array('type' => 'datetime', 'description' => 'date this irc message was claimed'),

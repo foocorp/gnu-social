@@ -57,7 +57,7 @@ class Group_message_profile extends Managed_DataObject
         return array(
             'fields' => array(
                 'to_profile' => array('type' => 'int', 'not null' => true, 'description' => 'id of group direct message'),
-                'group_message_id' => array('type' => 'varchar', 'not null' => true, 'length' => 36, 'description' => 'group message uuid'),
+                'group_message_id' => array('type' => 'char', 'not null' => true, 'length' => 36, 'description' => 'related group message uuid'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
