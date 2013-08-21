@@ -60,7 +60,7 @@ class GNUsocialPhoto extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique ID for Photo'),
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'Unique ID for Photo'),
                 'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'Notice ID for the related notice'),
                 'album_id' => array('type' => 'int', 'not null' => true, 'description' => 'The parent album ID'),
                 'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'unique address for this photo'),
@@ -72,7 +72,8 @@ class GNUsocialPhoto extends Managed_DataObject
             ),
             'primary key' => array('id'),
             'unique keys' => array(
-                'gnusocialphoto_uri' => array('uri'),
+                'gnusocialphoto_id_key' => array('notice_id'),
+                'gnusocialphoto_uri_key' => array('uri'),
             ),
             'foreign keys' => array(
                 'gnusocialphoto_notice_id_fkey' => array('notice', array('notice_id' => 'id')),

@@ -48,7 +48,7 @@ class GNUsocialPhotoAlbum extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'album_id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique identifier for the album'),
+                'album_id' => array('type' => 'serial', 'not null' => true, 'description' => 'Unique identifier for the album'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'Profile ID for the owner of the album'),
                 'album_name' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'Title for this album'),
                 'album_description' => array('type' => 'text', 'not null' => true, 'description' => 'A description for this album'),

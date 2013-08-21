@@ -34,7 +34,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 
 class GNUsocialProfileExtensionField extends Managed_DataObject
 {
-    public $__table = 'GNUsocialProfileExtensionField';
+    public $__table = 'gnusocialprofileextensionfield';
     public $id;          // int(11)
     public $systemname;  // varchar(64)
     public $title;       // varchar(255)
@@ -47,7 +47,7 @@ class GNUsocialProfileExtensionField extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique ID for extension field'),
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'Unique ID for extension field'),
                 'systemname' => array('type' => 'varchar', 'not null' => true, 'length' => 64, 'description' => 'field systemname'),
                 'title' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'field title'),
                 'description' => array('type' => 'text', 'not null' => true, 'description' => 'field description'),
@@ -60,16 +60,6 @@ class GNUsocialProfileExtensionField extends Managed_DataObject
                 'gnusocialprofileextensionfield_title_idx' => array('title'),
             ),
         );
-    }
-
-    function keyTypes()
-    {
-        return array('id' => 'K');
-    }
-
-    function sequenceKey()
-    {
-        return array(false, false, false);
     }
 
     static function newField($title, $description=null, $type='str', $systemname=null)

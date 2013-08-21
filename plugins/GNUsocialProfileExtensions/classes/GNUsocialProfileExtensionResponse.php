@@ -34,7 +34,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 
 class GNUsocialProfileExtensionResponse extends Managed_DataObject
 {
-    public $__table = 'GNUsocialProfileExtensionResponse';
+    public $__table = 'gnusocialprofileextensionresponse';
     public $id;           // int(11)
     public $extension_id; // int(11)
     public $profile_id;   // int(11)
@@ -46,7 +46,7 @@ class GNUsocialProfileExtensionResponse extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'int', 'not null' => true, 'description' => 'Unique ID for extension response'),
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'Unique ID for extension response'),
                 'extension_id' => array('type' => 'int', 'not null' => true, 'description' => 'The extension field ID'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'Profile id that made the response'),
                 'value' => array('type' => 'text', 'not null' => true, 'description' => 'response entry'),
@@ -56,7 +56,7 @@ class GNUsocialProfileExtensionResponse extends Managed_DataObject
             'primary key' => array('id'),
             'foreign keys' => array(
                 'gnusocialprofileextensionresponse_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
-                'gnusocialprofileextensionresponse_extension_id_fkey' => array('GNUsocialProfileExtensionField', array('extension_id' => 'id')),
+                'gnusocialprofileextensionresponse_extension_id_fkey' => array('gnusocialprofileextensionfield', array('extension_id' => 'id')),
             ),
             'indexes' => array(
                 'gnusocialprofileextensionresponse_extension_id_idx' => array('extension_id'),
@@ -82,8 +82,8 @@ class GNUsocialProfileExtensionResponse extends Managed_DataObject
 
     static function findResponsesByProfile($id)
     {
-        $extf = 'GNUsocialProfileExtensionField';
-        $extr = 'GNUsocialProfileExtensionResponse';
+        $extf = 'gnusocialprofileextensionfield';
+        $extr = 'gnusocialprofileextensionresponse';
         $sql = "SELECT $extr.*, $extf.title, $extf.description, $extf.type, $extf.systemname FROM $extr JOIN $extf ON $extr.extension_id=$extf.id WHERE $extr.profile_id = $id";
         $response = new GNUsocialProfileExtensionResponse();
         $response->query($sql);
