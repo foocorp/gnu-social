@@ -100,31 +100,6 @@ class AnonymousFavePlugin extends Plugin
         $action->inlineScript('SN.U.NoticeFavor();');
     }
 
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls) {
-            case 'Fave_tally':
-                include_once $dir . '/' . $cls . '.php';
-                return false;
-            case 'AnonFavorAction':
-                include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-                return false;
-            case 'AnonDisFavorAction':
-                include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-                return false;
-            case 'AnonFavorForm':
-                include_once $dir . '/anonfavorform.php';
-                return false;
-            case 'AnonDisFavorForm':
-                include_once $dir . '/anondisfavorform.php';
-                return false;
-            default:
-                return true;
-        }
-    }
-
     function onStartInitializeRouter($m)
     {
         $m->connect('main/anonfavor', array('action' => 'AnonFavor'));

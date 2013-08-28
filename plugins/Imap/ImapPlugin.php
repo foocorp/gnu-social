@@ -71,28 +71,6 @@ class ImapPlugin extends Plugin
         return true;
     }
 
-    /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'ImapManager':
-        case 'IMAPMailHandler':
-            include_once $dir . '/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
     function onStartQueueDaemonIoManagers(&$classes)
     {
         $classes[] = new ImapManager($this);

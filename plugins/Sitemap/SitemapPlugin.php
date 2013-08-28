@@ -50,37 +50,6 @@ class SitemapPlugin extends Plugin
     const NOTICES_PER_MAP = 50000;
 
     /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'Sitemap_user_count':
-        case 'Sitemap_notice_count':
-            require_once $dir . '/' . $cls . '.php';
-            return false;
-        case 'SitemapindexAction':
-        case 'NoticesitemapAction':
-        case 'UsersitemapAction':
-        case 'SitemapadminpanelAction':
-            require_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'SitemapAction':
-            require_once $dir . '/' . strtolower($cls) . '.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Add sitemap-related information at the end of robots.txt
      *
      * @param Action $action Action being run

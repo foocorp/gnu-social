@@ -66,9 +66,9 @@ class SphinxSearchPlugin extends Plugin
             include_once INSTALLDIR . '/plugins/SphinxSearch/' .
               strtolower($cls) . '.php';
             return false;
-        default:
-            return true;
         }
+
+        return parent::onAutoload($cls);
     }
 
     /**

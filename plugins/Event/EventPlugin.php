@@ -65,44 +65,6 @@ class EventPlugin extends MicroappPlugin
     }
 
     /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'NeweventAction':
-        case 'NewrsvpAction':
-        case 'CancelrsvpAction':
-        case 'ShoweventAction':
-        case 'ShowrsvpAction':
-        case 'TimelistAction':
-            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'EventListItem':
-        case 'RSVPListItem':
-        case 'EventForm':
-        case 'RSVPForm':
-        case 'CancelRSVPForm':
-        case 'EventTimeList':
-            include_once $dir . '/'.strtolower($cls).'.php';
-            break;
-        case 'Happening':
-        case 'RSVP':
-            include_once $dir . '/'.$cls.'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Map URLs to actions
      *
      * @param Net_URL_Mapper $m path-to-action mapper

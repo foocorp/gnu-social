@@ -33,7 +33,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 }
 
 require_once INSTALLDIR.'/lib/rssaction.php';
-require_once 'bookmarksnoticestream.php';
 
 /**
  * RSS feed for user bookmarks action class.

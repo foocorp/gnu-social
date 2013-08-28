@@ -54,40 +54,6 @@ if (!defined('STATUSNET')) {
  */
 class OMBPlugin extends Plugin
 {
-    /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'Requesttokenaction':
-        case 'Accesstokenaction':
-        case 'Userauthorizationaction':
-        case 'Postnoticeaction':
-        case 'Updateprofileaction':
-        case 'Finishremotesubscribeaction':
-        case 'Remotesubscribeaction':
-        case 'XrdsAction':
-            include_once $dir . '/action/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-            break;
-        case 'OmbQueueHandler':
-        case 'ProfileQueueHandler':
-            include_once $dir . '/lib/' . strtolower($cls) . '.php';
-            return false;
-        case 'OMBOAuthDataStore':
-            include_once $dir . '/lib/omboauthstore.php';
-        default:
-            return true;
-        }
-    }
 
     /**
      * Map URLs to actions

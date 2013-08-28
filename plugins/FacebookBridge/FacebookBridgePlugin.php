@@ -109,23 +109,9 @@ class FacebookBridgePlugin extends Plugin
             include_once $dir . '/extlib/base_facebook.php';
             include_once $dir . '/extlib/facebook.php';
             return false;
-        case 'FacebookloginAction':
-        case 'FacebookfinishloginAction':
-        case 'FacebookadminpanelAction':
-        case 'FacebooksettingsAction':
-        case 'FacebookdeauthorizeAction':
-            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'Facebookclient':
-        case 'FacebookQueueHandler':
-            include_once $dir . '/lib/' . strtolower($cls) . '.php';
-            return false;
-        case 'Notice_to_item':
-            include_once $dir . '/classes/' . $cls . '.php';
-            return false;
-        default:
-            return true;
         }
+
+        return parent::onAutoload($cls);
     }
 
     /**

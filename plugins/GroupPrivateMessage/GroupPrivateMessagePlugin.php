@@ -68,40 +68,6 @@ class GroupPrivateMessagePlugin extends Plugin
     }
 
     /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'GroupinboxAction':
-        case 'ShowgroupmessageAction':
-        case 'NewgroupmessageAction':
-            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'Group_privacy_settings':
-        case 'Group_message':
-        case 'Group_message_profile':
-            include_once $dir . '/'.$cls.'.php';
-            return false;
-        case 'GroupMessageCommand':
-        case 'GroupMessageList':
-        case 'GroupMessageListItem':
-        case 'GroupMessageForm':
-            include_once $dir . '/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Map URLs to actions
      *
      * @param Net_URL_Mapper $m path-to-action mapper

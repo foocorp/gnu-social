@@ -42,29 +42,6 @@ class GNUsocialVideoPlugin extends MicroAppPlugin
         return true;
     }
 
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-        switch($cls)
-        {
-        case 'PostvideoAction':
-            include_once $dir . '/actions/postvideo.php';
-            break;
-        case 'Video':
-            include_once $dir . '/Video.php';
-            break;
-        case 'VideoForm':
-            include_once $dir . '/videoform.php';
-            break;
-        case 'ShowvideoAction':
-            include_once $dir . '/showvideo.php';
-            break;
-        default:
-            break;
-        }
-        return true;
-    }
-
     function onRouterInitialized($m)
     {
         $m->connect('main/postvideo', array('action' => 'postvideo'));

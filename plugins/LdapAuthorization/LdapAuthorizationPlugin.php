@@ -56,6 +56,8 @@ class LdapAuthorizationPlugin extends AuthorizationPlugin
             require_once(INSTALLDIR.'/plugins/LdapCommon/LdapCommon.php');
             return false;
         }
+
+        return parent::onAutoload($cls);
     }
 
     //---interface implementation---//

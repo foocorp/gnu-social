@@ -57,24 +57,6 @@ class ActivityPlugin extends Plugin
     public $StartLike = false;
     public $StopLike = false;
 
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'JoinListItem':
-        case 'LeaveListItem':
-        case 'FollowListItem':
-        case 'UnfollowListItem':
-        case 'SystemListItem':
-            include_once $dir . '/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
     function onEndSubscribe($subscriber, $other)
     {
         // Only do this if config is enabled

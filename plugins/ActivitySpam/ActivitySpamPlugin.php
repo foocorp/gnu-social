@@ -93,38 +93,6 @@ class ActivitySpamPlugin extends Plugin
     }
 
     /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'TrainAction':
-        case 'SpamAction':
-            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'Spam_score':
-            include_once $dir . '/'.$cls.'.php';
-            return false;
-        case 'SpamFilter':
-        case 'SpamNoticeStream':
-        case 'TrainSpamForm':
-        case 'TrainHamForm':
-            include_once $dir . '/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * When a notice is saved, check its spam score
      * 
      * @param Notice $notice Notice that was just saved

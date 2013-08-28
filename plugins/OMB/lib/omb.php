@@ -21,7 +21,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 $dir = dirname(__FILE__);
 
-require_once $dir . '/omboauthstore.php';
 require_once $dir . '/../extlib/libomb/constants.php';
 require_once $dir . '/../extlib/libomb/service_consumer.php';
 require_once $dir . '/../extlib/libomb/notice.php';

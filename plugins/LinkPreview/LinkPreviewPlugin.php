@@ -69,28 +69,6 @@ class LinkPreviewPlugin extends Plugin
     }
 
     /**
-     * Autoloader
-     *
-     * Loads our classes if they're requested.
-     *
-     * @param string $cls Class requested
-     *
-     * @return boolean hook return
-     */
-    function onAutoload($cls)
-    {
-        $lower = strtolower($cls);
-        switch ($lower)
-        {
-        case 'oembedproxyaction':
-            require_once dirname(__FILE__) . '/' . $lower . '.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Hook for RouterInitialized event.
      *
      * @param Net_URL_Mapper $m URL mapper

@@ -40,19 +40,6 @@ class AccountManagerPlugin extends Plugin
         parent::__construct();
     }
 
-    function onAutoload($cls)
-    {
-        switch ($cls)
-        {
-         case 'AccountManagementControlDocumentAction':
-            require_once(INSTALLDIR.'/plugins/AccountManager/AccountManagementControlDocumentAction.php');
-            return false;
-         case 'AccountManagementSessionStatusAction':
-            require_once(INSTALLDIR.'/plugins/AccountManager/AccountManagementSessionStatusAction.php');
-            return false;
-        }
-    }
-
     /**
      * Hook for RouterInitialized event.
      *

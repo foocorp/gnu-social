@@ -49,22 +49,6 @@ if (!defined('STATUSNET')) {
 
 class OfflineBackupPlugin extends Plugin
 {
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'OfflinebackupAction':
-            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'OfflineBackupQueueHandler':
-            include_once $dir . '/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
 
     function onRouterInitialized($m)
     {

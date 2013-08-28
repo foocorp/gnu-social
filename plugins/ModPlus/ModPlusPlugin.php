@@ -63,28 +63,6 @@ class ModPlusPlugin extends Plugin
     }
 
     /**
-     * Autoloader
-     *
-     * Loads our classes if they're requested.
-     *
-     * @param string $cls Class requested
-     *
-     * @return boolean hook return
-     */
-    function onAutoload($cls)
-    {
-        switch ($cls)
-        {
-        case 'RemoteprofileAction':
-        case 'RemoteProfileAction':
-            require_once dirname(__FILE__) . '/remoteprofileaction.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Add ModPlus-related paths to the router table
      *
      * Hook for RouterInitialized event.

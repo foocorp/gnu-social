@@ -31,8 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once 'bookmarksnoticestream.php';
-
 /**
  * List currently logged-in user's bookmakrs
  *

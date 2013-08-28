@@ -69,41 +69,6 @@ class DirectoryPlugin extends Plugin
     }
 
     /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing,
-     *         false means stop.
-     */
-    function onAutoload($cls)
-    {
-        // common_debug("class = $cls");
-
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'UserdirectoryAction':
-        case 'GroupdirectoryAction':
-            include_once $dir
-                . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'AlphaNav':
-            include_once $dir
-                . '/lib/' . strtolower($cls) . '.php';
-            return false;
-        case 'SortableSubscriptionList':
-        case 'SortableGroupList':
-            include_once $dir
-                . '/lib/' . strtolower($cls) . '.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Map URLs to actions
      *
      * @param Net_URL_Mapper $m path-to-action mapper

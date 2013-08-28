@@ -75,18 +75,4 @@ class SiteNoticeInSidebarPlugin extends Plugin
         $action->element('style', null, '#site_notice { width: 100% }');
         return true;
     }
-
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'SiteNoticeSection':
-            include_once $dir . '/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
 }

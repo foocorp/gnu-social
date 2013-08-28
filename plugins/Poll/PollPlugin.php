@@ -82,40 +82,6 @@ class PollPlugin extends MicroAppPlugin
     }
 
     /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'ShowpollAction':
-        case 'NewpollAction':
-        case 'RespondpollAction':
-        case 'PollsettingsAction':
-            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'Poll':
-        case 'Poll_response':
-        case 'User_poll_prefs':
-            include_once $dir.'/'.$cls.'.php';
-            return false;
-        case 'NewPollForm':
-        case 'PollResponseForm':
-        case 'PollResultForm':
-            include_once $dir.'/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Map URLs to actions
      *
      * @param Net_URL_Mapper $m path-to-action mapper

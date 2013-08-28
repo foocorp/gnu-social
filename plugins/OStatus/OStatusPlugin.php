@@ -201,38 +201,6 @@ class OStatusPlugin extends Plugin
     }
 
     /**
-     * Automatically load the actions and libraries used by the plugin
-     *
-     * @param Class $cls the class
-     *
-     * @return boolean hook return
-     *
-     */
-    function onAutoload($cls)
-    {
-        $base = dirname(__FILE__);
-        $lower = strtolower($cls);
-        $map = array('activityverb' => 'activity',
-                     'activityobject' => 'activity',
-                     'activityutils' => 'activity');
-        if (isset($map[$lower])) {
-            $lower = $map[$lower];
-        }
-        $files = array("$base/classes/$cls.php",
-                       "$base/lib/$lower.php");
-        if (substr($lower, -6) == 'action') {
-            $files[] = "$base/actions/" . substr($lower, 0, -6) . ".php";
-        }
-        foreach ($files as $file) {
-            if (file_exists($file)) {
-                include_once $file;
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * Add in an OStatus subscribe button
      */
     function onStartProfileRemoteSubscribe($output, $profile)

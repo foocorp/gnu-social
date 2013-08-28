@@ -120,24 +120,13 @@ class IrcPlugin extends ImPlugin {
      * @return boolean hook value; true means continue processing, false means stop.
      */
     public function onAutoload($cls) {
-        $dir = dirname(__FILE__);
-
-        switch ($cls) {
-            case 'IrcManager':
-                include_once $dir . '/'.strtolower($cls).'.php';
-                return false;
-            case 'Fake_Irc':
-            case 'Irc_waiting_message':
-            case 'ChannelResponseChannel':
-                include_once $dir . '/'. $cls .'.php';
-                return false;
-            default:
-                if (substr($cls, 0, 7) == 'Phergie') {
-                    include_once str_replace('_', DIRECTORY_SEPARATOR, $cls) . '.php';
-                    return false;
-                }
-                return true;
+        // in the beginning of this file, we have added an include path
+        if (substr($cls, 0, 7) == 'Phergie') {
+            include_once str_replace('_', DIRECTORY_SEPARATOR, $cls) . '.php';
+            return false;
         }
+
+        return parent::onAutoload($cls);
     }
 
     /*

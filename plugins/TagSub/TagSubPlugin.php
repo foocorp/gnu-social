@@ -61,35 +61,6 @@ class TagSubPlugin extends Plugin
     }
 
     /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'TagSub':
-            include_once $dir.'/'.$cls.'.php';
-            return false;
-        case 'TagsubAction':
-        case 'TagunsubAction':
-        case 'TagsubsAction':
-        case 'TagSubForm':
-        case 'TagSubMenu':
-        case 'TagUnsubForm':
-            include_once $dir.'/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Map URLs to actions
      *
      * @param Net_URL_Mapper $m path-to-action mapper

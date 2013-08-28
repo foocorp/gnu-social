@@ -54,10 +54,10 @@ class CasAuthenticationPlugin extends AuthenticationPlugin
          case 'phpCAS':
             require_once(INSTALLDIR.'/plugins/CasAuthentication/extlib/CAS.php');
             return false;
-         case 'CasloginAction':
-            require_once(INSTALLDIR.'/plugins/CasAuthentication/' . strtolower(mb_substr($cls, 0, -6)) . '.php');
-            return false;
         }
+
+        // if it's not our exception, try standard places
+        return parent::onAutoload($cls);
     }
 
     function onArgsInitialize(&$args)

@@ -135,44 +135,6 @@ class BookmarkPlugin extends MicroAppPlugin
         $action->script($this->path('js/bookmark.js'));
         return true;
     }
-    /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'BookmarksAction':
-        case 'BookmarksrssAction':
-        case 'ApiTimelineBookmarksAction':
-        case 'ShowbookmarkAction':
-        case 'NewbookmarkAction':
-        case 'BookmarkpopupAction':
-        case 'NoticebyurlAction':
-        case 'BookmarkforurlAction':
-        case 'ImportdeliciousAction':
-            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'Bookmark':
-            include_once $dir.'/'.$cls.'.php';
-            return false;
-        case 'BookmarkListItem':
-        case 'BookmarkForm':
-        case 'InitialBookmarkForm':
-        case 'DeliciousBackupImporter':
-        case 'DeliciousBookmarkImporter':
-            include_once $dir.'/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
 
     /**
      * Map URLs to actions

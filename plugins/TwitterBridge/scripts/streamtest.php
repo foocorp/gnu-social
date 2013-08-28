@@ -44,8 +44,8 @@ data as it comes.
 ENDOFHELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
-require_once dirname(dirname(__FILE__)) . '/jsonstreamreader.php';
-require_once dirname(dirname(__FILE__)) . '/twitterstreamreader.php';
+require_once dirname(dirname(__FILE__)) . '/lib/jsonstreamreader.php';
+require_once dirname(dirname(__FILE__)) . '/lib/twitterstreamreader.php';
 
 if (have_option('n')) {
     $nickname = get_option_value('n');

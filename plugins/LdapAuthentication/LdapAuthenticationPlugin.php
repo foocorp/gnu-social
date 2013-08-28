@@ -54,6 +54,8 @@ class LdapAuthenticationPlugin extends AuthenticationPlugin
             require_once(INSTALLDIR.'/plugins/LdapCommon/LdapCommon.php');
             return false;
         }
+
+        return parent::onAutoload($cls);
     }
 
     function onEndShowPageNotice($action)

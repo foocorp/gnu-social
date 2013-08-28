@@ -175,41 +175,6 @@ class SamplePlugin extends Plugin
     }
 
     /**
-     * Load related modules when needed
-     *
-     * Most non-trivial plugins will require extra modules to do their work. Typically
-     * these include data classes, action classes, widget classes, or external libraries.
-     *
-     * This method receives a class name and loads the PHP file related to that class. By
-     * tradition, action classes typically have files named for the action, all lower-case.
-     * Data classes are in files with the data class name, initial letter capitalized.
-     *
-     * Note that this method will be called for *all* overloaded classes, not just ones
-     * in this plugin! So, make sure to return true by default to let other plugins, and
-     * the core code, get a chance.
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'HelloAction':
-            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'User_greeting_count':
-            include_once $dir . '/'.$cls.'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Map URLs to actions
      *
      * This event handler lets the plugin map URLs on the site to actions (and

@@ -42,26 +42,6 @@ class GNUsocialPhotoPlugin extends MicroAppPlugin
         return true;
     }
 
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-        switch($cls)
-        {
-        case 'Photo':
-            include_once $dir . '/Photo.php';
-            break;
-        case 'NewPhotoForm':
-            include_once $dir . '/newphotoform.php';
-            break;
-        case 'NewphotoAction':
-            include_once $dir . '/newphoto.php';
-            break;
-        default:
-            break;
-        }
-        return true;
-    }
-
     function onRouterInitialized($m)
     {
         $m->connect('main/photo/new', array('action' => 'newphoto'));

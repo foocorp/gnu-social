@@ -184,46 +184,6 @@ class TwitterBridgePlugin extends Plugin
     }
 
     /**
-     * Automatically load the actions and libraries used by the Twitter bridge
-     *
-     * @param Class $cls the class
-     *
-     * @return boolean hook return
-     *
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls) {
-        case 'TwittersettingsAction':
-        case 'TwitterauthorizationAction':
-        case 'TwitterloginAction':
-        case 'TwitteradminpanelAction':
-            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'TwitterOAuthClient':
-        case 'TwitterQueueHandler':
-        case 'TweetInQueueHandler':
-        case 'TwitterImport':
-        case 'JsonStreamReader':
-        case 'TwitterStreamReader':
-            include_once $dir . '/' . strtolower($cls) . '.php';
-            return false;
-        case 'TwitterSiteStream':
-        case 'TwitterUserStream':
-            include_once $dir . '/twitterstreamreader.php';
-            return false;
-        case 'Notice_to_status':
-        case 'Twitter_synch_status':
-            include_once $dir . '/' . $cls . '.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Add a Twitter queue item for each notice
      *
      * @param Notice $notice      the notice

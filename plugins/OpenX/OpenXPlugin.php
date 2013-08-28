@@ -181,20 +181,6 @@ ENDOFSCRIPT;
         return true;
     }
 
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'OpenxadminpanelAction':
-            require_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
     function onEndAdminPanelNav($menu) {
         if (AdminPanelAction::canAdmin('openx')) {
             // TRANS: Menu item title.

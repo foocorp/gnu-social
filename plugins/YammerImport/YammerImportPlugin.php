@@ -105,44 +105,4 @@ class YammerImportPlugin extends Plugin
 
         return true;
     }
-
-    /**
-     * Automatically load the actions and libraries used by the plugin
-     *
-     * @param Class $cls the class
-     *
-     * @return boolean hook return
-     *
-     */
-    function onAutoload($cls)
-    {
-        $base = dirname(__FILE__);
-        $lower = strtolower($cls);
-        switch ($lower) {
-        case 'sn_yammerclient':
-        case 'yammerimporter':
-        case 'yammerrunner':
-        case 'yammerapikeyform':
-        case 'yammerauthinitform':
-        case 'yammerauthverifyform':
-        case 'yammerprogressform':
-        case 'yammerqueuehandler':
-            require_once "$base/lib/$lower.php";
-            return false;
-        case 'yammeradminpanelaction':
-            $crop = substr($lower, 0, strlen($lower) - strlen('action'));
-            require_once "$base/actions/$crop.php";
-            return false;
-        case 'yammer_state':
-        case 'yammer_notice_stub':
-        case 'yammer_common':
-        case 'yammer_user':
-        case 'yammer_group':
-        case 'yammer_notice':
-            require_once "$base/classes/$cls.php";
-            return false;
-        default:
-            return true;
-        }
-    }
 }

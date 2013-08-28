@@ -84,27 +84,6 @@ class RegisterThrottlePlugin extends Plugin
     }
 
     /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'Registration_ip':
-            include_once $dir . '/'.$cls.'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Called when someone tries to register.
      *
      * We check the IP here to determine if it goes over any of our

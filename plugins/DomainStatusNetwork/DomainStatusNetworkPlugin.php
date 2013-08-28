@@ -91,27 +91,6 @@ class DomainStatusNetworkPlugin extends Plugin
         }
     }
 
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'GlobalregisterAction':
-        case 'GloballoginAction':
-        case 'GlobalrecoverAction':
-            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'DomainStatusNetworkInstaller':
-        case 'GlobalApiAction':
-        case 'FreeEmail':
-            include_once $dir . '/lib/' . strtolower($cls) . '.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
     static function toDomain($raw)
     {
         $parts = explode('@', $raw);

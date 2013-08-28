@@ -67,3 +67,4 @@ class AnonFavorForm extends FavorForm
         return common_local_url('AnonFavor');
     }
 }
+

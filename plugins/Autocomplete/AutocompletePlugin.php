@@ -39,16 +39,6 @@ class AutocompletePlugin extends Plugin
         parent::__construct();
     }
 
-    function onAutoload($cls)
-    {
-        switch ($cls)
-        {
-         case 'AutocompleteAction':
-            require_once(INSTALLDIR.'/plugins/Autocomplete/autocomplete.php');
-            return false;
-        }
-    }
-
     function onEndShowScripts($action){
         if (common_logged_in()) {
             $action->element('span', array('id' => 'autocomplete-api',

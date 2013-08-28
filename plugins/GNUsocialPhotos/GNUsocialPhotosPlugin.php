@@ -33,41 +33,10 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
+include_once $dir . '/lib/photolib.php';
+
 class GNUsocialPhotosPlugin extends Plugin
 {
-
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        include_once $dir . '/lib/tempphoto.php';
-        include_once $dir . '/lib/photonav.php';
-        switch ($cls)
-        {
-        case 'PhotosAction':
-            include_once $dir . '/lib/photolib.php';
-            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            break;
-        case 'PhotouploadAction':
-            include_once $dir . '/lib/photolib.php';
-            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            break;
-        case 'PhotoAction':
-            include_once $dir . '/lib/photolib.php';
-            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            break;
-        case 'EditphotoAction':
-            include_once $dir . '/lib/photolib.php';
-            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            break;
-        default:
-            break;
-        }
-        include_once $dir . '/classes/gnusocialphoto.php';
-        include_once $dir . '/classes/gnusocialphotoalbum.php';
-        return true;
-    }
-
     function onCheckSchema()
     {
         $schema = Schema::get();

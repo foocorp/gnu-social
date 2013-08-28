@@ -350,30 +350,14 @@ class OpenIDPlugin extends Plugin
     {
         switch ($cls)
         {
-        case 'OpenidloginAction':
-        case 'FinishopenidloginAction':
-        case 'FinishaddopenidAction':
-        case 'XrdsAction':
-        case 'PublicxrdsAction':
-        case 'OpenidsettingsAction':
-        case 'OpenidserverAction':
-        case 'OpenidtrustAction':
-        case 'OpenidadminpanelAction':
-            require_once dirname(__FILE__) . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'User_openid':
-        case 'User_openid_prefs':
-        case 'User_openid_trustroot':
-            require_once dirname(__FILE__) . '/' . $cls . '.php';
-            return false;
         case 'Auth_OpenID_TeamsExtension':
         case 'Auth_OpenID_TeamsRequest':
         case 'Auth_OpenID_TeamsResponse':
             require_once dirname(__FILE__) . '/extlib/teams-extension.php';
             return false;
-        default:
-            return true;
         }
+
+        return parent::onAutoload($cls);
     }
 
     /**

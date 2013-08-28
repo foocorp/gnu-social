@@ -116,38 +116,6 @@ class RSSCloudPlugin extends Plugin
     }
 
     /**
-     * Automatically load the actions and libraries used by
-     * the RSSCloud plugin
-     *
-     * @param Class $cls the class
-     *
-     * @return boolean hook return
-     *
-     */
-    function onAutoload($cls)
-    {
-        switch ($cls)
-        {
-        case 'RSSCloudSubscription':
-            include_once INSTALLDIR . '/plugins/RSSCloud/RSSCloudSubscription.php';
-            return false;
-        case 'RSSCloudNotifier':
-            include_once INSTALLDIR . '/plugins/RSSCloud/RSSCloudNotifier.php';
-            return false;
-        case 'RSSCloudQueueHandler':
-            include_once INSTALLDIR . '/plugins/RSSCloud/RSSCloudQueueHandler.php';
-            return false;
-        case 'RSSCloudRequestNotifyAction':
-        case 'LoggingAggregatorAction':
-            include_once INSTALLDIR . '/plugins/RSSCloud/' .
-              mb_substr($cls, 0, -6) . '.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Add a <cloud> element to the RSS feed (after the rss <channel>
      * element is started).
      *

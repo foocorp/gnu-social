@@ -285,30 +285,6 @@ class BlacklistPlugin extends Plugin
     }
 
     /**
-     * Auto-load our classes if called
-     *
-     * @param string $cls Class to load
-     *
-     * @return boolean hook return
-     */
-    function onAutoload($cls)
-    {
-        switch (strtolower($cls))
-        {
-        case 'nickname_blacklist':
-        case 'homepage_blacklist':
-            include_once INSTALLDIR.'/plugins/Blacklist/'.ucfirst($cls).'.php';
-            return false;
-        case 'blacklistadminpanelaction':
-            $base = strtolower(mb_substr($cls, 0, -6));
-            include_once INSTALLDIR.'/plugins/Blacklist/'.$base.'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Plugin version data
      *
      * @param array &$versions array of version blocks

@@ -58,18 +58,6 @@ class MinifyPlugin extends Plugin
         return true;
     }
 
-    function onAutoload($cls)
-    {
-        switch ($cls)
-        {
-         case 'MinifyAction':
-            require_once(INSTALLDIR.'/plugins/Minify/' . strtolower(mb_substr($cls, 0, -6)) . '.php');
-            return false;
-         default:
-            return true;
-        }
-    }
-
     function onLoginAction($action, &$login)
     {
         switch ($action)

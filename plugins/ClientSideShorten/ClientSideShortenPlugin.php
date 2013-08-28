@@ -31,23 +31,11 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once(INSTALLDIR.'/plugins/ClientSideShorten/shorten.php');
-
 class ClientSideShortenPlugin extends Plugin
 {
     function __construct()
     {
         parent::__construct();
-    }
-
-    function onAutoload($cls)
-    {
-        switch ($cls)
-        {
-         case 'ShortenAction':
-            require_once(INSTALLDIR.'/plugins/ClientSideShorten/shorten.php');
-            return false;
-        }
     }
 
     function onEndShowScripts($action){

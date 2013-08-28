@@ -75,6 +75,7 @@ class LdapCommon
 
     function onAutoload($cls)
     {
+        // we've added an extra include-path in the beginning of this file
         switch ($cls)
         {
          case 'MemcacheSchemaCache':
@@ -93,6 +94,8 @@ class LdapCommon
             require_once 'Net/LDAP2/Entry.php';
             return false;
         }
+
+        return parent::onAutoload($cls);
     }
 
     function get_ldap_config(){

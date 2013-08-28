@@ -44,42 +44,6 @@ class ExtendedProfilePlugin extends Plugin
     }
 
     /**
-     * Autoloader
-     *
-     * Loads our classes if they're requested.
-     *
-     * @param string $cls Class requested
-     *
-     * @return boolean hook return
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch (strtolower($cls))
-        {
-        case 'profiledetailaction':
-        case 'profiledetailsettingsaction':
-        case 'userautocompleteaction':
-            include_once $dir . '/actions/'
-                . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-            break; // Safety first!
-        case 'extendedprofile':
-        case 'extendedprofilewidget':
-            include_once $dir . '/lib/' . strtolower($cls) . '.php';
-            return false;
-            break;
-        case 'profile_detail':
-            include_once $dir . '/classes/' . ucfirst($cls) . '.php';
-            return false;
-            break;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Add paths to the router table
      *
      * Hook for RouterInitialized event.

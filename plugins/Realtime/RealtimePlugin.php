@@ -66,24 +66,6 @@ class RealtimePlugin extends Plugin
         return true;
     }
 
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'KeepalivechannelAction':
-        case 'ClosechannelAction':
-            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'Realtime_channel':
-            include_once $dir.'/'.$cls.'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
     /**
      * Hook for RouterInitialized event.
      *

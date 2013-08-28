@@ -96,15 +96,9 @@ class AimPlugin extends ImPlugin
         case 'Aim':
             require_once(INSTALLDIR.'/plugins/Aim/extlib/phptoclib/aimclassw.php');
             return false;
-        case 'AimManager':
-            include_once $dir . '/'.strtolower($cls).'.php';
-            return false;
-        case 'Fake_Aim':
-            include_once $dir . '/'. $cls .'.php';
-            return false;
-        default:
-            return true;
         }
+
+        return parent::onAutoload($cls);
     }
 
     function onStartImDaemonIoManagers(&$classes)

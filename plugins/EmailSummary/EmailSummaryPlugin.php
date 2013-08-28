@@ -60,32 +60,6 @@ class EmailSummaryPlugin extends Plugin
     }
 
     /**
-     * Load related modules when needed
-     *
-     * @param string $cls Name of the class to be loaded
-     *
-     * @return boolean hook value; true means continue processing, false means stop.
-     *
-     */
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-            {
-            case 'SiteEmailSummaryHandler':
-            case 'UserEmailSummaryHandler':
-                include_once $dir . '/'.strtolower($cls).'.php';
-            return false;
-            case 'Email_summary_status':
-                include_once $dir . '/'.$cls.'.php';
-                return false;
-            default:
-                return true;
-            }
-    }
-
-    /**
      * Version info for this plugin
      *
      * @param array &$versions array of version data

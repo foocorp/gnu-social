@@ -105,13 +105,9 @@ class MsnPlugin extends ImPlugin {
             case 'MSN':
                 require_once(INSTALLDIR.'/plugins/Msn/extlib/phpmsnclass/msn.class.php');
                 return false;
-            case 'MsnManager':
-            case 'Msn_waiting_message':
-                include_once $dir . '/'.strtolower($cls).'.php';
-                return false;
-            default:
-                return true;
         }
+
+        return parent::onAutoload($cls);
     }
 
     /*

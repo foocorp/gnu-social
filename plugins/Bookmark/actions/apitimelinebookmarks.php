@@ -35,7 +35,6 @@ if (!defined('STATUSNET')) {
 }
 
 require_once INSTALLDIR.'/lib/apibareauth.php';
-require_once 'bookmarksnoticestream.php';
 
 /**
  * Returns the 20 most recent favorite notices for the authenticating user or user

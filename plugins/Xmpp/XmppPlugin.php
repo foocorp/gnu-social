@@ -296,16 +296,9 @@ class XmppPlugin extends ImPlugin
         case 'XMPPHP_XMPP':
             require_once $dir . '/extlib/XMPPHP/XMPP.php';
             return false;
-        case 'Sharing_XMPP':
-        case 'Queued_XMPP':
-            require_once $dir . '/'.$cls.'.php';
-            return false;
-        case 'XmppManager':
-            require_once $dir . '/'.strtolower($cls).'.php';
-            return false;
-        default:
-            return true;
         }
+
+        return parent::onAutoload($cls);
     }
 
     function onStartImDaemonIoManagers(&$classes)

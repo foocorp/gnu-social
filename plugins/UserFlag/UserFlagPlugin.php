@@ -80,35 +80,6 @@ class UserFlagPlugin extends Plugin
     }
 
     /**
-     * Auto-load our classes if called
-     *
-     * @param string $cls Class to load
-     *
-     * @return boolean hook return
-     */
-    function onAutoload($cls)
-    {
-        switch (strtolower($cls))
-        {
-        case 'flagprofileaction':
-        case 'adminprofileflagaction':
-        case 'clearflagaction':
-            include_once INSTALLDIR.'/plugins/UserFlag/' .
-              strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
-        case 'flagprofileform':
-        case 'clearflagform':
-            include_once INSTALLDIR.'/plugins/UserFlag/' . strtolower($cls . '.php');
-            return false;
-        case 'user_flag_profile':
-            include_once INSTALLDIR.'/plugins/UserFlag/'.ucfirst(strtolower($cls)).'.php';
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Add a 'flag' button to profile page
      *
      * @param Action  $action The action being called

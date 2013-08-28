@@ -30,31 +30,10 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
+include_once $dir . '/lib/profiletools.php';
+
 class GNUsocialProfileExtensionsPlugin extends Plugin
 {
-
-    function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
-
-        switch ($cls)
-        {
-        case 'BioAction':
-        case 'NewresponseAction':
-            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            break;
-        case 'ProfilefieldsAdminPanelAction':
-            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -16)) . '.php';
-            break;
-        default:
-            break;
-        }
-        include_once $dir . '/classes/GNUsocialProfileExtensionField.php';
-        include_once $dir . '/classes/GNUsocialProfileExtensionResponse.php';
-        include_once $dir . '/lib/profiletools.php';
-        include_once $dir . '/lib/noticetree.php';
-        return true;
-    }
 
     function onCheckSchema()
     {
