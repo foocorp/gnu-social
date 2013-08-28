@@ -29,8 +29,8 @@ default values are in (parenthesis)
 Example
 =======
 addPlugin('xmpp', array(
-    'user=>'update',
-    'server=>'identi.ca',
+    'user'=>'update',
+    'server'=>'identi.ca',
     'password'=>'...',
     'public'=>array('bob@aol.com', 'sue@google.com')
 ));
