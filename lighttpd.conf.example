@@ -1,2 +1,16 @@
-# Add this line to lighttpd.conf to enable pseudo-rewrites using 404s
-server.error-handler-404 = "/index.php"
+# if you're using vhosts, you should have per-vhost server.document-root settings too
+#$HTTP["host"] =~ "^your\.domain\.com$" {
+    # NOTE: fastcgi/cgi/fpm config here if you're using per-user cgi/fpm
+
+    dir-listing.activate = "disable"
+    url.rewrite-once = (
+        "^/(.*)\.(.*)" => "$0",
+        "^/(avatar|file|js|plugins|theme)/" => "$0",
+        "^/(.+)$" => "/index.php/$1",
+        )
+
+    # Add this line to lighttpd.conf to enable pseudo-rewrites using 404s
+    # (required for fancy URLs)
+    server.error-handler-404 = "/index.php"
+#}
+
