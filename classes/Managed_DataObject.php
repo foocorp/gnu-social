@@ -56,7 +56,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
      * @return get_called_class() object if found, or null for no hits
      *
      */
-    static function pkeyGet($kv)
+    static function pkeyGet(array $kv)
     {
         return parent::pkeyGetClass(get_called_class(), $kv);
     }
@@ -82,13 +82,13 @@ abstract class Managed_DataObject extends Memcached_DataObject
      * values for a specific key column. Usually used for the primary key when
      * multiple values are desired.
      *
-     * @param array $keyCol  key column name
-     * @param array $keyVals array of key values
+     * @param string $keyCol  key column name
+     * @param array  $keyVals array of key values
      *
      * @return get_called_class() object with multiple instances if found, or null for no hits
      *
      */
-    static function listGet($keyCol, $keyVals)
+    static function listGet($keyCol, array $keyVals)
     {
         return parent::listGetClass(get_called_class(), $keyCol, $keyVals);
     }

@@ -74,7 +74,7 @@ class Memcached_DataObject extends Safe_DataObject
      *
      * @return array Array of objects, in order
      */
-    function multiGet($cls, $keyCol, $keyVals, $skipNulls=true)
+    function multiGet($cls, $keyCol, array $keyVals, $skipNulls=true)
     {
         $result = self::pivotGetClass($cls, $keyCol, $keyVals);
 
@@ -264,7 +264,7 @@ class Memcached_DataObject extends Safe_DataObject
         return $pkey;
     }
 
-    static function listGetClass($cls, $keyCol, $keyVals)
+    static function listGetClass($cls, $keyCol, array $keyVals)
     {
         if (!is_a($cls, __CLASS__, true)) {
             throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
@@ -348,7 +348,7 @@ class Memcached_DataObject extends Safe_DataObject
     /**
      * @todo FIXME: Should this return false on lookup fail to match getKV?
      */
-    static function pkeyGetClass($cls, $kv)
+    static function pkeyGetClass($cls, array $kv)
     {
         if (!is_a($cls, __CLASS__, true)) {
             throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');

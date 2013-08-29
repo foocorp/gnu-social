@@ -70,7 +70,7 @@ class Status_network extends Safe_DataObject
      * @param string $dbname
      * @param array $servers memcached servers to use for caching config info
      */
-    static function setupDB($dbhost, $dbuser, $dbpass, $dbname, $servers)
+    static function setupDB($dbhost, $dbuser, $dbpass, $dbname, array $servers)
     {
         global $config;
 
@@ -333,7 +333,7 @@ class Status_network extends Safe_DataObject
      * @param array tags
      * @fixme only add/remove differentials
      */
-    function setTags($tags)
+    function setTags(array $tags)
     {
         $this->clearTags();
         foreach ($tags as $tag) {

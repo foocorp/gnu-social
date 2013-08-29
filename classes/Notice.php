@@ -319,7 +319,7 @@ class Notice extends Managed_DataObject
      * @return Notice
      * @throws ClientException
      */
-    static function saveNew($profile_id, $content, $source, $options=null) {
+    static function saveNew($profile_id, $content, $source, array $options=null) {
         $defaults = array('uri' => null,
                           'url' => null,
                           'reply_to' => null,
@@ -954,7 +954,7 @@ class Notice extends Managed_DataObject
      *              if left empty, will be loaded from reply records
      * @return array associating recipient user IDs with an inbox source constant
      */
-    function whoGets($groups=null, $recipients=null)
+    function whoGets(array $groups=null, array $recipients=null)
     {
         $c = self::memcache();
 
@@ -1065,7 +1065,7 @@ class Notice extends Managed_DataObject
      * @param array $recipient optional list of reply profile ids
      *              if left empty, will be loaded from reply records
      */
-    function addToInboxes($groups=null, $recipients=null)
+    function addToInboxes(array $groups=null, array $recipients=null)
     {
         $ni = $this->whoGets($groups, $recipients);
 
@@ -1251,9 +1251,9 @@ class Notice extends Managed_DataObject
      *
      * Mail notifications etc will be handled later.
      *
-     * @param array of unique identifier URIs for recipients
+     * @param array  $uris   Array of unique identifier URIs for recipients
      */
-    function saveKnownReplies($uris)
+    function saveKnownReplies(array $uris)
     {
         if (empty($uris)) {
             return;

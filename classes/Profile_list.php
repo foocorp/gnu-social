@@ -602,7 +602,7 @@ class Profile_list extends Managed_DataObject
      *
      * @return mixed Profile_list on success, false on fail
      */
-    static function saveNew($fields) {
+    static function saveNew(array $fields) {
         extract($fields);
 
         $ptag = new Profile_list();
@@ -713,7 +713,7 @@ class Profile_list extends Managed_DataObject
 
      // XXX: This should be in Memcached_DataObject... eventually.
 
-    static function getAtCursor($fn, $args, $cursor, $count=20)
+    static function getAtCursor($fn, array $args, $cursor, $count=20)
     {
         $items = array();
 
@@ -886,7 +886,7 @@ class Profile_list extends Managed_DataObject
      * @return Profile_list results
      */
 
-    static function getByKeys($keys) {
+    static function getByKeys(array $keys) {
         $cache = Cache::instance();
 
         if (!empty($cache)) {

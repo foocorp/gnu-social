@@ -113,7 +113,7 @@ class File extends Managed_DataObject
      * @param string $given_url
      * @return boolean success
      */
-    public function saveOembed($redir_data, $given_url)
+    public function saveOembed(array $redir_data, $given_url)
     {
         if (isset($redir_data['type'])
             && (('text/html' === substr($redir_data['type'], 0, 9) || 'application/xhtml+xml' === substr($redir_data['type'], 0, 21)))

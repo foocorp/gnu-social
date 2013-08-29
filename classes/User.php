@@ -260,7 +260,7 @@ class User extends Managed_DataObject
      *              ?string 'uri' permalink to notice; defaults to local notice URL
      * @return mixed User object or false on failure
      */
-    static function register($fields) {
+    static function register(array $fields) {
 
         // MAGICALLY put fields into current scope
 
