@@ -74,7 +74,7 @@ class Memcached_DataObject extends Safe_DataObject
      *
      * @return array Array of objects, in order
      */
-    function multiGet($cls, $keyCol, array $keyVals, $skipNulls=true)
+    static function multiGetClass($cls, $keyCol, array $keyVals, $skipNulls=true)
     {
         $result = self::pivotGetClass($cls, $keyCol, $keyVals);
 

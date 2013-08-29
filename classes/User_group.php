@@ -30,11 +30,6 @@ class User_group extends Managed_DataObject
     public $join_policy;                     // tinyint
     public $force_scope;                     // tinyint
 
-    function multiGet($keyCol, $keyVals, $skipNulls=true)
-    {
-        return parent::multiGet('User_group', $keyCol, $keyVals, $skipNulls);
-    }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

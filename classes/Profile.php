@@ -78,11 +78,6 @@ class Profile extends Managed_DataObject
 
         return $def;
     }
-
-	function multiGet($keyCol, $keyVals, $skipNulls=true)
-	{
-	    return parent::multiGet('Profile', $keyCol, $keyVals, $skipNulls);
-	}
 	
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE

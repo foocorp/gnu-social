@@ -130,11 +130,6 @@ class Notice extends Managed_DataObject
 
         return $def;
     }
-    
-	function multiGet($kc, $kvs, $skipNulls=true)
-	{
-		return Memcached_DataObject::multiGet('Notice', $kc, $kvs, $skipNulls);
-	}
 	
     /* Notice types */
     const LOCAL_PUBLIC    =  1;
@@ -831,7 +826,7 @@ class Notice extends Managed_DataObject
             $ids[] = $f2p->file_id;    
         }
 		
-		$files = Memcached_DataObject::multiGet('File', 'id', $ids);
+		$files = File::multiGet('id', $ids);
 
 		$this->_attachments = $files->fetchAll();
 		

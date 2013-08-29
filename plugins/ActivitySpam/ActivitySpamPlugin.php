@@ -254,7 +254,7 @@ class ActivitySpamPlugin extends Plugin
             foreach ($notices as $notice) {
                 $ids[] = $notice->id;
             }
-            Memcached_DataObject::multiGet('Spam_score', 'notice_id', $ids);
+            Spam_score::multiGet('notice_id', $ids);
         }
         return true;
     }

@@ -66,6 +66,20 @@ abstract class Managed_DataObject extends Memcached_DataObject
      *
      * @param string  $keyCol    name of column for key
      * @param array   $keyVals   key values to fetch
+     * @param boolean $skipNulls return only non-null results?
+     *
+     * @return array Array of objects, in order
+     */
+	static function multiGet($keyCol, array $keyVals, $skipNulls=true)
+	{
+	    return parent::multiGetClass(get_called_class(), $keyCol, $keyVals, $skipNulls);
+	}
+
+    /**
+     * Get multiple items from the database by key
+     *
+     * @param string  $keyCol    name of column for key
+     * @param array   $keyVals   key values to fetch
      * @param array   $otherCols Other columns to hold fixed
      *
      * @return array Array mapping $keyVals to objects, or null if not found
