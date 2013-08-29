@@ -81,7 +81,7 @@ class Photo extends Managed_DataObject
         );
     }
 
-    function saveNew($profile, $photo_uri, $thumb_uri, $title, $description, $options=array())
+    static function saveNew(Profile $profile, $photo_uri, $thumb_uri, $title, $description, $options=array())
     {
         $photo = new Photo();
 

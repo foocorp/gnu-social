@@ -85,7 +85,7 @@ class GNUsocialPhoto extends Managed_DataObject
         );
     }
 
-    function saveNew($profile_id, $album_id, $thumb_uri, $uri, $source, $insert_now, $title = null, $photo_description = null)
+    static function saveNew($profile_id, $album_id, $thumb_uri, $uri, $source, $insert_now, $title = null, $photo_description = null)
     {
         $photo = new GNUsocialPhoto();
         $photo->thumb_uri = $thumb_uri;

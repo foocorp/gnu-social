@@ -75,7 +75,7 @@ class Video extends Managed_DataObject
         );
     }
 
-    function saveNew($profile, $url, $options=array())
+    static function saveNew(Profile $profile, $url, $options=array())
     {
         $vid = new Video();
 
