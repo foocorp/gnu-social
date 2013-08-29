@@ -55,7 +55,20 @@ require_once INSTALLDIR.'/lib/htmloutputter.php';
  */
 class Action extends HTMLOutputter // lawsuit
 {
-    var $args;
+    // This should be protected/private in the future
+    public $args = array();
+
+    // Action properties, set per-class
+    protected $action = false;
+    protected $ajax   = false;
+    protected $menus  = true;
+
+    // The currently scoped profile
+    protected $scoped = null;
+
+    // Messages to the front-end user
+    protected $error = null;
+    protected $msg   = null;
 
     /**
      * Constructor
@@ -73,6 +86,44 @@ class Action extends HTMLOutputter // lawsuit
         parent::__construct($output, $indent);
     }
 
+    function getError()
+    {
+        return $this->error;
+    }
+
+    function getInfo()
+    {
+        return $this->msg;
+    }
+
+    static public function run(array $args=array(), $output='php://output', $indent=null) {
+        $class = get_called_class();
+        $action = new $class($output, $indent);
+        $action->execute($args);
+        return $action;
+    }
+
+    public function execute(array $args=array()) {
+        // checkMirror stuff
+        if (common_config('db', 'mirror') && $this->isReadOnly($args)) {
+            if (is_array(common_config('db', 'mirror'))) {
+                // "load balancing", ha ha
+                $arr = common_config('db', 'mirror');
+                $k = array_rand($arr);
+                $mirror = $arr[$k];
+            } else {
+                $mirror = common_config('db', 'mirror');
+            }
+
+            // everyone else uses the mirror
+            common_config_set('db', 'database', $mirror);
+        }
+
+        if ($this->prepare($args)) {
+            $this->handle($args);
+        }
+    }
+
     /**
      * For initializing members of the class.
      *
@@ -80,13 +131,18 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return boolean true
      */
-    function prepare($argarray)
+    function prepare(array $args=array())
     {
-        $this->args =& common_copy_args($argarray);
+        $this->args = common_copy_args($args);
 
-        if ($this->boolean('ajax')) {
+        $this->action = $this->trimmed('action');
+
+        if ($this->ajax || $this->boolean('ajax')) {
+            // check with StatusNet::isAjax()
             StatusNet::setAjax(true);
         }
+
+        $this->scoped = Profile::current();
 
         return true;
     }

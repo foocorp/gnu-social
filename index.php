@@ -201,26 +201,6 @@ function setupRW()
     return;
 }
 
-function checkMirror($action_obj, $args)
-{
-    global $config;
-
-    if (common_config('db', 'mirror') && $action_obj->isReadOnly($args)) {
-        if (is_array(common_config('db', 'mirror'))) {
-            // "load balancing", ha ha
-            $arr = common_config('db', 'mirror');
-            $k = array_rand($arr);
-            $mirror = $arr[$k];
-        } else {
-            $mirror = common_config('db', 'mirror');
-        }
-
-        // everyone else uses the mirror
-
-        $config['db']['database'] = $mirror;
-    }
-}
-
 function isLoginAction($action)
 {
     static $loginActions =  array('login', 'recoverpassword', 'api', 'doc', 'register', 'publicxrds', 'otp', 'opensearch', 'rsd', 'hostmeta');
@@ -315,7 +295,7 @@ function main()
 
     Event::handle('ArgsInitialize', array(&$args));
 
-    $action = $args['action'];
+    $action = basename($args['action']);
 
     if (!$action || !preg_match('/^[a-zA-Z0-9_-]*$/', $action)) {
         common_redirect(common_local_url('public'));
@@ -356,14 +336,8 @@ function main()
         $cac = new ClientErrorAction(_('Unknown action'), 404);
         $cac->showPage();
     } else {
-        $action_obj = new $action_class();
-
-        checkMirror($action_obj, $args);
-
         try {
-            if ($action_obj->prepare($args)) {
-                $action_obj->handle($args);
-            }
+            call_user_func("$action_class::run", $args);
         } catch (ClientException $cex) {
             $cac = new ClientErrorAction($cex->getMessage(), $cex->getCode());
             $cac->showPage();
