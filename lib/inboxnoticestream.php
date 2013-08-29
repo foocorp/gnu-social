@@ -144,7 +144,7 @@ class RawInboxNoticeStream extends NoticeStream
 
             $ids = $this->getNoticeIds($offset, $limit, $sinceId, $maxId);
 
-            $notices = Memcached_DataObject::pivotGet('Notice', 'id', $ids);
+            $notices = Notice::pivotGet('id', $ids);
 
             // By default, takes out false values
 

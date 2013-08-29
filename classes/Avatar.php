@@ -22,11 +22,6 @@ class Avatar extends Managed_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
-
-	static function pivotGet($keyCol, $keyVals, $otherCols)
-	{
-	    return Memcached_DataObject::pivotGet('Avatar', $keyCol, $keyVals, $otherCols);
-	}
 	
     public static function schemaDef()
     {

@@ -147,8 +147,8 @@ class NoticeList extends Widget
                     $ids[] = $notice->id;
                 }
     	
-                Memcached_DataObject::pivotGet('Fave', 'notice_id', $ids, array('user_id' => $p->id));
-                Memcached_DataObject::pivotGet('Notice', 'repeat_of', $ids, array('profile_id' => $p->id));
+                Fave::pivotGet('notice_id', $ids, array('user_id' => $p->id));
+                Notice::pivotGet('repeat_of', $ids, array('profile_id' => $p->id));
             }
 
             Event::handle('EndNoticeListPrefill', array(&$notices, &$profiles, $avatarSize));

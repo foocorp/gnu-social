@@ -76,7 +76,7 @@ class Memcached_DataObject extends Safe_DataObject
      */
     function multiGet($cls, $keyCol, $keyVals, $skipNulls=true)
     {
-        $result = self::pivotGet($cls, $keyCol, $keyVals);
+        $result = self::pivotGetClass($cls, $keyCol, $keyVals);
 
         $values = array_values($result);
 
@@ -103,7 +103,7 @@ class Memcached_DataObject extends Safe_DataObject
      *
      * @return array Array mapping $keyVals to objects, or null if not found
      */
-    static function pivotGet($cls, $keyCol, $keyVals, $otherCols = array())
+    static function pivotGetClass($cls, $keyCol, array $keyVals, array $otherCols = array())
     {
         if (!is_a($cls, __CLASS__, true)) {
             throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
@@ -292,7 +292,7 @@ class Memcached_DataObject extends Safe_DataObject
         }
 
         if (count($allPkeys) > 0) {
-            $keyResults = self::pivotGet($cls, $pkeyCols, $allPkeys);
+            $keyResults = self::pivotGetClass($cls, $pkeyCols, $allPkeys);
 
             foreach ($pkeyMap as $keyVal => $pkeyList) {
                 foreach ($pkeyList as $pkeyVal) {

@@ -62,6 +62,20 @@ abstract class Managed_DataObject extends Memcached_DataObject
     }
 
     /**
+     * Get multiple items from the database by key
+     *
+     * @param string  $keyCol    name of column for key
+     * @param array   $keyVals   key values to fetch
+     * @param array   $otherCols Other columns to hold fixed
+     *
+     * @return array Array mapping $keyVals to objects, or null if not found
+     */
+	static function pivotGet($keyCol, array $keyVals, array $otherCols=array())
+	{
+	    return parent::pivotGetClass(get_called_class(), $keyCol, $keyVals, $otherCols);
+	}
+
+    /**
      * Get a multi-instance object
      *
      * This is a utility method to get multiple instances with a given set of

@@ -2600,7 +2600,7 @@ class Notice extends Managed_DataObject
 		
 		$ids = array_unique($ids);
 		
-		return Memcached_DataObject::pivotGet('Profile', 'id', $ids); 
+		return Profile::pivotGet('id', $ids); 
 	}
 	
 	static function fillGroups(&$notices)
@@ -2621,7 +2621,7 @@ class Notice extends Managed_DataObject
 		
 		$gids = array_unique($gids);
 		
-		$group = Memcached_DataObject::pivotGet('User_group', 'id', $gids);
+		$group = User_group::pivotGet('id', $gids);
 		
 		foreach ($notices as $notice)
 		{
@@ -2660,7 +2660,7 @@ class Notice extends Managed_DataObject
 
         $fileIds = array_unique($fileIds);
 
-		$fileMap = Memcached_DataObject::pivotGet('File', 'id', $fileIds);
+		$fileMap = File::pivotGet('id', $fileIds);
 
 		foreach ($notices as $notice)
 		{
