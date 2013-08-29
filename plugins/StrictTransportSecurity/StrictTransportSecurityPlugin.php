@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Plugin to enable Single Sign On via CAS (Central Authentication Service)
+ * Plugin to enable Strict Transport Security headers
  *
  * PHP version 5
  *
