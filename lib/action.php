@@ -1218,11 +1218,9 @@ class Action extends HTMLOutputter // lawsuit
     /**
      * Handler method
      *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
      * @return boolean is read only action?
      */
-    function handle($argarray=null)
+    protected function handle()
     {
         header('Vary: Accept-Encoding,Cookie');
 
