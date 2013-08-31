@@ -131,7 +131,7 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return boolean true
      */
-    function prepare(array $args=array())
+    protected function prepare(array $args=array())
     {
         $this->args = common_copy_args($args);
 

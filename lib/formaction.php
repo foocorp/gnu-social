@@ -82,6 +82,25 @@ class FormAction extends Action
         return !$this->isPost();
     }
 
+    public function showPageNotice()
+    {
+        $this->showInstructions();
+        if ($msg = $this->getError()) {
+            $this->element('div', 'error', $msg);
+        }
+        if ($msg = $this->getInfo()) {
+            $this->element('div', 'info', $msg);
+        }
+    }
+
+    /**
+     * Outputs the instructions for the form
+     *
+     * SHOULD overload
+     */
+    public function showInstructions() {
+    }
+
     public function showForm($msg=null, $success=false)
     {
         if ($success) {

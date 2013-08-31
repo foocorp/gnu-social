@@ -28,7 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
@@ -43,10 +43,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class NewgroupAction extends Action
+class NewgroupAction extends FormAction
 {
-    var $msg;
-
     function title()
     {
         // TRANS: Title for form to create a group.
@@ -56,7 +54,7 @@ class NewgroupAction extends Action
     /**
      * Prepare to run
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
@@ -66,9 +64,8 @@ class NewgroupAction extends Action
             return false;
         }
 
-        $user = common_current_user();
-        $profile = $user->getProfile();
-        if (!$profile->hasRight(Right::CREATEGROUP)) {
+        // $this->scoped is the current user profile
+        if (!$this->scoped->hasRight(Right::CREATEGROUP)) {
             // TRANS: Client exception thrown when a user tries to create a group while banned.
             throw new ClientException(_('You are not allowed to create groups on this site.'), 403);
         }
@@ -76,57 +73,26 @@ class NewgroupAction extends Action
         return true;
     }
 
-    /**
-     * Handle the request
-     *
-     * On GET, show the form. On POST, try to save the group.
-     *
-     * @param array $args unused
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->trySave();
-        } else {
-            $this->showForm();
-        }
-    }
-
-    function showForm($msg=null)
-    {
-        $this->msg = $msg;
-        $this->showPage();
-    }
-
-    function showContent()
+    public function showContent()
     {
         $form = new GroupEditForm($this);
         $form->show();
     }
 
-    function showPageNotice()
+    public function showInstructions()
     {
-        if ($this->msg) {
-            $this->element('p', 'error', $this->msg);
-        } else {
-            $this->element('p', 'instructions',
-                           // TRANS: Form instructions for group create form.
-                           _('Use this form to create a new group.'));
-        }
+        $this->element('p', 'instructions',
+                       // TRANS: Form instructions for group create form.
+                       _('Use this form to create a new group.'));
     }
 
-    function trySave()
+    protected function handlePost()
     {
+        parent::handlePost();
+
         if (Event::handle('StartGroupSaveForm', array($this))) {
-            try {
-                $nickname = Nickname::normalize($this->trimmed('newnickname'));
-            } catch (NicknameException $e) {
-                $this->showForm($e->getMessage());
-                return;
-            }
+            $nickname = Nickname::normalize($this->trimmed('newnickname'));
+
             $fullname    = $this->trimmed('fullname');
             $homepage    = $this->trimmed('homepage');
             $description = $this->trimmed('description');
@@ -136,35 +102,29 @@ class NewgroupAction extends Action
 
             if ($this->nicknameExists($nickname)) {
                 // TRANS: Group create form validation error.
-                $this->showForm(_('Nickname already in use. Try another one.'));
-                return;
+                throw new ClientException(_('Nickname already in use. Try another one.'));
             } else if (!User_group::allowedNickname($nickname)) {
                 // TRANS: Group create form validation error.
-                $this->showForm(_('Not a valid nickname.'));
-                return;
+                throw new ClientException(_('Not a valid nickname.'));
             } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
                        !Validate::uri($homepage,
                                       array('allowed_schemes' =>
                                             array('http', 'https')))) {
                 // TRANS: Group create form validation error.
-                $this->showForm(_('Homepage is not a valid URL.'));
-                return;
+                throw new ClientException(_('Homepage is not a valid URL.'));
             } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
                 // TRANS: Group create form validation error.
-                $this->showForm(_('Full name is too long (maximum 255 characters).'));
-                return;
+                throw new ClientException(_('Full name is too long (maximum 255 characters).'));
             } else if (User_group::descriptionTooLong($description)) {
                 // TRANS: Group create form validation error.
                 // TRANS: %d is the maximum number of allowed characters.
-                $this->showForm(sprintf(_m('Description is too long (maximum %d character).',
+                throw new ClientException(sprintf(_m('Description is too long (maximum %d character).',
                                            'Description is too long (maximum %d characters).',
                                            User_group::maxDescription()),
                                         User_group::maxDescription()));
-                return;
             } else if (!is_null($location) && mb_strlen($location) > 255) {
                 // TRANS: Group create form validation error.
-                $this->showForm(_('Location is too long (maximum 255 characters).'));
-                return;
+                throw new ClientException(_('Location is too long (maximum 255 characters).'));
             }
 
             if (!empty($aliasstring)) {
@@ -176,7 +136,7 @@ class NewgroupAction extends Action
             if (count($aliases) > common_config('group', 'maxaliases')) {
                 // TRANS: Group create form validation error.
                 // TRANS: %d is the maximum number of allowed aliases.
-                $this->showForm(sprintf(_m('Too many aliases! Maximum %d allowed.',
+                throw new ClientException(sprintf(_m('Too many aliases! Maximum %d allowed.',
                                            'Too many aliases! Maximum %d allowed.',
                                            common_config('group', 'maxaliases')),
                                         common_config('group', 'maxaliases')));
@@ -187,20 +147,17 @@ class NewgroupAction extends Action
                 if (!Nickname::isValid($alias)) {
                     // TRANS: Group create form validation error.
                     // TRANS: %s is the invalid alias.
-                    $this->showForm(sprintf(_('Invalid alias: "%s"'), $alias));
-                    return;
+                    throw new ClientException(sprintf(_('Invalid alias: "%s"'), $alias));
                 }
                 if ($this->nicknameExists($alias)) {
                     // TRANS: Group create form validation error. %s is the already used alias.
-                    $this->showForm(sprintf(_('Alias "%s" already in use. Try another one.'),
+                    throw new ClientException(sprintf(_('Alias "%s" already in use. Try another one.'),
                                             $alias));
-                    return;
                 }
                 // XXX assumes alphanum nicknames
                 if (strcmp($alias, $nickname) == 0) {
                     // TRANS: Group create form validation error.
-                    $this->showForm(_('Alias cannot be the same as nickname.'));
-                    return;
+                    throw new ClientException(_('Alias cannot be the same as nickname.'));
                 }
             }
 
@@ -212,11 +169,8 @@ class NewgroupAction extends Action
                 $join_policy = User_group::JOIN_POLICY_OPEN;
             }
 
-            $cur = common_current_user();
-
-            // Checked in prepare() above
-
-            assert(!is_null($cur));
+            // This is set up in parent->prepare and checked in self->prepare
+            assert(!is_null($this->scoped));
 
             $group = User_group::register(array('nickname' => $nickname,
                                                 'fullname' => $fullname,
@@ -224,7 +178,7 @@ class NewgroupAction extends Action
                                                 'description' => $description,
                                                 'location' => $location,
                                                 'aliases'  => $aliases,
-                                                'userid'   => $cur->id,
+                                                'userid'   => $this->scoped->id,
                                                 'join_policy' => $join_policy,
                                                 'force_scope' => $force_scope,
                                                 'local'    => true));
