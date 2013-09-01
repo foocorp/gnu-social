@@ -54,20 +54,19 @@ class NewgroupAction extends FormAction
     /**
      * Prepare to run
      */
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
         if (!common_logged_in()) {
             // TRANS: Client error displayed trying to create a group while not logged in.
-            $this->clientError(_('You must be logged in to create a group.'));
-            return false;
+            $this->clientError(_('You must be logged in to create a group.'), 403);
         }
 
         // $this->scoped is the current user profile
         if (!$this->scoped->hasRight(Right::CREATEGROUP)) {
             // TRANS: Client exception thrown when a user tries to create a group while banned.
-            throw new ClientException(_('You are not allowed to create groups on this site.'), 403);
+            $this->clientError(_('You are not allowed to create groups on this site.'), 403);
         }
 
         return true;
