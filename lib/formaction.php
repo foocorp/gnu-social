@@ -98,7 +98,9 @@ class FormAction extends Action
      *
      * SHOULD overload
      */
-    public function showInstructions() {
+    public function showInstructions()
+    {
+        // instructions are nice, so users know what to do
     }
 
     public function showForm($msg=null, $success=false)
@@ -115,7 +117,8 @@ class FormAction extends Action
      * Gets called from handle() if isPost() is true;
      * @return void
      */
-    protected function handlePost() {
+    protected function handlePost()
+    {
         // check for this before token since all POST and FILES data
         // is losts when size is exceeded
         if (empty($_POST) && $_SERVER['CONTENT_LENGTH']>0) {
