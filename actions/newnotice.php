@@ -101,6 +101,8 @@ class NewnoticeAction extends FormAction
      */
     protected function handlePost()
     {
+        parent::handlePost();
+
         assert($this->scoped); // XXX: maybe an error instead...
         $user = $this->scoped->getUser();
         $content = $this->trimmed('status_textarea');
