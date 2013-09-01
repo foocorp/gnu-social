@@ -25,11 +25,12 @@
  * @author    Zach Copley <zach@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
  * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
@@ -47,13 +48,8 @@ require_once INSTALLDIR . '/lib/mediafile.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class NewnoticeAction extends Action
+class NewnoticeAction extends FormAction
 {
-    /**
-     * Error message, if any
-     */
-    var $msg = null;
-
     /**
      * Title of the page
      *
@@ -80,44 +76,20 @@ class NewnoticeAction extends Action
      *
      * @return void
      */
-    function handle($args)
+    protected function prepare(array $args=array())
     {
+        parent::prepare($args);
+
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-            $this->clientError(_('Not logged in.'));
-        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // check for this before token since all POST and FILES data
-            // is losts when size is exceeded
-            if (empty($_POST) && $_SERVER['CONTENT_LENGTH']) {
-                // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
-                // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-                $msg = _m('The server was unable to handle that much POST data (%s byte) due to its current configuration.',
-                          'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
-                          intval($_SERVER['CONTENT_LENGTH']));
-                $this->clientError(sprintf($msg,$_SERVER['CONTENT_LENGTH']));
-            }
-            parent::handle($args);
-
-            // CSRF protection
-            $token = $this->trimmed('token');
-            if (!$token || $token != common_session_token()) {
-                // TRANS: Client error displayed when the session token does not match or is not given.
-                $this->clientError(_('There was a problem with your session token. '.
-                                     'Try again, please.'));
-            }
-            try {
-                $this->saveNewNotice();
-            } catch (Exception $e) {
-                $this->showForm($e->getMessage());
-                return;
-            }
-        } else {
-            $this->showForm();
+            $this->clientError(_('Not logged in.'), 403);
         }
+
+        return true;
     }
 
     /**
-     * Save a new notice, based on arguments
+     * This handlePost saves a new notice, based on arguments
      *
      * If successful, will show the notice, or return an Ajax-y result.
      * If not, it will show an error message -- possibly Ajax-y.
@@ -127,10 +99,10 @@ class NewnoticeAction extends Action
      *
      * @return void
      */
-    function saveNewNotice()
+    protected function handlePost()
     {
-        $user = common_current_user();
-        assert($user); // XXX: maybe an error instead...
+        assert($this->scoped); // XXX: maybe an error instead...
+        $user = $this->scoped->getUser();
         $content = $this->trimmed('status_textarea');
         $options = array();
         Event::handle('StartSaveNewNoticeWeb', array($this, $user, &$content, &$options));
@@ -138,7 +110,6 @@ class NewnoticeAction extends Action
         if (!$content) {
             // TRANS: Client error displayed trying to send a notice without content.
             $this->clientError(_('No content!'));
-            return;
         }
 
         $inter = new CommandInterpreter();
@@ -146,7 +117,7 @@ class NewnoticeAction extends Action
         $cmd = $inter->handle_command($user, $content);
 
         if ($cmd) {
-            if ($this->boolean('ajax')) {
+            if (StatusNet::isAjax()) {
                 $cmd->execute(new AjaxWebChannel($this));
             } else {
                 $cmd->execute(new WebChannel($this));
@@ -228,7 +199,7 @@ class NewnoticeAction extends Action
         }
         Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content_shortened, &$options));
 
-        if ($this->boolean('ajax')) {
+        if (StatusNet::isAjax()) {
             header('Content-Type: text/xml;charset=utf-8');
             $this->xw->startDocument('1.0', 'UTF-8');
             $this->elementStart('html');
@@ -240,6 +211,7 @@ class NewnoticeAction extends Action
             $this->showNotice($notice);
             $this->elementEnd('body');
             $this->elementEnd('html');
+            exit;
         } else {
             $returnto = $this->trimmed('returnto');
 
@@ -311,13 +283,14 @@ class NewnoticeAction extends Action
      * Note that since we started doing Ajax output, this page is rarely
      * seen.
      *
-     * @param string $msg An error message, if any
+     * @param string  $msg     An error/info message, if any
+     * @param boolean $success false for error indication, true for info
      *
      * @return void
      */
-    function showForm($msg=null)
+    function showForm($msg=null, $success=false)
     {
-        if ($this->boolean('ajax')) {
+        if (StatusNet::isAjax()) {
             if ($msg) {
                 $this->ajaxErrorMsg($msg);
             } else {
@@ -326,8 +299,7 @@ class NewnoticeAction extends Action
             return;
         }
 
-        $this->msg = $msg;
-        $this->showPage();
+        parent::showForm($msg, $success);
     }
 
     /**
