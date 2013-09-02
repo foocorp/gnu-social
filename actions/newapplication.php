@@ -23,11 +23,12 @@
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
  * @copyright 2008-2011 StatusNet, Inc.
+ * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
@@ -42,88 +43,26 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class NewApplicationAction extends Action
+class NewApplicationAction extends FormAction
 {
-    var $msg;
-
     function title()
     {
         // TRANS: This is the title of the form for adding a new application.
         return _('New application');
     }
 
-    /**
-     * Prepare to run
-     */
-    function prepare($args)
+    protected function handlePost()
     {
-        parent::prepare($args);
-
-        if (!common_logged_in()) {
-            // TRANS: Client error displayed trying to add a new application while not logged in.
-            $this->clientError(_('You must be logged in to register an application.'));
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * Handle the request
-     *
-     * On GET, show the form. On POST, try to save the app.
-     *
-     * @param array $args unused
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $this->handlePost($args);
-        } else {
-            $this->showForm();
-        }
-    }
-
-    function handlePost($args)
-    {
-        // Workaround for PHP returning empty $_POST and $_FILES when POST
-        // length > post_max_size in php.ini
-
-        if (empty($_FILES)
-            && empty($_POST)
-            && ($_SERVER['CONTENT_LENGTH'] > 0)
-        ) {
-            // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
-            // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-            $msg = _m('The server was unable to handle that much POST data (%s byte) due to its current configuration.',
-                      'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
-                      intval($_SERVER['CONTENT_LENGTH']));
-            $this->clientException(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
-            return;
-        }
-
-        // CSRF protection
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->clientError(_('There was a problem with your session token.'));
-            return;
-        }
-
-        $cur = common_current_user();
+        parent::handlePost();
 
         if ($this->arg('cancel')) {
             common_redirect(common_local_url('oauthappssettings'), 303);
         } elseif ($this->arg('save')) {
             $this->trySave();
-        } else {
-            // TRANS: Client error displayed when encountering an unexpected action on form submission.
-            $this->clientError(_('Unexpected form submission.'));
         }
+
+        // TRANS: Client error displayed when encountering an unexpected action on form submission.
+        $this->clientError(_('Unexpected form submission.'));
     }
 
     function showForm($msg=null)
@@ -149,7 +88,7 @@ class NewApplicationAction extends Action
         }
     }
 
-    function trySave()
+    private function trySave()
     {
         $name         = $this->trimmed('name');
         $description  = $this->trimmed('description');
@@ -162,93 +101,74 @@ class NewApplicationAction extends Action
 
         if (empty($name)) {
             // TRANS: Validation error shown when not providing a name in the "New application" form.
-             $this->showForm(_('Name is required.'));
-             return;
+            $this->clientError(_('Name is required.'));
         } else if ($this->nameExists($name)) {
             // TRANS: Validation error shown when providing a name for an application that already exists in the "New application" form.
-            $this->showForm(_('Name already in use. Try another one.'));
-            return;
+            $this->clientError(_('Name already in use. Try another one.'));
         } elseif (mb_strlen($name) > 255) {
             // TRANS: Validation error shown when providing too long a name in the "New application" form.
-            $this->showForm(_('Name is too long (maximum 255 characters).'));
-            return;
+            $this->clientError(_('Name is too long (maximum 255 characters).'));
         } elseif (empty($description)) {
             // TRANS: Validation error shown when not providing a description in the "New application" form.
-            $this->showForm(_('Description is required.'));
-            return;
+            $this->clientError(_('Description is required.'));
         } elseif (Oauth_application::descriptionTooLong($description)) {
-            $this->showForm(sprintf(
+            $this->clientError(sprintf(
                 // TRANS: Form validation error in New application form.
                 // TRANS: %d is the maximum number of characters for the description.
                 _m('Description is too long (maximum %d character).',
                    'Description is too long (maximum %d characters).',
                    Oauth_application::maxDesc()),
                 Oauth_application::maxDesc()));
-            return;
         } elseif (empty($source_url)) {
             // TRANS: Validation error shown when not providing a source URL in the "New application" form.
-            $this->showForm(_('Source URL is required.'));
-            return;
+            $this->clientError(_('Source URL is required.'));
         } elseif ((strlen($source_url) > 0)
             && !Validate::uri(
                 $source_url,
                 array('allowed_schemes' => array('http', 'https'))
                 )
-            )
-        {
+            ) {
             // TRANS: Validation error shown when providing an invalid source URL in the "New application" form.
-            $this->showForm(_('Source URL is not valid.'));
-            return;
+            $this->clientError(_('Source URL is not valid.'));
         } elseif (empty($organization)) {
             // TRANS: Validation error shown when not providing an organisation in the "New application" form.
-            $this->showForm(_('Organization is required.'));
-            return;
+            $this->clientError(_('Organization is required.'));
         } elseif (mb_strlen($organization) > 255) {
             // TRANS: Validation error shown when providing too long an arganisation name in the "Edit application" form.
-            $this->showForm(_('Organization is too long (maximum 255 characters).'));
-            return;
+            $this->clientError(_('Organization is too long (maximum 255 characters).'));
         } elseif (empty($homepage)) {
             // TRANS: Form validation error show when an organisation name has not been provided in the new application form.
-            $this->showForm(_('Organization homepage is required.'));
-            return;
+            $this->clientError(_('Organization homepage is required.'));
         } elseif ((strlen($homepage) > 0)
             && !Validate::uri(
                 $homepage,
                 array('allowed_schemes' => array('http', 'https'))
                 )
-            )
-        {
+            ) {
             // TRANS: Validation error shown when providing an invalid homepage URL in the "New application" form.
-            $this->showForm(_('Homepage is not a valid URL.'));
-            return;
+            $this->clientError(_('Homepage is not a valid URL.'));
         } elseif (mb_strlen($callback_url) > 255) {
             // TRANS: Validation error shown when providing too long a callback URL in the "New application" form.
-            $this->showForm(_('Callback is too long.'));
-            return;
+            $this->clientError(_('Callback is too long.'));
         } elseif (strlen($callback_url) > 0
             && !Validate::uri(
                 $source_url,
                 array('allowed_schemes' => array('http', 'https'))
                 )
-            )
-        {
+            ) {
             // TRANS: Validation error shown when providing an invalid callback URL in the "New application" form.
-            $this->showForm(_('Callback URL is not valid.'));
-            return;
+            $this->clientError(_('Callback URL is not valid.'));
         }
 
-        $cur = common_current_user();
-
-        // Checked in prepare() above
-
-        assert(!is_null($cur));
+        // Login is checked in parent::prepare()
+        assert(!is_null($this->scoped));
 
         $app = new Oauth_application();
 
         $app->query('BEGIN');
 
         $app->name         = $name;
-        $app->owner        = $cur->id;
+        $app->owner        = $this->scoped->id;
         $app->description  = $description;
         $app->source_url   = $source_url;
         $app->organization = $organization;
@@ -291,14 +211,13 @@ class NewApplicationAction extends Action
             $app->query('ROLLBACK');
         }
 
-	try {
+        try {
             $app->uploadLogo();
         } catch (Exception $e) {
             $app->query('ROLLBACK');
             // TRANS: Form validation error messages displayed when uploading an invalid application logo.
-            $this->showForm(_('Invalid image.'));
-	        return;	 
-	}
+            $this->clientError(_('Invalid image.'));
+        }
 
         $app->query('COMMIT');
 
