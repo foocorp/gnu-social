@@ -1377,6 +1377,18 @@ class Action extends HTMLOutputter // lawsuit
     }
 
     /**
+     * Redirect to login page (with returnto)
+     *
+     * @return nothing
+     */
+    function needLogin()
+    {
+        // this might be updated with a login check before redirecting
+        common_set_returnto($_SERVER['REQUEST_URI']);
+        common_redirect(common_local_url('login'));
+    }
+
+    /**
      * Returns the current URL
      *
      * @return string current URL

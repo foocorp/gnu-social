@@ -632,15 +632,15 @@ class MessageCommand extends Command
             $channel->error($this->user, _('Do not send a message to yourself; just say it to yourself quietly instead.'));
             return;
         }
-        $message = Message::saveNew($this->user->id, $other->id, $this->text, $channel->source());
-        if ($message) {
+        try {
+            $message = Message::saveNew($this->user->id, $other->id, $this->text, $channel->source());
             $message->notify();
             // TRANS: Message given have sent a direct message to another user.
             // TRANS: %s is the name of the other user.
             $channel->output($this->user, sprintf(_('Direct message to %s sent.'), $this->other));
-        } else {
+        } catch (Exception $e) {
             // TRANS: Error text shown sending a direct message fails with an unknown reason.
-            $channel->error($this->user, _('Error sending direct message.'));
+            $channel->error($this->user, $e->getMessage());
         }
     }
 }

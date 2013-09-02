@@ -45,15 +45,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @link     http://status.net/
  */
 
-class NewmessageAction extends Action
+class NewmessageAction extends FormAction
 {
-
-    /**
-     * Error message, if any
-     */
-
-    var $msg = null;
-
     var $content = null;
     var $to = null;
     var $other = null;
@@ -80,32 +73,15 @@ class NewmessageAction extends Action
      * @return void
      */
 
-    function handle($args)
-    {
-        parent::handle($args);
-
-        if (!common_logged_in()) {
-            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-            $this->clientError(_('Not logged in.'), 403);
-        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->saveNewMessage();
-        } else {
-            $this->showForm();
-        }
-    }
-
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $user = common_current_user();
-
-        if (!$user) {
-            /* Go log in, and then come back. */
-            common_set_returnto($_SERVER['REQUEST_URI']);
-            common_redirect(common_local_url('login'));
-            return false;
+        if (!common_logged_in()) {
+            $this->needLogin();
         }
+
+        $user = $this->scoped->getUser();
 
         $this->content = $this->trimmed('content');
         $this->to = $this->trimmed('to');
@@ -117,76 +93,55 @@ class NewmessageAction extends Action
             if (!$this->other) {
                 // TRANS: Client error displayed trying to send a direct message to a non-existing user.
                 $this->clientError(_('No such user.'), 404);
-                return false;
             }
 
             if (!$user->mutuallySubscribed($this->other)) {
                 // TRANS: Client error displayed trying to send a direct message to a user while sender and
                 // TRANS: receiver are not subscribed to each other.
                 $this->clientError(_('You cannot send a message to this user.'), 404);
-                return false;
             }
         }
 
         return true;
     }
 
-    function saveNewMessage()
+    protected function handlePost()
     {
-        // CSRF protection
+        parent::handlePost();
 
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->showForm(_('There was a problem with your session token. ' .
-                'Try again, please.'));
-            return;
-        }
-
-        $user = common_current_user();
-        assert($user); // XXX: maybe an error instead...
+        assert($this->scoped); // XXX: maybe an error instead...
+        $user = $this->scoped->getUser();
 
         if (!$this->content) {
             // TRANS: Form validator error displayed trying to send a direct message without content.
-            $this->showForm(_('No content!'));
-            return;
+            $this->clientError(_('No content!'));
         } else {
             $content_shortened = $user->shortenLinks($this->content);
 
             if (Message::contentTooLong($content_shortened)) {
                 // TRANS: Form validation error displayed when message content is too long.
                 // TRANS: %d is the maximum number of characters for a message.
-                $this->showForm(sprintf(_m('That\'s too long. Maximum message size is %d character.',
+                $this->clientError(sprintf(_m('That\'s too long. Maximum message size is %d character.',
                                            'That\'s too long. Maximum message size is %d characters.',
                                            Message::maxContent()),
                                         Message::maxContent()));
-                return;
             }
         }
 
         if (!$this->other) {
             // TRANS: Form validation error displayed trying to send a direct message without specifying a recipient.
-            $this->showForm(_('No recipient specified.'));
-            return;
+            $this->clientError(_('No recipient specified.'));
         } else if (!$user->mutuallySubscribed($this->other)) {
             // TRANS: Client error displayed trying to send a direct message to a user while sender and
             // TRANS: receiver are not subscribed to each other.
             $this->clientError(_('You cannot send a message to this user.'), 404);
-            return;
         } else if ($user->id == $this->other->id) {
             // TRANS: Client error displayed trying to send a direct message to self.
             $this->clientError(_('Do not send a message to yourself; ' .
                 'just say it to yourself quietly instead.'), 403);
-            return;
         }
 
         $message = Message::saveNew($user->id, $this->other->id, $this->content, 'web');
-
-        if (is_string($message)) {
-            $this->showForm($message);
-            return;
-        }
-
         $message->notify();
 
         if ($this->boolean('ajax')) {

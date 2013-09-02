@@ -163,11 +163,6 @@ class ApiDirectMessageNewAction extends ApiAuthAction
             $this->source
         );
 
-        if (is_string($message)) {
-            $this->serverError($message);
-            return;
-        }
-
         $message->notify();
 
         if ($this->format == 'xml') {

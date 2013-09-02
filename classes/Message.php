@@ -96,7 +96,7 @@ class Message extends Managed_DataObject
         if (!$result) {
             common_log_db_error($msg, 'INSERT', __FILE__);
             // TRANS: Message given when a message could not be stored on the server.
-            return _('Could not insert message.');
+            throw new ServerException(_('Could not insert message.'));
         }
 
         $orig = clone($msg);
@@ -107,7 +107,7 @@ class Message extends Managed_DataObject
         if (!$result) {
             common_log_db_error($msg, 'UPDATE', __FILE__);
             // TRANS: Message given when a message could not be updated on the server.
-            return _('Could not update message with new URI.');
+            throw new ServerException(_('Could not update message with new URI.'));
         }
 
         return $msg;
