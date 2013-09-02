@@ -45,6 +45,7 @@ class FormAction extends Action
 {
     protected $form = null;
     protected $type = null;
+    protected $needLogin = true;
 
     protected function prepare(array $args=array()) {
         parent::prepare($args);

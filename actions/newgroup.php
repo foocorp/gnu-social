@@ -24,6 +24,7 @@
  * @author    Evan Prodromou <evan@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
  * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -57,11 +58,6 @@ class NewgroupAction extends FormAction
     protected function prepare(array $args=array())
     {
         parent::prepare($args);
-
-        if (!common_logged_in()) {
-            // TRANS: Client error displayed trying to create a group while not logged in.
-            $this->clientError(_('You must be logged in to create a group.'), 403);
-        }
 
         // $this->scoped is the current user profile
         if (!$this->scoped->hasRight(Right::CREATEGROUP)) {

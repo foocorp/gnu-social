@@ -25,11 +25,12 @@
  * @author    Zach Copley <zach@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
  * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
@@ -76,10 +77,6 @@ class NewmessageAction extends FormAction
     protected function prepare($args)
     {
         parent::prepare($args);
-
-        if (!common_logged_in()) {
-            $this->needLogin();
-        }
 
         $user = $this->scoped->getUser();
 

@@ -64,31 +64,6 @@ class NewnoticeAction extends FormAction
     }
 
     /**
-     * Handle input, produce output
-     *
-     * Switches based on GET or POST method. On GET, shows a form
-     * for posting a notice. On POST, saves the results of that form.
-     *
-     * Results may be a full page, or just a single notice list item,
-     * depending on whether AJAX was requested.
-     *
-     * @param array $args $_REQUEST contents
-     *
-     * @return void
-     */
-    protected function prepare(array $args=array())
-    {
-        parent::prepare($args);
-
-        if (!common_logged_in()) {
-            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-            $this->clientError(_('Not logged in.'), 403);
-        }
-
-        return true;
-    }
-
-    /**
      * This handlePost saves a new notice, based on arguments
      *
      * If successful, will show the notice, or return an Ajax-y result.

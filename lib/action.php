@@ -62,6 +62,7 @@ class Action extends HTMLOutputter // lawsuit
     protected $action = false;
     protected $ajax   = false;
     protected $menus  = true;
+    protected $needLogin = false;
 
     // The currently scoped profile
     protected $scoped = null;
@@ -140,6 +141,10 @@ class Action extends HTMLOutputter // lawsuit
         if ($this->ajax || $this->boolean('ajax')) {
             // check with StatusNet::isAjax()
             StatusNet::setAjax(true);
+        }
+
+        if ($this->needLogin) {
+            $this->checkLogin(); // if not logged in, this redirs/excepts
         }
 
         $this->scoped = Profile::current();
@@ -1377,15 +1382,25 @@ class Action extends HTMLOutputter // lawsuit
     }
 
     /**
-     * Redirect to login page (with returnto)
+     * If not logged in, take appropriate action (redir or exception)
      *
-     * @return nothing
+     * @param boolean $redir Redirect to login if not logged in
+     *
+     * @return boolean true if logged in (never returns if not)
      */
-    function needLogin()
+    public function checkLogin($redir=true)
     {
-        // this might be updated with a login check before redirecting
-        common_set_returnto($_SERVER['REQUEST_URI']);
-        common_redirect(common_local_url('login'));
+        if (common_logged_in()) {
+            return true;
+        }
+
+        if ($redir==true) {
+            common_set_returnto($_SERVER['REQUEST_URI']);
+            common_redirect(common_local_url('login'));
+        }
+
+        // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+        $this->clientError(_('Not logged in.'), 403);
     }
 
     /**
