@@ -632,11 +632,11 @@ class User extends Managed_DataObject
         return true;
     }
 
-    function unblock($other)
+    function unblock(Profile $other)
     {
         // Get the block record
 
-        $block = Profile_block::get($this->id, $other->id);
+        $block = Profile_block::exists($this->getProfile(), $other);
 
         if (!$block) {
             return false;

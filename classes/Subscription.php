@@ -185,7 +185,7 @@ class Subscription extends Managed_DataObject
      * Cancel a subscription
      *
      */
-    function cancel(Profile $subscriber, Profile $other)
+    static function cancel(Profile $subscriber, Profile $other)
     {
         if (!self::exists($subscriber, $other)) {
             // TRANS: Exception thrown when trying to unsibscribe without a subscription.
@@ -230,7 +230,7 @@ class Subscription extends Managed_DataObject
         return;
     }
 
-    function exists($subscriber, $other)
+    static function exists(Profile $subscriber, Profile $other)
     {
         $sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
                                            'subscribed' => $other->id));

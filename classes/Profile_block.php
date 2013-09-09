@@ -54,9 +54,9 @@ class Profile_block extends Managed_DataObject
         );
     }
 
-    function get($blocker, $blocked)
+    static function exists(Profile $blocker, Profile $blocked)
     {
-        return Profile_block::pkeyGet(array('blocker' => $blocker,
-                                            'blocked' => $blocked));
-     }
+        return Profile_block::pkeyGet(array('blocker' => $blocker->id,
+                                            'blocked' => $blocked->id));
+    }
 }

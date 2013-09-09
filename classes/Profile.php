@@ -1366,15 +1366,8 @@ class Profile extends Managed_DataObject
 
     function hasBlocked($other)
     {
-        $block = Profile_block::get($this->id, $other->id);
-
-        if (empty($block)) {
-            $result = false;
-        } else {
-            $result = true;
-        }
-
-        return $result;
+        $block = Profile_block::exists($this, $other);
+        return !empty($block);
     }
 
     function getAtomFeed()
