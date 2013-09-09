@@ -103,6 +103,13 @@ class ApiAuthAction extends ApiAction
             $this->checkOAuthRequest($oauthReq);
         }
 
+        // NOTE: Make sure we're scoped properly based on the auths!
+        if (isset($this->auth_user) && !empty($this->auth_user)) {
+            $this->scoped = $this->auth_user->getProfile();
+        } else {
+            $this->scoped = null;
+        }
+
         // Reject API calls with the wrong access level
 
         if ($this->isReadOnly($args) == false) {

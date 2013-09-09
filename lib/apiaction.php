@@ -202,7 +202,11 @@ class ApiAction extends Action
     {
         $twitter_user = array();
 
-        $user = $profile->getUser();
+        try {
+            $user = $profile->getUser();
+        } catch (NoSuchUserException $e) {
+            $user = null;
+        }
 
         $twitter_user['id'] = intval($profile->id);
         $twitter_user['name'] = $profile->getBestName();

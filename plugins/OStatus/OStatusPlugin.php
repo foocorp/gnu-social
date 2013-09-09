@@ -601,18 +601,16 @@ class OStatusPlugin extends Plugin
      * @fixme If something else aborts later, we could end up with a stray
      *        PuSH subscription. This is relatively harmless, though.
      *
-     * @param Profile $subscriber
-     * @param Profile $other
+     * @param Profile $profile  subscriber
+     * @param Profile $other    subscribee
      *
      * @return hook return code
      *
      * @throws Exception
      */
-    function onStartSubscribe($subscriber, $other)
+    function onStartSubscribe(Profile $profile, Profile $other)
     {
-        $user = User::getKV('id', $subscriber->id);
-
-        if (empty($user)) {
+        if (!$profile->isLocal()) {
             return true;
         }
 
@@ -632,18 +630,16 @@ class OStatusPlugin extends Plugin
      * Having established a remote subscription, send a notification to the
      * remote OStatus profile's endpoint.
      *
-     * @param Profile $subscriber
-     * @param Profile $other
+     * @param Profile $profile  subscriber
+     * @param Profile $other    subscribee
      *
      * @return hook return code
      *
      * @throws Exception
      */
-    function onEndSubscribe($subscriber, $other)
+    function onEndSubscribe(Profile $profile, Profile $other)
     {
-        $user = User::getKV('id', $subscriber->id);
-
-        if (empty($user)) {
+        if (!$profile->isLocal()) {
             return true;
         }
 
@@ -653,12 +649,12 @@ class OStatusPlugin extends Plugin
             return true;
         }
 
-        $sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
+        $sub = Subscription::pkeyGet(array('subscriber' => $profile->id,
                                            'subscribed' => $other->id));
 
         $act = $sub->asActivity();
 
-        $oprofile->notifyActivity($act, $subscriber);
+        $oprofile->notifyActivity($act, $profile);
 
         return true;
     }
@@ -671,11 +667,9 @@ class OStatusPlugin extends Plugin
      * @param Profile $other
      * @return hook return value
      */
-    function onEndUnsubscribe($profile, $other)
+    function onEndUnsubscribe(Profile $profile, Profile $other)
     {
-        $user = User::getKV('id', $profile->id);
-
-        if (empty($user)) {
+        if (!$profile->isLocal()) {
             return true;
         }
 

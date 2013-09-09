@@ -481,7 +481,7 @@ class BlacklistPlugin extends Plugin
     /**
      * Check URLs and homepages for blacklisted users.
      */
-    function onStartSubscribe($subscriber, $other)
+    function onStartSubscribe(Profile $subscriber, Profile $other)
     {
         foreach (array($other->profileurl, $other->homepage) as $url) {
 

@@ -26,6 +26,9 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 function subs_subscribe_to($user, $other)
 {
+    if (is_a($other, 'User')) {
+        $other = $other->getProfile();
+    }
     try {
         Subscription::start($user->getProfile(), $other);
         return true;
@@ -36,6 +39,9 @@ function subs_subscribe_to($user, $other)
 
 function subs_unsubscribe_to($user, $other)
 {
+    if (is_a($other, 'User')) {
+        $other = $other->getProfile();
+    }
     try {
         Subscription::cancel($user->getProfile(), $other);
         return true;

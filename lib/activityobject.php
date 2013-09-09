@@ -506,7 +506,7 @@ class ActivityObject
 
             $object->poco = PoCo::fromProfile($profile);
 
-            if ($profile->getUser()) {
+            if ($profile->isLocal()) {
                 $object->extra[] = array('followers', array('url' => common_local_url('subscribers', array('nickname' => $profile->nickname))));
             }
 

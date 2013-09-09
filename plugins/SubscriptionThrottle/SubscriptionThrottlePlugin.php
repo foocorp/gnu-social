@@ -55,15 +55,15 @@ class SubscriptionThrottlePlugin extends Plugin
     /**
      * Filter subscriptions to see if they're coming too fast.
      *
-     * @param User $user  The user subscribing
-     * @param User $other The user being subscribed to
+     * @param Profile $profile  The profile subscribing
+     * @param Profile $other    The profile being subscribed to
      *
      * @return boolean hook value
      */
-    function onStartSubscribe($user, $other)
+    function onStartSubscribe(Profile $profile, $other)
     {
         foreach ($this->subLimits as $seconds => $limit) {
-            $sub = $this->_getNthSub($user, $limit);
+            $sub = $this->_getNthSub($profile, $limit);
 
             if (!empty($sub)) {
                 $subtime = strtotime($sub->created);
@@ -105,18 +105,18 @@ class SubscriptionThrottlePlugin extends Plugin
     }
 
     /**
-     * Get the Nth most recent subscription for this user
+     * Get the Nth most recent subscription for this profile
      *
-     * @param User    $user The user to get subscriptions for
-     * @param integer $n    How far to count back
+     * @param Profile $profile profile to get subscriptions for
+     * @param integer $n       How far to count back
      *
      * @return Subscription a subscription or null
      */
-    private function _getNthSub($user, $n)
+    private function _getNthSub(Profile $profile, $n)
     {
         $sub = new Subscription();
 
-        $sub->subscriber = $user->id;
+        $sub->subscriber = $profile->id;
         $sub->orderBy('created DESC');
         $sub->limit($n - 1, 1);
 
@@ -128,14 +128,14 @@ class SubscriptionThrottlePlugin extends Plugin
     }
 
     /**
-     * Get the Nth most recent group membership for this user
+     * Get the Nth most recent group membership for this profile
      *
      * @param Profile $profile The user to get memberships for
      * @param integer $n       How far to count back
      *
      * @return Group_member a membership or null
      */
-    private function _getNthMem($profile, $n)
+    private function _getNthMem(Profile $profile, $n)
     {
         $mem = new Group_member();
 

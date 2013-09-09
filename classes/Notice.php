@@ -522,14 +522,16 @@ class Notice extends Managed_DataObject
 
         // For private streams
 
-        $user = $profile->getUser();
+        try {
+            $user = $profile->getUser();
 
-        if (!empty($user)) {
             if ($user->private_stream &&
                 ($notice->scope == Notice::PUBLIC_SCOPE ||
                  $notice->scope == Notice::SITE_SCOPE)) {
                 $notice->scope |= Notice::FOLLOWER_SCOPE;
             }
+        } catch (NoSuchUserException $e) {
+            // Cannot handle private streams for remote profiles
         }
 
         // Force the scope for private groups
@@ -2420,11 +2422,8 @@ class Notice extends Managed_DataObject
 
             // Only for users on this site
 
-            if ($scope & Notice::SITE_SCOPE) {
-                $user = $profile->getUser();
-                if (empty($user)) {
-                    return false;
-                }
+            if (($scope & Notice::SITE_SCOPE) && !$profile->isLocal()) {
+                return false;
             }
 
             // Only for users mentioned in the notice

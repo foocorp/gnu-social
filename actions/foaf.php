@@ -175,7 +175,6 @@ class FoafAction extends Action
                     common_debug('Got a bad subscription: '.print_r($sub,true));
                     continue;
                 }
-                $user = $profile->getUser();
                 $other_uri = $profile->getUri();
                 if (array_key_exists($other_uri, $person)) {
                     $person[$other_uri][0] = BOTH;
@@ -183,7 +182,7 @@ class FoafAction extends Action
                     $person[$other_uri] = array(LISTENER,
                                                 $profile->id,
                                                 $profile->nickname,
-                                                $user ? 'local' : 'remote');
+                                                $profile->isLocal() ? 'local' : 'remote');
                 }
                 unset($profile);
             }
@@ -289,13 +288,12 @@ class FoafAction extends Action
                         common_debug('Got a bad subscription: '.print_r($sub,true));
                         continue;
                     }
-                    $user = $profile->getUser();
                     $other_uri = $profile->getUri();
                     $this->element('sioc:follows', array('rdf:resource' => $other_uri.'#acct'));
                     $person[$other_uri] = array(LISTENEE,
                                                 $profile->id,
                                                 $profile->nickname,
-                                                $user ? 'local' : 'remote');
+                                                $profile->isLocal() ? 'local' : 'remote');
                     unset($profile);
                 }
             }

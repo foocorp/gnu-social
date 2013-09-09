@@ -158,9 +158,10 @@ class Blog_entry extends Managed_DataObject
         // Use user's preferences for short URLs, if possible
 
         try {
-            $user = $profile->getUser();
-            $shortUrl = File_redirection::makeShort($url,
-                                                    empty($user) ? null : $user);
+            $user = $profile->isLocal()
+                        ? $profile->getUser()
+                        : null;
+            $shortUrl = File_redirection::makeShort($url, $user);
         } catch (Exception $e) {
             // Don't let this stop us.
             $shortUrl = $url;

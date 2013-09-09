@@ -725,20 +725,20 @@ EndUnblockProfile: when an unblock has succeeded
 - $profile: the person unblocked, can be remote
 
 StartSubscribe: when a subscription is starting
-- $user: the person subscribing
-- $other: the person being subscribed to
+- $profile: Profile that is subscribing
+- $other: Profile that is being subscribed to
 
 EndSubscribe: when a subscription is finished
-- $user: the person subscribing
-- $other: the person being subscribed to
+- $profile: Profile that is subscribing
+- $other: Profile that is being subscribed to
 
 StartUnsubscribe: when an unsubscribe is starting
-- $user: the person unsubscribing
-- $other: the person being unsubscribed from
+- $profile: Profile that is unsubscribing
+- $other: Profile that is being unsubscribed from
 
 EndUnsubscribe: when an unsubscribe is done
-- $user: the person unsubscribing
-- $other: the person being unsubscribed to
+- $profile: Profile that is unsubscribing
+- $other: Profile that is being unsubscribed from
 
 StartJoinGroup: when a user is joining a group
 - $group: the group being joined

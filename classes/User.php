@@ -225,14 +225,6 @@ class User extends Managed_DataObject
         return Sms_carrier::getKV('id', $this->carrier);
     }
 
-    /**
-     * @deprecated use Subscription::start($sub, $other);
-     */
-    function subscribeTo($other)
-    {
-        return Subscription::start($this->getProfile(), $other);
-    }
-
     function hasBlocked($other)
     {
         $profile = $this->getProfile();
@@ -437,7 +429,7 @@ class User extends Managed_DataObject
                     common_log(LOG_WARNING, sprintf("Default user %s does not exist.", $defnick),
                                __FILE__);
                 } else {
-                    Subscription::start($user, $defuser);
+                    Subscription::start($profile, $defuser->getProfile());
                 }
             }
 
@@ -594,7 +586,7 @@ class User extends Managed_DataObject
         return Profile_tag::setTags($this->id, $this->id, $newtags, $privacy);
     }
 
-    function block($other)
+    function block(Profile $other)
     {
         // Add a new block record
 

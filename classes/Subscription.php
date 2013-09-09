@@ -79,16 +79,8 @@ class Subscription extends Managed_DataObject
      * @return mixed Subscription or Subscription_queue: new subscription info
      */
 
-    static function start($subscriber, $other, $force=false)
+    static function start(Profile $subscriber, Profile $other, $force=false)
     {
-        // @fixme should we enforce this as profiles in callers instead?
-        if ($subscriber instanceof User) {
-            $subscriber = $subscriber->getProfile();
-        }
-        if ($other instanceof User) {
-            $other = $other->getProfile();
-        }
-
         if (!$subscriber->hasRight(Right::SUBSCRIBE)) {
             // TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
             throw new Exception(_('You have been banned from subscribing.'));
@@ -193,7 +185,7 @@ class Subscription extends Managed_DataObject
      * Cancel a subscription
      *
      */
-    function cancel($subscriber, $other)
+    function cancel(Profile $subscriber, Profile $other)
     {
         if (!self::exists($subscriber, $other)) {
             // TRANS: Exception thrown when trying to unsibscribe without a subscription.

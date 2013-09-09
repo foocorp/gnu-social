@@ -182,16 +182,16 @@ class OMBPlugin extends Plugin
     /**
      * Check for illegal subscription attempts
      *
-     * @param User    $user     subscriber
+     * @param Profile $profile  subscriber
      * @param Profile $other    subscribee
      * @return hook return value
      */
-    function onStartSubscribe($profile, $other)
+    function onStartSubscribe(Profile $profile, Profile $other)
     {
         // OMB 0.1 doesn't have a mechanism for local-server-
         // originated subscription.
 
-        $omb01 = Remote_profile::getKV('id', $other_id);
+        $omb01 = Remote_profile::getKV('id', $other->id);
 
         if (!empty($omb01)) {
             throw new ClientException(
@@ -257,14 +257,14 @@ class OMBPlugin extends Plugin
     /**
      * Remove old OMB subscription tokens
      *
-     * @param User    $user     subscriber
+     * @param Profile $profile  subscriber
      * @param Profile $other    subscribee
      * @return hook return value
      */
-    function onEndUnsubscribe($profile, $other)
+    function onEndUnsubscribe(Profile $profile, Profile $other)
     {
         $sub = Subscription::pkeyGet(
-            array('subscriber' => $subscriber->id, 'subscribed' => $other->id)
+            array('subscriber' => $profile->id, 'subscribed' => $other->id)
         );
 
         if (!empty($sub->token)) {

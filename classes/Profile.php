@@ -84,13 +84,26 @@ class Profile extends Managed_DataObject
 
     protected $_user = -1;  // Uninitialized value distinct from null
 
-    function getUser()
+    public function getUser()
     {
-        if (is_int($this->_user) && $this->_user == -1) {
+        if ($this->_user === -1) {
             $this->_user = User::getKV('id', $this->id);
+        }
+        if (!is_a($this->_user, 'User')) {
+            throw new NoSuchUserException(array('id'=>$this->id));
         }
 
         return $this->_user;
+    }
+
+    public function isLocal()
+    {
+        try {
+            $this->getUser();
+        } catch (NoSuchUserException $e) {
+            return false;
+        }
+        return true;
     }
 
     protected $_avatars;

@@ -298,7 +298,7 @@ class OStatusSubAction extends Action
         if ($user->isSubscribed($local)) {
             // TRANS: OStatus remote subscription dialog error.
             $this->showForm(_m('Already subscribed!'));
-        } elseif (Subscription::start($user, $local)) {
+        } elseif (Subscription::start($user->getProfile(), $local)) {
             $this->success();
         } else {
             // TRANS: OStatus remote subscription dialog error.

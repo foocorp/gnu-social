@@ -777,8 +777,7 @@ class SubCommand extends Command
         }
 
         try {
-            Subscription::start($this->user->getProfile(),
-                                $target);
+            Subscription::start($this->user->getProfile(), $target);
             // TRANS: Text shown after having subscribed to another user successfully.
             // TRANS: %s is the name of the user the subscription was requested for.
             $channel->output($this->user, sprintf(_('Subscribed to %s.'), $this->other));
@@ -809,8 +808,7 @@ class UnsubCommand extends Command
         $target = $this->getProfile($this->other);
 
         try {
-            Subscription::cancel($this->user->getProfile(),
-                                 $target);
+            Subscription::cancel($this->user->getProfile(), $target);
             // TRANS: Text shown after having unsubscribed from another user successfully.
             // TRANS: %s is the name of the user the unsubscription was requested for.
             $channel->output($this->user, sprintf(_('Unsubscribed from %s.'), $this->other));

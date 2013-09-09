@@ -33,13 +33,17 @@ class GravatarPlugin extends Plugin
     function onEndProfileGetAvatar($profile, $size, &$avatar)
     {
         if (empty($avatar)) {
-            $user = $profile->getUser();
-            if (!empty($user) && !empty($user->email)) {
-                // Fake one!
-                $avatar = new Avatar();
-                $avatar->width = $avatar->height = $size;
-                $avatar->url = $this->gravatar_url($user->email, $size);
-                return false;
+            try {
+                $user = $profile->getUser();
+                if (!empty($user->email)) {
+                    // Fake one!
+                    $avatar = new Avatar();
+                    $avatar->width = $avatar->height = $size;
+                    $avatar->url = $this->gravatar_url($user->email, $size);
+                    return false;
+                }
+            } catch (NoSuchUserException $e) {
+                return true;
             }
         }
 
