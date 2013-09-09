@@ -35,8 +35,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Joins the authenticated user to the group speicified by ID
  *

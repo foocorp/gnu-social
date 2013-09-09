@@ -18,7 +18,6 @@
  */
 
 require_once(INSTALLDIR . '/lib/mail.php');
-require_once(INSTALLDIR . '/lib/mediafile.php');
 require_once('Mail/mimeDecode.php');
 
 // @todo FIXME: we use both Mail_mimeDecode and mailparse

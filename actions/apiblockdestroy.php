@@ -32,8 +32,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Un-blocks the user specified in the ID parameter for the authenticating user.
  * Returns the un-blocked user in the requested format when successful.

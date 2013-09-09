@@ -35,8 +35,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Removes the authenticated user from the group specified by ID
  *

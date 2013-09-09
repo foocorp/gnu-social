@@ -33,8 +33,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apibareauth.php';
-
 /**
  * This class outputs a list of profiles as Twitter-style user and status objects.
  * It is used by the API methods /api/statuses/(friends|followers). To support the

@@ -30,8 +30,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apibareauth.php';
-
 /**
  * Action handler for API method to list lists a user belongs to.
  * (people tags for a user)

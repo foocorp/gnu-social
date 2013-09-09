@@ -32,8 +32,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Sets which channel (device) StatusNet delivers updates to for
  * the authenticating user. Sending none as the device parameter

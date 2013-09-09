@@ -41,8 +41,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/apiauth.php';
-
 /**
  * Actions extending this class will require auth unless a target
  * user ID has been specified

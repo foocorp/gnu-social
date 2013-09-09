@@ -33,8 +33,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apibareauth.php';
-
 /**
  * Outputs detailed information about the relationship between two users
  *

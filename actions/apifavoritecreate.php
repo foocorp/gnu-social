@@ -34,8 +34,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Favorites the status specified in the ID parameter as the authenticating user.
  * Returns the favorite status when successful.

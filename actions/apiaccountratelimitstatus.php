@@ -35,8 +35,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apibareauth.php';
-
 /**
  * We don't have a rate limit, but some clients check this method.
  * It always returns the same thing: 150 hits left.

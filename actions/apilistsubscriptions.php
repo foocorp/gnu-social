@@ -31,8 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apibareauth.php';
-
 class ApiListSubscriptionsAction extends ApiBareAuthAction
 {
     var $lists = array();

@@ -34,8 +34,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/apibareauth.php';
-
 /**
  * Returns the 20 most recent favorite notices for the authenticating user or user
  * specified by the ID parameter in the requested format.

@@ -34,9 +34,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/noticelist.php';
-require_once INSTALLDIR . '/lib/mediafile.php';
-
 /**
  * Action for posting new notices
  *

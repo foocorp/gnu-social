@@ -33,8 +33,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Allows the authenticating users to follow (subscribe) the user specified in
  * the ID parameter.  Returns the befriended user in the requested format when

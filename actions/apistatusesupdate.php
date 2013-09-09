@@ -129,9 +129,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-require_once INSTALLDIR . '/lib/mediafile.php';
-
 /**
  * Updates the authenticating user's status (posts a notice).
  *

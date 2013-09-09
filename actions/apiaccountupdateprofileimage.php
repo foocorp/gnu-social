@@ -31,8 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Updates the authenticating user's profile image. Note that this API method
  * expects raw multipart data, not a URL to an image.

@@ -33,8 +33,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apibareauth.php';
-
 /**
  * Ouputs the authenticating user's friends (subscriptions), each with
  * current Twitter-style status inline.  They are ordered by the date

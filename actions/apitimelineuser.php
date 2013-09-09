@@ -38,8 +38,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apibareauth.php';
-
 /**
  * Returns the most recent notices (default 20) posted by the authenticating
  * user. Another user's timeline can be requested via the id parameter. This

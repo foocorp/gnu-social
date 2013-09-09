@@ -31,9 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-require_once INSTALLDIR . '/lib/mediafile.php';
-
 /**
  * Show up to 100 repeats of a notice
  *

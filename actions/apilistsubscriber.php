@@ -29,8 +29,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 class ApiListSubscriberAction extends ApiBareAuthAction
 {
     var $list   = null;

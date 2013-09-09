@@ -35,8 +35,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Make a new group. Sets the authenticated user as the administrator of the group.
  *

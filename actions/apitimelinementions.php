@@ -38,8 +38,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apibareauth.php';
-
 /**
  * Returns the most recent (default 20) mentions (status containing @nickname)
  *

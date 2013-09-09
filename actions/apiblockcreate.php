@@ -32,8 +32,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Blocks the user specified in the ID parameter as the authenticating user.
  * Destroys a friendship to the blocked user if it exists. Returns the

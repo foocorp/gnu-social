@@ -27,7 +27,9 @@
  * @link      http://status.net/
  */
 
-require_once INSTALLDIR.'/lib/apibareauth.php';
+if (!defined('STATUSNET')) {
+    exit(1);
+}
 
 /**
  * Shows an AtomPub service document for a user

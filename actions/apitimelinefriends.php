@@ -133,8 +133,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apibareauth.php';
-
 /**
  * Returns the most recent notices (default 20) posted by the target user.
  * This is the equivalent of 'You and friends' page accessed via Web.

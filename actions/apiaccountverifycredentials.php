@@ -33,8 +33,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiauth.php';
-
 /**
  * Check a user's credentials. Returns an HTTP 200 OK response code and a
  * representation of the requesting user if authentication was successful;

@@ -40,8 +40,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/apiauth.php';
-
 /**
  * Actions extending this class will require auth only if a site is private
  *
