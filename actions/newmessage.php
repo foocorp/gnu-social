@@ -132,13 +132,13 @@ class NewmessageAction extends FormAction
             // TRANS: Client error displayed trying to send a direct message to a user while sender and
             // TRANS: receiver are not subscribed to each other.
             $this->clientError(_('You cannot send a message to this user.'), 404);
-        } else if ($user->id == $this->other->id) {
+        } else if ($this->scoped->id == $this->other->id) {
             // TRANS: Client error displayed trying to send a direct message to self.
             $this->clientError(_('Do not send a message to yourself; ' .
                 'just say it to yourself quietly instead.'), 403);
         }
 
-        $message = Message::saveNew($user->id, $this->other->id, $this->content, 'web');
+        $message = Message::saveNew($this->scoped->id, $this->other->id, $this->content, 'web');
         $message->notify();
 
         if ($this->boolean('ajax')) {
@@ -157,7 +157,7 @@ class NewmessageAction extends FormAction
             $this->elementEnd('html');
         } else {
             $url = common_local_url('outbox',
-                array('nickname' => $user->nickname));
+                array('nickname' => $this->scoped->nickname));
             common_redirect($url, 303);
         }
     }

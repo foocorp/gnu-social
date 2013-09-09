@@ -145,19 +145,19 @@ class NewnoticeAction extends FormAction
                                                       $this->trimmed('lon'),
                                                       $this->trimmed('location_id'),
                                                       $this->trimmed('location_ns'),
-                                                      $user->getProfile());
+                                                      $this->scoped);
             } else {
                 $locOptions = Notice::locationOptions(null,
                                                       null,
                                                       null,
                                                       null,
-                                                      $user->getProfile());
+                                                      $this->scoped);
             }
 
             $options = array_merge($options, $locOptions);
         }
 
-        $author_id = $user->id;
+        $author_id = $this->scoped->id;
         $text      = $content_shortened;
 
         // Does the heavy-lifting for getting "To:" information
@@ -166,7 +166,7 @@ class NewnoticeAction extends FormAction
 
         if (Event::handle('StartNoticeSaveWeb', array($this, &$author_id, &$text, &$options))) {
 
-            $notice = Notice::saveNew($user->id, $content_shortened, 'web', $options);
+            $notice = Notice::saveNew($this->scoped->id, $content_shortened, 'web', $options);
 
             if (isset($upload)) {
                 $upload->attachToNotice($notice);
@@ -194,7 +194,7 @@ class NewnoticeAction extends FormAction
 
             if ($returnto) {
                 $url = common_local_url($returnto,
-                                        array('nickname' => $user->nickname));
+                                        array('nickname' => $this->scoped->nickname));
             } else {
                 $url = common_local_url('shownotice',
                                         array('notice' => $notice->id));
