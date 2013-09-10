@@ -359,7 +359,7 @@ class Action extends HTMLOutputter // lawsuit
         if (Event::handle('StartShowScripts', array($this))) {
             if (Event::handle('StartShowJQueryScripts', array($this))) {
                 if (common_config('site', 'minify')) {
-                    $this->script('jquery.min.js');
+                    $this->script('extlib/jquery.min.js');
                     $this->script('jquery.form.min.js');
                     $this->script('jquery-ui.min.js');
                     $this->script('jquery.cookie.min.js');
@@ -367,7 +367,7 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('jquery.joverlay.min.js');
                     $this->script('jquery.infieldlabel.min.js');
                 } else {
-                    $this->script('jquery.js');
+                    $this->script('extlib/jquery.js');
                     $this->script('jquery.form.js');
                     $this->script('jquery-ui.min.js');
                     $this->script('jquery.cookie.js');
