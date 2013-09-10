@@ -44,7 +44,7 @@ class OpenExternalLinkTargetPlugin extends Plugin
 {
     function onEndShowScripts($action)
     {
-        $action->inlineScript('$("a[rel~=external]:not([class~=attachment])").live("click", function(){ window.open(this.href); return false; });');
+        $action->inlineScript('$(document).on("click", "a[rel~=external]:not([class~=attachment])", function () { window.open(this.href); return false; });');
 
         return true;
     }

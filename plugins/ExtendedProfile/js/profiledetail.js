@@ -1,10 +1,10 @@
 var SN_EXTENDED = SN_EXTENDED || {};
 
-SN_EXTENDED.reorder = function(cls) {
+SN_EXTENDED.reorder = function (cls) {
 
     var divs = $('div[class=' + cls + ']');
 
-    $(divs).each(function(i, div) {
+    $(divs).each(function (i, div) {
         $(div).find('a.add_row').hide();
         $(div).find('a.remove_row').show();
         SN_EXTENDED.replaceIndex(SN_EXTENDED.rowIndex(div), i);
@@ -20,20 +20,20 @@ SN_EXTENDED.reorder = function(cls) {
     }
 };
 
-SN_EXTENDED.rowIndex = function(div) {
+SN_EXTENDED.rowIndex = function (div) {
     var idstr = $(div).attr('id');
     var id = idstr.match(/\d+/);
     return id;
 };
 
-SN_EXTENDED.rowCount = function(cls) {
+SN_EXTENDED.rowCount = function (cls) {
     var divs = $.find('div[class=' + cls + ']');
     return divs.length;
 };
 
-SN_EXTENDED.replaceIndex = function(elem, oldIndex, newIndex) {
-    $(elem).find('*').each(function() {
-        $.each(this.attributes, function(i, attrib) {
+SN_EXTENDED.replaceIndex = function (elem, oldIndex, newIndex) {
+    $(elem).find('*').each(function () {
+        $.each(this.attributes, function (i, attrib) {
             var regexp = /extprofile-.*-\d.*/;
             var value = attrib.value;
             var match = value.match(regexp);
@@ -44,18 +44,18 @@ SN_EXTENDED.replaceIndex = function(elem, oldIndex, newIndex) {
     });
 }
 
-SN_EXTENDED.resetRow = function(elem) {
+SN_EXTENDED.resetRow = function (elem) {
     $(elem).find('input, textarea').attr('value', '');
     $(elem).find('input').removeAttr('disabled');
     $(elem).find("select option[value='office']").attr("selected", true);
     $(elem).find("input:checkbox").attr('checked', false);
-    $(elem).find("input[name$=-start], input[name$=-end]").each(function() {
+    $(elem).find("input[name$=-start], input[name$=-end]").each(function () {
         $(this).removeClass('hasDatepicker');
         $(this).datepicker({ dateFormat: 'd M yy' });
     });
 };
 
-SN_EXTENDED.addRow = function() {
+SN_EXTENDED.addRow = function () {
     var div = $(this).closest('div');
     var id = div.attr('id');
     var cls = div.attr('class');
@@ -68,7 +68,7 @@ SN_EXTENDED.addRow = function() {
     SN_EXTENDED.reorder(cls);
 };
 
-SN_EXTENDED.removeRow = function() {
+SN_EXTENDED.removeRow = function () {
 
     var div = $(this).closest('div');
     var id = $(div).attr('id');
@@ -77,15 +77,15 @@ SN_EXTENDED.removeRow = function() {
 
     $("#confirm-dialog").dialog({
         buttons : {
-            "Confirm" : function() {
+            "Confirm" : function () {
                 $(this).dialog("close");
                 var target = $(that).closest('tr');
-                target.fadeOut("slow", function() {
+                target.fadeOut("slow", function () {
                     $(target).remove();
                     SN_EXTENDED.reorder(cls);
                 });
             },
-            "Cancel" : function() {
+            "Cancel" : function () {
                 $(this).dialog("close");
             }
         }
@@ -98,7 +98,7 @@ SN_EXTENDED.removeRow = function() {
     }
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     $("#confirm-dialog").dialog({
         autoOpen: false,
@@ -121,17 +121,17 @@ $(document).ready(function() {
         source: 'finduser',
         minLength: 2 });
 
-    $('.add_row').live('click', SN_EXTENDED.addRow);
-    $('.remove_row').live('click', SN_EXTENDED.removeRow);
+    $(document).on('click', '.add_row', SN_EXTENDED.addRow);
+    $(document).on('click', '.remove_row', SN_EXTENDED.removeRow);
 
-    $('input:checkbox[name$=current]').each(function() {
+    $('input:checkbox[name$=current]').each(function () {
         var input = $(this).parent().siblings('input[id$=-end]');
         if ($(this).is(':checked')) {
             $(input).attr('disabled', 'true');
         }
     });
 
-    $('input:checkbox[name$=current]').live('click', function()  {
+    $(document).on('click', 'input:checkbox[name$=current]', function ()  {
         var input = $(this).parent().siblings('input[id$=-end]');
         if ($(this).is(':checked')) {
             $(input).val('');

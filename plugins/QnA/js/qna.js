@@ -1,7 +1,7 @@
 var QnA = {
 
     // @fixme: Should use ID
-    close: function(form, best) {
+    close: function (form, best) {
         var notice = $(form).closest('li.hentry.notice.question');
 
         notice.find('input#qna-best-answer,#qna-question-close').hide();
@@ -20,13 +20,13 @@ var QnA = {
         }
     },
 
-    init: function() {
+    init: function () {
         QnA.NoticeInlineAnswerSetup();
 
-        $('form.form_question_show').live('submit', function() {
+        $(document).on('submit', 'form.form_question_show', function () {
             QnA.close(this);
         });
-        $('form.form_answer_show').live('submit', function() {
+        $(document).on('submit', 'form.form_answer_show', function () {
             QnA.close(this, true);
         });
     },
@@ -36,7 +36,7 @@ var QnA = {
      *
      * @param {jQuery} notice: jQuery object containing one notice
      */
-    NoticeInlineAnswerTrigger: function(notice) {
+    NoticeInlineAnswerTrigger: function (notice) {
         // Find the notice we're replying to...
         var id = $($('.notice_id', notice)[0]).text();
         var parentNotice = notice;
@@ -59,7 +59,7 @@ var QnA = {
         // See if the form's already open...
         var answerForm = $('.qna_answer_form', list);
 
-        var hideReplyPlaceholders = function(notice) {
+        var hideReplyPlaceholders = function (notice) {
             // Do we still have a dummy answer placeholder? If so get rid of
             // reply place holders for this question. If the current user hasn't
             // answered the question we want to direct her to providing an
@@ -71,7 +71,7 @@ var QnA = {
             }
         }
 
-        var nextStep = function() {
+        var nextStep = function () {
             var dummyAnswer = $('ul.qna-dummy', notice);
             dummyAnswer.hide();
 
@@ -84,7 +84,7 @@ var QnA = {
 
             text.focus();
 
-            $('body').click(function(e) {
+            $('body').click(function (e) {
                 var dummyAnswer = $('ul.qna-dummy', notice);
                 var style = dummyAnswer.attr('style');
                 var ans = $(notice).find('li.hentry.notice.anwer', notice)
@@ -95,7 +95,7 @@ var QnA = {
                 var openAnswers = $('li.notice-answer');
                     if (openAnswers.length > 0) {
                         var target = $(e.target);
-                        openAnswers.each(function() {
+                        openAnswers.each(function () {
 
                             // Did we click outside this one?
                             var answerItem = $(this);
@@ -126,7 +126,7 @@ var QnA = {
 
             if (answerItem.length == 0) {
                  answerItem = $('<li class="notice-answer"></li>');
-                 var intermediateStep = function(formMaster) {
+                 var intermediateStep = function (formMaster) {
                     // @todo cache the form if we can (worth it?)
                     var formEl = document._importNode(formMaster, true);
                     $(formEl).data('NoticeFormSetup', true);
@@ -145,7 +145,7 @@ var QnA = {
                     // Warning: this can have a delay, which looks bad.
                     // @fixme this fallback may or may not work
                     var url = $('#answer-action').attr('value');
-                     $.get(url, {ajax: 1}, function(data, textStatus, xhr) {
+                     $.get(url, {ajax: 1}, function (data, textStatus, xhr) {
                          intermediateStep($('form', data)[0]);
                      });
                  }
@@ -159,10 +159,11 @@ var QnA = {
      * Sets up event handlers for inline reply mini-form placeholders.
      * Uses 'live' rather than 'bind', so applies to future as well as present items.
      */
-    NoticeInlineAnswerSetup: function() {
+    NoticeInlineAnswerSetup: function () {
 
-        $('li.qna-dummy-placeholder input.placeholder')
-            .live('focus', function() {
+        $(document).on('focus',
+            'li.qna-dummy-placeholder input.placeholder',
+            function () {
                 var notice = $(this).closest('li.notice');
                 QnA.NoticeInlineAnswerTrigger(notice);
                 return false;
@@ -170,7 +171,7 @@ var QnA = {
 
     },
 
-    AnswerFormSetup: function(form) {
+    AnswerFormSetup: function (form) {
 
         form.find('textarea').focus();
 
@@ -200,7 +201,7 @@ var QnA = {
      *
      * @access public
      */
-    FormAnswerXHR: function(form) {
+    FormAnswerXHR: function (form) {
 
         //SN.C.I.NoticeDataGeo = {};
         form.append('<input type="hidden" name="ajax" value="1"/>');
@@ -215,7 +216,7 @@ var QnA = {
          * @param {String} text
          * @access private
          */
-        var showFeedback = function(cls, text) {
+        var showFeedback = function (cls, text) {
             form.append(
                 $('<p class="form_response"></p>')
                     .addClass(cls)
@@ -226,7 +227,7 @@ var QnA = {
         /**
          * Hide the previous response feedback, if any.
          */
-        var removeFeedback = function() {
+        var removeFeedback = function () {
             form.find('.form_response').remove();
         };
 
@@ -234,7 +235,7 @@ var QnA = {
             dataType: 'xml',
             timeout: '60000',
 
-            beforeSend: function(formData) {
+            beforeSend: function (formData) {
 
                 if (form.find('.notice_data-text:first').val() == '') {
                     form.addClass(SN.C.S.Warning);
@@ -277,7 +278,7 @@ var QnA = {
                     }
                 }
             },
-            success: function(data, textStatus) {
+            success: function (data, textStatus) {
 
                 removeFeedback();
                 var errorResult = $('#'+SN.C.S.Error, data);
@@ -343,7 +344,7 @@ var QnA = {
                     }
                 }
             },
-            complete: function(xhr, textStatus) {
+            complete: function (xhr, textStatus) {
                 form
                     .removeClass(SN.C.S.Processing)
                     .find('.submit')
@@ -354,6 +355,6 @@ var QnA = {
     }
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
     QnA.init();
 });

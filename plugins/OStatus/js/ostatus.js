@@ -24,14 +24,14 @@
  * @note      Everything in here should eventually migrate over to /js/util.js's SN.
  */
 
-SN.Init.OStatusCookie = function() {
+SN.Init.OStatusCookie = function () {
     if (SN.U.StatusNetInstance.Get() === null) {
         SN.U.StatusNetInstance.Set({RemoteProfile: null});
     }
 };
 
 SN.U.DialogBox = {
-    Subscribe: function(a) {
+    Subscribe: function (a) {
         var f = a.parent().find('.form_settings');
         if (f.length > 0) {
             f.show();
@@ -41,13 +41,13 @@ SN.U.DialogBox = {
                 type: 'GET',
                 dataType: 'xml',
                 url: a[0].href + ((a[0].href.match(/[\\?]/) === null)?'?':'&') + 'ajax=1',
-                beforeSend: function(formData) {
+                beforeSend: function (formData) {
                     a.addClass('processing');
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     alert(errorThrown || textStatus);
                 },
-                success: function(data, textStatus, xhr) {
+                success: function (data, textStatus, xhr) {
                     if (typeof($('form', data)[0]) != 'undefined') {
                         a.after(document._importNode($('form', data)[0], true));
 
@@ -61,11 +61,11 @@ SN.U.DialogBox = {
                             .find('.submit')
                                 .addClass('submit_dialogbox')
                                 .removeClass('submit')
-                                .bind('click', function() {
+                                .bind('click', function () {
                                     form.addClass('processing');
                                 });
 
-                        form.find('button.close').click(function(){
+                        form.find('button.close').click(function (){
                             form.hide();
 
                             return false;
@@ -77,7 +77,7 @@ SN.U.DialogBox = {
                             SN.Init.OStatusCookie();
                             form.find('#profile').val(SN.U.StatusNetInstance.Get().RemoteProfile);
 
-                            form.find("[type=submit]").bind('click', function() {
+                            form.find("[type=submit]").bind('click', function () {
                                 SN.U.StatusNetInstance.Set({RemoteProfile: form.find('#profile').val()});
                                 return true;
                             });
@@ -91,13 +91,16 @@ SN.U.DialogBox = {
     }
 };
 
-SN.Init.Subscribe = function() {
-    $('.entity_subscribe .entity_remote_subscribe, .entity_tag .entity_remote_tag')
-        .live('click', function() { SN.U.DialogBox.Subscribe($(this)); return false; });
+SN.Init.Subscribe = function () {
+    $(document).on('click',
+        '.entity_subscribe .entity_remote_subscribe, .entity_tag .entity_remote_tag',
+        function () { SN.U.DialogBox.Subscribe($(this)); return false; });
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
     SN.Init.Subscribe();
 
-    $('.form_remote_authorize').bind('submit', function() { $(this).addClass(SN.C.S.Processing); return true; });
+    $('.form_remote_authorize').bind('submit', function () {
+            $(this).addClass(SN.C.S.Processing); return true;
+        });
 });

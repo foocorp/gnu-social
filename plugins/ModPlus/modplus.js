@@ -5,14 +5,14 @@
 
 $(function() {
     // Notice lists...
-    $('.notice .author').live('mouseenter', function(e) {
+    $(document).on('mouseenter', '.notice .author', function(e) {
         var notice = $(this).closest('.notice');
         var popup = notice.find('.remote-profile-options');
         if (popup.length) {
             popup.fadeIn();
         }
     });
-    $('.notice').live('mouseleave', function(e) {
+    $(document).on('mouseleave', '.notice', function(e) {
         var notice = $(this);
         var popup = notice.find('.remote-profile-options');
         if (popup.length) {
@@ -21,14 +21,14 @@ $(function() {
     });
 
     // Profile lists...
-    $('.profile .avatar').live('mouseenter', function(e) {
+    $(document).on('mouseenter', '.profile .avatar', function(e) {
         var profile = $(this).closest('.profile');
         var popup = profile.find('.remote-profile-options');
         if (popup.length) {
             popup.fadeIn();
         }
     });
-    $('.profile').live('mouseleave', function(e) {
+    $(document).on('mouseleave', '.profile', function(e) {
         var profile = $(this);
         var popup = profile.find('.remote-profile-options');
         if (popup.length) {
