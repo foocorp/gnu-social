@@ -655,13 +655,13 @@ div.entry-content a.response:after {
     background: linear-gradient(top, #fb6104 0%,#fc8035 100%);
 }
 
-.form_settings input#settings_design_reset, .form_settings input#cancel, #form_action-no {
+.form_settings input#cancel, #form_action-no {
     background: #f2f2f2;
     color: #d7621c;
     text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
 }
 
-.form_settings input#settings_design_reset:hover, .form_settings input#cancel:hover, #form_action-no:hover {
+.form_settings input#cancel:hover, #form_action-no:hover {
     background: #fff;
     color: #d7621c;
     text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);

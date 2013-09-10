@@ -1593,41 +1593,6 @@ clear:both;
 margin-bottom:0;
 }
 
-#settings_design_background-image img {
-    max-width:480px;
-    max-height:480px;
-    clear: left;
-    display: block;
-    margin-bottom: 10px;
-}
-
-#settings_design_background-image .form_guide {
-    float: left;
-    margin-top: 10px;
-}
-
-#settings_design_color .form_data,
-#color-picker {
-float:left;
-}
-#settings_design_color .form_data {
-width:400px;
-margin-right:1%;
-}
-
-#settings_design_color .form_data li {
-width:33%;
-}
-#settings_design_color .form_data label {
-float:none;
-display:block;
-}
-#settings_design_color .form_data .swatch {
-padding:11px;
-margin-left:0;
-width:auto;
-}
-
 .entity_profile {
 position:relative;
 width:73%;
