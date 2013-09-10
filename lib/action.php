@@ -363,7 +363,7 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('jquery.form.min.js');
                     $this->script('jquery-ui.min.js');
                     $this->script('jquery.cookie.min.js');
-                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.min.js', StatusNet::isHTTPS()).'"); }');
+                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.min.js', StatusNet::isHTTPS()).'"); }');
                     $this->script('jquery.joverlay.min.js');
                     $this->script('jquery.infieldlabel.min.js');
                 } else {
@@ -371,7 +371,7 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('jquery.form.js');
                     $this->script('jquery-ui.min.js');
                     $this->script('jquery.cookie.js');
-                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.js', StatusNet::isHTTPS()).'"); }');
+                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', StatusNet::isHTTPS()).'"); }');
                     $this->script('jquery.joverlay.js');
                     $this->script('jquery.infieldlabel.js');
                 }

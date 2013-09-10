@@ -1,6 +1,6 @@
 .fake: all clean
 
-TARGETS=util.min.js json2.min.js
+TARGETS=util.min.js extlib/json2.min.js
 UTIL_SOURCES=util.js xbImportNode.js geometa.js
 
 all: $(TARGETS)
@@ -11,5 +11,5 @@ clean:
 util.min.js: $(UTIL_SOURCES)
 	cat $+ | yui-compressor --type js > $@
 
-json2.min.js: json2.js
+extlib/json2.min.js: extlib/json2.js
 	yui-compressor $+ > $@
