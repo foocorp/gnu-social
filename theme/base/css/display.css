@@ -832,33 +832,6 @@ float:left;
 clear:both;
 }
 
-#jOverlayContent,
-#jOverlayContent #content,
-#jOverlayContent #content_inner { /* TODO can remove this now? */
-width: auto !important;
-margin-bottom:0;
-}
-#jOverlayContent #content {
-padding:11px;
-min-height:auto;
-    border: 1px solid #fff;
-}
-#jOverlayContent .entry-title {
-display:block;
-margin-bottom:11px;
-}
-#jOverlayContent button {
-    position:absolute;
-    top: 5px;
-    right: 20px;
-}
-#jOverlayContent h1 {
-max-width:425px;
-}
-#jOverlayLoading {
-top:5%;
-left:40%;
-}
 #attachment_view img {
 max-width:480px;
 max-height:480px;
