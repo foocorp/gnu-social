@@ -546,7 +546,7 @@ var SN = { // StatusNet
 
             var cookieValue = $.cookie(SN.C.S.NoticeDataGeoCookie);
 
-            if (cookieValue !== null && cookieValue != 'disabled') {
+            if (cookieValue !== undefined && cookieValue != 'disabled') {
                 cookieValue = JSON.parse(cookieValue);
                 SN.C.I.NoticeDataGeo.NLat = form.find('[name=lat]').val(cookieValue.NLat).val();
                 SN.C.I.NoticeDataGeo.NLon = form.find('[name=lon]').val(cookieValue.NLon).val();
