@@ -364,14 +364,14 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('extlib/jquery-ui/jquery-ui.min.js');
                     $this->script('jquery.cookie.min.js');
                     $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.min.js', StatusNet::isHTTPS()).'"); }');
-                    $this->script('jquery.infieldlabel.min.js');
+                    $this->script('extlib/jquery.infieldlabel.min.js');
                 } else {
                     $this->script('extlib/jquery.js');
                     $this->script('extlib/jquery.form.js');
                     $this->script('extlib/jquery-ui/jquery-ui.js');
                     $this->script('jquery.cookie.js');
                     $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', StatusNet::isHTTPS()).'"); }');
-                    $this->script('jquery.infieldlabel.js');
+                    $this->script('extlib/jquery.infieldlabel.js');
                 }
 
                 Event::handle('EndShowJQueryScripts', array($this));
