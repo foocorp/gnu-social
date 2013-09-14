@@ -61,9 +61,8 @@ class ForceGroupPlugin extends Plugin
         return true;
     }
 
-    function onEndUserRegister($profile, $user)
+    public function onEndUserRegister(Profile $profile)
     {
-        $profile = $user->getProfile();
         foreach ($this->join as $nickname) {
             $group = User_group::getForNickname($nickname);
             if ($group && !$profile->isMember($group)) {
@@ -73,7 +72,7 @@ class ForceGroupPlugin extends Plugin
                     // TRANS: Server exception.
                     // TRANS: %1$s is a user nickname, %2$s is a group nickname.
                     throw new ServerException(sprintf(_m('Could not join user %1$s to group %2$s.'),
-                                               $user->nickname, $group->nickname));
+                                               $profile->nickname, $group->nickname));
                 }
             }
         }

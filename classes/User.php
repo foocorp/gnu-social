@@ -335,7 +335,7 @@ class User extends Managed_DataObject
 
         $user->created = common_sql_now();
 
-        if (Event::handle('StartUserRegister', array(&$user, &$profile))) {
+        if (Event::handle('StartUserRegister', array($profile))) {
 
             $profile->query('BEGIN');
 
@@ -459,7 +459,7 @@ class User extends Managed_DataObject
                 }
             }
 
-            Event::handle('EndUserRegister', array(&$profile, &$user));
+            Event::handle('EndUserRegister', array($profile));
         }
 
         return $user;

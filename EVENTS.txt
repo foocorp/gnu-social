@@ -781,12 +781,10 @@ SendImConfirmationCode: Send a confirmation code to confirm a user owns an IM sc
 - $user: user requesting the confirmation
 
 StartUserRegister: When a new user is being registered
-- &$profile: new profile data (no ID)
-- &$user: new user account (no ID or URI)
+- $profile: Profile object with new profile data (no ID yet)
 
 EndUserRegister: When a new user has been registered
-- &$profile: new profile data
-- &$user: new user account
+- $profile: Profile object with new profile data
 
 StartRobotsTxt: Before outputting the robots.txt page
 - &$action: RobotstxtAction being shown

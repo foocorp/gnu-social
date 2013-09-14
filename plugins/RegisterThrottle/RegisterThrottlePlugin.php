@@ -142,11 +142,10 @@ class RegisterThrottlePlugin extends Plugin
      * We record the successful registration and IP address.
      *
      * @param Profile $profile new user's profile
-     * @param User $user new user
      *
      * @return boolean hook value
      */
-    function onEndUserRegister($profile, $user)
+    public function onEndUserRegister(Profile $profile)
     {
         $ipaddress = $this->_getIpAddress();
 
@@ -157,7 +156,7 @@ class RegisterThrottlePlugin extends Plugin
 
         $reg = new Registration_ip();
 
-        $reg->user_id   = $user->id;
+        $reg->user_id   = $profile->id;
         $reg->ipaddress = $ipaddress;
 
         $result = $reg->insert();

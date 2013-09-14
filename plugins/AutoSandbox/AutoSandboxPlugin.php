@@ -90,11 +90,11 @@ class AutoSandboxPlugin extends Plugin
          $action->elementEnd('div');
     }
 
-    function onEndUserRegister(&$profile,&$user)
+    public function onEndUserRegister(Profile $profile)
     {
-	$profile->sandbox();
-	if ($this->debug) {
-	    common_log(LOG_WARNING, "AutoSandbox: sandboxed of $user->nickname");
+        $profile->sandbox();
+        if ($this->debug) {
+            common_log(LOG_WARNING, "AutoSandbox: sandboxed of $profile->nickname");
         }
     }
 }

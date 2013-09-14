@@ -49,7 +49,7 @@ class UserLimitPlugin extends Plugin
 {
     public $maxUsers = null;
 
-    function onStartUserRegister(&$user, &$profile)
+    public function onStartUserRegister(Profile $profile)
     {
         $this->_checkMaxUsers();
         return true;

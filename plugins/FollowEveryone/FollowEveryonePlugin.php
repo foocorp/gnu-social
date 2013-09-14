@@ -55,24 +55,23 @@ class FollowEveryonePlugin extends Plugin
      * the new user to them. Exceptions (like silenced users or whatever)
      * are caught, logged, and ignored.
      *
-     * @param Profile &$newProfile The new user's profile
-     * @param User    &$newUser    The new user
+     * @param Profile $profile The new user's profile
      *
      * @return boolean hook value
      */
-    function onEndUserRegister(&$newProfile, &$newUser)
+    public function onEndUserRegister(Profile $profile)
     {
         $otherUser = new User();
-        $otherUser->whereAdd('id != ' . $newUser->id);
+        $otherUser->whereAdd('id != ' . $profile->id);
 
         if ($otherUser->find()) {
             while ($otherUser->fetch()) {
                 $otherProfile = $otherUser->getProfile();
                 try {
                     if (User_followeveryone_prefs::followEveryone($otherUser->id)) {
-                        Subscription::start($otherProfile, $newProfile);
+                        Subscription::start($otherProfile, $profile);
                     }
-                    Subscription::start($newProfile, $otherProfile);
+                    Subscription::start($profile, $otherProfile);
                 } catch (Exception $e) {
                     common_log(LOG_WARNING, $e->getMessage());
                     continue;
@@ -82,7 +81,7 @@ class FollowEveryonePlugin extends Plugin
 
         $ufep = new User_followeveryone_prefs();
 
-        $ufep->user_id        = $newUser->id;
+        $ufep->user_id        = $profile->id;
         $ufep->followeveryone = true;
 
         $ufep->insert();
