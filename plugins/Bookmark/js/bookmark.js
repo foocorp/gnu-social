@@ -20,11 +20,11 @@ var Bookmark = {
 $(document).ready(function() {
 
     // Stop normal live event stuff
-    $('form.ajax').die();
-    $('form.ajax input[type=submit]').die();
+    $(document).off("click", "form.ajax");
+    $(document).off("submit", "form.ajax input[type=submit]");
 
     // Make the bookmark submit super special
-    $('#form_initial_bookmark').bind('submit', function(e) {
+    $(document).on('submit', '#form_initial_bookmark', function (e) {
         Bookmark.BookmarkXHR($(this));
         e.stopPropagation();
         return false;
