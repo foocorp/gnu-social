@@ -424,7 +424,7 @@ class AvatarsettingsAction extends SettingsAction
     function showStylesheets()
     {
         parent::showStylesheets();
-        $this->cssLink('css/jquery.Jcrop.css','base','screen, projection, tv');
+        $this->cssLink('js/extlib/jquery-jcrop/css/jcrop.css','base','screen, projection, tv');
     }
 
     /**
@@ -437,8 +437,8 @@ class AvatarsettingsAction extends SettingsAction
         parent::showScripts();
 
         if ($this->mode == 'crop') {
-            $this->script('jcrop/jquery.Jcrop.min.js');
-            $this->script('jcrop/jquery.Jcrop.go.js');
+            $this->script('extlib/jquery-jcrop/jcrop.js');
+            $this->script('jcrop.go.js');
         }
 
         $this->autofocus('avatarfile');

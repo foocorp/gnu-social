@@ -2,7 +2,9 @@
  *
  * @package   StatusNet
  * @author Sarven Capadisli <csarven@status.net>
+ * @author Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2009 StatusNet, Inc.
+ * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -13,7 +15,7 @@ $(function(){
     var w = ($('#avatar_crop_w').val()) ? $('#avatar_crop_w').val() : $("#avatar_original img").attr("width");
     var h = ($('#avatar_crop_h').val()) ? $('#avatar_crop_h').val() : $("#avatar_original img").attr("height");
 
-    jQuery("#avatar_original img").Jcrop({
+    $("#avatar_original img").Jcrop({
         onChange: showPreview,
         setSelect: [ x, y, w, h ],
         onSelect: updateCoords,
