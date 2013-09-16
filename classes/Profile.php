@@ -557,7 +557,7 @@ class Profile extends Managed_DataObject
         $lists = new Profile_list();
         $subs = new Profile_tag_subscription();
 
-        $lists->joinAdd('id', 'profile_tag_subscription:profile_tag_id');
+        $lists->joinAdd(array('id', 'profile_tag_subscription:profile_tag_id'));
 
         #@fixme: postgres (round(date_part('epoch', my_date)))
         $lists->selectAdd('unix_timestamp(profile_tag_subscription.created) as "cursor"');
