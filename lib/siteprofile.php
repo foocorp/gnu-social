@@ -116,7 +116,6 @@ class PublicSite extends SiteProfileSettings
                     'Directory'               => null,
                     'ExtendedProfile'         => null,
                     'Geonames'                => null,
-                    'Gravatar'                => null,
                     'OStatus'                 => null,
                 ))
             ),
@@ -154,7 +153,6 @@ class PrivateSite extends SiteProfileSettings
                     'ExtendedProfile'         => null,
                     'EmailRegistration'       => null,
                     'Geonames'                => null,
-                    'Gravatar'                => null,
                     'NewMenu'                 => null,
                     'MobileProfile'           => null,
                 ))
@@ -206,7 +204,6 @@ class CommunitySite extends SiteProfileSettings
                     'ClientSideShorten'       => null,
                     'Directory'               => null,
                     'Geonames'                => null,
-                    'Gravatar'                => null,
                     'OStatus'                 => null,
                 ))
             ),
