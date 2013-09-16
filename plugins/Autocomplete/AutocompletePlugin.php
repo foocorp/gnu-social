@@ -43,15 +43,7 @@ class AutocompletePlugin extends Plugin
         if (common_logged_in()) {
             $action->element('span', array('id' => 'autocomplete-api',
                                            'data-url' => common_local_url('autocomplete')));
-            $action->script($this->path('jquery-autocomplete/jquery.autocomplete.pack.js'));
-            $action->script($this->path('Autocomplete.js'));
-        }
-    }
-
-    function onEndShowStatusNetStyles($action)
-    {
-        if (common_logged_in()) {
-            $action->cssLink($this->path('jquery-autocomplete/jquery.autocomplete.css'));
+            $action->script($this->path('js/autocomplete.go.js'));
         }
     }
 

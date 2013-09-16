@@ -22,8 +22,9 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Craig Andrews <candrews@integralblue.com>
+ * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2008-2009 StatusNet, Inc.
- * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
+ * @copyright 2009-2013 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -40,11 +41,14 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @category Plugin
  * @package  StatusNet
  * @author   Craig Andrews <candrews@integralblue.com>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
 class AutocompleteAction extends Action
 {
+    protected $needLogin = true;
+
     private $result;
 
     /**
@@ -80,12 +84,12 @@ class AutocompleteAction extends Action
     {
         return '"' . implode(':', array($this->arg('action'),
             common_user_cache_hash(),
-            crc32($this->arg('q')), //the actual string can have funny characters in we don't want showing up in the etag
+            crc32($this->arg('term')), //the actual string can have funny characters in we don't want showing up in the etag
             $this->arg('limit'),
             $this->lastModified())) . '"';
     }
 
-    function prepare($args)
+    protected function prepare($args)
     {
         // If we die, show short error messages.
         StatusNet::setApi(true);
@@ -97,29 +101,30 @@ class AutocompleteAction extends Action
             // TRANS: Client exception in autocomplete plugin.
             throw new ClientException(_m('Access forbidden.'), true);
         }
+
         $this->groups=array();
         $this->users=array();
-        $q = $this->arg('q');
+        $term = $this->arg('term');
         $limit = $this->arg('limit');
         if($limit > 200) $limit=200; //prevent DOS attacks
-        if(substr($q,0,1)=='@'){
+        if(substr($term,0,1)=='@'){
             //user search
-            $q=substr($q,1);
+            $term=substr($term,1);
             $user = new User();
             $user->limit($limit);
-            $user->whereAdd('nickname like \'' . trim($user->escape($q), '\'') . '%\'');
+            $user->whereAdd('nickname like \'' . trim($user->escape($term), '\'') . '%\'');
             if($user->find()){
                 while($user->fetch()) {
                     $this->users[]=clone($user);
                 }
             }
         }
-        if(substr($q,0,1)=='!'){
+        if(substr($term,0,1)=='!'){
             //group search
-            $q=substr($q,1);
+            $term=substr($term,1);
             $group = new User_group();
             $group->limit($limit);
-            $group->whereAdd('nickname like \'' . trim($group->escape($q), '\'') . '%\'');
+            $group->whereAdd('nickname like \'' . trim($group->escape($term), '\'') . '%\'');
             if($group->find()){
                 while($group->fetch()) {
                     $this->groups[]=clone($group);
@@ -129,9 +134,10 @@ class AutocompleteAction extends Action
         return true;
     }
 
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
+
         $results = array();
         foreach($this->users as $user){
             $profile = $user->getProfile();
@@ -143,8 +149,9 @@ class AutocompleteAction extends Action
                 $avatar = Avatar::defaultImage(AVATAR_MINI_SIZE);
             }
             $results[] = array(
-                'nickname' => $user->nickname,
-                'fullname'=> $profile->fullname,
+                'value' => '@'.$profile->nickname,
+                'nickname' => $profile->nickname,
+                'label'=> $profile->getFancyName(),
                 'avatar' => $avatar,
                 'type' => 'user'
             );
@@ -157,14 +164,13 @@ class AutocompleteAction extends Action
                 $avatar = User_group::defaultLogo(AVATAR_MINI_SIZE);
             }
             $results[] = array(
+                'value' => '!'.$group->nickname,
                 'nickname' => $group->nickname,
-                'fullname'=> $group->fullname,
+                'label'=> $group->getFancyName(),
                 'avatar' => $avatar,
                 'type' => 'group');
         }
-        foreach($results as $result) {
-            print json_encode($result) . "\n";
-        }
+        print json_encode($results);
     }
 
     /**
