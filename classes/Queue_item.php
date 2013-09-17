@@ -12,6 +12,7 @@ class Queue_item extends Managed_DataObject
     public $__table = 'queue_item';                      // table name
     public $id;                              // int(4)  primary_key not_null
     public $frame;                           // blob not_null
+    public $transport;                       // varchar(32)
     public $created;                         // datetime()   not_null
     public $claimed;                         // datetime()
 
@@ -24,7 +25,7 @@ class Queue_item extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
                 'frame' => array('type' => 'blob', 'not null' => true, 'description' => 'data: object reference or opaque string'),
-                'transport' => array('type' => 'varchar', 'length' => 8, 'not null' => true, 'description' => 'queue for what? "email", "xmpp", "sms", "irc", ...'), // @fixme 8 chars is too short; bump up.
+                'transport' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'description' => 'queue for what? "email", "xmpp", "sms", "irc", ...'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'claimed' => array('type' => 'datetime', 'description' => 'date this item was claimed'),
             ),
