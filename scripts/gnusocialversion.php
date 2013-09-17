@@ -22,11 +22,11 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 
-$helptext = <<<END_OF_STATUSNETVERSION_HELP
-statusnetversion.php [options]
+$helptext = <<<END_OF_HELP
+gnusocialversion.php [options]
 prints out the current version of the software
 
-END_OF_STATUSNETVERSION_HELP;
+END_OF_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 

@@ -27,7 +27,6 @@ if (isset($_SERVER) && array_key_exists('REQUEST_METHOD', $_SERVER)) {
 }
 
 define('STATUSNET', true);
-define('LACONICA', true); // compatibility
 
 // Set various flags so we don't time out on long-running processes
 
