@@ -153,7 +153,7 @@ class DirectoryPlugin extends Plugin
      *
      * @return boolean hook flag
      */
-    function onEndShowStatusNetStyles($action)
+    public function onEndShowStylesheets(Action $action)
     {
         if (in_array(
             $action->trimmed('action'),

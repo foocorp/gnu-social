@@ -28,7 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
@@ -65,7 +65,7 @@ abstract class UAPPlugin extends Plugin
      *
      * @return boolean hook flag
      */
-    function onEndShowStatusNetStyles($action)
+    public function onEndShowStylesheets(Action $action)
     {
         // XXX: allow override by theme
         $action->cssLink('css/uap.css', 'base', 'screen, projection, tv');

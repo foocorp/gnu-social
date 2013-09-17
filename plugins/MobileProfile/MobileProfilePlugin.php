@@ -27,7 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
@@ -244,7 +244,7 @@ class MobileProfilePlugin extends WAP20Plugin
         }
     }
 
-    function onStartShowStatusNetStyles($action)
+    public function onStartShowStylesheets(Action $action)
     {
         if (!$this->serveMobile) {
             return true;
@@ -263,8 +263,7 @@ class MobileProfilePlugin extends WAP20Plugin
         }
 
         // Allow other plugins to load their styles.
-        Event::handle('EndShowStatusNetStyles', array($action));
-        Event::handle('EndShowLaconicaStyles', array($action));
+        Event::handle('EndShowStylesheets', array($action));
 
         return false;
     }

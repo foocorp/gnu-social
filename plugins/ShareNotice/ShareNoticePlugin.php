@@ -32,7 +32,7 @@ class ShareNoticePlugin extends Plugin
         array('StatusNet', array('baseurl' => 'http://identi.ca'))
     );
 
-    function onEndShowStatusNetStyles($action) {
+    public function onEndShowStylesheets(Action $action) {
         $action->cssLink($this->path('css/sharenotice.css'));
         return true;
     }

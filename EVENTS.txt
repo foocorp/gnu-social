@@ -20,16 +20,10 @@ StartShowStyles: Showing Style links; good place to add UA style resets
 EndShowStyles: End showing Style links; good place to add custom styles
 - $action: the current action
 
-StartShowStatusNetStyles: Showing StatusNet Style links
+StartShowStylesheets: Showing stylesheet links
 - $action: the current action
 
-EndShowStatusNetStyles: End showing StatusNet Style links;  good place to add handheld or JavaScript dependant styles
-- $action: the current action
-
-StartShowLaconicaStyles: backwards compatibility; deprecated
-- $action: the current action
-
-EndShowLaconicaStyles: backwards compatibility; deprecated
+EndShowStylesheets: End showing stylesheet links;  good place to add handheld or JavaScript dependant styles
 - $action: the current action
 
 StartShowUAStyles: Showing custom User-Agent style links

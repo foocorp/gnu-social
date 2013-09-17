@@ -518,7 +518,7 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
-    function onEndShowStatusNetStyles($action) {
+    public function onEndShowStylesheets(Action $action) {
         $action->cssLink($this->path('theme/base/css/ostatus.css'));
         return true;
     }

@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once INSTALLDIR.'/lib/noticeform.php';
 require_once INSTALLDIR.'/lib/htmloutputter.php';
@@ -283,11 +281,9 @@ class Action extends HTMLOutputter // lawsuit
 
             // Use old name for StatusNet for compatibility on events
 
-            if (Event::handle('StartShowStatusNetStyles', array($this)) &&
-                Event::handle('StartShowLaconicaStyles', array($this))) {
+            if (Event::handle('StartShowStylesheets', array($this))) {
                 $this->primaryCssLink(null, 'screen, projection, tv, print');
-                Event::handle('EndShowStatusNetStyles', array($this));
-                Event::handle('EndShowLaconicaStyles', array($this));
+                Event::handle('EndShowStylesheets', array($this));
             }
 
             $this->cssLink(common_path('js/extlib/jquery-ui/css/smoothness/jquery-ui.css', StatusNet::isHTTPS()));

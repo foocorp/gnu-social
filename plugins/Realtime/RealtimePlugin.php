@@ -27,7 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
@@ -140,7 +140,7 @@ class RealtimePlugin extends Plugin
         return true;
     }
 
-    function onEndShowStatusNetStyles($action)
+    public function onEndShowStylesheets(Action $action)
     {
         $action->cssLink(Plugin::staticPath('Realtime', 'realtimeupdate.css'),
                          null,

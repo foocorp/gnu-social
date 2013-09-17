@@ -57,7 +57,7 @@ class ModPlusPlugin extends Plugin
         return true;
     }
 
-    function onEndShowStatusNetStyles($action) {
+    public function onEndShowStylesheets(Action $action) {
         $action->cssLink($this->path('modplus.css'));
         return true;
     }
