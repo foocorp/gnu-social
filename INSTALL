@@ -4,11 +4,8 @@ Prerequisites
 The following software packages are *required* for this software to
 run correctly.
 
-- PHP 5.2.3+. It may be possible to run this software on earlier
-  versions of PHP, but many of the functions used are only available
-  in PHP 5.2 or above. 5.2.6 or later is needed for XMPP background
-  daemons on 64-bit platforms. PHP 5.3.x should work correctly in this
-  release, but problems with some plugins are possible.
+- PHP 5.3+. Newer versions may complain on some coding standards, but
+  glitches are intended to be fix asap.
 - MySQL 5.x. The StatusNet database is stored, by default, in a MySQL
   server. It has been primarily tested on 5.x servers, although it may
   be possible to install on earlier (or later!) versions. The server
