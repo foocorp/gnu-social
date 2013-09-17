@@ -422,7 +422,7 @@ abstract class Installer
 
         // assemble configuration file in a string
         $cfg =  "<?php\n".
-                "if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }\n\n".
+                "if (!defined('GNUSOCIAL')) { exit(1); }\n\n".
 
                 // site name
                 "\$config['site']['name'] = {$vals['sitename']};\n\n".
@@ -578,8 +578,11 @@ endforeach;
         $this->updateStatus("Initializing...");
         ini_set('display_errors', 1);
         error_reporting(E_ALL);
+        if (!defined('GNUSOCIAL')) {
+            define('GNUSOCIAL', true);
+        }
         if (!defined('STATUSNET')) {
-            define('STATUSNET', 1);
+            define('STATUSNET', true);
         }
         require_once INSTALLDIR . '/lib/framework.php';
         StatusNet::initDefaults($this->server, $this->path);
