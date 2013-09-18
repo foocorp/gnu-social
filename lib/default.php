@@ -56,7 +56,6 @@ $default =
               'private' => true,
               'ssl' => 'never',
               'sslserver' => null,
-              'shorturllength' => 30,
               'dupelimit' => 60, // default for same person saying the same thing
               'textlimit' => 0, // in chars; 0 == no limit
               'indent' => true,
@@ -337,8 +336,8 @@ $default =
               'peopletag' => true,
               'external' => 'sometimes'), // Options: 'sometimes', 'never', default = 'sometimes'
         'url' =>
-        array('shortener' => 'ur1.ca',
-              'maxlength' => 25,
+        array('shortener' => 'internal',
+              'maxlength' => 60,
               'maxnoticelength' => -1),
         'http' => // HTTP client settings when contacting other sites
         array('ssl_cafile' => false, // To enable SSL cert validation, point to a CA bundle (eg '/usr/lib/ssl/certs/ca-certificates.crt')

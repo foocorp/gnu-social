@@ -51,7 +51,7 @@ class ApiStatusnetConfigAction extends ApiAction
     var $keys = array(
         'site' => array('name', 'server', 'theme', 'path', 'logo', 'fancy', 'language',
                         'email', 'broughtby', 'broughtbyurl', 'timezone', 'closed',
-                        'inviteonly', 'private', 'textlimit', 'ssl', 'sslserver', 'shorturllength'),
+                        'inviteonly', 'private', 'textlimit', 'ssl', 'sslserver'),
         'license' => array('type', 'owner', 'url', 'title', 'image'),
         'nickname' => array('featured'),
         'profile' => array('biolimit'),
@@ -60,7 +60,8 @@ class ApiStatusnetConfigAction extends ApiAction
         'throttle' => array('enabled', 'count', 'timespan'),
         'xmpp' => array('enabled', 'server', 'port', 'user'),
         'integration' => array('source'),
-        'attachments' => array('uploads', 'file_quota')
+        'attachments' => array('uploads', 'file_quota'),
+        'url' => array('maxlength', 'maxnoticelength'),
     );
 
     /**
