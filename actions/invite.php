@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 // @todo XXX: Add documentation.
 class InviteAction extends Action
@@ -111,15 +111,22 @@ class InviteAction extends Action
 
             foreach ($addresses as $email) {
                 $email = common_canonical_email($email);
-                $other = User::getKV('email', $email);
-                if ($other) {
+                try {
+                    // If this user is already registered, subscribe to it!
+                    $other = Profile::getByEmail($email);
                     if ($user->isSubscribed($other)) {
                         $this->already[] = $other;
                     } else {
-                        subs_subscribe_to($user, $other);
-                        $this->subbed[] = $other;
+                        try {
+                            Subscription::start($profile, $other);
+                            $this->subbed[] = $other;
+                        } catch (Exception $e) {
+                            // subscription failed, but keep working
+                            common_debug('Invitation-based subscription failed: '.$e->getMessage());
+                        }
                     }
-                } else {
+                } catch (NoSuchUserException $e) {
+                    // If email was not known, let's send an invite!
                     $this->sent[] = $email;
                     $this->sendInvitation($email, $user, $personal);
                 }

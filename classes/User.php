@@ -475,8 +475,15 @@ class User extends Managed_DataObject
 
         if ($invites->find()) {
             while ($invites->fetch()) {
-                $other = User::getKV($invites->user_id);
-                subs_subscribe_to($other, $this);
+                try {
+                    $other = Profile::getKV('id', $invites->user_id);
+                    if (!($other instanceof Profile)) {    // remove when getKV throws exceptions
+                        continue;
+                    }
+                    Subscription::start($other, $this->getProfile());
+                } catch (Exception $e) {
+                    continue;
+                }
             }
         }
     }

@@ -235,11 +235,11 @@ function newSub($i)
 
     $to = User::getKV('nickname', $tunic);
 
-    if (empty($to)) {
+    if (!($to instanceof User)) {
         throw new Exception("Can't find user '$tunic'.");
     }
 
-    subs_subscribe_to($from, $to);
+    Subscription::start($from->getProfile(), $to->getProfile());
 
     $from->free();
     $to->free();

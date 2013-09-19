@@ -82,6 +82,16 @@ class Profile extends Managed_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    public static function getByEmail($email)
+    {
+        // in the future, profiles should have emails stored...
+        $user = User::getKV('email', $email);
+        if (!($user instanceof User)) {
+            throw new NoSuchUserException(array('email'=>$email));
+        }
+        return $user->getProfile();
+    } 
+
     protected $_user = -1;  // Uninitialized value distinct from null
 
     public function getUser()

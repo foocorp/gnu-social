@@ -122,11 +122,10 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
             return;
         }
 
-        $result = subs_subscribe_to($this->user, $this->other);
-
-        if (is_string($result)) {
-            $this->clientError($result, 403, $this->format);
-            return;
+        try {
+            Subscription::start($this->user->getProfile(), $this->other);
+        } catch (Exception $e) {
+            $this->clientError($e->getMessage(), 403, $this->format);
         }
 
         $this->initDocument($this->format);
