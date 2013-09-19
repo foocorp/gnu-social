@@ -89,7 +89,7 @@ class Profile extends Managed_DataObject
         if ($this->_user === -1) {
             $this->_user = User::getKV('id', $this->id);
         }
-        if (!is_a($this->_user, 'User')) {
+        if (!($this->_user instanceof User)) {
             throw new NoSuchUserException(array('id'=>$this->id));
         }
 
