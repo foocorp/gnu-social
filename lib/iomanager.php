@@ -38,7 +38,9 @@ abstract class IoManager
     /**
      * Factory function to get an appropriate subclass.
      */
-    public abstract static function get();
+    public static function get() {
+        throw new MethodNotImplementedException(__METHOD__);
+    }
 
     /**
      * Tell the i/o queue master if and how we can handle multi-site

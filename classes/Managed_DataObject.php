@@ -28,7 +28,10 @@ abstract class Managed_DataObject extends Memcached_DataObject
     /**
      * The One True Thingy that must be defined and declared.
      */
-    public static abstract function schemaDef();
+    public static function schemaDef()
+    {
+        throw new MethodNotImplementedException(__METHOD__);
+    }
 
     /**
      * Get an instance by key

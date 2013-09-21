@@ -73,7 +73,10 @@ class SiteProfile
  */
 abstract class SiteProfileSettings
 {
-    abstract static function getSettings();
+    static function getSettings()
+    {
+        throw new MethodNotImplementedException(__METHOD__);
+    }
 
     static function defaultPlugins() {
         return array(
