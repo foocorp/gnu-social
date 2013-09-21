@@ -264,6 +264,22 @@ class Memcached_DataObject extends Safe_DataObject
         return $pkey;
     }
 
+    static function listFindClass($cls, $keyCol, array $keyVals)
+    {
+        if (!is_a($cls, __CLASS__, true)) {
+            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
+        }
+
+        $i = new $cls;
+        $i->whereAddIn($keyCol, $keyVals, $i->columnType($keyCol));
+        if (!$i->find()) {
+            throw new NoResultException($i);
+        }
+
+        sprintf(__CLASS__ . "() got {$i->N} results for class $cls key $keyCol");
+        return $i;
+    }
+
     static function listGetClass($cls, $keyCol, array $keyVals)
     {
         if (!is_a($cls, __CLASS__, true)) {
@@ -305,10 +321,9 @@ class Memcached_DataObject extends Safe_DataObject
         }
 
         if (count($toFetch) > 0) {
-            $i = new $cls;
-            $i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
-            if ($i->find()) {
-                sprintf(__CLASS__ . "() got {$i->N} results for class $cls key $keyCol");
+            try {
+                $i = self::listFindClass($cls, $keyCol, $toFetch);
+
                 while ($i->fetch()) {
                     $copy = clone($i);
                     $copy->encache();
@@ -319,6 +334,8 @@ class Memcached_DataObject extends Safe_DataObject
                     }
                     $pkeyMap[$i->$keyCol][] = $pkeyVal;
                 }
+            } catch (NoResultException $e) {
+                // no results foudn for our keyVals, so we leave them as empty arrays
             }
             foreach ($toFetch as $keyVal) {
                 self::cacheSet(sprintf("%s:list-ids:%s:%s", strtolower($cls), $keyCol, $keyVal),

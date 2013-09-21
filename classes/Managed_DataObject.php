@@ -93,13 +93,31 @@ abstract class Managed_DataObject extends Memcached_DataObject
      * Get a multi-instance object
      *
      * This is a utility method to get multiple instances with a given set of
-     * values for a specific key column. Usually used for the primary key when
-     * multiple values are desired.
+     * values for a specific column.
      *
      * @param string $keyCol  key column name
      * @param array  $keyVals array of key values
      *
-     * @return get_called_class() object with multiple instances if found, or null for no hits
+     * @return get_called_class() object with multiple instances if found,
+     *         Exception is thrown when no entries are found.
+     *
+     */
+    static function listFind($keyCol, array $keyVals)
+    {
+        return parent::listFindClass(get_called_class(), $keyCol, $keyVals);
+    }
+
+    /**
+     * Get a multi-instance object in an array
+     *
+     * This is a utility method to get multiple instances with a given set of
+     * values for a specific key column. Usually used for the primary key when
+     * multiple values are desired. Result is an array.
+     *
+     * @param string $keyCol  key column name
+     * @param array  $keyVals array of key values
+     *
+     * @return array with an get_called_class() object for each $keyVals entry
      *
      */
     static function listGet($keyCol, array $keyVals)
