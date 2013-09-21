@@ -701,10 +701,10 @@ class User extends Managed_DataObject
         return $profile->leaveGroup($group);
     }
 
-    function getSubscriptions($offset=0, $limit=null)
+    function getSubscribed($offset=0, $limit=null)
     {
         $profile = $this->getProfile();
-        return $profile->getSubscriptions($offset, $limit);
+        return $profile->getSubscribed($offset, $limit);
     }
 
     function getSubscribers($offset=0, $limit=null)

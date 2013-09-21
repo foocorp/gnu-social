@@ -287,117 +287,100 @@ class Subscription extends Managed_DataObject
      * chronological order. Has offset & limit to make paging
      * easy.
      *
-     * @param integer $subscriberId Profile ID of the subscriber
+     * @param integer $profile_id   ID of the subscriber profile
      * @param integer $offset       Offset from latest
      * @param integer $limit        Maximum number to fetch
      *
      * @return Subscription stream of subscriptions; use fetch() to iterate
      */
-    static function bySubscriber($subscriberId,
-                                 $offset = 0,
-                                 $limit = PROFILES_PER_PAGE)
+    public static function bySubscriber($profile_id, $offset = 0, $limit = PROFILES_PER_PAGE)
     {
-        if ($offset + $limit > self::CACHE_WINDOW) {
-            return new ArrayWrapper(self::realBySubscriber($subscriberId,
-                                                           $offset,
-                                                           $limit));
-        } else {
-            $key = 'subscription:by-subscriber:'.$subscriberId;
-            $window = self::cacheGet($key);
-            if ($window === false) {
-                $window = self::realBySubscriber($subscriberId,
-                                                 0,
-                                                 self::CACHE_WINDOW);
-                self::cacheSet($key, $window);
-            }
-            return new ArrayWrapper(array_slice($window,
-                                                $offset,
-                                                $limit));
-        }
-    }
-
-    private static function realBySubscriber($subscriberId,
-                                             $offset,
-                                             $limit)
-    {
-        $sub = new Subscription();
-
-        $sub->subscriber = $subscriberId;
-
-        $sub->whereAdd('subscribed != ' . $subscriberId);
-
-        $sub->orderBy('created DESC');
-        $sub->limit($offset, $limit);
-
-        $sub->find();
-
-        $subs = array();
-
-        while ($sub->fetch()) {
-            $subs[] = clone($sub);
-        }
-
-        return $subs;
+        // "by subscriber" means it is the list of subscribed users we want
+        $ids = self::getSubscribedIDs($profile_id, $offset, $limit);
+        return Subscription::listFind('subscribed', $ids);
     }
 
     /**
-     * Stream of subscriptions with the same subscribed profile
+     * Stream of subscriptions with the same subscriber
      *
-     * Useful for showing pages that list subscribers in reverse
+     * Useful for showing pages that list subscriptions in reverse
      * chronological order. Has offset & limit to make paging
      * easy.
      *
-     * @param integer $subscribedId Profile ID of the subscribed
+     * @param integer $profile_id   ID of the subscribed profile
      * @param integer $offset       Offset from latest
      * @param integer $limit        Maximum number to fetch
      *
      * @return Subscription stream of subscriptions; use fetch() to iterate
      */
-    static function bySubscribed($subscribedId,
-                                 $offset = 0,
-                                 $limit = PROFILES_PER_PAGE)
+    public static function bySubscribed($profile_id, $offset = 0, $limit = PROFILES_PER_PAGE)
     {
-        if ($offset + $limit > self::CACHE_WINDOW) {
-            return new ArrayWrapper(self::realBySubscribed($subscribedId,
-                                                           $offset,
-                                                           $limit));
-        } else {
-            $key = 'subscription:by-subscribed:'.$subscribedId;
-            $window = self::cacheGet($key);
-            if ($window === false) {
-                $window = self::realBySubscribed($subscribedId,
-                                                 0,
-                                                 self::CACHE_WINDOW);
-                self::cacheSet($key, $window);
-            }
-            return new ArrayWrapper(array_slice($window,
-                                                $offset,
-                                                $limit));
-        }
+        // "by subscribed" means it is the list of subscribers we want
+        $ids = self::getSubscriberIDs($profile_id, $offset, $limit);
+        return Subscription::listFind('subscriber', $ids);
     }
 
-    private static function realBySubscribed($subscribedId,
-                                             $offset,
-                                             $limit)
+
+    // The following are helper functions to the subscription lists,
+    // notably the public ones get used in places such as Profile
+    public static function getSubscribedIDs($profile_id, $offset, $limit) {
+        return self::getSubscriptionIDs('subscribed', $profile_id, $offset, $limit);
+    }
+
+    public static function getSubscriberIDs($profile_id, $offset, $limit) {
+        return self::getSubscriptionIDs('subscriber', $profile_id, $offset, $limit);
+    }
+
+    private static function getSubscriptionIDs($get_type, $profile_id, $offset, $limit)
     {
-        $sub = new Subscription();
-
-        $sub->subscribed = $subscribedId;
-
-        $sub->whereAdd('subscriber != ' . $subscribedId);
-
-        $sub->orderBy('created DESC');
-        $sub->limit($offset, $limit);
-
-        $sub->find();
-
-        $subs = array();
-
-        while ($sub->fetch()) {
-            $subs[] = clone($sub);
+        switch ($get_type) {
+        case 'subscribed':
+            $by_type  = 'subscriber';
+            break;
+        case 'subscriber':
+            $by_type  = 'subscribed';
+            break;
+        default:
+            throw new Exception('Bad type argument to getSubscriptionIDs');
         }
 
-        return $subs;
+        $cacheKey = 'subscription:by-'.$by_type.':'.$profile_id;
+
+        $queryoffset = $offset;
+        $querylimit = $limit;
+
+        if ($offset + $limit <= self::CACHE_WINDOW) {
+            // Oh, it seems it should be cached
+            $ids = self::cacheGet($cacheKey);
+            if (is_array($ids)) {
+                return array_slice($ids, $offset, $limit);
+            }
+            // Being here indicates we didn't find anything cached
+            // so we'll have to fill it up simultaneously
+            $queryoffset = 0;
+            $querylimit  = self::CACHE_WINDOW;
+        }
+
+        $sub = new Subscription();
+        $sub->$by_type = $profile_id;
+        $sub->selectAdd($get_type);
+        $sub->whereAdd("{$get_type} != {$profile_id}");
+        $sub->orderBy('created DESC');
+        $sub->limit($queryoffset, $querylimit);
+
+        if (!$sub->find()) {
+            return array();
+        }
+
+        $ids = $sub->fetchAll($get_type);
+
+        // If we're simultaneously filling up cache, remember to slice
+        if ($offset === 0 && $querylimit === self::CACHE_WINDOW) {
+            self::cacheSet($cacheKey, $ids);
+            return array_slice($ids, $offset, $limit);
+        }
+
+        return $ids;
     }
 
     /**

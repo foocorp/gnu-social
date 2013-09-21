@@ -81,7 +81,7 @@ function updateOStatus($user)
 
     $up = $user->getProfile();
 
-    $sp = $user->getSubscriptions();
+    $sp = $up->getSubscribed();
 
     $rps = array();
 

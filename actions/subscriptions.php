@@ -95,7 +95,7 @@ class SubscriptionsAction extends GalleryAction
             if ($this->tag) {
                 $subscriptions = $this->user->getTaggedSubscriptions($this->tag, $offset, $limit);
             } else {
-                $subscriptions = $this->user->getSubscriptions($offset, $limit);
+                $subscriptions = $this->user->getSubscribed($offset, $limit);
             }
 
             if ($subscriptions) {

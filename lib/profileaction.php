@@ -125,7 +125,7 @@ class ProfileAction extends Action
 
     function showSubscriptions()
     {
-        $profile = $this->profile->getSubscriptions(0, PROFILES_PER_MINILIST + 1);
+        $profile = $this->profile->getSubscribed(0, PROFILES_PER_MINILIST + 1);
 
         $this->elementStart('div', array('id' => 'entity_subscriptions',
                                          'class' => 'section'));

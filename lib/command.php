@@ -931,7 +931,7 @@ class SubscriptionsCommand extends Command
 {
     function handle($channel)
     {
-        $profile = $this->user->getSubscriptions(0);
+        $profile = $this->user->getSubscribed(0);
         $nicknames=array();
         while ($profile->fetch()) {
             $nicknames[]=$profile->nickname;

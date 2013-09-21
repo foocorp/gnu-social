@@ -65,7 +65,7 @@ class ApiUserFriendsAction extends ApiSubscriptionsAction
                 $this->tag, $offset, $limit
             );
         } else {
-            $subs = $this->user->getSubscriptions(
+            $subs = $this->user->getSubscribed(
                 $offset,
                 $limit
             );

@@ -646,40 +646,18 @@ class Profile extends Managed_DataObject
         }
     }
 
-    function getSubscriptions($offset=0, $limit=null)
+    function getSubscribed($offset=0, $limit=null)
     {
-        $subs = Subscription::bySubscriber($this->id,
-                                           $offset,
-                                           $limit);
-
-        $profiles = array();
-
-        while ($subs->fetch()) {
-            $profile = Profile::getKV($subs->subscribed);
-            if ($profile) {
-                $profiles[] = $profile;
-            }
-        }
-
-        return new ArrayWrapper($profiles);
+        $subs = Subscription::getSubscribedIDs($this->id, $offset, $limit);
+        $profiles = Profile::listFind('id', $subs);
+        return $profiles;
     }
 
     function getSubscribers($offset=0, $limit=null)
     {
-        $subs = Subscription::bySubscribed($this->id,
-                                           $offset,
-                                           $limit);
-
-        $profiles = array();
-
-        while ($subs->fetch()) {
-            $profile = Profile::getKV($subs->subscriber);
-            if ($profile) {
-                $profiles[] = $profile;
-            }
-        }
-
-        return new ArrayWrapper($profiles);
+        $subs = Subscription::getSubscriberIDs($this->id, $offset, $limit);
+        $profiles = Profile::listFind('id', $subs);
+        return $profiles;
     }
 
     function getTaggedSubscribers($tag)

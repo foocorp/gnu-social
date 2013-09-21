@@ -118,7 +118,7 @@ function newNotice($i, $tagmax)
         $is_directed = rand(0, 4);
 
         if ($is_directed == 0) {
-            $subs = $user->getSubscriptions(0, 100)->fetchAll();
+            $subs = $user->getSubscribed(0, 100)->fetchAll();
             if (count($subs) > 0) {
                 $seen = array();
                 $f = rand(0, 9);
