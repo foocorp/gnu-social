@@ -143,14 +143,16 @@ abstract class QueueManager extends IoManager
                 return "$class $object->id";
             }
             return $class;
-        }
-        if (is_string($object)) {
+        } elseif (is_string($object)) {
             $len = strlen($object);
             $fragment = mb_substr($object, 0, 32);
             if (mb_strlen($object) > 32) {
                 $fragment .= '...';
             }
             return "string '$fragment' ($len bytes)";
+        } elseif (is_array($object)) {
+            return 'array with ' . count($object) .
+                   ' elements (keys:[' .  implode(',', array_keys($object)) . '])';
         }
         return strval($object);
     }
