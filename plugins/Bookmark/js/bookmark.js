@@ -20,8 +20,8 @@ var Bookmark = {
 $(document).ready(function() {
 
     // Stop normal live event stuff
-    $(document).off("click", "form.ajax");
-    $(document).off("submit", "form.ajax input[type=submit]");
+    $(document).off("submit", "form.ajax");
+    $(document).off("click", "form.ajax input[type=submit]");
 
     // Make the bookmark submit super special
     $(document).on('submit', '#form_initial_bookmark', function (e) {
