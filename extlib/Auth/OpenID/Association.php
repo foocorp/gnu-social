@@ -374,42 +374,7 @@ class Auth_OpenID_Association {
         }
 
         $calculated_sig = $this->getMessageSignature($message);
-
-        return $this->constantTimeCompare($calculated_sig, $sig);
-    }
-
-    /**
-     * String comparison function which will complete in a constant time
-     * for strings of any given matching length, to help prevent an attacker
-     * from distinguishing how much of a signature token they have guessed
-     * correctly.
-     *
-     * For this usage, it's assumed that the length of the string is known,
-     * so we may safely short-circuit on mismatched lengths which will be known
-     * to be invalid by the attacker.
-     *
-     * http://lists.openid.net/pipermail/openid-security/2010-July/001156.html
-     * http://rdist.root.org/2010/01/07/timing-independent-array-comparison/
-     */
-    private function constantTimeCompare($a, $b)
-    {
-        $len = strlen($a);
-        if (strlen($b) !== $len) {
-            // Short-circuit on length mismatch; attackers will already know
-            // the correct target length so this is safe.
-            return false;
-        }
-        if ($len == 0) {
-            // 0-length valid input shouldn't really happen. :)
-            return true;
-        }
-        $result = 0;
-        for ($i = 0; $i < strlen($a); $i++) {
-            // We use scary bitwise operations to avoid logical short-circuits
-            // in lower-level code.
-            $result |= ord($a{$i}) ^ ord($b{$i});
-        }
-        return ($result == 0);
+        return Auth_OpenID_CryptUtil::constEq($calculated_sig, $sig);
     }
 }
 
