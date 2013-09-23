@@ -209,7 +209,7 @@ class MobileProfilePlugin extends WAP20Plugin
            $action->extraHeaders();
            if (preg_match("/.*\/.*xml/", $type)) {
                // Required for XML documents
-               $action->xw->startDocument('1.0', 'UTF-8');
+               $action->startXML();
            }
            $action->xw->writeDTD('html',
                            '-//WAPFORUM//DTD XHTML Mobile 1.0//EN',

@@ -80,9 +80,7 @@ class OStatusInitAction extends Action
     {
         $this->err = $err;
         if ($this->boolean('ajax')) {
-            header('Content-Type: text/xml;charset=utf-8');
-            $this->xw->startDocument('1.0', 'UTF-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Form title.
             $this->element('title', null, _m('TITLE','Subscribe to user'));
@@ -90,7 +88,7 @@ class OStatusInitAction extends Action
             $this->elementStart('body');
             $this->showContent();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $this->showPage();
         }

@@ -155,20 +155,16 @@ class NewrsvpAction extends Action
 
         if ($this->boolean('ajax')) {
             $rsvp = RSVP::fromNotice($saved);
-            header('Content-Type: text/xml;charset=utf-8');
-            $this->xw->startDocument('1.0', 'UTF-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Page title after creating an event.
             $this->element('title', null, _m('Event saved'));
             $this->elementEnd('head');
             $this->elementStart('body');
-            $this->elementStart('body');
             $cancel = new CancelRSVPForm($rsvp, $this);
             $cancel->show();
             $this->elementEnd('body');
-            $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect($saved->bestUrl(), 303);
         }

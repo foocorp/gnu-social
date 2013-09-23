@@ -117,9 +117,7 @@ class FlagprofileAction extends ProfileFormAction
      */
     function ajaxResults()
     {
-        header('Content-Type: text/xml;charset=utf-8');
-        $this->xw->startDocument('1.0', 'UTF-8');
-        $this->elementStart('html');
+        $this->startHTML('text/xml;charset=utf-8');
         $this->elementStart('head');
         // TRANS: AJAX form title for a flagged profile.
         $this->element('title', null, _m('Flagged for review'));
@@ -128,6 +126,6 @@ class FlagprofileAction extends ProfileFormAction
         // TRANS: Body text for AJAX form when a profile has been flagged for review.
         $this->element('p', 'flagged', _m('Flagged'));
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 }

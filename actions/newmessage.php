@@ -194,9 +194,7 @@ class NewmessageAction extends FormAction
 
         $this->msg = $msg;
         if ($this->trimmed('ajax')) {
-            header('Content-Type: text/xml;charset=utf-8');
-            $this->xw->startDocument('1.0', 'UTF-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Page title on page for sending a direct message.
             $this->element('title', null, _('New message'));

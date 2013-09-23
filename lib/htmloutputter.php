@@ -118,7 +118,7 @@ class HTMLOutputter extends XMLOutputter
         $this->extraHeaders();
         if (preg_match("/.*\/.*xml/", $type)) {
             // Required for XML documents
-            $this->xw->startDocument('1.0', 'UTF-8');
+            $this->startXML();
         }
         $this->xw->writeDTD('html',
                             '-//W3C//DTD XHTML 1.0 Strict//EN',

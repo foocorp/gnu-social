@@ -155,9 +155,7 @@ class QnareviseanswerAction extends Action
         }
         if ($this->boolean('ajax')) {
             common_debug("ajaxy part");
-            header('Content-Type: text/xml;charset=utf-8');
-            $this->xw->startDocument('1.0', 'UTF-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Page title after sending an answer.
             $this->element('title', null, _m('Answer'));
@@ -166,7 +164,7 @@ class QnareviseanswerAction extends Action
             $form = new QnashowanswerForm($this, $answer);
             $form->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect($this->answer->bestUrl(), 303);
         }
@@ -199,9 +197,7 @@ class QnareviseanswerAction extends Action
         }
         if ($this->boolean('ajax')) {
             common_debug("ajaxy part");
-            header('Content-Type: text/xml;charset=utf-8');
-            $this->xw->startDocument('1.0', 'UTF-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Page title after sending an answer.
             $this->element('title', null, _m('Answer'));
@@ -210,7 +206,7 @@ class QnareviseanswerAction extends Action
             $form = new QnashowanswerForm($this, $answer);
             $form->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect($this->answer->bestUrl(), 303);
         }
@@ -239,9 +235,7 @@ class QnareviseanswerAction extends Action
 
     function showAjaxReviseForm()
     {
-        header('Content-Type: text/xml;charset=utf-8');
-        $this->xw->startDocument('1.0', 'UTF-8');
-        $this->elementStart('html');
+        $this->startHTML('text/xml;charset=utf-8');
         $this->elementStart('head');
         // TRANS: Form title for sending an answer.
         $this->element('title', null, _m('TITLE','Answer'));
@@ -250,7 +244,7 @@ class QnareviseanswerAction extends Action
         $form = new QnareviseanswerForm($this->answer, $this);
         $form->show();
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     /**

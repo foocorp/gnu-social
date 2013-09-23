@@ -158,9 +158,7 @@ class NewPollAction extends Action
         }
 
         if ($this->boolean('ajax')) {
-            header('Content-Type: text/xml;charset=utf-8');
-            $this->xw->startDocument('1.0', 'UTF-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Page title after sending a notice.
             $this->element('title', null, _m('Notice posted'));
@@ -168,7 +166,7 @@ class NewPollAction extends Action
             $this->elementStart('body');
             $this->showNotice($saved);
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect($saved->bestUrl(), 303);
         }

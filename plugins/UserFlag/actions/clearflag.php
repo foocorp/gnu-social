@@ -121,9 +121,7 @@ class ClearflagAction extends ProfileFormAction
      */
     function ajaxResults()
     {
-        header('Content-Type: text/xml;charset=utf-8');
-        $this->xw->startDocument('1.0', 'UTF-8');
-        $this->elementStart('html');
+        $this->startHTML('text/xml;charset=utf-8');
         $this->elementStart('head');
         // TRANS: Title for AJAX form to indicated that flags were removed.
         $this->element('title', null, _m('Flags cleared'));
@@ -132,6 +130,6 @@ class ClearflagAction extends ProfileFormAction
         // TRANS: Body element for "flags cleared" form.
         $this->element('p', 'cleared', _m('Cleared'));
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 }

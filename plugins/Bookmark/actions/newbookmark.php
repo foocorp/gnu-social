@@ -150,9 +150,7 @@ class NewbookmarkAction extends Action
 
         } catch (ClientException $ce) {
             if ($this->boolean('ajax')) {
-                header('Content-Type: text/xml;charset=utf-8');
-                $this->xw->startDocument('1.0', 'UTF-8');
-                $this->elementStart('html');
+                $this->startHTML('text/xml;charset=utf-8');
                 $this->elementStart('head');
                 // TRANS: Page title after an AJAX error occurs
                 $this->element('title', null, _('Ajax Error'));
@@ -160,7 +158,7 @@ class NewbookmarkAction extends Action
                 $this->elementStart('body');
                 $this->element('p', array('id' => 'error'), $ce->getMessage());
                 $this->elementEnd('body');
-                $this->elementEnd('html');
+                $this->endHTML();
                 return;
             } else {
                 $this->error = $ce->getMessage();
@@ -170,9 +168,7 @@ class NewbookmarkAction extends Action
         }
 
         if ($this->boolean('ajax')) {
-            header('Content-Type: text/xml;charset=utf-8');
-            $this->xw->startDocument('1.0', 'UTF-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Page title after posting a bookmark.
             $this->element('title', null, _m('Bookmark posted'));
@@ -180,7 +176,7 @@ class NewbookmarkAction extends Action
             $this->elementStart('body');
             $this->showNotice($saved);
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect($saved->bestUrl(), 303);
         }

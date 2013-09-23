@@ -174,9 +174,7 @@ class NewnoticeAction extends FormAction
         Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content_shortened, &$options));
 
         if (StatusNet::isAjax()) {
-            header('Content-Type: text/xml;charset=utf-8');
-            $this->xw->startDocument('1.0', 'UTF-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Page title after sending a notice.
             $this->element('title', null, _('Notice posted'));
@@ -184,7 +182,7 @@ class NewnoticeAction extends FormAction
             $this->elementStart('body');
             $this->showNotice($notice);
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
             exit;
         } else {
             $returnto = $this->trimmed('returnto');

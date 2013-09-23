@@ -244,9 +244,7 @@ class NeweventAction extends Action
         }
 
         if ($this->boolean('ajax')) {
-            header('Content-Type: text/xml;charset=utf-8');
-            $this->xw->startDocument('1.0', 'UTF-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Page title after sending a notice.
             $this->element('title', null, _m('Event saved'));
@@ -254,7 +252,7 @@ class NeweventAction extends Action
             $this->elementStart('body');
             $this->showNotice($saved);
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect($saved->bestUrl(), 303);
         }
@@ -263,9 +261,7 @@ class NeweventAction extends Action
     // @todo factor this out into a base class
     function outputAjaxError($msg)
     {
-        header('Content-Type: text/xml;charset=utf-8');
-        $this->xw->startDocument('1.0', 'UTF-8');
-        $this->elementStart('html');
+        $this->startHTML('text/xml;charset=utf-8');
         $this->elementStart('head');
         // TRANS: Page title after an AJAX error occurs
         $this->element('title', null, _('Ajax Error'));
@@ -273,7 +269,7 @@ class NeweventAction extends Action
         $this->elementStart('body');
         $this->element('p', array('id' => 'error'), $msg);
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
         return;
     }
 

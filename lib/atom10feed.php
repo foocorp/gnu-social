@@ -167,7 +167,7 @@ class Atom10Feed extends XMLStringer
 
     function initFeed()
     {
-        $this->xw->startDocument('1.0', 'UTF-8');
+        $this->startXML();
         $commonAttrs = array('xml:lang' => 'en-US');
         foreach ($this->namespaces as $prefix => $uri) {
             if ($prefix == '') {

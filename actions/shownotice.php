@@ -250,9 +250,7 @@ class ShownoticeAction extends Action
 
     function showAjax()
     {
-        header('Content-Type: text/xml;charset=utf-8');
-        $this->xw->startDocument('1.0', 'UTF-8');
-        $this->elementStart('html');
+        $this->startHTML('text/xml;charset=utf-8');
         $this->elementStart('head');
         // TRANS: Title for page that shows a notice.
         $this->element('title', null, _m('TITLE','Notice'));
@@ -261,7 +259,7 @@ class ShownoticeAction extends Action
         $nli = new NoticeListItem($this->notice, $this);
         $nli->show();
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     /**
