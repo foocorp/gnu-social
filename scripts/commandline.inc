@@ -26,7 +26,8 @@ if (isset($_SERVER) && array_key_exists('REQUEST_METHOD', $_SERVER)) {
     exit();
 }
 
-define('STATUSNET', true);
+define('GNUSOCIAL', true);
+define('STATUSNET', true); //compatibility
 
 // Set various flags so we don't time out on long-running processes
 
