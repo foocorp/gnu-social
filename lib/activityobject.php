@@ -888,7 +888,7 @@ class ActivityObject
             // @fixme text content from XML extensions will be lost
 
             foreach ($this->extra as $e) {
-                list($objectName, $props, $txt) = $e;
+                list($objectName, $props, $txt) = array_pad($e, 3, null);
                 if (!empty($objectName)) {
                     $parts = explode(":", $objectName);
                     if (count($parts) == 2 && $parts[0] == "statusnet") {
