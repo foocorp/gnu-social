@@ -762,7 +762,7 @@ class ActivityObject
             // @fixme there's no way here to make a tree; elements can only contain plaintext
             // @fixme these may collide with JSON extensions
             foreach ($this->extra as $el) {
-                list($extraTag, $attrs, $content) = $el;
+                list($extraTag, $attrs, $content) = array_pad($el, 3, null);
                 $xo->element($extraTag, $attrs, $content);
             }
 
