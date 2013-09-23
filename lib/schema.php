@@ -345,9 +345,11 @@ class Schema
 
     public function dropTable($name)
     {
+        global $_PEAR;
+
         $res = $this->conn->query("DROP TABLE $name");
 
-        if (PEAR::isError($res)) {
+        if ($_PEAR->isError($res)) {
             throw new Exception($res->getMessage());
         }
 
@@ -372,6 +374,8 @@ class Schema
 
     public function createIndex($table, $columnNames, $name=null)
     {
+        global $_PEAR;
+
         if (!is_array($columnNames)) {
             $columnNames = array($columnNames);
         }
@@ -384,7 +388,7 @@ class Schema
                                    "ADD INDEX $name (".
                                    implode(",", $columnNames).")");
 
-        if (PEAR::isError($res)) {
+        if ($_PEAR->isError($res)) {
             throw new Exception($res->getMessage());
         }
 
@@ -402,9 +406,11 @@ class Schema
 
     public function dropIndex($table, $name)
     {
+        global $_PEAR;
+
         $res = $this->conn->query("ALTER TABLE $table DROP INDEX $name");
 
-        if (PEAR::isError($res)) {
+        if ($_PEAR->isError($res)) {
             throw new Exception($res->getMessage());
         }
 
@@ -423,11 +429,13 @@ class Schema
 
     public function addColumn($table, $columndef)
     {
+        global $_PEAR;
+
         $sql = "ALTER TABLE $table ADD COLUMN " . $this->_columnSql($columndef);
 
         $res = $this->conn->query($sql);
 
-        if (PEAR::isError($res)) {
+        if ($_PEAR->isError($res)) {
             throw new Exception($res->getMessage());
         }
 
@@ -447,12 +455,14 @@ class Schema
 
     public function modifyColumn($table, $columndef)
     {
+        global $_PEAR;
+
         $sql = "ALTER TABLE $table MODIFY COLUMN " .
           $this->_columnSql($columndef);
 
         $res = $this->conn->query($sql);
 
-        if (PEAR::isError($res)) {
+        if ($_PEAR->isError($res)) {
             throw new Exception($res->getMessage());
         }
 
@@ -472,11 +482,13 @@ class Schema
 
     public function dropColumn($table, $columnName)
     {
+        global $_PEAR;
+
         $sql = "ALTER TABLE $table DROP COLUMN $columnName";
 
         $res = $this->conn->query($sql);
 
-        if (PEAR::isError($res)) {
+        if ($_PEAR->isError($res)) {
             throw new Exception($res->getMessage());
         }
 
@@ -513,6 +525,8 @@ class Schema
      */
     function runSqlSet(array $statements)
     {
+        global $_PEAR;
+
         $ok = true;
         foreach ($statements as $sql) {
             if (defined('DEBUG_INSTALLER')) {
@@ -520,7 +534,7 @@ class Schema
             }
             $res = $this->conn->query($sql);
 
-            if (PEAR::isError($res)) {
+            if ($_PEAR->isError($res)) {
                 throw new Exception($res->getMessage());
             }
         }
@@ -1027,8 +1041,10 @@ class Schema
      */
     protected function fetchQueryData($sql)
     {
+        global $_PEAR;
+
         $res = $this->conn->query($sql);
-        if (PEAR::isError($res)) {
+        if ($_PEAR->isError($res)) {
             throw new Exception($res->getMessage());
         }
 

@@ -264,7 +264,7 @@ class StatusNet
      */
     public static function initDefaults($server, $path)
     {
-        global $_server, $_path, $config;
+        global $_server, $_path, $config, $_PEAR;
 
         Event::clearHandlers();
         self::$plugins = array();
@@ -296,7 +296,7 @@ class StatusNet
         // default configuration, overwritten in config.php
         // Keep DB_DataObject's db config synced to ours...
 
-        $config['db'] = &PEAR::getStaticProperty('DB_DataObject','options');
+        $config['db'] = &$_PEAR->getStaticProperty('DB_DataObject','options');
 
         $config['db'] = $default['db'];
 

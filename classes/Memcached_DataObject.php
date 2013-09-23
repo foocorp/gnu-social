@@ -751,12 +751,12 @@ class Memcached_DataObject extends Safe_DataObject
 
     function _connect()
     {
-        global $_DB_DATAOBJECT;
+        global $_DB_DATAOBJECT, $_PEAR;
 
         $sum = $this->_getDbDsnMD5();
 
         if (!empty($_DB_DATAOBJECT['CONNECTIONS'][$sum]) &&
-            !PEAR::isError($_DB_DATAOBJECT['CONNECTIONS'][$sum])) {
+            !$_PEAR->isError($_DB_DATAOBJECT['CONNECTIONS'][$sum])) {
             $exists = true;
         } else {
             $exists = false;

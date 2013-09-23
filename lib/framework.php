@@ -174,4 +174,5 @@ function PEAR_ErrorToPEAR_Exception($err)
     throw new PEAR_Exception($err->getMessage());
 }
 
-PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, 'PEAR_ErrorToPEAR_Exception');
+/* global */ $_PEAR = new PEAR;
+$_PEAR->setErrorHandling(PEAR_ERROR_CALLBACK, 'PEAR_ErrorToPEAR_Exception');
