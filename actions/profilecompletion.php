@@ -179,7 +179,7 @@ class ProfilecompletionAction extends Action
             else {
                 $cnt = $profile->find();
             }
-            Event::handle('EndProfileCompletionSearch', $this, $profile, $search_engine);
+            Event::handle('EndProfileCompletionSearch', array($this, &$profile, $search_engine));
         }
 
         while ($profile->fetch()) {
