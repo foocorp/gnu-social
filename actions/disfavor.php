@@ -5,11 +5,12 @@
  * PHP version 5
  *
  * @category Action
- * @package  StatusNet
+ * @package  GNUSocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
- * @link     http://status.net/
+ * @link     http://www.gnu.org/software/social/
  *
  * StatusNet - the distributed open-source microblogging tool
  * Copyright (C) 2008, 2009, StatusNet, Inc.
@@ -28,70 +29,52 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/favorform.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Disfavor class.
+ * DisfavorAction class.
  *
  * @category Action
- * @package  StatusNet
+ * @package  GNUSocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
- * @link     http://status.net/
+ * @link     http://www.gnu.org/software/social/
  */
-class DisfavorAction extends Action
+class DisfavorAction extends FormAction
 {
-    /**
-     * Class handler.
-     *
-     * @param array $args query arguments
-     *
-     * @return void
-     */
-    function handle($args)
+    public function showForm($msg=null, $success=false)
     {
-        parent::handle($args);
-        if (!common_logged_in()) {
-            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-            $this->clientError(_('Not logged in.'));
-            return;
-        }
-        $user = common_current_user();
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        if ($success) {
             common_redirect(common_local_url('showfavorites',
-                array('nickname' => $user->nickname)));
-            return;
+                array('nickname' => $this->scoped->nickname)), 303);
         }
+        parent::showForm($msg, $success);
+    }
+
+    protected function handlePost()
+    {
         $id     = $this->trimmed('notice');
         $notice = Notice::getKV($id);
-        $token  = $this->trimmed('token-'.$notice->id);
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->clientError(_('There was a problem with your session token. Try again, please.'));
-            return;
+        if (!$notice instanceof Notice) {
+            $this->serverError(_('Notice not found'));
         }
+
         $fave            = new Fave();
-        $fave->user_id   = $user->id;
+        $fave->user_id   = $this->scoped->id;
         $fave->notice_id = $notice->id;
         if (!$fave->find(true)) {
-            // TRANS: Client error displayed when trying to remove favorite status for a notice that is not a favorite.
-            $this->clientError(_('This notice is not a favorite!'));
-            return;
+            throw new NoResultException($fave);
         }
         $result = $fave->delete();
         if (!$result) {
             common_log_db_error($fave, 'DELETE', __FILE__);
             // TRANS: Server error displayed when removing a favorite from the database fails.
             $this->serverError(_('Could not delete favorite.'));
-            return;
         }
-        $user->blowFavesCache();
-        if ($this->boolean('ajax')) {
+        $this->scoped->blowFavesCache();
+        if (StatusNet::isAjax()) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Title for page on which favorites can be added.
@@ -102,10 +85,7 @@ class DisfavorAction extends Action
             $favor->show();
             $this->elementEnd('body');
             $this->elementEnd('html');
-        } else {
-            common_redirect(common_local_url('showfavorites',
-                                             array('nickname' => $user->nickname)),
-                            303);
+            exit;
         }
     }
 }

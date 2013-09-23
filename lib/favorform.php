@@ -20,29 +20,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Form
- * @package   StatusNet
+ * @package   GNUSocial
  * @author    Evan Prodromou <evan@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
+ * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2009 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/form.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Form for favoring a notice
  *
  * @category Form
- * @package  StatusNet
+ * @package  GNUSocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Sarven Capadisli <csarven@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
+ * @link     http://www.gnu.org/software/social/
  *
  * @see      DisfavorForm
  */
@@ -94,7 +92,8 @@ class FavorForm extends Form
     function sessionToken()
     {
         $this->out->hidden('token-' . $this->notice->id,
-                           common_session_token());
+                           common_session_token(),
+                           'token');
     }
 
     /**

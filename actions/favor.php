@@ -5,11 +5,12 @@
  * PHP version 5
  *
  * @category Action
- * @package  StatusNet
+ * @package  GNUSocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
- * @link     http://status.net/
+ * @link     http://www.gnu.org/software/social/
  *
  * StatusNet - the distributed open-source microblogging tool
  * Copyright (C) 2008, 2009, StatusNet, Inc.
@@ -28,68 +29,53 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once INSTALLDIR.'/lib/mail.php';
-require_once INSTALLDIR.'/lib/disfavorform.php';
 
 /**
- * Favor class.
+ * FavorAction class.
  *
  * @category Action
- * @package  StatusNet
+ * @package  GNUSocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
- * @link     http://status.net/
+ * @link     http://www.gnu.org/software/social/
  */
-class FavorAction extends Action
+class FavorAction extends FormAction
 {
-    /**
-     * Class handler.
-     *
-     * @param array $args query arguments
-     *
-     * @return void
-     */
-    function handle($args)
+    // We overload this because success should redirect
+    public function showForm($msg=null, $success=false)
     {
-        parent::handle($args);
-        if (!common_logged_in()) {
-            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-            $this->clientError(_('Not logged in.'));
-            return;
-        }
-        $user = common_current_user();
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        if ($success) {
             common_redirect(common_local_url('showfavorites',
-                array('nickname' => $user->nickname)));
-            return;
+                array('nickname' => $user->nickname)), 303);
         }
+
+        parent::showForm($msg, $success);
+    }
+
+    protected function handlePost()
+    {
         $id     = $this->trimmed('notice');
         $notice = Notice::getKV($id);
-        $token  = $this->trimmed('token-'.$notice->id);
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->clientError(_('There was a problem with your session token. Try again, please.'));
-            return;
+        if (!($notice instanceof Notice)) {
+            $this->serverError(_('Notice not found'));
         }
-        if ($user->hasFave($notice)) {
+        if ($this->scoped->hasFave($notice)) {
             // TRANS: Client error displayed when trying to mark a notice as favorite that already is a favorite.
             $this->clientError(_('This notice is already a favorite!'));
-            return;
         }
-        $fave = Fave::addNew($user->getProfile(), $notice);
+        $fave = Fave::addNew($this->scoped, $notice);
         if (!$fave) {
             // TRANS: Server error displayed when trying to mark a notice as favorite fails in the database.
             $this->serverError(_('Could not create favorite.'));
-            return;
         }
-        $this->notify($notice, $user);
-        $user->blowFavesCache();
-        if ($this->boolean('ajax')) {
+        $this->notify($notice, $this->scoped->getUser());
+        $this->scoped->blowFavesCache();
+        if (StatusNet::isAjax()) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Page title for page on which favorite notices can be unfavourited.
@@ -100,11 +86,11 @@ class FavorAction extends Action
             $disfavor->show();
             $this->elementEnd('body');
             $this->elementEnd('html');
-        } else {
-            common_redirect(common_local_url('showfavorites',
-                                             array('nickname' => $user->nickname)),
-                            303);
+            exit;
         }
+        common_redirect(common_local_url('showfavorites',
+                                         array('nickname' => $this->scoped->nickname)),
+                            303);
     }
 
     /**

@@ -27,9 +27,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Anonymous disfavor class
@@ -65,22 +63,14 @@ class AnonDisfavorAction extends RedirectingAction
 
         $id     = $this->trimmed('notice');
         $notice = Notice::getKV($id);
-        $token  = $this->trimmed('token-' . $notice->id);
-
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error.
-            $this->clientError(_m('There was a problem with your session token. Try again, please.'));
-            return;
-        }
+        $token  = $this->checkSessionToken();
 
         $fave            = new Fave();
         $fave->user_id   = $profile->id;
         $fave->notice_id = $notice->id;
 
         if (!$fave->find(true)) {
-            // TRANS: Client error.
-            $this->clientError(_m('This notice is not a favorite!'));
-            return;
+            throw new NoResultException($fave);
         }
 
         $result = $fave->delete();

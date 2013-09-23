@@ -27,9 +27,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Anonymous favor class
@@ -64,14 +62,7 @@ class AnonFavorAction extends RedirectingAction
 
         $id     = $this->trimmed('notice');
         $notice = Notice::getKV($id);
-        $token  = $this->trimmed('token-' . $notice->id);
-
-        if (empty($token) || $token != common_session_token()) {
-            // TRANS: Client error.
-            $this->clientError(_m('There was a problem with your session token. Try again, please.'));
-            return;
-        }
-
+        $token  = $this->checkSessionToken();
 
         if ($profile->hasFave($notice)) {
             // TRANS: Client error.

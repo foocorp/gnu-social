@@ -301,7 +301,7 @@ RealtimeUpdate = {
           ff = "<form id=\"favor-"+id+"\" class=\"form_favor\" method=\"post\" action=\""+RealtimeUpdate._favorurl+"\">"+
                 "<fieldset>"+
                "<legend>Favor this notice</legend>"+
-               "<input name=\"token-"+id+"\" type=\"hidden\" id=\"token-"+id+"\" value=\""+session_key+"\"/>"+
+               "<input name=\"token\" type=\"hidden\" id=\"token-"+id+"\" value=\""+session_key+"\"/>"+
                "<input name=\"notice\" type=\"hidden\" id=\"notice-n"+id+"\" value=\""+id+"\"/>"+
                "<input type=\"submit\" id=\"favor-submit-"+id+"\" name=\"favor-submit-"+id+"\" class=\"submit\" value=\"Favor\" title=\"Favor this notice\"/>"+
                 "</fieldset>"+
@@ -348,7 +348,7 @@ RealtimeUpdate = {
           rf = "<form id=\"repeat-"+id+"\" class=\"form_repeat\" method=\"post\" action=\""+RealtimeUpdate._repeaturl+"\">"+
                "<fieldset>"+
                "<legend>Repeat this notice?</legend>"+
-               "<input name=\"token-"+id+"\" type=\"hidden\" id=\"token-"+id+"\" value=\""+session_key+"\"/>"+
+               "<input name=\"token\" type=\"hidden\" id=\"token-"+id+"\" value=\""+session_key+"\"/>"+
                "<input name=\"notice\" type=\"hidden\" id=\"notice-"+id+"\" value=\""+id+"\"/>"+
                "<input type=\"submit\" id=\"repeat-submit-"+id+"\" name=\"repeat-submit-"+id+"\" class=\"submit\" value=\"Yes\" title=\"Repeat this notice\"/>"+
                "</fieldset>"+
