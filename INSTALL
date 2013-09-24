@@ -379,6 +379,14 @@ server is probably a good idea for high-volume sites.
 1. You'll need the "CLI" (command-line interface) version of PHP
    installed on whatever server you use.
 
+   Modern PHP versions in some operating systems have disabled functions
+   related to forking, which is required for daemons to operate. To make
+   this work, make sure that your php-cli config (/etc/php5/cli/php.ini)
+   does NOT have these functions listed under 'disable_functions':
+
+       * pcntl_fork, pcntl_wait, pcntl_wifexited, pcntl_wexitstatus,
+         pcntl_wifsignaled, pcntl_wtermsig
+
 2. If you're using a separate server for queues, install StatusNet
    somewhere on the server. You don't need to worry about the
    .htaccess file, but make sure that your config.php file is close
