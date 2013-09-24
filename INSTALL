@@ -4,44 +4,50 @@ Prerequisites
 The following software packages are *required* for this software to
 run correctly.
 
-- PHP 5.3+. Newer versions may complain on some coding standards, but
-  glitches are intended to be fix asap.
-- MySQL 5.x. The StatusNet database is stored, by default, in a MySQL
-  server. It has been primarily tested on 5.x servers, although it may
-  be possible to install on earlier (or later!) versions. The server
-  *must* support the MyISAM storage engine -- the default for most
-  MySQL servers -- *and* the InnoDB storage engine.
-- A Web server. Preferably, you should have Apache 2.2.x with the
-  mod_rewrite extension installed and enabled.
+- PHP 5.3+      For newer versions, some functions that are used may be
+                disabled by default, such as the pcntl_* family. See the
+                section on 'Queues and daemons' for more information.
+- MariaDB 5.x   GNU Social uses, by default, a MariaDB server for data
+                storage. Versions 5.x and 10.x have both reportedly
+                worked well. It is also possible to run MySQL 5.x.
+- Web server    Apache, lighttpd and nginx will all work. CGI mode is
+                recommended and also some variant of 'suexec' (or a
+                proper setup php-fpm pool)
+                NOTE: mod_rewrite or its equivalent is extremely useful.
 
-Your PHP installation must include the following PHP extensions:
+Your PHP installation must include the following PHP extensions for a
+functional setup of GNU Social:
 
-- Curl. This is for fetching files by HTTP.
-- XMLWriter. This is for formatting XML and HTML output.
-- MySQL. For accessing the database.
-- GD. For scaling down avatar images.
-- mbstring. For handling Unicode (UTF-8) encoded strings.
+- Curl          Fetching files by HTTP.
+- XMLWriter     For formatting XML and HTML output.
+- mysqlnd       The native driver for PHP5 MySQL/MariaDB connections.
+- GD            Image manipulation (scaling).
+- mbstring      For handling Unicode (UTF-8) encoded strings.
+- bcmath or gmp For Salmon signatures (part of OStatus)
+
+Better performance
+------------------
 
 For some functionality, you will also need the following extensions:
 
-- Memcache. A client for the memcached server, which caches database
-  information in volatile memory. This is important for adequate
-  performance on high-traffic sites. You will also need a memcached
-  server to store the data in.
-- Mailparse. Efficient parsing of email requires this extension.
-  Submission by email or SMS-over-email uses this extension.
-- Sphinx Search. A client for the sphinx server, an alternative
-  to MySQL or Postgresql fulltext search. You will also need a
-  Sphinx server to serve the search queries.
-- bcmath or gmp. For Salmon signatures (part of OStatus). Needed
-  if you have OStatus configured.
-- gettext. For multiple languages. Default on many PHP installs;
-  will be emulated if not present.
+- memcache      A client for the memcached server, which caches database
+                information in volatile memory. This is important for
+                adequate performance on high-traffic sites. You will
+                also need a memcached server to store the data in.
+- mailparse     Efficient parsing of email requires this extension.
+                Submission by email or SMS-over-email uses this.
+- sphinx        A client for the sphinx server, an alternative to MySQL
+                or Postgresql fulltext search. You will also need a
+                Sphinx server to serve the search queries.
+- gettext       For multiple languages. Default on many PHP installs;
+                will be emulated if not present.
 
-You will almost definitely get 2-3 times better performance from your
-site if you install a PHP bytecode cache/accelerator. Some well-known
-examples are: eaccelerator, Turck mmcache, xcache, apc. Zend Optimizer
-is a proprietary accelerator installed on some hosting sites.
+You may also experience better performance from your site if you install
+a PHP bytecode cache/accelerator. Currently the recommended cache module
+is 'xcache', which after installation (php5-xcache) can be enabled in
+your site's config.php with:
+
+    addPlugin('XCache');
 
 External libraries
 ------------------
@@ -387,6 +393,10 @@ server is probably a good idea for high-volume sites.
        * pcntl_fork, pcntl_wait, pcntl_wifexited, pcntl_wexitstatus,
          pcntl_wifsignaled, pcntl_wtermsig
 
+   Other recommended settings for optimal performance are:
+       * mysqli.allow_persistent = On
+       * mysqli.reconnect = On
+
 2. If you're using a separate server for queues, install StatusNet
    somewhere on the server. You don't need to worry about the
    .htaccess file, but make sure that your config.php file is close
@@ -408,30 +418,27 @@ This will run the queue handlers:
 
 * queuedaemon.php - polls for queued items for inbox processing and
   pushing out to OStatus, SMS, XMPP, etc.
-* xmppdaemon.php - listens for new XMPP messages from users and stores
-  them as notices in the database; also pulls queued XMPP output from
-  queuedaemon.php to push out to clients.
+* imdaemon.php - if an IM plugin is enabled (like XMPP)
+* other daemons that you may have enabled
 
-These two daemons will automatically restart in most cases of failure
+These daemons will automatically restart in most cases of failure
 including memory leaks (if a memory_limit is set), but may still die
 or behave oddly if they lose connections to the XMPP or queue servers.
-
-Additional daemons may be also started by this script for certain
-plugins, such as the Twitter bridge.
 
 It may be a good idea to use a daemon-monitoring service, like 'monit',
 to check their status and keep them running.
 
 All the daemons write their process IDs (pids) to /var/run/ by
 default. This can be useful for starting, stopping, and monitoring the
-daemons.
+daemons. If you are running multiple sites on the same machine, it will
+be necessary to avoid collisions of these PID files by setting a site-
+specific directory in config.php:
 
-Since version 0.8.0, it's now possible to use a STOMP server instead of
-our kind of hacky home-grown DB-based queue solution. This is strongly
-recommended for best response time, especially when using XMPP.
+       $config['daemon']['piddir'] = __DIR__ . '/../run/';
 
-See the "queues" config section below for how to configure to use STOMP.
-As of this writing, the software has been tested with ActiveMQ 5.3.
+It is also possible to use a STOMP server instead of our kind of hacky
+home-grown DB-based queue solution. This is strongly recommended for
+best response time, especially when using XMPP.
 
 Themes
 ------
