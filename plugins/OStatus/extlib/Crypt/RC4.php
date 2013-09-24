@@ -14,7 +14,7 @@
  *  - {@link http://en.wikipedia.org/wiki/RC4 - Wikipedia: RC4}
  *
  * RC4 is also known as ARCFOUR or ARC4.  The reason is elaborated upon at Wikipedia.  This class is named RC4 and not
- * ARCFOUR or ARC4 because RC4 is how it is refered to in the SSH1 specification.
+ * ARCFOUR or ARC4 because RC4 is how it is referred to in the SSH1 specification.
  *
  * Here's a short example of how to use this library:
  * <code>
@@ -35,27 +35,29 @@
  * ?>
  * </code>
  *
- * LICENSE: This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston,
- * MA  02111-1307  USA
+ * LICENSE: Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  *
  * @category   Crypt
  * @package    Crypt_RC4
  * @author     Jim Wigginton <terrafrost@php.net>
  * @copyright  MMVII Jim Wigginton
- * @license    http://www.gnu.org/licenses/lgpl.txt
- * @version    $Id: RC4.php,v 1.8 2009/06/09 04:00:38 terrafrost Exp $
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       http://phpseclib.sourceforge.net
  */
 
@@ -140,15 +142,6 @@ class Crypt_RC4 {
     var $decryptIndex = 0;
 
     /**
-     * MCrypt parameters
-     *
-     * @see Crypt_RC4::setMCrypt()
-     * @var Array
-     * @access private
-     */
-    var $mcrypt = array('', '');
-
-    /**
      * The Encryption Algorithm
      *
      * Only used if CRYPT_RC4_MODE == CRYPT_RC4_MODE_MCRYPT.  Only possible values are MCRYPT_RC4 or MCRYPT_ARCFOUR.
@@ -160,11 +153,19 @@ class Crypt_RC4 {
     var $mode;
 
     /**
+     * Continuous Buffer status
+     *
+     * @see Crypt_RC4::enableContinuousBuffer()
+     * @var Boolean
+     * @access private
+     */
+    var $continuousBuffer = false;
+
+    /**
      * Default Constructor.
      *
      * Determines whether or not the mcrypt extension should be used.
      *
-     * @param optional Integer $mode
      * @return Crypt_RC4
      * @access public
      */
@@ -172,10 +173,7 @@ class Crypt_RC4 {
     {
         if ( !defined('CRYPT_RC4_MODE') ) {
             switch (true) {
-                case extension_loaded('mcrypt') && (defined('MCRYPT_ARCFOUR') || defined('MCRYPT_RC4')):
-                    // i'd check to see if rc4 was supported, by doing in_array('arcfour', mcrypt_list_algorithms('')),
-                    // but since that can be changed after the object has been created, there doesn't seem to be
-                    // a lot of point...
+                case extension_loaded('mcrypt') && (defined('MCRYPT_ARCFOUR') || defined('MCRYPT_RC4')) && in_array('arcfour', mcrypt_list_algorithms()):
                     define('CRYPT_RC4_MODE', CRYPT_RC4_MODE_MCRYPT);
                     break;
                 default:
@@ -192,6 +190,9 @@ class Crypt_RC4 {
                     case defined('MCRYPT_RC4');
                         $this->mode = MCRYPT_RC4;
                 }
+                $this->encryptStream = mcrypt_module_open($this->mode, '', MCRYPT_MODE_STREAM, '');
+                $this->decryptStream = mcrypt_module_open($this->mode, '', MCRYPT_MODE_STREAM, '');
+
         }
     }
 
@@ -209,6 +210,8 @@ class Crypt_RC4 {
         $this->key = $key;
 
         if ( CRYPT_RC4_MODE == CRYPT_RC4_MODE_MCRYPT ) {
+            mcrypt_generic_init($this->encryptStream, $this->key, '');
+            mcrypt_generic_init($this->decryptStream, $this->key, '');
             return;
         }
 
@@ -227,6 +230,62 @@ class Crypt_RC4 {
 
         $this->encryptIndex = $this->decryptIndex = array(0, 0);
         $this->encryptStream = $this->decryptStream = $keyStream;
+    }
+
+    /**
+     * Sets the password.
+     *
+     * Depending on what $method is set to, setPassword()'s (optional) parameters are as follows:
+     *     {@link http://en.wikipedia.org/wiki/PBKDF2 pbkdf2}:
+     *         $hash, $salt, $count, $dkLen
+     *
+     * @param String $password
+     * @param optional String $method
+     * @access public
+     */
+    function setPassword($password, $method = 'pbkdf2')
+    {
+        $key = '';
+
+        switch ($method) {
+            default: // 'pbkdf2'
+                list(, , $hash, $salt, $count) = func_get_args();
+                if (!isset($hash)) {
+                    $hash = 'sha1';
+                }
+                // WPA and WPA2 use the SSID as the salt
+                if (!isset($salt)) {
+                    $salt = 'phpseclib/salt';
+                }
+                // RFC2898#section-4.2 uses 1,000 iterations by default
+                // WPA and WPA2 use 4,096.
+                if (!isset($count)) {
+                    $count = 1000;
+                }
+                if (!isset($dkLen)) {
+                    $dkLen = 128;
+                }
+
+                if (!class_exists('Crypt_Hash')) {
+                    require_once('Crypt/Hash.php');
+                }
+
+                $i = 1;
+                while (strlen($key) < $dkLen) {
+                    //$dk.= $this->_pbkdf($password, $salt, $count, $i++);
+                    $hmac = new Crypt_Hash();
+                    $hmac->setHash($hash);
+                    $hmac->setKey($password);
+                    $f = $u = $hmac->hash($salt . pack('N', $i++));
+                    for ($j = 2; $j <= $count; $j++) {
+                        $u = $hmac->hash($u);
+                        $f^= $u;
+                    }
+                    $key.= $f;
+                }
+        }
+
+        $this->setKey(substr($key, 0, $dkLen));
     }
 
     /**
@@ -250,24 +309,6 @@ class Crypt_RC4 {
      */
     function setIV($iv)
     {
-    }
-
-    /**
-     * Sets MCrypt parameters. (optional)
-     *
-     * If MCrypt is being used, empty strings will be used, unless otherwise specified.
-     *
-     * @link http://php.net/function.mcrypt-module-open#function.mcrypt-module-open
-     * @access public
-     * @param optional Integer $algorithm_directory
-     * @param optional Integer $mode_directory
-     */
-    function setMCrypt($algorithm_directory = '', $mode_directory = '')
-    {
-        if ( CRYPT_RC4_MODE == CRYPT_RC4_MODE_MCRYPT ) {
-            $this->mcrypt = array($algorithm_directory, $mode_directory);
-            $this->_closeMCrypt();
-        }
     }
 
     /**
@@ -311,18 +352,11 @@ class Crypt_RC4 {
         if ( CRYPT_RC4_MODE == CRYPT_RC4_MODE_MCRYPT ) {
             $keyStream = $mode == CRYPT_RC4_ENCRYPT ? 'encryptStream' : 'decryptStream';
 
-            if ($this->$keyStream === false) {
-                $this->$keyStream = mcrypt_module_open($this->mode, $this->mcrypt[0], MCRYPT_MODE_STREAM, $this->mcrypt[1]);
-                mcrypt_generic_init($this->$keyStream, $this->key, '');
-            } else if (!$this->continuousBuffer) {
-                mcrypt_generic_init($this->$keyStream, $this->key, '');
-            }
-            $newText = mcrypt_generic($this->$keyStream, $text);
             if (!$this->continuousBuffer) {
-                mcrypt_generic_deinit($this->$keyStream);
+                mcrypt_generic_init($this->$keyStream, $this->key, '');
             }
 
-            return $newText;
+            return mcrypt_generic($this->$keyStream, $text);
         }
 
         if ($this->encryptStream === false) {
@@ -404,6 +438,11 @@ class Crypt_RC4 {
      */
     function enableContinuousBuffer()
     {
+        if ( CRYPT_RC4_MODE == CRYPT_RC4_MODE_MCRYPT ) {
+            mcrypt_generic_init($this->encryptStream, $this->key, '');
+            mcrypt_generic_init($this->decryptStream, $this->key, '');
+        }
+
         $this->continuousBuffer = true;
     }
 
@@ -419,7 +458,7 @@ class Crypt_RC4 {
     {
         if ( CRYPT_RC4_MODE == CRYPT_RC4_MODE_INTERNAL ) {
             $this->encryptIndex = $this->decryptIndex = array(0, 0);
-            $this->setKey($this->key);
+            $this->encryptStream = $this->decryptStream = false;
         }
 
         $this->continuousBuffer = false;
@@ -447,47 +486,7 @@ class Crypt_RC4 {
     function disablePadding()
     {
     }
-
-    /**
-     * Class destructor.
-     *
-     * Will be called, automatically, if you're using PHP5.  If you're using PHP4, call it yourself.  Only really
-     * needs to be called if mcrypt is being used.
-     *
-     * @access public
-     */
-    function __destruct()
-    {
-        if ( CRYPT_RC4_MODE == CRYPT_RC4_MODE_MCRYPT ) {
-            $this->_closeMCrypt();
-        }
-    }
-
-    /**
-     * Properly close the MCrypt objects.
-     *
-     * @access prviate
-     */
-    function _closeMCrypt()
-    {
-        if ( $this->encryptStream !== false ) {
-            if ( $this->continuousBuffer ) {
-                mcrypt_generic_deinit($this->encryptStream);
-            }
-
-            mcrypt_module_close($this->encryptStream);
-
-            $this->encryptStream = false;
-        }
-
-        if ( $this->decryptStream !== false ) {
-            if ( $this->continuousBuffer ) {
-                mcrypt_generic_deinit($this->decryptStream);
-            }
-
-            mcrypt_module_close($this->decryptStream);
-
-            $this->decryptStream = false;
-        }
-    }
 }
+
+// vim: ts=4:sw=4:et:
+// vim6: fdl=1:
