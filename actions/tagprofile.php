@@ -94,7 +94,7 @@ class TagprofileAction extends Action
             $this->elementStart('body');
             $this->element('p', 'error', $error);
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $this->showPage();
         }
@@ -238,7 +238,7 @@ class TagprofileAction extends Action
                 }
 
                 $this->elementEnd('body');
-                $this->elementEnd('html');
+                $this->endHTML();
             } else {
                 // TRANS: Success message if lists are saved.
                 $this->error = _('Lists saved.');

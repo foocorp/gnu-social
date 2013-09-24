@@ -149,7 +149,7 @@ class NewgroupmessageAction extends Action
                            sprintf(_m('Direct message to %s sent.'),
                                    $this->group->nickname));
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect($gm->url, 303);
         }

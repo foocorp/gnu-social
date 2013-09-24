@@ -84,7 +84,7 @@ class DisfavorAction extends FormAction
             $favor = new FavorForm($this, $notice);
             $favor->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
             exit;
         }
     }

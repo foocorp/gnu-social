@@ -156,7 +156,7 @@ class AddpeopletagAction extends Action
             $unsubscribe = new UntagButton($this, $this->tagged, $this->peopletag);
             $unsubscribe->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $url = common_local_url('subscriptions',
                                     array('nickname' => $this->user->nickname));

@@ -115,7 +115,7 @@ class BookmarkforurlAction extends Action
         $bf = new BookmarkForm($this, $this->title, $this->url, null, null, $this->thumbnail);
         $bf->show();
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     /**

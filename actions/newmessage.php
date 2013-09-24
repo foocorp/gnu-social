@@ -154,7 +154,7 @@ class NewmessageAction extends FormAction
                 sprintf(_('Direct message to %s sent.'),
                     $this->other->nickname));
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $url = common_local_url('outbox',
                 array('nickname' => $this->scoped->nickname));
@@ -182,7 +182,7 @@ class NewmessageAction extends FormAction
         $this->elementStart('body');
         $this->element('p', array('id' => 'error'), $msg);
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     function showForm($msg = null)

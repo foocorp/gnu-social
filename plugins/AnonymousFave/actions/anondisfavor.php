@@ -94,7 +94,7 @@ class AnonDisfavorAction extends RedirectingAction
             $favor = new AnonFavorForm($this, $notice);
             $favor->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $this->returnToPrevious();
         }

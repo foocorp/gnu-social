@@ -147,7 +147,7 @@ class TrainAction extends Action
             $this->elementStart('body');
             $form->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect(common_local_url('spam'), 303);
         }

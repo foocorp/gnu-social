@@ -139,7 +139,7 @@ class SearchsubAction extends Action
             $unsubscribe = new SearchUnsubForm($this, $this->search);
             $unsubscribe->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $url = common_local_url('search',
                                     array('search' => $this->search));

@@ -133,7 +133,7 @@ class UnsubscribepeopletagAction extends Action
             $lf = new SubscribePeopletagForm($this, $this->peopletag);
             $lf->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             if (common_get_returnto()) {
                 common_redirect(common_get_returnto(), 303);

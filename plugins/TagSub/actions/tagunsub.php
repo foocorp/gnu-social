@@ -79,7 +79,7 @@ class TagunsubAction extends TagsubAction
             $subscribe = new TagSubForm($this, $this->tag);
             $subscribe->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $url = common_local_url('tag',
                                     array('tag' => $this->tag));

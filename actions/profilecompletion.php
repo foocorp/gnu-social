@@ -151,7 +151,7 @@ class ProfilecompletionAction extends Action
             }
         }
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     function getResults()

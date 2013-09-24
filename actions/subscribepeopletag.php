@@ -140,7 +140,7 @@ class SubscribepeopletagAction extends Action
             $lf = new UnsubscribePeopletagForm($this, $this->peopletag);
             $lf->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect(common_local_url('peopletagsubscribers',
                                 array('tagger' => $this->tagger->nickname,

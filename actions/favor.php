@@ -85,7 +85,7 @@ class FavorAction extends FormAction
             $disfavor = new DisFavorForm($this, $notice);
             $disfavor->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
             exit;
         }
         common_redirect(common_local_url('showfavorites',

@@ -136,7 +136,7 @@ class ApprovesubAction extends Action
                 $this->element('p', 'success', _('Subscription canceled.'));
             }
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect(common_local_url('subqueue', array('nickname' =>
                                                                $cur->nickname)),

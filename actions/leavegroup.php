@@ -145,7 +145,7 @@ class LeavegroupAction extends Action
             $jf = new JoinForm($this, $this->group);
             $jf->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect(common_local_url('groupmembers', array('nickname' =>
                                                                    $this->group->nickname)),

@@ -226,7 +226,7 @@ class QnanewanswerAction extends Action
         $this->elementStart('body');
         $this->element('p', array('id' => 'error'), $msg);
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     /**
@@ -252,7 +252,7 @@ class QnanewanswerAction extends Action
         $form->show();
 
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     /**

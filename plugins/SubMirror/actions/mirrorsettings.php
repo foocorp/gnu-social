@@ -126,8 +126,7 @@ class MirrorSettingsAction extends SettingsAction
     function handle($args)
     {
         if ($this->boolean('ajax')) {
-            header('Content-Type: text/html;charset=utf-8');
-            $this->elementStart('html');
+            $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Title for page with form to add a mirror feed provider on.
             $this->element('title', null, _m('Provider add'));
@@ -137,7 +136,7 @@ class MirrorSettingsAction extends SettingsAction
             $this->showAddFeedForm();
 
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             return parent::handle($args);
         }

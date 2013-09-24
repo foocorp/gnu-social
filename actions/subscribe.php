@@ -144,7 +144,7 @@ class SubscribeAction extends Action
             }
             $form->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $url = common_local_url('subscriptions',
                                     array('nickname' => $this->user->nickname));

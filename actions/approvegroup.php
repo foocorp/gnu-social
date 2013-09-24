@@ -184,7 +184,7 @@ class ApprovegroupAction extends Action
                 $this->element('p', 'success', _('Join request canceled.'));
             }
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect(common_local_url('groupmembers', array('nickname' =>
                                                                    $this->group->nickname)),

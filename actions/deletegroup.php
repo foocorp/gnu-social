@@ -162,7 +162,7 @@ class DeletegroupAction extends RedirectingAction
             $this->elementStart('body');
             // @fixme add a sensible AJAX response form!
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             // @fixme if we could direct to the page on which this group
             // would have shown... that would be awesome

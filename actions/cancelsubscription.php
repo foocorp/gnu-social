@@ -114,7 +114,7 @@ class CancelsubscriptionAction extends Action
             $subscribe = new SubscribeForm($this, $other);
             $subscribe->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             common_redirect(common_local_url('subscriptions',
                                              array('nickname' => $user->nickname)),

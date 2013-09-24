@@ -141,7 +141,7 @@ class PluginEnableAction extends Action
             $form = $this->successNextForm();
             $form->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $url = common_local_url('pluginsadminpanel');
             common_redirect($url, 303);

@@ -107,7 +107,7 @@ class RepeatAction extends Action
                                 // TRANS: Confirmation text after repeating a notice.
                                 _('Repeated!'));
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             // @todo FIXME!
         }

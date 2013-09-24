@@ -158,7 +158,7 @@ class RemovepeopletagAction extends Action
             $unsubscribe = new TagButton($this, $this->tagged, $this->peopletag);
             $unsubscribe->show();
             $this->elementEnd('body');
-            $this->elementEnd('html');
+            $this->endHTML();
         } else {
             $url = common_local_url('subscriptions',
                                     array('nickname' => $this->user->nickname));

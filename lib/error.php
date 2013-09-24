@@ -119,6 +119,6 @@ class ErrorAction extends InfoAction
         $this->elementStart('body');
         $this->element('p', array('id' => 'error'), $this->message);
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 }

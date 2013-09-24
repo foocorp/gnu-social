@@ -142,7 +142,7 @@ class YammeradminpanelAction extends AdminPanelAction
         $this->elementStart('body');
         $form->show();
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     /**

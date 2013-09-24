@@ -217,7 +217,7 @@ class NewnoticeAction extends FormAction
         $this->elementStart('body');
         $this->element('p', array('id' => 'error'), $msg);
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     /**
@@ -242,7 +242,7 @@ class NewnoticeAction extends FormAction
         $form->show();
 
         $this->elementEnd('body');
-        $this->elementEnd('html');
+        $this->endHTML();
     }
 
     /**
