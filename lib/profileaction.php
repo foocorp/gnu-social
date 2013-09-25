@@ -125,8 +125,6 @@ class ProfileAction extends Action
 
     function showSubscriptions()
     {
-        $profile = $this->profile->getSubscribed(0, PROFILES_PER_MINILIST + 1);
-
         $this->elementStart('div', array('id' => 'entity_subscriptions',
                                          'class' => 'section'));
         if (Event::handle('StartShowSubscriptionsMiniList', array($this))) {
@@ -136,16 +134,14 @@ class ProfileAction extends Action
             $this->text(' ');
             $this->text($this->profile->subscriptionCount());
             $this->elementEnd('h2');
-
-            $cnt = 0;
-
-            if (!empty($profile)) {
+        
+            try {
+                $profile = $this->profile->getSubscribed(0, PROFILES_PER_MINILIST + 1);
                 $pml = new ProfileMiniList($profile, $this);
-                $cnt = $pml->show();
-                if ($cnt == 0) {
-                    // TRANS: Text for user subscription statistics if the user has no subscriptions.
-                    $this->element('p', null, _('(None)'));
-                }
+                $pml->show();
+            } catch (NoResultException $e) {
+                // TRANS: Text for user subscription statistics if the user has no subscription
+                $this->element('p', null, _('(None)'));
             }
 
             Event::handle('EndShowSubscriptionsMiniList', array($this));
@@ -155,8 +151,6 @@ class ProfileAction extends Action
 
     function showSubscribers()
     {
-        $profile = $this->profile->getSubscribers(0, PROFILES_PER_MINILIST + 1);
-
         $this->elementStart('div', array('id' => 'entity_subscribers',
                                          'class' => 'section'));
 
@@ -169,15 +163,13 @@ class ProfileAction extends Action
             $this->text($this->profile->subscriberCount());
             $this->elementEnd('h2');
 
-            $cnt = 0;
-
-            if (!empty($profile)) {
+            try {
+                $profile = $this->profile->getSubscribers(0, PROFILES_PER_MINILIST + 1);
                 $sml = new SubscribersMiniList($profile, $this);
-                $cnt = $sml->show();
-                if ($cnt == 0) {
-                    // TRANS: Text for user subscriber statistics if user has no subscribers.
-                    $this->element('p', null, _('(None)'));
-                }
+                $sml->show();
+            } catch (NoResultException $e) {
+                // TRANS: Text for user subscriber statistics if user has no subscribers.
+                $this->element('p', null, _('(None)'));
             }
 
             Event::handle('EndShowSubscribersMiniList', array($this));

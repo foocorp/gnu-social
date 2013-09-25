@@ -335,7 +335,7 @@ class Memcached_DataObject extends Safe_DataObject
                     $pkeyMap[$i->$keyCol][] = $pkeyVal;
                 }
             } catch (NoResultException $e) {
-                // no results foudn for our keyVals, so we leave them as empty arrays
+                // no results found for our keyVals, so we leave them as empty arrays
             }
             foreach ($toFetch as $keyVal) {
                 self::cacheSet(sprintf("%s:list-ids:%s:%s", strtolower($cls), $keyCol, $keyVal),
