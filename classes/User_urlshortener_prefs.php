@@ -44,7 +44,7 @@ class User_urlshortener_prefs extends Managed_DataObject
                 'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user'),
                 'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'internal', 'description' => 'service to use for auto-shortening URLs'),
                 'maxurllength' => array('type' => 'int', 'not null' => true, 'description' => 'urls greater than this length will be shortened, 0 = always, null = never'),
-                'maxnoticelength' => array('type' => 'int', 'not null' => true, 'description' => 'notices with content greater than this value will have all urls shortened, 0 = always, null = never'),
+                'maxnoticelength' => array('type' => 'int', 'not null' => true, 'description' => 'notices with content greater than this value will have all urls shortened, 0 = always, -1 = only if notice text is longer than max allowed'),
         
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
@@ -74,7 +74,12 @@ class User_urlshortener_prefs extends Managed_DataObject
         $def = common_config('url', 'maxnoticelength');
 
         if ($def == -1) {
-            $def = Notice::maxContent();
+            /*
+             * maxContent==0 means infinite length,
+             * but maxNoticeLength==0 means "always shorten"
+             * so if maxContent==0 we must set this to -1
+             */
+            $def = Notice::maxContent() ?: -1;
         }
 
         $prefs = self::getPrefs($user);

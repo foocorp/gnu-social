@@ -145,7 +145,7 @@ class UrlsettingsAction extends SettingsAction
                      (!is_null($this->arg('maxnoticelength'))) ?
                      $this->arg('maxnoticelength') : User_urlshortener_prefs::maxNoticeLength($user),
                      // TRANS: Field title in URL settings in profile.
-                     _('URLs in notices longer than this will be shortened, 0 means always shorten.'));
+                     _('URLs in notices longer than this will always be shortened, -1 means shorten only if notice text exceeds maximum length.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         // TRANS: Button text for saving "Other settings" in profile.
@@ -190,7 +190,7 @@ class UrlsettingsAction extends SettingsAction
 
         $maxnoticelength = $this->trimmed('maxnoticelength');
 
-        if (!Validate::number($maxnoticelength, array('min' => 0))) {
+        if (!Validate::number($maxnoticelength, array('min' => -1))) {
             // TRANS: Client exception thrown when the maximum notice length settings value is invalid in profile URL settings.
             throw new ClientException(_('Invalid number for maximum notice length.'));
         }

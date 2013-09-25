@@ -1046,7 +1046,7 @@ function common_shorten_links($text, $always = false, User $user=null)
 
     $maxLength = User_urlshortener_prefs::maxNoticeLength($user);
 
-    if ($always || mb_strlen($text) > $maxLength) {
+    if ($always || ($maxLength != -1 && mb_strlen($text) > $maxLength)) {
         return common_replace_urls_callback($text, array('File_redirection', 'forceShort'), $user);
     } else {
         return common_replace_urls_callback($text, array('File_redirection', 'makeShort'), $user);
