@@ -8,7 +8,8 @@ if (isset($_SERVER) && array_key_exists('REQUEST_METHOD', $_SERVER)) {
 // XXX: we should probably have some common source for this stuff
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
-define('STATUSNET', true);
+define('GNUSOCIAL', true);
+define('STATUSNET', true);  // compatibility
 
 require_once INSTALLDIR . '/lib/common.php';
 

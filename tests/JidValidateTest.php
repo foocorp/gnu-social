@@ -6,8 +6,8 @@ if (isset($_SERVER) && array_key_exists('REQUEST_METHOD', $_SERVER)) {
 }
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
-define('STATUSNET', true);
-define('LACONICA', true);
+define('GNUSOCIAL', true);
+define('STATUSNET', true);  // compatibility
 
 mb_internal_encoding('UTF-8'); // @fixme this probably belongs in common.php?
 

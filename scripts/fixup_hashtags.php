@@ -25,8 +25,8 @@ if (isset($_SERVER) && array_key_exists('REQUEST_METHOD', $_SERVER)) {
 }
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
-define('STATUSNET', true);
-define('LACONICA', true); // compatibility
+define('GNUSOCIAL', true);
+define('STATUSNET', true);  // compatibility
 
 require_once(INSTALLDIR . '/lib/common.php');
 
