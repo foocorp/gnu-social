@@ -174,10 +174,12 @@ class Profile extends Managed_DataObject
         return null;
     }
 
-    protected function _fillAvatar($width, Avatar $avatar)
+    protected function _fillAvatar($width, $avatar)
     {
         // This avoids storing null values, a problem report in issue #3478
-	    $this->_avatars[$width] = $avatar;
+        if (!empty($avatar)) {
+    	    $this->_avatars[$width] = $avatar;
+        }
     }
 
     // For backwards compatibility only!
