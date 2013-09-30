@@ -180,7 +180,11 @@ class OStatusInitAction extends Action
         $link = $xrd->get('http://ostatus.org/schema/1.0/subscribe');
         if (!is_null($link)) {
             // We found a URL - let's redirect!
-            $url = Discovery::applyTemplate($link['template'], $target_profile);
+            if (!empty($link->template)) {
+                $url = Discovery::applyTemplate($link->template, $target_profile);
+            } else {
+                $url = $link->href;
+            }
             common_log(LOG_INFO, "Sending remote subscriber $acct to $url");
             common_redirect($url, 303);
         }

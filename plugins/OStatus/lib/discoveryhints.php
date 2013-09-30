@@ -24,7 +24,7 @@ class DiscoveryHints {
     {
         $hints = array();
 
-        foreach ($xrd->getAll() as $link) {
+        foreach ($xrd->links as $link) {
             switch ($link->rel) {
             case WebFinger::PROFILEPAGE:
                 $hints['profileurl'] = $link->href;
