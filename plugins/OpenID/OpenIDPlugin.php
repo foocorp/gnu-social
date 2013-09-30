@@ -37,6 +37,8 @@ if (!defined('STATUSNET')) {
  * This class enables consumer support for OpenID, the distributed authentication
  * and identity system.
  *
+ * Depends on: WebFinger plugin for HostMeta-lookup (user@host format)
+ *
  * @category Plugin
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
@@ -408,8 +410,8 @@ class OpenIDPlugin extends Plugin
     }
 
     /**
-     * We include a <meta> element linking to the userxrds page, for OpenID
-     * client-side authentication.
+     * We include a <meta> element linking to the webfinger resource page,
+     * for OpenID client-side authentication.
      *
      * @param Action $action Action being shown
      *
@@ -765,20 +767,17 @@ class OpenIDPlugin extends Plugin
      * Webfinger identity to services that support it. See
      * http://webfinger.org/login for an example.
      *
-     * @param XRD  &$xrd Currently-displaying XRD object
-     * @param User $user The user that it's for
+     * @param XML_XRD   $xrd    Currently-displaying resource descriptor
+     * @param Profile   $target The profile that it's for
      *
      * @return boolean hook value (always true)
      */
 
-    function onEndXrdActionLinks(&$xrd, $user)
+    function onEndXrdActionLinks(XML_XRD $xrd, Profile $target)
     {
-        $profile = $user->getProfile();
-
-        if (!empty($profile)) {
-            $xrd->links[] = array('rel' => 'http://specs.openid.net/auth/2.0/provider',
-                                  'href' => $profile->profileurl);
-        }
+        $xrd->links[] = new XML_XRD_Element_Link(
+                            'http://specs.openid.net/auth/2.0/provider',
+                            $target->profileurl);
 
         return true;
     }

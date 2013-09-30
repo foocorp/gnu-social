@@ -18,13 +18,15 @@
  */
 
 /**
+ * OStatusPlugin implementation for GNU Social
+ *
+ * Depends on: WebFinger plugin
+ *
  * @package OStatusPlugin
  * @maintainer Brion Vibber <brion@status.net>
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/extlib/');
 
@@ -52,8 +54,6 @@ class OStatusPlugin extends Plugin
     function onRouterInitialized($m)
     {
         // Discovery actions
-        $m->connect('main/ownerxrd',
-                    array('action' => 'ownerxrd'));
         $m->connect('main/ostatustag',
                     array('action' => 'ostatustag'));
         $m->connect('main/ostatustag?nickname=:nickname',
@@ -135,20 +135,6 @@ class OStatusPlugin extends Plugin
             $this->log(LOG_NOTICE, "Not queueing notice {$notice->id} for OStatus because of privacy; scope = {$notice->scope}");
         }
         return true;
-    }
-
-    /**
-     * Add a link header for LRDD Discovery
-     */
-    function onStartShowHTML($action)
-    {
-        if ($action instanceof ShowstreamAction) {
-            $acct = 'acct:'. $action->profile->nickname .'@'. common_config('site', 'server');
-            $url = common_local_url('userxrd');
-            $url.= '?uri='. $acct;
-
-            header('Link: <'.$url.'>; rel="'. Discovery::LRDD_REL.'"; type="application/xrd+xml"');
-        }
     }
 
     /**
@@ -1328,42 +1314,38 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
-    function onEndXrdActionLinks(&$xrd, $user)
+    function onEndXrdActionLinks(XML_XRD $xrd, Profile $target)
     {
-        $xrd->links[] = array('rel' => Discovery::UPDATESFROM,
-                  'href' => common_local_url('ApiTimelineUser',
-                             array('id' => $user->id,
-                                   'format' => 'atom')),
-                  'type' => 'application/atom+xml');
+        $xrd->links[] = new XML_XRD_Element_Link(Discovery::UPDATESFROM,
+                            common_local_url('ApiTimelineUser',
+                                array('id' => $target->id, 'format' => 'atom')),
+                            'application/atom+xml');
 
                 // Salmon
         $salmon_url = common_local_url('usersalmon',
-                                       array('id' => $user->id));
+                                       array('id' => $target->id));
 
-        $xrd->links[] = array('rel' => Salmon::REL_SALMON,
-                              'href' => $salmon_url);
+        $xrd->links[] = new XML_XRD_Element_Link(Salmon::REL_SALMON, $salmon_url);
         // XXX : Deprecated - to be removed.
-        $xrd->links[] = array('rel' => Salmon::NS_REPLIES,
-                              'href' => $salmon_url);
-
-        $xrd->links[] = array('rel' => Salmon::NS_MENTIONS,
-                              'href' => $salmon_url);
+        $xrd->links[] = new XML_XRD_Element_Link(Salmon::NS_REPLIES, $salmon_url);
+        $xrd->links[] = new XML_XRD_Element_Link(Salmon::NS_MENTIONS, $salmon_url);
 
         // Get this user's keypair
-        $magickey = Magicsig::getKV('user_id', $user->id);
-        if (!$magickey) {
+        $magickey = Magicsig::getKV('user_id', $target->id);
+        if (!($magickey instanceof Magicsig)) {
             // No keypair yet, let's generate one.
             $magickey = new Magicsig();
-            $magickey->generate($user->id);
+            $magickey->generate($target->id);
         }
 
-        $xrd->links[] = array('rel' => Magicsig::PUBLICKEYREL,
-                              'href' => 'data:application/magic-public-key,'. $magickey->toString(false));
+        $xrd->links[] = new XML_XRD_Element_Link(Magicsig::PUBLICKEYREL,
+                            'data:application/magic-public-key,'. $magickey->toString(false));
 
         // TODO - finalize where the redirect should go on the publisher
-        $url = common_local_url('ostatussub') . '?profile={uri}';
-        $xrd->links[] = array('rel' => 'http://ostatus.org/schema/1.0/subscribe',
-                              'template' => $url );
+        $xrd->links[] = new XML_XRD_Element_Link('http://ostatus.org/schema/1.0/subscribe',
+                              common_local_url('ostatussub') . '?profile={uri}',
+                              null, // type not set
+                              true); // isTemplate
 
         return true;
     }

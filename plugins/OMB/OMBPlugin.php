@@ -45,6 +45,8 @@ if (!defined('STATUSNET')) {
 /**
  * OMB plugin main class
  *
+ * Depends on: WebFinger plugin
+ *
  * @category  Integration
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>

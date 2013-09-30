@@ -1011,14 +1011,14 @@ class Ostatus_profile extends Managed_DataObject
 
         // Check if they've got an LRDD header
 
-        $lrdd = LinkHeader::getLink($response, 'lrdd', 'application/xrd+xml');
-
-        if (!empty($lrdd)) {
-
-            $xrd = Discovery::fetchXrd($lrdd);
+        $lrdd = LinkHeader::getLink($response, 'lrdd');
+        try {
+            $xrd = new XML_XRD();
+            $xrd->loadFile($lrdd);
             $xrdHints = DiscoveryHints::fromXRD($xrd);
-
             $hints = array_merge($hints, $xrdHints);
+        } catch (Exception $e) {
+            // No hints available from XRD
         }
 
         // If discovery found a feedurl (probably from LRDD), use it.

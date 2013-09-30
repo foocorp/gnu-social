@@ -57,8 +57,8 @@ class AccountManagerPlugin extends Plugin
     }
 
     function onStartHostMetaLinks(&$links) {
-        $links[] = array('rel' => AccountManagerPlugin::AM_REL,
-                              'href' =>  common_local_url('AccountManagementControlDocument'));
+        $links[] = new XML_XRD_Element_Link(AccountManagerPlugin::AM_REL,
+                        common_local_url('AccountManagementControlDocument'));
     }
 
     function onStartShowHTML($action)

@@ -157,13 +157,13 @@ class LooseOstatusProfile extends Ostatus_profile
         // Check if they've got an LRDD header
 
         $lrdd = LinkHeader::getLink($response, 'lrdd', 'application/xrd+xml');
-
-        if (!empty($lrdd)) {
-
-            $xrd = Discovery::fetchXrd($lrdd);
+        try {
+            $xrd = new XML_XRD();
+            $xrd->loadFile($lrdd);
             $xrdHints = DiscoveryHints::fromXRD($xrd);
-
             $hints = array_merge($hints, $xrdHints);
+        } catch (Exception $e) {
+            // No hints available from XRD
         }
 
         // If discovery found a feedurl (probably from LRDD), use it.

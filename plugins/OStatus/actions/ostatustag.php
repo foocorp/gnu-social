@@ -87,20 +87,14 @@ class OStatusTagAction extends OStatusInitAction
         $target_profile = $this->targetProfile();
 
         $disco = new Discovery;
-        $result = $disco->lookup($acct);
-        if (!$result) {
-            // TRANS: Client error displayed when remote profile could not be looked up.
-            $this->clientError(_m('Could not look up OStatus account profile.'));
-        }
+        $xrd = $disco->lookup($acct);
 
-        foreach ($result->links as $link) {
-            if ($link['rel'] == 'http://ostatus.org/schema/1.0/tag') {
-                // We found a URL - let's redirect!
-                $url = Discovery::applyTemplate($link['template'], $target_profile);
-                common_log(LOG_INFO, "Sending remote subscriber $acct to $url");
-                common_redirect($url, 303);
-            }
-
+        $link = $xrd->get('http://ostatus.org/schema/1.0/tag');
+        if (!is_null($link)) {
+            // We found a URL - let's redirect!
+            $url = Discovery::applyTemplate($link->template, $target_profile);
+            common_log(LOG_INFO, "Sending remote subscriber $acct to $url");
+            common_redirect($url, 303);
         }
         // TRANS: Client error displayed when remote profile address could not be confirmed.
         $this->clientError(_m('Could not confirm remote profile address.'));

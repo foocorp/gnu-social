@@ -105,11 +105,15 @@ class Plugin
         if (preg_match('/^(\w+)(Action|Form)$/', $cls, $type)) {
             $type = array_map('strtolower', $type);
             $file = "$basedir/{$type[2]}s/{$type[1]}.php";
-        } else {
+        }
+        if (!file_exists($file)) {
             $file = "$basedir/classes/{$cls}.php";
 
+            // library files can be put into subdirs ('_'->'/' conversion)
+            // such as LRDDMethod_WebFinger -> lib/lrddmethod/webfinger.php
             if (!file_exists($file)) {
                 $type = strtolower($cls);
+                $type = str_replace('_', '/', $type);
                 $file = "$basedir/lib/{$type}.php";
             }
         }

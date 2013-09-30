@@ -1328,11 +1328,25 @@ class Profile extends Managed_DataObject
     }
 
     /**
+     * Returns the profile's canonical url, not necessarily a uri/unique id
+     *
+     * @return string $profileurl
+     */
+    public function getUrl()
+    {
+        if (empty($this->profileurl) ||
+                !filter_var($this->profileurl, FILTER_VALIDATE_URL)) {
+            throw new InvalidUrlException($this->profileurl);
+        }
+        return $this->profileurl;
+    }
+
+    /**
      * Returns the best URI for a profile. Plugins may override.
      *
      * @return string $uri
      */
-    function getUri()
+    public function getUri()
     {
         $uri = null;
 

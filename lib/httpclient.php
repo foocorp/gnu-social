@@ -27,7 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
+if (!defined('GNUSOCIAL')) {
     exit(1);
 }
 
@@ -242,7 +242,7 @@ class HTTPClient extends HTTP_Request2
     }
 
     /**
-     * Pulls up StatusNet's customized user-agent string, so services
+     * Pulls up GNU Social's customized user-agent string, so services
      * we hit can track down the responsible software.
      *
      * @return string

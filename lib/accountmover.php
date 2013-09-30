@@ -109,18 +109,11 @@ class AccountMover extends QueueHandler
         $svcDocUrl = null;
         $username  = null;
 
-        foreach ($xrd->links as $link) {
-            if ($link['rel'] == 'http://apinamespace.org/atom' &&
-                $link['type'] == 'application/atomsvc+xml') {
-                $svcDocUrl = $link['href'];
-                if (!empty($link['property'])) {
-                    foreach ($link['property'] as $property) {
-                        if ($property['type'] == 'http://apinamespace.org/atom/username') {
-                            $username = $property['value'];
-                            break;
-                        }
-                    }
-                }
+        $link = $xrd->links->get('http://apinamespace.org/atom', 'application/atomsvc+xml');
+        if (!is_null($link)) {
+            $svcDocUrl = $link->href;
+            if (isset($link['http://apinamespace.org/atom/username'])) {
+                $username = $link['http://apinamespace.org/atom/username'];
                 break;
             }
         }

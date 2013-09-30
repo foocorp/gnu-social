@@ -64,8 +64,9 @@ if (have_option('i', 'id')) {
         exit(1);
     }
 } else if (have_option('o', 'owner')) {
-    $user = User::siteOwner();
-    if (empty($user)) {
+    try {
+        $user = User::siteOwner();
+    } catch (ServerException $e) {
         print "Site has no owner.\n";
         exit(1);
     }

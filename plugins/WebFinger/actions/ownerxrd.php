@@ -18,42 +18,42 @@
  */
 
 /**
- * @package OStatusPlugin
- * @maintainer James Walker <james@status.net>
+ * @package WebFingerPlugin
+ * @author James Walker <james@status.net>
+ * @author Mikael Nordfeldth <mmn@hethane.se>
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
-class OwnerxrdAction extends XrdAction
+class OwnerxrdAction extends WebfingerAction
 {
+    protected $defaultformat = 'xml';
 
-    public $uri;
-
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
-        $this->user = User::siteOwner();
+        $user = User::siteOwner();
 
-        if (!$this->user) {
-            // TRANS: Client error displayed when referring to a non-existing user.
-            $this->clientError(_m('No such user.'), 404);
-            return false;
-        }
+        $nick = common_canonical_nickname($user->nickname);
+        $args['resource'] = 'acct:' . $nick . '@' . common_config('site', 'server');
 
-        $nick = common_canonical_nickname($this->user->nickname);
-        $acct = 'acct:' . $nick . '@' . common_config('site', 'server');
-
-        $this->xrd = new XRD();
-
-        // Check to see if a $config['webfinger']['owner'] has been set
-        if ($owner = common_config('webfinger', 'owner')) {
-            $this->xrd->subject = Discovery::normalize($owner);
-            $this->xrd->alias[] = $acct;
-        } else {
-            $this->xrd->subject = $acct;
-        }
+        // We have now set $args['resource'] to the configured value, since 
+        // only this local site configuration knows who the owner is!
+        parent::prepare($args);
 
         return true;
+    }
+
+    protected function setXRD()
+    {
+        parent::setXRD();
+
+        // Check to see if a $config['webfinger']['owner'] has been set
+        // and then make sure 'subject' is set to that primary identity.
+        if ($owner = common_config('webfinger', 'owner')) {
+            $this->xrd->aliases[] = $this->xrd->subject;
+            $this->xrd->subject = Discovery::normalize($owner);
+        } else {
+            $this->xrd->subject = $this->resource;
+        }
     }
 }

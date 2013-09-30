@@ -907,6 +907,10 @@ class User extends Managed_DataObject
             self::cacheSet('user:site_owner', $owner);
         }
 
+        if (!($owner instanceof User)) {
+            throw new ServerException(_('No site owner configured.'));
+        }
+
         return $owner;
     }
 
@@ -936,14 +940,13 @@ class User extends Managed_DataObject
             // try the site owner.
 
             if (empty($user)) {
-                $user = User::siteOwner();
-            }
-
-            if (!empty($user)) {
-                return $user;
-            } else {
-                // TRANS: Server exception.
-                throw new ServerException(_('No single user defined for single-user mode.'));
+                try {
+                    $user = User::siteOwner();
+                    return $user;
+                } catch (ServerException $e) {
+                    // TRANS: Server exception.
+                    throw new ServerException(_('No single user defined for single-user mode.'));
+                }
             }
         } else {
             // TRANS: Server exception.

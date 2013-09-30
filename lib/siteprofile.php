@@ -83,6 +83,7 @@ abstract class SiteProfileSettings
             'Bookmark'                => null,
             'Event'                   => null,
             'OpenID'                  => null,
+            'LRDD'                    => null,
             'Poll'                    => null,
             'QnA'                     => null,
             'SearchSub'               => null,
@@ -120,6 +121,7 @@ class PublicSite extends SiteProfileSettings
                     'ExtendedProfile'         => null,
                     'Geonames'                => null,
                     'OStatus'                 => null,
+                    'WebFinger'               => null,
                 ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
@@ -208,6 +210,7 @@ class CommunitySite extends SiteProfileSettings
                     'Directory'               => null,
                     'Geonames'                => null,
                     'OStatus'                 => null,
+                    'WebFinger'               => null,
                 ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
@@ -246,6 +249,7 @@ class SingleuserSite extends SiteProfileSettings
                     'OStatus'                 => null,
                     'TwitterBridge'           => null,
                     'FacebookBridge'          => null,
+                    'WebFinger'               => null,
                 ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)

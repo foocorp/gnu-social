@@ -1,0 +1,6 @@
+StartDiscoveryMethodRegistration
+- $disco:   Discovery object that accepts the registrations
+
+EndDiscoveryMethodRegistration: Register remote URI discovery methods
+- $disco:   Discovery object that accepts the registrations
+

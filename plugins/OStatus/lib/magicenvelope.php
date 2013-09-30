@@ -56,23 +56,22 @@ class MagicEnvelope
         } catch (Exception $e) {
             return false;
         }
-        if ($xrd->links) {
-            if ($link = Discovery::getService($xrd->links, Magicsig::PUBLICKEYREL)) {
-                $keypair = false;
-                $parts = explode(',', $link['href']);
+        $link = $xrd->get(Magicsig::PUBLICKEYREL);
+        if (!is_null($link)) {
+            $keypair = false;
+            $parts = explode(',', $link['href']);
+            if (count($parts) == 2) {
+                $keypair = $parts[1];
+            } else {
+                // Backwards compatibility check for separator bug in 0.9.0
+                $parts = explode(';', $link['href']);
                 if (count($parts) == 2) {
                     $keypair = $parts[1];
-                } else {
-                    // Backwards compatibility check for separator bug in 0.9.0
-                    $parts = explode(';', $link['href']);
-                    if (count($parts) == 2) {
-                        $keypair = $parts[1];
-                    }
                 }
+            }
 
-                if ($keypair) {
-                    return $keypair;
-                }
+            if ($keypair) {
+                return $keypair;
             }
         }
         // TRANS: Exception.

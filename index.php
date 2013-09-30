@@ -203,7 +203,7 @@ function setupRW()
 
 function isLoginAction($action)
 {
-    static $loginActions =  array('login', 'recoverpassword', 'api', 'doc', 'register', 'publicxrds', 'otp', 'opensearch', 'rsd', 'hostmeta');
+    static $loginActions =  array('login', 'recoverpassword', 'api', 'doc', 'register', 'publicxrds', 'otp', 'opensearch', 'rsd');
 
     $login = null;
 

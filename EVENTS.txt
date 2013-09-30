@@ -585,12 +585,6 @@ EndPublicXRDS: End XRDS output (right before the closing XRDS tag)
 - $action: the current action
 - &$xrdsoutputter - XRDSOutputter object to write to
 
-StartHostMetaLinks: Start /.well-known/host-meta links
-- &links: array containing the links elements to be written
-
-EndHostMetaLinks: End /.well-known/host-meta links
-- &links: array containing the links elements to be written
-
 StartCheckPassword: Check a username/password
 - $nickname: The nickname to check
 - $password: The password to check
@@ -986,22 +980,6 @@ EndAtomPubNewActivity: When a new activity comes in through Atom Pub API
 - $activity: received activity
 - $user: user publishing the entry
 - $notice: notice that was created
-
-StartXrdActionAliases: About to set aliases for the XRD object for a user
-- &$xrd: XRD object being shown
-- $user: User being shown
-
-EndXrdActionAliases: Done with aliases for the XRD object for a user
-- &$xrd: XRD object being shown
-- $user: User being shown
-
-StartXrdActionLinks: About to set links for the XRD object for a user
-- &$xrd: XRD object being shown
-- $user: User being shown
-
-EndXrdActionLinks: Done with links for the XRD object for a user
-- &$xrd: XRD object being shown
-- $user: User being shown
 
 AdminPanelCheck: When checking whether the current user can access a given admin panel
 - $name:  Name of the admin panel
