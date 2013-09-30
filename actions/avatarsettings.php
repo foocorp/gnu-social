@@ -109,8 +109,6 @@ class AvatarsettingsAction extends SettingsAction
             return;
         }
 
-        $original = $profile->getOriginalAvatar();
-
         $this->elementStart('form', array('enctype' => 'multipart/form-data',
                                           'method' => 'post',
                                           'id' => 'form_settings_avatar',
@@ -124,7 +122,9 @@ class AvatarsettingsAction extends SettingsAction
 
         if (Event::handle('StartAvatarFormData', array($this))) {
             $this->elementStart('ul', 'form_data');
-            if ($original) {
+            try {
+                $original = Avatar::getOriginal($profile);
+
                 $this->elementStart('li', array('id' => 'avatar_original',
                                                 'class' => 'avatar_view'));
                 // TRANS: Header on avatar upload page for thumbnail of originally uploaded avatar (h2).
@@ -136,6 +136,8 @@ class AvatarsettingsAction extends SettingsAction
                                             'alt' => $user->nickname));
                 $this->elementEnd('div');
                 $this->elementEnd('li');
+            } catch (NoResultException $e) {
+                // No original avatar found!
             }
 
             $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
@@ -194,8 +196,6 @@ class AvatarsettingsAction extends SettingsAction
             $this->serverError(_('User has no profile.'));
             return;
         }
-
-        $original = $profile->getOriginalAvatar();
 
         $this->elementStart('form', array('method' => 'post',
                                           'id' => 'form_settings_avatar',
@@ -402,14 +402,7 @@ class AvatarsettingsAction extends SettingsAction
         $user = common_current_user();
         $profile = $user->getProfile();
 
-        $avatar = $profile->getOriginalAvatar();
-        if($avatar) $avatar->delete();
-        $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
-        if($avatar) $avatar->delete();
-        $avatar = $profile->getAvatar(AVATAR_STREAM_SIZE);
-        if($avatar) $avatar->delete();
-        $avatar = $profile->getAvatar(AVATAR_MINI_SIZE);
-        if($avatar) $avatar->delete();
+        Avatar::deleteFromProfile($profile);
 
         // TRANS: Success message for deleting a user avatar.
         $this->showForm(_('Avatar deleted.'), true);

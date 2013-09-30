@@ -141,7 +141,7 @@ class FoafAction extends Action
             $this->elementEnd('based_near');
         }
 
-        $avatar = $this->profile->getOriginalAvatar();
+        $avatar = Avatar::getOriginal($this->profile);
         if ($avatar) {
             $this->elementStart('img');
             $this->elementStart('Image', array('rdf:about' => $avatar->url));

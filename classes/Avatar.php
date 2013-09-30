@@ -59,6 +59,30 @@ class Avatar extends Managed_DataObject
         }
     }
 
+    public static function deleteFromProfile(Profile $target) {
+        $avatars = Avatar::getProfileAvatars($target->id);
+        foreach ($avatars as $avatar) {
+            $avatar->delete();
+        }
+    }
+
+    public static function getOriginal(Profile $target)
+    {
+        $avatar = new Avatar();
+        $avatar->profile_id = $target->id;
+        $avatar->original = true;
+        if (!$avatar->find(true)) {
+            throw new NoResultException($avatar);
+        }
+        return $avatar;
+    }
+
+    public static function getProfileAvatars(Profile $target) {
+        $avatar = new Avatar();
+        $avatar->profile_id = $target->id;
+        return $avatar->fetchAll();
+    }
+
     /**
      * Where should the avatar go for this user?
      */
@@ -132,5 +156,33 @@ class Avatar extends Managed_DataObject
                                   AVATAR_STREAM_SIZE => 'stream',
                                   AVATAR_MINI_SIZE => 'mini');
         return Theme::path('default-avatar-'.$sizenames[$size].'.png');
+    }
+
+    static function newSize(Profile $target, $size) {
+        $size = floor($size);
+        if ($size <1 || $size > 999) {
+            // TRANS: An error message when avatar size is unreasonable
+            throw new Exception(_m('Unreasonable avatar size'));
+        }
+
+        $original = Avatar::getOriginal($target);
+
+        $imagefile = new ImageFile($target->id, Avatar::path($original->filename));
+        $filename = $imagefile->resize($size);
+
+        $scaled = clone($original);
+        $scaled->original = false;
+        $scaled->width = $size;
+        $scaled->height = $size;
+        $scaled->url = Avatar::url($filename);
+        $scaled->created = DB_DataObject_Cast::dateTime();
+
+        if (!$scaled->insert()) {
+            // TRANS: An error message when unable to insert avatar data into the db
+            throw new Exception(_m('Could not insert new avatar data to database'));
+        }
+
+        // Return the new avatar object
+        return $scaled;
     }
 }

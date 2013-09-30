@@ -118,7 +118,7 @@ class Profile extends Managed_DataObject
 
     protected $_avatars;
 
-    function getAvatar($width, $height=null)
+    public function getAvatar($width, $height=null)
     {
         if (is_null($height)) {
             $height = $width;
@@ -127,7 +127,6 @@ class Profile extends Managed_DataObject
         $avatar = $this->_getAvatar($width);
 
         if (empty($avatar)) {
-
             if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
                 $avatar = Avatar::pkeyGet(
                     array(
@@ -139,6 +138,17 @@ class Profile extends Managed_DataObject
                 Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
             }
 
+            // if-empty within an if-empty? Let's find a prettier solution...
+            if (empty($avatar)) {
+                // Obviously we can't find an avatar, so let's resize the original!
+                try {
+                    $avatar = Avatar::newSize($this, $width);
+                } catch (Exception $e) {
+                    // Could not generate a resized avatar. How do we handle it?
+                }
+            }
+
+            // cache the avatar for future use
             $this->_fillAvatar($width, $avatar);
         }
 
@@ -164,21 +174,18 @@ class Profile extends Managed_DataObject
         return null;
     }
 
-    function _fillAvatar($width, $avatar)
+    protected function _fillAvatar($width, Avatar $avatar)
     {
-      //common_debug("Storing avatar of width: {$avatar->width} and profile_id {$avatar->profile_id} in profile {$this->id}.");
-        $this->_avatars[$width] = $avatar;
-
+        // This avoids storing null values, a problem report in issue #3478
+	    $this->_avatars[$width] = $avatar;
     }
 
-    function getOriginalAvatar()
+    // For backwards compatibility only!
+    public function getOriginalAvatar()
     {
-        $pkey = array('profile_id' => $this->id,
-                      'original'   => true);
-        $avatar = Avatar::pkeyGet($pkey);
-        if (!empty($avatar)) {
-            return $avatar;
-        } else {
+        try {
+            return Avatar::getOriginal($this);
+        } catch (Exception $e) {
             return null;
         }
     }
@@ -207,21 +214,10 @@ class Profile extends Managed_DataObject
         foreach (array(AVATAR_PROFILE_SIZE, AVATAR_STREAM_SIZE, AVATAR_MINI_SIZE) as $size) {
             // We don't do a scaled one if original is our scaled size
             if (!($avatar->width == $size && $avatar->height == $size)) {
-                $scaled_filename = $imagefile->resize($size);
-
-                //$scaled = DB_DataObject::factory('avatar');
-                $scaled = new Avatar();
-                $scaled->profile_id = $this->id;
-                $scaled->width = $size;
-                $scaled->height = $size;
-                $scaled->original = false;
-                $scaled->mediatype = image_type_to_mime_type($imagefile->type);
-                $scaled->filename = $scaled_filename;
-                $scaled->url = Avatar::url($scaled_filename);
-                $scaled->created = DB_DataObject_Cast::dateTime(); # current time
-
-                if (!$scaled->insert()) {
-                    return null;
+                try {
+                    Avatar::newSize($this, $size);
+                } catch (Exception $e) {
+                    // should we abort the generation and live without smaller avatars?
                 }
             }
         }

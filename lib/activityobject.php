@@ -459,10 +459,11 @@ class ActivityObject
             $object->title  = $profile->getBestName();
             $object->link   = $profile->profileurl;
 
-            $orig = $profile->getOriginalAvatar();
-
-            if (!empty($orig)) {
+            try {
+                $orig = Avatar::getOriginal($profile);
                 $object->avatarLinks[] = AvatarLink::fromAvatar($orig);
+            } catch (Exception $e) {
+                // Could not find an original avatar to link
             }
 
             $sizes = array(
