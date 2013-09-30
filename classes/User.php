@@ -884,34 +884,31 @@ class User extends Managed_DataObject
         }
     }
 
-    static function siteOwner()
+    public static function siteOwner()
     {
         $owner = self::cacheGet('user:site_owner');
 
         if ($owner === false) { // cache miss
 
             $pr = new Profile_role();
-
             $pr->role = Profile_role::OWNER;
-
             $pr->orderBy('created');
-
             $pr->limit(1);
 
-            if ($pr->find(true)) {
-                $owner = User::getKV('id', $pr->profile_id);
-            } else {
-                $owner = null;
+            if (!$pr->find(true)) {
+                throw new NoResultException($pr);
             }
+
+            $owner = User::getKV('id', $pr->profile_id);
 
             self::cacheSet('user:site_owner', $owner);
         }
 
-        if (!($owner instanceof User)) {
-            throw new ServerException(_('No site owner configured.'));
+        if ($owner instanceof User) {
+            return $owner;
         }
 
-        return $owner;
+        throw new ServerException(_('No site owner configured.'));
     }
 
     /**
@@ -924,34 +921,23 @@ class User extends Managed_DataObject
      * @throws ServerException if no valid single user account is present
      * @throws ServerException if called when not in single-user mode
      */
-    static function singleUser()
+    public static function singleUser()
     {
-        if (common_config('singleuser', 'enabled')) {
-
-            $user = null;
-
-            $nickname = common_config('singleuser', 'nickname');
-
-            if (!empty($nickname)) {
-                $user = User::getKV('nickname', $nickname);
-            }
-
-            // if there was no nickname or no user by that nickname,
-            // try the site owner.
-
-            if (empty($user)) {
-                try {
-                    $user = User::siteOwner();
-                    return $user;
-                } catch (ServerException $e) {
-                    // TRANS: Server exception.
-                    throw new ServerException(_('No single user defined for single-user mode.'));
-                }
-            }
-        } else {
+        if (!common_config('singleuser', 'enabled')) {
             // TRANS: Server exception.
             throw new ServerException(_('Single-user mode code called when not enabled.'));
         }
+
+        if ($nickname = common_config('singleuser', 'nickname')) {
+            $user = User::getKV('nickname', $nickname);
+            if ($user instanceof User) {
+                return $user;
+            }
+        }
+
+        // If there was no nickname or no user by that nickname,
+        // try the site owner. Throws exception if not configured.
+        return User::siteOwner();
     }
 
     /**
