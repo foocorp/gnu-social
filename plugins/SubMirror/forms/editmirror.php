@@ -64,7 +64,7 @@ class EditMirrorForm extends Form
         $this->out->hidden('profile', $this->profile->id);
 
         $this->out->elementStart('div', array('style' => 'float: left; width: 80px;'));
-        $img = $this->getAvatar($this->profile);
+        $img = $this->profile->avatarUrl(AVATAR_STREAM_SIZE);
         $feed = $this->getFeed($this->profile);
         $this->out->elementStart('a', array('href' => $this->profile->profileurl));
         $this->out->element('img', array('src' => $img, 'style' => 'float: left'));
@@ -128,16 +128,6 @@ class EditMirrorForm extends Form
 
         $this->out->elementEnd('div');
         $this->out->elementEnd('fieldset');
-    }
-
-    private function getAvatar($profile)
-    {
-        $avatar = $this->profile->getAvatar(48);
-        if ($avatar) {
-            return $avatar->displayUrl();
-        } else {
-            return Avatar::defaultImage(48);
-        }
     }
 
     private function getFeed($profile)

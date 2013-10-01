@@ -129,7 +129,6 @@ class AllrssAction extends Rss10Action
         if (!$profile) {
             return null;
         }
-        $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
-        return $avatar ? $avatar->url : null;
+        return $profile->avatarUrl(AVATAR_PROFILE_SIZE);
     }
 }

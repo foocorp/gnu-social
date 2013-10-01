@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * class for an exception when a database lookup returns no results
+ * Class for an exception when a database lookup returns no results
  *
  * PHP version 5
  *
@@ -20,26 +20,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Exception
- * @package   StatusNet
+ * @package   GNUSocial
  * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('GNUSOCIAL')) {
-    exit(1);
-}
-
-/**
- * Class for an exception when a local user is not found by certain criteria
- *
- * @category Exception
- * @package  StatusNet
- * @author   Mikael Nordfeldth <mmn@hethane.se>
- * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
- * @link     http://status.net/
- */
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class NoResultException extends ServerException
 {

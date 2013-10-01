@@ -243,10 +243,7 @@ class ResultItem
         
         $this->source = $this->getSourceLink($this->notice->source);
 
-        $avatar = $this->profile->getAvatar(AVATAR_STREAM_SIZE);
-
-        $this->profile_image_url = ($avatar) ?
-            $avatar->displayUrl() : Avatar::defaultImage(AVATAR_STREAM_SIZE);
+        $this->profile_image_url = $this->profile->avatarUrl(AVATAR_STREAM_SIZE);
 
         $this->created_at = common_date_rfc2822($this->notice->created);
     }

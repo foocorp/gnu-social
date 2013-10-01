@@ -474,27 +474,15 @@ class ActivityObject
 
             foreach ($sizes as $size) {
                 $alink  = null;
-                $avatar = $profile->getAvatar($size);
-
-                if (!empty($avatar)) {
+                try {
+                    $avatar = $profile->getAvatar($size);
                     $alink = AvatarLink::fromAvatar($avatar);
-                } else {
+                } catch (Exception $e) {
                     $alink = new AvatarLink();
                     $alink->type   = 'image/png';
                     $alink->height = $size;
                     $alink->width  = $size;
                     $alink->url    = Avatar::defaultImage($size);
-
-                    if ($size == AVATAR_PROFILE_SIZE) {
-                        // Hack for Twitter import: we don't have a 96x96 image,
-                        // but we do have a 73x73 image. For now, fake it with that.
-                        $avatar = $profile->getAvatar(73);
-                        if ($avatar) {
-                            $alink = AvatarLink::fromAvatar($avatar);
-                            $alink->height= $size;
-                            $alink->width = $size;
-                        }
-                    }
                 }
 
                 $object->avatarLinks[] = $alink;

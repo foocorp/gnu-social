@@ -2004,7 +2004,11 @@ function common_user_property($property)
         return $profile->$property;
         break;
     case 'avatar':
-        return $profile->getAvatar(AVATAR_STREAM_SIZE);
+        try {
+            return $profile->getAvatar(AVATAR_STREAM_SIZE);
+        } catch (Exception $e) {
+            return null;
+        }
         break;
     case 'bestname':
         return $profile->getBestName();

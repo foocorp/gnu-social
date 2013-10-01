@@ -140,9 +140,8 @@ class AvatarsettingsAction extends SettingsAction
                 // No original avatar found!
             }
 
-            $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
-
-            if ($avatar) {
+            try {
+                $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
                 $this->elementStart('li', array('id' => 'avatar_preview',
                                                 'class' => 'avatar_view'));
                 // TRANS: Header on avatar upload page for thumbnail of to be used rendition of uploaded avatar (h2).
@@ -158,6 +157,8 @@ class AvatarsettingsAction extends SettingsAction
                     $this->submit('delete', _m('BUTTON','Delete'));
                 }
                 $this->elementEnd('li');
+            } catch (Exception $e) {
+                // No previously uploaded avatar to preview.
             }
 
             $this->elementStart('li', array ('id' => 'settings_attach'));
@@ -354,7 +355,7 @@ class AvatarsettingsAction extends SettingsAction
      *
      * @return void
      */
-    function cropAvatar()
+    public function cropAvatar()
     {
         $filedata = $_SESSION['FILEDATA'];
 
@@ -371,7 +372,7 @@ class AvatarsettingsAction extends SettingsAction
         $dest_y = $this->arg('avatar_crop_y') ? $this->arg('avatar_crop_y'):0;
         $dest_w = $this->arg('avatar_crop_w') ? $this->arg('avatar_crop_w'):$file_d;
         $dest_h = $this->arg('avatar_crop_h') ? $this->arg('avatar_crop_h'):$file_d;
-        $size = min($dest_w, $dest_h, MAX_ORIGINAL);
+        $size = floor(min($dest_w, $dest_h, MAX_ORIGINAL));
 
         $user = common_current_user();
         $profile = $user->getProfile();

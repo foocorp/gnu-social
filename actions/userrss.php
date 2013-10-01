@@ -102,14 +102,12 @@ class UserrssAction extends Rss10Action
     {
         $user = $this->user;
         $profile = $user->getProfile();
-        if (!$profile) {
-            common_log_db_error($user, 'SELECT', __FILE__);
-            // TRANS: Error message displayed when referring to a user without a profile.
-            $this->serverError(_('User has no profile.'));
+        try {
+            $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
+            return $avatar->url;
+        } catch (Exception $e) {
             return null;
         }
-        $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
-        return ($avatar) ? $avatar->url : null;
     }
 
     // override parent to add X-SUP-ID URL

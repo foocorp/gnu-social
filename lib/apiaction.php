@@ -214,9 +214,7 @@ class ApiAction extends Action
         $twitter_user['location'] = ($profile->location) ? $profile->location : null;
         $twitter_user['description'] = ($profile->bio) ? $profile->bio : null;
 
-        $avatar = $profile->getAvatar(AVATAR_STREAM_SIZE);
-        $twitter_user['profile_image_url'] = ($avatar) ? $avatar->displayUrl() :
-            Avatar::defaultImage(AVATAR_STREAM_SIZE);
+        $twitter_user['profile_image_url'] = $profile->avatarUrl(AVATAR_STREAM_SIZE);
 
         $twitter_user['url'] = ($profile->homepage) ? $profile->homepage : null;
         $twitter_user['protected'] = (!empty($user) && $user->private_stream) ? true : false;
@@ -995,10 +993,13 @@ class ApiAction extends Action
         $entry['author-name'] = $from->getBestName();
         $entry['author-uri'] = $from->homepage;
 
-        $avatar = $from->getAvatar(AVATAR_STREAM_SIZE);
-
-        $entry['avatar']      = (!empty($avatar)) ? $avatar->url : Avatar::defaultImage(AVATAR_STREAM_SIZE);
-        $entry['avatar-type'] = (!empty($avatar)) ? $avatar->mediatype : 'image/png';
+        $entry['avatar'] = $from->avatarUrl(AVATAR_STREAM_SIZE);
+        try {
+            $avatar = $from->getAvatar(AVATAR_STREAM_SIZE);
+            $entry['avatar-type'] = $avatar->mediatype;
+        } catch (Exception $e) {
+            $entry['avatar-type'] = 'image/png';
+        }
 
         // RSS item specific
 

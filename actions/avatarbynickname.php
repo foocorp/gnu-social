@@ -28,19 +28,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Retrieve user avatar by nickname action class.
  *
  * @category Action
- * @package  StatusNet
+ * @package  GNUSocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
- * @link     http://status.net/
+ * @link     http://www.gnu.org/software/social/
  */
 class AvatarbynicknameAction extends Action
 {
@@ -51,55 +50,38 @@ class AvatarbynicknameAction extends Action
      *
      * @return boolean false if nickname or user isn't found
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $nickname = $this->trimmed('nickname');
         if (!$nickname) {
             // TRANS: Client error displayed trying to get an avatar without providing a nickname.
             $this->clientError(_('No nickname.'));
-            return;
         }
-        $size = $this->trimmed('size');
-        if (!$size) {
-            // TRANS: Client error displayed trying to get an avatar without providing an avatar size.
-            $this->clientError(_('No size.'));
-            return;
-        }
-        $size = strtolower($size);
-        if (!in_array($size, array('original', '96', '48', '24'))) {
-            // TRANS: Client error displayed trying to get an avatar providing an invalid avatar size.
-            $this->clientError(_('Invalid size.'));
-            return;
-        }
+        $size = $this->trimmed('size') ?: 'original';
 
         $user = User::getKV('nickname', $nickname);
         if (!$user) {
             // TRANS: Client error displayed trying to get an avatar for a non-existing user.
             $this->clientError(_('No such user.'));
-            return;
         }
         $profile = $user->getProfile();
         if (!$profile) {
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->clientError(_('User has no profile.'));
-            return;
-        }
-        if ($size == 'original') {
-            $avatar = $profile->getOriginal();
-        } else {
-            $avatar = $profile->getAvatar($size+0);
         }
 
-        if ($avatar) {
-            $url = $avatar->url;
-        } else {
-            if ($size == 'original') {
+        if ($size === 'original') {
+            try {
+                $avatar = Avatar::getOriginal($profile);
+                $url = $avatar->url;
+            } catch (Exception $e) {
                 $url = Avatar::defaultImage(AVATAR_PROFILE_SIZE);
-            } else {
-                $url = Avatar::defaultImage($size+0);
             }
+        } else {
+            $url = $profile->avatarUrl($size);
         }
+
         common_redirect($url, 302);
     }
 

@@ -63,13 +63,7 @@ class DefaultProfileBlock extends AccountProfileBlock
 
     function avatar()
     {
-        $avatar = $this->profile->getAvatar(AVATAR_STREAM_SIZE);
-        if (empty($avatar)) {
-            $avatar = $this->profile->getAvatar(73);
-        }
-        return (!empty($avatar)) ? 
-            $avatar->displayUrl() : 
-            Avatar::defaultImage(AVATAR_STREAM_SIZE);
+        return $this->profile->avatarUrl(AVATAR_STREAM_SIZE);
     }
 
     function location()

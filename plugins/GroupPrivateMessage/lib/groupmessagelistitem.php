@@ -78,10 +78,8 @@ class GroupMessageListItem extends Widget
         $this->out->elementStart('a',
                                  array('href' => $sender->profileurl,
                                        'class' => 'url'));
-        $avatar = $sender->getAvatar(AVATAR_STREAM_SIZE);
-        $this->out->element('img', array('src' => ($avatar) ?
-                                    $avatar->displayUrl() :
-                                    Avatar::defaultImage(AVATAR_STREAM_SIZE),
+        $avatarUrl = $sender->avatarUrl(AVATAR_STREAM_SIZE);
+        $this->out->element('img', array('src' => $avatarUrl,
                                     'width' => AVATAR_STREAM_SIZE,
                                     'height' => AVATAR_STREAM_SIZE,
                                     'class' => 'photo avatar',

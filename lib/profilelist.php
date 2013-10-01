@@ -199,10 +199,10 @@ class ProfileListItem extends Widget
 
     function showAvatar()
     {
-        $avatar = $this->profile->getAvatar(AVATAR_STREAM_SIZE);
+        $avatarUrl = $this->profile->avatarUrl(AVATAR_STREAM_SIZE);
         $aAttrs = $this->linkAttributes();
         $this->out->elementStart('a', $aAttrs);
-        $this->out->element('img', array('src' => (!empty($avatar)) ? $avatar->displayUrl() : Avatar::defaultImage(AVATAR_STREAM_SIZE),
+        $this->out->element('img', array('src' => $avatarUrl,
                                          'class' => 'photo avatar',
                                          'width' => AVATAR_STREAM_SIZE,
                                          'height' => AVATAR_STREAM_SIZE,

@@ -151,7 +151,7 @@ class UserEmailSummaryHandler extends QueueHandler
                 continue;
             }
 
-            $avatar = $profile->getAvatar(AVATAR_STREAM_SIZE);
+            $avatarUrl = $profile->avatarUrl(AVATAR_STREAM_SIZE);
 
             $out->elementStart('tr');
             $out->elementStart('td', array('width' => AVATAR_STREAM_SIZE,
@@ -159,9 +159,7 @@ class UserEmailSummaryHandler extends QueueHandler
                                            'align' => 'left',
                                            'valign' => 'top',
                                            'style' => 'border-bottom: 1px dotted #C5CEE3; padding: 10px 6px 10px 6px;'));
-            $out->element('img', array('src' => ($avatar) ?
-                                       $avatar->displayUrl() :
-                                       Avatar::defaultImage(AVATAR_STREAM_SIZE),
+            $out->element('img', array('src' => $avatarUrl,
                                        'width' => AVATAR_STREAM_SIZE,
                                        'height' => AVATAR_STREAM_SIZE,
                                        'alt' => $profile->getBestName()));

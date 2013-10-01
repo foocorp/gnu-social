@@ -78,14 +78,14 @@ class NoticeSection extends Section
         }
         $this->out->elementStart('li', 'hentry notice');
         $this->out->elementStart('div', 'entry-title');
-        $avatar = $profile->getAvatar(AVATAR_MINI_SIZE);
         $this->out->elementStart('span', 'vcard author');
         $this->out->elementStart('a', array('title' => ($profile->fullname) ?
                                             $profile->fullname :
                                             $profile->nickname,
                                             'href' => $profile->profileurl,
                                             'class' => 'url'));
-        $this->out->element('img', array('src' => (($avatar) ? $avatar->displayUrl() :  Avatar::defaultImage(AVATAR_MINI_SIZE)),
+        $avatarUrl = $profile->avatarUrl(AVATAR_MINI_SIZE);
+        $this->out->element('img', array('src' => $avatarUrl,
                                          'width' => AVATAR_MINI_SIZE,
                                          'height' => AVATAR_MINI_SIZE,
                                          'class' => 'avatar photo',

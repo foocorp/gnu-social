@@ -283,11 +283,9 @@ class PeopletagListItem extends Widget
 
     function showAvatar($size=AVATAR_STREAM_SIZE)
     {
-        $avatar = $this->profile->getAvatar($size);
+        $avatarUrl = $this->profile->avatarUrl($size);
 
-        $this->out->element('img', array('src' => ($avatar) ?
-                                         $avatar->displayUrl() :
-                                         Avatar::defaultImage($size),
+        $this->out->element('img', array('src' => $avatarUrl,
                                          'class' => 'avatar photo',
                                          'width' => $size,
                                          'height' => $size,

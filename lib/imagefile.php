@@ -247,7 +247,7 @@ class ImageFile
             imagegif($image_dest, $outpath);
             break;
          case IMAGETYPE_JPEG:
-            imagejpeg($image_dest, $outpath, 100);
+            imagejpeg($image_dest, $outpath, common_config('image', 'jpegquality'));
             break;
          case IMAGETYPE_PNG:
             imagepng($image_dest, $outpath);

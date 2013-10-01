@@ -341,7 +341,14 @@ class TwitterImport
 
         $newname = 'Twitter_' . $twitter_user->id . '_' . basename($twitter_user->profile_image_url);
 
-        $oldname = $profile->getAvatar(48)->filename;
+        try {
+            $avatar = $profile->getAvatar(AVATAR_STREAM_SIZE);
+            $oldname = $avatar->filename;
+            unset($avatar);
+        } catch (Exception $e) {
+            $oldname = null;
+        }
+        
 
         if ($newname != $oldname) {
             common_debug($this->name() . ' - Avatar for Twitter user ' .
@@ -351,7 +358,7 @@ class TwitterImport
             $this->updateAvatars($twitter_user, $profile);
         }
 
-        if ($this->missingAvatarFile($profile)) {
+        if (Avatar::hasOriginal($profile)) {
             common_debug($this->name() . ' - Twitter user ' .
                          $profile->nickname .
                          ' is missing one or more local avatars.');
@@ -380,17 +387,6 @@ class TwitterImport
             $this->updateAvatar($profile->id, $size, $mediatype, $filename);
             $this->fetchAvatar($url, $filename);
         }
-    }
-
-    function missingAvatarFile($profile) {
-        foreach (array(24, 48, 73) as $size) {
-            $filename = $profile->getAvatar($size)->filename;
-            $avatarpath = Avatar::path($filename);
-            if (file_exists($avatarpath) == FALSE) {
-                return true;
-            }
-        }
-        return false;
     }
 
     function getMediatype($ext)
@@ -447,13 +443,7 @@ class TwitterImport
             return;
         }
 
-        $sizes = array('mini' => 24, 'normal' => 48, 'bigger' => 73);
-        $avatar = $profile->getAvatar($sizes[$size]);
-
-        // Delete the avatar, if present
-        if ($avatar) {
-            $avatar->delete();
-        }
+        Avatar::deleteFromProfile($profile);
 
         $this->newAvatar($profile->id, $size, $mediatype, $filename);
     }

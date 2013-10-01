@@ -875,10 +875,13 @@ class Router
                             array('action' => 'showfavorites',
                                   'nickname' => $nickname));
 
+                $m->connect('avatar',
+                            array('action' => 'avatarbynickname',
+                                  'nickname' => $nickname));
                 $m->connect('avatar/:size',
                             array('action' => 'avatarbynickname',
                                   'nickname' => $nickname),
-                            array('size' => '(original|96|48|24)'));
+                            array('size' => '(|original|\d+)'));
 
                 $m->connect('tag/:tag/rss',
                             array('action' => 'userrss',
@@ -1047,9 +1050,12 @@ class Router
                             array('action' => 'showfavorites'),
                             array('nickname' => Nickname::DISPLAY_FMT));
 
+                $m->connect(':nickname/avatar',
+                            array('action' => 'avatarbynickname'),
+                            array('nickname' => Nickname::DISPLAY_FMT));
                 $m->connect(':nickname/avatar/:size',
                             array('action' => 'avatarbynickname'),
-                            array('size' => '(original|96|48|24)',
+                            array('size' => '(|original|\d+)',
                                   'nickname' => Nickname::DISPLAY_FMT));
 
                 $m->connect(':nickname/tag/:tag/rss',

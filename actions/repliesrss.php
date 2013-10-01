@@ -78,13 +78,8 @@ class RepliesrssAction extends Rss10Action
 
     function getImage()
     {
-        $user = $this->user;
-        $profile = $user->getProfile();
-        if (!$profile) {
-            return null;
-        }
-        $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
-        return ($avatar) ? $avatar->url : null;
+        $profile = $this->user->getProfile();
+        return $profile->avatarUrl(AVATAR_PROFILE_SIZE);
     }
 
     function isReadOnly($args)

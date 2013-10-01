@@ -276,7 +276,6 @@ class Memcached_DataObject extends Safe_DataObject
             throw new NoResultException($i);
         }
 
-        sprintf(__CLASS__ . "() got {$i->N} results for class $cls key $keyCol");
         return $i;
     }
 

@@ -146,11 +146,13 @@ class FoafAction extends Action
             $this->elementStart('img');
             $this->elementStart('Image', array('rdf:about' => $avatar->url));
             foreach (array(AVATAR_PROFILE_SIZE, AVATAR_STREAM_SIZE, AVATAR_MINI_SIZE) as $size) {
-                $scaled = $this->profile->getAvatar($size);
-                if (!$scaled->original) { // sometimes the original has one of our scaled sizes
+                try {
+                    $scaled = Avatar::getOriginal($this->profile);
                     $this->elementStart('thumbnail');
                     $this->element('Image', array('rdf:about' => $scaled->url));
                     $this->elementEnd('thumbnail');
+                } catch (Exception $e) {
+                    // This avatar did not exist
                 }
             }
             $this->elementEnd('Image');

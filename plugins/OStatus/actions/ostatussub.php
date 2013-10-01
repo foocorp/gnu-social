@@ -142,8 +142,7 @@ class OStatusSubAction extends Action
             $ok = true;
         }
 
-        $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
-        $avatarUrl = $avatar ? $avatar->displayUrl() : false;
+        $avatar = $profile->avatarUrl(AVATAR_PROFILE_SIZE);
 
         $this->showEntity($profile,
                           $profile->profileurl,
@@ -158,10 +157,6 @@ class OStatusSubAction extends Action
         $fullname = $entity->fullname;
         $homepage = $entity->homepage;
         $location = $entity->location;
-
-        if (!$avatar) {
-            $avatar = Avatar::defaultImage(AVATAR_PROFILE_SIZE);
-        }
 
         $this->elementStart('div', 'entity_profile vcard');
         $this->element('img', array('src' => $avatar,

@@ -90,7 +90,11 @@ class QnashowquestionAction extends ShownoticeAction
             throw new ServerException(_m('User without a profile.'));
         }
 
-        $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
+        try {
+            $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
+        } catch (Exception $e) {
+            $this->avatar = null;
+        }
 
         return true;
     }

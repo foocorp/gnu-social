@@ -76,10 +76,8 @@ abstract class MessageListItem extends Widget
         $this->out->elementStart('span', 'vcard author');
         $this->out->elementStart('a', array('href' => $profile->profileurl,
                                             'class' => 'url'));
-        $avatar = $profile->getAvatar(AVATAR_STREAM_SIZE);
-        $this->out->element('img', array('src' => ($avatar) ?
-                                         $avatar->displayUrl() :
-                                         Avatar::defaultImage(AVATAR_STREAM_SIZE),
+        $avatarUrl = $profile->avatarUrl(AVATAR_STREAM_SIZE);
+        $this->out->element('img', array('src' => $avatarUrl,
                                          'class' => 'photo avatar',
                                          'width' => AVATAR_STREAM_SIZE,
                                          'height' => AVATAR_STREAM_SIZE,

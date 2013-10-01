@@ -49,8 +49,8 @@ class Avatar extends Managed_DataObject
             ),
         );
     }
-    // We clean up the file, too
 
+    // We clean up the file, too
     function delete()
     {
         $filename = $this->filename;
@@ -59,11 +59,26 @@ class Avatar extends Managed_DataObject
         }
     }
 
-    public static function deleteFromProfile(Profile $target) {
-        $avatars = Avatar::getProfileAvatars($target->id);
-        foreach ($avatars as $avatar) {
-            $avatar->delete();
+    /*
+     * Deletes all avatars (but may spare the original) from a profile.
+     * 
+     * @param   Profile $target     The profile we're deleting avatars of.
+     * @param   boolean $original   Whether original should be removed or not.
+     */
+    public static function deleteFromProfile(Profile $target, $original=true) {
+        try {
+            $avatars = self::getProfileAvatars($target);
+            foreach ($avatars as $avatar) {
+                if ($avatar->original && !$original) {
+                    continue;
+                }
+                $avatar->delete();
+            }
+        } catch (NoResultException $e) {
+            // There are no avatars to delete, a sort of success.
         }
+
+        return true;
     }
 
     public static function getOriginal(Profile $target)
@@ -77,9 +92,21 @@ class Avatar extends Managed_DataObject
         return $avatar;
     }
 
+    public static function hasOriginal($profile) {
+        try {
+            $avatar = Avatar::getOriginal($profile);
+        } catch (NoResultException $e) {
+            return false;
+        }
+        return !file_exists(Avatar::path($avatar->filename));
+    }
+
     public static function getProfileAvatars(Profile $target) {
         $avatar = new Avatar();
         $avatar->profile_id = $target->id;
+        if (!$avatar->find()) {
+            throw new NoResultException($avatar);
+        }
         return $avatar->fetchAll();
     }
 
@@ -160,9 +187,9 @@ class Avatar extends Managed_DataObject
 
     static function newSize(Profile $target, $size) {
         $size = floor($size);
-        if ($size <1 || $size > 999) {
+        if ($size < 1 || $size > common_config('avatar', 'maxsize')) {
             // TRANS: An error message when avatar size is unreasonable
-            throw new Exception(_m('Unreasonable avatar size'));
+            throw new Exception(_m('Avatar size too large'));
         }
 
         $original = Avatar::getOriginal($target);
@@ -175,7 +202,8 @@ class Avatar extends Managed_DataObject
         $scaled->width = $size;
         $scaled->height = $size;
         $scaled->url = Avatar::url($filename);
-        $scaled->created = DB_DataObject_Cast::dateTime();
+        $scaled->filename = $filename;
+        $scaled->created = common_sql_now();
 
         if (!$scaled->insert()) {
             // TRANS: An error message when unable to insert avatar data into the db

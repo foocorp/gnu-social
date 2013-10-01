@@ -104,7 +104,6 @@ class ApiTimelineMentionsAction extends ApiBareAuthAction
     function showTimeline()
     {
         $profile = $this->user->getProfile();
-        $avatar     = $profile->getAvatar(AVATAR_PROFILE_SIZE);
 
         $sitename   = common_config('site', 'name');
         $title      = sprintf(
@@ -115,11 +114,10 @@ class ApiTimelineMentionsAction extends ApiBareAuthAction
         );
         $taguribase = TagURI::base();
         $id         = "tag:$taguribase:Mentions:" . $this->user->id;
-        $link       = common_local_url(
-            'replies',
-            array('nickname' => $this->user->nickname)
-        );
 
+        $logo = $profile->avatarUrl(AVATAR_PROFILE_SIZE);
+        $link = common_local_url('replies',
+                    array('nickname' => $this->user->nickname));
         $self = $this->getSelfUri();
 
         $subtitle   = sprintf(
@@ -129,7 +127,6 @@ class ApiTimelineMentionsAction extends ApiBareAuthAction
             _('%1$s updates that reply to updates from %2$s / %3$s.'),
             $sitename, $this->user->nickname, $profile->getBestName()
         );
-        $logo = ($avatar) ? $avatar->displayUrl() : Avatar::defaultImage(AVATAR_PROFILE_SIZE);
 
         switch($this->format) {
         case 'xml':

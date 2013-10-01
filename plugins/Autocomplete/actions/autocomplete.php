@@ -141,33 +141,27 @@ class AutocompleteAction extends Action
         $results = array();
         foreach($this->users as $user){
             $profile = $user->getProfile();
-            $avatar = $profile->getAvatar(AVATAR_MINI_SIZE);
-            // sigh.... encapsulate this upstream!
-            if ($avatar) {
-                $avatar = $avatar->displayUrl();
-            } else {
-                $avatar = Avatar::defaultImage(AVATAR_MINI_SIZE);
-            }
+            $avatarUrl = $profile->avatarUrl(AVATAR_MINI_SIZE);
             $results[] = array(
                 'value' => '@'.$profile->nickname,
                 'nickname' => $profile->nickname,
                 'label'=> $profile->getFancyName(),
-                'avatar' => $avatar,
+                'avatar' => $avatarUrl,
                 'type' => 'user'
             );
         }
         foreach($this->groups as $group){
             // sigh.... encapsulate this upstream!
             if ($group->mini_logo) {
-                $avatar = $group->mini_logo;
+                $avatarUrl = $group->mini_logo;
             } else {
-                $avatar = User_group::defaultLogo(AVATAR_MINI_SIZE);
+                $avatarUrl = User_group::defaultLogo(AVATAR_MINI_SIZE);
             }
             $results[] = array(
                 'value' => '!'.$group->nickname,
                 'nickname' => $group->nickname,
                 'label'=> $group->getFancyName(),
-                'avatar' => $avatar,
+                'avatar' => $avatarUrl,
                 'type' => 'group');
         }
         print json_encode($results);

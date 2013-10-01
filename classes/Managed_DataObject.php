@@ -111,7 +111,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
     }
 
     /**
-     * Get a multi-instance object in an array
+     * Get a multi-instance object separated into an array
      *
      * This is a utility method to get multiple instances with a given set of
      * values for a specific key column. Usually used for the primary key when

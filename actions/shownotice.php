@@ -102,7 +102,11 @@ class ShownoticeAction extends Action
 
         $this->user = User::getKV('id', $this->profile->id);
 
-        $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
+        try {
+            $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
+        } catch (Exception $e) {
+            $this->avatar = null;
+        }
 
         return true;
     }
@@ -317,10 +321,7 @@ class ShownoticeAction extends Action
             'title'=>'oEmbed'),null);
 
         // Extras to aid in sharing notices to Facebook
-        $avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
-        $avatarUrl = ($avatar) ?
-                     $avatar->displayUrl() :
-                     Avatar::defaultImage(AVATAR_PROFILE_SIZE);
+        $avatarUrl = $this->profile->avatarUrl(AVATAR_PROFILE_SIZE);
         $this->element('meta', array('property' => 'og:image',
                                      'content' => $avatarUrl));
         $this->element('meta', array('property' => 'og:description',

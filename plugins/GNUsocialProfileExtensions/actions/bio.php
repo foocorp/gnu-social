@@ -46,7 +46,6 @@ class BioAction extends Action
         $this->profile = Profile::getKV('nickname', $args[1]['nickname']);
         //die(print_r($this->profile));
         gnusocial_profile_merge($this->profile);
-        $this->avatar = $this->profile->getAvatar(96);
 
         return true;
 

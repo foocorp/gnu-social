@@ -116,52 +116,47 @@ class Profile extends Managed_DataObject
         return true;
     }
 
-    protected $_avatars;
-
     public function getAvatar($width, $height=null)
     {
+        $width = (int) floor($width);
+
         if (is_null($height)) {
             $height = $width;
         }
 
-        $avatar = $this->_getAvatar($width);
-
-        if (empty($avatar)) {
-            if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
-                $avatar = Avatar::pkeyGet(
-                    array(
-                        'profile_id' => $this->id,
-                        'width'      => $width,
-                        'height'     => $height
-                    )
-                );
-                Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
-            }
-
-            // if-empty within an if-empty? Let's find a prettier solution...
-            if (empty($avatar)) {
-                // Obviously we can't find an avatar, so let's resize the original!
-                try {
-                    $avatar = Avatar::newSize($this, $width);
-                } catch (Exception $e) {
-                    // Could not generate a resized avatar. How do we handle it?
-                }
-            }
-
-            // cache the avatar for future use
-            $this->_fillAvatar($width, $avatar);
+        try {
+            return $this->_getAvatar($width);
+        } catch (Exception $e) {
+            $avatar = null;
         }
+        
+        if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
+            $avatar = Avatar::pkeyGet(
+                array(
+                    'profile_id' => $this->id,
+                    'width'      => $width,
+                    'height'     => $height
+                )
+            );
+            Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
+        }
+
+        if (is_null($avatar)) {
+            // Obviously we can't find an avatar, so let's resize the original!
+            $avatar = Avatar::newSize($this, $width);
+        }
+
+        // cache the avatar for future use
+        $this->_fillAvatar($width, $avatar);
 
         return $avatar;
     }
 
+    protected $_avatars = array();
+
     // XXX: @Fix me gargargar
     function _getAvatar($width)
     {
-        if (empty($this->_avatars)) {
-            $this->_avatars = array();
-        }
-
         // GAR! I cannot figure out where _avatars gets pre-filled with the avatar from
         // the previously used profile! Please shoot me now! --Zach
         if (array_key_exists($width, $this->_avatars)) {
@@ -171,7 +166,7 @@ class Profile extends Managed_DataObject
             }
         }
 
-        return null;
+        throw new Exception('No cached avatar available for size ');
     }
 
     protected function _fillAvatar($width, $avatar)
@@ -207,8 +202,8 @@ class Profile extends Managed_DataObject
         $avatar->created = DB_DataObject_Cast::dateTime(); # current time
 
         // XXX: start a transaction here
-
-        if (!$this->delete_avatars() || !$avatar->insert()) {
+        if (!Avatar::deleteFromProfile($this, true) || !$avatar->insert()) {
+            // If we can't delete the old avatars, let's abort right here.
             @unlink(Avatar::path($filename));
             return null;
         }
@@ -225,30 +220,6 @@ class Profile extends Managed_DataObject
         }
 
         return $avatar;
-    }
-
-    /**
-     * Delete attached avatars for this user from the database and filesystem.
-     * This should be used instead of a batch delete() to ensure that files
-     * get removed correctly.
-     *
-     * @param boolean $original true to delete only the original-size file
-     * @return <type>
-     */
-    function delete_avatars($original=true)
-    {
-        $avatar = new Avatar();
-        $avatar->profile_id = $this->id;
-        $avatar->find();
-        while ($avatar->fetch()) {
-            if ($avatar->original) {
-                if ($original == false) {
-                    continue;
-                }
-            }
-            $avatar->delete();
-        }
-        return true;
     }
 
     /**
@@ -636,10 +607,11 @@ class Profile extends Managed_DataObject
 
     function avatarUrl($size=AVATAR_PROFILE_SIZE)
     {
-        $avatar = $this->getAvatar($size);
-        if ($avatar) {
+        $size = floor($size);
+        try {
+            $avatar = $this->getAvatar($size);
             return $avatar->displayUrl();
-        } else {
+        } catch (Exception $e) {
             return Avatar::defaultImage($size);
         }
     }
@@ -913,7 +885,7 @@ class Profile extends Managed_DataObject
         $this->_deleteMessages();
         $this->_deleteTags();
         $this->_deleteBlocks();
-        $this->delete_avatars();
+        Avatar::deleteFromProfile($this, true);
 
         // Warning: delete() will run on the batch objects,
         // not on individual objects.

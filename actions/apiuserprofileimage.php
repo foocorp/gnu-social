@@ -90,12 +90,7 @@ class ApiUserProfileImageAction extends ApiPrivateAuthAction
         }
 
         $size = $this->avatarSize();
-        $avatar = $profile->getAvatar($size);
-        if ($avatar) {
-            $url = $avatar->displayUrl();
-        } else {
-            $url = Avatar::defaultImage($size);
-        }
+        $url  = $profile->avatarUrl($size);
 
         // We don't actually output JSON or XML data -- redirect!
         common_redirect($url, 302);

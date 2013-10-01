@@ -174,9 +174,12 @@ class ShowgroupmessageAction extends Action
      */
     function etag()
     {
-        $avatar = $this->sender->getAvatar(AVATAR_STREAM_SIZE);
-
-        $avtime = ($avatar) ? strtotime($avatar->modified) : 0;
+        try {
+            $avatar = $this->sender->getAvatar(AVATAR_STREAM_SIZE);
+            $avtime = strtotime($avatar->modified);
+        } catch (Exception $e) {
+            $avtime = 0;
+        }
 
         return 'W/"' . implode(':', array($this->arg('action'),
                                           common_user_cache_hash(),
