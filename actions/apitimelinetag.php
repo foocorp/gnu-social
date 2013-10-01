@@ -139,7 +139,7 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
             $atom->setId($id);
             $atom->setTitle($title);
             $atom->setSubtitle($subtitle);
-            $atom->setLogo($logo);
+            $atom->setLogo($sitelogo);
             $atom->setUpdated('now');
 
             $atom->addLink($link);
