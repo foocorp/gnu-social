@@ -60,7 +60,8 @@ class InboxTagCloudSection extends TagCloudSection
     {
         $profile = Profile::current();
 
-        $keypart = sprintf('Inbox:notice_tag:%d:%d', $this->user->id, $profile->id);
+        $keypart = sprintf('Inbox:notice_tag:%d:%d', $this->user->id,
+                $profile instanceof Profile ? $profile->id : 0);
 
         $tag = Memcached_DataObject::cacheGet($keypart);
 
