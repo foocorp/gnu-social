@@ -722,17 +722,16 @@ class ActivityObject
             if ($this->type == ActivityObject::PERSON
                 || $this->type == ActivityObject::GROUP) {
 
-                foreach ($this->avatarLinks as $avatar) {
-                    $xo->element(
-                        'link', array(
-                            'rel'  => 'avatar',
-                            'type'         => $avatar->type,
-                            'media:width'  => $avatar->width,
-                            'media:height' => $avatar->height,
-                            'href' => $avatar->url
-                        ),
-                        null
-                    );
+                foreach ($this->avatarLinks as $alink) {
+                    $xo->element('link',
+                            array(
+                                'rel'          => 'avatar',
+                                'type'         => $alink->type,
+                                'media:width'  => $alink->width,
+                                'media:height' => $alink->height,
+                                'href'         => $alink->url,
+                                ),
+                            null);
                 }
             }
 

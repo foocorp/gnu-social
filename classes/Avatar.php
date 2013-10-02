@@ -92,7 +92,7 @@ class Avatar extends Managed_DataObject
         return $avatar;
     }
 
-    public static function hasOriginal($profile) {
+    public static function hasOriginal(Profile $profile) {
         try {
             $avatar = Avatar::getOriginal($profile);
         } catch (NoResultException $e) {

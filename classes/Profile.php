@@ -177,16 +177,6 @@ class Profile extends Managed_DataObject
         }
     }
 
-    // For backwards compatibility only!
-    public function getOriginalAvatar()
-    {
-        try {
-            return Avatar::getOriginal($this);
-        } catch (Exception $e) {
-            return null;
-        }
-    }
-
     function setOriginal($filename)
     {
         $imagefile = new ImageFile($this->id, Avatar::path($filename));

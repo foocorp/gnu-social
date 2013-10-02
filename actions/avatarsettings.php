@@ -130,7 +130,7 @@ class AvatarsettingsAction extends SettingsAction
                 // TRANS: Header on avatar upload page for thumbnail of originally uploaded avatar (h2).
                 $this->element('h2', null, _("Original"));
                 $this->elementStart('div', array('id'=>'avatar_original_view'));
-                $this->element('img', array('src' => $original->url,
+                $this->element('img', array('src' => $original->displayUrl(),
                                             'width' => $original->width,
                                             'height' => $original->height,
                                             'alt' => $user->nickname));
@@ -147,7 +147,7 @@ class AvatarsettingsAction extends SettingsAction
                 // TRANS: Header on avatar upload page for thumbnail of to be used rendition of uploaded avatar (h2).
                 $this->element('h2', null, _("Preview"));
                 $this->elementStart('div', array('id'=>'avatar_preview_view'));
-                $this->element('img', array('src' => $avatar->url,
+                $this->element('img', array('src' => $avatar->displayUrl(),
                                             'width' => AVATAR_PROFILE_SIZE,
                                             'height' => AVATAR_PROFILE_SIZE,
                                             'alt' => $user->nickname));

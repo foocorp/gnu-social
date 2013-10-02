@@ -141,15 +141,15 @@ class FoafAction extends Action
             $this->elementEnd('based_near');
         }
 
-        $avatar = Avatar::getOriginal($this->profile);
-        if ($avatar) {
+        try {
+            $avatar = Avatar::getOriginal($this->profile);
             $this->elementStart('img');
-            $this->elementStart('Image', array('rdf:about' => $avatar->url));
+            $this->elementStart('Image', array('rdf:about' => $avatar->displayUrl()));
             foreach (array(AVATAR_PROFILE_SIZE, AVATAR_STREAM_SIZE, AVATAR_MINI_SIZE) as $size) {
                 try {
-                    $scaled = Avatar::getOriginal($this->profile);
+                    $scaled = $this->profile->getAvatar($size);
                     $this->elementStart('thumbnail');
-                    $this->element('Image', array('rdf:about' => $scaled->url));
+                    $this->element('Image', array('rdf:about' => $scaled->displayUrl()));
                     $this->elementEnd('thumbnail');
                 } catch (Exception $e) {
                     // This avatar did not exist
@@ -157,6 +157,8 @@ class FoafAction extends Action
             }
             $this->elementEnd('Image');
             $this->elementEnd('img');
+        } catch (Exception $e) {
+            // No avatar for this user!
         }
 
         $person = $this->showMicrobloggingAccount($this->profile,

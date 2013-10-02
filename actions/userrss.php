@@ -100,14 +100,8 @@ class UserrssAction extends Rss10Action
 
     function getImage()
     {
-        $user = $this->user;
-        $profile = $user->getProfile();
-        try {
-            $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
-            return $avatar->url;
-        } catch (Exception $e) {
-            return null;
-        }
+        $profile = $this->user->getProfile();
+        return $profile->avatarUrl(AVATAR_PROFILE_SIZE);
     }
 
     // override parent to add X-SUP-ID URL

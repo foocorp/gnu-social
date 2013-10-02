@@ -74,7 +74,7 @@ class AvatarbynicknameAction extends Action
         if ($size === 'original') {
             try {
                 $avatar = Avatar::getOriginal($profile);
-                $url = $avatar->url;
+                $url = $avatar->displayUrl();
             } catch (Exception $e) {
                 $url = Avatar::defaultImage(AVATAR_PROFILE_SIZE);
             }
