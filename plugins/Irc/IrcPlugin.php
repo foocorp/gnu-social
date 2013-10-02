@@ -356,7 +356,7 @@ class IrcPlugin extends ImPlugin {
             $this->regcheck = true;
         }
 
-        $this->fake_irc = new Fake_Irc;
+        $this->fake_irc = new FakeIrc;
 
         /*
          * Commands allowed to return output to a channel

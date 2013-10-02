@@ -62,7 +62,7 @@ class YammerRunner
     {
         $this->state = $state;
 
-        $this->client = new SN_YammerClient(
+        $this->client = new SNYammerClient(
             common_config('yammer', 'consumer_key'),
             common_config('yammer', 'consumer_secret'),
             $this->state->oauth_token,

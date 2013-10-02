@@ -31,7 +31,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-class Fake_Irc extends Phergie_Driver_Streams {
+class FakeIrc extends Phergie_Driver_Streams {
     public $would_be_sent = null;
 
     /**

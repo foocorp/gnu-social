@@ -146,10 +146,10 @@ Standalone classes
 ------------------
 
 YammerRunner: encapsulates the iterative process of retrieving the various users,
-              groups, and messages via SN_YammerClient and saving them locally
+              groups, and messages via SNYammerClient and saving them locally
               via YammerImporter.
 
-SN_YammerClient: encapsulates HTTP+OAuth interface to Yammer API, returns data
+SNYammerClient: encapsulates HTTP+OAuth interface to Yammer API, returns data
                  as straight decoded JSON object trees.
 
 YammerImporter: encapsulates logic to pull information from the returned API data

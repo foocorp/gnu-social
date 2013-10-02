@@ -31,7 +31,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-class Queued_XMPP extends XMPPHP_XMPP
+class QueuedXMPP extends XMPPHP_XMPP
 {
     /**
      * Reference to the XmppPlugin object we're hooked up to.

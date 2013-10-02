@@ -131,7 +131,7 @@ class XmppManager extends ImManager
     {
         if (!$this->conn || $this->conn->isDisconnected()) {
             $resource = 'queue' . posix_getpid();
-            $this->conn = new Sharing_XMPP($this->plugin->host ?
+            $this->conn = new SharingXMPP($this->plugin->host ?
                                     $this->plugin->host :
                                     $this->plugin->server,
                                     $this->plugin->port,

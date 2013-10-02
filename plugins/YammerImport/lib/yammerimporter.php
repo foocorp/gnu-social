@@ -27,7 +27,7 @@ class YammerImporter
 {
     protected $client;
 
-    function __construct(SN_YammerClient $client)
+    function __construct(SNYammerClient $client)
     {
         $this->client = $client;
     }

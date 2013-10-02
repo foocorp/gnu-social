@@ -34,7 +34,7 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-class Sharing_XMPP extends XMPPHP_XMPP
+class SharingXMPP extends XMPPHP_XMPP
 {
     function getSocket()
     {

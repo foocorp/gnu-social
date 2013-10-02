@@ -390,7 +390,7 @@ class XmppPlugin extends ImPlugin
      * Build a queue-proxied XMPP interface object. Any outgoing messages
      * will be run back through us for enqueing rather than sent directly.
      *
-     * @return Queued_XMPP
+     * @return QueuedXMPP
      * @throws Exception if server settings are invalid.
      */
     function queuedConnection(){
@@ -411,7 +411,7 @@ class XmppPlugin extends ImPlugin
             throw new Exception(_m('You must specify a password in the configuration.'));
         }
 
-        return new Queued_XMPP($this, $this->host ?
+        return new QueuedXMPP($this, $this->host ?
                                     $this->host :
                                     $this->server,
                                     $this->port,

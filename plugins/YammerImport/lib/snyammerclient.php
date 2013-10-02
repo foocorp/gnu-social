@@ -23,7 +23,7 @@
  * @package YammerImportPlugin
  * @author Brion Vibber <brion@status.net>
  */
-class SN_YammerClient
+class SNYammerClient
 {
     protected $apiBase = "https://www.yammer.com";
     protected $consumerKey, $consumerSecret;
