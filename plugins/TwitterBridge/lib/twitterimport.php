@@ -49,14 +49,17 @@ require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
  */
 class TwitterImport
 {
+    public $avatarsizename = 'reasonably_small'; // a Twitter size name for 128x128 px
+    public $avatarsize = 128;   // they're square...
+
     public function importStatus($status)
     {
         // Hacktastic: filter out stuff coming from this StatusNet
         $source = mb_strtolower(common_config('integration', 'source'));
 
         if (preg_match("/$source/", mb_strtolower($status->source))) {
-            common_debug($this->name() . ' - Skipping import of status ' .
-                         twitter_id($status) . ' with source ' . $source);
+            common_debug(__METHOD__ . ' - Skipping import of status ' .
+                         twitter_id($status) . " with source {$source}");
             return null;
         }
 
@@ -81,8 +84,7 @@ class TwitterImport
         $profile = $this->ensureProfile($status->user);
 
         if (empty($profile)) {
-            common_log(LOG_ERR, $this->name() .
-                ' - Problem saving notice. No associated Profile.');
+            common_log(LOG_ERR, __METHOD__ . ' - Problem saving notice. No associated Profile.');
             return null;
         }
 
@@ -95,8 +97,7 @@ class TwitterImport
         if (!empty($n2s)) {
             common_log(
                 LOG_INFO,
-                $this->name() .
-                " - Ignoring duplicate import: {$statusId}"
+                __METHOD__ . " - Ignoring duplicate import: {$statusId}"
             );
             return Notice::getKV('id', $n2s->notice_id);
         }
@@ -181,8 +182,7 @@ class TwitterImport
 
             if (!$id) {
                 common_log_db_error($notice, 'INSERT', __FILE__);
-                common_log(LOG_ERR, $this->name() .
-                    ' - Problem saving notice.');
+                common_log(LOG_ERR, __METHOD__ . ' - Problem saving notice.');
             }
 
             Event::handle('EndNoticeSave', array($notice));
@@ -223,19 +223,19 @@ class TwitterImport
      *
      * @return mixed value the first Profile with that url, or null
      */
-    function getProfileByUrl($nickname, $profileurl)
+    protected function getProfileByUrl($nickname, $profileurl)
     {
         $profile = new Profile();
         $profile->nickname = $nickname;
         $profile->profileurl = $profileurl;
         $profile->limit(1);
 
-        if ($profile->find()) {
-            $profile->fetch();
-            return $profile;
+        if (!$profile->find()) {
+            throw new NoResultException($profile);
         }
 
-        return null;
+        $profile->fetch();
+        return $profile;
     }
 
     /**
@@ -261,135 +261,112 @@ class TwitterImport
         return null;
     }
 
-    function ensureProfile($user)
+    protected function ensureProfile($twuser)
     {
         // check to see if there's already a profile for this user
-        $profileurl = 'http://twitter.com/' . $user->screen_name;
-        $profile = $this->getProfileByUrl($user->screen_name, $profileurl);
-
-        if (!empty($profile)) {
-            common_debug($this->name() .
-                         " - Profile for $profile->nickname found.");
-
-            // Check to see if the user's Avatar has changed
-
-            $this->checkAvatar($user, $profile);
+        $profileurl = 'http://twitter.com/' . $twuser->screen_name;
+        try {
+            $profile = $this->getProfileByUrl($twuser->screen_name, $profileurl);
+            $this->checkAvatar($twuser, $profile);
             return $profile;
-
-        } else {
-            common_debug($this->name() . ' - Adding profile and remote profile ' .
+        } catch (NoResultException $e) {
+            common_debug(__METHOD__ . ' - Adding profile and remote profile ' .
                          "for Twitter user: $profileurl.");
+        }
 
-            $profile = new Profile();
-            $profile->query("BEGIN");
+        $profile = new Profile();
+        $profile->query("BEGIN");
+        $profile->nickname   = $twuser->screen_name;
+        $profile->fullname   = $twuser->name;
+        $profile->homepage   = $twuser->url;
+        $profile->bio        = $twuser->description;
+        $profile->location   = $twuser->location;
+        $profile->profileurl = $profileurl;
+        $profile->created    = common_sql_now();
 
-            $profile->nickname = $user->screen_name;
-            $profile->fullname = $user->name;
-            $profile->homepage = $user->url;
-            $profile->bio = $user->description;
-            $profile->location = $user->location;
-            $profile->profileurl = $profileurl;
-            $profile->created = common_sql_now();
+        try {
+            $id = $profile->insert();   // insert _should_ throw exception on failure
+            if (empty($id)) {
+                throw new Exception('Failed insert');
+            }
+        } catch(Exception $e) {
+            common_log(LOG_WARNING, __METHOD__ . " Couldn't insert profile: " . $e->getMessage());
+            common_log_db_error($profile, 'INSERT', __FILE__);
+            $profile->query("ROLLBACK");
+            return false;
+        }
+
+        // check for remote profile
+        $remote_pro = Remote_profile::getKV('uri', $profileurl);
+
+        if (!($remote_pro instanceof Remote_profile)) {
+            $remote_pro = new Remote_profile();
+            $remote_pro->id = $id;
+            $remote_pro->uri = $profileurl;
+            $remote_pro->created = common_sql_now();
 
             try {
-                $id = $profile->insert();
-            } catch(Exception $e) {
-                common_log(LOG_WARNING, $this->name() . ' Couldn\'t insert profile - ' . $e->getMessage());
-            }
-
-            if (empty($id)) {
+                $rid = $remote_pro->insert();
+                if (empty($rid)) {
+                    throw new Exception('Failed insert');
+                }
+            } catch (Exception $e) {
+                common_log(LOG_WARNING, __METHOD__ . " Couldn't save remote profile: " . $e->getMessage());
                 common_log_db_error($profile, 'INSERT', __FILE__);
                 $profile->query("ROLLBACK");
                 return false;
             }
-
-            // check for remote profile
-
-            $remote_pro = Remote_profile::getKV('uri', $profileurl);
-
-            if (empty($remote_pro)) {
-                $remote_pro = new Remote_profile();
-
-                $remote_pro->id = $id;
-                $remote_pro->uri = $profileurl;
-                $remote_pro->created = common_sql_now();
-
-                try {
-                    $rid = $remote_pro->insert();
-                } catch (Exception $e) {
-                    common_log(LOG_WARNING, $this->name() . ' Couldn\'t save remote profile - ' . $e->getMessage());
-                }
-
-                if (empty($rid)) {
-                    common_log_db_error($profile, 'INSERT', __FILE__);
-                    $profile->query("ROLLBACK");
-                    return false;
-                }
-            }
-
-            $profile->query("COMMIT");
-
-            $this->saveAvatars($user, $id);
-
-            return $profile;
         }
+
+        $profile->query("COMMIT");
+        $this->updateAvatar($twuser, $profile);
+        return $profile;
     }
 
-    function checkAvatar($twitter_user, $profile)
+    protected function checkAvatar($twuser, Profile $profile)
     {
-        global $config;
-
-        $newname = 'Twitter_' . $twitter_user->id . '_' . basename($twitter_user->profile_image_url);
+        $path_parts = pathinfo($twuser->profile_image_url);
+        $ext        = isset($path_parts['extension'])
+                        ? '.'.$path_parts['extension']
+                        : '';	// some lack extension
+        $img_root   = basename($path_parts['basename'], '_normal'.$ext);	// cut off extension
+        $newname = "Twitter_{$twuser->id}_{$img_root}_{$this->avatarsizename}{$ext}";
 
         try {
-            $avatar = $profile->getAvatar(AVATAR_STREAM_SIZE);
+            $avatar = Avatar::getUploaded($profile);
             $oldname = $avatar->filename;
-            unset($avatar);
+            $avatar->free();
         } catch (Exception $e) {
             $oldname = null;
         }
         
-
-        if ($newname != $oldname) {
-            common_debug($this->name() . ' - Avatar for Twitter user ' .
-                         "$profile->nickname has changed.");
-            common_debug($this->name() . " - old: $oldname new: $newname");
-
-            $this->updateAvatars($twitter_user, $profile);
-        }
-
-        if (Avatar::hasUploaded($profile)) {
-            common_debug($this->name() . ' - Twitter user ' .
-                         $profile->nickname .
-                         ' is missing one or more local avatars.');
-            common_debug($this->name() ." - old: $oldname new: $newname");
-
-            $this->updateAvatars($twitter_user, $profile);
+        if ($newname != $oldname || !Avatar::hasUploaded($profile)) {
+            common_debug(__METHOD__ . " - Avatar for {$profile->nickname} has changed.");
+            $this->updateAvatar($twuser, $profile);
         }
     }
 
-    function updateAvatars($twitter_user, $profile) {
+    protected function updateAvatar($twuser, Profile $profile)
+    {
+        $path_parts = pathinfo($twuser->profile_image_url);
+        $ext        = isset($path_parts['extension'])
+                        ? '.'.$path_parts['extension']
+                        : '';	// some lack extension
+        $img_root   = basename($path_parts['basename'], '_normal'.$ext);	// cut off extension
+        $url        = "{$path_parts['dirname']}/{$img_root}_{$this->avatarsizename}{$ext}";
+        $filename   = "Twitter_{$twuser->id}_{$img_root}_{$this->avatarsizename}{$ext}";
+        $mediatype  = $this->getMediatype(substr($ext, 1));
 
-        global $config;
-
-        $path_parts = pathinfo($twitter_user->profile_image_url);
-
-        $ext = (isset($path_parts['extension']) ? '.'.$path_parts['extension'] : '');	// some lack extension
-        $img_root = basename($path_parts['basename'], '_normal'.$ext);	// cut off extension
-        $mediatype = $this->getMediatype(substr($ext, 1));
-
-        foreach (array('mini', 'normal', 'bigger') as $size) {
-            $url = $path_parts['dirname'] . '/' .
-                $img_root . '_' . $size . $ext;
-            $filename = 'Twitter_' . $twitter_user->id . '_' .
-                $img_root . '_' . $size . $ext;
-
-            $this->updateAvatar($profile->id, $size, $mediatype, $filename);
-            $this->fetchAvatar($url, $filename);
+        try {
+            $this->newAvatar($profile, $url, $filename, $mediatype);
+        } catch (Exception $e) {
+            if (file_exists(Avatar::path($filename))) {
+                unlink(Avatar::path($filename));
+            }
         }
     }
 
-    function getMediatype($ext)
+    protected function getMediatype($ext)
     {
         $mediatype = null;
 
@@ -408,91 +385,36 @@ class TwitterImport
         return $mediatype;
     }
 
-    function saveAvatars($user, $id)
+    protected function newAvatar(Profile $profile, $url, $filename, $mediatype)
     {
-        global $config;
-
-        $path_parts = pathinfo($user->profile_image_url);
-        $ext = (isset($path_parts['extension']) ? '.'.$path_parts['extension'] : '');
-        $img_root = basename($path_parts['basename'], '_normal'.$ext);
-        $mediatype = $this->getMediatype(substr($ext, 1));
-
-        foreach (array('mini', 'normal', 'bigger') as $size) {
-            $url = $path_parts['dirname'] . '/' .
-                $img_root . '_' . $size . $ext;
-            $filename = 'Twitter_' . $user->id . '_' .
-                $img_root . '_' . $size . $ext;
-
-            if ($this->fetchAvatar($url, $filename)) {
-                $this->newAvatar($id, $size, $mediatype, $filename);
-            } else {
-                common_log(LOG_WARNING, $id() .
-                           " - Problem fetching Avatar: $url");
-            }
-        }
-    }
-
-    function updateAvatar($profile_id, $size, $mediatype, $filename) {
-
-        common_debug($this->name() . " - Updating avatar: $size");
-
-        $profile = Profile::getKV($profile_id);
-
-        if (empty($profile)) {
-            common_debug($this->name() . " - Couldn't get profile: $profile_id!");
-            return;
-        }
-
+        // Clear out old avatars, won't do anything if there are none
         Avatar::deleteFromProfile($profile);
 
-        $this->newAvatar($profile->id, $size, $mediatype, $filename);
-    }
-
-    function newAvatar($profile_id, $size, $mediatype, $filename)
-    {
-        global $config;
+        // throws exception if unable to fetch
+        $this->fetchRemoteUrl($url, Avatar::path($filename));
 
         $avatar = new Avatar();
-        $avatar->profile_id = $profile_id;
-
-        switch($size) {
-        case 'mini':
-            $avatar->width  = 24;
-            $avatar->height = 24;
-            break;
-        case 'normal':
-            $avatar->width  = 48;
-            $avatar->height = 48;
-            break;
-        default:
-            // Note: Twitter's big avatars are a different size than
-            // StatusNet's (StatusNet's = 96)
-            $avatar->width  = 73;
-            $avatar->height = 73;
-        }
-
-        $avatar->original = 0; // we don't have the original
-        $avatar->mediatype = $mediatype;
-        $avatar->filename = $filename;
-        $avatar->url = Avatar::url($filename);
+        $avatar->profile_id = $profile->id;
+        $avatar->original   = 1; // this is an original/"uploaded" avatar
+        $avatar->mediatype  = $mediatype;
+        $avatar->filename   = $filename;
+        $avatar->url        = Avatar::url($filename);
+        $avatar->width      = $this->avatarsize;
+        $avatar->height     = $this->avatarsize;
 
         $avatar->created = common_sql_now();
 
-        try {
-            $id = $avatar->insert();
-        } catch (Exception $e) {
-            common_log(LOG_WARNING, $this->name() . ' Couldn\'t insert avatar - ' . $e->getMessage());
-        }
+        $id = $avatar->insert();
 
         if (empty($id)) {
+            common_log(LOG_WARNING, __METHOD__ . " Couldn't insert avatar - " . $e->getMessage());
             common_log_db_error($avatar, 'INSERT', __FILE__);
-            return null;
+            throw new ServerException('Could not insert avatar');
         }
 
-        common_debug($this->name() .
-                     " - Saved new $size avatar for $profile_id.");
+        common_debug(__METHOD__ . " - Saved new avatar for {$profile->id}.");
 
-        return $id;
+        return $avatar;
     }
 
     /**
@@ -502,24 +424,20 @@ class TwitterImport
      * @param string $filename bare local filename for download
      * @return bool true on success, false on failure
      */
-    function fetchAvatar($url, $filename)
+    protected function fetchRemoteUrl($url, $filename)
     {
-        common_debug($this->name() . " - Fetching Twitter avatar: $url");
-
+        common_debug(__METHOD__ . " - Fetching Twitter avatar: {$url} to {$filename}");
         $request = HTTPClient::start();
+        $request->setConfig('connect_timeout', 3);  // I had problems with throttling
+        $request->setConfig('timeout', 6);          // and locking the process sucks.
         $response = $request->get($url);
         if ($response->isOk()) {
-            $avatarfile = Avatar::path($filename);
-            $ok = file_put_contents($avatarfile, $response->getBody());
-            if (!$ok) {
-                common_log(LOG_WARNING, $this->name() .
-                           " - Couldn't open file $filename");
-                return false;
+            if (!file_put_contents($filename, $response->getBody())) {
+                throw new ServerException('Failed saving fetched file');
             }
         } else {
-            return false;
+            throw new Exception('Unexpected HTTP status code');
         }
-
         return true;
     }
 

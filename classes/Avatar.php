@@ -98,7 +98,7 @@ class Avatar extends Managed_DataObject
         } catch (NoResultException $e) {
             return false;
         }
-        return !file_exists(Avatar::path($avatar->filename));
+        return file_exists(Avatar::path($avatar->filename));
     }
 
     public static function getProfileAvatars(Profile $target) {

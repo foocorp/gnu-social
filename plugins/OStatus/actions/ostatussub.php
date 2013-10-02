@@ -142,7 +142,7 @@ class OStatusSubAction extends Action
             $ok = true;
         }
 
-        $avatar = $profile->avatarUrl(AVATAR_PROFILE_SIZE);
+        $avatarUrl = $profile->avatarUrl(AVATAR_PROFILE_SIZE);
 
         $this->showEntity($profile,
                           $profile->profileurl,
