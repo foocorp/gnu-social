@@ -142,7 +142,7 @@ class FoafAction extends Action
         }
 
         try {
-            $avatar = Avatar::getOriginal($this->profile);
+            $avatar = Avatar::getUploaded($this->profile);
             $this->elementStart('img');
             $this->elementStart('Image', array('rdf:about' => $avatar->displayUrl()));
             foreach (array(AVATAR_PROFILE_SIZE, AVATAR_STREAM_SIZE, AVATAR_MINI_SIZE) as $size) {

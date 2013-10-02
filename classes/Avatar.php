@@ -81,7 +81,7 @@ class Avatar extends Managed_DataObject
         return true;
     }
 
-    public static function getOriginal(Profile $target)
+    public static function getUploaded(Profile $target)
     {
         $avatar = new Avatar();
         $avatar->profile_id = $target->id;
@@ -92,9 +92,9 @@ class Avatar extends Managed_DataObject
         return $avatar;
     }
 
-    public static function hasOriginal(Profile $profile) {
+    public static function hasUploaded(Profile $profile) {
         try {
-            $avatar = Avatar::getOriginal($profile);
+            $avatar = Avatar::getUploaded($profile);
         } catch (NoResultException $e) {
             return false;
         }
@@ -192,7 +192,7 @@ class Avatar extends Managed_DataObject
             throw new Exception(_m('Avatar size too large'));
         }
 
-        $original = Avatar::getOriginal($target);
+        $original = Avatar::getUploaded($target);
 
         $imagefile = new ImageFile($target->id, Avatar::path($original->filename));
         $filename = $imagefile->resize($size);

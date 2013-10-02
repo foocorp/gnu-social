@@ -460,7 +460,7 @@ class ActivityObject
             $object->link   = $profile->profileurl;
 
             try {
-                $orig = Avatar::getOriginal($profile);
+                $orig = Avatar::getUploaded($profile);
                 $object->avatarLinks[] = AvatarLink::fromAvatar($orig);
             } catch (Exception $e) {
                 // Could not find an original avatar to link

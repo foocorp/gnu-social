@@ -358,7 +358,7 @@ class TwitterImport
             $this->updateAvatars($twitter_user, $profile);
         }
 
-        if (Avatar::hasOriginal($profile)) {
+        if (Avatar::hasUploaded($profile)) {
             common_debug($this->name() . ' - Twitter user ' .
                          $profile->nickname .
                          ' is missing one or more local avatars.');

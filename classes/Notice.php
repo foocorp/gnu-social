@@ -924,7 +924,7 @@ class Notice extends Managed_DataObject
             $last = $this;
 
             do {
-                $parent = $last->getOriginal();
+                $parent = $last->getParent();
                 if (!empty($parent) && $parent->inScope($profile)) {
                     $last = $parent;
                     continue;
@@ -1304,7 +1304,7 @@ class Notice extends Managed_DataObject
         // If it's a reply, save for the replied-to author
 
         if (!empty($this->reply_to)) {
-            $original = $this->getOriginal();
+            $original = $this->getParent();
             if (!empty($original)) { // that'd be weird
                 $author = $original->getProfile();
                 if (!empty($author)) {
@@ -2528,18 +2528,18 @@ class Notice extends Managed_DataObject
         return $groups;
     }
 
-    protected $_original = -1;
+    protected $_parent = -1;
 
-    function getOriginal()
+    public function getParent()
     {
-        if (is_int($this->_original) && $this->_original == -1) {
+        if (is_int($this->_parent) && $this->_parent == -1) {
             if (empty($this->reply_to)) {
-                $this->_original = null;
+                $this->_parent = null;
             } else {
-                $this->_original = Notice::getKV('id', $this->reply_to);
+                $this->_parent = Notice::getKV('id', $this->reply_to);
             }
         }
-        return $this->_original;
+        return $this->_parent;
     }
 
     /**
@@ -2555,7 +2555,7 @@ class Notice extends Managed_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_original', '_profile', '_groups', '_attachments', '_faves', '_replies', '_repeats');
+        $skip = array('_parent', '_profile', '_groups', '_attachments', '_faves', '_replies', '_repeats');
         return array_diff($vars, $skip);
     }
     
