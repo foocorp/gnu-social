@@ -32,9 +32,6 @@ class Memcached_DataObject extends Safe_DataObject
      */
     static function getClassKV($cls, $k, $v=null)
     {
-        if (!is_a($cls, __CLASS__, true)) {
-            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
-        }
         if (is_null($v)) {
             $v = $k;
             $keys = self::pkeyCols($cls);
@@ -105,9 +102,6 @@ class Memcached_DataObject extends Safe_DataObject
      */
     static function pivotGetClass($cls, $keyCol, array $keyVals, array $otherCols = array())
     {
-        if (!is_a($cls, __CLASS__, true)) {
-            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
-        }
         if (is_array($keyCol)) {
             foreach ($keyVals as $keyVal) {
                 $result[implode(',', $keyVal)] = null;
@@ -246,9 +240,6 @@ class Memcached_DataObject extends Safe_DataObject
 
     static function pkeyCols($cls)
     {
-        if (!is_a($cls, __CLASS__, true)) {
-            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
-        }
         $i = new $cls;
         $types = $i->keyTypes();
         ksort($types);
@@ -266,10 +257,6 @@ class Memcached_DataObject extends Safe_DataObject
 
     static function listFindClass($cls, $keyCol, array $keyVals)
     {
-        if (!is_a($cls, __CLASS__, true)) {
-            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
-        }
-
         $i = new $cls;
         $i->whereAddIn($keyCol, $keyVals, $i->columnType($keyCol));
         if (!$i->find()) {
@@ -281,9 +268,6 @@ class Memcached_DataObject extends Safe_DataObject
 
     static function listGetClass($cls, $keyCol, array $keyVals)
     {
-        if (!is_a($cls, __CLASS__, true)) {
-            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
-        }
         $pkeyMap = array_fill_keys($keyVals, array());
         $result = array_fill_keys($keyVals, array());
 
@@ -366,9 +350,6 @@ class Memcached_DataObject extends Safe_DataObject
      */
     static function pkeyGetClass($cls, array $kv)
     {
-        if (!is_a($cls, __CLASS__, true)) {
-            throw new Exception('Trying to fetch ' . __CLASS__ . ' into a non-related class');
-        }
         $i = Memcached_DataObject::multicache($cls, $kv);
         if ($i !== false) { // false == cache miss
             return $i;
