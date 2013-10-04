@@ -73,10 +73,17 @@ if (!function_exists('dl')) {
 
 // global configuration object
 
-require_once('PEAR.php');
-require_once('PEAR/Exception.php');
-require_once('DB/DataObject.php');
-require_once('DB/DataObject/Cast.php'); # for dates
+require_once 'PEAR.php';
+require_once 'PEAR/Exception.php';
+global $_PEAR;
+$_PEAR = new PEAR;
+$_PEAR->setErrorHandling(PEAR_ERROR_CALLBACK, 'PEAR_ErrorToPEAR_Exception');
+
+require_once 'DB.php';
+require_once 'DB/DataObject.php';
+require_once 'DB/DataObject/Cast.php'; # for dates
+global $_DB;
+$_DB = new DB;
 
 require_once(INSTALLDIR.'/lib/language.php');
 
@@ -173,6 +180,3 @@ function PEAR_ErrorToPEAR_Exception($err)
     }
     throw new PEAR_Exception($err->getMessage());
 }
-
-/* global */ $_PEAR = new PEAR;
-$_PEAR->setErrorHandling(PEAR_ERROR_CALLBACK, 'PEAR_ErrorToPEAR_Exception');

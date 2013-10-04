@@ -340,10 +340,8 @@ abstract class Installer
      */
     function connectDatabase($dsn)
     {
-        // @fixme move this someplace more sensible
-        //set_include_path(INSTALLDIR . '/extlib' . PATH_SEPARATOR . get_include_path());
-        require_once 'DB.php';
-        return DB::connect($dsn);
+        global $_DB;
+        return $_DB->connect($dsn);
     }
 
     /**
