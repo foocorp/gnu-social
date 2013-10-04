@@ -28,7 +28,7 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/extlib/');
+set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/extlib/phpseclib');
 
 class FeedSubException extends Exception
 {
