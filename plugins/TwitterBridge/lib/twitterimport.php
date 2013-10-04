@@ -230,35 +230,10 @@ class TwitterImport
         $profile->profileurl = $profileurl;
         $profile->limit(1);
 
-        if (!$profile->find()) {
+        if (!$profile->find(true)) {
             throw new NoResultException($profile);
         }
-
-        $profile->fetch();
         return $profile;
-    }
-
-    /**
-     * Check to see if this Twitter status has already been imported
-     *
-     * @param Profile $profile   Twitter user's local profile
-     * @param string  $statusUri URI of the status on Twitter
-     *
-     * @return mixed value a matching Notice or null
-     */
-    function checkDupe($profile, $statusUri)
-    {
-        $notice = new Notice();
-        $notice->uri = $statusUri;
-        $notice->profile_id = $profile->id;
-        $notice->limit(1);
-
-        if ($notice->find()) {
-            $notice->fetch();
-            return $notice;
-        }
-
-        return null;
     }
 
     protected function ensureProfile($twuser)
@@ -267,7 +242,7 @@ class TwitterImport
         $profileurl = 'http://twitter.com/' . $twuser->screen_name;
         try {
             $profile = $this->getProfileByUrl($twuser->screen_name, $profileurl);
-            $this->checkAvatar($twuser, $profile);
+            $this->updateAvatar($twuser, $profile);
             return $profile;
         } catch (NoResultException $e) {
             common_debug(__METHOD__ . ' - Adding profile and remote profile ' .
@@ -323,29 +298,11 @@ class TwitterImport
         return $profile;
     }
 
-    protected function checkAvatar($twuser, Profile $profile)
-    {
-        $path_parts = pathinfo($twuser->profile_image_url);
-        $ext        = isset($path_parts['extension'])
-                        ? '.'.$path_parts['extension']
-                        : '';	// some lack extension
-        $img_root   = basename($path_parts['basename'], '_normal'.$ext);	// cut off extension
-        $newname = "Twitter_{$twuser->id}_{$img_root}_{$this->avatarsizename}{$ext}";
-
-        try {
-            $avatar = Avatar::getUploaded($profile);
-            $oldname = $avatar->filename;
-            $avatar->free();
-        } catch (Exception $e) {
-            $oldname = null;
-        }
-        
-        if ($newname != $oldname || !Avatar::hasUploaded($profile)) {
-            common_debug(__METHOD__ . " - Avatar for {$profile->nickname} has changed.");
-            $this->updateAvatar($twuser, $profile);
-        }
-    }
-
+    /*
+     * Checks whether we have to update the profile's avatar
+     *
+     * @return true when updated, false on failure, null when no action taken
+     */
     protected function updateAvatar($twuser, Profile $profile)
     {
         $path_parts = pathinfo($twuser->profile_image_url);
@@ -353,17 +310,33 @@ class TwitterImport
                         ? '.'.$path_parts['extension']
                         : '';	// some lack extension
         $img_root   = basename($path_parts['basename'], '_normal'.$ext);	// cut off extension
-        $url        = "{$path_parts['dirname']}/{$img_root}_{$this->avatarsizename}{$ext}";
         $filename   = "Twitter_{$twuser->id}_{$img_root}_{$this->avatarsizename}{$ext}";
-        $mediatype  = $this->getMediatype(substr($ext, 1));
 
         try {
+            $avatar = Avatar::getUploaded($profile);
+            if ($avatar->filename === $filename) {
+                return null;
+            }
+            // else we continue with creating a new avatar
+        } catch (Exception $e) {
+            // Avatar was not found. We can catch NoResultException or FileNotFoundException
+            // but generally we just want to continue creating a new avatar.
+        }
+        
+        $url        = "{$path_parts['dirname']}/{$img_root}_{$this->avatarsizename}{$ext}";
+        $mediatype  = $this->getMediatype(mb_substr($ext, 1));
+
+        try {
+            common_debug(__METHOD__ . " - Updating profile avatar (profile_id={$profile->id} to {$filename}");
             $this->newAvatar($profile, $url, $filename, $mediatype);
         } catch (Exception $e) {
             if (file_exists(Avatar::path($filename))) {
                 unlink(Avatar::path($filename));
             }
+            return false;
         }
+
+        return true;
     }
 
     protected function getMediatype($ext)

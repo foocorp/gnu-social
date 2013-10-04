@@ -40,7 +40,6 @@ require_once INSTALLDIR . '/scripts/commandline.inc';
 require_once INSTALLDIR . '/lib/common.php';
 require_once INSTALLDIR . '/lib/daemon.php';
 require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
-require_once INSTALLDIR . '/plugins/TwitterBridge/lib/twitteroauthclient.php';
 
 /**
  * Fetch statuses from Twitter

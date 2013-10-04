@@ -364,7 +364,7 @@ class TwitterBridgePlugin extends Plugin
 
         // For saving the last-synched status of various timelines
         // home_timeline, messages (in), messages (out), ...
-        $schema->ensureTable('twitter_synch_status', Twitter_sync_status::schemaDef());
+        $schema->ensureTable('twitter_synch_status', Twitter_synch_status::schemaDef());
 
         // For storing user-submitted flags on profiles
         $schema->ensureTable('notice_to_status', Notice_to_status::schemaDef());

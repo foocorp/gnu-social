@@ -89,16 +89,13 @@ class Avatar extends Managed_DataObject
         if (!$avatar->find(true)) {
             throw new NoResultException($avatar);
         }
-        return $avatar;
-    }
-
-    public static function hasUploaded(Profile $profile) {
-        try {
-            $avatar = Avatar::getUploaded($profile);
-        } catch (NoResultException $e) {
-            return false;
+        if (!file_exists(Avatar::path($avatar->filename))) {
+            // The delete call may be odd for, say, unmounted filesystems
+            // that cause a file to currently not exist, but actually it does...
+            $avatar->delete();
+            throw new FileNotFoundException(Avatar::path($avatar->filename));
         }
-        return file_exists(Avatar::path($avatar->filename));
+        return $avatar;
     }
 
     public static function getProfileAvatars(Profile $target) {
