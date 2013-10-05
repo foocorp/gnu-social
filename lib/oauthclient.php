@@ -118,18 +118,17 @@ class OAuthClient
 
             if (isset($confirm)) {
                 if ($confirm == 'true') {
-                    common_debug('Twitter bridge - callback confirmed.');
                     return $token;
                 } else {
                     throw new OAuthClientException(
-                        'Callback was not confirmed by Twitter.'
+                        'Callback was not confirmed by remote OAuth side.'
                     );
                 }
             }
             return $token;
         } else {
             throw new OAuthClientException(
-                'Could not get a request token from Twitter.'
+                'Could not get a request token from remote OAuth side.'
             );
         }
     }
@@ -181,7 +180,7 @@ class OAuthClient
             return $token;
         } else {
             throw new OAuthClientException(
-                'Could not get a access token from Twitter.'
+                'Could not get a access token from remote OAuth side.'
             );
         }
     }
