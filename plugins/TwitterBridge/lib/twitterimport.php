@@ -317,17 +317,19 @@ class TwitterImport
             if ($avatar->filename === $filename) {
                 return null;
             }
+            common_debug(__METHOD__ . " - Updating profile avatar (profile_id={$profile->id}) " .
+			"from {$avatar->filename} to {$filename}");
             // else we continue with creating a new avatar
         } catch (Exception $e) {
             // Avatar was not found. We can catch NoResultException or FileNotFoundException
             // but generally we just want to continue creating a new avatar.
+            common_debug(__METHOD__ . " - No avatar found for (profile_id={$profile->id})");
         }
         
         $url        = "{$path_parts['dirname']}/{$img_root}_{$this->avatarsizename}{$ext}";
         $mediatype  = $this->getMediatype(mb_substr($ext, 1));
 
         try {
-            common_debug(__METHOD__ . " - Updating profile avatar (profile_id={$profile->id} to {$filename}");
             $this->newAvatar($profile, $url, $filename, $mediatype);
         } catch (Exception $e) {
             if (file_exists(Avatar::path($filename))) {

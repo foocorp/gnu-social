@@ -23,7 +23,7 @@ define('INSTALLDIR', realpath(dirname(__FILE__) . '/../../..'));
 // Tune number of processes and how often to poll Twitter
 // XXX: Should these things be in config.php?
 define('MAXCHILDREN', 2);
-define('POLL_INTERVAL', 60); // in seconds
+define('POLL_INTERVAL', 70); // in seconds, Twitter API v1.1 says 15 calls every 15 mins
 
 $shortoptions = 'di::';
 $longoptions = array('id::', 'debug');
