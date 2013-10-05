@@ -84,7 +84,7 @@ abstract class ImPlugin extends Plugin
      *
      * @return boolean success value
      */
-    function sendNotice($screenname, $notice)
+    function sendNotice($screenname, Notice $notice)
     {
         return $this->sendMessage($screenname, $this->formatNotice($notice));
     }
@@ -370,19 +370,18 @@ abstract class ImPlugin extends Plugin
      * @return string plain-text version of the notice, with user nickname prefixed
      */
 
-    function formatNotice($notice)
+    protected function formatNotice(Notice $notice)
     {
         $profile = $notice->getProfile();
-        $nicknames = $profile->nickname;
-        if (!empty($notice->reply_to)) {
-            $orig_notice = $notice->getParent();
-            $orig_profile = $orig_notice->getProfile();
-            $nicknames = $nicknames . " => " . $orig_profile->nickname;
-        }
-        common_log(LOG_INFO, "Notice: " . $notice->content, __FILE__);
-        $data = $nicknames . ': ' . $notice->content . ' [' . $notice->id . ']';
-        return $data;
 
+        try {
+            $orig_profile = $notice->getParent()->getProfile();
+            $nicknames = sprintf('%1$s => %2$s', $profile->nickname, $orig_profile->nickname);
+        } catch (Exception $e) {
+            $nicknames = $profile->nickname;
+        }
+
+        return sprintf('%1$s: %2$s [%3$u]', $nicknames, $notice->content, $notice->id);
     }
     //========================UTILITY FUNCTIONS USEFUL TO IMPLEMENTATIONS - RECEIVING ========================\
 

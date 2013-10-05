@@ -335,7 +335,7 @@ class XmppPlugin extends ImPlugin
      *
      * @return string Extra information (Atom, HTML, addresses) in string format
      */
-    function format_entry($notice)
+    protected function format_entry(Notice $notice)
     {
         $profile = $notice->getProfile();
 
@@ -344,16 +344,16 @@ class XmppPlugin extends ImPlugin
         $xs = new XMLStringer();
         $xs->elementStart('html', array('xmlns' => 'http://jabber.org/protocol/xhtml-im'));
         $xs->elementStart('body', array('xmlns' => 'http://www.w3.org/1999/xhtml'));
-        $xs->element('a', array('href' => $profile->profileurl),
-                     $profile->nickname);
-        if (!empty($notice->reply_to)) {
-            $orig_notice = Notice::getKV('id', $notice->reply_to);
-            $orig_profile = $orig_notice->getProfile();
+        $xs->element('a', array('href' => $profile->profileurl), $profile->nickname);
+        try {
+            $orig_profile = $notice->getParent()->getProfile();
+            $orig_profurl = $orig_profile->getUrl();
             $xs->text(" => ");
-            $xs->element('a', array('href' => $orig_profile->profileurl),
-                $orig_profile->nickname);
+            $xs->element('a', array('href' => $orig_profurl), $orig_profile->nickname);
             $xs->text(": ");
-        } else {
+        } catch (InvalidUrlException $e) {
+            $xs->text(sprintf(' => %s', $orig_profile->nickname));
+        } catch (Exception $e) {
             $xs->text(": ");
         }
         if (!empty($notice->rendered)) {
@@ -368,7 +368,7 @@ class XmppPlugin extends ImPlugin
                 array('id' => $notice->conversation)).'#notice-'.$notice->id),
              // TRANS: Link description to notice in conversation.
              // TRANS: %s is a notice ID.
-             sprintf(_m('[%s]'),$notice->id));
+             sprintf(_m('[%u]'),$notice->id));
         $xs->elementEnd('body');
         $xs->elementEnd('html');
 
