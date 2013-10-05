@@ -927,13 +927,11 @@ class Notice extends Managed_DataObject
             try {
                 $parent = $last->getParent();
                 if ($parent->inScope($profile)) {
-                    common_debug(__METHOD__ . 'Parent of '.$last->id.' is '.$parent->id);
                     $last = $parent;
                     continue;
                 }
             } catch (Exception $e) {
                 // Latest notice has no parent
-                common_debug(__METHOD__ . 'Found no parent for '.$last->id);
             }
             // No parent, or parent out of scope
             $root = $last;
