@@ -920,22 +920,27 @@ class Notice extends Managed_DataObject
 
         if ($root !== false && $root->inScope($profile)) {
             return $root;
-        } else {
-            $last = $this;
+        }
 
-            do {
+        $last = $this;
+        while (true) {
+            try {
                 $parent = $last->getParent();
-                if (!empty($parent) && $parent->inScope($profile)) {
+                if ($parent->inScope($profile)) {
+                    common_debug(__METHOD__ . 'Parent of '.$last->id.' is '.$parent->id);
                     $last = $parent;
                     continue;
-                } else {
-                    $root = $last;
-                    break;
                 }
-            } while (!empty($parent));
-
-            self::cacheSet($keypart, $root);
+            } catch (Exception $e) {
+                // Latest notice has no parent
+                common_debug(__METHOD__ . 'Found no parent for '.$last->id);
+            }
+            // No parent, or parent out of scope
+            $root = $last;
+            break;
         }
+
+        self::cacheSet($keypart, $root);
 
         return $root;
     }
@@ -1302,17 +1307,15 @@ class Notice extends Managed_DataObject
         $replied = array();
 
         // If it's a reply, save for the replied-to author
-
-        if (!empty($this->reply_to)) {
-            $original = $this->getParent();
-            if (!empty($original)) { // that'd be weird
-                $author = $original->getProfile();
-                if (!empty($author)) {
-                    $this->saveReply($author->id);
-                    $replied[$author->id] = 1;
-                    self::blow('reply:stream:%d', $author->id);
-                }
+        try {
+            $author = $this->getParent()->getProfile();
+            if ($author instanceof Profile) {
+                $this->saveReply($author->id);
+                $replied[$author->id] = 1;
+                self::blow('reply:stream:%d', $author->id);
             }
+        } catch (Exception $e) {
+            // Not a reply, since it has no parent!
         }
 
         // @todo ideally this parser information would only
@@ -2532,12 +2535,15 @@ class Notice extends Managed_DataObject
 
     public function getParent()
     {
-        if (is_int($this->_parent) && $this->_parent == -1) {
-            if (empty($this->reply_to)) {
-                $this->_parent = null;
-            } else {
-                $this->_parent = Notice::getKV('id', $this->reply_to);
-            }
+        if (empty($this->reply_to)) {
+            // Should this also be NoResultException? I don't think so.
+            throw new Exception('Notice has no parent');
+        } elseif ($this->_parent === -1) {    // local object cache
+            $this->_parent = Notice::getKV('id', $this->reply_to);
+        }
+
+        if (!($this->_parent instanceof Notice)) {
+            throw new NoResultException($this->_parent);
         }
         return $this->_parent;
     }
