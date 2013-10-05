@@ -373,7 +373,16 @@ abstract class ImPlugin extends Plugin
     function formatNotice($notice)
     {
         $profile = $notice->getProfile();
-        return $profile->nickname . ': ' . $notice->content . ' [' . $notice->id . ']';
+        $nicknames = $profile->nickname;
+        if (!empty($notice->reply_to)) {
+            $orig_notice = $notice->getParent();
+            $orig_profile = $orig_notice->getProfile();
+            $nicknames = $nicknames . " => " . $orig_profile->nickname;
+        }
+        common_log(LOG_INFO, "Notice: " . $notice->content, __FILE__);
+        $data = $nicknames . ': ' . $notice->content . ' [' . $notice->id . ']';
+        return $data;
+
     }
     //========================UTILITY FUNCTIONS USEFUL TO IMPLEMENTATIONS - RECEIVING ========================\
 
