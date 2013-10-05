@@ -7,7 +7,8 @@
   #   http://example.com/        => /
   #   http://example.com/mublog/ => /mublog/
   #
-  RewriteBase /mublog/
+  RewriteBase /
+  #RewriteBase /mublog/
 
   ## Uncomment these if having trouble with API authentication
   ## when PHP is running in CGI or FastCGI mode.
