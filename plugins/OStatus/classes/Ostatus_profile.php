@@ -1249,11 +1249,7 @@ class Ostatus_profile extends Managed_DataObject
         // http://status.net/open-source/issues/2663
         chmod(Avatar::path($filename), 0644);
 
-        $profile = $this->localProfile();
-
-        if (!empty($profile)) {
-            $profile->setOriginal($filename);
-        }
+        $self->setOriginal($filename);
 
         $orig = clone($this);
         $this->avatar = $url;
