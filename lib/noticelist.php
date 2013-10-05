@@ -134,8 +134,6 @@ class NoticeList extends Widget
             Notice::fillRepeats($notices);
             // Prefill the profiles
             $profiles = Notice::fillProfiles($notices);
-            // Prefill the avatars
-            Profile::fillAvatars($profiles, $avatarSize);
     	
             $p = Profile::current();
     	

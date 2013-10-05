@@ -116,6 +116,8 @@ class Profile extends Managed_DataObject
         return true;
     }
 
+    protected $_avatars = array();
+
     public function getAvatar($width, $height=null)
     {
         $width = (int) floor($width);
@@ -124,10 +126,8 @@ class Profile extends Managed_DataObject
             $height = $width;
         }
 
-        try {
-            return $this->_getAvatar($width);
-        } catch (Exception $e) {
-            $avatar = null;
+        if (isset($this->_avatars[$width])) {
+            return $this->_avatars[$width];
         }
         
         if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
@@ -144,40 +144,17 @@ class Profile extends Managed_DataObject
         if (is_null($avatar)) {
             // Obviously we can't find an avatar, so let's resize the original!
             $avatar = Avatar::newSize($this, $width);
+        } elseif (!($avatar instanceof Avatar)) {
+            throw new Exception('Bad Avatar retrieved');
         }
 
         // cache the avatar for future use
-        $this->_fillAvatar($width, $avatar);
+        $this->_avatars[$width] = $avatar;
 
         return $avatar;
     }
 
-    protected $_avatars = array();
-
-    // XXX: @Fix me gargargar
-    function _getAvatar($width)
-    {
-        // GAR! I cannot figure out where _avatars gets pre-filled with the avatar from
-        // the previously used profile! Please shoot me now! --Zach
-        if (array_key_exists($width, $this->_avatars)) {
-            // Don't return cached avatar unless it's really for this profile
-            if ($this->_avatars[$width]->profile_id == $this->id) {
-                return $this->_avatars[$width];
-            }
-        }
-
-        throw new Exception('No cached avatar available for size ');
-    }
-
-    protected function _fillAvatar($width, $avatar)
-    {
-        // This avoids storing null values, a problem report in issue #3478
-        if (!empty($avatar)) {
-    	    $this->_avatars[$width] = $avatar;
-        }
-    }
-
-    function setOriginal($filename)
+    public function setOriginal($filename)
     {
         $imagefile = new ImageFile($this->id, Avatar::path($filename));
 
@@ -1431,29 +1408,8 @@ class Profile extends Managed_DataObject
         $skip = array('_user', '_avatars');
         return array_diff($vars, $skip);
     }
-    
-    static function fillAvatars(&$profiles, $width)
-    {
-    	$ids = array();
-    	foreach ($profiles as $profile) {
-            if (!empty($profile)) {
-                $ids[] = $profile->id;
-            }
-    	}
-    	
-    	$avatars = Avatar::pivotGet('profile_id', $ids, array('width' => $width,
-															  'height' => $width));
-    	
-    	foreach ($profiles as $profile) {
-            if (!empty($profile)) { // ???
-                $profile->_fillAvatar($width, $avatars[$profile->id]);
-            }
-    	}
-    }
-    
-    // Can't seem to find how to fix this.
 
-    function getProfile()
+    public function getProfile()
     {
         return $this;
     }
