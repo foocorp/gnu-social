@@ -319,7 +319,7 @@ while($lop->fetch()) {
         }
     } catch (Exception $e) {
         if (!$quiet) { print $e->getMessage() . "\n"; }
-        common_log(LOG_WARN, $e->getMessage(), __FILE__);
+        common_log(LOG_WARNING, $e->getMessage(), __FILE__);
         // continue on error
     }
 }

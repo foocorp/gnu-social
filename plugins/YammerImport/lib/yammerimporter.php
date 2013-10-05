@@ -49,7 +49,7 @@ class YammerImporter
         } else {
             $user = User::getKV('nickname', $nickname);
             if ($user) {
-                common_log(LOG_WARN, "Copying Yammer profile info onto existing user $nickname");
+                common_log(LOG_WARNING, "Copying Yammer profile info onto existing user $nickname");
                 $profile = $user->getProfile();
                 $this->savePropertiesOn($profile, $data['options'],
                         array('fullname', 'homepage', 'bio', 'location'));
@@ -86,7 +86,7 @@ class YammerImporter
         } else {
             $local = Local_group::getKV('nickname', $nickname);
             if ($local) {
-                common_log(LOG_WARN, "Copying Yammer group info onto existing group $nickname");
+                common_log(LOG_WARNING, "Copying Yammer group info onto existing group $nickname");
                 $group = User_group::getKV('id', $local->group_id);
                 $this->savePropertiesOn($group, $data['options'],
                         array('fullname', 'description'));

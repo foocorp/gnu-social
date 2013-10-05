@@ -740,7 +740,7 @@ class User_group extends Managed_DataObject
             self::blow('user_group:notice_ids:%d', $this->id);
 
         } else {
-            common_log(LOG_WARN, "Ambiguous user_group->delete(); skipping related tables.");
+            common_log(LOG_WARNING, "Ambiguous user_group->delete(); skipping related tables.");
         }
         parent::delete();
     }
