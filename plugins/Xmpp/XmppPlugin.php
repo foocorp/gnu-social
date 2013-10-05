@@ -346,8 +346,18 @@ class XmppPlugin extends ImPlugin
         $xs->elementStart('body', array('xmlns' => 'http://www.w3.org/1999/xhtml'));
         $xs->element('a', array('href' => $profile->profileurl),
                      $profile->nickname);
-        $xs->text(": ");
+        if (!empty($notice->reply_to)) {
+            $orig_notice = Notice::getKV('id', $notice->reply_to);
+            $orig_profile = $orig_notice->getProfile();
+            $xs->text(" => ");
+            $xs->element('a', array('href' => $orig_profile->profileurl),
+                $orig_profile->nickname);
+            $xs->text(": ");
+        } else {
+            $xs->text(": ");
+        }
         if (!empty($notice->rendered)) {
+            $notice->rendered = str_replace("\t", "", $notice->rendered);
             $xs->raw($notice->rendered);
         } else {
             $xs->raw(common_render_content($notice->content, $notice));
