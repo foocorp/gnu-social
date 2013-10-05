@@ -18,9 +18,9 @@
  *   * Redistributions in binary form must reproduce the above copyright
  *     notice, this list of conditions and the following disclaimer in
  *     the documentation and/or other materials provided with the distribution.
- *   * Neither the name of the PHP_LexerGenerator nor the names of its
- *     contributors may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
+ *   * Neither the name of the Net_URL2 nor the names of its contributors may
+ *     be used to endorse or promote products derived from this software
+ *     without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -36,10 +36,10 @@
  *
  * @category  Networking
  * @package   Net_URL2
- * @author    Christian Schmidt <chsc@peytz.dk>
- * @copyright 2007-2008 Peytz & Co. A/S
+ * @author    Christian Schmidt <schmidt@php.net>
+ * @copyright 2007-2009 Peytz & Co. A/S
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @version   CVS: $Id: URL2.php 286661 2009-08-02 12:50:54Z schmidt $
+ * @version   CVS: $Id: URL2.php 309223 2011-03-14 14:26:32Z till $
  * @link      http://www.rfc-editor.org/rfc/rfc3986.txt
  */
 
@@ -48,8 +48,8 @@
  *
  * @category  Networking
  * @package   Net_URL2
- * @author    Christian Schmidt <chsc@peytz.dk>
- * @copyright 2007-2008 Peytz & Co. ApS
+ * @author    Christian Schmidt <schmidt@php.net>
+ * @copyright 2007-2009 Peytz & Co. A/S
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/Net_URL2
@@ -74,15 +74,13 @@ class Net_URL2
 
     /**
      * Query variable separators when parsing the query string. Every character
-     * is considered a separator. Default is specified by the
-     * arg_separator.input php.ini setting (this defaults to "&").
+     * is considered a separator. Default is "&".
      */
     const OPTION_SEPARATOR_INPUT = 'input_separator';
 
     /**
      * Query variable separator used when generating the query string. Default
-     * is specified by the arg_separator.output php.ini setting (this defaults
-     * to "&").
+     * is "&".
      */
     const OPTION_SEPARATOR_OUTPUT = 'output_separator';
 
@@ -93,8 +91,8 @@ class Net_URL2
         self::OPTION_STRICT           => true,
         self::OPTION_USE_BRACKETS     => true,
         self::OPTION_ENCODE_KEYS      => true,
-        self::OPTION_SEPARATOR_INPUT  => 'x&',
-        self::OPTION_SEPARATOR_OUTPUT => 'x&',
+        self::OPTION_SEPARATOR_INPUT  => '&',
+        self::OPTION_SEPARATOR_OUTPUT => '&',
         );
 
     /**
@@ -113,7 +111,7 @@ class Net_URL2
     private $_host = false;
 
     /**
-     * @var  int|bool
+     * @var  string|bool
      */
     private $_port = false;
 
@@ -137,41 +135,19 @@ class Net_URL2
      *
      * @param string $url     an absolute or relative URL
      * @param array  $options an array of OPTION_xxx constants
+     *
+     * @return $this
+     * @uses   self::parseUrl()
      */
-    public function __construct($url, $options = null)
+    public function __construct($url, array $options = array())
     {
-        $this->setOption(self::OPTION_SEPARATOR_INPUT,
-                         ini_get('arg_separator.input'));
-        $this->setOption(self::OPTION_SEPARATOR_OUTPUT,
-                         ini_get('arg_separator.output'));
-        if (is_array($options)) {
-            foreach ($options as $optionName => $value) {
-                $this->setOption($optionName, $value);
+        foreach ($options as $optionName => $value) {
+            if (array_key_exists($optionName, $this->_options)) {
+                $this->_options[$optionName] = $value;
             }
         }
 
-        if (preg_match('@^([a-z][a-z0-9.+-]*):@i', $url, $reg)) {
-            $this->_scheme = $reg[1];
-            $url = substr($url, strlen($reg[0]));
-        }
-
-        if (preg_match('@^//([^/#?]+)@', $url, $reg)) {
-            $this->setAuthority($reg[1]);
-            $url = substr($url, strlen($reg[0]));
-        }
-
-        $i = strcspn($url, '?#');
-        $this->_path = substr($url, 0, $i);
-        $url = substr($url, $i);
-
-        if (preg_match('@^\?([^#]*)@', $url, $reg)) {
-            $this->_query = $reg[1];
-            $url = substr($url, strlen($reg[0]));
-        }
-
-        if ($url) {
-            $this->_fragment = substr($url, 1);
-        }
+        $this->parseUrl($url);
     }
 
     /**
@@ -191,13 +167,13 @@ class Net_URL2
             $this->$method($arg);
         }
     }
-    
+
     /**
      * Magic Getter.
      *
-     * This is the magic get method to retrieve the private variable 
+     * This is the magic get method to retrieve the private variable
      * that was set by either __set() or it's setter...
-     * 
+     *
      * @param  string $var         The property name to retrieve.
      * @return mixed  $this->$var  Either a boolean false if the
      *                             property is not set or the value
@@ -209,10 +185,10 @@ class Net_URL2
         if (method_exists($this, $method)) {
             return $this->$method();
         }
-        
+
         return false;
     }
-    
+
     /**
      * Returns the scheme, e.g. "http" or "urn", or false if there is no
      * scheme specified, i.e. if this is a relative URL.
@@ -232,12 +208,13 @@ class Net_URL2
      *                            scheme specified, i.e. if this is a relative
      *                            URL
      *
-     * @return void
+     * @return $this
      * @see    getScheme()
      */
     public function setScheme($scheme)
     {
         $this->_scheme = $scheme;
+        return $this;
     }
 
     /**
@@ -286,7 +263,7 @@ class Net_URL2
      * @param string|bool $userinfo userinfo or username
      * @param string|bool $password optional password, or false
      *
-     * @return void
+     * @return $this
      */
     public function setUserinfo($userinfo, $password = false)
     {
@@ -294,6 +271,7 @@ class Net_URL2
         if ($password !== false) {
             $this->_userinfo .= ':' . $password;
         }
+        return $this;
     }
 
     /**
@@ -313,18 +291,19 @@ class Net_URL2
      *
      * @param string|bool $host a hostname, an IP address, or false
      *
-     * @return void
+     * @return $this
      */
     public function setHost($host)
     {
         $this->_host = $host;
+        return $this;
     }
 
     /**
      * Returns the port number, or false if there is no port number specified,
      * i.e. if the default port is to be used.
      *
-     * @return  int|bool
+     * @return  string|bool
      */
     public function getPort()
     {
@@ -335,13 +314,14 @@ class Net_URL2
      * Sets the port number. Specify false if there is no port number specified,
      * i.e. if the default port is to be used.
      *
-     * @param int|bool $port a port number, or false
+     * @param string|bool $port a port number, or false
      *
-     * @return void
+     * @return $this
      */
     public function setPort($port)
     {
-        $this->_port = intval($port);
+        $this->_port = $port;
+        return $this;
     }
 
     /**
@@ -379,7 +359,7 @@ class Net_URL2
      *                                with userinfo prefixed and port number
      *                                appended, e.g. "foo:bar@example.org:81".
      *
-     * @return void
+     * @return $this
      */
     public function setAuthority($authority)
     {
@@ -393,9 +373,10 @@ class Net_URL2
 
             $this->_host = $reg[3];
             if (isset($reg[5])) {
-                $this->_port = intval($reg[5]);
+                $this->_port = $reg[5];
             }
         }
+        return $this;
     }
 
     /**
@@ -413,11 +394,12 @@ class Net_URL2
      *
      * @param string $path a path
      *
-     * @return void
+     * @return $this
      */
     public function setPath($path)
     {
         $this->_path = $path;
+        return $this;
     }
 
     /**
@@ -438,12 +420,13 @@ class Net_URL2
      *
      * @param string|bool $query a query string, e.g. "foo=1&bar=2"
      *
-     * @return void
-     * @see   self::setQueryVariables()
+     * @return $this
+     * @see    self::setQueryVariables()
      */
     public function setQuery($query)
     {
         $this->_query = $query;
+        return $this;
     }
 
     /**
@@ -462,11 +445,12 @@ class Net_URL2
      * @param string|bool $fragment a fragment excluding the leading "#", or
      *                              false
      *
-     * @return void
+     * @return $this
      */
     public function setFragment($fragment)
     {
         $this->_fragment = $fragment;
+        return $this;
     }
 
     /**
@@ -532,33 +516,19 @@ class Net_URL2
      *
      * @param array $array (name => value) array
      *
-     * @return void
+     * @return $this
      */
     public function setQueryVariables(array $array)
     {
         if (!$array) {
             $this->_query = false;
         } else {
-            foreach ($array as $name => $value) {
-                if ($this->getOption(self::OPTION_ENCODE_KEYS)) {
-                    $name = self::urlencode($name);
-                }
-
-                if (is_array($value)) {
-                    foreach ($value as $k => $v) {
-                        $parts[] = $this->getOption(self::OPTION_USE_BRACKETS)
-                            ? sprintf('%s[%s]=%s', $name, $k, $v)
-                            : ($name . '=' . $v);
-                    }
-                } elseif (!is_null($value)) {
-                    $parts[] = $name . '=' . self::urlencode($value);
-                } else {
-                    $parts[] = $name;
-                }
-            }
-            $this->_query = implode($this->getOption(self::OPTION_SEPARATOR_OUTPUT),
-                                    $parts);
+            $this->_query = $this->buildQuery(
+                $array,
+                $this->getOption(self::OPTION_SEPARATOR_OUTPUT)
+            );
         }
+        return $this;
     }
 
     /**
@@ -567,13 +537,14 @@ class Net_URL2
      * @param string $name  variable name
      * @param mixed  $value variable value
      *
-     * @return  array
+     * @return $this
      */
     public function setQueryVariable($name, $value)
     {
         $array = $this->getQueryVariables();
         $array[$name] = $value;
         $this->setQueryVariables($array);
+        return $this;
     }
 
     /**
@@ -785,7 +756,7 @@ class Net_URL2
 
         // Make sure not to be trapped in an infinite loop due to a bug in this
         // method
-        $j = 0; 
+        $j = 0;
         while ($path && $j++ < 100) {
             if (substr($path, 0, 2) == './') {
                 // Step 2.A
@@ -832,15 +803,16 @@ class Net_URL2
     public static function urlencode($string)
     {
     	$encoded = rawurlencode($string);
-	// This is only necessary in PHP < 5.3.
-	$encoded = str_replace('%7E', '~', $encoded);
-	return $encoded;
+
+        // This is only necessary in PHP < 5.3.
+        $encoded = str_replace('%7E', '~', $encoded);
+        return $encoded;
     }
 
     /**
      * Returns a Net_URL2 instance representing the canonical URL of the
      * currently executing PHP script.
-     * 
+     *
      * @return  string
      */
     public static function getCanonical()
@@ -854,7 +826,7 @@ class Net_URL2
         $url = new self($_SERVER['PHP_SELF']);
         $url->_scheme = isset($_SERVER['HTTPS']) ? 'https' : 'http';
         $url->_host   = $_SERVER['SERVER_NAME'];
-        $port = intval($_SERVER['SERVER_PORT']);
+        $port = $_SERVER['SERVER_PORT'];
         if ($url->_scheme == 'http' && $port != 80 ||
             $url->_scheme == 'https' && $port != 443) {
 
@@ -895,34 +867,76 @@ class Net_URL2
     }
 
     /**
-     * Sets the specified option.
-     *
-     * @param string $optionName a self::OPTION_ constant
-     * @param mixed  $value      option value  
-     *
-     * @return void
-     * @see  self::OPTION_STRICT
-     * @see  self::OPTION_USE_BRACKETS
-     * @see  self::OPTION_ENCODE_KEYS
-     */
-    function setOption($optionName, $value)
-    {
-        if (!array_key_exists($optionName, $this->_options)) {
-            return false;
-        }
-        $this->_options[$optionName] = $value;
-    }
-
-    /**
      * Returns the value of the specified option.
      *
      * @param string $optionName The name of the option to retrieve
      *
      * @return  mixed
      */
-    function getOption($optionName)
+    public function getOption($optionName)
     {
         return isset($this->_options[$optionName])
             ? $this->_options[$optionName] : false;
+    }
+
+    /**
+     * A simple version of http_build_query in userland. The encoded string is
+     * percentage encoded according to RFC 3986.
+     *
+     * @param array  $data      An array, which has to be converted into
+     *                          QUERY_STRING. Anything is possible.
+     * @param string $seperator See {@link self::OPTION_SEPARATOR_OUTPUT}
+     * @param string $key       For stacked values (arrays in an array).
+     *
+     * @return string
+     */
+    protected function buildQuery(array $data, $separator, $key = null)
+    {
+        $query = array();
+        foreach ($data as $name => $value) {
+            if ($this->getOption(self::OPTION_ENCODE_KEYS) === true) {
+                $name = rawurlencode($name);
+            }
+            if ($key !== null) {
+                if ($this->getOption(self::OPTION_USE_BRACKETS) === true) {
+                    $name = $key . '[' . $name . ']';
+                } else {
+                    $name = $key;
+                }
+            }
+            if (is_array($value)) {
+                $query[] = $this->buildQuery($value, $separator, $name);
+            } else {
+                $query[] = $name . '=' . rawurlencode($value);
+            }
+        }
+        return implode($separator, $query);
+    }
+
+    /**
+     * This method uses a funky regex to parse the url into the designated parts.
+     *
+     * @param string $url
+     *
+     * @return void
+     * @uses   self::$_scheme, self::setAuthority(), self::$_path, self::$_query,
+     *         self::$_fragment
+     * @see    self::__construct()
+     */
+    protected function parseUrl($url)
+    {
+        // The regular expression is copied verbatim from RFC 3986, appendix B.
+        // The expression does not validate the URL but matches any string.
+        preg_match('!^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?!',
+                   $url,
+                   $matches);
+
+        // "path" is always present (possibly as an empty string); the rest
+        // are optional.
+        $this->_scheme   = !empty($matches[1]) ? $matches[2] : false;
+        $this->setAuthority(!empty($matches[3]) ? $matches[4] : false);
+        $this->_path     = $matches[5];
+        $this->_query    = !empty($matches[6]) ? $matches[7] : false;
+        $this->_fragment = !empty($matches[8]) ? $matches[9] : false;
     }
 }
