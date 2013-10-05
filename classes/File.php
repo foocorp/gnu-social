@@ -211,8 +211,7 @@ class File extends Managed_DataObject
         return $x;
     }
 
-    function isRespectsQuota($user,$fileSize) {
-
+    public static function respectsQuota(Profile $scoped, $fileSize) {
         if ($fileSize > common_config('attachments', 'file_quota')) {
             // TRANS: Message used to be inserted as %2$s in  the text "No file may
             // TRANS: be larger than %1$d byte and the file you sent was %2$s.".
@@ -224,35 +223,40 @@ class File extends Managed_DataObject
             // TRANS: %1$d (used for plural) is the byte limit for uploads,
             // TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
             // TRANS: gettext support multiple plurals in the same message, unfortunately...
-            return sprintf(_m('No file may be larger than %1$d byte and the file you sent was %2$s. Try to upload a smaller version.',
+            throw new ClientException(
+                    sprintf(_m('No file may be larger than %1$d byte and the file you sent was %2$s. Try to upload a smaller version.',
                               'No file may be larger than %1$d bytes and the file you sent was %2$s. Try to upload a smaller version.',
                               $fileQuota),
-                           $fileQuota, $fileSizeText);
+                    $fileQuota, $fileSizeText));
         }
 
-        $query = "select sum(size) as total from file join file_to_post on file_to_post.file_id = file.id join notice on file_to_post.post_id = notice.id where profile_id = {$user->id} and file.url like '%/notice/%/file'";
-        $this->query($query);
-        $this->fetch();
-        $total = $this->total + $fileSize;
+        $file = new File;
+
+        $query = "select sum(size) as total from file join file_to_post on file_to_post.file_id = file.id join notice on file_to_post.post_id = notice.id where profile_id = {$scoped->id} and file.url like '%/notice/%/file'";
+        $file->query($query);
+        $file->fetch();
+        $total = $file->total + $fileSize;
         if ($total > common_config('attachments', 'user_quota')) {
             // TRANS: Message given if an upload would exceed user quota.
             // TRANS: %d (number) is the user quota in bytes and is used for plural.
-            return sprintf(_m('A file this large would exceed your user quota of %d byte.',
+            throw new ClientException(
+                    sprintf(_m('A file this large would exceed your user quota of %d byte.',
                               'A file this large would exceed your user quota of %d bytes.',
                               common_config('attachments', 'user_quota')),
-                           common_config('attachments', 'user_quota'));
+                    common_config('attachments', 'user_quota')));
         }
         $query .= ' AND EXTRACT(month FROM file.modified) = EXTRACT(month FROM now()) and EXTRACT(year FROM file.modified) = EXTRACT(year FROM now())';
-        $this->query($query);
-        $this->fetch();
-        $total = $this->total + $fileSize;
+        $file->query($query);
+        $file->fetch();
+        $total = $file->total + $fileSize;
         if ($total > common_config('attachments', 'monthly_quota')) {
             // TRANS: Message given id an upload would exceed a user's monthly quota.
             // TRANS: $d (number) is the monthly user quota in bytes and is used for plural.
-            return sprintf(_m('A file this large would exceed your monthly quota of %d byte.',
+            throw new ClientException(
+                    sprintf(_m('A file this large would exceed your monthly quota of %d byte.',
                               'A file this large would exceed your monthly quota of %d bytes.',
                               common_config('attachments', 'monthly_quota')),
-                           common_config('attachments', 'monthly_quota'));
+                    common_config('attachments', 'monthly_quota')));
         }
         return true;
     }

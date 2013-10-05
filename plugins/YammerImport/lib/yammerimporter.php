@@ -492,7 +492,7 @@ class YammerImporter
         $temp = tmpfile();
         fwrite($temp, $body);
         try {
-            $upload = MediaFile::fromFileHandle($temp, $user);
+            $upload = MediaFile::fromFilehandle($temp, $user->getProfile());
             fclose($temp);
             return $upload;
         } catch (Exception $e) {

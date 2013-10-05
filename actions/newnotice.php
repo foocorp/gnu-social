@@ -114,8 +114,7 @@ class NewnoticeAction extends FormAction
             $options['reply_to'] = $replyto;
         }
 
-        $upload = null;
-        $upload = MediaFile::fromUpload('attach');
+        $upload = MediaFile::fromUpload('attach', $this->scoped);
 
         if (isset($upload)) {
 

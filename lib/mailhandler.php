@@ -73,7 +73,7 @@ class MailHandler
             $mf = null;
 
             try {
-                $mf = MediaFile::fromFileHandle($attachment, $user);
+                $mf = MediaFile::fromFilehandle($attachment, $user->getProfile());
             } catch(ClientException $ce) {
                 $this->error($from, $ce->getMessage());
             }

@@ -85,7 +85,7 @@ class ApiMediaUploadAction extends ApiAuthAction
         $upload = null;
 
         try {
-            $upload = MediaFile::fromUpload('media', $this->auth_user);
+            $upload = MediaFile::fromUpload('media', $this->auth_user->getProfile());
         } catch (Exception $e) {
             $this->clientError($e->getMessage(), $e->getCode());
             return;

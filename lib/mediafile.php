@@ -36,21 +36,17 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class MediaFile
 {
+    protected $scoped   = null;
 
     var $filename      = null;
     var $fileRecord    = null;
-    var $user          = null;
     var $fileurl       = null;
     var $short_fileurl = null;
     var $mimetype      = null;
 
-    function __construct($user = null, $filename = null, $mimetype = null)
+    function __construct(Profile $scoped, $filename = null, $mimetype = null)
     {
-        if ($user == null) {
-            $this->user = common_current_user();
-        } else {
-            $this->user = $user;
-        }
+        $this->scoped = $scoped;
 
         $this->filename   = $filename;
         $this->mimetype   = $mimetype;
@@ -124,7 +120,7 @@ class MediaFile
             return null;
         }
 
-        $outname = File::filename($this->user->getProfile(), 'thumb-' . $this->filename, $this->mimetype);
+        $outname = File::filename($this->scoped, 'thumb-' . $this->filename, $this->mimetype);
         $outpath = File::path($outname);
 
         $maxWidth = common_config('attachments', 'thumb_width');
@@ -176,10 +172,10 @@ class MediaFile
         }
     }
 
-    static function fromUpload($param = 'media', $user = null)
+    static function fromUpload($param = 'media', Profile $scoped)
     {
-        if (empty($user)) {
-            $user = common_current_user();
+        if (is_null($scoped)) {
+            $scoped = Profile::current();
         }
 
         if (!isset($_FILES[$param]['error'])){
@@ -229,85 +225,49 @@ class MediaFile
             return;
         }
 
-        if (!MediaFile::respectsQuota($user, $_FILES[$param]['size'])) {
-
-            // Should never actually get here
-
-            @unlink($_FILES[$param]['tmp_name']);
-            // TRANS: Client exception thrown when a file upload operation would cause a user to exceed a set quota.
-            throw new ClientException(_('File exceeds user\'s quota.'));
-            return;
-        }
+        // Throws exception if additional size does not respect quota
+        File::respectsQuota($scoped, $_FILES[$param]['size']);
 
         $mimetype = MediaFile::getUploadedFileType($_FILES[$param]['tmp_name'],
                                                    $_FILES[$param]['name']);
 
-        $filename = null;
+        $basename = basename($_FILES[$param]['name']);
+        $filename = File::filename($scoped, $basename, $mimetype);
+        $filepath = File::path($filename);
 
-        if (isset($mimetype)) {
+        $result = move_uploaded_file($_FILES[$param]['tmp_name'], $filepath);
 
-            $basename = basename($_FILES[$param]['name']);
-            $filename = File::filename($user->getProfile(), $basename, $mimetype);
-            $filepath = File::path($filename);
-
-            $result = move_uploaded_file($_FILES[$param]['tmp_name'], $filepath);
-
-            if (!$result) {
-                // TRANS: Client exception thrown when a file upload operation fails because the file could
-                // TRANS: not be moved from the temporary folder to the permanent file location.
-                throw new ClientException(_('File could not be moved to destination directory.'));
-                return;
-            }
-
-        } else {
-            // TRANS: Client exception thrown when a file upload operation has been stopped because the MIME
-            // TRANS: type of the uploaded file could not be determined.
-            throw new ClientException(_('Could not determine file\'s MIME type.'));
-            return;
+        if (!$result) {
+            // TRANS: Client exception thrown when a file upload operation fails because the file could
+            // TRANS: not be moved from the temporary folder to the permanent file location.
+            throw new ClientException(_('File could not be moved to destination directory.'));
         }
 
-        return new MediaFile($user, $filename, $mimetype);
+        return new MediaFile($scoped, $filename, $mimetype);
     }
 
-    static function fromFilehandle($fh, $user) {
+    static function fromFilehandle($fh, Profile $scoped) {
 
         $stream = stream_get_meta_data($fh);
 
-        if (!MediaFile::respectsQuota($user, filesize($stream['uri']))) {
-
-            // Should never actually get here
-
-            // TRANS: Client exception thrown when a file upload operation would cause a user to exceed a set quota.
-            throw new ClientException(_('File exceeds user\'s quota.'));
-            return;
-        }
+        File::respectsQuota($scoped, filesize($stream['uri']));
 
         $mimetype = MediaFile::getUploadedFileType($fh);
 
-        $filename = null;
+        $filename = File::filename($scoped, "email", $mimetype);
 
-        if (isset($mimetype)) {
+        $filepath = File::path($filename);
 
-            $filename = File::filename($user->getProfile(), "email", $mimetype);
+        $result = copy($stream['uri'], $filepath) && chmod($filepath, 0664);
 
-            $filepath = File::path($filename);
-
-            $result = copy($stream['uri'], $filepath) && chmod($filepath, 0664);
-
-            if (!$result) {
-                // TRANS: Client exception thrown when a file upload operation fails because the file could
-                // TRANS: not be moved from the temporary folder to the permanent file location.
-                throw new ClientException(_('File could not be moved to destination directory.' .
-                    $stream['uri'] . ' ' . $filepath));
-            }
-        } else {
-            // TRANS: Client exception thrown when a file upload operation has been stopped because the MIME
-            // TRANS: type of the uploaded file could not be determined.
-            throw new ClientException(_('Could not determine file\'s MIME type.'));
-            return;
+        if (!$result) {
+            // TRANS: Client exception thrown when a file upload operation fails because the file could
+            // TRANS: not be moved from the temporary folder to the permanent file location.
+            throw new ClientException(_('File could not be moved to destination directory.' .
+                $stream['uri'] . ' ' . $filepath));
         }
 
-        return new MediaFile($user, $filename, $mimetype);
+        return new MediaFile($scoped, $filename, $mimetype);
     }
 
     /**
@@ -325,14 +285,16 @@ class MediaFile
      * @throws ClientException if type is known, but not supported for local uploads
      */
     static function getUploadedFileType($f, $originalFilename=false) {
+        global $_PEAR;
+
         require_once 'MIME/Type.php';
         require_once 'MIME/Type/Extension.php';
 
         // We have to disable auto handling of PEAR errors
-        PEAR::staticPushErrorHandling(PEAR_ERROR_RETURN);
+        $_PEAR->staticPushErrorHandling(PEAR_ERROR_RETURN);
         $mte = new MIME_Type_Extension();
 
-        $cmd = &PEAR::getStaticProperty('MIME_Type', 'fileCmd');
+        $cmd = &$_PEAR->getStaticProperty('MIME_Type', 'fileCmd');
         $cmd = common_config('attachments', 'filecommand');
 
         $filetype = null;
@@ -385,7 +347,7 @@ class MediaFile
         }
         if ($supported === true || in_array($filetype, $supported)) {
             // Restore PEAR error handlers for our DB code...
-            PEAR::staticPopErrorHandling();
+            $_PEAR->staticPopErrorHandling();
             return $filetype;
         }
         $media = MIME_Type::getMedia($filetype);
@@ -401,19 +363,7 @@ class MediaFile
             $hint = sprintf(_('"%s" is not a supported file type on this server.'), $filetype);
         }
         // Restore PEAR error handlers for our DB code...
-        PEAR::staticPopErrorHandling();
+        $_PEAR->staticPopErrorHandling();
         throw new ClientException($hint);
     }
-
-    static function respectsQuota($user, $filesize)
-    {
-        $file = new File;
-        $result = $file->isRespectsQuota($user, $filesize);
-        if ($result === true) {
-            return true;
-        } else {
-            throw new ClientException($result);
-        }
-    }
-
 }
