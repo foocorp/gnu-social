@@ -586,7 +586,7 @@ function common_render_content($text, $notice)
     $id = $notice->profile_id;
     $r = common_linkify_mentions($r, $notice);
     $r = preg_replace_callback('/(^|[\s\.\,\:\;]+)!(' . Nickname::DISPLAY_FMT . ')/',
-                      function ($m) { return $m[1].common_group_link($id, $m[2]); }, $r);
+                      function ($m) { return "{$m[1]}!".common_group_link($id, $m[2]); }, $r);
     return $r;
 }
 
@@ -813,7 +813,7 @@ function common_render_text($text)
     $r = preg_replace('/[\x{0}-\x{8}\x{b}-\x{c}\x{e}-\x{19}]/', '', $r);
     $r = common_replace_urls_callback($r, 'common_linkify');
     $r = preg_replace_callback('/(^|\&quot\;|\'|\(|\[|\{|\s+)#([\pL\pN_\-\.]{1,64})/u',
-                function ($m) { return $m[1].'#'.common_tag_link($m[2]); }, $r);
+                function ($m) { return "{$m[1]}#".common_tag_link($m[2]); }, $r);
     // XXX: machine tags
     return $r;
 }
