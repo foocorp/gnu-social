@@ -585,8 +585,8 @@ function common_render_content($text, $notice)
     $r = common_render_text($text);
     $id = $notice->profile_id;
     $r = common_linkify_mentions($r, $notice);
-    $r = preg_replace('/(^|[\s\.\,\:\;]+)!(' . Nickname::DISPLAY_FMT . ')/e',
-                      "'\\1!'.common_group_link($id, '\\2')", $r);
+    $r = preg_replace_callback('/(^|[\s\.\,\:\;]+)!(' . Nickname::DISPLAY_FMT . ')/',
+                      function ($m) { return $m[1].common_group_link($id, $m[2]); }, $r);
     return $r;
 }
 
@@ -1980,10 +1980,10 @@ function common_markup_to_html($c, $args=null)
         $c = preg_replace('/%%arg.'.$name.'%%/', $value, $c);
     }
 
-    $c = preg_replace('/%%user.(\w+)%%/e', "common_user_property('\\1')", $c);
-    $c = preg_replace('/%%action.(\w+)%%/e', "common_local_url('\\1')", $c);
-    $c = preg_replace('/%%doc.(\w+)%%/e', "common_local_url('doc', array('title'=>'\\1'))", $c);
-    $c = preg_replace('/%%(\w+).(\w+)%%/e', 'common_config(\'\\1\', \'\\2\')', $c);
+    $c = preg_replace_callback('/%%user.(\w+)%%/', function ($m) { return common_user_property($m[1]); }, $c);
+    $c = preg_replace_callback('/%%action.(\w+)%%/', function ($m) { return common_local_url($m[1]); }, $c);
+    $c = preg_replace_callback('/%%doc.(\w+)%%/', function ($m) { return common_local_url('doc', array('title'=>$m[1])); }, $c);
+    $c = preg_replace_callback('/%%(\w+).(\w+)%%/', function ($m) { return common_config($m[1], $m[2]); }, $c);
     return Markdown($c);
 }
 
