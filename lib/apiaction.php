@@ -140,7 +140,7 @@ class ApiAction extends Action
      *
      * @return boolean false if user doesn't exist
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         StatusNet::setApi(true); // reduce exception reports to aid in debugging
         parent::prepare($args);
@@ -172,10 +172,10 @@ class ApiAction extends Action
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
         header('Access-Control-Allow-Origin: *');
-        parent::handle($args);
+        parent::handle();
     }
 
     /**

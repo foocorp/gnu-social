@@ -150,7 +150,7 @@ class ProfilesettingsAction extends SettingsAction
                 // TRANS: Checkbox label in form for profile settings.
                 $this->checkbox('sharelocation', _('Share my current location when posting notices'),
                                 ($this->arg('sharelocation')) ?
-                                $this->arg('sharelocation') : $user->shareLocation());
+                                $this->arg('sharelocation') : $this->scoped->shareLocation());
                 $this->elementEnd('li');
             }
             Event::handle('EndProfileFormData', array($this));

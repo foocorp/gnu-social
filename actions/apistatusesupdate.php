@@ -158,7 +158,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -181,9 +181,9 @@ class ApiStatusesUpdateAction extends ApiAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
@@ -222,7 +222,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             return;
         }
 
-        if (empty($this->auth_user)) {
+        if (is_null($this->scoped)) {
             // TRANS: Client error displayed when updating a status for a non-existing user.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
@@ -269,7 +269,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             $upload = null;
 
             try {
-                $upload = MediaFile::fromUpload('media', $this->auth_user->getProfile());
+                $upload = MediaFile::fromUpload('media', $this->scoped);
             } catch (Exception $e) {
                 $this->clientError($e->getMessage(), $e->getCode(), $this->format);
                 return;
@@ -306,20 +306,20 @@ class ApiStatusesUpdateAction extends ApiAuthAction
 
             $options = array('reply_to' => $reply_to);
 
-            if ($this->auth_user->shareLocation()) {
+            if ($this->scoped->shareLocation()) {
 
                 $locOptions = Notice::locationOptions($this->lat,
                                                       $this->lon,
                                                       null,
                                                       null,
-                                                      $this->auth_user->getProfile());
+                                                      $this->scoped);
 
                 $options = array_merge($options, $locOptions);
             }
 
             try {
                 $this->notice = Notice::saveNew(
-                    $this->auth_user->id,
+                    $this->scoped->id,
                     $content,
                     $this->source,
                     $options

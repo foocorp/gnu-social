@@ -861,29 +861,6 @@ class User extends Managed_DataObject
         throw new Exception(_('Not implemented since inbox change.'));
     }
 
-    function shareLocation()
-    {
-        $cfg = common_config('location', 'share');
-
-        if ($cfg == 'always') {
-            return true;
-        } else if ($cfg == 'never') {
-            return false;
-        } else { // user
-            $share = common_config('location', 'sharedefault');
-
-            // Check if user has a personal setting for this
-            $prefs = User_location_prefs::getKV('user_id', $this->id);
-
-            if (!empty($prefs)) {
-                $share = $prefs->share_location;
-                $prefs->free();
-            }
-
-            return $share;
-        }
-    }
-
     public static function siteOwner()
     {
         $owner = self::cacheGet('user:site_owner');

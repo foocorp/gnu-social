@@ -53,9 +53,7 @@
 
 */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Actions extending this class will require auth
@@ -80,7 +78,7 @@ class ApiAuthAction extends ApiAction
      * @return boolean success flag
      *
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 

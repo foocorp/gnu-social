@@ -134,7 +134,7 @@ class NewnoticeAction extends FormAction
             }
         }
 
-        if ($user->shareLocation()) {
+        if ($this->scoped->shareLocation()) {
             // use browser data if checked; otherwise profile data
             if ($this->arg('notice_data-geo')) {
                 $locOptions = Notice::locationOptions($this->trimmed('lat'),
