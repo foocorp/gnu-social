@@ -58,11 +58,8 @@ class AvatarLink
         }
     }
 
-    static function fromAvatar($avatar)
+    static function fromAvatar(Avatar $avatar)
     {
-        if (empty($avatar)) {
-            return null;
-        }
         $alink = new AvatarLink();
         $alink->type   = $avatar->mediatype;
         $alink->height = $avatar->height;

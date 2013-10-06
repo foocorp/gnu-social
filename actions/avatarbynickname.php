@@ -75,7 +75,7 @@ class AvatarbynicknameAction extends Action
             try {
                 $avatar = Avatar::getUploaded($profile);
                 $url = $avatar->displayUrl();
-            } catch (Exception $e) {
+            } catch (NoAvatarException $e) {
                 $url = Avatar::defaultImage(AVATAR_PROFILE_SIZE);
             }
         } else {

@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Class for an exception when a database lookup returns no results
+ * Class for an exception when unable to retrieve or resize a profile's avatar.
  *
  * PHP version 5
  *
@@ -29,11 +29,10 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-class NoResultException extends ServerException
+class NoAvatarException extends NoResultException
 {
-    public function __construct(DB_DataObject $obj)
+    public function __construct(Profile $target, Avatar $avatar)
     {
-        // We could log an entry here with the search parameters
-        parent::__construct(sprintf(_('No result found on %s lookup.'), get_class($obj)));
+        parent::__construct($avatar);
     }
 }

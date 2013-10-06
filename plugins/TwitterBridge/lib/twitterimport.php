@@ -320,8 +320,8 @@ class TwitterImport
             common_debug(__METHOD__ . " - Updating profile avatar (profile_id={$profile->id}) " .
 			"from {$avatar->filename} to {$filename}");
             // else we continue with creating a new avatar
-        } catch (Exception $e) {
-            // Avatar was not found. We can catch NoResultException or FileNotFoundException
+        } catch (NoAvatarException $e) {
+            // Avatar was not found. We can catch NoAvatarException or FileNotFoundException
             // but generally we just want to continue creating a new avatar.
             common_debug(__METHOD__ . " - No avatar found for (profile_id={$profile->id})");
         }

@@ -136,7 +136,7 @@ class AvatarsettingsAction extends SettingsAction
                                             'alt' => $user->nickname));
                 $this->elementEnd('div');
                 $this->elementEnd('li');
-            } catch (NoResultException $e) {
+            } catch (NoAvatarException $e) {
                 // No original avatar found!
             }
 
@@ -157,7 +157,7 @@ class AvatarsettingsAction extends SettingsAction
                     $this->submit('delete', _m('BUTTON','Delete'));
                 }
                 $this->elementEnd('li');
-            } catch (Exception $e) {
+            } catch (NoAvatarException $e) {
                 // No previously uploaded avatar to preview.
             }
 

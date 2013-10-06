@@ -157,7 +157,7 @@ class FoafAction extends Action
             }
             $this->elementEnd('Image');
             $this->elementEnd('img');
-        } catch (Exception $e) {
+        } catch (NoAvatarException $e) {
             // No avatar for this user!
         }
 

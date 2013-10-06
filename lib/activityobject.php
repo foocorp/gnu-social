@@ -460,9 +460,9 @@ class ActivityObject
             $object->link   = $profile->profileurl;
 
             try {
-                $orig = Avatar::getUploaded($profile);
-                $object->avatarLinks[] = AvatarLink::fromAvatar($orig);
-            } catch (Exception $e) {
+                $avatar = Avatar::getUploaded($profile);
+                $object->avatarLinks[] = AvatarLink::fromAvatar($avatar);
+            } catch (NoAvatarException $e) {
                 // Could not find an original avatar to link
             }
 
@@ -475,9 +475,9 @@ class ActivityObject
             foreach ($sizes as $size) {
                 $alink  = null;
                 try {
-                    $avatar = $profile->getAvatar($size);
+                    $avatar = Avatar::byProfile($profile, $size);
                     $alink = AvatarLink::fromAvatar($avatar);
-                } catch (Exception $e) {
+                } catch (NoAvatarException $e) {
                     $alink = new AvatarLink();
                     $alink->type   = 'image/png';
                     $alink->height = $size;

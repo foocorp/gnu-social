@@ -74,11 +74,54 @@ class Avatar extends Managed_DataObject
                 }
                 $avatar->delete();
             }
-        } catch (NoResultException $e) {
+        } catch (NoAvatarException $e) {
             // There are no avatars to delete, a sort of success.
         }
 
         return true;
+    }
+
+    static protected $_avatars = array();
+
+    /*
+     * Get an avatar by profile. Currently can't call newSize with $height
+     */
+    public static function byProfile(Profile $target, $width=null, $height=null)
+    {
+        $width  = (int) floor($width);
+        $height = !is_null($height) ? (int) floor($height) : null;
+        if (is_null($height)) {
+            $height = $width;
+        }
+
+        $size = "{$width}x{$height}";
+        if (!isset(self::$_avatars[$target->id])) {
+            self::$_avatars[$target->id] = array();
+        } elseif (isset(self::$_avatars[$target->id][$size])){
+            return self::$_avatars[$target->id][$size];
+        }
+
+        $avatar = null;
+        if (Event::handle('StartProfileGetAvatar', array($target, $width, &$avatar))) {
+            $avatar = self::pkeyGet(
+                array(
+                    'profile_id' => $target->id,
+                    'width'      => $width,
+                    'height'     => $height,
+                )
+            );
+            Event::handle('EndProfileGetAvatar', array($target, $width, &$avatar));
+        }
+
+        if (is_null($avatar)) {
+            // Obviously we can't find an avatar, so let's resize the original!
+            $avatar = Avatar::newSize($target, $width);
+        } elseif (!($avatar instanceof Avatar)) {
+            throw new NoAvatarException($target, $avatar);
+        }
+
+        self::$_avatars[$target->id]["{$avatar->width}x{$avatar->height}"] = $avatar;
+        return $avatar;
     }
 
     public static function getUploaded(Profile $target)
@@ -87,13 +130,13 @@ class Avatar extends Managed_DataObject
         $avatar->profile_id = $target->id;
         $avatar->original = true;
         if (!$avatar->find(true)) {
-            throw new NoResultException($avatar);
+            throw new NoAvatarException($target, $avatar);
         }
         if (!file_exists(Avatar::path($avatar->filename))) {
             // The delete call may be odd for, say, unmounted filesystems
             // that cause a file to currently not exist, but actually it does...
             $avatar->delete();
-            throw new FileNotFoundException(Avatar::path($avatar->filename));
+            throw new NoAvatarException($target, $avatar);
         }
         return $avatar;
     }
@@ -102,7 +145,7 @@ class Avatar extends Managed_DataObject
         $avatar = new Avatar();
         $avatar->profile_id = $target->id;
         if (!$avatar->find()) {
-            throw new NoResultException($avatar);
+            throw new NoAvatarException($target, $avatar);
         }
         return $avatar->fetchAll();
     }
@@ -174,6 +217,14 @@ class Avatar extends Managed_DataObject
         }
     }
 
+    static function urlByProfile(Profile $target, $width=null, $height=null) {
+        try {
+            return self::byProfile($target,  $width, $height)->displayUrl();
+        } catch (Exception $e) {
+            return self::defaultImage($width);
+        }
+    }
+
     static function defaultImage($size)
     {
         static $sizenames = array(AVATAR_PROFILE_SIZE => 'profile',
@@ -182,9 +233,9 @@ class Avatar extends Managed_DataObject
         return Theme::path('default-avatar-'.$sizenames[$size].'.png');
     }
 
-    static function newSize(Profile $target, $size) {
-        $size = floor($size);
-        if ($size < 1 || $size > common_config('avatar', 'maxsize')) {
+    static function newSize(Profile $target, $width) {
+        $width = (int) floor($width);
+        if ($width < 1 || $width > common_config('avatar', 'maxsize')) {
             // TRANS: An error message when avatar size is unreasonable
             throw new Exception(_m('Avatar size too large'));
         }
@@ -192,12 +243,12 @@ class Avatar extends Managed_DataObject
         $original = Avatar::getUploaded($target);
 
         $imagefile = new ImageFile($target->id, Avatar::path($original->filename));
-        $filename = $imagefile->resize($size);
+        $filename = $imagefile->resize($width);
 
         $scaled = clone($original);
         $scaled->original = false;
-        $scaled->width = $size;
-        $scaled->height = $size;
+        $scaled->width = $width;
+        $scaled->height = $width;
         $scaled->url = Avatar::url($filename);
         $scaled->filename = $filename;
         $scaled->created = common_sql_now();

@@ -120,38 +120,7 @@ class Profile extends Managed_DataObject
 
     public function getAvatar($width, $height=null)
     {
-        $width = (int) floor($width);
-
-        if (is_null($height)) {
-            $height = $width;
-        }
-
-        if (isset($this->_avatars[$width])) {
-            return $this->_avatars[$width];
-        }
-        
-        if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
-            $avatar = Avatar::pkeyGet(
-                array(
-                    'profile_id' => $this->id,
-                    'width'      => $width,
-                    'height'     => $height
-                )
-            );
-            Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
-        }
-
-        if (is_null($avatar)) {
-            // Obviously we can't find an avatar, so let's resize the original!
-            $avatar = Avatar::newSize($this, $width);
-        } elseif (!($avatar instanceof Avatar)) {
-            throw new Exception('Bad Avatar retrieved');
-        }
-
-        // cache the avatar for future use
-        $this->_avatars[$width] = $avatar;
-
-        return $avatar;
+        return Avatar::byProfile($this, $width, $height);
     }
 
     public function setOriginal($filename)
@@ -574,13 +543,7 @@ class Profile extends Managed_DataObject
 
     function avatarUrl($size=AVATAR_PROFILE_SIZE)
     {
-        $size = floor($size);
-        try {
-            $avatar = $this->getAvatar($size);
-            return $avatar->displayUrl();
-        } catch (Exception $e) {
-            return Avatar::defaultImage($size);
-        }
+        return Avatar::urlByProfile($this, $size);
     }
 
     function getSubscribed($offset=0, $limit=null)
