@@ -101,8 +101,12 @@ class Profile_prefs extends Managed_DataObject
     }
 
     static function getTopic(Profile $profile, $namespace, $topic) {
-        $pref = self::pkeyGet(array('profile_id'=>$profile->id, 'namespace'=>$namespace, 'topic'=>$topic));
-        if (is_null($pref)) {
+        $pref = new Profile_prefs;
+        $pref->profile_id = $profile->id;
+        $pref->namespace  = $namespace;
+        $pref->topic      = $topic;
+
+        if (!$pref->find(true)) {
             throw new NoResultException($pref);
         }
         return $pref;
