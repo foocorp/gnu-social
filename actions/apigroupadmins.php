@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Show information about a group
+ * List a group's admins
  *
  * PHP version 5
  *
@@ -20,37 +20,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  API
- * @package   StatusNet
+ * @package   GNUSocial
  * @author    Craig Andrews <candrews@integralblue.com>
  * @author    Evan Prodromou <evan@status.net>
  * @author    Jeffery To <jeffery.to@gmail.com>
  * @author    Zach Copley <zach@status.net>
+ * @author    Hannes Mannerheim <h@nnesmannerhe.im>
  * @copyright 2009 StatusNet, Inc.
  * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET')) {
+if (!defined('GNUSOCIAL')) {
     exit(1);
 }
 
 /**
- * Outputs detailed information about the group specified by ID
+ * List 20 newest admins of the group specified by name or ID.
  *
  * @category API
- * @package  StatusNet
+ * @package  GNUSocial
  * @author   Craig Andrews <candrews@integralblue.com>
  * @author   Evan Prodromou <evan@status.net>
  * @author   Jeffery To <jeffery.to@gmail.com>
  * @author   Zach Copley <zach@status.net>
- * @author   Michele <macno@macno.org>
+ * @author   Hannes Mannerheim <h@nnesmannerhe.im> 
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
+ * @link     http://www.gnu.org/software/social/
  */
-class ApiGroupShowAction extends ApiPrivateAuthAction
+class ApiGroupAdminsAction extends ApiPrivateAuthAction
 {
-    var $group = null;
+    var $group    = null;
+    var $profiles = null;
 
     /**
      * Take arguments for running
@@ -63,26 +65,14 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
     {
         parent::prepare($args);
 
-        $this->group = $this->getTargetGroup($this->arg('id'));
-
+        $this->group    = $this->getTargetGroup($this->arg('id'));
         if (empty($this->group)) {
-            $alias = Group_alias::getKV(
-                'alias',
-                common_canonical_nickname($this->arg('id'))
-            );
-            if (!empty($alias)) {
-                $args = array('id' => $alias->group_id, 'format' => $this->format);
-                common_redirect(common_local_url('ApiGroupShow', $args), 301);
-            } else {
-                $this->clientError(
-                    // TRANS: Client error displayed when trying to show a group that could not be found.
-                    _('Group not found.'),
-                    404,
-                    $this->format
-                );
-            }
-            return;
+            // TRANS: Client error displayed trying to show group membership on a non-existing group.
+            $this->clientError(_('Group not found.'), 404, $this->format);
+            return false;
         }
+
+        $this->profiles = $this->getProfiles();
 
         return true;
     }
@@ -90,7 +80,7 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
     /**
      * Handle the request
      *
-     * Check the format and show the user info
+     * Show the admin of the group
      *
      * @param array $args $_REQUEST data (unused)
      *
@@ -100,45 +90,89 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
     {
         parent::handle($args);
 
+        // XXX: RSS and Atom
+
         switch($this->format) {
         case 'xml':
-            $this->showSingleXmlGroup($this->group);
+            $this->showTwitterXmlUsers($this->profiles);
             break;
         case 'json':
-            $this->showSingleJsonGroup($this->group);
+            $this->showJsonUsers($this->profiles);
             break;
         default:
-            // TRANS: Client error displayed when coming across a non-supported API method.
-            $this->clientError(_('API method not found.'), 404, $this->format);
+            $this->clientError(
+                // TRANS: Client error displayed when coming across a non-supported API method.
+                _('API method not found.'),
+                404,
+                $this->format
+            );
             break;
         }
     }
 
     /**
-     * When was this group last modified?
+     * Fetch the admins of a group
      *
-     * @return string datestamp of the latest notice in the stream
+     * @return array $profiles list of profiles
+     */
+    function getProfiles()
+    {
+        $profiles = array();
+
+        $profile = $this->group->getAdmins(
+            ($this->page - 1) * $this->count,
+            $this->count,
+            $this->since_id,
+            $this->max_id
+        );
+
+        while ($profile->fetch()) {
+            $profiles[] = clone($profile);
+        }
+
+        return $profiles;
+    }
+
+    /**
+     * Is this action read only?
+     *
+     * @param array $args other arguments
+     *
+     * @return boolean true
+     */
+    function isReadOnly($args)
+    {
+        return true;
+    }
+
+    /**
+     * When was this list of profiles last modified?
+     *
+     * @return string datestamp of the lastest profile in the group
      */
     function lastModified()
     {
-        if (!empty($this->group)) {
-            return strtotime($this->group->modified);
+        if (!empty($this->profiles) && (count($this->profiles) > 0)) {
+            return strtotime($this->profiles[0]->created);
         }
 
         return null;
     }
 
     /**
-     * An entity tag for this group
+     * An entity tag for this list of groups
      *
-     * Returns an Etag based on the action name, language, and
-     * timestamps of the notice
+     * Returns an Etag based on the action name, language
+     * the group id, and timestamps of the first and last
+     * user who has joined the group
      *
      * @return string etag
      */
     function etag()
     {
-        if (!empty($this->group)) {
+        if (!empty($this->profiles) && (count($this->profiles) > 0)) {
+
+            $last = count($this->profiles) - 1;
 
             return '"' . implode(
                 ':',
@@ -146,25 +180,12 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
                       common_user_cache_hash($this->auth_user),
                       common_language(),
                       $this->group->id,
-                      strtotime($this->group->modified))
+                      strtotime($this->profiles[0]->created),
+                      strtotime($this->profiles[$last]->created))
             )
             . '"';
         }
 
         return null;
-    }
-
-    /**
-     * Return true if read only.
-     *
-     * MAY override
-     *
-     * @param array $args other arguments
-     *
-     * @return boolean is read only action?
-     */
-    function isReadOnly($args)
-    {
-        return true;
     }
 }

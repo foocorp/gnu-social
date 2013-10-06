@@ -75,9 +75,7 @@ class ApiconversationAction extends ApiAuthAction
                                       404);
         }
 
-        $profile = Profile::current();
-
-        $stream = new ConversationNoticeStream($convId, $profile);
+        $stream = new ConversationNoticeStream($convId, $this->scoped);
 
         $notice = $stream->getNotices(($this->page-1) * $this->count,
                                       $this->count,

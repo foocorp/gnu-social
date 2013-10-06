@@ -460,6 +460,41 @@ class Router
                               'id' => '[0-9]+',
                               'format' => '(xml|json)'));
 
+            // START qvitter API additions
+
+            $m->connect('api/statuses/favs/:id.json',
+                array('action' => 'ApiStatusesFavs',
+                'id' => '[0-9]+'));
+            
+            $m->connect('api/attachment/:id.json',
+                array('action' => 'ApiAttachment',
+                'id' => '[0-9]+'));
+            
+            $m->connect('api/checkhub.json',
+                array('action' => 'ApiCheckHub'));
+            
+            $m->connect('api/externalprofile/show.json',
+                array('action' => 'ApiExternalProfileShow'));
+
+            $m->connect('api/statusnet/groups/admins/:id.:format',
+                array('action' => 'ApiGroupAdmins',
+                    'id' => Nickname::INPUT_FMT,
+                    'format' => '(xml|json)'));
+            
+            $m->connect('api/account/update_link_color.json',
+                array('action' => 'ApiAccountUpdateLinkColor'));
+                
+            $m->connect('api/account/update_background_color.json',
+                array('action' => 'ApiAccountUpdateBackgroundColor'));
+
+            $m->connect('api/account/register.json',
+                array('action' => 'ApiAccountRegister'));
+            
+            $m->connect('api/check_nickname.json',
+                array('action' => 'ApiCheckNickname'));
+
+            // END qvitter API additions
+
             // users
 
             $m->connect('api/users/show/:id.:format',
@@ -773,6 +808,7 @@ class Router
             // Tags
             $m->connect('api/statusnet/tags/timeline/:tag.:format',
                         array('action' => 'ApiTimelineTag',
+                              'tag'    => self::REGEX_TAG,
                               'format' => '(xml|json|rss|atom|as)'));
 
             // media related

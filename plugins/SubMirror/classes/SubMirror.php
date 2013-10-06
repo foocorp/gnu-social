@@ -148,10 +148,10 @@ class SubMirror extends Managed_DataObject
      * @param Notice $notice
      * @return mixed Notice on successful mirroring, boolean if not
      */
-    public function mirrorNotice($notice)
+    public function mirrorNotice(Notice $notice)
     {
         $profile = Profile::getKV('id', $this->subscriber);
-        if (!$profile) {
+        if (!($profile instanceof Profile)) {
             common_log(LOG_ERR, "SubMirror plugin skipping auto-repeat of notice $notice->id for missing user $profile->id");
             return false;
         }
@@ -172,9 +172,9 @@ class SubMirror extends Managed_DataObject
      * @param Notice $notice
      * @return mixed Notice on successful repeat, true if already repeated, false on failure
      */
-    protected function repeatNotice($profile, $notice)
+    protected function repeatNotice(Profile $profile, Notice $notice)
     {
-        if($profile->hasRepeated($notice->id)) {
+        if($profile->hasRepeated($notice)) {
             common_log(LOG_INFO, "SubMirror plugin skipping auto-repeat of notice $notice->id for user $profile->id; already repeated.");
             return true;
         } else {

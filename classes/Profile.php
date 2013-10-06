@@ -211,9 +211,9 @@ class Profile extends Managed_DataObject
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
-    function getNotices($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
+    function getNotices($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0, Profile $scoped=null)
     {
-        $stream = new ProfileNoticeStream($this);
+        $stream = new ProfileNoticeStream($this, $scoped);
 
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
@@ -1157,12 +1157,13 @@ class Profile extends Managed_DataObject
         return $result;
     }
 
-    function hasRepeated($notice_id)
+    // FIXME: Can't put Notice typing here due to ArrayWrapper
+    public function hasRepeated($notice)
     {
         // XXX: not really a pkey, but should work
 
         $notice = Notice::pkeyGet(array('profile_id' => $this->id,
-                                        'repeat_of' => $notice_id));
+                                        'repeat_of' => $notice->id));
 
         return !empty($notice);
     }

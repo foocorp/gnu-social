@@ -210,7 +210,12 @@ class User_group extends Managed_DataObject
         return $members;
     }
 
-    function getMemberCount()
+    public function getAdminCount()
+    {
+        return $this->getAdmins()->N;
+    }
+
+    public function getMemberCount()
     {
         $key = sprintf("group:member_count:%d", $this->id);
 

@@ -34,8 +34,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiprivateauth.php';
-
 /**
  * Ouputs information for a user, specified by ID or screen name.
  * The user's most recent status will be returned inline.

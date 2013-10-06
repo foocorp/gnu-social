@@ -229,7 +229,8 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         $notice = $this->user->getNotices(($this->page-1) * $this->count,
                                           $this->count + 1,
                                           $this->since_id,
-                                          $this->max_id);
+                                          $this->max_id,
+                                          $this->scoped);
 
         while ($notice->fetch()) {
             if (count($notices) < $this->count) {

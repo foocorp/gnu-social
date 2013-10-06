@@ -232,14 +232,7 @@ class ResultItem
         $this->id           = $this->notice->id;
         $this->from_user_id = $this->profile->id;
 
-        $user = $this->profile->getUser();
-
-        if (empty($user)) {
-            // Gonna have to do till we can detect it
-            $this->iso_language_code = common_config('site', 'language');
-        } else {
-            $this->iso_language_code = $user->language;
-        }
+        $this->iso_language_code = Profile_prefs::getConfigData($this->profile, 'site', 'language');
         
         $this->source = $this->getSourceLink($this->notice->source);
 

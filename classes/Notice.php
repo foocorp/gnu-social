@@ -211,6 +211,11 @@ class Notice extends Managed_DataObject
         return $result;
     }
 
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
     /**
      * Extract #hashtags from this notice's content and save them to the database.
      */
@@ -417,7 +422,7 @@ class Notice extends Managed_DataObject
 
             $repeat = Notice::getKV('id', $repeat_of);
 
-            if (empty($repeat)) {
+            if (!($repeat instanceof Notice)) {
                 // TRANS: Client exception thrown in notice when trying to repeat a missing or deleted notice.
                 throw new ClientException(_('Cannot repeat; original notice is missing or deleted.'));
             }
@@ -439,7 +444,7 @@ class Notice extends Managed_DataObject
                 throw new ClientException(_('Cannot repeat a notice you cannot read.'), 403);
             }
 
-            if ($profile->hasRepeated($repeat->id)) {
+            if ($profile->hasRepeated($repeat)) {
                 // TRANS: Client error displayed when trying to repeat an already repeated notice.
                 throw new ClientException(_('You already repeated that notice.'));
             }
@@ -1710,9 +1715,9 @@ class Notice extends Managed_DataObject
         // favorite and repeated
 
         if (!empty($cur)) {
-            $noticeInfoAttr['favorite'] = ($cur->hasFave($this)) ? "true" : "false";
             $cp = $cur->getProfile();
-            $noticeInfoAttr['repeated'] = ($cp->hasRepeated($this->id)) ? "true" : "false";
+            $noticeInfoAttr['favorite'] = ($cp->hasFave($this)) ? "true" : "false";
+            $noticeInfoAttr['repeated'] = ($cp->hasRepeated($this)) ? "true" : "false";
         }
 
         if (!empty($this->repeat_of)) {

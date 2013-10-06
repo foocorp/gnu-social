@@ -38,8 +38,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiprivateauth.php';
-
 /**
  * Returns the notice specified by id as a Twitter-style status and inline user
  *

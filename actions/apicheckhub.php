@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Test that you can connect to the API
+ * Show a notice's attachment
  *
  * PHP version 5
  *
@@ -20,29 +20,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  API
- * @package   StatusNet
- * @author    Evan Prodromou <evan@status.net>
- * @author    Zach Copley <zach@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @package   GNUSocial
+ * @author    Hannes Mannerheim <h@nnesmannerhe.im>
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Returns the string "ok" in the requested format with a 200 OK HTTP status code.
+ * Check if a url have a push-hub, i.e. if it is possible to subscribe
  *
- * @category API
- * @package  StatusNet
- * @author   Evan Prodromou <evan@status.net>
- * @author   Zach Copley <zach@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
  */
-class ApiHelpTestAction extends ApiPrivateAuthAction
+class ApiCheckHubAction extends ApiAuthAction
 {
     /**
      * Take arguments for running
@@ -54,6 +44,24 @@ class ApiHelpTestAction extends ApiPrivateAuthAction
     function prepare($args)
     {
         parent::prepare($args);
+
+		$this->url = urldecode($args['url']);
+		
+		if (!$this->url) {
+            $this->clientError(_('No URL.'), 403, 'json');
+            return;			
+		}
+
+		if (!Validate::uri(
+	                $this->url, array(
+	                    'allowed_schemes' =>
+	                    array('http', 'https')
+	                )
+	            )) {
+            $this->clientError(_('Invalid URL.'), 403, 'json');
+            return;
+			}
+		
         return true;
     }
 
@@ -66,24 +74,30 @@ class ApiHelpTestAction extends ApiPrivateAuthAction
      */
     function handle($args)
     {
-        parent::handle($args);
 
-        if ($this->format == 'xml') {
-            $this->initDocument('xml');
-            $this->element('ok', null, 'true');
-            $this->endDocument('xml');
-        } elseif ($this->format == 'json') {
-            $this->initDocument('json');
-            print '"ok"';
-            $this->endDocument('json');
-        } else {
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-        }
+		$discover = new FeedDiscovery();
+
+	    try {
+			$feeduri = $discover->discoverFromURL($this->url);
+			if($feeduri) {
+		        $huburi = $discover->getHubLink();				
+				}
+	    } catch (FeedSubNoFeedException $e) {
+	        $this->clientError(_('No feed found'), 403, 'json');
+	        return;
+	    } catch (FeedSubBadResponseException $e) {
+	        $this->clientError(_('No hub found'), 403, 'json');
+	        return;
+	    }
+		
+		$hub_status = array();
+		if ($huburi) {
+			$hub_status = array('huburi' => $huburi);
+		}
+			
+		$this->initDocument('json');
+		$this->showJsonObjects($hub_status);
+		$this->endDocument('json');
     }
 
     /**
@@ -95,6 +109,7 @@ class ApiHelpTestAction extends ApiPrivateAuthAction
      *
      * @return boolean is read only action?
      */
+
     function isReadOnly($args)
     {
         return true;

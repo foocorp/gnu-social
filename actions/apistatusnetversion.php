@@ -32,8 +32,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiprivateauth.php';
-
 /**
  * Returns a version number for this version of StatusNet, which
  * should make things a bit easier for upgrades.

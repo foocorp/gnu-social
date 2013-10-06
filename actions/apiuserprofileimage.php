@@ -31,8 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiprivateauth.php';
-
 /**
  * Ouputs avatar URL for a user, specified by screen name.
  * Unlike most API endpoints, this returns an HTTP redirect rather than direct data.

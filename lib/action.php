@@ -62,7 +62,7 @@ class Action extends HTMLOutputter // lawsuit
     protected $menus  = true;
     protected $needLogin = false;
 
-    // The currently scoped profile
+    // The currently scoped profile (normally Profile::current; from $this->auth_user for API)
     protected $scoped = null;
 
     // Messages to the front-end user

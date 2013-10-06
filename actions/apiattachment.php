@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Test that you can connect to the API
+ * Show a notice's attachment
  *
  * PHP version 5
  *
@@ -20,30 +20,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  API
- * @package   StatusNet
- * @author    Evan Prodromou <evan@status.net>
- * @author    Zach Copley <zach@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @package   GNUSocial
+ * @author    Hannes Mannerheim <h@nnesmannerhe.im>
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Returns the string "ok" in the requested format with a 200 OK HTTP status code.
+ * Show a notice's attachment
  *
- * @category API
- * @package  StatusNet
- * @author   Evan Prodromou <evan@status.net>
- * @author   Zach Copley <zach@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
  */
-class ApiHelpTestAction extends ApiPrivateAuthAction
+class ApiAttachmentAction extends ApiAuthAction
 {
+    const MAXCOUNT = 100;
+
+    var $original = null;
+    var $cnt      = self::MAXCOUNT;
+
     /**
      * Take arguments for running
      *
@@ -54,11 +49,14 @@ class ApiHelpTestAction extends ApiPrivateAuthAction
     function prepare($args)
     {
         parent::prepare($args);
+
         return true;
     }
 
     /**
      * Handle the request
+     *
+     * Make a new notice for the update, save it, and show it
      *
      * @param array $args $_REQUEST data (unused)
      *
@@ -67,23 +65,23 @@ class ApiHelpTestAction extends ApiPrivateAuthAction
     function handle($args)
     {
         parent::handle($args);
+        $file = new File();
+        $file->selectAdd(); // clears it
+        $file->selectAdd('url');
+        $file->id = $this->trimmed('id');
+        $url = $file->fetchAll('url');
+        
+		$file_txt = '';
+		if(strstr($url[0],'.html')) {
+			$file_txt['txt'] = file_get_contents(str_replace('://quitter.se','://127.0.0.1',$url[0]));
+			$file_txt['body_start'] = strpos($file_txt['txt'],'<body>')+6;
+			$file_txt['body_end'] = strpos($file_txt['txt'],'</body>');
+			$file_txt = substr($file_txt['txt'],$file_txt['body_start'],$file_txt['body_end']-$file_txt['body_start']);
+			}
 
-        if ($this->format == 'xml') {
-            $this->initDocument('xml');
-            $this->element('ok', null, 'true');
-            $this->endDocument('xml');
-        } elseif ($this->format == 'json') {
-            $this->initDocument('json');
-            print '"ok"';
-            $this->endDocument('json');
-        } else {
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-        }
+		$this->initDocument('json');
+		$this->showJsonObjects($file_txt);
+		$this->endDocument('json');
     }
 
     /**
@@ -95,6 +93,7 @@ class ApiHelpTestAction extends ApiPrivateAuthAction
      *
      * @return boolean is read only action?
      */
+
     function isReadOnly($args)
     {
         return true;

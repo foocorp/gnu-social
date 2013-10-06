@@ -20,19 +20,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Search
- * @package   StatusNet
+ * @package   GNUSocial
  * @author    Zach Copley <zach@status.net>
  * @copyright 2008-2010 StatusNet, Inc.
+ * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/apiprivateauth.php';
-require_once INSTALLDIR.'/lib/jsonsearchresultslist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Action handler for Twitter-compatible API search
@@ -89,12 +85,6 @@ class ApiSearchJSONAction extends ApiPrivateAuthAction
         $this->since_id = $this->trimmed('since_id');
         $this->geocode  = $this->trimmed('geocode');
 
-        if (!empty($this->auth_user)) {
-            $this->auth_profile = $this->auth_user->getProfile();
-        } else {
-            $this->auth_profile = null;
-        }
-
         return true;
     }
 
@@ -123,15 +113,15 @@ class ApiSearchJSONAction extends ApiPrivateAuthAction
         // TODO: Support search operators like from: and to:, boolean, etc.
 
         if (preg_match('/^#([\pL\pN_\-\.]{1,64})$/ue', $q)) {
-            $stream = new TagNoticeStream(substr($q, 1), $this->auth_profile);
+            $stream = new TagNoticeStream(substr($q, 1), $this->scoped);
         } else if ($this->isAnURL($q)) {
             $canon = File_redirection::_canonUrl($q);
             $file = File::getKV('url', $canon);
             if (!empty($file)) {
-                $stream = new FileNoticeStream($file, $this->auth_profile);
+                $stream = new FileNoticeStream($file, $this->scoped);
             }
         } else {
-            $stream = new SearchNoticeStream($q, $this->auth_profile);
+            $stream = new SearchNoticeStream($q, $this->scoped);
         }
 
         if (empty($stream)) {

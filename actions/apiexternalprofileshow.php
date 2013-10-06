@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Test that you can connect to the API
+ * Show an external user's profile information
  *
  * PHP version 5
  *
@@ -20,29 +20,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  API
- * @package   StatusNet
- * @author    Evan Prodromou <evan@status.net>
- * @author    Zach Copley <zach@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @package   GNUSocial
+ * @author    Hannes Mannerheim <h@nnesmannerhe.im>
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Returns the string "ok" in the requested format with a 200 OK HTTP status code.
- *
- * @category API
- * @package  StatusNet
- * @author   Evan Prodromou <evan@status.net>
- * @author   Zach Copley <zach@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
+ * Ouputs information for a user, specified by ID or screen name.
+ * The user's most recent status will be returned inline.
  */
-class ApiHelpTestAction extends ApiPrivateAuthAction
+class ApiExternalProfileShowAction extends ApiPrivateAuthAction
 {
     /**
      * Take arguments for running
@@ -50,15 +40,23 @@ class ApiHelpTestAction extends ApiPrivateAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
+     *
      */
     function prepare($args)
     {
         parent::prepare($args);
+
+        $profileurl = urldecode($this->arg('profileurl'));        
+
+        $this->profile = Profile::staticGet('profileurl', $profileurl);        
+
         return true;
     }
 
     /**
      * Handle the request
+     *
+     * Check the format and show the user info
      *
      * @param array $args $_REQUEST data (unused)
      *
@@ -68,22 +66,17 @@ class ApiHelpTestAction extends ApiPrivateAuthAction
     {
         parent::handle($args);
 
-        if ($this->format == 'xml') {
-            $this->initDocument('xml');
-            $this->element('ok', null, 'true');
-            $this->endDocument('xml');
-        } elseif ($this->format == 'json') {
-            $this->initDocument('json');
-            print '"ok"';
-            $this->endDocument('json');
-        } else {
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
+        if (empty($this->profile)) {
+            // TRANS: Client error displayed when requesting profile information for a non-existing profile.
+            $this->clientError(_('Profile not found.'), 404, 'json');
+            return;
         }
+
+        $twitter_user = $this->twitterUserArray($this->profile, true);
+
+        $this->initDocument('json');
+        $this->showJsonObjects($twitter_user);
+        $this->endDocument('json');
     }
 
     /**

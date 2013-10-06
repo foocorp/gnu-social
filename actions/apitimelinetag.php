@@ -35,8 +35,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiprivateauth.php';
-
 /**
  * Returns the 20 most recent notices tagged by a given tag
  *
@@ -179,7 +177,9 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
         $notice = Notice_tag::getStream(
             $this->tag,
             ($this->page - 1) * $this->count,
-            $this->count + 1
+            $this->count + 1,
+            $this->since_id,
+            $this->max_id
         );
 
         while ($notice->fetch()) {

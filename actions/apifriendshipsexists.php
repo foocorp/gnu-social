@@ -33,8 +33,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apiprivateauth.php';
-
 /**
  * Tests for the existence of friendship between two users. Will return true if
  * user_a follows user_b, otherwise will return false.

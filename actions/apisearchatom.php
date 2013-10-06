@@ -31,8 +31,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/apiprivateauth.php';
-
 /**
  * Action for outputting search results in Twitter compatible Atom
  * format.

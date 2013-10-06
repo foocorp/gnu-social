@@ -214,7 +214,23 @@ class ApiAction extends Action
         $twitter_user['location'] = ($profile->location) ? $profile->location : null;
         $twitter_user['description'] = ($profile->bio) ? $profile->bio : null;
 
-        $twitter_user['profile_image_url'] = $profile->avatarUrl(AVATAR_STREAM_SIZE);
+        // TODO: avatar url template (example.com/user/avatar?size={x}x{y})
+        $twitter_user['profile_image_url'] = Avatar::urlByProfile($profile, AVATAR_STREAM_SIZE);
+        // START introduced by qvitter API, not necessary for StatusNet API
+        $twitter_user['profile_image_url_profile_size'] = Avatar::urlByProfile($profile, AVATAR_PROFILE_SIZE);
+        try {
+            $avatar  = Avatar::getUploaded($profile);
+            $origurl = $avatar->displayUrl();
+        } catch (Exception $e) {
+            $origurl = $twitter_user['profile_image_url_profile_size'];
+        }
+        $twitter_user['profile_image_url_original'] = $origurl;
+
+        $twitter_user['groups_count'] = $profile->getGroups(0, null)->N;
+        foreach (array('linkcolor', 'backgroundcolor') as $key) {
+            $twitter_user[$key] = Profile_prefs::getConfigData($profile, 'theme', $key);
+        }
+        // END introduced by qvitter API, not necessary for StatusNet API
 
         $twitter_user['url'] = ($profile->homepage) ? $profile->homepage : null;
         $twitter_user['protected'] = (!empty($user) && $user->private_stream) ? true : false;
@@ -263,7 +279,7 @@ class ApiAction extends Action
 
         if ($get_notice) {
             $notice = $profile->getCurrentNotice();
-            if ($notice) {
+            if ($notice instanceof Notice) {
                 // don't get user!
                 $twitter_user['status'] = $this->twitterStatusArray($notice, false);
             }
@@ -299,8 +315,12 @@ class ApiAction extends Action
         $twitter_status['text'] = $notice->content;
         $twitter_status['truncated'] = false; # Not possible on StatusNet
         $twitter_status['created_at'] = $this->dateTwitter($notice->created);
-        $twitter_status['in_reply_to_status_id'] = ($notice->reply_to) ?
-            intval($notice->reply_to) : null;
+        try {
+            $in_reply_to = $notice->getParent()->id;
+        } catch (Exception $e) {
+            $in_reply_to = null;
+        }
+        $twitter_status['in_reply_to_status_id'] = $in_reply_to;
 
         $source = null;
 
@@ -317,6 +337,7 @@ class ApiAction extends Action
             }
         }
 
+        $twitter_status['uri'] = $notice->getUri();
         $twitter_status['source'] = $source;
         $twitter_status['id'] = intval($notice->id);
 
@@ -343,10 +364,12 @@ class ApiAction extends Action
             $twitter_status['geo'] = null;
         }
 
-        if (isset($this->auth_user)) {
-            $twitter_status['favorited'] = $this->auth_user->hasFave($notice);
+        if (!is_null($this->scoped)) {
+            $twitter_status['favorited'] = $this->scoped->hasFave($notice);
+            $twitter_status['repeated']  = $this->scoped->hasRepeated($notice);
         } else {
             $twitter_status['favorited'] = false;
+            $twitter_status['repeated'] = false;
         }
 
         // Enclosures
@@ -399,6 +422,7 @@ class ApiAction extends Action
             );
         }
 
+        $twitter_group['admin_count'] = $group->getAdminCount();
         $twitter_group['member_count'] = $group->getMemberCount();
         $twitter_group['original_logo'] = $group->original_logo;
         $twitter_group['homepage_logo'] = $group->homepage_logo;
@@ -1550,6 +1574,8 @@ class ApiAction extends Action
 
         } else if (self::is_decimal($id)) {
             return User_group::getKV('id', $id);
+        } else if ($this->arg('uri')) { // FIXME: move this into empty($id) check?
+            return User_group::getKV('uri', urldecode($this->arg('uri')));
         } else {
             return User_group::getForNickname($id);
         }

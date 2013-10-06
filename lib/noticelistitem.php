@@ -693,7 +693,7 @@ class NoticeListItem extends Widget
                 $user->id != $this->notice->profile_id) {
                 $this->out->text(' ');
                 $profile = $user->getProfile();
-                if ($profile->hasRepeated($this->notice->id)) {
+                if ($profile->hasRepeated($this->notice)) {
                     $this->out->element('span', array('class' => 'repeated',
                                                       // TRANS: Title for repeat form status in notice list when a notice has been repeated.
                                                       'title' => _('Notice repeated.')),
