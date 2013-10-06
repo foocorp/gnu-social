@@ -68,7 +68,7 @@ class User_group extends Managed_DataObject
         );
     }
 
-    function defaultLogo($size)
+    public static function defaultLogo($size)
     {
         static $sizenames = array(AVATAR_PROFILE_SIZE => 'profile',
                                   AVATAR_STREAM_SIZE => 'stream',

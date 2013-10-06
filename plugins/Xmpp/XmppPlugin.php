@@ -318,7 +318,7 @@ class XmppPlugin extends ImPlugin
         $this->queuedConnection()->message($screenname, $body, 'chat');
     }
 
-    function sendNotice($screenname, $notice)
+    function sendNotice($screenname, Notice $notice)
     {
         $msg   = $this->formatNotice($notice);
         $entry = $this->format_entry($notice);

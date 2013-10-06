@@ -80,7 +80,8 @@ class ThreadedNoticeList extends NoticeList
 		$total = count($notices);
 		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
 		
-    	self::prefill(self::_allNotices($notices));
+        $allnotices = self::_allNotices($notices);
+    	self::prefill($allnotices);
     	
         $conversations = array();
         
