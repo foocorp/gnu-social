@@ -61,7 +61,7 @@ class ApiStatusnetConfigAction extends ApiAction
         'xmpp' => array('enabled', 'server', 'port', 'user'),
         'integration' => array('source'),
         'attachments' => array('uploads', 'file_quota'),
-        'url' => array('maxlength', 'maxnoticelength'),
+        'url' => array('maxurllength', 'maxnoticelength'),
     );
 
     /**

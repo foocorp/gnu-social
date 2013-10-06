@@ -136,7 +136,7 @@ class UrlsettingsAction extends SettingsAction
                      (!is_null($this->arg('maxurllength'))) ?
                      $this->arg('maxurllength') : User_urlshortener_prefs::maxUrlLength($user),
                      // TRANS: Field title in URL settings in profile.
-                     _('URLs longer than this will be shortened, 0 means always shorten.'));
+                     _('URLs longer than this will be shortened, -1 means never shorten because a URL is long.'));
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->input('maxnoticelength',
@@ -145,7 +145,7 @@ class UrlsettingsAction extends SettingsAction
                      (!is_null($this->arg('maxnoticelength'))) ?
                      $this->arg('maxnoticelength') : User_urlshortener_prefs::maxNoticeLength($user),
                      // TRANS: Field title in URL settings in profile.
-                     _('URLs in notices longer than this will always be shortened, -1 means shorten only if notice text exceeds maximum length.'));
+                     _('URLs in notices longer than this will always be shortened, -1 means only shorten if the full post exceeds maximum length.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         // TRANS: Button text for saving "Other settings" in profile.
@@ -183,7 +183,7 @@ class UrlsettingsAction extends SettingsAction
 
         $maxurllength = $this->trimmed('maxurllength');
 
-        if (!Validate::number($maxurllength, array('min' => 0))) {
+        if (!Validate::number($maxurllength, array('min' => -1))) {
             // TRANS: Client exception thrown when the maximum URL settings value is invalid in profile URL settings.
             throw new ClientException(_('Invalid number for maximum URL length.'));
         }

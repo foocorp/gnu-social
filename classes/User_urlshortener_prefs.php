@@ -58,7 +58,7 @@ class User_urlshortener_prefs extends Managed_DataObject
 
     static function maxUrlLength($user)
     {
-        $def = common_config('url', 'maxlength');
+        $def = common_config('url', 'maxurllength');
 
         $prefs = self::getPrefs($user);
 

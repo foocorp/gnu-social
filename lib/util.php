@@ -2155,7 +2155,7 @@ function common_shorten_url($long_url, User $user=null, $force = false)
     // $force forces shortening even if it's not strictly needed
     // I doubt URL shortening is ever 'strictly' needed. - ESP
 
-    if (mb_strlen($long_url) < $maxUrlLength && !$force) {
+    if (($maxUrlLength == -1 || mb_strlen($long_url) < $maxUrlLength) && !$force) {
         return $long_url;
     }
 

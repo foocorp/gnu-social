@@ -794,14 +794,14 @@ external: external links in notices. One of three values: 'sometimes',
 url
 ---
 
-Everybody loves URL shorteners. These are some options for fine-tuning
-how and when the server shortens URLs.
+These are some options for fine-tuning how and when the server will 
+shorten URLs.
 
 shortener: URL shortening service to use by default. Users can override
-           individually. 'ur1.ca' by default.
-maxlength: If an URL is strictly longer than this limit, it will be
+           individually. 'internal' by default.
+maxurllength: If an URL is strictly longer than this limit, it will be
            shortened. Note that the URL shortener service may return an
-           URL longer than this limit. Defaults to 25. Users can
+           URL longer than this limit. Defaults to 100. Users can
            override. If set to 0, all URLs will be shortened.
 maxnoticelength: If a notice is strictly longer than this limit, all
            URLs in the notice will be shortened. Users can override.

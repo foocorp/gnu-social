@@ -343,7 +343,7 @@ $default =
               'external' => 'sometimes'), // Options: 'sometimes', 'never', default = 'sometimes'
         'url' =>
         array('shortener' => 'internal',
-              'maxlength' => 100,
+              'maxurllength' => 100,
               'maxnoticelength' => -1),
         'http' => // HTTP client settings when contacting other sites
         array('ssl_cafile' => false, // To enable SSL cert validation, point to a CA bundle (eg '/usr/lib/ssl/certs/ca-certificates.crt')
