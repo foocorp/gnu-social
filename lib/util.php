@@ -812,7 +812,8 @@ function common_render_text($text)
 
     $r = preg_replace('/[\x{0}-\x{8}\x{b}-\x{c}\x{e}-\x{19}]/', '', $r);
     $r = common_replace_urls_callback($r, 'common_linkify');
-    $r = preg_replace('/(^|\&quot\;|\'|\(|\[|\{|\s+)#([\pL\pN_\-\.]{1,64})/ue', "'\\1#'.common_tag_link('\\2')", $r);
+    $r = preg_replace_callback('/(^|\&quot\;|\'|\(|\[|\{|\s+)#([\pL\pN_\-\.]{1,64})/u',
+                function ($m) { return $m[1].'#'.common_tag_link($m[2]); }, $r);
     // XXX: machine tags
     return $r;
 }
@@ -1259,10 +1260,10 @@ function common_is_sensitive($action)
         'register',
         'passwordsettings',
         'api',
-        'ApiOauthRequestToken',
-        'ApiOauthAccessToken',
-        'ApiOauthAuthorize',
-        'ApiOauthPin',
+        'ApiOAuthRequestToken',
+        'ApiOAuthAccessToken',
+        'ApiOAuthAuthorize',
+        'ApiOAuthPin',
         'showapplication'
     );
     $ssl = null;
