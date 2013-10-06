@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/apioauth.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Action for getting OAuth token credentials (exchange an authorized
@@ -44,7 +40,7 @@ require_once INSTALLDIR . '/lib/apioauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ApiOauthAccessTokenAction extends ApiOauthAction
+class ApiOAuthAccessTokenAction extends ApiOAuthAction
 {
     protected $reqToken = null;
     protected $verifier = null;
@@ -60,7 +56,7 @@ class ApiOauthAccessTokenAction extends ApiOauthAction
     {
         parent::handle($args);
 
-        $datastore   = new ApiStatusNetOAuthDataStore();
+        $datastore   = new ApiGNUSocialOAuthDataStore();
         $server      = new OAuthServer($datastore);
         $hmac_method = new OAuthSignatureMethod_HMAC_SHA1();
 

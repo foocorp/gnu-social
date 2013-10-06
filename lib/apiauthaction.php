@@ -57,8 +57,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apioauth.php';
-
 /**
  * Actions extending this class will require auth
  *
@@ -133,7 +131,7 @@ class ApiAuthAction extends ApiAction
      */
     function getOAuthRequest()
     {
-        ApiOauthAction::cleanRequest();
+        ApiOAuthAction::cleanRequest();
 
         $req  = OAuthRequest::from_request();
 
@@ -160,7 +158,7 @@ class ApiAuthAction extends ApiAction
      */
     function checkOAuthRequest($request)
     {
-        $datastore   = new ApiStatusNetOAuthDataStore();
+        $datastore   = new ApiGNUSocialOAuthDataStore();
         $server      = new OAuthServer($datastore);
         $hmac_method = new OAuthSignatureMethod_HMAC_SHA1();
 

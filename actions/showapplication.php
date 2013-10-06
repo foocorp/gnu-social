@@ -261,13 +261,13 @@ class ShowApplicationAction extends Action
         $this->element('dd', null, $consumer->consumer_secret);
         // TRANS: Field label on application page.
         $this->element('dt', null, _('Request token URL'));
-        $this->element('dd', null, common_local_url('ApiOauthRequestToken'));
+        $this->element('dd', null, common_local_url('ApiOAuthRequestToken'));
         // TRANS: Field label on application page.
         $this->element('dt', null, _('Access token URL'));
-        $this->element('dd', null, common_local_url('ApiOauthAccessToken'));
+        $this->element('dd', null, common_local_url('ApiOAuthAccessToken'));
         // TRANS: Field label on application page.
         $this->element('dt', null, _('Authorize URL'));
-        $this->element('dd', null, common_local_url('ApiOauthAuthorize'));
+        $this->element('dd', null, common_local_url('ApiOAuthAuthorize'));
         $this->elementEnd('dl');
 
         $this->element('p', 'note',

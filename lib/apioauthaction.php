@@ -31,7 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 require_once INSTALLDIR . '/lib/apiaction.php';
-require_once INSTALLDIR . '/lib/statusnetoauthstore.php';
 
 /**
  * Base action for API OAuth enpoints. Clean up the
@@ -43,7 +42,7 @@ require_once INSTALLDIR . '/lib/statusnetoauthstore.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ApiOauthAction extends ApiAction
+class ApiOAuthAction extends ApiAction
 {
     /**
      * Is this a read-only action?

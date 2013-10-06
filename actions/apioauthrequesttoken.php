@@ -31,8 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apioauth.php';
-
 /**
  * Issue temporary OAuth credentials (a request token)
  *
@@ -42,7 +40,7 @@ require_once INSTALLDIR . '/lib/apioauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ApiOauthRequestTokenAction extends ApiOauthAction
+class ApiOAuthRequestTokenAction extends ApiOAuthAction
 {
     /**
      * Take arguments for running
@@ -75,7 +73,7 @@ class ApiOauthRequestTokenAction extends ApiOauthAction
     {
         parent::handle($args);
 
-        $datastore   = new ApiStatusNetOAuthDataStore();
+        $datastore   = new ApiGNUSocialOAuthDataStore();
         $server      = new OAuthServer($datastore);
         $hmac_method = new OAuthSignatureMethod_HMAC_SHA1();
 

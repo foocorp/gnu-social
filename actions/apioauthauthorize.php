@@ -31,9 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/apioauth.php';
-require_once INSTALLDIR . '/lib/info.php';
-
 /**
  * Authorize an OAuth request token
  *
@@ -43,7 +40,7 @@ require_once INSTALLDIR . '/lib/info.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ApiOauthAuthorizeAction extends Action
+class ApiOAuthAuthorizeAction extends ApiOAuthAction
 {
     var $oauthTokenParam;
     var $reqToken;
@@ -71,7 +68,7 @@ class ApiOauthAuthorizeAction extends Action
         $this->password        = $this->arg('password');
         $this->oauthTokenParam = $this->arg('oauth_token');
         $this->mode            = $this->arg('mode');
-        $this->store           = new ApiStatusNetOAuthDataStore();
+        $this->store           = new ApiGNUSocialOAuthDataStore();
 
         try {
             $this->app = $this->store->getAppByRequestToken($this->oauthTokenParam);
@@ -367,7 +364,7 @@ class ApiOauthAuthorizeAction extends Action
         $this->elementStart('form', array('method' => 'post',
                                           'id' => 'form_apioauthauthorize',
                                           'class' => 'form_settings',
-                                          'action' => common_local_url('ApiOauthAuthorize')));
+                                          'action' => common_local_url('ApiOAuthAuthorize')));
         $this->elementStart('fieldset');
         $this->element('legend', array('id' => 'apioauthauthorize_allowdeny'),
                                  // TRANS: Fieldset legend.
@@ -613,7 +610,7 @@ class ApiOauthAuthorizeAction extends Action
         }
 
         if ($this->reqToken->verified_callback == 'oob') {
-            $pin = new ApiOauthPinAction(
+            $pin = new ApiOAuthPinAction(
                 $title,
                 $msg,
                 $this->reqToken->verifier,

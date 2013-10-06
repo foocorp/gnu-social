@@ -17,14 +17,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once 'OAuth.php';
 
 /**
  * @fixme class doc
  */
-class ApiStatusNetOAuthDataStore extends OAuthDataStore
+class ApiGNUSocialOAuthDataStore extends OAuthDataStore
 {
     function lookup_consumer($consumerKey)
     {
@@ -120,7 +120,7 @@ class ApiStatusNetOAuthDataStore extends OAuthDataStore
         }
     }
 
-    function new_access_token($token, $consumer, $verifier)
+    function new_access_token($token, $consumer, $verifier = null)
     {
         common_debug(
             sprintf(
@@ -405,7 +405,7 @@ class ApiStatusNetOAuthDataStore extends OAuthDataStore
             $t->verifier = common_good_rand(8);
         }
 
-        $t->created = DB_DataObject_Cast::dateTime();
+        $t->created = common_sql_now();
         if (!$t->insert()) {
             return null;
         } else {

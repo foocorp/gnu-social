@@ -787,13 +787,13 @@ class Router
             $m->connect('api/trends.json', array('action' => 'ApiTrends'));
 
             $m->connect('api/oauth/request_token',
-                        array('action' => 'ApiOauthRequestToken'));
+                        array('action' => 'ApiOAuthRequestToken'));
 
             $m->connect('api/oauth/access_token',
-                        array('action' => 'ApiOauthAccessToken'));
+                        array('action' => 'ApiOAuthAccessToken'));
 
             $m->connect('api/oauth/authorize',
-                        array('action' => 'ApiOauthAuthorize'));
+                        array('action' => 'ApiOAuthAuthorize'));
 
             // Admin
 

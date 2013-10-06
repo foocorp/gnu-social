@@ -738,7 +738,7 @@ class OpenIDPlugin extends Plugin
             oid_assert_allowed($openid_url);
 
             $returnto = common_local_url(
-                'ApiOauthAuthorize',
+                'ApiOAuthAuthorize',
                 array(),
                 array(
                     'oauth_token' => $action->arg('oauth_token'),
