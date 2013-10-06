@@ -505,7 +505,7 @@ class ActivityObject
         return $object;
     }
 
-    static function fromGroup($group)
+    static function fromGroup(User_group $group)
     {
         $object = new ActivityObject();
 

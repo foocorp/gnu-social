@@ -137,12 +137,8 @@ class PoCo
         return null;
     }
 
-    function fromProfile($profile)
+    static function fromProfile(Profile $profile)
     {
-        if (empty($profile)) {
-            return null;
-        }
-
         $poco = new PoCo();
 
         $poco->preferredUsername = $profile->nickname;
@@ -168,12 +164,8 @@ class PoCo
         return $poco;
     }
 
-    function fromGroup($group)
+    static function fromGroup(User_group $group)
     {
-        if (empty($group)) {
-            return null;
-        }
-
         $poco = new PoCo();
 
         $poco->preferredUsername = $group->nickname;
