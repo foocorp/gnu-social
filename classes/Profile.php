@@ -549,14 +549,22 @@ class Profile extends Managed_DataObject
     function getSubscribed($offset=0, $limit=null)
     {
         $subs = Subscription::getSubscribedIDs($this->id, $offset, $limit);
-        $profiles = Profile::listFind('id', $subs);
+        try {
+            $profiles = Profile::listFind('id', $subs);
+        } catch (NoResultException $e) {
+            return $e->obj;
+        }
         return $profiles;
     }
 
     function getSubscribers($offset=0, $limit=null)
     {
         $subs = Subscription::getSubscriberIDs($this->id, $offset, $limit);
-        $profiles = Profile::listFind('id', $subs);
+        try {
+            $profiles = Profile::listFind('id', $subs);
+        } catch (NoResultException $e) {
+            return $e->obj;
+        }
         return $profiles;
     }
 

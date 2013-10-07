@@ -31,8 +31,11 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class NoResultException extends ServerException
 {
+    public $obj;    // The object with query that gave no results
+
     public function __construct(DB_DataObject $obj)
     {
+        $this->obj = $obj;
         // We could log an entry here with the search parameters
         parent::__construct(sprintf(_('No result found on %s lookup.'), get_class($obj)));
     }

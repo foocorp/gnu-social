@@ -31,8 +31,11 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class NoAvatarException extends NoResultException
 {
-    public function __construct(Profile $target, Avatar $avatar)
+    public $target;
+
+    public function __construct(Profile $target, Avatar $obj)
     {
-        parent::__construct($avatar);
+        $this->target = $target;
+        parent::__construct($obj);
     }
 }

@@ -85,15 +85,8 @@ class ProfileList extends Widget
 
     function showProfiles()
     {
-        // Note: we don't use fetchAll() because it's borked with query()
-
-        $profiles = array();
-
-        while ($this->profile->fetch()) {
-            $profiles[] = clone($this->profile);
-        }
-
-        $cnt = count($profiles);
+        $cnt = $this->profile->N;
+        $profiles = $this->profile->fetchAll();
 
         $max = min($cnt, $this->maxProfiles());
 
