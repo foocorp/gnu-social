@@ -41,7 +41,7 @@ class ApiCheckHubAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
@@ -67,23 +67,24 @@ class ApiCheckHubAction extends ApiAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
+        parent::handle();
 
-		$discover = new FeedDiscovery();
+        $discover = new FeedDiscovery();
 
-	    try {
-			$feeduri = $discover->discoverFromURL($this->url);
-			if($feeduri) {
-		        $huburi = $discover->getHubLink();				
-				}
-	    } catch (FeedSubNoFeedException $e) {
-	        $this->clientError(_('No feed found'), 403, 'json');
-	        return;
-	    } catch (FeedSubBadResponseException $e) {
-	        $this->clientError(_('No hub found'), 403, 'json');
-	        return;
-	    }
+        try {
+            $feeduri = $discover->discoverFromURL($this->url);
+            if($feeduri) {
+                $huburi = $discover->getHubLink();                
+            }
+        } catch (FeedSubNoFeedException $e) {
+            $this->clientError(_('No feed found'), 403, 'json');
+            return;
+        } catch (FeedSubBadResponseException $e) {
+            $this->clientError(_('No hub found'), 403, 'json');
+            return;
+        }
 		
 		$hub_status = array();
 		if ($huburi) {
