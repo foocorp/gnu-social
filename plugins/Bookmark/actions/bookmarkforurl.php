@@ -74,7 +74,7 @@ class BookmarkforurlAction extends Action
             throw new ClientException(_('URL is required.'), 400);
         }
 
-        if (!Validate::uri($this->url, array('allowed_schemes' => array('http', 'https')))) {
+        if (!common_valid_http_url($this->url)) {
             throw new ClientException(_('Invalid URL.'), 400);
         }
 

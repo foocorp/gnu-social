@@ -263,7 +263,7 @@ class ProfilesettingsAction extends SettingsAction
                 $this->showForm(_('Not a valid nickname.'));
                 return;
             } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
-                       !Validate::uri($homepage, array('allowed_schemes' => array('http', 'https')))) {
+                       !common_valid_http_url($homepage)) {
                 // TRANS: Validation error in form for profile settings.
                 $this->showForm(_('Homepage is not a valid URL.'));
                 return;

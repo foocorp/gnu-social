@@ -1323,7 +1323,7 @@ class Ostatus_profile extends Managed_DataObject
         }
         if ($url) {
             $opts = array('allowed_schemes' => array('http', 'https'));
-            if (Validate::uri($url, $opts)) {
+            if (common_valid_http_url($url)) {
                 return $url;
             }
         }
@@ -1615,7 +1615,7 @@ class Ostatus_profile extends Managed_DataObject
             $profile->profileurl = $object->link;
         } else if (array_key_exists('profileurl', $hints)) {
             $profile->profileurl = $hints['profileurl'];
-        } else if (Validate::uri($object->id, array('allowed_schemes' => array('http', 'https')))) {
+        } else if (common_valid_http_url($object->id)) {
             $profile->profileurl = $object->id;
         }
 

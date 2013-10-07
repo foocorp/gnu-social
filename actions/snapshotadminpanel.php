@@ -135,11 +135,7 @@ class SnapshotadminpanelAction extends AdminPanelAction
         // Validate report URL
 
         if (!is_null($values['snapshot']['reporturl'])
-            && !Validate::uri(
-                $values['snapshot']['reporturl'],
-                array('allowed_schemes' => array('http', 'https')
-            )
-        )) {
+                && !common_valid_http_url($values['snapshot']['reporturl'])) {
             // TRANS: Client error displayed on admin panel for snapshots when providing an invalid report URL.
             $this->clientError(_('Invalid snapshot report URL.'));
         }

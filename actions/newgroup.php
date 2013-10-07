@@ -102,9 +102,7 @@ class NewgroupAction extends FormAction
                 // TRANS: Group create form validation error.
                 throw new ClientException(_('Not a valid nickname.'));
             } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
-                       !Validate::uri($homepage,
-                                      array('allowed_schemes' =>
-                                            array('http', 'https')))) {
+                       !common_valid_http_url($homepage)) {
                 // TRANS: Group create form validation error.
                 throw new ClientException(_('Homepage is not a valid URL.'));
             } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {

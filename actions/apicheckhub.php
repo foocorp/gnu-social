@@ -45,23 +45,18 @@ class ApiCheckHubAction extends ApiAuthAction
     {
         parent::prepare($args);
 
-		$this->url = urldecode($args['url']);
-		
-		if (!$this->url) {
+        $this->url = urldecode($args['url']);
+        
+        if (empty($this->url)) {
             $this->clientError(_('No URL.'), 403, 'json');
-            return;			
-		}
+            return;            
+        }
 
-		if (!Validate::uri(
-	                $this->url, array(
-	                    'allowed_schemes' =>
-	                    array('http', 'https')
-	                )
-	            )) {
+        if (!common_valid_http_url($this->url)) {
             $this->clientError(_('Invalid URL.'), 403, 'json');
             return;
-			}
-		
+        }
+        
         return true;
     }
 

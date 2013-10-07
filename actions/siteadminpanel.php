@@ -156,13 +156,13 @@ class SiteadminpanelAction extends AdminPanelAction
 
         // Validate logos
         if (!empty($values['site']['logo']) &&
-            !Validate::uri($values['site']['logo'], array('allowed_schemes' => array('http', 'https')))) {
+                !common_valid_http_url($values['site']['logo'])) {
             // TRANS: Client error displayed when a logo URL is not valid.
             $this->clientError(_('Invalid logo URL.'));
         }
 
         if (!empty($values['site']['ssllogo']) &&
-            !Validate::uri($values['site']['ssllogo'], array('allowed_schemes' => array('https')))) {
+                !common_valid_http_url($values['site']['ssllogo'], true)) {
             // TRANS: Client error displayed when a SSL logo URL is invalid.
             $this->clientError(_('Invalid SSL logo URL.'));
         }

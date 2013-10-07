@@ -152,9 +152,7 @@ class ApiAccountRegisterAction extends ApiAction
                 // TRANS: Form validation error displayed when trying to register with an already registered e-mail address.
 	            $this->clientError(_('Email address already exists.'),404,'json');	
             } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
-                       !Validate::uri($homepage,
-                                      array('allowed_schemes' =>
-                                            array('http', 'https')))) {
+                       !common_valid_http_url($homepage)) {
                 // TRANS: Form validation error displayed when trying to register with an invalid homepage URL.
 	            $this->clientError(_('Homepage is not a valid URL.'),404,'json');	
                 return;

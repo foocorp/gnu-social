@@ -165,15 +165,9 @@ class ApiGroupCreateAction extends ApiAuthAction
             );
             return false;
 
-        } elseif (
-            !is_null($this->homepage)
-            && strlen($this->homepage) > 0
-            && !Validate::uri(
-                $this->homepage, array(
-                    'allowed_schemes' =>
-                    array('http', 'https')
-                )
-            )) {
+        } elseif (!is_null($this->homepage)
+                && strlen($this->homepage) > 0
+                && !common_valid_http_url($this->homepage)) {
             $this->clientError(
                 // TRANS: Client error in form for group creation.
                 _('Homepage is not a valid URL.'),

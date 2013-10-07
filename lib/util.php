@@ -1720,9 +1720,13 @@ function common_log_objstring(&$object)
     return $objstring;
 }
 
-function common_valid_http_url($url)
+function common_valid_http_url($url, $secure=false)
 {
-    return Validate::uri($url, array('allowed_schemes' => array('http', 'https')));
+    // If $secure is true, only allow https URLs to pass
+    // (if false, we use '?' in 'https?' to say the 's' is optional)
+    $regex = $secure ? '/^https$/' : '/^https?$/';
+    return filter_var($url, FILTER_VALIDATE_URL)
+            && preg_match($regex, parse_url($url, PHP_URL_SCHEME));
 }
 
 function common_valid_tag($tag)

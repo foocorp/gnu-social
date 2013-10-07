@@ -267,13 +267,8 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
     function validateHomepage()
     {
         if (!is_null($this->homepage)
-        && (strlen($this->homepage) > 0)
-        && !Validate::uri(
-                $this->homepage,
-                array('allowed_schemes' => array('http', 'https')
-                )
-            )
-        ) {
+                && (strlen($this->homepage) > 0)
+                && !common_valid_http_url($this->homepage)) {
             throw new ApiValidationException(
                 // TRANS: API validation exception thrown when homepage URL does not validate.
                 _('Homepage is not a valid URL.')

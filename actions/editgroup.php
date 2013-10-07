@@ -198,9 +198,7 @@ class EditgroupAction extends GroupAction
                 $this->showForm(_('Not a valid nickname.'));
                 return;
             } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
-                       !Validate::uri($homepage,
-                                      array('allowed_schemes' =>
-                                            array('http', 'https')))) {
+                       !common_valid_http_url($homepage)) {
                 // TRANS: Group edit form validation error.
                 $this->showForm(_('Homepage is not a valid URL.'));
                 return;

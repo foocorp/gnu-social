@@ -210,12 +210,10 @@ class EditApplicationAction extends Action
             $this->showForm(_('Source URL is too long.'));
             return;
         } elseif ((mb_strlen($source_url) > 0)
-                  && !Validate::uri($source_url,
-                                    array('allowed_schemes' => array('http', 'https'))))
-            {
-                // TRANS: Validation error shown when providing an invalid source URL in the "Edit application" form.
-                $this->showForm(_('Source URL is not valid.'));
-                return;
+                  && !common_valid_http_url($source_url)) {
+            // TRANS: Validation error shown when providing an invalid source URL in the "Edit application" form.
+            $this->showForm(_('Source URL is not valid.'));
+            return;
         } elseif (empty($organization)) {
             // TRANS: Validation error shown when not providing an organisation in the "Edit application" form.
             $this->showForm(_('Organization is required.'));
@@ -229,25 +227,20 @@ class EditApplicationAction extends Action
             $this->showForm(_('Organization homepage is required.'));
             return;
         } elseif ((mb_strlen($homepage) > 0)
-                  && !Validate::uri($homepage,
-                                    array('allowed_schemes' => array('http', 'https'))))
-            {
-                // TRANS: Validation error shown when providing an invalid homepage URL in the "Edit application" form.
-                $this->showForm(_('Homepage is not a valid URL.'));
-                return;
-            } elseif (mb_strlen($callback_url) > 255) {
-                // TRANS: Validation error shown when providing too long a callback URL in the "Edit application" form.
-                $this->showForm(_('Callback is too long.'));
-                return;
-            } elseif (mb_strlen($callback_url) > 0
-                      && !Validate::uri($source_url,
-                                        array('allowed_schemes' => array('http', 'https'))
-                                        ))
-                {
-                    // TRANS: Validation error shown when providing an invalid callback URL in the "Edit application" form.
-                    $this->showForm(_('Callback URL is not valid.'));
-                    return;
-                }
+                && !common_valid_http_url($homepage)) {
+            // TRANS: Validation error shown when providing an invalid homepage URL in the "Edit application" form.
+            $this->showForm(_('Homepage is not a valid URL.'));
+            return;
+        } elseif (mb_strlen($callback_url) > 255) {
+            // TRANS: Validation error shown when providing too long a callback URL in the "Edit application" form.
+            $this->showForm(_('Callback is too long.'));
+            return;
+        } elseif (mb_strlen($callback_url) > 0
+                && !common_valid_http_url($callback_url)) {
+            // TRANS: Validation error shown when providing an invalid callback URL in the "Edit application" form.
+            $this->showForm(_('Callback URL is not valid.'));
+            return;
+        }
 
         $cur = common_current_user();
 

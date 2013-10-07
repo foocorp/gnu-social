@@ -122,12 +122,7 @@ class NewApplicationAction extends FormAction
         } elseif (empty($source_url)) {
             // TRANS: Validation error shown when not providing a source URL in the "New application" form.
             $this->clientError(_('Source URL is required.'));
-        } elseif ((strlen($source_url) > 0)
-            && !Validate::uri(
-                $source_url,
-                array('allowed_schemes' => array('http', 'https'))
-                )
-            ) {
+        } elseif ((strlen($source_url) > 0) && !common_valid_http_url($source_url)) {
             // TRANS: Validation error shown when providing an invalid source URL in the "New application" form.
             $this->clientError(_('Source URL is not valid.'));
         } elseif (empty($organization)) {
@@ -139,23 +134,13 @@ class NewApplicationAction extends FormAction
         } elseif (empty($homepage)) {
             // TRANS: Form validation error show when an organisation name has not been provided in the new application form.
             $this->clientError(_('Organization homepage is required.'));
-        } elseif ((strlen($homepage) > 0)
-            && !Validate::uri(
-                $homepage,
-                array('allowed_schemes' => array('http', 'https'))
-                )
-            ) {
+        } elseif ((strlen($homepage) > 0) && !common_valid_http_url($homepage)) {
             // TRANS: Validation error shown when providing an invalid homepage URL in the "New application" form.
             $this->clientError(_('Homepage is not a valid URL.'));
         } elseif (mb_strlen($callback_url) > 255) {
             // TRANS: Validation error shown when providing too long a callback URL in the "New application" form.
             $this->clientError(_('Callback is too long.'));
-        } elseif (strlen($callback_url) > 0
-            && !Validate::uri(
-                $source_url,
-                array('allowed_schemes' => array('http', 'https'))
-                )
-            ) {
+        } elseif (strlen($callback_url) > 0 && !common_valid_http_url($callback_url)) {
             // TRANS: Validation error shown when providing an invalid callback URL in the "New application" form.
             $this->clientError(_('Callback URL is not valid.'));
         }

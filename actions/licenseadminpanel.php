@@ -155,18 +155,14 @@ class LicenseadminpanelAction extends AdminPanelAction
             );
         }
 
-        // make sure the license URL and license image URL are valid URLs
-
-        $options = array('allowed_schemes' => array('http', 'https'));
-
         // URLs should be set for cc license
 
         if ($values['license']['type'] == 'cc') {
-            if (!Validate::uri($values['license']['url'], $options)) {
+            if (!common_valid_http_url($values['license']['url'])) {
                 // TRANS: Client error displayed specifying an invalid license URL in the license admin panel.
                 $this->clientError(_('Invalid license URL.'));
             }
-            if (!Validate::uri($values['license']['image'], $options)) {
+            if (!common_valid_http_url($values['license']['image'])) {
                 // TRANS: Client error displayed specifying an invalid license image URL in the license admin panel.
                 $this->clientError(_('Invalid license image URL.'));
             }
@@ -175,7 +171,7 @@ class LicenseadminpanelAction extends AdminPanelAction
         // can be either blank or a valid URL for private & allrightsreserved
 
         if (!empty($values['license']['url'])) {
-            if (!Validate::uri($values['license']['url'], $options)) {
+            if (!common_valid_http_url($values['license']['url'])) {
                 // TRANS: Client error displayed specifying an invalid license URL in the license admin panel.
                 $this->clientError(_('License URL must be blank or a valid URL.'));
             }
@@ -184,7 +180,7 @@ class LicenseadminpanelAction extends AdminPanelAction
         // can be either blank or a valid URL for private & allrightsreserved
 
         if (!empty($values['license']['image'])) {
-            if (!Validate::uri($values['license']['image'], $options)) {
+            if (!common_valid_http_url($values['license']['image'])) {
                 // TRANS: Client error displayed specifying an invalid license image URL in the license admin panel.
                 $this->clientError(_('License image must be blank or valid URL.'));
             }
