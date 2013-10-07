@@ -119,7 +119,6 @@ class ApiAction extends Action
     const READ_ONLY  = 1;
     const READ_WRITE = 2;
 
-    var $format    = null;
     var $user      = null;
     var $auth_user = null;
     var $page      = null;
@@ -1350,86 +1349,6 @@ class ApiAction extends Action
             break;
         }
         return;
-    }
-
-    function clientError($msg, $code = 400, $format = null)
-    {
-        $action = $this->trimmed('action');
-        if ($format === null) {
-            $format = $this->format;
-        }
-
-        common_debug("User error '$code' on '$action': $msg", __FILE__);
-
-        if (!array_key_exists($code, ClientErrorAction::$status)) {
-            $code = 400;
-        }
-
-        $status_string = ClientErrorAction::$status[$code];
-
-        // Do not emit error header for JSONP
-        if (!isset($this->callback)) {
-            header('HTTP/1.1 ' . $code . ' ' . $status_string);
-        }
-
-        switch($format) {
-        case 'xml':
-            $this->initDocument('xml');
-            $this->elementStart('hash');
-            $this->element('error', null, $msg);
-            $this->element('request', null, $_SERVER['REQUEST_URI']);
-            $this->elementEnd('hash');
-            $this->endDocument('xml');
-            break;
-        case 'json':
-            $this->initDocument('json');
-            $error_array = array('error' => $msg, 'request' => $_SERVER['REQUEST_URI']);
-            print(json_encode($error_array));
-            $this->endDocument('json');
-            break;
-        case 'text':
-            header('Content-Type: text/plain; charset=utf-8');
-            print $msg;
-            break;
-        default:
-            // If user didn't request a useful format, throw a regular client error
-            throw new ClientException($msg, $code);
-        }
-    }
-
-    function serverError($msg, $code = 500, $content_type = null)
-    {
-        $action = $this->trimmed('action');
-        if ($content_type === null) {
-            $content_type = $this->format;
-        }
-
-        common_debug("Server error '$code' on '$action': $msg", __FILE__);
-
-        if (!array_key_exists($code, ServerErrorAction::$status)) {
-            $code = 400;
-        }
-
-        $status_string = ServerErrorAction::$status[$code];
-
-        // Do not emit error header for JSONP
-        if (!isset($this->callback)) {
-            header('HTTP/1.1 '.$code.' '.$status_string);
-        }
-
-        if ($content_type == 'xml') {
-            $this->initDocument('xml');
-            $this->elementStart('hash');
-            $this->element('error', null, $msg);
-            $this->element('request', null, $_SERVER['REQUEST_URI']);
-            $this->elementEnd('hash');
-            $this->endDocument('xml');
-        } else {
-            $this->initDocument('json');
-            $error_array = array('error' => $msg, 'request' => $_SERVER['REQUEST_URI']);
-            print(json_encode($error_array));
-            $this->endDocument('json');
-        }
     }
 
     function initTwitterRss()

@@ -61,13 +61,15 @@ class Action extends HTMLOutputter // lawsuit
     protected $ajax   = false;
     protected $menus  = true;
     protected $needLogin = false;
+    protected $needPost = false;
 
     // The currently scoped profile (normally Profile::current; from $this->auth_user for API)
     protected $scoped = null;
 
-    // Messages to the front-end user
-    protected $error = null;
-    protected $msg   = null;
+    // Related to front-end user representation
+    protected $format = null;
+    protected $error  = null;
+    protected $msg    = null;
 
     /**
      * Constructor
@@ -132,6 +134,10 @@ class Action extends HTMLOutputter // lawsuit
      */
     protected function prepare(array $args=array())
     {
+        if ($this->needPost && !$this->isPost()) {
+            $this->clientError(_('This method requires a POST.'), 400, $this->format);
+        }
+
         $this->args = common_copy_args($args);
 
         $this->action = $this->trimmed('action');
@@ -425,7 +431,7 @@ class Action extends HTMLOutputter // lawsuit
 
             $messages = array_merge($messages, $this->getScriptMessages());
 
-	    Event::handle('EndScriptMessages', array($this, &$messages));
+            Event::handle('EndScriptMessages', array($this, &$messages));
         }
 
         if (!empty($messages)) {
@@ -1353,26 +1359,99 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return nothing
      */
-    function serverError($msg, $code=500)
+    function serverError($msg, $code=500, $format=null)
     {
-        $action = $this->trimmed('action');
-        common_debug("Server error '$code' on '$action': $msg", __FILE__);
-        throw new ServerException($msg, $code);
+        if ($format === null) {
+            $format = $this->format;
+        }
+
+        common_debug("Server error '{$code}' on '{$this->action}': {$msg}", __FILE__);
+
+        if (!array_key_exists($code, ServerErrorAction::$status)) {
+            $code = 500;
+        }
+
+        $status_string = ServerErrorAction::$status[$code];
+
+        switch ($format) {
+        case 'xml':
+            header("HTTP/1.1 {$code} {$status_string}");
+            $this->initDocument('xml');
+            $this->elementStart('hash');
+            $this->element('error', null, $msg);
+            $this->element('request', null, $_SERVER['REQUEST_URI']);
+            $this->elementEnd('hash');
+            $this->endDocument('xml');
+            break;
+        case 'json':
+            if (!isset($this->callback)) {
+                header("HTTP/1.1 {$code} {$status_string}");
+            }
+            $this->initDocument('json');
+            $error_array = array('error' => $msg, 'request' => $_SERVER['REQUEST_URI']);
+            print(json_encode($error_array));
+            $this->endDocument('json');
+            break;
+        default:
+            throw new ServerException($msg, $code);
+        }
+
+        exit((int)$code);
     }
 
     /**
      * Client error
      *
-     * @param string  $msg  error message to display
-     * @param integer $code http error code, 400 by default
+     * @param string  $msg    error message to display
+     * @param integer $code   http error code, 400 by default
+     * @param string  $format error format (json, xml, text) for ApiAction
      *
      * @return nothing
+     * @throws ClientException always
      */
-    function clientError($msg, $code=400)
+    function clientError($msg, $code=400, $format=null)
     {
-        $action = $this->trimmed('action');
-        common_debug("User error '$code' on '$action': $msg", __FILE__);
-        throw new ClientException($msg, $code);
+        // $format is currently only relevant for an ApiAction anyway
+        if ($format === null) {
+            $format = $this->format;
+        }
+
+        common_debug("User error '{$code}' on '{$this->action}': {$msg}", __FILE__);
+
+        if (!array_key_exists($code, ClientErrorAction::$status)) {
+            $code = 400;
+        }
+        
+        $status_string = ClientErrorAction::$status[$code];
+
+        switch ($format) {
+        case 'xml':
+            header("HTTP/1.1 {$code} {$status_string}");
+            $this->initDocument('xml');
+            $this->elementStart('hash');
+            $this->element('error', null, $msg);
+            $this->element('request', null, $_SERVER['REQUEST_URI']);
+            $this->elementEnd('hash');
+            $this->endDocument('xml');
+            break;
+        case 'json':
+            if (!isset($this->callback)) {
+                header("HTTP/1.1 {$code} {$status_string}");
+            }
+            $this->initDocument('json');
+            $error_array = array('error' => $msg, 'request' => $_SERVER['REQUEST_URI']);
+            $this->text(json_encode($error_array));
+            $this->endDocument('json');
+            break;
+        case 'text':
+            header("HTTP/1.1 {$code} {$status_string}");
+            header('Content-Type: text/plain; charset=utf-8');
+            echo $msg;
+            break;
+        default:
+            throw new ClientException($msg, $code);
+        }
+        exit((int)$code);
     }
 
     /**

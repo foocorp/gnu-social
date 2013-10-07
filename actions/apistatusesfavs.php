@@ -56,8 +56,7 @@ class ApiStatusesFavsAction extends ApiAuthAction
 
         if (empty($this->original)) {
             // TRANS: Client error displayed trying to display redents of a non-exiting notice.
-            $this->clientError(_('No such notice.'),
-                               400, $this->format);
+            $this->clientError(_('No such notice.'), 400, $this->format);
             return false;
         }
 
