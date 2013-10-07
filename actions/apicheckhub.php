@@ -34,6 +34,8 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class ApiCheckHubAction extends ApiAuthAction
 {
+    protected $url = null;
+
     /**
      * Take arguments for running
      *
@@ -45,16 +47,18 @@ class ApiCheckHubAction extends ApiAuthAction
     {
         parent::prepare($args);
 
+        if ($this->format !== 'json') {
+            $this->clientError('This method currently only serves JSON.', 415);
+        }
+
         $this->url = urldecode($args['url']);
         
         if (empty($this->url)) {
-            $this->clientError(_('No URL.'), 403, 'json');
-            return;            
+            $this->clientError(_('No URL.'), 403);
         }
 
         if (!common_valid_http_url($this->url)) {
-            $this->clientError(_('Invalid URL.'), 403, 'json');
-            return;
+            $this->clientError(_('Invalid URL.'), 403);
         }
         
         return true;
@@ -79,11 +83,9 @@ class ApiCheckHubAction extends ApiAuthAction
                 $huburi = $discover->getHubLink();                
             }
         } catch (FeedSubNoFeedException $e) {
-            $this->clientError(_('No feed found'), 403, 'json');
-            return;
+            $this->clientError(_('No feed found'), 403);
         } catch (FeedSubBadResponseException $e) {
-            $this->clientError(_('No hub found'), 403, 'json');
-            return;
+            $this->clientError(_('No hub found'), 403);
         }
 		
 		$hub_status = array();

@@ -61,15 +61,14 @@ class ApiGroupAdminsAction extends ApiPrivateAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
         $this->group    = $this->getTargetGroup($this->arg('id'));
         if (empty($this->group)) {
             // TRANS: Client error displayed trying to show group membership on a non-existing group.
-            $this->clientError(_('Group not found.'), 404, $this->format);
-            return false;
+            $this->clientError(_('Group not found.'), 404);
         }
 
         $this->profiles = $this->getProfiles();
@@ -86,9 +85,9 @@ class ApiGroupAdminsAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         // XXX: RSS and Atom
 

@@ -36,7 +36,7 @@ class ApiStatusesFavsAction extends ApiAuthAction
 {
     const MAXCOUNT = 100;
 
-    var $original = null;
+    var $original = null;   // Notice object for which to retrieve favs
     var $cnt      = self::MAXCOUNT;
 
     /**
@@ -46,18 +46,21 @@ class ApiStatusesFavsAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
+
+        if ($this->format !== 'json') {
+            $this->clientError('This method currently only serves JSON.', 415);
+        }
 
         $id = $this->trimmed('id');
 
         $this->original = Notice::staticGet('id', $id);
 
-        if (empty($this->original)) {
+        if (!($this->original instanceof Notice)) {
             // TRANS: Client error displayed trying to display redents of a non-exiting notice.
-            $this->clientError(_('No such notice.'), 400, $this->format);
-            return false;
+            $this->clientError(_('No such notice.'), 400);
         }
 
         $cnt = $this->trimmed('count');
@@ -80,9 +83,9 @@ class ApiStatusesFavsAction extends ApiAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 	
         $fave = new Fave();
         $fave->selectAdd(); 

@@ -32,6 +32,8 @@ class ApiAccountUpdateLinkColorAction extends ApiAuthAction
 {
     var $linkcolor = null;
 
+    protected $needPost = true;
+
     /**
      * Take arguments for running
      *
@@ -39,11 +41,13 @@ class ApiAccountUpdateLinkColorAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user   = $this->auth_user;
+        if ($this->format !== 'json') {
+            $this->clientError('This method currently only serves JSON.', 415);
+        }
 
         $this->linkcolor = $this->trimmed('linkcolor');
 
@@ -60,45 +64,26 @@ class ApiAccountUpdateLinkColorAction extends ApiAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                _('This method requires a POST.'),
-                400, $this->format
-            );
-            return;
+        parent::handle();
+    
+        $validhex = preg_match('/^[a-f0-9]{6}$/i',$this->linkcolor);
+        if ($validhex === false || $validhex == 0) {
+            $this->clientError(_('Not a valid hex color.'), 400);
         }
-		
-		$validhex = preg_match('/^[a-f0-9]{6}$/i',$this->linkcolor);
-		if($validhex === false || $validhex == 0) {
-            $this->clientError(_('Not a valid hex color.'),404,'json');			
-            return;
-			}
-		
-		// save the new color
-		$original = clone($this->user);
-		$this->user->linkcolor = $this->linkcolor; 
-		if (!$this->user->update($original)) {
-            $this->clientError(_('Error updating user.'),404,'json');
-            return;
-		}
-
-        $profile = $this->user->getProfile();
-
-        if (empty($profile)) {
-            $this->clientError(_('User has no profile.'),'json');
-            return;
+    
+        // save the new color
+        $original = clone($this->auth_user);
+        $this->auth_user->linkcolor = $this->linkcolor; 
+        if (!$this->auth_user->update($original)) {
+            $this->clientError(_('Error updating user.'), 400);
         }
 
-        $twitter_user = $this->twitterUserArray($profile, true);
+        $twitter_user = $this->twitterUserArray($this->scoped, true);
 
         $this->initDocument('json');
         $this->showJsonObjects($twitter_user);
         $this->endDocument('json');
     }
-
-
 }

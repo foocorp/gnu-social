@@ -42,13 +42,23 @@ class ApiExternalProfileShowAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
+        if ($this->format !== 'json') {
+            $this->clientError('This method currently only serves JSON.', 415);
+        }
+
         $profileurl = urldecode($this->arg('profileurl'));        
 
+        // TODO: Make this more ... unique!
         $this->profile = Profile::staticGet('profileurl', $profileurl);        
+
+        if (!($this->profile instanceof Profile)) {
+            // TRANS: Client error displayed when requesting profile information for a non-existing profile.
+            $this->clientError(_('Profile not found.'), 404);
+        }
 
         return true;
     }
@@ -62,15 +72,9 @@ class ApiExternalProfileShowAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if (empty($this->profile)) {
-            // TRANS: Client error displayed when requesting profile information for a non-existing profile.
-            $this->clientError(_('Profile not found.'), 404, 'json');
-            return;
-        }
+        parent::handle();
 
         $twitter_user = $this->twitterUserArray($this->profile, true);
 

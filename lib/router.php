@@ -462,36 +462,44 @@ class Router
 
             // START qvitter API additions
 
-            $m->connect('api/statuses/favs/:id.json',
-                array('action' => 'ApiStatusesFavs',
-                'id' => '[0-9]+'));
+            $m->connect('api/statuses/favs/:id.:format',
+                        array('action' => 'ApiStatusesFavs',
+                              'id' => '[0-9]+',
+                              'format' => '(xml|json)'));
             
-            $m->connect('api/attachment/:id.json',
-                array('action' => 'ApiAttachment',
-                'id' => '[0-9]+'));
+            $m->connect('api/attachment/:id.:format',
+                        array('action' => 'ApiAttachment',
+                              'id' => '[0-9]+',
+                              'format' => '(xml|json)'));
             
-            $m->connect('api/checkhub.json',
-                array('action' => 'ApiCheckHub'));
+            $m->connect('api/checkhub.:format',
+                        array('action' => 'ApiCheckHub',
+                              'format' => '(xml|json)'));
             
-            $m->connect('api/externalprofile/show.json',
-                array('action' => 'ApiExternalProfileShow'));
+            $m->connect('api/externalprofile/show.:format',
+                        array('action' => 'ApiExternalProfileShow',
+                              'format' => '(xml|json)'));
 
             $m->connect('api/statusnet/groups/admins/:id.:format',
-                array('action' => 'ApiGroupAdmins',
-                    'id' => Nickname::INPUT_FMT,
-                    'format' => '(xml|json)'));
+                        array('action' => 'ApiGroupAdmins',
+                              'id' => Nickname::INPUT_FMT,
+                              'format' => '(xml|json)'));
             
-            $m->connect('api/account/update_link_color.json',
-                array('action' => 'ApiAccountUpdateLinkColor'));
+            $m->connect('api/account/update_link_color.:format',
+                        array('action' => 'ApiAccountUpdateLinkColor',
+                              'format' => '(xml|json)'));
                 
-            $m->connect('api/account/update_background_color.json',
-                array('action' => 'ApiAccountUpdateBackgroundColor'));
+            $m->connect('api/account/update_background_color.:format',
+                        array('action' => 'ApiAccountUpdateBackgroundColor',
+                              'format' => '(xml|json)'));
 
-            $m->connect('api/account/register.json',
-                array('action' => 'ApiAccountRegister'));
+            $m->connect('api/account/register.:format',
+                        array('action' => 'ApiAccountRegister',
+                              'format' => '(xml|json)'));
             
-            $m->connect('api/check_nickname.json',
-                array('action' => 'ApiCheckNickname'));
+            $m->connect('api/check_nickname.:format',
+                        array('action' => 'ApiCheckNickname',
+                              'format' => '(xml|json)'));
 
             // END qvitter API additions
 

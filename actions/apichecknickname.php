@@ -34,16 +34,20 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class ApiCheckNicknameAction extends ApiAction
 {
 
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
+
+        if ($this->format !== 'json') {
+            $this->clientError('This method currently only serves JSON.', 415);
+        }
         
         return true;
     }
 
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 	
         $nickname = $this->trimmed('nickname');
 		

@@ -46,9 +46,13 @@ class ApiAttachmentAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
+
+        if ($this->format !== 'json') {
+            $this->clientError('This method currently only serves JSON.', 415);
+        }
 
         return true;
     }
@@ -62,9 +66,10 @@ class ApiAttachmentAction extends ApiAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
+        
         $file = new File();
         $file->selectAdd(); // clears it
         $file->selectAdd('url');
@@ -73,7 +78,7 @@ class ApiAttachmentAction extends ApiAuthAction
         
 		$file_txt = '';
 		if(strstr($url[0],'.html')) {
-			$file_txt['txt'] = file_get_contents(str_replace('://quitter.se','://127.0.0.1',$url[0]));
+			$file_txt['txt'] = file_get_contents($url[0]);
 			$file_txt['body_start'] = strpos($file_txt['txt'],'<body>')+6;
 			$file_txt['body_end'] = strpos($file_txt['txt'],'</body>');
 			$file_txt = substr($file_txt['txt'],$file_txt['body_start'],$file_txt['body_end']-$file_txt['body_start']);

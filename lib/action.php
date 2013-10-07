@@ -135,7 +135,7 @@ class Action extends HTMLOutputter // lawsuit
     protected function prepare(array $args=array())
     {
         if ($this->needPost && !$this->isPost()) {
-            $this->clientError(_('This method requires a POST.'), 400, $this->format);
+            $this->clientError(_('This method requires a POST.'), 405);
         }
 
         $this->args = common_copy_args($args);
