@@ -146,20 +146,6 @@ class Atom10Feed extends XMLStringer
         }
     }
 
-    /**
-     * Deprecated <activity:subject>; ignored
-     *
-     * @param string $xmlSubject An XML string representation of the subject
-     *
-     * @return void
-     */
-
-    function setActivitySubject($xmlSubject)
-    {
-        // TRANS: Server exception thrown when using the method setActivitySubject() in the class Atom10Feed.
-        throw new ServerException(_('Do not use this method!'));
-    }
-
     function getNamespaces()
     {
         return $this->namespaces;

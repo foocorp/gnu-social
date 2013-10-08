@@ -88,11 +88,9 @@ class AtomListNoticeFeed extends AtomNoticeFeed
         $this->setId($self);
         $this->setSelfLink($self);
 
-        // FIXME: Stop using activity:subject?
         $ao = ActivityObject::fromPeopletag($this->list);
 
-        $this->addAuthorRaw($ao->asString('author').
-                            $ao->asString('activity:subject'));
+        $this->addAuthorRaw($ao->asString('author'));
 
         $this->addLink($this->list->getUri());
     }

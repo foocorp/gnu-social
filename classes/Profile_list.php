@@ -409,18 +409,6 @@ class Profile_list extends Managed_DataObject
 
     /**
      * return an xml string to represent this people tag
-     * as the subject of an activitystreams feed.
-     *
-     * @return string activitystreams subject
-     */
-
-    function asActivitySubject()
-    {
-        return $this->asActivityNoun('subject');
-    }
-
-    /**
-     * return an xml string to represent this people tag
      * as a noun in an activitystreams feed.
      *
      * @param string $element the xml tag

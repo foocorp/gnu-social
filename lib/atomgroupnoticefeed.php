@@ -85,22 +85,9 @@ class AtomGroupNoticeFeed extends AtomNoticeFeed
         $this->setId($self);
         $this->setSelfLink($self);
 
-        // For groups, we generate an author _AND_ an <activity:subject>
-        // Versions of StatusNet under 0.9.7 treat <author> as a person
-        // XXX: remove this workaround in future versions
-
         $ao = ActivityObject::fromGroup($group);
 
         $this->addAuthorRaw($ao->asString('author'));
-
-        $depMsg = 'Deprecation warning: activity:subject is present '
-            . 'only for backward compatibility. It will be '
-            . 'removed in the next version of StatusNet.';
-
-        $this->addAuthorRaw(
-            "<!--$depMsg-->\n"
-            . $ao->asString('activity:subject')
-        );
 
         $this->addLink($group->homeUrl());
     }

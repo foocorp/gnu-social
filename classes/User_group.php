@@ -528,19 +528,6 @@ class User_group extends Managed_DataObject
 
     /**
      * Returns an XML string fragment with group information as an
-     * Activity Streams <activity:subject> element.
-     *
-     * Assumes that 'activity' namespace has been previously defined.
-     *
-     * @return string
-     */
-    function asActivitySubject()
-    {
-        return $this->asActivityNoun('subject');
-    }
-
-    /**
-     * Returns an XML string fragment with group information as an
      * Activity Streams noun object with the given element type.
      *
      * Assumes that 'activity', 'georss', and 'poco' namespace has been
