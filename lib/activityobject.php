@@ -438,7 +438,7 @@ class ActivityObject
             $object->type    = (empty($notice->object_type)) ? ActivityObject::NOTE : $notice->object_type;
 
             $object->id      = $notice->uri;
-            $object->title   = $notice->content;
+            $object->title   = 'New ' . ActivityObject::canonicalType($notice->object_type);
             $object->content = $notice->rendered;
             $object->link    = $notice->bestUrl();
 
@@ -698,6 +698,11 @@ class ActivityObject
                 // XXX: assuming HTML content here
                 $xo->element(
                     ActivityUtils::CONTENT,
+                    array('type' => 'text'),
+                    html_entity_decode(strip_tags($this->content), ENT_QUOTES, 'UTF-8')
+                );
+                $xo->element(
+                    ActivityUtils::CONTENT,
                     array('type' => 'html'),
                     common_xml_safe_str($this->content)
                 );
@@ -792,9 +797,6 @@ class ActivityObject
 
             // content (Add rendered version of the notice?)
 
-            // displayName
-            $object['displayName'] = $this->title;
-
             // downstreamDuplicates
 
             // id
@@ -807,6 +809,9 @@ class ActivityObject
 
             if ($this->type == ActivityObject::PERSON
                 || $this->type == ActivityObject::GROUP) {
+
+                // displayName
+                $object['displayName'] = $this->title;
 
                 // XXX: Not sure what the best avatar is to use for the
                 // author's "image". For now, I'm using the large size.
@@ -855,7 +860,7 @@ class ActivityObject
             // summary
             $object['summary'] = $this->summary;
 
-            // content
+            // content, usually rendered HTML
             $object['content'] = $this->content;
 
             // published (probably don't need. Might be useful for repeats.)
