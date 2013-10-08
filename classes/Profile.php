@@ -135,7 +135,7 @@ class Profile extends Managed_DataObject
         $avatar->filename = $filename;
         $avatar->original = true;
         $avatar->url = Avatar::url($filename);
-        $avatar->created = DB_DataObject_Cast::dateTime(); # current time
+        $avatar->created = common_sql_now();
 
         // XXX: start a transaction here
         if (!Avatar::deleteFromProfile($this, true) || !$avatar->insert()) {
