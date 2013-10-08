@@ -1099,7 +1099,7 @@ class Profile extends Managed_DataObject
      * @param $right string Name of the right, usually a constant in class Right
      * @return boolean whether the user has the right in question
      */
-    function hasRight($right)
+    public function hasRight($right)
     {
         $result = false;
 

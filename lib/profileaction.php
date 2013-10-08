@@ -49,49 +49,58 @@ require_once INSTALLDIR.'/lib/groupminilist.php';
 class ProfileAction extends Action
 {
     var $page    = null;
-    var $profile = null;
     var $tag     = null;
 
-    function prepare($args)
+    protected $target  = null;    // Profile that we're showing
+
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $nickname_arg = $this->arg('nickname');
-        $nickname     = common_canonical_nickname($nickname_arg);
+        try {
+            $nickname_arg = $this->arg('nickname');
+            $nickname     = common_canonical_nickname($nickname_arg);
 
-        // Permanent redirect on non-canonical nickname
+            // Permanent redirect on non-canonical nickname
 
-        if ($nickname_arg != $nickname) {
-            $args = array('nickname' => $nickname);
-            if ($this->arg('page') && $this->arg('page') != 1) {
-                $args['page'] = $this->arg['page'];
+            if ($nickname_arg != $nickname) {
+                $args = array('nickname' => $nickname);
+                if ($this->arg('page') && $this->arg('page') != 1) {
+                    $args['page'] = $this->arg['page'];
+                }
+                common_redirect(common_local_url($this->trimmed('action'), $args), 301);
             }
-            common_redirect(common_local_url($this->trimmed('action'), $args), 301);
-            return false;
+            $this->user = User::getKV('nickname', $nickname);
+
+            if (!$this->user) {
+                // TRANS: Client error displayed when calling a profile action without specifying a user.
+                $this->clientError(_('No such user.'), 404);
+            }
+
+            $this->target = $this->user->getProfile();
+        } catch (NicknameException $e) {
+            $id = (int)$this->arg('id');
+            $this->target = Profile::getKV('id', $id);
+
+            if (!($this->target instanceof Profile)) {
+                // TRANS: Error message displayed when referring to a user without a profile.
+                $this->serverError(_m('Profile ID does not exist.'));
+            }
+
+            $user = User::getKV('id', $this->target->id);
+            if ($user instanceof User) {
+                // This is a local user -- send to their regular profile.
+                common_redirect(common_local_url('showstream', array('nickname' => $user->nickname)));
+            }
         }
 
-        $this->user = User::getKV('nickname', $nickname);
-
-        if (!$this->user) {
-            // TRANS: Client error displayed when calling a profile action without specifying a user.
-            $this->clientError(_('No such user.'), 404);
-            return false;
-        }
-
-        $this->profile = $this->user->getProfile();
-
-        if (!$this->profile) {
-            // TRANS: Error message displayed when referring to a user without a profile.
-            $this->serverError(_('User has no profile.'));
-            return false;
-        }
-
-        $user = common_current_user();
-
-        if ($this->profile->hasRole(Profile_role::SILENCED) &&
-            (empty($user) || !$user->hasRight(Right::SILENCEUSER))) {
+        if ($this->target->hasRole(Profile_role::SILENCED) &&
+            (empty($this->scoped) || !$this->scoped->hasRight(Right::SILENCEUSER))) {
             throw new ClientException(_('This profile has been silenced by site moderators'), 403);
         }
+
+        // backwards compatibility until all actions are fixed to use $this->target
+        $this->profile = $this->target;
 
         $this->tag = $this->trimmed('tag');
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;

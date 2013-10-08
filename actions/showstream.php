@@ -57,16 +57,14 @@ class ShowstreamAction extends ProfileAction
 {
     var $notice;
 
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $p = Profile::current();
-
         if (empty($this->tag)) {
-            $stream = new ProfileNoticeStream($this->profile, $p);
+            $stream = new ProfileNoticeStream($this->profile, $this->scoped);
         } else {
-            $stream = new TaggedProfileNoticeStream($this->profile, $this->tag, $p);
+            $stream = new TaggedProfileNoticeStream($this->profile, $this->tag, $this->scoped);
         }
 
         $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
@@ -105,11 +103,9 @@ class ShowstreamAction extends ProfileAction
         }
     }
 
-    function handle($args)
+    protected function handle()
     {
-        // Looks like we're good; start output
-
-        // For YADIS discovery, we also have a <meta> tag
+        parent::handle();
 
         $this->showPage();
     }
@@ -135,12 +131,12 @@ class ShowstreamAction extends ProfileAction
         if (!empty($this->tag)) {
             return array(new Feed(Feed::RSS1,
                                   common_local_url('userrss',
-                                                   array('nickname' => $this->user->nickname,
+                                                   array('nickname' => $this->target->nickname,
                                                          'tag' => $this->tag)),
                                   // TRANS: Title for link to notice feed.
                                   // TRANS: %1$s is a user nickname, %2$s is a hashtag.
                                   sprintf(_('Notice feed for %1$s tagged %2$s (RSS 1.0)'),
-                                          $this->user->nickname, $this->tag)));
+                                          $this->target->nickname, $this->tag)));
         }
 
         return array(new Feed(Feed::JSON,
@@ -151,14 +147,14 @@ class ShowstreamAction extends ProfileAction
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Notice feed for %s (Activity Streams JSON)'),
-                                      $this->user->nickname)),
+                                      $this->target->nickname)),
                      new Feed(Feed::RSS1,
                               common_local_url('userrss',
-                                               array('nickname' => $this->user->nickname)),
+                                               array('nickname' => $this->target->nickname)),
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Notice feed for %s (RSS 1.0)'),
-                                      $this->user->nickname)),
+                                      $this->target->nickname)),
                      new Feed(Feed::RSS2,
                               common_local_url('ApiTimelineUser',
                                                array(
@@ -167,7 +163,7 @@ class ShowstreamAction extends ProfileAction
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Notice feed for %s (RSS 2.0)'),
-                                      $this->user->nickname)),
+                                      $this->target->nickname)),
                      new Feed(Feed::ATOM,
                               common_local_url('ApiTimelineUser',
                                                array(
@@ -176,13 +172,13 @@ class ShowstreamAction extends ProfileAction
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Notice feed for %s (Atom)'),
-                                      $this->user->nickname)),
+                                      $this->target->nickname)),
                      new Feed(Feed::FOAF,
                               common_local_url('foaf', array('nickname' =>
-                                                             $this->user->nickname)),
+                                                             $this->target->nickname)),
                               // TRANS: Title for link to notice feed. FOAF stands for Friend of a Friend.
                               // TRANS: More information at http://www.foaf-project.org. %s is a user nickname.
-                              sprintf(_('FOAF for %s'), $this->user->nickname)));
+                              sprintf(_('FOAF for %s'), $this->target->nickname)));
     }
 
     function extraHead()
@@ -222,7 +218,7 @@ class ShowstreamAction extends ProfileAction
     function showEmptyListMessage()
     {
         // TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
-        $message = sprintf(_('This is the timeline for %1$s, but %1$s hasn\'t posted anything yet.'), $this->user->nickname) . ' ';
+        $message = sprintf(_('This is the timeline for %1$s, but %1$s hasn\'t posted anything yet.'), $this->target->nickname) . ' ';
 
         if (common_logged_in()) {
             $current_user = common_current_user();
@@ -232,13 +228,13 @@ class ShowstreamAction extends ProfileAction
             } else {
                 // TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
                 // TRANS: This message contains a Markdown link. Keep "](" together.
-                $message .= sprintf(_('You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%%?status_textarea=%2$s).'), $this->user->nickname, '@' . $this->user->nickname);
+                $message .= sprintf(_('You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%%?status_textarea=%2$s).'), $this->target->nickname, '@' . $this->target->nickname);
             }
         }
         else {
             // TRANS: Second sentence of empty message for anonymous users. %s is a user nickname.
             // TRANS: This message contains a Markdown link. Keep "](" together.
-            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->user->nickname);
+            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->target->nickname);
         }
 
         $this->elementStart('div', 'guide');
@@ -257,7 +253,7 @@ class ShowstreamAction extends ProfileAction
             $this->showEmptyListMessage();
         }
 
-        $args = array('nickname' => $this->user->nickname);
+        $args = array('nickname' => $this->target->nickname);
         if (!empty($this->tag))
         {
             $args['tag'] = $this->tag;
@@ -274,13 +270,13 @@ class ShowstreamAction extends ProfileAction
             $m = sprintf(_('**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                            'based on the Free Software [StatusNet](http://status.net/) tool. ' .
                            '[Join now](%%%%action.register%%%%) to follow **%s**\'s notices and many more! ([Read more](%%%%doc.help%%%%))'),
-                         $this->user->nickname, $this->user->nickname);
+                         $this->target->nickname, $this->target->nickname);
         } else {
             // TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
             // TRANS: This message contains a Markdown link. Keep "](" together.
             $m = sprintf(_('**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                            'based on the Free Software [StatusNet](http://status.net/) tool.'),
-                         $this->user->nickname, $this->user->nickname);
+                         $this->target->nickname, $this->target->nickname);
         }
         $this->elementStart('div', array('id' => 'anon_notice'));
         $this->raw(common_markup_to_html($m));
