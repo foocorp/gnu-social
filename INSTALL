@@ -20,7 +20,8 @@ functional setup of GNU Social:
 
 - Curl          Fetching files by HTTP.
 - XMLWriter     For formatting XML and HTML output.
-- mysqlnd       The native driver for PHP5 MySQL/MariaDB connections.
+- mysqlnd       The native driver for PHP5 MariaDB connections. If you
+                use MySQL, 'mysql' or 'mysqli' may work.
 - GD            Image manipulation (scaling).
 - mbstring      For handling Unicode (UTF-8) encoded strings.
 - bcmath or gmp For Salmon signatures (part of OStatus)
