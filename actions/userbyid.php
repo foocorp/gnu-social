@@ -61,9 +61,9 @@ class UserbyidAction extends Action
      *
      * @return nothing
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $id = $this->trimmed('id');
         if (!$id) {
             // TRANS: Client error displayed trying to find a user by ID without providing an ID.
