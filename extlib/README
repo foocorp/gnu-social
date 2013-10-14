@@ -51,7 +51,7 @@ A: If the upstream project is moribund and there's a way to adopt it,
 Q: What if there's no upstream authority and it can't be adopted?
 
 A: Then we fork it. Make a new name and a new version. Include it in
-   lib/ instead of extlib/, and use the GNUSocial_* prefix to change
+   lib/ instead of extlib/, and use the GNUsocial_* prefix to change
    the namespace to avoid collisions.
 
    This is a last resort; consult with the rest of the dev group

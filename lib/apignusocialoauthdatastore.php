@@ -24,7 +24,7 @@ require_once 'OAuth.php';
 /**
  * @fixme class doc
  */
-class ApiGNUSocialOAuthDataStore extends OAuthDataStore
+class ApiGNUsocialOAuthDataStore extends OAuthDataStore
 {
     function lookup_consumer($consumerKey)
     {

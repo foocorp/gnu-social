@@ -3,7 +3,7 @@
  * Implementation of WebFinger resource discovery (RFC7033)
  *
  * @category  Discovery
- * @package   GNUSocial
+ * @package   GNUsocial
  * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0

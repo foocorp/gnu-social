@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Form
- * @package   GNUSocial
+ * @package   GNUsocial
  * @author    Evan Prodromou <evan@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
  * @author    Mikael Nordfeldth <mmn@hethane.se>
@@ -35,7 +35,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * Form for disfavoring a notice
  *
  * @category Form
- * @package  GNUSocial
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Sarven Capadisli <csarven@status.net>
  * @author   Mikael Nordfeldth <mmn@hethane.se>

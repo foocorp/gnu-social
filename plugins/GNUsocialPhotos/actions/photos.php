@@ -120,7 +120,7 @@ class PhotosAction extends Action
     
     function showAlbum($album_id)
     {
-        $album = GNUSocialPhotoAlbum::getKV('album_id', $album_id);
+        $album = GNUsocialPhotoAlbum::getKV('album_id', $album_id);
         if (!$album) {
             return;
         }

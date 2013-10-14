@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Exception
- * @package   GNUSocial
+ * @package   GNUsocial
  * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3

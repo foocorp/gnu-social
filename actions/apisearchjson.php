@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Search
- * @package   GNUSocial
+ * @package   GNUsocial
  * @author    Zach Copley <zach@status.net>
  * @copyright 2008-2010 StatusNet, Inc.
  * @copyright 2013 Free Software Foundation, Inc.

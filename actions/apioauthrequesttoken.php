@@ -73,7 +73,7 @@ class ApiOAuthRequestTokenAction extends ApiOAuthAction
     {
         parent::handle($args);
 
-        $datastore   = new ApiGNUSocialOAuthDataStore();
+        $datastore   = new ApiGNUsocialOAuthDataStore();
         $server      = new OAuthServer($datastore);
         $hmac_method = new OAuthSignatureMethod_HMAC_SHA1();
 

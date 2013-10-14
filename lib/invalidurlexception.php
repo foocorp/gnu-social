@@ -33,7 +33,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * Class for an exception when a URL is invalid
  *
  * @category Exception
- * @package  GNUSocial
+ * @package  GNUsocial
  * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link     http://status.net/

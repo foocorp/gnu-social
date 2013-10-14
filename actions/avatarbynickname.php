@@ -34,7 +34,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * Retrieve user avatar by nickname action class.
  *
  * @category Action
- * @package  GNUSocial
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
  * @author   Mikael Nordfeldth <mmn@hethane.se>

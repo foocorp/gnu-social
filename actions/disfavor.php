@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Action
- * @package  GNUSocial
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
  * @author   Mikael Nordfeldth <mmn@hethane.se>
@@ -35,7 +35,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * DisfavorAction class.
  *
  * @category Action
- * @package  GNUSocial
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
  * @author   Mikael Nordfeldth <mmn@hethane.se>

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Action
- * @package  GNUSocial
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
  * @author   Mikael Nordfeldth <mmn@hethane.se>
@@ -37,7 +37,7 @@ require_once INSTALLDIR.'/lib/mail.php';
  * FavorAction class.
  *
  * @category Action
- * @package  GNUSocial
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
  * @author   Mikael Nordfeldth <mmn@hethane.se>

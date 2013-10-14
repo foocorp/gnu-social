@@ -68,7 +68,7 @@ class ApiOAuthAuthorizeAction extends ApiOAuthAction
         $this->password        = $this->arg('password');
         $this->oauthTokenParam = $this->arg('oauth_token');
         $this->mode            = $this->arg('mode');
-        $this->store           = new ApiGNUSocialOAuthDataStore();
+        $this->store           = new ApiGNUsocialOAuthDataStore();
 
         try {
             $this->app = $this->store->getAppByRequestToken($this->oauthTokenParam);

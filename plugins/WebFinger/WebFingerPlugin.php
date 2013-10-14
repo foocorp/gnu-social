@@ -23,7 +23,7 @@
  *
  * Depends on: LRDD plugin
  *
- * @package GNUSocial
+ * @package GNUsocial
  * @author  Mikael Nordfeldth <mmn@hethane.se>
  */
 

@@ -155,7 +155,7 @@ class ApiAuthAction extends ApiAction
      */
     function checkOAuthRequest($request)
     {
-        $datastore   = new ApiGNUSocialOAuthDataStore();
+        $datastore   = new ApiGNUsocialOAuthDataStore();
         $server      = new OAuthServer($datastore);
         $hmac_method = new OAuthSignatureMethod_HMAC_SHA1();
 

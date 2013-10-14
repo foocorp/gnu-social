@@ -23,7 +23,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Discovery
- * @package   GNUSocial
+ * @package   GNUsocial
  * @author    James Walker <james@status.net>
  * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2010 StatusNet, Inc.

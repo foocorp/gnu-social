@@ -21,7 +21,7 @@
  * Implements Link-based Resource Descriptor Discovery based on RFC6415,
  * Web Host Metadata, i.e. the predecessor to WebFinger resource discovery.
  *
- * @package GNUSocial
+ * @package GNUsocial
  * @author  Mikael Nordfeldth <mmn@hethane.se>
  */
 

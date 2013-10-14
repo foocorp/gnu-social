@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  API
- * @package   GNUSocial
+ * @package   GNUsocial
  * @author    Craig Andrews <candrews@integralblue.com>
  * @author    Evan Prodromou <evan@status.net>
  * @author    Jeffery To <jeffery.to@gmail.com>
@@ -40,7 +40,7 @@ if (!defined('GNUSOCIAL')) {
  * List 20 newest admins of the group specified by name or ID.
  *
  * @category API
- * @package  GNUSocial
+ * @package  GNUsocial
  * @author   Craig Andrews <candrews@integralblue.com>
  * @author   Evan Prodromou <evan@status.net>
  * @author   Jeffery To <jeffery.to@gmail.com>

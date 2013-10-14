@@ -168,7 +168,7 @@ class OauthconnectionssettingsAction extends SettingsAction
 
         $app = Oauth_application::getKV('id', $appUser->application_id);
 
-        $datastore = new ApiGNUSocialOAuthDataStore();
+        $datastore = new ApiGNUsocialOAuthDataStore();
         $datastore->revoke_token($appUser->token, 1);
 
         $result = $appUser->delete();

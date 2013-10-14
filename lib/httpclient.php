@@ -54,7 +54,7 @@ require_once 'HTTP/Request2/Response.php';
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link http://status.net/
  */
-class GNUSocial_HTTPResponse extends HTTP_Request2_Response
+class GNUsocial_HTTPResponse extends HTTP_Request2_Response
 {
     function __construct(HTTP_Request2_Response $response, $url, $redirects=0)
     {
@@ -173,7 +173,7 @@ class HTTPClient extends HTTP_Request2
     /**
      * Convenience function to run a GET request.
      *
-     * @return GNUSocial_HTTPResponse
+     * @return GNUsocial_HTTPResponse
      * @throws HTTP_Request2_Exception
      */
     public function get($url, $headers=array())
@@ -184,7 +184,7 @@ class HTTPClient extends HTTP_Request2
     /**
      * Convenience function to run a HEAD request.
      *
-     * @return GNUSocial_HTTPResponse
+     * @return GNUsocial_HTTPResponse
      * @throws HTTP_Request2_Exception
      */
     public function head($url, $headers=array())
@@ -198,7 +198,7 @@ class HTTPClient extends HTTP_Request2
      * @param string $url
      * @param array $headers optional associative array of HTTP headers
      * @param array $data optional associative array or blob of form data to submit
-     * @return GNUSocial_HTTPResponse
+     * @return GNUsocial_HTTPResponse
      * @throws HTTP_Request2_Exception
      */
     public function post($url, $headers=array(), $data=array())
@@ -210,7 +210,7 @@ class HTTPClient extends HTTP_Request2
     }
 
     /**
-     * @return GNUSocial_HTTPResponse
+     * @return GNUsocial_HTTPResponse
      * @throws HTTP_Request2_Exception
      */
     protected function doRequest($url, $method, $headers)
@@ -254,11 +254,11 @@ class HTTPClient extends HTTP_Request2
 
     /**
      * Actually performs the HTTP request and returns a
-     * GNUSocial_HTTPResponse object with response body and header info.
+     * GNUsocial_HTTPResponse object with response body and header info.
      *
      * Wraps around parent send() to add logging and redirection processing.
      *
-     * @return GNUSocial_HTTPResponse
+     * @return GNUsocial_HTTPResponse
      * @throw HTTP_Request2_Exception
      */
     public function send()
@@ -301,6 +301,6 @@ class HTTPClient extends HTTP_Request2
             }
             break;
         } while ($maxRedirs);
-        return new GNUSocial_HTTPResponse($response, $this->getUrl(), $redirs);
+        return new GNUsocial_HTTPResponse($response, $this->getUrl(), $redirs);
     }
 }
