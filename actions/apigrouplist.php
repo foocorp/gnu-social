@@ -58,16 +58,16 @@ class ApiGroupListAction extends ApiBareAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user   = $this->getTargetUser(null);
+        //TODO: Make sure this doesn't leak unwantedly for federated users
+        $this->target = $this->getTargetProfile(null);
 
-        if (empty($this->user)) {
+        if (!($this->target instanceof Profile)) {
             // TRANS: Client error displayed when user not found for an action.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return false;
+            $this->clientError(_('No such user.'), 404);
         }
 
         $this->groups = $this->getGroups();
@@ -80,29 +80,27 @@ class ApiGroupListAction extends ApiBareAuthAction
      *
      * Show the user's groups
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         $sitename   = common_config('site', 'name');
         // TRANS: Used as title in check for group membership. %s is a user name.
-        $title      = sprintf(_("%s's groups"), $this->user->nickname);
+        $title      = sprintf(_("%s's groups"), $this->target->nickname);
         $taguribase = TagURI::base();
         $id         = "tag:$taguribase:Groups";
         $link       = common_local_url(
             'usergroups',
-            array('nickname' => $this->user->nickname)
+            array('nickname' => $this->target->nickname)
         );
 
         $subtitle   = sprintf(
             // TRANS: Used as subtitle in check for group membership. %1$s is the site name, %2$s is a user name.
             _('%1$s groups %2$s is a member of.'),
             $sitename,
-            $this->user->nickname
+            $this->target->nickname
         );
 
         switch($this->format) {
@@ -113,8 +111,7 @@ class ApiGroupListAction extends ApiBareAuthAction
             $this->showRssGroups($this->groups, $title, $link, $subtitle);
             break;
         case 'atom':
-            $selfuri = common_root_url() . 'api/statusnet/groups/list/' .
-                $this->user->id . '.atom';
+            $selfuri = common_local_url('ApiGroupList', array('id'=>$this->target->id, 'format'=>'atom'));
             $this->showAtomGroups(
                 $this->groups,
                 $title,
@@ -128,13 +125,8 @@ class ApiGroupListAction extends ApiBareAuthAction
             $this->showJsonGroups($this->groups);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 
@@ -147,7 +139,7 @@ class ApiGroupListAction extends ApiBareAuthAction
     {
         $groups = array();
 
-        $group = $this->user->getGroups(
+        $group = $this->target->getGroups(
             ($this->page - 1) * $this->count,
             $this->count,
             $this->since_id,
@@ -207,7 +199,7 @@ class ApiGroupListAction extends ApiBareAuthAction
                 array($this->arg('action'),
                       common_user_cache_hash($this->auth_user),
                       common_language(),
-                      $this->user->id,
+                      $this->target->id,
                       strtotime($this->groups[0]->created),
                       strtotime($this->groups[$last]->created))
             )
