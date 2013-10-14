@@ -20,57 +20,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  API
- * @package   StatusNet
+ * @package   GNUsocial
  * @author    Evan Prodromou <evan@status.net>
  * @author    Zach Copley <zach@status.net>
  * @copyright 2009 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Returns a version number for this version of StatusNet, which
+ * Returns a version number for this version of GNU social, which
  * should make things a bit easier for upgrades.
  * URL: http://identi.ca/api/statusnet/version.(xml|json)
  * Formats: xml, js
  *
  * @category API
- * @package  StatusNet
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Zach Copley <zach@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
+ * @link     http://www.gnu.org/software/social/
  */
-class ApiStatusnetVersionAction extends ApiPrivateAuthAction
+class ApiGNUsocialVersionAction extends ApiPrivateAuthAction
 {
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     *
-     */
-    function prepare($args)
+    protected function handle()
     {
-        parent::prepare($args);
-        return true;
-    }
-
-    /**
-     * Handle the request
-     *
-     * @param array $args $_REQUEST data (unused)
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
+        parent::handle();
 
         switch ($this->format) {
         case 'xml':

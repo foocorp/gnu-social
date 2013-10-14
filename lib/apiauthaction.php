@@ -113,8 +113,7 @@ class ApiAuthAction extends ApiAction
                 // TRANS: Client error 401.
                 $msg = _('API resource requires read-write access, ' .
                          'but you only have read access.');
-                $this->clientError($msg, 401, $this->format);
-                exit;
+                $this->clientError($msg, 401);
             }
         }
 
@@ -242,8 +241,7 @@ class ApiAuthAction extends ApiAction
         } catch (OAuthException $e) {
             $this->logAuthFailure($e->getMessage());
             common_log(LOG_WARNING, 'API OAuthException - ' . $e->getMessage());
-            $this->clientError($e->getMessage(), 401, $this->format);
-            exit;
+            $this->clientError($e->getMessage(), 401);
         }
     }
 
@@ -252,7 +250,7 @@ class ApiAuthAction extends ApiAction
      *
      * @return boolean true
      */
-    function requiresAuth()
+    public function requiresAuth()
     {
         return true;
     }
@@ -278,8 +276,7 @@ class ApiAuthAction extends ApiAction
 
             // show error if the user clicks 'cancel'
             // TRANS: Client error thrown when authentication fails becaus a user clicked "Cancel".
-            $this->clientError(_('Could not authenticate you.'), 401, $this->format);
-            exit;
+            $this->clientError(_('Could not authenticate you.'), 401);
 
         } else {
 
@@ -309,8 +306,7 @@ class ApiAuthAction extends ApiAction
                 );
                 $this->logAuthFailure($msg);
                 // TRANS: Client error thrown when authentication fails.
-                $this->clientError(_('Could not authenticate you.'), 401, $this->format);
-                exit;
+                $this->clientError(_('Could not authenticate you.'), 401);
             }
         }
     }

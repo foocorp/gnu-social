@@ -61,20 +61,6 @@ if (!defined('STATUSNET')) {
 class ApiBareAuthAction extends ApiAuthAction
 {
     /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     *
-     */
-    function prepare($args)
-    {
-        parent::prepare($args);
-        return true;
-    }
-
-    /**
      * Does this API resource require authentication?
      *
      * @return boolean true or false

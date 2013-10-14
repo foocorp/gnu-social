@@ -20,33 +20,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  API
- * @package   StatusNet
+ * @package   GNUsocial
  * @author    Evan Prodromou <evan@status.net>
  * @author    Zach Copley <zach@status.net>
  * @copyright 2009 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Gives a full dump of configuration variables for this instance
- * of StatusNet, minus variables that may be security-sensitive (like
+ * of GNU social, minus variables that may be security-sensitive (like
  * passwords).
- * URL: http://identi.ca/api/statusnet/config.(xml|json)
+ * URL: https://example.com/api/gnusocial/config.(xml|json)
  * Formats: xml, json
  *
  * @category API
- * @package  StatusNet
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Zach Copley <zach@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
+ * @link     http://www.gnu.org/software/social/
  */
-class ApiStatusnetConfigAction extends ApiAction
+class ApiGNUsocialConfigAction extends ApiAction
 {
     var $keys = array(
         'site' => array('name', 'server', 'theme', 'path', 'logo', 'fancy', 'language',
@@ -64,29 +62,9 @@ class ApiStatusnetConfigAction extends ApiAction
         'url' => array('maxurllength', 'maxnoticelength'),
     );
 
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected function handle()
     {
-        parent::prepare($args);
-        return true;
-    }
-
-    /**
-     * Handle the request
-     *
-     * @param array $args $_REQUEST data (unused)
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
+        parent::handle();
 
         switch ($this->format) {
         case 'xml':

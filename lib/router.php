@@ -651,21 +651,21 @@ class Router
             // statusnet
 
             $m->connect('api/statusnet/version.:format',
-                        array('action' => 'ApiStatusnetVersion',
+                        array('action' => 'ApiGNUsocialVersion',
                               'format' => '(xml|json)'));
 
             $m->connect('api/statusnet/config.:format',
-                        array('action' => 'ApiStatusnetConfig',
+                        array('action' => 'ApiGNUsocialConfig',
                               'format' => '(xml|json)'));
 
-            // For older methods, we provide "laconica" base action
+            // For our current software name, we provide "gnusocial" base action
 
-            $m->connect('api/laconica/version.:format',
-                        array('action' => 'ApiStatusnetVersion',
+            $m->connect('api/gnusocial/version.:format',
+                        array('action' => 'ApiGNUsocialVersion',
                               'format' => '(xml|json)'));
 
-            $m->connect('api/laconica/config.:format',
-                        array('action' => 'ApiStatusnetConfig',
+            $m->connect('api/gnusocial/config.:format',
+                        array('action' => 'ApiGNUsocialConfig',
                               'format' => '(xml|json)'));
 
             // Groups and tags are newer than 0.8.1 so no backward-compatibility
