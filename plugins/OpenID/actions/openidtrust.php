@@ -94,7 +94,7 @@ class OpenidtrustAction extends Action
             $user_openid_trustroot = new User_openid_trustroot();
             $user_openid_trustroot->user_id = $this->user->id;
             $user_openid_trustroot->trustroot = $this->trust_root;
-            $user_openid_trustroot->created = DB_DataObject_Cast::dateTime();
+            $user_openid_trustroot->created = common_sql_now();
             if (!$user_openid_trustroot->insert()) {
                 $err = PEAR::getStaticProperty('DB_DataObject','lastError');
             }

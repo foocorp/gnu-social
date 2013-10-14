@@ -49,7 +49,7 @@ class User_username extends Managed_DataObject
         $user_username->user_id = $user->id;
         $user_username->provider_name = $provider_name;
         $user_username->username = $username;
-        $user_username->created = DB_DataObject_Cast::dateTime();
+        $user_username->created = common_sql_now();
 
         if($user_username->insert()){
             return $user_username;

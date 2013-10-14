@@ -460,7 +460,7 @@ class ApiGNUSocialOAuthDataStore extends OAuthDataStore
         if ($n->find(true)) {
             return true;
         } else {
-            $n->created = DB_DataObject_Cast::dateTime();
+            $n->created = common_sql_now();
             $n->insert();
             return false;
         }

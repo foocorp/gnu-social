@@ -32,7 +32,7 @@ class OMBOAuthDataStore extends OAuthDataStore
             $con = new Consumer();
             $con->consumer_key = $consumer_key;
             $con->seed = common_good_rand(16);
-            $con->created = DB_DataObject_Cast::dateTime();
+            $con->created = common_sql_now();
             if (!$con->insert()) {
                 return null;
             }
@@ -68,7 +68,7 @@ class OMBOAuthDataStore extends OAuthDataStore
         if ($n->find(true)) {
             return true;
         } else {
-            $n->created = DB_DataObject_Cast::dateTime();
+            $n->created = common_sql_now();
             $n->insert();
             return false;
         }
@@ -82,7 +82,7 @@ class OMBOAuthDataStore extends OAuthDataStore
         $t->secret = common_good_rand(16);
         $t->type = 0; // request
         $t->state = 0; // unauthorized
-        $t->created = DB_DataObject_Cast::dateTime();
+        $t->created = common_sql_now();
         if (!$t->insert()) {
             return null;
         } else {
@@ -110,7 +110,7 @@ class OMBOAuthDataStore extends OAuthDataStore
             $at->tok = common_good_rand(16);
             $at->secret = common_good_rand(16);
             $at->type = 1; // access
-            $at->created = DB_DataObject_Cast::dateTime();
+            $at->created = common_sql_now();
             if (!$at->insert()) {
                 $e = $at->_lastError;
                 common_debug('access token "'.$at->tok.'" not inserted: "'.$e->message.'"', __FILE__);
@@ -273,7 +273,7 @@ class OMBOAuthDataStore extends OAuthDataStore
             if ($exists) {
                 $profile->update($orig_profile);
             } else {
-                $profile->created = DB_DataObject_Cast::dateTime(); # current time
+                $profile->created = common_sql_now(); # current time
                 $id = $profile->insert();
                 if (!$id) {
                     // TRANS: Exception thrown when creating a new profile fails in OAuth store.
@@ -298,7 +298,7 @@ class OMBOAuthDataStore extends OAuthDataStore
                     throw new Exception(_('Error updating remote profile.'));
                 }
             } else {
-                $remote->created = DB_DataObject_Cast::dateTime(); # current time
+                $remote->created = common_sql_now(); # current time
                 if (!$remote->insert()) {
                     // TRANS: Exception thrown when creating a remote profile fails in OAuth store.
                     throw new Exception(_('Error inserting remote profile.'));
@@ -473,7 +473,7 @@ class OMBOAuthDataStore extends OAuthDataStore
         if ($sub_exists) {
             $orig_sub = clone($sub);
         } else {
-            $sub->created = DB_DataObject_Cast::dateTime();
+            $sub->created = common_sql_now();
         }
 
         $sub->token  = $token->key;

@@ -89,7 +89,7 @@ function oid_link_user($id, $canonical, $display)
     $oid->user_id = $id;
     $oid->canonical = $canonical;
     $oid->display = $display;
-    $oid->created = DB_DataObject_Cast::dateTime();
+    $oid->created = common_sql_now();
 
     if (!$oid->insert()) {
         $err = PEAR::getStaticProperty('DB_DataObject','lastError');
