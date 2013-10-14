@@ -134,7 +134,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
      * @access public
      * @return array (associative)
      */
-    function table()
+    public function table()
     {
         $table = static::schemaDef();
         return array_map(array($this, 'columnBitmap'), $table['fields']);
@@ -164,7 +164,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
 
     function sequenceKey()
     {
-        $table = call_user_func(array(get_class($this), 'schemaDef'));
+        $table = static::schemaDef();
         foreach ($table['fields'] as $name => $column) {
             if ($column['type'] == 'serial') {
                 // We have a serial/autoincrement column.
@@ -188,7 +188,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
 
     function keyTypes()
     {
-        $table = call_user_func(array(get_class($this), 'schemaDef'));
+        $table = static::schemaDef();
         $keys = array();
 
         if (!empty($table['unique keys'])) {
@@ -253,7 +253,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
     {
         $links = array();
 
-        $table = call_user_func(array(get_class($this), 'schemaDef'));
+        $table = static::schemaDef();
 
         foreach ($table['foreign keys'] as $keyname => $keydef) {
             if (count($keydef) == 2 && is_string($keydef[0]) && is_array($keydef[1]) && count($keydef[1]) == 1) {
@@ -274,7 +274,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
      */
     function _allCacheKeys()
     {
-        $table = call_user_func(array(get_class($this), 'schemaDef'));
+        $table = static::schemaDef();
         $ckeys = array();
 
         if (!empty($table['unique keys'])) {
