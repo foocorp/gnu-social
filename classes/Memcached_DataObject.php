@@ -773,9 +773,9 @@ class Memcached_DataObject extends Safe_DataObject
                 common_config('db', 'utf8')) {
                 $conn = $DB->connection;
                 if (!empty($conn)) {
-                    if ($DB instanceof DB_mysqli) {
+                    if ($DB instanceof DB_mysqli || $DB instanceof MDB2_Driver_mysqli) {
                         mysqli_set_charset($conn, 'utf8');
-                    } else if ($DB instanceof DB_mysql) {
+                    } else if ($DB instanceof DB_mysql || $DB instanceof MDB2_Driver_mysql) {
                         mysql_set_charset('utf8', $conn);
                     }
                 }
