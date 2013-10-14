@@ -120,16 +120,18 @@ class User extends Managed_DataObject
         );
     }
 
-    protected $_profile = -1;
+    protected $_profile = null;
 
     /**
      * @return Profile
+     *
+     * @throws UserNoProfileException if user has no profile
      */
-    function getProfile()
+    public function getProfile()
     {
-        if (is_int($this->_profile) && $this->_profile == -1) { // invalid but distinct from null
+        if (!($this->_profile instanceof Profile)) {
             $this->_profile = Profile::getKV('id', $this->id);
-            if (empty($this->_profile)) {
+            if (!($this->_profile instanceof Profile)) {
                 throw new UserNoProfileException($this);
             }
         }
