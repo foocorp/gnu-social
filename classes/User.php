@@ -717,48 +717,12 @@ class User extends Managed_DataObject
 
     function getTaggedSubscribers($tag, $offset=0, $limit=null)
     {
-        $qry =
-          'SELECT profile.* ' .
-          'FROM profile JOIN subscription ' .
-          'ON profile.id = subscription.subscriber ' .
-          'JOIN profile_tag ON (profile_tag.tagged = subscription.subscriber ' .
-          'AND profile_tag.tagger = subscription.subscribed) ' .
-          'WHERE subscription.subscribed = %d ' .
-          "AND profile_tag.tag = '%s' " .
-          'AND subscription.subscribed != subscription.subscriber ' .
-          'ORDER BY subscription.created DESC ';
-
-        if ($offset) {
-            $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-        }
-
-        $profile = new Profile();
-
-        $cnt = $profile->query(sprintf($qry, $this->id, $profile->escape($tag)));
-
-        return $profile;
+        return $this->getProfile()->getTaggedSubscribers($tag, $offset, $limit);
     }
 
     function getTaggedSubscriptions($tag, $offset=0, $limit=null)
     {
-        $qry =
-          'SELECT profile.* ' .
-          'FROM profile JOIN subscription ' .
-          'ON profile.id = subscription.subscribed ' .
-          'JOIN profile_tag on (profile_tag.tagged = subscription.subscribed ' .
-          'AND profile_tag.tagger = subscription.subscriber) ' .
-          'WHERE subscription.subscriber = %d ' .
-          "AND profile_tag.tag = '%s' " .
-          'AND subscription.subscribed != subscription.subscriber ' .
-          'ORDER BY subscription.created DESC ';
-
-        $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-
-        $profile = new Profile();
-
-        $profile->query(sprintf($qry, $this->id, $profile->escape($tag)));
-
-        return $profile;
+        return $this->getProfile()->getTaggedSubscriptions($tag, $offset, $limit);
     }
 
     function hasRight($right)

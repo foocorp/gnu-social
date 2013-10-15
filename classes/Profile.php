@@ -568,29 +568,50 @@ class Profile extends Managed_DataObject
         return $profiles;
     }
 
-    function getTaggedSubscribers($tag)
+    function getTaggedSubscribers($tag, $offset=0, $limit=null)
     {
         $qry =
           'SELECT profile.* ' .
-          'FROM profile JOIN (subscription, profile_tag, profile_list) ' .
+          'FROM profile JOIN subscription ' .
           'ON profile.id = subscription.subscriber ' .
-          'AND profile.id = profile_tag.tagged ' .
-          'AND profile_tag.tagger = profile_list.tagger AND profile_tag.tag = profile_list.tag ' .
+          'JOIN profile_tag ON (profile_tag.tagged = subscription.subscriber ' .
+          'AND profile_tag.tagger = subscription.subscribed) ' .
           'WHERE subscription.subscribed = %d ' .
+          "AND profile_tag.tag = '%s' " .
           'AND subscription.subscribed != subscription.subscriber ' .
-          'AND profile_tag.tagger = %d AND profile_tag.tag = "%s" ' .
-          'AND profile_list.private = false ' .
-          'ORDER BY subscription.created DESC';
+          'ORDER BY subscription.created DESC ';
+
+        if ($offset) {
+            $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
+        }
 
         $profile = new Profile();
-        $tagged = array();
 
-        $cnt = $profile->query(sprintf($qry, $this->id, $this->id, $profile->escape($tag)));
+        $cnt = $profile->query(sprintf($qry, $this->id, $profile->escape($tag)));
 
-        while ($profile->fetch()) {
-            $tagged[] = clone($profile);
-        }
-        return $tagged;
+        return $profile;
+    }
+
+    function getTaggedSubscriptions($tag, $offset=0, $limit=null)
+    {
+        $qry =
+          'SELECT profile.* ' .
+          'FROM profile JOIN subscription ' .
+          'ON profile.id = subscription.subscribed ' .
+          'JOIN profile_tag on (profile_tag.tagged = subscription.subscribed ' .
+          'AND profile_tag.tagger = subscription.subscriber) ' .
+          'WHERE subscription.subscriber = %d ' .
+          "AND profile_tag.tag = '%s' " .
+          'AND subscription.subscribed != subscription.subscriber ' .
+          'ORDER BY subscription.created DESC ';
+
+        $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
+
+        $profile = new Profile();
+
+        $profile->query(sprintf($qry, $this->id, $profile->escape($tag)));
+
+        return $profile;
     }
 
     /**
