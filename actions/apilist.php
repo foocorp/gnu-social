@@ -59,7 +59,7 @@ class ApiListAction extends ApiBareAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
@@ -76,8 +76,7 @@ class ApiListAction extends ApiBareAuthAction
 
         if (empty($this->list)) {
             // TRANS: Client error displayed when referring to a non-existing list.
-            $this->clientError(_('List not found.'), 404, $this->format);
-            return false;
+            $this->clientError(_('List not found.'), 404);
         }
 
         return true;
@@ -88,9 +87,9 @@ class ApiListAction extends ApiBareAuthAction
      *
      * @return boolean success flag
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if($this->delete) {
             $this->handleDelete();
@@ -110,13 +109,8 @@ class ApiListAction extends ApiBareAuthAction
             $this->showSingleJsonList($this->list);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 
@@ -138,12 +132,8 @@ class ApiListAction extends ApiBareAuthAction
     function handlePut()
     {
         if($this->auth_user->id != $this->list->tagger) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying to update another user's list.
-                _('You cannot update lists that do not belong to you.'),
-                401,
-                $this->format
-            );
+            // TRANS: Client error displayed when trying to update another user's list.
+            $this->clientError(_('You cannot update lists that do not belong to you.'), 401);
         }
 
         $new_list = clone($this->list);
@@ -154,12 +144,8 @@ class ApiListAction extends ApiBareAuthAction
         $result = $new_list->update($this->list);
 
         if(!$result) {
-            $this->clientError(
-                // TRANS: Client error displayed when an unknown error occurs updating a list.
-                _('An error occured.'),
-                503,
-                $this->format
-            );
+            // TRANS: Client error displayed when an unknown error occurs updating a list.
+            $this->clientError(_('An error occured.'), 503);
         }
 
         switch($this->format) {
@@ -170,13 +156,8 @@ class ApiListAction extends ApiBareAuthAction
             $this->showSingleJsonList($new_list);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 
@@ -188,12 +169,8 @@ class ApiListAction extends ApiBareAuthAction
     function handleDelete()
     {
         if($this->auth_user->id != $this->list->tagger) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying to delete another user's list.
-                _('You cannot delete lists that do not belong to you.'),
-                401,
-                $this->format
-            );
+            // TRANS: Client error displayed when trying to delete another user's list.
+            $this->clientError(_('You cannot delete lists that do not belong to you.'), 401);
         }
 
         $record = clone($this->list);
@@ -207,13 +184,8 @@ class ApiListAction extends ApiBareAuthAction
             $this->showSingleJsonList($record);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 

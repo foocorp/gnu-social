@@ -51,10 +51,15 @@ class ApiUserProfileImageAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
-        $this->user = User::getKV('nickname', $this->arg('screen_name'));
+        $user = User::getKV('nickname', $this->arg('screen_name'));
+        if (!($user instanceof User)) {
+            // TRANS: Client error displayed when requesting user information for a non-existing user.
+            $this->clientError(_('User not found.'), 404);
+        }
+        $this->target = $user->getProfile();
         $this->size = $this->arg('size');
 
         return true;
@@ -65,30 +70,14 @@ class ApiUserProfileImageAction extends ApiPrivateAuthAction
      *
      * Check the format and show the user info
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if (empty($this->user)) {
-            // TRANS: Client error displayed when requesting user information for a non-existing user.
-            $this->clientError(_('User not found.'), 404, $this->format);
-            return;
-        }
-
-        $profile = $this->user->getProfile();
-
-        if (empty($profile)) {
-            // TRANS: Error message displayed when referring to a user without a profile.
-            $this->clientError(_('User has no profile.'));
-            return;
-        }
+        parent::handle();
 
         $size = $this->avatarSize();
-        $url  = $profile->avatarUrl($size);
+        $url  = $this->target->avatarUrl($size);
 
         // We don't actually output JSON or XML data -- redirect!
         common_redirect($url, 302);

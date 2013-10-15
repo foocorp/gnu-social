@@ -29,9 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Ouputs the authenticating user's followers (subscribers), each with
@@ -53,7 +51,7 @@ class ApiUserFollowersAction extends ApiSubscriptionsAction
      *
      * @return array Profiles
      */
-    function getProfiles()
+    protected function getProfiles()
     {
         $offset = ($this->page - 1) * $this->count;
         $limit =  $this->count + 1;
@@ -61,11 +59,11 @@ class ApiUserFollowersAction extends ApiSubscriptionsAction
         $subs = null;
 
         if (isset($this->tag)) {
-            $subs = $this->user->getTaggedSubscribers(
+            $subs = $this->target->getTaggedSubscribers(
                 $this->tag, $offset, $limit
             );
         } else {
-            $subs = $this->user->getSubscribers(
+            $subs = $this->target->getSubscribers(
                 $offset,
                 $limit
             );
@@ -73,10 +71,8 @@ class ApiUserFollowersAction extends ApiSubscriptionsAction
 
         $profiles = array();
 
-        if (!empty($subs)) {
-            while ($subs->fetch()) {
-                $profiles[] = clone($subs);
-            }
+        while ($subs->fetch()) {
+            $profiles[] = clone($subs);
         }
 
         return $profiles;

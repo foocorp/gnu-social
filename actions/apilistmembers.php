@@ -42,36 +42,21 @@ class ApiListMembersAction extends ApiListUsersAction
     function handlePost()
     {
         if($this->auth_user->id != $this->list->tagger) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying to add members to a list without having the right to do so.
-                _('You are not allowed to add members to this list.'),
-                401,
-                $this->format
-            );
-            return false;
+            // TRANS: Client error displayed when trying to add members to a list without having the right to do so.
+            $this->clientError(_('You are not allowed to add members to this list.'), 401);
         }
 
-        if($this->user === false) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying to modify list members without specifying them.
-                _('You must specify a member.'),
-                400,
-                $this->format
-            );
-            return false;
+        if (!($this->target instanceof Profile)) {
+            // TRANS: Client error displayed when trying to modify list members without specifying them.
+            $this->clientError(_('You must specify a member.'));
         }
 
         $result = Profile_tag::setTag($this->auth_user->id,
-                        $this->user->id, $this->list->tag);
+                        $this->target->id, $this->list->tag);
 
         if(empty($result)) {
-            $this->clientError(
-                // TRANS: Client error displayed when an unknown error occurs viewing list members.
-                _('An error occured.'),
-                500,
-                $this->format
-            );
-            return false;
+            // TRANS: Client error displayed when an unknown error occurs viewing list members.
+            $this->clientError(_('An error occured.'), 500);
         }
 
         switch($this->format) {
@@ -82,14 +67,8 @@ class ApiListMembersAction extends ApiListUsersAction
             $this->showSingleJsonList($this->list);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            return false;
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 
@@ -101,50 +80,28 @@ class ApiListMembersAction extends ApiListUsersAction
     function handleDelete()
     {
         if($this->auth_user->id != $this->list->tagger) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying to remove members from a list without having the right to do so.
-                _('You are not allowed to remove members from this list.'),
-                401,
-                $this->format
-            );
-            return false;
+            // TRANS: Client error displayed when trying to remove members from a list without having the right to do so.
+            $this->clientError(_('You are not allowed to remove members from this list.'), 401);
         }
 
-        if($this->user === false) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying to modify list members without specifying them.
-                _('You must specify a member.'),
-                400,
-                $this->format
-            );
-            return false;
+        if (!($this->target instanceof Profile)) {
+            // TRANS: Client error displayed when trying to modify list members without specifying them.
+            $this->clientError(_('You must specify a member.'));
         }
 
         $args = array('tagger' => $this->auth_user->id,
-                      'tagged' => $this->user->id,
+                      'tagged' => $this->target->id,
                       'tag' => $this->list->tag);
         $ptag = Profile_tag::pkeyGet($args);
 
-        if(empty($ptag)) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying to remove a list member that is not part of a list.
-                _('The user you are trying to remove from the list is not a member.'),
-                400,
-                $this->format
-            );
-            return false;
+        if (empty($ptag)) {
+            // TRANS: Client error displayed when trying to remove a list member that is not part of a list.
+            $this->clientError(_('The user you are trying to remove from the list is not a member.'));
         }
 
-        $result = $ptag->delete();
-
-        if(empty($result)) {
-            $this->clientError(
-                // TRANS: Client error displayed when an unknown error occurs viewing list members.
-                _('An error occured.'),
-                500,
-                $this->format
-            );
-            return false;
+        if (!$ptag->delete()) {
+            // TRANS: Client error displayed when an unknown error occurs viewing list members.
+            $this->clientError(_('An error occured.'), 500);
         }
 
         switch($this->format) {
@@ -155,15 +112,10 @@ class ApiListMembersAction extends ApiListUsersAction
             $this->showSingleJsonList($this->list);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            return false;
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
+
         return true;
     }
 

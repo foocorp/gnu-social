@@ -59,7 +59,7 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
@@ -74,12 +74,8 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
                 $args = array('id' => $alias->group_id, 'format' => $this->format);
                 common_redirect(common_local_url('ApiGroupShow', $args), 301);
             } else {
-                $this->clientError(
-                    // TRANS: Client error displayed when trying to show a group that could not be found.
-                    _('Group not found.'),
-                    404,
-                    $this->format
-                );
+                // TRANS: Client error displayed when trying to show a group that could not be found.
+                $this->clientError(_('Group not found.'), 404);
             }
             return;
         }
@@ -92,13 +88,11 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
      *
      * Check the format and show the user info
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         switch($this->format) {
         case 'xml':
@@ -109,8 +103,7 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
             break;
         default:
             // TRANS: Client error displayed when coming across a non-supported API method.
-            $this->clientError(_('API method not found.'), 404, $this->format);
-            break;
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 

@@ -56,23 +56,21 @@ class ApiListMemberAction extends ApiBareAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user = $this->getTargetUser($this->arg('id'));
+        $this->target = $this->getTargetProfile($this->arg('id'));
         $this->list = $this->getTargetList($this->arg('user'), $this->arg('list_id'));
 
         if (empty($this->list)) {
             // TRANS: Client error displayed when referring to a non-existing list.
-            $this->clientError(_('List not found.'), 404, $this->format);
-            return false;
+            $this->clientError(_('List not found.'), 404);
         }
 
-        if (empty($this->user)) {
+        if (!($this->target instanceof Profile)) {
             // TRANS: Client error displayed when referring to a non-existing user.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return false;
+            $this->clientError(_('No such user.'), 404);
         }
         return true;
     }
@@ -82,25 +80,21 @@ class ApiListMemberAction extends ApiBareAuthAction
      *
      * @return boolean success flag
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         $arr = array('tagger' => $this->list->tagger,
                       'tag' => $this->list->tag,
-                      'tagged' => $this->user->id);
+                      'tagged' => $this->target->id);
         $ptag = Profile_tag::pkeyGet($arr);
 
         if(empty($ptag)) {
-            $this->clientError(
-                // TRANS: Client error displayed when referring to a non-list member.
-                _('The specified user is not a member of this list.'),
-                400,
-                $this->format
-            );
+            // TRANS: Client error displayed when referring to a non-list member.
+            $this->clientError(_('The specified user is not a member of this list.'));
         }
 
-        $user = $this->twitterUserArray($this->user->getProfile(), true);
+        $user = $this->twitterUserArray($this->target, true);
 
         switch($this->format) {
         case 'xml':
@@ -110,13 +104,8 @@ class ApiListMemberAction extends ApiBareAuthAction
             $this->showSingleJsonUser($user);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
         return true;
     }

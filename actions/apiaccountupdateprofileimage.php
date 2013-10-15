@@ -43,43 +43,18 @@ if (!defined('STATUSNET')) {
  */
 class ApiAccountUpdateProfileImageAction extends ApiAuthAction
 {
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
-    {
-        parent::prepare($args);
-
-        $this->user   = $this->auth_user;
-
-        return true;
-    }
+    protected $needPost = true;
 
     /**
      * Handle the request
      *
      * Check whether the credentials are valid and output the result
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400, $this->format
-            );
-            return;
-        }
+        parent::handle();
 
         // Workaround for PHP returning empty $_POST and $_FILES when POST
         // length > post_max_size in php.ini
@@ -94,20 +69,17 @@ class ApiAccountUpdateProfileImageAction extends ApiAuthAction
                       'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
                       intval($_SERVER['CONTENT_LENGTH']));
             $this->clientError(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
-            return;
         }
 
         if (empty($this->user)) {
             // TRANS: Client error displayed updating profile image without having a user object.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         try {
             $imagefile = ImageFile::fromUpload('image');
         } catch (Exception $e) {
-            $this->clientError($e->getMessage(), 400, $this->format);
-            return;
+            $this->clientError($e->getMessage());
         }
 
         $type = $imagefile->preferredType();
@@ -123,13 +95,6 @@ class ApiAccountUpdateProfileImageAction extends ApiAuthAction
         $imagefile->copyTo($filepath);
 
         $profile = $this->user->getProfile();
-
-        if (empty($profile)) {
-            // TRANS: Error message displayed when referring to a user without a profile.
-            $this->clientError(_('User has no profile.'));
-            return;
-        }
-
         $profile->setOriginal($filename);
 
         common_broadcast_profile($profile);

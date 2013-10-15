@@ -59,11 +59,11 @@ class ApiGroupIsMemberAction extends ApiBareAuthAction
      * @return boolean success flag
      */
 
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user   = $this->getTargetUser(null);
+        $this->target = $this->getTargetProfile(null);
         $this->group  = $this->getTargetGroup(null);
 
         return true;
@@ -74,27 +74,23 @@ class ApiGroupIsMemberAction extends ApiBareAuthAction
      *
      * Save the new message
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
-        if (empty($this->user)) {
+        if (empty($this->target)) {
             // TRANS: Client error displayed when checking group membership for a non-existing user.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         if (empty($this->group)) {
             // TRANS: Client error displayed when checking group membership for a non-existing group.
-            $this->clientError(_('Group not found.'), 404, $this->format);
-            return false;
+            $this->clientError(_('Group not found.'), 404);
         }
 
-        $is_member = $this->user->isMember($this->group);
+        $is_member = $this->target->isMember($this->group);
 
         switch($this->format) {
         case 'xml':
@@ -108,13 +104,8 @@ class ApiGroupIsMemberAction extends ApiBareAuthAction
             $this->endDocument('json');
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                400,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'));
         }
     }
 

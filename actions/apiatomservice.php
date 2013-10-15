@@ -58,8 +58,7 @@ class ApiAtomServiceAction extends ApiBareAuthAction
 
         if (empty($this->user)) {
             // TRANS: Client error displayed when making an Atom API request for an unknown user.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         return true;

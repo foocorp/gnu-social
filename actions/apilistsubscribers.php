@@ -44,13 +44,8 @@ class ApiListSubscribersAction extends ApiListUsersAction
                             $this->auth_user);
 
         if(empty($result)) {
-            $this->clientError(
-                // TRANS: Client error displayed when an unknown error occurs in the list subscribers action.
-                _('An error occured.'),
-                500,
-                $this->format
-            );
-            return false;
+            // TRANS: Client error displayed when an unknown error occurs in the list subscribers action.
+            $this->clientError(_('An error occured.'), 500);
         }
 
         switch($this->format) {
@@ -61,14 +56,8 @@ class ApiListSubscribersAction extends ApiListUsersAction
             $this->showSingleJsonList($this->list);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            return false;
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 
@@ -79,25 +68,15 @@ class ApiListSubscribersAction extends ApiListUsersAction
         $ptag = Profile_tag_subscription::pkeyGet($args);
 
         if(empty($ptag)) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying to unsubscribe from a non-subscribed list.
-                _('You are not subscribed to this list.'),
-                400,
-                $this->format
-            );
-            return false;
+            // TRANS: Client error displayed when trying to unsubscribe from a non-subscribed list.
+            $this->clientError(_('You are not subscribed to this list.'));
         }
 
-        Profile_tag_subscription::remove($this->list, $this->auth_user);
+        $result = Profile_tag_subscription::remove($this->list, $this->auth_user);
 
-        if(empty($result)) {
-            $this->clientError(
-                // TRANS: Client error displayed when an unknown error occurs unsubscribing from a list.
-                _('An error occured.'),
-                500,
-                $this->format
-            );
-            return false;
+        if (empty($result)) {
+            // TRANS: Client error displayed when an unknown error occurs unsubscribing from a list.
+            $this->clientError(_('An error occured.'), 500);
         }
 
         switch($this->format) {
@@ -108,14 +87,8 @@ class ApiListSubscribersAction extends ApiListUsersAction
             $this->showSingleJsonList($this->list);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            return false;
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
         return true;
     }

@@ -57,16 +57,15 @@ class ApiTimelineFavoritesAction extends ApiBareAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user = $this->getTargetUser($this->arg('id'));
+        $this->target = $this->getTargetProfile($this->arg('id'));
 
-        if (empty($this->user)) {
+        if (!($this->target instanceof Profile)) {
             // TRANS: Client error displayed when requesting most recent favourite notices by a user for a non-existing user.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         $this->notices = $this->getNotices();
@@ -79,13 +78,11 @@ class ApiTimelineFavoritesAction extends ApiBareAuthAction
      *
      * Just show the notices
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $this->showTimeline();
     }
 
@@ -96,19 +93,17 @@ class ApiTimelineFavoritesAction extends ApiBareAuthAction
      */
     function showTimeline()
     {
-        $profile  = $this->user->getProfile();
-
         $sitename = common_config('site', 'name');
         $title    = sprintf(
             // TRANS: Title for timeline of most recent favourite notices by a user.
             // TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname.
             _('%1$s / Favorites from %2$s'),
             $sitename,
-            $this->user->nickname
+            $this->target->nickname
         );
 
         $taguribase = TagURI::base();
-        $id         = "tag:$taguribase:Favorites:" . $this->user->id;
+        $id         = "tag:$taguribase:Favorites:" . $this->target->id;
 
         $subtitle = sprintf(
             // TRANS: Subtitle for timeline of most recent favourite notices by a user.
@@ -116,13 +111,13 @@ class ApiTimelineFavoritesAction extends ApiBareAuthAction
             // TRANS: %3$s is a user nickname.
             _('%1$s updates favorited by %2$s / %3$s.'),
             $sitename,
-            $profile->getBestName(),
-            $this->user->nickname
+            $this->target->getBestName(),
+            $this->target->nickname
         );
 
-        $logo = $profile->avatarUrl(AVATAR_PROFILE_SIZE);
+        $logo = $this->target->avatarUrl(AVATAR_PROFILE_SIZE);
         $link = common_local_url('showfavorites',
-                    array('nickname' => $this->user->nickname));
+                    array('nickname' => $this->target->nickname));
         $self = $this->getSelfUri();
 
         switch($this->format) {
@@ -171,8 +166,7 @@ class ApiTimelineFavoritesAction extends ApiBareAuthAction
             break;
         default:
             // TRANS: Client error displayed when coming across a non-supported API method.
-            $this->clientError(_('API method not found.'), $code = 404);
-            break;
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 
@@ -187,8 +181,8 @@ class ApiTimelineFavoritesAction extends ApiBareAuthAction
 
         common_debug("since id = " . $this->since_id . " max id = " . $this->max_id);
 
-        if (!empty($this->auth_user) && $this->auth_user->id == $this->user->id) {
-            $notice = $this->user->favoriteNotices(
+        if (!empty($this->auth_user) && $this->auth_user->id == $this->target->id) {
+            $notice = $this->target->favoriteNotices(
                 true,
                 ($this->page-1) * $this->count,
                 $this->count,
@@ -196,7 +190,7 @@ class ApiTimelineFavoritesAction extends ApiBareAuthAction
                 $this->max_id
             );
         } else {
-            $notice = $this->user->favoriteNotices(
+            $notice = $this->target->favoriteNotices(
                 false,
                 ($this->page-1) * $this->count,
                 $this->count,
@@ -257,7 +251,7 @@ class ApiTimelineFavoritesAction extends ApiBareAuthAction
                 array($this->arg('action'),
                       common_user_cache_hash($this->auth_user),
                       common_language(),
-                      $this->user->id,
+                      $this->target->id,
                       strtotime($this->notices[0]->created),
                       strtotime($this->notices[$last]->created))
             )

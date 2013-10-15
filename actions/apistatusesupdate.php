@@ -146,6 +146,8 @@ if (!defined('STATUSNET')) {
  */
 class ApiStatusesUpdateAction extends ApiAuthAction
 {
+    protected $needPost = true;
+
     var $status                = null;
     var $in_reply_to_status_id = null;
     var $lat                   = null;
@@ -177,23 +179,11 @@ class ApiStatusesUpdateAction extends ApiAuthAction
      *
      * Make a new notice for the update, save it, and show it
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
     protected function handle()
     {
         parent::handle();
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400,
-                $this->format
-            );
-            return;
-        }
 
         // Workaround for PHP returning empty $_POST and $_FILES when POST
         // length > post_max_size in php.ini
@@ -209,23 +199,16 @@ class ApiStatusesUpdateAction extends ApiAuthAction
                       intval($_SERVER['CONTENT_LENGTH']));
 
             $this->clientError(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
-            return;
         }
 
         if (empty($this->status)) {
-            $this->clientError(
-                // TRANS: Client error displayed when the parameter "status" is missing.
-                _('Client must provide a \'status\' parameter with a value.'),
-                400,
-                $this->format
-            );
-            return;
+            // TRANS: Client error displayed when the parameter "status" is missing.
+            $this->clientError(_('Client must provide a \'status\' parameter with a value.'));
         }
 
         if (is_null($this->scoped)) {
             // TRANS: Client error displayed when updating a status for a non-existing user.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         /* Do not call shortenlinks until the whole notice has been build */
@@ -256,13 +239,8 @@ class ApiStatusesUpdateAction extends ApiAuthAction
                 if ($reply) {
                     $reply_to = $this->in_reply_to_status_id;
                 } else {
-                    $this->clientError(
-                        // TRANS: Client error displayed when replying to a non-existing notice.
-                        _('Parent notice not found.'),
-                        $code = 404,
-                        $this->format
-                    );
-                    return;
+                    // TRANS: Client error displayed when replying to a non-existing notice.
+                    $this->clientError(_('Parent notice not found.'), 404);
                 }
             }
 
@@ -271,8 +249,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             try {
                 $upload = MediaFile::fromUpload('media', $this->scoped);
             } catch (Exception $e) {
-                $this->clientError($e->getMessage(), $e->getCode(), $this->format);
-                return;
+                $this->clientError($e->getMessage(), $e->getCode());
             }
 
             if (isset($upload)) {
@@ -296,9 +273,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
                 /* Use HTTP 413 error code (Request Entity Too Large)
                  * instead of basic 400 for better understanding
                  */
-                $this->clientError(sprintf($msg, Notice::maxContent()),
-                                   413,
-                                   $this->format);
+                $this->clientError(sprintf($msg, Notice::maxContent()), 413);
             }
 
 
@@ -325,8 +300,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
                     $options
                 );
             } catch (Exception $e) {
-                $this->clientError($e->getMessage(), $e->getCode(), $this->format);
-                return;
+                $this->clientError($e->getMessage(), $e->getCode());
             }
 
             if (isset($upload)) {

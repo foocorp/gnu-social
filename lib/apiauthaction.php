@@ -106,6 +106,10 @@ class ApiAuthAction extends ApiAction
             $this->scoped = null;
         }
 
+        // legacy user transferral
+        // TODO: remove when sure no extended classes need it
+        $this->user = $this->auth_user;
+
         // Reject API calls with the wrong access level
 
         if ($this->isReadOnly($args) == false) {

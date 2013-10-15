@@ -46,12 +46,17 @@ class ApiListSubscriptionsAction extends ApiBareAuthAction
      * @return boolean success flag
      *
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
         $this->cursor = (int) $this->arg('cursor', -1);
-        $this->user = $this->getTargetUser($this->arg('user'));
+        $user = $this->getTargetUser($this->arg('user'));
+        if (!($user instanceof User)) {
+            // TRANS: Client error displayed trying to perform an action related to a non-existing user.
+            $this->clientError(_('No such user.'), 404);
+        }
+        $this->target = $user->getProfile();
         $this->getLists();
 
         return true;
@@ -62,19 +67,11 @@ class ApiListSubscriptionsAction extends ApiBareAuthAction
      *
      * Show the lists
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if (empty($this->user)) {
-            // TRANS: Client error displayed trying to perform an action related to a non-existing user.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
-        }
+        parent::handle();
 
         switch($this->format) {
         case 'xml':
@@ -84,13 +81,8 @@ class ApiListSubscriptionsAction extends ApiBareAuthAction
             $this->showJsonLists($this->lists, $this->next_cursor, $this->prev_cursor);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                400,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'));
         }
     }
 
@@ -110,12 +102,7 @@ class ApiListSubscriptionsAction extends ApiBareAuthAction
 
     function getLists()
     {
-        if(empty($this->user)) {
-            return;
-        }
-
-        $profile = $this->user->getProfile();
-        $fn = array($profile, 'getTagSubscriptions');
+        $fn = array($this->target, 'getTagSubscriptions');
         # 20 lists
         list($this->lists, $this->next_cursor, $this->prev_cursor) =
                 Profile_list::getAtCursor($fn, array(), $this->cursor, 20);

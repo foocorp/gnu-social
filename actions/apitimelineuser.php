@@ -66,16 +66,15 @@ class ApiTimelineUserAction extends ApiBareAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user = $this->getTargetUser($this->arg('id'));
+        $this->target = $this->getTargetProfile($this->arg('id'));
 
-        if (empty($this->user)) {
+        if (!($this->target instanceof Profile)) {
             // TRANS: Client error displayed requesting most recent notices for a non-existing user.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         $this->notices = $this->getNotices();
@@ -88,13 +87,11 @@ class ApiTimelineUserAction extends ApiBareAuthAction
      *
      * Just show the notices
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if ($this->isPost()) {
             $this->handlePost();
@@ -110,15 +107,13 @@ class ApiTimelineUserAction extends ApiBareAuthAction
      */
     function showTimeline()
     {
-        $profile = $this->user->getProfile();
-
         // We'll use the shared params from the Atom stub
         // for other feed types.
-        $atom = new AtomUserNoticeFeed($this->user, $this->auth_user);
+        $atom = new AtomUserNoticeFeed($this->target->getUser(), $this->auth_user);
 
         $link = common_local_url(
                                  'showstream',
-                                 array('nickname' => $this->user->nickname)
+                                 array('nickname' => $this->target->nickname)
                                  );
 
         $self = $this->getSelfUri();
@@ -126,7 +121,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         // FriendFeed's SUP protocol
         // Also added RSS and Atom feeds
 
-        $suplink = common_local_url('sup', null, null, $this->user->id);
+        $suplink = common_local_url('sup', null, null, $this->target->id);
         header('X-SUP-ID: ' . $suplink);
 
         switch($this->format) {
@@ -157,7 +152,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             if (!empty($this->next_id)) {
                 $nextUrl = common_local_url('ApiTimelineUser',
                                             array('format' => 'atom',
-                                                  'id' => $this->user->id),
+                                                  'id' => $this->target->id),
                                             array('max_id' => $this->next_id));
 
                 $atom->addLink($nextUrl,
@@ -172,7 +167,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
                 $prevUrl = common_local_url('ApiTimelineUser',
                                             array('format' => 'atom',
-                                                  'id' => $this->user->id),
+                                                  'id' => $this->target->id),
                                             array('since_id' => $lastId));
 
                 $atom->addLink($prevUrl,
@@ -184,7 +179,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
                 $firstUrl = common_local_url('ApiTimelineUser',
                                             array('format' => 'atom',
-                                                  'id' => $this->user->id));
+                                                  'id' => $this->target->id));
 
                 $atom->addLink($firstUrl,
                                array('rel' => 'first',
@@ -213,7 +208,6 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         default:
             // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), $code = 404);
-            break;
         }
     }
 
@@ -226,7 +220,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
     {
         $notices = array();
 
-        $notice = $this->user->getNotices(($this->page-1) * $this->count,
+        $notice = $this->target->getNotices(($this->page-1) * $this->count,
                                           $this->count + 1,
                                           $this->since_id,
                                           $this->max_id,
@@ -289,7 +283,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
                                  array($this->arg('action'),
                                        common_user_cache_hash($this->auth_user),
                                        common_language(),
-                                       $this->user->id,
+                                       $this->target->id,
                                        strtotime($this->notices[0]->created),
                                        strtotime($this->notices[$last]->created))
                                  )
@@ -302,17 +296,15 @@ class ApiTimelineUserAction extends ApiBareAuthAction
     function handlePost()
     {
         if (empty($this->auth_user) ||
-            $this->auth_user->id != $this->user->id) {
+            $this->auth_user->id != $this->target->id) {
             // TRANS: Client error displayed trying to add a notice to another user's timeline.
             $this->clientError(_('Only the user can add to their own timeline.'));
-            return;
         }
 
         // Only handle posts for Atom
         if ($this->format != 'atom') {
             // TRANS: Client error displayed when using another format than AtomPub.
             $this->clientError(_('Only accept AtomPub for Atom feeds.'));
-            return;
         }
 
         $xml = trim(file_get_contents('php://input'));
@@ -334,18 +326,16 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             $dom->documentElement->localName != 'entry') {
             // TRANS: Client error displayed when not using an Atom entry.
             $this->clientError(_('Atom post must be an Atom entry.'));
-            return;
         }
 
         $activity = new Activity($dom->documentElement);
 
         $saved = null;
 
-        if (Event::handle('StartAtomPubNewActivity', array(&$activity, $this->user, &$saved))) {
+        if (Event::handle('StartAtomPubNewActivity', array(&$activity, $this->target->getUser(), &$saved))) {
             if ($activity->verb != ActivityVerb::POST) {
                 // TRANS: Client error displayed when not using the POST verb. Do not translate POST.
                 $this->clientError(_('Can only handle POST activities.'));
-                return;
             }
 
             $note = $activity->objects[0];
@@ -357,12 +347,11 @@ class ApiTimelineUserAction extends ApiBareAuthAction
                 // TRANS: %s is the unsupported activity object type.
                 $this->clientError(sprintf(_('Cannot handle activity object type "%s".'),
                                              $note->type));
-                return;
             }
 
             $saved = $this->postNote($activity);
 
-            Event::handle('EndAtomPubNewActivity', array($activity, $this->user, $saved));
+            Event::handle('EndAtomPubNewActivity', array($activity, $this->target->getUser(), $saved));
         }
 
         if (!empty($saved)) {
@@ -389,9 +378,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             // @fixme fetch from $sourceUrl?
             // TRANS: Client error displayed when posting a notice without content through the API.
             // TRANS: %d is the notice ID (number).
-            $this->clientError(sprintf(_('No content for notice %d.'),
-                                       $note->id));
-            return;
+            $this->clientError(sprintf(_('No content for notice %d.'), $note->id));
         }
 
         // Get (safe!) HTML and text versions of the content
@@ -418,9 +405,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             if (!empty($notice)) {
                 // TRANS: Client error displayed when using another format than AtomPub.
                 // TRANS: %s is the notice URI.
-                $this->clientError(sprintf(_('Notice with URI "%s" already exists.'),
-                                           $note->id));
-                return;
+                $this->clientError(sprintf(_('Notice with URI "%s" already exists.'), $note->id));
             }
             common_log(LOG_NOTICE, "Saving client-supplied notice URI '$note->id'");
             $options['uri'] = $note->id;
@@ -494,7 +479,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             $options['urls'][] = $href;
         }
 
-        $saved = Notice::saveNew($this->user->id,
+        $saved = Notice::saveNew($this->target->id,
                                  $content,
                                  'atompub', // TODO: deal with this
                                  $options);

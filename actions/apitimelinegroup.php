@@ -60,7 +60,7 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
@@ -74,18 +74,15 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      *
      * Just show the notices
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if (empty($this->group)) {
             // TRANS: Client error displayed requesting most recent notices to a group for a non-existing group.
-            $this->clientError(_('Group not found.'), 404, $this->format);
-            return false;
+            $this->clientError(_('Group not found.'), 404);
         }
 
         $this->notices = $this->getNotices();
@@ -139,13 +136,8 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
             $this->raw($doc->asString());
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when trying to handle an unknown API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when trying to handle an unknown API method.
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 

@@ -49,6 +49,8 @@ if (!defined('STATUSNET')) {
  */
 class ApiDirectMessageNewAction extends ApiAuthAction
 {
+    protected $needPost = true;
+
     var $other   = null;
     var $content = null;
 
@@ -59,21 +61,16 @@ class ApiDirectMessageNewAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user = $this->auth_user;
-
         if (empty($this->user)) {
             // TRANS: Client error when user not found for an API direct message action.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         $this->content = $this->trimmed('text');
-
-        $this->user  = $this->auth_user;
 
         $user_param  = $this->trimmed('user');
         $user_id     = $this->arg('user_id');
@@ -91,67 +88,38 @@ class ApiDirectMessageNewAction extends ApiAuthAction
      *
      * Save the new message
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400,
-                $this->format
-            );
-            return;
-        }
+        parent::handle();
 
         if (empty($this->content)) {
-            $this->clientError(
-                // TRANS: Client error displayed when no message text was submitted (406).
-                _('No message text!'),
-                406,
-                $this->format
-            );
+            // TRANS: Client error displayed when no message text was submitted (406).
+            $this->clientError(_('No message text!'), 406);
         } else {
             $content_shortened = $this->auth_user->shortenLinks($this->content);
             if (Message::contentTooLong($content_shortened)) {
+                // TRANS: Client error displayed when message content is too long.
+                // TRANS: %d is the maximum number of characters for a message.
                 $this->clientError(
-                    // TRANS: Client error displayed when message content is too long.
-                    // TRANS: %d is the maximum number of characters for a message.
-                    sprintf(_m('That\'s too long. Maximum message size is %d character.', 'That\'s too long. Maximum message size is %d characters.', Message::maxContent()),
-                        Message::maxContent()
-                    ),
-                    406,
-                    $this->format
-                );
-                return;
+                    sprintf(_m('That\'s too long. Maximum message size is %d character.', 'That\'s too long. Maximum message size is %d characters.', Message::maxContent()), Message::maxContent()),
+                    406);
             }
         }
 
         if (empty($this->other)) {
             // TRANS: Client error displayed if a recipient user could not be found (403).
-            $this->clientError(_('Recipient user not found.'), 403, $this->format);
-            return;
+            $this->clientError(_('Recipient user not found.'), 403);
         } else if (!$this->user->mutuallySubscribed($this->other)) {
-            $this->clientError(
-                // TRANS: Client error displayed trying to direct message another user who's not a friend (403).
-                _('Cannot send direct messages to users who aren\'t your friend.'),
-                403,
-                $this->format
-            );
-            return;
+            // TRANS: Client error displayed trying to direct message another user who's not a friend (403).
+            $this->clientError(_('Cannot send direct messages to users who aren\'t your friend.'), 403);
         } else if ($this->user->id == $this->other->id) {
 
             // Note: sending msgs to yourself is allowed by Twitter
 
             // TRANS: Client error displayed trying to direct message self (403).
-            $this->clientError(_('Do not send a message to yourself; ' .
-                   'just say it to yourself quietly instead.'), 403, $this->format);
-            return;
+            $this->clientError(_('Do not send a message to yourself; just say it to yourself quietly instead.'), 403);
         }
 
         $message = Message::saveNew(

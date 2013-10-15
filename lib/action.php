@@ -135,6 +135,7 @@ class Action extends HTMLOutputter // lawsuit
     protected function prepare(array $args=array())
     {
         if ($this->needPost && !$this->isPost()) {
+            // TRANS: Client error. POST is a HTTP command. It should not be translated.
             $this->clientError(_('This method requires a POST.'), 405);
         }
 

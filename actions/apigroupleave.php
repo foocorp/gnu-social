@@ -49,6 +49,8 @@ if (!defined('STATUSNET')) {
  */
 class ApiGroupLeaveAction extends ApiAuthAction
 {
+    protected $needPost = true;
+
     var $group   = null;
 
     /**
@@ -58,11 +60,10 @@ class ApiGroupLeaveAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user  = $this->auth_user;
         $this->group = $this->getTargetGroup($this->arg('id'));
 
         return true;
@@ -73,34 +74,20 @@ class ApiGroupLeaveAction extends ApiAuthAction
      *
      * Save the new message
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400,
-                $this->format
-            );
-            return;
-        }
+        parent::handle();
 
         if (empty($this->user)) {
             // TRANS: Client error displayed when trying to have a non-existing user leave a group.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         if (empty($this->group)) {
             // TRANS: Client error displayed when trying to leave a group that does not exist.
-            $this->clientError(_('Group not found.'), 404, $this->format);
-            return false;
+            $this->clientError(_('Group not found.'), 404);
         }
 
         $member = new Group_member();
@@ -111,7 +98,6 @@ class ApiGroupLeaveAction extends ApiAuthAction
         if (!$member->find(true)) {
             // TRANS: Server error displayed when trying to leave a group the user is not a member of.
             $this->serverError(_('You are not a member of this group.'));
-            return;
         }
 
         try {
@@ -121,7 +107,6 @@ class ApiGroupLeaveAction extends ApiAuthAction
             // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
             $this->serverError(sprintf(_('Could not remove user %1$s from group %2$s.'),
                                        $cur->nickname, $this->group->nickname));
-            return;
         }
         switch($this->format) {
         case 'xml':
@@ -131,13 +116,8 @@ class ApiGroupLeaveAction extends ApiAuthAction
             $this->showSingleJsonGroup($this->group);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 }

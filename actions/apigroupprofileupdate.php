@@ -42,6 +42,7 @@ if (!defined('STATUSNET')) {
  */
 class ApiGroupProfileUpdateAction extends ApiAuthAction
 {
+    protected $needPost = true;
     /**
      * Take arguments for running
      *
@@ -50,7 +51,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
      * @return boolean success flag
      *
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
@@ -73,49 +74,30 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
      *
      * See which request params have been set, and update the profile
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error message. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400, $this->format
-            );
-            return;
-        }
+        parent::handle();
 
         if (!in_array($this->format, array('xml', 'json'))) {
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            return;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
 
         if (empty($this->user)) {
             // TRANS: Client error displayed when not providing a user or an invalid user.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         if (empty($this->group)) {
             // TRANS: Client error displayed when not providing a group or an invalid group.
-            $this->clientError(_('Group not found.'), 404, $this->format);
-            return false;
+            $this->clientError(_('Group not found.'), 404);
         }
 
         if (!$this->user->isAdmin($this->group)) {
             // TRANS: Client error displayed when trying to edit a group without being an admin.
             $this->clientError(_('You must be an admin to edit the group.'), 403);
-            return false;
         }
 
         $this->group->query('BEGIN');
@@ -155,12 +137,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             }
 
         } catch (ApiValidationException $ave) {
-            $this->clientError(
-                $ave->getMessage(),
-                403,
-                $this->format
-            );
-            return;
+            $this->clientError($ave->getMessage(), 403);
         }
 
         $result = $this->group->update($orig);
@@ -179,12 +156,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             }
 
         } catch (ApiValidationException $ave) {
-            $this->clientError(
-                $ave->getMessage(),
-                403,
-                $this->format
-            );
-            return;
+            $this->clientError($ave->getMessage(), 403);
         }
 
         $result = $this->group->setAliases($aliases);
@@ -211,8 +183,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             break;
         default:
             // TRANS: Client error displayed when coming across a non-supported API method.
-            $this->clientError(_('API method not found.'), 404, $this->format);
-            break;
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 

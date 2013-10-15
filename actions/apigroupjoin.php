@@ -49,6 +49,8 @@ if (!defined('STATUSNET')) {
  */
 class ApiGroupJoinAction extends ApiAuthAction
 {
+    protected $needPost = true;
+
     var $group   = null;
 
     /**
@@ -58,11 +60,10 @@ class ApiGroupJoinAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user  = $this->auth_user;
         $this->group = $this->getTargetGroup($this->arg('id'));
 
         return true;
@@ -73,54 +74,30 @@ class ApiGroupJoinAction extends ApiAuthAction
      *
      * Save the new message
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400,
-                $this->format
-            );
-            return;
-        }
+        parent::handle();
 
         if (empty($this->user)) {
             // TRANS: Client error displayed when trying to have a non-existing user join a group.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return;
+            $this->clientError(_('No such user.'), 404);
         }
 
         if (empty($this->group)) {
             // TRANS: Client error displayed when trying to join a group that does not exist.
-            $this->clientError(_('Group not found.'), 404, $this->format);
-            return false;
+            $this->clientError(_('Group not found.'), 404);
         }
 
         if ($this->user->isMember($this->group)) {
-            $this->clientError(
-                // TRANS: Server error displayed when trying to join a group the user is already a member of.
-                _('You are already a member of that group.'),
-                403,
-                $this->format
-            );
-            return;
+            // TRANS: Server error displayed when trying to join a group the user is already a member of.
+            $this->clientError(_('You are already a member of that group.'), 403);
         }
 
         if (Group_block::isBlocked($this->group, $this->user->getProfile())) {
-            $this->clientError(
-                // TRANS: Server error displayed when trying to join a group the user is blocked from joining.
-                _('You have been blocked from that group by the admin.'),
-                403,
-                $this->format
-            );
-            return;
+            // TRANS: Server error displayed when trying to join a group the user is blocked from joining.
+            $this->clientError(_('You have been blocked from that group by the admin.'), 403);
         }
 
         try {
@@ -130,7 +107,6 @@ class ApiGroupJoinAction extends ApiAuthAction
             // TRANS: %1$s is the joining user's nickname, $2$s is the group nickname for which the join failed.
             $this->serverError(sprintf(_('Could not join user %1$s to group %2$s.'),
                                        $cur->nickname, $this->group->nickname));
-			return;
         }
 
         switch($this->format) {
@@ -141,13 +117,8 @@ class ApiGroupJoinAction extends ApiAuthAction
             $this->showSingleJsonGroup($this->group);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 }

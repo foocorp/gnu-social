@@ -37,19 +37,17 @@ class ApiListSubscriberAction extends ApiBareAuthAction
     {
         parent::prepare($args);
 
-        $this->user = $this->getTargetUser($this->arg('id'));
+        $this->target = $this->getTargetProfile($this->arg('id'));
         $this->list = $this->getTargetList($this->arg('user'), $this->arg('list_id'));
 
         if (empty($this->list)) {
             // TRANS: Client error displayed trying to perform an action related to a non-existing list.
-            $this->clientError(_('List not found.'), 404, $this->format);
-            return false;
+            $this->clientError(_('List not found.'), 404);
         }
 
-        if (empty($this->user)) {
+        if (!($this->target instanceof Profile)) {
             // TRANS: Client error displayed trying to perform an action related to a non-existing user.
-            $this->clientError(_('No such user.'), 404, $this->format);
-            return false;
+            $this->clientError(_('No such user.'), 404);
         }
         return true;
     }
@@ -59,19 +57,15 @@ class ApiListSubscriberAction extends ApiBareAuthAction
         parent::handle($args);
 
         $arr = array('profile_tag_id' => $this->list->id,
-                      'profile_id' => $this->user->id);
+                      'profile_id' => $this->target->id);
         $sub = Profile_tag_subscription::pkeyGet($arr);
 
         if(empty($sub)) {
-            $this->clientError(
-                // TRANS: Client error displayed when a membership check for a user is nagative.
-                _('The specified user is not a subscriber of this list.'),
-                400,
-                $this->format
-            );
+            // TRANS: Client error displayed when a membership check for a user is nagative.
+            $this->clientError(_('The specified user is not a subscriber of this list.'));
         }
 
-        $user = $this->twitterUserArray($this->user->getProfile(), true);
+        $user = $this->twitterUserArray($this->target, true);
 
         switch($this->format) {
         case 'xml':

@@ -48,6 +48,8 @@ if (!defined('STATUSNET')) {
  */
 class ApiFriendshipsCreateAction extends ApiAuthAction
 {
+    protected $needPost = true;
+
     var $other  = null;
 
     /**
@@ -58,11 +60,10 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
      * @return boolean success flag
      *
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
-        $this->user   = $this->auth_user;
         $this->other  = $this->getTargetProfile($this->arg('id'));
 
         return true;
@@ -73,42 +74,20 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
      *
      * Check the format and show the user info
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400,
-                $this->format
-            );
-            return;
-        }
+        parent::handle();
 
         if (!in_array($this->format, array('xml', 'json'))) {
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            return;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
 
         if (empty($this->other)) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying follow who's profile could not be found.
-                _('Could not follow user: profile not found.'),
-                403,
-                $this->format
-            );
-            return;
+            // TRANS: Client error displayed when trying follow who's profile could not be found.
+            $this->clientError(_('Could not follow user: profile not found.'), 403);
         }
 
         if ($this->user->isSubscribed($this->other)) {
@@ -118,14 +97,13 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
                 _('Could not follow user: %s is already on your list.'),
                 $this->other->nickname
             );
-            $this->clientError($errmsg, 403, $this->format);
-            return;
+            $this->clientError($errmsg, 403);
         }
 
         try {
             Subscription::start($this->user->getProfile(), $this->other);
         } catch (Exception $e) {
-            $this->clientError($e->getMessage(), 403, $this->format);
+            $this->clientError($e->getMessage(), 403);
         }
 
         $this->initDocument($this->format);

@@ -61,7 +61,7 @@ class ApiListsAction extends ApiBareAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
@@ -71,11 +71,11 @@ class ApiListsAction extends ApiBareAuthAction
 
             $this->user = $this->getTargetUser($this->arg('user'));
 
-            if (empty($this->user)) {
+            if (!($user instanceof User)) {
                 // TRANS: Client error displayed trying to perform an action related to a non-existing user.
-                $this->clientError(_('No such user.'), 404, $this->format);
-                return false;
+                $this->clientError(_('No such user.'), 404);
             }
+            $this->target = $user->getProfile();
             $this->getLists();
         }
 
@@ -97,9 +97,9 @@ class ApiListsAction extends ApiBareAuthAction
      *     Show the lists the user has created if the request method is GET
      *     Create a new list by diferring to handlePost() if it is POST.
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if($this->create) {
             return $this->handlePost();
@@ -165,13 +165,8 @@ class ApiListsAction extends ApiBareAuthAction
             $this->showSingleJsonList($list);
             break;
         default:
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404,
-                $this->format
-            );
-            break;
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            $this->clientError(_('API method not found.'), 404);
         }
         return true;
     }
@@ -186,8 +181,7 @@ class ApiListsAction extends ApiBareAuthAction
         // twitter fixes count at 20
         // there is no argument named count
         $count = 20;
-        $profile = $this->user->getProfile();
-        $fn = array($profile, 'getLists');
+        $fn = array($this->target, 'getLists');
 
         list($this->lists,
              $this->next_cursor,
@@ -226,7 +220,7 @@ class ApiListsAction extends ApiBareAuthAction
                 ':',
                 array($this->arg('action'),
                       common_language(),
-                      $this->user->id,
+                      $this->target->id,
                       strtotime($this->lists[0]->created),
                       strtotime($this->lists[$last]->created))
             )
