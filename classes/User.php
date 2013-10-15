@@ -141,14 +141,12 @@ class User extends Managed_DataObject
 
     function isSubscribed($other)
     {
-        $profile = $this->getProfile();
-        return $profile->isSubscribed($other);
+        return $this->getProfile()->isSubscribed($other);
     }
 
     function hasPendingSubscription($other)
     {
-        $profile = $this->getProfile();
-        return $profile->hasPendingSubscription($other);
+        return $this->getProfile()->hasPendingSubscription($other);
     }
 
     // 'update' won't write key columns, so we have to do it ourselves.
@@ -218,8 +216,7 @@ class User extends Managed_DataObject
      */
     function getCurrentNotice()
     {
-        $profile = $this->getProfile();
-        return $profile->getCurrentNotice();
+        return $this->getProfile()->getCurrentNotice();
     }
 
     function getCarrier()
@@ -229,8 +226,7 @@ class User extends Managed_DataObject
 
     function hasBlocked($other)
     {
-        $profile = $this->getProfile();
-        return $profile->hasBlocked($other);
+        return $this->getProfile()->hasBlocked($other);
     }
 
     /**
@@ -492,14 +488,12 @@ class User extends Managed_DataObject
 
     function hasFave($notice)
     {
-        $profile = $this->getProfile();
-        return $profile->hasFave($notice);
+        return $this->getProfile()->hasFave($notice);
     }
 
     function mutuallySubscribed($other)
     {
-        $profile = $this->getProfile();
-        return $profile->mutuallySubscribed($other);
+        return $this->getProfile()->mutuallySubscribed($other);
     }
 
     function mutuallySubscribedUsers()
@@ -523,14 +517,12 @@ class User extends Managed_DataObject
     }
 
     function getTaggedNotices($tag, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0) {
-        $profile = $this->getProfile();
-        return $profile->getTaggedNotices($tag, $offset, $limit, $since_id, $before_id);
+        return $this->getProfile()->getTaggedNotices($tag, $offset, $limit, $since_id, $before_id);
     }
 
     function getNotices($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
     {
-        $profile = $this->getProfile();
-        return $profile->getNotices($offset, $limit, $since_id, $before_id);
+        return $this->getProfile()->getNotices($offset, $limit, $since_id, $before_id);
     }
 
     function favoriteNotices($own=false, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
@@ -581,8 +573,7 @@ class User extends Managed_DataObject
 
     function blowFavesCache()
     {
-        $profile = $this->getProfile();
-        $profile->blowFavesCache();
+        $this->getProfile()->blowFavesCache();
     }
 
     function getSelfTags()
@@ -663,20 +654,17 @@ class User extends Managed_DataObject
 
     function isMember($group)
     {
-        $profile = $this->getProfile();
-        return $profile->isMember($group);
+        return $this->getProfile()->isMember($group);
     }
 
     function isAdmin($group)
     {
-        $profile = $this->getProfile();
-        return $profile->isAdmin($group);
+        return $this->getProfile()->isAdmin($group);
     }
 
     function getGroups($offset=0, $limit=null)
     {
-        $profile = $this->getProfile();
-        return $profile->getGroups($offset, $limit);
+        return $this->getProfile()->getGroups($offset, $limit);
     }
 
     /**
@@ -688,8 +676,7 @@ class User extends Managed_DataObject
      */
     function joinGroup(User_group $group)
     {
-        $profile = $this->getProfile();
-        return $profile->joinGroup($group);
+        return $this->getProfile()->joinGroup($group);
     }
 
     /**
@@ -699,20 +686,17 @@ class User extends Managed_DataObject
      */
     function leaveGroup(User_group $group)
     {
-        $profile = $this->getProfile();
-        return $profile->leaveGroup($group);
+        return $this->getProfile()->leaveGroup($group);
     }
 
     function getSubscribed($offset=0, $limit=null)
     {
-        $profile = $this->getProfile();
-        return $profile->getSubscribed($offset, $limit);
+        return $this->getProfile()->getSubscribed($offset, $limit);
     }
 
     function getSubscribers($offset=0, $limit=null)
     {
-        $profile = $this->getProfile();
-        return $profile->getSubscribers($offset, $limit);
+        return $this->getProfile()->getSubscribers($offset, $limit);
     }
 
     function getTaggedSubscribers($tag, $offset=0, $limit=null)
@@ -727,8 +711,7 @@ class User extends Managed_DataObject
 
     function hasRight($right)
     {
-        $profile = $this->getProfile();
-        return $profile->hasRight($right);
+        return $this->getProfile()->hasRight($right);
     }
 
     function delete()
@@ -778,32 +761,27 @@ class User extends Managed_DataObject
 
     function hasRole($name)
     {
-        $profile = $this->getProfile();
-        return $profile->hasRole($name);
+        return $this->getProfile()->hasRole($name);
     }
 
     function grantRole($name)
     {
-        $profile = $this->getProfile();
-        return $profile->grantRole($name);
+        return $this->getProfile()->grantRole($name);
     }
 
     function revokeRole($name)
     {
-        $profile = $this->getProfile();
-        return $profile->revokeRole($name);
+        return $this->getProfile()->revokeRole($name);
     }
 
     function isSandboxed()
     {
-        $profile = $this->getProfile();
-        return $profile->isSandboxed();
+        return $this->getProfile()->isSandboxed();
     }
 
     function isSilenced()
     {
-        $profile = $this->getProfile();
-        return $profile->isSilenced();
+        return $this->getProfile()->isSilenced();
     }
 
     function repeatedByMe($offset=0, $limit=20, $since_id=null, $max_id=null)
