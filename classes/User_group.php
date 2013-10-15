@@ -38,6 +38,7 @@ class User_group extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
 
                 'nickname' => array('type' => 'varchar', 'length' => 64, 'description' => 'nickname for addressing'),
                 'fullname' => array('type' => 'varchar', 'length' => 255, 'description' => 'display name'),
@@ -62,8 +63,12 @@ class User_group extends Managed_DataObject
             'unique keys' => array(
                 'user_group_uri_key' => array('uri'),
             ),
+            'foreign keys' => array(
+                'user_group_id_fkey' => array('profile', array('profile_id' => 'id')),
+            ),
             'indexes' => array(
                 'user_group_nickname_idx' => array('nickname'),
+                'user_group_profile_id_idx' => array('profile_id'), //make this unique in future
             ),
         );
     }

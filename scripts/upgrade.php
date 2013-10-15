@@ -45,6 +45,7 @@ function main()
         initInbox();
         fixupGroupURI();
 
+        initGroupProfileId();
         initLocalGroup();
         initNoticeReshare();
     
@@ -235,6 +236,45 @@ function initInbox()
             } catch (Exception $e) {
                 printv("Error initializing inbox: " . $e->getMessage());
             }
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function initGroupProfileId()
+{
+    printfnq("Ensuring all User_group entries have a Profile and profile_id...");
+
+    $group = new User_group();
+    $group->whereAdd('NOT EXISTS (SELECT id FROM profile WHERE id = user_group.profile_id)');
+    $group->find();
+
+    while ($group->fetch()) {
+        try {
+            // We must create a new, incrementally assigned profile_id
+            $profile = new Profile();
+            $profile->nickname   = $group->nickname;
+            $profile->fullname   = $group->fullname;
+            $profile->profileurl = $group->mainpage;
+            $profile->homepage   = $group->homepage;
+            $profile->bio        = $group->description;
+            $profile->location   = $group->location;
+            $profile->created    = $group->created;
+            $profile->modified   = $group->modified;
+
+            $profile->query('BEGIN');
+            $id = $profile->insert();
+            if (empty($id)) {
+                $profile->query('ROLLBACK');
+                throw new Exception('Profile insertion failed, profileurl: '.$profile->profileurl);
+            }
+            $group->query("UPDATE user_group SET profile_id={$id} WHERE id={$group->id}");
+            $profile->query('COMMIT');
+
+            $profile->free();
+        } catch (Exception $e) {
+            printfv("Error initializing Profile for group {$group->nickname}:" . $e->getMessage());
         }
     }
 
