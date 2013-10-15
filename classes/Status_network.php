@@ -318,14 +318,7 @@ class Status_network extends Safe_DataObject
      */
     function getTags()
     {
-        $result = Status_network_tag::getTags($this->site_id);
-
-        // XXX : for backwards compatibility
-        if (empty($result)) {
-            return explode('|', $this->tags);
-        }
-
-        return $result;
+        return Status_network_tag::getTags($this->site_id);
     }
 
     /**
