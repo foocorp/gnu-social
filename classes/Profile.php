@@ -753,6 +753,11 @@ class Profile extends Managed_DataObject
         return $cnt;
     }
 
+    function favoriteNotices($own=false, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
+    {
+        return Fave::stream($this->id, $offset, $limit, $own, $since_id, $max_id);
+    }
+
     function noticeCount()
     {
         $c = Cache::instance();

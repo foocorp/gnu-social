@@ -535,7 +535,7 @@ class User extends Managed_DataObject
 
     function favoriteNotices($own=false, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
     {
-        return Fave::stream($this->id, $offset, $limit, $own, $since_id, $max_id);
+        return $this->getProfile()->favoriteNotices($own, $offset, $limit, $since_id, $max_id);
     }
 
     function noticeInbox($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
