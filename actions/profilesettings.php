@@ -239,8 +239,16 @@ class ProfilesettingsAction extends SettingsAction
 
         if (Event::handle('StartProfileSaveForm', array($this))) {
 
+            $nickname = $this->trimmed('nickname');
             try {
-                $nickname = Nickname::normalize($this->trimmed('nickname'));
+                $nickname = Nickname::normalize($nickname, true);
+            } catch (NicknameTakenException $e) {
+                // Abort only if the nickname is occupied by another user
+                if ($e->byuser->id != $this->scoped->id) {
+                    $this->showForm($e->getMessage());
+                    return;
+                }
+                $nickname = Nickname::normalize($nickname); // without in-use check this time
             } catch (NicknameException $e) {
                 $this->showForm($e->getMessage());
                 return;
@@ -258,11 +266,7 @@ class ProfilesettingsAction extends SettingsAction
             $tagstring = $this->trimmed('tags');
 
             // Some validation
-            if (!User::allowed_nickname($nickname)) {
-                // TRANS: Validation error in form for profile settings.
-                $this->showForm(_('Not a valid nickname.'));
-                return;
-            } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
+            if (!is_null($homepage) && (strlen($homepage) > 0) &&
                        !common_valid_http_url($homepage)) {
                 // TRANS: Validation error in form for profile settings.
                 $this->showForm(_('Homepage is not a valid URL.'));
@@ -287,10 +291,6 @@ class ProfilesettingsAction extends SettingsAction
             }  else if (is_null($timezone) || !in_array($timezone, DateTimeZone::listIdentifiers())) {
                 // TRANS: Validation error in form for profile settings.
                 $this->showForm(_('Timezone not selected.'));
-                return;
-            } else if ($this->nicknameExists($nickname)) {
-                // TRANS: Validation error in form for profile settings.
-                $this->showForm(_('Nickname already in use. Try another one.'));
                 return;
             } else if (!is_null($language) && strlen($language) > 50) {
                 // TRANS: Validation error in form for profile settings.
@@ -465,17 +465,6 @@ class ProfilesettingsAction extends SettingsAction
             // TRANS: Confirmation shown when user profile settings are saved.
             $this->showForm(_('Settings saved.'), true);
 
-        }
-    }
-
-    function nicknameExists($nickname)
-    {
-        $user = common_current_user();
-        $other = User::getKV('nickname', $nickname);
-        if (!$other) {
-            return false;
-        } else {
-            return $other->id != $user->id;
         }
     }
 

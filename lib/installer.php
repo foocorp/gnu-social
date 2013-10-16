@@ -235,7 +235,7 @@ abstract class Installer
                          '" is invalid; should be plain letters and numbers no longer than 64 characters.', true);
             $fail = true;
         }
-        // @fixme hardcoded list; should use User::allowed_nickname()
+        // @fixme hardcoded list; should use Nickname::isValid()
         // if/when it's safe to have loaded the infrastructure here
         $blacklist = array('main', 'panel', 'twitter', 'settings', 'rsd.xml', 'favorited', 'featured', 'favoritedrss', 'featuredrss', 'rss', 'getfile', 'api', 'groups', 'group', 'peopletag', 'tag', 'user', 'message', 'conversation', 'bookmarklet', 'notice', 'attachment', 'search', 'index.php', 'doc', 'opensearch', 'robots.txt', 'xd_receiver.html', 'facebook');
         if (in_array($this->adminNick, $blacklist)) {

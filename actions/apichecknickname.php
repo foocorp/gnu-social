@@ -52,8 +52,8 @@ class ApiCheckNicknameAction extends ApiAction
         $nickname = $this->trimmed('nickname');
 
         try {
-            Nickname::normalize($nickname);
-            $nickname_ok = $this->nicknameExists($nickname) ? 0 : 1;
+            Nickname::normalize($nickname, true);
+            $nickname_ok = 1;
         } catch (NicknameException $e) {
             $nickname_ok = 0;
         }

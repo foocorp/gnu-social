@@ -345,21 +345,9 @@ class FinishopenidloginAction extends Action
         }
 
         try {
-            $nickname = Nickname::normalize($this->trimmed('newname'));
+            $nickname = Nickname::normalize($this->trimmed('newname'), true);
         } catch (NicknameException $e) {
             $this->showForm($e->getMessage());
-            return;
-        }
-
-        if (!User::allowed_nickname($nickname)) {
-            // TRANS: OpenID plugin message. The entered new user name is blacklisted.
-            $this->showForm(_m('Nickname not allowed.'));
-            return;
-        }
-
-        if (User::getKV('nickname', $nickname)) {
-            // TRANS: OpenID plugin message. The entered new user name is already used.
-            $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
         }
 
@@ -500,8 +488,8 @@ class FinishopenidloginAction extends Action
         // Try the passed-in nickname
 
         if (!empty($sreg['nickname'])) {
-            $nickname = $this->nicknamize($sreg['nickname']);
-            if ($this->isNewNickname($nickname)) {
+            $nickname = common_nicknamize($sreg['nickname']);
+            if (Nickname::isValid($nickname, true)) {
                 return $nickname;
             }
         }
@@ -509,8 +497,8 @@ class FinishopenidloginAction extends Action
         // Try the full name
 
         if (!empty($sreg['fullname'])) {
-            $fullname = $this->nicknamize($sreg['fullname']);
-            if ($this->isNewNickname($fullname)) {
+            $fullname = common_nicknamize($sreg['fullname']);
+            if (Nickname::isValid($fullname, true)) {
                 return $fullname;
             }
         }
@@ -519,27 +507,13 @@ class FinishopenidloginAction extends Action
 
         $from_url = $this->openidToNickname($display);
 
-        if ($from_url && $this->isNewNickname($from_url)) {
+        if ($from_url && Nickname::isValid($from_url, true)) {
             return $from_url;
         }
 
         // XXX: others?
 
         return null;
-    }
-
-    function isNewNickname($str)
-    {
-        if (!Nickname::isValid($str)) {
-            return false;
-        }
-        if (!User::allowed_nickname($str)) {
-            return false;
-        }
-        if (User::getKV('nickname', $str)) {
-            return false;
-        }
-        return true;
     }
 
     function openidToNickname($openid)
@@ -570,7 +544,7 @@ class FinishopenidloginAction extends Action
             // =evan.prodromou
             // or @gratis*evan.prodromou
             $parts = explode('*', substr($base, 1));
-            return $this->nicknamize(array_pop($parts));
+            return common_nicknamize(array_pop($parts));
         }
     }
 
@@ -581,11 +555,5 @@ class FinishopenidloginAction extends Action
         } else {
             return $xri;
         }
-    }
-
-    // Given a string, try to make it work as a nickname
-    function nicknamize($str)
-    {
-        return common_nicknamize($str);
     }
 }

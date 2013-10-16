@@ -519,21 +519,9 @@ class TwitterauthorizationAction extends Action
         }
 
         try {
-            $nickname = Nickname::normalize($this->trimmed('newname'));
+            $nickname = Nickname::normalize($this->trimmed('newname'), true);
         } catch (NicknameException $e) {
             $this->showForm($e->getMessage());
-            return;
-        }
-
-        if (!User::allowed_nickname($nickname)) {
-            // TRANS: Client error displayed when trying to create a new user with an invalid username.
-            $this->showForm(_m('Nickname not allowed.'));
-            return;
-        }
-
-        if (User::getKV('nickname', $nickname)) {
-            // TRANS: Client error displayed when trying to create a new user with a username that is already in use.
-            $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
         }
 
@@ -688,36 +676,10 @@ class TwitterauthorizationAction extends Action
 
     function bestNewNickname()
     {
-        if (!empty($this->tw_fields['fullname'])) {
-            $nickname = $this->nicknamize($this->tw_fields['fullname']);
-            if ($this->isNewNickname($nickname)) {
-                return $nickname;
-            }
+        try {
+            return Nickname::normalize($this->tw_fields['fullname'], true);
+        } catch (NicknameException $e) {
+            return null
         }
-
-        return null;
-    }
-
-     // Given a string, try to make it work as a nickname
-
-     function nicknamize($str)
-     {
-         $str = preg_replace('/\W/', '', $str);
-         $str = str_replace(array('-', '_'), '', $str);
-         return strtolower($str);
-     }
-
-    function isNewNickname($str)
-    {
-        if (!Nickname::isValid($str)) {
-            return false;
-        }
-        if (!User::allowed_nickname($str)) {
-            return false;
-        }
-        if (User::getKV('nickname', $str)) {
-            return false;
-        }
-        return true;
     }
 }

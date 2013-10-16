@@ -237,7 +237,7 @@ function common_check_user($nickname, $password)
         if (common_is_email($nickname)) {
             $user = User::getKV('email', common_canonical_email($nickname));
         } else {
-            $user = User::getKV('nickname', common_canonical_nickname($nickname));
+            $user = User::getKV('nickname', Nickname::normalize($nickname));
         }
 
         if (!empty($user)) {
@@ -2283,8 +2283,11 @@ function common_url_to_nickname($url)
 
 function common_nicknamize($str)
 {
-    $str = preg_replace('/\W/', '', $str);
-    return strtolower($str);
+    try {
+        return Nickname::normalize($str);
+    } catch (NicknameException $e) {
+        return null;
+    }
 }
 
 function common_perf_counter($key, $val=null)

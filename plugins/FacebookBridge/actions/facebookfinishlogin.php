@@ -355,21 +355,9 @@ class FacebookfinishloginAction extends Action
         }
 
         try {
-            $nickname = Nickname::normalize($this->trimmed('newname'));
+            $nickname = Nickname::normalize($this->trimmed('newname'), true);
         } catch (NicknameException $e) {
             $this->showForm($e->getMessage());
-            return;
-        }
-
-        if (!User::allowed_nickname($nickname)) {
-            // TRANS: Form validation error displayed when picking a nickname that is not allowed.
-            $this->showForm(_m('Nickname not allowed.'));
-            return;
-        }
-
-        if (User::getKV('nickname', $nickname)) {
-            // TRANS: Form validation error displayed when picking a nickname that is already in use.
-            $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
         }
 
@@ -603,56 +591,21 @@ class FacebookfinishloginAction extends Action
 
     function bestNewNickname()
     {
-        if (!empty($this->fbuser->username)) {
-            $nickname = $this->nicknamize($this->fbuser->username);
-            if ($this->isNewNickname($nickname)) {
-                return $nickname;
-            }
+        try {
+            $nickname = Nickname::normalize($this->fbuser->username, true);
+            return $nickname;
+        } catch (NicknameException $e) {
+            // Failed to normalize nickname, but let's try the full name
         }
 
-        // Try the full name
-
-        $fullname = $this->fbuser->name;
-
-        if (!empty($fullname)) {
-            $fullname = $this->nicknamize($fullname);
-            if ($this->isNewNickname($fullname)) {
-                return $fullname;
-            }
+        try {
+            $nickname = Nickname::normalize($this->fbuser->name, true);
+            return $nickname;
+        } catch (NicknameException $e) {
+            // Any more ideas? Nope.
         }
 
         return null;
-    }
-
-     /**
-      * Given a string, try to make it work as a nickname
-      */
-     function nicknamize($str)
-     {
-         $str = preg_replace('/\W/', '', $str);
-         return strtolower($str);
-     }
-
-     /*
-      * Is the desired nickname already taken?
-      *
-      * @return boolean result
-      */
-     function isNewNickname($str)
-     {
-        if (!Nickname::isValid($str)) {
-            return false;
-        }
-
-        if (!User::allowed_nickname($str)) {
-            return false;
-        }
-
-        if (User::getKV('nickname', $str)) {
-            return false;
-        }
-
-        return true;
     }
 
     /*

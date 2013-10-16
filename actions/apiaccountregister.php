@@ -114,22 +114,17 @@ class ApiAccountRegisterAction extends ApiAction
 
         // Input scrubbing
         try {
-            $nickname = Nickname::normalize($nickname);
+            $nickname = Nickname::normalize($nickname, true);
         } catch (NicknameException $e) {
             // clientError handles Api exceptions with various formats and stuff
-	        $this->clientError(_('Not a valid nickname.'), 400);
+	        $this->clientError($e->getMessage(), $e->getCode());
         }
+
         $email = common_canonical_email($email);
 
 	    if ($email && !Validate::email($email, common_config('email', 'check_domain'))) {
             // TRANS: Form validation error displayed when trying to register without a valid e-mail address.
 	        $this->clientError(_('Not a valid email address.'), 400);
-        } else if ($this->nicknameExists($nickname)) {
-            // TRANS: Form validation error displayed when trying to register with an existing nickname.
-	        $this->clientError(_('Nickname already in use. Try another one.'), 400);
-        } else if (!User::allowed_nickname($nickname)) {
-            // TRANS: Form validation error displayed when trying to register with an invalid nickname.
-	        $this->clientError(_('Not a valid nickname.'), 400);
         } else if ($this->emailExists($email)) {
             // TRANS: Form validation error displayed when trying to register with an already registered e-mail address.
 	        $this->clientError(_('Email address already exists.'), 400);
@@ -185,22 +180,6 @@ class ApiAccountRegisterAction extends ApiAction
 	        	$this->clientError(_('Invalid username or password.'), 400);
         	}	            
         } 
-    }
-      
-
-    /**
-     * Does the given nickname already exist?
-     *
-     * Checks a canonical nickname against the database.
-     *
-     * @param string $nickname nickname to check
-     *
-     * @return boolean true if the nickname already exists
-     */
-    function nicknameExists($nickname)
-    {
-        $user = User::staticGet('nickname', $nickname);
-        return is_object($user);
     }
 
     /**
