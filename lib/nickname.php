@@ -118,6 +118,9 @@ class Nickname
         if (!self::isCanonical($str)) {
             throw new NicknameInvalidException();
         }
+        if (!User::allowed_nickname($str)) {
+            throw new NicknameBlacklistException();
+        }
 
         return $str;
     }
@@ -192,5 +195,14 @@ class NicknameTooLongException extends NicknameInvalidException
                           'Nickname cannot be more than %d characters long.',
                           Nickname::MAX_LEN),
                        Nickname::MAX_LEN);
+    }
+}
+
+class NicknameBlacklistException extends NicknameInvalidException
+{
+    protected function defaultMessage()
+    {
+        // TRANS: Validation error in form for registration, profile and group settings, etc.
+        return _('Nickname is disallowed through blacklist or system path list.');
     }
 }
