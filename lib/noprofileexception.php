@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Class for an exception when the user profile is missing
+ * Parent class for an exception when a profile is missing
  *
  * PHP version 5
  *
@@ -30,7 +30,7 @@
 if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Class for an exception when the user profile is missing
+ * Parent class for an exception when a profile is missing
  *
  * @category Exception
  * @package  StatusNet
@@ -39,36 +39,21 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @link     http://status.net/
  */
 
-class UserNoProfileException extends NoProfileException
+class NoProfileException extends NoProfileException
 {
-    protected $user = null;
+    public $profile_id = null;
 
-    /**
-     * constructor
-     *
-     * @param User $user User that's missing a profile
-     */
-
-    public function __construct(User $user)
+    public function __construct($profile_id, $msg=null)
     {
-        $this->user = $user;
+        $this->id = (int)$profile_id;
 
-        // TRANS: Exception text shown when no profile can be found for a user.
-        // TRANS: %1$s is a user nickname, $2$d is a user ID (number).
-        $message = sprintf(_('User %1$s (%2$d) has no profile record.'),
-                           $user->nickname, $user->id);
+        if ($msg === null) {
+            // TRANS: Exception text shown when no profile can be found for a user.
+            // TRANS: %1$s is a user nickname, $2$d is a user ID (number).
+            $msg = sprintf(_('User %1$s (%2$d) has no profile record.'),
+                           $group->nickname, $group->id);
+        }
 
-        parent::__construct($user->id, $message);
-    }
-
-    /**
-     * Accessor for user
-     *
-     * @return User the user that triggered this exception
-     */
-
-    public function getUser()
-    {
-        return $this->user;
+        parent::__construct($msg, 404);
     }
 }
