@@ -41,23 +41,22 @@ class ApiCheckNicknameAction extends ApiAction
         if ($this->format !== 'json') {
             $this->clientError('This method currently only serves JSON.', 415);
         }
-        
+
         return true;
     }
 
     protected function handle()
     {
         parent::handle();
-	
+
         $nickname = $this->trimmed('nickname');
-		
-        if ($this->nicknameExists($nickname)) {
+
+        try {
+            Nickname::normalize($nickname);
+            $nickname_ok = $this->nicknameExists($nickname) ? 0 : 1;
+        } catch (NicknameException $e) {
             $nickname_ok = 0;
-        } else if (!User::allowed_nickname($nickname)) {
-            $nickname_ok = 0;        }
-        else {
-            $nickname_ok = 1;        	
-        	}
+        }
 
         $this->initDocument('json');
         $this->showJsonObjects($nickname_ok);
@@ -67,7 +66,6 @@ class ApiCheckNicknameAction extends ApiAction
     function nicknameExists($nickname)
     {
         $user = User::staticGet('nickname', $nickname);
-        return is_object($user);
-    }    
-    
+        return ($user instanceof User);
+    }
 }
