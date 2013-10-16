@@ -39,19 +39,18 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @link     http://status.net/
  */
 
-class NoProfileException extends NoProfileException
+class NoProfileException extends ServerException
 {
     public $profile_id = null;
 
     public function __construct($profile_id, $msg=null)
     {
-        $this->id = (int)$profile_id;
+        $this->id = $profile_id;
 
         if ($msg === null) {
             // TRANS: Exception text shown when no profile can be found for a user.
             // TRANS: %1$s is a user nickname, $2$d is a user ID (number).
-            $msg = sprintf(_('User %1$s (%2$d) has no profile record.'),
-                           $group->nickname, $group->id);
+            $msg = sprintf(_('There is no profile with id==%u'), $this->id);
         }
 
         parent::__construct($msg, 404);

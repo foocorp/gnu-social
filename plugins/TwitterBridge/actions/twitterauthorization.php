@@ -679,7 +679,7 @@ class TwitterauthorizationAction extends Action
         try {
             return Nickname::normalize($this->tw_fields['fullname'], true);
         } catch (NicknameException $e) {
-            return null
+            return null;
         }
     }
 }

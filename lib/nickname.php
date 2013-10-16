@@ -126,9 +126,10 @@ class Nickname
             throw new NicknameBlacklistedException();
         } elseif (self::isSystemPath($str)) {
             throw new NicknamePathCollisionException();
-        } elseif ($checkuse && $user = self::isTaken($str)) {
-            if ($user instanceof User) {
-                throw new NicknameTakenException($user);
+        } elseif ($checkuse) {
+            $profile = self::isTaken($str);
+            if ($profile instanceof Profile) {
+                throw new NicknameTakenException($profile);
             }
         }
 
@@ -191,12 +192,26 @@ class Nickname
      * Is the nickname already in use locally? Checks the User table.
      *
      * @param   string $str
-     * @return  User|null   Returns null if no such user, otherwise a User object
+     * @return  Profile|null   Returns Profile if nickname found, otherwise null
      */
     public static function isTaken($str)
     {
-        $user = User::getKV('nickname', $str);
-        return $user;   // null if no such User entry
+        $found = User::getKV('nickname', $str);
+        if ($found instanceof User) {
+            return $found->getProfile();
+        }
+
+        $found = Local_group::getKV('nickname', $str);
+        if ($found instanceof Local_group) {
+            return $found->getProfile();
+        }
+
+        $found = Group_alias::getKV('alias', $str);
+        if ($found instanceof Group_alias) {
+            return $found->getProfile();
+        }
+
+        return null;
     }
 }
 
@@ -281,11 +296,11 @@ class NicknamePathCollisionException extends NicknameException
 
 class NicknameTakenException extends NicknameException
 {
-    public $user = null;    // the User which occupies the nickname
+    public $profile = null;    // the Profile which occupies the nickname
 
-    public function __construct(User $user, $msg=null, $code=400)
+    public function __construct(Profile $profile, $msg=null, $code=400)
     {
-        $this->byuser = $user;
+        $this->profile = $profile;
 
         if ($msg === null) {
             $msg = $this->defaultMessage();

@@ -86,7 +86,7 @@ class NewgroupAction extends FormAction
         parent::handlePost();
 
         if (Event::handle('StartGroupSaveForm', array($this))) {
-            $nickname = Nickname::normalize($this->trimmed('newnickname'));
+            $nickname = Nickname::normalize($this->trimmed('newnickname'), true);
 
             $fullname    = $this->trimmed('fullname');
             $homepage    = $this->trimmed('homepage');
@@ -95,13 +95,7 @@ class NewgroupAction extends FormAction
             $private     = $this->boolean('private');
             $aliasstring = $this->trimmed('aliases');
 
-            if ($this->nicknameExists($nickname)) {
-                // TRANS: Group create form validation error.
-                throw new ClientException(_('Nickname already in use. Try another one.'));
-            } else if (!User_group::allowedNickname($nickname)) {
-                // TRANS: Group create form validation error.
-                throw new ClientException(_('Not a valid nickname.'));
-            } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
+            if (!is_null($homepage) && (strlen($homepage) > 0) &&
                        !common_valid_http_url($homepage)) {
                 // TRANS: Group create form validation error.
                 throw new ClientException(_('Homepage is not a valid URL.'));
@@ -121,7 +115,7 @@ class NewgroupAction extends FormAction
             }
 
             if (!empty($aliasstring)) {
-                $aliases = array_map('common_canonical_nickname', array_unique(preg_split('/[\s,]+/', $aliasstring)));
+                $aliases = array_map(array('Nickname', 'normalize'), array_unique(preg_split('/[\s,]+/', $aliasstring)));
             } else {
                 $aliases = array();
             }
@@ -134,24 +128,6 @@ class NewgroupAction extends FormAction
                                            common_config('group', 'maxaliases')),
                                         common_config('group', 'maxaliases')));
                 return;
-            }
-
-            foreach ($aliases as $alias) {
-                if (!Nickname::isValid($alias)) {
-                    // TRANS: Group create form validation error.
-                    // TRANS: %s is the invalid alias.
-                    throw new ClientException(sprintf(_('Invalid alias: "%s"'), $alias));
-                }
-                if ($this->nicknameExists($alias)) {
-                    // TRANS: Group create form validation error. %s is the already used alias.
-                    throw new ClientException(sprintf(_('Alias "%s" already in use. Try another one.'),
-                                            $alias));
-                }
-                // XXX assumes alphanum nicknames
-                if (strcmp($alias, $nickname) == 0) {
-                    // TRANS: Group create form validation error.
-                    throw new ClientException(_('Alias cannot be the same as nickname.'));
-                }
             }
 
             if ($private) {
@@ -182,22 +158,5 @@ class NewgroupAction extends FormAction
 
             common_redirect($group->homeUrl(), 303);
         }
-    }
-
-    function nicknameExists($nickname)
-    {
-        $local = Local_group::getKV('nickname', $nickname);
-
-        if (!empty($local)) {
-            return true;
-        }
-
-        $alias = Group_alias::getKV('alias', $nickname);
-
-        if (!empty($alias)) {
-            return true;
-        }
-
-        return false;
     }
 }

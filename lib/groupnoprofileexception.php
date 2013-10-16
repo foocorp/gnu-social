@@ -41,7 +41,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class GroupNoProfileException extends NoProfileException
 {
-    public $group = null;
+    protected $group = null;
 
     /**
      * constructor
@@ -53,8 +53,8 @@ class GroupNoProfileException extends NoProfileException
     {
         $this->group = $group;
 
-        // TRANS: Exception text shown when no profile can be found for a user.
-        // TRANS: %1$s is a user nickname, $2$d is a user ID (number).
+        // TRANS: Exception text shown when no profile can be found for a group.
+        // TRANS: %1$s is a group nickname, $2$d is a group profile_id (number).
         $message = sprintf(_('User %1$s (%2$d) has no profile record.'),
                            $group->nickname, $group->id);
 

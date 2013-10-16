@@ -71,7 +71,7 @@ class ApiGroupCreateAction extends ApiAuthAction
     {
         parent::prepare($args);
 
-        $this->nickname    = Nickname::normalize($this->arg('nickname'));
+        $this->nickname    = Nickname::normalize($this->arg('nickname'), true);
         $this->fullname    = $this->arg('full_name');
         $this->homepage    = $this->arg('homepage');
         $this->description = $this->arg('description');
@@ -130,22 +130,13 @@ class ApiGroupCreateAction extends ApiAuthAction
      */
     function validateParams()
     {
-        if ($this->groupNicknameExists($this->nickname)) {
-            // TRANS: Client error trying to create a group with a nickname this is already in use.
-            $this->clientError(_('Nickname already in use. Try another one.'), 403);
-
-        } elseif (!User_group::allowedNickname($this->nickname)) {
-            // TRANS: Client error in form for group creation.
-            $this->clientError(_('Not a valid nickname.'), 403);
-
-        } elseif (!is_null($this->homepage)
+        if (!is_null($this->homepage)
                 && strlen($this->homepage) > 0
                 && !common_valid_http_url($this->homepage)) {
             // TRANS: Client error in form for group creation.
             $this->clientError(_('Homepage is not a valid URL.'), 403);
 
-        } elseif (
-                !is_null($this->fullname)
+        } elseif (!is_null($this->fullname)
                 && mb_strlen($this->fullname) > 255) {
             // TRANS: Client error in form for group creation.
             $this->clientError(_('Full name is too long (maximum 255 characters).'), 403);
@@ -165,7 +156,7 @@ class ApiGroupCreateAction extends ApiAuthAction
 
         if (!empty($this->aliasstring)) {
             $this->aliases = array_map(
-                'common_canonical_nickname',
+                array('Nickname', 'normalize'), // static call to Nickname::normalize
                 array_unique(preg_split('/[\s,]+/', $this->aliasstring))
             );
         } else {
@@ -183,53 +174,8 @@ class ApiGroupCreateAction extends ApiAuthAction
                 403);
         }
 
-        foreach ($this->aliases as $alias) {
-
-            if (!Nickname::isValid($alias)) {
-                // TRANS: Client error shown when providing an invalid alias during group creation.
-                // TRANS: %s is the invalid alias.
-                $this->clientError(sprintf(_('Invalid alias: "%s".'), $alias), 403);
-            }
-            if ($this->groupNicknameExists($alias)) {
-                // TRANS: Client error displayed when trying to use an alias during group creation that is already in use.
-                // TRANS: %s is the alias that is already in use.
-                $this->clientError(sprintf(_('Alias "%s" already in use. Try another one.'), $alias), 403);
-            }
-
-            // XXX assumes alphanum nicknames
-
-            if (strcmp($alias, $this->nickname) == 0) {
-                // TRANS: Client error displayed when trying to use an alias during group creation that is the same as the group's nickname.
-                $this->clientError(_('Alias can\'t be the same as nickname.'), 403);
-            }
-        }
-
         // Everything looks OK
 
         return true;
-    }
-
-    /**
-     * Check to see whether a nickname is already in use by a group
-     *
-     * @param String $nickname The nickname in question
-     *
-     * @return boolean true or false
-     */
-    function groupNicknameExists($nickname)
-    {
-        $local = Local_group::getKV('nickname', $nickname);
-
-        if (!empty($local)) {
-            return true;
-        }
-
-        $alias = Group_alias::getKV('alias', $nickname);
-
-        if (!empty($alias)) {
-            return true;
-        }
-
-        return false;
     }
 }

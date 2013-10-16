@@ -243,8 +243,8 @@ class ProfilesettingsAction extends SettingsAction
             try {
                 $nickname = Nickname::normalize($nickname, true);
             } catch (NicknameTakenException $e) {
-                // Abort only if the nickname is occupied by another user
-                if ($e->byuser->id != $this->scoped->id) {
+                // Abort only if the nickname is occupied by another local profile
+                if ($e->profile->id != $this->scoped->id) {
                     $this->showForm($e->getMessage());
                     return;
                 }

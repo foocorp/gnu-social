@@ -685,6 +685,11 @@ class User extends Managed_DataObject
 
     function delete()
     {
+        if (empty($this->id)) {
+            common_log(LOG_WARNING, "Ambiguous User->delete(); skipping related tables.");
+            return parent::delete();
+        }
+
         try {
             $profile = $this->getProfile();
             $profile->delete();

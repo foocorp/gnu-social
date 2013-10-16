@@ -53,4 +53,13 @@ class Group_alias extends Managed_DataObject
             ),
         );
     }
+
+    public function getProfile()
+    {
+        $group = User_group::getKV('id', $this->group_id);
+        if (!($group instanceof User_group)) {
+            return null;    // TODO: Throw exception when other code is ready
+        }
+        return $group->getProfile();
+    }
 }

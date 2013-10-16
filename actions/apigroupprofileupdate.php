@@ -107,13 +107,18 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
         try {
 
             if (!empty($this->nickname)) {
-                if ($this->validateNickname()) {
-                    $this->group->nickname = $this->nickname;
-                    $this->group->mainpage = common_local_url(
-                        'showgroup',
-                        array('nickname' => $this->nickname)
-                    );
+                try {
+                    $this->group->nickname = Nickname::normalize($this->nickname, true);
+                } catch (NicknameTakenException $e) {
+                    // Abort only if the nickname is occupied by _another_ local group
+                    if ($e->profile->id != $this->group->id) {
+                        throw new ApiValidationException($e->getMessage());
+                    }
+                } catch (NicknameException $e) {
+                    throw new ApiValidationException($e->getMessage());
                 }
+                $this->group->mainpage = common_local_url('showgroup',
+                                            array('nickname' => $this->group->nickname));
             }
 
             if (!empty($this->fullname)) {
@@ -123,7 +128,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
 
             if (!empty($this->homepage)) {
                 $this->validateHomepage();
-                $this->group->homepage = $this->hompage;
+                $this->group->homepage = $this->homepage;
             }
 
             if (!empty($this->description)) {
@@ -137,7 +142,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             }
 
         } catch (ApiValidationException $ave) {
-            $this->clientError($ave->getMessage(), 403);
+            $this->clientError($ave->getMessage(), 400);
         }
 
         $result = $this->group->update($orig);
@@ -154,7 +159,6 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             if (!empty($this->aliasstring)) {
                 $aliases = $this->validateAliases();
             }
-
         } catch (ApiValidationException $ave) {
             $this->clientError($ave->getMessage(), 403);
         }
@@ -185,54 +189,6 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), 404);
         }
-    }
-
-    function nicknameExists($nickname)
-    {
-        $group = Local_group::getKV('nickname', $nickname);
-
-        if (!empty($group) &&
-            $group->group_id != $this->group->id) {
-            return true;
-        }
-
-        $alias = Group_alias::getKV('alias', $nickname);
-
-        if (!empty($alias) &&
-            $alias->group_id != $this->group->id) {
-            return true;
-        }
-
-        return false;
-    }
-
-    function validateNickname()
-    {
-        if (!Validate::string(
-            $this->nickname, array(
-                'min_length' => 1,
-                'max_length' => 64,
-                'format' => NICKNAME_FMT
-                )
-            )
-        ) {
-            throw new ApiValidationException(
-                // TRANS: API validation exception thrown when nickname does not validate.
-                _('Nickname must have only lowercase letters and numbers and no spaces.')
-            );
-        } else if ($this->nicknameExists($this->nickname)) {
-            throw new ApiValidationException(
-                // TRANS: API validation exception thrown when nickname is already used.
-                _('Nickname already in use. Try another one.')
-            );
-        } else if (!User_group::allowedNickname($this->nickname)) {
-            throw new ApiValidationException(
-                // TRANS: API validation exception thrown when nickname does not validate.
-                _('Not a valid nickname.')
-            );
-        }
-
-		return true;
     }
 
     function validateHomepage()
@@ -281,14 +237,12 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
 
     function validateAliases()
     {
-        $aliases = array_map(
-            'common_canonical_nickname',
-            array_unique(
-                preg_split('/[\s,]+/',
-                $this->aliasstring
-                )
-            )
-        );
+        try {
+            $aliases = array_map(array('Nickname', 'normalize'),
+                            array_unique(preg_split('/[\s,]+/', $this->aliasstring)));
+        } catch (NicknameException $e) {
+            throw new ApiValidationException(sprintf('Error processing aliases: %s', $e->getMessage()));
+        }
 
         if (count($aliases) > common_config('group', 'maxaliases')) {
             // TRANS: API validation exception thrown when aliases do not validate.
@@ -297,43 +251,6 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
                                                         'Too many aliases! Maximum %d allowed.',
                                                         common_config('group', 'maxaliases')),
                                                      common_config('group', 'maxaliases')));
-        }
-
-        foreach ($aliases as $alias) {
-            if (!Validate::string(
-                $alias, array(
-                    'min_length' => 1,
-                    'max_length' => 64,
-                    'format' => NICKNAME_FMT)
-                )
-            ) {
-                throw new ApiValidationException(
-                    sprintf(
-                        // TRANS: API validation exception thrown when aliases does not validate.
-                        // TRANS: %s is the invalid alias.
-                        _('Invalid alias: "%s".'),
-                        $alias
-                    )
-                );
-            }
-
-            if ($this->nicknameExists($alias)) {
-                throw new ApiValidationException(
-                    sprintf(
-                        // TRANS: API validation exception thrown when aliases is already used.
-                        // TRANS: %s is the already used alias.
-                        _('Alias "%s" already in use. Try another one.'),
-                        $alias)
-                );
-            }
-
-            // XXX assumes alphanum nicknames
-            if (strcmp($alias, $this->nickname) == 0) {
-                throw new ApiValidationException(
-                    // TRANS: API validation exception thrown when alias is the same as nickname.
-                    _('Alias cannot be the same as nickname.')
-                );
-            }
         }
 
         return $aliases;

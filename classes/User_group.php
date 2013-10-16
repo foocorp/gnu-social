@@ -73,6 +73,25 @@ class User_group extends Managed_DataObject
         );
     }
 
+    protected $_profile = null;
+
+    /**
+     * @return Profile
+     *
+     * @throws UserNoProfileException if user has no profile
+     */
+    public function getProfile()
+    {
+        if (!($this->_profile instanceof Profile)) {
+            $this->_profile = Profile::getKV('id', $this->profile_id);
+            if (!($this->_profile instanceof Profile)) {
+                throw new GroupNoProfileException($this);
+            }
+        }
+
+        return $this->_profile;
+    }
+
     public static function defaultLogo($size)
     {
         static $sizenames = array(AVATAR_PROFILE_SIZE => 'profile',
@@ -128,13 +147,6 @@ class User_group extends Managed_DataObject
         $stream = new GroupNoticeStream($this);
 
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
-    }
-
-
-    function allowedNickname($nickname)
-    {
-        static $blacklist = array('new');
-        return !in_array($nickname, $blacklist);
     }
 
     function getMembers($offset=0, $limit=null) {
@@ -392,7 +404,10 @@ class User_group extends Managed_DataObject
         }
 
         foreach ($to_insert as $insalias) {
-            $alias->alias = $insalias;
+            if ($insalias === $this->nickname) {
+                continue;
+            }
+            $alias->alias = Nickname::normalize($insalias, true);
             $result = $alias->insert();
             if (!$result) {
                 common_log_db_error($alias, 'INSERT', __FILE__);
@@ -405,7 +420,7 @@ class User_group extends Managed_DataObject
 
     static function getForNickname($nickname, $profile=null)
     {
-        $nickname = common_canonical_nickname($nickname);
+        $nickname = Nickname::normalize($nickname);
 
         // Are there any matching remote groups this profile's in?
         if ($profile) {
@@ -566,6 +581,8 @@ class User_group extends Managed_DataObject
             }
         }
 
+        $fields['nickname'] = Nickname::normalize($fields['nickname']);
+
         // MAGICALLY put fields into current scope
         // @fixme kill extract(); it makes debugging absurdly hard
 
@@ -585,8 +602,6 @@ class User_group extends Managed_DataObject
 
         $group = new User_group();
 
-        $group->query('BEGIN');
-
         if (empty($uri)) {
             // fill in later...
             $uri = null;
@@ -595,14 +610,33 @@ class User_group extends Managed_DataObject
             $mainpage = common_local_url('showgroup', array('nickname' => $nickname));
         }
 
-        $group->nickname    = $nickname;
-        $group->fullname    = $fullname;
-        $group->homepage    = $homepage;
-        $group->description = $description;
-        $group->location    = $location;
-        $group->uri         = $uri;
-        $group->mainpage    = $mainpage;
-        $group->created     = common_sql_now();
+        // We must create a new, incrementally assigned profile_id
+        $profile = new Profile();
+        $profile->nickname   = $nickname;
+        $profile->fullname   = $fullname;
+        $profile->profileurl = $mainpage;
+        $profile->homepage   = $homepage;
+        $profile->bio        = $description;
+        $profile->location   = $location;
+        $profile->created    = common_sql_now();
+
+        $group->nickname    = $profile->nickname;
+        $group->fullname    = $profile->fullname;
+        $group->homepage    = $profile->homepage;
+        $group->description = $profile->bio;
+        $group->location    = $profile->location;
+        $group->mainpage    = $profile->profileurl;
+        $group->created     = $profile->created;
+
+        $profile->query('BEGIN');
+        $id = $profile->insert();
+        if (empty($id)) {
+            $profile->query('ROLLBACK');
+            throw new ServerException(_('Profile insertion failed'));
+        }
+
+        $group->profile_id = $id;
+        $group->uri        = $uri;
 
         if (isset($fields['join_policy'])) {
             $group->join_policy = intval($fields['join_policy']);
@@ -677,10 +711,10 @@ class User_group extends Managed_DataObject
                 }
             }
 
-            $group->query('COMMIT');
-
             Event::handle('EndGroupSave', array($group));
         }
+
+        $profile->query('COMMIT');
 
         return $group;
     }
@@ -695,51 +729,57 @@ class User_group extends Managed_DataObject
      */
     function delete()
     {
-        if ($this->id) {
+        if (empty($this->id)) {
+            common_log(LOG_WARNING, "Ambiguous User_group->delete(); skipping related tables.");
+            return parent::delete();
+        }
 
-            // Safe to delete in bulk for now
+        try {
+            $profile = $this->getProfile();
+            $profile->delete();
+        } catch (GroupNoProfileException $unp) {
+            common_log(LOG_INFO, "Group {$this->nickname} has no profile; continuing deletion.");
+        }
 
-            $related = array('Group_inbox',
-                             'Group_block',
-                             'Group_member',
-                             'Related_group');
+        // Safe to delete in bulk for now
 
-            Event::handle('UserGroupDeleteRelated', array($this, &$related));
+        $related = array('Group_inbox',
+                         'Group_block',
+                         'Group_member',
+                         'Related_group');
 
-            foreach ($related as $cls) {
+        Event::handle('UserGroupDeleteRelated', array($this, &$related));
 
-                $inst = new $cls();
-                $inst->group_id = $this->id;
+        foreach ($related as $cls) {
+            $inst = new $cls();
+            $inst->group_id = $this->id;
 
-                if ($inst->find()) {
-                    while ($inst->fetch()) {
-                        $dup = clone($inst);
-                        $dup->delete();
-                    }
+            if ($inst->find()) {
+                while ($inst->fetch()) {
+                    $dup = clone($inst);
+                    $dup->delete();
                 }
             }
-
-            // And related groups in the other direction...
-            $inst = new Related_group();
-            $inst->related_group_id = $this->id;
-            $inst->delete();
-
-            // Aliases and the local_group entry need to be cleared explicitly
-            // or we'll miss clearing some cache keys; that can make it hard
-            // to create a new group with one of those names or aliases.
-            $this->setAliases(array());
-            $local = Local_group::getKV('group_id', $this->id);
-            if ($local) {
-                $local->delete();
-            }
-
-            // blow the cached ids
-            self::blow('user_group:notice_ids:%d', $this->id);
-
-        } else {
-            common_log(LOG_WARNING, "Ambiguous user_group->delete(); skipping related tables.");
         }
-        parent::delete();
+
+        // And related groups in the other direction...
+        $inst = new Related_group();
+        $inst->related_group_id = $this->id;
+        $inst->delete();
+
+        // Aliases and the local_group entry need to be cleared explicitly
+        // or we'll miss clearing some cache keys; that can make it hard
+        // to create a new group with one of those names or aliases.
+        $this->setAliases(array());
+        $local = Local_group::getKV('group_id', $this->id);
+        if ($local instanceof Local_group) {
+            $local->delete();
+        }
+
+        // blow the cached ids
+        self::blow('user_group:notice_ids:%d', $this->id);
+
+        return parent::delete();
     }
 
     function isPrivate()

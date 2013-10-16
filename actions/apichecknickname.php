@@ -62,10 +62,4 @@ class ApiCheckNicknameAction extends ApiAction
         $this->showJsonObjects($nickname_ok);
         $this->endDocument('json');
     }
-    
-    function nicknameExists($nickname)
-    {
-        $user = User::staticGet('nickname', $nickname);
-        return ($user instanceof User);
-    }
 }
