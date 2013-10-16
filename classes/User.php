@@ -178,38 +178,6 @@ class User extends Managed_DataObject
     }
 
     /**
-     * Check whether the given nickname is potentially usable, or if it's
-     * excluded by any blacklists on this system.
-     *
-     * WARNING: INPUT IS NOT VALIDATED OR NORMALIZED. NON-NORMALIZED INPUT
-     * OR INVALID INPUT MAY LEAD TO FALSE RESULTS.
-     *
-     * @param string $nickname
-     * @return boolean true if clear, false if blacklisted
-     */
-    static function allowed_nickname($nickname)
-    {
-        // XXX: should already be validated for size, content, etc.
-        $blacklist = common_config('nickname', 'blacklist');
-
-        //all directory and file names should be blacklisted
-        $d = dir(INSTALLDIR);
-        while (false !== ($entry = $d->read())) {
-            $blacklist[]=$entry;
-        }
-        $d->close();
-
-        //all top level names in the router should be blacklisted
-        $router = Router::get();
-        foreach(array_keys($router->m->getPaths()) as $path){
-            if(preg_match('/^\/(.*?)[\/\?]/',$path,$matches)){
-                $blacklist[]=$matches[1];
-            }
-        }
-        return !in_array($nickname, $blacklist);
-    }
-
-    /**
      * Get the most recent notice posted by this user, if any.
      *
      * @return mixed Notice or null
@@ -258,19 +226,18 @@ class User extends Managed_DataObject
 
         $profile = new Profile();
 
-        if(!empty($email))
-        {
+        if (!empty($email)) {
             $email = common_canonical_email($email);
         }
 
-        $nickname = common_canonical_nickname($nickname);
-        $profile->nickname = $nickname;
-        if(! User::allowed_nickname($nickname)){
-            common_log(LOG_WARNING, sprintf("Attempted to register a nickname that is not allowed: %s", $profile->nickname),
-                       __FILE__);
+        try {
+            $profile->nickname = Nickname::normalize($nickname, true);
+        } catch (NicknameException $e) {
+            common_log(LOG_WARNING, sprintf('Bad nickname during User registration for %s: %s', $profile->nickname, $e->getMessage()), __FILE__);
             return false;
         }
-        $profile->profileurl = common_profile_url($nickname);
+
+        $profile->profileurl = common_profile_url($profile->nickname);
 
         if (!empty($fullname)) {
             $profile->fullname = $fullname;
@@ -298,7 +265,7 @@ class User extends Managed_DataObject
 
         $user = new User();
 
-        $user->nickname = $nickname;
+        $user->nickname = $profile->nickname;
 
         $invite = null;
 
@@ -338,7 +305,6 @@ class User extends Managed_DataObject
             $profile->query('BEGIN');
 
             $id = $profile->insert();
-
             if (empty($id)) {
                 common_log_db_error($profile, 'INSERT', __FILE__);
                 return false;
@@ -360,6 +326,7 @@ class User extends Managed_DataObject
 
             if (!$result) {
                 common_log_db_error($user, 'INSERT', __FILE__);
+                $profile->query('ROLLBACK');
                 return false;
             }
 
@@ -388,6 +355,7 @@ class User extends Managed_DataObject
 
             if (!$result) {
                 common_log_db_error($subscription, 'INSERT', __FILE__);
+                $profile->query('ROLLBACK');
                 return false;
             }
 
@@ -409,6 +377,7 @@ class User extends Managed_DataObject
 
                 if (!$result) {
                     common_log_db_error($confirm, 'INSERT', __FILE__);
+                    $profile->query('ROLLBACK');
                     return false;
                 }
             }

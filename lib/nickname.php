@@ -76,32 +76,39 @@ class Nickname
      *
      * Note that valid nicknames may be in use or reserved.
      *
-     * @param string $str
-     * @return boolean
+     * @param string    $str       The nickname string to test
+     * @param boolean   $checkuse  Check if it's in use (return false if it is)
+     *
+     * @return boolean  True if nickname is valid. False if invalid (or taken if checkuse==true).
      */
-    public static function isValid($str)
+    public static function isValid($str, $checkuse=false)
     {
         try {
-            self::normalize($str);
-            return true;
+            self::normalize($str, $checkuse);
         } catch (NicknameException $e) {
             return false;
         }
+
+        return true;
     }
 
     /**
      * Validate an input nickname string, and normalize it to its canonical form.
      * The canonical form will be returned, or an exception thrown if invalid.
      *
-     * @param string $str
+     * @param string    $str       The nickname string to test
+     * @param boolean   $checkuse  Check if it's in use (return false if it is)
      * @return string Normalized canonical form of $str
      *
      * @throws NicknameException (base class)
-     * @throws   NicknameInvalidException
+     * @throws   NicknameBlacklistedException
      * @throws   NicknameEmptyException
+     * @throws   NicknameInvalidException
+     * @throws   NicknamePathCollisionException
+     * @throws   NicknameTakenException
      * @throws   NicknameTooLongException
      */
-    public static function normalize($str)
+    public static function normalize($str, $checkuse=false)
     {
         if (mb_strlen($str) > self::MAX_LEN) {
             // Display forms must also fit!
@@ -118,8 +125,16 @@ class Nickname
         if (!self::isCanonical($str)) {
             throw new NicknameInvalidException();
         }
-        if (!User::allowed_nickname($str)) {
-            throw new NicknameBlacklistException();
+        if (self::isBlacklisted($str)) {
+            throw new NicknameBlacklistedException();
+        }
+        if (self::isSystemPath($str)) {
+            throw new NicknamePathCollisionException();
+        }
+        if ($checkuse && $user = self::isTaken($str)) {
+            if ($user instanceof User) {
+                throw new NicknameTakenException();
+            }
         }
 
         return $str;
@@ -134,6 +149,59 @@ class Nickname
     public static function isCanonical($str)
     {
         return preg_match('/^(?:' . self::CANONICAL_FMT . ')$/', $str);
+    }
+
+    /**
+     * Is the given string in our nickname blacklist?
+     *
+     * @param string $str
+     * @return boolean
+     */
+     public static function isBlacklisted($str)
+     {
+         $blacklist = common_config('nickname', 'blacklist');
+         return in_array($str, $blacklist);
+     }
+
+    /**
+     * Is the given string identical to a system path or route?
+     * This could probably be put in some other class, but at
+     * at the moment, only Nickname requires this functionality.
+     *
+     * @param string $str
+     * @return boolean
+     */
+     public static function isSystemPath($str)
+     {
+        $paths = array();
+
+        // All directory and file names in site root should be blacklisted
+        $d = dir(INSTALLDIR);
+        while (false !== ($entry = $d->read())) {
+            $paths[] = $entry;
+        }
+        $d->close();
+
+        // All top level names in the router should be blacklisted
+        $router = Router::get();
+        foreach (array_keys($router->m->getPaths()) as $path) {
+            if (preg_match('/^\/(.*?)[\/\?]/',$path,$matches)) {
+                $paths[] = $matches[1];
+            }
+        }
+        return in_array($str, $paths);
+    }
+
+    /**
+     * Is the nickname already in use locally? Checks the User table.
+     *
+     * @param   string $str
+     * @return  User|null   Returns null if no such user, otherwise a User object
+     */
+    public static function isTaken($str)
+    {
+        $user = User::getKV('nickname', $str);
+        return $user;   // null if no such User entry
     }
 }
 
@@ -169,7 +237,7 @@ class NicknameInvalidException extends NicknameException {
     }
 }
 
-class NicknameEmptyException extends NicknameException
+class NicknameEmptyException extends NicknameInvalidException
 {
     /**
      * Default localized message for this type of exception.
@@ -198,11 +266,42 @@ class NicknameTooLongException extends NicknameInvalidException
     }
 }
 
-class NicknameBlacklistException extends NicknameInvalidException
+class NicknameBlacklistedException extends NicknameException
 {
     protected function defaultMessage()
     {
         // TRANS: Validation error in form for registration, profile and group settings, etc.
-        return _('Nickname is disallowed through blacklist or system path list.');
+        return _('Nickname is disallowed through blacklist.');
+    }
+}
+
+class NicknamePathCollisionException extends NicknameException
+{
+    protected function defaultMessage()
+    {
+        // TRANS: Validation error in form for registration, profile and group settings, etc.
+        return _('Nickname is identical to system path names.');
+    }
+}
+
+class NicknameTakenException extends NicknameException
+{
+    public $user = null;    // the User which occupies the nickname
+
+    public function __construct(User $user, $msg=null, $code=400)
+    {
+        $this->byuser = $user;
+
+        if ($msg === null) {
+            $msg = $this->defaultMessage();
+        }
+
+        parent::__construct($msg, $code);
+    }
+
+    protected function defaultMessage()
+    {
+        // TRANS: Validation error in form for registration, profile and group settings, etc.
+        return _('Nickname is already in use on this server.');
     }
 }
