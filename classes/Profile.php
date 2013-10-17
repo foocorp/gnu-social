@@ -842,6 +842,31 @@ class Profile extends Managed_DataObject
         return ($biolimit > 0 && !empty($bio) && (mb_strlen($bio) > $biolimit));
     }
 
+    public function update($orig)
+    {
+        if ($this->nickname != $orig->nickname) {
+            $local = User::getKV('id', $this->id);
+            if ($local instanceof User) {
+                common_debug("Updating User ({$this->id}) nickname from {$orig->nickname} to {$this->nickname}");
+                $origuser = clone($local);
+                $local->nickname = $this->nickname;
+                $result = $local->updateKeys($origuser);
+                if ($result === false) {
+                    common_log_db_error($local, 'UPDATE', __FILE__);
+                    // TRANS: Server error thrown when user profile settings could not be updated.
+                    throw new ServerException(_('Could not update user nickname.'));
+                }
+
+                // Clear the site owner, in case nickname changed
+                if ($local->hasRole(Profile_role::OWNER)) {
+                    User::blow('user:site_owner');
+                }
+            }
+        }
+
+        return parent::update($orig);
+    }
+
     function delete()
     {
         $this->_deleteNotices();

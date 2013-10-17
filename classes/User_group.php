@@ -794,6 +794,7 @@ class User_group extends Managed_DataObject
             }
         }
 
+        // Also make sure the Profile table is up to date!
         $fields = array(/*group field => profile field*/
                     'nickname'      => 'nickname',
                     'fullname'      => 'fullname',

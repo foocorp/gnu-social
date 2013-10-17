@@ -29,9 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Change profile settings
@@ -320,70 +318,42 @@ class ProfilesettingsAction extends SettingsAction
             }
 
             $user = common_current_user();
-
             $user->query('BEGIN');
 
-            if ($user->nickname != $nickname ||
-                $user->language != $language ||
-                $user->timezone != $timezone) {
-
-                common_debug('Updating user nickname from ' . $user->nickname . ' to ' . $nickname,
-                             __FILE__);
-                common_debug('Updating user language from ' . $user->language . ' to ' . $language,
-                             __FILE__);
-                common_debug('Updating user timezone from ' . $user->timezone . ' to ' . $timezone,
-                             __FILE__);
-
-                $original = clone($user);
-
-                $user->nickname = $nickname;
-                $user->language = $language;
-                $user->timezone = $timezone;
-
-                $result = $user->updateKeys($original);
-
-                if ($result === false) {
-                    common_log_db_error($user, 'UPDATE', __FILE__);
-                    // TRANS: Server error thrown when user profile settings could not be updated.
-                    $this->serverError(_('Could not update user.'));
-                    return;
-                } else {
-                    // Re-initialize language environment if it changed
-                    common_init_language();
-                    // Clear the site owner, in case nickname changed
-                    if ($user->hasRole(Profile_role::OWNER)) {
-                        User::blow('user:site_owner');
-                    }
-                }
-            }
+            // $user->nickname is updated through Profile->update();
 
             // XXX: XOR
-            if (($user->autosubscribe ^ $autosubscribe) ||
-                ($user->private_stream ^ $private_stream) ||
-                ($user->subscribe_policy != $subscribe_policy)) {
+            if (($user->autosubscribe ^ $autosubscribe)
+                    || ($user->private_stream ^ $private_stream)
+                    || $user->timezone != $timezone
+                    || $user->language != $language
+                    || $user->subscribe_policy != $subscribe_policy) {
 
                 $original = clone($user);
 
                 $user->autosubscribe    = $autosubscribe;
+                $user->language         = $language;
                 $user->private_stream   = $private_stream;
                 $user->subscribe_policy = $subscribe_policy;
+                $user->timezone         = $timezone;
 
                 $result = $user->update($original);
-
                 if ($result === false) {
                     common_log_db_error($user, 'UPDATE', __FILE__);
                     // TRANS: Server error thrown when user profile settings could not be updated to
                     // TRANS: automatically subscribe to any subscriber.
                     $this->serverError(_('Could not update user for autosubscribe or subscribe_policy.'));
-                    return;
                 }
+
+                // Re-initialize language environment if it changed
+                common_init_language();
             }
 
             $profile = $user->getProfile();
 
             $orig_profile = clone($profile);
 
-            $profile->nickname = $user->nickname;
+            $profile->nickname = $nickname;
             $profile->fullname = $fullname;
             $profile->homepage = $homepage;
             $profile->bio = $bio;
@@ -433,7 +403,6 @@ class ProfilesettingsAction extends SettingsAction
                     common_log_db_error($prefs, ($exists) ? 'UPDATE' : 'INSERT', __FILE__);
                     // TRANS: Server error thrown when user profile location preference settings could not be updated.
                     $this->serverError(_('Could not save location prefs.'));
-                    return;
                 }
             }
 
@@ -446,7 +415,6 @@ class ProfilesettingsAction extends SettingsAction
                 common_log_db_error($profile, 'UPDATE', __FILE__);
                 // TRANS: Server error thrown when user profile settings could not be saved.
                 $this->serverError(_('Could not save profile.'));
-                return;
             }
 
             // Set the user tags
@@ -455,7 +423,6 @@ class ProfilesettingsAction extends SettingsAction
             if (!$result) {
                 // TRANS: Server error thrown when user profile settings tags could not be saved.
                 $this->serverError(_('Could not save tags.'));
-                return;
             }
 
             $user->query('COMMIT');

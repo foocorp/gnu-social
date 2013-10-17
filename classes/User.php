@@ -155,7 +155,7 @@ class User extends Managed_DataObject
     {
         $this->_connect();
         $parts = array();
-        foreach (array('nickname', 'email', 'incomingemail', 'sms', 'carrier', 'smsemail', 'language', 'timezone') as $k) {
+        foreach (array('nickname', 'email', 'incomingemail', 'sms', 'carrier', 'smsemail') as $k) {
             if (strcmp($this->$k, $orig->$k) != 0) {
                 $parts[] = $k . ' = ' . $this->_quote($this->$k);
             }
