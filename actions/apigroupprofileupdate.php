@@ -170,12 +170,6 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             $this->serverError(_('Could not create aliases.'));
         }
 
-        if (!empty($this->nickname) && ($this->nickname != $orig->nickname)) {
-            common_log(LOG_INFO, "Saving local group info.");
-            $local = Local_group::getKV('group_id', $this->group->id);
-            $local->setNickname($this->nickname);
-        }
-
         $this->group->query('COMMIT');
 
         switch($this->format) {

@@ -270,12 +270,6 @@ class EditgroupAction extends GroupAction
                 $this->serverError(_('Could not create aliases.'));
             }
 
-            if ($nickname != $orig->nickname) {
-                common_log(LOG_INFO, "Saving local group info.");
-                $local = Local_group::getKV('group_id', $this->group->id);
-                $local->setNickname($nickname);
-            }
-
             $this->group->query('COMMIT');
 
             Event::handle('EndGroupSaveForm', array($this));

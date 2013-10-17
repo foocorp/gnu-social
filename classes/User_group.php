@@ -782,6 +782,40 @@ class User_group extends Managed_DataObject
         return parent::delete();
     }
 
+    public function update($orig)
+    {
+        // Whenever the User_group is updated, find the Local_group
+        // and updates it nickname too.
+        if ($this->nickname != $orig->nickname) {
+            $local = Local_group::getKV('group_id', $this->id);
+            if ($local instanceof Local_group) {
+                common_debug("Updating Local_group ({$this->id}) nickname from {$orig->nickname} to {$this->nickname}");
+                $local->setNickname($this->nickname);
+            }
+        }
+
+        $fields = array(/*group field => profile field*/
+                    'nickname'      => 'nickname',
+                    'fullname'      => 'fullname',
+                    'mainpage'      => 'profileurl',
+                    'homepage'      => 'homepage',
+                    'description'   => 'bio',
+                    'location'      => 'location',
+                    'created'       => 'created',
+                    'modified'      => 'modified',
+                    );
+        $profile = $this->getProfile();
+        $origpro = clone($profile);
+        foreach ($fields as $gf=>$pf) {
+            $profile->$pf = $this->$gf;
+        }
+        if ($profile->update($origpro) === false) {
+            throw new ServerException(_('Unable to update profile'));
+        }
+
+        return parent::update($orig);
+    }
+
     function isPrivate()
     {
         return ($this->join_policy == self::JOIN_POLICY_MODERATE &&
