@@ -603,6 +603,11 @@ StartChangePassword: Before changing a password
 EndChangePassword: After changing a password
 - $user: user
 
+StartHashPassword: Generate a hashed version of the password (like a salted crypt)
+- &$hashed: Hashed version of the password, later put in the database
+- $password: The password that should be hashed
+- $profile: Profile that this password and hash belongs to. Can be null.
+
 StartSetUser: Before setting the currently logged in user
 - $user: user
 

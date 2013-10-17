@@ -210,14 +210,18 @@ function common_language()
 /**
  * Salted, hashed passwords are stored in the DB.
  */
-function common_munge_password($password, $id)
+function common_munge_password($password, $id, Profile $profile=null)
 {
-    if (is_object($id) || is_object($password)) {
-        $e = new Exception();
-        common_log(LOG_ERR, __METHOD__ . ' object in param to common_munge_password ' .
-                   str_replace("\n", " ", $e->getTraceAsString()));
+    $hashed = null;
+
+    if (Event::handle('StartHashPassword', array(&$hashed, $password, $profile))) {
+        Event::handle('EndHashPassword', array(&$hashed, $password, $profile));
     }
-    return md5($password . $id);
+    if (empty($hashed)) {
+        throw new PasswordHashException();
+    }
+
+    return $hashed;
 }
 
 /**

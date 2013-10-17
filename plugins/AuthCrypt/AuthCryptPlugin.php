@@ -20,50 +20,46 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Plugin
- * @package   StatusNet
+ * @package   GNUsocial
  * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2012 StatusNet, Inc.
- * @copyright 2012 Free Software Foundation, Inc http://www.fsf.org
+ * @copyright 2013 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
-/**
- * Plugin to use crypt() for user password hashes
- *
- * @category Plugin
- * @package  StatusNet
- * @author   Mikael Nordfeldth <mmn@hethane.se>
- * @copyright 2012 StatusNet, Inc.
- * @copyright 2012 Free Software Foundation, Inc http://www.fsf.org
- * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
- */
 class AuthCryptPlugin extends AuthenticationPlugin
 {
-    public $hash;	// defaults to SHA512, i.e. '$6$', in onInitializePlugin()
-    public $hostile;	// if true, password login means change password to crypt() hash
-    public $overwrite;	// if true, password change means always store crypt() hash
+    protected $hash         = '$6$';    // defaults to SHA512, i.e. '$6$', in onInitializePlugin()
+    protected $statusnet    = true;     // if true, also check StatusNet style password hash
+    protected $overwrite    = true;     // if true, password change means overwrite with crypt()
+
+    public $provider_name   = 'crypt';  // not actually used
 
     /*
      * FUNCTIONALITY
      */
 
-    function checkPassword($username, $password) {
-        $user = User::getKV('nickname', common_canonical_nickname($username));
+    function checkPassword($username, $password)
+    {
+        $user = User::getKV('nickname', $username);
+        if (!($user instanceof User)) {
+            return false;
+        }
 
         // crypt cuts the second parameter to its appropriate length based on hash scheme
-        if (!empty($user) && $user->password === crypt($password, $user->password)) {
+        if ($user->password === crypt($password, $user->password)) {
             return $user;
         }
-        // if we're hostile, check the password against old-style hashing
-        if (!empty($user) && $this->hostile && $user->password === md5($password . $user->id)) {
-            // update password hash entry to crypt() compatible
-            $this->changePassword($username, $password, $password);
+
+        // If we check StatusNet hash, for backwards compatibility and migration
+        if ($this->statusnet && $user->password === md5($password . $user->id)) {
+            // and update password hash entry to crypt() compatible
+            if ($this->overwrite) {
+                $this->changePassword($user->nickname, null, $password);
+            }
             return $user;
         }
 
@@ -71,7 +67,8 @@ class AuthCryptPlugin extends AuthenticationPlugin
     }
 
     // $oldpassword is already verified when calling this function... shouldn't this be private?!
-    function changePassword($username, $oldpassword, $newpassword) {
+    function changePassword($username, $oldpassword, $newpassword)
+    {
         if (!$this->password_changeable) {
             return false;
         }
@@ -82,32 +79,25 @@ class AuthCryptPlugin extends AuthenticationPlugin
         }
         $original = clone($user);
 
-        // a new, unique salt per new record stored... but common_good_rand should be more diverse than hexdec
-        $user->password = crypt($newpassword, $this->hash . common_good_rand(CRYPT_SALT_LENGTH));
+        $user->password = $this->hashPassword($newpassword, $user->getProfile());
 
         return (true === $user->validate() && $user->update($original));
+    }
+
+    public function hashPassword($password, Profile $profile=null)
+    {
+        // A new, unique salt per new record stored...
+        // TODO: common_good_rand should be more diverse than hexdec
+        return crypt($password, $this->hash . common_good_rand(CRYPT_SALT_LENGTH));
     }
 
     /*
      * EVENTS
      */
 
-    function onInitializePlugin() {
-        $this->provider_name = 'crypt';	// we don't actually use the provider_name
-
-        if (!isset($this->hash)) {
-            $this->hash = '$6$';	// SHA512 supported on all systems since PHP 5.3.2
-        }
-        if (!isset($this->hostile)) {
-            $this->hostile = false;	// overwrite old style password hashes?
-        }
-        if (!isset($this->overwrite)) {
-            $this->overwrite = true;	// overwrite old style password hashes?
-        }
-    }
-
-    function onStartChangePassword($user, $oldpassword, $newpassword) {
-		if (!$this->checkPassword($user->nickname, $oldpassword)) {
+    public function onStartChangePassword($user, $oldpassword, $newpassword)
+    {
+        if (!$this->checkPassword($user->nickname, $oldpassword)) {
             // if we ARE in overwrite mode, test password with common_check_user
             if (!$this->overwrite || !common_check_user($user->nickname, $oldpassword)) {
                 // either we're not in overwrite mode, or the password was incorrect
@@ -117,25 +107,35 @@ class AuthCryptPlugin extends AuthenticationPlugin
         }
         $changed = $this->changePassword($user->nickname, $oldpassword, $newpassword);
 
-		return (!$changed && empty($this->authoritative));
+        return (!$changed && empty($this->authoritative));
     }
 
-    function onStartCheckPassword($nickname, $password, &$authenticatedUser) {
+    public function onStartCheckPassword($nickname, $password, &$authenticatedUser)
+    {
         $authenticatedUser = $this->checkPassword($nickname, $password);
-		return (empty($authenticatedUser) && empty($this->authoritative));
+        // if we failed, only return false to stop plugin execution if we're authoritative
+        return (!($authenticatedUser instanceof User) && empty($this->authoritative));
     }
 
-    function onCheckSchema() {
+    public function onStartHashPassword(&$hashed, $password, Profile $profile=null)
+    {
+        $hashed = $this->hashPassword($password, $profile);
+        return false;
+    }
+
+    public function onCheckSchema()
+    {
         // we only use the User database, so default AuthenticationPlugin stuff can be ignored
         return true;
     }
 
-    function onUserDeleteRelated($user, &$tables) {
+    public function onUserDeleteRelated($user, &$tables)
+    {
         // not using User_username table, so no need to add it here.
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    public function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'AuthCrypt',
                             'version' => STATUSNET_VERSION,

@@ -80,6 +80,7 @@ abstract class SiteProfileSettings
 
     static function defaultPlugins() {
         return array(
+            'AuthCrypt'               => null,
             'Bookmark'                => null,
             'Event'                   => null,
             'OpenID'                  => null,

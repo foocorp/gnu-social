@@ -4,7 +4,7 @@ Prerequisites
 The following software packages are *required* for this software to
 run correctly.
 
-- PHP 5.3+      For newer versions, some functions that are used may be
+- PHP 5.3.2+    For newer versions, some functions that are used may be
                 disabled by default, such as the pcntl_* family. See the
                 section on 'Queues and daemons' for more information.
 - MariaDB 5.x   GNU Social uses, by default, a MariaDB server for data
