@@ -1,6 +1,49 @@
 Upgrading
 =========
 
+StatusNet 1.1.1 to GNU social
+-----------------------------
+
+We cannot support migrating from any other version of StatusNet than 
+1.1.1. If you are running a StatusNet version lower than this, please 
+follow the upgrade procedures for each respective StatusNet version.
+
+You are now running StatusNet 1.1.1 and want to migrate to GNU social.
+
+Before you begin: Make backups. Always make backups. Of your entire 
+directory structure and the database too. All tables. All data. Alles.
+
+    0. Stop your queue daemons 'php scripts/stopdaemon.php' should do it.
+        Not everyone runs queue daemons, but the above command won't hurt.
+
+    1. Unpack your GNU social code to a fresh directory.
+    
+    2. Synchronize your local files to the GNU social directory. These 
+        will be the local files such as avatars, config and files:
+
+            avatar/*
+            background/*
+            file/*
+            local/*
+            .htaccess
+            config.php
+
+    3. Replace your old StatusNet directory with the new GNU social
+        directory in your webserver root.
+    
+    4. Run the upgrade script: 'php scripts/upgrade.php'
+    
+    5. Start your queue daemons: 'php scripts/startdaemons.php'
+    
+    6. Report any issues at https://gitorious.org/statusnet/gnu-social/ 
+
+
+Legacy StatusNet instructions
+-----------------------------
+
+These instructions are here for historical and perhaps informational
+purposes.
+
 If you've been using StatusNet 1.0 or lower, or if you've
 been tracking the "git" version of the software, you will probably
 want to upgrade and keep your existing data. Try these step-by-step
@@ -52,50 +95,6 @@ panels from /admin/* to /panel/*. This now allows the (popular)
 username 'admin', but blocks the considerably less popular username
 'panel'. If you have an existing user named 'panel', you should rename
 them before upgrading.
-
-UTF-8 Database
---------------
-
-If you are upgrading from a 0.8.x or 0.9.x version, you can safely
-skip this section.
-
-StatusNet 0.7.4 introduced a fix for some incorrectly-stored
-international characters ("UTF-8"). This fix is not
-backwards-compatible; installations from before 0.7.4 will show
-non-ASCII characters of old notices incorrectly. This section explains
-what to do.
-
-0. You can disable the new behaviour by setting the 'db''utf8' config
-   option to "false". You should only do this until you're ready to
-   convert your DB to the new format.
-1. When you're ready to convert, you can run the fixup_utf8.php script
-   in the scripts/ subdirectory. If you've had the "new behaviour"
-   enabled (probably a good idea), you can give the ID of the first
-   "new" notice as a parameter, and only notices before that one will
-   be converted. Notices are converted in reverse chronological order,
-   so the most recent (and visible) ones will be converted first. The
-   script should work whether or not you have the 'db''utf8' config
-   option enabled.
-2. When you're ready, set $config['db']['utf8'] to true, so that
-   new notices will be stored correctly.
-
-Older versions
-==============
-
-IMPORTANT NOTE: StatusNet 0.7.4 introduced a fix for some
-incorrectly-stored international characters ("UTF-8"). For new
-installations, it will now store non-ASCII characters correctly.
-However, older installations will have the incorrect storage, and will
-consequently show up "wrong" in browsers. See below for how to deal
-with this situation.
-
-NOTE: the database definition file, laconica.ini, has been renamed to
-statusnet.ini (since this is the recommended database name). If you
-have a line in your config.php pointing to the old name, you'll need
-to update it.
-
-Note that the XMPP bots have changed since version 0.5; see above for
-details.
 
 Privacy
 =======
