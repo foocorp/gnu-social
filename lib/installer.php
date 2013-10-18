@@ -640,10 +640,8 @@ endforeach;
         // Set permissions back to something decent
         chmod(INSTALLDIR.'/config.php', 0644);
         
-        /*
-            TODO https needs to be considered
-        */
-        $link = "http://".$this->server.'/'.$this->path;
+        $scheme = $this->ssl === 'always' ? 'https' : 'http';
+        $link = "{$scheme}://{$this->server}/{$this->path}";
 
         $this->updateStatus("StatusNet has been installed at $link");
         $this->updateStatus(
