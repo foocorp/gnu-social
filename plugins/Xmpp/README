@@ -28,7 +28,7 @@ public: list of jid's that should get the public feed (firehose)
 default values are in (parenthesis)
 
 Note that setting 'host' is required if the XMPP service is configured
-with DNS SRV records, since the XMPPHP does currently not support SRV
+with DNS SRV records, since XMPPHP does currently not support SRV
 lookups.
 
 
@@ -36,7 +36,7 @@ Example
 =======
 addPlugin('xmpp', array(
     'user'=>'update',
-    'resource'=>'social,
+    'resource'=>'social',
     'server'=>'identi.ca',
     'password'=>'...',
     'public'=>array('bob@aol.com', 'sue@google.com')
