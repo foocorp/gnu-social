@@ -78,9 +78,11 @@ abstract class SiteProfileSettings
         throw new MethodNotImplementedException(__METHOD__);
     }
 
+    static function corePlugins() {
+        return common_config('plugins', 'core');
+    }
     static function defaultPlugins() {
-        return array_merge(common_config('plugins', 'core'),
-                           common_config('plugins', 'default'));
+        return common_config('plugins', 'default');
     }
 }
 
@@ -106,6 +108,7 @@ class PublicSite extends SiteProfileSettings
                 )
             ),
             'plugins' => array(
+                'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
                     'Directory'               => null,
                     'ExtendedProfile'         => null,
@@ -142,6 +145,7 @@ class PrivateSite extends SiteProfileSettings
                 )
             ),
             'plugins' => array(
+                'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
                     'Directory'               => null,
                     'ExtendedProfile'         => null,
@@ -194,6 +198,7 @@ class CommunitySite extends SiteProfileSettings
                 )
             ),
             'plugins' => array(
+                'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
                     'Directory'               => null,
                     'Geonames'                => null,
@@ -229,6 +234,7 @@ class SingleuserSite extends SiteProfileSettings
                 )
             ),
             'plugins' => array(
+                'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
                     'Geonames'                => null,
                     'NewMenu'                 => null,

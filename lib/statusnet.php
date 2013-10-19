@@ -110,12 +110,12 @@ class StatusNet
     {
         Router::clear();
 
-        StatusNet::initDefaults($server, $path);
-        StatusNet::loadConfigFile($conffile);
+        self::initDefaults($server, $path);
+        self::loadConfigFile($conffile);
 
         $sprofile = common_config('site', 'profile');
         if (!empty($sprofile)) {
-            StatusNet::loadSiteProfile($sprofile);
+            self::loadSiteProfile($sprofile);
         }
         // Load settings from database; note we need autoload for this
         Config::loadSettings();
