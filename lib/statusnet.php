@@ -181,6 +181,11 @@ class StatusNet
      */
     protected static function initPlugins()
     {
+        // Load core plugins
+        foreach (common_config('plugins', 'core') as $name => $params) {
+            call_user_func('addPlugin', $name, $params);
+        }
+
         // Load default plugins
         foreach (common_config('plugins', 'default') as $name => $params) {
             $key = 'disable-' . $name;

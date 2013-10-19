@@ -17,16 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for user
  */
-
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
-require_once 'Validate.php';
 
 class User extends Managed_DataObject
 {
@@ -233,7 +228,7 @@ class User extends Managed_DataObject
         try {
             $profile->nickname = Nickname::normalize($nickname, true);
         } catch (NicknameException $e) {
-            common_log(LOG_WARNING, sprintf('Bad nickname during User registration for %s: %s', $profile->nickname, $e->getMessage()), __FILE__);
+            common_log(LOG_WARNING, sprintf('Bad nickname during User registration for %s: %s', $nickname, $e->getMessage()), __FILE__);
             return false;
         }
 
@@ -305,7 +300,7 @@ class User extends Managed_DataObject
             $profile->query('BEGIN');
 
             $id = $profile->insert();
-            if (empty($id)) {
+            if ($id === false) {
                 common_log_db_error($profile, 'INSERT', __FILE__);
                 return false;
             }
@@ -324,7 +319,7 @@ class User extends Managed_DataObject
 
             $result = $user->insert();
 
-            if (!$result) {
+            if ($result === false) {
                 common_log_db_error($user, 'INSERT', __FILE__);
                 $profile->query('ROLLBACK');
                 return false;

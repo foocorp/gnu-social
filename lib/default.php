@@ -20,17 +20,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Config
- * @package   StatusNet
+ * @package   GNUsocial
  * @author    Evan Prodromou <evan@status.net>
  * @copyright 2008-9 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
 $default =
     array('site' =>
-        array('name' => 'Just another StatusNet microblog',
-              'nickname' => 'statusnet',
+        array('name' => 'Just another GNU social node',
+              'nickname' => 'gnusocial',
               'wildcard' => null,
               'server' => $_server,
               'theme' => 'neo',
@@ -305,19 +305,22 @@ $default =
         'logincommand' =>
         array('disabled' => true),
         'plugins' =>
-        array('default' => array('Geonames' => null,
-                                 'ClientSideShorten' => null,
-                                 'StrictTransportSecurity' => null,
-                                 'Bookmark' => null,
-                                 'Event' => null,
-                                 'Poll' => null,
-                                 'QnA' => null,
-                                 'SearchSub' => null,
-                                 'TagSub' => null,
-                                 'OpenID' => null,
-                                 'Directory' => null,
-                                 'ExtendedProfile' => null,
-                                 'Activity' => null),
+        array('core' => array(
+                            'AuthCrypt' => null,
+                            'LRDD' => null,
+                            'StrictTransportSecurity' => null,
+                        ),
+              'default' => array(
+                            'Activity' => null,
+                            'Bookmark' => null,
+                            'ClientSideShorten' => null,
+                            'Event' => null,
+                            'OpenID' => null,
+                            'Poll' => null,
+                            'QnA' => null,
+                            'SearchSub' => null,
+                            'TagSub' => null,
+                        ),
               'locale_path' => false, // Set to a path to use *instead of* each plugin's own locale subdirectories
               'server' => null,
               'sslserver' => null,

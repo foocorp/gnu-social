@@ -79,18 +79,8 @@ abstract class SiteProfileSettings
     }
 
     static function defaultPlugins() {
-        return array(
-            'AuthCrypt'               => null,
-            'Bookmark'                => null,
-            'Event'                   => null,
-            'OpenID'                  => null,
-            'LRDD'                    => null,
-            'Poll'                    => null,
-            'QnA'                     => null,
-            'SearchSub'               => null,
-            'StrictTransportSecurity' => null,
-            'TagSub'                  => null,
-        );
+        return array_merge(common_config('plugins', 'core'),
+                           common_config('plugins', 'default'));
     }
 }
 
@@ -117,7 +107,6 @@ class PublicSite extends SiteProfileSettings
             ),
             'plugins' => array(
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'ClientSideShorten'       => null,
                     'Directory'               => null,
                     'ExtendedProfile'         => null,
                     'Geonames'                => null,
@@ -154,7 +143,6 @@ class PrivateSite extends SiteProfileSettings
             ),
             'plugins' => array(
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'ClientSideShorten'       => null,
                     'Directory'               => null,
                     'ExtendedProfile'         => null,
                     'EmailRegistration'       => null,
@@ -207,7 +195,6 @@ class CommunitySite extends SiteProfileSettings
             ),
             'plugins' => array(
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'ClientSideShorten'       => null,
                     'Directory'               => null,
                     'Geonames'                => null,
                     'OStatus'                 => null,
@@ -243,7 +230,6 @@ class SingleuserSite extends SiteProfileSettings
             ),
             'plugins' => array(
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'ClientSideShorten'       => null,
                     'Geonames'                => null,
                     'NewMenu'                 => null,
                     'MobileProfile'           => null,
