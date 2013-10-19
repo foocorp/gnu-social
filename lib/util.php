@@ -1241,7 +1241,9 @@ function common_local_url($action, $args=null, $params=null, $fragment=null, $ad
         $r = Router::get();
         $path = $r->build($action, $args, $params, $fragment);
 
-        $ssl = StatusNet::isHTTPS() || common_is_sensitive($action);
+        $ssl = common_config('site', 'ssl') === 'always'
+                || StatusNet::isHTTPS()
+                || common_is_sensitive($action);
 
         if (common_config('site','fancy')) {
             $url = common_path($path, $ssl, $addSession);
