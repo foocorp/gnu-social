@@ -9,27 +9,34 @@ to the bottom of your config.php
 
 The daemon included with this plugin must be running. It will be
 started by the plugin along with their other daemons when you run
-scripts/startdaemons.sh. See the StatusNet README for more about queuing and
-daemons.
+scripts/startdaemons.sh. See the section "Queues and daemons" in
+INSTALL for more about queuing and daemons.
+
 
 Settings
 ========
 user*: user part of the jid
 server*: server part of the jid
-resource: resource part of the jid
+resource*: resource part of the jid
 port (5222): port on which to connect to the server
 encryption (true): use encryption on the connection
 host (same as server): host to connect to. Usually, you won't set this.
-debug (false): log extra debug info
+debug (false): log extra debug info (e.g. sent/recv XMPP stanzas)
 public: list of jid's that should get the public feed (firehose)
 
 * required
 default values are in (parenthesis)
 
+Note that setting 'host' is required if the XMPP service is configured
+with DNS SRV records, since the XMPPHP does currently not support SRV
+lookups.
+
+
 Example
 =======
 addPlugin('xmpp', array(
     'user'=>'update',
+    'resource'=>'social,
     'server'=>'identi.ca',
     'password'=>'...',
     'public'=>array('bob@aol.com', 'sue@google.com')
