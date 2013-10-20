@@ -1511,21 +1511,51 @@ class Ostatus_profile extends Managed_DataObject
             self::updateProfile($profile, $object, $hints);
 
             $oprofile->profile_id = $profile->insert();
-            if (!$oprofile->profile_id) {
+            if ($oprofile->profile_id === false) {
                 // TRANS: Server exception.
                 throw new ServerException(_m('Cannot save local profile.'));
             }
         } else if ($object->type == ActivityObject::GROUP) {
+            $profile = new Profile();
+            $profile->query('BEGIN');
+
             $group = new User_group();
             $group->uri = $homeuri;
             $group->created = common_sql_now();
             self::updateGroup($group, $object, $hints);
 
+            // TODO: We should do this directly in User_group->insert()!
+            // currently it's duplicated in User_group->update()
+            // AND User_group->register()!!!
+            $fields = array(/*group field => profile field*/
+                        'nickname'      => 'nickname',
+                        'fullname'      => 'fullname',
+                        'mainpage'      => 'profileurl',
+                        'homepage'      => 'homepage',
+                        'description'   => 'bio',
+                        'location'      => 'location',
+                        'created'       => 'created',
+                        'modified'      => 'modified',
+                        );
+            foreach ($fields as $gf=>$pf) {
+                $profile->$pf = $group->$gf;
+            }
+            $profile_id = $profile->insert();
+            if ($profile_id === false) {
+                $profile->query('ROLLBACK');
+                throw new ServerException(_('Profile insertion failed.'));
+            }
+
+            $group->profile_id = $profile_id;
+
             $oprofile->group_id = $group->insert();
-            if (!$oprofile->group_id) {
+            if ($oprofile->group_id === false) {
+                $profile->query('ROLLBACK');
                 // TRANS: Server exception.
                 throw new ServerException(_m('Cannot save local profile.'));
             }
+
+            $profile->query('COMMIT');
         } else if ($object->type == ActivityObject::_LIST) {
             $ptag = new Profile_list();
             $ptag->uri = $homeuri;
@@ -1533,15 +1563,15 @@ class Ostatus_profile extends Managed_DataObject
             self::updatePeopletag($ptag, $object, $hints);
 
             $oprofile->peopletag_id = $ptag->insert();
-            if (!$oprofile->peopletag_id) {
-            // TRANS: Server exception.
+            if ($oprofile->peopletag_id === false) {
+                // TRANS: Server exception.
                 throw new ServerException(_m('Cannot save local list.'));
             }
         }
 
         $ok = $oprofile->insert();
 
-        if (!$ok) {
+        if ($ok === false) {
             // TRANS: Server exception.
             throw new ServerException(_m('Cannot save OStatus profile.'));
         }
@@ -1654,7 +1684,7 @@ class Ostatus_profile extends Managed_DataObject
         }
     }
 
-    protected static function updateGroup($group, $object, $hints=array())
+    protected static function updateGroup(User_group $group, $object, $hints=array())
     {
         $orig = clone($group);
 
@@ -1672,7 +1702,7 @@ class Ostatus_profile extends Managed_DataObject
         $group->location = self::getActivityObjectLocation($object, $hints);
         $group->homepage = self::getActivityObjectHomepage($object, $hints);
 
-        if ($group->id) {
+        if ($group->id) {   // If no id, we haven't called insert() yet, so don't run update()
             common_log(LOG_DEBUG, "Updating OStatus group $group->id from remote info $object->id: " . var_export($object, true) . var_export($hints, true));
             $group->update($orig);
         }
