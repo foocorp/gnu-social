@@ -630,7 +630,7 @@ class User_group extends Managed_DataObject
 
         $profile->query('BEGIN');
         $id = $profile->insert();
-        if (empty($id)) {
+        if ($id === false) {
             $profile->query('ROLLBACK');
             throw new ServerException(_('Profile insertion failed'));
         }
@@ -654,7 +654,7 @@ class User_group extends Managed_DataObject
 
             $result = $group->insert();
 
-            if (!$result) {
+            if ($result === false) {
                 common_log_db_error($group, 'INSERT', __FILE__);
                 // TRANS: Server exception thrown when creating a group failed.
                 throw new ServerException(_('Could not create group.'));
