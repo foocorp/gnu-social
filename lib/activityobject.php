@@ -698,13 +698,13 @@ class ActivityObject
                 // XXX: assuming HTML content here
                 $xo->element(
                     ActivityUtils::CONTENT,
-                    array('type' => 'text'),
-                    html_entity_decode(strip_tags($this->content), ENT_QUOTES, 'UTF-8')
+                    array('type' => 'html'),
+                    common_xml_safe_str($this->content)
                 );
                 $xo->element(
                     ActivityUtils::CONTENT,
-                    array('type' => 'html'),
-                    common_xml_safe_str($this->content)
+                    array('type' => 'text'),
+                    html_entity_decode(strip_tags($this->content), ENT_QUOTES, 'UTF-8')
                 );
             }
 
