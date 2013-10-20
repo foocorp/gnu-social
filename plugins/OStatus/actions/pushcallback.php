@@ -28,15 +28,15 @@ if (!defined('STATUSNET')) {
 
 class PushCallbackAction extends Action
 {
-    function handle()
+    protected function handle()
     {
         StatusNet::setApi(true); // Minimize error messages to aid in debugging
         parent::handle();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->handlePost();
-        } else {
-            $this->handleGet();
+        if ($this->isPost()) {
+            return $this->handlePost();
         }
+        
+        return $this->handleGet();
     }
 
     /**

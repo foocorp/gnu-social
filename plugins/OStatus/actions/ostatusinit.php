@@ -35,14 +35,13 @@ class OStatusInitAction extends Action
     var $profile;
     var $err;
 
-    function prepare($args)
+    protected function prepare($args)
     {
         parent::prepare($args);
 
         if (common_logged_in()) {
             // TRANS: Client error.
             $this->clientError(_m('You can use the local subscription!'));
-            return false;
         }
 
         // Local user or group the remote wants to subscribe to
@@ -57,9 +56,9 @@ class OStatusInitAction extends Action
         return true;
     }
 
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             /* Use a session token for CSRF protection. */

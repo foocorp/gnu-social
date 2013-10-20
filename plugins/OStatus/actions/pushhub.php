@@ -47,13 +47,13 @@ class PushHubAction extends Action
         return parent::arg($arg, $def);
     }
 
-    function prepare($args)
+    protected function prepare($args)
     {
         StatusNet::setApi(true); // reduce exception reports to aid in debugging
         return parent::prepare($args);
     }
 
-    function handle()
+    protected function handle()
     {
         $mode = $this->trimmed('hub.mode');
         switch ($mode) {
