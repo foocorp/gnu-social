@@ -58,7 +58,7 @@ function updateUserUrls()
                 common_broadcast_profile($profile);
 
             } catch (Exception $e) {
-                printv("Error updating URLs: " . $e->getMessage());
+                echo "Error updating URLs: " . $e->getMessage();
             }
             printfv("DONE.");
         }
@@ -129,7 +129,7 @@ function updateGroupUrls()
                 $group->update($orig);
                 printfv("DONE.");
             } catch (Exception $e) {
-                printv("Can't update avatars for group " . $group->nickname . ": ". $e->getMessage());
+                echo "Can't update avatars for group " . $group->nickname . ": ". $e->getMessage();
             }
         }
     }
