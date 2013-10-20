@@ -773,7 +773,7 @@ class OpenIDPlugin extends Plugin
      * @return boolean hook value (always true)
      */
 
-    function onEndXrdActionLinks(XML_XRD $xrd, Profile $target)
+    function onEndWebFingerProfileLinks(XML_XRD $xrd, Profile $target)
     {
         $xrd->links[] = new XML_XRD_Element_Link(
                             'http://specs.openid.net/auth/2.0/provider',

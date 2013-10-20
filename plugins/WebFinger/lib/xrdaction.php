@@ -31,8 +31,6 @@ abstract class XrdAction extends Action
     // our back-compatibility with StatusNet <=1.1.1
     protected $defaultformat = null;
 
-    protected $resource = null;
-    protected $target   = null;
     protected $xrd      = null;
 
     public function isReadOnly($args)

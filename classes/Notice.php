@@ -216,6 +216,12 @@ class Notice extends Managed_DataObject
         return $this->uri;
     }
 
+    public function getUrl()
+    {
+        // The risk is we start having empty urls and non-http uris...
+        return $this->url ?: $this->uri;
+    }
+
     /**
      * Extract #hashtags from this notice's content and save them to the database.
      */

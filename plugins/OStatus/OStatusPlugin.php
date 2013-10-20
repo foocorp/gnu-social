@@ -1314,7 +1314,7 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
-    function onEndXrdActionLinks(XML_XRD $xrd, Profile $target)
+    function onEndWebFingerProfileLinks(XML_XRD $xrd, Profile $target)
     {
         $xrd->links[] = new XML_XRD_Element_Link(Discovery::UPDATESFROM,
                             common_local_url('ApiTimelineUser',

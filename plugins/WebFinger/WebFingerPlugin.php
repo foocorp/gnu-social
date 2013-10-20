@@ -58,6 +58,48 @@ class WebFingerPlugin extends Plugin
         return true;
     }
 
+    public function onEndGetWebFingerResource($resource, WebFingerResource &$target=null, array $args=array())
+    {
+        $profile = null;
+        if (Discovery::isAcct($resource)) {
+            $parts = explode('@', substr(urldecode($resource), 5)); // 5 is strlen of 'acct:'
+            if (count($parts) == 2) {
+                list($nick, $domain) = $parts;
+                if ($domain === common_config('site', 'server')) {
+                    $nick = common_canonical_nickname($nick);
+                    $user = User::getKV('nickname', $nick);
+                    if (!($user instanceof User)) {
+                        throw new NoSuchUserException(array('nickname'=>$nick));
+                    }
+                    $profile = $user->getProfile();
+                } else {
+                    throw new Exception(_('Remote profiles not supported via WebFinger yet.'));
+                }
+            }
+        } else {
+            $user = User::getKV('uri', $resource);
+            if ($user instanceof User) {
+                $profile = $user->getProfile();
+            } else {
+                // try and get it by profile url
+                $profile = Profile::getKV('profileurl', $resource);
+            }
+        }
+
+        if ($profile instanceof Profile) {
+            $target = new WebFingerResource_Profile($profile);
+            return false;   // We got our target, stop handler execution
+        }
+
+        $notice = Notice::getKV('uri', $resource);
+        if ($notice instanceof Notice) {
+            $target = new WebFingerResource_Notice($notice);
+            return false;
+        }
+
+        return true;
+    }
+
     public function onStartHostMetaLinks(array &$links)
     {
         foreach (Discovery::supportedMimeTypes() as $type) {

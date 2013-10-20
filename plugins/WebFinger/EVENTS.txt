@@ -4,26 +4,28 @@ StartHostMetaLinks: Start /.well-known/host-meta links
 EndHostMetaLinks: End /.well-known/host-meta links
 - &links:   array containing the links elements to be written
 
-StartWebFingerReconstruction:
+StartGetWebFingerResource: Get a WebFingerResource extended object by resource string
+- $resource String that contains the requested URI
+- &$target  WebFingerResource extended object goes here
+- $args     Array which may contains arguments such as 'rel' filtering values
+
+EndGetWebFingerResource: Last attempts getting a WebFingerResource object
+- $resource String that contains the requested URI
+- &$target  WebFingerResource extended object goes here
+- $args     Array which may contains arguments such as 'rel' filtering values
+
+StartWebFingerReconstruction: Generate an acct: uri from a Profile object
 - $profile: Profile object for which we want a WebFinger ID
 - &$acct:   String reference where reconstructed ID is stored
 
-EndWebFingerReconstruction:
+EndWebFingerReconstruction: Last attempts to generate an acct: uri from a Profile object
 - $profile: Profile object for which we want a WebFinger ID
 - &$acct:   String reference where reconstructed ID is stored
 
-StartXrdActionAliases: About to set aliases for the XRD for a user
+StartWebFingerProfileLinks: About to set links for the resource descriptor of a profile
 - $xrd:     XML_XRD object being shown
 - $target:  Profile being shown
 
-EndXrdActionAliases: Done with aliases for the XRD for a user
-- $xrd:     XML_XRD object being shown
-- $target:  Profile being shown
-
-StartXrdActionLinks: About to set links for the XRD for a profile
-- $xrd:     XML_XRD object being shown
-- $target:  Profile being shown
-
-EndXrdActionLinks: Done with links for the XRD for a profile
+EndWebFingerProfileLinks: Done with links for the resource descriptor of a profile
 - $xrd:     XML_XRD object being shown
 - $target:  Profile being shown

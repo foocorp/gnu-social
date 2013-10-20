@@ -26,6 +26,9 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class WebfingerAction extends XrdAction
 {
+    protected $resource = null; // string with the resource URI
+    protected $target   = null; // object of the WebFingerResource class
+
     protected function prepare(array $args=array())
     {
         parent::prepare($args);
@@ -33,34 +36,8 @@ class WebfingerAction extends XrdAction
         // throws exception if resource is empty
         $this->resource = Discovery::normalize($this->trimmed('resource'));
 
-        if (Discovery::isAcct($this->resource)) {
-            $parts = explode('@', substr(urldecode($this->resource), 5));
-            if (count($parts) == 2) {
-                list($nick, $domain) = $parts;
-                if ($domain === common_config('site', 'server')) {
-                    $nick = common_canonical_nickname($nick);
-                    $user = User::getKV('nickname', $nick);
-                    if (!($user instanceof User)) {
-                        throw new NoSuchUserException(array('nickname'=>$nick));
-                    }
-                    $this->target = $user->getProfile();
-                } else {
-                    throw new Exception(_('Remote profiles not supported via WebFinger yet.'));
-                }
-            }
-        } else {
-            $user = User::getKV('uri', $this->resource);
-            if ($user instanceof User) {
-                $this->target = $user->getProfile();
-            } else {
-                // try and get it by profile url
-                $this->target = Profile::getKV('profileurl', $this->resource);
-            }
-        }
-
-        if (!($this->target instanceof Profile)) {
-            // TRANS: Client error displayed when user not found for an action.
-            $this->clientError(_('No such user: ') . var_export($this->resource,true), 404);
+        if (Event::handle('StartGetWebFingerResource', array($this->resource, &$this->target, $this->args))) {
+            Event::handle('EndGetWebFingerResource', array($this->resource, &$this->target, $this->args));
         }
 
         return true;
@@ -68,55 +45,18 @@ class WebfingerAction extends XrdAction
 
     protected function setXRD()
     {
-        if (empty($this->target)) {
+        if (!($this->target instanceof WebFingerResource)) {
             throw new Exception(_('Target not set for resource descriptor'));
         }
 
-        // $this->target set in a _child_ class prepare()
-        $nick = $this->target->nickname;
-
         $this->xrd->subject = $this->resource;
 
-        if (Event::handle('StartXrdActionAliases', array($this->xrd, $this->target))) {
-            $uris = WebFinger::getIdentities($this->target);
-            foreach ($uris as $uri) {
-                if ($uri != $this->xrd->subject && !in_array($uri, $this->xrd->aliases)) {
-                    $this->xrd->aliases[] = $uri;
-                }
+        foreach ($this->target->getAliases() as $alias) {
+            if ($alias != $this->xrd->subject && !in_array($alias, $this->xrd->aliases)) {
+                $this->xrd->aliases[] = $alias;
             }
-            Event::handle('EndXrdActionAliases', array($this->xrd, $this->target));
         }
 
-        if (Event::handle('StartXrdActionLinks', array($this->xrd, $this->target))) {
-
-            $this->xrd->links[] = new XML_XRD_Element_Link(WebFinger::PROFILEPAGE,
-                                        $this->target->getUrl(), 'text/html');
-
-            // XFN
-            $this->xrd->links[] = new XML_XRD_Element_Link('http://gmpg.org/xfn/11',
-                                        $this->target->getUrl(), 'text/html');
-            // FOAF
-            $this->xrd->links[] = new XML_XRD_Element_Link('describedby',
-                                        common_local_url('foaf', array('nickname' => $nick)),
-                                        'application/rdf+xml');
-
-            $link = new XML_XRD_Element_Link('http://apinamespace.org/atom',
-                                        common_local_url('ApiAtomService', array('id' => $nick)),
-                                        'application/atomsvc+xml');
-// XML_XRD must implement changing properties first           $link['http://apinamespace.org/atom/username'] = $nick;
-            $this->xrd->links[] = clone $link;
-
-            if (common_config('site', 'fancy')) {
-                $apiRoot = common_path('api/', true);
-            } else {
-                $apiRoot = common_path('index.php/api/', true);
-            }
-
-            $link = new XML_XRD_Element_Link('http://apinamespace.org/twitter', $apiRoot);
-// XML_XRD must implement changing properties first            $link['http://apinamespace.org/twitter/username'] = $nick;
-            $this->xrd->links[] = clone $link;
-
-            Event::handle('EndXrdActionLinks', array($this->xrd, $this->target));
-        }
+        $this->target->updateXRD($this->xrd);
     }
 }
