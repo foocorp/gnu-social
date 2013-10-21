@@ -518,6 +518,15 @@ class Ostatus_profile extends Managed_DataObject
             return null;
         }
 
+        // The id URI will be used as a unique identifier for the notice,
+        // protecting against duplicate saves. It isn't required to be a URL;
+        // tag: URIs for instance are found in Google Buzz feeds.
+        $dupe = Notice::getKV('uri', $activity->id);
+        if ($dupe instanceof Notice) {
+            common_log(LOG_INFO, "OStatus: ignoring duplicate post: {$activity->id}");
+            return $dupe;
+        }
+
         if (count($activity->objects) != 1) {
             // TRANS: Client exception thrown when trying to share multiple activities at once.
             throw new ClientException(_m('Can only handle share activities with exactly one object.'));
@@ -530,10 +539,20 @@ class Ostatus_profile extends Managed_DataObject
             throw new ClientException(_m('Can only handle shared activities.'));
         }
 
+        $sharedId = $shared->id;
+        if (!empty($shared->objects[0]->id)) {
+            // Because StatusNet since commit 8cc4660 sets $shared->id to a TagURI which
+            // fucks up federation, because the URI is no longer recognised by the origin.
+            // ...but it might still be empty (not present) because $shared->id is set.
+            $sharedId = $shared->objects[0]->id;
+        }
+        if (empty($sharedId)) {
+            throw new ClientException(_m('Shared activity does not have an id'));
+        }
+
         // First check if we have the shared activity. This has to be done first, because
         // we can't use these functions to "ensureActivityObjectProfile" of a local user,
         // who might be the creator of the shared activity in question.
-        $sharedId = ($shared->id) ? $shared->id : $shared->objects[0]->id;
         $sharedNotice = Notice::getKV('uri', $sharedId);
         if (!($sharedNotice instanceof Notice)) {
             // If no local notice is found, process it!
@@ -549,19 +568,7 @@ class Ostatus_profile extends Managed_DataObject
             throw new ClientException(sprintf(_m('Failed to save activity %s.'), $sharedId));
         }
 
-        // The id URI will be used as a unique identifier for for the notice,
-        // protecting against duplicate saves. It isn't required to be a URL;
-        // tag: URIs for instance are found in Google Buzz feeds.
-
-        $sourceUri = $activity->id;
-
-        $dupe = Notice::getKV('uri', $sourceUri);
-        if ($dupe) {
-            common_log(LOG_INFO, "OStatus: ignoring duplicate post: $sourceUri");
-            return $dupe;
-        }
-
-        // We'll also want to save a web link to the original notice, if provided.
+        // We'll want to save a web link to the original notice, if provided.
 
         $sourceUrl = null;
         if ($activity->link) {
@@ -583,7 +590,7 @@ class Ostatus_profile extends Managed_DataObject
         } else {
             // @todo FIXME: Fetch from $sourceUrl?
             // TRANS: Client exception. %s is a source URI.
-            throw new ClientException(sprintf(_m('No content for notice %s.'),$sourceUri));
+            throw new ClientException(sprintf(_m('No content for notice %s.'), $activity->id));
         }
 
         // Get (safe!) HTML and text versions of the content
@@ -632,7 +639,7 @@ class Ostatus_profile extends Managed_DataObject
 
         $options = array('is_local' => Notice::REMOTE,
                          'url' => $sourceUrl,
-                         'uri' => $sourceUri,
+                         'uri' => $activity->id,
                          'rendered' => $rendered,
                          'replies' => array(),
                          'groups' => array(),
