@@ -49,7 +49,7 @@ class AuthCryptPlugin extends AuthenticationPlugin
             return false;
         }
 
-        // crypt cuts the second parameter to its appropriate length based on hash scheme
+        // crypt understands what the salt part of $user->password is
         if ($user->password === crypt($password, $user->password)) {
             return $user;
         }
@@ -64,6 +64,18 @@ class AuthCryptPlugin extends AuthenticationPlugin
         }
 
         return false;
+    }
+
+    protected function cryptSalt($len=CRYPT_SALT_LENGTH)
+    {
+        $chars = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        $salt  = '';
+
+        for ($i=0; $i<$len; $i++) {
+            $salt .= $chars{mt_rand(0, strlen($chars)-1)};
+        }
+
+        return $salt;
     }
 
     // $oldpassword is already verified when calling this function... shouldn't this be private?!
@@ -87,8 +99,7 @@ class AuthCryptPlugin extends AuthenticationPlugin
     public function hashPassword($password, Profile $profile=null)
     {
         // A new, unique salt per new record stored...
-        // TODO: common_good_rand should be more diverse than hexdec
-        return crypt($password, $this->hash . common_good_rand(CRYPT_SALT_LENGTH));
+        return crypt($password, $this->hash . self::cryptSalt());
     }
 
     /*
