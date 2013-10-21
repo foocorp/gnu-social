@@ -627,8 +627,6 @@ class Activity
             }
 
             foreach ($this->context->attention as $attnURI) {
-                $xs->element('link', array('rel' => ActivityContext::ATTENTION,
-                                           'href' => $attnURI));
                 $xs->element('link', array('rel' => ActivityContext::MENTIONED,
                                            'href' => $attnURI));
             }

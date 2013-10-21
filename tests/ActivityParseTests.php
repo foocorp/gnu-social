@@ -533,7 +533,7 @@ $_example4 = <<<EXAMPLE4
  <link rel="related" href="http://example.net/notice/12"/>
  <thr:in-reply-to ref="http://example.net/notice/12" href="http://example.net/notice/12"></thr:in-reply-to>
  <link rel="ostatus:conversation" href="http://example.net/conversation/11"/>
- <link rel="ostatus:attention" href="http://example.net/user/1"/>
+ <link rel="mentioned" href="http://example.net/user/1"/>
  <content type="html">@&lt;span class=&quot;vcard&quot;&gt;&lt;a href=&quot;http://example.net/user/1&quot; class=&quot;url&quot;&gt;&lt;span class=&quot;fn nickname&quot;&gt;evan&lt;/span&gt;&lt;/a&gt;&lt;/span&gt; now is the time for all good men to come to the aid of their country. #&lt;span class=&quot;tag&quot;&gt;&lt;a href=&quot;http://example.net/tag/thetime&quot; rel=&quot;tag&quot;&gt;thetime&lt;/a&gt;&lt;/span&gt;</content>
  <category term="thetime"></category>
 </entry>
@@ -910,7 +910,6 @@ $_example10 = <<<EXAMPLE10
   </poco:urls>
  </author>
  <link rel="ostatus:conversation" href="http://lazarus.local/mublog/conversation/1131"/>
- <link rel="ostatus:attention" href="http://lazarus.local/mublog/group/22/id"/>
  <link rel="mentioned" href="http://lazarus.local/mublog/group/22/id"/>
  <category term="grouptest316173"></category>
  <source>

@@ -263,7 +263,6 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $element = $this->_entryToElement($entry, true);
 
-        $this->assertEquals($this->targetUser1->uri, ActivityUtils::getLink($element, 'ostatus:attention'));
         $this->assertEquals($this->targetUser1->uri, ActivityUtils::getLink($element, 'mentioned'));
     }
 
@@ -283,7 +282,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $element = $this->_entryToElement($entry, true);
 
-        $links = ActivityUtils::getLinks($element, 'ostatus:attention');
+        $links = ActivityUtils::getLinks($element, 'mentioned');
 
         $this->assertEquals(2, count($links));
 
@@ -320,7 +319,6 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $element = $this->_entryToElement($entry, true);
 
-        $this->assertEquals($this->targetGroup1->uri, ActivityUtils::getLink($element, 'ostatus:attention'));
         $this->assertEquals($this->targetGroup1->uri, ActivityUtils::getLink($element, 'mentioned'));
     }
 
@@ -334,7 +332,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $element = $this->_entryToElement($entry, true);
 
-        $links = ActivityUtils::getLinks($element, 'ostatus:attention');
+        $links = ActivityUtils::getLinks($element, 'mentioned');
 
         $this->assertEquals(2, count($links));
 
