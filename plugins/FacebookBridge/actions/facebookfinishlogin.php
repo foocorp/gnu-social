@@ -436,7 +436,7 @@ class FacebookfinishloginAction extends Action
             if ($response->isOk()) {
 
                 // seems to always be jpeg, but not sure
-                $tmpname = "facebook-avatar-tmp-" . common_good_rand(4);
+                $tmpname = "facebook-avatar-tmp-" . common_random_hexstr(4);
 
                 $ok = file_put_contents(
                     Avatar::path($tmpname),

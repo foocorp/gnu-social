@@ -93,18 +93,18 @@ class UUID
     {
         return sprintf('%s-%s-%04x-%04x-%s',
                        // 32 bits for "time_low"
-                       common_good_rand(4),
+                       common_random_hexstr(4),
                        // 16 bits for "time_mid"
-                       common_good_rand(2),
+                       common_random_hexstr(2),
                        // 16 bits for "time_hi_and_version",
                        // four most significant bits holds version number 4
-                       (hexdec(common_good_rand(2)) & 0x0fff) | 0x4000,
+                       (hexdec(common_random_hexstr(2)) & 0x0fff) | 0x4000,
                        // 16 bits, 8 bits for "clk_seq_hi_res",
                        // 8 bits for "clk_seq_low",
                        // two most significant bits holds zero and one
                        // for variant DCE1.1
-                       (hexdec(common_good_rand(2)) & 0x3fff) | 0x8000,
+                       (hexdec(common_random_hexstr(2)) & 0x3fff) | 0x8000,
                        // 48 bits for "node"
-                       common_good_rand(6));
+                       common_random_hexstr(6));
     }   
 }

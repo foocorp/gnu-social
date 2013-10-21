@@ -31,7 +31,7 @@ class OMBOAuthDataStore extends OAuthDataStore
         if (!$con) {
             $con = new Consumer();
             $con->consumer_key = $consumer_key;
-            $con->seed = common_good_rand(16);
+            $con->seed = common_random_hexstr(16);
             $con->created = common_sql_now();
             if (!$con->insert()) {
                 return null;
@@ -78,8 +78,8 @@ class OMBOAuthDataStore extends OAuthDataStore
     {
         $t = new Token();
         $t->consumer_key = $consumer->key;
-        $t->tok = common_good_rand(16);
-        $t->secret = common_good_rand(16);
+        $t->tok = common_random_hexstr(16);
+        $t->secret = common_random_hexstr(16);
         $t->type = 0; // request
         $t->state = 0; // unauthorized
         $t->created = common_sql_now();
@@ -107,8 +107,8 @@ class OMBOAuthDataStore extends OAuthDataStore
             common_debug('request token found.', __FILE__);
             $at = new Token();
             $at->consumer_key = $consumer->key;
-            $at->tok = common_good_rand(16);
-            $at->secret = common_good_rand(16);
+            $at->tok = common_random_hexstr(16);
+            $at->secret = common_random_hexstr(16);
             $at->type = 1; // access
             $at->created = common_sql_now();
             if (!$at->insert()) {

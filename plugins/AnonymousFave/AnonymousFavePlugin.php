@@ -187,7 +187,7 @@ class AnonymousFavePlugin extends Plugin
         list($proxy, $ip) = common_client_ip();
 
         // IP + time + random number should help to avoid collisions
-        $baseNickname = $ip . '-' . time() . '-' . common_good_rand(5);
+        $baseNickname = $ip . '-' . time() . '-' . common_random_hexstr(5);
 
         $profile = new Profile();
         $profile->nickname = $baseNickname;

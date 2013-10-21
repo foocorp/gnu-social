@@ -251,9 +251,9 @@ class FeedSub extends Managed_DataObject
     protected function doSubscribe($mode)
     {
         $orig = clone($this);
-        $this->verify_token = common_good_rand(16);
+        $this->verify_token = common_random_hexstr(16);
         if ($mode == 'subscribe') {
-            $this->secret = common_good_rand(32);
+            $this->secret = common_random_hexstr(32);
         }
         $this->sub_state = $mode;
         $this->update($orig);

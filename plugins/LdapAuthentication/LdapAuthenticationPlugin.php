@@ -114,7 +114,7 @@ class LdapAuthenticationPlugin extends AuthenticationPlugin
             }
             $registration_data['nickname'] = $nickname;
             //set the database saved password to a random string.
-            $registration_data['password']=common_good_rand(16);
+            $registration_data['password']=common_random_hexstr(16);
             return User::register($registration_data);
         }else{
             //user isn't in ldap, so we cannot register him

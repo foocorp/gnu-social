@@ -34,7 +34,7 @@ class CasloginAction extends Action
             phpCAS::handleLogoutRequests();
             phpCAS::forceAuthentication();
             global $casTempPassword;
-            $casTempPassword = common_good_rand(16);
+            $casTempPassword = common_random_hexstr(16);
             $user = common_check_user(phpCAS::getUser(), $casTempPassword);
             if (!$user) {
                 // TRANS: Server error displayed when trying to log in with incorrect username or password.

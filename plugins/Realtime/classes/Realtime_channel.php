@@ -121,7 +121,7 @@ class Realtime_channel extends Managed_DataObject
         $channel->arg2    = $arg2;
         $channel->audience  = 1;
 
-        $channel->channel_key = common_good_rand(16); // 128-bit key, 32 hex chars
+        $channel->channel_key = common_random_hexstr(16); // 128-bit key, 32 hex chars
 
         $channel->created  = common_sql_now();
         $channel->modified = $channel->created;

@@ -132,7 +132,7 @@ class HubSub extends Managed_DataObject
     {
         assert($mode == 'subscribe' || $mode == 'unsubscribe');
 
-        $challenge = common_good_rand(32);
+        $challenge = common_random_hexstr(32);
         $params = array('hub.mode' => $mode,
                         'hub.topic' => $this->topic,
                         'hub.challenge' => $challenge);

@@ -264,8 +264,8 @@ class ApiGNUsocialOAuthDataStore extends OAuthDataStore
         $at = new Token();
 
         $at->consumer_key      = $consumer->key;
-        $at->tok               = common_good_rand(16);
-        $at->secret            = common_good_rand(16);
+        $at->tok               = common_random_hexstr(16);
+        $at->secret            = common_random_hexstr(16);
         $at->type              = 1; // access
         $at->verifier          = $verifier;
         $at->verified_callback = $rt->verified_callback; // 1.0a
@@ -392,8 +392,8 @@ class ApiGNUsocialOAuthDataStore extends OAuthDataStore
     {
         $t = new Token();
         $t->consumer_key = $consumer->key;
-        $t->tok = common_good_rand(16);
-        $t->secret = common_good_rand(16);
+        $t->tok = common_random_hexstr(16);
+        $t->secret = common_random_hexstr(16);
         $t->type = 0; // request
         $t->state = 0; // unauthorized
         $t->verified_callback = $callback;
@@ -402,7 +402,7 @@ class ApiGNUsocialOAuthDataStore extends OAuthDataStore
             // six digit pin
             $t->verifier = mt_rand(0, 9999999);
         } else {
-            $t->verifier = common_good_rand(8);
+            $t->verifier = common_random_hexstr(8);
         }
 
         $t->created = common_sql_now();

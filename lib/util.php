@@ -374,7 +374,7 @@ function common_rememberme($user=null)
 
     $rm = new Remember_me();
 
-    $rm->code = common_good_rand(16);
+    $rm->code = common_random_hexstr(16);
     $rm->user_id = $user->id;
 
     // Wrap the insert in some good ol' fashioned transaction code
@@ -1549,15 +1549,7 @@ function common_root_url($ssl=false)
 
 /**
  * returns $bytes bytes of random data as a hexadecimal string
- * "good" here is a goal and not a guarantee
- *
- * TODO: Find and replace all calls to this with common_random_hexstr
  */
-function common_good_rand($bytes)
-{
-    return common_random_hexstr($bytes);
-}
-
 function common_random_hexstr($bytes)
 {
     $str = @file_exists('/dev/urandom')
@@ -1975,7 +1967,7 @@ function common_confirmation_code($bits)
     $code = '';
     for ($i = 0; $i < $chars; $i++) {
         // XXX: convert to string and back
-        $num = hexdec(common_good_rand(1));
+        $num = hexdec(common_random_hexstr(1));
         // XXX: randomness is too precious to throw away almost
         // 40% of the bits we get!
         $code .= $codechars[$num%32];
@@ -2107,7 +2099,7 @@ function common_session_token()
 {
     common_ensure_session();
     if (!array_key_exists('token', $_SESSION)) {
-        $_SESSION['token'] = common_good_rand(64);
+        $_SESSION['token'] = common_random_hexstr(64);
     }
     return $_SESSION['token'];
 }

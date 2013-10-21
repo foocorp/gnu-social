@@ -38,7 +38,7 @@ class Consumer extends Managed_DataObject
     static function generateNew()
     {
         $cons = new Consumer();
-        $rand = common_good_rand(16);
+        $rand = common_random_hexstr(16);
 
         $cons->seed            = $rand;
         $cons->consumer_key    = md5(time() + $rand);

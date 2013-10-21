@@ -28,14 +28,14 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
     {
         parent::__construct();
 
-        $authorNick1 = 'activitygenerationtestsuser' . common_good_rand(4);
-        $authorNick2 = 'activitygenerationtestsuser' . common_good_rand(4);
+        $authorNick1 = 'activitygenerationtestsuser' . common_random_hexstr(4);
+        $authorNick2 = 'activitygenerationtestsuser' . common_random_hexstr(4);
 
-        $targetNick1 = 'activitygenerationteststarget' . common_good_rand(4);
-        $targetNick2 = 'activitygenerationteststarget' . common_good_rand(4);
+        $targetNick1 = 'activitygenerationteststarget' . common_random_hexstr(4);
+        $targetNick2 = 'activitygenerationteststarget' . common_random_hexstr(4);
 
-        $groupNick1 = 'activitygenerationtestsgroup' . common_good_rand(4);
-        $groupNick2 = 'activitygenerationtestsgroup' . common_good_rand(4);
+        $groupNick1 = 'activitygenerationtestsgroup' . common_random_hexstr(4);
+        $groupNick2 = 'activitygenerationtestsgroup' . common_random_hexstr(4);
 
         $this->author1 = User::register(array('nickname' => $authorNick1,
                                               'email' => $authorNick1 . '@example.net',
@@ -236,7 +236,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
     {
         $orig = $this->_fakeNotice($this->targetUser1);
 
-        $text = "@" . $this->targetUser1->nickname . " reply text " . common_good_rand(4);
+        $text = "@" . $this->targetUser1->nickname . " reply text " . common_random_hexstr(4);
 
         $reply = Notice::saveNew($this->author1->id, $text, 'test', array('uri' => null, 'reply_to' => $orig->id));
 
@@ -255,7 +255,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
     {
         $orig = $this->_fakeNotice($this->targetUser1);
 
-        $text = "@" . $this->targetUser1->nickname . " reply text " . common_good_rand(4);
+        $text = "@" . $this->targetUser1->nickname . " reply text " . common_random_hexstr(4);
 
         $reply = Notice::saveNew($this->author1->id, $text, 'test', array('uri' => null, 'reply_to' => $orig->id));
 
@@ -271,11 +271,11 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
     {
         $orig = $this->_fakeNotice($this->targetUser1);
 
-        $text = "@" . $this->targetUser1->nickname . " reply text " . common_good_rand(4);
+        $text = "@" . $this->targetUser1->nickname . " reply text " . common_random_hexstr(4);
 
         $reply = Notice::saveNew($this->targetUser2->id, $text, 'test', array('uri' => null, 'reply_to' => $orig->id));
 
-        $text = "@" . $this->targetUser1->nickname . " @" . $this->targetUser2->nickname . " reply text " . common_good_rand(4);
+        $text = "@" . $this->targetUser1->nickname . " @" . $this->targetUser2->nickname . " reply text " . common_random_hexstr(4);
 
         $reply2 = Notice::saveNew($this->author1->id, $text, 'test', array('uri' => null, 'reply_to' => $reply->id));
 
@@ -312,7 +312,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
     public function testGroupPostAttention()
     {
-        $text = "!" . $this->targetGroup1->nickname . " reply text " . common_good_rand(4);
+        $text = "!" . $this->targetGroup1->nickname . " reply text " . common_random_hexstr(4);
 
         $notice = Notice::saveNew($this->author1->id, $text, 'test', array('uri' => null));
 
@@ -326,7 +326,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
     public function testMultipleGroupPostAttention()
     {
-        $text = "!" . $this->targetGroup1->nickname . " !" . $this->targetGroup2->nickname . " reply text " . common_good_rand(4);
+        $text = "!" . $this->targetGroup1->nickname . " !" . $this->targetGroup2->nickname . " reply text " . common_random_hexstr(4);
 
         $notice = Notice::saveNew($this->author1->id, $text, 'test', array('uri' => null));
 
@@ -379,7 +379,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
     public function testTag()
     {
-        $tag1 = common_good_rand(4);
+        $tag1 = common_random_hexstr(4);
 
         $notice = $this->_fakeNotice($this->author1, '#' . $tag1);
 
@@ -395,8 +395,8 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
     public function testMultiTag()
     {
-        $tag1 = common_good_rand(4);
-        $tag2 = common_good_rand(4);
+        $tag1 = common_random_hexstr(4);
+        $tag2 = common_random_hexstr(4);
 
         $notice = $this->_fakeNotice($this->author1, '#' . $tag1 . ' #' . $tag2);
 
@@ -422,7 +422,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
     public function testGeotaggedActivity()
     {
-        $notice = Notice::saveNew($this->author1->id, common_good_rand(4), 'test', array('uri' => null, 'lat' => 45.5, 'lon' => -73.6));
+        $notice = Notice::saveNew($this->author1->id, common_random_hexstr(4), 'test', array('uri' => null, 'lat' => 45.5, 'lon' => -73.6));
 
         $entry = $notice->asAtomEntry();
 
@@ -518,7 +518,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
     {
         $orig = $this->_fakeNotice($this->targetUser1);
 
-        $text = "@" . $this->targetUser1->nickname . " reply text " . common_good_rand(4);
+        $text = "@" . $this->targetUser1->nickname . " reply text " . common_random_hexstr(4);
 
         $reply = Notice::saveNew($this->author1->id, $text, 'test', array('uri' => null, 'reply_to' => $orig->id));
 
@@ -565,7 +565,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
         }
 
         if (empty($text)) {
-            $text = "fake-o text-o " . common_good_rand(32);
+            $text = "fake-o text-o " . common_random_hexstr(32);
         }
 
         return Notice::saveNew($user->id, $text, 'test', array('uri' => null));
