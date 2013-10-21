@@ -1550,15 +1550,25 @@ function common_root_url($ssl=false)
 /**
  * returns $bytes bytes of random data as a hexadecimal string
  * "good" here is a goal and not a guarantee
+ *
+ * TODO: Find and replace all calls to this with common_random_hexstr
  */
 function common_good_rand($bytes)
 {
-    // XXX: use random.org...?
-    if (@file_exists('/dev/urandom')) {
-        return common_urandom($bytes);
-    } else { // FIXME: this is probably not good enough
-        return common_mtrand($bytes);
+    return common_random_hexstr($bytes);
+}
+
+function common_random_hexstr($bytes)
+{
+    $str = @file_exists('/dev/urandom')
+            ? common_urandom($bytes)
+            : common_mtrand($bytes);
+
+    $hexstr = '';
+    for ($i = 0; $i < $bytes; $i++) {
+        $hexstr .= sprintf("%02x", ord($str{$i}));
     }
+    return $hexstr;
 }
 
 function common_urandom($bytes)
@@ -1567,20 +1577,16 @@ function common_urandom($bytes)
     // should not block
     $src = fread($h, $bytes);
     fclose($h);
-    $enc = '';
-    for ($i = 0; $i < $bytes; $i++) {
-        $enc .= sprintf("%02x", (ord($src[$i])));
-    }
-    return $enc;
+    return $src;
 }
 
 function common_mtrand($bytes)
 {
-    $enc = '';
+    $str = '';
     for ($i = 0; $i < $bytes; $i++) {
-        $enc .= sprintf("%02x", mt_rand(0, 255));
+        $str .= chr(mt_rand(0, 255));
     }
-    return $enc;
+    return $str;
 }
 
 /**
