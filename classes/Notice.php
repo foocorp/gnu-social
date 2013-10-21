@@ -1603,18 +1603,6 @@ class Notice extends Managed_DataObject
                 break;
             }
 
-            // XXX: deprecated; use ActivityVerb::SHARE instead
-
-            $repeat = null;
-
-            if (!empty($this->repeat_of)) {
-                $repeat = Notice::getKV('id', $this->repeat_of);
-                if (!empty($repeat)) {
-                    $ctx->forwardID  = $repeat->uri;
-                    $ctx->forwardUrl = $repeat->bestUrl();
-                }
-            }
-
             $act->context = $ctx;
 
             $source = $this->getSource();

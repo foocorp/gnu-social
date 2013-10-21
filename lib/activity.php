@@ -631,19 +631,6 @@ class Activity
                                            'href' => $attnURI));
             }
 
-            // XXX: shoulda used ActivityVerb::SHARE
-
-            if (!empty($this->context->forwardID)) {
-                if (!empty($this->context->forwardUrl)) {
-                    $xs->element('ostatus:forward',
-                                 array('ref' => $this->context->forwardID,
-                                       'href' => $this->context->forwardUrl));
-                } else {
-                    $xs->element('ostatus:forward',
-                                 array('ref' => $this->context->forwardID));
-                }
-            }
-
             if (!empty($this->context->location)) {
                 $loc = $this->context->location;
                 $xs->element('georss:point', null, $loc->lat . ' ' . $loc->lon);

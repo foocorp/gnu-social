@@ -40,8 +40,6 @@ class ActivityContext
     public $attention = array();
     public $attentionType = array();
     public $conversation;
-    public $forwardID; // deprecated, use ActivityVerb::SHARE instead
-    public $forwardUrl; // deprecated, use ActivityVerb::SHARE instead
     public $scope;
 
     const THR     = 'http://purl.org/syndication/thread/1.0';
@@ -141,8 +139,6 @@ class ActivityContext
 
         $context['inReplyTo']    = $this->getInReplyToArray();
         $context['conversation'] = $this->conversation;
-        $context['forwardId']    = $this->forwardID;
-        $context['forwardUrl']   = $this->forwardUrl;
 
         return array_filter($context);
     }
