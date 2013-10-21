@@ -1508,8 +1508,9 @@ class Notice extends Managed_DataObject
 
         if (Event::handle('StartNoticeAsActivity', array($this, &$act))) {
 
-            $act->id      = TagURI::mint("post:".$this->id);
+            $act->id      = $this->uri;
             $act->time    = strtotime($this->created);
+            $act->link    = $this->bestUrl();
             $act->content = common_xml_safe_str($this->rendered);
 
             $profile = $this->getProfile();
