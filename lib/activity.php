@@ -622,14 +622,14 @@ class Activity
             }
 
             if (!empty($this->context->conversation)) {
-                $xs->element('link', array('rel' => 'ostatus:conversation',
+                $xs->element('link', array('rel' => ActivityContext::CONVERSATION,
                                            'href' => $this->context->conversation));
             }
 
             foreach ($this->context->attention as $attnURI) {
-                $xs->element('link', array('rel' => 'ostatus:attention',
+                $xs->element('link', array('rel' => ActivityContext::ATTENTION,
                                            'href' => $attnURI));
-                $xs->element('link', array('rel' => 'mentioned',
+                $xs->element('link', array('rel' => ActivityContext::MENTIONED,
                                            'href' => $attnURI));
             }
 
