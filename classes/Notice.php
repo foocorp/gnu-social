@@ -1317,7 +1317,8 @@ class Notice extends Managed_DataObject
 
         // If it's a reply, save for the replied-to author
         try {
-            $author = $this->getParent()->getProfile();
+            $parent = $this->getParent();
+            $author = $parent->getProfile();
             if ($author instanceof Profile) {
                 $this->saveReply($author->id);
                 $replied[$author->id] = 1;
