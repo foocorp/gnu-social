@@ -45,17 +45,11 @@ class RepeatAction extends Action
     var $user = null;
     var $notice = null;
 
-    function prepare($args)
+    protected $needLogin = true;
+
+    protected function prepare($args)
     {
         parent::prepare($args);
-
-        $this->user = common_current_user();
-
-        if (empty($this->user)) {
-            // TRANS: Client error displayed when trying to repeat a notice while not logged in.
-            $this->clientError(_('Only logged-in users can repeat notices.'));
-            return false;
-        }
 
         $id = $this->trimmed('notice');
 
@@ -67,13 +61,13 @@ class RepeatAction extends Action
 
         $this->notice = Notice::getKV('id', $id);
 
-        if (empty($this->notice)) {
+        if (!($this->notice instanceof Notice)) {
             // TRANS: Client error displayed when trying to repeat a non-existing notice.
             $this->clientError(_('No notice specified.'));
             return false;
         }
 
-        $token  = $this->trimmed('token-'.$id);
+        $token = $this->trimmed('token-'.$id);
 
         if (empty($token) || $token != common_session_token()) {
             // TRANS: Client error displayed when the session token does not match or is not given.
@@ -91,9 +85,11 @@ class RepeatAction extends Action
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        $repeat = $this->notice->repeat($this->user->id, 'web');
+        parent::handle();
+
+        $repeat = $this->notice->repeat($this->scoped->id, 'web');
 
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
