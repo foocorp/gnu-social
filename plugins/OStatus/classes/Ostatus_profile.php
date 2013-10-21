@@ -466,6 +466,7 @@ class Ostatus_profile extends Managed_DataObject
         return $this->processActivity($activity, $source);
     }
 
+    // TODO: Make this throw an exception
     public function processActivity($activity, $source)
     {
         $notice = null;
@@ -529,18 +530,23 @@ class Ostatus_profile extends Managed_DataObject
             throw new ClientException(_m('Can only handle shared activities.'));
         }
 
-        $other = Ostatus_profile::ensureActivityObjectProfile($shared->actor);
+        // First check if we have the shared activity. This has to be done first, because
+        // we can't use these functions to "ensureActivityObjectProfile" of a local user,
+        // who might be the creator of the shared activity in question.
+        $sharedId = ($shared->id) ? $shared->id : $shared->objects[0]->id;
+        $sharedNotice = Notice::getKV('uri', $sharedId);
+        if (!($sharedNotice instanceof Notice)) {
+            // If no local notice is found, process it!
+            // TODO: Remember to check Deleted_notice!
+            $other = Ostatus_profile::ensureActivityObjectProfile($shared->actor);
+            $sharedNotice = $other->processActivity($shared, $method);
+        }
 
-        // Save the item (or check for a dupe)
-
-        $sharedNotice = $other->processActivity($shared, $method);
-
-        if (empty($sharedNotice)) {
-            $sharedId = ($shared->id) ? $shared->id : $shared->objects[0]->id;
+        if (!($sharedNotice instanceof Notice)) {
+            // And if we apparently can't get the shared notice, we'll abort the whole thing.
             // TRANS: Client exception thrown when saving an activity share fails.
             // TRANS: %s is a share ID.
-            throw new ClientException(sprintf(_m('Failed to save activity %s.'),
-                                              $sharedId));
+            throw new ClientException(sprintf(_m('Failed to save activity %s.'), $sharedId));
         }
 
         // The id URI will be used as a unique identifier for for the notice,
