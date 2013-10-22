@@ -375,7 +375,8 @@ abstract class ImPlugin extends Plugin
         $profile = $notice->getProfile();
 
         try {
-            $orig_profile = $notice->getParent()->getProfile();
+            $parent = $notice->getParent();
+            $orig_profile = $parent->getProfile();
             $nicknames = sprintf('%1$s => %2$s', $profile->nickname, $orig_profile->nickname);
         } catch (Exception $e) {
             $nicknames = $profile->nickname;

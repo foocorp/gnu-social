@@ -315,7 +315,10 @@ class ApiAction extends Action
         $twitter_status['truncated'] = false; # Not possible on StatusNet
         $twitter_status['created_at'] = $this->dateTwitter($notice->created);
         try {
-            $in_reply_to = $notice->getParent()->id;
+            // We could just do $notice->reply_to but maybe the future holds a
+            // different story for parenting.
+            $parent = $notice->getParent();
+            $in_reply_to = $parent->id;
         } catch (Exception $e) {
             $in_reply_to = null;
         }
