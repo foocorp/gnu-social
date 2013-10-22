@@ -528,4 +528,57 @@ class TwitterBridgePlugin extends Plugin
 
         return true;
     }
+
+    public function onEndShowHeadElements(Action $action)
+    {
+        if (!($action instanceof AttachmentAction)) {
+            return true;
+        }
+
+        /* Twitter card support. See https://dev.twitter.com/docs/cards */
+        /* @fixme: should we display twitter cards only for attachments posted
+         *         by local users ? Seems mandatory to display twitter:creator
+         *
+         * Author: jbfavre
+         */
+        switch ($action->attachment->mimetype) {
+            case 'image/pjpeg':
+            case 'image/jpeg':
+            case 'image/jpg':
+            case 'image/png':
+            case 'image/gif':
+                $action->element('meta', array('name'    => 'twitter:card',
+                                             'content' => 'photo'),
+                                       null);
+                $action->element('meta', array('name'    => 'twitter:url',
+                                             'content' => common_local_url('attachment',
+                                                              array('attachment' => $action->attachment->id))),
+                                       null );
+                $action->element('meta', array('name'    => 'twitter:image',
+                                             'content' => $action->attachment->url));
+                $action->element('meta', array('name'    => 'twitter:title',
+                                             'content' => $action->attachment->title));
+
+                $ns = new AttachmentNoticeSection($this);
+                $notices = $ns->getNotices();
+                $noticeArray = $notices->fetchAll();
+
+                // Should not have more than 1 notice for this attachment.
+                if( count($noticeArray) != 1 ) { break; }
+                $post = $noticeArray[0];
+
+                $flink = Foreign_link::getByUserID($post->profile_id, TWITTER_SERVICE);
+                if( $flink ) { // Our local user has registered Twitter Gateway
+                    $fuser = Foreign_user::getForeignUser($flink->foreign_id, TWITTER_SERVICE);
+                    if( $fuser ) { // Got nickname for local user's Twitter account
+                        $action->element('meta', array('name'    => 'twitter:creator',
+                                                     'content' => '@'.$fuser->nickname));
+                    }
+                }
+                break;
+            default: break;
+        }
+
+        return true;
+    }
 }
