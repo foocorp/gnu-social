@@ -112,7 +112,6 @@ class PublicSite extends SiteProfileSettings
                 'default' => array_merge(self::defaultPlugins(), array(
                     'Directory'               => null,
                     'ExtendedProfile'         => null,
-                    'Geonames'                => null,
                     'OStatus'                 => null,
                     'WebFinger'               => null,
                 ))
@@ -150,7 +149,6 @@ class PrivateSite extends SiteProfileSettings
                     'Directory'               => null,
                     'ExtendedProfile'         => null,
                     'EmailRegistration'       => null,
-                    'Geonames'                => null,
                     'NewMenu'                 => null,
                     'MobileProfile'           => null,
                 ))
@@ -201,7 +199,6 @@ class CommunitySite extends SiteProfileSettings
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
                     'Directory'               => null,
-                    'Geonames'                => null,
                     'OStatus'                 => null,
                     'WebFinger'               => null,
                 ))
@@ -236,7 +233,6 @@ class SingleuserSite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'Geonames'                => null,
                     'NewMenu'                 => null,
                     'MobileProfile'           => null,
                     'OStatus'                 => null,
