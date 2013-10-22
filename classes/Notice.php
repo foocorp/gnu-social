@@ -2530,19 +2530,15 @@ class Notice extends Managed_DataObject
         return $groups;
     }
 
-    protected $_parent = -1;
+    protected $_parent = -1;    // local object cache
 
     public function getParent()
     {
-        if (empty($this->reply_to)) {
-            // Should this also be NoResultException? I don't think so.
-            throw new Exception('Notice has no parent');
-        } elseif ($this->_parent === -1) {    // local object cache
+        if (!empty($this->reply_to) && $this->_parent === -1) {
             $this->_parent = Notice::getKV('id', $this->reply_to);
         }
-
         if (!($this->_parent instanceof Notice)) {
-            throw new NoResultException($this->_parent);
+            throw new ServerException('Notice has no parent');
         }
         return $this->_parent;
     }
