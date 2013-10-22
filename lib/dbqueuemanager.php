@@ -83,7 +83,7 @@ class DBQueueManager extends QueueManager
 
         if ($item) {
             $rep = $this->logrep($item);
-            $this->_log(LOG_INFO, "Got $rep for transport $queue");
+            $this->_log(LOG_DEBUG, "Got $rep for transport $queue");
             
             $handler = $this->getHandler($queue);
             if ($handler) {
