@@ -758,7 +758,9 @@ class Memcached_DataObject extends Safe_DataObject
         // we'll need some fancier logic here.
         if (!$exists && !empty($_DB_DATAOBJECT['CONNECTIONS']) && php_sapi_name() == 'cli') {
             foreach ($_DB_DATAOBJECT['CONNECTIONS'] as $index => $conn) {
-                if (!empty($conn)) {
+                if ($_PEAR->isError($conn)) {
+                    common_log(LOG_WARNING, __METHOD__ . " cannot disconnect failed DB connection: '".$conn->getMessage()."'.");
+                } elseif (!empty($conn)) {
                     $conn->disconnect();
                 }
                 unset($_DB_DATAOBJECT['CONNECTIONS'][$index]);
