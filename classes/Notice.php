@@ -145,22 +145,18 @@ class Notice extends Managed_DataObject
 
     protected $_profile = -1;
 
-    function getProfile()
+    public function getProfile()
     {
-        if (is_int($this->_profile) && $this->_profile == -1) {
+        if ($this->_profile === -1) {
             $this->_setProfile(Profile::getKV('id', $this->profile_id));
-
-            if (empty($this->_profile)) {
-                // TRANS: Server exception thrown when a user profile for a notice cannot be found.
-                // TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
-                throw new ServerException(sprintf(_('No such profile (%1$d) for notice (%2$d).'), $this->profile_id, $this->id));
-            }
         }
-
+        if (!$this->_profile instanceof Profile) {
+            throw new NoProfileException($this->profile_id);
+        }
         return $this->_profile;
     }
     
-    function _setProfile($profile)
+    function _setProfile(Profile $profile)
     {
         $this->_profile = $profile;
     }
@@ -2530,17 +2526,15 @@ class Notice extends Managed_DataObject
         return $groups;
     }
 
-    protected $_parent = -1;    // local object cache
-
     public function getParent()
     {
-        if (!empty($this->reply_to) && $this->_parent === -1) {
-            $this->_parent = Notice::getKV('id', $this->reply_to);
-        }
-        if (!($this->_parent instanceof Notice)) {
+        $parent = Notice::getKV('id', $this->reply_to);
+
+        if (!$parent instanceof Notice) {
             throw new ServerException('Notice has no parent');
         }
-        return $this->_parent;
+
+        return $parent;
     }
 
     /**
@@ -2556,7 +2550,7 @@ class Notice extends Managed_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_parent', '_profile', '_groups', '_attachments', '_faves', '_replies', '_repeats');
+        $skip = array('_profile', '_groups', '_attachments', '_faves', '_replies', '_repeats');
         return array_diff($vars, $skip);
     }
     
