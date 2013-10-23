@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class Memcached_DataObject extends Safe_DataObject
 {
@@ -350,7 +350,7 @@ class Memcached_DataObject extends Safe_DataObject
      */
     static function pkeyGetClass($cls, array $kv)
     {
-        $i = Memcached_DataObject::multicache($cls, $kv);
+        $i = self::multicache($cls, $kv);
         if ($i !== false) { // false == cache miss
             return $i;
         } else {
@@ -422,16 +422,16 @@ class Memcached_DataObject extends Safe_DataObject
     }
 
     static function getcached($cls, $k, $v) {
-        $c = Memcached_DataObject::memcache();
+        $c = self::memcache();
         if (!$c) {
             return false;
         } else {
-            $obj = $c->get(Memcached_DataObject::cacheKey($cls, $k, $v));
+            $obj = $c->get(self::cacheKey($cls, $k, $v));
             if (0 == strcasecmp($cls, 'User')) {
                 // Special case for User
                 if (is_object($obj) && is_object($obj->id)) {
                     common_log(LOG_ERR, "User " . $obj->nickname . " was cached with User as ID; deleting");
-                    $c->delete(Memcached_DataObject::cacheKey($cls, $k, $v));
+                    $c->delete(self::cacheKey($cls, $k, $v));
                     return false;
                 }
             }
@@ -462,7 +462,7 @@ class Memcached_DataObject extends Safe_DataObject
 
     function encache()
     {
-        $c = $this->memcache();
+        $c = self::memcache();
 
         if (!$c) {
             return false;
@@ -483,7 +483,7 @@ class Memcached_DataObject extends Safe_DataObject
 
     function decache()
     {
-        $c = $this->memcache();
+        $c = self::memcache();
 
         if (!$c) {
             return false;
@@ -514,7 +514,7 @@ class Memcached_DataObject extends Safe_DataObject
                 if (empty($this->$key)) {
                     continue;
                 }
-                $ckeys[] = $this->cacheKey($this->tableName(), $key, self::valueString($this->$key));
+                $ckeys[] = self::cacheKey($this->tableName(), $key, self::valueString($this->$key));
             } else if ($type == 'K' || $type == 'N') {
                 $pkey[] = $key;
                 $pval[] = self::valueString($this->$key);
@@ -530,7 +530,7 @@ class Memcached_DataObject extends Safe_DataObject
         $pvals = implode(',', $pval);
         $pkeys = implode(',', $pkey);
 
-        $ckeys[] = $this->cacheKey($this->tableName(), $pkeys, $pvals);
+        $ckeys[] = self::cacheKey($this->tableName(), $pkeys, $pvals);
 
         return $ckeys;
     }
