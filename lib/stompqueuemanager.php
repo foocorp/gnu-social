@@ -498,8 +498,9 @@ class StompQueueManager extends QueueManager
         // @fixme detect failing site switches
         $this->switchSite($site);
 
-        $item = $this->decode($message['payload']);
-        if (empty($item)) {
+        try {
+            $item = $this->decode($message['payload']);
+        } catch (Exception $e) {
             $this->_log(LOG_ERR, "Skipping empty or deleted item in queue $queue from $host");
             $this->stats('baditem', $queue);
             return false;

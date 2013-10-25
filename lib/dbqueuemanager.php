@@ -79,27 +79,28 @@ class DBQueueManager extends QueueManager
         }
 
         $queue = $qi->transport;
-        $item = $this->decode($qi->frame);
+        try {
+            $item = $this->decode($qi->frame);
+        } catch (Exception $e) {
+            $this->_log(LOG_INFO, "[$queue] Discarding: ".$e->getMessage());
+            $this->_done($qi);
+            return true;
+        }
 
-        if ($item) {
-            $rep = $this->logrep($item);
-            $this->_log(LOG_DEBUG, "Got $rep for transport $queue");
-            
-            $handler = $this->getHandler($queue);
-            if ($handler) {
-                if ($handler->handle($item)) {
-                    $this->_log(LOG_INFO, "[$queue:$rep] Successfully handled item");
-                    $this->_done($qi);
-                } else {
-                    $this->_log(LOG_INFO, "[$queue:$rep] Failed to handle item");
-                    $this->_fail($qi);
-                }
-            } else {
-                $this->_log(LOG_INFO, "[$queue:$rep] No handler for queue $queue; discarding.");
+        $rep = $this->logrep($item);
+        $this->_log(LOG_DEBUG, "Got $rep for transport $queue");
+        
+        $handler = $this->getHandler($queue);
+        if ($handler) {
+            if ($handler->handle($item)) {
+                $this->_log(LOG_INFO, "[$queue:$rep] Successfully handled item");
                 $this->_done($qi);
+            } else {
+                $this->_log(LOG_INFO, "[$queue:$rep] Failed to handle item");
+                $this->_fail($qi);
             }
         } else {
-            $this->_log(LOG_INFO, "[$queue] Got empty/deleted item, discarding");
+            $this->_log(LOG_INFO, "[$queue:$rep] No handler for queue $queue; discarding.");
             $this->_done($qi);
         }
         return true;
