@@ -53,7 +53,7 @@ class ForceGroupPlugin extends Plugin
     {
         $profile = $notice->getProfile();
 
-        $isRemote = !(User::staticGet('id', $profile->id));
+        $isRemote = !(User::getKV('id', $profile->id));
         if ($isRemote) {
             /*
              * Notices from remote users on other sites

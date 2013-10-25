@@ -53,7 +53,7 @@ class ApiExternalProfileShowAction extends ApiPrivateAuthAction
         $profileurl = urldecode($this->arg('profileurl'));        
 
         // TODO: Make this more ... unique!
-        $this->profile = Profile::staticGet('profileurl', $profileurl);        
+        $this->profile = Profile::getKV('profileurl', $profileurl);        
 
         if (!($this->profile instanceof Profile)) {
             // TRANS: Client error displayed when requesting profile information for a non-existing profile.

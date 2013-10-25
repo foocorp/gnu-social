@@ -56,7 +56,7 @@ class ApiStatusesFavsAction extends ApiAuthAction
 
         $id = $this->trimmed('id');
 
-        $this->original = Notice::staticGet('id', $id);
+        $this->original = Notice::getKV('id', $id);
 
         if (!($this->original instanceof Notice)) {
             // TRANS: Client error displayed trying to display redents of a non-exiting notice.
@@ -102,7 +102,7 @@ class ApiStatusesFavsAction extends ApiAuthAction
 		$ids_with_profile_data = array();
 		$i=0;
 		foreach($ids as $id) {
-			$profile = Profile::staticGet('id', $id);
+			$profile = Profile::getKV('id', $id);
 			$ids_with_profile_data[$i]['user_id'] = $id;
 			$ids_with_profile_data[$i]['nickname'] = $profile->nickname;
 			$ids_with_profile_data[$i]['fullname'] = $profile->fullname;			

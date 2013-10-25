@@ -102,7 +102,7 @@ class ApiAccountRegisterAction extends ApiAction
         }
 
         if (!empty($this->code)) {
-            $this->invite = Invitation::staticGet('code', $this->code);
+            $this->invite = Invitation::getKV('code', $this->code);
             if (empty($this->invite)) {
             // TRANS: Client error displayed when trying to register to an invite-only site without a valid invitation.
 	            $this->clientError(_('Sorry, invalid invitation code.'), 401);
@@ -197,7 +197,7 @@ class ApiAccountRegisterAction extends ApiAction
         if (!$email || strlen($email) == 0) {
             return false;
         }
-        $user = User::staticGet('email', $email);
+        $user = User::getKV('email', $email);
         return is_object($user);
     }
 
