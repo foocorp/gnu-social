@@ -17,15 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
-define('STATUSNET_BASE_VERSION', '1.1.1');
-define('STATUSNET_LIFECYCLE', 'release'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
-define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . '-' . STATUSNET_LIFECYCLE);
+define('GNUSOCIAL_BASE_VERSION', '1.1.1');
+define('GNUSOCIAL_LIFECYCLE', 'alpha'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
 
-define('LACONICA_VERSION', STATUSNET_VERSION); // compatibility
+define('GNUSOCIAL_VERSION', GNUSOCIAL_BASE_VERSION . '-' . GNUSOCIAL_LIFECYCLE);
+define('STATUSNET_VERSION', GNUSOCIAL_VERSION); // compatibility
 
-define('STATUSNET_CODENAME', 'OK');
+define('GNUSOCIAL_CODENAME', 'Not decided yet');
 
 define('AVATAR_PROFILE_SIZE', 96);
 define('AVATAR_STREAM_SIZE', 48);

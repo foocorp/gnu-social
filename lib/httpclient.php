@@ -249,7 +249,7 @@ class HTTPClient extends HTTP_Request2
      */
     function userAgent()
     {
-        return "GNU Social/".STATUSNET_VERSION." (".STATUSNET_CODENAME.")";
+        return "GNU Social/".GNUSOCIAL_VERSION." (".GNUSOCIAL_CODENAME.")";
     }
 
     /**
