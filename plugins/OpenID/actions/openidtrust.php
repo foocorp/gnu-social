@@ -85,6 +85,8 @@ class OpenidtrustAction extends Action
 
     function handleSubmit()
     {
+        global $_PEAR;
+
         unset($_SESSION['openid_trust_root']);
         unset($_SESSION['openid_allow_url']);
         unset($_SESSION['openid_deny_url']);
@@ -96,7 +98,7 @@ class OpenidtrustAction extends Action
             $user_openid_trustroot->trustroot = $this->trust_root;
             $user_openid_trustroot->created = common_sql_now();
             if (!$user_openid_trustroot->insert()) {
-                $err = PEAR::getStaticProperty('DB_DataObject','lastError');
+                $err = &$_PEAR->getStaticProperty('DB_DataObject','lastError');
             }
             common_redirect($this->allowUrl, $code=302);
         }else{

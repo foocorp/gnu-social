@@ -68,6 +68,8 @@ class IMChannel extends Channel
 
     function setNotify($user, $notify)
     {
+        global $_PEAR;
+
         $user_im_prefs = new User_im_prefs();
         $user_im_prefs->transport = $this->imPlugin->transport;
         $user_im_prefs->user_id = $user->id;
@@ -81,7 +83,7 @@ class IMChannel extends Channel
                 $result = $user_im_prefs->update($original);
 
                 if (!$result) {
-                    $last_error = &PEAR::getStaticProperty('DB_DataObject','lastError');
+                    $last_error = &$_PEAR->getStaticProperty('DB_DataObject','lastError');
                     common_log(LOG_ERR,
                                'Could not set notify flag to ' . $notify .
                                ' for user ' . common_log_objstring($user) .

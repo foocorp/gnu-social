@@ -85,6 +85,8 @@ function oid_get_last()
 
 function oid_link_user($id, $canonical, $display)
 {
+    global $_PEAR;
+
     $oid = new User_openid();
     $oid->user_id = $id;
     $oid->canonical = $canonical;
@@ -92,7 +94,7 @@ function oid_link_user($id, $canonical, $display)
     $oid->created = common_sql_now();
 
     if (!$oid->insert()) {
-        $err = PEAR::getStaticProperty('DB_DataObject','lastError');
+        $err = &$_PEAR->getStaticProperty('DB_DataObject','lastError');
         return false;
     }
 

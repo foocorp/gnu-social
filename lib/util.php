@@ -1678,8 +1678,10 @@ function common_debug($msg, $filename=null)
 
 function common_log_db_error(&$object, $verb, $filename=null)
 {
+    global $_PEAR;
+
     $objstr = common_log_objstring($object);
-    $last_error = &PEAR::getStaticProperty('DB_DataObject','lastError');
+    $last_error = &$_PEAR->getStaticProperty('DB_DataObject','lastError');
     if (is_object($last_error)) {
         $msg = $last_error->message;
     } else {
