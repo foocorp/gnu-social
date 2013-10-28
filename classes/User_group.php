@@ -782,14 +782,14 @@ class User_group extends Managed_DataObject
         return parent::delete();
     }
 
-    public function update($orig)
+    public function update($dataObject=false)
     {
         // Whenever the User_group is updated, find the Local_group
-        // and updates it nickname too.
-        if ($this->nickname != $orig->nickname) {
+        // and update its nickname too.
+        if ($this->nickname != $dataObject->nickname) {
             $local = Local_group::getKV('group_id', $this->id);
             if ($local instanceof Local_group) {
-                common_debug("Updating Local_group ({$this->id}) nickname from {$orig->nickname} to {$this->nickname}");
+                common_debug("Updating Local_group ({$this->id}) nickname from {$dataObject->nickname} to {$this->nickname}");
                 $local->setNickname($this->nickname);
             }
         }
@@ -814,7 +814,7 @@ class User_group extends Managed_DataObject
             throw new ServerException(_('Unable to update profile'));
         }
 
-        return parent::update($orig);
+        return parent::update($dataObject);
     }
 
     function isPrivate()

@@ -389,18 +389,16 @@ class Subscription extends Managed_DataObject
      * Because we cache subscriptions, it's useful to flush them
      * here.
      *
-     * @param mixed $orig Original version of object
+     * @param mixed $dataObject Original version of object
      *
      * @return boolean success flag.
      */
-    function update($orig=null)
+    function update($dataObject=false)
     {
-        $result = parent::update($orig);
-
         self::blow('subscription:by-subscriber:'.$this->subscriber);
         self::blow('subscription:by-subscribed:'.$this->subscribed);
 
-        return $result;
+        return parent::update($dataObject);
     }
 
     function getURI()

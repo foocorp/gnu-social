@@ -124,10 +124,10 @@ class Config extends Managed_DataObject
         return $result;
     }
 
-    function update($orig=null)
+    function update($dataObject=false)
     {
-        $result = parent::update($orig);
-        if ($result) {
+        $result = parent::update($dataObject);
+        if ($result !== false) {
             Config::_blowSettingsCache();
         }
         return $result;

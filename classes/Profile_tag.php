@@ -282,11 +282,11 @@ class Profile_tag extends Managed_DataObject
                                        $tags->escape($orig->tag),
                                        $tags->escape($orig->tagger)));
 
-        if (!$result) {
+        if ($result === false) {
             common_log_db_error($tags, 'UPDATE', __FILE__);
-            return false;
+            throw new Exception('Could not move Profile_tag, see db log for details.');
         }
-        return true;
+        return $result;
     }
 
     static function blowCaches($tagger, $tagged) {

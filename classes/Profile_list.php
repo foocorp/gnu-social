@@ -356,23 +356,23 @@ class Profile_list extends Managed_DataObject
      * Update a people tag gracefully
      * also change "tag" fields in profile_tag table
      *
-     * @param Profile_list $orig    Object's original form
+     * @param Profile_list $dataObject    Object's original form
      *
      * @return boolean success
      */
 
-    function update($orig=null)
+    function update($dataObject=false)
     {
-        $result = true;
-
-        if (!is_object($orig) && !$orig instanceof Profile_list) {
-            parent::update($orig);
+        if (!is_object($dataObject) && !$dataObject instanceof Profile_list) {
+            return parent::update($dataObject);
         }
+
+        $result = true;
 
         // if original tag was different
         // check to see if the new tag already exists
         // if not, rename the tag correctly
-        if($orig->tag != $this->tag || $orig->tagger != $this->tagger) {
+        if($dataObject->tag != $this->tag || $dataObject->tagger != $this->tagger) {
             $existing = Profile_list::getByTaggerAndTag($this->tagger, $this->tag);
             if(!empty($existing)) {
                 // TRANS: Server exception.
@@ -381,10 +381,9 @@ class Profile_list extends Managed_DataObject
             }
             // move the tag
             // XXX: allow OStatus plugin to send out profile tag
-            $result = Profile_tag::moveTag($orig, $this);
+            $result = Profile_tag::moveTag($dataObject, $this);
         }
-        parent::update($orig);
-        return $result;
+        return parent::update($dataObject);
     }
 
     /**

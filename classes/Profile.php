@@ -842,12 +842,12 @@ class Profile extends Managed_DataObject
         return ($biolimit > 0 && !empty($bio) && (mb_strlen($bio) > $biolimit));
     }
 
-    public function update($orig)
+    function update($dataObject=false)
     {
-        if ($this->nickname != $orig->nickname) {
-            $local = User::getKV('id', $this->id);
-            if ($local instanceof User) {
-                common_debug("Updating User ({$this->id}) nickname from {$orig->nickname} to {$this->nickname}");
+        if (is_object($dataObject) && $this->nickname != $dataObject->nickname) {
+            try {
+                $local = $this->getUser();
+                common_debug("Updating User ({$this->id}) nickname from {$dataObject->nickname} to {$this->nickname}");
                 $origuser = clone($local);
                 $local->nickname = $this->nickname;
                 $result = $local->updateKeys($origuser);
@@ -861,10 +861,12 @@ class Profile extends Managed_DataObject
                 if ($local->hasRole(Profile_role::OWNER)) {
                     User::blow('user:site_owner');
                 }
+            } catch (NoSuchUserException $e) {
+                // Nevermind...
             }
         }
 
-        return parent::update($orig);
+        return parent::update($dataObject);
     }
 
     function delete()

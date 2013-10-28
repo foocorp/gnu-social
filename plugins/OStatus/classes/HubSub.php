@@ -192,16 +192,6 @@ class HubSub extends Managed_DataObject
     }
 
     /**
-     * Update wrapper; transparently update modified column.
-     * @return boolean success
-     */
-    function update($old=null)
-    {
-        $this->modified = common_sql_now();
-        return parent::update($old);
-    }
-
-    /**
      * Schedule delivery of a 'fat ping' to the subscriber's callback
      * endpoint. If queues are disabled, this will run immediately.
      *

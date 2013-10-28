@@ -147,12 +147,12 @@ class Status_network extends Safe_DataObject
         }
     }
 
-    function update($orig=null)
+    function update($dataObject=false)
     {
-        if (is_object($orig)) {
-            $orig->decache(); # might be different keys
+        if (is_object($dataObject)) {
+            $dataObject->decache(); # might be different keys
         }
-        return parent::update($orig);
+        return parent::update($dataObject);
     }
 
     /**

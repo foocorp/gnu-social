@@ -388,13 +388,13 @@ class Memcached_DataObject extends Safe_DataObject
         return $result;
     }
 
-    function update($orig=null)
+    function update($dataObject=false)
     {
-        if (is_object($orig) && $orig instanceof Memcached_DataObject) {
-            $orig->decache(); # might be different keys
+        if (is_object($dataObject) && $dataObject instanceof Memcached_DataObject) {
+            $dataObject->decache(); # might be different keys
         }
-        $result = parent::update($orig);
-        if ($result) {
+        $result = parent::update($dataObject);
+        if ($result !== false) {
             $this->fixupTimestamps();
             $this->encache();
         }
