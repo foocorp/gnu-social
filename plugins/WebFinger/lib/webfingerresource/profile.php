@@ -41,7 +41,7 @@ class WebFingerResource_Profile extends WebFingerResource
             if (empty($this->object->nickname) || empty($host)) {
                 throw new WebFingerReconstructionException($this->object);
             }
-            $acct = sprintf('acct:%s@%s', $this->object->nickname, $host);
+            $acct = mb_strtolower(sprintf('acct:%s@%s', $this->object->nickname, $host));
 
             Event::handle('EndWebFingerReconstruction', array($this->object, &$acct));
         }
