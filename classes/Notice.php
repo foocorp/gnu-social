@@ -1552,12 +1552,12 @@ class Notice extends Managed_DataObject
 
             $ctx = new ActivityContext();
 
-            if (!empty($this->reply_to)) {
-                $reply = Notice::getKV('id', $this->reply_to);
-                if (!empty($reply)) {
-                    $ctx->replyToID  = $reply->uri;
-                    $ctx->replyToUrl = $reply->bestUrl();
-                }
+            try {
+                $reply = $this->getParent();
+                $ctx->replyToID  = $reply->uri;
+                $ctx->replyToUrl = $reply->bestUrl();
+            } catch (Exception $e) {
+                // This is not a reply to something
             }
 
             $ctx->location = $this->getLocation();
