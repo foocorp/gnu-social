@@ -1349,6 +1349,26 @@ class Profile extends Managed_DataObject
         return $uri;
     }
 
+    /**
+     * Returns an assumed acct: URI for a profile. Plugins are required.
+     *
+     * @return string $uri
+     */
+    public function getAcctUri()
+    {
+        $acct = null;
+
+        if (Event::handle('StartGetProfileAcctUri', array($this, &$acct))) {
+            Event::handle('EndGetProfileAcctUri', array($this, &$acct));
+        }
+
+        if ($acct === null) {
+            throw new ProfileNoAcctUriException($this);
+        }
+
+        return $acct;
+    }
+
     function hasBlocked($other)
     {
         $block = Profile_block::exists($this, $other);

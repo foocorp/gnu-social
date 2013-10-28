@@ -793,6 +793,14 @@ EndGetProfileUri: After determining the canonical URI for a given profile
 - $profile: the current profile
 - &$uri: the URI
 
+StartGetProfileAcctUri: Get the acct: URI for a Profile (or throw ProfileNoAcctUriException)
+- $profile: Profile of user we want to get acct: URI for
+- &$acct:   string with the resulting acct: uri
+
+EndGetProfileAcctUri: Last attempts to get the acct: URI for a Profile (or throw ProfileNoAcctUriException)
+- $profile: Profile of user we want to get acct: URI for
+- &$acct:   string with the resulting acct: uri
+
 StartFavorNotice: Saving a notice as a favorite
 - $profile: profile of the person faving (can be remote!)
 - $notice: notice being faved
