@@ -91,9 +91,9 @@ class UsersalmonAction extends SalmonAction
                 throw new ClientException(_m('In reply to a notice not by this user and not mentioning this user.'));
             }
         } else if (!empty($context->attention)) {
-            if (!in_array($this->user->uri, $context->attention) &&
-                !in_array(common_profile_url($this->user->nickname), $context->attention)) {
-                common_log(LOG_ERR, "{$this->user->uri} not in attention list (".implode(',', $context->attention).")");
+            if (!array_key_exists($this->user->uri, $context->attention) &&
+                !array_key_exists(common_profile_url($this->user->nickname), $context->attention)) {
+                common_log(LOG_ERR, "{$this->user->uri} not in attention list (".implode(',', array_keys($context->attention)).')');
                 // TRANS: Client exception.
                 throw new ClientException(_m('To the attention of user(s), not including this one.'));
             }

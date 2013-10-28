@@ -290,19 +290,19 @@ class ActivityImporter extends QueueHandler
         return $saved;
     }
 
-    function filterAttention($attn)
+    protected function filterAttention(array $attn)
     {
-        $groups = array();
-        $replies = array();
+        $groups = array();  // TODO: context->attention
+        $replies = array(); // TODO: context->attention
 
-        foreach (array_unique($attn) as $recipient) {
+        foreach ($attn as $recipient=>$type) {
 
             // Is the recipient a local user?
 
             $user = User::getKV('uri', $recipient);
 
-            if ($user) {
-                // @fixme sender verification, spam etc?
+            if ($user instanceof User) {
+                // TODO: @fixme sender verification, spam etc?
                 $replies[] = $recipient;
                 continue;
             }
@@ -319,7 +319,7 @@ class ActivityImporter extends QueueHandler
             }
 
             // Is the recipient a local group?
-            // @fixme uri on user_group isn't reliable yet
+            // TODO: @fixme uri on user_group isn't reliable yet
             // $group = User_group::getKV('uri', $recipient);
             $id = OStatusPlugin::localGroupFromUrl($recipient);
 

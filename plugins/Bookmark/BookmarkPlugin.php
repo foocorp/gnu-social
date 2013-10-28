@@ -450,19 +450,19 @@ class BookmarkPlugin extends MicroAppPlugin
             }
         }
 
-        $replies = $activity->context->attention;
-
         $options['groups']  = array();
-        $options['replies'] = array();
+        $options['replies'] = array();  // TODO: context->attention
 
-        foreach ($replies as $replyURI) {
-            $other = Profile::fromURI($replyURI);
-            if (!empty($other)) {
-                $options['replies'][] = $replyURI;
+        foreach ($activity->context->attention as $attnUrl=>$type) {
+            $other = Profile::fromURI($attnUrl);
+            if ($other instanceof Profile) {
+                $options['replies'][] = $attnUrl;
             } else {
-                $group = User_group::getKV('uri', $replyURI);
-                if (!empty($group)) {
-                    $options['groups'][] = $replyURI;
+                // Maybe we can get rid of this since every User_group got a Profile?
+                // TODO: Make sure the above replies get sorted properly for groups (or handled afterwards)
+                $group = User_group::getKV('uri', $attnUrl);
+                if ($group instanceof User_group) {
+                    $options['groups'][] = $attnUrl;
                 }
             }
         }

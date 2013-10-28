@@ -390,10 +390,10 @@ abstract class MicroAppPlugin extends Plugin
 
             if ($target instanceof User_group) {
                 $uri = $target->getUri();
-                if (!in_array($uri, $activity->context->attention)) {
+                if (!array_key_exists($uri, $activity->context->attention)) {
                     // @todo FIXME: please document (i18n).
                     // TRANS: Client exception thrown when ...
-                    throw new ClientException(_('Bookmark not posted to this group.'));
+                    throw new ClientException(_('Object not posted to this group.'));
                 }
             } else if ($target instanceof User) {
                 $uri      = $target->uri;
@@ -402,7 +402,7 @@ abstract class MicroAppPlugin extends Plugin
                     $original = Notice::getKV('uri',
                                                   $activity->context->replyToID);
                 }
-                if (!in_array($uri, $activity->context->attention) &&
+                if (!array_key_exists($uri, $activity->context->attention) &&
                     (empty($original) ||
                      $original->profile_id != $target->id)) {
                     // @todo FIXME: Please document (i18n).

@@ -626,8 +626,9 @@ class Activity
                                            'href' => $this->context->conversation));
             }
 
-            foreach ($this->context->attention as $attnURI) {
+            foreach ($this->context->attention as $attnURI=>$type) {
                 $xs->element('link', array('rel' => ActivityContext::MENTIONED,
+                                           ActivityContext::OBJECTTYPE => $type,  // FIXME: undocumented 
                                            'href' => $attnURI));
             }
 

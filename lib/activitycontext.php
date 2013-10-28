@@ -37,8 +37,7 @@ class ActivityContext
     public $replyToID;
     public $replyToUrl;
     public $location;
-    public $attention = array();
-    public $attentionType = array();
+    public $attention = array();    // 'uri' => 'type'
     public $conversation;
     public $scope;
 
@@ -46,14 +45,17 @@ class ActivityContext
     const GEORSS  = 'http://www.georss.org/georss';
     const OSTATUS = 'http://ostatus.org/schema/1.0';
 
-    const INREPLYTO = 'in-reply-to';
-    const REF       = 'ref';
-    const HREF      = 'href';
+    const INREPLYTO  = 'in-reply-to';
+    const REF        = 'ref';
+    const HREF       = 'href';
+    const OBJECTTYPE = 'ostatus:object-type';   // FIXME: Undocumented!
 
     const POINT     = 'point';
 
     const MENTIONED    = 'mentioned';
     const CONVERSATION = 'ostatus:conversation';
+
+    const ATTN_PUBLIC  = 'http://activityschema.org/collection/public';
 
     function __construct($element = null)
     {
@@ -76,17 +78,15 @@ class ActivityContext
 
         $links = $element->getElementsByTagNameNS(ActivityUtils::ATOM, ActivityUtils::LINK);
 
-        $attention = array();
         for ($i = 0; $i < $links->length; $i++) {
             $link = $links->item($i);
 
-            $linkRel = $link->getAttribute(ActivityUtils::REL);
-
-            if ($linkRel == self::MENTIONED) {
-                $attention[] = $link->getAttribute(self::HREF);
+            $linkRel  = $link->getAttribute(ActivityUtils::REL);
+            $linkHref = $link->getAttribute(self::HREF);
+            if ($linkRel == self::MENTIONED && $linkHref !== '') {
+                $this->attention[$linkHref] = $link->getAttribute(ActivityContext::OBJECTTYPE);
             }
         }
-        $this->attention = array_unique($attention);
     }
 
     /**
@@ -159,15 +159,10 @@ class ActivityContext
     {
         $tos = array();
 
-        foreach ($this->attention as $attnUrl) {
-            if (array_key_exists($attnUrl, $this->attentionType)) {
-                $type = ActivityObject::canonicalType($this->attentionType[$attnUrl]);
-            } else {
-                $type = ActivityObject::canonicalType(ActivityObject::PERSON);
-            }
+        foreach ($this->attention as $attnUrl => $attnType) {
             $to = array(
-                'objectType' => $type,
-                'id'         => $attnUrl
+                'objectType' => $attnType,  // can be empty
+                'id'         => $attnUrl,
             );
             $tos[] = $to;
         }

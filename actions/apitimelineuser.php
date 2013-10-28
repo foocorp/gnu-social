@@ -420,9 +420,9 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
         // Check for optional attributes...
 
-        if (!empty($activity->context)) {
+        if ($activity->context instanceof ActivityContext) {
 
-            foreach ($activity->context->attention as $uri) {
+            foreach ($activity->context->attention as $uri=>$type) {
 
                 $profile = Profile::fromURI($uri);
 

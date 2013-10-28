@@ -101,7 +101,7 @@ class ActivityParseTests extends PHPUnit_Framework_TestCase
         $this->assertEquals('http://example.net/notice/12', $act->context->replyToID);
         $this->assertEquals('http://example.net/notice/12', $act->context->replyToUrl);
         $this->assertEquals('http://example.net/conversation/11', $act->context->conversation);
-        $this->assertEquals(array('http://example.net/user/1'), $act->context->attention);
+        $this->assertEquals(array('http://example.net/user/1'), array_keys($act->context->attention));
 
         $this->assertFalse(empty($act->objects[0]));
         $this->assertEquals($act->objects[0]->content,

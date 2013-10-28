@@ -656,10 +656,9 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         if ($activity->context) {
-            // Any individual or group attn: targets?
-            $replies = $activity->context->attention;
-            $options['groups'] = $this->filterReplies($oprofile, $replies);
-            $options['replies'] = $replies;
+            // TODO: context->attention
+            list($options['groups'], $options['replies'])
+                = $this->filterReplies($oprofile, $activity->context->attention);
 
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
@@ -826,10 +825,9 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         if ($activity->context) {
-            // Any individual or group attn: targets?
-            $replies = $activity->context->attention;
-            $options['groups'] = $this->filterReplies($oprofile, $replies);
-            $options['replies'] = $replies;
+            // TODO: context->attention
+            list($options['groups'], $options['replies'])
+                = $this->filterReplies($oprofile, $activity->context->attention);
 
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
@@ -908,26 +906,26 @@ class Ostatus_profile extends Managed_DataObject
      * @param array in/out &$attention_uris set of URIs, will be pruned on output
      * @return array of group IDs
      */
-    protected function filterReplies($sender, &$attention_uris)
+    protected function filterReplies($sender, array $attention)
     {
-        common_log(LOG_DEBUG, "Original reply recipients: " . implode(', ', $attention_uris));
+        common_log(LOG_DEBUG, "Original reply recipients: " . implode(', ', $attention));
         $groups = array();
         $replies = array();
-        foreach (array_unique($attention_uris) as $recipient) {
+        foreach ($attention as $recipient=>$type) {
             // Is the recipient a local user?
             $user = User::getKV('uri', $recipient);
-            if ($user) {
+            if ($user instanceof User) {
                 // @todo FIXME: Sender verification, spam etc?
                 $replies[] = $recipient;
                 continue;
             }
 
             // Is the recipient a local group?
-            // $group = User_group::getKV('uri', $recipient);
+            // TODO: $group = User_group::getKV('uri', $recipient);
             $id = OStatusPlugin::localGroupFromUrl($recipient);
             if ($id) {
                 $group = User_group::getKV('id', $id);
-                if ($group) {
+                if ($group instanceof User_group) {
                     // Deliver to all members of this local group if allowed.
                     $profile = $sender->localProfile();
                     if ($profile->isMember($group)) {
@@ -959,10 +957,9 @@ class Ostatus_profile extends Managed_DataObject
             }
 
         }
-        $attention_uris = $replies;
         common_log(LOG_DEBUG, "Local reply recipients: " . implode(', ', $replies));
         common_log(LOG_DEBUG, "Local group recipients: " . implode(', ', $groups));
-        return $groups;
+        return array($groups, $replies);
     }
 
     /**

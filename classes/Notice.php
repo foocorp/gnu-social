@@ -1577,27 +1577,23 @@ class Notice extends Managed_DataObject
             foreach ($reply_ids as $id) {
                 $rprofile = Profile::getKV('id', $id);
                 if ($rprofile instanceof Profile) {
-                    $ctx->attention[] = $rprofile->getUri();
-                    $ctx->attentionType[$rprofile->getUri()] = ActivityObject::PERSON;
+                    $ctx->attention[$rprofile->getUri()] = ActivityObject::PERSON;
                 }
             }
 
             $groups = $this->getGroups();
 
             foreach ($groups as $group) {
-                $ctx->attention[] = $group->getUri();
-                $ctx->attentionType[$group->getUri()] = ActivityObject::GROUP;
+                $ctx->attention[$group->getUri()] = ActivityObject::GROUP;
             }
 
             switch ($this->scope) {
             case Notice::PUBLIC_SCOPE:
-                $ctx->attention[] = "http://activityschema.org/collection/public";
-                $ctx->attentionType["http://activityschema.org/collection/public"] = ActivityObject::COLLECTION;
+                $ctx->attention[ActivityContext::ATTN_PUBLIC] = ActivityObject::COLLECTION;
                 break;
             case Notice::FOLLOWER_SCOPE:
                 $surl = common_local_url("subscribers", array('nickname' => $profile->nickname));
-                $ctx->attention[] = $surl;
-                $ctx->attentionType[$surl] = ActivityObject::COLLECTION;
+                $ctx->attention[$surl] = ActivityObject::COLLECTION;
                 break;
             }
 

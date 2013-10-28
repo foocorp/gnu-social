@@ -198,8 +198,7 @@ class Message extends Managed_DataObject
                 throw new Exception(sprintf("Receiver profile not found: %d", $this->to_profile));
             }
 
-            $ctx->attention[] = $rprofile->getUri();
-            $ctx->attentionType[$rprofile->getUri()] = ActivityObject::PERSON;
+            $ctx->attention[$rprofile->getUri()] = ActivityObject::PERSON;
 
             $act->context = $ctx;
 
