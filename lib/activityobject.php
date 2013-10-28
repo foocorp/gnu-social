@@ -438,7 +438,8 @@ class ActivityObject
             $object->type    = (empty($notice->object_type)) ? ActivityObject::NOTE : $notice->object_type;
 
             $object->id      = $notice->uri;
-            $object->title   = 'New ' . ActivityObject::canonicalType($notice->object_type);
+            $object->title   = 'New ' . ActivityObject::canonicalType($notice->object_type)
+                                . ' by ' . $notice->getProfile()->nickname;
             $object->content = $notice->rendered;
             $object->link    = $notice->bestUrl();
 
