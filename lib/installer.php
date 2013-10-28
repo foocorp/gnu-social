@@ -259,16 +259,12 @@ abstract class Installer
      */
     function validateSiteProfile()
     {
-        $fail = false;
-
-        $sprofile = $this->siteProfile;
-
-        if (empty($sprofile))  {
+        if (empty($this->siteProfile))  {
             $this->updateStatus("No site profile selected.", true);
-            $fail = true;
+            return false;
         }
 
-        return !$fail;
+        return true;
     }
 
     /**
@@ -563,6 +559,8 @@ abstract class Installer
      */
     function doInstall()
     {
+        global $config;
+
         $this->updateStatus("Initializing...");
         ini_set('display_errors', 1);
         error_reporting(E_ALL);
@@ -572,8 +570,14 @@ abstract class Installer
         if (!defined('STATUSNET')) {
             define('STATUSNET', true);
         }
+
         require_once INSTALLDIR . '/lib/framework.php';
         StatusNet::initDefaults($this->server, $this->path);
+
+        if ($this->siteProfile == "singleuser") {
+            // Until we use ['site']['profile']==='singleuser' everywhere
+            $config['singleuser']['enabled'] = true;
+        }
 
         try {
             $this->db = $this->setupDatabase();

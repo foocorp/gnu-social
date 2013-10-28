@@ -52,11 +52,6 @@ function updateUserUrls()
 
                 updateProfileUrl($profile);
                 updateAvatarUrls($profile);
-
-                // Broadcast for remote users
-
-                common_broadcast_profile($profile);
-
             } catch (Exception $e) {
                 echo "Error updating URLs: " . $e->getMessage();
             }

@@ -427,7 +427,6 @@ class ProfilesettingsAction extends SettingsAction
 
             $user->query('COMMIT');
             Event::handle('EndProfileSaveForm', array($this));
-            common_broadcast_profile($profile);
 
             // TRANS: Confirmation shown when user profile settings are saved.
             $this->showForm(_('Settings saved.'), true);

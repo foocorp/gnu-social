@@ -131,8 +131,6 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
             return;
         }
 
-        common_broadcast_profile($profile);
-
         $twitter_user = $this->twitterUserArray($profile, true);
 
         if ($this->format == 'xml') {

@@ -271,28 +271,6 @@ class TwitterImport
             return false;
         }
 
-        // check for remote profile
-        $remote_pro = Remote_profile::getKV('uri', $profileurl);
-
-        if (!($remote_pro instanceof Remote_profile)) {
-            $remote_pro = new Remote_profile();
-            $remote_pro->id = $id;
-            $remote_pro->uri = $profileurl;
-            $remote_pro->created = common_sql_now();
-
-            try {
-                $rid = $remote_pro->insert();
-                if (empty($rid)) {
-                    throw new Exception('Failed insert');
-                }
-            } catch (Exception $e) {
-                common_log(LOG_WARNING, __METHOD__ . " Couldn't save remote profile: " . $e->getMessage());
-                common_log_db_error($profile, 'INSERT', __FILE__);
-                $profile->query("ROLLBACK");
-                return false;
-            }
-        }
-
         $profile->query("COMMIT");
         $this->updateAvatar($twuser, $profile);
         return $profile;

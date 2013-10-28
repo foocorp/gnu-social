@@ -386,7 +386,6 @@ class AvatarsettingsAction extends SettingsAction
             $this->mode = 'upload';
             // TRANS: Success message for having updated a user avatar.
             $this->showForm(_('Avatar updated.'), true);
-            common_broadcast_profile($profile);
         } else {
             // TRANS: Error displayed on the avatar upload page if the avatar could not be updated for an unknown reason.
             $this->showForm(_('Failed updating avatar.'));

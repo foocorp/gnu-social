@@ -136,7 +136,6 @@ class Snapshot
         $tables = array('user',
                         'notice',
                         'subscription',
-                        'remote_profile',
                         'user_group');
 
         foreach ($tables as $table) {

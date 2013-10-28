@@ -770,12 +770,6 @@ class SubCommand extends Command
 
         $target = $this->getProfile($this->other);
 
-        $remote = Remote_profile::getKV('id', $target->id);
-        if ($remote) {
-            // TRANS: Command exception text shown when trying to subscribe to an OMB profile using the subscribe command.
-            throw new CommandException(_("Can't subscribe to OMB profiles by command."));
-        }
-
         try {
             Subscription::start($this->user->getProfile(), $target);
             // TRANS: Text shown after having subscribed to another user successfully.

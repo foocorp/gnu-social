@@ -97,8 +97,6 @@ class ApiAccountUpdateProfileImageAction extends ApiAuthAction
         $profile = $this->user->getProfile();
         $profile->setOriginal($filename);
 
-        common_broadcast_profile($profile);
-
         $twitter_user = $this->twitterUserArray($profile, true);
 
         if ($this->format == 'xml') {

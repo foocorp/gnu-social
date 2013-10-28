@@ -633,7 +633,6 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
             }
 
             Event::handle('EndProfileSaveForm', array($this));
-            common_broadcast_profile($profile);
         }
     }
 

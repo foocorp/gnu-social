@@ -1376,7 +1376,7 @@ class Profile extends Managed_DataObject
         $profile = null;
 
         if (Event::handle('StartGetProfileFromURI', array($uri, &$profile))) {
-            // Get a local user or remote (OMB 0.1) profile
+            // Get a local user
             $user = User::getKV('uri', $uri);
             if (!empty($user)) {
                 $profile = $user->getProfile();

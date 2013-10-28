@@ -35,8 +35,7 @@ if (!defined('STATUSNET')) {
 /**
  * Subscription action
  *
- * Subscribing to a profile. Does not work for OMB 0.1 remote subscriptions,
- * but may work for other remote subscription protocols, like OStatus.
+ * Subscribing to a profile. Likely to work for OStatus profiles.
  *
  * Takes parameters:
  *
