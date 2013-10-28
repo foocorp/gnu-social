@@ -29,6 +29,7 @@
  * @author   Robin Millette <millette@controlyourself.ca>
  * @author   Sarven Capadisli <csarven@controlyourself.ca>
  * @author   Tom Adams <tom@holizz.com>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
  */
@@ -343,8 +344,13 @@ class Notice extends Managed_DataObject
         }
 
         $profile = Profile::getKV('id', $profile_id);
+        if (!$profile instanceof Profile) {
+            // TRANS: Client exception thrown when trying to save a notice for an unknown user.
+            throw new ClientException(_('Problem saving notice. Unknown user.'));
+        }
+
         $user = User::getKV('id', $profile_id);
-        if ($user) {
+        if ($user instanceof User) {
             // Use the local user's shortening preferences, if applicable.
             $final = $user->shortenLinks($content);
         } else {
@@ -354,11 +360,6 @@ class Notice extends Managed_DataObject
         if (Notice::contentTooLong($final)) {
             // TRANS: Client exception thrown if a notice contains too many characters.
             throw new ClientException(_('Problem saving notice. Too long.'));
-        }
-
-        if (empty($profile)) {
-            // TRANS: Client exception thrown when trying to save a notice for an unknown user.
-            throw new ClientException(_('Problem saving notice. Unknown user.'));
         }
 
         if (common_config('throttle', 'enabled') && !Notice::checkEditThrottle($profile_id)) {
@@ -545,7 +546,7 @@ class Notice extends Managed_DataObject
 
         foreach ($groups as $groupId) {
             $group = User_group::getKV('id', $groupId);
-            if (!empty($group)) {
+            if ($group instanceof User_group) {
                 if ($group->force_scope) {
                     $notice->scope |= Notice::GROUP_SCOPE;
                     break;
@@ -653,16 +654,16 @@ class Notice extends Managed_DataObject
 
         $original = Notice::getKV('id', $this->repeat_of);
 
-        if (!empty($original)) {
+        if ($original instanceof Notice) {
             $originalUser = User::getKV('id', $original->profile_id);
-            if (!empty($originalUser)) {
+            if ($originalUser instanceof User) {
                 $this->blowStream('user:repeats_of_me:%d', $originalUser->id);
             }
         }
 
         $profile = Profile::getKV($this->profile_id);
 
-        if (!empty($profile)) {
+        if ($profile instanceof Profile) {
             $profile->blowNoticeCount();
         }
 
@@ -728,7 +729,7 @@ class Notice extends Managed_DataObject
             $window     = explode(',', $lastStr);
             $lastID     = $window[0];
             $lastNotice = Notice::getKV('id', $lastID);
-            if (empty($lastNotice) // just weird
+            if (!$lastNotice instanceof Notice // just weird
                 || strtotime($lastNotice->created) >= strtotime($this->created)) {
                 $c->delete($lastKey);
             }
@@ -775,7 +776,7 @@ class Notice extends Managed_DataObject
 
     static function checkDupes($profile_id, $content) {
         $profile = Profile::getKV($profile_id);
-        if (empty($profile)) {
+        if (!$profile instanceof Profile) {
             return false;
         }
         $notice = $profile->getNotices(0, CachingNoticeStream::CACHE_WINDOW);
@@ -803,7 +804,7 @@ class Notice extends Managed_DataObject
 
     static function checkEditThrottle($profile_id) {
         $profile = Profile::getKV($profile_id);
-        if (empty($profile)) {
+        if (!$profile instanceof Profile) {
             return false;
         }
         // Get the Nth notice
@@ -1026,7 +1027,7 @@ class Notice extends Managed_DataObject
             if ($this->repeat_of) {
                 // Check blocks against the original notice's poster as well.
                 $original = Notice::getKV('id', $this->repeat_of);
-                if ($original) {
+                if ($original instanceof Notice) {
                     $originalProfile = $original->getProfile();
                 }
             }
@@ -1034,7 +1035,7 @@ class Notice extends Managed_DataObject
             foreach ($ni as $id => $source) {
                 try {
                     $user = User::getKV('id', $id);
-                    if (empty($user) ||
+                    if (!$user instanceof User ||
                         $user->hasBlocked($profile) ||
                         ($originalProfile && $user->hasBlocked($originalProfile))) {
                         unset($ni[$id]);
@@ -1226,7 +1227,7 @@ class Notice extends Managed_DataObject
         $gi = Group_inbox::pkeyGet(array('group_id' => $group->id,
                                          'notice_id' => $this->id));
 
-        if (empty($gi)) {
+        if (!$gi instanceof Group_inbox) {
 
             $gi = new Group_inbox();
 
@@ -1272,7 +1273,7 @@ class Notice extends Managed_DataObject
 
             $profile = Profile::fromURI($uri);
 
-            if (empty($profile)) {
+            if (!$profile instanceof Profile) {
                 common_log(LOG_WARNING, "Unable to determine profile for URI '$uri'");
                 continue;
             }
@@ -1345,7 +1346,7 @@ class Notice extends Managed_DataObject
                 // Don't save replies from blocked profile to local user
 
                 $mentioned_user = User::getKV('id', $mentioned->id);
-                if (!empty($mentioned_user) && $mentioned_user->hasBlocked($sender)) {
+                if ($mentioned_user instanceof User && $mentioned_user->hasBlocked($sender)) {
                     continue;
                 }
 
@@ -1436,7 +1437,7 @@ class Notice extends Managed_DataObject
 
         foreach ($recipientIds as $recipientId) {
             $user = User::getKV('id', $recipientId);
-            if (!empty($user)) {
+            if ($user instanceof User) {
                 mail_notify_attn($user, $this);
             }
         }
@@ -1497,7 +1498,7 @@ class Notice extends Managed_DataObject
     {
         $act = self::cacheGet(Cache::codeKey('notice:as-activity:'.$this->id));
 
-        if (!empty($act)) {
+        if ($act instanceof Activity) {
             return $act;
         }
         $act = new Activity();
@@ -1518,7 +1519,7 @@ class Notice extends Managed_DataObject
 
             if ($this->repeat_of) {
                 $repeated = Notice::getKV('id', $this->repeat_of);
-                if (!empty($repeated)) {
+                if ($repeated instanceof Notice) {
                     $act->objects[] = $repeated->asActivity($cur);
                 }
             } else {
@@ -1566,7 +1567,7 @@ class Notice extends Managed_DataObject
 
             if (!empty($this->conversation)) {
                 $conv = Conversation::getKV('id', $this->conversation);
-                if (!empty($conv)) {
+                if ($conv instanceof Conversation) {
                     $ctx->conversation = $conv->uri;
                 }
             }
@@ -1575,7 +1576,7 @@ class Notice extends Managed_DataObject
 
             foreach ($reply_ids as $id) {
                 $rprofile = Profile::getKV('id', $id);
-                if (!empty($rprofile)) {
+                if ($rprofile instanceof Profile) {
                     $ctx->attention[] = $rprofile->getUri();
                     $ctx->attentionType[$rprofile->getUri()] = ActivityObject::PERSON;
                 }
@@ -1604,7 +1605,7 @@ class Notice extends Managed_DataObject
 
             $source = $this->getSource();
 
-            if ($source) {
+            if ($source instanceof Notice_source) {
                 $act->generator = ActivityObject::fromNoticeSource($source);
             }
 
@@ -1631,13 +1632,13 @@ class Notice extends Managed_DataObject
 
                 $notice = $profile->getCurrentNotice();
 
-                if (!empty($notice)) {
+                if ($notice instanceof Notice) {
                     $act->source->updated = self::utcDate($notice->created);
                 }
 
                 $user = User::getKV('id', $profile->id);
 
-                if (!empty($user)) {
+                if ($user instanceof User) {
                     $act->source->links['license'] = common_config('license', 'url');
                 }
             }
@@ -1690,7 +1691,7 @@ class Notice extends Managed_DataObject
 
         $ns = $this->getSource();
 
-        if (!empty($ns)) {
+        if ($ns instanceof Notice_source) {
             $noticeInfoAttr['source'] =  $ns->code;
             if (!empty($ns->url)) {
                 $noticeInfoAttr['source_link'] = $ns->url;
@@ -1780,7 +1781,7 @@ class Notice extends Managed_DataObject
 
         if (!empty($reply_to)) {
             $reply_notice = Notice::getKV('id', $reply_to);
-            if (!empty($reply_notice)) {
+            if ($reply_notice instanceof Notice) {
                 return $reply_notice;
             }
         }
@@ -1805,13 +1806,13 @@ class Notice extends Managed_DataObject
         // Figure out who that is.
 
         $sender = Profile::getKV('id', $profile_id);
-        if (empty($sender)) {
+        if (!$sender instanceof Profile) {
             return null;
         }
 
         $recipient = common_relative_profile($sender, $nickname, common_sql_now());
 
-        if (empty($recipient)) {
+        if (!$recipient instanceof Profile) {
             return null;
         }
 
@@ -1819,7 +1820,7 @@ class Notice extends Managed_DataObject
 
         $last = $recipient->getCurrentNotice();
 
-        if (!empty($last)) {
+        if ($last instanceof Notice) {
             return $last;
         }
 
@@ -1955,7 +1956,7 @@ class Notice extends Managed_DataObject
 
             $location = Location::fromId($location_id, $location_ns);
 
-            if (!empty($location)) {
+            if ($location instanceof Location) {
                 $options['lat'] = $location->lat;
                 $options['lon'] = $location->lon;
             }
@@ -1966,7 +1967,7 @@ class Notice extends Managed_DataObject
 
             $location = Location::fromLatLon($lat, $lon);
 
-            if (!empty($location)) {
+            if ($location instanceof Location) {
                 $options['location_id'] = $location->location_id;
                 $options['location_ns'] = $location->location_ns;
             }
@@ -2105,7 +2106,7 @@ class Notice extends Managed_DataObject
         Event::handle('StartNoticeDistribute', array($this));
 
         $user = User::getKV('id', $this->profile_id);
-        if (!empty($user)) {
+        if ($user instanceof User) {
             Inbox::insertNotice($user->id, $this->id);
         }
 
@@ -2138,7 +2139,7 @@ class Notice extends Managed_DataObject
     {
         $result = parent::insert();
 
-        if ($result) {
+        if ($result !== false) {
             // Profile::hasRepeated() abuses pkeyGet(), so we
             // have to clear manually
             if (!empty($this->repeat_of)) {
@@ -2428,10 +2429,10 @@ class Notice extends Managed_DataObject
 
             if ($scope & Notice::ADDRESSEE_SCOPE) {
 
-                $repl = Reply::pkeyGet(array('notice_id' => $this->id,
+                $reply = Reply::pkeyGet(array('notice_id' => $this->id,
                                              'profile_id' => $profile->id));
 										 
-                if (empty($repl)) {
+                if (!$reply instanceof Reply) {
                     return false;
                 }
             }
@@ -2494,7 +2495,7 @@ class Notice extends Managed_DataObject
             }
 
             if ($author->hasRole(Profile_role::SILENCED)) {
-                if (empty($profile) || (($profile->id !== $author->id) && (!$profile->hasRight(Right::REVIEWSPAM)))) {
+                if (!$profile instanceof Profile || (($profile->id !== $author->id) && (!$profile->hasRight(Right::REVIEWSPAM)))) {
                     return true;
                 }
             }
@@ -2518,7 +2519,7 @@ class Notice extends Managed_DataObject
 
         foreach (array_unique($match[1]) as $nickname) {
             $group = User_group::getForNickname($nickname, $profile);
-            if (!empty($group) && $profile->isMember($group)) {
+            if ($group instanceof User_group && $profile->isMember($group)) {
                 $groups[] = $group->id;
             }
         }

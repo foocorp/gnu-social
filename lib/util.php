@@ -1223,9 +1223,9 @@ function common_relative_profile($sender, $nickname, $dt=null)
     }
     // If this is a local user, try to find a local user with that nickname.
     $sender = User::getKV($sender->id);
-    if ($sender) {
+    if ($sender instanceof User) {
         $recipient_user = User::getKV('nickname', $nickname);
-        if ($recipient_user) {
+        if ($recipient_user instanceof User) {
             return $recipient_user->getProfile();
         }
     }
