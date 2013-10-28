@@ -58,6 +58,18 @@ class WebFingerPlugin extends Plugin
         return true;
     }
 
+    public function onStartGetProfileAcctUri(Profile $profile, &$acct)
+    {
+        $wfr = new WebFingerResource_Profile($profile);
+        try {
+            $acct = $wfr->reconstructAcct();
+        } catch (Exception $e) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function onEndGetWebFingerResource($resource, WebFingerResource &$target=null, array $args=array())
     {
         $profile = null;

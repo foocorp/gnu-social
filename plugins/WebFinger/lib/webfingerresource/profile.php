@@ -31,7 +31,7 @@ class WebFingerResource_Profile extends WebFingerResource
         return array_merge($aliases, parent::getAliases());
     }
 
-    protected function reconstructAcct()
+    public function reconstructAcct()
     {
         $acct = null;
 
