@@ -100,11 +100,11 @@ class Spam_score extends Managed_DataObject
         return $score;
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
         self::blow('spam_score:notice_ids');
         self::blow('spam_score:notice_ids;last');
-        parent::delete();
+        return parent::delete($useWhere);
     }
 
     /**

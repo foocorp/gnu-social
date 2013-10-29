@@ -115,10 +115,10 @@ class Config extends Managed_DataObject
         return $result;
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
-        $result = parent::delete();
-        if ($result) {
+        $result = parent::delete($useWhere);
+        if ($result !== false) {
             Config::_blowSettingsCache();
         }
         return $result;

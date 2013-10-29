@@ -108,7 +108,7 @@ class Safe_DataObject extends DB_DataObject
      * @return mixed
      * @throws Exception
      */
-    function __call($method, array $params)
+    function __call($method, $params)
     {
         $return = null;
         // Yes, that's _call with one underscore, which does the

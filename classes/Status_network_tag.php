@@ -125,11 +125,10 @@ class Status_network_tag extends Safe_DataObject
         return $ret;
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
-        $ret = parent::delete();
         $this->decache();
-        return $ret;
+        return parent::delete($useWhere);
     }
 
     static function withTag($tag)

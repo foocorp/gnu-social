@@ -51,12 +51,14 @@ class Avatar extends Managed_DataObject
     }
 
     // We clean up the file, too
-    function delete()
+    function delete($useWhere=false)
     {
         $filename = $this->filename;
-        if (parent::delete() && file_exists(Avatar::path($filename))) {
+        if (file_exists(Avatar::path($filename))) {
             @unlink(Avatar::path($filename));
         }
+
+        return parent::delete($useWhere);
     }
 
     /*

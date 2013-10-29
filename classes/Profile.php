@@ -869,7 +869,7 @@ class Profile extends Managed_DataObject
         return parent::update($dataObject);
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
         $this->_deleteNotices();
         $this->_deleteSubscriptions();
@@ -891,7 +891,7 @@ class Profile extends Managed_DataObject
             $inst->delete();
         }
 
-        parent::delete();
+        return parent::delete($useWhere);
     }
 
     function _deleteNotices()

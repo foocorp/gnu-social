@@ -401,10 +401,10 @@ class Memcached_DataObject extends Safe_DataObject
         return $result;
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
         $this->decache(); # while we still have the values!
-        return parent::delete();
+        return parent::delete($useWhere);
     }
 
     static function memcache() {

@@ -727,11 +727,11 @@ class User_group extends Managed_DataObject
      * are not de-cached in the UI, including the sidebar lists on
      * GroupsAction
      */
-    function delete()
+    function delete($useWhere=false)
     {
         if (empty($this->id)) {
             common_log(LOG_WARNING, "Ambiguous User_group->delete(); skipping related tables.");
-            return parent::delete();
+            return parent::delete($useWhere);
         }
 
         try {
@@ -779,7 +779,7 @@ class User_group extends Managed_DataObject
         // blow the cached ids
         self::blow('user_group:notice_ids:%d', $this->id);
 
-        return parent::delete();
+        return parent::delete($useWhere);
     }
 
     public function update($dataObject=false)

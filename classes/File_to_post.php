@@ -84,12 +84,12 @@ class File_to_post extends Managed_DataObject
         }
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
         $f = File::getKV('id', $this->file_id);
         if (!empty($f)) {
             $f->blowCache();
         }
-        return parent::delete();
+        return parent::delete($useWhere);
     }
 }

@@ -78,7 +78,7 @@ class Fave extends Managed_DataObject
         return $fave;
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
         $profile = Profile::getKV('id', $this->user_id);
         $notice  = Notice::getKV('id', $this->notice_id);
@@ -87,7 +87,7 @@ class Fave extends Managed_DataObject
 
         if (Event::handle('StartDisfavorNotice', array($profile, $notice, &$result))) {
 
-            $result = parent::delete();
+            $result = parent::delete($useWhere);
             self::blow('fave:list-ids:notice_id:%d', $this->notice_id);
             self::blow('popular');
 

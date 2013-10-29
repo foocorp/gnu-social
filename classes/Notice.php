@@ -162,7 +162,7 @@ class Notice extends Managed_DataObject
         $this->_profile = $profile;
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
         // For auditing purposes, save a record that the notice
         // was deleted.
@@ -171,11 +171,11 @@ class Notice extends Managed_DataObject
         // insert fails.
         $deleted = Deleted_notice::getKV('id', $this->id);
 
-        if (!$deleted) {
+        if (!$deleted instanceof Deleted_notice) {
             $deleted = Deleted_notice::getKV('uri', $this->uri);
         }
 
-        if (!$deleted) {
+        if (!$deleted instanceof Deleted_notice) {
             $deleted = new Deleted_notice();
 
             $deleted->id         = $this->id;
@@ -202,7 +202,7 @@ class Notice extends Managed_DataObject
             // NOTE: we don't clear queue items
         }
 
-        $result = parent::delete();
+        $result = parent::delete($useWhere);
 
         $this->blowOnDelete();
         return $result;

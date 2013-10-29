@@ -54,14 +54,14 @@ class Consumer extends Managed_DataObject
      * XXX: Should this happen in an OAuthDataStore instead?
      *
      */
-    function delete()
+    function delete($useWhere=false)
     {
         // XXX: Is there any reason NOT to do this kind of cleanup?
 
         $this->_deleteTokens();
         $this->_deleteNonces();
 
-        parent::delete();
+        return parent::delete($useWhere);
     }
 
     function _deleteTokens()

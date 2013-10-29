@@ -322,10 +322,10 @@ class Profile_tag extends Managed_DataObject
         return $result;
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
-        $result = parent::delete();
-        if ($result) {
+        $result = parent::delete($useWhere);
+        if ($result !== false) {
             self::blow('profile_list:tagged_count:%d:%s', 
                        $this->tagger,
                        $this->tag);

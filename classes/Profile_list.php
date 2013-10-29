@@ -334,7 +334,7 @@ class Profile_list extends Managed_DataObject
      * @return boolean success
      */
 
-    function delete()
+    function delete($useWhere=false)
     {
         // force delete one item at a time.
         if (empty($this->id)) {
@@ -349,7 +349,7 @@ class Profile_list extends Managed_DataObject
 
         self::blow('profile:lists:%d', $this->tagger);
 
-        return parent::delete();
+        return parent::delete($useWhere);
     }
 
     /**

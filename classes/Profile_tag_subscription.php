@@ -127,10 +127,10 @@ class Profile_tag_subscription extends Managed_DataObject
         return $result;
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
-        $result = parent::delete();
-        if ($result) {
+        $result = parent::delete($useWhere);
+        if ($result !== false) {
             self::blow('profile_list:subscriber_count:%d', 
                        $this->profile_tag_id);
         }

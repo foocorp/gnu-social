@@ -139,14 +139,14 @@ class Oauth_application extends Managed_DataObject
         }
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
         $this->_deleteAppUsers();
 
         $consumer = $this->getConsumer();
         $consumer->delete();
 
-        parent::delete();
+        return parent::delete($useWhere);
     }
 
     function _deleteAppUsers()

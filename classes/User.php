@@ -678,11 +678,11 @@ class User extends Managed_DataObject
         return $this->getProfile()->hasRight($right);
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
         if (empty($this->id)) {
             common_log(LOG_WARNING, "Ambiguous User->delete(); skipping related tables.");
-            return parent::delete();
+            return parent::delete($useWhere);
         }
 
         try {
@@ -710,7 +710,7 @@ class User extends Managed_DataObject
         $this->_deleteTags();
         $this->_deleteBlocks();
 
-        parent::delete();
+        return parent::delete($useWhere);
     }
 
     function _deleteTags()

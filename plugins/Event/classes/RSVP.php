@@ -399,9 +399,9 @@ class RSVP extends Managed_DataObject
                        $eventTitle);
     }
 
-    function delete()
+    function delete($useWhere=false)
     {
         self::blow('rsvp:for-event:%s', $event->id);
-        parent::delete();
+        return parent::delete($useWhere);
     }
 }
