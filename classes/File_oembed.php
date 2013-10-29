@@ -84,7 +84,7 @@ class File_oembed extends Managed_DataObject
         try {
             return oEmbedHelper::getObject($url, $parameters);
         } catch (Exception $e) {
-            common_log(LOG_ERR, "Error during oembed lookup for $url - " . $e->getMessage());
+            common_log(LOG_INFO, "Error during oembed lookup for $url - " . $e->getMessage());
             return false;
         }
     }
