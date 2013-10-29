@@ -792,7 +792,7 @@ function common_find_mentions($text, $notice)
             $mentions[] = array('mentioned' => $profile,
                                 'text'      => $hmatch[0],
                                 'position'  => $hmatch[1],
-                                'url'       => $group->permalink,
+                                'url'       => $group->permalink(),
                                 'title'     => $group->getFancyName());
         }
 
