@@ -58,7 +58,7 @@ class GroupsNav extends MoreMenu
 
     function haveGroups()
     {
-        return (!empty($this->groups) && ($this->groups->N > 0));
+        return ($this->groups instanceof User_group && $this->groups->N > 0);
     }
 
     function tag()
@@ -70,7 +70,7 @@ class GroupsNav extends MoreMenu
     {
         $items = array();
 
-        while ($this->groups->fetch()) {
+        while ($this->groups instanceof User_group && $this->groups->fetch()) {
             $items[] = array('placeholder',
                              array('nickname' => $this->groups->nickname,
                                    'mainpage' => $this->groups->homeUrl()),

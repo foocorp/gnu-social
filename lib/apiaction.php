@@ -225,7 +225,7 @@ class ApiAction extends Action
         }
         $twitter_user['profile_image_url_original'] = $origurl;
 
-        $twitter_user['groups_count'] = $profile->getGroups(0, null)->N;
+        $twitter_user['groups_count'] = $profile->getGroupCount();
         foreach (array('linkcolor', 'backgroundcolor') as $key) {
             $twitter_user[$key] = Profile_prefs::getConfigData($profile, 'theme', $key);
         }

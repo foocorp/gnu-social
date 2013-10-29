@@ -163,7 +163,7 @@ function newNotice($i, $tagmax)
 
     if ($in_group == 0) {
         $groups = $user->getGroups();
-        if ($groups->N > 0) {
+        if ($groups instanceof User_group) {
             $gval = rand(0, $groups->N - 1);
             $groups->fetch(); // go to 0th
             for ($i = 0; $i < $gval; $i++) {

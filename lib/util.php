@@ -320,7 +320,7 @@ function common_set_user($user)
     } else if (is_string($user)) {
         $nickname = $user;
         $user = User::getKV('nickname', $nickname);
-    } else if (!($user instanceof User)) {
+    } else if (!$user instanceof User) {
         return false;
     }
 
@@ -433,7 +433,7 @@ function common_remembered_user()
 
     $user = User::getKV('id', $rm->user_id);
 
-    if (!$user) {
+    if (!$user instanceof User) {
         common_log(LOG_WARNING, 'No such user for rememberme: ' . $rm->user_id);
         common_forgetme();
         return null;
@@ -488,8 +488,8 @@ function common_current_user()
             common_ensure_session();
             $id = isset($_SESSION['userid']) ? $_SESSION['userid'] : false;
             if ($id) {
-                $user = User::getKV($id);
-                if ($user) {
+                $user = User::getKV('id', $id);
+                if ($user instanceof User) {
                 	$_cur = $user;
                 	return $_cur;
                 }
@@ -584,13 +584,10 @@ function common_canonical_email($email)
  * @param Notice $notice in whose context we're working
  * @return string partially rendered HTML
  */
-function common_render_content($text, $notice)
+function common_render_content($text, Notice $notice)
 {
     $r = common_render_text($text);
-    $id = $notice->profile_id;
     $r = common_linkify_mentions($r, $notice);
-    $r = preg_replace_callback('/(^|[\s\.\,\:\;]+)!(' . Nickname::DISPLAY_FMT . ')/',
-                      function ($m) { return "{$m[1]}!".common_group_link($id, $m[2]); }, $r);
     return $r;
 }
 
@@ -677,35 +674,39 @@ function common_linkify_mention($mention)
  */
 function common_find_mentions($text, $notice)
 {
-    $mentions = array();
-
-    $sender = Profile::getKV('id', $notice->profile_id);
-
-    if (empty($sender)) {
-        return $mentions;
+    try {
+        $sender = Profile::getKV('id', $notice->profile_id);
+    } catch (NoProfileException $e) {
+        return array();
     }
+
+    $mentions = array();
 
     if (Event::handle('StartFindMentions', array($sender, $text, &$mentions))) {
         // Get the context of the original notice, if any
-        $originalAuthor   = null;
-        $originalNotice   = null;
-        $originalMentions = array();
+        $origAuthor   = null;
+        $origNotice   = null;
+        $origMentions = array();
 
         // Is it a reply?
 
-        if (!empty($notice) && !empty($notice->reply_to)) {
-            $originalNotice = Notice::getKV('id', $notice->reply_to);
-            if (!empty($originalNotice)) {
-                $originalAuthor = Profile::getKV('id', $originalNotice->profile_id);
+        if ($notice instanceof Notice) {
+            try {
+                $origNotice = $notice->getParent();
+                $origAuthor = $origNotice->getProfile();
 
-                $ids = $originalNotice->getReplies();
+                $ids = $origNotice->getReplies();
 
                 foreach ($ids as $id) {
                     $repliedTo = Profile::getKV('id', $id);
-                    if (!empty($repliedTo)) {
-                        $originalMentions[$repliedTo->nickname] = $repliedTo;
+                    if ($repliedTo instanceof Profile) {
+                        $origMentions[$repliedTo->nickname] = $repliedTo;
                     }
                 }
+            } catch (NoProfileException $e) {
+                common_log(LOG_WARNING, sprintf('Notice %d author profile id %d does not exist', $origNotice->id, $origNotice->profile_id));
+            } catch (ServerException $e) {
+                common_log(LOG_WARNING, __METHOD__ . ' got exception: ' . $e->getMessage());
             }
         }
 
@@ -723,19 +724,19 @@ function common_find_mentions($text, $notice)
             // Start with conversation context, then go to
             // sender context.
 
-            if (!empty($originalAuthor) && $originalAuthor->nickname == $nickname) {
-                $mentioned = $originalAuthor;
-            } else if (!empty($originalMentions) &&
-                       array_key_exists($nickname, $originalMentions)) {
-                $mentioned = $originalMentions[$nickname];
+            if ($origAuthor instanceof Profile && $origAuthor->nickname == $nickname) {
+                $mentioned = $origAuthor;
+            } else if (!empty($origMentions) &&
+                       array_key_exists($nickname, $origMentions)) {
+                $mentioned = $origMentions[$nickname];
             } else {
                 $mentioned = common_relative_profile($sender, $nickname);
             }
 
-            if (!empty($mentioned)) {
+            if ($mentioned instanceof Profile) {
                 $user = User::getKV('id', $mentioned->id);
 
-                if ($user) {
+                if ($user instanceof User) {
                     $url = common_local_url('userbyid', array('id' => $user->id));
                 } else {
                     $url = $mentioned->profileurl;
@@ -757,26 +758,42 @@ function common_find_mentions($text, $notice)
         // @#tag => mention of all subscriptions tagged 'tag'
 
         preg_match_all('/(?:^|[\s\.\,\:\;]+)@#([\pL\pN_\-\.]{1,64})/',
-                       $text,
-                       $hmatches,
-                       PREG_OFFSET_CAPTURE);
-
+                       $text, $hmatches, PREG_OFFSET_CAPTURE);
         foreach ($hmatches[1] as $hmatch) {
-
             $tag = common_canonical_tag($hmatch[0]);
             $plist = Profile_list::getByTaggerAndTag($sender->id, $tag);
-            if (!empty($plist) && !$plist->private) {
-                $tagged = $sender->getTaggedSubscribers($tag);
-
-                $url = common_local_url('showprofiletag',
-                                        array('tagger' => $sender->nickname,
-                                              'tag' => $tag));
-
-                $mentions[] = array('mentioned' => $tagged,
-                                    'text' => $hmatch[0],
-                                    'position' => $hmatch[1],
-                                    'url' => $url);
+            if (!$plist instanceof Profile_list || $plist->private) {
+                continue;
             }
+            $tagged = $sender->getTaggedSubscribers($tag);
+
+            $url = common_local_url('showprofiletag',
+                                    array('tagger' => $sender->nickname,
+                                          'tag' => $tag));
+
+            $mentions[] = array('mentioned' => $tagged,
+                                'text' => $hmatch[0],
+                                'position' => $hmatch[1],
+                                'url' => $url);
+        }
+
+        preg_match_all('/(?:^|[\s\.\,\:\;]+)!(' . Nickname::DISPLAY_FMT . ')/',
+                       $text, $hmatches, PREG_OFFSET_CAPTURE);
+        foreach ($hmatches[1] as $hmatch) {
+            $nickname = Nickname::normalize($hmatch[0]);
+            $group = User_group::getForNickname($nickname, $sender);
+
+            if (!$group instanceof User_group || !$sender->isMember($group)) {
+                continue;
+            }
+
+            $profile = $group->getProfile();
+
+            $mentions[] = array('mentioned' => $profile,
+                                'text'      => $hmatch[0],
+                                'position'  => $hmatch[1],
+                                'url'       => $group->permalink,
+                                'title'     => $group->getFancyName());
         }
 
         Event::handle('EndFindMentions', array($sender, $text, &$mentions));
@@ -1147,35 +1164,6 @@ function common_valid_profile_tag($str)
 }
 
 /**
- *
- * @param <type> $sender_id
- * @param <type> $nickname
- * @return <type>
- * @access private
- */
-function common_group_link($sender_id, $nickname)
-{
-    $sender = Profile::getKV($sender_id);
-    $group = User_group::getForNickname($nickname, $sender);
-    if ($sender && $group && $sender->isMember($group)) {
-        $attrs = array('href' => $group->permalink(),
-                       'class' => 'url');
-        if (!empty($group->fullname)) {
-            $attrs['title'] = $group->getFancyName();
-        }
-        $xs = new XMLStringer();
-        $xs->elementStart('span', 'vcard');
-        $xs->elementStart('a', $attrs);
-        $xs->element('span', 'fn nickname group', $nickname);
-        $xs->elementEnd('a');
-        $xs->elementEnd('span');
-        return $xs->getString();
-    } else {
-        return $nickname;
-    }
-}
-
-/**
  * Resolve an ambiguous profile nickname reference, checking in following order:
  * - profiles that $sender subscribes to
  * - profiles that subscribe to $sender
@@ -1222,7 +1210,7 @@ function common_relative_profile($sender, $nickname, $dt=null)
         return $recipient;
     }
     // If this is a local user, try to find a local user with that nickname.
-    $sender = User::getKV($sender->id);
+    $sender = User::getKV('id', $sender->id);
     if ($sender instanceof User) {
         $recipient_user = User::getKV('nickname', $nickname);
         if ($recipient_user instanceof User) {
@@ -2020,8 +2008,8 @@ function common_profile_uri($profile)
 
     if (!empty($profile)) {
         if (Event::handle('StartCommonProfileURI', array($profile, &$uri))) {
-            $user = User::getKV($profile->id);
-            if (!empty($user)) {
+            $user = User::getKV('id', $profile->id);
+            if ($user instanceof User) {
                 $uri = $user->uri;
             }
             Event::handle('EndCommonProfileURI', array($profile, &$uri));

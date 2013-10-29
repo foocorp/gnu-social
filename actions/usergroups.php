@@ -137,12 +137,11 @@ class UsergroupsAction extends ProfileAction
 
             $groups = $this->user->getGroups($offset, $limit);
 
-            if ($groups) {
+            if ($groups instanceof User_group) {
                 $gl = new GroupList($groups, $this->user, $this);
                 $cnt = $gl->show();
-                if (0 == $cnt) {
-                    $this->showEmptyListMessage();
-                }
+            } else {
+                $this->showEmptyListMessage();
             }
 
             $this->pagination($this->page > 1, $cnt > GROUPS_PER_PAGE,

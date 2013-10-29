@@ -221,9 +221,8 @@ class Profile extends Managed_DataObject
     function isMember($group)
     {
     	$groups = $this->getGroups(0, null);
-    	$gs = $groups->fetchAll();
-    	foreach ($gs as $g) {
-    	    if ($group->id == $g->id) {
+        while ($groups instanceof User_group && $groups->fetch()) {
+    	    if ($groups->id == $group->id) {
     	        return true;
     	    }
     	}
@@ -272,7 +271,18 @@ class Profile extends Managed_DataObject
             $ids = array_slice($ids, $offset, $limit);
         }
 
-        return User_group::multiGet('id', $ids);
+        try {
+            return User_group::listFind('id', $ids);
+        } catch (NoResultException $e) {
+            return null;    // throw exception when we handle it everywhere
+        }
+    }
+
+    function getGroupCount() {
+        $groups = $this->getGroups(0, null);
+        return $groups instanceof User_group
+                ? $groups->N
+                : 0;
     }
 
     function isTagged($peopletag)

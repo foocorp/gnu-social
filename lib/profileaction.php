@@ -270,13 +270,12 @@ class ProfileAction extends Action
             $this->text($this->profile->getGroups(0, null)->N);
             $this->elementEnd('h2');
 
-            if ($groups) {
+            if ($groups instanceof User_group) {
                 $gml = new GroupMiniList($groups, $this->profile, $this);
                 $cnt = $gml->show();
-                if ($cnt == 0) {
-                    // TRANS: Text for user user group membership statistics if user is not a member of any group.
-                    $this->element('p', null, _('(None)'));
-                }
+            } else {
+                // TRANS: Text for user user group membership statistics if user is not a member of any group.
+                $this->element('p', null, _('(None)'));
             }
 
             Event::handle('EndShowGroupsMiniList', array($this));

@@ -337,7 +337,7 @@ class OStatusPlugin extends Plugin
      * @param array &$mention in/out param: set of found mentions
      * @return boolean hook return value
      */
-    function onEndFindMentions($sender, $text, &$mentions)
+    function onEndFindMentions(Profile $sender, $text, &$mentions)
     {
         $matches = array();
 

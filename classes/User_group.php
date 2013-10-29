@@ -418,14 +418,14 @@ class User_group extends Managed_DataObject
         return true;
     }
 
-    static function getForNickname($nickname, $profile=null)
+    static function getForNickname($nickname, Profile $profile=null)
     {
         $nickname = Nickname::normalize($nickname);
 
         // Are there any matching remote groups this profile's in?
-        if ($profile) {
+        if ($profile instanceof Profile) {
             $group = $profile->getGroups(0, null);
-            while ($group->fetch()) {
+            while ($group instanceof User_group && $group->fetch()) {
                 if ($group->nickname == $nickname) {
                     // @fixme is this the best way?
                     return clone($group);
@@ -434,13 +434,12 @@ class User_group extends Managed_DataObject
         }
 
         // If not, check local groups.
-
         $group = Local_group::getKV('nickname', $nickname);
-        if (!empty($group)) {
+        if ($group instanceof Local_group) {
             return User_group::getKV('id', $group->group_id);
         }
         $alias = Group_alias::getKV('alias', $nickname);
-        if (!empty($alias)) {
+        if ($alias instanceof Group_alias) {
             return User_group::getKV('id', $alias->group_id);
         }
         return null;
@@ -821,5 +820,38 @@ class User_group extends Managed_DataObject
     {
         return ($this->join_policy == self::JOIN_POLICY_MODERATE &&
                 $this->force_scope == 1);
+    }
+
+    static function groupsFromText($text, Profile $profile)
+    {
+        $groups = array();
+
+        /* extract all !group */
+        $count = preg_match_all('/(?:^|\s)!(' . Nickname::DISPLAY_FMT . ')/',
+                                strtolower($text),
+                                $match);
+
+        if (!$count) {
+            return $groups;
+        }
+
+        foreach (array_unique($match[1]) as $nickname) {
+            $group = self::getForNickname($nickname, $profile);
+            if ($group instanceof User_group && $profile->isMember($group)) {
+                $groups[] = clone($group);
+            }
+        }
+
+        return $groups;
+    }
+
+    static function idsFromText($text, Profile $profile)
+    {
+        $ids = array();
+        $groups = self::groupsFromText($text, $profile);
+        foreach ($groups as $group) {
+            $ids[$group->id] = true;
+        }
+        return array_keys($ids);
     }
 }

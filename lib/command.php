@@ -980,7 +980,7 @@ class GroupsCommand extends Command
     {
         $group = $this->user->getGroups();
         $groups=array();
-        while ($group->fetch()) {
+        while ($group instanceof User_group && $group->fetch()) {
             $groups[]=$group->nickname;
         }
         if(count($groups)==0){

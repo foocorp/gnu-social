@@ -94,7 +94,7 @@ class ToSelector extends Widget
 
         $groups = $this->user->getGroups();
 
-        while ($groups->fetch()) {
+        while ($groups instanceof User_group && $groups->fetch()) {
             $value = 'group:'.$groups->id;
             if (($this->to instanceof User_group) && $this->to->id == $groups->id) {
                 $default = $value;

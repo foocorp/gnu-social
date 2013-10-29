@@ -410,9 +410,8 @@ class Notice extends Managed_DataObject
         $notice->url = $url;
 
         // Get the groups here so we can figure out replies and such
-
         if (!isset($groups)) {
-            $groups = self::groupsFromText($notice->content, $profile);
+            $groups = User_group::idsFromText($notice->content, $profile);
         }
 
         $reply = null;
@@ -1154,7 +1153,7 @@ class Notice extends Managed_DataObject
         $groups = array();
         foreach (array_unique($group_ids) as $id) {
             $group = User_group::getKV('id', $id);
-            if ($group) {
+            if ($group instanceof User_group) {
                 common_log(LOG_ERR, "Local delivery to group id $id, $group->nickname");
                 $result = $this->addToGroupInbox($group);
                 if (!$result) {
@@ -1181,48 +1180,7 @@ class Notice extends Managed_DataObject
         return $groups;
     }
 
-    /**
-     * Parse !group delivery and record targets into group_inbox.
-     * @return array of Group objects
-     */
-    function saveGroups()
-    {
-        // Don't save groups for repeats
-
-        if (!empty($this->repeat_of)) {
-            return array();
-        }
-
-        $profile = $this->getProfile();
-
-        $groups = self::groupsFromText($this->content, $profile);
-
-        /* Add them to the database */
-
-        foreach ($groups as $group) {
-            /* XXX: remote groups. */
-
-            if (empty($group)) {
-                continue;
-            }
-
-
-            if ($profile->isMember($group)) {
-
-                $result = $this->addToGroupInbox($group);
-
-                if (!$result) {
-                    common_log_db_error($gi, 'INSERT', __FILE__);
-                }
-
-                $groups[] = clone($group);
-            }
-        }
-
-        return $groups;
-    }
-
-    function addToGroupInbox($group)
+    function addToGroupInbox(User_group $group)
     {
         $gi = Group_inbox::pkeyGet(array('group_id' => $group->id,
                                          'notice_id' => $this->id));
@@ -1445,7 +1403,7 @@ class Notice extends Managed_DataObject
 
     /**
      * Pull list of groups this notice needs to be delivered to,
-     * as previously recorded by saveGroups() or saveKnownGroups().
+     * as previously recorded by saveKnownGroups().
      *
      * @return array of Group objects
      */
@@ -2498,29 +2456,6 @@ class Notice extends Managed_DataObject
         }
 
         return false;
-    }
-
-    static function groupsFromText($text, $profile)
-    {
-        $groups = array();
-
-        /* extract all !group */
-        $count = preg_match_all('/(?:^|\s)!(' . Nickname::DISPLAY_FMT . ')/',
-                                strtolower($text),
-                                $match);
-
-        if (!$count) {
-            return $groups;
-        }
-
-        foreach (array_unique($match[1]) as $nickname) {
-            $group = User_group::getForNickname($nickname, $profile);
-            if ($group instanceof User_group && $profile->isMember($group)) {
-                $groups[] = $group->id;
-            }
-        }
-
-        return $groups;
     }
 
     public function getParent()
