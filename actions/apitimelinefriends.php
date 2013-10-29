@@ -161,7 +161,7 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
      * @return boolean success flag
      *
      */
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         $this->target = $this->getTargetProfile($this->arg('id'));

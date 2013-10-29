@@ -60,7 +60,7 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 

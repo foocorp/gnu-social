@@ -40,7 +40,7 @@ class ApiListUsersAction extends ApiBareAuthAction
     var $prev_cursor = 0;
     var $users = null;
 
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         // delete list member if method is DELETE or if method is POST and an argument
         // _method is set to DELETE

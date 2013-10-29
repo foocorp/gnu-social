@@ -74,7 +74,7 @@ class NewmessageAction extends FormAction
      * @return void
      */
 
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 

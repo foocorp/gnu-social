@@ -89,7 +89,7 @@ class AutocompleteAction extends Action
             $this->lastModified())) . '"';
     }
 
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         // If we die, show short error messages.
         StatusNet::setApi(true);

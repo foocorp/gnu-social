@@ -35,7 +35,7 @@ class OStatusInitAction extends Action
     var $profile;
     var $err;
 
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 

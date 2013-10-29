@@ -34,7 +34,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class ApiCheckNicknameAction extends ApiAction
 {
 
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 

@@ -47,7 +47,7 @@ class PushHubAction extends Action
         return parent::arg($arg, $def);
     }
 
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         StatusNet::setApi(true); // reduce exception reports to aid in debugging
         return parent::prepare($args);

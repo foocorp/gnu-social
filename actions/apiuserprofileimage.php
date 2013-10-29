@@ -51,7 +51,7 @@ class ApiUserProfileImageAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         $user = User::getKV('nickname', $this->arg('screen_name'));

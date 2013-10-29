@@ -53,7 +53,7 @@ class ProfileAction extends Action
 
     protected $target  = null;    // Profile that we're showing
 
-    protected function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
