@@ -941,7 +941,7 @@ class Ostatus_profile extends Managed_DataObject
 
             // Is the recipient a remote user or group?
             try {
-                $oprofile = Ostatus_profile::ensureProfileURI($recipient);
+                $oprofile = self::ensureProfileURI($recipient);
                 if ($oprofile->isGroup()) {
                     // Deliver to local members of this remote group.
                     // @todo FIXME: Sender verification?
@@ -2087,7 +2087,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // If unfound, do discovery stuff
 
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             if (preg_match("/^(\w+)\:(.*)/", $uri, $match)) {
                 $protocol = $match[1];
                 switch ($protocol) {
