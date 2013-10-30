@@ -74,7 +74,7 @@ class OStatusTagAction extends OStatusInitAction
         // TRANS: Field label.
         $this->input('profile', _m('Profile Account'), $this->profile,
                      // TRANS: Field title.
-                     _m('Your account id (for example user@identi.ca).'));
+                     _m('Your account id (for example user@example.com).'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->submit('submit', $submit);

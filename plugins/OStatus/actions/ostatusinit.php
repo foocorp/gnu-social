@@ -143,7 +143,7 @@ class OStatusInitAction extends Action
         // TRANS: Field label.
         $this->input('profile', _m('Profile Account'), $this->profile,
                       // TRANS: Tooltip for field label "Profile Account".
-                     _m('Your account ID (e.g. user@identi.ca).'));
+                     _m('Your account ID (e.g. user@example.com).'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->submit('submit', $submit);
