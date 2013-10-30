@@ -21,15 +21,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category Info
- * @package  StatusNet
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link     http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Version info page
@@ -39,7 +37,7 @@ if (!defined('STATUSNET')) {
  * complete documentation for admins.
  *
  * @category Info
- * @package  StatusNet
+ * @package  GNUsocial
  * @author   Evan Prodromou <evan@status.net>
  * @author   Craig Andrews <candrews@integralblue.com>
  * @copyright 2009-2011 Free Software Foundation, Inc http://www.fsf.org
@@ -69,8 +67,8 @@ class VersionAction extends Action
      */
     function title()
     {
-        // TRANS: Title for version page. %s is the StatusNet version.
-        return sprintf(_("StatusNet %s"), STATUSNET_VERSION);
+        // TRANS: Title for version page. %1$s is the engine name, %2$s is the engine version.
+        return sprintf(_('%1$s %2$s'), GNUSOCIAL_ENGINE, GNUSOCIAL_VERSION);
     }
 
     /**
@@ -83,7 +81,7 @@ class VersionAction extends Action
      *
      * @return boolean true
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -102,9 +100,9 @@ class VersionAction extends Action
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $this->showPage();
     }
 
@@ -146,42 +144,42 @@ class VersionAction extends Action
     {
         $this->elementStart('p');
 
-        // TRANS: Content part of StatusNet version page.
-        // TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
+        // TRANS: Content part of engine version page.
+        // TRANS: %1$s is the engine name (GNU social) and %2$s is the GNU social version.
         $this->raw(sprintf(_('This site is powered by %1$s version %2$s, '.
-                             'Copyright 2008-2011 StatusNet, Inc. '.
+                             'Copyright 2008-2013 StatusNet, Inc. '.
                              'and contributors.'),
-                           XMLStringer::estring('a', array('href' => 'http://status.net/'),
+                           XMLStringer::estring('a', array('href' => GNUSOCIAL_ENGINE_URL),
                                                 // TRANS: Engine name.
-                                                _('StatusNet')),
-                           STATUSNET_VERSION));
+                                                GNUSOCIAL_ENGINE),
+                           GNUSOCIAL_VERSION));
         $this->elementEnd('p');
 
-        // TRANS: Header for StatusNet contributors section on the version page.
+        // TRANS: Header for engine software contributors section on the version page.
         $this->element('h2', null, _('Contributors'));
 
         sort($this->contributors);
         $this->element('p', null, implode(', ', $this->contributors));
 
-        // TRANS: Header for StatusNet license section on the version page.
+        // TRANS: Header for engine software license section on the version page.
         $this->element('h2', null, _('License'));
 
         $this->element('p', null,
-                       // TRANS: Content part of StatusNet version page.
-                       _('StatusNet is free software: you can redistribute it and/or modify '.
+                       // TRANS: Content part of engine software version page. %1s is engine name
+                       sprintf(_('%1$s is free software: you can redistribute it and/or modify '.
                          'it under the terms of the GNU Affero General Public License as published by '.
                          'the Free Software Foundation, either version 3 of the License, or '.
-                         '(at your option) any later version.'));
+                         '(at your option) any later version.'), GNUSOCIAL_ENGINE));
 
         $this->element('p', null,
-                       // TRANS: Content part of StatusNet version page.
+                       // TRANS: Content part of engine software version page.
                        _('This program is distributed in the hope that it will be useful, '.
                          'but WITHOUT ANY WARRANTY; without even the implied warranty of '.
                          'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the '.
                          'GNU Affero General Public License for more details.'));
 
         $this->elementStart('p');
-        // TRANS: Content part of StatusNet version page.
+        // TRANS: Content part of engine version page.
         // TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
         $this->raw(sprintf(_('You should have received a copy of the GNU Affero General Public License '.
                              'along with this program.  If not, see %s.'),
@@ -192,7 +190,7 @@ class VersionAction extends Action
         // XXX: Theme information?
 
         if (count($this->pluginVersions)) {
-            // TRANS: Header for StatusNet plugins section on the version page.
+            // TRANS: Header for engine plugins section on the version page.
             $this->element('h2', null, _('Plugins'));
 
             $this->elementStart('table', array('id' => 'plugins_enabled'));
@@ -280,5 +278,6 @@ class VersionAction extends Action
                               'Brigitte Schuster',
                               'Brion Vibber (StatusNet)',
                               'Siebrand Mazeland',
-                              'Samantha Doherty (StatusNet)');
+                              'Samantha Doherty (StatusNet)',
+                              'Mikael Nordfeldth (FSF)');
 }

@@ -1077,7 +1077,7 @@ class Action extends HTMLOutputter // lawsuit
         // TRANS: Make sure there is no whitespace between "]" and "(".
         // TRANS: Text between [] is a link description, text between () is the link itself.
         // TRANS: %s is the version of StatusNet that is being used.
-        $instr .= sprintf(_('It runs on [GNU social](http://www.gnu.org/software/social/), version %s, available under the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html).'), STATUSNET_VERSION);
+        $instr .= sprintf(_('It runs on [%1$s](%2$s), version %3$s, available under the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html).'), GNUSOCIAL_ENGINE, GNUSOCIAL_ENGINE_URL, GNUSOCIAL_VERSION);
         $output = common_markup_to_html($instr);
         $this->raw($output);
         // do it
