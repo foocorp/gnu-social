@@ -193,6 +193,20 @@ class Profile extends Managed_DataObject
     }
 
     /**
+     * Takes the currently scoped profile into account to give a name 
+     * to list in notice streams. Preferences may differ between profiles.
+     */
+    function getStreamName()
+    {
+        $user = common_current_user();
+        if ($user instanceof User && $user->streamNicknames()) {
+            return $this->nickname;
+        }
+
+        return $this->getBestName();
+    }
+
+    /**
      * Gets the full name (if filled) with nickname as a parenthetical, or the nickname alone
      * if no fullname is provided.
      *

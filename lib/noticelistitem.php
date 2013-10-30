@@ -222,14 +222,7 @@ class NoticeListItem extends Widget
         $this->out->elementStart('a', $attrs);
         $this->showAvatar();
         $this->out->text(' ');
-        $user = common_current_user();
-        if (!empty($user) && $user->streamNicknames()) {
-            $this->out->element('span',array('class' => 'fn'),
-                                $this->profile->nickname);
-        } else {
-            $this->out->element('span',array('class' => 'fn'),
-                                $this->profile->getBestName());
-        }
+        $this->out->element('span',array('class' => 'fn'), $this->profile->getStreamName());
         $this->out->elementEnd('a');
 
         $this->out->elementEnd('span');
@@ -268,16 +261,12 @@ class NoticeListItem extends Widget
 
         $attentions = $this->getReplyProfiles();
 
-        $user = common_current_user();
-
-        $streamNicknames = !empty($user) && $user->streamNicknames();
-
         foreach ($attentions as $attn) {
             $class = $attn->isGroup() ? 'group' : 'account';
             $pa[] = array('href' => $attn->profileurl,
                           'title' => $attn->nickname,
                           'class' => "addressee {$class}",
-                          'text' => ($streamNicknames) ? $attn->nickname : $attn->getBestName());
+                          'text' => $attn->getStreamName());
         }
 
         return $pa;
