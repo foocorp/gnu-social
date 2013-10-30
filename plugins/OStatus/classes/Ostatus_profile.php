@@ -976,7 +976,7 @@ class Ostatus_profile extends Managed_DataObject
     {
         $oprofile = self::getFromProfileURL($profile_url);
 
-        if (!empty($oprofile)) {
+        if ($oprofile instanceof Ostatus_profile) {
             return $oprofile;
         }
 
@@ -1004,7 +1004,7 @@ class Ostatus_profile extends Managed_DataObject
 
             $oprofile = self::getFromProfileURL($finalUrl);
 
-            if (!empty($oprofile)) {
+            if ($oprofile instanceof Ostatus_profile) {
                 return $oprofile;
             }
         }
@@ -1063,24 +1063,19 @@ class Ostatus_profile extends Managed_DataObject
     static function getFromProfileURL($profile_url)
     {
         $profile = Profile::getKV('profileurl', $profile_url);
-
-        if (empty($profile)) {
+        if (!$profile instanceof Profile) {
             return null;
         }
 
         // Is it a known Ostatus profile?
-
         $oprofile = Ostatus_profile::getKV('profile_id', $profile->id);
-
-        if (!empty($oprofile)) {
+        if ($oprofile instanceof Ostatus_profile) {
             return $oprofile;
         }
 
         // Is it a local user?
-
         $user = User::getKV('id', $profile->id);
-
-        if (!empty($user)) {
+        if ($user instanceof User) {
             // @todo i18n FIXME: use sprintf and add i18n (?)
             throw new OStatusShadowException($profile, "'$profile_url' is the profile for local user '{$user->nickname}'.");
         }
@@ -1899,7 +1894,7 @@ class Ostatus_profile extends Managed_DataObject
                 throw new Exception(_m('Not a valid webfinger address.'));
             }
             $oprofile = Ostatus_profile::getKV('uri', $uri);
-            if (!empty($oprofile)) {
+            if ($oprofile instanceof Ostatus_profile) {
                 return $oprofile;
             }
         }
@@ -1907,7 +1902,7 @@ class Ostatus_profile extends Managed_DataObject
         // Try looking it up
         $oprofile = Ostatus_profile::getKV('uri', 'acct:'.$addr);
 
-        if (!empty($oprofile)) {
+        if ($oprofile instanceof Ostatus_profile) {
             self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->uri);
             return $oprofile;
         }
@@ -1998,7 +1993,7 @@ class Ostatus_profile extends Managed_DataObject
 
             $profile_id = $profile->insert();
 
-            if (!$profile_id) {
+            if ($profile_id === false) {
                 common_log_db_error($profile, 'INSERT', __FILE__);
                 // TRANS: Exception. %s is a webfinger address.
                 throw new Exception(sprintf(_m('Could not save profile for "%s".'),$addr));
@@ -2017,7 +2012,7 @@ class Ostatus_profile extends Managed_DataObject
 
             $result = $oprofile->insert();
 
-            if (!$result) {
+            if ($result === false) {
                 common_log_db_error($oprofile, 'INSERT', __FILE__);
                 // TRANS: Exception. %s is a webfinger address.
                 throw new Exception(sprintf(_m('Could not save OStatus profile for "%s".'),$addr));
@@ -2085,33 +2080,34 @@ class Ostatus_profile extends Managed_DataObject
 
         $oprofile = Ostatus_profile::getKV('uri', $uri);
 
-        // If unfound, do discovery stuff
+        if ($oprofile instanceof Ostatus_profile) {
+            return $oprofile;
+        }
 
-        if (!$oprofile instanceof Ostatus_profile) {
-            if (preg_match("/^(\w+)\:(.*)/", $uri, $match)) {
-                $protocol = $match[1];
-                switch ($protocol) {
-                case 'http':
-                case 'https':
-                    $oprofile = Ostatus_profile::ensureProfileURL($uri);
-                    break;
-                case 'acct':
-                case 'mailto':
-                    $rest = $match[2];
-                    $oprofile = Ostatus_profile::ensureWebfinger($rest);
-                    break;
-                default:
-                    // TRANS: Server exception.
-                    // TRANS: %1$s is a protocol, %2$s is a URI.
-                    throw new ServerException(sprintf(_m('Unrecognized URI protocol for profile: %1$s (%2$s).'),
-                                                      $protocol,
-                                                      $uri));
-                    break;
-                }
-            } else {
-                // TRANS: Server exception. %s is a URI.
-                throw new ServerException(sprintf(_m('No URI protocol for profile: %s.'),$uri));
+        // If unfound, do discovery stuff
+        if (preg_match("/^(\w+)\:(.*)/", $uri, $match)) {
+            $protocol = $match[1];
+            switch ($protocol) {
+            case 'http':
+            case 'https':
+                $oprofile = Ostatus_profile::ensureProfileURL($uri);
+                break;
+            case 'acct':
+            case 'mailto':
+                $rest = $match[2];
+                $oprofile = Ostatus_profile::ensureWebfinger($rest);
+                break;
+            default:
+                // TRANS: Server exception.
+                // TRANS: %1$s is a protocol, %2$s is a URI.
+                throw new ServerException(sprintf(_m('Unrecognized URI protocol for profile: %1$s (%2$s).'),
+                                                  $protocol,
+                                                  $uri));
+                break;
             }
+        } else {
+            // TRANS: Server exception. %s is a URI.
+            throw new ServerException(sprintf(_m('No URI protocol for profile: %s.'),$uri));
         }
 
         return $oprofile;

@@ -1078,7 +1078,7 @@ class OStatusPlugin extends Plugin
     function onStartGetProfileUri($profile, &$uri)
     {
         $oprofile = Ostatus_profile::getKV('profile_id', $profile->id);
-        if (!empty($oprofile)) {
+        if ($oprofile instanceof Ostatus_profile) {
             $uri = $oprofile->uri;
             return false;
         }
@@ -1302,16 +1302,13 @@ class OStatusPlugin extends Plugin
 
         // Now, check remotely
 
-        $oprofile = Ostatus_profile::ensureProfileURI($uri);
-
-        if (!empty($oprofile)) {
+        try {
+            $oprofile = Ostatus_profile::ensureProfileURI($uri);
             $profile = $oprofile->localProfile();
-            return false;
+            return !($profile instanceof Profile);  // localProfile won't throw exception but can return null
+        } catch (Exception $e) {
+            return true; // It's not an OStatus profile as far as we know, continue event handling
         }
-
-        // Still not a hit, so give up.
-
-        return true;
     }
 
     function onEndWebFingerProfileLinks(XML_XRD $xrd, Profile $target)
