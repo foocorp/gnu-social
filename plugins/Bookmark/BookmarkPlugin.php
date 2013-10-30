@@ -80,39 +80,7 @@ class BookmarkPlugin extends MicroAppPlugin
     {
         $schema = Schema::get();
 
-        // For storing user-submitted flags on profiles
-
-        $schema->ensureTable('bookmark',
-                             array(new ColumnDef('id',
-                                                 'char',
-                                                 36,
-                                                 false,
-                                                 'PRI'),
-                                   new ColumnDef('profile_id',
-                                                 'integer',
-                                                 null,
-                                                 false,
-                                                 'MUL'),
-                                   new ColumnDef('url',
-                                                 'varchar',
-                                                 255,
-                                                 false,
-                                                 'MUL'),
-                                   new ColumnDef('title',
-                                                 'varchar',
-                                                 255),
-                                   new ColumnDef('description',
-                                                 'text'),
-                                   new ColumnDef('uri',
-                                                 'varchar',
-                                                 255,
-                                                 false,
-                                                 'UNI'),
-                                   new ColumnDef('created',
-                                                 'datetime',
-                                                 null,
-                                                 false,
-                                                 'MUL')));
+        $schema->ensureTable('bookmark', Bookmark::schemaDef());
 
         return true;
     }
