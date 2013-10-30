@@ -17,7 +17,7 @@ Settings
 ========
 user*: user part of the jid
 server*: server part of the jid
-resource*: resource part of the jid
+resource (gnusocial): resource part of the jid
 port (5222): port on which to connect to the server
 encryption (true): use encryption on the connection
 host (same as server): host to connect to. Usually, you won't set this.

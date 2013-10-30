@@ -62,6 +62,7 @@ class User_group extends Managed_DataObject
             'primary key' => array('id'),
             'unique keys' => array(
                 'user_group_uri_key' => array('uri'),
+// when it's safe and everyone's run upgrade.php                'user_profile_id_key' => array('profile_id'),
             ),
             'foreign keys' => array(
                 'user_group_id_fkey' => array('profile', array('profile_id' => 'id')),

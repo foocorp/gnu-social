@@ -99,11 +99,35 @@ class Profile extends Managed_DataObject
         if ($this->_user === -1) {
             $this->_user = User::getKV('id', $this->id);
         }
-        if (!($this->_user instanceof User)) {
+        if (!$this->_user instanceof User) {
             throw new NoSuchUserException(array('id'=>$this->id));
         }
 
         return $this->_user;
+    }
+
+    protected $_group = -1;
+
+    public function getGroup()
+    {
+        if ($this->_group === -1) {
+            $this->_group = User_group::getKV('profile_id', $this->id);
+        }
+        if (!$this->_group instanceof User_group) {
+            throw new NoSuchGroupException(array('profile_id'=>$this->id));
+        }
+
+        return $this->_group;
+    }
+
+    public function isGroup()
+    {
+        try {
+            $this->getGroup();
+            return true;
+        } catch (NoSuchGroupException $e) {
+            return false;
+        }
     }
 
     public function isLocal()

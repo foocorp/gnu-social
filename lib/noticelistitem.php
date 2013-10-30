@@ -241,15 +241,12 @@ class NoticeListItem extends Widget
 
     function showAddressees()
     {
-        $ga = $this->getGroupAddressees();
         $pa = $this->getProfileAddressees();
 
-        $a = array_merge($ga, $pa);
-
-        if (!empty($a)) {
+        if (!empty($pa)) {
             $this->out->elementStart('span', 'addressees');
             $first = true;
-            foreach ($a as $addr) {
+            foreach ($pa as $addr) {
                 if (!$first) {
                     // TRANS: Separator in profile addressees list.
                     $this->out->text(_m('SEPARATOR',', '));
@@ -265,46 +262,22 @@ class NoticeListItem extends Widget
         }
     }
 
-    function getGroupAddressees()
-    {
-        $ga = array();
-
-        $groups = $this->getGroups();
-
-        $user = common_current_user();
-
-        $streamNicknames = !empty($user) && $user->streamNicknames();
-
-        foreach ($groups as $group) {
-            $ga[] = array('href' => $group->homeUrl(),
-                          'title' => $group->nickname,
-                          'class' => 'addressee group',
-                          'text' => ($streamNicknames) ? $group->nickname : $group->getBestName());
-        }
-
-        return $ga;
-    }
-
-    function getGroups()
-    {
-        return $this->notice->getGroups();
-    }
-
     function getProfileAddressees()
     {
         $pa = array();
 
-        $replies = $this->getReplyProfiles();
+        $attentions = $this->getReplyProfiles();
 
         $user = common_current_user();
 
         $streamNicknames = !empty($user) && $user->streamNicknames();
 
-        foreach ($replies as $reply) {
-            $pa[] = array('href' => $reply->profileurl,
-                          'title' => $reply->nickname,
-                          'class' => 'addressee account',
-                          'text' => ($streamNicknames) ? $reply->nickname : $reply->getBestName());
+        foreach ($attentions as $attn) {
+            $class = $attn->isGroup() ? 'group' : 'account';
+            $pa[] = array('href' => $attn->profileurl,
+                          'title' => $attn->nickname,
+                          'class' => "addressee {$class}",
+                          'text' => ($streamNicknames) ? $attn->nickname : $attn->getBestName());
         }
 
         return $pa;
