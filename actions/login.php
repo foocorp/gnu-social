@@ -20,44 +20,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Login
- * @package   StatusNet
+ * @package   GNUsocial
  * @author    Evan Prodromou <evan@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
+ * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://www.gnu.org/software/social/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
-/**
- * Login form
- *
- * @category Personal
- * @package  StatusNet
- * @author   Evan Prodromou <evan@status.net>
- * @author   Sarven Capadisli <csarven@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
- */
-class LoginAction extends Action
+class LoginAction extends FormAction
 {
-    /**
-     * Has there been an error?
-     */
-    var $error = null;
-
-    /**
-     * Is this a read-only action?
-     *
-     * @return boolean false
-     */
-    function isReadOnly($args)
-    {
-        return false;
-    }
+    protected $needLogin = false;
 
     /**
      * Prepare page to run
@@ -66,18 +43,15 @@ class LoginAction extends Action
      * @param $args
      * @return string title
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
-        parent::prepare($args);
-
         // @todo this check should really be in index.php for all sensitive actions
         $ssl = common_config('site', 'ssl');
         if (empty($_SERVER['HTTPS']) && ($ssl == 'always' || $ssl == 'sometimes')) {
             common_redirect(common_local_url('login'));
-            // exit
         }
 
-        return true;
+        return parent::prepare($args);
     }
 
     /**
@@ -85,23 +59,15 @@ class LoginAction extends Action
      *
      * Switches on request method; either shows the form or handles its input.
      *
-     * @param array $args $_REQUEST data
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
         if (common_is_real_login()) {
-            $user = common_current_user();
-            common_redirect(common_local_url('all', array('nickname' => $user->nickname)), 307);
-        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->checkLogin();
-        } else {
-            common_ensure_session();
-            $this->showForm();
+            common_redirect(common_local_url('all', array('nickname' => $this->scoped->nickname)), 307);
         }
+
+        return parent::handle();
     }
 
     /**
@@ -113,8 +79,10 @@ class LoginAction extends Action
      *
      * @return void
      */
-    function checkLogin($user_id=null, $token=null)
+    protected function handlePost()
     {
+        parent::handlePost();
+
         // XXX: login throttle
 
         $nickname = $this->trimmed('nickname');
@@ -122,20 +90,19 @@ class LoginAction extends Action
 
         $user = common_check_user($nickname, $password);
 
-        if (!$user) {
+        if (!$user instanceof User) {
             // TRANS: Form validation error displayed when trying to log in with incorrect credentials.
-            $this->showForm(_('Incorrect username or password.'));
-            return;
+            throw new ServerException(_('Incorrect username or password.'));
         }
 
         // success!
         if (!common_set_user($user)) {
             // TRANS: Server error displayed when during login a server error occurs.
-            $this->serverError(_('Error setting user. You are probably not authorized.'));
-            return;
+            throw new ServerException(_('Error setting user. You are probably not authorized.'));
         }
 
         common_real_login(true);
+        $this->updateScopedProfile(); 
 
         if ($this->boolean('rememberme')) {
             common_rememberme($user);
@@ -146,11 +113,10 @@ class LoginAction extends Action
         if ($url) {
             // We don't have to return to it again
             common_set_returnto(null);
-	    $url = common_inject_session($url);
+            $url = common_inject_session($url);
         } else {
             $url = common_local_url('all',
-                                    array('nickname' =>
-                                          $user->nickname));
+                                    array('nickname' => $this->scoped->nickname));
         }
 
         common_redirect($url, 303);
@@ -166,10 +132,10 @@ class LoginAction extends Action
      *
      * @return void
      */
-    function showForm($error=null)
+    public function showForm($msg=null, $success=false)
     {
-        $this->error = $error;
-        $this->showPage();
+        common_ensure_session();
+        return parent::showForm($msg, $success);
     }
 
     function showScripts()
@@ -187,26 +153,6 @@ class LoginAction extends Action
     {
         // TRANS: Page title for login page.
         return _('Login');
-    }
-
-    /**
-     * Show page notice
-     *
-     * Display a notice for how to use the page, or the
-     * error if it exists.
-     *
-     * @return void
-     */
-    function showPageNotice()
-    {
-        if ($this->error) {
-            $this->element('p', 'error', $this->error);
-        } else {
-            $instr  = $this->getInstructions();
-            $output = common_markup_to_html($instr);
-
-            $this->raw($output);
-        }
     }
 
     /**
@@ -244,6 +190,7 @@ class LoginAction extends Action
         $this->elementEnd('ul');
         // TRANS: Button text for log in on login page.
         $this->submit('submit', _m('BUTTON','Login'));
+        $this->hidden('token', common_session_token());
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
         $this->elementStart('p');

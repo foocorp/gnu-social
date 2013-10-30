@@ -152,9 +152,14 @@ class Action extends HTMLOutputter // lawsuit
             $this->checkLogin(); // if not logged in, this redirs/excepts
         }
 
-        $this->scoped = Profile::current();
+        $this->updateScopedProfile();
 
         return true;
+    }
+
+    function updateScopedProfile() {
+        $this->scoped = Profile::current();
+        return $this->scoped;
     }
 
     /**

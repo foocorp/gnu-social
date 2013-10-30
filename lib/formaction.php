@@ -102,6 +102,15 @@ class FormAction extends Action
     public function showInstructions()
     {
         // instructions are nice, so users know what to do
+        $this->raw(common_markup_to_html($this->getInstructions()));
+    }
+
+    /**
+     * @return string with instructions to pass into common_markup_to_html()
+     */
+    public function getInstructions()
+    {
+        return null;
     }
 
     public function showForm($msg=null, $success=false)

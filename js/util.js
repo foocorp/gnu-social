@@ -1331,7 +1331,7 @@ var SN = { // StatusNet
              */
             Get: function () {
                 var cookieValue = $.cookie(SN.C.S.StatusNetInstance);
-                if (cookieValue !== null) {
+                if (cookieValue !== undefined) {
                     return JSON.parse(cookieValue);
                 }
                 return null;

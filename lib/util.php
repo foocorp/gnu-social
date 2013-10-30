@@ -244,13 +244,11 @@ function common_check_user($nickname, $password)
             $user = User::getKV('nickname', Nickname::normalize($nickname));
         }
 
-        if (!empty($user)) {
-            if (!empty($password)) { // never allow login with blank password
-                if (0 == strcmp(common_munge_password($password, $user->id),
-                                $user->password)) {
-                    //internal checking passed
-                    $authenticatedUser = $user;
-                }
+        if ($user instanceof User && !empty($password)) {
+            if (0 == strcmp(common_munge_password($password, $user->id),
+                            $user->password)) {
+                //internal checking passed
+                $authenticatedUser = $user;
             }
         }
         Event::handle('EndCheckPassword', array($nickname, $password, $authenticatedUser));
@@ -1302,26 +1300,26 @@ function common_path($relative, $ssl=false, $addSession=true)
 
 function common_inject_session($url, $serverpart = null)
 {
-    if (common_have_session()) {
+    if (!common_have_session()) {
+        return $url;
+    }
 
-        if (empty($serverpart)) {
-            $serverpart = parse_url($url, PHP_URL_HOST);
-        }
+    if (empty($serverpart)) {
+        $serverpart = parse_url($url, PHP_URL_HOST);
+    }
 
-        $currentServer = (array_key_exists('HTTP_HOST', $_SERVER)) ? $_SERVER['HTTP_HOST'] : null;
+    $currentServer = (array_key_exists('HTTP_HOST', $_SERVER)) ? $_SERVER['HTTP_HOST'] : null;
 
-        // Are we pointing to another server (like an SSL server?)
+    // Are we pointing to another server (like an SSL server?)
 
-        if (!empty($currentServer) &&
-            0 != strcasecmp($currentServer, $serverpart)) {
-            // Pass the session ID as a GET parameter
-            $sesspart = session_name() . '=' . session_id();
-            $i = strpos($url, '?');
-            if ($i === false) { // no GET params, just append
-                $url .= '?' . $sesspart;
-            } else {
-                $url = substr($url, 0, $i + 1).$sesspart.'&'.substr($url, $i + 1);
-            }
+    if (!empty($currentServer) && 0 != strcasecmp($currentServer, $serverpart)) {
+        // Pass the session ID as a GET parameter
+        $sesspart = session_name() . '=' . session_id();
+        $i = strpos($url, '?');
+        if ($i === false) { // no GET params, just append
+            $url .= '?' . $sesspart;
+        } else {
+            $url = substr($url, 0, $i + 1).$sesspart.'&'.substr($url, $i + 1);
         }
     }
 
@@ -1954,6 +1952,10 @@ function common_confirmation_code($bits)
 
 function common_markup_to_html($c, $args=null)
 {
+    if ($c === null) {
+        return '';
+    }
+
     if (is_null($args)) {
         $args = array();
     }
