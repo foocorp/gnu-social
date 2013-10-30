@@ -49,7 +49,7 @@ class XmppPlugin extends ImPlugin
     public $server = null;
     public $port = 5222;
     public $user =  'update';
-    public $resource = null;
+    public $resource = 'gnusocial';
     public $encryption = true;
     public $password = null;
     public $host = null;  // only set if != server

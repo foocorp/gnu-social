@@ -172,17 +172,6 @@ $default =
         array('enabled' => false, // whether to throttle edits; false by default
               'count' => 20, // number of allowed messages in timespan
               'timespan' => 600), // timespan for throttling
-        'xmpp' =>
-        array('enabled' => false,
-              'server' => 'INVALID SERVER',
-              'port' => 5222,
-              'user' => 'update',
-              'encryption' => true,
-              'resource' => 'uniquename',
-              'password' => 'blahblahblah',
-              'host' => null, # only set if != server
-              'debug' => false, # print extra debug info
-              'public' => array()), # JIDs of users who want to receive the public stream
         'invite' =>
         array('enabled' => true),
         'tag' =>
