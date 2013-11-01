@@ -100,7 +100,7 @@ class SlicedFavoritesPlugin extends Plugin
         $url = 'http://status.net/wiki/Plugin:SlicedFavorites';
 
         $versions[] = array('name' => 'SlicedFavorites',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Brion Vibber',
             'homepage' => $url,
             'rawdescription' =>

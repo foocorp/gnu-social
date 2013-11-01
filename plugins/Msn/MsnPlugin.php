@@ -197,7 +197,7 @@ class MsnPlugin extends ImPlugin {
     public function onPluginVersion(&$versions) {
         $versions[] = array(
             'name' => 'MSN',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Luke Fitzgerald',
             'homepage' => 'http://status.net/wiki/Plugin:MSN',
             'rawdescription' =>

@@ -56,7 +56,7 @@ class PoweredByStatusNetPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'PoweredByStatusNet',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Sarven Capadisli',
                             'homepage' => 'http://status.net/wiki/Plugin:PoweredByStatusNet',
                             'rawdescription' =>

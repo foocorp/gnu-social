@@ -53,7 +53,7 @@ class EmailAuthenticationPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Email Authentication',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:EmailAuthentication',
                             'rawdescription' =>

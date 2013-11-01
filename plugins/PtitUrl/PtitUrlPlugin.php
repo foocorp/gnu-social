@@ -60,7 +60,7 @@ class PtitUrlPlugin extends UrlShortenerPlugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => sprintf('PtitUrl (%s)', $this->shortenerName),
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:PtitUrl',
                             'rawdescription' =>

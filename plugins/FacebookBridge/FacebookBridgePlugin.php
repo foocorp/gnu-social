@@ -617,7 +617,7 @@ ENDOFSCRIPT;
     {
         $versions[] = array(
             'name' => 'Facebook Bridge',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Craig Andrews, Zach Copley',
             'homepage' => 'http://status.net/wiki/Plugin:FacebookBridge',
             'rawdescription' =>

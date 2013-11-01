@@ -78,7 +78,7 @@ class ApiLoggerPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'ApiLogger',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:ApiLogger',
                             'rawdescription' =>

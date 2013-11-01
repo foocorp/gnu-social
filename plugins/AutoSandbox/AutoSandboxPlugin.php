@@ -59,7 +59,7 @@ class AutoSandboxPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'AutoSandbox',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Sean Carmody',
                             'homepage' => 'http://status.net/wiki/Plugin:AutoSandbox',
                             'rawdescription' =>

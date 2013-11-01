@@ -175,7 +175,7 @@ class InProcessCachePlugin extends Plugin
         $url = 'http://status.net/wiki/Plugin:InProcessCache';
 
         $versions[] = array('name' => 'InProcessCache',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => $url,
                             'description' =>

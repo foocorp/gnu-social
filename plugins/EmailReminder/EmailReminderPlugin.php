@@ -183,7 +183,7 @@ class EmailReminderPlugin extends Plugin
     {
         $versions[] = array(
             'name'           => 'EmailReminder',
-            'version'        => STATUSNET_VERSION,
+            'version'        => GNUSOCIAL_VERSION,
             'author'         => 'Zach Copley',
             'homepage'       => 'http://status.net/wiki/Plugin:EmailReminder',
             // TRANS: Plugin description.

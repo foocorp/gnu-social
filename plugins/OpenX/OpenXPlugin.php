@@ -202,7 +202,7 @@ ENDOFSCRIPT;
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'OpenX',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:OpenX',
                             'rawdescription' =>

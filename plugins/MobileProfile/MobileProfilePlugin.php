@@ -410,7 +410,7 @@ class MobileProfilePlugin extends WAP20Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'MobileProfile',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Sarven Capadisli',
                             'homepage' => 'http://status.net/wiki/Plugin:MobileProfile',
                             'rawdescription' =>

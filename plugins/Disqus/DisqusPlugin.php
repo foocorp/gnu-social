@@ -238,7 +238,7 @@ ENDOFSCRIPT;
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Disqus',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Zach Copley',
                             'homepage' => 'http://status.net/wiki/Plugin:Disqus',
                             'rawdescription' =>

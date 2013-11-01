@@ -186,7 +186,7 @@ class ModLogPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'ModLog',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:ModLog',
                             'description' =>

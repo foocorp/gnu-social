@@ -74,7 +74,7 @@ class OfflineBackupPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'OfflineBackup',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:OfflineBackup',
                             'rawdescription' =>

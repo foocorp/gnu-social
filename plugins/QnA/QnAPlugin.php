@@ -121,7 +121,7 @@ class QnAPlugin extends MicroAppPlugin
     {
         $versions[] = array(
             'name'        => 'QnA',
-            'version'     => STATUSNET_VERSION,
+            'version'     => GNUSOCIAL_VERSION,
             'author'      => 'Zach Copley',
             'homepage'    => 'http://status.net/wiki/Plugin:QnA',
             'description' =>

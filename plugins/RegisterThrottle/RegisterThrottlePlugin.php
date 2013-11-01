@@ -179,7 +179,7 @@ class RegisterThrottlePlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'RegisterThrottle',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:RegisterThrottle',
                             'description' =>

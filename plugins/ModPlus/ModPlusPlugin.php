@@ -32,7 +32,7 @@ class ModPlusPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'ModPlus',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:ModPlus',
                             'rawdescription' =>

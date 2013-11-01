@@ -79,7 +79,7 @@ class TinyMCEPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'TinyMCE',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Evan Prodromou',
             'homepage' => 'http://status.net/wiki/Plugin:TinyMCE',
             'rawdescription' =>

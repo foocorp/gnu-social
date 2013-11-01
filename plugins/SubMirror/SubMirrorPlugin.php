@@ -60,7 +60,7 @@ class SubMirrorPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'SubMirror',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:SubMirror',
                             'rawdescription' =>

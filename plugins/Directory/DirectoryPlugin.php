@@ -220,7 +220,7 @@ class DirectoryPlugin extends Plugin
     {
         $versions[] = array(
             'name' => 'Directory',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Zach Copley',
             'homepage' => 'http://status.net/wiki/Plugin:Directory',
             // TRANS: Plugin description.

@@ -144,7 +144,7 @@ class MinifyPlugin extends Plugin
     }
 
     function minifyUrl($src) {
-        return common_local_url('minify',null,array('f' => $src ,v => STATUSNET_VERSION));
+        return common_local_url('minify',null,array('f' => $src ,v => GNUSOCIAL_VERSION));
     }
 
     static function minifyJs($code) {
@@ -160,7 +160,7 @@ class MinifyPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Minify',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:Minify',
                             'rawdescription' =>

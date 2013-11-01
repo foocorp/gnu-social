@@ -141,7 +141,7 @@ class Cache
 
             $build = common_config('site', 'build');
 
-            $prefix = STATUSNET_VERSION.':'.$build.':'.$uniq;
+            $prefix = GNUSOCIAL_VERSION.':'.$build.':'.$uniq;
         }
 	
         return Cache::key($prefix.':'.$extra);

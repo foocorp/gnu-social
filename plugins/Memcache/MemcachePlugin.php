@@ -239,7 +239,7 @@ class MemcachePlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Memcache',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou, Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:Memcache',
                             'rawdescription' =>

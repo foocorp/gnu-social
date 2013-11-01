@@ -270,7 +270,7 @@ class DomainWhitelistPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'DomainWhitelist',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou, Zach Copley',
                             'homepage' => 'http://status.net/wiki/Plugin:DomainWhitelist',
                             'rawdescription' =>

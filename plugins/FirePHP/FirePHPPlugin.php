@@ -61,7 +61,7 @@ class FirePHPPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'FirePHP',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:FirePHP',
                             'rawdescription' =>

@@ -149,7 +149,7 @@ class AuthCryptPlugin extends AuthenticationPlugin
     public function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'AuthCrypt',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Mikael Nordfeldth',
                             'homepage' => 'http://status.net/wiki/Plugin:AuthCrypt',
                             'rawdescription' =>

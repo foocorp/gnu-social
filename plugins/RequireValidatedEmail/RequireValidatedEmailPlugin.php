@@ -213,7 +213,7 @@ class RequireValidatedEmailPlugin extends Plugin
     {
         $versions[] =
           array('name' => 'Require Validated Email',
-                'version' => STATUSNET_VERSION,
+                'version' => GNUSOCIAL_VERSION,
                 'author' => 'Craig Andrews, '.
                 'Evan Prodromou, '.
                 'Brion Vibber',

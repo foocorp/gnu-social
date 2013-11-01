@@ -125,7 +125,7 @@ class Snapshot
 
         // Some basic identification stuff
 
-        $this->stats['version']    = STATUSNET_VERSION;
+        $this->stats['version']    = GNUSOCIAL_VERSION;
         $this->stats['phpversion'] = phpversion();
         $this->stats['name']       = common_config('site', 'name');
         $this->stats['root']       = common_root_url();

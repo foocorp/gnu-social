@@ -47,7 +47,7 @@ require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
  */
 class TwitterBridgePlugin extends Plugin
 {
-    const VERSION = STATUSNET_VERSION;
+    const VERSION = GNUSOCIAL_VERSION;
     public $adminImportControl = false; // Should the 'import' checkbox be exposed in the admin panel?
 
     /**

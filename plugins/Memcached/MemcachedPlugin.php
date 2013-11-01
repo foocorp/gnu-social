@@ -210,7 +210,7 @@ class MemcachedPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Memcached',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou, Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:Memcached',
                             'rawdescription' =>

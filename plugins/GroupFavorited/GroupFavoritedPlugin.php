@@ -70,7 +70,7 @@ class GroupFavoritedPlugin extends Plugin
         $url = 'http://status.net/wiki/Plugin:GroupFavorited';
 
         $versions[] = array('name' => 'GroupFavorited',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Brion Vibber',
             'homepage' => $url,
             'rawdescription' =>

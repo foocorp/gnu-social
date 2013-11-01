@@ -42,7 +42,7 @@ if (!defined('STATUSNET')) {
  */
 class BlacklistPlugin extends Plugin
 {
-    const VERSION = STATUSNET_VERSION;
+    const VERSION = GNUSOCIAL_VERSION;
 
     public $nicknames = array();
     public $urls      = array();

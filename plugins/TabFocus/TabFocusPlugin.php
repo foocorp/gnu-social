@@ -47,7 +47,7 @@ class TabFocusPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'TabFocus',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews and Paul Irish',
                             'homepage' => 'http://status.net/wiki/Plugin:TabFocus',
                             'rawdescription' =>

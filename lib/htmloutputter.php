@@ -377,7 +377,7 @@ class HTMLOutputter extends XMLOutputter
 
                 if (strpos($src, 'plugins/') === 0 || strpos($src, 'local/') === 0) {
 
-                    $src = common_path($src, StatusNet::isHTTPS()) . '?version=' . STATUSNET_VERSION;
+                    $src = common_path($src, StatusNet::isHTTPS()) . '?version=' . GNUSOCIAL_VERSION;
 
                 } else {
 
@@ -428,7 +428,7 @@ class HTMLOutputter extends XMLOutputter
                         $path = '/'.$path;
                     }
 
-                    $src = $protocol.'://'.$server.$path.$src . '?version=' . STATUSNET_VERSION;
+                    $src = $protocol.'://'.$server.$path.$src . '?version=' . GNUSOCIAL_VERSION;
                 }
             }
 
@@ -486,7 +486,7 @@ class HTMLOutputter extends XMLOutputter
                 }else{
                     $src = common_path($src, StatusNet::isHTTPS());
                 }
-                $src.= '?version=' . STATUSNET_VERSION;
+                $src.= '?version=' . GNUSOCIAL_VERSION;
             }
             $this->element('link', array('rel' => 'stylesheet',
                                     'type' => 'text/css',

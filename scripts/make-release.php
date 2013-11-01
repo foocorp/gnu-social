@@ -27,7 +27,7 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 $base = INSTALLDIR;
 $encBase = escapeshellarg($base);
 
-$ver = STATUSNET_VERSION;
+$ver = GNUSOCIAL_VERSION;
 
 // @fixme hack
 if (preg_match('/^(\d+)\.(\d+)\.(\d+)/', $ver, $matches)) {

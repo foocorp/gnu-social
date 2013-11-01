@@ -120,7 +120,7 @@ class BlankAdPlugin extends UAPPlugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'BlankAd',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:BlankAdPlugin',
                             'rawdescription' =>

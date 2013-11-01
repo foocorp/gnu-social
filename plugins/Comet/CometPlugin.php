@@ -107,7 +107,7 @@ class CometPlugin extends RealtimePlugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Comet',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Comet',
                             'rawdescription' =>

@@ -37,7 +37,7 @@ class SQLStatsPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'SQLStats',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:SQLStats',
                             'rawdescription' =>

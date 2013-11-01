@@ -110,7 +110,7 @@ class SphinxSearchPlugin extends Plugin
         $url = 'http://status.net/wiki/Plugin:SphinxSearch';
 
         $versions[] = array('name' => 'SphinxSearch',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Brion Vibber',
             'homepage' => $url,
             'rawdescription' =>

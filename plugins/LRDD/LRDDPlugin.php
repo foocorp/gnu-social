@@ -54,7 +54,7 @@ class LRDDPlugin extends Plugin
     public function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'LRDD',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Mikael Nordfeldth',
                             'homepage' => 'http://www.gnu.org/software/social/',
                             // TRANS: Plugin description.

@@ -188,7 +188,7 @@ class AdsensePlugin extends UAPPlugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'BlankAdPlugin',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Adsense',
                             'rawdescription' =>

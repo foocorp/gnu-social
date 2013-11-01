@@ -490,7 +490,7 @@ class GeonamesPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Geonames',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Geonames',
                             'rawdescription' =>

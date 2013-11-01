@@ -99,7 +99,7 @@ class CacheLogPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'CacheLog',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:CacheLog',
                             'description' =>

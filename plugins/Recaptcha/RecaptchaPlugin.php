@@ -107,7 +107,7 @@ class RecaptchaPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Recaptcha',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Eric Helgeson',
                             'homepage' => 'http://status.net/wiki/Plugin:Recaptcha',
                             'rawdescription' =>

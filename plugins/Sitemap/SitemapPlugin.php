@@ -179,7 +179,7 @@ class SitemapPlugin extends Plugin
         $url = 'http://status.net/wiki/Plugin:Sitemap';
 
         $versions[] = array('name' => 'Sitemap',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Evan Prodromou',
             'homepage' => $url,
             'rawdescription' =>

@@ -214,7 +214,7 @@ class FacebookShareTarget extends NoticeShareTarget
         $url = 'http://status.net/wiki/Plugin:ShareNotice';
 
         $versions[] = array('name' => 'ShareNotice',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Brion Vibber',
             'homepage' => $url,
             'rawdescription' =>

@@ -26,7 +26,6 @@ define('GNUSOCIAL_BASE_VERSION', '1.1.1');
 define('GNUSOCIAL_LIFECYCLE', 'alpha'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
 
 define('GNUSOCIAL_VERSION', GNUSOCIAL_BASE_VERSION . '-' . GNUSOCIAL_LIFECYCLE);
-define('STATUSNET_VERSION', GNUSOCIAL_VERSION); // compatibility
 
 define('GNUSOCIAL_CODENAME', 'Not decided yet');
 

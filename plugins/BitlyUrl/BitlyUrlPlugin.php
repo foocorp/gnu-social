@@ -148,7 +148,7 @@ class BitlyUrlPlugin extends UrlShortenerPlugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => sprintf('BitlyUrl (%s)', $this->shortenerName),
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews, Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:BitlyUrl',
                             'rawdescription' =>

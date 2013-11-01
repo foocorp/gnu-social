@@ -109,7 +109,7 @@ class XCachePlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'XCache',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:XCache',
                             'rawdescription' =>

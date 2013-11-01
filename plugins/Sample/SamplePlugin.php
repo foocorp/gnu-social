@@ -225,7 +225,7 @@ class SamplePlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Sample',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Brion Vibber, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Sample',
                             'rawdescription' =>

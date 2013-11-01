@@ -1237,7 +1237,7 @@ class OStatusPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'OStatus',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou, James Walker, Brion Vibber, Zach Copley',
                             'homepage' => 'http://status.net/wiki/Plugin:OStatus',
                             // TRANS: Plugin description.

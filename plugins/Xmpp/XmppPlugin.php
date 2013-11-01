@@ -465,7 +465,7 @@ class XmppPlugin extends ImPlugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'XMPP',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:XMPP',
                             'rawdescription' =>

@@ -168,7 +168,7 @@ class Atom10Feed extends XMLStringer
         $this->element(
             'generator', array(
                 'uri'     => 'http://status.net',
-                'version' => STATUSNET_VERSION
+                'version' => GNUSOCIAL_VERSION
             ),
             'StatusNet'
         );

@@ -405,7 +405,7 @@ class GroupPrivateMessagePlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'GroupPrivateMessage',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:GroupPrivateMessage',
                             'rawdescription' =>

@@ -110,7 +110,7 @@ class ForceGroupPlugin extends Plugin
         $url = 'http://status.net/wiki/Plugin:ForceGroup';
 
         $versions[] = array('name' => 'ForceGroup',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Brion Vibber',
             'homepage' => $url,
             'rawdescription' =>

@@ -87,7 +87,7 @@ class BlogPlugin extends MicroAppPlugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Blog',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Blog',
                             'rawdescription' =>

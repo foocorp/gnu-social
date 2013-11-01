@@ -374,7 +374,7 @@ class IrcPlugin extends ImPlugin {
      */
     public function onPluginVersion(&$versions) {
         $versions[] = array('name' => 'IRC',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Luke Fitzgerald',
                             'homepage' => 'http://status.net/wiki/Plugin:IRC',
                             'rawdescription' =>

@@ -46,7 +46,7 @@ if (!defined('STATUSNET')) {
  */
 class MapstractionPlugin extends Plugin
 {
-    const VERSION = STATUSNET_VERSION;
+    const VERSION = GNUSOCIAL_VERSION;
 
     /** provider name, one of:
      'cloudmade', 'google', 'microsoft', 'openlayers', 'yahoo' */

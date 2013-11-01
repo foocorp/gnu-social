@@ -232,7 +232,7 @@ class UserFlagPlugin extends Plugin
         $url = 'http://status.net/wiki/Plugin:UserFlag';
 
         $versions[] = array('name' => 'UserFlag',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Evan Prodromou',
             'homepage' => $url,
             'rawdescription' =>

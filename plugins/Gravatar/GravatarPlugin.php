@@ -62,7 +62,7 @@ class GravatarPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Gravatar',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Eric Helgeson, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Gravatar',
                             'rawdescription' =>

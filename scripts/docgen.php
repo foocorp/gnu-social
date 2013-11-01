@@ -72,9 +72,9 @@ if ($plugin) {
 
 function getVersion()
 {
-    // define('STATUSNET_VERSION', '0.9.1');
+    // define('GNUSOCIAL_VERSION', '0.9.1');
     $source = file_get_contents(INSTALLDIR . '/lib/common.php');
-    if (preg_match('/^\s*define\s*\(\s*[\'"]STATUSNET_VERSION[\'"]\s*,\s*[\'"](.*)[\'"]\s*\)\s*;/m', $source, $matches)) {
+    if (preg_match('/^\s*define\s*\(\s*[\'"]GNUSOCIAL_VERSION[\'"]\s*,\s*[\'"](.*)[\'"]\s*\)\s*;/m', $source, $matches)) {
         return $matches[1];
     }
     return 'unknown';

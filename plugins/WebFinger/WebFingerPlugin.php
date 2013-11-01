@@ -140,7 +140,7 @@ class WebFingerPlugin extends Plugin
     public function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'WebFinger',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Mikael Nordfeldth',
                             'homepage' => 'http://www.gnu.org/software/social/',
                             // TRANS: Plugin description.

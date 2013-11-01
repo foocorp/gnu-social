@@ -42,7 +42,7 @@ class LogFilterPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'LogFilter',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:LogFilter',
                             'rawdescription' =>

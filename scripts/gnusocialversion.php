@@ -30,4 +30,4 @@ END_OF_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-print STATUSNET_VERSION."\n";
+print GNUSOCIAL_VERSION."\n";

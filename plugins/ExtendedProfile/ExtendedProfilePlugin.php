@@ -33,7 +33,7 @@ class ExtendedProfilePlugin extends Plugin
     {
         $versions[] = array(
             'name' => 'ExtendedProfile',
-            'version' => STATUSNET_VERSION,
+            'version' => GNUSOCIAL_VERSION,
             'author' => 'Brion Vibber, Samantha Doherty, Zach Copley',
             'homepage' => 'http://status.net/wiki/Plugin:ExtendedProfile',
             // TRANS: Plugin description.

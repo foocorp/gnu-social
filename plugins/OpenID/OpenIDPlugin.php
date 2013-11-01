@@ -647,7 +647,7 @@ class OpenIDPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'OpenID',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou, Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:OpenID',
                             'rawdescription' =>

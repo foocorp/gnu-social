@@ -106,7 +106,7 @@ ENDOFPIWIK;
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'PiwikAnalytics',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Tobias Diekershoff, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Piwik',
                             'rawdescription' =>
