@@ -513,7 +513,7 @@ class Ostatus_profile extends Managed_DataObject
 
         $oprofile = $this->checkAuthorship($activity);
 
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             common_log(LOG_INFO, "No author matched share activity");
             return null;
         }
@@ -534,7 +534,7 @@ class Ostatus_profile extends Managed_DataObject
 
         $shared = $activity->objects[0];
 
-        if (!($shared instanceof Activity)) {
+        if (!$shared instanceof Activity) {
             // TRANS: Client exception thrown when trying to share a non-activity object.
             throw new ClientException(_m('Can only handle shared activities.'));
         }
@@ -543,7 +543,7 @@ class Ostatus_profile extends Managed_DataObject
         if (!empty($shared->objects[0]->id)) {
             // Because StatusNet since commit 8cc4660 sets $shared->id to a TagURI which
             // fucks up federation, because the URI is no longer recognised by the origin.
-            // ...but it might still be empty (not present) because $shared->id is set.
+            // So we set it to the object ID if it exists, otherwise we trust $shared->id
             $sharedId = $shared->objects[0]->id;
         }
         if (empty($sharedId)) {
@@ -554,18 +554,25 @@ class Ostatus_profile extends Managed_DataObject
         // we can't use these functions to "ensureActivityObjectProfile" of a local user,
         // who might be the creator of the shared activity in question.
         $sharedNotice = Notice::getKV('uri', $sharedId);
-        if (!($sharedNotice instanceof Notice)) {
-            // If no local notice is found, process it!
+        if (!$sharedNotice instanceof Notice) {
+            // If no locally stored notice is found, process it!
             // TODO: Remember to check Deleted_notice!
-            $other = Ostatus_profile::ensureActivityObjectProfile($shared->actor);
-            $sharedNotice = $other->processActivity($shared, $method);
-        }
-
-        if (!($sharedNotice instanceof Notice)) {
-            // And if we apparently can't get the shared notice, we'll abort the whole thing.
-            // TRANS: Client exception thrown when saving an activity share fails.
-            // TRANS: %s is a share ID.
-            throw new ClientException(sprintf(_m('Failed to save activity %s.'), $sharedId));
+            // TODO: If a post is shared that we can't retrieve - what to do?
+            try {
+                $other = self::ensureActivityObjectProfile($shared->actor);
+                $sharedNotice = $other->processActivity($shared, $method);
+                if (!$sharedNotice instanceof Notice) {
+                    // And if we apparently can't get the shared notice, we'll abort the whole thing.
+                    // TRANS: Client exception thrown when saving an activity share fails.
+                    // TRANS: %s is a share ID.
+                    throw new ClientException(sprintf(_m('Failed to save activity %s.'), $sharedId));
+                }
+            } catch (FeedSubException $e) {
+                // Remote feed could not be found or verified, should we
+                // transform this into an "RT @user Blah, blah, blah..."?
+                common_log(LOG_INFO, __METHOD__ . ' got a ' . get_class($e) . ': ' . $e->getMessage());
+                return null;
+            }
         }
 
         // We'll want to save a web link to the original notice, if provided.
@@ -658,14 +665,14 @@ class Ostatus_profile extends Managed_DataObject
         if ($activity->context) {
             // TODO: context->attention
             list($options['groups'], $options['replies'])
-                = $this->filterReplies($oprofile, $activity->context->attention);
+                = $this->filterAttention($oprofile, $activity->context->attention);
 
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
             if (!empty($activity->context->replyToID)) {
                 $orig = Notice::getKV('uri',
                                           $activity->context->replyToID);
-                if (!empty($orig)) {
+                if ($orig instanceof Notice) {
                     $options['reply_to'] = $orig->id;
                 }
             }
@@ -722,7 +729,7 @@ class Ostatus_profile extends Managed_DataObject
 
         $oprofile = $this->checkAuthorship($activity);
 
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             return null;
         }
 
@@ -730,12 +737,12 @@ class Ostatus_profile extends Managed_DataObject
 
         $note = $activity->objects[0];
 
-        // The id URI will be used as a unique identifier for for the notice,
+        // The id URI will be used as a unique identifier for the notice,
         // protecting against duplicate saves. It isn't required to be a URL;
         // tag: URIs for instance are found in Google Buzz feeds.
         $sourceUri = $note->id;
         $dupe = Notice::getKV('uri', $sourceUri);
-        if ($dupe) {
+        if ($dupe instanceof Notice) {
             common_log(LOG_INFO, "OStatus: ignoring duplicate post: $sourceUri");
             return $dupe;
         }
@@ -827,14 +834,13 @@ class Ostatus_profile extends Managed_DataObject
         if ($activity->context) {
             // TODO: context->attention
             list($options['groups'], $options['replies'])
-                = $this->filterReplies($oprofile, $activity->context->attention);
+                = $this->filterAttention($oprofile, $activity->context->attention);
 
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
             if (!empty($activity->context->replyToID)) {
-                $orig = Notice::getKV('uri',
-                                          $activity->context->replyToID);
-                if (!empty($orig)) {
+                $orig = Notice::getKV('uri', $activity->context->replyToID);
+                if ($orig instanceof Notice) {
                     $options['reply_to'] = $orig->id;
                 }
             }
@@ -875,7 +881,7 @@ class Ostatus_profile extends Managed_DataObject
                                      $content,
                                      'ostatus',
                                      $options);
-            if ($saved) {
+            if ($saved instanceof Notice) {
                 Ostatus_source::saveNew($saved, $this, $method);
                 if (!empty($attachment)) {
                     File_to_post::processNew($attachment->id, $saved->id);
@@ -906,7 +912,7 @@ class Ostatus_profile extends Managed_DataObject
      * @param array in/out &$attention_uris set of URIs, will be pruned on output
      * @return array of group IDs
      */
-    protected function filterReplies($sender, array $attention)
+    protected function filterAttention($sender, array $attention)
     {
         common_log(LOG_DEBUG, "Original reply recipients: " . implode(', ', $attention));
         $groups = array();
@@ -1461,9 +1467,9 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         $ptag = Profile_list::getKV('uri', $homeuri);
-        if ($ptag) {
+        if ($ptag instanceof Profile_list) {
             $local_user = User::getKV('id', $ptag->tagger);
-            if (!empty($local_user)) {
+            if ($local_user instanceof User) {
                 // TRANS: Exception.
                 throw new Exception(_m('Local list cannot be referenced as remote.'));
             }
@@ -2090,12 +2096,12 @@ class Ostatus_profile extends Managed_DataObject
             switch ($protocol) {
             case 'http':
             case 'https':
-                $oprofile = Ostatus_profile::ensureProfileURL($uri);
+                $oprofile = self::ensureProfileURL($uri);
                 break;
             case 'acct':
             case 'mailto':
                 $rest = $match[2];
-                $oprofile = Ostatus_profile::ensureWebfinger($rest);
+                $oprofile = self::ensureWebfinger($rest);
                 break;
             default:
                 // TRANS: Server exception.

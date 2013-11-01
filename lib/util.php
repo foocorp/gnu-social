@@ -704,9 +704,9 @@ function common_find_mentions($text, $notice)
             } catch (NoProfileException $e) {
                 common_log(LOG_WARNING, sprintf('Notice %d author profile id %d does not exist', $origNotice->id, $origNotice->profile_id));
             } catch (ServerException $e) {
-                common_log(LOG_WARNING, __METHOD__ . ' got exception: ' . $e->getMessage());
-            } catch (Exception $e) {
                 // Probably just no parent. Should get a specific NoParentException
+            } catch (Exception $e) {
+                common_log(LOG_WARNING, __METHOD__ . ' got exception ' . get_class($e) . ' : ' . $e->getMessage());
             }
         }
 

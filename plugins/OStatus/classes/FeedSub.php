@@ -133,7 +133,7 @@ class FeedSub extends Managed_DataObject
     public static function ensureFeed($feeduri)
     {
         $current = self::getKV('uri', $feeduri);
-        if ($current) {
+        if ($current instanceof FeedSub) {
             return $current;
         }
 
@@ -154,7 +154,7 @@ class FeedSub extends Managed_DataObject
         $feedsub->modified = common_sql_now();
 
         $result = $feedsub->insert();
-        if (empty($result)) {
+        if ($result === false) {
             throw new FeedDBException($feedsub);
         }
 

@@ -551,7 +551,7 @@ class OStatusPlugin extends Plugin
     function onStartFeedSubReceive($feedsub, $feed)
     {
         $oprofile = Ostatus_profile::getKV('feeduri', $feedsub->uri);
-        if ($oprofile) {
+        if ($oprofile instanceof Ostatus_profile) {
             $oprofile->processFeed($feed, 'push');
         } else {
             common_log(LOG_DEBUG, "No ostatus profile for incoming feed $feedsub->uri");

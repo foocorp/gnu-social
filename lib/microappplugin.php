@@ -353,7 +353,7 @@ abstract class MicroAppPlugin extends Plugin
 
             $actor = $oprofile->checkAuthorship($activity);
 
-            if (empty($actor)) {
+            if (!$actor instanceof Ostatus_profile) {
                 // TRANS: Client exception thrown when no author for an activity was found.
                 throw new ClientException(_('Cannot get author for activity.'));
             }
