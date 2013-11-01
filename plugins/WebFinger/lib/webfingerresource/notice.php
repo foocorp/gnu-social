@@ -19,9 +19,19 @@ class WebFingerResource_Notice extends WebFingerResource
 
     public function updateXRD(XML_XRD $xrd)
     {
-        parent::updateXRD($xrd);
+        if (Event::handle('StartWebFingerNoticeLinks', array($xrd, $this->object))) {
+            $xrd->links[] = new XML_XRD_Element_Link('alternate',
+                                    common_local_url('ApiStatusesShow',
+                                        array('id'=>$this->object->id,
+                                              'format'=>'atom')),
+                                    'application/atom+xml');
 
-        // TODO: Add atom and json representation links here
-        // TODO: Add Salmon/callback links and stuff here
+            $xrd->links[] = new XML_XRD_Element_Link('alternate',
+                                    common_local_url('ApiStatusesShow',
+                                        array('id'=>$this->object->id,
+                                              'format'=>'json')),
+                                    'application/json');
+            Event::handle('EndWebFingerNoticeLinks', array($xrd, $this->object));
+        }
     }
 }

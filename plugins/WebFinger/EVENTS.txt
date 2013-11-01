@@ -22,10 +22,18 @@ EndWebFingerReconstruction: Last attempts to generate an acct: uri from a Profil
 - $profile: Profile object for which we want a WebFinger ID
 - &$acct:   String reference where reconstructed ID is stored
 
-StartWebFingerProfileLinks: About to set links for the resource descriptor of a profile
+StartWebFingerNoticeLinks: About to set links for the resource descriptor of a Notice
+- $xrd:     XML_XRD object being shown
+- $target:  Notice being shown
+
+EndWebFingerNoticeLinks: Done with links for the resource descriptor of a Notice
+- $xrd:     XML_XRD object being shown
+- $target:  Notice being shown
+
+StartWebFingerProfileLinks: About to set links for the resource descriptor of a Profile
 - $xrd:     XML_XRD object being shown
 - $target:  Profile being shown
 
-EndWebFingerProfileLinks: Done with links for the resource descriptor of a profile
+EndWebFingerProfileLinks: Done with links for the resource descriptor of a Profile
 - $xrd:     XML_XRD object being shown
 - $target:  Profile being shown

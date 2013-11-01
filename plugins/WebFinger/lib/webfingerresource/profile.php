@@ -11,6 +11,8 @@
 
 class WebFingerResource_Profile extends WebFingerResource
 {
+    const PROFILEPAGE = 'http://webfinger.net/rel/profile-page';
+
     public function __construct(Profile $object)
     {
         // The type argument above verifies that it's our class
@@ -53,7 +55,8 @@ class WebFingerResource_Profile extends WebFingerResource
     {
         if (Event::handle('StartWebFingerProfileLinks', array($xrd, $this->object))) {
 
-            parent::updateXRD($xrd);
+            $xrd->links[] = new XML_XRD_Element_Link(self::PROFILEPAGE,
+                                        $this->object->getUrl(), 'text/html');
 
             // XFN
             $xrd->links[] = new XML_XRD_Element_Link('http://gmpg.org/xfn/11',

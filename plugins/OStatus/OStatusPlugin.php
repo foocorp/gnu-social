@@ -1311,6 +1311,14 @@ class OStatusPlugin extends Plugin
         }
     }
 
+    function onEndWebFingerNoticeLinks(XML_XRD $xrd, Notice $target)
+    {
+        $author = $target->getProfile();
+        $salmon_url = common_local_url('usersalmon', array('id' => $author->id));
+        $xrd->links[] = new XML_XRD_Element_Link(Salmon::REL_SALMON, $salmon_url);
+        return true;
+    }
+
     function onEndWebFingerProfileLinks(XML_XRD $xrd, Profile $target)
     {
         $xrd->links[] = new XML_XRD_Element_Link(Discovery::UPDATESFROM,

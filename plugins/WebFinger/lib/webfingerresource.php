@@ -11,8 +11,6 @@
 
 abstract class WebFingerResource
 {
-    const PROFILEPAGE = 'http://webfinger.net/rel/profile-page';
-
     protected $identities = array();
 
     protected $object = null;
@@ -47,8 +45,5 @@ abstract class WebFingerResource
         return $aliases;
     }
 
-    public function updateXRD(XML_XRD $xrd) {
-        $xrd->links[] = new XML_XRD_Element_Link(WebFingerResource::PROFILEPAGE,
-                                        $this->object->getUrl(), 'text/html');
-    }
+    abstract public function updateXRD(XML_XRD $xrd);
 }
