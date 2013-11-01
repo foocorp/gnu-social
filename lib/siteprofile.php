@@ -149,7 +149,6 @@ class PrivateSite extends SiteProfileSettings
                     'Directory'               => null,
                     'ExtendedProfile'         => null,
                     'EmailRegistration'       => null,
-                    'NewMenu'                 => null,
                     'MobileProfile'           => null,
                 ))
              ),
@@ -233,7 +232,6 @@ class SingleuserSite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'NewMenu'                 => null,
                     'MobileProfile'           => null,
                     'OStatus'                 => null,
                     'TwitterBridge'           => null,
