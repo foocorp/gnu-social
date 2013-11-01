@@ -30,9 +30,6 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-require_once INSTALLDIR.'/lib/noticeform.php';
-require_once INSTALLDIR.'/lib/htmloutputter.php';
-
 /**
  * Base class for all actions
  *
@@ -1051,32 +1048,32 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showLicenses()
     {
-        $this->showStatusNetLicense();
+        $this->showGNUsocialLicense();
         $this->showContentLicense();
     }
 
     /**
-     * Show StatusNet license.
+     * Show GNU social license.
      *
      * @return nothing
      */
-    function showStatusNetLicense()
+    function showGNUsocialLicense()
     {
         if (common_config('site', 'broughtby')) {
-            // TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is set.
+            // TRANS: First sentence of the GNU social site license. Used if 'broughtby' is set.
             // TRANS: Text between [] is a link description, text between () is the link itself.
             // TRANS: Make sure there is no whitespace between "]" and "(".
             // TRANS: "%%site.broughtby%%" is the value of the variable site.broughtby
             $instr = _('**%%site.name%%** is a social network, courtesy of [%%site.broughtby%%](%%site.broughtbyurl%%).');
         } else {
-            // TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is not set.
+            // TRANS: First sentence of the GNU social site license. Used if 'broughtby' is not set.
             $instr = _('**%%site.name%%** is a social network.');
         }
         $instr .= ' ';
-        // TRANS: Second sentence of the StatusNet site license. Mentions the StatusNet source code license.
+        // TRANS: Second sentence of the GNU social site license. Mentions the GNU social source code license.
         // TRANS: Make sure there is no whitespace between "]" and "(".
-        // TRANS: Text between [] is a link description, text between () is the link itself.
-        // TRANS: %s is the version of StatusNet that is being used.
+        // TRANS: [%1$s](%2$s) is a link description followed by the link itself
+        // TRANS: %3$s is the version of GNU social that is being used.
         $instr .= sprintf(_('It runs on [%1$s](%2$s), version %3$s, available under the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html).'), GNUSOCIAL_ENGINE, GNUSOCIAL_ENGINE_URL, GNUSOCIAL_VERSION);
         $output = common_markup_to_html($instr);
         $this->raw($output);

@@ -34,14 +34,11 @@
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for notice
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 /* We keep 200 notices, the max number of notices available per API request,
  * in the memcached cache. */
