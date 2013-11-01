@@ -158,10 +158,20 @@ class Plugin
         $this->log(LOG_DEBUG, $msg);
     }
     
-    function name()
+    public function name()
     {
         $cls = get_class($this);
         return mb_substr($cls, 0, -6);
+    }
+
+    public function version()
+    {
+        return GNUSOCIAL_VERSION;
+    }
+
+    protected function userAgent() {
+        return HTTPClient::userAgent()
+                . ' (' . get_class($this) . ' v' . $this->version() . ')';
     }
 
     function onPluginVersion(&$versions)

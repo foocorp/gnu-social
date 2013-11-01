@@ -129,7 +129,7 @@ abstract class JsonStreamReader
         $lines = array(
             "GET $path HTTP/1.1",
             "Host: $host",
-            "User-Agent: StatusNet/" . STATUSNET_VERSION . " (TwitterBridgePlugin)",
+            'User-Agent: ' . HTTPClient::userAgent() . ' (TwitterBridgePlugin)',
             "Connection: close",
             "",
             ""

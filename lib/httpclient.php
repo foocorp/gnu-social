@@ -158,7 +158,7 @@ class HTTPClient extends HTTP_Request2
         }
 
         parent::__construct($url, $method, $config);
-        $this->setHeader('User-Agent', $this->userAgent());
+        $this->setHeader('User-Agent', self::userAgent());
     }
 
     /**
@@ -247,9 +247,10 @@ class HTTPClient extends HTTP_Request2
      *
      * @return string
      */
-    function userAgent()
+    static public function userAgent()
     {
-        return "GNU Social/".GNUSOCIAL_VERSION." (".GNUSOCIAL_CODENAME.")";
+        return GNUSOCIAL_ENGINE . '/' . GNUSOCIAL_VERSION
+                . ' (' . GNUSOCIAL_CODENAME . ')';
     }
 
     /**

@@ -227,10 +227,9 @@ class LinkbackPlugin extends Plugin
         }
     }
 
-    function userAgent()
+    public function version()
     {
-        return 'LinkbackPlugin/'.LINKBACKPLUGIN_VERSION .
-          ' StatusNet/' . STATUSNET_VERSION;
+        return LINKBACKPLUGIN_VERSION;
     }
 
     function onPluginVersion(&$versions)

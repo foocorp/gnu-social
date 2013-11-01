@@ -90,11 +90,11 @@ function ping_broadcast_notice($notice) {
 
             if ($type === 'get') {
                 $result = $fetcher->get($notify_url . '?' . http_build_query($args),
-                                        array('User-Agent: StatusNet/'.STATUSNET_VERSION));
+                                        array('User-Agent: ' . HTTPClient::userAgent()));
             } else {
                 $result = $fetcher->post($notify_url,
                                          http_build_query($args),
-                                         array('User-Agent: StatusNet/'.STATUSNET_VERSION));
+                                         array('User-Agent: ' . HTTPClient::userAgent()));
             }
             if ($result->status != '200') {
                 common_log(LOG_WARNING,

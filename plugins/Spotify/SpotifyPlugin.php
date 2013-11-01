@@ -67,12 +67,6 @@ class SpotifyPlugin extends Plugin
         return true;
     }
 
-    function userAgent()
-    {
-        return 'SpotifyPlugin/'.SPOTIFYPLUGIN_VERSION .
-               ' StatusNet/' . STATUSNET_VERSION;
-    }
-
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Spotify',

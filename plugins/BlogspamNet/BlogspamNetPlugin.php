@@ -143,9 +143,9 @@ class BlogspamNetPlugin extends Plugin
         return '127.0.0.1';
     }
 
-    function userAgent()
+    function version()
     {
-        return 'BlogspamNetPlugin/'.BLOGSPAMNETPLUGIN_VERSION . ' StatusNet/' . STATUSNET_VERSION;
+        return BLOGSPAMNETPLUGIN_VERSION;
     }
 
     function onPluginVersion(&$versions)
