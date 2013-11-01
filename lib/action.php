@@ -381,8 +381,7 @@ class Action extends HTMLOutputter // lawsuit
 
                 Event::handle('EndShowJQueryScripts', array($this));
             }
-            if (Event::handle('StartShowStatusNetScripts', array($this)) &&
-                Event::handle('StartShowLaconicaScripts', array($this))) {
+            if (Event::handle('StartShowStatusNetScripts', array($this))) {
                 if (common_config('site', 'minify')) {
                     $this->script('util.min.js');
                 } else {
@@ -403,7 +402,6 @@ class Action extends HTMLOutputter // lawsuit
                     $this->inlineScript('if (window.top !== window.self) { document.write = ""; window.top.location = window.self.location; setTimeout(function () { document.body.innerHTML = ""; }, 1); window.self.onload = function () { document.body.innerHTML = ""; }; }');
                 }
                 Event::handle('EndShowStatusNetScripts', array($this));
-                Event::handle('EndShowLaconicaScripts', array($this));
             }
             Event::handle('EndShowScripts', array($this));
         }

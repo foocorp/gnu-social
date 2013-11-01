@@ -51,12 +51,6 @@ StartShowStatusNetScripts: Showing StatusNet script links (use this to link to a
 EndShowStatusNetScripts: End showing StatusNet script links
 - $action: the current action
 
-StartShowLaconicaScripts: backwards compatibility; deprecated
-- $action: the current action
-
-EndShowLaconicaScripts: backwards compatibility; deprecated
-- $action: the current action
-
 StartShowSections: Start the list of sections in the sidebar
 - $action: the current action
 
