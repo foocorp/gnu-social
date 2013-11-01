@@ -1110,7 +1110,10 @@ class Ostatus_profile extends Managed_DataObject
 
         $huburi = $discover->getHubLink();
         $hints['hub'] = $huburi;
-        $salmonuri = $discover->getAtomLink(Salmon::NS_REPLIES);
+
+        // XXX: NS_REPLIES is deprecated anyway, so let's remove it in the future.
+        $salmonuri = $discover->getAtomLink(Salmon::REL_SALMON)
+                        ?: $discover->getAtomLink(Salmon::NS_REPLIES);
         $hints['salmon'] = $salmonuri;
 
         if (!$huburi && !common_config('feedsub', 'fallback_hub')) {
@@ -1489,7 +1492,9 @@ class Ostatus_profile extends Managed_DataObject
                 $discover = new FeedDiscovery();
                 $discover->discoverFromFeedURL($hints['feedurl']);
             }
-            $salmonuri = $discover->getAtomLink(Salmon::NS_REPLIES);
+            // XXX: NS_REPLIES is deprecated anyway, so let's remove it in the future.
+            $salmonuri = $discover->getAtomLink(Salmon::REL_SALMON)
+                            ?: $discover->getAtomLink(Salmon::NS_REPLIES);
         }
 
         if (array_key_exists('hub', $hints)) {

@@ -174,7 +174,7 @@ class OStatusPlugin extends Plugin
             $salmon = common_local_url($salmonAction, array('id' => $id));
             $feed->addLink($salmon, array('rel' => Salmon::REL_SALMON));
 
-            // XXX: these are deprecated
+            // XXX: these are deprecated, but StatusNet only looks for NS_REPLIES
             $feed->addLink($salmon, array('rel' => Salmon::NS_REPLIES));
             $feed->addLink($salmon, array('rel' => Salmon::NS_MENTIONS));
         }
@@ -1323,7 +1323,8 @@ class OStatusPlugin extends Plugin
                                        array('id' => $target->id));
 
         $xrd->links[] = new XML_XRD_Element_Link(Salmon::REL_SALMON, $salmon_url);
-        // XXX : Deprecated - to be removed.
+
+        // XXX: these are deprecated, but StatusNet only looks for NS_REPLIES
         $xrd->links[] = new XML_XRD_Element_Link(Salmon::NS_REPLIES, $salmon_url);
         $xrd->links[] = new XML_XRD_Element_Link(Salmon::NS_MENTIONS, $salmon_url);
 

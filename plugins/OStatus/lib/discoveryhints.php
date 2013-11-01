@@ -29,8 +29,9 @@ class DiscoveryHints {
             case WebFingerResource::PROFILEPAGE:
                 $hints['profileurl'] = $link->href;
                 break;
-            case Salmon::NS_MENTIONS:
-            case Salmon::NS_REPLIES:
+            case Salmon::REL_SALMON:
+            case Salmon::NS_MENTIONS:   // XXX: deprecated, remove in the future
+            case Salmon::NS_REPLIES:    // XXX: deprecated, remove in the future
                 $hints['salmon'] = $link->href;
                 break;
             case Discovery::UPDATESFROM:
