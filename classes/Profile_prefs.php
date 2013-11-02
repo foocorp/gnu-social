@@ -120,7 +120,7 @@ class Profile_prefs extends Managed_DataObject
     static function getConfigData(Profile $profile, $namespace, $topic) {
         try {
             $data = self::getData($profile, $namespace, $topic);
-        } catch (Exception $e) {
+        } catch (NoResultException $e) {
             $data = common_config($namespace, $topic);
         }
         return $data;
@@ -160,7 +160,7 @@ class Profile_prefs extends Managed_DataObject
         $pref->topic      = $topic;
         $pref->data       = $data;
         
-        if (!$pref->insert()) {
+        if ($pref->insert() === false) {
             throw new ServerException('Could not save profile preference.');
         }
         return true;

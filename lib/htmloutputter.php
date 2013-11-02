@@ -302,7 +302,7 @@ class HTMLOutputter extends XMLOutputter
 
     function hidden($id, $value, $name=null)
     {
-        $this->element('input', array('name' => ($name) ? $name : $id,
+        $this->element('input', array('name' => $name ?: $id,
                                       'type' => 'hidden',
                                       'id' => $id,
                                       'value' => $value));
@@ -351,7 +351,7 @@ class HTMLOutputter extends XMLOutputter
     {
         $this->element('input', array('type' => 'submit',
                                       'id' => $id,
-                                      'name' => ($name) ? $name : $id,
+                                      'name'  => $name ?: $id,
                                       'class' => $cls,
                                       'value' => $label,
                                       'title' => $title));
