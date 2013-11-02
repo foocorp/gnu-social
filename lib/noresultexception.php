@@ -33,7 +33,7 @@ class NoResultException extends ServerException
 {
     public $obj;    // The object with query that gave no results
 
-    public function __construct(DB_DataObject $obj)
+    public function __construct(Memcached_DataObject $obj)
     {
         $this->obj = $obj;
         // We could log an entry here with the search parameters
