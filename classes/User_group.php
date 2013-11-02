@@ -230,7 +230,11 @@ class User_group extends Managed_DataObject
 
     public function getAdminCount()
     {
-        return $this->getAdmins()->N;
+        $block = new Group_member();
+        $block->group_id = $this->id;
+        $block->is_admin = 1;
+
+        return $block->count();
     }
 
     public function getMemberCount()
@@ -275,50 +279,27 @@ class User_group extends Managed_DataObject
         return $queue->count();
     }
 
-    function getAdmins($offset=0, $limit=null)
+    function getAdmins($offset=null, $limit=null)   // offset is null because DataObject wants it, 0 would mean no results
     {
-        $qry =
-          'SELECT profile.* ' .
-          'FROM profile JOIN group_member '.
-          'ON profile.id = group_member.profile_id ' .
-          'WHERE group_member.group_id = %d ' .
-          'AND group_member.is_admin = 1 ' .
-          'ORDER BY group_member.modified ASC ';
-
-        if ($limit != null) {
-            if (common_config('db','type') == 'pgsql') {
-                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-            } else {
-                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
-            }
-        }
-
         $admins = new Profile();
+        $admins->joinAdd(array('id', 'group_member:profile_id'));
+        $admins->whereAdd(sprintf('group_member.group_id = %u AND group_member.is_admin = 1', $this->id));
+        $admins->orderBy('group_member.modified ASC');
+        $admins->limit($offset, $limit);
+        $admins->find();
 
-        $admins->query(sprintf($qry, $this->id));
         return $admins;
     }
 
-    function getBlocked($offset=0, $limit=null)
+    function getBlocked($offset=null, $limit=null)   // offset is null because DataObject wants it, 0 would mean no results
     {
-        $qry =
-          'SELECT profile.* ' .
-          'FROM profile JOIN group_block '.
-          'ON profile.id = group_block.blocked ' .
-          'WHERE group_block.group_id = %d ' .
-          'ORDER BY group_block.modified DESC ';
-
-        if ($limit != null) {
-            if (common_config('db','type') == 'pgsql') {
-                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-            } else {
-                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
-            }
-        }
-
         $blocked = new Profile();
+        $blocked->joinAdd(array('id', 'group_block:blocked'));
+        $blocked->whereAdd(sprintf('group_block.group_id = %u', $this->id));
+        $blocked->orderBy('group_block.modified DESC');
+        $blocked->limit($offset, $limit);
+        $blocked->find();
 
-        $blocked->query(sprintf($qry, $this->id));
         return $blocked;
     }
 
