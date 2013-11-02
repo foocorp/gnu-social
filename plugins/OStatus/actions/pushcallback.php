@@ -82,9 +82,8 @@ class PushCallbackAction extends Action
         $mode = $this->arg('hub_mode');
         $topic = $this->arg('hub_topic');
         $challenge = $this->arg('hub_challenge');
-        $lease_seconds = $this->arg('hub_lease_seconds');
-        $verify_token = $this->arg('hub_verify_token');
-        common_log(LOG_INFO, __METHOD__ . ": sub verification mode: $mode topic: $topic challenge: $challenge lease_seconds: $lease_seconds verify_token: $verify_token");
+        $lease_seconds = $this->arg('hub_lease_seconds');   // Must be >0 for PuSH 0.4!
+        common_log(LOG_INFO, __METHOD__ . ": sub verification mode: $mode topic: $topic challenge: $challenge lease_seconds: $lease_seconds");
 
         if ($mode != 'subscribe' && $mode != 'unsubscribe') {
             // TRANS: Client exception. %s is an invalid value for hub.mode.
@@ -92,14 +91,9 @@ class PushCallbackAction extends Action
         }
 
         $feedsub = FeedSub::getKV('uri', $topic);
-        if (!$feedsub) {
+        if (!$feedsub instanceof FeedSub) {
             // TRANS: Client exception. %s is an invalid feed name.
             throw new ClientException(sprintf(_m('Bad hub.topic feed "%s".'),$topic), 404);
-        }
-
-        if ($feedsub->verify_token !== $verify_token) {
-            // TRANS: Client exception. %1$s the invalid token, %2$s is the topic for which the invalid token was given.
-            throw new ClientException(sprintf(_m('Bad hub.verify_token %1$s for %2$s.'),$token,$topic), 404);
         }
 
         if ($mode == 'subscribe') {

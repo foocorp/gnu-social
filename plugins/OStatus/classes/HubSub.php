@@ -114,7 +114,7 @@ class HubSub extends Managed_DataObject
         }
         $data = array('sub' => clone($this),
                       'mode' => $mode,
-                      'token' => $token,
+                      'token' => $token,    // let's put it in there if remote uses PuSH <0.4
                       'retries' => $retries);
         $qm = QueueManager::get();
         $qm->enqueue($data, 'hubconf');
@@ -139,8 +139,8 @@ class HubSub extends Managed_DataObject
         if ($mode == 'subscribe') {
             $params['hub.lease_seconds'] = $this->lease;
         }
-        if ($token !== null) {
-            $params['hub.verify_token'] = $token;
+        if ($token !== null) {  // TODO: deprecated in PuSH 0.4
+            $params['hub.verify_token'] = $token;   // let's put it in there if remote uses PuSH <0.4
         }
 
         // Any existing query string parameters must be preserved

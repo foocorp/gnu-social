@@ -30,8 +30,6 @@ if (!defined('STATUSNET')) {
 PuSH subscription flow:
 
     $profile->subscribe()
-        generate random verification token
-            save to verify_token
         sends a sub request to the hub...
 
     main/push/callback
@@ -69,7 +67,6 @@ class FeedSub extends Managed_DataObject
     // PuSH subscription data
     public $huburi;
     public $secret;
-    public $verify_token;
     public $sub_state; // subscribe, active, unsubscribe, inactive
     public $sub_start;
     public $sub_end;
@@ -85,7 +82,6 @@ class FeedSub extends Managed_DataObject
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'FeedSub local unique id'),
                 'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'FeedSub uri'),
                 'huburi' => array('type' => 'text', 'description' => 'FeedSub hub-uri'),
-                'verify_token' => array('type' => 'text', 'description' => 'FeedSub verify-token'),
                 'secret' => array('type' => 'text', 'description' => 'FeedSub stored secret'),
                 'sub_state' => array('type' => 'enum("subscribe","active","unsubscribe","inactive")', 'not null' => true, 'description' => 'subscription state'),
                 'sub_start' => array('type' => 'datetime', 'description' => 'subscription start'),
@@ -168,10 +164,10 @@ class FeedSub extends Managed_DataObject
      * @return bool true on success, false on failure
      * @throws ServerException if feed state is not valid
      */
-    public function subscribe($mode='subscribe')
+    public function subscribe()
     {
         if ($this->sub_state && $this->sub_state != 'inactive') {
-            common_log(LOG_WARNING, "Attempting to (re)start PuSH subscription to $this->uri in unexpected state $this->sub_state");
+            common_log(LOG_WARNING, "Attempting to (re)start PuSH subscription to {$this->uri} in unexpected state {$this->sub_state}");
         }
         if (empty($this->huburi)) {
             if (common_config('feedsub', 'fallback_hub')) {
@@ -202,7 +198,7 @@ class FeedSub extends Managed_DataObject
      */
     public function unsubscribe() {
         if ($this->sub_state != 'active') {
-            common_log(LOG_WARNING, "Attempting to (re)end PuSH subscription to $this->uri in unexpected state $this->sub_state");
+            common_log(LOG_WARNING, "Attempting to (re)end PuSH subscription to {$this->uri} in unexpected state {$this->sub_state}");
         }
         if (empty($this->huburi)) {
             if (common_config('feedsub', 'fallback_hub')) {
@@ -248,10 +244,29 @@ class FeedSub extends Managed_DataObject
         }
     }
 
+    static public function renewalCheck()
+    {
+        $fs = new FeedSub();
+        // the "" empty string check is because we historically haven't saved unsubscribed feeds as NULL
+        $fs->whereAdd('sub_end IS NOT NULL AND sub_end!="" AND sub_end < NOW() - INTERVAL 1 day');
+        if ($fs->find() === false) {
+            throw new NoResultException($fs);
+        }
+        return $fs;
+    }
+
+    public function renew()
+    {
+        $this->subscribe();
+    }
+
+    /**
+     * @return boolean  true on successful sub/unsub, false on failure
+     */
     protected function doSubscribe($mode)
     {
+        $this->query('BEGIN');
         $orig = clone($this);
-        $this->verify_token = common_random_hexstr(16);
         if ($mode == 'subscribe') {
             $this->secret = common_random_hexstr(32);
         }
@@ -264,8 +279,7 @@ class FeedSub extends Managed_DataObject
             $headers = array('Content-Type: application/x-www-form-urlencoded');
             $post = array('hub.mode' => $mode,
                           'hub.callback' => $callback,
-                          'hub.verify' => 'sync',
-                          'hub.verify_token' => $this->verify_token,
+                          'hub.verify' => 'async',  // TODO: deprecated, remove when noone uses PuSH <0.4
                           'hub.secret' => $this->secret,
                           'hub.topic' => $this->uri);
             $client = new HTTPClient();
@@ -286,30 +300,26 @@ class FeedSub extends Managed_DataObject
             $response = $client->post($hub, $headers, $post);
             $status = $response->getStatus();
             if ($status == 202) {
+                $this->query('COMMIT');
                 common_log(LOG_INFO, __METHOD__ . ': sub req ok, awaiting verification callback');
-                return true;
-            } else if ($status == 204) {
-                common_log(LOG_INFO, __METHOD__ . ': sub req ok and verified');
                 return true;
             } else if ($status >= 200 && $status < 300) {
                 common_log(LOG_ERR, __METHOD__ . ": sub req returned unexpected HTTP $status: " . $response->getBody());
-                return false;
             } else {
                 common_log(LOG_ERR, __METHOD__ . ": sub req failed with HTTP $status: " . $response->getBody());
-                return false;
             }
+            $this->query('ROLLBACK');
         } catch (Exception $e) {
+            $this->query('ROLLBACK');
             // wtf!
             common_log(LOG_ERR, __METHOD__ . ": error \"{$e->getMessage()}\" hitting hub $this->huburi subscribing to $this->uri");
 
             $orig = clone($this);
-            $this->verify_token = '';
             $this->sub_state = 'inactive';
             $this->update($orig);
             unset($orig);
-
-            return false;
         }
+        return false;
     }
 
     /**
@@ -318,7 +328,7 @@ class FeedSub extends Managed_DataObject
      *
      * @param int $lease_seconds provided hub.lease_seconds parameter, if given
      */
-    public function confirmSubscribe($lease_seconds=0)
+    public function confirmSubscribe($lease_seconds)
     {
         $original = clone($this);
 
@@ -327,7 +337,7 @@ class FeedSub extends Managed_DataObject
         if ($lease_seconds > 0) {
             $this->sub_end = common_sql_date(time() + $lease_seconds);
         } else {
-            $this->sub_end = null;
+            $this->sub_end = null;  // Backwards compatibility to StatusNet (PuSH <0.4 supported permanent subs)
         }
         $this->modified = common_sql_now();
 
@@ -343,7 +353,6 @@ class FeedSub extends Managed_DataObject
         $original = clone($this);
 
         // @fixme these should all be null, but DB_DataObject doesn't save null values...?????
-        $this->verify_token = '';
         $this->secret = '';
         $this->sub_state = '';
         $this->sub_start = '';

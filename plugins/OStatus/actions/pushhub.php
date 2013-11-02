@@ -89,19 +89,11 @@ class PushHubAction extends Action
             throw new ClientException(sprintf(_m('Unsupported hub.topic %s this hub only serves local user and group Atom feeds.'),$topic));
         }
 
-        $verify = $this->arg('hub.verify'); // @fixme may be multiple
-        if ($verify != 'sync' && $verify != 'async') {
-            // TRANS: Client exception. %s is sync or async.
-            throw new ClientException(sprintf(_m('Invalid hub.verify "%s". It must be sync or async.'),$verify));
-        }
-
         $lease = $this->arg('hub.lease_seconds', null);
         if ($mode == 'subscribe' && $lease != '' && !preg_match('/^\d+$/', $lease)) {
             // TRANS: Client exception. %s is the invalid lease value.
             throw new ClientException(sprintf(_m('Invalid hub.lease "%s". It must be empty or positive integer.'),$lease));
         }
-
-        $token = $this->arg('hub.verify_token', null);
 
         $secret = $this->arg('hub.secret', null);
         if ($secret != '' && strlen($secret) >= 200) {
@@ -110,7 +102,7 @@ class PushHubAction extends Action
         }
 
         $sub = HubSub::getByHashkey($topic, $callback);
-        if (!$sub) {
+        if (!$sub instanceof HubSub) {
             // Creating a new one!
             $sub = new HubSub();
             $sub->topic = $topic;
@@ -125,16 +117,14 @@ class PushHubAction extends Action
             }
         }
 
-        if (!common_config('queue', 'enabled')) {
-            // Won't be able to background it.
-            $verify = 'sync';
-        }
-        if ($verify == 'async') {
-            $sub->scheduleVerify($mode, $token);
-            header('HTTP/1.1 202 Accepted');
-        } else {
+        $verify = $this->arg('hub.verify'); // TODO: deprecated
+        $token = $this->arg('hub.verify_token', null);  // TODO: deprecated
+        if ($verify == 'sync') {    // pre-0.4 PuSH
             $sub->verify($mode, $token);
             header('HTTP/1.1 204 No Content');
+        } else {    // If $verify is not "sync", we might be using PuSH 0.4
+            $sub->scheduleVerify($mode, $token);    // If we were certain it's PuSH 0.4, token could be removed
+            header('HTTP/1.1 202 Accepted');
         }
     }
 
