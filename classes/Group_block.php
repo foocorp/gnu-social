@@ -76,7 +76,7 @@ class Group_block extends Managed_DataObject
 
         $result = $block->insert();
 
-        if (!$result) {
+        if ($result === false) {
             common_log_db_error($block, 'INSERT', __FILE__);
             return null;
         }
@@ -90,7 +90,7 @@ class Group_block extends Managed_DataObject
 
         if ($member->find(true)) {
             $result = $member->delete();
-            if (!$result) {
+            if ($result === false) {
                 common_log_db_error($member, 'DELETE', __FILE__);
                 return null;
             }

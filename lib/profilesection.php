@@ -52,7 +52,7 @@ class ProfileSection extends Section
     {
         $profiles = $this->getProfiles();
 
-        if (!$profiles) {
+        if (!$profiles->N) {
             return false;
         }
 

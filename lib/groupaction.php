@@ -227,10 +227,6 @@ class GroupAction extends Action
     {
         $blocked = $this->group->getBlocked(0, MEMBERS_PER_SECTION);
 
-        if (!$blocked) {
-            return;
-        }
-
         $this->elementStart('div', array('id' => 'entity_blocked',
                                          'class' => 'section'));
 
