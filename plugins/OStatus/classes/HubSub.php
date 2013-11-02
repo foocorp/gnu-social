@@ -157,7 +157,7 @@ class HubSub extends Managed_DataObject
         $status = $response->getStatus();
 
         if ($status >= 200 && $status < 300) {
-            common_log(LOG_INFO, "Verified $mode of $this->callback:$this->topic");
+            common_log(LOG_INFO, "Verified {$mode} of {$this->callback}:{$this->topic}");
         } else {
             // TRANS: Client exception. %s is a HTTP status code.
             throw new ClientException(sprintf(_m('Hub subscriber verification returned HTTP %s.'),$status));
@@ -165,13 +165,13 @@ class HubSub extends Managed_DataObject
 
         $old = HubSub::getByHashkey($this->topic, $this->callback);
         if ($mode == 'subscribe') {
-            if ($old) {
+            if ($old instanceof HubSub) {
                 $this->update($old);
             } else {
                 $ok = $this->insert();
             }
         } else if ($mode == 'unsubscribe') {
-            if ($old) {
+            if ($old instanceof HubSub) {
                 $old->delete();
             } else {
                 // That's ok, we're already unsubscribed.
@@ -202,37 +202,6 @@ class HubSub extends Managed_DataObject
     {
         if ($retries === null) {
             $retries = intval(common_config('ostatus', 'hub_retries'));
-        }
-
-        if (common_config('ostatus', 'local_push_bypass')) {
-            // If target is a local site, bypass the web server and drop the
-            // item directly into the target's input queue.
-            $url = parse_url($this->callback);
-            $wildcard = common_config('ostatus', 'local_wildcard');
-            $site = Status_network::getFromHostname($url['host'], $wildcard);
-
-            if ($site) {
-                if ($this->secret) {
-                    $hmac = 'sha1=' . hash_hmac('sha1', $atom, $this->secret);
-                } else {
-                    $hmac = '';
-                }
-
-                // Hack: at the moment we stick the subscription ID in the callback
-                // URL so we don't have to look inside the Atom to route the subscription.
-                // For now this means we need to extract that from the target URL
-                // so we can include it in the data.
-                $parts = explode('/', $url['path']);
-                $subId = intval(array_pop($parts));
-
-                $data = array('feedsub_id' => $subId,
-                              'post' => $atom,
-                              'hmac' => $hmac);
-                common_log(LOG_DEBUG, "Cross-site PuSH bypass enqueueing straight to $site->nickname feed $subId");
-                $qm = QueueManager::get();
-                $qm->enqueue($data, 'pushin', $site->nickname);
-                return;
-            }
         }
 
         // We dare not clone() as when the clone is discarded it'll
