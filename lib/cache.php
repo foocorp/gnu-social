@@ -95,7 +95,7 @@ class Cache
             $base_key = self::keyize(common_config('site', 'name'));
         }
 
-        return 'statusnet:' . $base_key . ':' . $extra;
+        return 'gnusocial:' . $base_key . ':' . $extra;
     }
 
     /**
