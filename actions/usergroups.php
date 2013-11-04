@@ -140,13 +140,12 @@ class UsergroupsAction extends ProfileAction
             if ($groups instanceof User_group) {
                 $gl = new GroupList($groups, $this->user, $this);
                 $cnt = $gl->show();
+                $this->pagination($this->page > 1, $cnt > GROUPS_PER_PAGE,
+                              $this->page, 'usergroups',
+                              array('nickname' => $this->user->nickname));
             } else {
                 $this->showEmptyListMessage();
             }
-
-            $this->pagination($this->page > 1, $cnt > GROUPS_PER_PAGE,
-                              $this->page, 'usergroups',
-                              array('nickname' => $this->user->nickname));
 
             Event::handle('EndShowUserGroupsContent', array($this));
         }
