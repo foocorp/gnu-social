@@ -579,7 +579,7 @@ class Memcached_DataObject extends Safe_DataObject
 
     static function cachedQuery($cls, $qry, $expiry=3600)
     {
-        $c = Memcached_DataObject::memcache();
+        $c = self::memcache();
         if (!$c) {
             $inst = new $cls();
             $inst->query($qry);
