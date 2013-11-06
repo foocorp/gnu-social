@@ -280,6 +280,8 @@ class FeedSub extends Managed_DataObject
             $post = array('hub.mode' => $mode,
                           'hub.callback' => $callback,
                           'hub.verify' => 'async',  // TODO: deprecated, remove when noone uses PuSH <0.4
+                          'hub.verify_token' => 'Deprecated-since-PuSH-0.4', // TODO: rm!
+
                           'hub.secret' => $this->secret,
                           'hub.topic' => $this->uri);
             $client = new HTTPClient();
