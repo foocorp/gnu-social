@@ -643,7 +643,7 @@ function common_linkify_mention($mention)
 
         $xs->elementStart('span', 'vcard');
         $xs->elementStart('a', $attrs);
-        $xs->element('span', 'fn nickname mention', $mention['text']);
+        $xs->element('span', 'fn nickname '.$mention['type'], $mention['text']);
         $xs->elementEnd('a');
         $xs->elementEnd('span');
 
@@ -743,6 +743,7 @@ function common_find_mentions($text, $notice)
                 }
 
                 $mention = array('mentioned' => array($mentioned),
+                                 'type' => 'mention',
                                  'text' => $match[0],
                                  'position' => $match[1],
                                  'url' => $url);
@@ -772,6 +773,7 @@ function common_find_mentions($text, $notice)
                                           'tag' => $tag));
 
             $mentions[] = array('mentioned' => $tagged,
+                                'type'      => 'list',
                                 'text' => $hmatch[0],
                                 'position' => $hmatch[1],
                                 'url' => $url);
@@ -790,6 +792,7 @@ function common_find_mentions($text, $notice)
             $profile = $group->getProfile();
 
             $mentions[] = array('mentioned' => array($profile),
+                                'type'      => 'group',
                                 'text'      => $hmatch[0],
                                 'position'  => $hmatch[1],
                                 'url'       => $group->permalink(),
