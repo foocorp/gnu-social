@@ -26,7 +26,7 @@ class DiscoveryHints {
 
         foreach ($xrd->links as $link) {
             switch ($link->rel) {
-            case WebFingerResource::PROFILEPAGE:
+            case WebFingerResource_Profile::PROFILEPAGE:
                 $hints['profileurl'] = $link->href;
                 break;
             case Salmon::REL_SALMON:
