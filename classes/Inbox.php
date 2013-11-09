@@ -66,7 +66,7 @@ class Inbox extends Managed_DataObject {
      * @param int $notice_id
      * @return boolean success
      */
-    static function insertNotice($user_id, $notice_id)
+    static function insertNotice(Notice $notice, $user_id)
     {
         // Going straight to the DB rather than trusting our caching
         // during an update. Note: not using DB_DataObject::staticGet,
@@ -80,7 +80,7 @@ class Inbox extends Managed_DataObject {
         }
 
         $ids = $inbox->unpack();
-        if (in_array(intval($notice_id), $ids)) {
+        if (in_array(intval($notice->id), $ids)) {
             // Already in there, we probably re-ran some inbox adds
             // due to an error. Skip the dupe silently.
             return true;
@@ -90,7 +90,7 @@ class Inbox extends Managed_DataObject {
                                         'SET notice_ids = concat(cast(0x%08x as binary(4)), '.
                                         'SUBSTR(notice_ids, 1, %d)) '.
                                         'WHERE user_id = %d',
-                                        $notice_id,
+                                        $notice->id,
                                         4 * (self::MAX_NOTICES - 1),
                                         $user_id));
 
@@ -101,11 +101,11 @@ class Inbox extends Managed_DataObject {
         return $result;
     }
 
-    static function bulkInsert($notice_id, $user_ids)
+    static function bulkInsert(Notice $notice, array $user_ids)
     {
         foreach ($user_ids as $user_id)
         {
-            self::insertNotice($user_id, $notice_id);
+            self::insertNotice($notice, $user_id);
         }
     }
 

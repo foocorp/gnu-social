@@ -1086,7 +1086,7 @@ class Notice extends Managed_DataObject
 
         // Bulk insert
 
-        Inbox::bulkInsert($this->id, $ids);
+        Inbox::bulkInsert($this, $ids);
 
         return;
     }
@@ -2058,7 +2058,7 @@ class Notice extends Managed_DataObject
 
         $user = User::getKV('id', $this->profile_id);
         if ($user instanceof User) {
-            Inbox::insertNotice($user->id, $this->id);
+            Inbox::insertNotice($this, $user->id);
         }
 
         if (common_config('queue', 'inboxes')) {
