@@ -27,10 +27,7 @@
  * @link      http://status.net/
  */
 
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
-
-class Inbox extends Managed_DataObject
-{
+class Inbox extends Managed_DataObject {
     const BOXCAR = 128;
     const MAX_NOTICES = 1024;
 
@@ -59,55 +56,6 @@ class Inbox extends Managed_DataObject
     }
 
     /**
-     * Create a new inbox from existing Notice_inbox stuff
-     */
-    static function initialize($user_id)
-    {
-        $inbox = Inbox::fromNoticeInbox($user_id);
-
-        unset($inbox->fake);
-
-        $result = $inbox->insert();
-
-        if (!$result) {
-            common_log_db_error($inbox, 'INSERT', __FILE__);
-            return null;
-        }
-
-        return $inbox;
-    }
-
-    static function fromNoticeInbox($user_id)
-    {
-        $ids = array();
-
-        $ni = new Notice_inbox();
-
-        $ni->user_id = $user_id;
-        $ni->selectAdd();
-        $ni->selectAdd('notice_id');
-        $ni->orderBy('notice_id DESC');
-        $ni->limit(0, self::MAX_NOTICES);
-
-        if ($ni->find()) {
-            while($ni->fetch()) {
-                $ids[] = $ni->notice_id;
-            }
-        }
-
-        $ni->free();
-        unset($ni);
-
-        $inbox = new Inbox();
-
-        $inbox->user_id = $user_id;
-        $inbox->pack($ids);
-        $inbox->fake = true;
-
-        return $inbox;
-    }
-
-    /**
      * Append the given notice to the given user's inbox.
      * Caching updates are managed for the inbox itself.
      *
@@ -125,9 +73,7 @@ class Inbox extends Managed_DataObject
         // which is unsafe to use directly (in-process caching causes
         // memory leaks, which accumulate in queue processes).
         $inbox = new Inbox();
-        if (!$inbox->get('user_id', $user_id)) {
-            $inbox = Inbox::initialize($user_id);
-        }
+        $inbox->get('user_id', $user_id);
 
         if (empty($inbox)) {
             return false;
@@ -141,14 +87,14 @@ class Inbox extends Managed_DataObject
         }
 
         $result = $inbox->query(sprintf('UPDATE inbox '.
-                                        'set notice_ids = concat(cast(0x%08x as binary(4)), '.
-                                        'substr(notice_ids, 1, %d)) '.
+                                        'SET notice_ids = concat(cast(0x%08x as binary(4)), '.
+                                        'SUBSTR(notice_ids, 1, %d)) '.
                                         'WHERE user_id = %d',
                                         $notice_id,
                                         4 * (self::MAX_NOTICES - 1),
                                         $user_id));
 
-        if ($result) {
+        if ($result !== false) {
             self::blow('inbox:user_id:%d', $user_id);
         }
 
@@ -159,7 +105,7 @@ class Inbox extends Managed_DataObject
     {
         foreach ($user_ids as $user_id)
         {
-            Inbox::insertNotice($user_id, $notice_id);
+            self::insertNotice($user_id, $notice_id);
         }
     }
 
