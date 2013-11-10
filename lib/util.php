@@ -1534,7 +1534,7 @@ function common_random_hexstr($bytes)
 
     $hexstr = '';
     for ($i = 0; $i < $bytes; $i++) {
-        $hexstr .= sprintf("%02x", ord($str{$i}));
+        $hexstr .= sprintf("%02x", ord($str[$i]));
     }
     return $hexstr;
 }
