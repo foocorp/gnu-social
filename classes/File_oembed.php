@@ -98,6 +98,9 @@ class File_oembed extends Managed_DataObject
     function saveNew($data, $file_id) {
         $file_oembed = new File_oembed;
         $file_oembed->file_id = $file_id;
+        if (!isset($data->version)) {
+            common_debug('DEBUGGING oEmbed: data->version undefined in variable $data: '.var_export($data, true));
+        }
         $file_oembed->version = $data->version;
         $file_oembed->type = $data->type;
         if (!empty($data->provider_name)) $file_oembed->provider = $data->provider_name;
@@ -114,7 +117,9 @@ class File_oembed extends Managed_DataObject
             $given_url = File_redirection::_canonUrl($file_oembed->url);
             if (! empty($given_url)){
                 $file = File::getKV('url', $given_url);
-                if (empty($file)) {
+                if ($file instanceof File) {
+                    $file_oembed->mimetype = $file->mimetype;
+                } else {
                     $file_redir = File_redirection::getKV('url', $given_url);
                     if (empty($file_redir)) {
                         $redir_data = File_redirection::where($given_url);
@@ -122,15 +127,13 @@ class File_oembed extends Managed_DataObject
                     } else {
                         $file_id = $file_redir->file_id;
                     }
-                } else {
-                    $file_oembed->mimetype=$file->mimetype;
                 }
             }
         }
         $file_oembed->insert();
         if (!empty($data->thumbnail_url) || ($data->type == 'photo')) {
             $ft = File_thumbnail::getKV('file_id', $file_id);
-            if (!empty($ft)) {
+            if ($ft instanceof File_thumbnail) {
                 common_log(LOG_WARNING, "Strangely, a File_thumbnail object exists for new file $file_id",
                            __FILE__);
             } else {

@@ -17,14 +17,7 @@
  * along with this program.     If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
-require_once INSTALLDIR.'/classes/File_redirection.php';
-require_once INSTALLDIR.'/classes/File_oembed.php';
-require_once INSTALLDIR.'/classes/File_thumbnail.php';
-require_once INSTALLDIR.'/classes/File_to_post.php';
-//require_once INSTALLDIR.'/classes/File_redirection.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for file
@@ -88,7 +81,7 @@ class File extends Managed_DataObject
 
         $x = File::getKV('url', $given_url);
         
-        if (empty($x)) {
+        if (!$x instanceof File) {
             $x = new File;
             $x->url = $given_url;
             if (!empty($redir_data['protected'])) $x->protected = $redir_data['protected'];
@@ -116,16 +109,21 @@ class File extends Managed_DataObject
     public function saveOembed(array $redir_data, $given_url)
     {
         if (isset($redir_data['type'])
-            && (('text/html' === substr($redir_data['type'], 0, 9) || 'application/xhtml+xml' === substr($redir_data['type'], 0, 21)))
-            && ($oembed_data = File_oembed::_getOembed($given_url))) {
+                && (('text/html' === substr($redir_data['type'], 0, 9)
+                || 'application/xhtml+xml' === substr($redir_data['type'], 0, 21)))) {
+            try {
+                $oembed_data = File_oembed::_getOembed($given_url);
+            } catch (Exception $e) {
+                return false;
+            }
 
             $fo = File_oembed::getKV('file_id', $this->id);
 
-            if (empty($fo)) {
+            if ($fo instanceof File_oembed) {
+                common_log(LOG_WARNING, "Strangely, a File_oembed object exists for new file $file_id", __FILE__);
+            } else {
                 File_oembed::saveNew($oembed_data, $this->id);
                 return true;
-            } else {
-                common_log(LOG_WARNING, "Strangely, a File_oembed object exists for new file $file_id", __FILE__);
             }
         }
         return false;

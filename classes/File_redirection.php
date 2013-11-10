@@ -17,11 +17,7 @@
  * along with this program.     If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
-require_once INSTALLDIR.'/classes/File.php';
-require_once INSTALLDIR.'/classes/File_oembed.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for file_redirection
@@ -251,7 +247,9 @@ class File_redirection extends Managed_DataObject
             $short_url = (string)$short_url;
             // store it
             $file = File::getKV('url', $long_url);
-            if (empty($file)) {
+            if ($file instanceof File) {
+                $file_id = $file->id;
+            } else {
                 // Check if the target URL is itself a redirect...
                 $redir_data = File_redirection::where($long_url);
                 if (is_array($redir_data)) {
@@ -275,11 +273,9 @@ class File_redirection extends Managed_DataObject
                     }
                     $file_id = $file->id;
                 }
-            } else {
-                $file_id = $file->id;
             }
             $file_redir = File_redirection::getKV('url', $short_url);
-            if (empty($file_redir)) {
+            if (!$file_redir instanceof File_redirection) {
                 $file_redir = new File_redirection;
                 $file_redir->url = $short_url;
                 $file_redir->file_id = $file_id;
