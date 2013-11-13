@@ -67,6 +67,9 @@ abstract class QueueManager extends IoManager
                     self::$qm = new UnQueueManager();
                 } else {
                     switch ($type) {
+                     case 'cron':
+                        self::$qm = new GNUsocialCron();
+                        break;
                      case 'db':
                         self::$qm = new DBQueueManager();
                         break;

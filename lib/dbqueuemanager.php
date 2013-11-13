@@ -44,7 +44,7 @@ class DBQueueManager extends QueueManager
         $qi->created   = common_sql_now();
         $result        = $qi->insert();
 
-        if (!$result) {
+        if ($result === false) {
             common_log_db_error($qi, 'INSERT', __FILE__);
             throw new ServerException('DB error inserting queue item');
         }
