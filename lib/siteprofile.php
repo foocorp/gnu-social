@@ -28,7 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
+if (!defined('GNUSOCIAL')) {
     exit(1);
 }
 
