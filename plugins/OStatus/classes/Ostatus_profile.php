@@ -914,7 +914,7 @@ class Ostatus_profile extends Managed_DataObject
      */
     protected function filterAttention($sender, array $attention)
     {
-        common_log(LOG_DEBUG, "Original reply recipients: " . implode(', ', $attention));
+        common_log(LOG_DEBUG, "Original reply recipients: " . implode(', ', array_keys($attention)));
         $groups = array();
         $replies = array();
         foreach ($attention as $recipient=>$type) {
