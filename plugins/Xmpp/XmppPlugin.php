@@ -59,7 +59,7 @@ class XmppPlugin extends ImPlugin
 
     function getDisplayName(){
         // TRANS: Plugin display name.
-        return _m('XMPP/Jabber/GTalk');
+        return _m('XMPP/Jabber');
     }
 
     /**
