@@ -44,7 +44,7 @@ class StatusNet
      *
      * @throws ServerException if plugin can't be found
      */
-    public static function addPlugin($name, $attrs = null)
+    public static function addPlugin($name, array $attrs=array())
     {
         $name = ucfirst($name);
 
@@ -78,11 +78,11 @@ class StatusNet
             }
         }
 
+        // Doesn't this $inst risk being garbage collected or something?
+        // TODO: put into a static array that makes sure $inst isn't lost.
         $inst = new $pluginclass();
-        if (!empty($attrs)) {
-            foreach ($attrs as $aname => $avalue) {
-                $inst->$aname = $avalue;
-            }
+        foreach ($attrs as $aname => $avalue) {
+            $inst->$aname = $avalue;
         }
 
         // Record activated plugins for later display/config dump

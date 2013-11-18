@@ -24,7 +24,7 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 foreach (StatusNet::getActivePlugins() as $plugin=>$args) {
     echo "$plugin: ";
-    if ($args === null) {
+    if (empty($args)) {
         echo "(no args)\n";
     } else {
         foreach ($args as $arg => $val) {

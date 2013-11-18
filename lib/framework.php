@@ -95,7 +95,7 @@ require_once(INSTALLDIR.'/lib/language.php');
 require_once(INSTALLDIR.'/lib/event.php');
 require_once(INSTALLDIR.'/lib/plugin.php');
 
-function addPlugin($name, $attrs = null)
+function addPlugin($name, array $attrs=array())
 {
     return StatusNet::addPlugin($name, $attrs);
 }
