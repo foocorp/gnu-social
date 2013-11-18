@@ -22,8 +22,7 @@ define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-foreach (StatusNet::getActivePlugins() as $data) {
-    list($plugin, $args) = $data;
+foreach (StatusNet::getActivePlugins() as $plugin=>$args) {
     echo "$plugin: ";
     if ($args === null) {
         echo "(no args)\n";

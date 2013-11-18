@@ -125,14 +125,12 @@ class Cache
 	
         if (empty($prefix)) {
 	    
-            $plugins     = StatusNet::getActivePlugins();
-            $names       = array();
+            $names   = array();
 	    
-            foreach ($plugins as $plugin) {
-                $names[] = $plugin[0];
+            foreach (StatusNet::getActivePlugins() as $plugin=>$attrs) {
+                $names[] = $plugin;
             }
 	    
-            $names = array_unique($names);
             asort($names);
 	    
             // Unique enough.

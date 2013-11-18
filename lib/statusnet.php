@@ -47,6 +47,14 @@ class StatusNet
     public static function addPlugin($name, $attrs = null)
     {
         $name = ucfirst($name);
+
+        if (isset(self::$plugins[$name])) {
+            // We have already loaded this plugin. Don't try to
+            // do it again with (possibly) different values.
+            // Försten till kvarn får mala.
+            return true;
+        }
+
         $pluginclass = "{$name}Plugin";
 
         if (!class_exists($pluginclass)) {
@@ -78,7 +86,7 @@ class StatusNet
         }
 
         // Record activated plugins for later display/config dump
-        self::$plugins[] = array($name, $attrs);
+        self::$plugins[$name] = $attrs;
 
         return true;
     }
@@ -181,9 +189,13 @@ class StatusNet
      */
     protected static function initPlugins()
     {
+        // User config may have already added some of these plugins, with
+        // maybe configured parameters. The self::addPlugin function will
+        // ignore the new call if it has already been instantiated.
+
         // Load core plugins
         foreach (common_config('plugins', 'core') as $name => $params) {
-            call_user_func('addPlugin', $name, $params);
+            call_user_func('self::addPlugin', $name, $params);
         }
 
         // Load default plugins
@@ -194,17 +206,17 @@ class StatusNet
             }
 
             if (is_null($params)) {
-                addPlugin($name);
+                self::addPlugin($name);
             } else if (is_array($params)) {
                 if (count($params) == 0) {
-                    addPlugin($name);
+                    self::addPlugin($name);
                 } else {
                     $keys = array_keys($params);
                     if (is_string($keys[0])) {
-                        addPlugin($name, $params);
+                        self::addPlugin($name, $params);
                     } else {
                         foreach ($params as $paramset) {
-                            addPlugin($name, $paramset);
+                            self::addPlugin($name, $paramset);
                         }
                     }
                 }
