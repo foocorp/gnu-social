@@ -249,7 +249,7 @@ class FeedSub extends Managed_DataObject
         $fs = new FeedSub();
         // the "" empty string check is because we historically haven't saved unsubscribed feeds as NULL
         $fs->whereAdd('sub_end IS NOT NULL AND sub_end!="" AND sub_end < NOW() - INTERVAL 1 day');
-        if ($fs->find() === false) {
+        if (!$fs->find()) { // find can be both false and 0, depending on why nothing was found
             throw new NoResultException($fs);
         }
         return $fs;
