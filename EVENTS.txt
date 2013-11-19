@@ -233,6 +233,10 @@ StartEndHTML: just before the </html> tag
 EndEndHTML: just after the </html> tag
 - $action: action object being shown
 
+FinalAction: After prepare() (and possible handle) in Action class.
+- $status: result of "prepare" call on action
+- $action: Action that is currently running
+
 StartShowDesign: just before showing a site, user, or group design
 - $action: action object being shown
 

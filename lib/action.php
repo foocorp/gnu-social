@@ -117,9 +117,16 @@ class Action extends HTMLOutputter // lawsuit
             common_config_set('db', 'database', $mirror);
         }
 
-        if ($this->prepare($args)) {
+        $status = $this->prepare($args);
+        if ($status) {
             $this->handle($args);
+        } else {
+            common_debug('Prepare failed for Action.');
         }
+
+        $this->flush();
+
+        Event::handle('EndActionExecute', array($status, $this));
     }
 
     /**

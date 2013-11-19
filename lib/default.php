@@ -294,6 +294,7 @@ $default =
         'plugins' =>
         array('core' => array(
                             'AuthCrypt' => array(),
+                            'Cron' => array(),
                             'LRDD' => array(),
                             'StrictTransportSecurity' => array(),
                         ),
