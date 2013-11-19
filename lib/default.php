@@ -293,9 +293,9 @@ $default =
         array('disabled' => true),
         'plugins' =>
         array('core' => array(
-                            'AuthCrypt' => null,
-                            'LRDD' => null,
-                            'StrictTransportSecurity' => null,
+                            'AuthCrypt' => array(),
+                            'LRDD' => array(),
+                            'StrictTransportSecurity' => array(),
                         ),
               'default' => array(
                             'Activity' => array(),

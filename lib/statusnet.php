@@ -205,6 +205,8 @@ class StatusNet
                 continue;
             }
 
+            // TODO: We should be able to avoid this is_null and assume $params
+            // is an array, since that's how it is typed in addPlugin
             if (is_null($params)) {
                 self::addPlugin($name);
             } else if (is_array($params)) {

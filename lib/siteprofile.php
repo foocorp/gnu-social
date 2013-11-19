@@ -110,10 +110,10 @@ class PublicSite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'Directory'               => null,
-                    'ExtendedProfile'         => null,
-                    'OStatus'                 => null,
-                    'WebFinger'               => null,
+                    'Directory'               => array(),
+                    'ExtendedProfile'         => array(),
+                    'OStatus'                 => array(),
+                    'WebFinger'               => array(),
                 ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
@@ -146,10 +146,10 @@ class PrivateSite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'Directory'               => null,
-                    'ExtendedProfile'         => null,
-                    'EmailRegistration'       => null,
-                    'MobileProfile'           => null,
+                    'Directory'               => array(),
+                    'ExtendedProfile'         => array(),
+                    'EmailRegistration'       => array(),
+                    'MobileProfile'           => array(),
                 ))
              ),
             'profile'       => array('delete' => 'true'),
@@ -197,9 +197,9 @@ class CommunitySite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'Directory'               => null,
-                    'OStatus'                 => null,
-                    'WebFinger'               => null,
+                    'Directory'               => array(),
+                    'OStatus'                 => array(),
+                    'WebFinger'               => array(),
                 ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
@@ -232,11 +232,11 @@ class SingleuserSite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'MobileProfile'           => null,
-                    'OStatus'                 => null,
-                    'TwitterBridge'           => null,
-                    'FacebookBridge'          => null,
-                    'WebFinger'               => null,
+                    'MobileProfile'           => array(),
+                    'OStatus'                 => array(),
+                    'TwitterBridge'           => array(),
+                    'FacebookBridge'          => array(),
+                    'WebFinger'               => array(),
                 ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
