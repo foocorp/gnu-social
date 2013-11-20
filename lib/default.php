@@ -294,8 +294,9 @@ $default =
         'plugins' =>
         array('core' => array(
                             'AuthCrypt' => array(),
-                            'Cron' => array(),
+                            'Cronish' => array(),
                             'LRDD' => array(),
+                            'OpportunisticQM' => array(),
                             'StrictTransportSecurity' => array(),
                         ),
               'default' => array(
