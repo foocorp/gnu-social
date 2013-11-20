@@ -1,6 +1,21 @@
 <?php
+/**
+ * GNU social cronish plugin, to imitate cron actions
+ *
+ * @category  Cron
+ * @package   GNUsocial
+ * @author    Mikael Nordfeldth <mmn@hethane.se>
+ * @copyright 2013 Free Software Foundation, Inc.
+ * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
+ * @link      http://www.gnu.org/software/social/
+ */
 
 class CronishPlugin extends Plugin {
+    public function onCronMinutely()
+    {
+        common_debug('CRON: Running minutely cron job!');
+    }
+
     public function onCronHourly()
     {
         common_debug('CRON: Running hourly cron job!');

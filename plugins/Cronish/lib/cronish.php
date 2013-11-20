@@ -23,7 +23,8 @@ class Cronish
      */
     public function callTimedEvents()
     {
-        $timers = array('hourly' => 3600,
+        $timers = array('minutely' => 60,   // this is NOT guaranteed to run every minute (only on busy sites)
+                        'hourly' => 3600,
                         'daily'  => 86400,
                         'weekly' => 604800);
 
