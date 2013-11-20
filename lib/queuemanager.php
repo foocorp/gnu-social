@@ -67,9 +67,6 @@ abstract class QueueManager extends IoManager
                     self::$qm = new UnQueueManager();
                 } else {
                     switch ($type) {
-                     case 'opportunistic':
-                        self::$qm = new OpportunisticQueueManager();
-                        break;
                      case 'db':
                         self::$qm = new DBQueueManager();
                         break;
