@@ -519,7 +519,7 @@ class TwitterImport
 
     static function tagLink($tag, $orig)
     {
-        return "<a href='https://search.twitter.com/search?q=%23{$tag}' class='hashtag'>{$orig}</a>";
+        return "<a href='https://twitter.com/search?q=%23{$tag}' class='hashtag'>{$orig}</a>";
     }
 
     static function atLink($screenName, $fullName, $orig)
