@@ -1466,7 +1466,7 @@ class ApiAction extends Action
             } else if ($this->arg('screen_name')) {
                 $nickname = common_canonical_nickname($this->arg('screen_name'));
                 $user = User::getKV('nickname', $nickname);
-                return $user ? $user->getProfile() : null;
+                return $user instanceof User ? $user->getProfile() : null;
             } else {
                 // Fall back to trying the currently authenticated user
                 return $this->scoped;
