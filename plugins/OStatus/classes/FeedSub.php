@@ -279,7 +279,7 @@ class FeedSub extends Managed_DataObject
             $headers = array('Content-Type: application/x-www-form-urlencoded');
             $post = array('hub.mode' => $mode,
                           'hub.callback' => $callback,
-                          'hub.verify' => 'async',  // TODO: deprecated, remove when noone uses PuSH <0.4
+                          'hub.verify' => 'async',  // TODO: deprecated, remove when noone uses PuSH <0.4 (only 'async' method used there)
                           'hub.verify_token' => 'Deprecated-since-PuSH-0.4', // TODO: rm!
 
                           'hub.secret' => $this->secret,
