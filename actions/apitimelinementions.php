@@ -119,8 +119,8 @@ class ApiTimelineMentionsAction extends ApiBareAuthAction
             // TRANS: Subtitle for timeline of most recent mentions of a user.
             // TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname,
             // TRANS: %3$s is a user's full name.
-            _('%1$s updates that reply to updates from %2$s / %3$s.'),
-            $sitename, $this->target->getBestName(), $this->target->nickname
+            _('%1$s updates that reply to updates from %3$s / %2$s.'),
+            $sitename, $this->target->nickname, $this->target->getBestName()
         );
 
         switch($this->format) {
