@@ -146,7 +146,7 @@ class ApiOAuthRequestTokenAction extends ApiOAuthAction
 
             return true;
         } else {
-            return common_valid_http_url($callback);
+            return filter_var($callback, FILTER_VALIDATE_URL);
         }
     }
 }
