@@ -99,7 +99,11 @@ class Plugin
      */
     public function onAutoload($cls) {
         $cls = basename($cls);
-        $basedir = INSTALLDIR . '/plugins/' . mb_substr(get_called_class(), 0, -6);
+        $basedir = INSTALLDIR . '/local/plugins/' . mb_substr(get_called_class(), 0, -6);
+        if (!file_exists($basedir)) {
+            $basedir = INSTALLDIR . '/plugins/' . mb_substr(get_called_class(), 0, -6);
+        }
+
         $file = null;
 
         if (preg_match('/^(\w+)(Action|Form)$/', $cls, $type)) {
