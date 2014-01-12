@@ -216,6 +216,11 @@ class Notice extends Managed_DataObject
         return $this->url ?: $this->uri;
     }
 
+    public function getByUri($uri)
+    {
+        return Notice::getKV('uri', $uri);
+    }
+
     /**
      * Extract #hashtags from this notice's content and save them to the database.
      */
