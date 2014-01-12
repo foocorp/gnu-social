@@ -437,14 +437,26 @@ function mail_broadcast_notice_sms($notice)
     $user = new User();
 
     $UT = common_config('db','type')=='pgsql'?'"user"':'user';
+    $replies = $notice->getReplies();
     $user->query('SELECT nickname, smsemail, incomingemail ' .
-                 "FROM $UT JOIN subscription " .
+                 "FROM $UT LEFT OUTER JOIN subscription " .
                  "ON $UT.id = subscription.subscriber " .
-                 'WHERE subscription.subscribed = ' . $notice->profile_id . ' ' .
+                 'AND subscription.subscribed = ' . $notice->profile_id . ' ' .
                  'AND subscription.subscribed != subscription.subscriber ' .
+                 // Users (other than the sender) who `want SMS notices':
+                 "WHERE $UT.id != " . $notice->profile_id . ' ' .
                  "AND $UT.smsemail IS NOT null " .
                  "AND $UT.smsnotify = 1 " .
-                 'AND subscription.sms = 1 ');
+                 // ... where either the user _is_ subscribed to the sender
+                 // (any of the "subscription" fields IS NOT null)
+                 // and wants to get SMS for all of this scribe's notices...
+                 'AND (subscription.sms = 1 ' .
+                 // ... or where the user was mentioned in
+                 // or replied-to with the notice:
+                 ($replies ? sprintf("OR $UT.id in (%s)",
+                                     implode(',', $replies))
+                           : '') .
+                 ')');
 
     while ($user->fetch()) {
         common_log(LOG_INFO,
