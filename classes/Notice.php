@@ -218,7 +218,12 @@ class Notice extends Managed_DataObject
 
     public static function getByUri($uri)
     {
-        return static::getKV('uri', $uri);
+        $notice = new Notice();
+        $notice->uri = $uri;
+        if (!$notice->find(true)) {
+            throw new NoResultException($notice);
+        }
+        return $notice;
     }
 
     /**
