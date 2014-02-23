@@ -332,7 +332,7 @@ class OStatusPlugin extends Plugin
      * Find any explicit remote mentions. Accepted forms:
      *   Webfinger: @user@example.com
      *   Profile link: @example.com/mublog/user
-     * @param Profile $sender (os user?)
+     * @param Profile $sender
      * @param string $text input markup text
      * @param array &$mention in/out param: set of found mentions
      * @return boolean hook return value
@@ -354,6 +354,7 @@ class OStatusPlugin extends Plugin
                     if ($oprofile && !$oprofile->isGroup()) {
                         $profile = $oprofile->localProfile();
                         $matches[$pos] = array('mentioned' => array($profile),
+                                               'type' => 'mention',
                                                'text' => $target,
                                                'position' => $pos,
                                                'url' => $profile->profileurl);
@@ -380,6 +381,7 @@ class OStatusPlugin extends Plugin
                         if ($oprofile && !$oprofile->isGroup()) {
                             $profile = $oprofile->localProfile();
                             $matches[$pos] = array('mentioned' => array($profile),
+                                                   'type' => 'mention',
                                                    'text' => $target,
                                                    'position' => $pos,
                                                    'url' => $profile->profileurl);
