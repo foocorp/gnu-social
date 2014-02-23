@@ -142,7 +142,7 @@ class RealtimePlugin extends Plugin
 
     public function onEndShowStylesheets(Action $action)
     {
-        $action->cssLink(Plugin::staticPath('Realtime', 'realtimeupdate.css'),
+        $action->cssLink($this->path('css/realtimeupdate.css'),
                          null,
                          'screen, projection, tv');
         return true;
@@ -391,12 +391,7 @@ class RealtimePlugin extends Plugin
 
     function _getScripts()
     {
-        if (common_config('site', 'minify')) {
-            $js = 'realtimeupdate.min.js';
-        } else {
-            $js = 'realtimeupdate.js';
-        }
-        return array(Plugin::staticPath('Realtime', $js));
+        return array($this->path('js/realtimeupdate.js'));
     }
 
     /**

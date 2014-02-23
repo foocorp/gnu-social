@@ -27,11 +27,9 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) {
     exit(1);
 }
-
-require_once INSTALLDIR.'/plugins/Realtime/RealtimePlugin.php';
 
 /**
  * Plugin to do realtime updates using Meteor
@@ -96,7 +94,7 @@ class MeteorPlugin extends RealtimePlugin
         } else {
         	$scripts[] = 'http://'.$this->webserver.(($this->webport == 80) ? '':':'.$this->webport).'/meteor.js';
         }
-        $scripts[] = $this->path('meteorupdater.min.js');
+        $scripts[] = $this->path('js/meteorupdater.js');
         return $scripts;
     }
 
