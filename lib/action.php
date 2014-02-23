@@ -389,13 +389,10 @@ class Action extends HTMLOutputter // lawsuit
                 Event::handle('EndShowJQueryScripts', array($this));
             }
             if (Event::handle('StartShowStatusNetScripts', array($this))) {
-                if (common_config('site', 'minify')) {
-                    $this->script('util.min.js');
-                } else {
-                    $this->script('util.js');
-                    $this->script('xbImportNode.js');
-                    $this->script('geometa.js');
-                }
+                $this->script('util.js');
+                $this->script('xbImportNode.js');
+                $this->script('geometa.js');
+
                 // This route isn't available in single-user mode.
                 // Not sure why, but it causes errors here.
                 $this->inlineScript('var _peopletagAC = "' .
