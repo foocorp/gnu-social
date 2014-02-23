@@ -177,7 +177,7 @@ class EditgroupAction extends GroupAction
                 $nickname = Nickname::normalize($nickname, true);
             } catch (NicknameTakenException $e) {
                 // Abort only if the nickname is occupied by _another_ group
-                if ($e->profile->id != $this->group->id) {
+                if ($e->profile->id != $this->group->profile_id) {
                     $this->showForm($e->getMessage());
                     return;
                 }
