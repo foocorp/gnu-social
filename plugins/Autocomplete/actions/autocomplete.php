@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * List users for autocompletion
+ * List profiles and groups for autocompletion
  *
  * PHP version 5
  *
@@ -29,7 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) {
     exit(1);
 }
 
@@ -62,8 +62,8 @@ class AutocompleteAction extends Action
     function lastModified()
     {
         $max=0;
-        foreach($this->users as $user){
-            $max = max($max,strtotime($user->modified),strtotime($user->getProfile()->modified));
+        foreach($this->profiles as $profile){
+            $max = max($max,strtotime($user->modified),strtotime($profile->modified));
         }
         foreach($this->groups as $group){
             $max = max($max,strtotime($group->modified));
@@ -103,19 +103,22 @@ class AutocompleteAction extends Action
         }
 
         $this->groups=array();
-        $this->users=array();
+        $this->profiles=array();
         $term = $this->arg('term');
         $limit = $this->arg('limit');
         if($limit > 200) $limit=200; //prevent DOS attacks
         if(substr($term,0,1)=='@'){
-            //user search
+            //profile search
             $term=substr($term,1);
-            $user = new User();
-            $user->limit($limit);
-            $user->whereAdd('nickname like \'' . trim($user->escape($term), '\'') . '%\'');
-            if($user->find()){
-                while($user->fetch()) {
-                    $this->users[]=clone($user);
+            $profile = new Profile();
+            $profile->limit($limit);
+            $profile->whereAdd('nickname like \'' . trim($profile->escape($term), '\'') . '%\'');
+            $profile->whereAdd(sprintf('id in (SELECT id FROM user) OR '
+                               . 'id in (SELECT subscribed from subscription'
+                               . ' where subscriber = %d)', $cur->id));
+            if ($profile->find()) {
+                while($profile->fetch()) {
+                    $this->profiles[]=clone($profile);
                 }
             }
         }
@@ -139,8 +142,7 @@ class AutocompleteAction extends Action
         parent::handle();
 
         $results = array();
-        foreach($this->users as $user){
-            $profile = $user->getProfile();
+        foreach($this->profiles as $profile){
             $avatarUrl = $profile->avatarUrl(AVATAR_MINI_SIZE);
             $results[] = array(
                 'value' => '@'.$profile->nickname,
