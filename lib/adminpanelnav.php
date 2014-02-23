@@ -134,14 +134,6 @@ class AdminPanelNav extends Menu
                                      $menu_title, $action_name == 'sitenoticeadminpanel', 'nav_sitenotice_admin_panel');
             }
 
-            if (AdminPanelAction::canAdmin('snapshot')) {
-                // TRANS: Menu item title in administrator navigation panel.
-                $menu_title = _('Snapshots configuration');
-                // TRANS: Menu item in administrator navigation panel.
-                $this->out->menuItem(common_local_url('snapshotadminpanel'), _m('MENU','Snapshots'),
-                                     $menu_title, $action_name == 'snapshotadminpanel', 'nav_snapshot_admin_panel');
-            }
-
             if (AdminPanelAction::canAdmin('license')) {
                 // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Set site license');

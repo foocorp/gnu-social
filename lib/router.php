@@ -847,7 +847,6 @@ class Router
             $m->connect('panel/paths', array('action' => 'pathsadminpanel'));
             $m->connect('panel/sessions', array('action' => 'sessionsadminpanel'));
             $m->connect('panel/sitenotice', array('action' => 'sitenoticeadminpanel'));
-            $m->connect('panel/snapshot', array('action' => 'snapshotadminpanel'));
             $m->connect('panel/license', array('action' => 'licenseadminpanel'));
 
             $m->connect('panel/plugins', array('action' => 'pluginsadminpanel'));

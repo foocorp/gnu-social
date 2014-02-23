@@ -532,32 +532,6 @@ welcome: nickname of a user account that sends welcome messages to new
 If either of these special user accounts are specified, the users should
 be created before the configuration is updated.
 
-snapshot
---------
-
-The software will, by default, send statistical snapshots about the
-local installation to a stats server on the status.net Web site. This
-data is used by the developers to prioritize development decisions. No
-identifying data about users or organizations is collected. The data
-is available to the public for review. Participating in this survey
-helps StatusNet developers take your needs into account when updating
-the software.
-
-run: string indicating when to run the statistics. Values can be 'web'
-    (run occasionally at Web time), 'cron' (run from a cron script),
-    or 'never' (don't ever run). If you set it to 'cron', remember to
-    schedule the script to run on a regular basis.
-frequency: if run value is 'web', how often to report statistics.
-    Measured in Web hits; depends on how active your site is.
-    Default is 10000 -- that is, one report every 10000 Web hits,
-    on average.
-reporturl: URL to post statistics to. Defaults to StatusNet developers'
-    report system, but if they go evil or disappear you may
-    need to update this to another value. Note: if you
-    don't want to report stats, it's much better to
-    set 'run' to 'never' than to set this value to something
-    nonsensical.
-
 attachments
 -----------
 
