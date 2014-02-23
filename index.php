@@ -242,8 +242,6 @@ function main()
     }
     global $user, $action;
 
-    Snapshot::check();
-
     if (!_have_config()) {
         $msg = sprintf(
             // TRANS: Error message displayed when there is no StatusNet configuration file.
