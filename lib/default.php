@@ -85,6 +85,7 @@ $default =
               'facility' => LOG_USER),
         'queue' =>
         array('enabled' => true,
+              'daemon' => false, # Use queuedaemon. Default to false
               'subsystem' => 'db', # default to database, or 'stomp'
               'stomp_server' => null,
               'queue_basename' => '/queue/statusnet/',
