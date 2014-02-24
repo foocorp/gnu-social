@@ -370,21 +370,12 @@ class Action extends HTMLOutputter // lawsuit
     {
         if (Event::handle('StartShowScripts', array($this))) {
             if (Event::handle('StartShowJQueryScripts', array($this))) {
-                if (common_config('site', 'minify')) {
-                    $this->script('extlib/jquery.min.js');
-                    $this->script('extlib/jquery.form.min.js');
-                    $this->script('extlib/jquery-ui/jquery-ui.min.js');
-                    $this->script('extlib/jquery.cookie.min.js');
-                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.min.js', StatusNet::isHTTPS()).'"); }');
-                    $this->script('extlib/jquery.infieldlabel.min.js');
-                } else {
-                    $this->script('extlib/jquery.js');
-                    $this->script('extlib/jquery.form.js');
-                    $this->script('extlib/jquery-ui/jquery-ui.js');
-                    $this->script('extlib/jquery.cookie.js');
-                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', StatusNet::isHTTPS()).'"); }');
-                    $this->script('extlib/jquery.infieldlabel.js');
-                }
+                $this->script('extlib/jquery.js');
+                $this->script('extlib/jquery.form.js');
+                $this->script('extlib/jquery-ui/jquery-ui.js');
+                $this->script('extlib/jquery.cookie.js');
+                $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', StatusNet::isHTTPS()).'"); }');
+                $this->script('extlib/jquery.infieldlabel.js');
 
                 Event::handle('EndShowJQueryScripts', array($this));
             }
