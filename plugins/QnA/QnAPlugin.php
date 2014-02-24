@@ -65,6 +65,10 @@ class QnAPlugin extends MicroAppPlugin
         return true;
     }
 
+    public function newFormAction() {
+        return 'qnanewquestion';
+    }
+
     /**
      * Map URLs to actions
      *

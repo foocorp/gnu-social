@@ -681,7 +681,8 @@ class Action extends HTMLOutputter // lawsuit
     function showNoticeForm()
     {
         // TRANS: Tab on the notice form.
-        $tabs = array('status' => _m('TAB','Status'));
+        $tabs = array('status' => array('title' => _m('TAB','Status'),
+                                        'href'  => common_local_url('newnotice')));
 
         $this->elementStart('div', 'input_forms');
 
@@ -689,7 +690,8 @@ class Action extends HTMLOutputter // lawsuit
             $this->elementStart('ul', array('class' => 'nav',
                                             'id' => 'input_form_nav'));
 
-            foreach ($tabs as $tag => $title) {
+            foreach ($tabs as $tag => $data) {
+                $tag = htmlspecialchars($tag);
                 $attrs = array('id' => 'input_form_nav_'.$tag,
                                'class' => 'input_form_nav_tab');
 
@@ -702,8 +704,9 @@ class Action extends HTMLOutputter // lawsuit
                 $this->elementStart('li', $attrs);
 
                 $this->element('a',
-                               array('href' => 'javascript:SN.U.switchInputFormTab("'.$tag.'")'),
-                               $title);
+                               array('onclick' => 'return SN.U.switchInputFormTab("'.$tag.'");',
+                                     'href' => $data['href']),
+                               $data['title']);
                 $this->elementEnd('li');
             }
 
@@ -716,7 +719,7 @@ class Action extends HTMLOutputter // lawsuit
             $form->show();
             $this->elementEnd('div');
 
-            foreach ($tabs as $tag => $title) {
+            foreach ($tabs as $tag => $data) {
                 $attrs = array('class' => 'input_form',
                                'id' => 'input_form_'.$tag);
 

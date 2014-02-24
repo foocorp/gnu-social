@@ -163,6 +163,14 @@ abstract class MicroAppPlugin extends Plugin
     abstract function deleteRelated($notice);
 
     /**
+     *
+     */
+    public function newFormAction() {
+        // such as 'newbookmark' or 'newevent' route
+        return 'new'.$this->tag();
+    }
+
+    /**
      * Check if a given notice object should be handled by this micro-app
      * plugin.
      *
@@ -536,7 +544,9 @@ abstract class MicroAppPlugin extends Plugin
 
     function onStartShowEntryForms(&$tabs)
     {
-        $tabs[$this->tag()] = $this->appTitle();
+        $tabs[$this->tag()] = array('title' => $this->appTitle(),
+                                    'href'  => common_local_url($this->newFormAction()),
+                                   );
         return true;
     }
 
