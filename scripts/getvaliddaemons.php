@@ -37,7 +37,9 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 $daemons = array();
 
-#$daemons[] = INSTALLDIR.'/scripts/queuedaemon.php';
+if (common_config('queue', 'daemon')) {
+    $daemons[] = INSTALLDIR.'/scripts/queuedaemon.php';
+}
 
 if (Event::handle('GetValidDaemons', array(&$daemons))) {
     foreach ($daemons as $daemon) {
