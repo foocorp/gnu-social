@@ -384,13 +384,13 @@ job during regular HTTP requests, like API or HTML pages calls.
 Since queueing system is enabled by default, notices to be broadcasted
 will be stored, by default, into DB (table queue_items).
 
-Each time it casn, OpportunisticQM will try to handle some of them.
+Each time it can, OpportunisticQM will try to handle some of them.
 
 This is a good solution wether you:
 
 * have no access to command line (shared hosting)
 * do not want to deal with long-running PHP process
-* run a low trffic GnuSocial instance
+* run a low traffic GnuSocial instance
 
 In other case, you really should consider using queuedaemon.
 
