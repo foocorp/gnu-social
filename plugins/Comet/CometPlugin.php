@@ -31,6 +31,8 @@ if (!defined('GNUSOCIAL') && !defined('STATUSNET')) {
     exit(1);
 }
 
+require_once INSTALLDIR.'/plugins/Realtime/RealtimePlugin.php';
+
 /**
  * Plugin to do realtime updates using Comet
  *
