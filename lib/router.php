@@ -712,11 +712,11 @@ class Router
 
             $m->connect('api/statusnet/groups/join/:id.:format',
                         array('action' => 'ApiGroupJoin',
+                              'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
             $m->connect('api/statusnet/groups/join.:format',
                         array('action' => 'ApiGroupJoin',
-                              'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
             $m->connect('api/statusnet/groups/leave/:id.:format',
