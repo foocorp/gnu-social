@@ -53,7 +53,7 @@ class GroupqueueAction extends GroupAction
     }
 
     // @todo FIXME: most of this belongs in a base class, sounds common to most group actions?
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
@@ -119,9 +119,9 @@ class GroupqueueAction extends GroupAction
         }
     }
 
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $this->showPage();
     }
 

@@ -58,54 +58,45 @@ class GroupblockAction extends RedirectingAction
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
         $token = $this->trimmed('token');
         if (empty($token) || $token != common_session_token()) {
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. Try again, please.'));
-            return;
         }
         $id = $this->trimmed('blockto');
         if (empty($id)) {
             // TRANS: Client error displayed trying to block a user from a group while not specifying a to be blocked user profile.
             $this->clientError(_('No profile specified.'));
-            return false;
         }
         $this->profile = Profile::getKV('id', $id);
         if (empty($this->profile)) {
             // TRANS: Client error displayed trying to block a user from a group while specifying a non-existing profile.
             $this->clientError(_('No profile with that ID.'));
-            return false;
         }
         $group_id = $this->trimmed('blockgroup');
         if (empty($group_id)) {
             // TRANS: Client error displayed trying to block a user from a group while not specifying a group to block a profile from.
             $this->clientError(_('No group specified.'));
-            return false;
         }
         $this->group = User_group::getKV('id', $group_id);
         if (empty($this->group)) {
             // TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
             $this->clientError(_('No such group.'));
-            return false;
         }
         $user = common_current_user();
         if (!$user->isAdmin($this->group)) {
             // TRANS: Client error displayed trying to block a user from a group while not being an admin user.
             $this->clientError(_('Only an admin can block group members.'), 401);
-            return false;
         }
         if (Group_block::isBlocked($this->group, $this->profile)) {
             // TRANS: Client error displayed trying to block a user from a group while user is already blocked from the given group.
             $this->clientError(_('User is already blocked from group.'));
-            return false;
         }
         // XXX: could have proactive blocks, but we don't have UI for it.
         if (!$this->profile->isMember($this->group)) {
             // TRANS: Client error displayed trying to block a user from a group while user is not a member of given group.
             $this->clientError(_('User is not a member of group.'));
-            return false;
         }
         return true;
     }

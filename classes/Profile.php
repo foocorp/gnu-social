@@ -256,7 +256,7 @@ class Profile extends Managed_DataObject
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
-    function isMember($group)
+    function isMember(User_group $group)
     {
     	$groups = $this->getGroups(0, null);
         while ($groups instanceof User_group && $groups->fetch()) {
@@ -267,7 +267,7 @@ class Profile extends Managed_DataObject
     	return false;
     }
 
-    function isAdmin($group)
+    function isAdmin(User_group $group)
     {
         $gm = Group_member::pkeyGet(array('profile_id' => $this->id,
                                           'group_id' => $group->id));

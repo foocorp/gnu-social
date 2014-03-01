@@ -52,7 +52,7 @@ class GroupmembersAction extends GroupAction
         return true;
     }
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -77,9 +77,9 @@ class GroupmembersAction extends GroupAction
         }
     }
 
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $this->showPage();
     }
 

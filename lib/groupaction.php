@@ -46,7 +46,7 @@ class GroupAction extends Action
 {
     protected $group;
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 

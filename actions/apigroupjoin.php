@@ -72,7 +72,7 @@ class ApiGroupJoinAction extends ApiAuthAction
     /**
      * Handle the request
      *
-     * Save the new message
+     * Join the authenticated user to the group
      *
      * @return void
      */
@@ -80,7 +80,7 @@ class ApiGroupJoinAction extends ApiAuthAction
     {
         parent::handle();
 
-        if (empty($this->user)) {
+        if (empty($this->scoped)) {
             // TRANS: Client error displayed when trying to have a non-existing user join a group.
             $this->clientError(_('No such user.'), 404);
         }
@@ -90,23 +90,23 @@ class ApiGroupJoinAction extends ApiAuthAction
             $this->clientError(_('Group not found.'), 404);
         }
 
-        if ($this->user->isMember($this->group)) {
+        if ($this->scoped->isMember($this->group)) {
             // TRANS: Server error displayed when trying to join a group the user is already a member of.
             $this->clientError(_('You are already a member of that group.'), 403);
         }
 
-        if (Group_block::isBlocked($this->group, $this->user->getProfile())) {
+        if (Group_block::isBlocked($this->group, $this->scoped)) {
             // TRANS: Server error displayed when trying to join a group the user is blocked from joining.
             $this->clientError(_('You have been blocked from that group by the admin.'), 403);
         }
 
         try {
-            $this->user->joinGroup($this->group);
+            $this->scoped->joinGroup($this->group);
         } catch (Exception $e) {
             // TRANS: Server error displayed when joining a group failed in the database.
             // TRANS: %1$s is the joining user's nickname, $2$s is the group nickname for which the join failed.
             $this->serverError(sprintf(_('Could not join user %1$s to group %2$s.'),
-                                       $cur->nickname, $this->group->nickname));
+                                       $this->scoped->nickname, $this->group->nickname));
         }
 
         switch($this->format) {
