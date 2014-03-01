@@ -382,7 +382,7 @@ This plugin is enabled by default. It tries its best to do background
 job during regular HTTP requests, like API or HTML pages calls.
 
 Since queueing system is enabled by default, notices to be broadcasted
-will be stored, by default, into DB (table queue_items).
+will be stored, by default, into DB (table queue_item).
 
 Each time it can, OpportunisticQM will try to handle some of them.
 
@@ -393,7 +393,8 @@ This is a good solution whether you:
 * run a low traffic GNU social instance
 
 In other case, you really should consider enabling the queuedaemon for
-performance reasons.
+performance reasons. Background daemons are necessary anyway if you wish
+to use the Instant Messaging features such as communicating via XMPP.
 
 ### queuedaemon
 
