@@ -118,7 +118,7 @@ class WebInstaller extends Installer
     function main()
     {
         if (!$this->checkPrereqs()) {
-            $this->showForm();
+            $this->warning(_('Please fix the above stated problems and refresh this page to continue installing.'));
             return;
         }
 
