@@ -142,9 +142,9 @@ class RealtimePlugin extends Plugin
 
     public function onEndShowStylesheets(Action $action)
     {
-        $action->cssLink(self::staticPath(__CLASS__, 'css/realtimeupdate.css'),
-                         null,
-                         'screen, projection, tv');
+        $urlpath = self::staticPath(str_replace('Plugin','',__CLASS__),
+                                    'css/realtimeupdate.css');
+        $action->cssLink($urlpath, null, 'screen, projection, tv');
         return true;
     }
 
@@ -391,7 +391,9 @@ class RealtimePlugin extends Plugin
 
     function _getScripts()
     {
-        return array(self::staticPath(__CLASS__, 'js/realtimeupdate.js'));
+        $urlpath = self::staticPath(str_replace('Plugin','',__CLASS__),
+                                    'js/realtimeupdate.js');
+        return array($urlpath);
     }
 
     /**
