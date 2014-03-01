@@ -376,9 +376,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
     <head>
         <title>Install GNU social</title>
-	<link rel="shortcut icon" href="favicon.ico"/>
+        <link rel="shortcut icon" href="favicon.ico"/>
         <link rel="stylesheet" type="text/css" href="theme/base/css/display.css" media="screen, projection, tv"/>
         <link rel="stylesheet" type="text/css" href="theme/neo/css/display.css" media="screen, projection, tv"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/base/css/ie.css" /><![endif]-->
         <!--[if lte IE 6]><link rel="stylesheet" type="text/css" theme/base/css/ie6.css" /><![endif]-->
         <!--[if lte IE 7]><link rel="stylesheet" type="text/css" theme/base/css/ie7.css" /><![endif]-->
