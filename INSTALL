@@ -386,13 +386,14 @@ will be stored, by default, into DB (table queue_items).
 
 Each time it can, OpportunisticQM will try to handle some of them.
 
-This is a good solution wether you:
+This is a good solution whether you:
 
 * have no access to command line (shared hosting)
-* do not want to deal with long-running PHP process
-* run a low traffic GnuSocial instance
+* do not want to deal with long-running PHP processes
+* run a low traffic GNU social instance
 
-In other case, you really should consider using queuedaemon.
+In other case, you really should consider enabling the queuedaemon for
+performance reasons.
 
 ### queuedaemon
 
