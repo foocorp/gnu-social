@@ -96,21 +96,8 @@ abstract class Installer
             }
         }
 
-        if (version_compare(PHP_VERSION, '5.2.3', '<')) {
-            $this->warning('Require PHP version 5.2.3 or greater.');
-            $pass = false;
-        }
-
-        // Look for known library bugs
-        $str = "abcdefghijklmnopqrstuvwxyz";
-        $replaced = preg_replace('/[\p{Cc}\p{Cs}]/u', '*', $str);
-        if ($str != $replaced) {
-            $this->warning('PHP is linked to a version of the PCRE library ' .
-                           'that does not support Unicode properties. ' .
-                           'If you are running Red Hat Enterprise Linux / ' .
-                           'CentOS 5.4 or earlier, see <a href="' .
-                           'http://status.net/wiki/Red_Hat_Enterprise_Linux#PCRE_library' .
-                           '">our documentation page</a> on fixing this.');
+        if (version_compare(PHP_VERSION, '5.3.2', '<')) {
+            $this->warning('Require PHP version 5.3.2 or greater.');
             $pass = false;
         }
 
