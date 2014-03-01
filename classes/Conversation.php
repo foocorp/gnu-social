@@ -22,32 +22,28 @@
  * @category  Data
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
+ * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2010 StatusNet Inc.
+ * @copyright 2009-2014 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
 
-require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class Conversation extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
-    public $__table = 'conversation';                    // table name
+    public $__table = 'conversation';        // table name
     public $id;                              // int(4)  primary_key not_null
     public $uri;                             // varchar(255)  unique_key
     public $created;                         // datetime   not_null
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
 
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
-
     public static function schemaDef()
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'should be set from root notice id (since 2014-03-01 commit)'),
                 'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'URI of the conversation'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
@@ -64,25 +60,21 @@ class Conversation extends Managed_DataObject
      *
      * @return Conversation the new conversation DO
      */
-    static function create()
+    static function create(Notice $notice)
     {
-        $conv = new Conversation();
-        $conv->created = common_sql_now();
-        $id = $conv->insert();
-
-        if (empty($id)) {
-            common_log_db_error($conv, 'INSERT', __FILE__);
+        if (empty($notice->id)) {
+            common_debug('Tried to create conversation for not yet inserted notice');
             return null;
         }
+        $conv = new Conversation();
+        $conv->created = common_sql_now();
+        $conv->id = $notice->id;
+        $conv->uri = common_local_url('conversation', array('id' => $notice->id), null, null, false);
+        $result = $conv->insert();
 
-        $orig = clone($conv);
-        $orig->uri = common_local_url('conversation', array('id' => $id),
-                                      null, null, false);
-        $result = $orig->update($conv);
-
-        if (empty($result)) {
-            common_log_db_error($conv, 'UPDATE', __FILE__);
-            return null;
+        if ($result === false) {
+            common_log_db_error($conv, 'INSERT', __FILE__);
+            throw new ServerException(_('Failed to create conversation for notice'));
         }
 
         return $conv;

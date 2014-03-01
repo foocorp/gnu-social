@@ -587,13 +587,13 @@ class Notice extends Managed_DataObject
             // the beginning of a new conversation.
 
             if (empty($notice->conversation)) {
-                $conv = Conversation::create();
+                $conv = Conversation::create($notice);
                 $notice->conversation = $conv->id;
                 $changed = true;
             }
 
             if ($changed) {
-                if (!$notice->update($orig)) {
+                if ($notice->update($orig) === false) {
                     common_log_db_error($notice, 'UPDATE', __FILE__);
                     // TRANS: Server exception thrown when a notice cannot be updated.
                     throw new ServerException(_('Problem saving notice.'));

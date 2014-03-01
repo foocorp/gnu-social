@@ -165,12 +165,6 @@ class TwitterImport
             }
         }
 
-        if (empty($notice->conversation)) {
-            $conv = Conversation::create();
-            $notice->conversation = $conv->id;
-            common_log(LOG_INFO, "No known conversation for status {$statusId} so making a new one {$conv->id}.");
-        }
-
         $notice->is_local   = Notice::GATEWAY;
 
         $notice->content  = html_entity_decode($this->linkify($status, FALSE), ENT_QUOTES, 'UTF-8');
@@ -180,9 +174,17 @@ class TwitterImport
 
             $id = $notice->insert();
 
-            if (!$id) {
+            if ($id === false) {
                 common_log_db_error($notice, 'INSERT', __FILE__);
                 common_log(LOG_ERR, __METHOD__ . ' - Problem saving notice.');
+            }
+
+            if (empty($notice->conversation)) {
+                $orig = clone($notice);
+                $conv = Conversation::create($notice);
+                common_log(LOG_INFO, "No known conversation for status {$statusId} so a new one ({$conv->id}) was created.");
+                $notice->conversation = $conv->id;
+                $notice->update($orig);
             }
 
             Event::handle('EndNoticeSave', array($notice));
