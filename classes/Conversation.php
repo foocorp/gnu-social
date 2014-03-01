@@ -63,8 +63,7 @@ class Conversation extends Managed_DataObject
     static function create(Notice $notice)
     {
         if (empty($notice->id)) {
-            common_debug('Tried to create conversation for not yet inserted notice');
-            return null;
+            throw new ServerException(_('Tried to create conversation for not yet inserted notice'));
         }
         $conv = new Conversation();
         $conv->created = common_sql_now();
