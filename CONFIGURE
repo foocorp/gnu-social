@@ -182,6 +182,8 @@ sending out SMS email or XMPP messages, for off-line processing. See
 'Queues and daemons' above for how to set this up.
 
 enabled: Whether to uses queues. Defaults to false.
+daemon: Wather to use queuedaemon. Defaults to false, which means
+    you'll use OpportunisticQM plugin.
 subsystem: Which kind of queueserver to use. Values include "db" for
     our hacked-together database queuing (no other server
     required) and "stomp" for a stomp server.

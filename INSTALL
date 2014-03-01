@@ -368,12 +368,39 @@ Queues and daemons
 ------------------
 
 Some activities that StatusNet needs to do, like broadcast OStatus, SMS,
-and XMPP messages, can be 'queued' and done by off-line bots instead.
-For this to work, you must be able to run long-running offline
-processes, either on your main Web server or on another server you
-control. (Your other server will still need all the above
-prerequisites, with the exception of Apache.) Installing on a separate
-server is probably a good idea for high-volume sites.
+XMPP messages and TwitterBridge operations, can be 'queued' and done by
+off-line bots instead.
+
+Two mechanisms are available to achieve offline operations:
+
+* New embedded OpportunisticQM plugin, which is enabled by default
+* Legacy queuedaemon script, which can be enabled via config file.
+
+### OpportunisticQM plugin
+
+This plugin is enabled by default. It tries its best to do background
+job during regular HTTP requests, like API or HTML pages calls.
+
+Since queueing system is enabled by default, notices to be broadcasted
+will be stored, by default, into DB (table queue_items).
+
+Each time it can, OpportunisticQM will try to handle some of them.
+
+This is a good solution wether you:
+
+* have no access to command line (shared hosting)
+* do not want to deal with long-running PHP process
+* run a low traffic GnuSocial instance
+
+In other case, you really should consider using queuedaemon.
+
+### queuedaemon
+
+If you want to use legacy queuedaemon, you must be able to run
+long-running offline processes, either on your main Web server or on
+another server you control. (Your other server will still need all the
+above prerequisites, with the exception of Apache.) Installing on a
+separate server is probably a good idea for high-volume sites.
 
 1. You'll need the "CLI" (command-line interface) version of PHP
    installed on whatever server you use.
@@ -399,6 +426,7 @@ server is probably a good idea for high-volume sites.
    server!), set the following variable:
 
        $config['queue']['enabled'] = true;
+       $config['queue']['daemon'] = true;
 
    You may also want to look at the 'daemon' section of this file for
    more daemon options. Note that if you set the 'user' and/or 'group'
@@ -412,7 +440,7 @@ This will run the queue handlers:
 * queuedaemon.php - polls for queued items for inbox processing and
   pushing out to OStatus, SMS, XMPP, etc.
 * imdaemon.php - if an IM plugin is enabled (like XMPP)
-* other daemons that you may have enabled
+* other daemons, like TwitterBridge ones, that you may have enabled
 
 These daemons will automatically restart in most cases of failure
 including memory leaks (if a memory_limit is set), but may still die
