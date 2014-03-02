@@ -26,9 +26,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Takes parameters:
@@ -57,7 +55,7 @@ abstract class BaseMirrorAction extends Action
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         return $this->sharedBoilerplate();
@@ -152,7 +150,7 @@ abstract class BaseMirrorAction extends Action
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
         // Throws exception on error
         $this->saveMirror();
@@ -174,5 +172,5 @@ abstract class BaseMirrorAction extends Action
         }
     }
 
-    abstract function saveMirror();
+    abstract protected function saveMirror();
 }

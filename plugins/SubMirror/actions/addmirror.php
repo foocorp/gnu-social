@@ -26,9 +26,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Takes parameters:
@@ -56,7 +54,7 @@ class AddMirrorAction extends BaseMirrorAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         $feedurl = $this->getFeedUrl();
@@ -77,7 +75,7 @@ class AddMirrorAction extends BaseMirrorAction
         }
     }
 
-    function saveMirror()
+    protected function saveMirror()
     {
         if ($this->oprofile->subscribe()) {
             SubMirror::saveMirror($this->user, $this->profile);
