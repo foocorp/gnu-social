@@ -101,8 +101,8 @@ abstract class BaseMirrorAction extends Action
             $oprofile = Ostatus_profile::ensureFeedURL($url);
         }
         if ($oprofile->isGroup()) {
-            // TRANS: Client error displayed when trying to mirror a StatusNet group feed.
-            $this->clientError(_m('Cannot mirror a StatusNet group at this time.'));
+            // TRANS: Client error displayed when trying to mirror a GNU social group feed.
+            $this->clientError(_m('Cannot mirror a GNU social group at this time.'));
         }
         $this->oprofile = $oprofile; // @todo FIXME: ugly side effect :D
         return $oprofile->localProfile();

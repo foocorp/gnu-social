@@ -71,10 +71,6 @@ class AddMirrorAction extends BaseMirrorAction
         switch ($provider) {
         case 'feed':
             return $this->trimmed('feedurl');
-        case 'twitter':
-            $screenie = $this->trimmed('screen_name');
-            $base = 'http://api.twitter.com/1/statuses/user_timeline.atom?screen_name=';
-            return $base . urlencode($screenie);
         default:
             // TRANS: Exception thrown when a feed provider could not be recognised.
             throw new Exception(_m('Internal form error: Unrecognized feed provider.'));
