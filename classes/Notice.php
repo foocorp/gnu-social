@@ -142,20 +142,20 @@ class Notice extends Managed_DataObject
     const FOLLOWER_SCOPE  = 8;
 
     protected $_profile = -1;
-
+    
     public function getProfile()
     {
         if ($this->_profile === -1) {
             $this->_setProfile(Profile::getKV('id', $this->profile_id));
         }
-        if (!$this->_profile instanceof Profile) {
-            throw new NoProfileException($this->profile_id);
-        }
         return $this->_profile;
     }
     
-    function _setProfile(Profile $profile)
+    public function _setProfile(Profile $profile=null)
     {
+        if (!$profile instanceof Profile) {
+            throw new NoProfileException($this->profile_id);
+        }
         $this->_profile = $profile;
     }
 
@@ -2510,10 +2510,15 @@ class Notice extends Managed_DataObject
 	{
 		$map = self::getProfiles($notices);
 		
-		foreach ($notices as $notice) {
-			if (array_key_exists($notice->profile_id, $map)) {
-				$notice->_setProfile($map[$notice->profile_id]);    
-			}
+		foreach ($notices as $entry=>$notice) {
+            try {
+    			if (array_key_exists($notice->profile_id, $map)) {
+	    			$notice->_setProfile($map[$notice->profile_id]);
+		    	}
+            } catch (NoProfileException $e) {
+                common_log(LOG_WARNING, "Failed to fill profile in Notice with non-existing entry for profile_id: {$e->id}");
+                unset($notices[$entry]);
+            }
 		}
 		
 		return array_values($map);
