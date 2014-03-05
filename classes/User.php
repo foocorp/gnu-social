@@ -134,7 +134,7 @@ class User extends Managed_DataObject
         return $this->_profile;
     }
 
-    function isSubscribed($other)
+    function isSubscribed(Profile $other)
     {
         return $this->getProfile()->isSubscribed($other);
     }

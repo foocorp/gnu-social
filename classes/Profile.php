@@ -745,7 +745,7 @@ class Profile extends Managed_DataObject
      * @param Profile $other
      * @return boolean
      */
-    function isSubscribed($other)
+    function isSubscribed(Profile $other)
     {
         return Subscription::exists($this, $other);
     }
