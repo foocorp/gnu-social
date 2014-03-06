@@ -26,9 +26,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Takes parameters:
@@ -56,7 +54,7 @@ class AddMirrorAction extends BaseMirrorAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         $feedurl = $this->getFeedUrl();
@@ -71,17 +69,13 @@ class AddMirrorAction extends BaseMirrorAction
         switch ($provider) {
         case 'feed':
             return $this->trimmed('feedurl');
-        case 'twitter':
-            $screenie = $this->trimmed('screen_name');
-            $base = 'http://api.twitter.com/1/statuses/user_timeline.atom?screen_name=';
-            return $base . urlencode($screenie);
         default:
             // TRANS: Exception thrown when a feed provider could not be recognised.
             throw new Exception(_m('Internal form error: Unrecognized feed provider.'));
         }
     }
 
-    function saveMirror()
+    protected function saveMirror()
     {
         if ($this->oprofile->subscribe()) {
             SubMirror::saveMirror($this->user, $this->profile);

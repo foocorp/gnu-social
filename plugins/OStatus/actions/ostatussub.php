@@ -22,9 +22,7 @@
  * @maintainer Brion Vibber <brion@status.net>
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Key UI methods:
@@ -42,16 +40,44 @@ class OStatusSubAction extends Action
     protected $profile_uri; // provided acct: or URI of remote entity
     protected $oprofile; // Ostatus_profile of remote entity, if valid
 
+    protected function prepare(array $args=array())
+    {
+        parent::prepare($args);
+
+        if (!common_logged_in()) {
+            // XXX: selfURL() didn't work. :<
+            common_set_returnto($_SERVER['REQUEST_URI']);
+            if (Event::handle('RedirectToLogin', array($this, null))) {
+                common_redirect(common_local_url('login'), 303);
+            }
+            return false;
+        }
+
+        if ($this->pullRemoteProfile()) {
+            $this->validateRemoteProfile();
+        }
+        return true;
+    }
+
+    /**
+     * Handle the submission.
+     */
+    protected function handle()
+    {
+        parent::handle();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->handlePost();
+        } else {
+            $this->showForm();
+        }
+    }
+
     /**
      * Show the initial form, when we haven't yet been given a valid
      * remote profile.
      */
     function showInputForm()
     {
-        $user = common_current_user();
-
-        $profile = $user->getProfile();
-
         $this->elementStart('form', array('method' => 'post',
                                           'id' => 'form_ostatus_sub',
                                           'class' => 'form_settings',
@@ -132,8 +158,7 @@ class OStatusSubAction extends Action
         $oprofile = $this->oprofile;
         $profile = $oprofile->localProfile();
 
-        $cur = common_current_user();
-        if ($cur->isSubscribed($profile)) {
+        if ($this->scoped->isSubscribed($profile)) {
             $this->element('div', array('class' => 'error'),
                            // TRANS: Extra paragraph in remote profile view when already subscribed.
                            _m('You are already subscribed to this user.'));
@@ -203,8 +228,7 @@ class OStatusSubAction extends Action
      */
     function success()
     {
-        $cur = common_current_user();
-        $url = common_local_url('subscriptions', array('nickname' => $cur->nickname));
+        $url = common_local_url('subscriptions', array('nickname' => $this->scoped->nickname));
         common_redirect($url, 303);
     }
 
@@ -288,48 +312,15 @@ class OStatusSubAction extends Action
     function saveFeed()
     {
         // And subscribe the current user to the local profile
-        $user = common_current_user();
         $local = $this->oprofile->localProfile();
-        if ($user->isSubscribed($local)) {
+        if ($this->scoped->isSubscribed($local)) {
             // TRANS: OStatus remote subscription dialog error.
             $this->showForm(_m('Already subscribed!'));
-        } elseif (Subscription::start($user->getProfile(), $local)) {
+        } elseif (Subscription::start($this->scoped, $local)) {
             $this->success();
         } else {
             // TRANS: OStatus remote subscription dialog error.
             $this->showForm(_m('Remote subscription failed!'));
-        }
-    }
-
-    function prepare($args)
-    {
-        parent::prepare($args);
-
-        if (!common_logged_in()) {
-            // XXX: selfURL() didn't work. :<
-            common_set_returnto($_SERVER['REQUEST_URI']);
-            if (Event::handle('RedirectToLogin', array($this, null))) {
-                common_redirect(common_local_url('login'), 303);
-            }
-            return false;
-        }
-
-        if ($this->pullRemoteProfile()) {
-            $this->validateRemoteProfile();
-        }
-        return true;
-    }
-
-    /**
-     * Handle the submission.
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->handlePost();
-        } else {
-            $this->showForm();
         }
     }
 

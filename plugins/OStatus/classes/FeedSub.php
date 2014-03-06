@@ -261,11 +261,16 @@ class FeedSub extends Managed_DataObject
     }
 
     /**
+     * Setting to subscribe means it is _waiting_ to become active. This
+     * cannot be done in a transaction because there is a chance that the
+     * remote script we're calling (as in the case of PuSHpress) performs
+     * the lookup _while_ we're POSTing data, which means the transaction
+     * never completes (PushcallbackAction gets an 'inactive' state).
+     *
      * @return boolean  true on successful sub/unsub, false on failure
      */
     protected function doSubscribe($mode)
     {
-        $this->query('BEGIN');
         $orig = clone($this);
         if ($mode == 'subscribe') {
             $this->secret = common_random_hexstr(32);
@@ -302,7 +307,6 @@ class FeedSub extends Managed_DataObject
             $response = $client->post($hub, $headers, $post);
             $status = $response->getStatus();
             if ($status == 202) {
-                $this->query('COMMIT');
                 common_log(LOG_INFO, __METHOD__ . ': sub req ok, awaiting verification callback');
                 return true;
             } else if ($status >= 200 && $status < 300) {
@@ -310,9 +314,7 @@ class FeedSub extends Managed_DataObject
             } else {
                 common_log(LOG_ERR, __METHOD__ . ": sub req failed with HTTP $status: " . $response->getBody());
             }
-            $this->query('ROLLBACK');
         } catch (Exception $e) {
-            $this->query('ROLLBACK');
             // wtf!
             common_log(LOG_ERR, __METHOD__ . ": error \"{$e->getMessage()}\" hitting hub $this->huburi subscribing to $this->uri");
 

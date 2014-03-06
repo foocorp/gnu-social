@@ -28,7 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) {
     exit(1);
 }
 
@@ -67,12 +67,12 @@ class AttachmentList extends Widget
     }
 
     /**
-     * show the list of notices
+     * show the list of attachments
      *
      * "Uses up" the stream by looping through it. So, probably can't
      * be called twice on the same list.
      *
-     * @return int count of notices listed.
+     * @return int count of items listed.
      */
     function show()
     {
@@ -101,16 +101,13 @@ class AttachmentList extends Widget
     }
 
     /**
-     * returns a new list item for the current notice
+     * returns a new list item for the current attachment
      *
-     * Recipe (factory?) method; overridden by sub-classes to give
-     * a different list item class.
+     * @param File $attachment the current attachment
      *
-     * @param Notice $notice the current notice
-     *
-     * @return NoticeListItem a list item for displaying the notice
+     * @return AttachmentListItem a list item for displaying the attachment
      */
-    function newListItem($attachment)
+    function newListItem(File $attachment)
     {
         return new AttachmentListItem($attachment, $this->out);
     }
@@ -142,13 +139,9 @@ class AttachmentListItem extends Widget
     var $oembed = null;
 
     /**
-     * constructor
-     *
-     * Also initializes the profile attribute.
-     *
-     * @param Notice $notice The notice we'll display
+     * @param File $attachment the attachment we will display
      */
-    function __construct($attachment, $out=null)
+    function __construct(File $attachment, $out=null)
     {
         parent::__construct($out);
         $this->attachment  = $attachment;

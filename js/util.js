@@ -1414,6 +1414,8 @@ var SN = { // StatusNet
                     SN.Init.NoticeFormSetup(form);
                 })
                 .find('.notice_data-text').focus();
+
+        return false;
     },
 
         showMoreMenuItems: function (menuid) {

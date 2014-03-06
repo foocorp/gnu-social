@@ -60,7 +60,7 @@ class GrouplogoAction extends GroupAction
     /**
      * Prepare to run
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -115,9 +115,9 @@ class GrouplogoAction extends GroupAction
         return true;
     }
 
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->handlePost();
         } else {

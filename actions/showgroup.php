@@ -91,7 +91,7 @@ class ShowgroupAction extends GroupAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -123,8 +123,9 @@ class ShowgroupAction extends GroupAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
+        parent::handle();
         $this->showPage();
     }
 

@@ -25,9 +25,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 class MirrorSettingsAction extends SettingsAction
 {
@@ -52,7 +50,7 @@ class MirrorSettingsAction extends SettingsAction
     {
         // TRANS: Page instructions.
         return _m('You can mirror updates from many RSS and Atom feeds ' .
-                  'into your StatusNet timeline!');
+                  'into your GNU social timeline!');
     }
 
     /**
@@ -102,9 +100,6 @@ class MirrorSettingsAction extends SettingsAction
     {
         switch ($this->arg('provider')) {
         case 'statusnet':
-            break;
-        case 'twitter':
-            $form = new AddTwitterMirrorForm($this);
             break;
         case 'wordpress':
             break;

@@ -50,9 +50,7 @@ function mail_backend()
 
     if (!$backend) {
         $backend = Mail::factory(common_config('mail', 'backend'),
-                                 (common_config('mail', 'params')) ?
-                                 common_config('mail', 'params') :
-                                 array());
+                                 common_config('mail', 'params') ?: array());
         if (PEAR::isError($backend)) {
             common_server_error($backend->getMessage(), 500);
         }

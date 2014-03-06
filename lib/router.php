@@ -397,6 +397,15 @@ class Router
             $m->connect('api/statuses/replies.:format',
                         array('action' => 'ApiTimelineMentions',
                               'format' => '(xml|json|rss|atom|as)'));
+ 
+            $m->connect('api/statuses/mentions_timeline/:id.:format',
+                        array('action' => 'ApiTimelineMentions',
+                              'id' => Nickname::INPUT_FMT,
+                              'format' => '(xml|json|rss|atom|as)'));
+
+            $m->connect('api/statuses/mentions_timeline.:format',
+                        array('action' => 'ApiTimelineMentions',
+                              'format' => '(xml|json|rss|atom|as)'));
 
             $m->connect('api/statuses/retweeted_by_me.:format',
                         array('action' => 'ApiTimelineRetweetedByMe',
@@ -604,6 +613,18 @@ class Router
 
             // favorites
 
+            $m->connect('api/favorites/create.:format',
+                        array('action' => 'ApiFavoriteCreate',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/favorites/destroy.:format',
+                        array('action' => 'ApiFavoriteDestroy',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/favorites/list.:format',
+                        array('action' => 'ApiTimelineFavorites',
+                              'format' => '(xml|json|rss|atom|as)'));
+
             $m->connect('api/favorites/:id.:format',
                         array('action' => 'ApiTimelineFavorites',
                               'id' => Nickname::INPUT_FMT,
@@ -622,6 +643,7 @@ class Router
                         array('action' => 'ApiFavoriteDestroy',
                               'id' => '[0-9]+',
                               'format' => '(xml|json)'));
+
             // blocks
 
             $m->connect('api/blocks/create/:id.:format',
@@ -690,11 +712,11 @@ class Router
 
             $m->connect('api/statusnet/groups/join/:id.:format',
                         array('action' => 'ApiGroupJoin',
+                              'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
             $m->connect('api/statusnet/groups/join.:format',
                         array('action' => 'ApiGroupJoin',
-                              'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
             $m->connect('api/statusnet/groups/leave/:id.:format',
@@ -747,6 +769,9 @@ class Router
                               'format' => '(xml|json|rss|atom|as)'));
 
             // Lists (people tags)
+            $m->connect('api/lists/list.:format',
+                        array('action' => 'ApiListSubscriptions',
+                              'format' => '(xml|json)'));
 
             $m->connect('api/lists/memberships.:format',
                         array('action' => 'ApiListMemberships',
@@ -824,6 +849,10 @@ class Router
                 'api/statusnet/media/upload',
                 array('action' => 'ApiMediaUpload')
             );
+            $m->connect(
+                'api/statuses/update_with_media.json',
+                array('action' => 'ApiMediaUpload')
+            );
 
             // search
             $m->connect('api/search.atom', array('action' => 'ApiSearchAtom'));
@@ -843,11 +872,10 @@ class Router
 
             $m->connect('panel/site', array('action' => 'siteadminpanel'));
             $m->connect('panel/user', array('action' => 'useradminpanel'));
-	        $m->connect('panel/access', array('action' => 'accessadminpanel'));
+            $m->connect('panel/access', array('action' => 'accessadminpanel'));
             $m->connect('panel/paths', array('action' => 'pathsadminpanel'));
             $m->connect('panel/sessions', array('action' => 'sessionsadminpanel'));
             $m->connect('panel/sitenotice', array('action' => 'sitenoticeadminpanel'));
-            $m->connect('panel/snapshot', array('action' => 'snapshotadminpanel'));
             $m->connect('panel/license', array('action' => 'licenseadminpanel'));
 
             $m->connect('panel/plugins', array('action' => 'pluginsadminpanel'));

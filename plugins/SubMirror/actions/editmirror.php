@@ -26,9 +26,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Takes parameters:
@@ -54,7 +52,7 @@ class EditMirrorAction extends BaseMirrorAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -63,7 +61,7 @@ class EditMirrorAction extends BaseMirrorAction
         $this->mirror = SubMirror::pkeyGet(array('subscriber' => $this->user->id,
                                                  'subscribed' => $this->profile->id));
 
-        if (!$this->mirror) {
+        if (!$this->mirror instanceof SubMirror) {
             // TRANS: Client error displayed when trying to edit an object that is not a feed mirror.
             $this->clientError(_m('Requested invalid profile to edit.'));
         }
@@ -88,7 +86,7 @@ class EditMirrorAction extends BaseMirrorAction
         }
     }
 
-    function saveMirror()
+    protected function saveMirror()
     {
         $mirror = SubMirror::getMirror($this->user, $this->profile);
         if (!$mirror) {

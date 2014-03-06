@@ -59,7 +59,7 @@ class EditgroupAction extends GroupAction
      * Prepare to run
      */
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -119,13 +119,11 @@ class EditgroupAction extends GroupAction
      *
      * On GET, show the form. On POST, try to save the group.
      *
-     * @param array $args unused
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->trySave();
         } else {
@@ -177,7 +175,7 @@ class EditgroupAction extends GroupAction
                 $nickname = Nickname::normalize($nickname, true);
             } catch (NicknameTakenException $e) {
                 // Abort only if the nickname is occupied by _another_ group
-                if ($e->profile->id != $this->group->id) {
+                if ($e->profile->id != $this->group->profile_id) {
                     $this->showForm($e->getMessage());
                     return;
                 }

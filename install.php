@@ -118,7 +118,7 @@ class WebInstaller extends Installer
     function main()
     {
         if (!$this->checkPrereqs()) {
-            $this->showForm();
+            $this->warning(_('Please fix the above stated problems and refresh this page to continue installing.'));
             return;
         }
 
@@ -239,12 +239,12 @@ class WebInstaller extends Installer
                     <li>
                         <label for="admin_nickname">Administrator nickname</label>
                         <input type="text" id="admin_nickname" name="admin_nickname" value="{$post->value('admin_nickname')}" />
-                        <p class="form_guide">Nickname for the initial StatusNet user (administrator)</p>
+                        <p class="form_guide">Nickname for the initial user (administrator)</p>
                     </li>
                     <li>
                         <label for="admin_password">Administrator password</label>
                         <input type="password" id="admin_password" name="admin_password" value="{$post->value('admin_password')}" />
-                        <p class="form_guide">Password for the initial StatusNet user (administrator)</p>
+                        <p class="form_guide">Password for the initial user (administrator)</p>
                     </li>
                     <li>
                         <label for="admin_password2">Confirm password</label>
@@ -253,7 +253,7 @@ class WebInstaller extends Installer
                     <li>
                         <label for="admin_email">Administrator e-mail</label>
                         <input id="admin_email" name="admin_email" value="{$post->value('admin_email')}" />
-                        <p class="form_guide">Optional email address for the initial StatusNet user (administrator)</p>
+                        <p class="form_guide">Optional email address for the initial user (administrator)</p>
                     </li>
                     <li>
                         <label for="admin_updates">Subscribe to announcements</label>
@@ -375,14 +375,15 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
     <head>
-        <title>Install StatusNet</title>
-	<link rel="shortcut icon" href="favicon.ico"/>
+        <title>Install GNU social</title>
+        <link rel="shortcut icon" href="favicon.ico"/>
         <link rel="stylesheet" type="text/css" href="theme/base/css/display.css" media="screen, projection, tv"/>
         <link rel="stylesheet" type="text/css" href="theme/neo/css/display.css" media="screen, projection, tv"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/base/css/ie.css" /><![endif]-->
         <!--[if lte IE 6]><link rel="stylesheet" type="text/css" theme/base/css/ie6.css" /><![endif]-->
         <!--[if lte IE 7]><link rel="stylesheet" type="text/css" theme/base/css/ie7.css" /><![endif]-->
-        <script src="js/extlib/jquery.min.js"></script>
+        <script src="js/extlib/jquery.js"></script>
         <script src="js/install.js"></script>
     </head>
     <body id="install">
@@ -390,8 +391,8 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
             <div id="header">
                 <address id="site_contact" class="vcard">
                     <a class="url home bookmark" href=".">
-                        <img class="logo photo" src="theme/neo/logo.png" alt="StatusNet"/>
-                        <span class="fn org">StatusNet</span>
+                        <img class="logo photo" src="theme/neo/logo.png" alt="GNU social"/>
+                        <span class="fn org">GNU social</span>
                     </a>
                 </address>
                 <div id="site_nav_global_primary"></div>
@@ -404,7 +405,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
                 <div id="content">
                      <div id="content_inner">
-                        <h1>Install StatusNet</h1>
+                        <h1>Install GNU social</h1>
 <?php
 $installer = new WebInstaller();
 $installer->main();

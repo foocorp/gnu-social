@@ -27,7 +27,7 @@
  * @link      http://laconi.ca/
  */
 
-if (!defined('LACONICA')) {
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) {
     exit(1);
 }
 
@@ -76,9 +76,9 @@ class OrbitedPlugin extends RealtimePlugin
         $root = 'http://'.$server.(($port == 80) ? '':':'.$port);
 
         $scripts[] = $root.'/static/Orbited.js';
-        $scripts[] = 'plugins/Orbited/orbitedextra.js';
+        $scripts[] = $this->path('js/orbitedextra.js');
         $scripts[] = $root.'/static/protocols/stomp/stomp.js';
-        $scripts[] = 'plugins/Orbited/orbitedupdater.js';
+        $scripts[] = $this->path('js/orbitedupdater.js');
 
         return $scripts;
     }

@@ -30,7 +30,7 @@ class ApiGNUsocialOAuthDataStore extends OAuthDataStore
     {
         $con = Consumer::getKV('consumer_key', $consumerKey);
 
-        if (!$con) {
+        if (!$con instanceof Consumer) {
 
             // Create an anon consumer and anon application if one
             // doesn't exist already

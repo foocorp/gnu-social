@@ -370,32 +370,20 @@ class Action extends HTMLOutputter // lawsuit
     {
         if (Event::handle('StartShowScripts', array($this))) {
             if (Event::handle('StartShowJQueryScripts', array($this))) {
-                if (common_config('site', 'minify')) {
-                    $this->script('extlib/jquery.min.js');
-                    $this->script('extlib/jquery.form.min.js');
-                    $this->script('extlib/jquery-ui/jquery-ui.min.js');
-                    $this->script('extlib/jquery.cookie.min.js');
-                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.min.js', StatusNet::isHTTPS()).'"); }');
-                    $this->script('extlib/jquery.infieldlabel.min.js');
-                } else {
-                    $this->script('extlib/jquery.js');
-                    $this->script('extlib/jquery.form.js');
-                    $this->script('extlib/jquery-ui/jquery-ui.js');
-                    $this->script('extlib/jquery.cookie.js');
-                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', StatusNet::isHTTPS()).'"); }');
-                    $this->script('extlib/jquery.infieldlabel.js');
-                }
+                $this->script('extlib/jquery.js');
+                $this->script('extlib/jquery.form.js');
+                $this->script('extlib/jquery-ui/jquery-ui.js');
+                $this->script('extlib/jquery.cookie.js');
+                $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', StatusNet::isHTTPS()).'"); }');
+                $this->script('extlib/jquery.infieldlabel.js');
 
                 Event::handle('EndShowJQueryScripts', array($this));
             }
             if (Event::handle('StartShowStatusNetScripts', array($this))) {
-                if (common_config('site', 'minify')) {
-                    $this->script('util.min.js');
-                } else {
-                    $this->script('util.js');
-                    $this->script('xbImportNode.js');
-                    $this->script('geometa.js');
-                }
+                $this->script('util.js');
+                $this->script('xbImportNode.js');
+                $this->script('geometa.js');
+
                 // This route isn't available in single-user mode.
                 // Not sure why, but it causes errors here.
                 $this->inlineScript('var _peopletagAC = "' .
@@ -693,7 +681,8 @@ class Action extends HTMLOutputter // lawsuit
     function showNoticeForm()
     {
         // TRANS: Tab on the notice form.
-        $tabs = array('status' => _m('TAB','Status'));
+        $tabs = array('status' => array('title' => _m('TAB','Status'),
+                                        'href'  => common_local_url('newnotice')));
 
         $this->elementStart('div', 'input_forms');
 
@@ -701,7 +690,8 @@ class Action extends HTMLOutputter // lawsuit
             $this->elementStart('ul', array('class' => 'nav',
                                             'id' => 'input_form_nav'));
 
-            foreach ($tabs as $tag => $title) {
+            foreach ($tabs as $tag => $data) {
+                $tag = htmlspecialchars($tag);
                 $attrs = array('id' => 'input_form_nav_'.$tag,
                                'class' => 'input_form_nav_tab');
 
@@ -714,8 +704,9 @@ class Action extends HTMLOutputter // lawsuit
                 $this->elementStart('li', $attrs);
 
                 $this->element('a',
-                               array('href' => 'javascript:SN.U.switchInputFormTab("'.$tag.'")'),
-                               $title);
+                               array('onclick' => 'return SN.U.switchInputFormTab("'.$tag.'");',
+                                     'href' => $data['href']),
+                               $data['title']);
                 $this->elementEnd('li');
             }
 
@@ -728,7 +719,7 @@ class Action extends HTMLOutputter // lawsuit
             $form->show();
             $this->elementEnd('div');
 
-            foreach ($tabs as $tag => $title) {
+            foreach ($tabs as $tag => $data) {
                 $attrs = array('class' => 'input_form',
                                'id' => 'input_form_'.$tag);
 

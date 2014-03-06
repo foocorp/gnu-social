@@ -116,7 +116,9 @@ class File extends Managed_DataObject
             } catch (Exception $e) {
                 return false;
             }
-
+            if ($oembed_data === false) {
+                return false;
+            }
             $fo = File_oembed::getKV('file_id', $this->id);
 
             if ($fo instanceof File_oembed) {

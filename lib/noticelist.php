@@ -28,13 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/favorform.php';
-require_once INSTALLDIR.'/lib/disfavorform.php';
-require_once INSTALLDIR.'/lib/attachmentlist.php';
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * widget for displaying a list of notices
@@ -136,8 +130,7 @@ class NoticeList extends Widget
             $profiles = Notice::fillProfiles($notices);
     	
             $p = Profile::current();
-    	
-            if (!empty($p)) {
+            if ($p instanceof Profile) {
 
                 $ids = array();
     	

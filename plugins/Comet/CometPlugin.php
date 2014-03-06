@@ -27,7 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) {
     exit(1);
 }
 
@@ -64,10 +64,10 @@ class CometPlugin extends RealtimePlugin
     {
         $scripts = parent::_getScripts();
 
-        $ours = array('jquery.comet.js', 'cometupdate.js');
+        $ours = array('js/jquery.comet.js', 'js/cometupdate.js');
 
         foreach ($ours as $script) {
-            $scripts[] = 'plugins/Comet/'.$script;
+            $scripts[] = $this->path($script);
         }
 
         return $scripts;
@@ -81,7 +81,7 @@ class CometPlugin extends RealtimePlugin
 
     function _connect()
     {
-        require_once INSTALLDIR.'/plugins/Comet/bayeux.class.inc.php';
+        require_once INSTALLDIR.'/plugins/Comet/extlib/Bayeux/Bayeux.class.php';
         // Bayeux? Comet? Huh? These terms confuse me
         $this->bay = new Bayeux($this->server, $this->user, $this->password);
     }

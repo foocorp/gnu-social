@@ -26,9 +26,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Takes parameters:
@@ -57,7 +55,7 @@ abstract class BaseMirrorAction extends Action
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         return $this->sharedBoilerplate();
@@ -101,8 +99,8 @@ abstract class BaseMirrorAction extends Action
             $oprofile = Ostatus_profile::ensureFeedURL($url);
         }
         if ($oprofile->isGroup()) {
-            // TRANS: Client error displayed when trying to mirror a StatusNet group feed.
-            $this->clientError(_m('Cannot mirror a StatusNet group at this time.'));
+            // TRANS: Client error displayed when trying to mirror a GNU social group feed.
+            $this->clientError(_m('Cannot mirror a GNU social group at this time.'));
         }
         $this->oprofile = $oprofile; // @todo FIXME: ugly side effect :D
         return $oprofile->localProfile();
@@ -152,7 +150,7 @@ abstract class BaseMirrorAction extends Action
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
         // Throws exception on error
         $this->saveMirror();
@@ -174,5 +172,5 @@ abstract class BaseMirrorAction extends Action
         }
     }
 
-    abstract function saveMirror();
+    abstract protected function saveMirror();
 }

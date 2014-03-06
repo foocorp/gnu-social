@@ -134,7 +134,7 @@ class User extends Managed_DataObject
         return $this->_profile;
     }
 
-    function isSubscribed($other)
+    function isSubscribed(Profile $other)
     {
         return $this->getProfile()->isSubscribed($other);
     }
@@ -616,12 +616,12 @@ class User extends Managed_DataObject
         return true;
     }
 
-    function isMember($group)
+    function isMember(User_group $group)
     {
         return $this->getProfile()->isMember($group);
     }
 
-    function isAdmin($group)
+    function isAdmin(User_group $group)
     {
         return $this->getProfile()->isAdmin($group);
     }

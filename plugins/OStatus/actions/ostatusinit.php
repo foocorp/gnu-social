@@ -218,7 +218,7 @@ class OStatusInitAction extends Action
             }
         } else if ($this->group) {
             $group = Local_group::getKV('nickname', $this->group);
-            if ($group) {
+            if ($group instanceof Local_group) {
                 return common_local_url('groupbyid', array('id' => $group->group_id));
             } else {
                 // TRANS: Client error.

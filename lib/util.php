@@ -832,7 +832,7 @@ function common_find_mentions_raw($text)
 
 function common_render_text($text)
 {
-    $r = htmlspecialchars($text);
+    $r = nl2br(htmlspecialchars($text));
 
     $r = preg_replace('/[\x{0}-\x{8}\x{b}-\x{c}\x{e}-\x{19}]/', '', $r);
     $r = common_replace_urls_callback($r, 'common_linkify');

@@ -966,6 +966,9 @@ StartShowNoticeForm: before showing the notice form (before <form>)
 EndShowNoticeForm: after showing the notice form (after <form>)
 - $action: action being executed
 
+StartShowEntryForms: microapp entry form tab data
+- &$tabs: tab assoc array with 'tag' => (title, href to create new entry)
+
 StartGrantRole: when a role is being assigned
 - $profile: profile that will have the role
 - $role: string name of the role

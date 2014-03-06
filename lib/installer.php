@@ -34,7 +34,7 @@
  * @author   Tom Adams <tom@holizz.com>
  * @author   Zach Copley <zach@status.net>
  * @copyright 2009-2010 StatusNet, Inc http://status.net
- * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
+ * @copyright 2009-2014 Free Software Foundation, Inc http://www.fsf.org
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
  * @version  1.0.x
  * @link     http://status.net
@@ -96,25 +96,12 @@ abstract class Installer
             }
         }
 
-        if (version_compare(PHP_VERSION, '5.2.3', '<')) {
-            $this->warning('Require PHP version 5.2.3 or greater.');
+        if (version_compare(PHP_VERSION, '5.3.2', '<')) {
+            $this->warning('Require PHP version 5.3.2 or greater.');
             $pass = false;
         }
 
-        // Look for known library bugs
-        $str = "abcdefghijklmnopqrstuvwxyz";
-        $replaced = preg_replace('/[\p{Cc}\p{Cs}]/u', '*', $str);
-        if ($str != $replaced) {
-            $this->warning('PHP is linked to a version of the PCRE library ' .
-                           'that does not support Unicode properties. ' .
-                           'If you are running Red Hat Enterprise Linux / ' .
-                           'CentOS 5.4 or earlier, see <a href="' .
-                           'http://status.net/wiki/Red_Hat_Enterprise_Linux#PCRE_library' .
-                           '">our documentation page</a> on fixing this.');
-            $pass = false;
-        }
-
-        $reqs = array('gd', 'curl',
+        $reqs = array('gd', 'curl', 'json',
                       'xmlwriter', 'mbstring', 'xml', 'dom', 'simplexml');
 
         foreach ($reqs as $req) {
@@ -227,7 +214,7 @@ abstract class Installer
         $fail = false;
 
         if (empty($this->adminNick)) {
-            $this->updateStatus("No initial StatusNet user nickname specified.", true);
+            $this->updateStatus("No initial user nickname specified.", true);
             $fail = true;
         }
         if ($this->adminNick && !preg_match('/^[0-9a-z]{1,64}$/', $this->adminNick)) {
@@ -245,7 +232,7 @@ abstract class Installer
         }
 
         if (empty($this->adminPass)) {
-            $this->updateStatus("No initial StatusNet user password specified.", true);
+            $this->updateStatus("No initial user password specified.", true);
             $fail = true;
         }
 
@@ -301,7 +288,7 @@ abstract class Installer
         } else if ($this->dbtype == 'pgsql') {
             $record = $conn->getRow('SHOW server_encoding');
             if ($record->server_encoding != 'UTF8') {
-                $this->updateStatus("StatusNet requires UTF8 character encoding. Your database is ". htmlentities($record->server_encoding));
+                $this->updateStatus("GNU social requires UTF8 character encoding. Your database is ". htmlentities($record->server_encoding));
                 return false;
             }
         }
@@ -508,7 +495,7 @@ abstract class Installer
 
     /**
      * Create the initial admin user account.
-     * Side effect: may load portions of StatusNet framework.
+     * Side effect: may load portions of GNU social framework.
      * Side effect: outputs program info
      */
     function registerInitialUser()
@@ -612,7 +599,7 @@ abstract class Installer
                 );
             } else {
                 $this->updateStatus(
-                    "Could not create initial GNU social user.",
+                    "Could not create initial user account.",
                     true
                 );
                 return false;
@@ -637,9 +624,9 @@ abstract class Installer
         $scheme = $this->ssl === 'always' ? 'https' : 'http';
         $link = "{$scheme}://{$this->server}/{$this->path}";
 
-        $this->updateStatus("StatusNet has been installed at $link");
+        $this->updateStatus("GNU social has been installed at $link");
         $this->updateStatus(
-            "<strong>DONE!</strong> You can visit your <a href='$link'>new StatusNet site</a> (login as '$this->adminNick'). If this is your first StatusNet install, you may want to poke around our <a href='http://status.net/wiki/Getting_started'>Getting Started guide</a>."
+            '<strong>DONE!</strong> You can visit your <a href="'.htmlspecialchars($link).'">new GNU social site</a> (log in as "'.htmlspecialchars($this->adminNick).'"). If this is your first GNU social install, make your experience the best possible by visiting our resource site to join the mailing list and <a href="http://gnu.io/resources/">good documentation</a>.'
         );
 
         return true;

@@ -91,13 +91,15 @@ class Magicsig extends Managed_DataObject
     static function getKV($k, $v=null)
     {
         $obj =  parent::getKV($k, $v);
-        if (!empty($obj)) {
+        if ($obj instanceof Magicsig) {
+            // Please note we're replacing the $obj
+            // FIXME: There should be an import-key that modifies the fetched $obj
             $obj = Magicsig::fromString($obj->keypair);
 
-            // Double check keys: Crypt_RSA did not
-            // consistently generate good keypairs.
-            // We've also moved to 1024 bit keys.
-            if (strlen($obj->publicKey->modulus->toBits()) != 1024) {
+            // Never allow less than 1024 bit keys.
+            // The only case these show up in would be imported or
+            // legacy very-old-StatusNet generated keypairs.
+            if (strlen($obj->publicKey->modulus->toBits()) < 1024) {
                 $obj->delete();
                 return false;
             }
@@ -144,11 +146,11 @@ class Magicsig extends Managed_DataObject
      *
      * @param int $user_id id of local user we're creating a key for
      */
-    public function generate($user_id)
+    public function generate($user_id, $bits=1024)
     {
         $rsa = new Crypt_RSA();
 
-        $keypair = $rsa->createKey();
+        $keypair = $rsa->createKey($bits);
 
         $rsa->loadKey($keypair['privatekey']);
 

@@ -180,7 +180,8 @@ abstract class QueueManager extends IoManager
         $object = unserialize($frame);
 
         // If it is a string, we really store a JSON object in there
-        if (is_string($object)) {
+        // except if it begins with '<', because then it is XML.
+        if (is_string($object) && substr($object, 0, 1) != '<') {
             $json = json_decode($object);
             if ($json === null) {
                 throw new Exception('Bad frame in queue item');

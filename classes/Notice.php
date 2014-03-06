@@ -142,20 +142,20 @@ class Notice extends Managed_DataObject
     const FOLLOWER_SCOPE  = 8;
 
     protected $_profile = -1;
-
+    
     public function getProfile()
     {
         if ($this->_profile === -1) {
             $this->_setProfile(Profile::getKV('id', $this->profile_id));
         }
-        if (!$this->_profile instanceof Profile) {
-            throw new NoProfileException($this->profile_id);
-        }
         return $this->_profile;
     }
     
-    function _setProfile(Profile $profile)
+    public function _setProfile(Profile $profile=null)
     {
+        if (!$profile instanceof Profile) {
+            throw new NoProfileException($this->profile_id);
+        }
         $this->_profile = $profile;
     }
 
@@ -214,6 +214,16 @@ class Notice extends Managed_DataObject
     {
         // The risk is we start having empty urls and non-http uris...
         return $this->url ?: $this->uri;
+    }
+
+    public static function getByUri($uri)
+    {
+        $notice = new Notice();
+        $notice->uri = $uri;
+        if (!$notice->find(true)) {
+            throw new NoResultException($notice);
+        }
+        return $notice;
     }
 
     /**
@@ -577,13 +587,13 @@ class Notice extends Managed_DataObject
             // the beginning of a new conversation.
 
             if (empty($notice->conversation)) {
-                $conv = Conversation::create();
+                $conv = Conversation::create($notice);
                 $notice->conversation = $conv->id;
                 $changed = true;
             }
 
             if ($changed) {
-                if (!$notice->update($orig)) {
+                if ($notice->update($orig) === false) {
                     common_log_db_error($notice, 'UPDATE', __FILE__);
                     // TRANS: Server exception thrown when a notice cannot be updated.
                     throw new ServerException(_('Problem saving notice.'));
@@ -2500,10 +2510,15 @@ class Notice extends Managed_DataObject
 	{
 		$map = self::getProfiles($notices);
 		
-		foreach ($notices as $notice) {
-			if (array_key_exists($notice->profile_id, $map)) {
-				$notice->_setProfile($map[$notice->profile_id]);    
-			}
+		foreach ($notices as $entry=>$notice) {
+            try {
+    			if (array_key_exists($notice->profile_id, $map)) {
+	    			$notice->_setProfile($map[$notice->profile_id]);
+		    	}
+            } catch (NoProfileException $e) {
+                common_log(LOG_WARNING, "Failed to fill profile in Notice with non-existing entry for profile_id: {$e->id}");
+                unset($notices[$entry]);
+            }
 		}
 		
 		return array_values($map);

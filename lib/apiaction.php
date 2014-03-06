@@ -215,6 +215,8 @@ class ApiAction extends Action
 
         // TODO: avatar url template (example.com/user/avatar?size={x}x{y})
         $twitter_user['profile_image_url'] = Avatar::urlByProfile($profile, AVATAR_STREAM_SIZE);
+        $twitter_user['profile_image_url_https'] = $twitter_user['profile_image_url'];
+
         // START introduced by qvitter API, not necessary for StatusNet API
         $twitter_user['profile_image_url_profile_size'] = Avatar::urlByProfile($profile, AVATAR_PROFILE_SIZE);
         try {
@@ -1466,7 +1468,7 @@ class ApiAction extends Action
             } else if ($this->arg('screen_name')) {
                 $nickname = common_canonical_nickname($this->arg('screen_name'));
                 $user = User::getKV('nickname', $nickname);
-                return $user ? $user->getProfile() : null;
+                return $user instanceof User ? $user->getProfile() : null;
             } else {
                 // Fall back to trying the currently authenticated user
                 return $this->scoped;

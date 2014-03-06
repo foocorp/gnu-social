@@ -70,7 +70,7 @@ class ShownoticeAction extends Action
      *
      * @return success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         if ($this->boolean('ajax')) {
@@ -117,16 +117,16 @@ class ShownoticeAction extends Action
      *
      * @return Notice
      */
-    function getNotice()
+    protected function getNotice()
     {
         $id = $this->arg('notice');
 
         $notice = Notice::getKV('id', $id);
 
-        if (empty($notice)) {
+        if (!$notice instanceof Notice) {
             // Did we used to have it, and it got deleted?
             $deleted = Deleted_notice::getKV($id);
-            if (!empty($deleted)) {
+            if ($deleted instanceof Deleted_notice) {
                 // TRANS: Client error displayed trying to show a deleted notice.
                 $this->clientError(_('Notice deleted.'), 410);
             } else {
@@ -211,9 +211,9 @@ class ShownoticeAction extends Action
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if ($this->boolean('ajax')) {
             $this->showAjax();
