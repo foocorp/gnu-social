@@ -494,47 +494,6 @@ class User extends Managed_DataObject
         return $this->getProfile()->favoriteNotices($own, $offset, $limit, $since_id, $max_id);
     }
 
-    function noticeInbox($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
-    {
-        $stream = new InboxNoticeStream($this);
-        return $stream->getNotices($offset, $limit, $since_id, $before_id);
-    }
-
-    // DEPRECATED, use noticeInbox()
-
-    function noticesWithFriends($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
-    {
-        return $this->noticeInbox($offset, $limit, $since_id, $before_id);
-    }
-
-    // DEPRECATED, use noticeInbox()
-
-    function noticesWithFriendsThreaded($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
-    {
-        return $this->noticeInbox($offset, $limit, $since_id, $before_id);
-    }
-
-    // DEPRECATED, use noticeInbox()
-
-    function noticeInboxThreaded($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
-    {
-        return $this->noticeInbox($offset, $limit, $since_id, $before_id);
-    }
-
-    // DEPRECATED, use noticeInbox()
-
-    function friendsTimeline($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
-    {
-        return $this->noticeInbox($offset, $limit, $since_id, $before_id);
-    }
-
-    // DEPRECATED, use noticeInbox()
-
-    function ownFriendsTimeline($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
-    {
-        $this->noticeInbox($offset, $limit, $since_id, $before_id);
-    }
-
     function blowFavesCache()
     {
         $this->getProfile()->blowFavesCache();
