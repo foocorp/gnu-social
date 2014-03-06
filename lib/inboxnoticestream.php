@@ -107,7 +107,9 @@ class RawInboxNoticeStream extends NoticeStream
         // Subscription:: is a table of subscriptions (every user is subscribed to themselves)
         $notice->whereAdd(
                 sprintf('notice.id IN (SELECT notice_id FROM reply WHERE profile_id=%1$d) ' .
-                    'OR notice.profile_id IN (SELECT subscribed FROM subscription WHERE subscriber=%d)', $this->target->id)
+                        'OR notice.profile_id IN (SELECT subscribed FROM subscription WHERE subscriber=%d) ' .
+                        'OR notice.id IN (SELECT notice_id FROM attention WHERE profile_id=%1$d)',
+                    $this->target->id)
             );
         $notice->limit($offset, $limit);
         $notice->orderBy('notice.created DESC');

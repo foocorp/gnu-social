@@ -86,6 +86,7 @@ $classes = array('Schema_version',
                  'User_urlshortener_prefs',
                  'Old_school_prefs',
                  'User_username',
+                 'Attention',
 );
 
 foreach ($classes as $cls) {
