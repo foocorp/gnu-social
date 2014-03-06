@@ -54,7 +54,7 @@ class TweetInQueueHandler extends QueueHandler
             $flink = Foreign_link::getByForeignID($receiver, TWITTER_SERVICE);
             if ($flink instanceof Foreign_link) {
                 common_log(LOG_DEBUG, "TweetInQueueHandler - Got flink so add notice ".
-                           $notice->id." to inbox ".$flink->user_id);
+                           $notice->id." to attentions for user ".$flink->user_id);
                 Attention::saveNew($notice, $flink->getProfile());
             } else {
                common_log(LOG_DEBUG, "TweetInQueueHandler - No flink found for foreign user ".$receiver);
