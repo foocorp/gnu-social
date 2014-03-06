@@ -57,8 +57,7 @@ class InboxNoticeStream extends ScopingNoticeStream
         if ($scoped === null) {
             $scoped = Profile::current();
         }
-        // Note: we don't use CachingNoticeStream since RawInboxNoticeStream
-        // uses Inbox::getKV(), which is cached.
+        // FIXME: we don't use CachingNoticeStream - but maybe we should?
         parent::__construct(new RawInboxNoticeStream($target), $scoped);
     }
 }

@@ -325,20 +325,6 @@ class User extends Managed_DataObject
                 return false;
             }
 
-            // Everyone gets an inbox
-
-            $inbox = new Inbox();
-
-            $inbox->user_id = $user->id;
-            $inbox->notice_ids = '';
-
-            $result = $inbox->insert();
-
-            if (!$result) {
-                common_log_db_error($inbox, 'INSERT', __FILE__);
-                return false;
-            }
-
             // Everyone is subscribed to themself
 
             $subscription = new Subscription();

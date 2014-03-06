@@ -42,6 +42,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 class InboxTagCloudSection extends TagCloudSection
 {
+    const MAX_NOTICES = 1024;   // legacy value for "Inbox" table size when that existed
+
     protected $target = null;
 
     function __construct($out=null, Profile $target)
@@ -60,52 +62,42 @@ class InboxTagCloudSection extends TagCloudSection
     {
         $profile = Profile::current();
 
-        $keypart = sprintf('Inbox:notice_tag:%d:%d', $this->target,
-                $profile instanceof Profile ? $profile->id : 0);
+        $stream = new InboxNoticeStream($this->target, $profile);
 
-        $tag = Memcached_DataObject::cacheGet($keypart);
+        $ids = $stream->getNoticeIds(0, self::MAX_NOTICES, null, null);
 
-        if ($tag === false) {
+        if (empty($ids)) {
+            $tag = array();
+        } else {
+            $weightexpr = common_sql_weight('notice_tag.created', common_config('tag', 'dropoff'));
+            // @fixme should we use the cutoff too? Doesn't help with indexing per-user.
 
-            $stream = new InboxNoticeStream($this->target, $profile);
+            $qry = 'SELECT notice_tag.tag, '.
+                $weightexpr . ' as weight ' .
+                'FROM notice_tag JOIN notice ' .
+                'ON notice_tag.notice_id = notice.id ' .
+                'WHERE notice.id in (' . implode(',', $ids) . ')'.
+                'GROUP BY notice_tag.tag ' .
+                'ORDER BY weight DESC ';
 
-            $ids = $stream->getNoticeIds(0, Inbox::MAX_NOTICES, null, null);
+            $limit = TAGS_PER_SECTION;
+            $offset = 0;
 
-            if (empty($ids)) {
-                $tag = array();
+            if (common_config('db','type') == 'pgsql') {
+                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
             } else {
-                $weightexpr = common_sql_weight('notice_tag.created', common_config('tag', 'dropoff'));
-                // @fixme should we use the cutoff too? Doesn't help with indexing per-user.
-
-                $qry = 'SELECT notice_tag.tag, '.
-                    $weightexpr . ' as weight ' .
-                    'FROM notice_tag JOIN notice ' .
-                    'ON notice_tag.notice_id = notice.id ' .
-                    'WHERE notice.id in (' . implode(',', $ids) . ')'.
-                    'GROUP BY notice_tag.tag ' .
-                    'ORDER BY weight DESC ';
-
-                $limit = TAGS_PER_SECTION;
-                $offset = 0;
-
-                if (common_config('db','type') == 'pgsql') {
-                    $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-                } else {
-                    $qry .= ' LIMIT ' . $offset . ', ' . $limit;
-                }
-
-                $t = new Notice_tag();
-
-                $t->query($qry);
-
-                $tag = array();
-
-                while ($t->fetch()) {
-                    $tag[] = clone($t);
-                }
+                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
             }
 
-            Memcached_DataObject::cacheSet($keypart, $tag, 3600);
+            $t = new Notice_tag();
+
+            $t->query($qry);
+
+            $tag = array();
+
+            while ($t->fetch()) {
+                $tag[] = clone($t);
+            }
         }
 
         return new ArrayWrapper($tag);

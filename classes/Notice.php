@@ -1064,33 +1064,6 @@ class Notice extends Managed_DataObject
         return $ni;
     }
 
-    /**
-     * Adds this notice to the inboxes of each local user who should receive
-     * it, based on author subscriptions, group memberships, and @-replies.
-     *
-     * Warning: running a second time currently will make items appear
-     * multiple times in users' inboxes.
-     *
-     * @fixme make more robust against errors
-     * @fixme break up massive deliveries to smaller background tasks
-     *
-     * @param array $groups optional list of Group objects;
-     *              if left empty, will be loaded from group_inbox records
-     * @param array $recipient optional list of reply profile ids
-     *              if left empty, will be loaded from reply records
-     */
-    function addToInboxes(array $groups=null, array $recipients=null)
-    {
-        $ni = $this->whoGets($groups, $recipients);
-
-        $ids = array_keys($ni);
-
-        // Bulk insert
-        Inbox::bulkInsert($this, $ids);
-
-        return;
-    }
-
     function getSubscribedUsers()
     {
         $user = new User();

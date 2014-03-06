@@ -55,9 +55,8 @@ class TweetInQueueHandler extends QueueHandler
             if ($flink instanceof Foreign_link) {
                 common_log(LOG_DEBUG, "TweetInQueueHandler - Got flink so add notice ".
                            $notice->id." to inbox ".$flink->user_id);
-                // @fixme this should go through more regular channels?
-                Inbox::insertNotice($notice, $flink->user_id);
-            }else {
+                // FIXME: How should a Twitter user get their Inbox filled with foreign tweets?
+            } else {
                common_log(LOG_DEBUG, "TweetInQueueHandler - No flink found for foreign user ".$receiver);
             }
         }
