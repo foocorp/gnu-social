@@ -194,8 +194,8 @@ class Notice extends Managed_DataObject
             $this->clearTags();
             $this->clearGroupInboxes();
             $this->clearFiles();
+            $this->clearAttentions();
 
-            // NOTE: we don't clear inboxes
             // NOTE: we don't clear queue items
         }
 
@@ -1908,6 +1908,20 @@ class Notice extends Managed_DataObject
         }
 
         return $options;
+    }
+
+    function clearAttentions()
+    {
+        $att = new Attention();
+        $att->notice_id = $this->getID();
+
+        if ($att->find()) {
+            while ($att->fetch()) {
+                // Can't do delete() on the object directly since it won't remove all of it
+                $other = clone($att);
+                $other->delete();
+            }
+        }
     }
 
     function clearReplies()

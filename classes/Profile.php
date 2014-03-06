@@ -924,6 +924,7 @@ class Profile extends Managed_DataObject
         $this->_deleteMessages();
         $this->_deleteTags();
         $this->_deleteBlocks();
+        $this->_deleteAttentions();
         Avatar::deleteFromProfile($this, true);
 
         // Warning: delete() will run on the batch objects,
@@ -1023,6 +1024,20 @@ class Profile extends Managed_DataObject
         $block = new Group_block();
         $block->blocked = $this->id;
         $block->delete();
+    }
+
+    function _deleteAttentions()
+    {
+        $att = new Attention();
+        $att->profile_id = $this->getID();
+
+        if ($att->find()) {
+            while ($att->fetch()) {
+                // Can't do delete() on the object directly since it won't remove all of it
+                $other = clone($att);
+                $other->delete();
+            }
+        }
     }
 
     // XXX: identical to Notice::getLocation.
