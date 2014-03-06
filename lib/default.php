@@ -100,7 +100,6 @@ $default =
               'softlimit' => '90%', // total size or % of memory_limit at which to restart queue threads gracefully
               'spawndelay' => 1, // Wait at least N seconds between (re)spawns of child processes to avoid slamming the queue server with subscription startup
               'debug_memory' => false, // true to spit memory usage to log
-              'inboxes' => true, // true to do inbox distribution & output queueing from in background via 'distrib' queue
               'breakout' => array(), // List queue specifiers to break out when using Stomp queue.
                                      // Default will share all queues for all sites within each group.
                                      // Specify as <group>/<queue> or <group>/<queue>/<site>,

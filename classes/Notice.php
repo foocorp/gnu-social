@@ -2071,28 +2071,23 @@ class Notice extends Managed_DataObject
             Inbox::insertNotice($this, $user->id);
         }
 
-        if (common_config('queue', 'inboxes')) {
-            // If there's a failure, we want to _force_
-            // distribution at this point.
+        // If there's a failure, we want to _force_
+        // distribution at this point.
+        try {
+            $qm = QueueManager::get();
+            $qm->enqueue($this, 'distrib');
+        } catch (Exception $e) {
+            // If the exception isn't transient, this
+            // may throw more exceptions as DQH does
+            // its own enqueueing. So, we ignore them!
             try {
-                $qm = QueueManager::get();
-                $qm->enqueue($this, 'distrib');
+                $handler = new DistribQueueHandler();
+                $handler->handle($this);
             } catch (Exception $e) {
-                // If the exception isn't transient, this
-                // may throw more exceptions as DQH does
-                // its own enqueueing. So, we ignore them!
-                try {
-                    $handler = new DistribQueueHandler();
-                    $handler->handle($this);
-                } catch (Exception $e) {
-                    common_log(LOG_ERR, "emergency redistribution resulted in " . $e->getMessage());
-                }
-                // Re-throw so somebody smarter can handle it.
-                throw $e;
+                common_log(LOG_ERR, "emergency redistribution resulted in " . $e->getMessage());
             }
-        } else {
-            $handler = new DistribQueueHandler();
-            $handler->handle($this);
+            // Re-throw so somebody smarter can handle it.
+            throw $e;
         }
     }
 
