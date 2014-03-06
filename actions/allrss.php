@@ -83,7 +83,7 @@ class AllrssAction extends Rss10Action
      */
     function getNotices($limit=0)
     {
-        $stream = new InboxNoticeStream($this->user);
+        $stream = new InboxNoticeStream($this->user->getProfile());
         $notice = $stream->getNotices(0, $limit, null, null);
 
         $notices = array();

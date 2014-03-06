@@ -102,19 +102,22 @@ class RawInboxNoticeStream extends NoticeStream
     {
         $notice = new Notice();
         $notice->selectAdd();
-        $notice->selectAdd('notice_id');
-        // Reply is a class for mentions
-        $notice->joinAdd(array('id', 'reply:notice_id'));
-
-        $notice->profile_id = $this->target->id;
+        $notice->selectAdd('id');
+        $notice->whereAdd(sprintf('notice.created > "%s"', $notice->escape($this->target->created)));
+        // Reply:: is a table of mentions
+        // Subscription:: is a table of subscriptions (every user is subscribed to themselves)
+        $notice->whereAdd(
+                sprintf('notice.id IN (SELECT notice_id FROM reply WHERE profile_id=%1$d) ' .
+                    'OR notice.profile_id IN (SELECT subscribed FROM subscription WHERE subscriber=%d)', $this->target->id)
+            );
         $notice->limit($offset, $limit);
-        $notice->orderBy('created DESC');
+        $notice->orderBy('notice.created DESC');
 
         if (!$notice->find()) {
             return array();
         }
 
-        $ids = $notice->fetchAll('notice_id');
+        $ids = $notice->fetchAll('id');
 
         return $ids;
     }

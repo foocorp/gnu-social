@@ -213,7 +213,7 @@ class AllAction extends ProfileAction
         // XXX: make this a little more convenient
 
         if (!common_config('performance', 'high')) {
-            $pop = new PopularNoticeSection($this, Profile::current());
+            $pop = new PopularNoticeSection($this, $this->scoped);
             $pop->show();
             $pop = new InboxTagCloudSection($this, $this->target);
             $pop->show();
@@ -223,8 +223,8 @@ class AllAction extends ProfileAction
 
 class ThreadingInboxNoticeStream extends ThreadingNoticeStream
 {
-    function __construct($user, $profile)
+    function __construct(Profile $target, Profile $scoped=null)
     {
-        parent::__construct(new InboxNoticeStream($user, $profile));
+        parent::__construct(new InboxNoticeStream($target, $scoped));
     }
 }

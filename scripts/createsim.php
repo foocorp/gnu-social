@@ -95,7 +95,7 @@ function newNotice($i, $tagmax)
     $content = testNoticeContent();
 
     if ($is_reply == 0) {
-        $stream = new InboxNoticeStream($user, $user->getProfile());
+        $stream = new InboxNoticeStream($user->getProfile(), $user->getProfile());
         $notices = $stream->getNotices(0, 20);
         if ($notices->N > 0) {
             $nval = rand(0, $notices->N - 1);

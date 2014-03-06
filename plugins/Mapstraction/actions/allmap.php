@@ -47,8 +47,7 @@ class AllmapAction extends MapAction
     function prepare($args)
     {
         if (parent::prepare($args)) {
-            $cur = common_current_user();
-            $stream = new InboxNoticeStream($this->user, $cur->getProfile());
+            $stream = new InboxNoticeStream($this->user->getProfile(), $this->scoped);
             $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
                                                 NOTICES_PER_PAGE + 1,
                                                 null,

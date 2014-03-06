@@ -102,7 +102,8 @@ class UserEmailSummaryHandler extends QueueHandler
             return true;
         }
 
-        $stream = new InboxNoticeStream($user, $user->getProfile());
+        // An InboxNoticeStream for a certain user, scoped to its own view
+        $stream = new InboxNoticeStream($profile, $profile);
 
         $notice = $stream->getNotices(0, self::MAX_NOTICES, $since_id);
 

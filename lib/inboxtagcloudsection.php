@@ -42,12 +42,12 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 class InboxTagCloudSection extends TagCloudSection
 {
-    var $user = null;
+    protected $target = null;
 
-    function __construct($out=null, $user=null)
+    function __construct($out=null, Profile $target)
     {
         parent::__construct($out);
-        $this->user = $user;
+        $this->target = $target;
     }
 
     function title()
@@ -60,14 +60,14 @@ class InboxTagCloudSection extends TagCloudSection
     {
         $profile = Profile::current();
 
-        $keypart = sprintf('Inbox:notice_tag:%d:%d', $this->user->id,
+        $keypart = sprintf('Inbox:notice_tag:%d:%d', $this->target,
                 $profile instanceof Profile ? $profile->id : 0);
 
         $tag = Memcached_DataObject::cacheGet($keypart);
 
         if ($tag === false) {
 
-            $stream = new InboxNoticeStream($this->user, $profile);
+            $stream = new InboxNoticeStream($this->target, $profile);
 
             $ids = $stream->getNoticeIds(0, Inbox::MAX_NOTICES, null, null);
 
