@@ -22,14 +22,14 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
+ * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2009 StatusNet, Inc.
+ * @copyright 2014 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Superclass for plugin to do realtime updates
@@ -148,7 +148,7 @@ class RealtimePlugin extends Plugin
         return true;
     }
 
-    function onHandleQueuedNotice($notice)
+    public function onHandleQueuedNotice(Notice $notice)
     {
         $paths = array();
 
@@ -161,10 +161,12 @@ class RealtimePlugin extends Plugin
             return true;
         }
 
-        $user = User::getKV('id', $notice->profile_id);
-
-        if (!empty($user)) {
+        try {
+            $user = $profile->getUser();
             $paths[] = array('showstream', $user->nickname, null);
+        } catch (NoSuchUserException $e) {
+            // We really should handle the remote profile views too
+            $user = null;
         }
 
         // Add to the public timeline
