@@ -1085,17 +1085,7 @@ class Notice extends Managed_DataObject
 
         $ids = array_keys($ni);
 
-        // We remove the author (if they're a local user),
-        // since we'll have already done this in distribute()
-
-        $i = array_search($this->profile_id, $ids);
-
-        if ($i !== false) {
-            unset($ids[$i]);
-        }
-
         // Bulk insert
-
         Inbox::bulkInsert($this, $ids);
 
         return;
@@ -2065,11 +2055,6 @@ class Notice extends Managed_DataObject
         // We always insert for the author so they don't
         // have to wait
         Event::handle('StartNoticeDistribute', array($this));
-
-        $user = User::getKV('id', $this->profile_id);
-        if ($user instanceof User) {
-            Inbox::insertNotice($this, $user->id);
-        }
 
         // If there's a failure, we want to _force_
         // distribution at this point.
