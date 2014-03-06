@@ -298,4 +298,26 @@ abstract class Managed_DataObject extends Memcached_DataObject
         }
         return $ckeys;
     }
+
+    /**
+     * Returns an ID, checked that it is set and reasonably valid
+     *
+     * If this dataobject uses a special id field (not 'id'), just
+     * implement your ID getting method in the child class.
+     *
+     * @return int ID of dataobject
+     * @throws Exception (when ID is not available or not set yet)
+     */
+    public function getID()
+    {
+        // FIXME: Make these exceptions more specific (their own classes)
+        if (!isset($this->id)) {
+            throw new Exception('No ID set.');
+        } elseif (empty($this->id)) {
+            throw new Exception('Empty ID for object! (not inserted yet?).');
+        }
+
+        // FIXME: How about forcing to return an int? Or will that overflow eventually?
+        return $this->id;
+    }
 }
