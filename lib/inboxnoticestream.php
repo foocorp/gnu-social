@@ -3,7 +3,7 @@
  * StatusNet - the distributed open-source microblogging tool
  * Copyright (C) 2011, StatusNet, Inc.
  *
- * Stream of notices for the user's inbox
+ * Stream of notices for a profile's "all" feed
  *
  * PHP version 5
  *
@@ -23,24 +23,24 @@
  * @category  NoticeStream
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
+ * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2011 StatusNet, Inc.
+ * @copyright 2014 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
- * Stream of notices for the user's inbox
+ * Stream of notices for a profile's "all" feed
  *
  * @category  General
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
+ * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2011 StatusNet, Inc.
+ * @copyright 2014 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
@@ -49,21 +49,22 @@ class InboxNoticeStream extends ScopingNoticeStream
     /**
      * Constructor
      *
-     * @param User $user User to get a stream for
+     * @param Profile $target Profile to get a stream for
+     * @param Profile $scoped Currently scoped profile (if null, it is fetched)
      */
-    function __construct($user, $profile = -1)
+    function __construct(Profile $target, Profile $scoped=null)
     {
-        if (is_int($profile) && $profile == -1) {
-            $profile = Profile::current();
+        if ($scoped === null) {
+            $scoped = Profile::current();
         }
         // Note: we don't use CachingNoticeStream since RawInboxNoticeStream
         // uses Inbox::getKV(), which is cached.
-        parent::__construct(new RawInboxNoticeStream($user), $profile);
+        parent::__construct(new RawInboxNoticeStream($target), $scoped);
     }
 }
 
 /**
- * Raw stream of notices for the user's inbox
+ * Raw stream of notices for the target's inbox
  *
  * @category  General
  * @package   StatusNet
@@ -74,18 +75,17 @@ class InboxNoticeStream extends ScopingNoticeStream
  */
 class RawInboxNoticeStream extends NoticeStream
 {
-    protected $user  = null;
+    protected $target  = null;
     protected $inbox = null;
 
     /**
      * Constructor
      *
-     * @param User $user User to get a stream for
+     * @param Profile $target Profile to get a stream for
      */
-    function __construct($user)
+    function __construct(Profile $target)
     {
-        $this->user  = $user;
-        $this->inbox = Inbox::getKV('user_id', $user->id);
+        $this->target  = $target;
     }
 
     /**
@@ -100,38 +100,21 @@ class RawInboxNoticeStream extends NoticeStream
      */
     function getNoticeIds($offset, $limit, $since_id, $max_id)
     {
-        if (empty($this->inbox)) {
-            $this->inbox = Inbox::fromNoticeInbox($user_id);
-            if (empty($this->inbox)) {
-                return array();
-            } else {
-                $this->inbox->encache();
-            }
+        $notice = new Notice();
+        $notice->selectAdd();
+        $notice->selectAdd('notice_id');
+        // Reply is a class for mentions
+        $notice->joinAdd(array('id', 'reply:notice_id'));
+
+        $notice->profile_id = $this->target->id;
+        $notice->limit($offset, $limit);
+        $notice->orderBy('created DESC');
+
+        if (!$notice->find()) {
+            return array();
         }
 
-        $ids = $this->inbox->unpack();
-
-        if (!empty($since_id)) {
-            $newids = array();
-            foreach ($ids as $id) {
-                if ($id > $since_id) {
-                    $newids[] = $id;
-                }
-            }
-            $ids = $newids;
-        }
-
-        if (!empty($max_id)) {
-            $newids = array();
-            foreach ($ids as $id) {
-                if ($id <= $max_id) {
-                    $newids[] = $id;
-                }
-            }
-            $ids = $newids;
-        }
-
-        $ids = array_slice($ids, $offset, $limit);
+        $ids = $notice->fetchAll('notice_id');
 
         return $ids;
     }
