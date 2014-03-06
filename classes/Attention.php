@@ -43,6 +43,7 @@ class Attention extends Managed_DataObject
                 'attention_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
             ),
             'indexes' => array(
+                'attention_notice_id_idx' => array('notice_id'),
                 'attention_profile_id_idx' => array('profile_id'),
             ),
         );
