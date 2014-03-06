@@ -1,0 +1,24 @@
+Generally the OpportunisticQM plugin will run if there's still execution 
+time for 1 second since starting the Action processing. If you want to 
+change this (such as disabling, 0 seconds, or maybe running bigger 
+chunks, for like 4 seconds) you can do this, where 'n' is time in seconds.
+
+addPlugin('OpportunisticQM', array('secs_per_action', n));
+
+Add 'rel_to_pageload'=>false to the array if you want to run the queue 
+for a certain amount of seconds _despite_ maybe already having run that 
+long in the previous parts of Action processing.
+
+Perhaps you want to start the queue handler remotely, using a machine capable 
+of background processing (or locally, to avoid running PHP daemon processes), 
+simply do an HTTP GET request to the route /main/runqueue of your GNU social. 
+Setting secs_per_action to 0 in the plugin config will imply that you run 
+all your queue handling by calling /main/runqueue (which runs as long as it 
+can).
+
+/main/runqueue will output "0" if it has finished processing, "1" if it 
+should be called again to complete processing (because it shut down to avoid
+to PHP's max_execution_time INI setting).
+
+The key-required functionality is not throughly tested yet, so testing 
+would be appreciated.
