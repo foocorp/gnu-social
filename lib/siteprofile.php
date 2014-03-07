@@ -191,6 +191,7 @@ class CommunitySite extends SiteProfileSettings
             'site' => array_merge(
                 $config['site'], array(
                     'private'    => false,
+                    'inviteonly' => true,
                     'closed'     => false
                 )
             ),
