@@ -979,30 +979,23 @@ class Notice extends Managed_DataObject
             }
         }
 
-        if (is_null($groups)) {
-            $groups = $this->getGroups();
-        }
-
         if (is_null($recipients)) {
             $recipients = $this->getReplies();
         }
-
-        $users = $this->getSubscribedUsers();
-        $ptags = $this->getProfileTags();
-
-        // FIXME: kind of ignoring 'transitional'...
-        // we'll probably stop supporting inboxless mode
-        // in 0.9.x
 
         $ni = array();
 
         // Give plugins a chance to add folks in at start...
         if (Event::handle('StartNoticeWhoGets', array($this, &$ni))) {
 
+            $users = $this->getSubscribedUsers();
             foreach ($users as $id) {
                 $ni[$id] = NOTICE_INBOX_SOURCE_SUB;
             }
 
+            if (is_null($groups)) {
+                $groups = $this->getGroups();
+            }
             foreach ($groups as $group) {
                 $users = $group->getUserMembers();
                 foreach ($users as $id) {
@@ -1012,12 +1005,10 @@ class Notice extends Managed_DataObject
                 }
             }
 
-            foreach ($ptags as $ptag) {
-                $users = $ptag->getUserSubscribers();
-                foreach ($users as $id) {
-                    if (!array_key_exists($id, $ni)) {
-                        $ni[$id] = NOTICE_INBOX_SOURCE_PROFILE_TAG;
-                    }
+            $ptAtts = $this->getAttentionsFromProfileTags();
+            foreach ($ptAtts as $key=>$val) {
+                if (!array_key_exists($key, $ni)) {
+                    $ni[$key] = $val;
                 }
             }
 
@@ -1102,6 +1093,19 @@ class Notice extends Managed_DataObject
         }
 
         return $ptags;
+    }
+
+    public function getAttentionsFromProfileTags()
+    {
+        $ni = array();
+        $ptags = $this->getProfileTags();
+        foreach ($ptags as $ptag) {
+            $users = $ptag->getUserSubscribers();
+            foreach ($users as $id) {
+                $ni[$id] = NOTICE_INBOX_SOURCE_PROFILE_TAG;
+            }
+        }
+        return $ni;
     }
 
     /**

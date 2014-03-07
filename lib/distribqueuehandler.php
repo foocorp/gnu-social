@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Base class for queue handlers.
@@ -43,7 +43,7 @@ class DistribQueueHandler
      * @return string
      */
 
-    function transport()
+    public function transport()
     {
         return 'distrib';
     }
@@ -61,8 +61,22 @@ class DistribQueueHandler
      * @param Notice $notice
      * @return boolean true on success, false on failure
      */
-    function handle($notice)
+    public function handle(Notice $notice)
     {
+        // We have to manually add attentions to non-profile subs and non-mentions
+        $ptAtts = $notice->getAttentionsFromProfileTags();
+        foreach (array_keys($ptAtts) as $profile_id) {
+            $profile = Profile::getKV('id', $profile_id);
+            if ($profile instanceof Profile) {
+                try {
+                    common_debug('Adding Attention for '.$notice->getID().' profile '.$profile->getID());
+                    Attention::saveNew($notice, $profile);
+                } catch (Exception $e) {
+                    $this->logit($notice, $e);
+                }
+            }
+        }
+
         try {
             $notice->sendReplyNotifications();
         } catch (Exception $e) {
