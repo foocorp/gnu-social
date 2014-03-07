@@ -113,6 +113,7 @@ class PublicSite extends SiteProfileSettings
                     'Directory'               => array(),
                     'ExtendedProfile'         => array(),
                     'OStatus'                 => array(),
+                    'RegisterThrottle'        => array(),
                     'WebFinger'               => array(),
                 ))
             ),
