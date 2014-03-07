@@ -243,7 +243,7 @@ $default =
                                    'video/mpeg',
                                    'video/mp4',
                                    'video/quicktime',
-                                   'video/mpeg'),
+                                   'video/webm'),
               'file_quota' => 5000000,
               'user_quota' => 50000000,
               'monthly_quota' => 15000000,
