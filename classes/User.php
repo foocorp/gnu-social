@@ -55,7 +55,6 @@ class User extends Managed_DataObject
     public $autosubscribe;                   // tinyint(1)
     public $subscribe_policy;                // tinyint(1)
     public $urlshorteningservice;            // varchar(50)   default_ur1.ca
-    public $inboxed;                         // tinyint(1)
     public $private_stream;                  // tinyint(1)   default_0
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -91,7 +90,6 @@ class User extends Managed_DataObject
                 'autosubscribe' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'automatically subscribe to users who subscribe to us'),
                 'subscribe_policy' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => '0 = anybody can subscribe; 1 = require approval'),
                 'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'internal', 'description' => 'service to use for auto-shortening URLs'),
-                'inboxed' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'has an inbox been created for this user?'),
                 'private_stream' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to limit all notices to followers only'),
 
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
@@ -276,10 +274,6 @@ class User extends Managed_DataObject
         if(isset($email_confirmed) && $email_confirmed) {
             $user->email = $email;
         }
-
-        // This flag is ignored but still set to 1
-
-        $user->inboxed = 1;
 
         // Set default-on options here, otherwise they'll be disabled
         // initially for sites using caching, since the initial encache
