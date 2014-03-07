@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Throttle registration by IP address
@@ -74,7 +72,7 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-    function onCheckSchema()
+    public function onCheckSchema()
     {
         $schema = Schema::get();
 
@@ -93,7 +91,7 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onStartRegistrationTry($action)
+    public function onStartRegistrationTry($action)
     {
         $ipaddress = $this->_getIpAddress();
 
@@ -176,7 +174,7 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onPluginVersion(&$versions)
+    public function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'RegisterThrottle',
                             'version' => GNUSOCIAL_VERSION,
@@ -242,7 +240,7 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onEndGrantRole($profile, $role)
+    public function onEndGrantRole($profile, $role)
     {
         if (!self::$enabled) {
             return true;

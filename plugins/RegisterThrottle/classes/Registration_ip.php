@@ -27,11 +27,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
-
-require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Data class for storing IP addresses of new registrants.
@@ -46,7 +42,7 @@ class Registration_ip extends Managed_DataObject
 {
     public $__table = 'registration_ip';     // table name
     public $user_id;                         // int(4)  primary_key not_null
-    public $ipaddress;                       // varchar(15)
+    public $ipaddress;                       // varchar(45)
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
