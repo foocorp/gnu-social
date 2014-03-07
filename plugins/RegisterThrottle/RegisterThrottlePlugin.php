@@ -156,10 +156,11 @@ class RegisterThrottlePlugin extends Plugin
 
         $reg->user_id   = $profile->id;
         $reg->ipaddress = $ipaddress;
+        $reg->created   = common_sql_now();
 
         $result = $reg->insert();
 
-        if (!$result) {
+        if ($result === false) {
             common_log_db_error($reg, 'INSERT', __FILE__);
             // @todo throw an exception?
         }
