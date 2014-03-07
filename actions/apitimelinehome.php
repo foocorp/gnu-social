@@ -178,7 +178,7 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
     {
         $notices = array();
 
-        $stream = new InboxNoticeStream($this->target->getUser(), $this->scoped);
+        $stream = new InboxNoticeStream($this->target, $this->scoped);
         
         $notice = $stream->getNotices(($this->page-1) * $this->count,
                                       $this->count,
