@@ -51,7 +51,8 @@ class MediaFileTest extends PHPUnit_Framework_TestCase
         $tmp = tmpfile();
         fwrite($tmp, file_get_contents($filename));
 
-        $type = MediaFile::getUploadedFileType($tmp, basename($filename));
+        $tmp_metadata = stream_get_meta_data($tmp);
+        $type = MediaFile::getUploadedFileType($tmp_metadata['uri'], basename($filename));
         $this->assertEquals($expectedType, $type);
     }
 

@@ -252,7 +252,7 @@ class MediaFile
 
         File::respectsQuota($scoped, filesize($stream['uri']));
 
-        $mimetype = MediaFile::getUploadedFileType($fh);
+        $mimetype = MediaFile::getUploadedFileType($stream['uri']);
 
         $filename = File::filename($scoped, "email", $mimetype);
 
@@ -304,19 +304,8 @@ class MediaFile
         // are unambiguous for most image files, but nearly useless
         // for office document formats.
 
-        if (is_string($f)) {
-
-            // assuming a filename
-
-            $filetype = MIME_Type::autoDetect($f);
-
-        } else {
-
-            // assuming a filehandle
-
-            $stream  = stream_get_meta_data($f);
-            $filetype = MIME_Type::autoDetect($stream['uri']);
-        }
+        // We only accept filenames to existing files
+        $filetype = MIME_Type::autoDetect($f);
 
         // The content-based sources for MIME_Type::autoDetect()
         // are wildly unreliable for office-type documents. If we've
