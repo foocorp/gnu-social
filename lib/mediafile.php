@@ -298,9 +298,11 @@ class MediaFile
 
         // If we didn't match, or it is an unclear match
         if ($originalFilename && (!$mimetype || in_array($mimetype, $unclearTypes))) {
-            $type = common_supported_ext_to_mime($originalFilename);
-            if (!empty($type)) {
+            try {
+                $type = common_supported_ext_to_mime($originalFilename);
                 return $type;
+            } catch (Exception $e) {
+                // Extension not found, so $mimetype is our best guess
             }
         }
 

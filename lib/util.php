@@ -1812,7 +1812,20 @@ function common_supported_ext_to_mime($fileext)
         }
     }
 
-    return false;
+    throw new ServerException('Unsupported file extension');
+}
+
+// Match by our supported mime types
+function common_supported_mime_to_ext($mimetype)
+{
+    $supported = common_config('attachments', 'supported');
+    foreach($supported as $type => $ext) {
+        if ($mimetype === $type) {
+            return $ext;
+        }
+    }
+
+    throw new ServerException('Unsupported MIME type');
 }
 
 // The MIME "media" is the part before the slash (video in video/webm)

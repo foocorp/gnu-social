@@ -265,19 +265,12 @@ class File extends Managed_DataObject
 
     static function filename($profile, $basename, $mimetype)
     {
-        require_once 'MIME/Type/Extension.php';
-
-        // We have to temporarily disable auto handling of PEAR errors...
-        PEAR::staticPushErrorHandling(PEAR_ERROR_RETURN);
-
-        $mte = new MIME_Type_Extension();
-        $ext = $mte->getExtension($mimetype);
-        if (PEAR::isError($ext)) {
-            $ext = strtolower(preg_replace('/\W/', '', $mimetype));
+        try {
+            $ext = common_supported_mime_to_ext($mimetype);
+        } catch (Exception $e) {
+            // We don't support this mimetype, but let's guess the extension
+            $ext = substr(strrchr($mimetype, '/'), 1);
         }
-
-        // Restore error handling.
-        PEAR::staticPopErrorHandling();
 
         $nickname = $profile->nickname;
         $datestamp = strftime('%Y%m%dT%H%M%S', time());
