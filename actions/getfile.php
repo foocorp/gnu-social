@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
-
-require_once 'MIME/Type.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * An action for returning a requested file
@@ -61,7 +57,7 @@ class GetfileAction extends Action
      *
      * @return success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -143,22 +139,22 @@ class GetfileAction extends Action
     /**
      * Handle input, produce output
      *
-     * @param array $args $_REQUEST contents
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
         // undo headers set by PHP sessions
         $sec = session_cache_expire() * 60;
         header('Expires: ' . date(DATE_RFC1123, time() + $sec));
         header('Cache-Control: max-age=' . $sec);
 
-        parent::handle($args);
+        parent::handle();
 
         $path = $this->path;
 
-        header('Content-Type: ' . MIME_Type::autoDetect($path));
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+
+        header('Content-Type: ' . $finfo->file($path));
 
         if (common_config('site', 'use_x_sendfile')) {
             header('X-Sendfile: ' . $path);
