@@ -325,15 +325,6 @@ class MediaFile
         }
 
         $supported = common_config('attachments', 'supported');
-        if (is_array($supported)) {
-            // Normalize extensions to mime types
-            foreach ($supported as $i => $entry) {
-                if (strpos($entry, '/') === false) {
-                    common_log(LOG_INFO, "sample.$entry");
-                    $supported[$i] = $mte->getMIMEType("sample.$entry");
-                }
-            }
-        }
         if ($supported === true || in_array($filetype, $supported)) {
             // Restore PEAR error handlers for our DB code...
             $_PEAR->staticPopErrorHandling();
