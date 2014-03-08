@@ -549,10 +549,6 @@ supported: an array of mime types you accept to store and distribute,
     setup your server to properly recognize the types you want to
     support.
 uploads: false to disable uploading files with notices (true by default).
-filecommand: The required MIME_Type library may need to use the 'file'
-    command. It tries the one in the Web server's path, but if
-    you're having problems with uploads, try setting this to the
-    correct value. Note: 'file' must accept '-b' and '-i' options.
 
 For quotas, be sure you've set the upload_max_filesize and post_max_size
 in php.ini to be large enough to handle your upload. In httpd.conf
@@ -577,9 +573,6 @@ path: URL path, relative to the server, to find files. Defaults to
     main path + '/file/'.
 ssl: whether to use HTTPS for file URLs. Defaults to null, meaning to
     guess based on other SSL settings.
-filecommand: command to use for determining the type of a file. May be
-    skipped if fileinfo extension is installed. Defaults to
-    '/usr/bin/file'.
 sslserver: if specified, this server will be used when creating HTTPS
     URLs. Otherwise, the site SSL server will be used, with /file/ path.
 sslpath: if this and the sslserver are specified, this path will be used

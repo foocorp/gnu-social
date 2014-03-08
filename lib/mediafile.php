@@ -228,7 +228,7 @@ class MediaFile
         // Throws exception if additional size does not respect quota
         File::respectsQuota($scoped, $_FILES[$param]['size']);
 
-        $mimetype = MediaFile::getUploadedFileType($_FILES[$param]['tmp_name'],
+        $mimetype = self::getUploadedMimeType($_FILES[$param]['tmp_name'],
                                                    $_FILES[$param]['name']);
 
         $basename = basename($_FILES[$param]['name']);
@@ -252,7 +252,7 @@ class MediaFile
 
         File::respectsQuota($scoped, filesize($stream['uri']));
 
-        $mimetype = MediaFile::getUploadedFileType($stream['uri']);
+        $mimetype = self::getUploadedMimeType($stream['uri']);
 
         $filename = File::filename($scoped, "email", $mimetype);
 
@@ -273,77 +273,58 @@ class MediaFile
     /**
      * Attempt to identify the content type of a given file.
      * 
-     * @param mixed $f file handle resource, or filesystem path as string
+     * @param string $filepath filesystem path as string (file must exist)
      * @param string $originalFilename (optional) for extension-based detection
      * @return string
      * 
-     * @fixme is this an internal or public method? It's called from GetFileAction
      * @fixme this seems to tie a front-end error message in, kinda confusing
-     * @fixme this looks like it could return a PEAR_Error in some cases, if
-     *        type can't be identified and $config['attachments']['supported'] is true
      * 
      * @throws ClientException if type is known, but not supported for local uploads
      */
-    static function getUploadedFileType($f, $originalFilename=false) {
-        global $_PEAR;
-
-        require_once 'MIME/Type.php';
-        require_once 'MIME/Type/Extension.php';
-
-        // We have to disable auto handling of PEAR errors
-        $_PEAR->staticPushErrorHandling(PEAR_ERROR_RETURN);
-        $mte = new MIME_Type_Extension();
-
-        $cmd = &$_PEAR->getStaticProperty('MIME_Type', 'fileCmd');
-        $cmd = common_config('attachments', 'filecommand');
-
-        $filetype = null;
-
-        // If we couldn't get a clear type from the file extension,
-        // we'll go ahead and try checking the content. Content checks
-        // are unambiguous for most image files, but nearly useless
-        // for office document formats.
-
+    static function getUploadedMimeType($filepath, $originalFilename=false) {
         // We only accept filenames to existing files
-        $filetype = MIME_Type::autoDetect($f);
+        $mimelookup = new finfo(FILEINFO_MIME_TYPE);
+        $mimetype = $mimelookup->file($filepath);
 
-        // The content-based sources for MIME_Type::autoDetect()
-        // are wildly unreliable for office-type documents. If we've
-        // gotten an unclear reponse back or just couldn't identify it,
-        // we'll try detecting a type from its extension...
+        // Unclear types are such that we can't really tell by the auto
+        // detect what they are (.bin, .exe etc. are just "octet-stream")
         $unclearTypes = array('application/octet-stream',
                               'application/vnd.ms-office',
                               'application/zip',
                               // TODO: for XML we could do better content-based sniffing too
                               'text/xml');
 
-        if ($originalFilename && (!$filetype || in_array($filetype, $unclearTypes))) {
-            $type = $mte->getMIMEType($originalFilename);
-            if (is_string($type)) {
-                $filetype = $type;
+        $supported = common_config('attachments', 'supported');
+
+        // If we didn't match, or it is an unclear match
+        if ($originalFilename && (!$mimetype || in_array($mimetype, $unclearTypes))) {
+            $type = common_supported_ext_to_mime($originalFilename);
+            if (!empty($type)) {
+                return $type;
             }
         }
 
-        $supported = common_config('attachments', 'supported');
-        if ($supported === true || in_array($filetype, $supported)) {
-            // Restore PEAR error handlers for our DB code...
-            $_PEAR->staticPopErrorHandling();
-            return $filetype;
+        // If $config['attachments']['supported'] equals boolean true, accept any mimetype
+        if ($supported === true || array_key_exists($mimetype, $supported)) {
+            // FIXME: Don't know if it always has a mimetype here because
+            // finfo->file CAN return false on error: http://php.net/finfo_file
+            // so if $supported === true, this may return something unexpected.
+            return $mimetype;
         }
-        $media = MIME_Type::getMedia($filetype);
+
+        // We can conclude that we have failed to get the MIME type
+        $media = common_get_mime_media($mimetype);
         if ('application' !== $media) {
             // TRANS: Client exception thrown trying to upload a forbidden MIME type.
             // TRANS: %1$s is the file type that was denied, %2$s is the application part of
             // TRANS: the MIME type that was denied.
             $hint = sprintf(_('"%1$s" is not a supported file type on this server. ' .
-            'Try using another %2$s format.'), $filetype, $media);
+            'Try using another %2$s format.'), $mimetype, $media);
         } else {
             // TRANS: Client exception thrown trying to upload a forbidden MIME type.
             // TRANS: %s is the file type that was denied.
-            $hint = sprintf(_('"%s" is not a supported file type on this server.'), $filetype);
+            $hint = sprintf(_('"%s" is not a supported file type on this server.'), $mimetype);
         }
-        // Restore PEAR error handlers for our DB code...
-        $_PEAR->staticPopErrorHandling();
         throw new ClientException($hint);
     }
 }

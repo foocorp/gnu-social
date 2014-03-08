@@ -29,13 +29,13 @@ class MediaFileTest extends PHPUnit_Framework_TestCase
      * @dataProvider fileTypeCases
      *
      */
-    public function testFileType($filename, $expectedType)
+    public function testMimeType($filename, $expectedType)
     {
         if (!file_exists($filename)) {
             throw new Exception("WTF? $filename test file missing");
         }
 
-        $type = MediaFile::getUploadedFileType($filename, basename($filename));
+        $type = MediaFile::getUploadedMimeType($filename, basename($filename));
         $this->assertEquals($expectedType, $type);
     }
 
@@ -43,7 +43,7 @@ class MediaFileTest extends PHPUnit_Framework_TestCase
      * @dataProvider fileTypeCases
      *
      */
-    public function testUploadedFileType($filename, $expectedType)
+    public function testUploadedMimeType($filename, $expectedType)
     {
         if (!file_exists($filename)) {
             throw new Exception("WTF? $filename test file missing");
@@ -52,7 +52,7 @@ class MediaFileTest extends PHPUnit_Framework_TestCase
         fwrite($tmp, file_get_contents($filename));
 
         $tmp_metadata = stream_get_meta_data($tmp);
-        $type = MediaFile::getUploadedFileType($tmp_metadata['uri'], basename($filename));
+        $type = MediaFile::getUploadedMimeType($tmp_metadata['uri'], basename($filename));
         $this->assertEquals($expectedType, $type);
     }
 

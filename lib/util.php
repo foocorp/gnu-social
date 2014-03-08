@@ -1797,6 +1797,31 @@ function common_accept_to_prefs($accept, $def = '*/*')
     return $prefs;
 }
 
+// Match by our supported file extensions
+function common_supported_ext_to_mime($fileext)
+{
+    // Accept a filename and take out the extension
+    if (strpos($fileext, '.') !== false) {
+        $fileext = substr(strrchr($fileext, '.'), 1);
+    }
+
+    $supported = common_config('attachments', 'supported');
+    foreach($supported as $type => $ext) {
+        if ($ext === $fileext) {
+            return $type;
+        }
+    }
+
+    return false;
+}
+
+// The MIME "media" is the part before the slash (video in video/webm)
+function common_get_mime_media($type)
+{
+    $tmp = explode('/', $type);
+    return strtolower($tmp[0]);
+}
+
 function common_mime_type_match($type, $avail)
 {
     if(array_key_exists($type, $avail)) {
