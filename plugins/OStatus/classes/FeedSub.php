@@ -67,7 +67,7 @@ class FeedSub extends Managed_DataObject
     // PuSH subscription data
     public $huburi;
     public $secret;
-    public $sub_state; // subscribe, active, unsubscribe, inactive
+    public $sub_state; // subscribe, active, unsubscribe, inactive, nohub
     public $sub_start;
     public $sub_end;
     public $last_update;
@@ -83,7 +83,7 @@ class FeedSub extends Managed_DataObject
                 'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'FeedSub uri'),
                 'huburi' => array('type' => 'text', 'description' => 'FeedSub hub-uri'),
                 'secret' => array('type' => 'text', 'description' => 'FeedSub stored secret'),
-                'sub_state' => array('type' => 'enum("subscribe","active","unsubscribe","inactive")', 'not null' => true, 'description' => 'subscription state'),
+                'sub_state' => array('type' => 'enum("subscribe","active","unsubscribe","inactive","nohub")', 'not null' => true, 'description' => 'subscription state'),
                 'sub_start' => array('type' => 'datetime', 'description' => 'subscription start'),
                 'sub_end' => array('type' => 'datetime', 'description' => 'subscription end'),
                 'last_update' => array('type' => 'datetime', 'not null' => true, 'description' => 'when this record was last updated'),
@@ -112,11 +112,20 @@ class FeedSub extends Managed_DataObject
      * Do we have a hub? Then we are a PuSH feed.
      * https://en.wikipedia.org/wiki/PubSubHubbub
      *
-     * NOTE: does not respect if we have a fallback_hub configured
+     * If huburi is empty, then doublecheck that we are not using
+     * a fallback hub. If there is a fallback hub, it is only if the
+     * sub_state is "nohub" that we assume it's not a PuSH feed.
      */
     public function isPuSH()
     {
-        return !empty($this->huburi);
+        if (empty($this->huburi)
+                && (!common_config('feedsub', 'fallback_hub')
+                    || $this->sub_state === 'nohub')) {
+                // Here we have no huburi set. Also, either there is no 
+                // fallback hub configured or sub_state is "nohub".
+            return false;
+        }
+        return true;
     }
 
     /**
