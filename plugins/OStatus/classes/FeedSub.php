@@ -98,6 +98,28 @@ class FeedSub extends Managed_DataObject
     }
 
     /**
+     * Get the feed uri (http/https)
+     */
+    public function getUri()
+    {
+        if (empty($this->uri)) {
+            throw new ServerException('No URI for FeedSub entry');
+        }
+        return $this->uri;
+    }
+
+    /**
+     * Do we have a hub? Then we are a PuSH feed.
+     * https://en.wikipedia.org/wiki/PubSubHubbub
+     *
+     * NOTE: does not respect if we have a fallback_hub configured
+     */
+    public function isPuSH()
+    {
+        return !empty($this->huburi);
+    }
+
+    /**
      * Fetch the StatusNet-side profile for this feed
      * @return Profile
      */
