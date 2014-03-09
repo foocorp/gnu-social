@@ -37,15 +37,15 @@ class UserrssAction extends Rss10Action
         if (!$this->user) {
             // TRANS: Client error displayed when user not found for an action.
             $this->clientError(_('No such user.'));
-            return false;
-        } else {
-            if (!empty($this->tag)) {
-                $this->notices = $this->getTaggedNotices();
-            } else {
-                $this->notices = $this->getNotices();
-            }
-            return true;
         }
+
+        if (!empty($this->tag)) {
+            $this->notices = $this->getTaggedNotices();
+        } else {
+            $this->notices = $this->getNotices();
+        }
+
+        return true;
     }
 
     function getTaggedNotices()

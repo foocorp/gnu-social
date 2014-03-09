@@ -54,12 +54,7 @@ class FacebookfinishloginAction extends Action
         $graphUrl = 'https://graph.facebook.com/me?access_token=' . urlencode($this->accessToken);
         $this->fbuser = json_decode(file_get_contents($graphUrl));
 
-        if (!empty($this->fbuser)) {
-            $this->fbuid  = $this->fbuser->id;
-            // OKAY, all is well... proceed to register
-            return true;
-        } else {
-
+        if (empty($this->fbuser)) {
             // log badness
 
             list($proxy, $ip) = common_client_ip();
@@ -80,7 +75,9 @@ class FacebookfinishloginAction extends Action
             );
         }
 
-        return false;
+        $this->fbuid  = $this->fbuser->id;
+        // OKAY, all is well... proceed to register
+        return true;
     }
 
     function handle($args)

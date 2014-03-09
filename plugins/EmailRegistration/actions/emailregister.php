@@ -332,9 +332,9 @@ class EmailregisterAction extends Action
         }
 
         if (Event::handle('StartRegisterSuccess', array($this))) {
-            common_redirect(common_local_url('doc', array('title' => 'welcome')),
-                            303);
             Event::handle('EndRegisterSuccess', array($this));
+            common_redirect(common_local_url('doc', array('title' => 'welcome')), 303);
+            // common_redirect exits, so we can't run the event _after_ it of course.
         }
     }
 

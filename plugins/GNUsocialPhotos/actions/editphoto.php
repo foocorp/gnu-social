@@ -179,8 +179,7 @@ class EditphotoAction extends Action
             return;
         }
         common_redirect('/photo/' . $this->photo->id, '303');
-        $this->showForm(_('Success!'), true);
-
+        // common_redirect exits
     }
 
     function deletePhoto()
@@ -198,7 +197,6 @@ class EditphotoAction extends Action
         }
        $this->showForm(_('Success!'));
         common_redirect('/' . $this->user->nickname . '/photos/' . $oldalbum, '303');
-        return;
     }
 
 }
