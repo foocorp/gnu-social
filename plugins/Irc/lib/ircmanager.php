@@ -244,7 +244,7 @@ class IrcManager extends ImManager {
                     if (!$result) {
                         common_log_db_error($confirm, 'DELETE', __FILE__);
                         // TRANS: Server error thrown on database error when deleting IRC nickname confirmation.
-                        $this->serverError(_m('Could not delete confirmation.'));
+                        throw new ServerException(_m('Could not delete confirmation.'));
                     }
                 }
             }
