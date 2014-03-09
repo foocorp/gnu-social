@@ -114,7 +114,7 @@ function __autoload($cls)
     } else if (mb_substr($cls, -6) == 'Action' &&
                file_exists(INSTALLDIR.'/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php')) {
         require_once(INSTALLDIR.'/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php');
-    } else if ($cls == 'OAuthRequest') {
+    } else if ($cls === 'OAuthRequest' || $cls === 'OAuthException') {
         require_once('OAuth.php');
     } else {
         Event::handle('Autoload', array(&$cls));
