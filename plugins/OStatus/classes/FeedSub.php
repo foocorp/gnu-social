@@ -169,6 +169,12 @@ class FeedSub extends Managed_DataObject
         if ($this->sub_state && $this->sub_state != 'inactive') {
             common_log(LOG_WARNING, "Attempting to (re)start PuSH subscription to {$this->uri} in unexpected state {$this->sub_state}");
         }
+
+        if (!Event::handle('FeedSubscribe', array($this))) {
+            // A plugin handled it
+            return true;
+        }
+
         if (empty($this->huburi)) {
             if (common_config('feedsub', 'fallback_hub')) {
                 // No native hub on this feed?
@@ -200,6 +206,12 @@ class FeedSub extends Managed_DataObject
         if ($this->sub_state != 'active') {
             common_log(LOG_WARNING, "Attempting to (re)end PuSH subscription to {$this->uri} in unexpected state {$this->sub_state}");
         }
+
+        if (!Event::handle('FeedUnsubscribe', array($this))) {
+            // A plugin handled it
+            return true;
+        }
+
         if (empty($this->huburi)) {
             if (common_config('feedsub', 'fallback_hub')) {
                 // No native hub on this feed?
