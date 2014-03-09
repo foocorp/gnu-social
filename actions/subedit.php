@@ -31,7 +31,6 @@ class SubeditAction extends Action
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
 
         $token = $this->trimmed('token');
@@ -40,7 +39,6 @@ class SubeditAction extends Action
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. '.
                                  'Try again, please.'));
-            return false;
         }
 
         $id = $this->trimmed('profile');
@@ -48,7 +46,6 @@ class SubeditAction extends Action
         if (!$id) {
             // TRANS: Client error displayed trying a change a subscription without providing a profile.
             $this->clientError(_('No profile specified.'));
-            return false;
         }
 
         $this->profile = Profile::getKV('id', $id);
@@ -56,7 +53,6 @@ class SubeditAction extends Action
         if (!$this->profile) {
             // TRANS: Client error displayed trying a change a subscription for a non-existant profile ID.
             $this->clientError(_('No profile with that ID.'));
-            return false;
         }
 
         return true;
@@ -74,7 +70,6 @@ class SubeditAction extends Action
             if (!$sub) {
                 // TRANS: Client error displayed trying a change a subscription for a non-subscribed profile.
                 $this->clientError(_('You are not subscribed to that profile.'));
-                return false;
             }
 
             $orig = clone($sub);
@@ -88,12 +83,9 @@ class SubeditAction extends Action
                 common_log_db_error($sub, 'UPDATE', __FILE__);
                 // TRANS: Server error displayed when updating a subscription fails with a database error.
                 $this->serverError(_('Could not save subscription.'));
-                return false;
             }
 
-            common_redirect(common_local_url('subscriptions',
-                                             array('nickname' => $cur->nickname)),
-                            303);
+            common_redirect(common_local_url('subscriptions', array('nickname' => $cur->nickname)), 303);
         }
     }
 }

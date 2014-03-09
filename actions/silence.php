@@ -62,7 +62,6 @@ class SilenceAction extends ProfileFormAction
         if (!$cur->hasRight(Right::SILENCEUSER)) {
             // TRANS: Client error displayed trying to silence a user on a site where the feature is not enabled.
             $this->clientError(_('You cannot silence users on this site.'));
-            return false;
         }
 
         assert(!empty($this->profile)); // checked by parent
@@ -70,7 +69,6 @@ class SilenceAction extends ProfileFormAction
         if ($this->profile->isSilenced()) {
             // TRANS: Client error displayed trying to silence an already silenced user.
             $this->clientError(_('User is already silenced.'));
-            return false;
         }
 
         return true;

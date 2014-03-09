@@ -205,7 +205,6 @@ class GroupblockAction extends RedirectingAction
         if (empty($block)) {
             // TRANS: Server error displayed when trying to block a user from a group fails because of an application error.
             $this->serverError(_("Database error blocking user from group."));
-            return false;
         }
 
         $this->returnToPrevious();

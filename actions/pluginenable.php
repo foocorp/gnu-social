@@ -76,7 +76,6 @@ class PluginEnableAction extends Action
             // TRANS: Client error displayed when trying to use another method than POST.
             // TRANS: Do not translate POST.
             $this->clientError(_('This action only accepts POST requests.'));
-            return false;
         }
 
         // CSRF protection
@@ -87,7 +86,6 @@ class PluginEnableAction extends Action
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token.'.
                                  ' Try again, please.'));
-            return false;
         }
 
         // Only for logged-in users
@@ -97,13 +95,11 @@ class PluginEnableAction extends Action
         if (empty($this->user)) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
 
         if (!AdminPanelAction::canAdmin('plugins')) {
             // TRANS: Client error displayed when trying to enable or disable a plugin without access rights.
             $this->clientError(_('You cannot administer plugins.'));
-            return false;
         }
 
         $this->plugin = $this->arg('plugin');
@@ -111,7 +107,6 @@ class PluginEnableAction extends Action
         if (!array_key_exists($this->plugin, $defaultPlugins)) {
             // TRANS: Client error displayed when trying to enable or disable a non-existing plugin.
             $this->clientError(_('No such plugin.'));
-            return false;
         }
 
         return true;

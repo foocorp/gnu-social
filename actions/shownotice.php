@@ -97,7 +97,6 @@ class ShownoticeAction extends Action
         if (empty($this->profile)) {
             // TRANS: Server error displayed trying to show a notice without a connected profile.
             $this->serverError(_('Notice has no profile.'), 500);
-            return false;
         }
 
         $this->user = User::getKV('id', $this->profile->id);
@@ -230,7 +229,6 @@ class ShownoticeAction extends Action
                 }
                 if ($target && $target != $this->selfUrl()) {
                     common_redirect($target, 301);
-                    return false;
                 }
             }
             $this->showPage();

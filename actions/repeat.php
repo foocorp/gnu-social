@@ -56,7 +56,6 @@ class RepeatAction extends Action
         if (empty($id)) {
             // TRANS: Client error displayed when trying to repeat a notice while not providing a notice ID.
             $this->clientError(_('No notice specified.'));
-            return false;
         }
 
         $this->notice = Notice::getKV('id', $id);
@@ -64,7 +63,6 @@ class RepeatAction extends Action
         if (!($this->notice instanceof Notice)) {
             // TRANS: Client error displayed when trying to repeat a non-existing notice.
             $this->clientError(_('No notice specified.'));
-            return false;
         }
 
         $token = $this->trimmed('token-'.$id);
@@ -72,7 +70,6 @@ class RepeatAction extends Action
         if (empty($token) || $token != common_session_token()) {
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. Try again, please.'));
-            return false;
         }
 
         return true;

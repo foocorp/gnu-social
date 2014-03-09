@@ -73,7 +73,6 @@ class GroupinboxAction extends GroupAction
         if ($nickname != $nicknameArg) {
             $url = common_local_url('groupinbox', array('nickname' => $nickname));
             common_redirect($url);
-            return false;
         }
 
         $localGroup = Local_group::getKV('nickname', $nickname);

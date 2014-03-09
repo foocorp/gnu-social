@@ -71,7 +71,6 @@ class AttachmentAction extends Action
         if (empty($this->attachment)) {
             // TRANS: Client error displayed trying to get a non-existing attachment.
             $this->clientError(_('No such attachment.'), 404);
-            return false;
         }
         return true;
     }

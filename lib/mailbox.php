@@ -77,16 +77,13 @@ class MailboxAction extends Action
         if (!$this->user) {
             // TRANS: Client error displayed when trying to access a mailbox without providing a user.
             $this->clientError(_('No such user.'), 404);
-            return;
         }
 
         $cur = common_current_user();
 
         if (!$cur || $cur->id != $this->user->id) {
             // TRANS: Client error displayed when trying to access a mailbox that is not of the logged in user.
-            $this->clientError(_('Only the user can read their own mailboxes.'),
-                403);
-            return;
+            $this->clientError(_('Only the user can read their own mailboxes.'), 403);
         }
 
         $this->showPage();

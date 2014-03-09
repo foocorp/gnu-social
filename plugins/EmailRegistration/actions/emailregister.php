@@ -191,7 +191,6 @@ class EmailregisterAction extends Action
 
         if (!empty($cur)) {
             common_redirect(common_local_url('all', array('nickname' => $cur->nickname)));
-            return;
         }
 
         switch ($this->state) {

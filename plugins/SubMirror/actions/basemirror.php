@@ -116,7 +116,6 @@ abstract class BaseMirrorAction extends Action
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             // TRANS: Client error displayed when trying to use another method than POST.
             $this->clientError(_m('This action only accepts POST requests.'));
-            return false;
         }
 
         // CSRF protection
@@ -126,7 +125,6 @@ abstract class BaseMirrorAction extends Action
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_m('There was a problem with your session token.'.
                                  ' Try again, please.'));
-            return false;
         }
 
         // Only for logged-in users
@@ -136,7 +134,6 @@ abstract class BaseMirrorAction extends Action
         if (empty($this->user)) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_m('Not logged in.'));
-            return false;
         }
         return true;
     }

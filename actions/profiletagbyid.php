@@ -55,7 +55,6 @@ class ProfiletagbyidAction extends Action
         if (!$id) {
             // TRANS: Client error displayed trying to perform an action without providing an ID.
             $this->clientError(_('No ID.'));
-            return false;
         }
 
         common_debug("Peopletag id $id by user id $tagger_id");
@@ -65,7 +64,6 @@ class ProfiletagbyidAction extends Action
         if (!$this->peopletag) {
             // TRANS: Client error displayed trying to reference a non-existing list.
             $this->clientError(_('No such list.'), 404);
-            return false;
         }
 
         $user = User::getKV('id', $tagger_id);

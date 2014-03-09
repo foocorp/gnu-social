@@ -65,13 +65,11 @@ class BlockedfromgroupAction extends GroupAction
                 $args['page'] = $this->page;
             }
             common_redirect(common_local_url('blockedfromgroup', $args), 301);
-            return false;
         }
 
         if (!$nickname) {
             // TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
             $this->clientError(_('No nickname.'), 404);
-            return false;
         }
 
         $local = Local_group::getKV('nickname', $nickname);
@@ -79,7 +77,6 @@ class BlockedfromgroupAction extends GroupAction
         if (!$local) {
             // TRANS: Client error displayed when requesting a list of blocked users for a non-local group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $this->group = User_group::getKV('id', $local->group_id);
@@ -87,7 +84,6 @@ class BlockedfromgroupAction extends GroupAction
         if (!$this->group) {
             // TRANS: Client error displayed when requesting a list of blocked users for a non-existing group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         return true;

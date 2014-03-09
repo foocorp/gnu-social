@@ -60,7 +60,6 @@ class SubqueueAction extends GalleryAction
         if (!$cur || $cur->id != $this->profile->id) {
             // TRANS: Client error displayed when trying to approve group applicants without being a group administrator.
             $this->clientError(_('You may only approve your own pending subscriptions.'));
-            return false;
         }
         return true;
     }

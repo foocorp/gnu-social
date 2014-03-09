@@ -118,7 +118,6 @@ class AtompubshowsubscriptionAction extends ApiAuthAction
         default:
             // TRANS: Client error shown when using a non-supported HTTP method.
             $this->clientError(_('HTTP method not supported.'), 405);
-            return;
         }
 
         return;

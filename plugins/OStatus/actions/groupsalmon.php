@@ -145,7 +145,6 @@ class GroupsalmonAction extends SalmonAction
         if (Group_block::isBlocked($this->group, $profile)) {
             // TRANS: Client error displayed when trying to join a group the user is blocked from by a group admin.
             $this->clientError(_m('You have been blocked from that group by the admin.'), 403);
-            return false;
         }
 
         try {

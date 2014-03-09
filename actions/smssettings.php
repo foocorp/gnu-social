@@ -299,7 +299,6 @@ class SmssettingsAction extends SettingsAction
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error updating SMS preferences.
             $this->serverError(_('Could not update user.'));
-            return;
         }
 
         $user->query('COMMIT');
@@ -363,7 +362,6 @@ class SmssettingsAction extends SettingsAction
             common_log_db_error($confirm, 'INSERT', __FILE__);
             // TRANS: Server error thrown on database error adding SMS confirmation code.
             $this->serverError(_('Could not insert confirmation code.'));
-            return;
         }
 
         $carrier = Sms_carrier::getKV($carrier_id);
@@ -411,7 +409,6 @@ class SmssettingsAction extends SettingsAction
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error thrown on database error canceling SMS phone number confirmation.
             $this->serverError(_('Could not delete SMS confirmation.'));
-            return;
         }
 
         // TRANS: Message given after successfully canceling SMS phone number confirmation.
@@ -452,7 +449,6 @@ class SmssettingsAction extends SettingsAction
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing a registered SMS phone number.
             $this->serverError(_('Could not update user.'));
-            return;
         }
         $user->query('COMMIT');
 

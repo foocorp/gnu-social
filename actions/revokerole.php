@@ -59,12 +59,10 @@ class RevokeRoleAction extends ProfileFormAction
         if (!Profile_role::isValid($this->role)) {
             // TRANS: Client error displayed when trying to revoke an invalid role.
             $this->clientError(_('Invalid role.'));
-            return false;
         }
         if (!Profile_role::isSettable($this->role)) {
             // TRANS: Client error displayed when trying to revoke a reserved role.
             $this->clientError(_('This role is reserved and cannot be set.'));
-            return false;
         }
 
         $cur = common_current_user();
@@ -74,7 +72,6 @@ class RevokeRoleAction extends ProfileFormAction
         if (!$cur->hasRight(Right::REVOKEROLE)) {
             // TRANS: Client error displayed when trying to revoke a role without having the right to do that.
             $this->clientError(_('You cannot revoke user roles on this site.'));
-            return false;
         }
 
         assert(!empty($this->profile)); // checked by parent
@@ -82,7 +79,6 @@ class RevokeRoleAction extends ProfileFormAction
         if (!$this->profile->hasRole($this->role)) {
             // TRANS: Client error displayed when trying to revoke a role that is not set.
             $this->clientError(_('User does not have this role.'));
-            return false;
         }
 
         return true;

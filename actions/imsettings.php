@@ -292,7 +292,6 @@ class ImsettingsAction extends SettingsAction
                     common_log_db_error($user, 'UPDATE', __FILE__);
                     // TRANS: Server error thrown on database error updating IM preferences.
                     $this->serverError(_('Could not update IM preferences.'));
-                    return;
                 }
             }while($user_im_prefs->fetch());
         }
@@ -364,7 +363,6 @@ class ImsettingsAction extends SettingsAction
             common_log_db_error($confirm, 'INSERT', __FILE__);
             // TRANS: Server error thrown on database error adding Instant Messaging confirmation code.
             $this->serverError(_('Could not insert confirmation code.'));
-            return;
         }
 
         Event::handle('SendImConfirmationCode', array($transport, $screenname, $confirm->code, $user));
@@ -407,7 +405,6 @@ class ImsettingsAction extends SettingsAction
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error thrown on database error canceling IM address confirmation.
             $this->serverError(_('Could not delete confirmation.'));
-            return;
         }
 
         // TRANS: Message given after successfully canceling IM address confirmation.
@@ -445,7 +442,6 @@ class ImsettingsAction extends SettingsAction
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing a registered IM address.
             $this->serverError(_('Could not update user IM preferences.'));
-            return;
         }
 
         // XXX: unsubscribe to the old address

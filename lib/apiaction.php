@@ -1324,7 +1324,6 @@ class ApiAction extends Action
         default:
             // TRANS: Client error on an API request with an unsupported data format.
             $this->clientError(_('Not a supported data format.'));
-            break;
         }
 
         return;
@@ -1351,7 +1350,6 @@ class ApiAction extends Action
         default:
             // TRANS: Client error on an API request with an unsupported data format.
             $this->clientError(_('Not a supported data format.'));
-            break;
         }
         return;
     }
@@ -1406,7 +1404,6 @@ class ApiAction extends Action
         default:
             // TRANS: Client error on an API request with an unsupported data format.
             $this->clientError(_('Not a supported data format.'));
-            return;
         }
         return;
     }

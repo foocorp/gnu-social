@@ -33,7 +33,6 @@ class TagrssAction extends Rss10Action
         if (!$this->tag) {
             // TRANS: Client error when requesting a tag feed for a non-existing tag.
             $this->clientError(_('No such tag.'));
-            return false;
         } else {
             $this->notices = $this->getNotices($this->limit);
             return true;

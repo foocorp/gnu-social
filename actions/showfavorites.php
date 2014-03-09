@@ -104,7 +104,6 @@ class ShowfavoritesAction extends Action
         if (!$this->user) {
             // TRANS: Client error displayed when trying to display favourite notices for a non-existing user.
             $this->clientError(_('No such user.'));
-            return false;
         }
 
         $this->page = $this->trimmed('page');
@@ -132,7 +131,6 @@ class ShowfavoritesAction extends Action
         if (empty($this->notice)) {
             // TRANS: Server error displayed when favourite notices could not be retrieved from the database.
             $this->serverError(_('Could not retrieve favorite notices.'));
-            return;
         }
 
         if($this->page > 1 && $this->notice->N == 0){

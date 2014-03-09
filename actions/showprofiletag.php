@@ -61,13 +61,11 @@ class ShowprofiletagAction extends Action
                 $args['page'] = $this->page;
             }
             common_redirect(common_local_url('showprofiletag', $args), 301);
-            return false;
         }
 
         if (!$tagger) {
             // TRANS: Client error displayed when a tagger is expected but not provided.
             $this->clientError(_('No tagger.'), 404);
-            return false;
         }
 
         $user = User::getKV('nickname', $tagger);
@@ -75,7 +73,6 @@ class ShowprofiletagAction extends Action
         if (!$user) {
             // TRANS: Client error displayed trying to perform an action related to a non-existing user.
             $this->clientError(_('No such user.'), 404);
-            return false;
         }
 
         $this->tagger = $user->getProfile();
@@ -88,7 +85,6 @@ class ShowprofiletagAction extends Action
         if (!$can_see) {
             // TRANS: Client error displayed trying to reference a non-existing list.
             $this->clientError(_('No such list.'), 404);
-            return false;
         }
 
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
@@ -114,7 +110,6 @@ class ShowprofiletagAction extends Action
         if (!$this->peopletag) {
             // TRANS: Client error displayed trying to perform an action related to a non-existing user.
             $this->clientError(_('No such user.'));
-            return;
         }
 
         $this->showPage();

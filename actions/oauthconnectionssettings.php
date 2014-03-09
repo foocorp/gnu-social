@@ -142,7 +142,6 @@ class OauthconnectionssettingsAction extends SettingsAction
         } else {
             // TRANS: Client error when submitting a form with unexpected information.
             $this->clientError(_('Unexpected form submission.'), 401);
-            return false;
         }
     }
 
@@ -163,7 +162,6 @@ class OauthconnectionssettingsAction extends SettingsAction
         if (empty($appUser)) {
             // TRANS: Client error when trying to revoke access for an application while not being a user of it.
             $this->clientError(_('You are not a user of that application.'), 401);
-            return false;
         }
 
         $app = Oauth_application::getKV('id', $appUser->application_id);
@@ -178,7 +176,6 @@ class OauthconnectionssettingsAction extends SettingsAction
             // TRANS: Client error when revoking access has failed for some reason.
             // TRANS: %s is the application ID revoking access failed for.
             $this->clientError(sprintf(_('Unable to revoke access for application: %s.'), $app->id));
-            return false;
         }
 
         $msg = 'API OAuth - user %s (id: %d) revoked access token %s for app id %d';

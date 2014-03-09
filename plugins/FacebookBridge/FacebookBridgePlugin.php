@@ -414,7 +414,6 @@ ENDOFSCRIPT;
                 $action->logout();
 
                 common_redirect($logoutUrl, 303);
-                return false; // probably never get here, but hey
             }
 
             return true;

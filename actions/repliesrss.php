@@ -36,7 +36,6 @@ class RepliesrssAction extends Rss10Action
         if (!$this->user) {
             // TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
             $this->clientError(_('No such user.'));
-            return false;
         } else {
             $this->notices = $this->getNotices($this->limit);
             return true;

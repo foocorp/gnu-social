@@ -61,7 +61,6 @@ class MicrosummaryAction extends Action
         if (!$user) {
             // TRANS: Client error displayed trying to make a micro summary without providing a valid user.
             $this->clientError(_('No such user.'), 404);
-            return;
         }
 
         $notice = $user->getCurrentNotice();

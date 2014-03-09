@@ -66,7 +66,6 @@ class ApiTimelineBookmarksAction extends ApiBareAuthAction
         if (empty($this->user)) {
             // TRANS: Client error displayed when requesting most recent favourite notices by a user for a non-existing user.
             $this->clientError(_('No such user.'), 404, $this->format);
-            return;
         }
 
         $this->notices = $this->getNotices();
@@ -172,7 +171,6 @@ class ApiTimelineBookmarksAction extends ApiBareAuthAction
         default:
             // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), $code = 404);
-            break;
         }
     }
 

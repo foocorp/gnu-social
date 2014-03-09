@@ -76,7 +76,6 @@ class PeopletagsubscriptionsAction extends Action
                 $args['page'] = $this->arg['page'];
             }
             common_redirect(common_local_url('peopletagsbyuser', $args), 301);
-            return false;
         }
 
         $user = User::getKV('nickname', $nickname);
@@ -84,7 +83,6 @@ class PeopletagsubscriptionsAction extends Action
         if (!$user) {
             // TRANS: Client error displayed trying to perform an action related to a non-existing user.
             $this->clientError(_('No such user.'), 404);
-            return false;
         }
 
         $this->profile = $user->getProfile();
@@ -92,7 +90,6 @@ class PeopletagsubscriptionsAction extends Action
         if (!$this->profile) {
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'));
-            return false;
         }
 
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;

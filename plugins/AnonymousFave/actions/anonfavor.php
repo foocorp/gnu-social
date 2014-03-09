@@ -55,9 +55,7 @@ class AnonFavorAction extends RedirectingAction
 
         if (empty($profile) || $_SERVER['REQUEST_METHOD'] != 'POST') {
             // TRANS: Client error.
-            $this->clientError(_m('Could not favor notice! Please make sure your browser has cookies enabled.')
-            );
-            return;
+            $this->clientError(_m('Could not favor notice! Please make sure your browser has cookies enabled.'));
         }
 
         $id     = $this->trimmed('notice');
@@ -67,14 +65,12 @@ class AnonFavorAction extends RedirectingAction
         if ($profile->hasFave($notice)) {
             // TRANS: Client error.
             $this->clientError(_m('This notice is already a favorite!'));
-            return;
         }
         $fave = Fave::addNew($profile, $notice);
 
         if (!$fave) {
             // TRANS: Server error.
             $this->serverError(_m('Could not create favorite.'));
-            return;
         }
 
         $profile->blowFavesCache();

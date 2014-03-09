@@ -85,7 +85,6 @@ class UsergroupsAction extends ProfileAction
                 $args['page'] = $this->arg['page'];
             }
             common_redirect(common_local_url('usergroups', $args), 301);
-            return false;
         }
 
         $this->user = User::getKV('nickname', $nickname);
@@ -93,7 +92,6 @@ class UsergroupsAction extends ProfileAction
         if (!$this->user) {
             // TRANS: Client error displayed requesting groups for a non-existing user.
             $this->clientError(_('No such user.'), 404);
-            return false;
         }
 
         $this->profile = $this->user->getProfile();
@@ -101,7 +99,6 @@ class UsergroupsAction extends ProfileAction
         if (!$this->profile) {
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'));
-            return false;
         }
 
         $this->page = $this->trimmed('page', 1);

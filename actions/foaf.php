@@ -40,7 +40,6 @@ class FoafAction extends Action
         if (empty($nickname_arg)) {
             // TRANS: Client error displayed when requesting Friends of a Friend feed without providing a user nickname.
             $this->clientError(_('No such user.'), 404);
-            return false;
         }
 
         $this->nickname = common_canonical_nickname($nickname_arg);
@@ -51,7 +50,6 @@ class FoafAction extends Action
             common_redirect(common_local_url('foaf',
                                              array('nickname' => $this->nickname)),
                             301);
-            return false;
         }
 
         $this->user = User::getKV('nickname', $this->nickname);
@@ -59,7 +57,6 @@ class FoafAction extends Action
         if (!$this->user) {
             // TRANS: Client error displayed when requesting Friends of a Friend feed for an object that is not a user.
             $this->clientError(_('No such user.'), 404);
-            return false;
         }
 
         $this->profile = $this->user->getProfile();
@@ -67,7 +64,6 @@ class FoafAction extends Action
         if (!$this->profile) {
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'), 500);
-            return false;
         }
 
         return true;

@@ -76,7 +76,6 @@ class TagsubAction extends Action
             // TRANS: Client error displayed trying to perform any request method other than POST.
             // TRANS: Do not translate POST.
             $this->clientError(_m('This action only accepts POST requests.'));
-            return false;
         }
 
         // CSRF protection
@@ -87,7 +86,6 @@ class TagsubAction extends Action
             // TRANS: Client error displayed when the session token is not okay.
             $this->clientError(_m('There was a problem with your session token.'.
                                  ' Try again, please.'));
-            return false;
         }
 
         // Only for logged-in users
@@ -97,7 +95,6 @@ class TagsubAction extends Action
         if (empty($this->user)) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_m('Not logged in.'));
-            return false;
         }
 
         // Profile to subscribe to
@@ -107,7 +104,6 @@ class TagsubAction extends Action
         if (empty($this->tag)) {
             // TRANS: Client error displayed trying to subscribe to a non-existing profile.
             $this->clientError(_m('No such profile.'));
-            return false;
         }
 
         return true;

@@ -102,7 +102,6 @@ class PublicAction extends Action
         if (!$this->notice) {
             // TRANS: Server error displayed when a public timeline cannot be retrieved.
             $this->serverError(_('Could not retrieve public timeline.'));
-            return;
         }
 
         if($this->page > 1 && $this->notice->N == 0){

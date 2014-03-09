@@ -64,7 +64,6 @@ class EditApplicationAction extends Action
         if (!common_logged_in()) {
             // TRANS: Client error displayed trying to edit an application while not logged in.
             $this->clientError(_('You must be logged in to edit an application.'));
-            return false;
         }
 
         $id = (int)$this->arg('id');
@@ -81,7 +80,6 @@ class EditApplicationAction extends Action
         if (!$this->app) {
             // TRANS: Client error displayed trying to edit an application that does not exist.
             $this->clientError(_('No such application.'));
-            return false;
         }
 
         return true;
@@ -130,7 +128,6 @@ class EditApplicationAction extends Action
         if (!$token || $token != common_session_token()) {
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token.'));
-            return;
         }
 
         $cur = common_current_user();

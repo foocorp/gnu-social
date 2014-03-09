@@ -58,48 +58,40 @@ class GroupunblockAction extends Action
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
         $token = $this->trimmed('token');
         if (empty($token) || $token != common_session_token()) {
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. Try again, please.'));
-            return;
         }
         $id = $this->trimmed('unblockto');
         if (empty($id)) {
             // TRANS: Client error displayed when trying to unblock a user from a group without providing a profile.
             $this->clientError(_('No profile specified.'));
-            return false;
         }
         $this->profile = Profile::getKV('id', $id);
         if (empty($this->profile)) {
             // TRANS: Client error displayed when trying to unblock a user from a group without providing an existing profile.
             $this->clientError(_('No profile with that ID.'));
-            return false;
         }
         $group_id = $this->trimmed('unblockgroup');
         if (empty($group_id)) {
             // TRANS: Client error displayed when trying to unblock a user from a group without providing a group.
             $this->clientError(_('No group specified.'));
-            return false;
         }
         $this->group = User_group::getKV('id', $group_id);
         if (empty($this->group)) {
             // TRANS: Client error displayed when trying to unblock a user from a non-existing group.
             $this->clientError(_('No such group.'));
-            return false;
         }
         $user = common_current_user();
         if (!$user->isAdmin($this->group)) {
             // TRANS: Client error displayed when trying to unblock a user from a group without being an administrator for the group.
             $this->clientError(_('Only an admin can unblock group members.'), 401);
-            return false;
         }
         if (!Group_block::isBlocked($this->group, $this->profile)) {
             // TRANS: Client error displayed when trying to unblock a non-blocked user from a group.
             $this->clientError(_('User is not blocked from group.'));
-            return false;
         }
         return true;
     }
@@ -131,7 +123,6 @@ class GroupunblockAction extends Action
         if (!$result) {
             // TRANS: Server error displayed when unblocking a user from a group fails because of an unknown error.
             $this->serverError(_('Error removing the block.'));
-            return;
         }
 
         foreach ($this->args as $k => $v) {
@@ -145,9 +136,7 @@ class GroupunblockAction extends Action
         if ($action) {
             common_redirect(common_local_url($action, $args), 303);
         } else {
-            common_redirect(common_local_url('blockedfromgroup',
-                                             array('nickname' => $this->group->nickname)),
-                            303);
+            common_redirect(common_local_url('blockedfromgroup', array('nickname' => $this->group->nickname)), 303);
         }
     }
 }

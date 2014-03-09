@@ -70,7 +70,6 @@ class RepliesAction extends Action
         if (!$this->user) {
             // TRANS: Client error displayed when trying to reply to a non-exsting user.
             $this->clientError(_('No such user.'));
-            return false;
         }
 
         $profile = $this->user->getProfile();
@@ -78,7 +77,6 @@ class RepliesAction extends Action
         if (!$profile) {
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'));
-            return false;
         }
 
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;

@@ -261,7 +261,6 @@ class FacebooksettingsAction extends SettingsAction {
             common_log_db_error($user, 'DELETE', __FILE__);
             // TRANS: Server error displayed when deleting the link to a Facebook account fails.
             $this->serverError(_m('Could not delete link to Facebook.'));
-            return;
         }
 
         // TRANS: Confirmation message. StatusNet account was unlinked from Facebook.

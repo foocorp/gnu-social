@@ -59,12 +59,10 @@ class GrantRoleAction extends ProfileFormAction
         if (!Profile_role::isValid($this->role)) {
             // TRANS: Client error displayed when trying to assign an invalid role to a user.
             $this->clientError(_('Invalid role.'));
-            return false;
         }
         if (!Profile_role::isSettable($this->role)) {
             // TRANS: Client error displayed when trying to assign an reserved role to a user.
             $this->clientError(_('This role is reserved and cannot be set.'));
-            return false;
         }
 
         $cur = common_current_user();
@@ -74,7 +72,6 @@ class GrantRoleAction extends ProfileFormAction
         if (!$cur->hasRight(Right::GRANTROLE)) {
             // TRANS: Client error displayed when trying to assign a role to a user while not being allowed to set roles.
             $this->clientError(_('You cannot grant user roles on this site.'));
-            return false;
         }
 
         assert(!empty($this->profile)); // checked by parent
@@ -82,7 +79,6 @@ class GrantRoleAction extends ProfileFormAction
         if ($this->profile->hasRole($this->role)) {
             // TRANS: Client error displayed when trying to assign a role to a user that already has that role.
             $this->clientError(_('User already has this role.'));
-            return false;
         }
 
         return true;

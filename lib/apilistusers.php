@@ -63,7 +63,6 @@ class ApiListUsersAction extends ApiBareAuthAction
         if (empty($this->list)) {
             // TRANS: Client error displayed when referring to a non-existing list.
             $this->clientError(_('List not found.'), 404, $this->format);
-            return false;
         }
 
         if(!$this->create && !$this->delete) {

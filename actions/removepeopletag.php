@@ -78,7 +78,6 @@ class RemovepeopletagAction extends Action
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token.'.
                                  ' Try again, please.'));
-            return false;
         }
 
         // Only for logged-in users
@@ -88,7 +87,6 @@ class RemovepeopletagAction extends Action
         if (empty($this->user)) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
 
         // Profile to subscribe to
@@ -100,7 +98,6 @@ class RemovepeopletagAction extends Action
         if (empty($this->tagged)) {
             // TRANS: Client error displayed when referring to a non-existing profile.
             $this->clientError(_('No such profile.'));
-            return false;
         }
 
         $id = $this->arg('peopletag_id');
@@ -109,7 +106,6 @@ class RemovepeopletagAction extends Action
         if (empty($this->peopletag)) {
             // TRANS: Client error displayed trying to reference a non-existing list.
             $this->clientError(_('No such list.'));
-            return false;
         }
 
         return true;
@@ -146,7 +142,6 @@ class RemovepeopletagAction extends Action
                                       'The remote server is probably not responding correctly, ' .
                                       'please try retrying later.'), $this->profile->profileurl));
             }
-            return false;
         }
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');

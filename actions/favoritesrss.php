@@ -70,7 +70,6 @@ class FavoritesrssAction extends Rss10Action
         if (!$this->user) {
             // TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.
             $this->clientError(_('No such user.'));
-            return false;
         } else {
             $this->notices = $this->getNotices($this->limit);
             return true;

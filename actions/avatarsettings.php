@@ -106,7 +106,6 @@ class AvatarsettingsAction extends SettingsAction
             common_log_db_error($user, 'SELECT', __FILE__);
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'));
-            return;
         }
 
         $this->elementStart('form', array('enctype' => 'multipart/form-data',
@@ -195,7 +194,6 @@ class AvatarsettingsAction extends SettingsAction
             common_log_db_error($user, 'SELECT', __FILE__);
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'));
-            return;
         }
 
         $this->elementStart('form', array('method' => 'post',
@@ -362,7 +360,6 @@ class AvatarsettingsAction extends SettingsAction
         if (!$filedata) {
             // TRANS: Server error displayed if an avatar upload went wrong somehow server side.
             $this->serverError(_('Lost our file data.'));
-            return;
         }
 
         $file_d = ($filedata['width'] > $filedata['height'])

@@ -120,7 +120,6 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
         if (!in_array($this->format, array('xml', 'json'))) {
             // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), 404);
-            return;
         }
 
         if (empty($this->source)) {
@@ -129,7 +128,6 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
                 _('Could not determine source user.'),
                 404
              );
-            return;
         }
 
         if (empty($this->target)) {
@@ -138,7 +136,6 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
                 _('Could not find target user.'),
                 404
             );
-            return;
         }
 
         $result = $this->twitterRelationshipArray($this->source, $this->target);

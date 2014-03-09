@@ -60,44 +60,37 @@ class MakeadminAction extends RedirectingAction
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
         $token = $this->trimmed('token');
         if (empty($token) || $token != common_session_token()) {
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. Try again, please.'));
-            return;
         }
         $id = $this->trimmed('profileid');
         if (empty($id)) {
             // TRANS: Client error displayed when not providing a profile ID on the Make Admin page.
             $this->clientError(_('No profile specified.'));
-            return false;
         }
         $this->profile = Profile::getKV('id', $id);
         if (empty($this->profile)) {
             // TRANS: Client error displayed when specifying an invalid profile ID on the Make Admin page.
             $this->clientError(_('No profile with that ID.'));
-            return false;
         }
         $group_id = $this->trimmed('groupid');
         if (empty($group_id)) {
             // TRANS: Client error displayed when not providing a group ID on the Make Admin page.
             $this->clientError(_('No group specified.'));
-            return false;
         }
         $this->group = User_group::getKV('id', $group_id);
         if (empty($this->group)) {
             // TRANS: Client error displayed when providing an invalid group ID on the Make Admin page.
             $this->clientError(_('No such group.'));
-            return false;
         }
         $user = common_current_user();
         if (!$user->isAdmin($this->group) &&
             !$user->hasRight(Right::MAKEGROUPADMIN)) {
             // TRANS: Client error displayed when trying to make another user admin on the Make Admin page while not an admin.
             $this->clientError(_('Only an admin can make another user an admin.'), 401);
-            return false;
         }
         if ($this->profile->isAdmin($this->group)) {
             // TRANS: Client error displayed when trying to make another user admin on the Make Admin page who already is admin.
@@ -106,7 +99,6 @@ class MakeadminAction extends RedirectingAction
                                        $this->profile->getBestName(),
                                        $this->group->getBestName()),
                                401);
-            return false;
         }
         return true;
     }

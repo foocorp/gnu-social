@@ -58,14 +58,12 @@ class ApprovesubAction extends Action
         if (empty($cur)) {
             // TRANS: Client error displayed trying to approve group membership while not logged in.
             $this->clientError(_('Must be logged in.'), 403);
-            return false;
         }
         if ($this->arg('profile_id')) {
             $this->profile = Profile::getKV('id', $this->arg('profile_id'));
         } else {
             // TRANS: Client error displayed trying to approve subscriptionswithout specifying a profile to approve.
             $this->clientError(_('Must specify a profile.'));
-            return false;
         }
 
         $this->request = Subscription_queue::pkeyGet(array('subscriber' => $this->profile->id,

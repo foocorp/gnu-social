@@ -35,7 +35,6 @@ class RecoverpasswordAction extends Action
         if (common_logged_in()) {
             // TRANS: Client error displayed trying to recover password while already logged in.
             $this->clientError(_('You are already logged in!'));
-            return;
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($this->arg('recover')) {
                 $this->recoverPassword();
@@ -62,12 +61,10 @@ class RecoverpasswordAction extends Action
         if (!$confirm) {
             // TRANS: Client error displayed when password recovery code is not correct.
             $this->clientError(_('No such recovery code.'));
-            return;
         }
         if ($confirm->address_type != 'recover') {
             // TRANS: Client error displayed when no proper password recovery code was submitted.
             $this->clientError(_('Not a recovery code.'));
-            return;
         }
 
         $user = User::getKV($confirm->user_id);
@@ -75,7 +72,6 @@ class RecoverpasswordAction extends Action
         if (!$user) {
             // TRANS: Server error displayed trying to recover password without providing a user.
             $this->serverError(_('Recovery code for unknown user.'));
-            return;
         }
 
         $touched = strtotime($confirm->modified);
@@ -89,7 +85,6 @@ class RecoverpasswordAction extends Action
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error displayed removing a password recovery code from the database.
             $this->serverError(_('Error with confirmation code.'));
-            return;
         }
 
         // These should be reaped, but for now we just check mod time
@@ -102,7 +97,6 @@ class RecoverpasswordAction extends Action
             // TRANS: Client error displayed trying to recover password with too old a recovery code.
             $this->clientError(_('This confirmation code is too old. ' .
                                    'Please start again.'));
-            return;
         }
 
         // If we used an outstanding confirmation to send the email,
@@ -116,7 +110,6 @@ class RecoverpasswordAction extends Action
                 common_log_db_error($user, 'UPDATE', __FILE__);
                 // TRANS: Server error displayed when updating a user's e-mail address in the database fails while recovering a password.
                 $this->serverError(_('Could not update user with confirmed email address.'));
-                return;
             }
         }
 
@@ -310,7 +303,6 @@ class RecoverpasswordAction extends Action
         if (!$user) {
             // TRANS: Client error displayed when trying to reset as password without providing a user.
             $this->clientError(_('Unexpected password reset.'));
-            return;
         }
 
         $newpassword = $this->trimmed('newpassword');
@@ -337,7 +329,6 @@ class RecoverpasswordAction extends Action
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Reset password form validation error message.
             $this->serverError(_('Cannot save new password.'));
-            return;
         }
 
         $this->clearTempUser();
@@ -345,7 +336,6 @@ class RecoverpasswordAction extends Action
         if (!common_set_user($user->nickname)) {
             // TRANS: Server error displayed when something does wrong with the user object during password reset.
             $this->serverError(_('Error setting user.'));
-            return;
         }
 
         common_real_login(true);

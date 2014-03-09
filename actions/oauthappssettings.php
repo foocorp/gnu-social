@@ -57,7 +57,6 @@ class OauthappssettingsAction extends SettingsAction
         if (!common_logged_in()) {
             // TRANS: Message displayed to an anonymous user trying to view OAuth application list.
             $this->clientError(_('You must be logged in to list your applications.'));
-            return false;
         }
 
         return true;

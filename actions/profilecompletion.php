@@ -80,7 +80,6 @@ class ProfilecompletionAction extends Action
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token.'.
                                  ' Try again, please.'));
-            return false;
         }
 
         // Only for logged-in users
@@ -90,7 +89,6 @@ class ProfilecompletionAction extends Action
         if (empty($this->user)) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
 
         $id = $this->arg('peopletag_id');
@@ -99,7 +97,6 @@ class ProfilecompletionAction extends Action
         if (empty($this->peopletag)) {
             // TRANS: Client error displayed trying to reference a non-existing list.
             $this->clientError(_('No such list.'));
-            return false;
         }
 
         $field = $this->arg('field');
@@ -107,7 +104,6 @@ class ProfilecompletionAction extends Action
             // TRANS: Client error displayed when trying to add an unindentified field to profile.
             // TRANS: %s is a field name.
             $this->clientError(sprintf(_('Unidentified field %s.'), htmlspecialchars($field)), 404);
-            return false;
         }
         $this->field = $field;
 

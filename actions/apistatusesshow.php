@@ -101,7 +101,6 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
         if (!in_array($this->format, array('xml', 'json', 'atom'))) {
             // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), 404);
-            return;
         }
 
         switch ($_SERVER['REQUEST_METHOD']) {
@@ -114,7 +113,6 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
         default:
             // TRANS: Client error displayed calling an unsupported HTTP error in API status show.
             $this->clientError(_('HTTP method not supported.'), 405);
-            return;
         }
     }
 
@@ -223,7 +221,6 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
         if ($this->format != 'atom') {
             // TRANS: Client error displayed when trying to delete a notice not using the Atom format.
             $this->clientError(_('Can only delete using the Atom format.'));
-            return;
         }
 
         if (empty($this->auth_user) ||
@@ -231,7 +228,6 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
              !$this->auth_user->hasRight(Right::DELETEOTHERSNOTICE))) {
             // TRANS: Client error displayed when a user has no rights to delete notices of other users.
             $this->clientError(_('Cannot delete this notice.'), 403);
-            return;
         }
 
         if (Event::handle('StartDeleteOwnNotice', array($this->auth_user, $this->notice))) {

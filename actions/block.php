@@ -66,7 +66,6 @@ class BlockAction extends ProfileFormAction
         if ($cur->hasBlocked($this->profile)) {
             // TRANS: Client error displayed when blocking a user that has already been blocked.
             $this->clientError(_('You already blocked that user.'));
-            return false;
         }
 
         return true;
@@ -187,7 +186,6 @@ class BlockAction extends ProfileFormAction
         if (!$result) {
             // TRANS: Server error displayed when blocking a user fails.
             $this->serverError(_('Failed to save block information.'));
-            return;
         }
     }
 

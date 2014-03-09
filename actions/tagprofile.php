@@ -46,7 +46,6 @@ class TagprofileAction extends Action
             if (!$this->profile) {
                 // TRANS: Client error displayed when referring to non-existing profile ID.
                 $this->clientError(_('No profile with that ID.'));
-                return false;
             }
         }
 
@@ -55,7 +54,6 @@ class TagprofileAction extends Action
             // TRANS: Client error displayed when trying to tag a user that cannot be tagged.
             $this->clientError(_('You cannot tag this user.'));
         }
-        return true;
     }
 
     function handle($args)

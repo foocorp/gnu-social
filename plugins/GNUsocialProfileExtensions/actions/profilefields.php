@@ -63,14 +63,12 @@ class ProfilefieldsAdminPanelAction extends AdminPanelAction
         $field->systemname = $this->trimmed('systemname');
         if (!gnusocial_field_systemname_validate($field->systemname)) {
             $this->clientError(_('Internal system name must be unique and consist of only alphanumeric characters!'));
-            return false;
         }
         if ($field->id) {
             if ($field->validate())
                 $field->update();
             else {
                 $this->clientError(_('There was an error with the field data.'));
-                return false;
             }
         }
         else {

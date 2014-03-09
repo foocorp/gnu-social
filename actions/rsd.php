@@ -101,10 +101,7 @@ class RsdAction extends Action
             // Permanent redirect on non-canonical nickname
 
             if ($nickname_arg != $nickname) {
-                common_redirect(common_local_url('rsd',
-                                                 array('nickname' => $nickname)),
-                                301);
-                return false;
+                common_redirect(common_local_url('rsd', array('nickname' => $nickname)), 301);
             }
 
             $this->user = User::getKV('nickname', $nickname);
@@ -112,7 +109,6 @@ class RsdAction extends Action
             if (empty($this->user)) {
                 // TRANS: Client error.
                 $this->clientError(_('No such user.'), 404);
-                return false;
             }
         }
 

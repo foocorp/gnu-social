@@ -77,13 +77,11 @@ class ShowApplicationAction extends Action
         if (!common_logged_in()) {
             // TRANS: Client error displayed trying to display an OAuth application while not logged in.
             $this->clientError(_('You must be logged in to view an application.'));
-            return false;
         }
 
         if (empty($this->application)) {
             // TRANS: Client error displayed trying to display a non-existing OAuth application.
             $this->clientError(_('No such application.'), 404);
-            return false;
         }
 
         $cur = common_current_user();
@@ -91,7 +89,6 @@ class ShowApplicationAction extends Action
         if ($cur->id != $this->owner->id) {
             // TRANS: Client error displayed trying to display an OAuth application for which the logged in user is not the owner.
             $this->clientError(_('You are not the owner of this application.'), 401);
-            return false;
         }
 
         return true;
@@ -115,7 +112,6 @@ class ShowApplicationAction extends Action
             if (!$token || $token != common_session_token()) {
                 // TRANS: Client error displayed when the session token does not match or is not given.
                 $this->clientError(_('There was a problem with your session token.'));
-                return;
             }
 
             if ($this->arg('reset')) {

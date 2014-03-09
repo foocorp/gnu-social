@@ -58,7 +58,6 @@ class AnonDisfavorAction extends RedirectingAction
                 // TRANS: Client error.
                 _m('Could not disfavor notice! Please make sure your browser has cookies enabled.')
             );
-            return;
         }
 
         $id     = $this->trimmed('notice');
@@ -79,7 +78,6 @@ class AnonDisfavorAction extends RedirectingAction
             common_log_db_error($fave, 'DELETE', __FILE__);
             // TRANS: Server error.
             $this->serverError(_m('Could not delete favorite.'));
-            return;
         }
 
         $profile->blowFavesCache();

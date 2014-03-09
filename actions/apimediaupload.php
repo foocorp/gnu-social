@@ -63,7 +63,6 @@ class ApiMediaUploadAction extends ApiAuthAction
                 _('This method requires a POST.'),
                 400, $this->format
             );
-            return;
         }
 
         // Workaround for PHP returning empty $_POST and $_FILES when POST
@@ -79,7 +78,6 @@ class ApiMediaUploadAction extends ApiAuthAction
                       'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
                       intval($_SERVER['CONTENT_LENGTH']));
             $this->clientError(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
-            return;
         }
 
         $upload = null;
@@ -88,7 +86,6 @@ class ApiMediaUploadAction extends ApiAuthAction
             $upload = MediaFile::fromUpload('media', $this->auth_user->getProfile());
         } catch (Exception $e) {
             $this->clientError($e->getMessage(), $e->getCode());
-            return;
         }
 
         if (isset($upload)) {
@@ -96,7 +93,6 @@ class ApiMediaUploadAction extends ApiAuthAction
         } else {
             // TRANS: Client error displayed when uploading a media file has failed.
             $this->clientError(_('Upload failed.'));
-            return;
         }
     }
 

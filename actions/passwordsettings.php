@@ -196,10 +196,9 @@ class PasswordsettingsAction extends SettingsAction
             }
 
             if (!$user->update($original)) {
-            // TRANS: Server error displayed on page where to change password when password change
-            // TRANS: could not be made because of a server error.
-            $this->serverError(_('Cannot save new password.'));
-                return;
+                // TRANS: Server error displayed on page where to change password when password change
+                // TRANS: could not be made because of a server error.
+                $this->serverError(_('Cannot save new password.'));
             }
             Event::handle('EndChangePassword', array($user));
         }

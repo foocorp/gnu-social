@@ -62,7 +62,6 @@ class NudgeAction extends Action
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return;
         }
 
         $user  = common_current_user();
@@ -71,7 +70,6 @@ class NudgeAction extends Action
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             common_redirect(common_local_url('showstream',
                 array('nickname' => $other->nickname)));
-            return;
         }
 
         // CSRF protection
@@ -80,13 +78,11 @@ class NudgeAction extends Action
         if (!$token || $token != common_session_token()) {
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. Try again, please.'));
-            return;
         }
 
         if (!$other->email || !$other->emailnotifynudge) {
             // TRANS: Client error displayed trying to nudge a user that cannot be nudged.
             $this->clientError(_('This user doesn\'t allow nudges or hasn\'t confirmed or set their email address yet.'));
-            return;
         }
 
         $this->notify($user, $other);

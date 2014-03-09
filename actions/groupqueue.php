@@ -69,13 +69,11 @@ class GroupqueueAction extends GroupAction
                 $args['page'] = $this->page;
             }
             common_redirect(common_local_url('groupqueue', $args), 301);
-            return false;
         }
 
         if (!$nickname) {
             // TRANS: Client error displayed when trying to view group members without providing a group nickname.
             $this->clientError(_('No nickname.'), 404);
-            return false;
         }
 
         $local = Local_group::getKV('nickname', $nickname);
@@ -83,7 +81,6 @@ class GroupqueueAction extends GroupAction
         if (!$local) {
             // TRANS: Client error displayed when trying to view group members for a non-existing group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $this->group = User_group::getKV('id', $local->group_id);
@@ -91,14 +88,12 @@ class GroupqueueAction extends GroupAction
         if (!$this->group) {
             // TRANS: Client error displayed when trying to view group members for an object that is not a group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $cur = common_current_user();
         if (!$cur || !$cur->isAdmin($this->group)) {
             // TRANS: Client error displayed when trying to approve group applicants without being a group administrator.
             $this->clientError(_('Only the group admin may approve users.'));
-            return false;
         }
         return true;
     }

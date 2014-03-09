@@ -294,7 +294,6 @@ class BookmarkPlugin extends MicroAppPlugin
         if (!$this->user) {
             // TRANS: Client error displayed when trying to display bookmarks for a non-existing user.
             $this->clientError(_('No such user.'));
-            return false;
         }
 
         $action->menuItem(common_local_url('bookmarks', array('nickname' => $this->user->nickname)),

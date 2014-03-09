@@ -105,7 +105,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
         default:
             // TRANS: Client exception thrown when using an unsupported HTTP method.
             $this->clientError(_('HTTP method not supported.'), 405);
-            return;
         }
 
         return;
@@ -232,7 +231,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
             $dom->documentElement->localName != 'entry') {
             // TRANS: Client error displayed when not using an Atom entry.
             $this->clientError(_('Atom post must be an Atom entry.'));
-            return;
         }
 
         $activity = new Activity($dom->documentElement);
@@ -244,7 +242,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
             if ($activity->verb != ActivityVerb::FOLLOW) {
                 // TRANS: Client error displayed when not using the follow verb.
                 $this->clientError(_('Can only handle Follow activities.'));
-                return;
             }
 
             $person = $activity->objects[0];
@@ -252,7 +249,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
             if ($person->type != ActivityObject::PERSON) {
                 // TRANS: Client exception thrown when subscribing to an object that is not a person.
                 $this->clientError(_('Can only follow people.'));
-                return;
             }
 
             // XXX: OStatus discovery (maybe)
@@ -263,7 +259,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
                 // TRANS: Client exception thrown when subscribing to a non-existing profile.
                 // TRANS: %s is the unknown profile ID.
                 $this->clientError(sprintf(_('Unknown profile %s.'), $person->id));
-                return;
             }
 
             if (Subscription::exists($this->_profile, $profile)) {
@@ -273,7 +268,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
                 $this->clientError(sprintf(_('Already subscribed to %s.'),
                                            $person->id),
                                    409);
-                return;
             }
 
             if (Subscription::start($this->_profile, $profile)) {

@@ -281,7 +281,6 @@ class OStatusPlugin extends Plugin
 
                 // redirect to the new profile.
                 common_redirect(common_local_url('tagprofile', array('id' => $oprofile->profile_id)), 303);
-                return false;
 
             } catch (Exception $e) {
                 // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com

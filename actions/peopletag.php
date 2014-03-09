@@ -78,7 +78,6 @@ class PeopletagAction extends Action
                 $args['page'] = $this->page;
             }
             common_redirect(common_local_url('peopletag', $args), 301);
-            return false;
         }
         $this->tag = $tag;
 

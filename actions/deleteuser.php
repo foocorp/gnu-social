@@ -64,7 +64,6 @@ class DeleteuserAction extends ProfileFormAction
         if (!$cur->hasRight(Right::DELETEUSER)) {
             // TRANS: Client error displayed when trying to delete a user without having the right to delete users.
             $this->clientError(_('You cannot delete users.'));
-            return false;
         }
 
         $this->user = User::getKV('id', $this->profile->id);
@@ -72,7 +71,6 @@ class DeleteuserAction extends ProfileFormAction
         if (empty($this->user)) {
             // TRANS: Client error displayed when trying to delete a non-local user.
             $this->clientError(_('You can only delete local users.'));
-            return false;
         }
 
         return true;

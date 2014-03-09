@@ -79,7 +79,6 @@ class RegisterAction extends Action
         if (common_config('site', 'inviteonly') && empty($this->code)) {
             // TRANS: Client error displayed when trying to register to an invite-only site without an invitation.
             $this->clientError(_('Sorry, only invited people can register.'));
-            return false;
         }
 
         if (!empty($this->code)) {
@@ -87,7 +86,6 @@ class RegisterAction extends Action
             if (empty($this->invite)) {
             // TRANS: Client error displayed when trying to register to an invite-only site without a valid invitation.
                 $this->clientError(_('Sorry, invalid invitation code.'));
-                return false;
             }
             // Store this in case we need it
             common_ensure_session();
@@ -187,7 +185,6 @@ class RegisterAction extends Action
             if (common_config('site', 'inviteonly') && !($code && $invite)) {
                 // TRANS: Client error displayed when trying to register to an invite-only site without an invitation.
                 $this->clientError(_('Sorry, only invited people can register.'));
-                return;
             }
 
             // Input scrubbing
@@ -387,7 +384,6 @@ class RegisterAction extends Action
         if (common_config('site', 'inviteonly') && !($code && $invite)) {
             // TRANS: Client error displayed when trying to register to an invite-only site without an invitation.
             $this->clientError(_('Sorry, only invited people can register.'));
-            return;
         }
 
         $this->elementStart('form', array('method' => 'post',

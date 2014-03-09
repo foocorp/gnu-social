@@ -34,13 +34,10 @@ class TagAction extends Action
 
         if (!$this->tag) {
             common_redirect(common_local_url('publictagcloud'), 301);
-            return false;
         }
 
         if ($this->tag != $taginput) {
-            common_redirect(common_local_url('tag', array('tag' => $this->tag)),
-                            301);
-            return false;
+            common_redirect(common_local_url('tag', array('tag' => $this->tag)), 301);
         }
 
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;

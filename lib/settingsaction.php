@@ -71,7 +71,6 @@ class SettingsAction extends Action
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return;
         } else if (!common_is_real_login()) {
             // Cookie theft means that automatic logins can't
             // change important settings or see private info, and

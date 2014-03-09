@@ -92,7 +92,6 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
         if (empty($profile)) {
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->clientError(_('User has no profile.'));
-            return;
         }
 
         $original = clone($profile);
@@ -128,7 +127,6 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
             common_log_db_error($profile, 'UPDATE', __FILE__);
             // TRANS: Server error displayed if a user profile could not be saved.
             $this->serverError(_('Could not save profile.'));
-            return;
         }
 
         $twitter_user = $this->twitterUserArray($profile, true);

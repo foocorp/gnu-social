@@ -66,25 +66,21 @@ class ConfirmaddressAction extends Action
         if (!common_logged_in()) {
             common_set_returnto($this->selfUrl());
             common_redirect(common_local_url('login'));
-            return;
         }
         $code = $this->trimmed('code');
         if (!$code) {
             // TRANS: Client error displayed when not providing a confirmation code in the contact address confirmation action.
             $this->clientError(_('No confirmation code.'));
-            return;
         }
         $confirm = Confirm_address::getKV('code', $code);
         if (!$confirm) {
             // TRANS: Client error displayed when providing a non-existing confirmation code in the contact address confirmation action.
             $this->clientError(_('Confirmation code not found.'));
-            return;
         }
         $cur = common_current_user();
         if ($cur->id != $confirm->user_id) {
             // TRANS: Client error displayed when not providing a confirmation code for another user in the contact address confirmation action.
             $this->clientError(_('That confirmation code is not for you!'));
-            return;
         }
         $type = $confirm->address_type;
         $transports = array();
@@ -92,7 +88,6 @@ class ConfirmaddressAction extends Action
         if (!in_array($type, array('email', 'sms')) && !in_array($type, array_keys($transports))) {
             // TRANS: Server error for an unknown address type, which can be 'email', 'sms', or the name of an IM network (such as 'xmpp' or 'aim')
             $this->serverError(sprintf(_('Unrecognized address type %s'), $type));
-            return;
         }
         $this->address = $confirm->address;
         $cur->query('BEGIN');
@@ -101,7 +96,6 @@ class ConfirmaddressAction extends Action
             if ($cur->$type == $confirm->address) {
                 // TRANS: Client error for an already confirmed email/jabber/sms address.
                 $this->clientError(_('That address has already been confirmed.'));
-                return;
             }
 
             $orig_user = clone($cur);
@@ -120,7 +114,6 @@ class ConfirmaddressAction extends Action
                 common_log_db_error($cur, 'UPDATE', __FILE__);
                 // TRANS: Server error displayed when confirming an e-mail address or IM address fails.
                 $this->serverError(_('Could not update user.'));
-                return;
             }
 
             if ($type == 'email') {
@@ -136,7 +129,6 @@ class ConfirmaddressAction extends Action
                 if($user_im_prefs->screenname == $confirm->address){
                     // TRANS: Client error for an already confirmed IM address.
                     $this->clientError(_('That address has already been confirmed.'));
-                    return;
                 }
                 $user_im_prefs->screenname = $confirm->address;
                 $result = $user_im_prefs->update();
@@ -145,7 +137,6 @@ class ConfirmaddressAction extends Action
                     common_log_db_error($user_im_prefs, 'UPDATE', __FILE__);
                     // TRANS: Server error displayed when updating IM preferences fails.
                     $this->serverError(_('Could not update user IM preferences.'));
-                    return;
                 }
             }else{
                 $user_im_prefs = new User_im_prefs();
@@ -158,7 +149,6 @@ class ConfirmaddressAction extends Action
                     common_log_db_error($user_im_prefs, 'INSERT', __FILE__);
                     // TRANS: Server error displayed when adding IM preferences fails.
                     $this->serverError(_('Could not insert user IM preferences.'));
-                    return;
                 }
             }
 
@@ -171,7 +161,6 @@ class ConfirmaddressAction extends Action
             // TRANS: Server error displayed when an address confirmation code deletion from the
             // TRANS: database fails in the contact address confirmation action.
             $this->serverError(_('Could not delete address confirmation.'));
-            return;
         }
 
         $cur->query('COMMIT');

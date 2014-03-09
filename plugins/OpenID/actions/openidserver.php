@@ -76,7 +76,6 @@ class OpenidserverAction extends Action
                     // were POSTed here.
                     common_set_returnto($_SERVER['REQUEST_URI']);
                     common_redirect(common_local_url('login'), 303);
-                    return;
                 }
             }else if(common_profile_url($user->nickname) == $request->identity || $request->idSelect()){
                 $user_openid_trustroot = User_openid_trustroot::pkeyGet(
@@ -101,7 +100,6 @@ class OpenidserverAction extends Action
                         // prompting user for form resubmission if we
                         // were POSTed here.
                         common_redirect(common_local_url('openidtrust'), 303);
-                        return;
                     }
                 }else{
                     //user has previously authorized this trust root

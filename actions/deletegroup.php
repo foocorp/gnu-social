@@ -62,7 +62,6 @@ class DeletegroupAction extends RedirectingAction
         if (!common_logged_in()) {
             // TRANS: Client error when trying to delete group while not logged in.
             $this->clientError(_('You must be logged in to delete a group.'));
-            return false;
         }
 
         $nickname_arg = $this->trimmed('nickname');
@@ -77,7 +76,6 @@ class DeletegroupAction extends RedirectingAction
             if ($nickname_arg != $nickname) {
                 $args = array('nickname' => $nickname);
                 common_redirect(common_local_url('leavegroup', $args), 301);
-                return false;
             }
 
             $local = Local_group::getKV('nickname', $nickname);
@@ -85,27 +83,23 @@ class DeletegroupAction extends RedirectingAction
             if (!$local) {
                 // TRANS: Client error when trying to delete a non-local group.
                 $this->clientError(_('No such group.'), 404);
-                return false;
             }
 
             $this->group = User_group::getKV('id', $local->group_id);
         } else {
             // TRANS: Client error when trying to delete a group without providing a nickname or ID for the group.
             $this->clientError(_('No nickname or ID.'), 404);
-            return false;
         }
 
         if (!$this->group) {
             // TRANS: Client error when trying to delete a non-existing group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $cur = common_current_user();
         if (!$cur->hasRight(Right::DELETEGROUP)) {
             // TRANS: Client error when trying to delete a group without having the rights to delete it.
             $this->clientError(_('You are not allowed to delete this group.'), 403);
-            return false;
         }
 
         return true;
@@ -166,8 +160,7 @@ class DeletegroupAction extends RedirectingAction
         } else {
             // @fixme if we could direct to the page on which this group
             // would have shown... that would be awesome
-            common_redirect(common_local_url('groups'),
-                            303);
+            common_redirect(common_local_url('groups'), 303);
         }
     }
 

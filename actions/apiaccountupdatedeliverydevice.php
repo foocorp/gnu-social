@@ -84,7 +84,6 @@ class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
                 404,
                 $this->format
             );
-            return;
         }
 
         // Note: Twitter no longer supports IM
@@ -93,7 +92,6 @@ class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
             // TRANS: Client error displayed when no valid device parameter is provided for a user's delivery device setting.
             $this->clientError(_( 'You must specify a parameter named ' .
                                   '\'device\' with a value of one of: sms, im, none.' ));
-            return;
         }
 
         if (empty($this->user)) {
@@ -124,7 +122,6 @@ class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
             common_log_db_error($this->user, 'UPDATE', __FILE__);
             // TRANS: Server error displayed when a user's delivery device cannot be updated.
             $this->serverError(_('Could not update user.'));
-            return;
         }
 
         $profile = $this->user->getProfile();

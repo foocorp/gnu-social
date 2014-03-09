@@ -57,7 +57,6 @@ class JoingroupAction extends Action
         if (!common_logged_in()) {
             // TRANS: Client error displayed when trying to join a group while not logged in.
             $this->clientError(_('You must be logged in to join a group.'));
-            return false;
         }
 
         $nickname_arg = $this->trimmed('nickname');
@@ -72,7 +71,6 @@ class JoingroupAction extends Action
             if ($nickname_arg != $nickname) {
                 $args = array('nickname' => $nickname);
                 common_redirect(common_local_url('leavegroup', $args), 301);
-                return false;
             }
 
             $local = Local_group::getKV('nickname', $nickname);
@@ -80,20 +78,17 @@ class JoingroupAction extends Action
             if (!$local) {
                 // TRANS: Client error displayed when trying to join a non-local group.
                 $this->clientError(_('No such group.'), 404);
-                return false;
             }
 
             $this->group = User_group::getKV('id', $local->group_id);
         } else {
             // TRANS: Client error displayed when trying to join a group without providing a group name or group ID.
             $this->clientError(_('No nickname or ID.'), 404);
-            return false;
         }
 
         if (!$this->group) {
             // TRANS: Client error displayed when trying to join a non-existing group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $cur = common_current_user();
@@ -101,13 +96,11 @@ class JoingroupAction extends Action
         if ($cur->isMember($this->group)) {
             // TRANS: Client error displayed when trying to join a group while already a member.
             $this->clientError(_('You are already a member of that group.'), 403);
-            return false;
         }
 
         if (Group_block::isBlocked($this->group, $cur->getProfile())) {
             // TRANS: Client error displayed when trying to join a group while being blocked form joining it.
             $this->clientError(_('You have been blocked from that group by the admin.'), 403);
-            return false;
         }
 
         return true;
@@ -165,9 +158,7 @@ class JoingroupAction extends Action
             $this->elementEnd('body');
             $this->endHTML();
         } else {
-            common_redirect(common_local_url('groupmembers', array('nickname' =>
-                                                                   $this->group->nickname)),
-                            303);
+            common_redirect(common_local_url('groupmembers', array('nickname' => $this->group->nickname)), 303);
         }
     }
 }

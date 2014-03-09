@@ -63,7 +63,6 @@ class TimelistAction extends Action {
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_m('Not logged in.'));
-            return;
         }
 
         if (!empty($this->start)) {
@@ -71,7 +70,6 @@ class TimelistAction extends Action {
         } else {
             // TRANS: Client error when submitting a form with unexpected information.
             $this->clientError(_m('Unexpected form submission.'));
-            return;
         }
 
         if ($this->boolean('ajax')) {

@@ -74,7 +74,6 @@ class SubscribeAction extends Action
             // TRANS: Client error displayed trying to perform any request method other than POST.
             // TRANS: Do not translate POST.
             $this->clientError(_('This action only accepts POST requests.'));
-            return false;
         }
 
         // CSRF protection
@@ -85,7 +84,6 @@ class SubscribeAction extends Action
             // TRANS: Client error displayed when the session token is not okay.
             $this->clientError(_('There was a problem with your session token.'.
                                  ' Try again, please.'));
-            return false;
         }
 
         // Only for logged-in users
@@ -95,7 +93,6 @@ class SubscribeAction extends Action
         if (empty($this->user)) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
 
         // Profile to subscribe to
@@ -107,7 +104,6 @@ class SubscribeAction extends Action
         if (empty($this->other)) {
             // TRANS: Client error displayed trying to subscribe to a non-existing profile.
             $this->clientError(_('No such profile.'));
-            return false;
         }
 
         return true;

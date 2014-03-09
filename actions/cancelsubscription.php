@@ -55,7 +55,6 @@ class CancelsubscriptionAction extends Action
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return;
         }
 
         $user = common_current_user();
@@ -63,7 +62,6 @@ class CancelsubscriptionAction extends Action
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             common_redirect(common_local_url('subscriptions',
                                              array('nickname' => $user->nickname)));
-            return;
         }
 
         /* Use a session token for CSRF protection. */
@@ -74,7 +72,6 @@ class CancelsubscriptionAction extends Action
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. ' .
                                  'Try again, please.'));
-            return;
         }
 
         $other_id = $this->arg('unsubscribeto');
@@ -82,7 +79,6 @@ class CancelsubscriptionAction extends Action
         if (!$other_id) {
             // TRANS: Client error displayed when trying to leave a group without specifying an ID.
             $this->clientError(_('No profile ID in request.'));
-            return;
         }
 
         $other = Profile::getKV('id', $other_id);
@@ -90,7 +86,6 @@ class CancelsubscriptionAction extends Action
         if (!$other) {
             // TRANS: Client error displayed when trying to leave a non-existing group.
             $this->clientError(_('No profile with that ID.'));
-            return;
         }
 
         $this->request = Subscription_queue::pkeyGet(array('subscriber' => $user->id,

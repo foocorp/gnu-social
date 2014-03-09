@@ -62,7 +62,6 @@ class SandboxAction extends ProfileFormAction
         if (!$cur->hasRight(Right::SANDBOXUSER)) {
             // TRANS: Client error displayed trying to sandbox users on a site where the feature is not enabled.
             $this->clientError(_('You cannot sandbox users on this site.'));
-            return false;
         }
 
         assert(!empty($this->profile)); // checked by parent
@@ -70,7 +69,6 @@ class SandboxAction extends ProfileFormAction
         if ($this->profile->isSandboxed()) {
             // TRANS: Client error displayed trying to sandbox an already sandboxed user.
             $this->clientError(_('User is already sandboxed.'));
-            return false;
         }
 
         return true;

@@ -496,7 +496,6 @@ class TwitterauthorizationAction extends Action
         if (common_config('site', 'closed')) {
             // TRANS: Client error displayed when trying to create a new user while creating new users is not allowed.
             $this->clientError(_m('Registration not allowed.'));
-            return;
         }
 
         $invite = null;
@@ -506,7 +505,6 @@ class TwitterauthorizationAction extends Action
             if (empty($code)) {
                 // TRANS: Client error displayed when trying to create a new user while creating new users is not allowed.
                 $this->clientError(_m('Registration not allowed.'));
-                return;
             }
 
             $invite = Invitation::getKV($code);
@@ -514,7 +512,6 @@ class TwitterauthorizationAction extends Action
             if (empty($invite)) {
                 // TRANS: Client error displayed when trying to create a new user with an invalid invitation code.
                 $this->clientError(_m('Not a valid invitation code.'));
-                return;
             }
         }
 
@@ -543,7 +540,6 @@ class TwitterauthorizationAction extends Action
         if (empty($user)) {
             // TRANS: Server error displayed when creating a new user has failed.
             $this->serverError(_m('Error registering user.'));
-            return;
         }
 
         $result = $this->saveForeignLink($user->id,
@@ -555,7 +551,6 @@ class TwitterauthorizationAction extends Action
         if (!$result) {
             // TRANS: Server error displayed when connecting a user to a Twitter user has failed.
             $this->serverError(_m('Error connecting user to Twitter.'));
-            return;
         }
 
         common_set_user($user);
@@ -566,8 +561,7 @@ class TwitterauthorizationAction extends Action
 
         Event::handle('EndRegistrationTry', array($this));
 
-        common_redirect(common_local_url('showstream', array('nickname' => $user->nickname)),
-                        303);
+        common_redirect(common_local_url('showstream', array('nickname' => $user->nickname)), 303);
     }
 
     function connectNewUser()
@@ -598,7 +592,6 @@ class TwitterauthorizationAction extends Action
         if (!$result) {
             // TRANS: Server error displayed connecting a user to a Twitter user has failed.
             $this->serverError(_m('Error connecting user to Twitter.'));
-            return;
         }
 
         common_debug('TwitterBridge Plugin - ' .
@@ -619,7 +612,6 @@ class TwitterauthorizationAction extends Action
         if (empty($result)) {
             // TRANS: Server error displayed connecting a user to a Twitter user has failed.
             $this->serverError(_m('Error connecting user to Twitter.'));
-            return;
         }
 
         common_debug('TwitterBridge Plugin - ' .

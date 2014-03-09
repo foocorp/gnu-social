@@ -71,12 +71,10 @@ class GetfileAction extends Action
         if (empty($path) or !file_exists($path)) {
             // TRANS: Client error displayed when requesting a non-existent file.
             $this->clientError(_('No such file.'), 404);
-            return false;
         }
         if (!is_readable($path)) {
             // TRANS: Client error displayed when requesting a file without having read access to it.
             $this->clientError(_('Cannot read file.'), 403);
-            return false;
         }
 
         $this->path = $path;

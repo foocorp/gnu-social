@@ -71,7 +71,6 @@ class GroupbyidAction extends Action
         if (!$id) {
             // TRANS: Client error displayed referring to a group's permalink without providing a group ID.
             $this->clientError(_('No ID.'));
-            return false;
         }
 
         common_debug("Got ID $id");
@@ -81,7 +80,6 @@ class GroupbyidAction extends Action
         if (!$this->group) {
             // TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         return true;

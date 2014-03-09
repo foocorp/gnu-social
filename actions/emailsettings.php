@@ -351,7 +351,6 @@ class EmailsettingsAction extends SettingsAction
                 common_log_db_error($user, 'UPDATE', __FILE__);
                 // TRANS: Server error thrown on database error updating e-mail preferences.
                 $this->serverError(_('Could not update user.'));
-                return;
             }
 
             $user->query('COMMIT');
@@ -419,7 +418,6 @@ class EmailsettingsAction extends SettingsAction
                 common_log_db_error($confirm, 'INSERT', __FILE__);
                 // TRANS: Server error thrown on database error adding e-mail confirmation code.
                 $this->serverError(_('Could not insert confirmation code.'));
-                return;
             }
 
             mail_confirm_address($user, $confirm->code, $user->nickname, $email);
@@ -463,7 +461,6 @@ class EmailsettingsAction extends SettingsAction
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error thrown on database error canceling e-mail address confirmation.
             $this->serverError(_('Could not delete email confirmation.'));
-            return;
         }
 
         // TRANS: Message given after successfully canceling e-mail address confirmation.
@@ -502,7 +499,6 @@ class EmailsettingsAction extends SettingsAction
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing a registered e-mail address.
             $this->serverError(_('Could not update user.'));
-            return;
         }
         $user->query('COMMIT');
 

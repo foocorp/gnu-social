@@ -39,14 +39,12 @@ class CasloginAction extends Action
             if (!$user) {
                 // TRANS: Server error displayed when trying to log in with incorrect username or password.
                 $this->serverError(_m('Incorrect username or password.'));
-                return;
             }
 
             // success!
             if (!common_set_user($user)) {
                 // TRANS: Server error displayed when login fails in CAS authentication plugin.
                 $this->serverError(_m('Error setting user. You are probably not authorized.'));
-                return;
             }
 
             common_real_login(true);

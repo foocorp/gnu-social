@@ -55,7 +55,6 @@ class PeopletagautocompleteAction extends Action
         if (empty($this->user)) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
 
         // CSRF protection
@@ -66,7 +65,6 @@ class PeopletagautocompleteAction extends Action
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token.'.
                                  ' Try again, please.'));
-            return false;
         }
 
         $profile = $this->user->getProfile();

@@ -62,7 +62,6 @@ class UnsandboxAction extends ProfileFormAction
         if (!$cur->hasRight(Right::SANDBOXUSER)) {
             // TRANS: Client error on page to unsandbox a user when the feature is not enabled.
             $this->clientError(_('You cannot sandbox users on this site.'));
-            return false;
         }
 
         assert(!empty($this->profile)); // checked by parent
@@ -70,7 +69,6 @@ class UnsandboxAction extends ProfileFormAction
         if (!$this->profile->isSandboxed()) {
             // TRANS: Client error on page to unsilence a user when the to be unsandboxed user has not been sandboxed.
             $this->clientError(_('User is not sandboxed.'));
-            return false;
         }
 
         return true;

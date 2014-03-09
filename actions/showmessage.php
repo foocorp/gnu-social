@@ -74,7 +74,6 @@ class ShowmessageAction extends Action
         if (!$this->message) {
             // TRANS: Client error displayed requesting a single message that does not exist.
             $this->clientError(_('No such message.'), 404);
-            return false;
         }
 
         $this->user = common_current_user();

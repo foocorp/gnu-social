@@ -77,7 +77,6 @@ class ProfileFormAction extends RedirectingAction
         if (!$id) {
             // TRANS: Client error displayed when trying to change user options without specifying a user to work on.
             $this->clientError(_('No profile specified.'));
-            return false;
         }
 
         $this->profile = Profile::getKV('id', $id);
@@ -85,7 +84,6 @@ class ProfileFormAction extends RedirectingAction
         if (!$this->profile) {
             // TRANS: Client error displayed when trying to change user options without specifying an existing user to work on.
             $this->clientError(_('No profile with that ID.'));
-            return false;
         }
 
         return true;

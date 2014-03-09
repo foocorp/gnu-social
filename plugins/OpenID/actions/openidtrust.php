@@ -60,7 +60,6 @@ class OpenidtrustAction extends Action
             /* Go log in, and then come back. */
             common_set_returnto($_SERVER['REQUEST_URI']);
             common_redirect(common_local_url('login'));
-            return;
         }
         $this->trust_root = $_SESSION['openid_trust_root'];
         $this->allowUrl = $_SESSION['openid_allow_url'];
@@ -68,7 +67,6 @@ class OpenidtrustAction extends Action
         if(empty($this->trust_root) || empty($this->allowUrl) || empty($this->denyUrl)){
             // TRANS: Client error when visiting page directly.
             $this->clientError(_m('This page should only be reached during OpenID processing, not directly.'));
-            return;
         }
         return true;
     }

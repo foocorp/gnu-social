@@ -322,7 +322,6 @@ class FinishopenidloginAction extends Action
         if (common_config('site', 'closed')) {
             // TRANS: OpenID plugin message. No new user registration is allowed on the site.
             $this->clientError(_m('Registration not allowed.'));
-            return;
         }
 
         $invite = null;
@@ -332,7 +331,6 @@ class FinishopenidloginAction extends Action
             if (empty($code)) {
                 // TRANS: OpenID plugin message. No new user registration is allowed on the site without an invitation code, and none was provided.
                 $this->clientError(_m('Registration not allowed.'));
-                return;
             }
 
             $invite = Invitation::getKV($code);
@@ -340,7 +338,6 @@ class FinishopenidloginAction extends Action
             if (empty($invite)) {
                 // TRANS: OpenID plugin message. No new user registration is allowed on the site without an invitation code, and the one provided was not valid.
                 $this->clientError(_m('Not a valid invitation code.'));
-                return;
             }
         }
 
@@ -356,7 +353,6 @@ class FinishopenidloginAction extends Action
         if (!$display || !$canonical) {
             // TRANS: OpenID plugin server error. A stored OpenID cannot be retrieved.
             $this->serverError(_m('Stored OpenID not found.'));
-            return;
         }
 
         // Possible race condition... let's be paranoid
@@ -366,7 +362,6 @@ class FinishopenidloginAction extends Action
         if ($other) {
             // TRANS: OpenID plugin server error.
             $this->serverError(_m('Creating new account for OpenID that already has a user.'));
-            return;
         }
 
         Event::handle('StartOpenIDCreateNewUser', array($canonical, &$sreg));
@@ -418,8 +413,7 @@ class FinishopenidloginAction extends Action
 
         Event::handle('EndRegistrationTry', array($this));
 
-        common_redirect(common_local_url('showstream', array('nickname' => $user->nickname)),
-                        303);
+        common_redirect(common_local_url('showstream', array('nickname' => $user->nickname)), 303);
     }
 
     function connectUser()
@@ -442,7 +436,6 @@ class FinishopenidloginAction extends Action
         if (!$display || !$canonical) {
             // TRANS: OpenID plugin server error. A stored OpenID cannot be found.
             $this->serverError(_m('Stored OpenID not found.'));
-            return;
         }
 
         $result = oid_link_user($user->id, $canonical, $display);
@@ -450,7 +443,6 @@ class FinishopenidloginAction extends Action
         if (!$result) {
             // TRANS: OpenID plugin server error. The user or user profile could not be saved.
             $this->serverError(_m('Error connecting user to OpenID.'));
-            return;
         }
 
         if (Event::handle('StartOpenIDUpdateUser', array($user, $canonical, &$sreg))) {

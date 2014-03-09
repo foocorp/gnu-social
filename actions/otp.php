@@ -60,7 +60,6 @@ class OtpAction extends Action
         if (common_is_real_login()) {
             // TRANS: Client error displayed trying to use "one time password login" when already logged in.
             $this->clientError(_('Already logged in.'));
-            return false;
         }
 
         $id = $this->trimmed('user_id');
@@ -68,7 +67,6 @@ class OtpAction extends Action
         if (empty($id)) {
             // TRANS: Client error displayed trying to use "one time password login" without specifying a user.
             $this->clientError(_('No user ID specified.'));
-            return false;
         }
 
         $this->user = User::getKV('id', $id);
@@ -76,7 +74,6 @@ class OtpAction extends Action
         if (empty($this->user)) {
             // TRANS: Client error displayed trying to use "one time password login" without using an existing user.
             $this->clientError(_('No such user.'));
-            return false;
         }
 
         $this->token = $this->trimmed('token');
@@ -84,7 +81,6 @@ class OtpAction extends Action
         if (empty($this->token)) {
             // TRANS: Client error displayed trying to use "one time password login" without specifying a login token.
             $this->clientError(_('No login token specified.'));
-            return false;
         }
 
         $this->lt = Login_token::getKV('user_id', $id);
@@ -92,13 +88,11 @@ class OtpAction extends Action
         if (empty($this->lt)) {
             // TRANS: Client error displayed trying to use "one time password login" without requesting a login token.
             $this->clientError(_('No login token requested.'));
-            return false;
         }
 
         if ($this->lt->token != $this->token) {
             // TRANS: Client error displayed trying to use "one time password login" while specifying an invalid login token.
             $this->clientError(_('Invalid login token specified.'));
-            return false;
         }
 
         if ($this->lt->modified > time() + Login_token::TIMEOUT) {
@@ -108,7 +102,6 @@ class OtpAction extends Action
             $this->lt = null;
             // TRANS: Client error displayed trying to use "one time password login" while specifying an expired login token.
             $this->clientError(_('Login token expired.'));
-            return false;
         }
 
         $this->rememberme = $this->boolean('rememberme');
@@ -125,7 +118,6 @@ class OtpAction extends Action
         if (!common_set_user($this->user)) {
             // TRANS: Server error displayed when a user object could not be created trying to login using "one time password login".
             $this->serverError(_('Error setting user. You are probably not authorized.'));
-            return;
         }
 
         // We're now logged in; disable the lt

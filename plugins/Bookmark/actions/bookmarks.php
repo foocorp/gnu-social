@@ -80,7 +80,6 @@ class BookmarksAction extends Action
         if (!$this->user) {
             // TRANS: Client error displayed when trying to display bookmarks for a non-existing user.
             $this->clientError(_('No such user.'));
-            return false;
         }
 
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;

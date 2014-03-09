@@ -132,10 +132,8 @@ class OpenIDPlugin extends Plugin
                 $action = trim($args['action']);
                 if (in_array($action, array('login', 'register'))) {
                     common_redirect(common_local_url('openidlogin'));
-                    exit(0);
                 } else if ($action == 'passwordsettings') {
                     common_redirect(common_local_url('openidsettings'));
-                    exit(0);
                 } else if ($action == 'recoverpassword') {
                     // TRANS: Client exception thrown when an action is not available.
                     throw new ClientException(_m('Unavailable action.'));
@@ -444,7 +442,6 @@ class OpenIDPlugin extends Plugin
     {
         if (common_config('site', 'openid_only') || (!empty($user) && User_openid::hasOpenID($user->id))) {
             common_redirect(common_local_url('openidlogin'), 303);
-            return false;
         }
         return true;
     }

@@ -286,7 +286,6 @@ function main()
     // If the request is HTTP and it should be HTTPS...
     if ($site_ssl != 'never' && !StatusNet::isHTTPS() && common_is_sensitive($args['action'])) {
         common_redirect(common_local_url($args['action'], $args));
-        return;
     }
 
     $args = array_merge($args, $_REQUEST);
@@ -297,7 +296,6 @@ function main()
 
     if (!$action || !preg_match('/^[a-zA-Z0-9_-]*$/', $action)) {
         common_redirect(common_local_url('public'));
-        return;
     }
 
     // If the site is private, and they're not on one of the "public"
@@ -324,7 +322,6 @@ function main()
         common_set_returnto(common_local_url($action, $rargs));
 
         common_redirect(common_local_url('login'));
-        return;
     }
 
     $action_class = ucfirst($action).'Action';

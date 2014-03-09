@@ -62,7 +62,6 @@ class UnsilenceAction extends ProfileFormAction
         if (!$cur->hasRight(Right::SILENCEUSER)) {
             // TRANS: Client error on page to unsilence a user when the feature is not enabled.
             $this->clientError(_('You cannot silence users on this site.'));
-            return false;
         }
 
         assert(!empty($this->profile)); // checked by parent
@@ -70,7 +69,6 @@ class UnsilenceAction extends ProfileFormAction
         if (!$this->profile->isSilenced()) {
             // TRANS: Client error on page to unsilence a user when the to be unsilenced user has not been silenced.
             $this->clientError(_('User is not silenced.'));
-            return false;
         }
 
         return true;

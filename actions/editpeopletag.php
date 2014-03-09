@@ -67,7 +67,6 @@ class EditpeopletagAction extends Action
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
 
         $id = $this->arg('id');
@@ -88,7 +87,6 @@ class EditpeopletagAction extends Action
         if ($tagger_arg != $tagger || $tag_arg != $tag) {
             $args = array('tagger' => $tagger, 'tag' => $tag);
             common_redirect(common_local_url('editpeopletag', $args), 301);
-            return false;
         }
 
         $user = null;
@@ -101,7 +99,6 @@ class EditpeopletagAction extends Action
             if (!$tagger) {
                 // TRANS: Error message displayed when trying to perform an action that requires a tagging user or ID.
                 $this->clientError(_('No tagger or ID.'), 404);
-                return false;
             }
 
             $user = User::getKV('nickname', $tagger);
@@ -111,20 +108,17 @@ class EditpeopletagAction extends Action
         if (!$this->peopletag) {
             // TRANS: Client error displayed when referring to a non-existing list.
             $this->clientError(_('No such list.'), 404);
-            return false;
         }
 
         if (!$user) {
             // This should not be happening
             // TRANS: Client error displayed when referring to non-local user.
             $this->clientError(_('Not a local user.'), 404);
-            return false;
         }
 
         if ($current->id != $user->id) {
             // TRANS: Client error displayed when reting to edit a tag that was not self-created.
             $this->clientError(_('You must be the creator of the tag to edit it.'), 404);
-            return false;
         }
 
         $this->tagger = $user->getProfile();
@@ -311,9 +305,7 @@ class EditpeopletagAction extends Action
             // This might take quite a bit of time.
             $this->peopletag->delete();
             // send home.
-            common_redirect(common_local_url('all',
-                                         array('nickname' => $this->tagger->nickname)),
-                            303);
+            common_redirect(common_local_url('all', array('nickname' => $this->tagger->nickname)), 303);
         }
 
         if ($tag != $orig->tag) {

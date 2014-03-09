@@ -48,7 +48,6 @@ class FacebookfinishloginAction extends Action
 
         if (empty($this->accessToken)) {
             $this->clientError(_m("Unable to authenticate you with Facebook."));
-            return false;
         }
 
         $graphUrl = 'https://graph.facebook.com/me?access_token=' . urlencode($this->accessToken);
@@ -117,8 +116,6 @@ class FacebookfinishloginAction extends Action
                 // TRANS: in the same StatusNet site.
                 _m('There is already a local account linked with that Facebook account.')
             );
-
-            return;
        }
 
        $cur = common_current_user();
@@ -133,8 +130,6 @@ class FacebookfinishloginAction extends Action
                 // TRANS: in the same StatusNet site.
                 _m('There is already a local account linked with that Facebook account.')
             );
-
-            return;
         }
     }
 
@@ -329,7 +324,6 @@ class FacebookfinishloginAction extends Action
         if (common_config('site', 'closed')) {
             // TRANS: Client error trying to register with registrations not allowed.
             $this->clientError(_m('Registration not allowed.'));
-            return;
         }
 
         $invite = null;
@@ -339,7 +333,6 @@ class FacebookfinishloginAction extends Action
             if (empty($code)) {
                 // TRANS: Client error trying to register with registrations 'invite only'.
                 $this->clientError(_m('Registration not allowed.'));
-                return;
             }
 
             $invite = Invitation::getKV($code);
@@ -347,7 +340,6 @@ class FacebookfinishloginAction extends Action
             if (empty($invite)) {
                 // TRANS: Client error trying to register with an invalid invitation code.
                 $this->clientError(_m('Not a valid invitation code.'));
-                return;
             }
         }
 
@@ -384,7 +376,6 @@ class FacebookfinishloginAction extends Action
         if (!$result) {
             // TRANS: Server error displayed when connecting to Facebook fails.
             $this->serverError(_m('Error connecting user to Facebook.'));
-            return;
         }
 
         // Add a Foreign_user record
@@ -518,7 +509,6 @@ class FacebookfinishloginAction extends Action
         if (empty($result)) {
             // TRANS: Server error displayed when connecting to Facebook fails.
             $this->serverError(_m('Error connecting user to Facebook.'));
-            return;
         }
     }
 

@@ -44,7 +44,6 @@ class FoafGroupAction extends Action
         if (empty($nickname_arg)) {
             // TRANS: Client error displayed when requesting Friends of a Friend feed without providing a group nickname.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $this->nickname = common_canonical_nickname($nickname_arg);
@@ -63,7 +62,6 @@ class FoafGroupAction extends Action
         if (!$local) {
             // TRANS: Client error displayed when requesting Friends of a Friend feed for a non-local group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $this->group = User_group::getKV('id', $local->group_id);
@@ -71,7 +69,6 @@ class FoafGroupAction extends Action
         if (!$this->group) {
             // TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         common_set_returnto($this->selfUrl());

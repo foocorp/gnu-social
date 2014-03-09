@@ -620,7 +620,6 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
                 common_log_db_error($profile, 'UPDATE', __FILE__);
                 // TRANS: Server error thrown when user profile settings could not be saved.
                 $this->serverError(_m('Could not save profile.'));
-                return;
             }
 
             // Set the user tags
@@ -629,7 +628,6 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
             if (!$result) {
                 // TRANS: Server error thrown when user profile settings tags could not be saved.
                 $this->serverError(_m('Could not save tags.'));
-                return;
             }
 
             Event::handle('EndProfileSaveForm', array($this));

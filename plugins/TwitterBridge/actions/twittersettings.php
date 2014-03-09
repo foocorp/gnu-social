@@ -263,7 +263,6 @@ class TwittersettingsAction extends ProfileSettingsAction
         if (empty($flink)) {
             // TRANS: Client error displayed when trying to remove a connected Twitter account when there isn't one connected.
             $this->clientError(_m('No Twitter connection to remove.'));
-            return;
         }
 
         $result = $flink->safeDelete();
@@ -272,7 +271,6 @@ class TwittersettingsAction extends ProfileSettingsAction
             common_log_db_error($flink, 'DELETE', __FILE__);
             // TRANS: Server error displayed when trying to remove a connected Twitter account fails.
             $this->serverError(_m('Could not remove Twitter user.'));
-            return;
         }
 
         // TRANS: Success message displayed after disconnecting a Twitter account.

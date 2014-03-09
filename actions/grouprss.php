@@ -81,13 +81,11 @@ class groupRssAction extends Rss10Action
         if ($nickname_arg != $nickname) {
             $args = array('nickname' => $nickname);
             common_redirect(common_local_url('showgroup', $args), 301);
-            return false;
         }
 
         if (!$nickname) {
             // TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
             $this->clientError(_('No nickname.'), 404);
-            return false;
         }
 
         $local = Local_group::getKV('nickname', $nickname);
@@ -95,7 +93,6 @@ class groupRssAction extends Rss10Action
         if (!$local) {
             // TRANS: Client error displayed when requesting a group RSS feed for group that does not exist.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $this->group = User_group::getKV('id', $local->group_id);
@@ -103,7 +100,6 @@ class groupRssAction extends Rss10Action
         if (!$this->group) {
             // TRANS: Client error displayed when requesting a group RSS feed for an object that is not a group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $this->notices = $this->getNotices($this->limit);

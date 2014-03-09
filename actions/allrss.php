@@ -67,7 +67,6 @@ class AllrssAction extends Rss10Action
         if (!$this->user) {
             // TRANS: Client error when user not found for an rss related action.
             $this->clientError(_('No such user.'));
-            return false;
         } else {
             $this->notices = $this->getNotices($this->limit);
             return true;

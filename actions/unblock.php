@@ -57,7 +57,6 @@ class UnblockAction extends ProfileFormAction
         if (!$cur->hasBlocked($this->profile)) {
             // TRANS: Client error displayed when trying to unblock a non-blocked user.
             $this->clientError(_("You haven't blocked that user."));
-            return false;
         }
 
         return true;
@@ -84,7 +83,6 @@ class UnblockAction extends ProfileFormAction
         if (!$result) {
             // TRANS: Server error displayed when removing a user block.
             $this->serverError(_('Error removing the block.'));
-            return;
         }
     }
 }

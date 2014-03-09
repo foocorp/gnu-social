@@ -57,14 +57,12 @@ class SubscribepeopletagAction extends Action
         if (!common_logged_in()) {
             // TRANS: Client error displayed when trying to perform an action while not logged in.
             $this->clientError(_('You must be logged in to unsubscribe from a list.'));
-            return false;
         }
         // Only allow POST requests
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             // TRANS: Client error displayed when trying to use another method than POST.
             $this->clientError(_('This action only accepts POST requests.'));
-            return false;
         }
 
         // CSRF protection
@@ -75,7 +73,6 @@ class SubscribepeopletagAction extends Action
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token.'.
                                  ' Try again, please.'));
-            return false;
         }
 
         $tagger_arg = $this->trimmed('tagger');
@@ -87,13 +84,11 @@ class SubscribepeopletagAction extends Action
         } else {
             // TRANS: Client error displayed when trying to perform an action without providing an ID.
             $this->clientError(_('No ID given.'), 404);
-            return false;
         }
 
         if (!$this->peopletag || $this->peopletag->private) {
             // TRANS: Client error displayed trying to reference a non-existing list.
             $this->clientError(_('No such list.'), 404);
-            return false;
         }
 
         $this->tagger = Profile::getKV('id', $this->peopletag->tagger);

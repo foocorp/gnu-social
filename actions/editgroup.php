@@ -66,7 +66,6 @@ class EditgroupAction extends GroupAction
         if (!common_logged_in()) {
             // TRANS: Client error displayed trying to edit a group while not logged in.
             $this->clientError(_('You must be logged in to create a group.'));
-            return false;
         }
 
         $nickname_arg = $this->trimmed('nickname');
@@ -77,13 +76,11 @@ class EditgroupAction extends GroupAction
         if ($nickname_arg != $nickname) {
             $args = array('nickname' => $nickname);
             common_redirect(common_local_url('editgroup', $args), 301);
-            return false;
         }
 
         if (!$nickname) {
             // TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
             $this->clientError(_('No nickname.'), 404);
-            return false;
         }
 
         $groupid = $this->trimmed('groupid');
@@ -100,7 +97,6 @@ class EditgroupAction extends GroupAction
         if (!$this->group) {
             // TRANS: Client error displayed trying to edit a non-existing group.
             $this->clientError(_('No such group.'), 404);
-            return false;
         }
 
         $cur = common_current_user();
@@ -108,7 +104,6 @@ class EditgroupAction extends GroupAction
         if (!$cur->isAdmin($this->group)) {
             // TRANS: Client error displayed trying to edit a group while not being a group admin.
             $this->clientError(_('You must be an admin to edit the group.'), 403);
-            return false;
         }
 
         return true;
@@ -274,9 +269,7 @@ class EditgroupAction extends GroupAction
         }
 
         if ($this->group->nickname != $orig->nickname) {
-            common_redirect(common_local_url('editgroup',
-                                             array('nickname' => $nickname)),
-                            303);
+            common_redirect(common_local_url('editgroup', array('nickname' => $nickname)), 303);
         } else {
             // TRANS: Group edit form success message.
             $this->showForm(_('Options saved.'));

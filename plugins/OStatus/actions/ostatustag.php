@@ -38,7 +38,6 @@ class OStatusTagAction extends OStatusInitAction
         if (common_logged_in()) {
             // TRANS: Client error displayed when trying to list a local object as if it is remote.
             $this->clientError(_m('You can use the local list functionality!'));
-            return false;
         }
 
         $this->nickname = $this->trimmed('nickname');

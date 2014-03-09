@@ -50,13 +50,11 @@ class UnsubscribeAction extends Action
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return;
         }
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             common_redirect(common_local_url('subscriptions',
                                              array('nickname' => $this->scoped->nickname)));
-            return;
         }
 
         /* Use a session token for CSRF protection. */
@@ -67,7 +65,6 @@ class UnsubscribeAction extends Action
             // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. ' .
                                  'Try again, please.'));
-            return;
         }
 
         $other_id = $this->arg('unsubscribeto');
@@ -75,7 +72,6 @@ class UnsubscribeAction extends Action
         if (!$other_id) {
             // TRANS: Client error displayed when trying to unsubscribe without providing a profile ID.
             $this->clientError(_('No profile ID in request.'));
-            return;
         }
 
         $other = Profile::getKV('id', $other_id);
@@ -83,7 +79,6 @@ class UnsubscribeAction extends Action
         if (!($other instanceof Profile)) {
             // TRANS: Client error displayed when trying to unsubscribe while providing a non-existing profile ID.
             $this->clientError(_('No profile with that ID.'));
-            return;
         }
 
         try {
@@ -104,9 +99,7 @@ class UnsubscribeAction extends Action
             $this->elementEnd('body');
             $this->endHTML();
         } else {
-            common_redirect(common_local_url('subscriptions',
-                                             array('nickname' => $this->scoped->nickname)),
-                            303);
+            common_redirect(common_local_url('subscriptions', array('nickname' => $this->scoped->nickname)), 303);
         }
     }
 }

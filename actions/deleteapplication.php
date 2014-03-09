@@ -60,7 +60,6 @@ class DeleteapplicationAction extends Action
         if (!common_logged_in()) {
             // TRANS: Client error displayed trying to delete an application while not logged in.
             $this->clientError(_('You must be logged in to delete an application.'));
-            return false;
         }
 
         $id        = (int)$this->arg('id');
@@ -69,7 +68,6 @@ class DeleteapplicationAction extends Action
         if (empty($this->app)) {
             // TRANS: Client error displayed trying to delete an application that does not exist.
             $this->clientError(_('Application not found.'));
-            return false;
         }
 
         $cur = common_current_user();
@@ -77,7 +75,6 @@ class DeleteapplicationAction extends Action
         if ($cur->id != $this->app->owner) {
             // TRANS: Client error displayed trying to delete an application the current user does not own.
             $this->clientError(_('You are not the owner of this application.'), 401);
-            return false;
         }
 
         return true;
@@ -101,7 +98,6 @@ class DeleteapplicationAction extends Action
             if (!$token || $token != common_session_token()) {
                 // TRANS: Client error displayed when the session token does not match or is not given.
                 $this->clientError(_('There was a problem with your session token.'));
-                return;
             }
 
             if ($this->arg('no')) {

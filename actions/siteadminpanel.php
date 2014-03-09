@@ -173,7 +173,6 @@ class SiteadminpanelAction extends AdminPanelAction
             !in_array($values['site']['timezone'], DateTimeZone::listIdentifiers())) {
             // TRANS: Client error displayed trying to save site settings without a timezone.
             $this->clientError(_('Timezone not selected.'));
-            return;
         }
 
         // Validate language

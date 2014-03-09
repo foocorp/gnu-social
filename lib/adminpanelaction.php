@@ -69,7 +69,6 @@ class AdminPanelAction extends Action
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
-            return false;
         }
 
         $user = common_current_user();
@@ -94,7 +93,6 @@ class AdminPanelAction extends Action
         if (!$user->hasRight(Right::CONFIGURESITE)) {
             // TRANS: Client error message thrown when a user tries to change admin settings but has no access rights.
             $this->clientError(_('You cannot make changes to this site.'));
-            return false;
         }
 
         // This panel must be enabled
@@ -106,7 +104,6 @@ class AdminPanelAction extends Action
         if (!self::canAdmin($name)) {
             // TRANS: Client error message throw when a certain panel's settings cannot be changed.
             $this->clientError(_('Changes to that panel are not allowed.'), 403);
-            return false;
         }
 
         return true;
@@ -220,7 +217,6 @@ class AdminPanelAction extends Action
     {
         // TRANS: Client error message.
         $this->clientError(_('showForm() not implemented.'));
-        return;
     }
 
     /**
@@ -248,7 +244,6 @@ class AdminPanelAction extends Action
     {
         // TRANS: Client error message
         $this->clientError(_('saveSettings() not implemented.'));
-        return;
     }
 
     function canAdmin($name)

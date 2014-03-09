@@ -81,7 +81,6 @@ class NewgroupmessageAction extends Action
         if ($nickname != $nicknameArg) {
             $url = common_local_url('newgroupmessage', array('nickname' => $nickname));
             common_redirect($url, 301);
-            return false;
         }
 
         $localGroup = Local_group::getKV('nickname', $nickname);

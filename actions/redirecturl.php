@@ -93,7 +93,6 @@ class RedirecturlAction extends Action
     function handle($argarray=null)
     {
         common_redirect($this->file->url, 307);
-        return;
     }
 
     /**
