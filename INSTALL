@@ -310,59 +310,6 @@ that if your mail server is on a different computer from your email
 server, you'll need to have a full installation of StatusNet, a working
 config.php, and access to the StatusNet database from the mail server.
 
-XMPP
-----
-
-XMPP (eXtended Message and Presence Protocol, <http://xmpp.org/>) is the
-instant-messenger protocol that drives Jabber and GTalk IM. You can
-distribute messages via XMPP using the system below; however, you
-need to run the XMPP incoming daemon to allow incoming messages as
-well.
-
-1. You may want to strongly consider setting up your own XMPP server.
-   Ejabberd, OpenFire, and JabberD are all Open Source servers.
-   Jabber, Inc. provides a high-performance commercial server.
-
-2. You must register a Jabber ID (JID) with your new server. It helps
-   to choose a name like "update@example.com" or "notice" or something
-   similar.  Alternately, your "update JID" can be registered on a
-   publicly-available XMPP service, like jabber.org or GTalk.
-
-   StatusNet will not register the JID with your chosen XMPP server;
-   you need to do this manually, with an XMPP client like Gajim,
-   Telepathy, or Pidgin.im.
-
-3. Configure your site's XMPP variables, as described below in the
-   configuration section.
-
-On a default installation, your site can broadcast messages using
-XMPP. Users won't be able to post messages using XMPP unless you've
-got the XMPP daemon running.  See 'Queues and daemons' below for how
-to set that up. Also, once you have a sizable number of users, sending
-a lot of SMS, OStatus, and XMPP messages whenever someone posts a message
-can really slow down your site; it may cause posting to timeout.
-
-NOTE: stream_select(), a crucial function for network programming, is
-broken on PHP 5.2.x less than 5.2.6 on amd64-based servers. We don't
-work around this bug in StatusNet; current recommendation is to move
-off of amd64 to another server.
-
-Public feed
------------
-
-You can send *all* messages from your social networking site to a
-third-party service using XMPP. This can be useful for providing
-search, indexing, bridging, or other cool services.
-
-To configure a downstream site to receive your public stream, add
-their "JID" (Jabber ID) to your config.php as follows:
-
-    $config['xmpp']['public'][] = 'downstream@example.net';
-
-(Don't miss those square brackets at the end.) Note that your XMPP
-broadcasting must be configured as mentioned above. Although you can
-send out messages at "Web time", high-volume sites should strongly
-consider setting up queues and daemons.
 
 Queues and daemons
 ------------------
