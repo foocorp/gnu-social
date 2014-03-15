@@ -1,43 +1,101 @@
-The XMPP plugin allows users to send and receive notices over the
-XMPP/Jabber/GTalk network.
+XMPP (eXtended Message and Presence Protocol, <http://xmpp.org/>) is the
+federating instant-messaging protocol of the future. It is wildly used
+all over the world by organisations, private individuals and everyone.
+
+GNU social allows you to receive and distribute messages via XMPP using
+this plugin. To get it running, you must also use an active XMPP account.
 
 Installation
 ============
-add "addPlugin('xmpp',
-    array('setting'=>'value', 'setting2'=>'value2', ...);"
-to the bottom of your config.php
+Add an addPlugin call to your config.php with your settings. Please read
+the "Pre-requisites" section of what is required for this to work.
 
-The daemon included with this plugin must be running. It will be
-started by the plugin along with their other daemons when you run
-scripts/startdaemons.sh. See the section "Queues and daemons" in
-INSTALL for more about queuing and daemons.
+Example
+-------
+The example account "update@site.example" is hosted on a machine which
+can be reached at the hostname "xmpp.site.example".
+
+addPlugin('Xmpp', array(
+    'user'      => 'update',
+    'server'    => 'site.example',
+    'host'      => 'xmpp.site.example',
+    'password'  => '...',
+));
+
+Pre-requisites
+==============
+
+0. You may want to strongly consider setting up your own XMPP server.
+   We highly recommend the XMPP server "Prosody" <https://prosody.im/>
+   because it is actively developed and highly secure and efficient. It
+   is of course also free software under the MIT license. The following
+   three pages will help you get it running, even self-hosted at home:
+
+      0.1 https://prosody.im/doc/dns
+      0.2 https://prosody.im/doc/install
+      0.3 https://prosody.im/doc/configure
+
+1. You must register an XMPP user ID (JID) which is used to send and
+   receive messages. Call it something like "update@site.example" or
+   similar to hint at what the account is made for. You may register
+   the account on any public server (jabber.org, jit.si, etc...) if 
+   you cannot run one yourself.
+
+   GNU social will not register anything for you, this must be done
+   manually, preferrably using an XMPP client like Swift, Empathy,
+   Jitsi or maybe even the commandline on your own server. With
+   prosody, that'd be (perhaps prepended with 'sudo'):
+
+      prosodyctl adduser update@site.example
+
+2. Configure your site's XMPP variables, as described below in the
+   Settings section below.
+
+3. Learn to use the GNU social daemons for processing notice queues,
+   background checks and other processes which would be too slow to
+   perform on an active site. Using XMPP requires the "imdaemon" to
+   run, since a long-running XMPP connection is somewhat necessary.
 
 
 Settings
 ========
-user*: user part of the jid
-server*: server part of the jid
-resource (gnusocial): resource part of the jid
-port (5222): port on which to connect to the server
-encryption (true): use encryption on the connection
-host (same as server): host to connect to. Usually, you won't set this.
-debug (false): log extra debug info (e.g. sent/recv XMPP stanzas)
-public: list of jid's that should get the public feed (firehose)
 
-* required
-default values are in (parenthesis)
+Required
+--------
+user        User part of the jid (like 'update')
+server      Host part of the jid (like 'site.example')
+password    The account's password. (your secret string)
 
-Note that setting 'host' is required if the XMPP service is configured
-with DNS SRV records, since XMPPHP does currently not support SRV
-lookups.
+Optional
+--------
+resource    JID resource. Default: 'gnusocial'
+encryption  TLS server? Default: true
+host        Hostname for XMPP server? Default: same as server
+port        XMPP server port. Default: 5222
+debug       Log extra debug info. Default: false
+public      JIDs that should get the public feed (see "Public feed").
+
+Since we do not currently support DNS SRV record lookup, please note
+that you may have to enter an alternative 'host' parameter. This is
+the case when update@site.example is not handled by the direct _address_
+"site.example" but rather something like "xmpp.site.example".
 
 
-Example
-=======
-addPlugin('xmpp', array(
-    'user'=>'update',
-    'resource'=>'social',
-    'server'=>'identi.ca',
-    'password'=>'...',
-    'public'=>array('bob@aol.com', 'sue@google.com')
-));
+Public feed
+===========
+
+You can send *all* messages from your social networking site to a
+third-party service using XMPP. This can be useful for providing
+search, indexing, bridging, or other cool services. Maybe a text
+display next to your coffee machine at work.
+
+To configure a downstream site to receive your public stream, add
+their "JID" (Jabber ID) in the "public" array in your addPlugin call.
+For example
+
+addPlugin(array(
+    [...]
+    'public' => array('awesomebot@site.example'),
+
+As the Pre-requisites section says, please only try to configure this
+with daemons running properly in the background.
