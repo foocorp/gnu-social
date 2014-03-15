@@ -36,7 +36,13 @@ ini_set("max_input_time", "0");
 set_time_limit(0);
 mb_internal_encoding('UTF-8');
 
-require_once INSTALLDIR . '/extlib/Console/Getopt.php';
+// Add extlib to our path so we can get Console_Getopt
+
+$_extra_path = array(INSTALLDIR.'/extlib/');
+
+set_include_path(implode(PATH_SEPARATOR, $_extra_path) . PATH_SEPARATOR . get_include_path());
+
+require_once 'Console/Getopt.php';
 
 // Note: $shortoptions and $longoptions should be pre-defined!
 
