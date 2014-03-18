@@ -27,8 +27,7 @@ class Nickname
      * Nickname::normalize() to get the canonical form, or Nickname::isValid()
      * if you just need to check if it's properly formatted.
      *
-     * This, DISPLAY_FMT, and CANONICAL_FMT replace the old NICKNAME_FMT,
-     * but be aware that these should not be enclosed in []s.
+     * This, DISPLAY_FMT, and CANONICAL_FMT should not be enclosed in []s.
      *
      * @fixme would prefer to define in reference to the other constants
      */
@@ -36,6 +35,7 @@ class Nickname
 
     /**
      * Regex fragment for acceptable user-formatted variant of a nickname.
+     *
      * This includes some chars such as underscore which will be removed
      * from the normalized canonical form, but still must fit within
      * field length limits.
@@ -44,8 +44,7 @@ class Nickname
      * Nickname::normalize() to get the canonical form, or Nickname::isValid()
      * if you just need to check if it's properly formatted.
      *
-     * This and CANONICAL_FMT replace the old NICKNAME_FMT, but be aware
-     * that these should not be enclosed in []s.
+     * This, INPUT_FMT and CANONICAL_FMT should not be enclosed in []s.
      */
     const DISPLAY_FMT = '[0-9a-zA-Z_]{1,64}';
 
@@ -60,8 +59,7 @@ class Nickname
      * there are multiple possible denormalized forms for each valid
      * canonical-form name.
      *
-     * This and DISPLAY_FMT replace the old NICKNAME_FMT, but be aware
-     * that these should not be enclosed in []s.
+     * This, INPUT_FMT and DISPLAY_FMT should not be enclosed in []s.
      */
     const CANONICAL_FMT = '[0-9a-z]{1,64}';
 

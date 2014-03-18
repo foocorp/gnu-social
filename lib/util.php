@@ -1992,7 +1992,6 @@ function common_confirmation_code($bits)
 }
 
 // convert markup to HTML
-
 function common_markup_to_html($c, $args=null)
 {
     if ($c === null) {
@@ -2013,7 +2012,8 @@ function common_markup_to_html($c, $args=null)
     $c = preg_replace_callback('/%%action.(\w+)%%/', function ($m) { return common_local_url($m[1]); }, $c);
     $c = preg_replace_callback('/%%doc.(\w+)%%/', function ($m) { return common_local_url('doc', array('title'=>$m[1])); }, $c);
     $c = preg_replace_callback('/%%(\w+).(\w+)%%/', function ($m) { return common_config($m[1], $m[2]); }, $c);
-    return Markdown($c);
+
+    return \Michelf\Markdown::defaultTransform($c);
 }
 
 function common_user_property($property)

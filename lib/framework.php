@@ -105,7 +105,7 @@ function _have_config()
     return StatusNet::haveConfig();
 }
 
-function __autoload($cls)
+function GNUsocial_class_autoload($cls)
 {
     if (file_exists(INSTALLDIR.'/classes/' . $cls . '.php')) {
         require_once(INSTALLDIR.'/classes/' . $cls . '.php');
@@ -125,23 +125,17 @@ function __autoload($cls)
 // XXX: note that these files should not use config options
 // at compile time since DB config options are not yet loaded.
 
-require_once 'Validate.php';
-require_once 'markdown.php';
+// Autoload queue
+spl_autoload_register('GNUsocial_class_autoload');
 
-// XXX: other formats here
-
-/**
- * Avoid the NICKNAME_FMT constant; use the Nickname class instead.
- *
- * Nickname::DISPLAY_FMT is more suitable for inserting into regexes;
- * note that it includes the [] and repeating bits, so should be wrapped
- * directly in a capture paren usually.
- *
- * For validation, use Nickname::normalize(), Nickname::isValid() etc.
- *
- * @deprecated
- */
-define('NICKNAME_FMT', VALIDATE_NUM.VALIDATE_ALPHA_LOWER);
+// Extlibs with namespaces (or directly in extlib/)
+// such as: Validate and \Michelf\Markdown
+spl_autoload_register(function($class){
+    $file = INSTALLDIR.'/extlib/'.preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
 
 require_once INSTALLDIR.'/lib/util.php';
 require_once INSTALLDIR.'/lib/action.php';
