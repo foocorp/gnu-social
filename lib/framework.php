@@ -143,10 +143,6 @@ require_once INSTALLDIR.'/lib/util.php';
 require_once INSTALLDIR.'/lib/action.php';
 require_once INSTALLDIR.'/lib/mail.php';
 
-require_once INSTALLDIR.'/lib/clientexception.php';
-require_once INSTALLDIR.'/lib/serverexception.php';
-
-
 //set PEAR error handling to use regular PHP exceptions
 function PEAR_ErrorToPEAR_Exception($err)
 {
