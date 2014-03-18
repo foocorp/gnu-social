@@ -2,15 +2,19 @@
 <!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
 <!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
 
-This service uses a Free microblogging tool called **StatusNet**.
-StatusNet is available under the [GNU Affero General Public License
+This service uses a Free microblogging tool called **GNU social**.
+GNU social is available under the [GNU Affero General Public License
 Version 3.0](http://www.fsf.org/licensing/licenses/agpl-3.0.html), a
 Free Software license for network services.
 
-You can get a copy of the software from the
-[StatusNet](http://status.net/) main site. The version of the software
+You can get a copy of the software by following links from the
+[GNU social main site](http://gnu.io/)¹. The version of the software
 that runs on *this* site is unmodified from that version. The site
-also depends on certain libraries and other software; you can get
-those at the StatusNet site, too.
+also depends on certain libraries and other software; these are all
+bundled in the [GNU social repository](https://gitorious.org/social/mainline)²
+and release archive files.
 
-
+References
+----------
+1. GNU social main site, <http://gnu.io>
+2. GNU social repository, <https://gitorious.org/social/mainline>
