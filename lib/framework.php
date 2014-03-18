@@ -121,15 +121,17 @@ function GNUsocial_class_autoload($cls)
     }
 }
 
-// XXX: how many of these could be auto-loaded on use?
-// XXX: note that these files should not use config options
-// at compile time since DB config options are not yet loaded.
-
-// Autoload queue
+// Autoload function queue, starting with our own discovery method
 spl_autoload_register('GNUsocial_class_autoload');
 
-// Extlibs with namespaces (or directly in extlib/)
-// such as: Validate and \Michelf\Markdown
+/**
+ * Extlibs with namespaces (or directly in extlib/)
+ * This covers libraries such as: Validate and \Michelf\Markdown
+ *
+ * The namespaced based structure is called "PSR-0 autoloading standard":
+ *    \<Vendor Name>\(<Namespace>\)*<Class Name>
+ * and is available here: http://www.php-fig.org/psr/psr-0/
+*/
 spl_autoload_register(function($class){
     $file = INSTALLDIR.'/extlib/'.preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
     if (file_exists($file)) {
