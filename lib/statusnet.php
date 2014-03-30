@@ -329,7 +329,7 @@ class StatusNet
     {
         global $config;
         $settings = SiteProfile::getSettings($name);
-        $config = array_merge($config, $settings);
+        $config = array_replace_recursive($config, $settings);
     }
 
     protected static function _sn_to_path($sn)
