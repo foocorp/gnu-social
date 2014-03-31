@@ -398,7 +398,7 @@ class QnAPlugin extends MicroAppPlugin
             $user = common_current_user();
             $question = QnA_Question::getByNotice($notice);
 
-            if (!empty($user)) {
+            if (!empty($user) and !empty($question)) {
                 $profile = $user->getProfile();
                 $answer = $question->getAnswer($profile);
 
