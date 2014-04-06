@@ -104,7 +104,8 @@ class EventForm extends Form
                           null,
                           // TRANS: Field title on event form.
                           _m('Title of the event.'),
-                          'title');
+                          'title',
+                          true);    // HTML5 "required" attribute
         $this->unli();
 
         $this->li();
@@ -195,7 +196,8 @@ class EventForm extends Form
                           null,
                           // TRANS: Field title on event form.
                           _m('Description of the event.'),
-                          'description');
+                          'description',
+                          true);    // HTML5 "required" attribute
         $this->unli();
 
         $this->out->elementEnd('ul');

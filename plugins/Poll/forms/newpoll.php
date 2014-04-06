@@ -107,7 +107,9 @@ class NewpollForm extends Form
                           _m('Question'),
                           $this->question,
                           // TRANS: Field title on the page to create a poll.
-                          _m('What question are people answering?'));
+                          _m('What question are people answering?'),
+                          'question',
+                          true);    // HTML5 "required" attribute
         $this->unli();
 
         $max = 5;
@@ -128,7 +130,8 @@ class NewpollForm extends Form
                               sprintf(_m('Option %d'), $i + 1),
                               $default,
                               null,
-                              'option' . ($i + 1));
+                              'option' . ($i + 1),
+                              $i<2);   // HTML5 "required" attribute for 2 options
             $this->unli();
         }
 

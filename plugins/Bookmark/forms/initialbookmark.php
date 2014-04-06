@@ -78,7 +78,8 @@ class InitialBookmarkForm extends Form
                           _m('LABEL','URL'),
                           null,
                           null,
-                          'url');
+                          'url',
+                          true);    // HTML5 "required" attribute
         $this->unli();
 
         $this->out->elementEnd('ul');

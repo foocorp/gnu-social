@@ -121,7 +121,8 @@ class BookmarkForm extends Form
                           _m('LABEL','URL'),
                           $this->_url,
                           null,
-                          'url');
+                          'url',
+                          true);    // HTML5 "required" attribute
         $this->unli();
 
         if (!empty($this->_thumbnail)) {
@@ -142,7 +143,8 @@ class BookmarkForm extends Form
                           _m('LABEL','Title'),
                           $this->_title,
                           null,
-                          'title');
+                          'title',
+                          true);    // HTML5 "required" attribute
         $this->unli();
 
         $this->li();

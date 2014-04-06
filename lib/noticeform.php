@@ -208,6 +208,7 @@ class NoticeForm extends Form
                                 sprintf(_('What\'s up, %s?'), $this->user->nickname));
             // XXX: vary by defined max size
             $this->out->element('textarea', array('class' => 'notice_data-text',
+                                                  'required' => 'required',
                                                   'cols' => 35,
                                                   'rows' => 4,
                                                   'name' => 'status_textarea'),

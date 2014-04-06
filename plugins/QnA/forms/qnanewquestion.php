@@ -111,7 +111,8 @@ class QnanewquestionForm extends Form
             $this->title,
             // TRANS: Field title for a new question.
             _m('The title of your question.'),
-            'title'
+            'title',
+            true    // HTML5 "required" attribute
         );
         $this->unli();
         $this->li();
@@ -122,7 +123,8 @@ class QnanewquestionForm extends Form
             $this->description,
             // TRANS: Field title for question details.
             _m('Your question in detail.'),
-            'description'
+            'description',
+            true    // HTML5 "required" attribute
         );
         $this->unli();
 

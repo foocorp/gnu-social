@@ -179,6 +179,7 @@ class HTMLOutputter extends XMLOutputter
      * @param string $instructions instructions for valid input
      * @param string $name         name of the element; if null, the id will
      *                             be used
+     * @param bool   $required     HTML5 required attribute (exclude when false)
      *
      * @todo add a $maxLength parameter
      * @todo add a $size parameter
@@ -186,7 +187,7 @@ class HTMLOutputter extends XMLOutputter
      * @return void
      */
 
-    function input($id, $label, $value=null, $instructions=null, $name=null)
+    function input($id, $label, $value=null, $instructions=null, $name=null, $required=false)
     {
         $this->element('label', array('for' => $id), $label);
         $attrs = array('type' => 'text',
@@ -194,6 +195,9 @@ class HTMLOutputter extends XMLOutputter
         $attrs['name'] = is_null($name) ? $id : $name;
         if (!is_null($value)) { // value can be 0 or ''
             $attrs['value'] = $value;
+        }
+        if (!empty($required)) {
+            $attrs['required'] = 'required';
         }
         $this->element('input', $attrs);
         if ($instructions) {
@@ -527,6 +531,7 @@ class HTMLOutputter extends XMLOutputter
      * @param string $name         name of textarea; if null, $id will be used
      * @param int    $cols         number of columns
      * @param int    $rows         number of rows
+     * @param bool   $required     HTML5 required attribute (exclude when false)
      *
      * @return void
      */
@@ -538,7 +543,8 @@ class HTMLOutputter extends XMLOutputter
         $instructions = null,
         $name         = null,
         $cols         = null,
-        $rows         = null
+        $rows         = null,
+        $required     = false
     ) {
         $this->element('label', array('for' => $id), $label);
         $attrs = array(
