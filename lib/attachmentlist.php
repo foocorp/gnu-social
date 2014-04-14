@@ -322,14 +322,6 @@ class Attachment extends AttachmentListItem
                     break;
 
                 case 'application/ogg':
-                case 'audio/ogg':
-                case 'audio/x-speex':
-                case 'video/mpeg':
-                case 'audio/mpeg':
-                case 'video/mp4':
-                case 'video/ogg':
-                case 'video/quicktime':
-                case 'video/webm':
                     $arr  = array('type' => $this->attachment->mimetype,
                         'data' => $this->attachment->url,
                         'width' => 320,
@@ -339,6 +331,24 @@ class Attachment extends AttachmentListItem
                     $this->out->element('param', array('name' => 'src', 'value' => $this->attachment->url));
                     $this->out->element('param', array('name' => 'autoStart', 'value' => 1));
                     $this->out->elementEnd('object');
+                    break;
+
+                case 'audio/ogg':
+                case 'audio/x-speex':
+                case 'video/mpeg':
+                case 'audio/mpeg':
+                case 'video/mp4':
+                case 'video/ogg':
+                case 'video/quicktime':
+                case 'video/webm':
+                    $mediatype = common_get_mime_media($this->attachment->mimetype);
+                    $this->out->elementStart($mediatype,
+                                        array('class'=>'attachment_player',
+                                            'controls'=>'controls'));
+                    $this->out->element('source',
+                                        array('src'=>$this->attachment->url,
+                                            'type'=>$this->attachment->mimetype));
+                    $this->out->elementEnd($mediatype);
                     break;
 
                 case 'text/html':

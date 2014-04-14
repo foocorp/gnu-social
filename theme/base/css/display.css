@@ -832,7 +832,7 @@ float:left;
 clear:both;
 }
 
-#attachment_view img {
+#attachment_view img, #attachment_view .attachment_player {
 max-width:480px;
 max-height:480px;
 }
