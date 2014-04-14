@@ -322,11 +322,14 @@ class Attachment extends AttachmentListItem
                     break;
 
                 case 'application/ogg':
+                case 'audio/ogg':
                 case 'audio/x-speex':
                 case 'video/mpeg':
                 case 'audio/mpeg':
                 case 'video/mp4':
+                case 'video/ogg':
                 case 'video/quicktime':
+                case 'video/webm':
                     $arr  = array('type' => $this->attachment->mimetype,
                         'data' => $this->attachment->url,
                         'width' => 320,
