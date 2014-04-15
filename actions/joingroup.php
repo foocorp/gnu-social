@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Join a group
@@ -50,7 +48,7 @@ class JoingroupAction extends Action
     /**
      * Prepare to run
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -91,14 +89,12 @@ class JoingroupAction extends Action
             $this->clientError(_('No such group.'), 404);
         }
 
-        $cur = common_current_user();
-
-        if ($cur->isMember($this->group)) {
+        if ($this->scoped->isMember($this->group)) {
             // TRANS: Client error displayed when trying to join a group while already a member.
             $this->clientError(_('You are already a member of that group.'), 403);
         }
 
-        if (Group_block::isBlocked($this->group, $cur->getProfile())) {
+        if (Group_block::isBlocked($this->group, $this->scoped)) {
             // TRANS: Client error displayed when trying to join a group while being blocked form joining it.
             $this->clientError(_('You have been blocked from that group by the admin.'), 403);
         }
@@ -111,27 +107,23 @@ class JoingroupAction extends Action
      *
      * On POST, add the current user to the group
      *
-     * @param array $args unused
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        $cur = common_current_user();
+        parent::handle();
 
         try {
-            $result = $cur->joinGroup($this->group);
+            $result = $this->scoped->joinGroup($this->group);
         } catch (Exception $e) {
         	common_log(LOG_ERR, sprintf("Couldn't join user %s to group %s: '%s'",
-        								$cur->nickname,
+        								$this->scoped->nickname,
         								$this->group->nickname,
         								$e->getMessage()));
             // TRANS: Server error displayed when joining a group failed in the database.
             // TRANS: %1$s is the joining user's nickname, $2$s is the group nickname for which the join failed.
             $this->serverError(sprintf(_('Could not join user %1$s to group %2$s.'),
-                                       $cur->nickname, $this->group->nickname));
+                                       $this->scoped->nickname, $this->group->nickname));
             return;
         }
 
@@ -140,7 +132,7 @@ class JoingroupAction extends Action
             $this->elementStart('head');
             // TRANS: Title for join group page after joining.
             $this->element('title', null, sprintf(_m('TITLE','%1$s joined group %2$s'),
-                                                  $cur->nickname,
+                                                  $this->scoped->nickname,
                                                   $this->group->nickname));
             $this->elementEnd('head');
             $this->elementStart('body');

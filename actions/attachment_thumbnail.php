@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/actions/attachment.php';
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Show notice attachments
@@ -44,7 +40,7 @@ require_once INSTALLDIR.'/actions/attachment.php';
  */
 class Attachment_thumbnailAction extends AttachmentAction
 {
-    function handle($args)
+    protected function handle()
     {
         $this->showPage();
     }

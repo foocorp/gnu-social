@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 require_once INSTALLDIR.'/actions/attachment.php';
 
@@ -57,7 +55,7 @@ class Attachment_ajaxAction extends AttachmentAction
         }
     }
 
-    function handle($args)
+    protected function handle()
     {
         $this->showPage();
     }

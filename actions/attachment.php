@@ -60,7 +60,7 @@ class AttachmentAction extends Action
      * @return success flag
      */
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -123,13 +123,11 @@ class AttachmentAction extends Action
      *
      * Only handles get, so just show the page.
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if (empty($this->attachment->filename)) {
 

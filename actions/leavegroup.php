@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Leave a group
@@ -50,7 +48,7 @@ class LeavegroupAction extends Action
     /**
      * Prepare to run
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -91,9 +89,7 @@ class LeavegroupAction extends Action
             $this->clientError(_('No such group.'), 404);
         }
 
-        $cur = common_current_user();
-
-        if (!$cur->isMember($this->group)) {
+        if (!$this->scoped->isMember($this->group)) {
             // TRANS: Client error displayed when trying to join a group while already a member.
             $this->clientError(_('You are not a member of that group.'), 403);
         }
@@ -106,24 +102,20 @@ class LeavegroupAction extends Action
      *
      * On POST, add the current user to the group
      *
-     * @param array $args unused
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        $cur = common_current_user();
+        parent::handle();
 
         try {
-            $cur->leaveGroup($this->group);
+            $this->scoped->leaveGroup($this->group);
         } catch (Exception $e) {
-            common_log(LOG_ERR, "Error when {$cur->nickname} tried to leave {$this->group->nickname}: " . $e->getMessage());
+            common_log(LOG_ERR, "Error when {$this->scoped->nickname} tried to leave {$this->group->nickname}: " . $e->getMessage());
             // TRANS: Server error displayed when leaving a group failed in the database.
             // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
             $this->serverError(sprintf(_('Could not remove user %1$s from group %2$s.'),
-                                       $cur->nickname, $this->group->nickname));
+                                       $this->scoped->nickname, $this->group->nickname));
             return;
         }
 
@@ -132,7 +124,7 @@ class LeavegroupAction extends Action
             $this->elementStart('head');
             // TRANS: Title for leave group page after leaving.
             $this->element('title', null, sprintf(_m('TITLE','%1$s left group %2$s'),
-                                                  $cur->nickname,
+                                                  $this->scoped->nickname,
                                                   $this->group->nickname));
             $this->elementEnd('head');
             $this->elementStart('body');
