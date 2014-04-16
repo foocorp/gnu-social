@@ -151,7 +151,7 @@ class AttachmentListItem extends Widget
     function title() {
         if (empty($this->attachment->title)) {
             if (empty($this->oembed->title)) {
-                $title = $this->attachment->url;
+                $title = $this->attachment->filename;
             } else {
                 $title = $this->oembed->title;
             }
@@ -185,7 +185,7 @@ class AttachmentListItem extends Widget
         return array('class' => 'attachment',
                      'href' => $this->attachment->url,
                      'id' => 'attachment-' . $this->attachment->id,
-                     'title' => $this->title());
+                     'title' => $this->linkTitle());
     }
 
     function showLink() {
@@ -202,8 +202,8 @@ class AttachmentListItem extends Widget
 
     function showRepresentation() {
         $thumb = $this->getThumbInfo();
-        if ($thumb) {
-            $this->out->element('img', array('alt' => '', 'src' => $thumb->url, 'width' => $thumb->width, 'height' => $thumb->height));
+        if ($thumb instanceof File_thumbnail) {
+            $this->out->element('img', array('alt' => '', 'src' => $thumb->getUrl(), 'width' => $thumb->width, 'height' => $thumb->height));
         }
     }
 
@@ -342,8 +342,13 @@ class Attachment extends AttachmentListItem
                 case 'video/quicktime':
                 case 'video/webm':
                     $mediatype = common_get_mime_media($this->attachment->mimetype);
+                    $thumb = $this->getThumbInfo();
+                    $poster = ($thumb instanceof File_thumbnail)
+                                ? $thumb->getUrl()
+                                : null;
                     $this->out->elementStart($mediatype,
                                         array('class'=>'attachment_player',
+                                            'poster'=>$poster,
                                             'controls'=>'controls'));
                     $this->out->element('source',
                                         array('src'=>$this->attachment->url,

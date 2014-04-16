@@ -263,7 +263,7 @@ class File extends Managed_DataObject
 
     // where should the file go?
 
-    static function filename($profile, $basename, $mimetype)
+    static function filename(Profile $profile, $origname, $mimetype)
     {
         try {
             $ext = common_supported_mime_to_ext($mimetype);
@@ -272,10 +272,23 @@ class File extends Managed_DataObject
             $ext = substr(strrchr($mimetype, '/'), 1);
         }
 
+        // Normalize and make the original filename more URL friendly.
+        $origname = basename($origname);
+        if (class_exists('Normalizer')) {
+            // http://php.net/manual/en/class.normalizer.php
+            // http://www.unicode.org/reports/tr15/
+            $origname = Normalizer::normalize($origname, Normalizer::FORM_KC);
+        }
+        $origname = preg_replace('/[^A-Za-z0-9\.\_]/', '_', $origname);
+
         $nickname = $profile->nickname;
-        $datestamp = strftime('%Y%m%dT%H%M%S', time());
-        $random = strtolower(common_confirmation_code(32));
-        return "$nickname-$datestamp-$random.$ext";
+        $datestamp = strftime('%Y%m%d', time());
+        do {
+            // generate new random strings until we don't run into a filename collision.
+            $random = strtolower(common_confirmation_code(16));
+            $filename = "$nickname-$datestamp-$origname-$random.$ext";
+        } while (file_exists(self::path($filename)));
+        return $filename;
     }
 
     /**
@@ -436,6 +449,10 @@ class File extends Managed_DataObject
     public function getPath()
     {
         return self::path($this->filename);
+    }
+    public function getUrl()
+    {
+        return $this->url;
     }
 
     /**

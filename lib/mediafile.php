@@ -30,9 +30,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class MediaFile
 {
@@ -67,7 +65,7 @@ class MediaFile
         $this->maybeAddRedir($this->fileRecord->id, $this->short_fileurl);
     }
 
-    function attachToNotice($notice)
+    public function attachToNotice(Notice $notice)
     {
         File_to_post::processNew($this->fileRecord->id, $notice->id);
         $this->maybeAddRedir($this->fileRecord->id,
