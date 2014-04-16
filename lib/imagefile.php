@@ -290,7 +290,7 @@ class ImageFile
 
     function unlink()
     {
-        @unlink($this->filename);
+        @unlink($this->filepath);
     }
 
     static function maxFileSize()
