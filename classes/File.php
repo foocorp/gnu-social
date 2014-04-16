@@ -433,6 +433,11 @@ class File extends Managed_DataObject
         return File_thumbnail::getKV('file_id', $this->id);
     }
 
+    public function getPath()
+    {
+        return self::path($this->filename);
+    }
+
     /**
      * Blow the cache of notices that link to this URL
      *

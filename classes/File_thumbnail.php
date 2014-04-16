@@ -84,6 +84,8 @@ class File_thumbnail extends Managed_DataObject
     /**
      * Save a thumbnail record for the referenced file record.
      *
+     * FIXME: Add error handling
+     *
      * @param int $file_id
      * @param string $url
      * @param int $width

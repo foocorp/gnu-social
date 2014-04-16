@@ -43,6 +43,7 @@ class MediaFile
     var $fileurl       = null;
     var $short_fileurl = null;
     var $mimetype      = null;
+    var $thumbnailRecord = null;
 
     function __construct(Profile $scoped, $filename = null, $mimetype = null)
     {
@@ -51,7 +52,12 @@ class MediaFile
         $this->filename   = $filename;
         $this->mimetype   = $mimetype;
         $this->fileRecord = $this->storeFile();
-        $this->thumbnailRecord = $this->storeThumbnail();
+        try {
+            $this->thumbnailRecord = $this->storeThumbnail();
+        } catch (UnsupportedMediaException $e) {
+            // FIXME: Add "unknown media" icon or something
+            $this->thumbnailRecord = null;
+        }
 
         $this->fileurl = common_local_url('attachment',
                                     array('attachment' => $this->fileRecord->id));
@@ -66,6 +72,11 @@ class MediaFile
         File_to_post::processNew($this->fileRecord->id, $notice->id);
         $this->maybeAddRedir($this->fileRecord->id,
                              common_local_url('file', array('notice' => $notice->id)));
+    }
+
+    public function getPath()
+    {
+        return File::path($this->filename);
     }
 
     function shortUrl()
@@ -108,16 +119,30 @@ class MediaFile
      */
     function storeThumbnail()
     {
-        if (substr($this->mimetype, 0, strlen('image/')) != 'image/') {
-            // @fixme video thumbs would be nice!
-            return null;
+        $imgPath = null;
+        $media = common_get_mime_media($this->mimetype);
+
+        if (Event::handle('CreateFileImageThumbnail', array($this, &$imgPath, $media))) {
+            switch ($media) {
+            case 'image':
+                $imgPath = $this->getPath();
+                break;
+            default: 
+                throw new UnsupportedMediaException(_('Unsupported media format.'), $this->getPath());
+            }
         }
+        if (!file_exists($imgPath)) {
+            throw new ServerException(sprintf('Thumbnail source is not stored locally: %s', $imgPath));
+        }
+
         try {
-            $image = new ImageFile($this->fileRecord->id,
-                                   File::path($this->filename));
-        } catch (Exception $e) {
-            // Unsupported image type.
-            return null;
+            $image = new ImageFile($this->fileRecord->id, $imgPath);
+        } catch (UnsupportedMediaException $e) {
+            // Avoid deleting the original
+            if ($image->getPath() != $this->getPath()) {
+                $image->unlink();
+            }
+            throw $e;
         }
 
         $outname = File::filename($this->scoped, 'thumb-' . $this->filename, $this->mimetype);
@@ -128,7 +153,12 @@ class MediaFile
         list($width, $height) = $this->scaleToFit($image->width, $image->height, $maxWidth, $maxHeight);
 
         $image->resizeTo($outpath, $width, $height);
-        File_thumbnail::saveThumbnail($this->fileRecord->id,
+
+        // Avoid deleting the original
+        if ($image->getPath() != $this->getPath()) {
+            $image->unlink();
+        }
+        return File_thumbnail::saveThumbnail($this->fileRecord->id,
                                       File::url($outname),
                                       $width,
                                       $height);
@@ -189,40 +219,33 @@ class MediaFile
             // TRANS: Client exception thrown when an uploaded file is larger than set in php.ini.
             throw new ClientException(_('The uploaded file exceeds the ' .
                 'upload_max_filesize directive in php.ini.'));
-            return;
         case UPLOAD_ERR_FORM_SIZE:
             throw new ClientException(
                 // TRANS: Client exception.
                 _('The uploaded file exceeds the MAX_FILE_SIZE directive' .
                 ' that was specified in the HTML form.'));
-            return;
         case UPLOAD_ERR_PARTIAL:
             @unlink($_FILES[$param]['tmp_name']);
             // TRANS: Client exception.
             throw new ClientException(_('The uploaded file was only' .
                 ' partially uploaded.'));
-            return;
         case UPLOAD_ERR_NO_FILE:
             // No file; probably just a non-AJAX submission.
             return;
         case UPLOAD_ERR_NO_TMP_DIR:
             // TRANS: Client exception thrown when a temporary folder is not present to store a file upload.
             throw new ClientException(_('Missing a temporary folder.'));
-            return;
         case UPLOAD_ERR_CANT_WRITE:
             // TRANS: Client exception thrown when writing to disk is not possible during a file upload operation.
             throw new ClientException(_('Failed to write file to disk.'));
-            return;
         case UPLOAD_ERR_EXTENSION:
             // TRANS: Client exception thrown when a file upload operation has been stopped by an extension.
             throw new ClientException(_('File upload stopped by extension.'));
-            return;
         default:
             common_log(LOG_ERR, __METHOD__ . ": Unknown upload error " .
                 $_FILES[$param]['error']);
             // TRANS: Client exception thrown when a file upload operation has failed with an unknown reason.
             throw new ClientException(_('System error uploading file.'));
-            return;
         }
 
         // Throws exception if additional size does not respect quota

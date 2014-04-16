@@ -70,8 +70,7 @@ class ImageFile
             ($info[2] == IMAGETYPE_PNG && function_exists('imagecreatefrompng')))) {
 
             // TRANS: Exception thrown when trying to upload an unsupported image file format.
-            throw new Exception(_('Unsupported image file format.'));
-            return;
+            throw new UnsupportedMediaException(_('Unsupported image format.'), $this->filepath);
         }
 
         $this->type = ($info) ? $info[2]:$type;
@@ -79,32 +78,38 @@ class ImageFile
         $this->height = ($info) ? $info[1]:$height;
     }
 
+    public function getPath()
+    {
+        if (!file_exists($this->filepath)) {
+            throw new ServerException('No file in ImageFile filepath');
+        }
+
+        return $this->filepath;
+    }
+
     static function fromUpload($param='upload')
     {
         switch ($_FILES[$param]['error']) {
          case UPLOAD_ERR_OK: // success, jump out
             break;
+
          case UPLOAD_ERR_INI_SIZE:
          case UPLOAD_ERR_FORM_SIZE:
             // TRANS: Exception thrown when too large a file is uploaded.
             // TRANS: %s is the maximum file size, for example "500b", "10kB" or "2MB".
-            throw new Exception(sprintf(_('That file is too big. The maximum file size is %s.'),
-                ImageFile::maxFileSize()));
-            return;
+            throw new Exception(sprintf(_('That file is too big. The maximum file size is %s.'), ImageFile::maxFileSize()));
+
          case UPLOAD_ERR_PARTIAL:
             @unlink($_FILES[$param]['tmp_name']);
             // TRANS: Exception thrown when uploading an image and that action could not be completed.
             throw new Exception(_('Partial upload.'));
-            return;
+
          case UPLOAD_ERR_NO_FILE:
             // No file; probably just a non-AJAX submission.
-            return;
          default:
-            common_log(LOG_ERR, __METHOD__ . ": Unknown upload error " .
-                $_FILES[$param]['error']);
+            common_log(LOG_ERR, __METHOD__ . ": Unknown upload error " . $_FILES[$param]['error']);
             // TRANS: Exception thrown when uploading an image fails for an unknown reason.
             throw new Exception(_('System error uploading file.'));
-            return;
         }
 
         $info = @getimagesize($_FILES[$param]['tmp_name']);
@@ -112,8 +117,7 @@ class ImageFile
         if (!$info) {
             @unlink($_FILES[$param]['tmp_name']);
             // TRANS: Exception thrown when uploading a file as image that is not an image or is a corrupt file.
-            throw new Exception(_('Not an image or corrupt file.'));
-            return;
+            throw new UnsupportedMediaException(_('Not an image or corrupt file.'), '[deleted]');
         }
 
         return new ImageFile(null, $_FILES[$param]['tmp_name']);
@@ -176,7 +180,6 @@ class ImageFile
         if (!file_exists($this->filepath)) {
             // TRANS: Exception thrown during resize when image has been registered as present, but is no longer there.
             throw new Exception(_('Lost our file.'));
-            return;
         }
 
         // Don't crop/scale if it isn't necessary
@@ -214,7 +217,6 @@ class ImageFile
          default:
             // TRANS: Exception thrown when trying to resize an unknown file type.
             throw new Exception(_('Unknown file type'));
-            return;
         }
 
         $image_dest = imagecreatetruecolor($width, $height);
@@ -255,7 +257,6 @@ class ImageFile
          default:
             // TRANS: Exception thrown when trying resize an unknown file type.
             throw new Exception(_('Unknown file type'));
-            return;
         }
 
         imagedestroy($image_src);
