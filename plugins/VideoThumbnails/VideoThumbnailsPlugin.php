@@ -83,7 +83,7 @@ class VideoThumbnailsPlugin extends Plugin
                             'homepage' => 'https://www.gnu.org/software/social/',
                             'rawdescription' =>
                             // TRANS: Plugin description.
-                            _m('HTML5 media attachment support'));
+                            _m('Video thumbnail preview support.'));
         return true;
     }
 }
