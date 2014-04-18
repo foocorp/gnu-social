@@ -424,6 +424,16 @@ class Notice extends Managed_DataObject
             $notice->created = common_sql_now();
         }
 
+        if (!$notice->isLocal()) {
+            // Only do these checks for non-local notices. Local notices will generate these values later.
+            if (!common_valid_http_url($url)) {
+                common_debug('Bad notice URL: ['.$url.'] Cannot link back to original!');
+            }
+            if (empty($uri)) {
+                throw new ServerException('No URI for remote notice. Cannot accept that.');
+            }
+        }
+
         $notice->content = $final;
 
         $notice->source = $source;
@@ -597,6 +607,11 @@ class Notice extends Managed_DataObject
                                     TagURI::mint(),
                                     'noticeId', $notice->id,
                                     'objectType', $notice->get_object_type(true));
+                $changed = true;
+            }
+
+            if (empty($url)) {
+                $notice->url = common_local_url('shownotice', array('notice' => $notice->id), null, null, false);
                 $changed = true;
             }
 
