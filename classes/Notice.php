@@ -593,7 +593,7 @@ class Notice extends Managed_DataObject
             $changed = false;
 
             if (empty($uri)) {
-                $notice->uri = sprintf('%s:%s=%d:%s=%s',
+                $notice->uri = sprintf('%s%s=%d:%s=%s',
                                     TagURI::mint(),
                                     'noticeId', $notice->id,
                                     'objectType', $notice->get_object_type(true));
