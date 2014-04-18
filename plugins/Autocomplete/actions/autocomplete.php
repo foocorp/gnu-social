@@ -63,7 +63,7 @@ class AutocompleteAction extends Action
     {
         $max=0;
         foreach($this->profiles as $profile){
-            $max = max($max,strtotime($user->modified),strtotime($profile->modified));
+            $max = max($max, strtotime($profile->modified));
         }
         foreach($this->groups as $group){
             $max = max($max,strtotime($group->modified));
