@@ -215,11 +215,15 @@ class Notice extends Managed_DataObject
         // The risk is we start having empty urls and non-http uris...
         // and we can't really handle any other protocol right now.
         switch (true) {
-        case common_valid_http_url($this->url):
+        case common_valid_http_url($this->url): // should we allow non-http/https URLs?
             return $this->url;
+        case $this->isLocal():
+            // let's generate a valid link to our locally available notice on demand
+            return common_local_url('shownotice', array('notice' => $this->id), null, null, false);
         case common_valid_http_url($this->uri):
             return $this->uri;
         default:
+            common_debug('No URL available for notice: id='.$this->id);
             throw new ServerException('No URL available for notice.');
         }
     }
@@ -427,7 +431,7 @@ class Notice extends Managed_DataObject
         if (!$notice->isLocal()) {
             // Only do these checks for non-local notices. Local notices will generate these values later.
             if (!common_valid_http_url($url)) {
-                common_debug('Bad notice URL: ['.$url.'] Cannot link back to original!');
+                common_debug('Bad notice URL: ['.$url.'], URI: ['.$uri.']. Cannot link back to original! This is normal for shared notices etc.');
             }
             if (empty($uri)) {
                 throw new ServerException('No URI for remote notice. Cannot accept that.');
@@ -602,16 +606,13 @@ class Notice extends Managed_DataObject
 
             $changed = false;
 
-            if (empty($uri)) {
+            // We can only get here if it's a local notice, since remote notices
+            // should've bailed out earlier due to lacking a URI.
+            if (empty($notice->uri)) {
                 $notice->uri = sprintf('%s%s=%d:%s=%s',
                                     TagURI::mint(),
                                     'noticeId', $notice->id,
                                     'objectType', $notice->get_object_type(true));
-                $changed = true;
-            }
-
-            if (empty($url)) {
-                $notice->url = common_local_url('shownotice', array('notice' => $notice->id), null, null, false);
                 $changed = true;
             }
 
