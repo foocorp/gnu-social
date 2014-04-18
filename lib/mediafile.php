@@ -115,7 +115,7 @@ class MediaFile
      *
      * @return File_thumbnail or null
      */
-    function storeThumbnail()
+    function storeThumbnail($maxWidth=null, $maxHeight=null, $square=true)
     {
         $imgPath = null;
         $media = common_get_mime_media($this->mimetype);
@@ -146,11 +146,14 @@ class MediaFile
         $outname = File::filename($this->scoped, 'thumb-' . $this->filename, $this->mimetype);
         $outpath = File::path($outname);
 
-        $maxWidth = common_config('attachments', 'thumb_width');
-        $maxHeight = common_config('attachments', 'thumb_height');
-        list($width, $height) = $this->scaleToFit($image->width, $image->height, $maxWidth, $maxHeight);
+        $maxWidth = $maxWidth ?: common_config('attachments', 'thumb_width');
+        $maxHeight = $maxHeight ?: common_config('attachments', 'thumb_height');
+        list($width, $height, $x, $y, $w2, $h2) =
+                        $this->scaleToFit($image->width, $image->height,
+                                          $maxWidth, $maxHeight,
+                                          common_config('attachments', 'thumb_square'));
 
-        $image->resizeTo($outpath, $width, $height);
+        $image->resizeTo($outpath, $width, $height, $x, $y, $w2, $h2);
 
         // Avoid deleting the original
         if ($image->getPath() != $this->getPath()) {
@@ -162,17 +165,52 @@ class MediaFile
                                       $height);
     }
 
-    function scaleToFit($width, $height, $maxWidth, $maxHeight)
+    // This will give parameters to scale up if max values are larger than original
+    function scaleToFit($width, $height, $maxWidth=null, $maxHeight=null, $square=true)
     {
-        $aspect = $maxWidth / $maxHeight;
-        $w1 = $maxWidth;
-        $h1 = intval($height * $maxWidth / $width);
-        if ($h1 > $maxHeight) {
-            $w2 = intval($width * $maxHeight / $height);
-            $h2 = $maxHeight;
-            return array($w2, $h2);
+        if ($width <= 0 || $height <= 0
+                || ($maxWidth !== null && $maxWidth <= 0)
+                || ($maxHeight !== null && $maxHeight <= 0)) {
+            throw new ServerException('Bad scaleToFit parameters for MediaFile');
+        } elseif ($maxWidth === null) {
+            // maxWidth must be a positive number
+            throw new ServerException('MediaFile::scaleToFit maxWidth is null');
+        } elseif ($square || $maxHeight === null) {
+            // if square thumb ratio or if maxHeight is null,
+            // we set maxHeight to equal maxWidth
+            $maxHeight = $maxWidth;
+            $square = true;
         }
-        return array($w1, $h1);
+        
+        // cropping data
+        $cx = 0;    // crop x
+        $cy = 0;    // crop y
+        $cw = null; // crop area width
+        $ch = null; // crop area height
+
+        if ($square) {
+            // resulting width and height
+            $rw = $maxWidth;
+            $rh = $maxHeight;
+
+            // minSide will determine the smallest image size
+            // and crop-values are determined from this
+            $minSide = $width > $height ? $height : $width;
+            $cx = $width / 2 - $minSide / 2;
+            $cy = $height / 2 - $minSide / 2;
+            $cw = $minSide;
+            $ch = $minSide;
+        } else {
+            // resulting sizes
+            $rw = $maxWidth;
+            $rh = floor($height * $maxWidth / $width);
+
+            if ($rh > $maxHeight) {
+                $rw = floor($width * $maxHeight / $height);
+                $rh = $maxHeight;
+            }
+        }
+        return array($rw, $rh, $cx, $cy, $cw, $ch);
     }
 
     function rememberFile($file, $short)
