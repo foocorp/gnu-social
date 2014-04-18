@@ -1966,13 +1966,6 @@ function common_user_uri(&$user)
                             null, null, false);
 }
 
-function common_notice_uri(&$notice)
-{
-    return common_local_url('shownotice',
-                            array('notice' => $notice->id),
-                            null, null, false);
-}
-
 // 36 alphanums - lookalikes (0, O, 1, I) = 32 chars = 5 bits
 
 function common_confirmation_code($bits)
