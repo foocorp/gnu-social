@@ -213,7 +213,15 @@ class Notice extends Managed_DataObject
     public function getUrl()
     {
         // The risk is we start having empty urls and non-http uris...
-        return $this->url ?: $this->uri;
+        // and we can't really handle any other protocol right now.
+        switch (true) {
+        case common_valid_http_url($this->url):
+            return $this->url;
+        case common_valid_http_url($this->uri):
+            return $this->uri;
+        default:
+            throw new ServerException('No URL available for notice.');
+        }
     }
 
     public function get_object_type($canonical=false) {
