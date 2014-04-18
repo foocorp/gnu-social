@@ -100,4 +100,9 @@ class File_thumbnail extends Managed_DataObject
         $tn->height = intval($height);
         $tn->insert();
     }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
 }
