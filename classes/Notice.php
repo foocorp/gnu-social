@@ -216,6 +216,12 @@ class Notice extends Managed_DataObject
         return $this->url ?: $this->uri;
     }
 
+    public function get_object_type($canonical=false) {
+        return $canonical
+                ? ActivityObject::canonicalType($this->object_type)
+                : $this->object_type;
+    }
+
     public static function getByUri($uri)
     {
         $notice = new Notice();
@@ -308,7 +314,7 @@ class Notice extends Managed_DataObject
      *              int 'location_ns' geoname namespace to interpret location_id
      *              int 'reply_to'; notice ID this is a reply to
      *              int 'repeat_of'; notice ID this is a repeat of
-     *              string 'uri' unique ID for notice; defaults to local notice URL
+     *              string 'uri' unique ID for notice; a unique tag uri (can be url or anything too)
      *              string 'url' permalink to notice; defaults to local notice URL
      *              string 'rendered' rendered HTML version of content
      *              array 'replies' list of profile URIs for reply delivery in
@@ -579,7 +585,10 @@ class Notice extends Managed_DataObject
             $changed = false;
 
             if (empty($uri)) {
-                $notice->uri = common_notice_uri($notice);
+                $notice->uri = sprintf('%s:%s=%d:%s=%s',
+                                    TagURI::mint(),
+                                    'noticeId', $notice->id,
+                                    'objectType', $notice->get_object_type(true));
                 $changed = true;
             }
 
