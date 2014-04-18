@@ -252,6 +252,7 @@ $default =
               'show_thumbs' => true, // show thumbnails in notice lists for uploaded images, and photos and videos linked remotely that provide oEmbed info
               'thumb_width' => 150,
               'thumb_height' => 150,
+              'thumb_square' => true,
               'process_links' => true, // check linked resources for embeddable photos and videos; this will hit referenced external web sites when processing new messages.
               ),
         'application' =>
