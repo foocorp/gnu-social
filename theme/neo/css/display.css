@@ -451,11 +451,6 @@ h6 {font-size: 1em;}
     font-size: 0.88em;
     line-height: 1.2em;
     margin-top: 6px;
-    opacity: 0.6;
-}
-
-.notice:hover div.entry-content {
-    opacity: 1;
 }
 
 .user_in .notice div.entry-content {
