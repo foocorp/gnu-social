@@ -1697,15 +1697,13 @@ class Notice extends Managed_DataObject
         return $noun->asString('activity:' . $element);
     }
 
+    // FIXME: Replace all bestUrl with getUrl and do exception handling
     function bestUrl()
     {
-        if (!empty($this->url)) {
-            return $this->url;
-        } else if (!empty($this->uri) && preg_match('/^https?:/', $this->uri)) {
-            return $this->uri;
-        } else {
-            return common_local_url('shownotice',
-                                    array('notice' => $this->id));
+        try {
+            return $this->getUrl();
+        } catch (InvalidUrlException $e) {
+            return common_local_url('shownotice', array('notice' => $this->id));
         }
     }
 
