@@ -219,7 +219,7 @@ class ShownoticeAction extends Action
         } else {
             if ($this->notice->is_local == Notice::REMOTE) {
                 try {
-                    $target = $this->notice->getUrl()
+                    $target = $this->notice->getUrl();
                     if ($target != $this->selfUrl()) {
                         common_redirect($target, 301);
                     }
