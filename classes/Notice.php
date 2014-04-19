@@ -224,7 +224,7 @@ class Notice extends Managed_DataObject
             return $this->uri;
         default:
             common_debug('No URL available for notice: id='.$this->id);
-            throw new ServerException('No URL available for notice.');
+            throw new InvalidUrlException($this->url);
         }
     }
 

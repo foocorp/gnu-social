@@ -218,17 +218,13 @@ class ShownoticeAction extends Action
             $this->showAjax();
         } else {
             if ($this->notice->is_local == Notice::REMOTE) {
-                if (!empty($this->notice->url)) {
-                    $target = $this->notice->url;
-                } else if (!empty($this->notice->uri) && preg_match('/^https?:/', $this->notice->uri)) {
-                    // Old OMB posts saved the remote URL only into the URI field.
-                    $target = $this->notice->uri;
-                } else {
-                    // Shouldn't happen.
-                    $target = false;
-                }
-                if ($target && $target != $this->selfUrl()) {
-                    common_redirect($target, 301);
+                try {
+                    $target = $this->notice->getUrl()
+                    if ($target != $this->selfUrl()) {
+                        common_redirect($target, 301);
+                    }
+                } catch (InvalidUrlException $e) {
+                    common_debug('ShownoticeAction could not redirect to remote notice with id='.$this->notice->id . '. Falling back to showPage().');
                 }
             }
             $this->showPage();
