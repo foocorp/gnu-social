@@ -523,23 +523,32 @@ class OStatusPlugin extends Plugin
      */
     function onStartNoticeSourceLink($notice, &$name, &$url, &$title)
     {
-        if ($notice->source == 'ostatus') {
-            if ($notice->url) {
-                $bits = parse_url($notice->url);
-                $domain = $bits['host'];
-                if (substr($domain, 0, 4) == 'www.') {
-                    $name = substr($domain, 4);
-                } else {
-                    $name = $domain;
-                }
-
-                $url = $notice->url;
-                // TRANS: Title. %s is a domain name.
-                $title = sprintf(_m('Sent from %s via OStatus'), $domain);
-                return false;
-            }
+        // If we don't handle this, keep the event handler going
+        if ($notice->source != 'ostatus') {
+            return true;
         }
-    return true;
+
+        try {
+            $url = $notice->getUrl();
+            // If getUrl() throws exception, $url is never set
+            
+            $bits = parse_url($url);
+            $domain = $bits['host'];
+            if (substr($domain, 0, 4) == 'www.') {
+                $name = substr($domain, 4);
+            } else {
+                $name = $domain;
+            }
+
+            // TRANS: Title. %s is a domain name.
+            $title = sprintf(_m('Sent from %s via OStatus'), $domain);
+
+            // Abort event handler, we have a name and URL!
+            return false;
+        } catch (InvalidUrlException $e) {
+            // This just means we don't have the notice source data
+            return true;
+        }
     }
 
     /**
