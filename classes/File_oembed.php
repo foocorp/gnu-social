@@ -89,6 +89,11 @@ class File_oembed extends Managed_DataObject
         }
     }
 
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
     /**
      * Save embedding info for a new file.
      *

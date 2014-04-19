@@ -91,7 +91,7 @@ class OembedAction extends Action
                         common_exact_date($notice->created));
                     $oembed['author_name']=$authorname;
                     $oembed['author_url']=$profile->profileurl;
-                    $oembed['url']=($notice->url?$notice->url:$notice->uri);
+                    $oembed['url']=$notice->getUrl();
                     $oembed['html']=$notice->rendered;
                     break;
                 case 'attachment':
@@ -113,7 +113,7 @@ class OembedAction extends Action
                         $oembed['title']=$file_oembed->title;
                         $oembed['author_name']=$file_oembed->author_name;
                         $oembed['author_url']=$file_oembed->author_url;
-                        $oembed['url']=$file_oembed->url;
+                        $oembed['url']=$file_oembed->getUrl();
                     }else if(substr($attachment->mimetype,0,strlen('image/'))=='image/'){
                         $oembed['type']='photo';
                         if ($attachment->filename) {
@@ -126,10 +126,10 @@ class OembedAction extends Action
                                 // TODO Either throw an error or find a fallback?
                             }
                         }
-                        $oembed['url']=$attachment->url;
+                        $oembed['url']=$attachment->getUrl();
                         $thumb = $attachment->getThumbnail();
                         if ($thumb) {
-                            $oembed['thumbnail_url'] = $thumb->url;
+                            $oembed['thumbnail_url'] = $thumb->getUrl();
                             $oembed['thumbnail_width'] = $thumb->width;
                             $oembed['thumbnail_height'] = $thumb->height;
                         }
