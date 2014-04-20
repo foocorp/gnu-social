@@ -17,10 +17,7 @@
  * along with this program.     If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
-require_once INSTALLDIR.'/classes/File_redirection.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for file_oembed
@@ -28,9 +25,6 @@ require_once INSTALLDIR.'/classes/File_redirection.php';
 
 class File_oembed extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
     public $__table = 'file_oembed';                     // table name
     public $file_id;                         // int(4)  primary_key not_null
     public $version;                         // varchar(20)
@@ -46,9 +40,6 @@ class File_oembed extends Managed_DataObject
     public $author_url;                      // varchar(255)
     public $url;                             // varchar(255)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
-
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 
     public static function schemaDef()
     {
@@ -100,7 +91,7 @@ class File_oembed extends Managed_DataObject
      * @param object $data Services_oEmbed_Object_*
      * @param int $file_id
      */
-    function saveNew($data, $file_id) {
+    public static function saveNew($data, $file_id) {
         $file_oembed = new File_oembed;
         $file_oembed->file_id = $file_id;
         if (!isset($data->version)) {
