@@ -90,8 +90,8 @@ class Avatar extends Managed_DataObject
      */
     public static function byProfile(Profile $target, $width=null, $height=null)
     {
-        $width  = (int) floor($width);
-        $height = !is_null($height) ? (int) floor($height) : null;
+        $width  = intval($width);
+        $height = !is_null($height) ? intval($height) : null;
         if (is_null($height)) {
             $height = $width;
         }
@@ -236,7 +236,7 @@ class Avatar extends Managed_DataObject
     }
 
     static function newSize(Profile $target, $width) {
-        $width = (int) floor($width);
+        $width = intval($width);
         if ($width < 1 || $width > common_config('avatar', 'maxsize')) {
             // TRANS: An error message when avatar size is unreasonable
             throw new Exception(_m('Avatar size too large'));

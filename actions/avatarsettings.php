@@ -369,7 +369,7 @@ class AvatarsettingsAction extends SettingsAction
         $dest_y = $this->arg('avatar_crop_y') ? $this->arg('avatar_crop_y'):0;
         $dest_w = $this->arg('avatar_crop_w') ? $this->arg('avatar_crop_w'):$file_d;
         $dest_h = $this->arg('avatar_crop_h') ? $this->arg('avatar_crop_h'):$file_d;
-        $size = floor(min($dest_w, $dest_h, MAX_ORIGINAL));
+        $size = intval(min($dest_w, $dest_h, MAX_ORIGINAL));
 
         $user = common_current_user();
         $profile = $user->getProfile();
