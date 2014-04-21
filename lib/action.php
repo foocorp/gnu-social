@@ -1333,9 +1333,9 @@ class Action extends HTMLOutputter // lawsuit
      */
     function int($key, $defValue=null, $maxValue=null, $minValue=null)
     {
-        $arg = strtolower($this->trimmed($key));
+        $arg = intval($this->arg($key));
 
-        if (is_null($arg) || !is_integer($arg)) {
+        if (!is_numeric($this->arg($key)) || $arg != $this->arg($key)) {
             return $defValue;
         }
 
