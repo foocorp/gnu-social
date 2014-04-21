@@ -44,7 +44,7 @@ class VideoThumbnailsPlugin extends Plugin
      * and disregard any cropping or scaling in the resulting file, as
      * that will be handled in the core thumbnail algorithm.
      */
-    public function onCreateFileImageThumbnailSource(MediaFile $file, &$imgPath, $media=null)
+    public function onCreateFileImageThumbnailSource(File $file, &$imgPath, $media=null)
     {
         // The calling function might accidentally pass application/ogg videos.
         // If that's a problem, let's fix it in the calling function.

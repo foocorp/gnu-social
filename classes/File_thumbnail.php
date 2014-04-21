@@ -27,18 +27,12 @@ require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 class File_thumbnail extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
     public $__table = 'file_thumbnail';                  // table name
     public $file_id;                         // int(4)  primary_key not_null
     public $url;                             // varchar(255)  unique_key
-    public $width;                           // int(4)
-    public $height;                          // int(4)
+    public $width;                           // int(4)  primary_key
+    public $height;                          // int(4)  primary_key
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
-
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 
     public static function schemaDef()
     {
@@ -50,7 +44,10 @@ class File_thumbnail extends Managed_DataObject
                 'height' => array('type' => 'int', 'description' => 'height of thumbnail'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
-            'primary key' => array('file_id'),
+            'primary key' => array('file_id', 'width', 'height'),
+            'indexes' => array(
+                'file_thumbnail_file_id_idx' => array('file_id'),
+            ),
             'foreign keys' => array(
                 'file_thumbnail_file_id_fkey' => array('file', array('file_id' => 'id')),
             )
@@ -99,6 +96,7 @@ class File_thumbnail extends Managed_DataObject
         $tn->width = intval($width);
         $tn->height = intval($height);
         $tn->insert();
+        return $tn;
     }
 
     public function getUrl()

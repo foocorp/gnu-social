@@ -47,6 +47,8 @@ class File extends Managed_DataObject
                 'date' => array('type' => 'int', 'description' => 'date of resource according to http query'),
                 'protected' => array('type' => 'int', 'description' => 'true when URL is private (needs login)'),
                 'filename' => array('type' => 'varchar', 'length' => 255, 'description' => 'if a local file, name of the file'),
+                'width' => array('type' => 'int', 'description' => 'width in pixels, if it can be described as such and data is available'),
+                'height' => array('type' => 'int', 'description' => 'height in pixels, if it can be described as such and data is available'),
 
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
@@ -432,30 +434,116 @@ class File extends Managed_DataObject
 
     /**
      * Get the attachment's thumbnail record, if any.
+     * Make sure you supply proper 'int' typed variables (or null).
      *
-     * @param $width  int   Max width of thumbnail in pixels
-     * @param $height int   Max height of thumbnail in pixels. If null, set to $width
+     * @param $width  int   Max width of thumbnail in pixels. (if null, use common_config values)
+     * @param $height int   Max height of thumbnail in pixels. (if null, square-crop to $width)
+     * @param $crop   bool  Crop to the max-values' aspect ratio
      *
      * @return File_thumbnail
      */
-    public function getThumbnail($width=null, $height=null)
+    public function getThumbnail($width=null, $height=null, $crop=false)
     {
+        if ($this->width < 1 || $this->height < 1) {
+            // Old files may have 0 until migrated with scripts/upgrade.php
+            return null;
+        }
+
         if ($width === null) {
-            $width = common_config('attachments', 'thumb_width');
-            $height = common_config('attachments', 'thumb_height');
-            $square = common_config('attachments', 'thumb_square');
-        } elseif ($height === null) {
-            $square = true;
+            $width = common_config('thumbnail', 'width');
+            $height = common_config('thumbnail', 'height');
+            $crop = common_config('thumbnail', 'crop');
+        }
+
+        if ($height === null) {
+            $height = $width;
+            $crop = true;
+        }
+        
+        // Get proper aspect ratio width and height before lookup
+        list($width, $height, $x, $y, $w2, $h2) =
+                                ImageFile::getScalingValues($this->width, $this->height, $width, $height, $crop);
+
+        // Doublecheck that parameters are sane and integers.
+        if ($width < 1 || $width > common_config('thumbnail', 'maxsize')
+                || $height < 1 || $height > common_config('thumbnail', 'maxsize')) {
+            // Fail on bad width parameter.
+            throw new ServerException('Bad thumbnail width or height parameter');
         }
 
         $params = array('file_id'=> $this->id,
                         'width'  => $width,
-                        'height' => $square ? $width : $height);
+                        'height' => $height);
         $thumb = File_thumbnail::pkeyGet($params);
         if ($thumb === null) {
-            // generate a new thumbnail for desired parameters
+            try {
+                $thumb = $this->generateThumbnail($width, $height, $crop);
+            } catch (UnsupportedMediaException $e) {
+                // FIXME: Add "unknown media" icon or something
+            } catch (ServerException $e) {
+                // Probably a remote media file, maybe not available locally
+            }
         }
         return $thumb;
+    }
+
+    /**
+     * Generate and store a thumbnail image for the uploaded file, if applicable.
+     * Call this only if you know what you're doing.
+     *
+     * @param $width  int    Maximum thumbnail width in pixels
+     * @param $height int    Maximum thumbnail height in pixels, if null, crop to $width
+     *
+     * @return File_thumbnail or null
+     */
+    protected function generateThumbnail($width, $height, $crop)
+    {
+        $imgPath = null;
+        $media = common_get_mime_media($this->mimetype);
+        $width = intval($width);
+        if ($height === null) {
+            $height = $width;
+            $crop = true;
+        }
+
+        if (Event::handle('CreateFileImageThumbnailSource', array($this, &$imgPath, $media))) {
+            switch ($media) {
+            case 'image':
+                $imgPath = $this->getPath();
+                break;
+            default:
+                throw new UnsupportedMediaException(_('Unsupported media format.'), $this->getPath());
+            }
+        }
+        if (!file_exists($imgPath)) {
+            throw new ServerException(sprintf('Thumbnail source is not stored locally: %s', $imgPath));
+        }
+
+        try {
+            $image = new ImageFile($this->id, $imgPath);
+        } catch (UnsupportedMediaException $e) {
+            // Avoid deleting the original
+            if ($image->getPath() != $this->getPath()) {
+                $image->unlink();
+            }
+            throw $e;
+        }
+
+        list($width, $height, $x, $y, $w2, $h2) =
+                                $image->scaleToFit($width, $height, $crop);
+
+        $outname = "thumb-{$width}x{$height}-" . $this->filename;
+        $outpath = self::path($outname);
+
+        $image->resizeTo($outpath, $width, $height, $x, $y, $w2, $h2);
+
+        // Avoid deleting the original
+        if ($image->getPath() != $this->getPath()) {
+            $image->unlink();
+        }
+        return File_thumbnail::saveThumbnail($this->id,
+                                      self::url($outname),
+                                      $width, $height);
     }
 
     public function getPath()

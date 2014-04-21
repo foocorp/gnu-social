@@ -41,7 +41,6 @@ class MediaFile
     var $fileurl       = null;
     var $short_fileurl = null;
     var $mimetype      = null;
-    var $thumbnailRecord = null;
 
     function __construct(Profile $scoped, $filename = null, $mimetype = null)
     {
@@ -50,12 +49,6 @@ class MediaFile
         $this->filename   = $filename;
         $this->mimetype   = $mimetype;
         $this->fileRecord = $this->storeFile();
-        try {
-            $this->thumbnailRecord = $this->storeThumbnail();
-        } catch (UnsupportedMediaException $e) {
-            // FIXME: Add "unknown media" icon or something
-            $this->thumbnailRecord = null;
-        }
 
         $this->fileurl = common_local_url('attachment',
                                     array('attachment' => $this->fileRecord->id));
@@ -108,109 +101,6 @@ class MediaFile
         }
 
         return $file;
-    }
-
-    /**
-     * Generate and store a thumbnail image for the uploaded file, if applicable.
-     *
-     * @return File_thumbnail or null
-     */
-    function storeThumbnail($maxWidth=null, $maxHeight=null, $square=true)
-    {
-        $imgPath = null;
-        $media = common_get_mime_media($this->mimetype);
-
-        if (Event::handle('CreateFileImageThumbnailSource', array($this, &$imgPath, $media))) {
-            switch ($media) {
-            case 'image':
-                $imgPath = $this->getPath();
-                break;
-            default: 
-                throw new UnsupportedMediaException(_('Unsupported media format.'), $this->getPath());
-            }
-        }
-        if (!file_exists($imgPath)) {
-            throw new ServerException(sprintf('Thumbnail source is not stored locally: %s', $imgPath));
-        }
-
-        try {
-            $image = new ImageFile($this->fileRecord->id, $imgPath);
-        } catch (UnsupportedMediaException $e) {
-            // Avoid deleting the original
-            if ($image->getPath() != $this->getPath()) {
-                $image->unlink();
-            }
-            throw $e;
-        }
-
-        $outname = File::filename($this->scoped, 'thumb-' . $this->filename, $this->mimetype);
-        $outpath = File::path($outname);
-
-        $maxWidth = $maxWidth ?: common_config('attachments', 'thumb_width');
-        $maxHeight = $maxHeight ?: common_config('attachments', 'thumb_height');
-        list($width, $height, $x, $y, $w2, $h2) =
-                        $this->scaleToFit($image->width, $image->height,
-                                          $maxWidth, $maxHeight,
-                                          common_config('attachments', 'thumb_square'));
-
-        $image->resizeTo($outpath, $width, $height, $x, $y, $w2, $h2);
-
-        // Avoid deleting the original
-        if ($image->getPath() != $this->getPath()) {
-            $image->unlink();
-        }
-        return File_thumbnail::saveThumbnail($this->fileRecord->id,
-                                      File::url($outname),
-                                      $width,
-                                      $height);
-    }
-
-    // This will give parameters to scale up if max values are larger than original
-    function scaleToFit($width, $height, $maxWidth=null, $maxHeight=null, $square=true)
-    {
-        if ($width <= 0 || $height <= 0
-                || ($maxWidth !== null && $maxWidth <= 0)
-                || ($maxHeight !== null && $maxHeight <= 0)) {
-            throw new ServerException('Bad scaleToFit parameters for MediaFile');
-        } elseif ($maxWidth === null) {
-            // maxWidth must be a positive number
-            throw new ServerException('MediaFile::scaleToFit maxWidth is null');
-        } elseif ($square || $maxHeight === null) {
-            // if square thumb ratio or if maxHeight is null,
-            // we set maxHeight to equal maxWidth
-            $maxHeight = $maxWidth;
-            $square = true;
-        }
-        
-        // cropping data
-        $cx = 0;    // crop x
-        $cy = 0;    // crop y
-        $cw = null; // crop area width
-        $ch = null; // crop area height
-
-        if ($square) {
-            // resulting width and height
-            $rw = $maxWidth;
-            $rh = $maxHeight;
-
-            // minSide will determine the smallest image size
-            // and crop-values are determined from this
-            $minSide = $width > $height ? $height : $width;
-            $cx = $width / 2 - $minSide / 2;
-            $cy = $height / 2 - $minSide / 2;
-            $cw = $minSide;
-            $ch = $minSide;
-        } else {
-            // resulting sizes
-            $rw = $maxWidth;
-            $rh = floor($height * $maxWidth / $width);
-
-            if ($rh > $maxHeight) {
-                $rw = floor($width * $maxHeight / $height);
-                $rh = $maxHeight;
-            }
-        }
-        return array($rw, $rh, $cx, $cy, $cw, $ch);
     }
 
     function rememberFile($file, $short)

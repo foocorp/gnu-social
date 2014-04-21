@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * A wrapper on uploaded files
@@ -335,6 +333,77 @@ class ImageFile
 
         return $num;
     }
+
+    public function scaleToFit($maxWidth=null, $maxHeight=null, $crop=null)
+    {
+        return self::getScalingValues($this->width, $this->height,
+                                        $maxWidth, $maxHeight, $crop);
+    }
+
+    /*
+     * Gets scaling values for images of various types. Cropping can be enabled.
+     *
+     * Values will scale _up_ to fit max values if cropping is enabled!
+     * With cropping disabled, the max value of each axis will be respected.
+     *
+     * @param $width    int Original width
+     * @param $height   int Original height
+     * @param $maxW     int Resulting max width
+     * @param $maxH     int Resulting max height
+     * @param $crop     int Crop to the size (not preserving aspect ratio)
+     */
+    public static function getScalingValues($width, $height,
+                                        $maxW=null, $maxH=null,
+                                        $crop=null)
+    {
+        $maxW = $maxW ?: common_config('thumbnail', 'width');
+        $maxH = $maxH ?: common_config('thumbnail', 'height');
+  
+        if ($maxW < 1 || ($maxH !== null && $maxH < 1)) {
+            throw new ServerException('Bad parameters for ImageFile::getScalingValues');
+        } elseif ($maxH === null) {
+            // if maxH is null, we set maxH to equal maxW and enable crop
+            $maxH = $maxW;
+            $crop = true;
+        }
+  
+        // Cropping data (for original image size). Default values, 0 and null,
+        // imply no cropping and with preserved aspect ratio (per axis).
+        $cx = 0;    // crop x
+        $cy = 0;    // crop y
+        $cw = null; // crop area width
+        $ch = null; // crop area height
+  
+        if ($crop) {
+            $s_ar = $width / $height;
+            $t_ar = $maxW / $maxH;
+
+            $rw = $maxW;
+            $rh = $maxH;
+
+            // Source aspect ratio differs from target, recalculate crop points!
+            if ($s_ar > $t_ar) {
+                $cx = floor($width / 2 - $height * $t_ar / 2);
+                $cw = ceil($height * $t_ar);
+            } elseif ($s_ar < $t_ar) {
+                $cy = floor($height / 2 - $width / $t_ar / 2);
+                $ch = ceil($width / $t_ar);
+            }
+        } else {
+            $rw = $maxW;
+            $rh = ceil($height * $rw / $width);
+
+            // Scaling caused too large height, decrease to max accepted value
+            if ($rh > $maxH) {
+                $rh = $maxH;
+                $rw = ceil($width * $rh / $height);
+            }
+        }
+        return array(intval($rw), intval($rh),
+                    intval($cx), intval($cy),
+                    is_null($cw) ? null : intval($cw),
+                    is_null($ch) ? null : intval($ch));
+    }
 }
 
 //PHP doesn't (as of 2/24/2010) have an imagecreatefrombmp so conditionally define one
@@ -432,4 +501,4 @@ if(!function_exists('imagecreatefrombmp')){
         //    Return image-object
         return $image;
     }
-}
+}   // if(!function_exists('imagecreatefrombmp'))

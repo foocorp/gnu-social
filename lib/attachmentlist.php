@@ -201,32 +201,12 @@ class AttachmentListItem extends Widget
     }
 
     function showRepresentation() {
-        $thumb = $this->getThumbInfo();
-        if ($thumb instanceof File_thumbnail) {
+        try {
+            $thumb = $this->attachment->getThumbnail();
             $this->out->element('img', array('alt' => '', 'src' => $thumb->getUrl(), 'width' => $thumb->width, 'height' => $thumb->height));
+        } catch (Exception $e) {
+            // Image representation unavailable
         }
-    }
-
-    /**
-     * Pull a thumbnail image reference for the given file, and if necessary
-     * resize it to match currently thumbnail size settings.
-     *
-     * @return File_Thumbnail or false/null
-     */
-    function getThumbInfo()
-    {
-        $thumbnail = File_thumbnail::getKV('file_id', $this->attachment->id);
-        if ($thumbnail) {
-            $maxWidth = common_config('attachments', 'thumb_width');
-            $maxHeight = common_config('attachments', 'thumb_height');
-            if ($thumbnail->width > $maxWidth) {
-                $thumb = clone($thumbnail);
-                $thumb->width = $maxWidth;
-                $thumb->height = intval($thumbnail->height * $maxWidth / $thumbnail->width);
-                return $thumb;
-            }
-        }
-        return $thumbnail;
     }
 
     /**
@@ -342,10 +322,12 @@ class Attachment extends AttachmentListItem
                 case 'video/quicktime':
                 case 'video/webm':
                     $mediatype = common_get_mime_media($this->attachment->mimetype);
-                    $thumb = $this->getThumbInfo();
-                    $poster = ($thumb instanceof File_thumbnail)
-                                ? $thumb->getUrl()
-                                : null;
+                    try {
+                        $thumb = $this->attachment->getThumbnail();
+                        $poster = $thumb->getUrl();
+                    } catch (Exception $e) {
+                        $poster = null;
+                    }
                     $this->out->elementStart($mediatype,
                                         array('class'=>'attachment_player',
                                             'poster'=>$poster,

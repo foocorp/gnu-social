@@ -250,11 +250,13 @@ $default =
               'monthly_quota' => 15000000,
               'uploads' => true,
               'show_thumbs' => true, // show thumbnails in notice lists for uploaded images, and photos and videos linked remotely that provide oEmbed info
-              'thumb_width' => 150,
-              'thumb_height' => 150,
-              'thumb_square' => true,
               'process_links' => true, // check linked resources for embeddable photos and videos; this will hit referenced external web sites when processing new messages.
               ),
+        'thumbnail' =>
+        array('crop' => false,      // overridden to true if thumb height === null
+              'maxsize' => 500,     // thumbs bigger than this will not be generated
+              'width' => 500,
+              'height' => 250),
         'application' =>
         array('desclimit' => null),
         'group' =>

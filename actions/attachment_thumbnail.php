@@ -42,15 +42,16 @@ class Attachment_thumbnailAction extends AttachmentAction
 {
     protected $thumb_w = null;  // max width
     protected $thumb_h = null;  // max height
-    protected $thumb_a = null;  // "aspect ratio" (more like "square", 1 or 0)
+    protected $thumb_c = null;  // crop?
 
     protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
-        foreach (array('w', 'h', 'a') as $attr) {
-            $this->{"thumb_$attr"} = $this->arg($attr);
-        }
+        $this->thumb_w = $this->int('w');
+        $this->thumb_h = $this->int('h');
+        $this->thumb_c = $this->boolean('c');
+
         return true;
     }
 
@@ -77,7 +78,7 @@ class Attachment_thumbnailAction extends AttachmentAction
     function showCore()
     {
         // Returns a File_thumbnail object or throws exception if not available
-        $thumbnail = $this->attachment->getThumbnail($this->thumb_w, $this->thumb_h, $this->thumb_a);
+        $thumbnail = $this->attachment->getThumbnail($this->thumb_w, $this->thumb_h, $this->thumb_c);
         $this->element('img', array('src' => $thumbnail->getUrl(), 'alt' => 'Thumbnail'));
     }
 }

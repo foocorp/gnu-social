@@ -62,7 +62,7 @@ class InlineAttachmentListItem extends AttachmentListItem
 
     function show()
     {
-        $this->thumb = parent::getThumbInfo();
+        $this->thumb = $this->attachment->getThumbnail();
         if (!empty($this->thumb)) {
             parent::show();
         }

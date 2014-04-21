@@ -1442,6 +1442,6 @@ OtherAccountProfiles: Hook to add account profiles to a user account profile blo
             image: mini image for the profile
 
 CreateFileImageThumbnailSource: Hook to create image thumbnail source from a File
-- $file:    MediaFile object with related metadata
+- $file:    'File' object to source the image from
 - &$imgPath: Path to image file which can be used as source for our thumbnail algorithm.
 - $media:   MIME media type ('image', 'video', 'audio' etc.)

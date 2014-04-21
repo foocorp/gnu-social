@@ -246,8 +246,8 @@ class oEmbedHelper
         if (isset($data->thumbnail_url)) {
             if (!isset($data->thumbnail_width)) {
                 // !?!?!
-                $data->thumbnail_width = common_config('attachments', 'thumb_width');
-                $data->thumbnail_height = common_config('attachments', 'thumb_height');
+                $data->thumbnail_width = common_config('thumbnail', 'width');
+                $data->thumbnail_height = common_config('thumbnail', 'height');
             }
         }
 

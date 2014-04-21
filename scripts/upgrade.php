@@ -43,6 +43,7 @@ function main()
         fixupNoticeConversation();
         initConversation();
         fixupGroupURI();
+        fixupFileGeometry();
 
         initGroupProfileId();
         initLocalGroup();
@@ -408,6 +409,35 @@ function initProfileLists()
                                         array('id' => $plist->id, 'tagger_id' => $plist->tagger));
 
             $plist->update($orig);
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+/*
+ * Added as we now store interpretd width and height in File table.
+ */
+function fixupFileGeometry()
+{
+    printfnq("Ensuring width and height is set for supported local File objects...");
+
+    $file = new File();
+    $file->whereAdd('filename IS NOT NULL');    // local files
+    $file->whereAdd('width IS NULL OR width = 0');
+
+    if ($file->find()) {
+        while ($file->fetch()) {
+            // Add support for video sizes too
+            try {
+                $image = new ImageFile($file->id, $file->getPath());
+            } catch (UnsupportedMediaException $e) {
+                continue;
+            }
+            $orig = clone($file);
+            $file->width = $image->width;
+            $file->height = $image->height;
+            $file->update($orig);
         }
     }
 

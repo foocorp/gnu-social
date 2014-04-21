@@ -190,8 +190,8 @@ class BookmarkForm extends Form
 
     function scaleImage($width, $height)
     {
-        $maxwidth = common_config('attachments', 'thumb_width');
-        $maxheight = common_config('attachments', 'thumb_height');
+        $maxwidth = common_config('thumbnail', 'width');
+        $maxheight = common_config('thumbnail', 'height');
 
         if ($width > $height && $width > $maxwidth) {
             $height = (int) ((((float)$maxwidth)/(float)($width))*(float)$height);
