@@ -120,7 +120,7 @@ class MediaFile
         $imgPath = null;
         $media = common_get_mime_media($this->mimetype);
 
-        if (Event::handle('CreateFileImageThumbnail', array($this, &$imgPath, $media))) {
+        if (Event::handle('CreateFileImageThumbnailSource', array($this, &$imgPath, $media))) {
             switch ($media) {
             case 'image':
                 $imgPath = $this->getPath();

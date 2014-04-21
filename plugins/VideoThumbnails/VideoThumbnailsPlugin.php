@@ -41,12 +41,12 @@ class VideoThumbnailsPlugin extends Plugin
 {
     /*
      * This function should only extract an image from the video stream
-     * and disregard any scaling aspects in the resulting file, since
-     * this will be handled in the core thumbnail algorithm.
+     * and disregard any cropping or scaling in the resulting file, as
+     * that will be handled in the core thumbnail algorithm.
      */
-    public function onCreateFileImageThumbnail(MediaFile $file, &$imgPath, $media=null)
+    public function onCreateFileImageThumbnailSource(MediaFile $file, &$imgPath, $media=null)
     {
-        // This might accidentally pass application/ogg videos.
+        // The calling function might accidentally pass application/ogg videos.
         // If that's a problem, let's fix it in the calling function.
         if ($media !== 'video') {
             return true;
