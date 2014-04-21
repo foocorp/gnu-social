@@ -401,8 +401,8 @@ class ImageFile
         }
         return array(intval($rw), intval($rh),
                     intval($cx), intval($cy),
-                    is_null($cw) ? null : intval($cw),
-                    is_null($ch) ? null : intval($ch));
+                    is_null($cw) ? $width : intval($cw),
+                    is_null($ch) ? $height : intval($ch));
     }
 }
 
