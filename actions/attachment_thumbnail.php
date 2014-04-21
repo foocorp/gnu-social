@@ -62,23 +62,8 @@ class Attachment_thumbnailAction extends AttachmentAction
      */
     function showPage()
     {
-        if (Event::handle('StartShowBody', array($this))) {
-            $this->showCore();
-            Event::handle('EndShowBody', array($this));
-        }
-    }
-
-    /**
-     * Show core.
-     *
-     * Shows local navigation, content block and aside.
-     *
-     * @return nothing
-     */
-    function showCore()
-    {
         // Returns a File_thumbnail object or throws exception if not available
         $thumbnail = $this->attachment->getThumbnail($this->thumb_w, $this->thumb_h, $this->thumb_c);
-        $this->element('img', array('src' => $thumbnail->getUrl(), 'alt' => 'Thumbnail'));
+        common_redirect($thumbnail->getUrl());
     }
 }
