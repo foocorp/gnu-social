@@ -40,9 +40,18 @@ if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
  */
 class Attachment_thumbnailAction extends AttachmentAction
 {
-    protected function handle()
+    protected $thumb_w = null;  // max width
+    protected $thumb_h = null;  // max height
+    protected $thumb_a = null;  // "aspect ratio" (more like "square", 1 or 0)
+
+    protected function prepare(array $args=array())
     {
-        $this->showPage();
+        parent::prepare($args);
+
+        foreach (array('w', 'h', 'a') as $attr) {
+            $this->{"thumb_$attr"} = $this->arg($attr);
+        }
+        return true;
     }
 
     /**
@@ -67,10 +76,8 @@ class Attachment_thumbnailAction extends AttachmentAction
      */
     function showCore()
     {
-        $file_thumbnail = File_thumbnail::getKV('file_id', $this->attachment->id);
-        if (empty($file_thumbnail->url)) {
-            return;
-        }
-        $this->element('img', array('src' => $file_thumbnail->url, 'alt' => 'Thumbnail'));
+        // Returns a File_thumbnail object or throws exception if not available
+        $thumbnail = $this->attachment->getThumbnail($this->thumb_w, $this->thumb_h, $this->thumb_a);
+        $this->element('img', array('src' => $thumbnail->getUrl(), 'alt' => 'Thumbnail'));
     }
 }

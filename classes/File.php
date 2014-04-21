@@ -24,9 +24,6 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class File extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
     public $__table = 'file';                            // table name
     public $id;                              // int(4)  primary_key not_null
     public $url;                             // varchar(255)  unique_key
@@ -37,9 +34,6 @@ class File extends Managed_DataObject
     public $protected;                       // int(4)
     public $filename;                        // varchar(255)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
-
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 
     public static function schemaDef()
     {
@@ -439,11 +433,29 @@ class File extends Managed_DataObject
     /**
      * Get the attachment's thumbnail record, if any.
      *
+     * @param $width  int   Max width of thumbnail in pixels
+     * @param $height int   Max height of thumbnail in pixels. If null, set to $width
+     *
      * @return File_thumbnail
      */
-    function getThumbnail()
+    public function getThumbnail($width=null, $height=null)
     {
-        return File_thumbnail::getKV('file_id', $this->id);
+        if ($width === null) {
+            $width = common_config('attachments', 'thumb_width');
+            $height = common_config('attachments', 'thumb_height');
+            $square = common_config('attachments', 'thumb_square');
+        } elseif ($height === null) {
+            $square = true;
+        }
+
+        $params = array('file_id'=> $this->id,
+                        'width'  => $width,
+                        'height' => $square ? $width : $height);
+        $thumb = File_thumbnail::pkeyGet($params);
+        if ($thumb === null) {
+            // generate a new thumbnail for desired parameters
+        }
+        return $thumb;
     }
 
     public function getPath()
