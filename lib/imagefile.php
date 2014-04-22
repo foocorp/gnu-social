@@ -76,6 +76,36 @@ class ImageFile
         $this->height = ($info) ? $info[1]:$height;
     }
 
+    public static function fromFileObject(File $file)
+    {
+        $imgPath = null;
+        $media = common_get_mime_media($file->mimetype);
+        if (Event::handle('CreateFileImageThumbnailSource', array($file, &$imgPath, $media))) {
+            switch ($media) {
+            case 'image':
+                $imgPath = $file->getPath();
+                break;
+            default:
+                throw new UnsupportedMediaException(_('Unsupported media format.'), $file->getPath());
+            }
+        }
+
+        if (!file_exists($imgPath)) {
+            throw new ServerException(sprintf('Image not available locally: %s', $imgPath));
+        }
+
+        try {
+            $image = new ImageFile($file->id, $imgPath);
+        } catch (UnsupportedMediaException $e) {
+            // Avoid deleting the original
+            if ($imgPath != $file->getPath()) {
+                unlink($imgPath);
+            }
+            throw $e;
+        }
+        return $image;
+    }
+
     public function getPath()
     {
         if (!file_exists($this->filepath)) {

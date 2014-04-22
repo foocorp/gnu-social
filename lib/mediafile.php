@@ -81,7 +81,8 @@ class MediaFile
         @unlink($filepath);
     }
 
-    function storeFile() {
+    protected function storeFile()
+    {
 
         $file = new File;
 
@@ -94,10 +95,31 @@ class MediaFile
 
         $file_id = $file->insert();
 
-        if (!$file_id) {
+        if ($file_id===false) {
             common_log_db_error($file, "INSERT", __FILE__);
             // TRANS: Client exception thrown when a database error was thrown during a file upload operation.
             throw new ClientException(_('There was a database error while saving your file. Please try again.'));
+        }
+
+        // Set file geometrical properties if available
+        try {
+            $image = ImageFile::fromFileObject($file);
+            $orig = clone($file);
+            $file->width = $image->width;
+            $file->height = $image->height;
+            $file->update($orig);
+
+            // We have to cleanup after ImageFile, since it
+            // may have generated a temporary file from a
+            // video support plugin or something.
+            // FIXME: Do this more automagically.
+            if ($image->getPath() != $file->getPath()) {
+                $image->unlink();
+            }
+        } catch (ServerException $e) {
+            // We just couldn't make out an image from the file. This
+            // does not have to be UnsupportedMediaException, as we can
+            // also get ServerException from files not existing etc.
         }
 
         return $file;
@@ -139,46 +161,46 @@ class MediaFile
         }
 
         switch ($_FILES[$param]['error']) {
-        case UPLOAD_ERR_OK: // success, jump out
-            break;
-        case UPLOAD_ERR_INI_SIZE:
-            // TRANS: Client exception thrown when an uploaded file is larger than set in php.ini.
-            throw new ClientException(_('The uploaded file exceeds the ' .
-                'upload_max_filesize directive in php.ini.'));
-        case UPLOAD_ERR_FORM_SIZE:
-            throw new ClientException(
+            case UPLOAD_ERR_OK: // success, jump out
+                break;
+            case UPLOAD_ERR_INI_SIZE:
+                // TRANS: Client exception thrown when an uploaded file is larger than set in php.ini.
+                throw new ClientException(_('The uploaded file exceeds the ' .
+                            'upload_max_filesize directive in php.ini.'));
+            case UPLOAD_ERR_FORM_SIZE:
+                throw new ClientException(
+                        // TRANS: Client exception.
+                        _('The uploaded file exceeds the MAX_FILE_SIZE directive' .
+                            ' that was specified in the HTML form.'));
+            case UPLOAD_ERR_PARTIAL:
+                @unlink($_FILES[$param]['tmp_name']);
                 // TRANS: Client exception.
-                _('The uploaded file exceeds the MAX_FILE_SIZE directive' .
-                ' that was specified in the HTML form.'));
-        case UPLOAD_ERR_PARTIAL:
-            @unlink($_FILES[$param]['tmp_name']);
-            // TRANS: Client exception.
-            throw new ClientException(_('The uploaded file was only' .
-                ' partially uploaded.'));
-        case UPLOAD_ERR_NO_FILE:
-            // No file; probably just a non-AJAX submission.
-            return;
-        case UPLOAD_ERR_NO_TMP_DIR:
-            // TRANS: Client exception thrown when a temporary folder is not present to store a file upload.
-            throw new ClientException(_('Missing a temporary folder.'));
-        case UPLOAD_ERR_CANT_WRITE:
-            // TRANS: Client exception thrown when writing to disk is not possible during a file upload operation.
-            throw new ClientException(_('Failed to write file to disk.'));
-        case UPLOAD_ERR_EXTENSION:
-            // TRANS: Client exception thrown when a file upload operation has been stopped by an extension.
-            throw new ClientException(_('File upload stopped by extension.'));
-        default:
-            common_log(LOG_ERR, __METHOD__ . ": Unknown upload error " .
-                $_FILES[$param]['error']);
-            // TRANS: Client exception thrown when a file upload operation has failed with an unknown reason.
-            throw new ClientException(_('System error uploading file.'));
+                throw new ClientException(_('The uploaded file was only' .
+                            ' partially uploaded.'));
+            case UPLOAD_ERR_NO_FILE:
+                // No file; probably just a non-AJAX submission.
+                return;
+            case UPLOAD_ERR_NO_TMP_DIR:
+                // TRANS: Client exception thrown when a temporary folder is not present to store a file upload.
+                throw new ClientException(_('Missing a temporary folder.'));
+            case UPLOAD_ERR_CANT_WRITE:
+                // TRANS: Client exception thrown when writing to disk is not possible during a file upload operation.
+                throw new ClientException(_('Failed to write file to disk.'));
+            case UPLOAD_ERR_EXTENSION:
+                // TRANS: Client exception thrown when a file upload operation has been stopped by an extension.
+                throw new ClientException(_('File upload stopped by extension.'));
+            default:
+                common_log(LOG_ERR, __METHOD__ . ": Unknown upload error " .
+                        $_FILES[$param]['error']);
+                // TRANS: Client exception thrown when a file upload operation has failed with an unknown reason.
+                throw new ClientException(_('System error uploading file.'));
         }
 
         // Throws exception if additional size does not respect quota
         File::respectsQuota($scoped, $_FILES[$param]['size']);
 
         $mimetype = self::getUploadedMimeType($_FILES[$param]['tmp_name'],
-                                                   $_FILES[$param]['name']);
+                $_FILES[$param]['name']);
 
         $basename = basename($_FILES[$param]['name']);
         $filename = File::filename($scoped, $basename, $mimetype);

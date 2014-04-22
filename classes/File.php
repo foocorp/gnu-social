@@ -498,36 +498,13 @@ class File extends Managed_DataObject
      */
     protected function generateThumbnail($width, $height, $crop)
     {
-        $imgPath = null;
-        $media = common_get_mime_media($this->mimetype);
         $width = intval($width);
         if ($height === null) {
             $height = $width;
             $crop = true;
         }
 
-        if (Event::handle('CreateFileImageThumbnailSource', array($this, &$imgPath, $media))) {
-            switch ($media) {
-            case 'image':
-                $imgPath = $this->getPath();
-                break;
-            default:
-                throw new UnsupportedMediaException(_('Unsupported media format.'), $this->getPath());
-            }
-        }
-        if (!file_exists($imgPath)) {
-            throw new ServerException(sprintf('Thumbnail source is not stored locally: %s', $imgPath));
-        }
-
-        try {
-            $image = new ImageFile($this->id, $imgPath);
-        } catch (UnsupportedMediaException $e) {
-            // Avoid deleting the original
-            if ($image->getPath() != $this->getPath()) {
-                $image->unlink();
-            }
-            throw $e;
-        }
+        $image = ImageFile::fromFileObject($this);
 
         list($width, $height, $x, $y, $w2, $h2) =
                                 $image->scaleToFit($width, $height, $crop);

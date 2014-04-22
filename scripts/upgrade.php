@@ -428,16 +428,23 @@ function fixupFileGeometry()
 
     if ($file->find()) {
         while ($file->fetch()) {
-            // Add support for video sizes too
+            // Set file geometrical properties if available
             try {
-                $image = new ImageFile($file->id, $file->getPath());
-            } catch (UnsupportedMediaException $e) {
+                $image = ImageFile::fromFileObject($file);
+            } catch (ServerException $e) {
+                // We couldn't make out an image from the file.
                 continue;
             }
             $orig = clone($file);
             $file->width = $image->width;
             $file->height = $image->height;
             $file->update($orig);
+
+            // FIXME: Do this more automagically inside ImageFile or so.
+            if ($image->getPath() != $file->getPath()) {
+                $image->unlink();
+            }
+            unset($image);
         }
     }
 
