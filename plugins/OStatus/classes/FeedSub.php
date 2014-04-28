@@ -198,7 +198,7 @@ class FeedSub extends Managed_DataObject
     public function subscribe()
     {
         if ($this->sub_state && $this->sub_state != 'inactive') {
-            common_log(LOG_WARNING, "Attempting to (re)start PuSH subscription to {$this->uri} in unexpected state {$this->sub_state}");
+            common_log(LOG_WARNING, sprintf('Attempting to (re)start PuSH subscription to %s in unexpected state %s', $this->getUri(), $this->sub_state));
         }
 
         if (!Event::handle('FeedSubscribe', array($this))) {
@@ -235,7 +235,7 @@ class FeedSub extends Managed_DataObject
      */
     public function unsubscribe() {
         if ($this->sub_state != 'active') {
-            common_log(LOG_WARNING, "Attempting to (re)end PuSH subscription to {$this->uri} in unexpected state {$this->sub_state}");
+            common_log(LOG_WARNING, sprintf('Attempting to (re)end PuSH subscription to %s in unexpected state %s', $this->getUri(), $this->sub_state));
         }
 
         if (!Event::handle('FeedUnsubscribe', array($this))) {
@@ -278,10 +278,10 @@ class FeedSub extends Managed_DataObject
             Event::handle('FeedSubSubscriberCount', array($this, &$count));
 
             if ($count) {
-                common_log(LOG_INFO, __METHOD__ . ': ok, ' . $count . ' user(s) left for ' . $this->uri);
+                common_log(LOG_INFO, __METHOD__ . ': ok, ' . $count . ' user(s) left for ' . $this->getUri());
                 return false;
             } else {
-                common_log(LOG_INFO, __METHOD__ . ': unsubscribing, no users left for ' . $this->uri);
+                common_log(LOG_INFO, __METHOD__ . ': unsubscribing, no users left for ' . $this->getUri());
                 return $this->unsubscribe();
             }
         }
@@ -331,7 +331,7 @@ class FeedSub extends Managed_DataObject
                           'hub.verify_token' => 'Deprecated-since-PuSH-0.4', // TODO: rm!
 
                           'hub.secret' => $this->secret,
-                          'hub.topic' => $this->uri);
+                          'hub.topic' => $this->getUri());
             $client = new HTTPClient();
             if ($this->huburi) {
                 $hub = $this->huburi;
@@ -359,7 +359,7 @@ class FeedSub extends Managed_DataObject
             }
         } catch (Exception $e) {
             // wtf!
-            common_log(LOG_ERR, __METHOD__ . ": error \"{$e->getMessage()}\" hitting hub $this->huburi subscribing to $this->uri");
+            common_log(LOG_ERR, __METHOD__ . ": error \"{$e->getMessage()}\" hitting hub $this->huburi subscribing to " . $this->getUri());
 
             $orig = clone($this);
             $this->sub_state = 'inactive';
@@ -425,10 +425,10 @@ class FeedSub extends Managed_DataObject
      */
     public function receive($post, $hmac)
     {
-        common_log(LOG_INFO, __METHOD__ . ": packet for \"$this->uri\"! $hmac $post");
+        common_log(LOG_INFO, __METHOD__ . ": packet for \"" . $this->getUri() . "\"! $hmac $post");
 
         if ($this->sub_state != 'active') {
-            common_log(LOG_ERR, __METHOD__ . ": ignoring PuSH for inactive feed $this->uri (in state '$this->sub_state')");
+            common_log(LOG_ERR, __METHOD__ . ": ignoring PuSH for inactive feed " . $this->getUri() . " (in state '$this->sub_state')");
             return;
         }
 
@@ -483,9 +483,9 @@ class FeedSub extends Managed_DataObject
                     if ($tempfile) {
                         file_put_contents($tempfile, $post);
                     }
-                    common_log(LOG_ERR, __METHOD__ . ": ignoring PuSH with bad SHA-1 HMAC: got $their_hmac, expected $our_hmac for feed $this->uri on $this->huburi; saved to $tempfile");
+                    common_log(LOG_ERR, __METHOD__ . ": ignoring PuSH with bad SHA-1 HMAC: got $their_hmac, expected $our_hmac for feed " . $this->getUri() . " on $this->huburi; saved to $tempfile");
                 } else {
-                    common_log(LOG_ERR, __METHOD__ . ": ignoring PuSH with bad SHA-1 HMAC: got $their_hmac, expected $our_hmac for feed $this->uri on $this->huburi");
+                    common_log(LOG_ERR, __METHOD__ . ": ignoring PuSH with bad SHA-1 HMAC: got $their_hmac, expected $our_hmac for feed " . $this->getUri() . " on $this->huburi");
                 }
             } else {
                 common_log(LOG_ERR, __METHOD__ . ": ignoring PuSH with bogus HMAC '$hmac'");

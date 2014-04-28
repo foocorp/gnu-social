@@ -91,9 +91,9 @@ class UsersalmonAction extends SalmonAction
                 throw new ClientException(_m('In reply to a notice not by this user and not mentioning this user.'));
             }
         } else if (!empty($context->attention)) {
-            if (!array_key_exists($this->user->uri, $context->attention) &&
+            if (!array_key_exists($this->user->getUri(), $context->attention) &&
                 !array_key_exists(common_profile_url($this->user->nickname), $context->attention)) {
-                common_log(LOG_ERR, "{$this->user->uri} not in attention list (".implode(',', array_keys($context->attention)).')');
+                common_log(LOG_ERR, $this->user->getUri() . "not in attention list (".implode(',', array_keys($context->attention)).')');
                 // TRANS: Client exception.
                 throw new ClientException(_m('To the attention of user(s), not including this one.'));
             }
@@ -103,9 +103,8 @@ class UsersalmonAction extends SalmonAction
         }
 
         $existing = Notice::getKV('uri', $this->activity->objects[0]->id);
-
-        if (!empty($existing)) {
-            common_log(LOG_ERR, "Not saving notice '{$existing->uri}'; already exists.");
+        if ($existing instanceof Notice) {
+            common_log(LOG_ERR, "Not saving notice '".$existing->getUri()."'; already exists.");
             return;
         }
 
@@ -120,7 +119,7 @@ class UsersalmonAction extends SalmonAction
     {
         $oprofile = $this->ensureProfile();
         if ($oprofile) {
-            common_log(LOG_INFO, "Setting up subscription from remote {$oprofile->uri} to local {$this->user->nickname}");
+            common_log(LOG_INFO, sprintf('Setting up subscription from remote %s to local %s', $oprofile->getUri(), $this->user->getNickname()));
             Subscription::start($oprofile->localProfile(),
                                 $this->user->getProfile());
         } else {
@@ -138,7 +137,7 @@ class UsersalmonAction extends SalmonAction
     {
         $oprofile = $this->ensureProfile();
         if ($oprofile) {
-            common_log(LOG_INFO, "Canceling subscription from remote {$oprofile->uri} to local {$this->user->nickname}");
+            common_log(LOG_INFO, sprintf('Canceling subscription from remote %s to local %s', $oprofile->getUri(), $this->user->getNickname()));
             Subscription::cancel($oprofile->localProfile(), $this->user->getProfile());
         } else {
             common_log(LOG_ERR, "Can't cancel subscription from remote, didn't find the profile");

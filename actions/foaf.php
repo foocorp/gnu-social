@@ -90,11 +90,10 @@ class FoafAction extends Action
 
         // This is the document about the user
 
-        $this->showPpd('', $this->user->uri);
+        $this->showPpd('', $this->user->getUri());
 
         // Would be nice to tell if they were a Person or not (e.g. a #person usertag?)
-        $this->elementStart('Agent', array('rdf:about' =>
-                                             $this->user->uri));
+        $this->elementStart('Agent', array('rdf:about' => $this->user->getUri()));
         if ($this->user->email) {
             $this->element('mbox_sha1sum', null, sha1('mailto:' . $this->user->email));
         }
@@ -158,7 +157,7 @@ class FoafAction extends Action
         }
 
         $person = $this->showMicrobloggingAccount($this->profile,
-                                     common_root_url(), $this->user->uri,
+                                     common_root_url(), $this->user->getUri(),
                                      /*$fetchSubscriptions*/true,
                                      /*$isSubscriber*/false);
 
@@ -171,7 +170,7 @@ class FoafAction extends Action
         if ($sub->find()) {
             while ($sub->fetch()) {
                 $profile = Profile::getKV('id', $sub->subscriber);
-                if (empty($profile)) {
+                if (!$profile instanceof Profile) {
                     common_debug('Got a bad subscription: '.print_r($sub,true));
                     continue;
                 }
@@ -209,7 +208,7 @@ class FoafAction extends Action
             $profile = Profile::getKV($id);
             $this->elementStart('Agent', array('rdf:about' => $uri));
             if ($type == BOTH) {
-                $this->element('knows', array('rdf:resource' => $this->user->uri));
+                $this->element('knows', array('rdf:resource' => $this->user->getUri()));
             }
             $this->showMicrobloggingAccount($profile,
                                    ($local == 'local') ? common_root_url() : null,
@@ -301,7 +300,7 @@ class FoafAction extends Action
             unset($sub);
         } else if ($isSubscriber) {
             // Just declare that they follow the user whose FOAF we're showing.
-            $this->element('sioc:follows', array('rdf:resource' => $this->user->uri . '#acct'));
+            $this->element('sioc:follows', array('rdf:resource' => $this->user->getUri() . '#acct'));
         }
 
         $this->elementEnd('OnlineAccount');

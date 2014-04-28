@@ -1389,6 +1389,11 @@ class Profile extends Managed_DataObject
         return $this->profileurl;
     }
 
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
     /**
      * Returns the best URI for a profile. Plugins may override.
      *
@@ -1403,9 +1408,8 @@ class Profile extends Managed_DataObject
 
             // check for a local user first
             $user = User::getKV('id', $this->id);
-
-            if (!empty($user)) {
-                $uri = $user->uri;
+            if ($user instanceof User) {
+                $uri = $user->getUri();
             }
 
             Event::handle('EndGetProfileUri', array($this, &$uri));

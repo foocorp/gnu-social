@@ -2048,7 +2048,7 @@ function common_profile_uri($profile)
         if (Event::handle('StartCommonProfileURI', array($profile, &$uri))) {
             $user = User::getKV('id', $profile->id);
             if ($user instanceof User) {
-                $uri = $user->uri;
+                $uri = $user->getUri();
             }
             Event::handle('EndCommonProfileURI', array($profile, &$uri));
         }

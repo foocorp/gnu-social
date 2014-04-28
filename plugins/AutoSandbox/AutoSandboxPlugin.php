@@ -75,10 +75,12 @@ class AutoSandboxPlugin extends Plugin
 
          if (isset($this->contact)) {
              $contactuser = User::getKV('nickname', $this->contact);
-             if (!empty($contactuser)) {
-                 $contactlink = "@<a href=\"$contactuser->uri\">$contactuser->nickname</a>";
+             if ($contactuser instanceof User) {
+                 $contactlink = sprintf('@<a href="%s">%s</a>',
+                                        htmlspecialchars($contactuser->getProfile()->getUrl()),
+                                        htmlspecialchars($contactuser->getProfile()->getNickname()));
                  // TRANS: User instructions after registration.
-                 // TRANS: %s is a clickable e-mailaddress.
+                 // TRANS: %s is a clickable OStatus profile URL.
                  $instr = sprintf(_m('Note you will initially be "sandboxed" so your posts will not appear in the public timeline. '.
                    'Send a message to %s to speed up the unsandboxing process.'),$contactlink);
              }

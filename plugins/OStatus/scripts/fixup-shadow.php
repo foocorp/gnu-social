@@ -47,7 +47,7 @@ $count = $user->N;
 echo "Found $count...\n";
 
 while ($user->fetch()) {
-    $uri = $user->uri;
+    $uri = $user->getUri();
     echo "user $user->id ($user->nickname) hidden by $uri";
     if ($dry) {
         echo " - skipping\n";
@@ -71,7 +71,7 @@ $count = $group->N;
 echo "Found $count...\n";
 
 while ($group->fetch()) {
-    $uri = $group->uri;
+    $uri = $group->getUri();
     echo "group $group->id ($group->nickname) hidden by $uri";
     if ($dry) {
         echo " - skipping\n";
@@ -106,7 +106,7 @@ $count = $group->N;
 echo "Found $count...\n";
 
 while ($group->fetch()) {
-    $uri = $group->uri;
+    $uri = $group->getUri();
     if (preg_match('!/group/(\d+)/id!', $uri, $matches)) {
         $id = intval($matches[1]);
         $local = Local_group::getKV('group_id', $id);
@@ -152,8 +152,8 @@ $count = $oprofile->N;
 echo "Found $count...\n";
 
 while ($oprofile->fetch()) {
-    $uri = $oprofile->uri;
-    if (preg_match('!/group/(\d+)/id!', $oprofile->uri, $matches)) {
+    $uri = $oprofile->getUri();
+    if (preg_match('!/group/(\d+)/id!', $oprofile->getUri(), $matches)) {
         $id = intval($matches[1]);
         $group = Local_group::getKV('group_id', $id);
         if ($group) {

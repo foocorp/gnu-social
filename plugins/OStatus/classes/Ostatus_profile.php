@@ -76,6 +76,11 @@ class Ostatus_profile extends Managed_DataObject
         );
     }
 
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
     /**
      * Fetch the StatusNet-side profile for this feed
      * @return Profile
@@ -165,10 +170,10 @@ class Ostatus_profile extends Managed_DataObject
             return true;
         } else if ($this->group_id && ($this->profile_id || $this->peopletag_id)) {
             // TRANS: Server exception. %s is a URI
-            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: Two or more IDs set for %s.'), $this->uri));
+            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: Two or more IDs set for %s.'), $this->getUri()));
         } else {
             // TRANS: Server exception. %s is a URI
-            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: All IDs empty for %s.'), $this->uri));
+            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: All IDs empty for %s.'), $this->getUri()));
         }
     }
 
@@ -183,10 +188,10 @@ class Ostatus_profile extends Managed_DataObject
             return true;
         } else if ($this->peopletag_id && ($this->profile_id || $this->group_id)) {
             // TRANS: Server exception. %s is a URI
-            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: Two or more IDs set for %s.'), $this->uri));
+            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: Two or more IDs set for %s.'), $this->getUri()));
         } else {
             // TRANS: Server exception. %s is a URI
-            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: All IDs empty for %s.'), $this->uri));
+            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: All IDs empty for %s.'), $this->getUri()));
         }
     }
 
@@ -954,7 +959,7 @@ class Ostatus_profile extends Managed_DataObject
                     $groups[] = $oprofile->group_id;
                 } else {
                     // may be canonicalized or something
-                    $replies[] = $oprofile->uri;
+                    $replies[] = $oprofile->getUri();
                 }
                 continue;
             } catch (Exception $e) {
@@ -1227,7 +1232,7 @@ class Ostatus_profile extends Managed_DataObject
             throw new ServerException(sprintf(
                 // TRANS: Server exception. %s is a URI.
                 _m('Tried to update avatar for unsaved remote profile %s.'),
-                $this->uri));
+                $this->getUri()));
         }
 
         // @todo FIXME: This should be better encapsulated
@@ -1459,7 +1464,7 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         $user = User::getKV('uri', $homeuri);
-        if ($user) {
+        if ($user instanceof User) {
             // TRANS: Exception.
             throw new Exception(_m('Local user cannot be referenced as remote.'));
         }
@@ -1914,7 +1919,7 @@ class Ostatus_profile extends Managed_DataObject
         $oprofile = Ostatus_profile::getKV('uri', 'acct:'.$addr);
 
         if ($oprofile instanceof Ostatus_profile) {
-            self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->uri);
+            self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->getUri());
             return $oprofile;
         }
 
@@ -1952,7 +1957,7 @@ class Ostatus_profile extends Managed_DataObject
             try {
                 common_log(LOG_INFO, "Discovery on acct:$addr with feed URL " . $hints['feedurl']);
                 $oprofile = self::ensureFeedURL($hints['feedurl'], $hints);
-                self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->uri);
+                self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->getUri());
                 return $oprofile;
             } catch (Exception $e) {
                 common_log(LOG_WARNING, "Failed creating profile from feed URL '$feedUrl': " . $e->getMessage());
@@ -1965,7 +1970,7 @@ class Ostatus_profile extends Managed_DataObject
             try {
                 common_log(LOG_INFO, "Discovery on acct:$addr with profile URL $profileUrl");
                 $oprofile = self::ensureProfileURL($hints['profileurl'], $hints);
-                self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->uri);
+                self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->getUri());
                 return $oprofile;
             } catch (OStatusShadowException $e) {
                 // We've ended up with a remote reference to a local user or group.
@@ -2029,7 +2034,7 @@ class Ostatus_profile extends Managed_DataObject
                 throw new Exception(sprintf(_m('Could not save OStatus profile for "%s".'),$addr));
             }
 
-            self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->uri);
+            self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->getUri());
             return $oprofile;
         }
 
@@ -2133,7 +2138,7 @@ class Ostatus_profile extends Managed_DataObject
                 // Groups can't post notices in StatusNet.
                 common_log(LOG_WARNING,
                     "OStatus: skipping post with group listed ".
-                    "as author: $oprofile->uri in feed from $this->uri");
+                    "as author: " . $oprofile->getUri() . " in feed from " . $this->getUri());
                 return false;
             }
         } else {
@@ -2141,7 +2146,7 @@ class Ostatus_profile extends Managed_DataObject
 
             if (empty($actor)) {
                 // OK here! assume the default
-            } else if ($actor->id == $this->uri || $actor->link == $this->uri) {
+            } else if ($actor->id == $this->getUri() || $actor->link == $this->getUri()) {
                 $this->updateFromActivityObject($actor);
             } else if ($actor->id) {
                 // We have an ActivityStreams actor with an explicit ID that doesn't match the feed owner.
@@ -2150,7 +2155,7 @@ class Ostatus_profile extends Managed_DataObject
                 // Most likely this is a plain ol' blog feed of some kind which
                 // doesn't match our expectations. We'll take the entry, but ignore
                 // the <author> info.
-                common_log(LOG_WARNING, "Got an actor '{$actor->title}' ({$actor->id}) on single-user feed for {$this->uri}");
+                common_log(LOG_WARNING, "Got an actor '{$actor->title}' ({$actor->id}) on single-user feed for " . $this->getUri());
             } else {
                 // Plain <author> without ActivityStreams actor info.
                 // We'll just ignore this info for now and save the update under the feed's identity.

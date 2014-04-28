@@ -86,7 +86,7 @@ class AccountMover extends QueueHandler
         $qm = QueueManager::get();
 
         foreach ($acts as $act) {
-            $qm->enqueue(array($act, $sink, $user->uri, $remote), 'actmove');
+            $qm->enqueue(array($act, $sink, $user->getUri(), $remote), 'actmove');
         }
 
         $this->log(LOG_INFO,

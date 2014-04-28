@@ -81,7 +81,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $element = $this->_entryToElement($entry, false);
 
-        $this->assertEquals($notice->uri, ActivityUtils::childContent($element, 'id'));
+        $this->assertEquals($notice->getUri(), ActivityUtils::childContent($element, 'id'));
         $this->assertEquals($notice->content, ActivityUtils::childContent($element, 'title'));
         $this->assertEquals($notice->rendered, ActivityUtils::childContent($element, 'content'));
         $this->assertEquals(strtotime($notice->created), strtotime(ActivityUtils::childContent($element, 'published')));
@@ -210,8 +210,8 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $author = ActivityUtils::child($element, 'author');
 
-        $this->assertEquals($this->author1->nickname, ActivityUtils::childContent($author, 'name'));
-        $this->assertEquals($this->author1->uri, ActivityUtils::childContent($author, 'uri'));
+        $this->assertEquals($this->author1->getNickname(), ActivityUtils::childContent($author, 'name'));
+        $this->assertEquals($this->author1->getUri(), ActivityUtils::childContent($author, 'uri'));
     }
 
     /**
@@ -247,8 +247,8 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
         $irt = ActivityUtils::child($element, 'in-reply-to', 'http://purl.org/syndication/thread/1.0');
 
         $this->assertNotNull($irt);
-        $this->assertEquals($orig->uri, $irt->getAttribute('ref'));
-        $this->assertEquals($orig->bestUrl(), $irt->getAttribute('href'));
+        $this->assertEquals($orig->getUri(), $irt->getAttribute('ref'));
+        $this->assertEquals($orig->getUrl(), $irt->getAttribute('href'));
     }
 
     public function testReplyAttention()
@@ -263,7 +263,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $element = $this->_entryToElement($entry, true);
 
-        $this->assertEquals($this->targetUser1->uri, ActivityUtils::getLink($element, 'mentioned'));
+        $this->assertEquals($this->targetUser1->getUri(), ActivityUtils::getLink($element, 'mentioned'));
     }
 
     public function testMultipleReplyAttention()
@@ -292,8 +292,8 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
             $hrefs[] = $link->getAttribute('href');
         }
 
-        $this->assertTrue(in_array($this->targetUser1->uri, $hrefs));
-        $this->assertTrue(in_array($this->targetUser2->uri, $hrefs));
+        $this->assertTrue(in_array($this->targetUser1->getUri(), $hrefs));
+        $this->assertTrue(in_array($this->targetUser2->getUri(), $hrefs));
 
         $links = ActivityUtils::getLinks($element, 'mentioned');
 
@@ -305,8 +305,8 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
             $hrefs[] = $link->getAttribute('href');
         }
 
-        $this->assertTrue(in_array($this->targetUser1->uri, $hrefs));
-        $this->assertTrue(in_array($this->targetUser2->uri, $hrefs));
+        $this->assertTrue(in_array($this->targetUser1->getUri(), $hrefs));
+        $this->assertTrue(in_array($this->targetUser2->getUri(), $hrefs));
     }
 
     public function testGroupPostAttention()
@@ -319,7 +319,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $element = $this->_entryToElement($entry, true);
 
-        $this->assertEquals($this->targetGroup1->uri, ActivityUtils::getLink($element, 'mentioned'));
+        $this->assertEquals($this->targetGroup1->getUri(), ActivityUtils::getLink($element, 'mentioned'));
     }
 
     public function testMultipleGroupPostAttention()
@@ -342,8 +342,8 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
             $hrefs[] = $link->getAttribute('href');
         }
 
-        $this->assertTrue(in_array($this->targetGroup1->uri, $hrefs));
-        $this->assertTrue(in_array($this->targetGroup2->uri, $hrefs));
+        $this->assertTrue(in_array($this->targetGroup1->getUri(), $hrefs));
+        $this->assertTrue(in_array($this->targetGroup2->getUri(), $hrefs));
 
         $links = ActivityUtils::getLinks($element, 'mentioned');
 
@@ -355,8 +355,8 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
             $hrefs[] = $link->getAttribute('href');
         }
 
-        $this->assertTrue(in_array($this->targetGroup1->uri, $hrefs));
-        $this->assertTrue(in_array($this->targetGroup2->uri, $hrefs));
+        $this->assertTrue(in_array($this->targetGroup1->getUri(), $hrefs));
+        $this->assertTrue(in_array($this->targetGroup2->getUri(), $hrefs));
     }
 
     public function testRepeatLink()
@@ -371,7 +371,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
         $forward = ActivityUtils::child($element, 'forward', "http://ostatus.org/schema/1.0");
 
         $this->assertNotNull($forward);
-        $this->assertEquals($notice->uri, $forward->getAttribute('ref'));
+        $this->assertEquals($notice->getUri(), $forward->getAttribute('ref'));
         $this->assertEquals($notice->bestUrl(), $forward->getAttribute('href'));
     }
 

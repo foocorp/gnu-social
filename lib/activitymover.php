@@ -121,7 +121,7 @@ class ActivityMover extends QueueHandler
             }
             break;
         case ActivityVerb::FOLLOW:
-            if ($act->actor->id == $user->uri) {
+            if ($act->actor->id === $user->getUri()) {
                 $this->log(LOG_INFO,
                            "Moving subscription to {$act->objects[0]->id} by ".
                            "{$act->actor->id} to {$remote->nickname}.");

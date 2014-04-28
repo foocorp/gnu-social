@@ -154,7 +154,7 @@ class UserActivityStream extends AtomUserNoticeFeed
             try {
                 if ($format == Feed::ATOM) {
                     // Only show the author sub-element if it's different from default user
-                    $act->outputTo($this, false, ($act->actor->id != $this->user->uri));
+                    $act->outputTo($this, false, ($act->actor->id != $this->user->getUri()));
                 } else {
                     if ($haveOne) {
                         fwrite($handle, ",");

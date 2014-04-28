@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Class comment
@@ -104,12 +100,12 @@ class ActivityImporter extends QueueHandler
             $other = $activity->actor;
             $otherUser = User::getKV('uri', $other->id);
 
-            if (!empty($otherUser)) {
-                $otherProfile = $otherUser->getProfile();
-            } else {
+            if (!$otherUser instanceof User) {
                 // TRANS: Client exception thrown when trying to force a remote user to subscribe.
                 throw new Exception(_('Cannot force remote user to subscribe.'));
             }
+
+            $otherProfile = $otherUser->getProfile();
 
             // XXX: don't do this for untrusted input!
 
@@ -141,7 +137,7 @@ class ActivityImporter extends QueueHandler
 
         $group = User_group::getKV('uri', $uri);
 
-        if (empty($group)) {
+        if (!$group instanceof User_group) {
             $oprofile = Ostatus_profile::ensureActivityObjectProfile($activity->objects[0]);
             if (!$oprofile->isGroup()) {
                 // TRANS: Client exception thrown when trying to join a remote group that is not a group.
@@ -170,7 +166,7 @@ class ActivityImporter extends QueueHandler
 
         $notice = Notice::getKV('uri', $sourceUri);
 
-        if (!empty($notice)) {
+        if ($notice instanceof Notice) {
 
             common_log(LOG_INFO, "Notice {$sourceUri} already exists.");
 
@@ -180,8 +176,8 @@ class ActivityImporter extends QueueHandler
 
                 $uri = $profile->getUri();
 
-                if ($uri == $author->id) {
-                    common_log(LOG_INFO, "Updating notice author from $author->id to $user->uri");
+                if ($uri === $author->id) {
+                    common_log(LOG_INFO, sprintf('Updating notice author from %s to %s', $author->id, $user->getUri()));
                     $orig = clone($notice);
                     $notice->profile_id = $user->id;
                     $notice->update($orig);
@@ -244,9 +240,8 @@ class ActivityImporter extends QueueHandler
             // Maintain direct reply associations
             // @fixme what about conversation ID?
             if (!empty($activity->context->replyToID)) {
-                $orig = Notice::getKV('uri',
-                                          $activity->context->replyToID);
-                if (!empty($orig)) {
+                $orig = Notice::getKV('uri', $activity->context->replyToID);
+                if ($orig instanceof Notice) {
                     $options['reply_to'] = $orig->id;
                 }
             }
