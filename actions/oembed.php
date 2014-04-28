@@ -127,11 +127,14 @@ class OembedAction extends Action
                             }
                         }
                         $oembed['url']=$attachment->getUrl();
-                        $thumb = $attachment->getThumbnail();
-                        if ($thumb) {
+                        try {
+                            $thumb = $attachment->getThumbnail();
                             $oembed['thumbnail_url'] = $thumb->getUrl();
                             $oembed['thumbnail_width'] = $thumb->width;
                             $oembed['thumbnail_height'] = $thumb->height;
+                            unset($thumb);
+                        } catch (UnsupportedMediaException $e) {
+                            // No thumbnail data available
                         }
                     }else{
                         $oembed['type']='link';

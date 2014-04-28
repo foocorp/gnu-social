@@ -492,9 +492,8 @@ class BookmarkPlugin extends MicroAppPlugin
 
         // Attributes of the thumbnail, if any
 
-        $thumbnail = $target->getThumbnail();
-
-        if (!empty($thumbnail)) {
+        try {
+            $thumbnail = $target->getThumbnail();
             $tattrs = array('rel' => 'preview',
                             'href' => $thumbnail->url);
 
@@ -506,7 +505,9 @@ class BookmarkPlugin extends MicroAppPlugin
                 $tattrs['media:height'] = $thumbnail->height;
             }
 
-            $object->extra[] = array('link', $attrs, null);
+            $object->extra[] = array('link', $tattrs, null);
+        } catch (UnsupportedMediaException $e) {
+            // No image thumbnail metadata available
         }
 
         return $object;

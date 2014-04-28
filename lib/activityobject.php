@@ -573,10 +573,11 @@ class ActivityObject
                 $object->date = $file->date;
             }
 
-            $thumbnail = $file->getThumbnail();
-
-            if (!empty($thumbnail)) {
+            try {
+                $thumbnail = $file->getThumbnail();
                 $object->thumbnail = $thumbnail;
+            } catch (UnsupportedMediaException $e) {
+                $object->thumbnail = null;
             }
 
             switch (ActivityObject::canonicalType($object->type)) {

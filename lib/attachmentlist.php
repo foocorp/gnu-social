@@ -204,7 +204,7 @@ class AttachmentListItem extends Widget
         try {
             $thumb = $this->attachment->getThumbnail();
             $this->out->element('img', array('alt' => '', 'src' => $thumb->getUrl(), 'width' => $thumb->width, 'height' => $thumb->height));
-        } catch (Exception $e) {
+        } catch (UnsupportedMediaException $e) {
             // Image representation unavailable
         }
     }
@@ -325,6 +325,7 @@ class Attachment extends AttachmentListItem
                     try {
                         $thumb = $this->attachment->getThumbnail();
                         $poster = $thumb->getUrl();
+                        unset ($thumb);
                     } catch (Exception $e) {
                         $poster = null;
                     }

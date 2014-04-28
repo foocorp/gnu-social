@@ -62,16 +62,12 @@ class InlineAttachmentListItem extends AttachmentListItem
 
     function show()
     {
-        $this->thumb = $this->attachment->getThumbnail();
-        if (!empty($this->thumb)) {
+        try {
+            $this->thumb = $this->attachment->getThumbnail();
             parent::show();
+        } catch (UnsupportedMediaException $e) {
+            $this->thumb = null;
         }
-
-    }
-
-    function getThumbInfo()
-    {
-        return $this->thumb;
     }
 
     function showLink() {

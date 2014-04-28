@@ -444,9 +444,11 @@ class File extends Managed_DataObject
      */
     public function getThumbnail($width=null, $height=null, $crop=false)
     {
-        if ($this->width < 1 || $this->height < 1) {
+        if (intval($this->width) < 1 || intval($this->height) < 1) {
             // Old files may have 0 until migrated with scripts/upgrade.php
-            return null;
+            // For any legitimately unrepresentable ones, we could generate our
+            // own image (like a square with MIME type in text)
+            throw new UnsupportedMediaException('Object does not have an image representation.');
         }
 
         if ($width === null) {
@@ -476,13 +478,8 @@ class File extends Managed_DataObject
                         'height' => $height);
         $thumb = File_thumbnail::pkeyGet($params);
         if ($thumb === null) {
-            try {
-                $thumb = $this->generateThumbnail($width, $height, $crop);
-            } catch (UnsupportedMediaException $e) {
-                // FIXME: Add "unknown media" icon or something
-            } catch (ServerException $e) {
-                // Probably a remote media file, maybe not available locally
-            }
+            // throws exception on failure to generate thumbnail
+            $thumb = $this->generateThumbnail($width, $height, $crop);
         }
         return $thumb;
     }
