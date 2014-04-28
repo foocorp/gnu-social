@@ -1472,7 +1472,7 @@ class Notice extends Managed_DataObject
 
             $act->id      = $this->uri;
             $act->time    = strtotime($this->created);
-            $act->link    = $this->bestUrl();
+            $act->link    = $this->getUrl();
             $act->content = common_xml_safe_str($this->rendered);
 
             $profile = $this->getProfile();
@@ -1520,8 +1520,8 @@ class Notice extends Managed_DataObject
 
             try {
                 $reply = $this->getParent();
-                $ctx->replyToID  = $reply->uri;
-                $ctx->replyToUrl = $reply->bestUrl();
+                $ctx->replyToID  = $reply->getUri();
+                $ctx->replyToUrl = $reply->getUrl();
             } catch (Exception $e) {
                 // This is not a reply to something
             }
