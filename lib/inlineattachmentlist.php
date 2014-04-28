@@ -50,7 +50,7 @@ class InlineAttachmentList extends AttachmentList
      *
      * @return ListItem a list item for displaying the attachment
      */
-    function newListItem($attachment)
+    function newListItem(File $attachment)
     {
         return new InlineAttachmentListItem($attachment, $this->out);
     }
@@ -58,18 +58,6 @@ class InlineAttachmentList extends AttachmentList
 
 class InlineAttachmentListItem extends AttachmentListItem
 {
-    protected $thumb;
-
-    function show()
-    {
-        try {
-            $this->thumb = $this->attachment->getThumbnail();
-            parent::show();
-        } catch (UnsupportedMediaException $e) {
-            $this->thumb = null;
-        }
-    }
-
     function showLink() {
         $this->out->elementStart('a', $this->linkAttr());
         $this->showRepresentation();
