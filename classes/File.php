@@ -448,7 +448,7 @@ class File extends Managed_DataObject
             // Old files may have 0 until migrated with scripts/upgrade.php
             // For any legitimately unrepresentable ones, we could generate our
             // own image (like a square with MIME type in text)
-            throw new UnsupportedMediaException('Object does not have an image representation.');
+            throw new UnsupportedMediaException('No image geometry available.');
         }
 
         if ($width === null) {
@@ -469,8 +469,8 @@ class File extends Managed_DataObject
         // Doublecheck that parameters are sane and integers.
         if ($width < 1 || $width > common_config('thumbnail', 'maxsize')
                 || $height < 1 || $height > common_config('thumbnail', 'maxsize')) {
-            // Fail on bad width parameter.
-            throw new ServerException('Bad thumbnail width or height parameter');
+            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile::getScalingValues
+            throw new ServerException('Bad thumbnail size parameters.');
         }
 
         $params = array('file_id'=> $this->id,
