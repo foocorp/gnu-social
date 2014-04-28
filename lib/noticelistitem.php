@@ -370,9 +370,10 @@ class NoticeListItem extends Widget
         $this->out->elementStart('a', array('rel' => 'bookmark',
                                             'class' => 'timestamp',
                                             'href' => $noticeurl));
-        $dt = common_date_iso8601($this->notice->created);
-        $this->out->element('abbr', array('class' => 'published',
-                                          'title' => $dt),
+        $this->out->element('time', array('class' => 'dt-published',
+                                          'datetime' => common_date_iso8601($this->notice->created),
+                                          // TRANS: Timestamp title (tooltip text) for NoticeListItem
+                                          'title' => common_exact_date($this->notice->created)),
                             common_date_string($this->notice->created));
         $this->out->elementEnd('a');
     }

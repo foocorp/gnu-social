@@ -109,8 +109,10 @@ abstract class MessageListItem extends Widget
                                             'class' => 'timestamp',
                                             'href' => $messageurl));
         $dt = common_date_iso8601($this->message->created);
-        $this->out->element('abbr', array('class' => 'published',
-                                          'title' => $dt),
+        $this->out->element('time', array('class' => 'dt-published',
+                                          'datetime' => common_date_iso8601($this->message->created),
+                                          // TRANS: Timestamp title (tooltip text) for NoticeListItem
+                                          'title' => common_exact_date($this->message->created)),
                             common_date_string($this->message->created));
         $this->out->elementEnd('a');
 

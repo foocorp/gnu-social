@@ -1393,7 +1393,8 @@ function common_exact_date($dt)
     $dateStr = date('d F Y H:i:s', strtotime($dt));
     $d = new DateTime($dateStr, $_utc);
     $d->setTimezone($_siteTz);
-    return $d->format(DATE_RFC850);
+    // TRANS: Human-readable full date-time specification (formatting on http://php.net/date)
+    return $d->format(_('l, d-M-Y H:i:s T'));
 }
 
 function common_date_w3dtf($dt)

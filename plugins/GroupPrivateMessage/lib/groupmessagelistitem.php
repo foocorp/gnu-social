@@ -99,9 +99,10 @@ class GroupMessageListItem extends Widget
         $this->out->elementStart('a', array('rel' => 'bookmark',
                                             'class' => 'timestamp',
                                             'href' => $this->gm->url));
-        $dt = common_date_iso8601($this->gm->created);
-        $this->out->element('abbr', array('class' => 'published',
-                                          'title' => $dt),
+        $this->out->element('time', array('class' => 'dt-published',
+                                          'datetime' => common_date_iso8601($this->gm->created),
+                                          // TRANS: Timestamp title (tooltip text) for NoticeListItem
+                                          'title' => common_exact_date($this->gm->created)),
                             common_date_string($this->gm->created));
         $this->out->elementEnd('a');
         $this->out->elementEnd('div');
