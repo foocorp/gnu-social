@@ -116,20 +116,10 @@ class MapstractionPlugin extends Plugin
         default:
             return true;
         }
-
-        if ($this->provider == 'openlayers') {
-            // We have an optimized path for our default case.
-            //
-            // Note that OpenLayers.js needs to be separate, or it won't
-            // be able to find its UI images and styles.
-            $action->script($this->path('usermap-mxn-openlayers.min.js'));
-        } else {
-            $action->script(sprintf('%s?(%s)',
-                                    $this->path('js/mxn.js'),
-                                    $this->provider));
-
-            $action->script($this->path('usermap.js'));
-        }
+        $action->script(sprintf('%s?(%s)',
+                                $this->path('js/mxn.js'),
+                                $this->provider));
+        $action->script($this->path('usermap.js'));
 
         $action->inlineScript(sprintf('var _provider = "%s";', $this->provider));
 

@@ -28,15 +28,6 @@ function scrapeUser()
      };
 }
 
-function getMicroformatValue(element)
-{
-    if(element[0].tagName.toLowerCase() == 'abbr'){
-        return element.attr('title');
-    }else{
-        return element.text();
-    }
-}
-
 function getNoticeFromElement(noticeElement)
 {
     var notice = {};
