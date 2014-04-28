@@ -301,6 +301,7 @@ $default =
                             'Activity' => array(),
                             'Bookmark' => array(),
                             'ClientSideShorten' => array(),
+                            'EmailAuthentication' => array(),
                             'Event' => array(),
                             'OpenID' => array(),
                             'Poll' => array(),

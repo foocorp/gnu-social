@@ -27,27 +27,26 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class EmailAuthenticationPlugin extends Plugin
 {
-    //---interface implementation---//
+    // $nickname for this plugin is the user's email address
     function onStartCheckPassword($nickname, $password, &$authenticatedUser)
     {
-        if(strpos($nickname, '@'))
-        {
-            $user = User::getKV('email',$nickname);
-            if($user && isset($user->email))
-            {
-                if(common_check_user($user->nickname,$password))
-                {
-                    $authenticatedUser = $user;
-                    return false;
-                }
+        if (!strpos($nickname, '@')) {
+            return true;
+        }
+
+        $user = User::getKV('email', $nickname);
+        if ($user instanceof User && $user->email === $nickname) {
+            if (common_check_user($user->nickname, $password)) {
+                $authenticatedUser = $user;
+                return false;
             }
         }
+
+        return true;
     }
 
     function onPluginVersion(&$versions)
