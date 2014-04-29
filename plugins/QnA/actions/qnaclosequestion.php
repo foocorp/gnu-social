@@ -158,7 +158,7 @@ class QnaclosequestionAction extends Action
             $this->elementEnd('body');
             $this->endHTML();
         } else {
-            common_redirect($this->question->bestUrl(), 303);
+            common_redirect($this->question->getUrl(), 303);
         }
     }
 

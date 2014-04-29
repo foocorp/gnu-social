@@ -347,7 +347,7 @@ class RSVP extends Managed_DataObject
             $eventTitle = _m('an unknown event');
         } else {
             $notice = $event->getNotice();
-            $eventUrl = $notice->bestUrl();
+            $eventUrl = $notice->getUrl();
             $eventTitle = $event->title;
         }
 

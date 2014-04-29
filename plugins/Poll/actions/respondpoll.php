@@ -155,7 +155,7 @@ class RespondPollAction extends Action
             $this->elementEnd('body');
             $this->endHTML();
         } else {
-            common_redirect($this->poll->bestUrl(), 303);
+            common_redirect($this->poll->getUrl(), 303);
         }
     }
 

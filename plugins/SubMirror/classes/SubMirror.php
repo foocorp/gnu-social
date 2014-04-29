@@ -194,7 +194,7 @@ class SubMirror extends Managed_DataObject
     protected function copyNotice($profile, $notice)
     {
         $options = array('is_local' => Notice::LOCAL_PUBLIC,
-                         'url' => $notice->bestUrl(), // pass through the foreign link...
+                         'url' => $notice->getUrl(), // pass through the foreign link...
                          'rendered' => $notice->rendered);
 
         $saved = Notice::saveNew($profile->id,

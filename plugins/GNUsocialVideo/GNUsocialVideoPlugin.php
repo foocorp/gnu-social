@@ -98,7 +98,7 @@ class GNUsocialVideoPlugin extends MicroAppPlugin
         $object->type = Video::OBJECT_TYPE;
         $object->title = $notice->content;
         $object->summary = $notice->content;
-        $object->link = $notice->bestUrl();
+        $object->link = $notice->getUrl();
 
         $vid = Video::getByNotice($notice);
 

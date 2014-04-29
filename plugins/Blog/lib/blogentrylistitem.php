@@ -68,7 +68,7 @@ class BlogEntryListItem extends NoticeListItemAdapter
         }
 
         $out->elementStart('h4', array('class' => 'blog-entry-title'));
-        $out->element('a', array('href' => $notice->bestUrl()), $entry->title);
+        $out->element('a', array('href' => $notice->getUrl()), $entry->title);
         $out->elementEnd('h4');
 
         // XXX: kind of a hack
@@ -91,7 +91,7 @@ class BlogEntryListItem extends NoticeListItemAdapter
                 $out->elementEnd('div');
             }
 
-            $url = ($entry->url) ? $entry->url : $notice->bestUrl();
+            $url = ($entry->url) ? $entry->url : $notice->getUrl();
             $out->element('a',
                           array('href' => $url,
                                 'class' => 'blog-entry-link'),

@@ -242,7 +242,7 @@ class PollPlugin extends MicroAppPlugin
         $object->type    = self::POLL_RESPONSE_OBJECT;
         $object->title   = $notice->content;
         $object->summary = $notice->content;
-        $object->link    = $notice->bestUrl();
+        $object->link    = $notice->getUrl();
 
         $response = Poll_response::getByNotice($notice);
         if ($response) {
@@ -265,7 +265,7 @@ class PollPlugin extends MicroAppPlugin
         $object->type    = self::POLL_OBJECT;
         $object->title   = $notice->content;
         $object->summary = $notice->content;
-        $object->link    = $notice->bestUrl();
+        $object->link    = $notice->getUrl();
 
         $poll = Poll::getByNotice($notice);
         if ($poll) {

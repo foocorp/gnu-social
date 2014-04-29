@@ -361,7 +361,7 @@ class NoticeListItem extends Widget
      */
     function showNoticeLink()
     {
-        $noticeurl = $this->notice->bestUrl();
+        $noticeurl = $this->notice->getUrl();
 
         // above should always return an URL
 

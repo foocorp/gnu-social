@@ -104,7 +104,7 @@ abstract class GenericNoticeShareTarget extends NoticeShareTarget
     {
         // TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
         $pattern = _m('"%s"');
-        $url = $this->notice->bestUrl();
+        $url = $this->notice->getUrl();
         $suffix = ' ' . $url;
         $room = $this->maxLength() - mb_strlen($suffix) - (mb_strlen($pattern) - mb_strlen('%s'));
 
@@ -192,7 +192,7 @@ class FacebookShareTarget extends NoticeShareTarget
     public function targetUrl()
     {
         $args = array(
-            'u' => $this->notice->bestUrl(),
+            'u' => $this->notice->getUrl(),
             // TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
             't' => sprintf(_m('"%s"'), $this->notice->content),
         );

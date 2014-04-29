@@ -107,7 +107,7 @@ class GNUsocialPhotoPlugin extends MicroAppPlugin
         $object->type = Photo::OBJECT_TYPE;
         $object->title = $photo->title;
         $object->summary = $notice->content;
-        $object->link = $notice->bestUrl();
+        $object->link = $notice->getUrl();
 
         $object->largerImage = $photo->photo_uri;
         $object->thumbnail = $photo->thumb_uri;

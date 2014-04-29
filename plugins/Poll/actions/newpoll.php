@@ -168,7 +168,7 @@ class NewPollAction extends Action
             $this->elementEnd('body');
             $this->endHTML();
         } else {
-            common_redirect($saved->bestUrl(), 303);
+            common_redirect($saved->getUrl(), 303);
         }
     }
 

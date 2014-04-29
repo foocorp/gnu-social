@@ -372,7 +372,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $this->assertNotNull($forward);
         $this->assertEquals($notice->getUri(), $forward->getAttribute('ref'));
-        $this->assertEquals($notice->bestUrl(), $forward->getAttribute('href'));
+        $this->assertEquals($notice->getUrl(), $forward->getAttribute('href'));
     }
 
     public function testTag()

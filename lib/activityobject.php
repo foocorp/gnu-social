@@ -445,7 +445,7 @@ class ActivityObject
                 $object->title .= $e->profile->nickname;
             }
             $object->content = $notice->rendered;
-            $object->link    = $notice->bestUrl();
+            $object->link    = $notice->getUrl();
 
             $object->extra[] = array('status_net', array('notice_id' => $notice->id));
 

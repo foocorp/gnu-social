@@ -127,9 +127,9 @@ class QnA_Answer extends Managed_DataObject
         return QnA_Answer::getKV('uri', $notice->uri);
     }
 
-    function bestUrl()
+    function getUrl()
     {
-        return $this->getNotice()->bestUrl();
+        return $this->getNotice()->getUrl();
     }
 
     /**

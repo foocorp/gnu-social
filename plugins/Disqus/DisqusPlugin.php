@@ -195,7 +195,7 @@ ENDOFSCRIPT;
         $profile = Profile::getKV('id', $noticeListItem->notice->profile_id);
 
         if ($this->isAllowedRichEdit($profile)) {
-            $noticeUrl = $noticeListItem->notice->bestUrl();
+            $noticeUrl = $noticeListItem->notice->getUrl();
             $noticeUrl .= '#disqus_thread';
 
             $noticeListItem->out->element(

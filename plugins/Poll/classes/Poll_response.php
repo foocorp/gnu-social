@@ -100,9 +100,9 @@ class Poll_response extends Managed_DataObject
         return Notice::getKV('uri', $this->uri);
     }
 
-    function bestUrl()
+    function getUrl()
     {
-        return $this->getNotice()->bestUrl();
+        return $this->getNotice()->getUrl();
     }
 
     /**

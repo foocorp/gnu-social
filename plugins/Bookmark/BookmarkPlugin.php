@@ -467,7 +467,7 @@ class BookmarkPlugin extends MicroAppPlugin
         $object->type    = ActivityObject::BOOKMARK;
         $object->title   = $nb->title;
         $object->summary = $nb->description;
-        $object->link    = $notice->bestUrl();
+        $object->link    = $notice->getUrl();
 
         // Attributes of the URL
 

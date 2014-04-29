@@ -73,18 +73,18 @@ class ActivityPlugin extends Plugin
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a profile URL, %4$s is a profile name.
         $rendered = sprintf(_m('<a href="%1$s">%2$s</a> started following <a href="%3$s">%4$s</a>.'),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $profile->getBestName(),
-                            $other->profileurl,
+                            $other->getUrl(),
                             $other->getBestName());
         // TRANS: Text for "started following" item in activity plugin.
         // TRANS: %1$s is a profile name, %2$s is a profile URL,
         // TRANS: %3$s is a profile name, %4$s is a profile URL.
         $content  = sprintf(_m('%1$s (%2$s) started following %3$s (%4$s).'),
                             $profile->getBestName(),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $other->getBestName(),
-                            $other->profileurl);
+                            $other->getUrl());
 
         $notice = Notice::saveNew($profile->id,
                                   $content,
@@ -111,18 +111,18 @@ class ActivityPlugin extends Plugin
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a profile URL, %4$s is a profile name.
         $rendered = sprintf(_m('<a href="%1$s">%2$s</a> stopped following <a href="%3$s">%4$s</a>.'),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $profile->getBestName(),
-                            $other->profileurl,
+                            $other->getUrl(),
                             $other->getBestName());
         // TRANS: Text for "stopped following" item in activity plugin.
         // TRANS: %1$s is a profile name, %2$s is a profile URL,
         // TRANS: %3$s is a profile name, %4$s is a profile URL.
         $content  = sprintf(_m('%1$s (%2$s) stopped following %3$s (%4$s).'),
                             $profile->getBestName(),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $other->getBestName(),
-                            $other->profileurl);
+                            $other->getUrl());
 
         $uri = TagURI::mint('stop-following:%d:%d:%s',
                             $profile->id,
@@ -159,18 +159,18 @@ class ActivityPlugin extends Plugin
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a notice URL, %4$s is an author name.
         $rendered = sprintf(_m('<a href="%1$s">%2$s</a> liked <a href="%3$s">%4$s\'s update</a>.'),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $profile->getBestName(),
-                            $notice->bestUrl(),
+                            $notice->getUrl(),
                             $author->getBestName());
         // TRANS: Text for "liked" item in activity plugin.
         // TRANS: %1$s is a profile name, %2$s is a profile URL,
         // TRANS: %3$s is an author name, %4$s is a notice URL.
         $content  = sprintf(_m('%1$s (%2$s) liked %3$s\'s status (%4$s).'),
                             $profile->getBestName(),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $author->getBestName(),
-                            $notice->bestUrl());
+                            $notice->getUrl());
 
         $notice = Notice::saveNew($profile->id,
                                   $content,
@@ -200,18 +200,18 @@ class ActivityPlugin extends Plugin
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a notice URL, %4$s is an author name.
         $rendered = sprintf(_m('<a href="%1$s">%2$s</a> stopped liking <a href="%3$s">%4$s\'s update</a>.'),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $profile->getBestName(),
-                            $notice->bestUrl(),
+                            $notice->getUrl(),
                             $author->getBestName());
         // TRANS: Text for "stopped liking" item in activity plugin.
         // TRANS: %1$s is a profile name, %2$s is a profile URL,
         // TRANS: %3$s is an author name, %4$s is a notice URL.
         $content  = sprintf(_m('%1$s (%2$s) stopped liking %3$s\'s status (%4$s).'),
                             $profile->getBestName(),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $author->getBestName(),
-                            $notice->bestUrl());
+                            $notice->getUrl());
 
         $uri = TagURI::mint('unlike:%d:%d:%s',
                             $profile->id,
@@ -245,7 +245,7 @@ class ActivityPlugin extends Plugin
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a group URL, %4$s is a group name.
         $rendered = sprintf(_m('<a href="%1$s">%2$s</a> joined the group <a href="%3$s">%4$s</a>.'),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $profile->getBestName(),
                             $group->homeUrl(),
                             $group->getBestName());
@@ -254,7 +254,7 @@ class ActivityPlugin extends Plugin
         // TRANS: %3$s is a group name, %4$s is a group URL.
         $content  = sprintf(_m('%1$s (%2$s) joined the group %3$s (%4$s).'),
                             $profile->getBestName(),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $group->getBestName(),
                             $group->homeUrl());
 
@@ -286,7 +286,7 @@ class ActivityPlugin extends Plugin
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a group URL, %4$s is a group name.
         $rendered = sprintf(_m('<a href="%1$s">%2$s</a> left the group <a href="%3$s">%4$s</a>.'),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $profile->getBestName(),
                             $group->homeUrl(),
                             $group->getBestName());
@@ -295,7 +295,7 @@ class ActivityPlugin extends Plugin
         // TRANS: %3$s is a group name, %4$s is a group URL.
         $content  = sprintf(_m('%1$s (%2$s) left the group %3$s (%4$s).'),
                             $profile->getBestName(),
-                            $profile->profileurl,
+                            $profile->getUrl(),
                             $group->getBestName(),
                             $group->homeUrl());
 

@@ -216,7 +216,7 @@ class EventPlugin extends MicroappPlugin
         $obj->type    = Happening::OBJECT_TYPE;
         $obj->title   = $happening->title;
         $obj->summary = $happening->description;
-        $obj->link    = $notice->bestUrl();
+        $obj->link    = $notice->getUrl();
 
         // XXX: how to get this stuff into JSON?!
 

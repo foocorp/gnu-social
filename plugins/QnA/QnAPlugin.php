@@ -242,7 +242,7 @@ class QnAPlugin extends MicroAppPlugin
         $obj->id      = $question->uri;
         $obj->type    = QnA_Question::OBJECT_TYPE;
         $obj->title   = $question->title;
-        $obj->link    = $notice->bestUrl();
+        $obj->link    = $notice->getUrl();
 
         // XXX: probably need other stuff here
 

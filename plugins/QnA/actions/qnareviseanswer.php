@@ -166,7 +166,7 @@ class QnareviseanswerAction extends Action
             $this->elementEnd('body');
             $this->endHTML();
         } else {
-            common_redirect($this->answer->bestUrl(), 303);
+            common_redirect($this->answer->getUrl(), 303);
         }
     }
 
@@ -208,7 +208,7 @@ class QnareviseanswerAction extends Action
             $this->elementEnd('body');
             $this->endHTML();
         } else {
-            common_redirect($this->answer->bestUrl(), 303);
+            common_redirect($this->answer->getUrl(), 303);
         }
     }
 
