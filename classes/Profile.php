@@ -756,7 +756,7 @@ class Profile extends Managed_DataObject
      * @param Profile $other
      * @return boolean
      */
-    function hasPendingSubscription($other)
+    function hasPendingSubscription(Profile $other)
     {
         return Subscription_queue::exists($this, $other);
     }
@@ -767,7 +767,7 @@ class Profile extends Managed_DataObject
      * @param Profile $other
      * @return boolean
      */
-    function mutuallySubscribed($other)
+    function mutuallySubscribed(Profile $other)
     {
         return $this->isSubscribed($other) &&
           $other->isSubscribed($this);
@@ -1547,5 +1547,21 @@ class Profile extends Managed_DataObject
     public function getProfile()
     {
         return $this;
+    }
+
+    /**
+     * This will perform shortenLinks with the connected User object.
+     *
+     * Won't work on remote profiles or groups, so expect a
+     * NoSuchUserException if you don't know it's a local User.
+     *
+     * @param string $text      String to shorten
+     * @param boolean $always   Disrespect minimum length etc.
+     *
+     * @return string link-shortened $text
+     */
+    public function shortenLinks($text, $always=false)
+    {
+        return $this->getUser()->shortenLinks($text, $always);
     }
 }

@@ -51,7 +51,7 @@ class ApiDirectMessageNewAction extends ApiAuthAction
 {
     protected $needPost = true;
 
-    var $other   = null;
+    var $other   = null;    // Profile we're sending to
     var $content = null;
 
     /**
@@ -77,7 +77,7 @@ class ApiDirectMessageNewAction extends ApiAuthAction
         $screen_name = $this->trimmed('screen_name');
 
         if (isset($user_param) || isset($user_id) || isset($screen_name)) {
-            $this->other = $this->getTargetUser($user_param);
+            $this->other = $this->getTargetProfile($user_param);
         }
 
         return true;
@@ -108,7 +108,7 @@ class ApiDirectMessageNewAction extends ApiAuthAction
             }
         }
 
-        if (empty($this->other)) {
+        if (!$this->other instanceof Profile) {
             // TRANS: Client error displayed if a recipient user could not be found (403).
             $this->clientError(_('Recipient user not found.'), 403);
         } else if (!$this->user->mutuallySubscribed($this->other)) {

@@ -78,21 +78,24 @@ class NewmessageAction extends FormAction
     {
         parent::prepare($args);
 
-        $user = $this->scoped->getUser();
-
         $this->content = $this->trimmed('content');
         $this->to = $this->trimmed('to');
 
         if ($this->to) {
 
-            $this->other = User::getKV('id', $this->to);
+            $this->other = Profile::getKV('id', $this->to);
 
-            if (!$this->other) {
+            if (!$this->other instanceof Profile) {
                 // TRANS: Client error displayed trying to send a direct message to a non-existing user.
                 $this->clientError(_('No such user.'), 404);
             }
 
-            if (!$user->mutuallySubscribed($this->other)) {
+            if (!$this->other->isLocal()) {
+                // TRANS: Explains that current federation does not support direct, private messages yet.
+                $this->clientError(_('You cannot send direct messages to federated users yet.'));
+            }
+
+            if (!$this->scoped->mutuallySubscribed($this->other)) {
                 // TRANS: Client error displayed trying to send a direct message to a user while sender and
                 // TRANS: receiver are not subscribed to each other.
                 $this->clientError(_('You cannot send a message to this user.'), 404);
@@ -106,14 +109,13 @@ class NewmessageAction extends FormAction
     {
         parent::handlePost();
 
-        assert($this->scoped); // XXX: maybe an error instead...
-        $user = $this->scoped->getUser();
+        assert($this->scoped instanceof Profile); // XXX: maybe an error instead...
 
         if (!$this->content) {
             // TRANS: Form validator error displayed trying to send a direct message without content.
             $this->clientError(_('No content!'));
         } else {
-            $content_shortened = $user->shortenLinks($this->content);
+            $content_shortened = $this->scoped->shortenLinks($this->content);
 
             if (Message::contentTooLong($content_shortened)) {
                 // TRANS: Form validation error displayed when message content is too long.
@@ -128,7 +130,7 @@ class NewmessageAction extends FormAction
         if (!$this->other) {
             // TRANS: Form validation error displayed trying to send a direct message without specifying a recipient.
             $this->clientError(_('No recipient specified.'));
-        } else if (!$user->mutuallySubscribed($this->other)) {
+        } else if (!$this->scoped->mutuallySubscribed($this->other)) {
             // TRANS: Client error displayed trying to send a direct message to a user while sender and
             // TRANS: receiver are not subscribed to each other.
             $this->clientError(_('You cannot send a message to this user.'), 404);

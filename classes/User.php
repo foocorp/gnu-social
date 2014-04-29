@@ -142,7 +142,7 @@ class User extends Managed_DataObject
         return $this->getProfile()->isSubscribed($other);
     }
 
-    function hasPendingSubscription($other)
+    function hasPendingSubscription(Profile $other)
     {
         return $this->getProfile()->hasPendingSubscription($other);
     }
@@ -440,7 +440,7 @@ class User extends Managed_DataObject
         return $this->getProfile()->hasFave($notice);
     }
 
-    function mutuallySubscribed($other)
+    function mutuallySubscribed(Profile $other)
     {
         return $this->getProfile()->mutuallySubscribed($other);
     }

@@ -586,7 +586,7 @@ class MessageCommand extends Command
     function handle($channel)
     {
         try {
-            $other = $this->getUser($this->other);
+            $other = $this->getUser($this->other)->getProfile();
         } catch (CommandException $e) {
             try {
                 $profile = $this->getProfile($this->other);
@@ -619,7 +619,7 @@ class MessageCommand extends Command
             return;
         }
 
-        if (!$other) {
+        if (!$other instanceof Profile) {
             // TRANS: Error text shown when trying to send a direct message to a user that does not exist.
             $channel->error($this->user, _('No such user.'));
             return;
