@@ -62,7 +62,7 @@ class VideoThumbnailsPlugin extends Plugin
         }
 
         // We failed to get a frame.
-        if ($frame === null) {
+        if (!$frame instanceof ffmpeg_frame) {
             return true;
         }
 
