@@ -379,7 +379,7 @@ function format_status($notice)
 
     // Twitter still has a 140-char hardcoded max.
     if (mb_strlen($statustxt) > 140) {
-        $noticeUrl = common_shorten_url($notice->uri);
+        $noticeUrl = common_shorten_url($notice->getUrl());
         $urlLen = mb_strlen($noticeUrl);
         $statustxt = mb_substr($statustxt, 0, 140 - ($urlLen + 3)) . ' … ' . $noticeUrl;
     }

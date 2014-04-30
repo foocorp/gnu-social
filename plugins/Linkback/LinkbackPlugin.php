@@ -207,7 +207,7 @@ class LinkbackPlugin extends Plugin
                                          $profile->nickname,
                                          common_exact_date($this->notice->created)),
                       'excerpt' => $this->notice->content,
-                      'url' => $this->notice->uri,
+                      'url' => $this->notice->getUrl(),
                       'blog_name' => $profile->nickname);
 
         $fetcher = Auth_Yadis_Yadis::getHTTPFetcher();

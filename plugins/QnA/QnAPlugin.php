@@ -465,7 +465,7 @@ class QnAPlugin extends MicroAppPlugin
             $ellipsis = _m('…');
             $short = mb_substr($content, 0, $max - 1);
             $short .= sprintf('<a href="%1$s" rel="more" title="%2$s">%3$s</a>',
-                              $notice->uri,
+                              $notice->getUrl(),
                               // TRANS: Title for link that is an ellipsis in English.
                               _m('more...'),
                               $ellipsis);

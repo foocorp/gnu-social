@@ -304,14 +304,14 @@ class ShownoticeAction extends Action
             'href'=>common_local_url(
                 'oembed',
                 array(),
-                array('format'=>'json','url'=>$this->notice->uri)),
+                array('format'=>'json','url'=>$this->notice->getUrl())),
             'title'=>'oEmbed'),null);
         $this->element('link',array('rel'=>'alternate',
             'type'=>'text/xml+oembed',
             'href'=>common_local_url(
                 'oembed',
                 array(),
-                array('format'=>'xml','url'=>$this->notice->uri)),
+                array('format'=>'xml','url'=>$this->notice->getUrl())),
             'title'=>'oEmbed'),null);
 
         // Extras to aid in sharing notices to Facebook

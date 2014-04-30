@@ -142,7 +142,7 @@ class Fave extends Managed_DataObject
         // TRANS: %1$s is a user nickname or full name, %2$s is a notice URI.
         $act->content = sprintf(_('%1$s marked notice %2$s as a favorite.'),
                                $profile->getBestName(),
-                               $notice->uri);
+                               $notice->getUrl());
 
         $act->actor     = ActivityObject::fromProfile($profile);
         $act->objects[] = ActivityObject::fromNotice($notice);

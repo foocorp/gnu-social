@@ -1075,7 +1075,7 @@ class OStatusPlugin extends Plugin
         // TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
         $act->content = sprintf(_m('%1$s no longer likes %2$s.'),
                                $profile->getBestName(),
-                               $notice->uri);
+                               $notice->getUrl());
 
         $act->actor   = ActivityObject::fromProfile($profile);
         $act->object  = ActivityObject::fromNotice($notice);

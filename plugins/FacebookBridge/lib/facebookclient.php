@@ -628,7 +628,7 @@ class Facebookclient
 
         // Facebook has a 420-char hardcoded max.
         if (mb_strlen($statustxt) > 420) {
-            $noticeUrl = common_shorten_url($this->notice->uri);
+            $noticeUrl = common_shorten_url($this->notice->getUrl());
             $urlLen = mb_strlen($noticeUrl);
             $txt = mb_substr($statustxt, 0, 420 - ($urlLen + 3)) . ' … ' . $noticeUrl;
         }
