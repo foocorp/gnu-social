@@ -74,29 +74,27 @@ class UsersalmonAction extends SalmonAction
         }
 
         // Notice must either be a) in reply to a notice by this user
-        // or b) to the attention of this user
-        // or c) in reply to a notice to the attention of this user
+        // or b) in reply to a notice to the attention of this user
+        // or c) to the attention of this user
 
         $context = $this->activity->context;
+        $notice = false;
 
         if (!empty($context->replyToID)) {
             $notice = Notice::getKV('uri', $context->replyToID);
-            if (empty($notice)) {
-                // TRANS: Client exception.
-                throw new ClientException(_m('In reply to unknown notice.'));
-            }
-            if ($notice->profile_id != $this->user->id &&
-                !in_array($this->user->id, $notice->getReplies())) {
-                // TRANS: Client exception.
-                throw new ClientException(_m('In reply to a notice not by this user and not mentioning this user.'));
-            }
-        } else if (!empty($context->attention)) {
-            if (!array_key_exists($this->user->getUri(), $context->attention) &&
-                !array_key_exists(common_profile_url($this->user->nickname), $context->attention)) {
-                common_log(LOG_ERR, $this->user->getUri() . "not in attention list (".implode(',', array_keys($context->attention)).')');
-                // TRANS: Client exception.
-                throw new ClientException(_m('To the attention of user(s), not including this one.'));
-            }
+        }
+
+        if (!empty($notice) &&
+            ($notice->profile_id == $this->user->id ||
+             array_key_exists($this->user->id, $notice->getReplies())))
+        {
+            // In reply to a notice either from or mentioning this user.
+        } else if (!empty($context->attention) &&
+                   (array_key_exists($this->user->uri, $context->attention) ||
+                    array_key_exists($common_profile_url($this->user->nickname),
+                             $context->attention)))
+        {
+            // To the attention of this user.
         } else {
             // TRANS: Client exception.
             throw new ClientException(_m('Not to anyone in reply to anything.'));
