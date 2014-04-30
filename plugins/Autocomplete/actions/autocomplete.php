@@ -128,6 +128,9 @@ class AutocompleteAction extends Action
             $group = new User_group();
             $group->limit($limit);
             $group->whereAdd('nickname like \'' . trim($group->escape($term), '\'') . '%\'');
+            //Can't post to groups we're not subscribed to...:
+            $group->whereAdd('id in (SELECT group_id from group_member'
+                             . ' where profile_id = ' . $cur->id . ')');
             if($group->find()){
                 while($group->fetch()) {
                     $this->groups[]=clone($group);
