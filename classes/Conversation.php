@@ -56,7 +56,10 @@ class Conversation extends Managed_DataObject
     }
 
     /**
-     * Factory method for creating a new conversation
+     * Factory method for creating a new conversation.
+     *
+     * Use this for locally initiated conversations. Remote notices should
+     * preferrably supply their own conversation URIs in the OStatus feed.
      *
      * @return Conversation the new conversation DO
      */
@@ -68,7 +71,10 @@ class Conversation extends Managed_DataObject
         $conv = new Conversation();
         $conv->created = common_sql_now();
         $conv->id = $notice->id;
-        $conv->uri = common_local_url('conversation', array('id' => $notice->id), null, null, false);
+        $conv->uri = sprintf('%s%s=%d:%s=%s',
+                             TagURI::mint(),
+                             'noticeId', $notice->id,
+                             'objectType', 'thread');
         $result = $conv->insert();
 
         if ($result === false) {
