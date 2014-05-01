@@ -53,15 +53,15 @@ abstract class Installer
 
     public static $dbModules = array(
         'mysql' => array(
-            'name' => 'MySQL',
+            'name' => 'MariaDB (or MySQL 5.5+)',
             'check_module' => 'mysqli',
             'scheme' => 'mysqli', // DSN prefix for PEAR::DB
         ),
-        'pgsql' => array(
+/*        'pgsql' => array(
             'name' => 'PostgreSQL',
             'check_module' => 'pgsql',
             'scheme' => 'pgsql', // DSN prefix for PEAR::DB
-        ),
+        ),*/
     );
 
     /**

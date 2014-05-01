@@ -165,7 +165,9 @@ class WebInstaller extends Installer
                 } else {
                     $checked = '';
                 }
-                $dbRadios .= "<input type=\"radio\" name=\"dbtype\" id=\"dbtype-$type\" value=\"$type\" $checked/> $info[name]<br />\n";
+                $dbRadios .= sprintf('<input type="radio" name="dbtype" id="dbtype-%1$s" value="%1$s" %2$s/>%3$s<br />',
+                                htmlspecialchars($type), $checked,
+                                htmlspecialchars($info['name']));
             }
         }
 
@@ -212,7 +214,7 @@ class WebInstaller extends Installer
                     </li>
                     <li>
                         <label for="dbtype">Type</label>
-                        $dbRadios
+                        {$dbRadios}
                         <p class="form_guide">Database type</p>
                     </li>
                     <li>
