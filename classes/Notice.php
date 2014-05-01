@@ -210,6 +210,11 @@ class Notice extends Managed_DataObject
         return $this->uri;
     }
 
+    public function getLocalUrl()
+    {
+        return common_local_url('shownotice', array('notice' => $this->id), null, null, false);
+    }
+
     public function getUrl()
     {
         // The risk is we start having empty urls and non-http uris...

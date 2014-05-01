@@ -27,13 +27,9 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
-require_once INSTALLDIR.'/lib/personalgroupnav.php';
 require_once INSTALLDIR.'/lib/noticelist.php';
-require_once INSTALLDIR.'/lib/feedlist.php';
 
 /**
  * Show a single notice
@@ -79,27 +75,24 @@ class ShownoticeAction extends Action
 
         $this->notice = $this->getNotice();
 
-        $cur = common_current_user();
-
-        if (!empty($cur)) {
-            $curProfile = $cur->getProfile();
-        } else {
-            $curProfile = null;
-        }
-
-        if (!$this->notice->inScope($curProfile)) {
+        if (!$this->notice->inScope($this->scoped)) {
             // TRANS: Client exception thrown when trying a view a notice the user has no access to.
             throw new ClientException(_('Not available.'), 403);
         }
 
         $this->profile = $this->notice->getProfile();
 
-        if (empty($this->profile)) {
+        if (!$this->profile instanceof Profile) {
             // TRANS: Server error displayed trying to show a notice without a connected profile.
             $this->serverError(_('Notice has no profile.'), 500);
         }
 
-        $this->user = User::getKV('id', $this->profile->id);
+        try {
+            $this->user = $this->profile->getUser();
+        } catch (NoSuchUserException $e) {
+            // FIXME: deprecate $this->user stuff in extended classes
+            $this->user = null;
+        }
 
         try {
             $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
@@ -214,19 +207,9 @@ class ShownoticeAction extends Action
     {
         parent::handle();
 
-        if ($this->boolean('ajax')) {
+        if (StatusNet::isAjax()) {
             $this->showAjax();
         } else {
-            if ($this->notice->is_local == Notice::REMOTE) {
-                try {
-                    $target = $this->notice->getUrl();
-                    if ($target != $this->selfUrl()) {
-                        common_redirect($target, 301);
-                    }
-                } catch (InvalidUrlException $e) {
-                    common_debug('ShownoticeAction could not redirect to remote notice with id='.$this->notice->id . '. Falling back to showPage().');
-                }
-            }
             $this->showPage();
         }
     }

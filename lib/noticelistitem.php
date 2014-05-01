@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * widget for displaying a single notice
@@ -354,22 +350,15 @@ class NoticeListItem extends Widget
     /**
      * show the link to the main page for the notice
      *
-     * Displays a link to the page for a notice, with "relative" time. Tries to
-     * get remote notice URLs correct, but doesn't always succeed.
+     * Displays a local link to the rendered notice, with "relative" time.
      *
      * @return void
      */
     function showNoticeLink()
     {
-        $noticeurl = $this->notice->getUrl();
-
-        // above should always return an URL
-
-        assert(!empty($noticeurl));
-
         $this->out->elementStart('a', array('rel' => 'bookmark',
                                             'class' => 'timestamp',
-                                            'href' => $noticeurl));
+                                            'href' => $this->notice->getLocalUrl()));
         $this->out->element('time', array('class' => 'dt-published',
                                           'datetime' => common_date_iso8601($this->notice->created),
                                           // TRANS: Timestamp title (tooltip text) for NoticeListItem
