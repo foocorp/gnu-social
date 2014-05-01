@@ -210,11 +210,27 @@ class Notice extends Managed_DataObject
         return $this->uri;
     }
 
+    /*
+     * @param $root boolean If true, link to just the conversation root.
+     *
+     * @return URL to conversation
+     */
+    public function getConversationUrl($anchor=true)
+    {
+        return Conversation::getUrlFromNotice($this, $anchor);
+    }
+
+    /*
+     * Get the local representation URL of this notice.
+     */
     public function getLocalUrl()
     {
         return common_local_url('shownotice', array('notice' => $this->id), null, null, false);
     }
 
+    /*
+     * Get the original representation URL of this notice.
+     */
     public function getUrl()
     {
         // The risk is we start having empty urls and non-http uris...

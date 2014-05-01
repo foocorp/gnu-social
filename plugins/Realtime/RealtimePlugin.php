@@ -321,7 +321,7 @@ class RealtimePlugin extends Plugin
         $arr['url'] = $notice->getUrl();
         $arr['html'] = htmlspecialchars($notice->rendered);
         $arr['source'] = htmlspecialchars($arr['source']);
-        $arr['conversation_url'] = $this->getConversationUrl($notice);
+        $arr['conversation_url'] = $notice->getConversationUrl();
 
         $profile = $notice->getProfile();
         $arr['user']['profile_url'] = $profile->profileurl;
@@ -336,7 +336,7 @@ class RealtimePlugin extends Plugin
                 $arr['retweeted_status']['source'] = htmlspecialchars($original->source);
                 $originalProfile = $original->getProfile();
                 $arr['retweeted_status']['user']['profile_url'] = $originalProfile->profileurl;
-                $arr['retweeted_status']['conversation_url'] = $this->getConversationUrl($original);
+                $arr['retweeted_status']['conversation_url'] = $original->getConversationUrl();
             }
             unset($original);
         }
@@ -362,33 +362,6 @@ class RealtimePlugin extends Plugin
         $nt = null;
 
         return $tags;
-    }
-
-    function getConversationUrl($notice)
-    {
-        $convurl = null;
-
-        if ($notice->hasConversation()) {
-            $conv = Conversation::getKV(
-                'id',
-                $notice->conversation
-            );
-            $convurl = $conv->uri;
-
-            if(empty($convurl)) {
-                $msg = sprintf( "Could not find Conversation ID %d to make 'in context'"
-                    . "link for Notice ID %d.",
-                    $notice->conversation,
-                    $notice->id
-                );
-
-                common_log(LOG_WARNING, $msg);
-            } else {
-                $convurl .= '#notice-' . $notice->id;
-            }
-        }
-
-        return $convurl;
     }
 
     function _getScripts()

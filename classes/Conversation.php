@@ -97,4 +97,22 @@ class Conversation extends Managed_DataObject
 
         return $cnt;
     }
+
+    static public function getUrlFromNotice(Notice $notice, $anchor=true)
+    {
+        $conv = self::getKV('id', $notice->conversation);
+        return $conv->getUrl($anchor ? $notice->id : null);
+    }
+
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    public function getUrl($noticeId=null)
+    {
+        // FIXME: the URL router should take notice-id as an argument...
+        return common_local_url('conversation', array('id' => $this->id)) .
+                ($noticeId===null ? '' : "#notice-{$noticeId}");
+    }
 }

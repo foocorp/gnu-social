@@ -526,7 +526,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $element = $this->_entryToElement($entry, true);
 
-        $this->assertEquals($conv->uri, ActivityUtils::getLink($element, 'ostatus:conversation'));
+        $this->assertEquals($conv->getUri(), ActivityUtils::getLink($element, 'ostatus:conversation'));
     }
 
     function __destruct()

@@ -457,11 +457,11 @@ h6 {font-size: 1em;}
     max-width: 440px;
 }
 
-div.entry-content a.response:before {
-	content: "(";
+.entry-content a.conversation:before {
+	content: " (";
 }
 
-div.entry-content a.response:after {
+.entry-content a.conversation:after {
 	content: ")";
 }
 

@@ -183,17 +183,9 @@ class UserEmailSummaryHandler extends QueueHandler
                                         'title' => $dt),
                           common_date_string($notice->created));
             $out->elementEnd('a');
-            if ($notice->hasConversation()) {
-                $conv = Conversation::getKV('id', $notice->conversation);
-                $convurl = $conv->uri;
-                if (!empty($convurl)) {
-                    $out->text(' ');
-                    $out->element('a',
-                                  array('href' => $convurl.'#notice-'.$notice->id),
-                                  // TRANS: Link text for link to conversation view.
-                                  _m('in context'));
-                }
-            }
+            $out->element('a', array('href' => $notice->getConversationUrl()),
+                          // TRANS: Link text for link to conversation view.
+                          _m('in context'));
             $out->elementEnd('div');
             $out->elementEnd('td');
             $out->elementEnd('tr');
