@@ -49,6 +49,7 @@ class Salmon
     public function post($endpoint_uri, $xml, Profile $actor)
     {
         if (empty($endpoint_uri)) {
+            common_debug('No endpoint URI for Salmon post to '.$actor->getUri());
             return false;
         }
 
