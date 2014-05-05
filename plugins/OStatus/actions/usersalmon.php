@@ -17,9 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * @package OStatusPlugin
@@ -27,7 +25,7 @@ if (!defined('STATUSNET')) {
  */
 class UsersalmonAction extends SalmonAction
 {
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -40,7 +38,7 @@ class UsersalmonAction extends SalmonAction
 
         $this->user = User::getKV('id', $id);
 
-        if (empty($this->user)) {
+        if (!$this->user instanceof User) {
             // TRANS: Client error displayed when referring to a non-existing user.
             $this->clientError(_m('No such user.'));
         }
@@ -84,7 +82,7 @@ class UsersalmonAction extends SalmonAction
             $notice = Notice::getKV('uri', $context->replyToID);
         }
 
-        if (!empty($notice) &&
+        if ($notice instanceof Notice &&
             ($notice->profile_id == $this->user->id ||
              array_key_exists($this->user->id, $notice->getReplies())))
         {
@@ -102,7 +100,7 @@ class UsersalmonAction extends SalmonAction
 
         $existing = Notice::getKV('uri', $this->activity->objects[0]->id);
         if ($existing instanceof Notice) {
-            common_log(LOG_ERR, "Not saving notice '".$existing->getUri()."'; already exists.");
+            common_log(LOG_ERR, "Not saving notice with duplicate URI '".$existing->getUri()."' (seems it already exists).");
             return;
         }
 
@@ -116,7 +114,7 @@ class UsersalmonAction extends SalmonAction
     function handleFollow()
     {
         $oprofile = $this->ensureProfile();
-        if ($oprofile) {
+        if ($oprofile instanceof Ostatus_profile) {
             common_log(LOG_INFO, sprintf('Setting up subscription from remote %s to local %s', $oprofile->getUri(), $this->user->getNickname()));
             Subscription::start($oprofile->localProfile(),
                                 $this->user->getProfile());
@@ -134,7 +132,7 @@ class UsersalmonAction extends SalmonAction
     function handleUnfollow()
     {
         $oprofile = $this->ensureProfile();
-        if ($oprofile) {
+        if ($oprofile instanceof Ostatus_profile) {
             common_log(LOG_INFO, sprintf('Canceling subscription from remote %s to local %s', $oprofile->getUri(), $this->user->getNickname()));
             Subscription::cancel($oprofile->localProfile(), $this->user->getProfile());
         } else {
@@ -155,7 +153,7 @@ class UsersalmonAction extends SalmonAction
         $old = Fave::pkeyGet(array('user_id' => $profile->id,
                                    'notice_id' => $notice->id));
 
-        if (!empty($old)) {
+        if ($old instanceof Fave) {
             // TRANS: Client exception.
             throw new ClientException(_m('This is already a favorite.'));
         }
@@ -177,7 +175,7 @@ class UsersalmonAction extends SalmonAction
 
         $fave = Fave::pkeyGet(array('user_id' => $profile->id,
                                    'notice_id' => $notice->id));
-        if (empty($fave)) {
+        if (!$fave instanceof Fave) {
             // TRANS: Client exception.
             throw new ClientException(_m('Notice was not favorited!'));
         }
@@ -191,12 +189,11 @@ class UsersalmonAction extends SalmonAction
             if ($this->activity->objects[0]->type != ActivityObject::PERSON) {
                 // TRANS: Client exception.
                 throw new ClientException(_m('Not a person object.'));
-                return false;
             }
             // this is a peopletag
             $tagged = User::getKV('uri', $this->activity->objects[0]->id);
 
-            if (empty($tagged)) {
+            if (!$tagged instanceof User) {
                 // TRANS: Client exception.
                 throw new ClientException(_m('Unidentified profile being listed.'));
             }
@@ -230,7 +227,7 @@ class UsersalmonAction extends SalmonAction
             // this is a peopletag
             $tagged = User::getKV('uri', $this->activity->objects[0]->id);
 
-            if (empty($tagged)) {
+            if (!$tagged instanceof User) {
                 // TRANS: Client exception.
                 throw new ClientException(_m('Unidentified profile being unlisted.'));
             }
@@ -259,13 +256,8 @@ class UsersalmonAction extends SalmonAction
      * @return Notice
      * @throws ClientException on invalid input
      */
-    function getNotice($object)
+    function getNotice(ActivityObject $object)
     {
-        if (!$object) {
-            // TRANS: Client exception.
-            throw new ClientException(_m('Cannot favorite/unfavorite without an object.'));
-        }
-
         switch ($object->type) {
         case ActivityObject::ARTICLE:
         case ActivityObject::BLOGENTRY:
@@ -280,7 +272,7 @@ class UsersalmonAction extends SalmonAction
 
         $notice = Notice::getKV('uri', $object->id);
 
-        if (empty($notice)) {
+        if (!$notice instanceof Notice) {
             // TRANS: Client exception. %s is an object ID.
             throw new ClientException(sprintf(_m('Notice with ID %s unknown.'),$object->id));
         }
