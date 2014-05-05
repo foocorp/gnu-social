@@ -215,8 +215,6 @@ class Magicsig extends Managed_DataObject
             $magic_sig->loadKey($mod, $private_exp, 'private');
         }
 
-        common_debug('Magicsig success: Public exponent from provided string: '.var_export($mod,true));
-
         return $magic_sig;
     }
 
