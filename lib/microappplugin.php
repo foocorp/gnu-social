@@ -254,11 +254,11 @@ abstract class MicroAppPlugin extends Plugin
      */
     function onNoticeDeleteRelated($notice)
     {
-        if ($this->isMyNotice($notice)) {
-            $this->deleteRelated($notice);
+        if (!$this->isMyNotice($notice)) {
+            return true;
         }
 
-        return true;
+        $this->deleteRelated($notice);
     }
 
     /**
@@ -339,12 +339,12 @@ abstract class MicroAppPlugin extends Plugin
      */
     function onStartActivityObjectFromNotice($notice, &$object)
     {
-        if ($this->isMyNotice($notice)) {
-            $object = $this->activityObjectFromNotice($notice);
-            return false;
+        if (!$this->isMyNotice($notice)) {
+            return true;
         }
 
-        return true;
+        $object = $this->activityObjectFromNotice($notice);
+        return false;
     }
 
     /**
@@ -357,29 +357,28 @@ abstract class MicroAppPlugin extends Plugin
      */
     function onStartHandleFeedEntryWithProfile($activity, $oprofile, &$notice)
     {
-        if ($this->isMyActivity($activity)) {
-
-            $actor = $oprofile->checkAuthorship($activity);
-
-            if (!$actor instanceof Ostatus_profile) {
-                // TRANS: Client exception thrown when no author for an activity was found.
-                throw new ClientException(_('Cannot get author for activity.'));
-            }
-
-            $object = $activity->objects[0];
-
-            $options = array('uri' => $object->id,
-                             'url' => $object->link,
-                             'is_local' => Notice::REMOTE,
-                             'source' => 'ostatus');
-
-            // $actor is an ostatus_profile
-            $notice = $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
-
-            return false;
+        if (!$this->isMyActivity($activity)) {
+            return true;
         }
 
-        return true;
+        $actor = $oprofile->checkAuthorship($activity);
+
+        if (!$actor instanceof Ostatus_profile) {
+            // TRANS: Client exception thrown when no author for an activity was found.
+            throw new ClientException(_('Cannot get author for activity.'));
+        }
+
+        $object = $activity->objects[0];
+
+        $options = array('uri' => $object->id,
+                         'url' => $object->link,
+                         'is_local' => Notice::REMOTE,
+                         'source' => 'ostatus');
+
+        // $actor is an ostatus_profile
+        $notice = $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
+
+        return false;
     }
 
     /**
@@ -393,51 +392,50 @@ abstract class MicroAppPlugin extends Plugin
 
     function onStartHandleSalmonTarget($activity, $target)
     {
-        if ($this->isMyActivity($activity)) {
-            $this->log(LOG_INFO, "Checking {$activity->id} as a valid Salmon slap.");
-
-            if ($target instanceof User_group) {
-                $uri = $target->getUri();
-                if (!array_key_exists($uri, $activity->context->attention)) {
-                    // @todo FIXME: please document (i18n).
-                    // TRANS: Client exception thrown when ...
-                    throw new ClientException(_('Object not posted to this group.'));
-                }
-            } else if ($target instanceof User) {
-                $uri      = $target->uri;
-                $original = null;
-                if (!empty($activity->context->replyToID)) {
-                    $original = Notice::getKV('uri',
-                                                  $activity->context->replyToID);
-                }
-                if (!array_key_exists($uri, $activity->context->attention) &&
-                    (empty($original) ||
-                     $original->profile_id != $target->id)) {
-                    // @todo FIXME: Please document (i18n).
-                    // TRANS: Client exception when ...
-                    throw new ClientException(_('Object not posted to this user.'));
-                }
-            } else {
-                // TRANS: Server exception thrown when a micro app plugin uses a target that cannot be handled.
-                throw new ServerException(_('Do not know how to handle this kind of target.'));
-            }
-
-            $actor = Ostatus_profile::ensureActivityObjectProfile($activity->actor);
-
-            $object = $activity->objects[0];
-
-            $options = array('uri' => $object->id,
-                             'url' => $object->link,
-                             'is_local' => Notice::REMOTE,
-                             'source' => 'ostatus');
-
-            // $actor is an ostatus_profile
-            $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
-
-            return false;
+        if (!$this->isMyActivity($activity)) {
+            return true;
         }
 
-        return true;
+        $this->log(LOG_INFO, "Checking {$activity->id} as a valid Salmon slap.");
+
+        if ($target instanceof User_group) {
+            $uri = $target->getUri();
+            if (!array_key_exists($uri, $activity->context->attention)) {
+                // @todo FIXME: please document (i18n).
+                // TRANS: Client exception thrown when ...
+                throw new ClientException(_('Object not posted to this group.'));
+            }
+        } else if ($target instanceof User) {
+            $uri      = $target->uri;
+            $original = null;
+            if (!empty($activity->context->replyToID)) {
+                $original = Notice::getKV('uri', $activity->context->replyToID);
+            }
+            if (!array_key_exists($uri, $activity->context->attention) &&
+                (empty($original) ||
+                 $original->profile_id != $target->id)) {
+                // @todo FIXME: Please document (i18n).
+                // TRANS: Client exception when ...
+                throw new ClientException(_('Object not posted to this user.'));
+            }
+        } else {
+            // TRANS: Server exception thrown when a micro app plugin uses a target that cannot be handled.
+            throw new ServerException(_('Do not know how to handle this kind of target.'));
+        }
+
+        $actor = Ostatus_profile::ensureActivityObjectProfile($activity->actor);
+
+        $object = $activity->objects[0];
+
+        $options = array('uri' => $object->id,
+                         'url' => $object->link,
+                         'is_local' => Notice::REMOTE,
+                         'source' => 'ostatus');
+
+        // $actor is an ostatus_profile
+        $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
+
+        return false;
     }
 
     /**
@@ -451,19 +449,18 @@ abstract class MicroAppPlugin extends Plugin
      */
     function onStartAtomPubNewActivity(&$activity, $user, &$notice)
     {
-        if ($this->isMyActivity($activity)) {
-
-            $options = array('source' => 'atompub');
-
-            // $user->getProfile() is a Profile
-            $notice = $this->saveNoticeFromActivity($activity,
-                                                    $user->getProfile(),
-                                                    $options);
-
-            return false;
+        if (!$this->isMyActivity($activity)) {
+            return true;
         }
 
-        return true;
+        $options = array('source' => 'atompub');
+
+        // $user->getProfile() is a Profile
+        $notice = $this->saveNoticeFromActivity($activity,
+                                                $user->getProfile(),
+                                                $options);
+
+        return false;
     }
 
     /**
@@ -479,27 +476,26 @@ abstract class MicroAppPlugin extends Plugin
      */
     function onStartImportActivity($user, $author, $activity, $trusted, &$done)
     {
-        if ($this->isMyActivity($activity)) {
-
-            $obj = $activity->objects[0];
-
-            $options = array('uri' => $object->id,
-                             'url' => $object->link,
-                             'source' => 'restore');
-
-            // $user->getProfile() is a Profile
-            $saved = $this->saveNoticeFromActivity($activity,
-                                                   $user->getProfile(),
-                                                   $options);
-
-            if (!empty($saved)) {
-                $done = true;
-            }
-
-            return false;
+        if (!$this->isMyActivity($activity)) {
+            return true;
         }
 
-        return true;
+        $obj = $activity->objects[0];
+
+        $options = array('uri' => $object->id,
+                         'url' => $object->link,
+                         'source' => 'restore');
+
+        // $user->getProfile() is a Profile
+        $saved = $this->saveNoticeFromActivity($activity,
+                                               $user->getProfile(),
+                                               $options);
+
+        if (!empty($saved)) {
+            $done = true;
+        }
+
+        return false;
     }
 
     /**
