@@ -198,6 +198,7 @@ class Magicsig extends Managed_DataObject
 
         // parse components
         if (!preg_match('/RSA\.([^\.]+)\.([^\.]+)(.([^\.]+))?/', $text, $matches)) {
+            common_debug('Magicsig error: RSA key not found in provided string.');
             return false;
         }
 
@@ -213,6 +214,8 @@ class Magicsig extends Managed_DataObject
         if ($private_exp) {
             $magic_sig->loadKey($mod, $private_exp, 'private');
         }
+
+        common_debug('Magicsig success: Public exponent from provided string: '.var_export($mod,true));
 
         return $magic_sig;
     }
