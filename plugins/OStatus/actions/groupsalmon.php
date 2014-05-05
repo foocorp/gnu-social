@@ -17,9 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * @package OStatusPlugin
@@ -29,7 +27,7 @@ class GroupsalmonAction extends SalmonAction
 {
     var $group = null;
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -42,7 +40,7 @@ class GroupsalmonAction extends SalmonAction
 
         $this->group = User_group::getKV('id', $id);
 
-        if (empty($this->group)) {
+        if (!$this->group instanceof User_group) {
             // TRANS: Client error.
             $this->clientError(_m('No such group.'));
         }
@@ -51,7 +49,7 @@ class GroupsalmonAction extends SalmonAction
         $this->target = $this->group;
 
         $oprofile = Ostatus_profile::getKV('group_id', $id);
-        if ($oprofile) {
+        if ($oprofile instanceof Ostatus_profile) {
             // TRANS: Client error.
             $this->clientError(_m('Cannot accept remote posts for a remote group.'));
         }
@@ -124,7 +122,7 @@ class GroupsalmonAction extends SalmonAction
     function handleJoin()
     {
         $oprofile = $this->ensureProfile();
-        if (!$oprofile) {
+        if (!$oprofile instanceof Ostatus_profile) {
             // TRANS: Client error.
             $this->clientError(_m('Cannot read profile to set up group membership.'));
         }
@@ -162,7 +160,7 @@ class GroupsalmonAction extends SalmonAction
     function handleLeave()
     {
         $oprofile = $this->ensureProfile();
-        if (!$oprofile) {
+        if (!$oprofile instanceof Ostatus_profile) {
             // TRANS: Client error displayed when group membership cannot be cancelled
             // TRANS: because the remote profile could not be read.
             $this->clientError(_m('Cannot read profile to cancel group membership.'));
@@ -181,7 +179,6 @@ class GroupsalmonAction extends SalmonAction
             // TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
             $this->serverError(sprintf(_m('Could not remove remote user %1$s from group %2$s.'),
                                        $oprofile->uri, $this->group->nickname));
-            return;
         }
     }
 }
