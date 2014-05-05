@@ -33,7 +33,7 @@ class UnsupportedMediaException extends ServerException
 {
     public function __construct($msg, $path=null)
     {
-        common_debug(sprintf('UnsupportedMediaException "%1$s". File path (if given): "%2$s"', $msg, $path));
+        //common_debug(sprintf('UnsupportedMediaException "%1$s". File path (if given): "%2$s"', $msg, $path));
         parent::__construct($msg);
     }
 }
