@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Leave a group
+ * Cancel the subscription of a profile
  *
  * PHP version 5
  *
@@ -27,92 +27,62 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Leave a group
+ * Cancel the subscription of a profile
  *
- * This is the action for leaving a group. It works more or less like the subscribe action
- * for users.
- *
- * @category Group
+ * @category Subscription
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class CancelsubscriptionAction extends Action
+class CancelsubscriptionAction extends FormAction
 {
+    protected $needPost = true;
 
-    function handle($args)
+    protected function prepare(array $args=array())
     {
-        parent::handle($args);
-        if ($this->boolean('ajax')) {
-            StatusNet::setApi(true);
-        }
-        if (!common_logged_in()) {
-            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-            $this->clientError(_('Not logged in.'));
-        }
+        parent::prepare($args);
 
-        $user = common_current_user();
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            common_redirect(common_local_url('subscriptions',
-                                             array('nickname' => $user->nickname)));
+        $profile_id = $this->int('unsubscribeto');
+        $this->target = Profile::getKV('id', $profile_id);
+        if (!$this->target instanceof Profile) {
+            throw new NoProfileException($profile_id);
         }
 
-        /* Use a session token for CSRF protection. */
+        return true;
+    }
 
-        $token = $this->trimmed('token');
-
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->clientError(_('There was a problem with your session token. ' .
-                                 'Try again, please.'));
+    protected function handlePost()
+    {
+        try {
+            $request = Subscription_queue::pkeyGet(array('subscriber' => $this->scoped->id,
+                                                         'subscribed' => $this->target->id));
+            if ($request instanceof Subscription_queue) {
+                $request->abort();
+            }
+        } catch (AlreadyFulfilledException $e) {
+            common_debug('Tried to cancel a non-existing pending subscription');
         }
 
-        $other_id = $this->arg('unsubscribeto');
-
-        if (!$other_id) {
-            // TRANS: Client error displayed when trying to leave a group without specifying an ID.
-            $this->clientError(_('No profile ID in request.'));
-        }
-
-        $other = Profile::getKV('id', $other_id);
-
-        if (!$other) {
-            // TRANS: Client error displayed when trying to leave a non-existing group.
-            $this->clientError(_('No profile with that ID.'));
-        }
-
-        $this->request = Subscription_queue::pkeyGet(array('subscriber' => $user->id,
-                                                           'subscribed' => $other->id));
-
-        if (empty($this->request)) {
-            // TRANS: Client error displayed when trying to approve a non-existing group join request.
-            // TRANS: %s is a user nickname.
-            $this->clientError(sprintf(_('%s is not in the moderation queue for this group.'), $this->profile->nickname), 403);
-        }
-
-        $this->request->abort();
-
-        if ($this->boolean('ajax')) {
+        if (StatusNet::isAjax()) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Title after unsubscribing from a group.
             $this->element('title', null, _m('TITLE','Unsubscribed'));
             $this->elementEnd('head');
             $this->elementStart('body');
-            $subscribe = new SubscribeForm($this, $other);
+            $subscribe = new SubscribeForm($this, $this->target);
             $subscribe->show();
             $this->elementEnd('body');
             $this->endHTML();
+            exit();
         } else {
             common_redirect(common_local_url('subscriptions',
-                                             array('nickname' => $user->nickname)),
+                                             array('nickname' => $this->scoped->nickname)),
                             303);
         }
     }
