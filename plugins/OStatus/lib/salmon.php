@@ -46,7 +46,7 @@ class Salmon
      * @param Profile $actor local user profile whose keys to sign with
      * @return boolean success
      */
-    public function post($endpoint_uri, $xml, $actor)
+    public function post($endpoint_uri, $xml, Profile $actor)
     {
         if (empty($endpoint_uri)) {
             return false;

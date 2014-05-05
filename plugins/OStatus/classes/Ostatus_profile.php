@@ -342,12 +342,13 @@ class Ostatus_profile extends Managed_DataObject
      * @param Profile $actor
      * @return boolean success
      */
-    public function notifyActivity($entry, $actor)
+    public function notifyActivity($entry, Profile $actor)
     {
         if ($this->salmonuri) {
             $salmon = new Salmon();
             return $salmon->post($this->salmonuri, $this->notifyPrepXml($entry), $actor);
         }
+        common_debug(__CLASS__.' error: No salmonuri for Ostatus_profile uri: '.$this->uri);
 
         return false;
     }

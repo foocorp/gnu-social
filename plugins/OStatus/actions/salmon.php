@@ -22,9 +22,7 @@
  * @author James Walker <james@status.net>
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class SalmonAction extends Action
 {
@@ -32,7 +30,7 @@ class SalmonAction extends Action
     var $activity = null;
     var $target   = null;
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         StatusNet::setApi(true); // Send smaller error pages
 
@@ -78,9 +76,9 @@ class SalmonAction extends Action
      * Check the posted activity type and break out to appropriate processing.
      */
 
-    function handle($args)
+    protected function handle()
     {
-        StatusNet::setApi(true); // Send smaller error pages
+        parent::handle();
 
         common_log(LOG_DEBUG, "Got a " . $this->activity->verb);
         if (Event::handle('StartHandleSalmonTarget', array($this->activity, $this->target)) &&
