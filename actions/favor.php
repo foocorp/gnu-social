@@ -46,16 +46,7 @@ require_once INSTALLDIR.'/lib/mail.php';
  */
 class FavorAction extends FormAction
 {
-    // We overload this because success should redirect
-    public function showForm($msg=null, $success=false)
-    {
-        if ($success) {
-            common_redirect(common_local_url('showfavorites',
-                array('nickname' => $user->nickname)), 303);
-        }
-
-        parent::showForm($msg, $success);
-    }
+    protected $needPost = true;
 
     protected function handlePost()
     {
