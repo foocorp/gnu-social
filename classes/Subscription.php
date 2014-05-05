@@ -124,7 +124,9 @@ class Subscription extends Managed_DataObject
                 }
             }
 
-            Event::handle('EndSubscribe', array($subscriber, $other));
+            if ($sub instanceof Subscription) { // i.e. not SubscriptionQueue
+                Event::handle('EndSubscribe', array($subscriber, $other));
+            }
         }
 
         return $sub;
