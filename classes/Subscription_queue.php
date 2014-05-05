@@ -1,21 +1,17 @@
 <?php
+
+if (!defined('GNUSOCIAL')) { exit(1); }
+
 /**
  * Table Definition for subscription_queue
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 class Subscription_queue extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
     public $__table = 'subscription_queue';       // table name
     public $subscriber;
     public $subscribed;
     public $created;
-
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 
     public static function schemaDef()
     {
@@ -48,11 +44,11 @@ class Subscription_queue extends Managed_DataObject
         return $rq;
     }
 
-    function exists($subscriber, $other)
+    public function exists(Profile $subscriber, Profile $other)
     {
         $sub = Subscription_queue::pkeyGet(array('subscriber' => $subscriber->id,
                                                  'subscribed' => $other->id));
-        return (empty($sub)) ? false : true;
+        return ($sub instanceof Subscription_queue);
     }
 
     /**
@@ -64,9 +60,11 @@ class Subscription_queue extends Managed_DataObject
     {
         $subscriber = Profile::getKV('id', $this->subscriber);
         $subscribed = Profile::getKV('id', $this->subscribed);
-        $sub = Subscription::start($subscriber, $subscribed, Subscription::FORCE);
-        if ($sub) {
+        try {
+            $sub = Subscription::start($subscriber, $subscribed, Subscription::FORCE);
             $this->delete();
+        } catch (AlreadyFulfilledException $e) {
+            common_debug('Tried to start a subscription which already existed.');
         }
         return $sub;
     }

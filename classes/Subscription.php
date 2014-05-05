@@ -17,20 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for subscription
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
-
 class Subscription extends Managed_DataObject
 {
     const CACHE_WINDOW = 201;
     const FORCE = true;
-
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
 
     public $__table = 'subscription';                    // table name
     public $subscriber;                      // int(4)  primary_key not_null
@@ -88,7 +83,7 @@ class Subscription extends Managed_DataObject
 
         if (self::exists($subscriber, $other)) {
             // TRANS: Exception thrown when trying to subscribe while already subscribed.
-            throw new Exception(_('Already subscribed!'));
+            throw new AlreadyFulfilledException(_('Already subscribed!'));
         }
 
         if ($other->hasBlocked($subscriber)) {
@@ -98,7 +93,7 @@ class Subscription extends Managed_DataObject
 
         if (Event::handle('StartSubscribe', array($subscriber, $other))) {
             $otherUser = User::getKV('id', $other->id);
-            if ($otherUser && $otherUser->subscribe_policy == User::SUBSCRIBE_POLICY_MODERATE && !$force) {
+            if ($otherUser instanceof User && $otherUser->subscribe_policy == User::SUBSCRIBE_POLICY_MODERATE && !$force) {
                 $sub = Subscription_queue::saveNew($subscriber, $other);
                 $sub->notify();
             } else {
@@ -113,13 +108,16 @@ class Subscription extends Managed_DataObject
                 $subscriber->blowSubscriptionCount();
                 $other->blowSubscriberCount();
 
-                if (!empty($otherUser) &&
+                if ($otherUser instanceof User &&
                     $otherUser->autosubscribe &&
                     !self::exists($other, $subscriber) &&
                     !$subscriber->hasBlocked($other)) {
 
                     try {
                         self::start($other, $subscriber);
+                    } catch (AlreadyFulfilledException $e) {
+                        // This shouldn't happen due to !self::exists above
+                        common_debug('Tried to autosubscribe a user to its new subscriber.');
                     } catch (Exception $e) {
                         common_log(LOG_ERR, "Exception during autosubscribe of {$other->nickname} to profile {$subscriber->id}: {$e->getMessage()}");
                     }
@@ -151,7 +149,7 @@ class Subscription extends Managed_DataObject
 
         $result = $sub->insert();
 
-        if (!$result) {
+        if ($result===false) {
             common_log_db_error($sub, 'INSERT', __FILE__);
             // TRANS: Exception thrown when a subscription could not be stored on the server.
             throw new Exception(_('Could not save subscription.'));
@@ -173,7 +171,7 @@ class Subscription extends Managed_DataObject
     {
         $subscribedUser = User::getKV('id', $this->subscribed);
 
-        if (!empty($subscribedUser)) {
+        if ($subscribedUser instanceof User) {
 
             $subscriber = Profile::getKV('id', $this->subscriber);
 
@@ -189,7 +187,7 @@ class Subscription extends Managed_DataObject
     {
         if (!self::exists($subscriber, $other)) {
             // TRANS: Exception thrown when trying to unsibscribe without a subscription.
-            throw new Exception(_('Not subscribed!'));
+            throw new AlreadyFulfilledException(_('Not subscribed!'));
         }
 
         // Don't allow deleting self subs
@@ -234,7 +232,7 @@ class Subscription extends Managed_DataObject
     {
         $sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
                                            'subscribed' => $other->id));
-        return (empty($sub)) ? false : true;
+        return ($sub instanceof Subscription);
     }
 
     function asActivity()
@@ -242,12 +240,12 @@ class Subscription extends Managed_DataObject
         $subscriber = Profile::getKV('id', $this->subscriber);
         $subscribed = Profile::getKV('id', $this->subscribed);
 
-        if (empty($subscriber)) {
-            throw new Exception(sprintf(_('No profile for the subscriber: %d'), $this->subscriber));
+        if (!$subscriber instanceof Profile) {
+            throw new NoProfileException($this->subscriber);
         }
 
-        if (empty($subscribed)) {
-            throw new Exception(sprintf(_('No profile for the subscribed: %d'), $this->subscribed));
+        if (!$subscribed instanceof Profile) {
+            throw new NoProfileException($this->subscribed);
         }
 
         $act = new Activity();

@@ -134,7 +134,11 @@ class UsersalmonAction extends SalmonAction
         $oprofile = $this->ensureProfile();
         if ($oprofile instanceof Ostatus_profile) {
             common_log(LOG_INFO, sprintf('Canceling subscription from remote %s to local %s', $oprofile->getUri(), $this->user->getNickname()));
-            Subscription::cancel($oprofile->localProfile(), $this->user->getProfile());
+            try {
+                Subscription::cancel($oprofile->localProfile(), $this->user->getProfile());
+            } catch (AlreadyFulfilledException $e) {
+                common_debug('Subscription did not exist, so there was nothing to cancel');
+            }
         } else {
             common_log(LOG_ERR, "Can't cancel subscription from remote, didn't find the profile");
         }

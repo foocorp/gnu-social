@@ -195,7 +195,7 @@ class SalmonAction extends Action
     function handleUpdateProfile()
     {
         $oprofile = Ostatus_profile::getActorProfile($this->activity);
-        if ($oprofile) {
+        if ($oprofile instanceof Ostatus_profile) {
             common_log(LOG_INFO, "Got a profile-update ping from $oprofile->uri");
             $oprofile->updateFromActivityObject($this->activity->actor);
         } else {
