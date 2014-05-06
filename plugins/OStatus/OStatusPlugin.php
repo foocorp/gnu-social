@@ -350,7 +350,7 @@ class OStatusPlugin extends Plugin
                 $this->log(LOG_INFO, "Checking webfinger '$target'");
                 try {
                     $oprofile = Ostatus_profile::ensureWebfinger($target);
-                    if ($oprofile && !$oprofile->isGroup()) {
+                    if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
                         $profile = $oprofile->localProfile();
                         $matches[$pos] = array('mentioned' => array($profile),
                                                'type' => 'mention',
@@ -377,7 +377,7 @@ class OStatusPlugin extends Plugin
                     $this->log(LOG_INFO, "Checking profile address '$url'");
                     try {
                         $oprofile = Ostatus_profile::ensureProfileURL($url);
-                        if ($oprofile && !$oprofile->isGroup()) {
+                        if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
                             $profile = $oprofile->localProfile();
                             $matches[$pos] = array('mentioned' => array($profile),
                                                    'type' => 'mention',
@@ -422,7 +422,7 @@ class OStatusPlugin extends Plugin
     function onStartCommandGetProfile($command, $arg, &$profile)
     {
         $oprofile = $this->pullRemoteProfile($arg);
-        if ($oprofile && !$oprofile->isGroup()) {
+        if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
             $profile = $oprofile->localProfile();
             return false;
         } else {
@@ -444,7 +444,7 @@ class OStatusPlugin extends Plugin
     function onStartCommandGetGroup($command, $arg, &$group)
     {
         $oprofile = $this->pullRemoteProfile($arg);
-        if ($oprofile && $oprofile->isGroup()) {
+        if ($oprofile instanceof Ostatus_profile && $oprofile->isGroup()) {
             $group = $oprofile->localGroup();
             return false;
         } else {
@@ -580,7 +580,7 @@ class OStatusPlugin extends Plugin
     function onFeedSubSubscriberCount($feedsub, &$count)
     {
         $oprofile = Ostatus_profile::getKV('feeduri', $feedsub->uri);
-        if ($oprofile) {
+        if ($oprofile instanceof Ostatus_profile) {
             $count += $oprofile->subscriberCount();
         }
         return true;
@@ -607,8 +607,7 @@ class OStatusPlugin extends Plugin
         }
 
         $oprofile = Ostatus_profile::getKV('profile_id', $other->id);
-
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             return true;
         }
 
@@ -636,8 +635,7 @@ class OStatusPlugin extends Plugin
         }
 
         $oprofile = Ostatus_profile::getKV('profile_id', $other->id);
-
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             return true;
         }
 
@@ -666,8 +664,7 @@ class OStatusPlugin extends Plugin
         }
 
         $oprofile = Ostatus_profile::getKV('profile_id', $other->id);
-
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             return true;
         }
 
@@ -713,41 +710,43 @@ class OStatusPlugin extends Plugin
     function onStartJoinGroup($group, $profile)
     {
         $oprofile = Ostatus_profile::getKV('group_id', $group->id);
-        if ($oprofile) {
-            if (!$oprofile->subscribe()) {
-                // TRANS: Exception thrown when setup of remote group membership fails.
-                throw new Exception(_m('Could not set up remote group membership.'));
-            }
+        if (!$oprofile instanceof Ostatus_profile) {
+            return true;
+        }
 
-            // NOTE: we don't use Group_member::asActivity() since that record
-            // has not yet been created.
+        if (!$oprofile->subscribe()) {
+            // TRANS: Exception thrown when setup of remote group membership fails.
+            throw new Exception(_m('Could not set up remote group membership.'));
+        }
 
-            $act = new Activity();
-            $act->id = TagURI::mint('join:%d:%d:%s',
-                                    $profile->id,
-                                    $group->id,
-                                    common_date_iso8601(time()));
+        // NOTE: we don't use Group_member::asActivity() since that record
+        // has not yet been created.
 
-            $act->actor = ActivityObject::fromProfile($profile);
-            $act->verb = ActivityVerb::JOIN;
-            $act->object = $oprofile->asActivityObject();
+        $act = new Activity();
+        $act->id = TagURI::mint('join:%d:%d:%s',
+                                $profile->id,
+                                $group->id,
+                                common_date_iso8601(time()));
 
-            $act->time = time();
-            // TRANS: Title for joining a remote groep.
-            $act->title = _m('TITLE','Join');
-            // TRANS: Success message for subscribe to group attempt through OStatus.
-            // TRANS: %1$s is the member name, %2$s is the subscribed group's name.
-            $act->content = sprintf(_m('%1$s has joined group %2$s.'),
-                                    $profile->getBestName(),
-                                    $oprofile->getBestName());
+        $act->actor = ActivityObject::fromProfile($profile);
+        $act->verb = ActivityVerb::JOIN;
+        $act->object = $oprofile->asActivityObject();
 
-            if ($oprofile->notifyActivity($act, $profile)) {
-                return true;
-            } else {
-                $oprofile->garbageCollect();
-                // TRANS: Exception thrown when joining a remote group fails.
-                throw new Exception(_m('Failed joining remote group.'));
-            }
+        $act->time = time();
+        // TRANS: Title for joining a remote groep.
+        $act->title = _m('TITLE','Join');
+        // TRANS: Success message for subscribe to group attempt through OStatus.
+        // TRANS: %1$s is the member name, %2$s is the subscribed group's name.
+        $act->content = sprintf(_m('%1$s has joined group %2$s.'),
+                                $profile->getBestName(),
+                                $oprofile->getBestName());
+
+        if ($oprofile->notifyActivity($act, $profile)) {
+            return true;
+        } else {
+            $oprofile->garbageCollect();
+            // TRANS: Exception thrown when joining a remote group fails.
+            throw new Exception(_m('Failed joining remote group.'));
         }
     }
 
@@ -768,33 +767,35 @@ class OStatusPlugin extends Plugin
     function onEndLeaveGroup($group, $profile)
     {
         $oprofile = Ostatus_profile::getKV('group_id', $group->id);
-        if ($oprofile) {
-            // Drop the PuSH subscription if there are no other subscribers.
-            $oprofile->garbageCollect();
-
-            $member = $profile;
-
-            $act = new Activity();
-            $act->id = TagURI::mint('leave:%d:%d:%s',
-                                    $member->id,
-                                    $group->id,
-                                    common_date_iso8601(time()));
-
-            $act->actor = ActivityObject::fromProfile($member);
-            $act->verb = ActivityVerb::LEAVE;
-            $act->object = $oprofile->asActivityObject();
-
-            $act->time = time();
-            // TRANS: Title for leaving a remote group.
-            $act->title = _m('TITLE','Leave');
-            // TRANS: Success message for unsubscribe from group attempt through OStatus.
-            // TRANS: %1$s is the member name, %2$s is the unsubscribed group's name.
-            $act->content = sprintf(_m('%1$s has left group %2$s.'),
-                                    $member->getBestName(),
-                                    $oprofile->getBestName());
-
-            $oprofile->notifyActivity($act, $member);
+        if (!$oprofile instanceof Ostatus_profile) {
+            return true;
         }
+
+        // Drop the PuSH subscription if there are no other subscribers.
+        $oprofile->garbageCollect();
+
+        $member = $profile;
+
+        $act = new Activity();
+        $act->id = TagURI::mint('leave:%d:%d:%s',
+                                $member->id,
+                                $group->id,
+                                common_date_iso8601(time()));
+
+        $act->actor = ActivityObject::fromProfile($member);
+        $act->verb = ActivityVerb::LEAVE;
+        $act->object = $oprofile->asActivityObject();
+
+        $act->time = time();
+        // TRANS: Title for leaving a remote group.
+        $act->title = _m('TITLE','Leave');
+        // TRANS: Success message for unsubscribe from group attempt through OStatus.
+        // TRANS: %1$s is the member name, %2$s is the unsubscribed group's name.
+        $act->content = sprintf(_m('%1$s has left group %2$s.'),
+                                $member->getBestName(),
+                                $oprofile->getBestName());
+
+        $oprofile->notifyActivity($act, $member);
     }
 
     /**
@@ -811,42 +812,44 @@ class OStatusPlugin extends Plugin
     function onStartSubscribePeopletag($peopletag, $user)
     {
         $oprofile = Ostatus_profile::getKV('peopletag_id', $peopletag->id);
-        if ($oprofile) {
-            if (!$oprofile->subscribe()) {
-                // TRANS: Exception thrown when setup of remote list subscription fails.
-                throw new Exception(_m('Could not set up remote list subscription.'));
-            }
+        if (!$oprofile instanceof Ostatus_profile) {
+            return true;
+        }
 
-            $sub = $user->getProfile();
-            $tagger = Profile::getKV($peopletag->tagger);
+        if (!$oprofile->subscribe()) {
+            // TRANS: Exception thrown when setup of remote list subscription fails.
+            throw new Exception(_m('Could not set up remote list subscription.'));
+        }
 
-            $act = new Activity();
-            $act->id = TagURI::mint('subscribe_peopletag:%d:%d:%s',
-                                    $sub->id,
-                                    $peopletag->id,
-                                    common_date_iso8601(time()));
+        $sub = $user->getProfile();
+        $tagger = Profile::getKV($peopletag->tagger);
 
-            $act->actor = ActivityObject::fromProfile($sub);
-            $act->verb = ActivityVerb::FOLLOW;
-            $act->object = $oprofile->asActivityObject();
+        $act = new Activity();
+        $act->id = TagURI::mint('subscribe_peopletag:%d:%d:%s',
+                                $sub->id,
+                                $peopletag->id,
+                                common_date_iso8601(time()));
 
-            $act->time = time();
-            // TRANS: Title for following a remote list.
-            $act->title = _m('TITLE','Follow list');
-            // TRANS: Success message for remote list follow through OStatus.
-            // TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
-            $act->content = sprintf(_m('%1$s is now following people listed in %2$s by %3$s.'),
-                                    $sub->getBestName(),
-                                    $oprofile->getBestName(),
-                                    $tagger->getBestName());
+        $act->actor = ActivityObject::fromProfile($sub);
+        $act->verb = ActivityVerb::FOLLOW;
+        $act->object = $oprofile->asActivityObject();
 
-            if ($oprofile->notifyActivity($act, $sub)) {
-                return true;
-            } else {
-                $oprofile->garbageCollect();
-                // TRANS: Exception thrown when subscription to remote list fails.
-                throw new Exception(_m('Failed subscribing to remote list.'));
-            }
+        $act->time = time();
+        // TRANS: Title for following a remote list.
+        $act->title = _m('TITLE','Follow list');
+        // TRANS: Success message for remote list follow through OStatus.
+        // TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
+        $act->content = sprintf(_m('%1$s is now following people listed in %2$s by %3$s.'),
+                                $sub->getBestName(),
+                                $oprofile->getBestName(),
+                                $tagger->getBestName());
+
+        if ($oprofile->notifyActivity($act, $sub)) {
+            return true;
+        } else {
+            $oprofile->garbageCollect();
+            // TRANS: Exception thrown when subscription to remote list fails.
+            throw new Exception(_m('Failed subscribing to remote list.'));
         }
     }
 
@@ -863,35 +866,37 @@ class OStatusPlugin extends Plugin
     function onEndUnsubscribePeopletag($peopletag, $user)
     {
         $oprofile = Ostatus_profile::getKV('peopletag_id', $peopletag->id);
-        if ($oprofile) {
-            // Drop the PuSH subscription if there are no other subscribers.
-            $oprofile->garbageCollect();
-
-            $sub = Profile::getKV($user->id);
-            $tagger = Profile::getKV($peopletag->tagger);
-
-            $act = new Activity();
-            $act->id = TagURI::mint('unsubscribe_peopletag:%d:%d:%s',
-                                    $sub->id,
-                                    $peopletag->id,
-                                    common_date_iso8601(time()));
-
-            $act->actor = ActivityObject::fromProfile($member);
-            $act->verb = ActivityVerb::UNFOLLOW;
-            $act->object = $oprofile->asActivityObject();
-
-            $act->time = time();
-            // TRANS: Title for unfollowing a remote list.
-            $act->title = _m('Unfollow list');
-            // TRANS: Success message for remote list unfollow through OStatus.
-            // TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
-            $act->content = sprintf(_m('%1$s stopped following the list %2$s by %3$s.'),
-                                    $sub->getBestName(),
-                                    $oprofile->getBestName(),
-                                    $tagger->getBestName());
-
-            $oprofile->notifyActivity($act, $user);
+        if (!$oprofile instanceof Ostatus_profile) {
+            return true;
         }
+
+        // Drop the PuSH subscription if there are no other subscribers.
+        $oprofile->garbageCollect();
+
+        $sub = Profile::getKV($user->id);
+        $tagger = Profile::getKV($peopletag->tagger);
+
+        $act = new Activity();
+        $act->id = TagURI::mint('unsubscribe_peopletag:%d:%d:%s',
+                                $sub->id,
+                                $peopletag->id,
+                                common_date_iso8601(time()));
+
+        $act->actor = ActivityObject::fromProfile($member);
+        $act->verb = ActivityVerb::UNFOLLOW;
+        $act->object = $oprofile->asActivityObject();
+
+        $act->time = time();
+        // TRANS: Title for unfollowing a remote list.
+        $act->title = _m('Unfollow list');
+        // TRANS: Success message for remote list unfollow through OStatus.
+        // TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
+        $act->content = sprintf(_m('%1$s stopped following the list %2$s by %3$s.'),
+                                $sub->getBestName(),
+                                $oprofile->getBestName(),
+                                $tagger->getBestName());
+
+        $oprofile->notifyActivity($act, $user);
     }
 
     /**
@@ -903,23 +908,23 @@ class OStatusPlugin extends Plugin
      */
     function onEndFavorNotice(Profile $profile, Notice $notice)
     {
-        $user = User::getKV('id', $profile->id);
-
-        if (empty($user)) {
+        // Only distribute local users' favor actions, remote users
+        // will have already distributed theirs.
+        if (!$profile->isLocal()) {
             return true;
         }
 
         $oprofile = Ostatus_profile::getKV('profile_id', $notice->profile_id);
-
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             return true;
         }
 
         $fav = Fave::pkeyGet(array('user_id' => $user->id,
                                    'notice_id' => $notice->id));
 
-        if (empty($fav)) {
+        if (!$fav instanceof Fave) {
             // That's weird.
+            // TODO: Make pkeyGet throw exception, since this is a critical failure.
             return true;
         }
 
@@ -941,8 +946,7 @@ class OStatusPlugin extends Plugin
     function onEndTagProfile($ptag)
     {
         $oprofile = Ostatus_profile::getKV('profile_id', $ptag->tagged);
-
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             return true;
         }
 
@@ -998,8 +1002,7 @@ class OStatusPlugin extends Plugin
     function onEndUntagProfile($ptag)
     {
         $oprofile = Ostatus_profile::getKV('profile_id', $ptag->tagged);
-
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             return true;
         }
 
@@ -1049,15 +1052,14 @@ class OStatusPlugin extends Plugin
      */
     function onEndDisfavorNotice(Profile $profile, Notice $notice)
     {
-        $user = User::getKV('id', $profile->id);
-
-        if (empty($user)) {
+        // Only distribute local users' disfavor actions, remote users
+        // will have already distributed theirs.
+        if (!$profile->isLocal()) {
             return true;
         }
 
         $oprofile = Ostatus_profile::getKV('profile_id', $notice->profile_id);
-
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             return true;
         }
 
@@ -1103,7 +1105,7 @@ class OStatusPlugin extends Plugin
     function onStartUserGroupPermalink($group, &$url)
     {
         $oprofile = Ostatus_profile::getKV('group_id', $group->id);
-        if ($oprofile) {
+        if ($oprofile instanceof Ostatus_profile) {
             // @fixme this should probably be in the user_group table
             // @fixme this uri not guaranteed to be a profile page
             $url = $oprofile->uri;
@@ -1290,7 +1292,7 @@ class OStatusPlugin extends Plugin
     {
         $oprofile = Ostatus_profile::getKV('profile_id', $profile->id);
 
-        if (empty($oprofile)) {
+        if (!$oprofile instanceof Ostatus_profile) {
             return true;
         }
 
