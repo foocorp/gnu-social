@@ -47,35 +47,51 @@ class MagicEnvelope
         return 'http://' . $user_id;
     }
 
+    /**
+     * Get the Salmon keypair from a URI, uses XRD Discovery etc.
+     *
+     * @return Magicsig with loaded keypair
+     */
     public function getKeyPair($signer_uri)
     {
         $disco = new Discovery();
 
-        try {
-            $xrd = $disco->lookup($signer_uri);
-        } catch (Exception $e) {
-            return false;
-        }
+        // Throws exception on lookup problems
+        $xrd = $disco->lookup($signer_uri);
+
         $link = $xrd->get(Magicsig::PUBLICKEYREL);
-        if (!is_null($link)) {
-            $keypair = false;
-            $parts = explode(',', $link->href);
+        if (is_null($link)) {
+            // TRANS: Exception.
+            throw new Exception(_m('Unable to locate signer public key.'));
+        }
+
+        // We have a public key element, let's hope it has proper key data.
+        $keypair = false;
+        $parts = explode(',', $link->href);
+        if (count($parts) == 2) {
+            $keypair = $parts[1];
+        } else {
+            // Backwards compatibility check for separator bug in 0.9.0
+            $parts = explode(';', $link->href);
             if (count($parts) == 2) {
                 $keypair = $parts[1];
-            } else {
-                // Backwards compatibility check for separator bug in 0.9.0
-                $parts = explode(';', $link->href);
-                if (count($parts) == 2) {
-                    $keypair = $parts[1];
-                }
-            }
-
-            if ($keypair) {
-                return $keypair;
             }
         }
-        // TRANS: Exception.
-        throw new Exception(_m('Unable to locate signer public key.'));
+
+        if ($keypair === false) {
+            // For debugging clarity. Keypair did not pass count()-check above. 
+            // TRANS: Exception when public key was not properly formatted.
+            throw new Exception(_m('Incorrectly formatted public key element.'));
+        }
+
+        $magicsig = Magicsig::fromString($keypair);
+        if (!$magicsig instanceof Magicsig) {
+            common_debug('Salmon error: unable to parse keypair: '.var_export($keypair,true));
+            // TRANS: Exception when public key was properly formatted but not parsable.
+            throw new ServerException(_m('Retrieved Salmon keypair could not be parsed.'));
+        }
+
+        return $magicsig;
     }
 
     /**
@@ -241,20 +257,13 @@ class MagicEnvelope
         $signer_uri = $this->getAuthor($text);
 
         try {
-            $keypair = $this->getKeyPair($signer_uri);
+            $magicsig = $this->getKeyPair($signer_uri);
         } catch (Exception $e) {
             common_log(LOG_DEBUG, "Salmon error: ".$e->getMessage());
             return false;
         }
 
-        $verifier = Magicsig::fromString($keypair);
-
-        if (!$verifier) {
-            common_log(LOG_DEBUG, "Salmon error: unable to parse keypair");
-            return false;
-        }
-
-        return $verifier->verify($this->signingText($env), $env['sig']);
+        return $magicsig->verify($this->signingText($env), $env['sig']);
     }
 
     /**
