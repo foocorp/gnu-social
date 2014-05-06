@@ -38,19 +38,19 @@ class OembedPlugin extends Plugin
                 'title'=>'oEmbed'),null);
             break;
         case 'shownotice':
-            $this->element('link',array('rel'=>'alternate',
+            $action->element('link',array('rel'=>'alternate',
                 'type'=>'application/json+oembed',
                 'href'=>common_local_url(
                     'oembed',
                     array(),
-                    array('format'=>'json','url'=>$this->notice->getUrl())),
+                    array('format'=>'json','url'=>$action->notice->getUrl())),
                 'title'=>'oEmbed'),null);
-            $this->element('link',array('rel'=>'alternate',
+            $action->element('link',array('rel'=>'alternate',
                 'type'=>'text/xml+oembed',
                 'href'=>common_local_url(
                     'oembed',
                     array(),
-                    array('format'=>'xml','url'=>$this->notice->getUrl())),
+                    array('format'=>'xml','url'=>$action->notice->getUrl())),
                 'title'=>'oEmbed'),null);
             break;
         }
