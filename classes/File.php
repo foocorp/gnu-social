@@ -359,7 +359,7 @@ class File extends Managed_DataObject
                 $mimetype = substr($mimetype,0,$semicolon);
             }
             if (in_array($mimetype, $notEnclosureMimeTypes)) {
-                Event::handle('FileEnclosureMetadata', array($file, &$enclosure));
+                Event::handle('FileEnclosureMetadata', array($this, &$enclosure));
             }
         }
         return $enclosure;
