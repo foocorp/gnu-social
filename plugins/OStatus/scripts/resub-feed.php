@@ -53,20 +53,18 @@ if (!$sub) {
 print "Old state:\n";
 showSub($sub);
 
-print "\n";
-
-if (have_option('u') || have_option('--unsub')) {
-    print "Pinging hub $sub->huburi with unsubscription for $sub->uri\n";
-    $ok = $sub->unsubscribe();
-} else {
-    print "Pinging hub $sub->huburi with new subscription for $sub->uri\n";
-    $ok = $sub->subscribe();
-}
-
-if ($ok) {
-    print "ok\n";
-} else {
-    print "Could not confirm.\n";
+try {
+    echo "\n";
+    if (have_option('u') || have_option('--unsub')) {
+        echo "Pinging hub {$sub->huburi} with unsubscription for {$sub->uri}\n";
+        $sub->unsubscribe();
+    } else {
+        echo "Pinging hub {$sub->huburi} with new subscription for {$sub->uri}\n";
+        $sub->subscribe();
+    }
+    echo "ok\n";
+} catch (Exception $e) {
+    echo 'Could not confirm. '.get_class($e).': '.$e->getMessage()."\n";
 }
 
 $sub2 = FeedSub::getKV('uri', $feedurl);

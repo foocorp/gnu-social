@@ -31,11 +31,14 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 $feedsub = new FeedSub();
 
 while ($feedsub->fetch()) {
-    print $feedsub->uri . "(" . $feedsub->sub_state . ")";
-    $result = $feedsub->garbageCollect();
-    if ($result) {
-        print " INACTIVE\n";
-    } else {
-        print " ACTIVE\n";
+    echo "{$feedsub->uri} ({$feedsub->sub_state})";
+    try {
+        if ($feedsub->garbageCollect()) {
+            echo " INACTIVE\n";
+        } else {
+            echo " ACTIVE\n";
+        }
+    } catch (Exception $e) {
+        echo " ERROR: {$e->getMessage()}\n";
     }
 }

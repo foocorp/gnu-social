@@ -105,14 +105,13 @@ if ($huburi != $sub->huburi) {
     print "Feed record ok, not changing.\n\n";
 }
 
-print "\n";
-print "Pinging hub $sub->huburi with new subscription for $sub->uri\n";
-$ok = $sub->subscribe();
-
-if ($ok) {
-    print "ok\n";
-} else {
-    print "Could not confirm.\n";
+echo "\n";
+echo "Pinging hub {$sub->huburi} with new subscription for {$sub->uri}\n";
+try {
+    $sub->subscribe();
+    echo "ok\n";
+} catch (Exception $e) {
+    echo 'Could not confirm. '.get_class($e).': '.$e->getMessage()."\n";
 }
 
 $o2 = Ostatus_profile::getKV('uri', $uri);

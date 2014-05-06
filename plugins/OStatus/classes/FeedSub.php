@@ -192,7 +192,7 @@ class FeedSub extends Managed_DataObject
      * Send a subscription request to the hub for this feed.
      * The hub will later send us a confirmation POST to /main/push/callback.
      *
-     * @return bool true on success, false on failure
+     * @return void
      * @throws ServerException if feed state is not valid
      */
     public function subscribe()
@@ -203,7 +203,7 @@ class FeedSub extends Managed_DataObject
 
         if (!Event::handle('FeedSubscribe', array($this))) {
             // A plugin handled it
-            return true;
+            return;
         }
 
         if (empty($this->huburi)) {
@@ -213,14 +213,14 @@ class FeedSub extends Managed_DataObject
             } else if (common_config('feedsub', 'nohub')) {
                 // Fake it! We're just testing remote feeds w/o hubs.
                 // We'll never actually get updates in this mode.
-                return true;
+                return;
             } else {
                 // TRANS: Server exception.
                 throw new ServerException(_m('Attempting to start PuSH subscription for feed with no hub.'));
             }
         }
 
-        return $this->doSubscribe('subscribe');
+        $this->doSubscribe('subscribe');
     }
 
     /**
@@ -230,7 +230,6 @@ class FeedSub extends Managed_DataObject
      * the system is using it. Most callers will want garbageCollect() instead,
      * which confirms there's no uses left.
      *
-     * @return bool true on success, false on failure
      * @throws ServerException if feed state is not valid
      */
     public function unsubscribe() {
@@ -240,7 +239,7 @@ class FeedSub extends Managed_DataObject
 
         if (!Event::handle('FeedUnsubscribe', array($this))) {
             // A plugin handled it
-            return true;
+            return;
         }
 
         if (empty($this->huburi)) {
@@ -250,14 +249,14 @@ class FeedSub extends Managed_DataObject
             } else if (common_config('feedsub', 'nohub')) {
                 // Fake it! We're just testing remote feeds w/o hubs.
                 // We'll never actually get updates in this mode.
-                return true;
+                return;
             } else {
                 // TRANS: Server exception.
                 throw new ServerException(_m('Attempting to end PuSH subscription for feed with no hub.'));
             }
         }
 
-        return $this->doSubscribe('unsubscribe');
+        $this->doSubscribe('unsubscribe');
     }
 
     /**
@@ -265,6 +264,7 @@ class FeedSub extends Managed_DataObject
      * make sure it's inactive, unsubscribing if necessary.
      *
      * @return boolean true if the subscription is now inactive, false if still active.
+     * @throws Exception if something goes wrong in unsubscribe() method
      */
     public function garbageCollect()
     {
@@ -277,12 +277,14 @@ class FeedSub extends Managed_DataObject
             $count = 0;
             Event::handle('FeedSubSubscriberCount', array($this, &$count));
 
-            if ($count) {
+            if ($count > 0) {
                 common_log(LOG_INFO, __METHOD__ . ': ok, ' . $count . ' user(s) left for ' . $this->getUri());
                 return false;
             } else {
                 common_log(LOG_INFO, __METHOD__ . ': unsubscribing, no users left for ' . $this->getUri());
-                return $this->unsubscribe();
+                // Unsubscribe throws various Exceptions on failure
+                $this->unsubscribe();
+                return true;
             }
         }
     }
@@ -310,7 +312,8 @@ class FeedSub extends Managed_DataObject
      * the lookup _while_ we're POSTing data, which means the transaction
      * never completes (PushcallbackAction gets an 'inactive' state).
      *
-     * @return boolean  true on successful sub/unsub, false on failure
+     * @return boolean true when everything is ok (throws Exception on fail)
+     * @throws Exception on failure, can be HTTPClient's or our own.
      */
     protected function doSubscribe($mode)
     {
@@ -344,29 +347,32 @@ class FeedSub extends Managed_DataObject
                         $client->setAuth($u, $p);
                     }
                 } else {
-                    throw new FeedSubException('WTF?');
+                    throw new FeedSubException('Server could not find a usable PuSH hub.');
                 }
             }
             $response = $client->post($hub, $headers, $post);
             $status = $response->getStatus();
+            // PuSH specificed response status code
             if ($status == 202) {
                 common_log(LOG_INFO, __METHOD__ . ': sub req ok, awaiting verification callback');
-                return true;
+                return;
             } else if ($status >= 200 && $status < 300) {
                 common_log(LOG_ERR, __METHOD__ . ": sub req returned unexpected HTTP $status: " . $response->getBody());
             } else {
                 common_log(LOG_ERR, __METHOD__ . ": sub req failed with HTTP $status: " . $response->getBody());
             }
         } catch (Exception $e) {
-            // wtf!
-            common_log(LOG_ERR, __METHOD__ . ": error \"{$e->getMessage()}\" hitting hub $this->huburi subscribing to " . $this->getUri());
+            common_log(LOG_ERR, __METHOD__ . ": error \"{$e->getMessage()}\" hitting hub {$this->huburi} subscribing to {$this->getUri()}");
 
+            // Reset the subscription state.
             $orig = clone($this);
             $this->sub_state = 'inactive';
             $this->update($orig);
-            unset($orig);
+
+            // Throw the Exception again.
+            throw $e;
         }
-        return false;
+        throw ServerException("{$mode} request failed.");
     }
 
     /**

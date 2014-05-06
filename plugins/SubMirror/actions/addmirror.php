@@ -77,11 +77,7 @@ class AddMirrorAction extends BaseMirrorAction
 
     protected function saveMirror()
     {
-        if ($this->oprofile->subscribe()) {
-            SubMirror::saveMirror($this->user, $this->profile);
-        } else {
-            // TRANS: Exception thrown when a subscribing to a feed fails.
-            $this->serverError(_m('Could not subscribe to feed.'));
-        }
+        $this->oprofile->subscribe();
+        SubMirror::saveMirror($this->user, $this->profile);
     }
 }

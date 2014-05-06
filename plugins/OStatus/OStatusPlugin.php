@@ -611,10 +611,7 @@ class OStatusPlugin extends Plugin
             return true;
         }
 
-        if (!$oprofile->subscribe()) {
-            // TRANS: Exception thrown when setup of remote subscription fails.
-            throw new Exception(_m('Could not set up remote subscription.'));
-        }
+        $oprofile->subscribe();
     }
 
     /**
@@ -706,6 +703,7 @@ class OStatusPlugin extends Plugin
      * @param Profile    $profile
      *
      * @return mixed hook return value
+     * @throws Exception of various kinds, some from $oprofile->subscribe();
      */
     function onStartJoinGroup($group, $profile)
     {
@@ -714,10 +712,7 @@ class OStatusPlugin extends Plugin
             return true;
         }
 
-        if (!$oprofile->subscribe()) {
-            // TRANS: Exception thrown when setup of remote group membership fails.
-            throw new Exception(_m('Could not set up remote group membership.'));
-        }
+        $oprofile->subscribe();
 
         // NOTE: we don't use Group_member::asActivity() since that record
         // has not yet been created.
@@ -807,6 +802,7 @@ class OStatusPlugin extends Plugin
      * @param User         $user
      *
      * @return mixed hook return value
+     * @throws Exception of various kinds, some from $oprofile->subscribe();
      */
 
     function onStartSubscribePeopletag($peopletag, $user)
@@ -816,10 +812,7 @@ class OStatusPlugin extends Plugin
             return true;
         }
 
-        if (!$oprofile->subscribe()) {
-            // TRANS: Exception thrown when setup of remote list subscription fails.
-            throw new Exception(_m('Could not set up remote list subscription.'));
-        }
+        $oprofile->subscribe();
 
         $sub = $user->getProfile();
         $tagger = Profile::getKV($peopletag->tagger);
@@ -942,6 +935,7 @@ class OStatusPlugin extends Plugin
      *
      * @param Profile_tag $ptag the people tag that was created
      * @return hook return value
+     * @throws Exception of various kinds, some from $oprofile->subscribe();
      */
     function onEndTagProfile($ptag)
     {
@@ -981,12 +975,7 @@ class OStatusPlugin extends Plugin
         $oprofile->notifyDeferred($act, $tagger);
 
         // initiate a PuSH subscription for the person being tagged
-        if (!$oprofile->subscribe()) {
-            // TRANS: Exception thrown when subscribing to a remote list fails.
-            throw new Exception(sprintf(_m('Could not complete subscription to remote '.
-                                          'profile\'s feed. List %s could not be saved.'), $ptag->tag));
-            return false;
-        }
+        $oprofile->subscribe();
         return true;
     }
 

@@ -199,37 +199,39 @@ class Ostatus_profile extends Managed_DataObject
      * Send a subscription request to the hub for this feed.
      * The hub will later send us a confirmation POST to /main/push/callback.
      *
-     * @return bool true on success, false on failure
-     * @throws ServerException if feed state is not valid
+     * @return void
+     * @throws ServerException if feed state is not valid or subscription fails.
      */
     public function subscribe()
     {
         $feedsub = FeedSub::ensureFeed($this->feeduri);
         if ($feedsub->sub_state == 'active') {
             // Active subscription, we don't need to do anything.
-            return true;
-        } else {
-            // Inactive or we got left in an inconsistent state.
-            // Run a subscription request to make sure we're current!
-            return $feedsub->subscribe();
+            return;
         }
+
+        // Inactive or we got left in an inconsistent state.
+        // Run a subscription request to make sure we're current!
+        return $feedsub->subscribe();
     }
 
     /**
      * Check if this remote profile has any active local subscriptions, and
      * if not drop the PuSH subscription feed.
      *
-     * @return bool true on success, false on failure
+     * @return boolean true if subscription is removed, false if there are still subscribers to the feed
+     * @throws Exception of various kinds on failure.
      */
     public function unsubscribe() {
-        $this->garbageCollect();
+        return $this->garbageCollect();
     }
 
     /**
      * Check if this remote profile has any active local subscriptions, and
      * if not drop the PuSH subscription feed.
      *
-     * @return boolean
+     * @return boolean true if subscription is removed, false if there are still subscribers to the feed
+     * @throws Exception of various kinds on failure.
      */
     public function garbageCollect()
     {
