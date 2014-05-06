@@ -137,6 +137,11 @@ class User extends Managed_DataObject
         return $this->uri;
     }
 
+    public function getNickname()
+    {
+        return $this->getProfile()->getNickname();
+    }
+
     function isSubscribed(Profile $other)
     {
         return $this->getProfile()->isSubscribed($other);
