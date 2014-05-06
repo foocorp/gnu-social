@@ -5,7 +5,7 @@ if (isset($_SERVER) && array_key_exists('REQUEST_METHOD', $_SERVER)) {
     exit();
 }
 
-define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
+define('INSTALLDIR', realpath(dirname(__FILE__) . '/../../..'));
 define('GNUSOCIAL', true);
 define('STATUSNET', true);  // compatibility
 

@@ -134,8 +134,6 @@ class AttachmentListItem extends Widget
 
     var $attachment = null;
 
-    var $oembed = null;
-
     /**
      * @param File $attachment the attachment we will display
      */
@@ -143,21 +141,10 @@ class AttachmentListItem extends Widget
     {
         parent::__construct($out);
         $this->attachment  = $attachment;
-        $this->oembed = File_oembed::getKV('file_id', $this->attachment->id);
     }
 
     function title() {
-        if (empty($this->attachment->title)) {
-            if (empty($this->oembed->title)) {
-                $title = $this->attachment->filename;
-            } else {
-                $title = $this->oembed->title;
-            }
-        } else {
-            $title = $this->attachment->title;
-        }
-
-        return $title;
+        return $this->attachment->title ?: $this->attachment->filename;
     }
 
     function linkTitle() {
@@ -238,40 +225,19 @@ class AttachmentListItem extends Widget
 class Attachment extends AttachmentListItem
 {
     function showLink() {
-        $this->out->elementStart('div', array('id' => 'attachment_view',
-                                              'class' => 'hentry'));
-        $this->out->elementStart('div', 'entry-title');
-        $this->out->element('a', $this->linkAttr(), $this->linkTitle());
-        $this->out->elementEnd('div');
+        if (Event::handle('StartShowAttachmentLink', array($this->out, $this->attachment))) {
+            $this->out->elementStart('div', array('id' => 'attachment_view',
+                                                  'class' => 'hentry'));
+            $this->out->elementStart('div', 'entry-title');
+            $this->out->element('a', $this->linkAttr(), $this->linkTitle());
+            $this->out->elementEnd('div');
 
-        $this->out->elementStart('div', 'entry-content');
-        $this->showRepresentation();
-        $this->out->elementEnd('div');
-
-        if (!empty($this->oembed->author_name) || !empty($this->oembed->provider)) {
-            $this->out->elementStart('div', array('id' => 'oembed_info',
-                                                  'class' => 'entry-content'));
-            if (!empty($this->oembed->author_name)) {
-                $this->out->elementStart('div', 'fn vcard author');
-                if (empty($this->oembed->author_url)) {
-                    $this->out->text($this->oembed->author_name);
-                } else {
-                    $this->out->element('a', array('href' => $this->oembed->author_url,
-                                                   'class' => 'url'), $this->oembed->author_name);
-                }
-            }
-            if (!empty($this->oembed->provider)) {
-                $this->out->elementStart('div', 'fn vcard');
-                if (empty($this->oembed->provider_url)) {
-                    $this->out->text($this->oembed->provider);
-                } else {
-                    $this->out->element('a', array('href' => $this->oembed->provider_url,
-                                                   'class' => 'url'), $this->oembed->provider);
-                }
-            }
+            $this->out->elementStart('div', 'entry-content');
+            $this->showRepresentation();
+            $this->out->elementEnd('div');
+            Event::handle('EndShowAttachmentLink', array($this->out, $this->attachment));
             $this->out->elementEnd('div');
         }
-        $this->out->elementEnd('div');
     }
 
     function show() {
@@ -288,28 +254,7 @@ class Attachment extends AttachmentListItem
 
     function showRepresentation() {
         if (Event::handle('StartShowAttachmentRepresentation', array($this->out, $this->attachment))) {
-            if (!empty($this->oembed->type)) {
-                switch ($this->oembed->type) {
-                case 'rich':
-                case 'video':
-                case 'link':
-                    if (!empty($this->oembed->html)) {
-                        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-                        $config = array(
-                            'safe'=>1,
-                            'elements'=>'*+object+embed');
-                        $this->out->raw(htmLawed($this->oembed->html,$config));
-                    }
-                    break;
-
-                case 'photo':
-                    $this->out->element('img', array('src' => $this->oembed->url, 'width' => $this->oembed->width, 'height' => $this->oembed->height, 'alt' => 'alt'));
-                    break;
-
-                default:
-                    Event::handle('ShowUnsupportedAttachmentRepresentation', array($this->out, $this->attachment));
-                }
-            } elseif (!empty($this->attachment->mimetype)) {
+            if (!empty($this->attachment->mimetype)) {
                 switch ($this->attachment->mimetype) {
                 case 'image/gif':
                 case 'image/png':

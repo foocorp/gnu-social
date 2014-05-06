@@ -96,28 +96,6 @@ class AttachmentAction extends Action
         return $a->title();
     }
 
-    function extraHead()
-    {
-        $this->element('link',array('rel'=>'alternate',
-            'type'=>'application/json+oembed',
-            'href'=>common_local_url(
-                'oembed',
-                array(),
-                array('format'=>'json', 'url'=>
-                    common_local_url('attachment',
-                        array('attachment' => $this->attachment->id)))),
-            'title'=>'oEmbed'),null);
-        $this->element('link',array('rel'=>'alternate',
-            'type'=>'text/xml+oembed',
-            'href'=>common_local_url(
-                'oembed',
-                array(),
-                array('format'=>'xml','url'=>
-                    common_local_url('attachment',
-                        array('attachment' => $this->attachment->id)))),
-            'title'=>'oEmbed'),null);
-    }
-
     /**
      * Handle input
      *

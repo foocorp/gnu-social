@@ -168,9 +168,6 @@ class Router
 
             $m->connect('main/tagprofile', array('action' => 'tagprofile'));
 
-            $m->connect('main/oembed',
-                        array('action' => 'oembed'));
-
             $m->connect('main/xrds',
                         array('action' => 'publicxrds'));
 

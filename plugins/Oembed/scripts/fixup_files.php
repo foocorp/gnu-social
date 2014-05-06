@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
+define('INSTALLDIR', realpath(dirname(__FILE__) . '/../../..'));
 
 $longoptions = array('dry-run');
 
@@ -62,11 +62,8 @@ while ($f->fetch()) {
         $f->decache();
         
         if (is_array($data)) {
-            if ($f->saveOembed($data, $f->url)) {
-                echo " (ok)\n";
-            } else {
-                echo " (ok, no embedding data)\n";
-            }
+            Event::handle('EndFileSaveNew', array($f, $data, $f->url));
+            echo " (ok)\n";
         } else {
             echo " (ok, but embedding lookup failed)\n";
         }

@@ -1,0 +1,18 @@
+So far this is still in $config['site']['oembed'].
+
+oembed
+--------
+
+oEmbed endpoint for multimedia attachments (links in posts). Will also
+work as 'oohembed' for backwards compatibility.
+
+endpoint: oohembed endpoint using http://oohembed.com/ software. Defaults to
+	  'http://oohembed.com/oohembed/'.
+order: Array of methods to check for OEmbed data. Methods include 'built-in'
+       (use a built-in function to simulate oEmbed for some sites),
+       'well-known' (use well-known public oEmbed endpoints),
+       'discovery' (discover using <link> headers in HTML), 'service' (use
+       a third-party service, like oohembed or embed.ly. Default is
+       array('built-in', 'well-known', 'service', 'discovery'). Note that very
+       few sites implement oEmbed; 'discovery' is going to fail 99% of the
+       time.

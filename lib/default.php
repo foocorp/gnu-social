@@ -303,6 +303,7 @@ $default =
                             'ClientSideShorten' => array(),
                             'EmailAuthentication' => array(),
                             'Event' => array(),
+                            'Oembed' => array(),
                             'OpenID' => array(),
                             'Poll' => array(),
                             'QnA' => array(),

@@ -75,62 +75,26 @@ class File extends Managed_DataObject
         // I don't know why we have to keep doing this but I'm adding this last check to avoid
         // uniqueness bugs.
 
-        $x = File::getKV('url', $given_url);
+        $file = File::getKV('url', $given_url);
         
-        if (!$x instanceof File) {
-            $x = new File;
-            $x->url = $given_url;
-            if (!empty($redir_data['protected'])) $x->protected = $redir_data['protected'];
-            if (!empty($redir_data['title'])) $x->title = $redir_data['title'];
-            if (!empty($redir_data['type'])) $x->mimetype = $redir_data['type'];
-            if (!empty($redir_data['size'])) $x->size = intval($redir_data['size']);
-            if (isset($redir_data['time']) && $redir_data['time'] > 0) $x->date = intval($redir_data['time']);
-            $file_id = $x->insert();
+        if (!$file instanceof File) {
+            $file = new File;
+            $file->url = $given_url;
+            if (!empty($redir_data['protected'])) $file->protected = $redir_data['protected'];
+            if (!empty($redir_data['title'])) $file->title = $redir_data['title'];
+            if (!empty($redir_data['type'])) $file->mimetype = $redir_data['type'];
+            if (!empty($redir_data['size'])) $file->size = intval($redir_data['size']);
+            if (isset($redir_data['time']) && $redir_data['time'] > 0) $file->date = intval($redir_data['time']);
+            $file_id = $file->insert();
         }
 
-        $x->saveOembed($redir_data, $given_url);
-        return $x;
-    }
-
-    /**
-     * Save embedding information for this file, if applicable.
-     *
-     * Normally this won't need to be called manually, as File::saveNew()
-     * takes care of it.
-     *
-     * @param array $redir_data lookup data eg from File_redirection::where()
-     * @param string $given_url
-     * @return boolean success
-     */
-    public function saveOembed(array $redir_data, $given_url)
-    {
-        if (isset($redir_data['type'])
-                && (('text/html' === substr($redir_data['type'], 0, 9)
-                || 'application/xhtml+xml' === substr($redir_data['type'], 0, 21)))) {
-            try {
-                $oembed_data = File_oembed::_getOembed($given_url);
-            } catch (Exception $e) {
-                return false;
-            }
-            if ($oembed_data === false) {
-                return false;
-            }
-            $fo = File_oembed::getKV('file_id', $this->id);
-
-            if ($fo instanceof File_oembed) {
-                common_log(LOG_WARNING, "Strangely, a File_oembed object exists for new file $file_id", __FILE__);
-            } else {
-                File_oembed::saveNew($oembed_data, $this->id);
-                return true;
-            }
-        }
-        return false;
+        Event::handle('EndFileSaveNew', array($file, $redir_data, $given_url));
+        return $file;
     }
 
     /**
      * Go look at a URL and possibly save data about it if it's new:
      * - follow redirect chains and store them in file_redirection
-     * - look up oEmbed data and save it in file_oembed
      * - if a thumbnail is available, save it in file_thumbnail
      * - save file record with basic info
      * - optionally save a file_to_post record
@@ -384,7 +348,7 @@ class File extends Managed_DataObject
         $enclosure->size=$this->size;
         $enclosure->mimetype=$this->mimetype;
 
-        if(! isset($this->filename)){
+        if (!isset($this->filename)) {
             $notEnclosureMimeTypes = array(null,'text/html','application/xhtml+xml');
             $mimetype = $this->mimetype;
             if($mimetype != null){
@@ -394,32 +358,8 @@ class File extends Managed_DataObject
             if($semicolon){
                 $mimetype = substr($mimetype,0,$semicolon);
             }
-            if(in_array($mimetype,$notEnclosureMimeTypes)){
-                // Never treat generic HTML links as an enclosure type!
-                // But if we have oEmbed info, we'll consider it golden.
-                $oembed = File_oembed::getKV('file_id',$this->id);
-                if($oembed && in_array($oembed->type, array('photo', 'video'))){
-                    $mimetype = strtolower($oembed->mimetype);
-                    $semicolon = strpos($mimetype,';');
-                    if($semicolon){
-                        $mimetype = substr($mimetype,0,$semicolon);
-                    }
-                    // @fixme uncertain if this is right.
-                    // we want to expose things like YouTube videos as
-                    // viewable attachments, but don't expose them as
-                    // downloadable enclosures.....?
-                    //if (in_array($mimetype, $notEnclosureMimeTypes)) {
-                    //    return false;
-                    //} else {
-                        if($oembed->mimetype) $enclosure->mimetype=$oembed->mimetype;
-                        if($oembed->url) $enclosure->url=$oembed->url;
-                        if($oembed->title) $enclosure->title=$oembed->title;
-                        if($oembed->modified) $enclosure->modified=$oembed->modified;
-                        unset($oembed->size);
-                    //}
-                } else {
-                    return false;
-                }
+            if (in_array($mimetype, $notEnclosureMimeTypes)) {
+                Event::handle('FileEnclosureMetadata', array($file, &$enclosure));
             }
         }
         return $enclosure;

@@ -166,6 +166,11 @@ class Action extends HTMLOutputter // lawsuit
         return $this->scoped;
     }
 
+    public function getActionName()
+    {
+        return $this->action;
+    }
+
     /**
      * Show page, a template method.
      *

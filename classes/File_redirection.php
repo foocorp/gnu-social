@@ -257,9 +257,6 @@ class File_redirection extends Managed_DataObject
                     // Save file and embedding data about it!
                     $file = File::saveNew($redir_data, $long_url);
                     $file_id = $file->id;
-                    if (!empty($redir_data['oembed']['json'])) {
-                        File_oembed::saveNew($redir_data['oembed']['json'], $file_id);
-                    }
                 } else if (is_string($redir_data)) {
                     // The file is a known redirect target.
                     $file = File::getKV('url', $redir_data);
