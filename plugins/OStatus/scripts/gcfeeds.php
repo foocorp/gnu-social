@@ -29,7 +29,7 @@ END_OF_HELP;
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
 $feedsub = new FeedSub();
-
+$feedsub->find();
 while ($feedsub->fetch()) {
     echo "{$feedsub->uri} ({$feedsub->sub_state})";
     try {
