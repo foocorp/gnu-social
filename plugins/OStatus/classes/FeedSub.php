@@ -372,7 +372,7 @@ class FeedSub extends Managed_DataObject
             // Throw the Exception again.
             throw $e;
         }
-        throw ServerException("{$mode} request failed.");
+        throw new ServerException("{$mode} request failed.");
     }
 
     /**
