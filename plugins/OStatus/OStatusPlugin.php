@@ -912,7 +912,7 @@ class OStatusPlugin extends Plugin
             return true;
         }
 
-        $fav = Fave::pkeyGet(array('user_id' => $user->id,
+        $fav = Fave::pkeyGet(array('user_id' => $profile->id,
                                    'notice_id' => $notice->id));
 
         if (!$fav instanceof Fave) {
