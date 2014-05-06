@@ -294,7 +294,6 @@ $default =
                             'AuthCrypt' => array(),
                             'Cronish' => array(),
                             'LRDD' => array(),
-                            'OpportunisticQM' => array(),
                             'StrictTransportSecurity' => array(),
                         ),
               'default' => array(
@@ -305,6 +304,7 @@ $default =
                             'Event' => array(),
                             'Oembed' => array(),
                             'OpenID' => array(),
+                            'OpportunisticQM' => array(),
                             'Poll' => array(),
                             'QnA' => array(),
                             'SearchSub' => array(),
