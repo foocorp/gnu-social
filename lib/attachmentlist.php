@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('GNUSOCIAL') && !defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * widget for displaying a list of notice attachments
@@ -289,10 +287,29 @@ class Attachment extends AttachmentListItem
     }
 
     function showRepresentation() {
-        if (empty($this->oembed->type)) {
-            if (empty($this->attachment->mimetype)) {
-                $this->showFallback();
-            } else {
+        if (Event::handle('StartShowAttachmentRepresentation', array($this->out, $this->attachment))) {
+            if (!empty($this->oembed->type)) {
+                switch ($this->oembed->type) {
+                case 'rich':
+                case 'video':
+                case 'link':
+                    if (!empty($this->oembed->html)) {
+                        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
+                        $config = array(
+                            'safe'=>1,
+                            'elements'=>'*+object+embed');
+                        $this->out->raw(htmLawed($this->oembed->html,$config));
+                    }
+                    break;
+
+                case 'photo':
+                    $this->out->element('img', array('src' => $this->oembed->url, 'width' => $this->oembed->width, 'height' => $this->oembed->height, 'alt' => 'alt'));
+                    break;
+
+                default:
+                    Event::handle('ShowUnsupportedAttachmentRepresentation', array($this->out, $this->attachment));
+                }
+            } elseif (!empty($this->attachment->mimetype)) {
                 switch ($this->attachment->mimetype) {
                 case 'image/gif':
                 case 'image/png':
@@ -348,32 +365,13 @@ class Attachment extends AttachmentListItem
                     // Fall through to default.
 
                 default:
-                    $this->showFallback();
+                    Event::handle('ShowUnsupportedAttachmentRepresentation', array($this->out, $this->attachment));
                 }
-            }
-        } else {
-            switch ($this->oembed->type) {
-            case 'rich':
-            case 'video':
-            case 'link':
-                if (!empty($this->oembed->html)) {
-                    require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-                    $config = array(
-                        'safe'=>1,
-                        'elements'=>'*+object+embed');
-                    $this->out->raw(htmLawed($this->oembed->html,$config));
-                    //$this->out->raw($this->oembed->html);
-                }
-                break;
-
-            case 'photo':
-                $this->out->element('img', array('src' => $this->oembed->url, 'width' => $this->oembed->width, 'height' => $this->oembed->height, 'alt' => 'alt'));
-                break;
-
-            default:
-                $this->showFallback();
+            } else {
+                Event::handle('ShowUnsupportedAttachmentRepresentation', array($this->out, $this->attachment));
             }
         }
+        Event::handle('EndShowAttachmentRepresentation', array($this->out, $this->attachment));
     }
 
     protected function showHtmlFile(File $attachment)
@@ -427,10 +425,5 @@ class Attachment extends AttachmentListItem
         $scrubbed = htmLawed($body, $config);
 
         return $scrubbed;
-    }
-
-    function showFallback()
-    {
-        // still needed: should show a link?
     }
 }

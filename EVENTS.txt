@@ -1445,3 +1445,15 @@ CreateFileImageThumbnailSource: Hook to create image thumbnail source from a Fil
 - $file:    'File' object to source the image from
 - &$imgPath: Path to image file which can be used as source for our thumbnail algorithm.
 - $media:   MIME media type ('image', 'video', 'audio' etc.)
+
+StartShowAttachmentRepresentation: Attachment representation, full file (or in rare cases thumbnails/previews).
+- $out:     HTMLOutputter class to use for outputting HTML.
+- $file:    'File' object which we're going to show representation for.
+
+EndShowAttachmentRepresentation: Executed after Attachment representation, despite perhaps being unsupported media.
+- $out:     HTMLOutputter class to use for outputting HTML.
+- $file:    'File' object which we're going to show representation for.
+
+ShowUnsupportedAttachmentRepresentation: Attachment representation, full file (or in rare cases thumbnails/previews).
+- $out:     HTMLOutputter class to use for outputting HTML.
+- $file:    'File' object which we're going to show representation for.
