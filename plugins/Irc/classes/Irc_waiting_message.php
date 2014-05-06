@@ -83,7 +83,7 @@ class Irc_waiting_message extends Managed_DataObject {
         if (!$result) {
             // TRANS: Exception thrown when an IRC attempts count could not be updated.
             // TRANS: %d is the object ID for which the count could not be updated.
-            throw Exception(sprintf(_m('Could not increment attempts count for %d.'), $this->id));
+            throw new Exception(sprintf(_m('Could not increment attempts count for %d.'), $this->id));
         }
     }
 

@@ -101,7 +101,7 @@ class User_greeting_count extends Managed_DataObject
             if (!$result) {
                 // TRANS: Exception thrown when the user greeting count could not be saved in the database.
                 // TRANS: %d is a user ID (number).
-                throw Exception(sprintf(_m('Could not save new greeting count for %d.'),
+                throw new Exception(sprintf(_m('Could not save new greeting count for %d.'),
                                         $user_id));
             }
         } else {
@@ -114,7 +114,7 @@ class User_greeting_count extends Managed_DataObject
             if (!$result) {
                 // TRANS: Exception thrown when the user greeting count could not be saved in the database.
                 // TRANS: %d is a user ID (number).
-                throw Exception(sprintf(_m('Could not increment greeting count for %d.'),
+                throw new Exception(sprintf(_m('Could not increment greeting count for %d.'),
                                         $user_id));
             }
         }
