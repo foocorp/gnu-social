@@ -58,6 +58,8 @@ class CancelsubscriptionAction extends FormAction
 
     protected function handlePost()
     {
+        parent::handlePost();
+
         try {
             $request = Subscription_queue::pkeyGet(array('subscriber' => $this->scoped->id,
                                                          'subscribed' => $this->target->id));
