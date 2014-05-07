@@ -112,6 +112,12 @@ class RawInboxNoticeStream extends NoticeStream
                         'OR notice.id IN (SELECT notice_id FROM attention WHERE profile_id=%1$d)',
                     $this->target->id)
             );
+        if (!empty($since_id)) {
+            $notice->whereAdd(sprintf('notice.id > %d', $since_id));
+        }
+        if (!empty($max_id)) {
+            $notice->whereAdd(sprintf('notice.id <= %d', $max_id));
+        }
         $notice->limit($offset, $limit);
         $notice->orderBy('notice.created DESC');
 
