@@ -89,7 +89,6 @@ class UsersalmonAction extends SalmonAction
             // In reply to a notice either from or mentioning this user.
         } elseif (!empty($context->attention) &&
                    array_key_exists($this->user->getUri(), $context->attention)) {
-        {
             // To the attention of this user.
         } else {
             // TRANS: Client exception.
