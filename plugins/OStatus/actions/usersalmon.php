@@ -87,10 +87,8 @@ class UsersalmonAction extends SalmonAction
              array_key_exists($this->user->id, $notice->getReplies())))
         {
             // In reply to a notice either from or mentioning this user.
-        } else if (!empty($context->attention) &&
-                   (array_key_exists($this->user->uri, $context->attention) ||
-                    array_key_exists($common_profile_url($this->user->getNickname()),
-                             $context->attention)))
+        } elseif (!empty($context->attention) &&
+                   array_key_exists($this->user->getUri(), $context->attention)) {
         {
             // To the attention of this user.
         } else {
