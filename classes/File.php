@@ -33,6 +33,8 @@ class File extends Managed_DataObject
     public $date;                            // int(4)
     public $protected;                       // int(4)
     public $filename;                        // varchar(255)
+    public $width;                           // int(4)
+    public $height;                          // int(4)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
     public static function schemaDef()
