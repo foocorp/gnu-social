@@ -1,13 +1,28 @@
+# This is completely optional, but if you're running a site with
+# ssl="always" configured, then you might as well redirect any of
+# your stray HTTP visitors to HTTPS.
+#
+#$HTTP["scheme"] == "http" {
+#  $HTTP["host"] =~ "^(social\.example\.com)$" {
+#    url.redirect = ( "^\/?(.*)" => "https://%1/$1" )
+#    server.name                 = "%1"
+#  }
+#}
+
 # If you're using vhosts, you should have per-vhost server.document-root
 #   settings too! Read how in the respective alternative vhost modules.
+#$HTTP["host"] =~ "^social\.example\.com$" {
 
-#$HTTP["host"] =~ "^social\.domain\.com$" {
-    # NOTE: fastcgi/cgi/fpm config here if you're using per-user cgi/fpm
+#    NOTE: configure fastcgi/cgi/fpm here if you're using per-user cgi/fpm
+#    fastcgi.server += ( ".php" =>
+#      ( "localhost" => (
+#        "host" => "127.0.0.1",
+#        "port" => "9000"
+#      ))
+#    )
 
     dir-listing.activate = "disable"
 
-# Make sure "mod_rewrite" is enabled in server.modules and change statusnet
-#   to your statusnet directory. (uncommented line is for url root install)
-# url.rewrite-if-not-file = ( "^/statusnet/(.*)$" => "/statusnet/index.php?p=$1" )
-    url.rewrite-if-not-file = ( "^/(.*)$" => "/index.php?p=$1" )
+# Make sure "mod_rewrite" is enabled in server.modules
+    url.rewrite-if-not-file = ( "^/(.*)$" => "/index.php/$1" )
 #}
