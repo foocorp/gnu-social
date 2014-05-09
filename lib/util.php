@@ -951,24 +951,7 @@ function callback_helper($matches, $callback, $arg=null) {
     return substr($matches[0],0,$left) . $result . substr($matches[0],$right);
 }
 
-if (version_compare(PHP_VERSION, '5.3.0', 'ge')) {
-    // lambda implementation in a separate file; PHP 5.2 won't parse it.
-    require_once INSTALLDIR . "/lib/curry.php";
-} else {
-    function curry($fn) {
-        $args = func_get_args();
-        array_shift($args);
-        $id = uniqid('_partial');
-        $GLOBALS[$id] = array($fn, $args);
-        return create_function('',
-                               '$args = func_get_args(); '.
-                               'return call_user_func_array('.
-                               '$GLOBALS["'.$id.'"][0],'.
-                               'array_merge('.
-                               '$args,'.
-                               '$GLOBALS["'.$id.'"][1]));');
-    }
-}
+require_once INSTALLDIR . "/lib/curry.php";
 
 function common_linkify($url) {
     // It comes in special'd, so we unspecial it before passing to the stringifying
