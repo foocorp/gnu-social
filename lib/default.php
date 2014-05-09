@@ -305,10 +305,12 @@ $default =
                             'Oembed' => array(),
                             'OpenID' => array(),
                             'OpportunisticQM' => array(),
+                            'OStatus' => array(),
                             'Poll' => array(),
                             'QnA' => array(),
                             'SearchSub' => array(),
                             'TagSub' => array(),
+                            'WebFinger' => array(),
                         ),
               'locale_path' => false, // Set to a path to use *instead of* each plugin's own locale subdirectories
               'server' => null,

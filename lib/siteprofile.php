@@ -110,11 +110,8 @@ class PublicSite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'Directory'               => array(),
                     'ExtendedProfile'         => array(),
-                    'OStatus'                 => array(),
                     'RegisterThrottle'        => array(),
-                    'WebFinger'               => array(),
                 ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
@@ -147,11 +144,12 @@ class PrivateSite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'Directory'               => array(),
                     'ExtendedProfile'         => array(),
                     'EmailRegistration'       => array(),
                     'MobileProfile'           => array(),
-                ))
+                )),
+                'disable-OStatus' => 1,
+                'disable-WebFinger' => 1,
              ),
             'profile'       => array('delete' => 'true'),
             'license'       => array('type'   => 'private'),
@@ -199,9 +197,6 @@ class CommunitySite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'Directory'               => array(),
-                    'OStatus'                 => array(),
-                    'WebFinger'               => array(),
                 ))
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
@@ -235,11 +230,10 @@ class SingleuserSite extends SiteProfileSettings
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
                     'MobileProfile'           => array(),
-                    'OStatus'                 => array(),
                     'TwitterBridge'           => array(),
                     'FacebookBridge'          => array(),
-                    'WebFinger'               => array(),
-                ))
+                )),
+                'disable-Directory' => 1,
             ),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
         );
