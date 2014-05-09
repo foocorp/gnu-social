@@ -300,6 +300,7 @@ $default =
                             'Activity' => array(),
                             'Bookmark' => array(),
                             'ClientSideShorten' => array(),
+                            'Directory' => array(),
                             'EmailAuthentication' => array(),
                             'Event' => array(),
                             'Oembed' => array(),
