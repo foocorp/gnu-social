@@ -94,14 +94,6 @@ class ImMaster extends IoMaster
     }
 }
 
-if (version_compare(PHP_VERSION, '5.2.6', '<')) {
-    $arch = php_uname('m');
-    if ($arch == 'x86_64' || $arch == 'amd64') {
-        print "Aborting daemon - 64-bit PHP prior to 5.2.6 has known bugs in stream_select; you are running " . PHP_VERSION . " on $arch.\n";
-        exit(1);
-    }
-}
-
 if (have_option('i', 'id')) {
     $id = get_option_value('i', 'id');
 } else if (count($args) > 0) {
