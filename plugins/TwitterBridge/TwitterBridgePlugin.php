@@ -559,7 +559,7 @@ class TwitterBridgePlugin extends Plugin
                 $action->element('meta', array('name'    => 'twitter:title',
                                              'content' => $action->attachment->title));
 
-                $ns = new AttachmentNoticeSection($this);
+                $ns = new AttachmentNoticeSection($action);
                 $notices = $ns->getNotices();
                 $noticeArray = $notices->fetchAll();
 
