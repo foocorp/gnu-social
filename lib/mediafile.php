@@ -61,8 +61,6 @@ class MediaFile
     public function attachToNotice(Notice $notice)
     {
         File_to_post::processNew($this->fileRecord->id, $notice->id);
-        $this->maybeAddRedir($this->fileRecord->id,
-                             common_local_url('file', array('notice' => $notice->id)));
     }
 
     public function getPath()
@@ -134,15 +132,14 @@ class MediaFile
     {
         $file_redir = File_redirection::getKV('url', $url);
 
-        if (empty($file_redir)) {
-
+        if ($file_redir instanceof File_redirection) {
             $file_redir = new File_redirection;
             $file_redir->url = $url;
             $file_redir->file_id = $file_id;
 
             $result = $file_redir->insert();
 
-            if (!$result) {
+            if ($result===false) {
                 common_log_db_error($file_redir, "INSERT", __FILE__);
                 // TRANS: Client exception thrown when a database error was thrown during a file upload operation.
                 throw new ClientException(_('There was a database error while saving your file. Please try again.'));

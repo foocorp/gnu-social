@@ -237,10 +237,6 @@ class Router
 
             $m->connect('notice/new', array('action' => 'newnotice'));
 
-            $m->connect('notice/:notice/file',
-                        array('action' => 'file'),
-                        array('notice' => '[0-9]+'));
-
             $m->connect('notice/:notice',
                         array('action' => 'shownotice'),
                         array('notice' => '[0-9]+'));
