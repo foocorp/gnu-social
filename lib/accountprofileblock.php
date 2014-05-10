@@ -51,11 +51,16 @@ class AccountProfileBlock extends ProfileBlock
     protected $profile = null;
     protected $user    = null;
 
-    function __construct($out, $profile)
+    function __construct(HTMLOutputter $out, Profile $profile)
     {
         parent::__construct($out);
         $this->profile = $profile;
-        $this->user    = User::getKV('id', $profile->id);
+        try {
+            $this->user = $this->profile->getUser();
+        } catch (NoSuchUserException $e) {
+            // The profile presented is non-local
+            assert(!$this->profile->isLocal());
+        }
     }
 
     function avatar()
@@ -170,7 +175,7 @@ class AccountProfileBlock extends ProfileBlock
                         }
                         $this->out->elementEnd('li');
 
-                        if ($cur->mutuallySubscribed($this->profile)) {
+                        if ($this->profile->isLocal() && $cur->mutuallySubscribed($this->profile)) {
 
                             // message
 
@@ -184,7 +189,7 @@ class AccountProfileBlock extends ProfileBlock
 
                             // nudge
 
-                            if ($this->user && $this->user->email && $this->user->emailnotifynudge) {
+                            if ($this->user->email && $this->user->emailnotifynudge) {
                                 $this->out->elementStart('li', 'entity_nudge');
                                 $nf = new NudgeForm($this->out, $this->user);
                                 $nf->show();
