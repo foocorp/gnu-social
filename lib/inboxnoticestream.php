@@ -119,7 +119,11 @@ class RawInboxNoticeStream extends NoticeStream
             $notice->whereAdd(sprintf('notice.id <= %d', $max_id));
         }
         $notice->limit($offset, $limit);
-        $notice->orderBy('notice.created DESC');
+        // notice.id will give us even really old posts, which were
+        // recently imported. For example if a remote instance had
+        // problems and just managed to post here. Another solution
+        // would be to have a 'notice.imported' field and order by it.
+        $notice->orderBy('notice.id DESC');
 
         if (!$notice->find()) {
             return array();
