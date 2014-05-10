@@ -251,8 +251,6 @@ class Router
 
             $m->connect('notice/delete', array('action' => 'deletenotice'));
 
-            $m->connect('bookmarklet/new', array('action' => 'bookmarklet'));
-
             // conversation
 
             $m->connect('conversation/:id',

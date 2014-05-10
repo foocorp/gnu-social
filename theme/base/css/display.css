@@ -1179,16 +1179,6 @@ display:none;
 clear:both;
 }
 
-#bookmarklet address {
-display:none;
-}
-#bookmarklet .form_notice {
-width:auto;
-}
-#bookmarklet #wrap {
-min-width:0;
-}
-
 button.close,
 button.minimize {
 width:16px;

@@ -308,7 +308,6 @@ var SN = { // StatusNet
          * @fixme cookieValue is a global variable, but probably shouldn't be
          * @fixme saving the location cache cookies should be split out
          * @fixme some error messages are hardcoded english: needs i18n
-         * @fixme special-case for bookmarklet is confusing and uses a global var "self". Is this ok?
          *
          * @param {jQuery} form: jQuery object whose first element is a form
          *
@@ -394,11 +393,6 @@ var SN = { // StatusNet
                     if (errorResult.length > 0) {
                         showFeedback('error', errorResult.text());
                     } else {
-                        if ($('body')[0].id == 'bookmarklet') {
-                            // @fixme self is not referenced anywhere?
-                            self.close();
-                        }
-
                         var commandResult = $('#' + SN.C.S.CommandResult, data);
                         if (commandResult.length > 0) {
                             showFeedback('success', commandResult.text());
