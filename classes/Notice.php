@@ -1493,7 +1493,12 @@ class Notice extends Managed_DataObject
 
             $act->id      = $this->uri;
             $act->time    = strtotime($this->created);
-            $act->link    = $this->getUrl();
+            try {
+                $act->link    = $this->getUrl();
+            } catch (InvalidUrlException $e) {
+                // The notice is probably a share or similar, which don't
+                // have a representational URL of their own.
+            }
             $act->content = common_xml_safe_str($this->rendered);
 
             $profile = $this->getProfile();
