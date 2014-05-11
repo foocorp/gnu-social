@@ -45,12 +45,11 @@ require_once INSTALLDIR.'/lib/noticelist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class ConversationAction extends Action
+class ConversationAction extends ManagedAction
 {
     var $id          = null;
     var $page        = null;
     var $notices     = null;
-    var $userProfile = null;
 
     const MAX_NOTICES = 500;
 
@@ -61,7 +60,7 @@ class ConversationAction extends Action
      *
      * @return boolean false if id not passed in
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         $this->id = $this->trimmed('id');
@@ -74,32 +73,11 @@ class ConversationAction extends Action
             $this->page = 1;
         }
 
-        $cur = common_current_user();
-
-        if (empty($cur)) {
-            $this->userProfile = null;
-        } else {
-            $this->userProfile = $cur->getProfile();
-        }
-
-        $stream = new ConversationNoticeStream($this->id, $this->userProfile);
+        $stream = new ConversationNoticeStream($this->id, $this->scoped);
 
         $this->notices = $stream->getNotices(0, self::MAX_NOTICES);
 
         return true;
-    }
-
-    /**
-     * Handle the action
-     *
-     * @param array $args Web and URL arguments
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
     }
 
     /**
@@ -128,7 +106,7 @@ class ConversationAction extends Action
         if (!empty($user) && $user->conversationTree()) {
             $nl = new ConversationTree($this->notices, $this);
         } else {
-            $nl = new FullThreadedNoticeList($this->notices, $this, $this->userProfile);
+            $nl = new FullThreadedNoticeList($this->notices, $this, $this->scoped);
         }
 
         $cnt = $nl->show();
