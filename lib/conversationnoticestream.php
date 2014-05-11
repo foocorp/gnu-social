@@ -76,35 +76,30 @@ class RawConversationNoticeStream extends NoticeStream
         $this->id = $id;
     }
 
-    function getNotices($offset, $limit, $sinceId = null, $maxId = null)
-    {
-        $all = Notice::listGet('conversation', array($this->id));
-        $notices = $all[$this->id];
-        // Re-order in reverse-chron
-        usort($notices, array('RawConversationNoticeStream', '_reverseChron'));
-        // FIXME: handle since and max
-        $wanted = array_slice($notices, $offset, $limit);
-        return new ArrayWrapper($wanted);
-    }
-
     function getNoticeIds($offset, $limit, $since_id, $max_id)
     {
-        $notice = $this->getNotices($offset, $limit, $since_id, $max_id);
-        $ids = $notice->fetchAll('id');
-        return $ids;
-    }
-
-    function _reverseChron($a, $b)
-    {
-        $at = strtotime($a->created);
-        $bt = strtotime($b->created);
-        
-        if ($at == $bt) {
-            return 0;
-        } else if ($at > $bt) {
-            return -1;
-        } else {
-            return 1;
+        $conv = Conversation::getKV('id', $this->id);
+        if (!$conv instanceof Conversation) {
+            throw new ServerException('Could not find conversation');
         }
+        $notice = new Notice();
+        // SELECT
+        $notice->selectAdd();
+        $notice->selectAdd('id');
+
+        // WHERE
+        $notice->conversation = $this->id;
+        if (!empty($since_id)) {
+            $notice->whereAdd(sprintf('notice.id > %d', $since_id));
+        }
+        if (!empty($max_id)) {
+            $notice->whereAdd(sprintf('notice.id <= %d', $max_id));
+        }
+        $notice->limit($offset, $limit);
+
+        // ORDER BY
+        // currently imitates the previously used "_reverseChron" sorting
+        $notice->orderBy('notice.created DESC');
+        return $notice->fetchAll('id');
     }
 }
