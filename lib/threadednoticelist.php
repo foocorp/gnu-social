@@ -361,7 +361,7 @@ class ThreadedNoticeListMoreItem extends NoticeListItem
     function showMiniForm()
     {
         $id = $this->notice->conversation;
-        $url = common_local_url('conversationreplies', array('id' => $id));
+        $url = common_local_url('conversation', array('id' => $id));
 
         $n = Conversation::noticeCount($id) - 1;
 
