@@ -145,7 +145,9 @@ class Action extends HTMLOutputter // lawsuit
 
         $this->args = common_copy_args($args);
 
-        $this->action = $this->trimmed('action');
+        // This could be set with get_called_action and then
+        // chop off 'Action' from the class name. In lower case.
+        $this->action = strtolower($this->trimmed('action'));
 
         if ($this->ajax || $this->boolean('ajax')) {
             // check with StatusNet::isAjax()
@@ -536,9 +538,11 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showBody()
     {
-        $this->elementStart('body', (common_current_user()) ? array('id' => strtolower($this->trimmed('action')),
-                                                                    'class' => 'user_in')
-                            : array('id' => strtolower($this->trimmed('action'))));
+        $params = array('id' => $this->getActionName());
+        if ($this->scoped instanceof Profile) {
+            $params['class'] = 'user_in';
+        }
+        $this->elementStart('body', $params);
         $this->elementStart('div', array('id' => 'wrap'));
         if (Event::handle('StartShowHeader', array($this))) {
             $this->showHeader();
@@ -1499,7 +1503,7 @@ class Action extends HTMLOutputter // lawsuit
      */
     function returnToArgs()
     {
-        $action = $this->trimmed('action');
+        $action = $this->getActionName();
         $args   = $this->args;
         unset($args['action']);
         if (common_config('site', 'fancy')) {
