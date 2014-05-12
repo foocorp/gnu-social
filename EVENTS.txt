@@ -1298,6 +1298,16 @@ EndShowGroupProfileBlock: After showing the profile block for a group
 - $out: XMLOutputter to append custom output
 - $group: the group being shown
 
+StartShowConversation: start the listing of a conversation
+- $action: Action object (used mainly as HTMLOutputter)
+- $conv: Conversation object, has functions to retrieve relevant notices
+- $scoped: Profile for scoping (null if not logged in)
+
+EndShowConversation: after the listing of a conversation
+- $action: Action object (used mainly as HTMLOutputter)
+- $conv: Conversation object, has functions to retrieve relevant notices
+- $scoped: Profile for scoping (null if not logged in)
+
 StartShowThreadedNoticeTail: when showing the replies etc. to a notice
 - $nli: parent noticelistitem
 - $notice: parent notice

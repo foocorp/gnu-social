@@ -121,4 +121,15 @@ class Conversation extends Managed_DataObject
         return common_local_url('conversation', array('id' => $this->id)) .
                 ($noticeId===null ? '' : "#notice-{$noticeId}");
     }
+
+    // FIXME: ...will 500 ever be too low? Taken from ConversationAction::MAX_NOTICES
+    public function getNotices($offset=0, $limit=500, Profile $scoped=null)
+    {
+        if ($scoped === null) {
+            $scoped = Profile::current();
+        }
+        $stream = new ConversationNoticeStream($this->id, $scoped);
+        $notices = $stream->getNotices($offset, $limit);
+        return $notices;
+    }
 }

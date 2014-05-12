@@ -7,6 +7,7 @@
  * @category Action
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  *
@@ -27,31 +28,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-// XXX: not sure how to do paging yet,
-// so set a 60-notice limit
-
-require_once INSTALLDIR.'/lib/noticelist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Conversation tree in the browser
  *
+ * Will always try to show the entire conversation, since that's how our
+ * ConversationNoticeStream works.
+ *
  * @category Action
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
 class ConversationAction extends ManagedAction
 {
-    var $id          = null;
+    var $conv        = null;
     var $page        = null;
     var $notices     = null;
-
-    const MAX_NOTICES = 500;
 
     /**
      * Initialization.
@@ -63,19 +59,12 @@ class ConversationAction extends ManagedAction
     protected function prepare(array $args=array())
     {
         parent::prepare($args);
-        $this->id = $this->trimmed('id');
-        if (empty($this->id)) {
-            return false;
-        }
-        $this->id = $this->id+0;
-        $this->page = $this->trimmed('page');
-        if (empty($this->page)) {
-            $this->page = 1;
-        }
+        $convId = $this->int('id');
 
-        $stream = new ConversationNoticeStream($this->id, $this->scoped);
-
-        $this->notices = $stream->getNotices(0, self::MAX_NOTICES);
+        $this->conv = Conversation::getKV('id', $convId);
+        if (!$this->conv instanceof Conversation) {
+            throw new ClientException('Could not find specified conversation');
+        }
 
         return true;
     }
@@ -94,22 +83,18 @@ class ConversationAction extends ManagedAction
     /**
      * Show content.
      *
-     * Display a hierarchical unordered list in the content area.
-     * Uses ConversationTree to do most of the heavy lifting.
+     * NoticeList extended classes do most heavy lifting. Plugins can override.
      *
      * @return void
      */
     function showContent()
     {
-        $user = common_current_user();
-
-        if (!empty($user) && $user->conversationTree()) {
-            $nl = new ConversationTree($this->notices, $this);
-        } else {
-            $nl = new FullThreadedNoticeList($this->notices, $this, $this->scoped);
+        if (Event::handle('StartShowConversation', array($this, $this->conv, $this->scoped))) {
+            $notices = $this->conv->getNotices();
+            $nl = new FullThreadedNoticeList($notices, $this, $this->scoped);
+            $cnt = $nl->show();
         }
-
-        $cnt = $nl->show();
+        Event::handle('EndShowConversation', array($this, $this->conv, $this->scoped));
     }
 
     function isReadOnly()
@@ -123,7 +108,7 @@ class ConversationAction extends ManagedAction
         return array(new Feed(Feed::JSON,
                               common_local_url('apiconversation',
                                                array(
-                                                    'id' => $this->id,
+                                                    'id' => $this->conv->id,
                                                     'format' => 'as')),
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
@@ -131,7 +116,7 @@ class ConversationAction extends ManagedAction
                      new Feed(Feed::RSS2,
                               common_local_url('apiconversation',
                                                array(
-                                                    'id' => $this->id,
+                                                    'id' => $this->conv->id,
                                                     'format' => 'rss')),
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
@@ -139,7 +124,7 @@ class ConversationAction extends ManagedAction
                      new Feed(Feed::ATOM,
                               common_local_url('apiconversation',
                                                array(
-                                                    'id' => $this->id,
+                                                    'id' => $this->conv->id,
                                                     'format' => 'atom')),
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
