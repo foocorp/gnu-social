@@ -76,12 +76,8 @@ class RawConversationNoticeStream extends NoticeStream
         $this->id = $id;
     }
 
-    function getNoticeIds($offset, $limit, $since_id, $max_id)
+    function getNoticeIds($offset, $limit, $since_id=null, $max_id=null)
     {
-        $conv = Conversation::getKV('id', $this->id);
-        if (!$conv instanceof Conversation) {
-            throw new ServerException('Could not find conversation');
-        }
         $notice = new Notice();
         // SELECT
         $notice->selectAdd();
@@ -95,11 +91,14 @@ class RawConversationNoticeStream extends NoticeStream
         if (!empty($max_id)) {
             $notice->whereAdd(sprintf('notice.id <= %d', $max_id));
         }
-        $notice->limit($offset, $limit);
+        if (!is_null($offset)) {
+            $notice->limit($offset, $limit);
+        }
 
         // ORDER BY
         // currently imitates the previously used "_reverseChron" sorting
         $notice->orderBy('notice.created DESC');
+        $notice->find();
         return $notice->fetchAll('id');
     }
 }

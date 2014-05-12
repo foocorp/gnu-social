@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Conversation tree
@@ -123,7 +119,7 @@ class ConversationTree extends NoticeList
         if (array_key_exists($id, $this->tree)) {
             $children = $this->tree[$id];
 
-            $this->out->elementStart('ol', array('class' => 'notices'));
+            $this->out->elementStart('ol', array('class' => 'notices threaded-replies xoxo'));
 
             sort($children);
 
@@ -147,69 +143,5 @@ class ConversationTree extends NoticeList
     function newListItem($notice)
     {
         return new ConversationTreeItem($notice, $this->out);
-    }
-}
-
-/**
- * Conversation tree list item
- *
- * Special class of NoticeListItem for use inside conversation trees.
- *
- * @category Widget
- * @package  StatusNet
- * @author   Evan Prodromou <evan@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
- * @link     http://status.net/
- */
-class ConversationTreeItem extends NoticeListItem
-{
-    /**
-     * start a single notice.
-     *
-     * The default creates the <li>; we skip, since the ConversationTree
-     * takes care of that.
-     *
-     * @return void
-     */
-    function showStart()
-    {
-        return;
-    }
-
-    /**
-     * finish the notice
-     *
-     * The default closes the <li>; we skip, since the ConversationTree
-     * takes care of that.
-     *
-     * @return void
-     */
-    function showEnd()
-    {
-        return;
-    }
-
-    /**
-     * show link to notice conversation page
-     *
-     * Since we're only used on the conversation page, we skip this
-     *
-     * @return void
-     */
-    function showContext()
-    {
-        return;
-    }
-
-    /**
-     * show people this notice is in reply to
-     *
-     * Tree context shows this, so we skip it.
-     *
-     * @return void
-     */
-    function showAddressees()
-    {
-        return;
     }
 }

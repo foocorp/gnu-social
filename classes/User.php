@@ -981,18 +981,6 @@ class User extends Managed_DataObject
         return false;
     }
 
-    function conversationTree()
-    {
-        if (common_config('oldschool', 'enabled')) {
-            $osp = Old_school_prefs::getKV('user_id', $this->id);
-            if (!empty($osp)) {
-                return $osp->conversation_tree;
-            }
-        }
-
-        return false;
-    }
-
     function streamNicknames()
     {
         if (common_config('oldschool', 'enabled')) {
