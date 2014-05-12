@@ -30,67 +30,14 @@ define('AVATARS_PER_PAGE', 80);
 // @todo FIXME: Class documentation missing.
 class GalleryAction extends ProfileAction
 {
-    var $profile = null;
-    var $page = null;
-    var $tag = null;
-
-    function prepare($args)
+    protected function handle()
     {
-        parent::prepare($args);
-
-        // FIXME very similar code below
-
-        $nickname_arg = $this->arg('nickname');
-        $nickname = common_canonical_nickname($nickname_arg);
-
-        // Permanent redirect on non-canonical nickname
-
-        if ($nickname_arg != $nickname) {
-            $args = array('nickname' => $nickname);
-            if ($this->arg('page') && $this->arg('page') != 1) {
-                $args['page'] = $this->arg['page'];
-            }
-            common_redirect(common_local_url($this->trimmed('action'), $args), 301);
+        // Post from the tag dropdown; redirect to a GET
+        if ($this->isPost()) {
+            common_redirect($this->selfUrl(), 303);
         }
 
-        $this->user = User::getKV('nickname', $nickname);
-
-        if (!$this->user) {
-            // TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
-            $this->clientError(_('No such user.'), 404);
-        }
-
-        $this->profile = $this->user->getProfile();
-
-        if (!$this->profile) {
-            // TRANS: Error message displayed when referring to a user without a profile.
-            $this->serverError(_('User has no profile.'));
-        }
-
-        $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
-
-        $this->tag = $this->trimmed('tag');
-        $this->q   = $this->trimmed('q');
-
-        return true;
-    }
-
-    function isReadOnly($args)
-    {
-        return true;
-    }
-
-    function handle($args)
-    {
-        parent::handle($args);
-
-		// Post from the tag dropdown; redirect to a GET
-
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		    common_redirect($this->selfUrl(), 303);
-		}
-
-        $this->showPage();
+        parent::handle();
     }
 
     function showContent()
@@ -120,14 +67,14 @@ class GalleryAction extends ProfileAction
                            array('href' =>
                                  common_local_url($this->trimmed('action'),
                                                   array('nickname' =>
-                                                        $this->user->nickname))),
+                                                        $this->target->getNickname()))),
                            // TRANS: List element on gallery action page to show all tags.
                            _m('TAGS','All'));
             $this->elementEnd('li');
             $this->elementStart('li', array('id'=>'filter_tags_item'));
             $this->elementStart('form', array('name' => 'bytag',
                                                'id' => 'form_filter_bytag',
-                                              'action' => common_path('?action=' . $this->trimmed('action')),
+                                              'action' => common_path('?action=' . $this->getActionName()),
                                                'method' => 'post'));
             $this->elementStart('fieldset');
             // TRANS: Fieldset legend on gallery action page.
@@ -136,7 +83,7 @@ class GalleryAction extends ProfileAction
             $this->dropdown('tag', _('Tag'), $content,
                             // TRANS: Dropdown field title on gallery action page for a list containing tags.
                             _('Choose a tag to narrow list.'), false, $tag);
-            $this->hidden('nickname', $this->user->nickname);
+            $this->hidden('nickname', $this->target->getNickname());
             // TRANS: Submit button text on gallery action page.
             $this->submit('submit', _m('BUTTON','Go'));
             $this->elementEnd('fieldset');
@@ -154,8 +101,8 @@ class GalleryAction extends ProfileAction
         $profile_tag = new Notice_tag();
         $profile_tag->query('SELECT DISTINCT(tag) ' .
                             'FROM profile_tag, subscription ' .
-                            'WHERE tagger = ' . $this->profile->id . ' ' .
-                            'AND ' . $usr . ' = ' . $this->profile->id . ' ' .
+                            'WHERE tagger = ' . $this->target->id . ' ' .
+                            'AND ' . $usr . ' = ' . $this->target->id . ' ' .
                             'AND ' . $lst . ' = tagged ' .
                             'AND tagger != tagged');
         $tags = array();
@@ -173,7 +120,7 @@ class GalleryAction extends ProfileAction
 
     function showProfileBlock()
     {
-        $block = new AccountProfileBlock($this, $this->profile);
+        $block = new AccountProfileBlock($this, $this->target);
         $block->show();
     }
 }

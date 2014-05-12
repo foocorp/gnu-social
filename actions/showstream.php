@@ -72,10 +72,6 @@ class ShowstreamAction extends ProfileAction
         return true;
     }
 
-    function isReadOnly($args)
-    {
-        return true;
-    }
 
     function title()
     {
@@ -101,13 +97,6 @@ class ShowstreamAction extends ProfileAction
                                $this->page);
             }
         }
-    }
-
-    protected function handle()
-    {
-        parent::handle();
-
-        $this->showPage();
     }
 
     function showContent()

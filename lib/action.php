@@ -166,6 +166,7 @@ class Action extends HTMLOutputter // lawsuit
         return $this->scoped;
     }
 
+    // Must be run _after_ prepare
     public function getActionName()
     {
         return $this->action;

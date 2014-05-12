@@ -46,7 +46,7 @@ require_once INSTALLDIR.'/lib/groupminilist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ProfileAction extends Action
+class ProfileAction extends ManagedAction
 {
     var $page    = null;
     var $tag     = null;
@@ -68,7 +68,7 @@ class ProfileAction extends Action
                 if ($this->arg('page') && $this->arg('page') != 1) {
                     $args['page'] = $this->arg['page'];
                 }
-                common_redirect(common_local_url($this->trimmed('action'), $args), 301);
+                common_redirect(common_local_url($this->getActionName(), $args), 301);
             }
             $this->user = User::getKV('nickname', $nickname);
 
@@ -82,15 +82,16 @@ class ProfileAction extends Action
             $id = (int)$this->arg('id');
             $this->target = Profile::getKV('id', $id);
 
-            if (!($this->target instanceof Profile)) {
+            if (!$this->target instanceof Profile) {
                 // TRANS: Error message displayed when referring to a user without a profile.
                 $this->serverError(_m('Profile ID does not exist.'));
             }
 
-            $user = User::getKV('id', $this->target->id);
-            if ($user instanceof User) {
-                // This is a local user -- send to their regular profile.
-                common_redirect(common_local_url('showstream', array('nickname' => $user->nickname)));
+            if ($this->target->isLocal()) {
+                // For local users when accessed by id number, redirect to
+                // the same action but using the nickname as argument.
+                common_redirect(common_local_url($this->getActionName(),
+                                                array('nickname'=>$user->getNickname())));
             }
         }
 
@@ -105,6 +106,11 @@ class ProfileAction extends Action
         $this->tag = $this->trimmed('tag');
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
         common_set_returnto($this->selfUrl());
+        return true;
+    }
+
+    function isReadOnly($args)
+    {
         return true;
     }
 
@@ -127,7 +133,7 @@ class ProfileAction extends Action
     private function statsSectionLink($actionClass, $title, $cssClass='')
     {
         $this->element('a', array('href' => common_local_url($actionClass,
-                                                             array('nickname' => $this->profile->nickname)),
+                                                             array('nickname' => $this->target->getNickname())),
                                   'class' => $cssClass),
                        $title);
     }
@@ -141,11 +147,11 @@ class ProfileAction extends Action
             // TRANS: H2 text for user subscription statistics.
             $this->statsSectionLink('subscriptions', _('Following'));
             $this->text(' ');
-            $this->text($this->profile->subscriptionCount());
+            $this->text($this->target->subscriptionCount());
             $this->elementEnd('h2');
         
             try {
-                $profile = $this->profile->getSubscribed(0, PROFILES_PER_MINILIST + 1);
+                $profile = $this->target->getSubscribed(0, PROFILES_PER_MINILIST + 1);
                 $pml = new ProfileMiniList($profile, $this);
                 $pml->show();
             } catch (NoResultException $e) {
@@ -169,11 +175,11 @@ class ProfileAction extends Action
             // TRANS: H2 text for user subscriber statistics.
             $this->statsSectionLink('subscribers', _('Followers'));
             $this->text(' ');
-            $this->text($this->profile->subscriberCount());
+            $this->text($this->target->subscriberCount());
             $this->elementEnd('h2');
 
             try {
-                $profile = $this->profile->getSubscribers(0, PROFILES_PER_MINILIST + 1);
+                $profile = $this->target->getSubscribers(0, PROFILES_PER_MINILIST + 1);
                 $sml = new SubscribersMiniList($profile, $this);
                 $sml->show();
             } catch (NoResultException $e) {
@@ -189,8 +195,8 @@ class ProfileAction extends Action
 
     function showStatistics()
     {
-        $notice_count = $this->profile->noticeCount();
-        $age_days     = (time() - strtotime($this->profile->created)) / 86400;
+        $notice_count = $this->target->noticeCount();
+        $age_days     = (time() - strtotime($this->target->created)) / 86400;
         if ($age_days < 1) {
             // Rather than extrapolating out to a bajillion...
             $age_days = 1;
@@ -203,7 +209,7 @@ class ProfileAction extends Action
         // TRANS: H2 text for user statistics.
         $this->element('h2', null, _('Statistics'));
 
-        $profile = $this->profile;
+        $profile = $this->target;
         $actionParams = array('nickname' => $profile->nickname);
         $stats = array(
             array(
@@ -258,7 +264,7 @@ class ProfileAction extends Action
 
     function showGroups()
     {
-        $groups = $this->profile->getGroups(0, GROUPS_PER_MINILIST + 1);
+        $groups = $this->target->getGroups(0, GROUPS_PER_MINILIST + 1);
 
         $this->elementStart('div', array('id' => 'entity_groups',
                                          'class' => 'section'));
@@ -267,11 +273,11 @@ class ProfileAction extends Action
             // TRANS: H2 text for user group membership statistics.
             $this->statsSectionLink('usergroups', _('Groups'));
             $this->text(' ');
-            $this->text($this->profile->getGroupCount());
+            $this->text($this->target->getGroupCount());
             $this->elementEnd('h2');
 
             if ($groups instanceof User_group) {
-                $gml = new GroupMiniList($groups, $this->profile, $this);
+                $gml = new GroupMiniList($groups, $this->target, $this);
                 $cnt = $gml->show();
             } else {
                 // TRANS: Text for user user group membership statistics if user is not a member of any group.
@@ -285,9 +291,7 @@ class ProfileAction extends Action
 
     function showLists()
     {
-        $cur = common_current_user();
-
-        $lists = $this->profile->getLists($cur);
+        $lists = $this->target->getLists($this->scoped);
 
         if ($lists->N > 0) {
             $this->elementStart('div', array('id' => 'entity_lists',
@@ -296,7 +300,7 @@ class ProfileAction extends Action
             if (Event::handle('StartShowListsMiniList', array($this))) {
 
                 $url = common_local_url('peopletagsbyuser',
-                                        array('nickname' => $this->profile->nickname));
+                                        array('nickname' => $this->target->getNickname()));
 
                 $this->elementStart('h2');
                 $this->element('a',
@@ -317,7 +321,7 @@ class ProfileAction extends Action
                         $url = $lists->mainpage;
                     } else {
                         $url = common_local_url('showprofiletag',
-                                                array('tagger' => $this->profile->nickname,
+                                                array('tagger' => $this->target->getNickname(),
                                                       'tag'    => $lists->tag));
                     }
                     if (!$first) {

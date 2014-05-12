@@ -45,16 +45,8 @@ require_once INSTALLDIR.'/lib/grouplist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class UsergroupsAction extends ProfileAction
+class UsergroupsAction extends GalleryAction
 {
-    var $page = null;
-    var $profile = null;
-
-    function isReadOnly($args)
-    {
-        return true;
-    }
-
     function title()
     {
         if ($this->page == 1) {
@@ -68,48 +60,6 @@ class UsergroupsAction extends ProfileAction
                            $this->user->nickname,
                            $this->page);
         }
-    }
-
-    function prepare($args)
-    {
-        parent::prepare($args);
-
-        $nickname_arg = $this->arg('nickname');
-        $nickname = common_canonical_nickname($nickname_arg);
-
-        // Permanent redirect on non-canonical nickname
-
-        if ($nickname_arg != $nickname) {
-            $args = array('nickname' => $nickname);
-            if ($this->arg('page') && $this->arg('page') != 1) {
-                $args['page'] = $this->arg['page'];
-            }
-            common_redirect(common_local_url('usergroups', $args), 301);
-        }
-
-        $this->user = User::getKV('nickname', $nickname);
-
-        if (!$this->user) {
-            // TRANS: Client error displayed requesting groups for a non-existing user.
-            $this->clientError(_('No such user.'), 404);
-        }
-
-        $this->profile = $this->user->getProfile();
-
-        if (!$this->profile) {
-            // TRANS: Error message displayed when referring to a user without a profile.
-            $this->serverError(_('User has no profile.'));
-        }
-
-        $this->page = $this->trimmed('page', 1);
-
-        return true;
-    }
-
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
     }
 
     function showContent()

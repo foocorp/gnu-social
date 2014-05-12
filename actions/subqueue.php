@@ -44,20 +44,13 @@ require_once(INSTALLDIR.'/lib/profilelist.php');
  */
 class SubqueueAction extends GalleryAction
 {
-    var $page = null;
+    protected $needLogin = true;
 
-    function isReadOnly($args)
-    {
-        return true;
-    }
-
-    // @todo FIXME: most of this belongs in a base class, sounds common to most group actions?
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
-        $cur = common_current_user();
-        if (!$cur || $cur->id != $this->profile->id) {
+        if ($this->scoped->id != $this->target->id) {
             // TRANS: Client error displayed when trying to approve group applicants without being a group administrator.
             $this->clientError(_('You may only approve your own pending subscriptions.'));
         }
@@ -70,12 +63,12 @@ class SubqueueAction extends GalleryAction
             // TRANS: Title of the first page showing pending subscribers still awaiting approval.
             // TRANS: %s is the name of the user.
             return sprintf(_('%s subscribers awaiting approval'),
-                           $this->profile->nickname);
+                           $this->target->getNickname());
         } else {
             // TRANS: Title of all but the first page showing pending subscribersmembers still awaiting approval.
             // TRANS: %1$s is the name of the user, %2$d is the page number of the members list.
             return sprintf(_('%1$s subscribers awaiting approval, page %2$d'),
-                           $this->profile->nickname,
+                           $this->target->getNickname(),
                            $this->page);
         }
     }
@@ -95,7 +88,7 @@ class SubqueueAction extends GalleryAction
 
         $cnt = 0;
 
-        $members = $this->profile->getRequests($offset, $limit);
+        $members = $this->target->getRequests($offset, $limit);
 
         if ($members) {
             // @fixme change!
@@ -107,7 +100,7 @@ class SubqueueAction extends GalleryAction
 
         $this->pagination($this->page > 1, $cnt > PROFILES_PER_PAGE,
                           $this->page, 'subqueue',
-                          array('nickname' => $this->profile->nickname)); // urgh
+                          array('nickname' => $this->target->getNickname())); // urgh
     }
 }
 
@@ -134,7 +127,7 @@ class SubQueueListItem extends ProfileListItem
     function showApproveButtons()
     {
         $this->out->elementStart('li', 'entity_approval');
-        $form = new ApproveSubForm($this->out, $this->profile);
+        $form = new ApproveSubForm($this->out, $this->target);
         $form->show();
         $this->out->elementEnd('li');
     }

@@ -41,11 +41,6 @@ class AllAction extends ProfileAction
 {
     var $notice;
 
-    function isReadOnly($args)
-    {
-        return true;
-    }
-
     protected function prepare(array $args=array())
     {
         parent::prepare($args);
@@ -67,18 +62,6 @@ class AllAction extends ProfileAction
         }
 
         return true;
-    }
-
-    protected function handle()
-    {
-        parent::handle();
-
-        if (!$this->target instanceof Profile) {
-            // TRANS: Client error when user not found for an action.
-            $this->clientError(_('No such user.'));
-        }
-
-        $this->showPage();
     }
 
     function title()
