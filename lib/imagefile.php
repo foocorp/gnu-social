@@ -76,24 +76,26 @@ class ImageFile
         $this->width = ($info) ? $info[0]:$width;
         $this->height = ($info) ? $info[1]:$height;
 
-        // Orientation value to rotate thumbnails properly
-        $exif = exif_read_data($this->filepath);
-        if (isset($exif['Orientation'])) {
-            switch ((int)$exif['Orientation']) {
-            case 1: // top is top
-                $this->rotate = 0;
-                break;
-            case 3: // top is bottom
-                $this->rotate = 180;
-                break;
-            case 6: // top is right
-                $this->rotate = -90;
-                break;
-            case 8: // top is left
-                $this->rotate = 90;
-                break;
+        if ($this->type == IMAGETYPE_JPEG) {
+            // Orientation value to rotate thumbnails properly
+            $exif = exif_read_data($this->filepath);
+            if (is_array($exif) && isset($exif['Orientation'])) {
+                switch ((int)$exif['Orientation']) {
+                case 1: // top is top
+                    $this->rotate = 0;
+                    break;
+                case 3: // top is bottom
+                    $this->rotate = 180;
+                    break;
+                case 6: // top is right
+                    $this->rotate = -90;
+                    break;
+                case 8: // top is left
+                    $this->rotate = 90;
+                    break;
+                }
+                // If we ever write this back, Orientation should be set to '1'
             }
-            // If we ever write this back, Orientation should be set to '1'
         }
     }
 
