@@ -62,7 +62,7 @@ class ProfileNoticeStream extends ScopingNoticeStream
                             $userProfile);
     }
 
-    function getNoticeIds($offset, $limit, $sinceId = null, $maxId = null)
+    function getNoticeIds($offset, $limit, $since_id=null, $max_id=null)
     {
         if ($this->impossibleStream()) {
             return array();
@@ -71,12 +71,12 @@ class ProfileNoticeStream extends ScopingNoticeStream
         }
     }
 
-    function getNotices($offset, $limit, $sinceId = null, $maxId = null)
+    function getNotices($offset, $limit, $since_id=null, $max_id=null)
     {
         if ($this->impossibleStream()) {
             return new ArrayWrapper(array());
         } else {
-            return parent::getNotices($offset, $limit, $sinceId, $maxId);
+            return parent::getNotices($offset, $limit, $since_id, $max_id);
         }
     }
 
