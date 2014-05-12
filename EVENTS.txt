@@ -924,6 +924,9 @@ EndRssEntryArray: at the end of copying a notice to an array
 NoticeDeleteRelated: at the beginning of deleting related fields to a notice
 - $notice: notice being deleted
 
+FileDeleteRelated: at the beginning of deleting related fields to a File
+- $notice: File being deleted
+
 StartShowHeadTitle: when beginning to show the <title> element
 - $action: action being shown
 

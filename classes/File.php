@@ -509,4 +509,29 @@ class File extends Managed_DataObject
     {
         return !empty($this->filename);
     }
+
+    public function delete($useWhere=false)
+    {
+        // Delete the file, if it exists locally
+        if (!empty($this->filename) && file_exists(self::path($this->filename))) {
+            $deleted = @unlink(self::path($this->filename));
+            if (!$deleted) {
+                common_log(LOG_ERR, sprintf('Could not unlink existing file: "%s"', self::path($this->filename)));
+            }
+        }
+
+        // Clear out related things in the database and filesystem, such as thumbnails
+        if (Event::handle('FileDeleteRelated', array($this))) {
+            $thumbs = new File_thumbnail();
+            $thumbs->file_id = $this->id;
+            if ($thumbs->find()) {
+                while ($thumbs->fetch()) {
+                    $thumbs->delete();
+                }
+            }
+        }
+
+        // And finally remove the entry from the database
+        return parent::delete($useWhere);
+    }
 }
