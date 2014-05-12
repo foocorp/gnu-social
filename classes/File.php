@@ -235,7 +235,7 @@ class File extends Managed_DataObject
         }
 
         // Normalize and make the original filename more URL friendly.
-        $origname = basename($origname);
+        $origname = basename($origname, $ext);
         if (class_exists('Normalizer')) {
             // http://php.net/manual/en/class.normalizer.php
             // http://www.unicode.org/reports/tr15/
@@ -403,15 +403,18 @@ class File extends Managed_DataObject
             $height = $width;
             $crop = true;
         }
-        
+
         // Get proper aspect ratio width and height before lookup
+        // We have to do it through an ImageFile object because of orientation etc.
+        // Only other solution would've been to rotate + rewrite uploaded files.
+        $image = ImageFile::fromFileObject($this);
         list($width, $height, $x, $y, $w2, $h2) =
-                                ImageFile::getScalingValues($this->width, $this->height, $width, $height, $crop);
+                                $image->scaleToFit($width, $height, $crop);
 
         // Doublecheck that parameters are sane and integers.
         if ($width < 1 || $width > common_config('thumbnail', 'maxsize')
                 || $height < 1 || $height > common_config('thumbnail', 'maxsize')) {
-            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile::getScalingValues
+            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
             throw new ServerException('Bad thumbnail size parameters.');
         }
 
@@ -419,35 +422,11 @@ class File extends Managed_DataObject
                         'width'  => $width,
                         'height' => $height);
         $thumb = File_thumbnail::pkeyGet($params);
-        if ($thumb === null) {
-            // throws exception on failure to generate thumbnail
-            $thumb = $this->generateThumbnail($width, $height, $crop);
-        }
-        return $thumb;
-    }
-
-    /**
-     * Generate and store a thumbnail image for the uploaded file, if applicable.
-     * Call this only if you know what you're doing.
-     *
-     * @param $width  int    Maximum thumbnail width in pixels
-     * @param $height int    Maximum thumbnail height in pixels, if null, crop to $width
-     *
-     * @return File_thumbnail or null
-     */
-    protected function generateThumbnail($width, $height, $crop)
-    {
-        $width = intval($width);
-        if ($height === null) {
-            $height = $width;
-            $crop = true;
+        if ($thumb instanceof File_thumbnail) {
+            return $thumb;
         }
 
-        $image = ImageFile::fromFileObject($this);
-
-        list($width, $height, $x, $y, $w2, $h2) =
-                                $image->scaleToFit($width, $height, $crop);
-
+        // throws exception on failure to generate thumbnail
         $outname = "thumb-{$width}x{$height}-" . $this->filename;
         $outpath = self::path($outname);
 
@@ -459,7 +438,8 @@ class File extends Managed_DataObject
         }
         return File_thumbnail::saveThumbnail($this->id,
                                       self::url($outname),
-                                      $width, $height);
+                                      $width, $height,
+                                      $outname);
     }
 
     public function getPath()
@@ -523,5 +503,10 @@ class File extends Managed_DataObject
         } 
 
         return $count;
+    }
+
+    public function isLocal()
+    {
+        return !empty($this->filename);
     }
 }

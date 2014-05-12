@@ -44,6 +44,8 @@ function main()
         initConversation();
         fixupGroupURI();
         fixupFileGeometry();
+        deleteLocalFileThumbnailsWithoutFilename();
+        deleteMissingLocalFileThumbnails();
 
         initGroupProfileId();
         initLocalGroup();
@@ -445,6 +447,57 @@ function fixupFileGeometry()
                 $image->unlink();
             }
             unset($image);
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+/*
+ * File_thumbnail objects for local Files store their own filenames in the database.
+ */
+function deleteLocalFileThumbnailsWithoutFilename()
+{
+    printfnq("Removing all local File_thumbnail entries without filename property...");
+
+    $file = new File();
+    $file->whereAdd('filename IS NOT NULL');    // local files
+
+    if ($file->find()) {
+        // Looping through local File entries
+        while ($file->fetch()) {
+            $thumbs = new File_thumbnail();
+            $thumbs->file_id = $file->id;
+            $thumbs->whereAdd('filename IS NULL');
+            // Checking if there were any File_thumbnail entries without filename
+            if (!$thumbs->find()) {
+                continue;
+            }
+            // deleting incomplete entry to allow regeneration
+            while ($thumbs->fetch()) {
+                $thumbs->delete();
+            }
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+/*
+ * Delete File_thumbnail entries where the referenced file does not exist.
+ */
+function deleteMissingLocalFileThumbnails()
+{
+    printfnq("Removing all local File_thumbnail entries without existing files...");
+
+    $thumbs = new File_thumbnail();
+    $thumbs->whereAdd('filename IS NOT NULL');  // only fill in names where they're missing
+    // Checking if there were any File_thumbnail entries without filename
+    if ($thumbs->find()) {
+        while ($thumbs->fetch()) {
+            if (!file_exists(File_thumbnail::path($thumbs->filename))) {
+                $thumbs->delete();
+            }
         }
     }
 

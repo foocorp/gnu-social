@@ -51,6 +51,7 @@ class ImageFile
     var $type;
     var $height;
     var $width;
+    var $rotate=0;  // degrees to rotate for properly oriented image (extrapolated from EXIF etc.)
 
     function __construct($id=null, $filepath=null, $type=null, $width=null, $height=null)
     {
@@ -74,6 +75,26 @@ class ImageFile
         $this->type = ($info) ? $info[2]:$type;
         $this->width = ($info) ? $info[0]:$width;
         $this->height = ($info) ? $info[1]:$height;
+
+        // Orientation value to rotate thumbnails properly
+        $exif = exif_read_data($this->filepath);
+        if (isset($exif['Orientation'])) {
+            switch ((int)$exif['Orientation']) {
+            case 1: // top is top
+                $this->rotate = 0;
+                break;
+            case 3: // top is bottom
+                $this->rotate = 180;
+                break;
+            case 6: // top is right
+                $this->rotate = -90;
+                break;
+            case 8: // top is left
+                $this->rotate = 90;
+                break;
+            }
+            // If we ever write this back, Orientation should be set to '1'
+        }
     }
 
     public static function fromFileObject(File $file)
@@ -247,6 +268,10 @@ class ImageFile
             throw new Exception(_('Unknown file type'));
         }
 
+        if ($this->rotate != 0) {
+            $image_src = imagerotate($image_src, $this->rotate, 0);
+        }
+
         $image_dest = imagecreatetruecolor($width, $height);
 
         if ($this->type == IMAGETYPE_GIF || $this->type == IMAGETYPE_PNG || $this->type == IMAGETYPE_BMP) {
@@ -367,7 +392,7 @@ class ImageFile
     public function scaleToFit($maxWidth=null, $maxHeight=null, $crop=null)
     {
         return self::getScalingValues($this->width, $this->height,
-                                        $maxWidth, $maxHeight, $crop);
+                                        $maxWidth, $maxHeight, $crop, $this->rotate);
     }
 
     /*
@@ -384,7 +409,7 @@ class ImageFile
      */
     public static function getScalingValues($width, $height,
                                         $maxW=null, $maxH=null,
-                                        $crop=null)
+                                        $crop=null, $rotate=0)
     {
         $maxW = $maxW ?: common_config('thumbnail', 'width');
         $maxH = $maxH ?: common_config('thumbnail', 'height');
@@ -395,6 +420,13 @@ class ImageFile
             // if maxH is null, we set maxH to equal maxW and enable crop
             $maxH = $maxW;
             $crop = true;
+        }
+
+        // Because GD doesn't understand EXIF orientation etc.
+        if (abs($rotate) == 90) {
+            $tmp = $width;
+            $width = $height;
+            $height = $tmp;
         }
   
         // Cropping data (for original image size). Default values, 0 and null,

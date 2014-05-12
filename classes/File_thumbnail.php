@@ -30,6 +30,7 @@ class File_thumbnail extends Managed_DataObject
     public $__table = 'file_thumbnail';                  // table name
     public $file_id;                         // int(4)  primary_key not_null
     public $url;                             // varchar(255)  unique_key
+    public $filename;                        // varchar(255)
     public $width;                           // int(4)  primary_key
     public $height;                          // int(4)  primary_key
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -40,6 +41,7 @@ class File_thumbnail extends Managed_DataObject
             'fields' => array(
                 'file_id' => array('type' => 'int', 'not null' => true, 'description' => 'thumbnail for what URL/file'),
                 'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL of thumbnail'),
+                'filename' => array('type' => 'varchar', 'length' => 255, 'description' => 'if stored locally, filename is put here'),
                 'width' => array('type' => 'int', 'description' => 'width of thumbnail'),
                 'height' => array('type' => 'int', 'description' => 'height of thumbnail'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
@@ -88,19 +90,48 @@ class File_thumbnail extends Managed_DataObject
      * @param int $width
      * @param int $height
      */
-    static function saveThumbnail($file_id, $url, $width, $height)
+    static function saveThumbnail($file_id, $url, $width, $height, $filename=null)
     {
         $tn = new File_thumbnail;
         $tn->file_id = $file_id;
         $tn->url = $url;
+        $tn->filename = $filename;
         $tn->width = intval($width);
         $tn->height = intval($height);
         $tn->insert();
         return $tn;
     }
 
+    static function path($filename)
+    {
+        // TODO: Store thumbnails in their own directory and don't use File::path here
+        return File::path($filename);
+    }
+
     public function getUrl()
     {
         return $this->url;
+    }
+
+    public function delete($useWhere=false)
+    {
+        if (!empty($this->filename) && file_exists(File_thumbnail::path($this->filename))) {
+            $deleted = @unlink(self::path($this->filename));
+            if (!$deleted) {
+                common_log(LOG_ERR, sprintf('Could not unlink existing file: "%s"', self::path($this->filename)));
+            }
+        }
+
+        return parent::delete($useWhere);
+    }
+
+    public function getFile()
+    {
+        $file = new File();
+        $file->id = $this->file_id;
+        if (!$file->find(true)) {
+            throw new NoResultException($file);
+        }
+        return $file;
     }
 }
