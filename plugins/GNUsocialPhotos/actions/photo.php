@@ -28,18 +28,14 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
-include_once INSTALLDIR . '/actions/conversation.php';
-include_once INSTALLDIR . '/classes/Notice.php';
-
-class PhotoAction extends Action
+class PhotoAction extends ManagedAction
 {
     var $user = null;
+    var $conv = null;   // Conversation dataobject
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -49,17 +45,9 @@ class PhotoAction extends Action
         $this->notice = Notice::getKV('id', $this->photo->notice_id);
 
         $this->user = Profile::getKV('id', $this->notice->profile_id);
-        
-        $notices = Notice::conversationStream((int)$this->notice->conversation, null, null); 
-        $this->conversation = new ConversationTree($notices, $this);
+        $this->conv = $this->notice->getConversation();
+
         return true;
-
-    }
-
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
     }
 
     function title()
@@ -102,6 +90,12 @@ class PhotoAction extends Action
         $this->element('p', array('class' => 'photodescription'), $this->photo->photo_description);
         //This is a hack to hide the top-level comment
         $this->element('style', array(), "#notice-{$this->photo->notice_id} div { display: none } #notice-{$this->photo->notice_id} ol li div { display: inline }");
-        $this->conversation->show();
+
+        if (Event::handle('StartShowConversation', array($this, $this->conv, $this->scoped))) {
+            $notices = $this->conv->getNotices();
+            $nl = new FullThreadedNoticeList($notices, $this, $this->scoped);
+            $cnt = $nl->show();
+        }
+        Event::handle('EndShowConversation', array($this, $this->conv, $this->scoped));
     }
 }
