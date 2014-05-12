@@ -56,7 +56,7 @@ abstract class FilteringNoticeStream extends NoticeStream
 
     abstract function filter($notice);
 
-    function getNotices($offset, $limit, $sinceId=null, $maxId=null)
+    function getNoticeIds($offset, $limit, $since_id, $max_id)
     {
         // "offset" is virtual; we have to get a lot
         $total = $offset + $limit;
@@ -73,22 +73,18 @@ abstract class FilteringNoticeStream extends NoticeStream
         $round = 0;
 
         do {
-
-            $raw = $this->upstream->getNotices($startAt, $askFor, $sinceId, $maxId);
+            $raw = $this->upstream->getNotices($startAt, $askFor, $since_id, $max_id);
 
             $results = $raw->N;
-
             if ($results == 0) {
                 break;
             }
 
             $notices = $raw->fetchAll();
-            
             $this->prefill($notices);
-
             foreach ($notices as $notice) {
                 if ($this->filter($notice)) {
-                    $filtered[] = $notice;
+                    $filtered[] = $notice->id;
                     if (count($filtered) >= $total) {
                         break;
                     }
@@ -96,11 +92,8 @@ abstract class FilteringNoticeStream extends NoticeStream
             }
 
             // XXX: make these smarter; factor hit rate into $askFor
-
             $startAt += $askFor;
-            
             $hits = count($filtered);
-
             $lastAsk = $askFor;
 
             if ($hits === 0) {
@@ -110,23 +103,9 @@ abstract class FilteringNoticeStream extends NoticeStream
             }
 
             $round++;
-
         } while (count($filtered) < $total && $results >= $lastAsk);
 
-        return new ArrayWrapper(array_slice($filtered, $offset, $limit));
-    }
-
-    function getNoticeIds($offset, $limit, $sinceId, $maxId)
-    {
-        $notices = $this->getNotices($offset, $limit, $sinceId, $maxId);
-
-        $ids = array();
-
-        while ($notices->fetch()) {
-            $ids[] = $notices->id;
-        }
-
-        return $ids;
+        return array_slice(array_values($filtered), $offset, $limit);
     }
 
     function prefill($notices)
