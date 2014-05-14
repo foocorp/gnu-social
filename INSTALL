@@ -24,7 +24,7 @@ functional setup of GNU Social:
                 use MySQL, 'mysql' or 'mysqli' may work.
 - GD            Image manipulation (scaling).
 - mbstring      For handling Unicode (UTF-8) encoded strings.
-- bcmath or gmp For Salmon signatures (part of OStatus)
+- bcmath or gmp For Salmon signatures (part of OStatus).
 
 Better performance
 ------------------
@@ -42,6 +42,7 @@ For some functionality, you will also need the following extensions:
                 Sphinx server to serve the search queries.
 - gettext       For multiple languages. Default on many PHP installs;
                 will be emulated if not present.
+- exif          For thumbnails to be properly oriented.
 
 You may also experience better performance from your site if you install
 a PHP bytecode cache/accelerator. Currently the recommended cache module
