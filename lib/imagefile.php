@@ -76,7 +76,7 @@ class ImageFile
         $this->width = ($info) ? $info[0]:$width;
         $this->height = ($info) ? $info[1]:$height;
 
-        if ($this->type == IMAGETYPE_JPEG) {
+        if ($this->type == IMAGETYPE_JPEG && function_exists('exif_read_data')) {
             // Orientation value to rotate thumbnails properly
             $exif = exif_read_data($this->filepath);
             if (is_array($exif) && isset($exif['Orientation'])) {
