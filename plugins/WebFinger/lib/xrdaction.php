@@ -25,7 +25,7 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-abstract class XrdAction extends Action
+abstract class XrdAction extends ManagedAction
 {
     // json or xml for now, this may still be overriden because of
     // our back-compatibility with StatusNet <=1.1.1
@@ -59,15 +59,13 @@ abstract class XrdAction extends Action
 
     protected function handle()
     {
-        parent::handle();
-
         $this->setXRD();
 
         if (common_config('discovery', 'cors')) {
             header('Access-Control-Allow-Origin: *');
         }
 
-        $this->showPage();
+        parent::handle();
     }
 
     public function mimeType()
