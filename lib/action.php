@@ -971,7 +971,7 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return nothing
      */
-    function showContent()
+    protected function showContent()
     {
     }
 
