@@ -106,9 +106,4 @@ class SearchForm extends Form
     {
         return 'get';
     }
-
-    function sessionToken()
-    {
-        return;
-    }
 }
