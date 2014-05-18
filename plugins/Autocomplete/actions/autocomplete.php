@@ -96,12 +96,6 @@ class AutocompleteAction extends Action
 
         parent::prepare($args);
 
-        $cur = common_current_user();
-        if (!$cur) {
-            // TRANS: Client exception in autocomplete plugin.
-            throw new ClientException(_m('Access forbidden.'), true);
-        }
-
         $this->groups=array();
         $this->profiles=array();
         $term = $this->arg('term');
@@ -115,7 +109,7 @@ class AutocompleteAction extends Action
             $profile->whereAdd('nickname like \'' . trim($profile->escape($term), '\'') . '%\'');
             $profile->whereAdd(sprintf('id in (SELECT id FROM user) OR '
                                . 'id in (SELECT subscribed from subscription'
-                               . ' where subscriber = %d)', $cur->id));
+                               . ' where subscriber = %d)', $this->scoped->id));
             if ($profile->find()) {
                 while($profile->fetch()) {
                     $this->profiles[]=clone($profile);
@@ -129,8 +123,8 @@ class AutocompleteAction extends Action
             $group->limit($limit);
             $group->whereAdd('nickname like \'' . trim($group->escape($term), '\'') . '%\'');
             //Can't post to groups we're not subscribed to...:
-            $group->whereAdd('id in (SELECT group_id from group_member'
-                             . ' where profile_id = ' . $cur->id . ')');
+            $group->whereAdd(sprintf('id in (SELECT group_id FROM group_member'
+                             . ' WHERE profile_id = %d)', $this->scoped->id));
             if($group->find()){
                 while($group->fetch()) {
                     $this->groups[]=clone($group);
