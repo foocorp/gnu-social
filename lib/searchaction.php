@@ -109,7 +109,7 @@ class SearchAction extends Action
         // TRANS: for searching can be entered.
         $this->input('q', _('Keyword(s)'), $q);
         // TRANS: Button text for searching site.
-        $this->submit('search', _m('BUTTON','Search'));
+        $this->element('input', array('type'=>'submit', 'class'=>'submit', 'value'=>_m('BUTTON','Search')));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->elementEnd('fieldset');
