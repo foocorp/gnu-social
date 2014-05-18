@@ -362,7 +362,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
     public function testRepeatLink()
     {
         $notice = $this->_fakeNotice($this->author1);
-        $repeat = $notice->repeat($this->author2->id, 'test');
+        $repeat = $notice->repeat($this->author2->getProfile(), 'test');
 
         $entry = $repeat->asAtomEntry();
 
@@ -451,7 +451,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
     {
         $notice = $this->_fakeNotice();
 
-        $repeat = $notice->repeat($this->author2->id, 'test');
+        $repeat = $notice->repeat($this->author2->getProfile(), 'test');
 
         $entry = $repeat->asAtomEntry();
 
@@ -466,7 +466,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
     {
         $notice = $this->_fakeNotice();
 
-        $repeat = $notice->repeat($this->author2->id, 'test');
+        $repeat = $notice->repeat($this->author2->getProfile(), 'test');
 
         $entry = $notice->asAtomEntry(false, false, false, $this->author2);
 

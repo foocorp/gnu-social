@@ -63,7 +63,7 @@ class RepeatAction extends FormAction
             $this->clientError(_('Notice not found.'));
         }
 
-        $this->repeat = $this->notice->repeat($this->scoped->id, 'web');
+        $this->repeat = $this->notice->repeat($this->scoped, 'web');
         if (!$this->repeat instanceof Notice) {
             // TRANS: Error when unable to repeat a notice for unknown reason.
             $this->clientError(_('Could not repeat notice for unknown reason. Please contact the webmaster!'));

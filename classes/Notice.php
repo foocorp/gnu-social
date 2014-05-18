@@ -1837,24 +1837,24 @@ class Notice extends Managed_DataObject
     /**
      * Convenience function for posting a repeat of an existing message.
      *
-     * @param int $repeater_id: profile ID of user doing the repeat
+     * @param Profile $repeater Profile which is doing the repeat
      * @param string $source: posting source key, eg 'web', 'api', etc
      * @return Notice
      *
      * @throws Exception on failure or permission problems
      */
-    function repeat($repeater_id, $source)
+    function repeat(Profile $repeater, $source)
     {
         $author = $this->getProfile();
 
         // TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
         // TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
         $content = sprintf(_('RT @%1$s %2$s'),
-                           $author->nickname,
+                           $author->getNickname(),
                            $this->content);
 
         // Scope is same as this one's
-        return self::saveNew($repeater_id,
+        return self::saveNew($repeater->id,
                              $content,
                              $source,
                              array('repeat_of' => $this->id,

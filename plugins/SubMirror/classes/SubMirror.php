@@ -179,7 +179,7 @@ class SubMirror extends Managed_DataObject
             return true;
         } else {
             common_log(LOG_INFO, "SubMirror plugin auto-repeating notice $notice->id for $profile->id");
-            return $notice->repeat($profile->id, 'mirror');
+            return $notice->repeat($profile, 'mirror');
         }
     }
 

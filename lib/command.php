@@ -23,10 +23,12 @@ require_once(INSTALLDIR.'/lib/channel.php');
 
 class Command
 {
+    protected $scoped = null;   // The Profile of the user performing the command
     var $user = null;
 
     function __construct($user=null)
     {
+        $this->scoped = $user->getProfile();
         $this->user = $user;
     }
 
@@ -659,7 +661,7 @@ class RepeatCommand extends Command
         $notice = $this->getNotice($this->other);
 
         try {
-            $repeat = $notice->repeat($this->user->id, $channel->source());
+            $repeat = $notice->repeat($this->scoped->id, $channel->source());
             $recipient = $notice->getProfile();
 
             // TRANS: Message given having repeated a notice from another user.

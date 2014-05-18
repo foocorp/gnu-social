@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Repeat a notice through the API
@@ -42,6 +40,8 @@ if (!defined('STATUSNET')) {
  */
 class ApiStatusesRetweetAction extends ApiAuthAction
 {
+    protected $needPost = true;
+
     var $original = null;
 
     /**
@@ -51,29 +51,18 @@ class ApiStatusesRetweetAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            // TRANS: Client error. POST is a HTTP command. It should not be translated.
-            $this->clientError(_('This method requires a POST.'),
-                               400, $this->format);
-            return false;
-        }
 
         $id = $this->trimmed('id');
 
         $this->original = Notice::getKV('id', $id);
 
-        if (empty($this->original)) {
+        if (!$this->original instanceof Notice) {
             // TRANS: Client error displayed trying to repeat a non-existing notice through the API.
-            $this->clientError(_('No such notice.'),
-                               400, $this->format);
-            return false;
+            $this->clientError(_('No such notice.'), 400, $this->format);
         }
-
-        $this->user = $this->auth_user;
 
         return true;
     }
@@ -87,11 +76,11 @@ class ApiStatusesRetweetAction extends ApiAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
-        $repeat = $this->original->repeat($this->user->id, $this->source);
+        $repeat = $this->original->repeat($this->scoped, $this->source);
 
         $this->showNotice($repeat);
     }
