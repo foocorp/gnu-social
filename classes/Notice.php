@@ -1845,7 +1845,7 @@ class Notice extends Managed_DataObject
      */
     function repeat($repeater_id, $source)
     {
-        $author = Profile::getKV('id', $this->profile_id);
+        $author = $this->getProfile();
 
         // TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
         // TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
@@ -1853,19 +1853,7 @@ class Notice extends Managed_DataObject
                            $author->nickname,
                            $this->content);
 
-        $maxlen = common_config('site', 'textlimit');
-        if ($maxlen > 0 && mb_strlen($content) > $maxlen) {
-            // Web interface and current Twitter API clients will
-            // pull the original notice's text, but some older
-            // clients and RSS/Atom feeds will see this trimmed text.
-            //
-            // Unfortunately this is likely to lose tags or URLs
-            // at the end of long notices.
-            $content = mb_substr($content, 0, $maxlen - 4) . ' ...';
-        }
-
         // Scope is same as this one's
-
         return self::saveNew($repeater_id,
                              $content,
                              $source,
