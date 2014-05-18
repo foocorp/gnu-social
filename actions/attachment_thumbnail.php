@@ -27,7 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Show notice attachments
@@ -55,11 +55,6 @@ class Attachment_thumbnailAction extends AttachmentAction
         return true;
     }
 
-    /**
-     * Show page, a template method.
-     *
-     * @return nothing
-     */
     function showPage()
     {
         // Returns a File_thumbnail object or throws exception if not available

@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/attachmentlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Show notice attachments
@@ -42,7 +38,7 @@ require_once INSTALLDIR.'/lib/attachmentlist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class AttachmentAction extends Action
+class AttachmentAction extends ManagedAction
 {
     /**
      * Attachment object to show
@@ -68,7 +64,7 @@ class AttachmentAction extends Action
             $this->attachment = File::getKV($id);
         }
 
-        if (empty($this->attachment)) {
+        if (!$this->attachment instanceof File) {
             // TRANS: Client error displayed trying to get a non-existing attachment.
             $this->clientError(_('No such attachment.'), 404);
         }
@@ -105,14 +101,12 @@ class AttachmentAction extends Action
      */
     protected function handle()
     {
-        parent::handle();
-
         if (empty($this->attachment->filename)) {
             // if it's not a local file, gtfo
             common_redirect($this->attachment->url, 303);
         }
 
-        $this->showPage();
+        parent::handle();
     }
 
     /**
