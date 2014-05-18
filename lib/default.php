@@ -270,7 +270,7 @@ $default =
               'allow_tagging' => array('all' => true), // equivalent to array('local' => true, 'remote' => true)
               'desclimit' => null),
         'oembed' =>
-        array('endpoint' => 'https://noembed.com/embed/',
+        array('endpoint' => null,   // 'https://noembed.com/embed/' for proxied oEmbed data
               'order' => array('built-in', 'well-known', 'service', 'discovery'),
         ),
         'search' =>
