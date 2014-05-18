@@ -27,9 +27,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Repeat action
@@ -40,12 +38,12 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class RepeatAction extends Action
+class RepeatAction extends FormAction
 {
-    var $user = null;
-    var $notice = null;
+    protected $needPost = true; // At least for now, until repeat interface is available
 
-    protected $needLogin = true;
+    protected $notice = null;   // Notice that is being repeated.
+    protected $repeat = null;   // The resulting repeat object/notice.
 
     protected function prepare(array $args=array())
     {
@@ -60,16 +58,15 @@ class RepeatAction extends Action
 
         $this->notice = Notice::getKV('id', $id);
 
-        if (!($this->notice instanceof Notice)) {
+        if (!$this->notice instanceof Notice) {
             // TRANS: Client error displayed when trying to repeat a non-existing notice.
-            $this->clientError(_('No notice specified.'));
+            $this->clientError(_('Notice not found.'));
         }
 
-        $token = $this->trimmed('token-'.$id);
-
-        if (empty($token) || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->clientError(_('There was a problem with your session token. Try again, please.'));
+        $this->repeat = $this->notice->repeat($this->scoped->id, 'web');
+        if (!$this->repeat instanceof Notice) {
+            // TRANS: Error when unable to repeat a notice for unknown reason.
+            $this->clientError(_('Could not repeat notice for unknown reason. Please contact the webmaster!'));
         }
 
         return true;
@@ -82,27 +79,11 @@ class RepeatAction extends Action
      *
      * @return void
      */
-    protected function handle()
+    protected function showContent()
     {
-        parent::handle();
-
-        $repeat = $this->notice->repeat($this->scoped->id, 'web');
-
-        if ($this->boolean('ajax')) {
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Title after repeating a notice.
-            $this->element('title', null, _('Repeated'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-            $this->element('p', array('id' => 'repeat_response',
-                                      'class' => 'repeated'),
-                                // TRANS: Confirmation text after repeating a notice.
-                                _('Repeated!'));
-            $this->elementEnd('body');
-            $this->endHTML();
-        } else {
-            // @todo FIXME!
-        }
+        $this->element('p', array('id' => 'repeat_response',
+                                  'class' => 'repeated'),
+                            // TRANS: Confirmation text after repeating a notice.
+                            _('Repeated!'));
     }
 }
