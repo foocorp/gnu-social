@@ -87,7 +87,7 @@ class AttachmentListItem extends Widget
 
     function linkAttr() {
         return array('class' => 'attachment',
-                     'href' => $this->attachment->url,
+                     'href' => $this->attachment->getUrl(),
                      'id' => 'attachment-' . $this->attachment->id,
                      'title' => $this->linkTitle());
     }
@@ -105,12 +105,128 @@ class AttachmentListItem extends Widget
     }
 
     function showRepresentation() {
-        try {
-            $thumb = $this->attachment->getThumbnail();
-            $this->out->element('img', array('alt' => '', 'src' => $thumb->getUrl(), 'width' => $thumb->width, 'height' => $thumb->height));
-        } catch (UnsupportedMediaException $e) {
-            // Image representation unavailable
+        if (Event::handle('StartShowAttachmentRepresentation', array($this->out, $this->attachment))) {
+            if (!empty($this->attachment->mimetype)) {
+                switch ($this->attachment->mimetype) {
+                case 'image/gif':
+                case 'image/png':
+                case 'image/jpg':
+                case 'image/jpeg':
+                    try {
+                        $thumb = $this->attachment->getThumbnail();
+                        $this->out->element('img', array('src' => $thumb->getUrl(), 'alt' => ''));
+                    } catch (UnsupportedMediaException $e) {
+                        // FIXME: Show a good representation of unsupported/unshowable images
+                    }
+                    break;
+
+                case 'application/ogg':
+                    $arr  = array('type' => $this->attachment->mimetype,
+                        'data' => $this->attachment->url,
+                        'width' => 320,
+                        'height' => 240
+                    );
+                    $this->out->elementStart('object', $arr);
+                    $this->out->element('param', array('name' => 'src', 'value' => $this->attachment->url));
+                    $this->out->element('param', array('name' => 'autoStart', 'value' => 1));
+                    $this->out->elementEnd('object');
+                    break;
+
+                case 'audio/ogg':
+                case 'audio/x-speex':
+                case 'video/mpeg':
+                case 'audio/mpeg':
+                case 'video/mp4':
+                case 'video/ogg':
+                case 'video/quicktime':
+                case 'video/webm':
+                    $mediatype = common_get_mime_media($this->attachment->mimetype);
+                    try {
+                        $thumb = $this->attachment->getThumbnail();
+                        $poster = $thumb->getUrl();
+                        unset ($thumb);
+                    } catch (Exception $e) {
+                        $poster = null;
+                    }
+                    $this->out->elementStart($mediatype,
+                                        array('class'=>'attachment_player',
+                                            'poster'=>$poster,
+                                            'controls'=>'controls'));
+                    $this->out->element('source',
+                                        array('src'=>$this->attachment->url,
+                                            'type'=>$this->attachment->mimetype));
+                    $this->out->elementEnd($mediatype);
+                    break;
+
+                case 'text/html':
+                    if ($this->attachment->filename) {
+                        // Locally-uploaded HTML. Scrub and display inline.
+                        $this->showHtmlFile($this->attachment);
+                        break;
+                    }
+                    // Fall through to default.
+
+                default:
+                    Event::handle('ShowUnsupportedAttachmentRepresentation', array($this->out, $this->attachment));
+                }
+            } else {
+                Event::handle('ShowUnsupportedAttachmentRepresentation', array($this->out, $this->attachment));
+            }
         }
+        Event::handle('EndShowAttachmentRepresentation', array($this->out, $this->attachment));
+    }
+
+    protected function showHtmlFile(File $attachment)
+    {
+        $body = $this->scrubHtmlFile($attachment);
+        if ($body) {
+            $this->out->raw($body);
+        }
+    }
+
+    /**
+     * @return mixed false on failure, HTML fragment string on success
+     */
+    protected function scrubHtmlFile(File $attachment)
+    {
+        $path = File::path($attachment->filename);
+        if (!file_exists($path) || !is_readable($path)) {
+            common_log(LOG_ERR, "Missing local HTML attachment $path");
+            return false;
+        }
+        $raw = file_get_contents($path);
+
+        // Normalize...
+        $dom = new DOMDocument();
+        if(!$dom->loadHTML($raw)) {
+            common_log(LOG_ERR, "Bad HTML in local HTML attachment $path");
+            return false;
+        }
+
+        // Remove <script>s or htmlawed will dump their contents into output!
+        // Note: removing child nodes while iterating seems to mess things up,
+        // hence the double loop.
+        $scripts = array();
+        foreach ($dom->getElementsByTagName('script') as $script) {
+            $scripts[] = $script;
+        }
+        foreach ($scripts as $script) {
+            common_log(LOG_DEBUG, $script->textContent);
+            $script->parentNode->removeChild($script);
+        }
+
+        // Trim out everything outside the body...
+        $body = $dom->saveHTML();
+        $body = preg_replace('/^.*<body[^>]*>/is', '', $body);
+        $body = preg_replace('/<\/body[^>]*>.*$/is', '', $body);
+
+        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
+        $config = array('safe' => 1,
+                        'deny_attribute' => 'id,style,on*',
+                        'comment' => 1); // remove comments
+        $scrubbed = htmLawed($body, $config);
+
+        return $scrubbed;
     }
 
     /**
