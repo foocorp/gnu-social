@@ -249,6 +249,7 @@ $default =
               'user_quota' => 50000000,
               'monthly_quota' => 15000000,
               'uploads' => true,
+              'show_html' => false,  // HTML representation for locally uploaded HTML attachments (oEmbed links etc.)
               'show_thumbs' => true, // show thumbnails in notice lists for uploaded images, and photos and videos linked remotely that provide oEmbed info
               'process_links' => true, // check linked resources for embeddable photos and videos; this will hit referenced external web sites when processing new messages.
               ),

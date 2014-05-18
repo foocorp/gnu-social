@@ -159,7 +159,7 @@ class AttachmentListItem extends Widget
                     break;
 
                 case 'text/html':
-                    if ($this->attachment->filename) {
+                    if (!empty($this->attachment->filename) && common_config('attachments', 'show_html')) {
                         // Locally-uploaded HTML. Scrub and display inline.
                         $this->showHtmlFile($this->attachment);
                         break;

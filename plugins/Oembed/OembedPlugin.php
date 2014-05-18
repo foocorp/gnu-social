@@ -160,7 +160,7 @@ class OembedPlugin extends Plugin
         case 'rich':
         case 'video':
         case 'link':
-            if (!empty($oembed->html)) {
+            if (!empty($oembed->html) && common_config('attachments', 'show_html')) {
                 require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
                 $config = array(
                     'safe'=>1,
