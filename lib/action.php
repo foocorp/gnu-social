@@ -58,7 +58,8 @@ class Action extends HTMLOutputter // lawsuit
     protected $ajax   = false;
     protected $menus  = true;
     protected $needLogin = false;
-    protected $needPost = false;
+    protected $needPost = false;    // implies canPost if true
+    protected $canPost = false;     // can this action handle POST method?
 
     // The currently scoped profile (normally Profile::current; from $this->auth_user for API)
     protected $scoped = null;
@@ -141,6 +142,11 @@ class Action extends HTMLOutputter // lawsuit
         if ($this->needPost && !$this->isPost()) {
             // TRANS: Client error. POST is a HTTP command. It should not be translated.
             $this->clientError(_('This method requires a POST.'), 405);
+        }
+
+        // needPost, of course, overrides canPost if true
+        if (!$this->canPost) {
+            $this->canPost = $this->needPost;
         }
 
         $this->args = common_copy_args($args);

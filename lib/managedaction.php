@@ -39,11 +39,24 @@ class ManagedAction extends Action
     {
         parent::handle();
 
+        if ($this->canPost && $this->isPost()) {
+            try {
+                $this->msg = $this->handlePost();
+            } catch (Exception $e) {
+                $this->error = $e->getMessage();
+            }
+        }
+
         if (StatusNet::isAjax()) {
             $this->showAjax();
         } else {
             $this->showPage();
         }
+    }
+
+    protected function handlePost()
+    {
+        // This will only be run if the Action has the property canPost==true
     }
 
     public function showAjax()

@@ -41,11 +41,12 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class FormAction extends Action
+class FormAction extends ManagedAction
 {
     protected $form = null;
     protected $type = null;
     protected $needLogin = true;
+    protected $canPost = true;
 
     protected function prepare(array $args=array()) {
         parent::prepare($args);
@@ -61,22 +62,6 @@ class FormAction extends Action
         }
 
         return true;
-    }
-
-    protected function handle()
-    {
-        parent::handle();
-
-        if ($this->isPost()) {
-            try {
-                $msg = $this->handlePost();
-                $this->showForm($msg, true);
-            } catch (Exception $e) {
-                $this->showForm($e->getMessage());
-            }
-        } else {
-            $this->showForm();
-        }
     }
 
     public function isReadOnly($args) {
@@ -113,22 +98,14 @@ class FormAction extends Action
         return null;
     }
 
-    public function showForm($msg=null, $success=false)
-    {
-        if ($success) {
-            $this->msg = $msg;
-        } else {
-            $this->error = $msg;
-        }
-        $this->showPage();
-    }
-
     /**
      * Gets called from handle() if isPost() is true;
      * @return void
      */
     protected function handlePost()
     {
+        parent::handlePost();
+
         // check for this before token since all POST and FILES data
         // is losts when size is exceeded
         if (empty($_POST) && $_SERVER['CONTENT_LENGTH']>0) {
