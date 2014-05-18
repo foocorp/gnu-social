@@ -81,17 +81,6 @@ class RepeatForm extends Form
     }
 
     /**
-     * Include a session token for CSRF protection
-     *
-     * @return void
-     */
-    function sessionToken()
-    {
-        $this->out->hidden('token-' . $this->notice->id,
-                           common_session_token());
-    }
-
-    /**
      * Legend of the Form
      *
      * @return void

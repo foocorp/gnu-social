@@ -85,18 +85,6 @@ class FavorForm extends Form
     }
 
     /**
-     * Include a session token for CSRF protection
-     *
-     * @return void
-     */
-    function sessionToken()
-    {
-        $this->out->hidden('token-' . $this->notice->id,
-                           common_session_token(),
-                           'token');
-    }
-
-    /**
      * Legend of the Form
      *
      * @return void

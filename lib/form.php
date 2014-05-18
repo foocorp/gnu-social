@@ -91,7 +91,7 @@ class Form extends Widget
 
     function sessionToken()
     {
-        $this->out->hidden('token', common_session_token());
+        $this->out->hidden('token-' . $this->id() ?: common_random_hexstr(3), common_session_token(), 'token');
     }
 
     /**
