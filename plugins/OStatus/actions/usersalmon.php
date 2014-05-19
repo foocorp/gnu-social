@@ -43,7 +43,7 @@ class UsersalmonAction extends SalmonAction
             $this->clientError(_m('No such user.'));
         }
 
-        $this->target = $this->user;
+        $this->target = $this->user->getProfile();
 
         return true;
     }
@@ -83,12 +83,12 @@ class UsersalmonAction extends SalmonAction
         }
 
         if ($notice instanceof Notice &&
-            ($notice->profile_id == $this->user->id ||
-             array_key_exists($this->user->id, $notice->getReplies())))
+            ($notice->profile_id == $this->target->id ||
+             array_key_exists($this->target->id, $notice->getReplies())))
         {
             // In reply to a notice either from or mentioning this user.
         } elseif (!empty($context->attention) &&
-                   array_key_exists($this->user->getUri(), $context->attention)) {
+                   array_key_exists($this->target->getUri(), $context->attention)) {
             // To the attention of this user.
         } else {
             // TRANS: Client exception.
@@ -112,9 +112,9 @@ class UsersalmonAction extends SalmonAction
     {
         $oprofile = $this->ensureProfile();
         if ($oprofile instanceof Ostatus_profile) {
-            common_log(LOG_INFO, sprintf('Setting up subscription from remote %s to local %s', $oprofile->getUri(), $this->user->getNickname()));
+            common_log(LOG_INFO, sprintf('Setting up subscription from remote %s to local %s', $oprofile->getUri(), $this->target->getNickname()));
             Subscription::start($oprofile->localProfile(),
-                                $this->user->getProfile());
+                                $this->target);
         } else {
             common_log(LOG_INFO, "Can't set up subscription from remote; missing profile.");
         }
@@ -130,9 +130,11 @@ class UsersalmonAction extends SalmonAction
     {
         $oprofile = $this->ensureProfile();
         if ($oprofile instanceof Ostatus_profile) {
-            common_log(LOG_INFO, sprintf('Canceling subscription from remote %s to local %s', $oprofile->getUri(), $this->user->getNickname()));
+            common_log(LOG_INFO, sprintf('Canceling subscription from remote %s to local %s', $oprofile->getUri(), $this->target->getNickname()));
             try {
-                Subscription::cancel($oprofile->localProfile(), $this->user->getProfile());
+                Subscription::cancel($oprofile->localProfile(), $this->target);
+            } catch (NoProfileException $e) {
+                common_debug('Could not find profile for Subscription: '.$e->getMessage());
             } catch (AlreadyFulfilledException $e) {
                 common_debug('Subscription did not exist, so there was nothing to cancel');
             }
@@ -199,7 +201,7 @@ class UsersalmonAction extends SalmonAction
                 throw new ClientException(_m('Unidentified profile being listed.'));
             }
 
-            if ($tagged->id !== $this->user->id) {
+            if ($tagged->id !== $this->target->id) {
                 // TRANS: Client exception.
                 throw new ClientException(_m('This user is not the one being listed.'));
             }
@@ -233,7 +235,7 @@ class UsersalmonAction extends SalmonAction
                 throw new ClientException(_m('Unidentified profile being unlisted.'));
             }
 
-            if ($tagged->id !== $this->user->id) {
+            if ($tagged->id !== $this->target->id) {
                 // TRANS: Client exception.
                 throw new ClientException(_m('This user is not the one being unlisted.'));
             }
@@ -278,9 +280,9 @@ class UsersalmonAction extends SalmonAction
             throw new ClientException(sprintf(_m('Notice with ID %s unknown.'),$object->id));
         }
 
-        if ($notice->profile_id != $this->user->id) {
+        if ($notice->profile_id != $this->target->id) {
             // TRANS: Client exception. %1$s is a notice ID, %2$s is a user ID.
-            throw new ClientException(sprintf(_m('Notice with ID %1$s not posted by %2$s.'),$object->id,$this->user->id));
+            throw new ClientException(sprintf(_m('Notice with ID %1$s not posted by %2$s.'), $object->id, $this->target->id));
         }
 
         return $notice;
