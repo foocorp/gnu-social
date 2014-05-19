@@ -752,6 +752,8 @@ class User_group extends Managed_DataObject
         // or we'll miss clearing some cache keys; that can make it hard
         // to create a new group with one of those names or aliases.
         $this->setAliases(array());
+
+        // $this->isLocal() but we're using the resulting object
         $local = Local_group::getKV('group_id', $this->id);
         if ($local instanceof Local_group) {
             $local->delete();
@@ -802,6 +804,12 @@ class User_group extends Managed_DataObject
     {
         return ($this->join_policy == self::JOIN_POLICY_MODERATE &&
                 $this->force_scope == 1);
+    }
+
+    public function isLocal()
+    {
+        $local = Local_group::getKV('group_id', $this->id);
+        return ($local instanceof Local_group);
     }
 
     static function groupsFromText($text, Profile $profile)

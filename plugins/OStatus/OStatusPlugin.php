@@ -1258,9 +1258,8 @@ class OStatusPlugin extends Plugin
     public static function localGroupFromUrl($url)
     {
         $group = User_group::getKV('uri', $url);
-        if ($group) {
-            $local = Local_group::getKV('group_id', $group->id);
-            if ($local) {
+        if ($group instanceof User_group) {
+            if ($group->isLocal()) {
                 return $group->id;
             }
         } else {
