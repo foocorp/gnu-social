@@ -103,7 +103,7 @@ class FeedSub extends Managed_DataObject
     public function getUri()
     {
         if (empty($this->uri)) {
-            throw new ServerException('No URI for FeedSub entry');
+            throw new NoUriException($this);
         }
         return $this->uri;
     }
