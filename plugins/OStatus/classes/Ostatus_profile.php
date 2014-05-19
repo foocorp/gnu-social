@@ -63,10 +63,10 @@ class Ostatus_profile extends Managed_DataObject
             ),
             'primary key' => array('uri'),
             'unique keys' => array(
-                'ostatus_profile_profile_id_idx' => array('profile_id'),
-                'ostatus_profile_group_id_idx' => array('group_id'),
-                'ostatus_profile_peopletag_id_idx' => array('peopletag_id'),
-                'ostatus_profile_feeduri_idx' => array('feeduri'),
+                'ostatus_profile_profile_id_key' => array('profile_id'),
+                'ostatus_profile_group_id_key' => array('group_id'),
+                'ostatus_profile_peopletag_id_key' => array('peopletag_id'),
+                'ostatus_profile_feeduri_key' => array('feeduri'),
             ),
             'foreign keys' => array(
                 'ostatus_profile_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
@@ -82,15 +82,17 @@ class Ostatus_profile extends Managed_DataObject
     }
 
     /**
-     * Fetch the StatusNet-side profile for this feed
+     * Fetch the locally stored profile for this feed
      * @return Profile
+     * @throws NoProfileException if it was not found
      */
     public function localProfile()
     {
-        if ($this->profile_id) {
-            return Profile::getKV('id', $this->profile_id);
+        $profile = Profile::getKV('id', $this->profile_id);
+        if ($profile instanceof Profile) {
+            return $profile;
         }
-        return null;
+        throw new NoProfileException($this->profile_id);
     }
 
     /**
@@ -247,6 +249,7 @@ class Ostatus_profile extends Managed_DataObject
      * FeedSub::garbageCollect().
      *
      * @return int
+     * @throws NoProfileException if there is no local profile for the object
      */
     public function subscriberCount()
     {
@@ -258,9 +261,10 @@ class Ostatus_profile extends Managed_DataObject
             $count = $subscribers->N;
         } else {
             $profile = $this->localProfile();
-            $count = $profile->subscriberCount();
             if ($profile->hasLocalTags()) {
                 $count = 1;
+            } else {
+                $count = $profile->subscriberCount();
             }
         }
         common_log(LOG_INFO, __METHOD__ . " SUB COUNT BEFORE: $count");
@@ -940,12 +944,16 @@ class Ostatus_profile extends Managed_DataObject
             if ($id) {
                 $group = User_group::getKV('id', $id);
                 if ($group instanceof User_group) {
-                    // Deliver to all members of this local group if allowed.
-                    $profile = $sender->localProfile();
-                    if ($profile->isMember($group)) {
-                        $groups[] = $group->id;
-                    } else {
-                        common_log(LOG_DEBUG, "Skipping reply to local group $group->nickname as sender $profile->id is not a member");
+                    try {
+                        // Deliver to all members of this local group if allowed.
+                        $profile = $sender->localProfile();
+                        if ($profile->isMember($group)) {
+                            $groups[] = $group->id;
+                        } else {
+                            common_log(LOG_DEBUG, "Skipping reply to local group $group->nickname as sender $profile->id is not a member");
+                        }
+                    } catch (NoProfileException $e) {
+                        // Sender has no profile! Do some garbage collection, please.
                     }
                     continue;
                 } else {
@@ -1227,8 +1235,10 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         if ($this->isGroup()) {
+            // FIXME: throw exception for localGroup
             $self = $this->localGroup();
         } else {
+            // this throws an exception already
             $self = $this->localProfile();
         }
         if (!$self) {

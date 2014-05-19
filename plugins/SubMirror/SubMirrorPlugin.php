@@ -129,20 +129,20 @@ class SubMirrorPlugin extends Plugin
      * @param int $count in/out
      * @return mixed hook return value
      */
-    function onOstatus_profileSubscriberCount($oprofile, &$count)
+    function onOstatus_profileSubscriberCount(Ostatus_profile $oprofile, &$count)
     {
-        if (empty($oprofile) || !($oprofile instanceof Ostatus_profile)) {
-            return true;
-        }
-
-        if ($oprofile->profile_id) {
+        try {
+            $profile = $oprofile->localProfile();
             $mirror = new SubMirror();
-            $mirror->subscribed = $oprofile->profile_id;
+            $mirror->subscribed = $profile->id;
             if ($mirror->find()) {
                 while ($mirror->fetch()) {
                     $count++;
                 }
             }
+        } catch (NoProfileException $e) {
+            // We can't handle this kind of Ostatus_profile since it has no
+            // local profile
         }
 
         return true;

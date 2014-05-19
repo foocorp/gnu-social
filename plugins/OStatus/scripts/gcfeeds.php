@@ -31,13 +31,22 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 $feedsub = new FeedSub();
 $feedsub->find();
 while ($feedsub->fetch()) {
-    echo "{$feedsub->uri} ({$feedsub->sub_state})";
     try {
+        echo $feedsub->getUri() . " ({$feedsub->sub_state})";
         if ($feedsub->garbageCollect()) {
             echo " INACTIVE\n";
         } else {
             echo " ACTIVE\n";
         }
+    } catch (NoProfileException $e) {
+        echo " DELETED (no profile)\n";
+        $feedsub->delete();
+        continue;
+    } catch (NoUriException $e) {
+        // Probably the getUri() call
+        echo "[unknown] DELETED (no uri)\n";
+        $feedsub->delete();
+        continue;
     } catch (Exception $e) {
         echo " ERROR: {$e->getMessage()}\n";
     }

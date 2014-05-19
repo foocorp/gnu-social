@@ -38,13 +38,17 @@ END_OF_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-function showProfileInfo($oprofile) {
+function showProfileInfo(Ostatus_profile $oprofile) {
     if ($oprofile->isGroup()) {
         echo "group\n";
     } else {
         $profile = $oprofile->localProfile();
-        foreach (array('nickname', 'bio', 'homepage', 'location') as $field) {
-            print "  $field: {$profile->$field}\n";
+        try {
+            foreach (array('nickname', 'bio', 'homepage', 'location') as $field) {
+                print "  $field: {$profile->$field}\n";
+            }
+        } catch (NoProfileException $e) {
+            print "local profile not found";
         }
     }
     echo "\n";

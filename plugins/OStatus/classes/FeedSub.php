@@ -264,6 +264,7 @@ class FeedSub extends Managed_DataObject
      * make sure it's inactive, unsubscribing if necessary.
      *
      * @return boolean true if the subscription is now inactive, false if still active.
+     * @throws NoProfileException in FeedSubSubscriberCount for missing Profile entries
      * @throws Exception if something goes wrong in unsubscribe() method
      */
     public function garbageCollect()
@@ -271,22 +272,23 @@ class FeedSub extends Managed_DataObject
         if ($this->sub_state == '' || $this->sub_state == 'inactive') {
             // No active PuSH subscription, we can just leave it be.
             return true;
-        } else {
-            // PuSH subscription is either active or in an indeterminate state.
-            // Check if we're out of subscribers, and if so send an unsubscribe.
-            $count = 0;
-            Event::handle('FeedSubSubscriberCount', array($this, &$count));
-
-            if ($count > 0) {
-                common_log(LOG_INFO, __METHOD__ . ': ok, ' . $count . ' user(s) left for ' . $this->getUri());
-                return false;
-            } else {
-                common_log(LOG_INFO, __METHOD__ . ': unsubscribing, no users left for ' . $this->getUri());
-                // Unsubscribe throws various Exceptions on failure
-                $this->unsubscribe();
-                return true;
-            }
         }
+
+        // PuSH subscription is either active or in an indeterminate state.
+        // Check if we're out of subscribers, and if so send an unsubscribe.
+        $count = 0;
+        Event::handle('FeedSubSubscriberCount', array($this, &$count));
+
+        if ($count > 0) {
+            common_log(LOG_INFO, __METHOD__ . ': ok, ' . $count . ' user(s) left for ' . $this->getUri());
+            return false;
+        }
+
+        common_log(LOG_INFO, __METHOD__ . ': unsubscribing, no users left for ' . $this->getUri());
+        // Unsubscribe throws various Exceptions on failure
+        $this->unsubscribe();
+
+        return true;
     }
 
     static public function renewalCheck()
@@ -504,5 +506,19 @@ class FeedSub extends Managed_DataObject
             }
         }
         return false;
+    }
+
+    public function delete($useWhere=false)
+    {
+        try {
+            $oprofile = Ostatus_profile::getKV('feeduri', $this->getUri());
+            $profile = $oprofile->localProfile();
+        } catch (NoProfileException $e) {
+            // If the Ostatus_profile has no local Profile bound to it, let's clean it out at the same time
+            $oprofile->delete();
+        } catch (NoUriException $e) {
+            // FeedSub->getUri() can throw a NoUriException, let's just go ahead and delete it
+        }
+        return parent::delete($useWhere);
     }
 }

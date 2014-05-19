@@ -423,7 +423,12 @@ class OStatusPlugin extends Plugin
     {
         $oprofile = $this->pullRemoteProfile($arg);
         if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
-            $profile = $oprofile->localProfile();
+            try {
+                $profile = $oprofile->localProfile();
+            } catch (NoProfileException $e) {
+                // No locally stored profile found for remote profile
+                return true;
+            }
             return false;
         } else {
             return true;
