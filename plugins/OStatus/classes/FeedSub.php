@@ -512,7 +512,10 @@ class FeedSub extends Managed_DataObject
     {
         try {
             $oprofile = Ostatus_profile::getKV('feeduri', $this->getUri());
-            $profile = $oprofile->localProfile();
+            if ($oprofile instanceof Ostatus_profile) {
+                // Check if there's a profile. If not, handle the NoProfileException below
+                $profile = $oprofile->localProfile();
+            }
         } catch (NoProfileException $e) {
             // If the Ostatus_profile has no local Profile bound to it, let's clean it out at the same time
             $oprofile->delete();
