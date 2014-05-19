@@ -257,11 +257,6 @@ class WebInstaller extends Installer
                         <input id="admin_email" name="admin_email" value="{$post->value('admin_email')}" />
                         <p class="form_guide">Optional email address for the initial user (administrator)</p>
                     </li>
-                    <li>
-                        <label for="admin_updates">Subscribe to announcements</label>
-                        <input type="checkbox" id="admin_updates" name="admin_updates" value="true" checked="checked" />
-                        <p class="form_guide">Release and security feed from <a href="http://update.status.net/">update@status.net</a> (recommended)</p>
-                    </li>
                 </ul>
             </fieldset>
             <fieldset id="settings_profile">
@@ -333,7 +328,6 @@ STR;
         $this->adminPass    = $post->string('admin_password');
         $adminPass2         = $post->string('admin_password2');
         $this->adminEmail   = $post->string('admin_email');
-        $this->adminUpdates = $post->string('admin_updates');
 
         $this->siteProfile = $post->string('site_profile');
 

@@ -133,7 +133,6 @@ class DomainStatusNetworkInstaller extends Installer
         $this->adminNick    = null;
         $this->adminPass    = null;
         $this->adminEmail   = null;
-        $this->adminUpdates = null;
 
         /** Should we skip writing the configuration file? */
         $this->skipConfig = true;

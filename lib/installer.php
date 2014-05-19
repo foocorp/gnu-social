@@ -47,7 +47,7 @@ abstract class Installer
     /** DB info */
     public $host, $database, $dbtype, $username, $password, $db;
     /** Administrator info */
-    public $adminNick, $adminPass, $adminEmail, $adminUpdates;
+    public $adminNick, $adminPass, $adminEmail;
     /** Should we skip writing the configuration file? */
     public $skipConfig = false;
 
@@ -519,19 +519,6 @@ abstract class Installer
         $user->grantRole('owner');
         $user->grantRole('moderator');
         $user->grantRole('administrator');
-
-        // Attempt to do a remote subscribe to update@status.net
-        // Will fail if instance is on a private network.
-
-        if ($this->adminUpdates && class_exists('Ostatus_profile')) {
-            try {
-                $oprofile = Ostatus_profile::ensureProfileURL('http://update.status.net/');
-                Subscription::start($user->getProfile(), $oprofile->localProfile());
-                $this->updateStatus("Set up subscription to <a href='http://update.status.net/'>update@status.net</a>.");
-            } catch (Exception $e) {
-                $this->updateStatus("Could not set up subscription to <a href='http://update.status.net/'>update@status.net</a>.", true);
-            }
-        }
 
         return true;
     }

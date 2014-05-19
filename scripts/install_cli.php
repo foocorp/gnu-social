@@ -84,7 +84,6 @@ class CliInstaller extends Installer
             '--admin-nick' => 'adminNick',
             '--admin-pass' => 'adminPass',
             '--admin-email' => 'adminEmail',
-            '--admin-updates' => 'adminUpdates',
 
             '--site-profile' => 'siteProfile'
         );
@@ -106,7 +105,6 @@ class CliInstaller extends Installer
 
         // defaults
         $this->dbtype = 'mysql';
-        $this->adminUpdates = true;
         $this->verbose = true;
         // ssl is defaulted in lib/installer.php
 
@@ -115,7 +113,7 @@ class CliInstaller extends Installer
             if (isset($map[$arg])) {
                 $var = $map[$arg];
                 $this->$var = $option[1];
-                if ($var == 'adminUpdates' || $arg == '--fancy') {
+                if ($arg == '--fancy') {
                     $this->$var = ($option[1] != 'false') && ($option[1] != 'no');
                 }
             } else if ($arg == '--skip-config') {
