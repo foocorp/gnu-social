@@ -304,40 +304,6 @@ class BookmarkPlugin extends MicroAppPlugin
         return true;
     }
 
-    /**
-     * Save a remote bookmark (from Salmon or PuSH)
-     *
-     * @param Ostatus_profile $author   Author of the bookmark
-     * @param Activity        $activity Activity to save
-     *
-     * @return Notice resulting notice.
-     */
-    static private function _postRemoteBookmark(Ostatus_profile $author,
-                                                Activity $activity)
-    {
-        $bookmark = $activity->objects[0];
-
-        $options = array('uri' => $bookmark->id,
-                         'url' => $bookmark->link,
-                         'is_local' => Notice::REMOTE,
-                         'source' => 'ostatus');
-
-        return self::_postBookmark($author->localProfile(), $activity, $options);
-    }
-
-    /**
-     * Test if an activity represents posting a bookmark
-     *
-     * @param Activity $activity Activity to test
-     *
-     * @return true if it's a Post of a Bookmark, else false
-     */
-    static private function _isPostBookmark($activity)
-    {
-        return ($activity->verb == ActivityVerb::POST &&
-                $activity->objects[0]->type == ActivityObject::BOOKMARK);
-    }
-
     function types()
     {
         return array(ActivityObject::BOOKMARK);
