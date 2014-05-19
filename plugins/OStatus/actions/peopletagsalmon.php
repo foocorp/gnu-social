@@ -83,6 +83,8 @@ class PeopletagsalmonAction extends SalmonAction
      * @fixme move permission checks and event call into common code,
      *        currently we're doing the main logic in joingroup action
      *        and so have to repeat it here.
+     *
+     * @throws NoProfileException from localProfile if missing locally stored Profile object
      */
     function handleSubscribe()
     {
@@ -98,7 +100,6 @@ class PeopletagsalmonAction extends SalmonAction
 
         common_log(LOG_INFO, "Remote profile {$oprofile->uri} subscribing to local peopletag ".$this->peopletag->getBestName());
         $profile = $oprofile->localProfile();
-
         if ($this->peopletag->hasSubscriber($profile)) {
             // Already a member; we'll take it silently to aid in resolving
             // inconsistencies on the other side.
@@ -120,11 +121,14 @@ class PeopletagsalmonAction extends SalmonAction
 
     /**
      * A remote user unsubscribed from our list.
+     *
+     * @return void
+     * @throws Exception through clientError and serverError
      */
     function handleUnsubscribe()
     {
         $oprofile = $this->ensureProfile();
-        if (!$oprofile) {
+        if (!$oprofile instanceof Ostatus_profile) {
             // TRANS: Client error displayed when trying to unsubscribe from non-existing list.
             $this->clientError(_m('Cannot read profile to cancel list subscription.'));
         }
@@ -134,17 +138,14 @@ class PeopletagsalmonAction extends SalmonAction
         }
 
         common_log(LOG_INFO, "Remote profile {$oprofile->uri} unsubscribing from local peopletag ".$this->peopletag->getBestName());
-        $profile = $oprofile->localProfile();
-
         try {
-                Profile_tag_subscription::remove($this->peopletag->tagger, $this->peopletag->tag, $profile->id);
-
+            $profile = $oprofile->localProfile();
+            Profile_tag_subscription::remove($this->peopletag->tagger, $this->peopletag->tag, $profile->id);
         } catch (Exception $e) {
             // TRANS: Client error displayed when trying to unsubscribe a remote user from a list fails.
             // TRANS: %1$s is a profile URL, %2$s is a list name.
             $this->serverError(sprintf(_m('Could not unsubscribe remote user %1$s from list %2$s.'),
-                                       $oprofile->uri, $this->peopletag->getBestName()));
-            return;
+                                       $oprofile->getUri(), $this->peopletag->getBestName()));
         }
     }
 }

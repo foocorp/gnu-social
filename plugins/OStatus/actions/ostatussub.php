@@ -155,8 +155,8 @@ class OStatusSubAction extends Action
      */
     function preview()
     {
-        $oprofile = $this->oprofile;
-        $profile = $oprofile->localProfile();
+        // Throws NoProfileException on localProfile when remote user's Profile not found
+        $profile = $this->oprofile->localProfile();
 
         if ($this->scoped->isSubscribed($profile)) {
             $this->element('div', array('class' => 'error'),
