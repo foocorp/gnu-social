@@ -23,7 +23,7 @@ $shortoptions = 'i:n:g:G:';
 $longoptions = array('id=', 'nickname=', 'group=', 'group-id=');
 
 $helptext = <<<END_OF_HELP
-addusertogroup.php [options]
+joingroup.php [options]
 
 Adds a local user to a local group.
 
@@ -46,7 +46,7 @@ try {
         $gnick = get_option_value('g', 'group');
         $lgroup = Local_group::getKV('nickname', $gnick);
     }
-    if (empty($lgroup)) {
+    if (!$lgroup instanceof Local_group) {
         throw new Exception("No such local group: $gnick");
     }
     $group = User_group::getKV('id', $lgroup->group_id);
