@@ -252,10 +252,9 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
             }
 
             // XXX: OStatus discovery (maybe)
-
-            $profile = Profile::fromURI($person->id);
-
-            if (empty($profile)) {
+            try {
+                $profile = Profile::fromUri($person->id);
+            } catch (UnknownUriException $e) {
                 // TRANS: Client exception thrown when subscribing to a non-existing profile.
                 // TRANS: %s is the unknown profile ID.
                 $this->clientError(sprintf(_('Unknown profile %s.'), $person->id));

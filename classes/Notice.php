@@ -1256,10 +1256,9 @@ class Notice extends Managed_DataObject
         $sender = Profile::getKV($this->profile_id);
 
         foreach (array_unique($uris) as $uri) {
-
-            $profile = Profile::fromURI($uri);
-
-            if (!$profile instanceof Profile) {
+            try {
+                $profile = Profile::fromUri($uri);
+            } catch (UnknownUriException $e) {
                 common_log(LOG_WARNING, "Unable to determine profile for URI '$uri'");
                 continue;
             }

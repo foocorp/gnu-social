@@ -423,19 +423,15 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         if ($activity->context instanceof ActivityContext) {
 
             foreach ($activity->context->attention as $uri=>$type) {
-
-                $profile = Profile::fromURI($uri);
-
-                if (!empty($profile)) {
-                    $options['replies'][] = $uri;
-                } else {
-                    $group = User_group::getKV('uri', $uri);
-                    if (!empty($group)) {
-                        $options['groups'][] = $group->id;
+                try {
+                    $profile = Profile::fromUri($uri);
+                    if ($profile->isGroup()) {
+                        $options['groups'][] = $profile->id;
                     } else {
-                        // @fixme: hook for discovery here
-                        common_log(LOG_WARNING, sprintf('AtomPub post with unknown attention URI %s', $uri));
+                        $options['replies'][] = $uri;
                     }
+                } catch (UnknownUriException $e) {
+                    common_log(LOG_WARNING, sprintf('AtomPub post with unknown attention URI %s', $uri));
                 }
             }
 

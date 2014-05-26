@@ -387,16 +387,15 @@ class BookmarkPlugin extends MicroAppPlugin
         $options['replies'] = array();  // TODO: context->attention
 
         foreach ($activity->context->attention as $attnUrl=>$type) {
-            $other = Profile::fromURI($attnUrl);
-            if ($other instanceof Profile) {
-                $options['replies'][] = $attnUrl;
-            } else {
-                // Maybe we can get rid of this since every User_group got a Profile?
-                // TODO: Make sure the above replies get sorted properly for groups (or handled afterwards)
-                $group = User_group::getKV('uri', $attnUrl);
-                if ($group instanceof User_group) {
-                    $options['groups'][] = $attnUrl;
+            try {
+                $other = Profile::fromUri($attnUrl);
+                if ($other->isGroup()) {
+                    $options['groups'][] = $other->id;
+                } else {
+                    $options['replies'][] = $attnUrl;
                 }
+            } catch (UnknownUriException $e) {
+                // We simply don't know this URI, despite lookup attempts.
             }
         }
 

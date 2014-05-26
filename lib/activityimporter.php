@@ -115,10 +115,11 @@ class ActivityImporter extends QueueHandler
 
             $other = $activity->objects[0];
 
-            $otherProfile = Profile::fromUri($other->id);
-
-            if (empty($otherProfile)) {
+            try {
+                $otherProfile = Profile::fromUri($other->id);
                 // TRANS: Client exception thrown when trying to subscribe to an unknown profile.
+            } catch (UnknownUriException $e) {
+                // Let's convert it to a client exception instead of server.
                 throw new ClientException(_('Unknown profile.'));
             }
 

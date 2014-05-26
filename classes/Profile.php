@@ -1460,17 +1460,27 @@ class Profile extends Managed_DataObject
         return $feed;
     }
 
-    static function fromURI($uri)
+    /*
+     * Get a Profile object by URI. Will call external plugins for help
+     * using the event StartGetProfileFromURI.
+     *
+     * @param string $uri A unique identifier for a resource (profile/group/whatever)
+     */
+    static function fromUri($uri)
     {
         $profile = null;
 
         if (Event::handle('StartGetProfileFromURI', array($uri, &$profile))) {
-            // Get a local user
+            // Get a local user when plugin lookup (like OStatus) fails
             $user = User::getKV('uri', $uri);
-            if (!empty($user)) {
+            if ($user instanceof User) {
                 $profile = $user->getProfile();
             }
             Event::handle('EndGetProfileFromURI', array($uri, $profile));
+        }
+
+        if (!$profile instanceof Profile) {
+            throw new UnknownUriException($uri);
         }
 
         return $profile;

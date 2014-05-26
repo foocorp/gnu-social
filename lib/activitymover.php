@@ -56,7 +56,14 @@ class ActivityMover extends QueueHandler
         list ($act, $sink, $userURI, $remoteURI) = $data;
 
         $user   = User::getKV('uri', $userURI);
-        $remote = Profile::fromURI($remoteURI);
+        try {
+            $remote = Profile::fromUri($remoteURI);
+        } catch (UnknownUriException $e) {
+            // Don't retry. It's hard to tell whether it's because of
+            // lookup failures or because the URI is permanently gone.
+            // If we knew it was temporary, we'd return false here.
+            return true;
+        }
 
         try {
             $this->moveActivity($act, $sink, $user, $remote);
@@ -126,9 +133,11 @@ class ActivityMover extends QueueHandler
                            "Moving subscription to {$act->objects[0]->id} by ".
                            "{$act->actor->id} to {$remote->nickname}.");
                 $sink->postActivity($act);
-                $other = Profile::fromURI($act->objects[0]->id);
-                if (!empty($other)) {
+                try {
+                    $other = Profile::fromUri($act->objects[0]->id);
                     Subscription::cancel($user->getProfile(), $other);
+                } catch (UnknownUriException $e) {
+                    // Can't cancel subscription if we don't know who to alert
                 }
             } else {
                 $otherUser = User::getKV('uri', $act->actor->id);
