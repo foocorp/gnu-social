@@ -53,45 +53,31 @@ class Salmon
             return false;
         }
 
-        foreach ($this->formatClasses() as $class) {
-            try {
-                $envelope = $this->createMagicEnv($xml, $actor, $class);
-            } catch (Exception $e) {
-                common_log(LOG_ERR, "Salmon unable to sign: " . $e->getMessage());
-                return false;
-            }
-
-            $headers = array('Content-Type: application/magic-envelope+xml');
-
-            try {
-                $client = new HTTPClient();
-                $client->setBody($envelope);
-                $response = $client->post($endpoint_uri, $headers);
-            } catch (HTTP_Request2_Exception $e) {
-                common_log(LOG_ERR, "Salmon ($class) post to $endpoint_uri failed: " . $e->getMessage());
-                continue;
-            }
-            if ($response->getStatus() != 200) {
-                common_log(LOG_ERR, "Salmon ($class) at $endpoint_uri returned status " .
-                    $response->getStatus() . ': ' . $response->getBody());
-                continue;
-            }
-
-            // Success!
-            return true;
+        try {
+            $envelope = $this->createMagicEnv($xml, $actor);
+        } catch (Exception $e) {
+            common_log(LOG_ERR, "Salmon unable to sign: " . $e->getMessage());
+            return false;
         }
-        return false;
-    }
 
-    /**
-     * List the magic envelope signature class variants in the order we try them.
-     * Multiples are needed for backwards-compat with StatusNet prior to 0.9.7,
-     * which used a draft version of the magic envelope spec.
-     *
-     * FIXME: Deprecate and remove. GNU social shouldn't have to interface with SN<0.9.7
-     */
-    protected function formatClasses() {
-        return array('MagicEnvelope', 'MagicEnvelopeCompat');
+        $headers = array('Content-Type: application/magic-envelope+xml');
+
+        try {
+            $client = new HTTPClient();
+            $client->setBody($envelope);
+            $response = $client->post($endpoint_uri, $headers);
+        } catch (HTTP_Request2_Exception $e) {
+            common_log(LOG_ERR, "Salmon ($class) post to $endpoint_uri failed: " . $e->getMessage());
+            return false;
+        }
+        if ($response->getStatus() != 200) {
+            common_log(LOG_ERR, "Salmon ($class) at $endpoint_uri returned status " .
+                $response->getStatus() . ': ' . $response->getBody());
+            return false;
+        }
+
+        // Success!
+        return true;
     }
 
     /**
@@ -104,20 +90,15 @@ class Salmon
      *
      * @param string $text XML fragment to sign, assumed to be Atom
      * @param Profile $actor Profile of a local user to use as signer
-     * @param string $class to override the magic envelope signature version, pass a MagicEnvelope subclass here
      *
      * @return string XML string representation of magic envelope
      *
      * @throws Exception on bad profile input or key generation problems
      * @fixme if signing fails, this seems to return the original text without warning. Is there a reason for this?
      */
-    public function createMagicEnv($text, $actor, $class='MagicEnvelope')
+    public function createMagicEnv($text, $actor)
     {
-        if (!in_array($class, $this->formatClasses())) {
-            throw new ServerException('Bad class parameter for createMagicEnv');
-        }
-
-        $magic_env = new $class();
+        $magic_env = new MagicEnvelope();
 
         // We only generate keys for our local users of course, so let
         // getUser throw an exception if the profile is not local.
@@ -141,8 +122,8 @@ class Salmon
 
     /**
      * Check if the given magic envelope is well-formed and correctly signed.
-     * Needs to have network access to fetch public keys over the web.
-     * Both current and back-compat signature formats will be checked.
+     * Needs to have network access to fetch public keys over the web if not
+     * already stored locally.
      *
      * Side effects: exceptions and caching updates may occur during network
      * fetches.
@@ -153,18 +134,12 @@ class Salmon
      * @throws Exception on bad profile input or key generation problems
      * @fixme could hit fatal errors or spew output on invalid XML
      */
-    public function verifyMagicEnv($text)
-    {
-        foreach ($this->formatClasses() as $class) {
-            $magic_env = new $class();
+     public function verifyMagicEnv($text)
+     {
+        $magic_env = new MagicEnvelope();
 
-            $env = $magic_env->parse($text);
+        $env = $magic_env->parse($text);
 
-            if ($magic_env->verify($env)) {
-                return true;
-            }
-        }
-
-        return false;
+        return $magic_env->verify($env);
     }
 }

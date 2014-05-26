@@ -286,23 +286,3 @@ class MagicEnvelope
         );
     }
 }
-
-/**
- * Variant of MagicEnvelope using the earlier signature form listed in the MagicEnvelope
- * spec in early 2010; this was used in StatusNet up through 0.9.6, so for backwards compatiblity
- * we still need to accept and sometimes send this format.
- */
-class MagicEnvelopeCompat extends MagicEnvelope {
-
-    /**
-     * StatusNet through 0.9.6 used an earlier version of the MagicEnvelope spec
-     * which used only the input data, without the additional fields, as the plaintext
-     * for signing.
-     *
-     * @param array $env
-     * @return string
-     */
-    public function signingText($env) {
-        return $env['data'];
-    }
-}

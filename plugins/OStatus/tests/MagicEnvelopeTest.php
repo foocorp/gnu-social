@@ -41,21 +41,4 @@ class MagicEnvelopeTest extends PHPUnit_Framework_TestCase
             )
         );
     }
-
-
-    /**
-     * Test that MagicEnvelope builds the correct plaintext for signing.
-     * @dataProvider provider
-     */
-    public function testSignatureTextCompat($env, $expected)
-    {
-        // Our old code didn't add the extra fields, just used the armored text.
-        $alt = $env['data'];
-
-        $magic = new MagicEnvelopeCompat;
-        $text = $magic->signingText($env);
-
-        $this->assertEquals($alt, $text, "'$text' should be '$alt'");
-    }
-
 }
