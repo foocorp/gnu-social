@@ -45,12 +45,12 @@ class NoProfileException extends ServerException
 
     public function __construct($profile_id, $msg=null)
     {
-        $this->id = $profile_id;
+        $this->profile_id = $profile_id;
 
         if ($msg === null) {
             // TRANS: Exception text shown when no profile can be found for a user.
-            // TRANS: %1$s is a user nickname, $2$d is a user ID (number).
-            $msg = sprintf(_('There is no profile with id==%u'), $this->id);
+            // TRANS: %u is a profile ID (number).
+            $msg = sprintf(_('There is no profile with id==%u'), $this->profile_id);
         }
 
         parent::__construct($msg, 404);

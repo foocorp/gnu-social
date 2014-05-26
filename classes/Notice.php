@@ -2521,7 +2521,7 @@ class Notice extends Managed_DataObject
 	    			$notice->_setProfile($map[$notice->profile_id]);
 		    	}
             } catch (NoProfileException $e) {
-                common_log(LOG_WARNING, "Failed to fill profile in Notice with non-existing entry for profile_id: {$e->id}");
+                common_log(LOG_WARNING, "Failed to fill profile in Notice with non-existing entry for profile_id: {$e->profile_id}");
                 unset($notices[$entry]);
             }
 		}
