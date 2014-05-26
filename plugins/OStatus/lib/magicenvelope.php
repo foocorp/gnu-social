@@ -32,21 +32,6 @@ class MagicEnvelope
 
     const NS = 'http://salmon-protocol.org/ns/magic-env';
 
-    private function normalizeUser($user_id)
-    {
-        if (substr($user_id, 0, 5) == 'http:' ||
-            substr($user_id, 0, 6) == 'https:' ||
-            substr($user_id, 0, 5) == 'acct:') {
-            return $user_id;
-        }
-
-        if (strpos($user_id, '@') !== FALSE) {
-            return 'acct:' . $user_id;
-        }
-
-        return 'http://' . $user_id;
-    }
-
     /**
      * Get the Salmon keypair from a URI, uses XRD Discovery etc.
      *
@@ -211,7 +196,7 @@ class MagicEnvelope
             foreach ($authors as $author) {
                 $uris = $author->getElementsByTagName('uri');
                 foreach ($uris as $uri) {
-                    return $this->normalizeUser($uri->nodeValue);
+                    return $uri->nodeValue;
                 }
             }
         }
