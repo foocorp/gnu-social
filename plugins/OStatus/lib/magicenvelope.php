@@ -200,7 +200,7 @@ class MagicEnvelope
      *
      * @fixme XML parsing failures will spew to error logs/output
      */
-    public function getAuthor($text) {
+    public function getAuthorUri($text) {
         $doc = new DOMDocument();
         if (!$doc->loadXML($text)) {
             return FALSE;
@@ -241,7 +241,7 @@ class MagicEnvelope
         }
 
         $text = Magicsig::base64_url_decode($env['data']);
-        $signer_uri = $this->getAuthor($text);
+        $signer_uri = $this->getAuthorUri($text);
 
         try {
             $magicsig = $this->getKeyPair($signer_uri);
