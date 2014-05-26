@@ -218,19 +218,6 @@ class MagicEnvelope
     }
 
     /**
-     * Check if the author in the Atom entry fragment claims to match
-     * the given identifier URI.
-     *
-     * @param string $text string containing Atom entry XML
-     * @param string $signer_uri
-     * @return boolean
-     */
-    public function checkAuthor($text, $signer_uri)
-    {
-        return ($this->getAuthor($text) == $signer_uri);
-    }
-
-    /**
      * Attempt to verify cryptographic signing for parsed envelope data.
      * Requires network access to retrieve public key referenced by the envelope signer.
      *
