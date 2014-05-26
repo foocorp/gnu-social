@@ -87,6 +87,8 @@ class Salmon
      * List the magic envelope signature class variants in the order we try them.
      * Multiples are needed for backwards-compat with StatusNet prior to 0.9.7,
      * which used a draft version of the magic envelope spec.
+     *
+     * FIXME: Deprecate and remove. GNU social shouldn't have to interface with SN<0.9.7
      */
     protected function formatClasses() {
         return array('MagicEnvelope', 'MagicEnvelopeCompat');
@@ -111,24 +113,26 @@ class Salmon
      */
     public function createMagicEnv($text, $actor, $class='MagicEnvelope')
     {
+        if (!in_array($class, $this->formatClasses())) {
+            throw new ServerException('Bad class parameter for createMagicEnv');
+        }
+
         $magic_env = new $class();
 
-        $user = User::getKV('id', $actor->id);
-        if ($user->id) {
-            // Use local key
-            $magickey = Magicsig::getKV('user_id', $user->id);
-            if (!$magickey) {
-                // No keypair yet, let's generate one.
-                $magickey = new Magicsig();
-                $magickey->generate($user->id);
-            }
-        } else {
-            // TRANS: Exception.
-            throw new Exception(_m('Salmon invalid actor for signing.'));
+        // We only generate keys for our local users of course, so let
+        // getUser throw an exception if the profile is not local.
+        $user = $actor->getUser();
+
+        // Find already stored key
+        $magicsig = Magicsig::getKV('user_id', $user->id);
+        if (!$magicsig instanceof Magicsig) {
+            // No keypair yet, let's generate one.
+            $magicsig = new Magicsig();
+            $magicsig->generate($user->id);
         }
 
         try {
-            $env = $magic_env->signMessage($text, 'application/atom+xml', $magickey->toString());
+            $env = $magic_env->signMessage($text, 'application/atom+xml', $magicsig->toString());
         } catch (Exception $e) {
             return $text;
         }
