@@ -319,7 +319,7 @@ class MagicEnvelope
 
         $magic_env = self::signMessage($text, 'application/atom+xml', $magicsig);
 
-        assert($magicenv instanceof MagicEnvelope);
+        assert($magic_env instanceof MagicEnvelope);
 
         return $magic_env;
     }

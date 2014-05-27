@@ -65,15 +65,15 @@ class Salmon
 
         try {
             $client = new HTTPClient();
-            $client->setBody($envelope);
+            $client->setBody($envxml);
             $response = $client->post($endpoint_uri, $headers);
         } catch (HTTP_Request2_Exception $e) {
             common_log(LOG_ERR, "Salmon ($class) post to $endpoint_uri failed: " . $e->getMessage());
             return false;
         }
         if ($response->getStatus() != 200) {
-            common_log(LOG_ERR, "Salmon ($class) at $endpoint_uri returned status " .
-                $response->getStatus() . ': ' . $response->getBody());
+            common_log(LOG_ERR, sprintf('Salmon at %s returned status %s: %s',
+                                $endpoint_uri, $response->getStatus(), $response->getBody()));
             return false;
         }
 
