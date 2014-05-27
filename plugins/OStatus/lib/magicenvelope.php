@@ -108,7 +108,7 @@ class MagicEnvelope
         $armored_text = Magicsig::base64_url_encode($text);
         $env = array(
             'data' => $armored_text,
-            'encoding' => MagicEnvelope::ENCODING,
+            'encoding' => self::ENCODING,
             'data_type' => $mimetype,
             'sig' => '',
             'alg' => $signature_alg->getName()
@@ -129,7 +129,7 @@ class MagicEnvelope
     public function toXML($env) {
         $xs = new XMLStringer();
         $xs->startXML();
-        $xs->elementStart('me:env', array('xmlns:me' => MagicEnvelope::NS));
+        $xs->elementStart('me:env', array('xmlns:me' => self::NS));
         $xs->element('me:data', array('type' => $env['data_type']), $env['data']);
         $xs->element('me:encoding', null, $env['encoding']);
         $xs->element('me:alg', null, $env['alg']);
@@ -160,16 +160,16 @@ class MagicEnvelope
             return false;
         }
 
-        $prov = $dom->createElementNS(MagicEnvelope::NS, 'me:provenance');
-        $prov->setAttribute('xmlns:me', MagicEnvelope::NS);
-        $data = $dom->createElementNS(MagicEnvelope::NS, 'me:data', $env['data']);
+        $prov = $dom->createElementNS(self::NS, 'me:provenance');
+        $prov->setAttribute('xmlns:me', self::NS);
+        $data = $dom->createElementNS(self::NS, 'me:data', $env['data']);
         $data->setAttribute('type', $env['data_type']);
         $prov->appendChild($data);
-        $enc = $dom->createElementNS(MagicEnvelope::NS, 'me:encoding', $env['encoding']);
+        $enc = $dom->createElementNS(self::NS, 'me:encoding', $env['encoding']);
         $prov->appendChild($enc);
-        $alg = $dom->createElementNS(MagicEnvelope::NS, 'me:alg', $env['alg']);
+        $alg = $dom->createElementNS(self::NS, 'me:alg', $env['alg']);
         $prov->appendChild($alg);
-        $sig = $dom->createElementNS(MagicEnvelope::NS, 'me:sig', $env['sig']);
+        $sig = $dom->createElementNS(self::NS, 'me:sig', $env['sig']);
         $prov->appendChild($sig);
 
         $dom->documentElement->appendChild($prov);
@@ -220,7 +220,7 @@ class MagicEnvelope
             return false;
         }
 
-        if ($env['encoding'] != MagicEnvelope::ENCODING) {
+        if ($env['encoding'] != self::ENCODING) {
             common_log(LOG_DEBUG, "Salmon error: bad encoding");
             return false;
         }
@@ -264,24 +264,24 @@ class MagicEnvelope
      * @fixme it might be easier to work with storing envelope data these in the object instead of passing arrays around
      * @fixme may give fatal errors if some elements are missing
      */
-    public function fromDom($dom)
+    public function fromDom(DOMDocument $dom)
     {
-        $env_element = $dom->getElementsByTagNameNS(MagicEnvelope::NS, 'env')->item(0);
+        $env_element = $dom->getElementsByTagNameNS(self::NS, 'env')->item(0);
         if (!$env_element) {
-            $env_element = $dom->getElementsByTagNameNS(MagicEnvelope::NS, 'provenance')->item(0);
+            $env_element = $dom->getElementsByTagNameNS(self::NS, 'provenance')->item(0);
         }
 
         if (!$env_element) {
             return false;
         }
 
-        $data_element = $env_element->getElementsByTagNameNS(MagicEnvelope::NS, 'data')->item(0);
-        $sig_element = $env_element->getElementsByTagNameNS(MagicEnvelope::NS, 'sig')->item(0);
+        $data_element = $env_element->getElementsByTagNameNS(self::NS, 'data')->item(0);
+        $sig_element = $env_element->getElementsByTagNameNS(self::NS, 'sig')->item(0);
         return array(
             'data' => preg_replace('/\s/', '', $data_element->nodeValue),
             'data_type' => $data_element->getAttribute('type'),
-            'encoding' => $env_element->getElementsByTagNameNS(MagicEnvelope::NS, 'encoding')->item(0)->nodeValue,
-            'alg' => $env_element->getElementsByTagNameNS(MagicEnvelope::NS, 'alg')->item(0)->nodeValue,
+            'encoding' => $env_element->getElementsByTagNameNS(self::NS, 'encoding')->item(0)->nodeValue,
+            'alg' => $env_element->getElementsByTagNameNS(self::NS, 'alg')->item(0)->nodeValue,
             'sig' => preg_replace('/\s/', '', $sig_element->nodeValue),
         );
     }
