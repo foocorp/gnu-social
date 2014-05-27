@@ -51,15 +51,16 @@ echo "== Original entry ==\n\n";
 print $entry;
 print "\n\n";
 
-$salmon = new Salmon();
-$envelope = $salmon->createMagicEnv($entry, $profile);
+$magic_env = MagicEnvelope::signForProfile($entry, $profile);
+$envxml = $magic_env->toXML();
 
 echo "== Signed envelope ==\n\n";
-print $envelope;
+print $envxml;
 print "\n\n";
 
 echo "== Testing local verification ==\n\n";
-$ok = $salmon->verifyMagicEnv($envelope);
+$magic_env = new MagicEnvelope($envxml);
+$ok = $magic_env->verify();
 if ($ok) {
     print "OK\n\n";
 } else {
@@ -72,7 +73,7 @@ if (have_option('--verify')) {
     print "Sending for verification to $url ...\n";
 
     $client = new HTTPClient();
-    $response = $client->post($url, array(), array('magic_env' => $envelope));
+    $response = $client->post($url, array(), array('magic_env' => $envxml));
 
     print $response->getStatus() . "\n\n";
     print $response->getBody() . "\n\n";

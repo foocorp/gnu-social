@@ -279,6 +279,9 @@ class Magicsig extends Managed_DataObject
     public function sign($bytes)
     {
         $sig = $this->privateKey->sign($bytes);
+        if ($sig === false) {
+            throw new ServerException('Could not sign data');
+        }
         return Magicsig::base64_url_encode($sig);
     }
 

@@ -46,20 +46,15 @@ class SalmonAction extends Action
             $this->clientError(_m('Salmon requires "application/magic-envelope+xml".'));
         }
 
-        $xml = file_get_contents('php://input');
-
-        // Check the signature
-        $salmon = new Salmon;
-        if (!$salmon->verifyMagicEnv($xml)) {
+        $envxml = file_get_contents('php://input');
+        $magic_env = new MagicEnvelope($envxml);   // parse incoming XML as a MagicEnvelope
+        if (!$magic_env->verify()) {
             common_log(LOG_DEBUG, "Salmon signature verification failed.");
             // TRANS: Client error.
             $this->clientError(_m('Salmon signature verification failed.'));
-        } else {
-            $magic_env = new MagicEnvelope();
-            $env = $magic_env->parse($xml);
-            $xml = $magic_env->unfold($env);
         }
 
+        $xml = $magic_env->unfold();    // return the enveloped XML (the actual data)
         $dom = DOMDocument::loadXML($xml);
         if ($dom->documentElement->namespaceURI != Activity::ATOM ||
             $dom->documentElement->localName != 'entry') {

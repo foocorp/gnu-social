@@ -54,7 +54,8 @@ class Salmon
         }
 
         try {
-            $envelope = $this->createMagicEnv($xml, $actor);
+            $magic_env = MagicEnvelope::signForProfile($xml, $actor);
+            $envxml = $magic_env->toXML();
         } catch (Exception $e) {
             common_log(LOG_ERR, "Salmon unable to sign: " . $e->getMessage());
             return false;
@@ -78,68 +79,5 @@ class Salmon
 
         // Success!
         return true;
-    }
-
-    /**
-     * Encode the given string as a signed MagicEnvelope XML document,
-     * using the keypair for the given local user profile.
-     *
-     * Side effects: will create and store a keypair on-demand if one
-     * hasn't already been generated for this user. This can be very slow
-     * on some systems.
-     *
-     * @param string $text XML fragment to sign, assumed to be Atom
-     * @param Profile $actor Profile of a local user to use as signer
-     *
-     * @return string XML string representation of magic envelope
-     *
-     * @throws Exception on bad profile input or key generation problems
-     * @fixme if signing fails, this seems to return the original text without warning. Is there a reason for this?
-     */
-    public function createMagicEnv($text, $actor)
-    {
-        $magic_env = new MagicEnvelope();
-
-        // We only generate keys for our local users of course, so let
-        // getUser throw an exception if the profile is not local.
-        $user = $actor->getUser();
-
-        // Find already stored key
-        $magicsig = Magicsig::getKV('user_id', $user->id);
-        if (!$magicsig instanceof Magicsig) {
-            // No keypair yet, let's generate one.
-            $magicsig = new Magicsig();
-            $magicsig->generate($user->id);
-        }
-
-        try {
-            $env = $magic_env->signMessage($text, 'application/atom+xml', $magicsig->toString());
-        } catch (Exception $e) {
-            return $text;
-        }
-        return $magic_env->toXML($env);
-    }
-
-    /**
-     * Check if the given magic envelope is well-formed and correctly signed.
-     * Needs to have network access to fetch public keys over the web if not
-     * already stored locally.
-     *
-     * Side effects: exceptions and caching updates may occur during network
-     * fetches.
-     *
-     * @param string $text XML fragment of magic envelope
-     * @return boolean
-     *
-     * @throws Exception on bad profile input or key generation problems
-     * @fixme could hit fatal errors or spew output on invalid XML
-     */
-     public function verifyMagicEnv($text)
-     {
-        $magic_env = new MagicEnvelope();
-
-        $env = $magic_env->parse($text);
-
-        return $magic_env->verify($env);
     }
 }

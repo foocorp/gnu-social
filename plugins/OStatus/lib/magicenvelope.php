@@ -32,6 +32,33 @@ class MagicEnvelope
 
     const NS = 'http://salmon-protocol.org/ns/magic-env';
 
+    protected $data      = null;    // When stored here it is _always_ base64url encoded
+    protected $data_type = null;
+    protected $encoding  = null;
+    protected $alg       = null;
+    protected $sig       = null;
+
+    /**
+     * Extract envelope data from an XML document containing an <me:env> or <me:provenance> element.
+     *
+     * @param string XML source
+     * @return mixed associative array of envelope data, or false on unrecognized input
+     *
+     * @fixme will spew errors to logs or output in case of XML parse errors
+     * @fixme may give fatal errors if some elements are missing or invalid XML
+     * @fixme calling DOMDocument::loadXML statically triggers warnings in strict mode
+     */
+    public function __construct($xml=null) {
+        if (!empty($xml)) {
+            $dom = DOMDocument::loadXML($xml);
+            if (!$dom instanceof DOMDocument) {
+                throw new ServerException('Tried to load malformed XML as DOM');
+            } elseif (!$this->fromDom($dom)) {
+                throw new ServerException('Could not load MagicEnvelope from DOM');
+            }
+        }
+    }
+
     /**
      * Get the Salmon keypair from a URI, uses XRD Discovery etc.
      *
@@ -84,60 +111,54 @@ class MagicEnvelope
      * includes both the original data and some signing metadata fields as
      * the input plaintext for the signature hash.
      *
-     * @param array $env
      * @return string
      */
-    public function signingText($env) {
-        return implode('.', array($env['data'], // this field is pre-base64'd
-                            Magicsig::base64_url_encode($env['data_type']),
-                            Magicsig::base64_url_encode($env['encoding']),
-                            Magicsig::base64_url_encode($env['alg'])));
+    public function signingText() {
+        return implode('.', array($this->data, // this field is pre-base64'd
+                            Magicsig::base64_url_encode($this->data_type),
+                            Magicsig::base64_url_encode($this->encoding),
+                            Magicsig::base64_url_encode($this->alg)));
     }
 
     /**
      *
      * @param <type> $text
      * @param <type> $mimetype
-     * @param <type> $keypair
-     * @return array: associative array of envelope properties
-     * @fixme it might be easier to work with storing envelope data these in the object instead of passing arrays around
+     * @param Magicsig $magicsig    Magicsig with private key available.
+     * @return MagicEnvelope object with all properties set
      */
-    public function signMessage($text, $mimetype, $keypair)
+    public static function signMessage($text, $mimetype, Magicsig $magicsig)
     {
-        $signature_alg = Magicsig::fromString($keypair);
-        $armored_text = Magicsig::base64_url_encode($text);
-        $env = array(
-            'data' => $armored_text,
-            'encoding' => self::ENCODING,
-            'data_type' => $mimetype,
-            'sig' => '',
-            'alg' => $signature_alg->getName()
-        );
+        $magic_env = new MagicEnvelope();
 
-        $env['sig'] = $signature_alg->sign($this->signingText($env));
+        // Prepare text and metadata for signing
+        $magic_env->data      = Magicsig::base64_url_encode($text);
+        $magic_env->data_type = $mimetype;
+        $magic_env->encoding  = self::ENCODING;
+        $magic_env->alg       = $magicsig->getName();
+        // Get the actual signature
+        $magic_env->sig = $magicsig->sign($magic_env->signingText());
 
-        return $env;
+        return $magic_env;
     }
 
     /**
      * Create an <me:env> XML representation of the envelope.
      *
-     * @param array $env associative array with envelope data
      * @return string representation of XML document
-     * @fixme it might be easier to work with storing envelope data these in the object instead of passing arrays around
      */
-    public function toXML($env) {
+    public function toXML() {
         $xs = new XMLStringer();
         $xs->startXML();
         $xs->elementStart('me:env', array('xmlns:me' => self::NS));
-        $xs->element('me:data', array('type' => $env['data_type']), $env['data']);
-        $xs->element('me:encoding', null, $env['encoding']);
-        $xs->element('me:alg', null, $env['alg']);
-        $xs->element('me:sig', null, $env['sig']);
+        $xs->element('me:data', array('type' => $this->data_type), $this->data);
+        $xs->element('me:encoding', null, $this->encoding);
+        $xs->element('me:alg', null, $this->alg);
+        $xs->element('me:sig', null, $this->sig);
         $xs->elementEnd('me:env');
 
         $string =  $xs->getString();
-        common_debug($string);
+        common_debug('MagicEnvelope XML: ' . $string);
         return $string;
     }
 
@@ -145,16 +166,14 @@ class MagicEnvelope
      * Extract the contained XML payload, and insert a copy of the envelope
      * signature data as an <me:provenance> section.
      *
-     * @param array $env associative array with envelope data
      * @return string representation of modified XML document
      *
      * @fixme in case of XML parsing errors, this will spew to the error log or output
-     * @fixme it might be easier to work with storing envelope data these in the object instead of passing arrays around
      */
-    public function unfold($env)
+    public function unfold()
     {
         $dom = new DOMDocument();
-        $dom->loadXML(Magicsig::base64_url_decode($env['data']));
+        $dom->loadXML(Magicsig::base64_url_decode($this->data));
 
         if ($dom->documentElement->tagName != 'entry') {
             return false;
@@ -162,14 +181,14 @@ class MagicEnvelope
 
         $prov = $dom->createElementNS(self::NS, 'me:provenance');
         $prov->setAttribute('xmlns:me', self::NS);
-        $data = $dom->createElementNS(self::NS, 'me:data', $env['data']);
-        $data->setAttribute('type', $env['data_type']);
+        $data = $dom->createElementNS(self::NS, 'me:data', $this->data);
+        $data->setAttribute('type', $this->data_type);
         $prov->appendChild($data);
-        $enc = $dom->createElementNS(self::NS, 'me:encoding', $env['encoding']);
+        $enc = $dom->createElementNS(self::NS, 'me:encoding', $this->encoding);
         $prov->appendChild($enc);
-        $alg = $dom->createElementNS(self::NS, 'me:alg', $env['alg']);
+        $alg = $dom->createElementNS(self::NS, 'me:alg', $this->alg);
         $prov->appendChild($alg);
-        $sig = $dom->createElementNS(self::NS, 'me:sig', $env['sig']);
+        $sig = $dom->createElementNS(self::NS, 'me:sig', $this->sig);
         $prov->appendChild($sig);
 
         $dom->documentElement->appendChild($prov);
@@ -208,24 +227,22 @@ class MagicEnvelope
      *
      * Details of failure conditions are dumped to output log and not exposed to caller.
      *
-     * @param array $env array representation of magic envelope data, as returned from MagicEnvelope::parse()
      * @return boolean
-     *
-     * @fixme it might be easier to work with storing envelope data these in the object instead of passing arrays around
      */
-    public function verify($env)
+    public function verify()
     {
-        if ($env['alg'] != 'RSA-SHA256') {
+        if ($this->alg != 'RSA-SHA256') {
             common_log(LOG_DEBUG, "Salmon error: bad algorithm");
             return false;
         }
 
-        if ($env['encoding'] != self::ENCODING) {
+        if ($this->encoding != self::ENCODING) {
             common_log(LOG_DEBUG, "Salmon error: bad encoding");
             return false;
         }
 
-        $text = Magicsig::base64_url_decode($env['data']);
+        // $this->data is base64_url_encoded and should contain XML which is passed to getAuthorUri
+        $text = Magicsig::base64_url_decode($this->data);
         $signer_uri = $this->getAuthorUri($text);
 
         try {
@@ -235,24 +252,7 @@ class MagicEnvelope
             return false;
         }
 
-        return $magicsig->verify($this->signingText($env), $env['sig']);
-    }
-
-    /**
-     * Extract envelope data from an XML document containing an <me:env> or <me:provenance> element.
-     *
-     * @param string XML source
-     * @return mixed associative array of envelope data, or false on unrecognized input
-     *
-     * @fixme it might be easier to work with storing envelope data these in the object instead of passing arrays around
-     * @fixme will spew errors to logs or output in case of XML parse errors
-     * @fixme may give fatal errors if some elements are missing or invalid XML
-     * @fixme calling DOMDocument::loadXML statically triggers warnings in strict mode
-     */
-    public function parse($text)
-    {
-        $dom = DOMDocument::loadXML($text);
-        return $this->fromDom($dom);
+        return $magicsig->verify($this->signingText(), $this->sig);
     }
 
     /**
@@ -261,10 +261,9 @@ class MagicEnvelope
      * @param DOMDocument $dom
      * @return mixed associative array of envelope data, or false on unrecognized input
      *
-     * @fixme it might be easier to work with storing envelope data these in the object instead of passing arrays around
      * @fixme may give fatal errors if some elements are missing
      */
-    public function fromDom(DOMDocument $dom)
+    protected function fromDom(DOMDocument $dom)
     {
         $env_element = $dom->getElementsByTagNameNS(self::NS, 'env')->item(0);
         if (!$env_element) {
@@ -277,12 +276,51 @@ class MagicEnvelope
 
         $data_element = $env_element->getElementsByTagNameNS(self::NS, 'data')->item(0);
         $sig_element = $env_element->getElementsByTagNameNS(self::NS, 'sig')->item(0);
-        return array(
-            'data' => preg_replace('/\s/', '', $data_element->nodeValue),
-            'data_type' => $data_element->getAttribute('type'),
-            'encoding' => $env_element->getElementsByTagNameNS(self::NS, 'encoding')->item(0)->nodeValue,
-            'alg' => $env_element->getElementsByTagNameNS(self::NS, 'alg')->item(0)->nodeValue,
-            'sig' => preg_replace('/\s/', '', $sig_element->nodeValue),
-        );
+
+        $this->data      = preg_replace('/\s/', '', $data_element->nodeValue);
+        $this->data_type = $data_element->getAttribute('type');
+        $this->encoding  = $env_element->getElementsByTagNameNS(self::NS, 'encoding')->item(0)->nodeValue;
+        $this->alg       = $env_element->getElementsByTagNameNS(self::NS, 'alg')->item(0)->nodeValue;
+        $this->sig       = preg_replace('/\s/', '', $sig_element->nodeValue);
+        return true;
+    }
+
+    /**
+     * Encode the given string as a signed MagicEnvelope XML document,
+     * using the keypair for the given local user profile. We can of
+     * course not sign a remote profile's slap, since we don't have the
+     * private key.
+     *
+     * Side effects: will create and store a keypair on-demand if one
+     * hasn't already been generated for this user. This can be very slow
+     * on some systems.
+     *
+     * @param string $text XML fragment to sign, assumed to be Atom
+     * @param Profile $actor Profile of a local user to use as signer
+     *
+     * @return string XML string representation of magic envelope
+     *
+     * @throws Exception on bad profile input or key generation problems
+     * @fixme if signing fails, this seems to return the original text without warning. Is there a reason for this?
+     */
+    public static function signForProfile($text, Profile $actor)
+    {
+        // We only generate keys for our local users of course, so let
+        // getUser throw an exception if the profile is not local.
+        $user = $actor->getUser();
+
+        // Find already stored key
+        $magicsig = Magicsig::getKV('user_id', $user->id);
+        if (!$magicsig instanceof Magicsig) {
+            // No keypair yet, let's generate one.
+            $magicsig = new Magicsig();
+            $magicsig->generate($user->id);
+        }
+
+        $magic_env = self::signMessage($text, 'application/atom+xml', $magicsig);
+
+        assert($magicenv instanceof MagicEnvelope);
+
+        return $magic_env;
     }
 }
