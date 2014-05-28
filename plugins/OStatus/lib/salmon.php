@@ -68,12 +68,12 @@ class Salmon
             $client->setBody($envxml);
             $response = $client->post($endpoint_uri, $headers);
         } catch (HTTP_Request2_Exception $e) {
-            common_log(LOG_ERR, "Salmon ($class) post to $endpoint_uri failed: " . $e->getMessage());
+            common_log(LOG_ERR, "Salmon post to $endpoint_uri failed: " . $e->getMessage());
             return false;
         }
         if ($response->getStatus() != 200) {
-            common_log(LOG_ERR, sprintf('Salmon at %s returned status %s: %s',
-                                $endpoint_uri, $response->getStatus(), $response->getBody()));
+            common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
+                                $actor->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
             return false;
         }
 
