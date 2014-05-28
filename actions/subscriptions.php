@@ -48,20 +48,19 @@ class SubscriptionsAction extends GalleryAction
         if ($this->page == 1) {
             // TRANS: Header for subscriptions overview for a user (first page).
             // TRANS: %s is a user nickname.
-            return sprintf(_('%s subscriptions'), $this->user->nickname);
+            return sprintf(_('%s subscriptions'), $this->target->getNickname());
         } else {
             // TRANS: Header for subscriptions overview for a user (not first page).
             // TRANS: %1$s is a user nickname, %2$d is the page number.
             return sprintf(_('%1$s subscriptions, page %2$d'),
-                           $this->user->nickname,
+                           $this->target->getNickname(),
                            $this->page);
         }
     }
 
     function showPageNotice()
     {
-        $user = common_current_user();
-        if ($user && ($user->id == $this->profile->id)) {
+        if ($this->scoped instanceof Profile && $this->scoped->id === $this->target->id) {
             $this->element('p', null,
                            // TRANS: Page notice for page with an overview of all subscriptions
                            // TRANS: of the logged in user's own profile.
@@ -73,7 +72,7 @@ class SubscriptionsAction extends GalleryAction
                            // TRANS: than the logged in user. %s is the user nickname.
                            sprintf(_('These are the people whose '.
                                      'notices %s listens to.'),
-                                   $this->profile->nickname));
+                                   $this->target->getNickname()));
         }
     }
 
@@ -93,13 +92,13 @@ class SubscriptionsAction extends GalleryAction
             $cnt = 0;
 
             if ($this->tag) {
-                $subscriptions = $this->user->getTaggedSubscriptions($this->tag, $offset, $limit);
+                $subscriptions = $this->target->getTaggedSubscriptions($this->tag, $offset, $limit);
             } else {
-                $subscriptions = $this->user->getSubscribed($offset, $limit);
+                $subscriptions = $this->target->getSubscribed($offset, $limit);
             }
 
             if ($subscriptions) {
-                $subscriptions_list = new SubscriptionsList($subscriptions, $this->user, $this);
+                $subscriptions_list = new SubscriptionsList($subscriptions, $this->target, $this);
                 $cnt = $subscriptions_list->show();
                 if (0 == $cnt) {
                     $this->showEmptyListMessage();
@@ -108,7 +107,7 @@ class SubscriptionsAction extends GalleryAction
 
             $this->pagination($this->page > 1, $cnt > PROFILES_PER_PAGE,
                               $this->page, 'subscriptions',
-                              array('nickname' => $this->user->nickname));
+                              array('nickname' => $this->target->getNickname()));
 
 
             Event::handle('EndShowSubscriptionsContent', array($this));
@@ -123,9 +122,7 @@ class SubscriptionsAction extends GalleryAction
 
     function showEmptyListMessage()
     {
-        if (common_logged_in()) {
-            $current_user = common_current_user();
-            if ($this->user->id === $current_user->id) {
+        if ($this->scoped instanceof Profile && $this->target->id === $this->scoped->id) {
                 // TRANS: Subscription list text when the logged in user has no subscriptions.
                 // TRANS: This message contains Markdown URLs. The link description is between
                 // TRANS: square brackets, and the link between parentheses. Do not separate "]("
@@ -133,16 +130,10 @@ class SubscriptionsAction extends GalleryAction
                 $message = _('You\'re not listening to anyone\'s notices right now, try subscribing to people you know. '.
                              'Try [people search](%%action.peoplesearch%%), look for members in groups you\'re interested '.
                              'in and in our [featured users](%%action.featured%%).');
-            } else {
-                // TRANS: Subscription list text when looking at the subscriptions for a of a user other
-                // TRANS: than the logged in user that has no subscriptions. %s is the user nickname.
-                $message = sprintf(_('%s is not listening to anyone.'), $this->user->nickname);
-            }
-        }
-        else {
+        } else {
             // TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
             // TRANS: as an anonymous user. %s is the user nickname.
-            $message = sprintf(_('%s is not listening to anyone.'), $this->user->nickname);
+            $message = sprintf(_('%s is not listening to anyone.'), $this->target->getNickname());
         }
 
         $this->elementStart('div', 'guide');
@@ -159,10 +150,10 @@ class SubscriptionsAction extends GalleryAction
     {
         return array(new Feed(Feed::ATOM,
                               common_local_url('AtomPubSubscriptionFeed',
-                                               array('subscriber' => $this->profile->id)),
+                                               array('subscriber' => $this->target->id)),
                               // TRANS: Atom feed title. %s is a profile nickname.
                               sprintf(_('Subscription feed for %s (Atom)'),
-                                      $this->profile->nickname)));
+                                      $this->target->getNickname())));
     }
 }
 
