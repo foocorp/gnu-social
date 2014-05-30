@@ -91,6 +91,20 @@ class StatusNet
         return true;
     }
 
+    public static function delPlugin($name)
+    {
+        // Remove our plugin if it was previously loaded
+        $name = ucfirst($name);
+        if (isset(self::$plugins[$name])) {
+            unset(self::$plugins[$name]);
+        }
+
+        // make sure initPlugins will avoid this
+        common_config_set('plugins', 'disable-'.$name, true);
+
+        return true;
+    }
+
     /**
      * Get a list of activated plugins in this process.
      * @return array of (string $name, array $args) pairs
