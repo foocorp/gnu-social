@@ -375,7 +375,7 @@ class Subscription extends Managed_DataObject
         $ids = $sub->fetchAll($get_type);
 
         // If we're simultaneously filling up cache, remember to slice
-        if ($offset === 0 && $querylimit === self::CACHE_WINDOW) {
+        if ($queryoffset === 0 && $querylimit === self::CACHE_WINDOW) {
             self::cacheSet($cacheKey, $ids);
             return array_slice($ids, $offset, $limit);
         }
