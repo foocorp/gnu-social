@@ -92,16 +92,15 @@ class Magicsig extends Managed_DataObject
     {
         $obj =  parent::getKV($k, $v);
         if ($obj instanceof Magicsig) {
-            // Please note we're replacing the $obj
-            // FIXME: There should be an import-key that modifies the fetched $obj
-            $obj = Magicsig::fromString($obj->keypair);
+            $obj->importKeys(); // Loads Crypt_RSA objects etc.
 
-            // Never allow less than 1024 bit keys.
+            // Throw out a big fat warning for keys of less than 1024 bits. (
             // The only case these show up in would be imported or
             // legacy very-old-StatusNet generated keypairs.
             if (strlen($obj->publicKey->modulus->toBits()) < 1024) {
-                $obj->delete();
-                return false;
+                common_log(LOG_WARNING, sprintf('Salmon key with <1024 bits (%d) belongs to profile with id==%d',
+                                            strlen($this->publicKey->modulus->toBits()),
+                                            $obj->user_id));
             }
         }
 
@@ -118,7 +117,7 @@ class Magicsig extends Managed_DataObject
             ),
             'primary key' => array('user_id'),
             'foreign keys' => array(
-                'magicsig_user_id_fkey' => array('user', array('user_id' => 'id')),
+                'magicsig_user_id_fkey' => array('profile', array('user_id' => 'id')),
             ),
         );
     }
@@ -194,12 +193,23 @@ class Magicsig extends Managed_DataObject
         $magic_sig = new Magicsig();
 
         // remove whitespace
-        $text = preg_replace('/\s+/', '', $text);
+        $magic_sig->keypair = preg_replace('/\s+/', '', $text);
+        $magic_sig->importKeys();
 
+        // Please note this object will be missing the user_id field
+        return $magic_sig;
+    }
+
+    /**
+     * importKeys will load the object's keypair string, which initiates
+     * loadKey() and configures Crypt_RSA objects.
+     */
+    public function importKeys()
+    {
         // parse components
-        if (!preg_match('/RSA\.([^\.]+)\.([^\.]+)(.([^\.]+))?/', $text, $matches)) {
+        if (!preg_match('/RSA\.([^\.]+)\.([^\.]+)(.([^\.]+))?/', $this->keypair, $matches)) {
             common_debug('Magicsig error: RSA key not found in provided string.');
-            return false;
+            throw new ServerException('RSA key not found in keypair string.');
         }
 
         $mod = $matches[1];
@@ -210,12 +220,10 @@ class Magicsig extends Managed_DataObject
             $private_exp = false;
         }
 
-        $magic_sig->loadKey($mod, $exp, 'public');
+        $this->loadKey($mod, $exp, 'public');
         if ($private_exp) {
-            $magic_sig->loadKey($mod, $private_exp, 'private');
+            $this->loadKey($mod, $private_exp, 'private');
         }
-
-        return $magic_sig;
     }
 
     /**

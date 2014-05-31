@@ -74,6 +74,8 @@ class MagicEnvelope
                 throw new ServerException(sprintf('Profile missing URI (id==%d)', $profile->id));
             }
             $magicsig = $this->discoverKeyPair($signer_uri);
+            // discoverKeyPair should've thrown exception if it failed
+            assert($magicsig instanceof Magicsig);
         } elseif (!$magicsig instanceof Magicsig) { // No discovery request, so we'll give up.
             throw new ServerException(sprintf('No public key found for profile (id==%d)', $profile->id));
         }
