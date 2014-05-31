@@ -28,6 +28,8 @@ class SalmonAction extends Action
 {
     protected $needPost = true;
 
+    protected $verified = false;
+
     var $xml      = null;
     var $activity = null;
     var $target   = null;
@@ -45,15 +47,24 @@ class SalmonAction extends Action
 
         $envxml = file_get_contents('php://input');
         $magic_env = new MagicEnvelope($envxml);   // parse incoming XML as a MagicEnvelope
-        if (!$magic_env->verify()) {
+
+        $entry = $magic_env->getPayload();  // Not cryptographically verified yet!
+        $this->activity = new Activity($entry->documentElement);
+
+        try {
+            $profile = Profile::fromUri($this->activity->actor->id);
+            $this->verified = $magic_env->verify($profile);
+        } catch (UnknownUriException $e) {
+            // If we don't know the profile, perform some discovery instead
+            $this->verified = $magic_env->verify();
+        }
+
+        if (!$this->verified) {
             common_log(LOG_DEBUG, "Salmon signature verification failed.");
             // TRANS: Client error.
             $this->clientError(_m('Salmon signature verification failed.'));
         }
 
-        $entry = $magic_env->getPayload();
-
-        $this->activity = new Activity($entry->documentElement);
         return true;
     }
 

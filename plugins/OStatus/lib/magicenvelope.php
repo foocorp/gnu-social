@@ -60,11 +60,32 @@ class MagicEnvelope
     }
 
     /**
+     * Retrieve Salmon keypair first by checking local database, but
+     * if it's not found, attempt discovery if it has been requested.
+     *
+     * @param Profile $profile      The profile we're looking up keys for.
+     * @param boolean $discovery    Network discovery if no local cache?
+     */
+    public function getKeyPair(Profile $profile, $discovery=false) {
+        $magicsig = Magicsig::getKV('user_id', $profile->id);
+        if ($discovery && !$magicsig instanceof Magicsig) {
+            $signer_uri = $profile->getUri();
+            if (empty($signer_uri)) {
+                throw new ServerException(sprintf('Profile missing URI (id==%d)', $profile->id));
+            }
+            $magicsig = $this->discoverKeyPair($signer_uri);
+        } elseif (!$magicsig instanceof Magicsig) { // No discovery request, so we'll give up.
+            throw new ServerException(sprintf('No public key found for profile (id==%d)', $profile->id));
+        }
+        return $magicsig;
+    }
+
+    /**
      * Get the Salmon keypair from a URI, uses XRD Discovery etc.
      *
      * @return Magicsig with loaded keypair
      */
-    public function getKeyPair($signer_uri)
+    public function discoverKeyPair($signer_uri)
     {
         $disco = new Discovery();
 
@@ -228,9 +249,11 @@ class MagicEnvelope
      *
      * Details of failure conditions are dumped to output log and not exposed to caller.
      *
+     * @param Profile $profile optional profile used to get locally cached public signature key.
+     *
      * @return boolean
      */
-    public function verify()
+    public function verify(Profile $profile=null)
     {
         if ($this->alg != 'RSA-SHA256') {
             common_log(LOG_DEBUG, "Salmon error: bad algorithm");
@@ -243,8 +266,12 @@ class MagicEnvelope
         }
 
         try {
-            $signer_uri = $this->getAuthorUri();
-            $magicsig = $this->getKeyPair($signer_uri);
+            if ($profile instanceof Profile) {
+                $magicsig = $this->getKeyPair($profile, true);    // Do discovery too if necessary
+            } else {
+                $signer_uri = $this->getAuthorUri();
+                $magicsig = $this->discoverKeyPair($signer_uri);
+            }
         } catch (Exception $e) {
             common_log(LOG_DEBUG, "Salmon error: ".$e->getMessage());
             return false;
