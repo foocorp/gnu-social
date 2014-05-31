@@ -26,6 +26,8 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class SalmonAction extends Action
 {
+    protected $needPost = true;
+
     var $xml      = null;
     var $activity = null;
     var $target   = null;
@@ -36,12 +38,7 @@ class SalmonAction extends Action
 
         parent::prepare($args);
 
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            // TRANS: Client error. POST is a HTTP command. It should not be translated.
-            $this->clientError(_m('This method requires a POST.'));
-        }
-
-        if (empty($_SERVER['CONTENT_TYPE']) || $_SERVER['CONTENT_TYPE'] != 'application/magic-envelope+xml') {
+        if (!isset($_SERVER['CONTENT_TYPE']) || $_SERVER['CONTENT_TYPE'] != 'application/magic-envelope+xml') {
             // TRANS: Client error. Do not translate "application/magic-envelope+xml".
             $this->clientError(_m('Salmon requires "application/magic-envelope+xml".'));
         }
@@ -54,16 +51,9 @@ class SalmonAction extends Action
             $this->clientError(_m('Salmon signature verification failed.'));
         }
 
-        $xml = $magic_env->unfold();    // return the enveloped XML (the actual data)
-        $dom = DOMDocument::loadXML($xml);
-        if ($dom->documentElement->namespaceURI != Activity::ATOM ||
-            $dom->documentElement->localName != 'entry') {
-            common_log(LOG_DEBUG, "Got invalid Salmon post: $xml");
-            // TRANS: Client error.
-            $this->clientError(_m('Salmon post must be an Atom entry.'));
-        }
+        $entry = $magic_env->getPayload();
 
-        $this->activity = new Activity($dom->documentElement);
+        $this->activity = new Activity($entry->documentElement);
         return true;
     }
 

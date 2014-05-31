@@ -162,63 +162,64 @@ class MagicEnvelope
         return $string;
     }
 
-    /**
+    /*
      * Extract the contained XML payload, and insert a copy of the envelope
      * signature data as an <me:provenance> section.
      *
-     * @return string representation of modified XML document
+     * @return DOMDocument of Atom entry
      *
      * @fixme in case of XML parsing errors, this will spew to the error log or output
      */
-    public function unfold()
+    public function getPayload()
     {
         $dom = new DOMDocument();
-        $dom->loadXML(Magicsig::base64_url_decode($this->data));
-
-        if ($dom->documentElement->tagName != 'entry') {
-            return false;
+        if (!$dom->loadXML(Magicsig::base64_url_decode($this->data))) {
+            throw new ServerException('Malformed XML in Salmon payload');
         }
 
-        $prov = $dom->createElementNS(self::NS, 'me:provenance');
-        $prov->setAttribute('xmlns:me', self::NS);
-        $data = $dom->createElementNS(self::NS, 'me:data', $this->data);
-        $data->setAttribute('type', $this->data_type);
-        $prov->appendChild($data);
-        $enc = $dom->createElementNS(self::NS, 'me:encoding', $this->encoding);
-        $prov->appendChild($enc);
-        $alg = $dom->createElementNS(self::NS, 'me:alg', $this->alg);
-        $prov->appendChild($alg);
-        $sig = $dom->createElementNS(self::NS, 'me:sig', $this->sig);
-        $prov->appendChild($sig);
-
-        $dom->documentElement->appendChild($prov);
-
-        return $dom->saveXML();
+        switch ($this->data_type) {
+        case 'application/atom+xml':
+            if ($dom->documentElement->namespaceURI !== Activity::ATOM
+                    || $dom->documentElement->tagName !== 'entry') {
+                throw new ServerException(_m('Salmon post must be an Atom entry.'));
+            }
+            $prov = $dom->createElementNS(self::NS, 'me:provenance');
+            $prov->setAttribute('xmlns:me', self::NS);
+            $data = $dom->createElementNS(self::NS, 'me:data', $this->data);
+            $data->setAttribute('type', $this->data_type);
+            $prov->appendChild($data);
+            $enc = $dom->createElementNS(self::NS, 'me:encoding', $this->encoding);
+            $prov->appendChild($enc);
+            $alg = $dom->createElementNS(self::NS, 'me:alg', $this->alg);
+            $prov->appendChild($alg);
+            $sig = $dom->createElementNS(self::NS, 'me:sig', $this->sig);
+            $prov->appendChild($sig);
+    
+            $dom->documentElement->appendChild($prov);
+            break;
+        default:
+            throw new ServerException('Unknown Salmon payload data type');
+        }
+        return $dom;
     }
 
     /**
-     * Find the author URI referenced in the given Atom entry.
+     * Find the author URI referenced in the payload Atom entry.
      *
-     * @param string $text string containing Atom entry XML
-     * @return mixed URI string or false if XML parsing fails, or null if no author URI can be found
-     *
-     * @fixme XML parsing failures will spew to error logs/output
+     * @return string URI for author
+     * @throws ServerException on failure
      */
-    public function getAuthorUri($text) {
-        $doc = new DOMDocument();
-        if (!$doc->loadXML($text)) {
-            return FALSE;
-        }
+    public function getAuthorUri() {
+        $doc = $this->getPayload();
 
-        if ($doc->documentElement->tagName == 'entry') {
-            $authors = $doc->documentElement->getElementsByTagName('author');
-            foreach ($authors as $author) {
-                $uris = $author->getElementsByTagName('uri');
-                foreach ($uris as $uri) {
-                    return $uri->nodeValue;
-                }
+        $authors = $doc->documentElement->getElementsByTagName('author');
+        foreach ($authors as $author) {
+            $uris = $author->getElementsByTagName('uri');
+            foreach ($uris as $uri) {
+                return $uri->nodeValue;
             }
         }
+        throw new ServerException('No author URI found in Salmon payload data');
     }
 
     /**
@@ -241,11 +242,8 @@ class MagicEnvelope
             return false;
         }
 
-        // $this->data is base64_url_encoded and should contain XML which is passed to getAuthorUri
-        $text = Magicsig::base64_url_decode($this->data);
-        $signer_uri = $this->getAuthorUri($text);
-
         try {
+            $signer_uri = $this->getAuthorUri();
             $magicsig = $this->getKeyPair($signer_uri);
         } catch (Exception $e) {
             common_log(LOG_DEBUG, "Salmon error: ".$e->getMessage());
