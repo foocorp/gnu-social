@@ -170,6 +170,9 @@ class NewnoticeAction extends FormAction
 
             Event::handle('EndNoticeSaveWeb', array($this, $notice));
         }
+
+        assert($notice instanceof Notice);
+
         Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content_shortened, &$options));
 
         if (StatusNet::isAjax()) {
@@ -345,7 +348,7 @@ class NewnoticeAction extends FormAction
      *
      * @return void
      */
-    function showNotice($notice)
+    function showNotice(Notice $notice)
     {
         $nli = new NoticeListItem($notice, $this);
         $nli->show();

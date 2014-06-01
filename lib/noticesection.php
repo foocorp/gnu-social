@@ -70,7 +70,7 @@ class NoticeSection extends Section
         return null;
     }
 
-    function showNotice($notice)
+    function showNotice(Notice $notice)
     {
         $profile = $notice->getProfile();
         if (empty($profile)) {

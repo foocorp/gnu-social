@@ -114,20 +114,19 @@ class ShownoticeAction extends Action
         $id = $this->arg('notice');
 
         $notice = Notice::getKV('id', $id);
-
-        if (!$notice instanceof Notice) {
-            // Did we used to have it, and it got deleted?
-            $deleted = Deleted_notice::getKV($id);
-            if ($deleted instanceof Deleted_notice) {
-                // TRANS: Client error displayed trying to show a deleted notice.
-                $this->clientError(_('Notice deleted.'), 410);
-            } else {
-                // TRANS: Client error displayed trying to show a non-existing notice.
-                $this->clientError(_('No such notice.'), 404);
-            }
-            return false;
+        if ($notice instanceof Notice) {
+            // Alright, got it!
+            return $notice;
         }
-        return $notice;
+
+        // Did we use to have it, and it got deleted?
+        $deleted = Deleted_notice::getKV('id', $id);
+        if ($deleted instanceof Deleted_notice) {
+            // TRANS: Client error displayed trying to show a deleted notice.
+            $this->clientError(_('Notice deleted.'), 410);
+        }
+        // TRANS: Client error displayed trying to show a non-existing notice.
+        $this->clientError(_('No such notice.'), 404);
     }
 
     /**

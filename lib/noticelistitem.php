@@ -65,7 +65,7 @@ class NoticeListItem extends Widget
      *
      * @param Notice $notice The notice we'll display
      */
-    function __construct($notice, $out=null)
+    function __construct(Notice $notice, HTMLOutputter $out=null)
     {
         parent::__construct($out);
         if (!empty($notice->repeat_of)) {

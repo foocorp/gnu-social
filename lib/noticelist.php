@@ -58,7 +58,7 @@ class NoticeList extends Widget
      *
      * @param Notice $notice stream of notices from DB_DataObject
      */
-    function __construct($notice, $out=null)
+    function __construct(Notice $notice, $out=null)
     {
         parent::__construct($out);
         $this->notice = $notice;
@@ -111,7 +111,7 @@ class NoticeList extends Widget
      *
      * @return NoticeListItem a list item for displaying the notice
      */
-    function newListItem($notice)
+    function newListItem(Notice $notice)
     {
         return new NoticeListItem($notice, $this->out);
     }

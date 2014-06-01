@@ -319,7 +319,7 @@ class QnAPlugin extends MicroAppPlugin
      * @param Notice $notice
      * @param HTMLOutputter $out
      */
-    function showNotice($notice, $out)
+    function showNotice(Notice $notice, $out)
     {
         switch ($notice->object_type) {
         case QnA_Question::OBJECT_TYPE:
@@ -337,7 +337,7 @@ class QnAPlugin extends MicroAppPlugin
         }
     }
 
-    function showNoticeQuestion($notice, $out)
+    function showNoticeQuestion(Notice $notice, $out)
     {
         $user = common_current_user();
 
@@ -427,7 +427,7 @@ class QnAPlugin extends MicroAppPlugin
         return false;
     }
 
-    function showNoticeAnswer($notice, $out)
+    function showNoticeAnswer(Notice $notice, $out)
     {
         $user = common_current_user();
 

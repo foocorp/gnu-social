@@ -181,7 +181,7 @@ class NewPollAction extends Action
      *
      * @return void
      */
-    function showNotice($notice)
+    function showNotice(Notice $notice)
     {
         class_exists('NoticeList'); // @fixme hack for autoloader
         $nli = new NoticeListItem($notice, $this);

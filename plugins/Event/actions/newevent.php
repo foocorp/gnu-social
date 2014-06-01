@@ -320,7 +320,7 @@ class NeweventAction extends Action
      *
      * @return void
      */
-    function showNotice($notice)
+    function showNotice(Notice $notice)
     {
         $nli = new NoticeListItem($notice, $this);
         $nli->show();

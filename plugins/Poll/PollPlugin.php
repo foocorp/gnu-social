@@ -379,7 +379,7 @@ class PollPlugin extends MicroAppPlugin
      * open here, but we probably shouldn't open it here. Check parent class
      * and Bookmark plugin for if that's right.
      */
-    function showNotice($notice, $out)
+    function showNotice(Notice $notice, $out)
     {
         switch ($notice->object_type) {
         case self::POLL_OBJECT:
@@ -393,7 +393,7 @@ class PollPlugin extends MicroAppPlugin
         }
     }
 
-    function showNoticePoll($notice, $out)
+    function showNoticePoll(Notice $notice, $out)
     {
         $user = common_current_user();
 
@@ -425,7 +425,7 @@ class PollPlugin extends MicroAppPlugin
         $out->elementStart('div', array('class' => 'entry-content'));
     }
 
-    function showNoticePollResponse($notice, $out)
+    function showNoticePollResponse(Notice $notice, $out)
     {
         $user = common_current_user();
 

@@ -50,7 +50,7 @@ class ThreadedNoticeList extends NoticeList
 {
     protected $userProfile;
 
-    function __construct($notice, $out=null, $profile=-1)
+    function __construct(Notice $notice, HTMLOutputter $out=null, $profile=-1)
     {
         parent::__construct($notice, $out);
         if (is_int($profile) && $profile == -1) {
@@ -147,7 +147,7 @@ class ThreadedNoticeList extends NoticeList
      *
      * @return NoticeListItem a list item for displaying the notice
      */
-    function newListItem($notice)
+    function newListItem(Notice $notice)
     {
         return new ThreadedNoticeListItem($notice, $this->out, $this->userProfile);
     }
@@ -174,7 +174,7 @@ class ThreadedNoticeListItem extends NoticeListItem
 {
     protected $userProfile = null;
 
-    function __construct($notice, $out=null, $profile=null)
+    function __construct(Notice $notice, HTMLOutputter $out=null, $profile=null)
     {
         parent::__construct($notice, $out);
         $this->userProfile = $profile;
@@ -269,7 +269,7 @@ class ThreadedNoticeListSubItem extends NoticeListItem
 {
     protected $root = null;
 
-    function __construct($notice, $root, $out)
+    function __construct(Notice $notice, $root, $out)
     {
         $this->root = $root;
         parent::__construct($notice, $out);
@@ -327,7 +327,7 @@ class ThreadedNoticeListMoreItem extends NoticeListItem
 {
     protected $cnt;
 
-    function __construct($notice, $out, $cnt)
+    function __construct(Notice $notice, HTMLOutputter $out, $cnt)
     {
         parent::__construct($notice, $out);
         $this->cnt = $cnt;
