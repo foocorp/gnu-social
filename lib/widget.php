@@ -63,7 +63,7 @@ class Widget
      * @param HTMLOutputter $out output helper, defaults to null
      */
 
-    function __construct($out=null)
+    function __construct(HTMLOutputter $out=null)
     {
         $this->out = $out;
     }
