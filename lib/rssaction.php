@@ -278,8 +278,8 @@ class Rss10Action extends Action
         $attachments = $notice->attachments();
         if($attachments){
             foreach($attachments as $attachment){
-                $enclosure=$attachment->getEnclosure();
-                if ($enclosure) {
+                try {
+                    $enclosure = $attachment->getEnclosure();
                     $attribs = array('rdf:resource' => $enclosure->url);
                     if ($enclosure->title) {
                         $attribs['dc:title'] = $enclosure->title;
@@ -294,6 +294,8 @@ class Rss10Action extends Action
                         $attribs['enc:type'] = $enclosure->mimetype;
                     }
                     $this->element('enc:enclosure', $attribs);
+                } catch (ServerException $e) {
+                    // There was not enough metadata available
                 }
                 $this->element('sioc:links_to', array('rdf:resource'=>$attachment->url));
             }

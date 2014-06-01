@@ -384,13 +384,15 @@ class ApiAction extends Action
             $twitter_status['attachments'] = array();
 
             foreach ($attachments as $attachment) {
-                $enclosure_o=$attachment->getEnclosure();
-                if ($enclosure_o) {
+                try {
+                    $enclosure_o = $attachment->getEnclosure();
                     $enclosure = array();
                     $enclosure['url'] = $enclosure_o->url;
                     $enclosure['mimetype'] = $enclosure_o->mimetype;
                     $enclosure['size'] = $enclosure_o->size;
                     $twitter_status['attachments'][] = $enclosure;
+                } catch (ServerException $e) {
+                    // There was not enough metadata available
                 }
             }
         }
@@ -510,13 +512,15 @@ class ApiAction extends Action
             $enclosures = array();
 
             foreach ($attachments as $attachment) {
-                $enclosure_o=$attachment->getEnclosure();
-                if ($enclosure_o) {
+                try {
+                    $enclosure_o = $attachment->getEnclosure();
                     $enclosure = array();
                     $enclosure['url'] = $enclosure_o->url;
                     $enclosure['mimetype'] = $enclosure_o->mimetype;
                     $enclosure['size'] = $enclosure_o->size;
                     $enclosures[] = $enclosure;
+                } catch (ServerException $e) {
+                    // There was not enough metadata available
                 }
             }
 

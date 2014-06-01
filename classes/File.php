@@ -364,14 +364,11 @@ class File extends Managed_DataObject
                 Event::handle('FileEnclosureMetadata', array($this, &$enclosure));
             }
         }
+        if (empty($enclosure->mimetype)) {
+            // This means we don't know what it is, so it can't be an enclosure!
+            throw new ServerException('Unknown enclosure mimetype, not enough metadata');
+        }
         return $enclosure;
-    }
-
-    // quick back-compat hack, since there's still code using this
-    function isEnclosure()
-    {
-        $enclosure = $this->getEnclosure();
-        return !empty($enclosure);
     }
 
     /**

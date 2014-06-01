@@ -989,22 +989,23 @@ function common_linkify($url) {
 
     $f = File::getKV('url', $longurl);
 
-    if (empty($f)) {
+    if (!$f instanceof File) {
         if (common_config('attachments', 'process_links')) {
             // XXX: this writes to the database. :<
             $f = File::processNew($longurl);
         }
     }
 
-    if (!empty($f)) {
-        if ($f->getEnclosure()) {
+    if ($f instanceof File) {
+        try {
+            $enclosure = $f->getEnclosure();
             $is_attachment = true;
             $attachment_id = $f->id;
 
             $thumb = File_thumbnail::getKV('file_id', $f->id);
-            if (!empty($thumb)) {
-                $has_thumb = true;
-            }
+            $has_thumb = ($thumb instanceof File_thumbnail);
+        } catch (ServerException $e) {
+            // There was not enough metadata available
         }
     }
 

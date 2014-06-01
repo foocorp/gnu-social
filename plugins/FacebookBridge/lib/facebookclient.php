@@ -651,9 +651,10 @@ class Facebookclient
 
         foreach($attachments as $attachment)
         {
-            if($enclosure = $attachment->getEnclosure()){
+            try {
+                $enclosure = $attachment->getEnclosure();
                 $fbmedia = $this->getFacebookMedia($enclosure);
-            }else{
+            } catch (ServerException $e) {
                 $fbmedia = $this->getFacebookMedia($attachment);
             }
             if($fbmedia){
