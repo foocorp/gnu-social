@@ -238,7 +238,11 @@ class Ostatus_profile extends Managed_DataObject
     public function garbageCollect()
     {
         $feedsub = FeedSub::getKV('uri', $this->feeduri);
-        return $feedsub->garbageCollect();
+        if ($feedsub instanceof FeedSub) {
+            return $feedsub->garbageCollect();
+        }
+        // Since there's no FeedSub we can assume it's already garbage collected
+        return true;
     }
 
     /**
