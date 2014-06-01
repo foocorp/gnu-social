@@ -67,27 +67,35 @@ class Memcached_DataObject extends Safe_DataObject
      * @param string  $cls       Class to fetch
      * @param string  $keyCol    name of column for key
      * @param array   $keyVals   key values to fetch
-     * @param boolean $skipNulls return only non-null results?
      *
      * @return array Array of objects, in order
      */
-    static function multiGetClass($cls, $keyCol, array $keyVals, $skipNulls=true)
+    static function multiGetClass($cls, $keyCol, array $keyVals)
     {
-        $result = self::pivotGetClass($cls, $keyCol, $keyVals);
+        $obj = new $cls;
 
-        $values = array_values($result);
+        // php-compatible, for settype(), datatype
+        $colType = $obj->columnType($keyCol);
 
-        if ($skipNulls) {
-            $tmp = array();
-            foreach ($values as $value) {
-                if (!empty($value)) {
-                    $tmp[] = $value;
-                }
-            }
-            $values = $tmp;
+        if (!in_array($colType, array('integer', 'int'))) {
+            // This is because I'm afraid to escape strings incorrectly
+            // in the way we use them below in FIND_IN_SET for MariaDB
+            throw new ServerException('Cannot do multiGet on anything but integer columns');
         }
 
-        return new ArrayWrapper($values);
+        $obj->whereAddIn($keyCol, $keyVals, $colType);
+
+        // Since we're inputting straight to a query: format and escape
+        foreach ($keyVals as $key=>$val) {
+            settype($val, $colType);
+            $keyVals[$key] = $obj->escape($val);
+        }
+
+        // FIND_IN_SET will make sure we keep the desired order
+        $obj->orderBy(sprintf("FIND_IN_SET(%s, '%s')", $keyCol, implode(',', $keyVals)));
+        $obj->find();
+
+        return $obj;
     }
 
     /**
