@@ -77,50 +77,56 @@ class SalmonAction extends Action
         parent::handle();
 
         common_log(LOG_DEBUG, "Got a " . $this->activity->verb);
-        if (Event::handle('StartHandleSalmonTarget', array($this->activity, $this->target)) &&
-            Event::handle('StartHandleSalmon', array($this->activity))) {
-            switch ($this->activity->verb)
-            {
-            case ActivityVerb::POST:
-                $this->handlePost();
-                break;
-            case ActivityVerb::SHARE:
-                $this->handleShare();
-                break;
-            case ActivityVerb::FAVORITE:
-                $this->handleFavorite();
-                break;
-            case ActivityVerb::UNFAVORITE:
-                $this->handleUnfavorite();
-                break;
-            case ActivityVerb::FOLLOW:
-            case ActivityVerb::FRIEND:
-                $this->handleFollow();
-                break;
-            case ActivityVerb::UNFOLLOW:
-                $this->handleUnfollow();
-                break;
-            case ActivityVerb::JOIN:
-                $this->handleJoin();
-                break;
-            case ActivityVerb::LEAVE:
-                $this->handleLeave();
-                break;
-            case ActivityVerb::TAG:
-                $this->handleTag();
-                break;
-            case ActivityVerb::UNTAG:
-                $this->handleUntag();
-                break;
-            case ActivityVerb::UPDATE_PROFILE:
-                $this->handleUpdateProfile();
-                break;
-            default:
-                // TRANS: Client exception.
-                throw new ClientException(_m('Unrecognized activity type.'));
+        try {
+            if (Event::handle('StartHandleSalmonTarget', array($this->activity, $this->target)) &&
+                    Event::handle('StartHandleSalmon', array($this->activity))) {
+                switch ($this->activity->verb) {
+                case ActivityVerb::POST:
+                    $this->handlePost();
+                    break;
+                case ActivityVerb::SHARE:
+                    $this->handleShare();
+                    break;
+                case ActivityVerb::FAVORITE:
+                    $this->handleFavorite();
+                    break;
+                case ActivityVerb::UNFAVORITE:
+                    $this->handleUnfavorite();
+                    break;
+                case ActivityVerb::FOLLOW:
+                case ActivityVerb::FRIEND:
+                    $this->handleFollow();
+                    break;
+                case ActivityVerb::UNFOLLOW:
+                    $this->handleUnfollow();
+                    break;
+                case ActivityVerb::JOIN:
+                    $this->handleJoin();
+                    break;
+                case ActivityVerb::LEAVE:
+                    $this->handleLeave();
+                    break;
+                case ActivityVerb::TAG:
+                    $this->handleTag();
+                    break;
+                case ActivityVerb::UNTAG:
+                    $this->handleUntag();
+                    break;
+                case ActivityVerb::UPDATE_PROFILE:
+                    $this->handleUpdateProfile();
+                    break;
+                default:
+                    // TRANS: Client exception.
+                    throw new ClientException(_m('Unrecognized activity type.'));
+                }
+                Event::handle('EndHandleSalmon', array($this->activity));
+                Event::handle('EndHandleSalmonTarget', array($this->activity, $this->target));
             }
-            Event::handle('EndHandleSalmon', array($this->activity));
-            Event::handle('EndHandleSalmonTarget', array($this->activity, $this->target));
+        } catch (AlreadyFulfilledException $e) {
+            // The action's results are already fulfilled. Maybe it was a
+            // duplicate? Maybe someone's database is out of sync?
+            // Let's just accept it and move on.
+            common_log(LOG_INFO, 'Salmon slap carried an event which had already been fulfilled.');
         }
     }
 

@@ -113,8 +113,7 @@ class UsersalmonAction extends SalmonAction
         $oprofile = $this->ensureProfile();
         if ($oprofile instanceof Ostatus_profile) {
             common_log(LOG_INFO, sprintf('Setting up subscription from remote %s to local %s', $oprofile->getUri(), $this->target->getNickname()));
-            Subscription::start($oprofile->localProfile(),
-                                $this->target);
+            Subscription::start($oprofile->localProfile(), $this->target);
         } else {
             common_log(LOG_INFO, "Can't set up subscription from remote; missing profile.");
         }
@@ -135,8 +134,6 @@ class UsersalmonAction extends SalmonAction
                 Subscription::cancel($oprofile->localProfile(), $this->target);
             } catch (NoProfileException $e) {
                 common_debug('Could not find profile for Subscription: '.$e->getMessage());
-            } catch (AlreadyFulfilledException $e) {
-                common_debug('Subscription did not exist, so there was nothing to cancel');
             }
         } else {
             common_log(LOG_ERR, "Can't cancel subscription from remote, didn't find the profile");
@@ -158,7 +155,7 @@ class UsersalmonAction extends SalmonAction
 
         if ($old instanceof Fave) {
             // TRANS: Client exception.
-            throw new ClientException(_m('This is already a favorite.'));
+            throw new AlreadyFulfilledException(_m('This is already a favorite.'));
         }
 
         if (!Fave::addNew($profile, $notice)) {
@@ -180,7 +177,7 @@ class UsersalmonAction extends SalmonAction
                                    'notice_id' => $notice->id));
         if (!$fave instanceof Fave) {
             // TRANS: Client exception.
-            throw new ClientException(_m('Notice was not favorited!'));
+            throw new AlreadyFulfilledException(_m('Notice was not favorited!'));
         }
 
         $fave->delete();
