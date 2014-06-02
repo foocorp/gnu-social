@@ -1341,16 +1341,18 @@ class OStatusPlugin extends Plugin
         $xrd->links[] = new XML_XRD_Element_Link(Salmon::NS_REPLIES, $salmon_url);
         $xrd->links[] = new XML_XRD_Element_Link(Salmon::NS_MENTIONS, $salmon_url);
 
-        // Get this user's keypair
-        $magickey = Magicsig::getKV('user_id', $target->id);
-        if (!($magickey instanceof Magicsig)) {
-            // No keypair yet, let's generate one.
-            $magickey = new Magicsig();
-            $magickey->generate($target->id);
+        // Get this profile's keypair
+        $magicsig = Magicsig::getKV('user_id', $target->id);
+        if (!$magicsig instanceof Magicsig && $target->isLocal()) {
+            // No keypair yet, let's generate one. Only for local users.
+            $magicsig = new Magicsig();
+            $magicsig->generate($target->getUser());
         }
 
-        $xrd->links[] = new XML_XRD_Element_Link(Magicsig::PUBLICKEYREL,
-                            'data:application/magic-public-key,'. $magickey->toString(false));
+        if ($magicsig instanceof Magicsig) {
+            $xrd->links[] = new XML_XRD_Element_Link(Magicsig::PUBLICKEYREL,
+                                'data:application/magic-public-key,'. $magicsig->toString(false));
+        }
 
         // TODO - finalize where the redirect should go on the publisher
         $xrd->links[] = new XML_XRD_Element_Link('http://ostatus.org/schema/1.0/subscribe',
