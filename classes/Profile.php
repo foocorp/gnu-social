@@ -168,17 +168,6 @@ class Profile extends Managed_DataObject
             return null;
         }
 
-        foreach (array(AVATAR_PROFILE_SIZE, AVATAR_STREAM_SIZE, AVATAR_MINI_SIZE) as $size) {
-            // We don't do a scaled one if original is our scaled size
-            if (!($avatar->width == $size && $avatar->height == $size)) {
-                try {
-                    Avatar::newSize($this, $size);
-                } catch (Exception $e) {
-                    // should we abort the generation and live without smaller avatars?
-                }
-            }
-        }
-
         return $avatar;
     }
 
