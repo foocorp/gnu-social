@@ -68,20 +68,31 @@ class MagicEnvelope
      */
     public function getKeyPair(Profile $profile, $discovery=false) {
         $magicsig = Magicsig::getKV('user_id', $profile->id);
+
         if ($discovery && !$magicsig instanceof Magicsig) {
-            $magicsig = $this->discoverKeyPair($profile);
-            // discoverKeyPair should've thrown exception if it failed
-            assert($magicsig instanceof Magicsig);
+            // Throws exception on failure, but does not try to _load_ the keypair string.
+            $keypair = $this->discoverKeyPair($profile);
+
+            $magicsig = new Magicsig();
+            $magicsig->user_id = $profile->id;
+            $magicsig->importKeys($keypair);
         } elseif (!$magicsig instanceof Magicsig) { // No discovery request, so we'll give up.
             throw new ServerException(sprintf('No public key found for profile (id==%d)', $profile->id));
         }
+
+        assert($magicsig->publicKey instanceof Crypt_RSA);
+
         return $magicsig;
     }
 
     /**
-     * Get the Salmon keypair from a URI, uses XRD Discovery etc.
+     * Get the Salmon keypair from a URI, uses XRD Discovery etc. Reasonably
+     * you'll only get the public key ;)
      *
-     * @return Magicsig with loaded keypair
+     * The string will (hopefully) be formatted as described in Magicsig specification:
+     * https://salmon-protocol.googlecode.com/svn/trunk/draft-panzer-magicsig-01.html#anchor13
+     *
+     * @return string formatted as Magicsig keypair
      */
     public function discoverKeyPair(Profile $profile)
     {
@@ -120,14 +131,7 @@ class MagicEnvelope
             throw new Exception(_m('Incorrectly formatted public key element.'));
         }
 
-        $magicsig = Magicsig::fromString($keypair);
-        if (!$magicsig instanceof Magicsig) {
-            common_debug('Salmon error: unable to parse keypair: '.var_export($keypair,true));
-            // TRANS: Exception when public key was properly formatted but not parsable.
-            throw new ServerException(_m('Retrieved Salmon keypair could not be parsed.'));
-        }
-
-        return $magicsig;
+        return $keypair;
     }
 
     /**
