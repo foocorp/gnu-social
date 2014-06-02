@@ -49,14 +49,15 @@ class SalmonAction extends Action
 
             $entry = $magic_env->getPayload();  // Not cryptographically verified yet!
             $this->activity = new Activity($entry->documentElement);
-            $oprofile = $this->ensureProfile();
+            $profile = Profile::fromUri($this->activity->actor->id);
+            assert($profile instanceof Profile);
         } catch (Exception $e) {
             common_debug('Salmon envelope parsing failed with: '.$e->getMessage());
             $this->clientError($e->getMessage());
         }
 
         // Cryptographic verification test
-        if (!$magic_env->verify($oprofile->localProfile())) {
+        if (!$magic_env->verify($profile)) {
             common_log(LOG_DEBUG, "Salmon signature verification failed.");
             // TRANS: Client error.
             $this->clientError(_m('Salmon signature verification failed.'));
