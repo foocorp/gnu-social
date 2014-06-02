@@ -992,7 +992,11 @@ function common_linkify($url) {
     if (!$f instanceof File) {
         if (common_config('attachments', 'process_links')) {
             // XXX: this writes to the database. :<
-            $f = File::processNew($longurl);
+            try {
+                $f = File::processNew($longurl);
+            } catch (ServerException $e) {
+                $f = null;
+            }
         }
     }
 
@@ -2170,17 +2174,16 @@ function common_shorten_url($long_url, User $user=null, $force = false)
     if (Event::handle('StartShortenUrl',
                       array($long_url, $shortenerName, &$shortenedUrl))) {
         if ($shortenerName == 'internal') {
-            $f = File::processNew($long_url);
-            if (empty($f)) {
-                return $long_url;
-            } else {
-                $shortenedUrl = common_local_url('redirecturl',
-                                                 array('id' => $f->id));
+            try {
+                $f = File::processNew($long_url);
+                $shortenedUrl = common_local_url('redirecturl', array('id' => $f->id));
                 if ((mb_strlen($shortenedUrl) < mb_strlen($long_url)) || $force) {
                     return $shortenedUrl;
                 } else {
                     return $long_url;
                 }
+            } catch (ServerException $e) {
+                return $long_url;
             }
         } else {
             return $long_url;

@@ -569,7 +569,11 @@ class TwitterImport
         if (common_config('attachments', 'process_links')) {
             if (!empty($status->entities) && !empty($status->entities->urls)) {
                 foreach ($status->entities->urls as $url) {
-                    File::processNew($url->url, $notice->id);
+                    try {
+                        File::processNew($url->url, $notice->id);
+                    } catch (ServerException $e) {
+                        // Could not process attached URL
+                    }
                 }
             }
         }

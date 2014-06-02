@@ -822,7 +822,11 @@ class Notice extends Managed_DataObject
         if (common_config('attachments', 'process_links')) {
             // @fixme validation?
             foreach (array_unique($urls) as $url) {
-                File::processNew($url, $this->id);
+                try {
+                    File::processNew($url, $this->id);
+                } catch (ServerException $e) {
+                    // Could not save URL. Log it?
+                }
             }
         }
     }
@@ -831,7 +835,11 @@ class Notice extends Managed_DataObject
      * @private callback
      */
     function saveUrl($url, $notice_id) {
-        File::processNew($url, $notice_id);
+        try {
+            File::processNew($url, $notice_id);
+        } catch (ServerException $e) {
+            // Could not save URL. Log it?
+        }
     }
 
     static function checkDupes($profile_id, $content) {

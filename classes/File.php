@@ -91,6 +91,7 @@ class File extends Managed_DataObject
         }
 
         Event::handle('EndFileSaveNew', array($file, $redir_data, $given_url));
+        assert ($file instanceof File);
         return $file;
     }
 
@@ -109,16 +110,32 @@ class File extends Managed_DataObject
      *
      * @return mixed File on success, -1 on some errors
      *
-     * @throws ServerException on some errors
+     * @throws ServerException on failure
      */
-    public function processNew($given_url, $notice_id=null, $followRedirects=true) {
-        if (empty($given_url)) return -1;   // error, no url to process
+    public static function processNew($given_url, $notice_id=null, $followRedirects=true) {
+        if (empty($given_url)) {
+            throw new ServerException('No given URL to process');
+        }
+
         $given_url = File_redirection::_canonUrl($given_url);
-        if (empty($given_url)) return -1;   // error, no url to process
+        if (empty($given_url)) {
+            throw new ServerException('No canonical URL from given URL to process');
+        }
+
         $file = File::getKV('url', $given_url);
-        if (empty($file)) {
+        if (!$file instanceof File) {
+            // First check if we have a lookup trace for this URL already
             $file_redir = File_redirection::getKV('url', $given_url);
-            if (empty($file_redir)) {
+            if ($file_redir instanceof File_redirection) {
+                $file = File::getKV('id', $file_redir->file_id);
+                if (!$file instanceof File) {
+                    // File did not exist, let's clean up the File_redirection entry
+                    $file_redir->delete();
+                }
+            }
+
+            // If we still don't have a File object, let's create one now!
+            if (!$file instanceof File) {
                 // @fixme for new URLs this also looks up non-redirect data
                 // such as target content type, size, etc, which we need
                 // for File::saveNew(); so we call it even if not following
@@ -133,10 +150,11 @@ class File extends Managed_DataObject
                     // TRANS: Server exception thrown when a URL cannot be processed.
                     throw new ServerException(sprintf(_("Cannot process URL '%s'"), $given_url));
                 }
+
                 // TODO: max field length
                 if ($redir_url === $given_url || strlen($redir_url) > 255 || !$followRedirects) {
-                    $x = File::saveNew($redir_data, $given_url);
-                    $file_id = $x->id;
+                    // Save the File object based on our lookup trace
+                    $file = File::saveNew($redir_data, $given_url);
                 } else {
                     // This seems kind of messed up... for now skipping this part
                     // if we're already under a redirect, so we don't go into
@@ -146,31 +164,23 @@ class File extends Managed_DataObject
                     //
                     // Seen in the wild with clojure.org, which redirects through
                     // wikispaces for auth and appends session data in the URL params.
-                    $x = File::processNew($redir_url, $notice_id, /*followRedirects*/false);
-                    $file_id = $x->id;
-                    File_redirection::saveNew($redir_data, $file_id, $given_url);
+                    $file = self::processNew($redir_url, $notice_id, /*followRedirects*/false);
+                    File_redirection::saveNew($redir_data, $file->id, $given_url);
                 }
-            } else {
-                $file_id = $file_redir->file_id;
             }
-        } else {
-            $file_id = $file->id;
-            $x = $file;
-        }
 
-        if (empty($x)) {
-            $x = File::getKV('id', $file_id);
-            if (empty($x)) {
-                // @todo FIXME: This could possibly be a clearer message :)
-                // TRANS: Server exception thrown when... Robin thinks something is impossible!
-                throw new ServerException(_('Robin thinks something is impossible.'));
+            if (!$file instanceof File) {
+                // This should only happen if File::saveNew somehow did not return a File object,
+                // though we have an assert for that in case the event there might've gone wrong.
+                // If anything else goes wrong, there should've been an exception thrown.
+                throw new ServerException('URL processing failed without new File object');
             }
         }
 
         if (!empty($notice_id)) {
-            File_to_post::processNew($file_id, $notice_id);
+            File_to_post::processNew($file->id, $notice_id);
         }
-        return $x;
+        return $file;
     }
 
     public static function respectsQuota(Profile $scoped, $fileSize) {

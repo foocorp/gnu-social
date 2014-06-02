@@ -78,17 +78,19 @@ class BookmarkforurlAction extends Action
             throw new ClientException(_('Invalid URL.'), 400);
         }
 
-        $f = File::getKV('url', $this->url);
-
-        if (empty($url)) { 
-           $f = File::processNew($this->url);
+        try {
+            // processNew will first try to fetch a locally stored File entry
+            $f = File::processNew($this->url);
+        } catch (ServerException $e) {
+            $f = null;
         }
 
         // How about now?
 
-        if (!empty($f)) {
+        if ($f instanceof File) {
+            // FIXME: Use some File metadata Event instead
             $this->oembed    = File_oembed::getKV('file_id', $f->id);
-            if (!empty($this->oembed)) {
+            if ($this->oembed instanceof File_oembed) {
                 $this->title = $this->oembed->title;
             }
             $this->thumbnail = File_thumbnail::getKV('file_id', $f->id);
