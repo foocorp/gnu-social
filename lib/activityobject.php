@@ -32,6 +32,8 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
+require(INSTALLDIR.'/lib/activitystreamjsondocument.php');
+
 /**
  * A noun-ish thing in the activity universe
  *
