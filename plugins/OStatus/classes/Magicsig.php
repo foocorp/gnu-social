@@ -143,9 +143,9 @@ class Magicsig extends Managed_DataObject
      * Warning: this can be very slow on systems without the GMP module.
      * Runtimes of 20-30 seconds are not unheard-of.
      *
-     * @param int $user_id id of local user we're creating a key for
+     * @param User $user the local user (since we don't have remote private keys)
      */
-    public function generate($user_id, $bits=1024)
+    public function generate(User $user, $bits=1024)
     {
         $rsa = new Crypt_RSA();
 
@@ -157,7 +157,7 @@ class Magicsig extends Managed_DataObject
         $this->publicKey = new Crypt_RSA();
         $this->publicKey->loadKey($keypair['publickey']);
 
-        $this->user_id = $user_id;
+        $this->user_id = $user->id;
         $this->insert();
     }
 
@@ -180,25 +180,6 @@ class Magicsig extends Managed_DataObject
     }
 
     /**
-     * Decode a string representation of an RSA public key or keypair
-     * as a Magicsig object which can be used to sign or verify.
-     *
-     * @param string $text
-     * @return Magicsig
-     */
-    public static function fromString($text)
-    {
-        $magic_sig = new Magicsig();
-
-        // remove whitespace
-        $text = preg_replace('/\s+/', '', $text);
-        $magic_sig->importKeys($text);
-
-        // Please note this object will be missing the user_id field
-        return $magic_sig;
-    }
-
-    /**
      * importKeys will load the object's keypair string, which initiates
      * loadKey() and configures Crypt_RSA objects.
      *
@@ -206,10 +187,10 @@ class Magicsig extends Managed_DataObject
      */
     public function importKeys($keypair=null)
     {
-        $keypair = $keypair ?: $this->keypair;
+        $this->keypair = $keypair===null ? $this->keypair : preg_replace('/\s+/', '', $keypair);
 
         // parse components
-        if (!preg_match('/RSA\.([^\.]+)\.([^\.]+)(\.([^\.]+))?/', $keypair, $matches)) {
+        if (!preg_match('/RSA\.([^\.]+)\.([^\.]+)(\.([^\.]+))?/', $this->keypair, $matches)) {
             common_debug('Magicsig error: RSA key not found in provided string.');
             throw new ServerException('RSA key not found in keypair string.');
         }
@@ -241,7 +222,7 @@ class Magicsig extends Managed_DataObject
         common_log(LOG_DEBUG, "Adding ".$type." key: (".$mod .', '. $exp .")");
 
         $rsa = new Crypt_RSA();
-        $rsa->signatureMode = CRYPT_RSA_SIGNATURE_PKCS1;
+        $rsa->setSignatureMode(CRYPT_RSA_SIGNATURE_PKCS1);
         $rsa->setHash($this->getHash());
         $rsa->modulus = new Math_BigInteger(Magicsig::base64_url_decode($mod), 256);
         $rsa->k = strlen($rsa->modulus->toBytes());

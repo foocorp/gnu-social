@@ -51,7 +51,7 @@ echo "== Original entry ==\n\n";
 print $entry;
 print "\n\n";
 
-$magic_env = MagicEnvelope::signForProfile($entry, $profile);
+$magic_env = MagicEnvelope::signAsUser($entry, $profile->getUser());
 $envxml = $magic_env->toXML();
 
 echo "== Signed envelope ==\n\n";
@@ -61,8 +61,8 @@ print "\n\n";
 echo "== Testing local verification ==\n\n";
 $magic_env = new MagicEnvelope($envxml);
 $activity = new Activity($magic_env->getPayload()->documentElement);
-$profile = Profile::fromUri($activity->actor->id);
-$ok = $magic_env->verify($profile);
+$actprofile = Profile::fromUri($activity->actor->id);
+$ok = $magic_env->verify($actprofile);
 if ($ok) {
     print "OK\n\n";
 } else {
@@ -86,7 +86,7 @@ if (have_option('--slap')) {
     echo "== Remote salmon slap ==\n\n";
     print "Sending signed Salmon slap to $url ...\n";
 
-    $ok = $salmon->post($url, $entry, $profile);
+    $ok = Salmon::post($url, $entry, $profile->getUser());
     if ($ok) {
         print "OK\n\n";
     } else {

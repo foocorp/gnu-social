@@ -289,17 +289,8 @@ class Ostatus_profile extends Managed_DataObject
      * @param string  $verb   Activity::SUBSCRIBE or Activity::JOIN
      * @param Object  $object object of the action; must define asActivityNoun($tag)
      */
-    public function notify($actor, $verb, $object=null, $target=null)
+    public function notify(Profile $actor, $verb, $object=null, $target=null)
     {
-        if (!($actor instanceof Profile)) {
-            $type = gettype($actor);
-            if ($type == 'object') {
-                $type = get_class($actor);
-            }
-            // TRANS: Server exception.
-            // TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
-            throw new ServerException(sprintf(_m('Invalid actor passed to %1$s: %2$s.'),__METHOD__,$type));
-        }
         if ($object == null) {
             $object = $this;
         }
@@ -340,8 +331,7 @@ class Ostatus_profile extends Managed_DataObject
         $xml = $entry->getString();
         common_log(LOG_INFO, "Posting to Salmon endpoint $this->salmonuri: $xml");
 
-        $salmon = new Salmon();
-        $salmon->post($this->salmonuri, $xml, $actor);
+        Salmon::post($this->salmonuri, $xml, $actor->getUser());
     }
 
     /**
@@ -355,8 +345,7 @@ class Ostatus_profile extends Managed_DataObject
     public function notifyActivity($entry, Profile $actor)
     {
         if ($this->salmonuri) {
-            $salmon = new Salmon();
-            return $salmon->post($this->salmonuri, $this->notifyPrepXml($entry), $actor);
+            return Salmon::post($this->salmonuri, $this->notifyPrepXml($entry), $actor->getUser());
         }
         common_debug(__CLASS__.' error: No salmonuri for Ostatus_profile uri: '.$this->uri);
 

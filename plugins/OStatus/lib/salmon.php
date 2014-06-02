@@ -43,18 +43,18 @@ class Salmon
      *
      * @param string $endpoint_uri
      * @param string $xml string representation of payload
-     * @param Profile $actor local user profile whose keys to sign with
+     * @param User $user local user profile whose keys we sign with
      * @return boolean success
      */
-    public function post($endpoint_uri, $xml, Profile $actor)
+    public static function post($endpoint_uri, $xml, User $user)
     {
         if (empty($endpoint_uri)) {
-            common_debug('No endpoint URI for Salmon post to '.$actor->getUri());
+            common_debug('No endpoint URI for Salmon post to '.$user->getUri());
             return false;
         }
 
         try {
-            $magic_env = MagicEnvelope::signForProfile($xml, $actor);
+            $magic_env = MagicEnvelope::signAsUser($xml, $user);
             $envxml = $magic_env->toXML();
         } catch (Exception $e) {
             common_log(LOG_ERR, "Salmon unable to sign: " . $e->getMessage());
@@ -73,7 +73,7 @@ class Salmon
         }
         if ($response->getStatus() != 200) {
             common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
-                                $actor->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
+                                $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
             return false;
         }
 

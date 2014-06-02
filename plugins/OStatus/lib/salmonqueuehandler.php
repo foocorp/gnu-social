@@ -41,8 +41,7 @@ class SalmonQueueHandler extends QueueHandler
 
         $actor = Profile::getKV($data['actor']);
 
-        $salmon = new Salmon();
-        $salmon->post($data['salmonuri'], $data['entry'], $actor);
+        Salmon::post($data['salmonuri'], $data['entry'], $actor->getUser());
 
         // @fixme detect failure and attempt to resend
         return true;

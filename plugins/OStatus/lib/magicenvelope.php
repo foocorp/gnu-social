@@ -324,25 +324,21 @@ class MagicEnvelope
      * on some systems.
      *
      * @param string $text XML fragment to sign, assumed to be Atom
-     * @param Profile $actor Profile of a local user to use as signer
+     * @param User $user User who cryptographically signs $text
      *
      * @return string XML string representation of magic envelope
      *
      * @throws Exception on bad profile input or key generation problems
      * @fixme if signing fails, this seems to return the original text without warning. Is there a reason for this?
      */
-    public static function signForProfile($text, Profile $actor)
+    public static function signAsUser($text, User $user)
     {
-        // We only generate keys for our local users of course, so let
-        // getUser throw an exception if the profile is not local.
-        $user = $actor->getUser();
-
         // Find already stored key
         $magicsig = Magicsig::getKV('user_id', $user->id);
         if (!$magicsig instanceof Magicsig) {
             // No keypair yet, let's generate one.
             $magicsig = new Magicsig();
-            $magicsig->generate($user->id);
+            $magicsig->generate($user);
         }
 
         $magic_env = self::signMessage($text, 'application/atom+xml', $magicsig);
