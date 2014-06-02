@@ -99,7 +99,7 @@ class Magicsig extends Managed_DataObject
             // legacy very-old-StatusNet generated keypairs.
             if (strlen($obj->publicKey->modulus->toBits()) < 1024) {
                 common_log(LOG_WARNING, sprintf('Salmon key with <1024 bits (%d) belongs to profile with id==%d',
-                                            strlen($this->publicKey->modulus->toBits()),
+                                            strlen($obj->publicKey->modulus->toBits()),
                                             $obj->user_id));
             }
         }
