@@ -69,11 +69,7 @@ class MagicEnvelope
     public function getKeyPair(Profile $profile, $discovery=false) {
         $magicsig = Magicsig::getKV('user_id', $profile->id);
         if ($discovery && !$magicsig instanceof Magicsig) {
-            $signer_uri = $profile->getUri();
-            if (empty($signer_uri)) {
-                throw new ServerException(sprintf('Profile missing URI (id==%d)', $profile->id));
-            }
-            $magicsig = $this->discoverKeyPair($signer_uri);
+            $magicsig = $this->discoverKeyPair($profile);
             // discoverKeyPair should've thrown exception if it failed
             assert($magicsig instanceof Magicsig);
         } elseif (!$magicsig instanceof Magicsig) { // No discovery request, so we'll give up.
@@ -87,8 +83,13 @@ class MagicEnvelope
      *
      * @return Magicsig with loaded keypair
      */
-    public function discoverKeyPair($signer_uri)
+    public function discoverKeyPair(Profile $profile)
     {
+        $signer_uri = $profile->getUri();
+        if (empty($signer_uri)) {
+            throw new ServerException(sprintf('Profile missing URI (id==%d)', $profile->id));
+        }
+
         $disco = new Discovery();
 
         // Throws exception on lookup problems
@@ -269,12 +270,7 @@ class MagicEnvelope
         }
 
         try {
-            if ($profile instanceof Profile) {
-                $magicsig = $this->getKeyPair($profile, true);    // Do discovery too if necessary
-            } else {
-                $signer_uri = $this->getAuthorUri();
-                $magicsig = $this->discoverKeyPair($signer_uri);
-            }
+            $magicsig = $this->getKeyPair($profile, true);    // Do discovery too if necessary
         } catch (Exception $e) {
             common_log(LOG_DEBUG, "Salmon error: ".$e->getMessage());
             return false;
