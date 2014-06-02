@@ -303,45 +303,45 @@ class Ostatus_profile extends Managed_DataObject
         if ($object == null) {
             $object = $this;
         }
-        if ($this->salmonuri) {
-            $text = 'update';
-            $id = TagURI::mint('%s:%s:%s',
-                               $verb,
-                               $actor->getURI(),
-                               common_date_iso8601(time()));
-
-            // @todo FIXME: Consolidate all these NS settings somewhere.
-            $attributes = array('xmlns' => Activity::ATOM,
-                                'xmlns:activity' => 'http://activitystrea.ms/spec/1.0/',
-                                'xmlns:thr' => 'http://purl.org/syndication/thread/1.0',
-                                'xmlns:georss' => 'http://www.georss.org/georss',
-                                'xmlns:ostatus' => 'http://ostatus.org/schema/1.0',
-                                'xmlns:poco' => 'http://portablecontacts.net/spec/1.0',
-                                'xmlns:media' => 'http://purl.org/syndication/atommedia');
-
-            $entry = new XMLStringer();
-            $entry->elementStart('entry', $attributes);
-            $entry->element('id', null, $id);
-            $entry->element('title', null, $text);
-            $entry->element('summary', null, $text);
-            $entry->element('published', null, common_date_w3dtf(common_sql_now()));
-
-            $entry->element('activity:verb', null, $verb);
-            $entry->raw($actor->asAtomAuthor());
-            $entry->raw($actor->asActivityActor());
-            $entry->raw($object->asActivityNoun('object'));
-            if ($target != null) {
-                $entry->raw($target->asActivityNoun('target'));
-            }
-            $entry->elementEnd('entry');
-
-            $xml = $entry->getString();
-            common_log(LOG_INFO, "Posting to Salmon endpoint $this->salmonuri: $xml");
-
-            $salmon = new Salmon(); // ?
-            return $salmon->post($this->salmonuri, $xml, $actor);
+        if (empty($this->salmonuri)) {
+            return false;
         }
-        return false;
+        $text = 'update';
+        $id = TagURI::mint('%s:%s:%s',
+                           $verb,
+                           $actor->getURI(),
+                           common_date_iso8601(time()));
+
+        // @todo FIXME: Consolidate all these NS settings somewhere.
+        $attributes = array('xmlns' => Activity::ATOM,
+                            'xmlns:activity' => 'http://activitystrea.ms/spec/1.0/',
+                            'xmlns:thr' => 'http://purl.org/syndication/thread/1.0',
+                            'xmlns:georss' => 'http://www.georss.org/georss',
+                            'xmlns:ostatus' => 'http://ostatus.org/schema/1.0',
+                            'xmlns:poco' => 'http://portablecontacts.net/spec/1.0',
+                            'xmlns:media' => 'http://purl.org/syndication/atommedia');
+
+        $entry = new XMLStringer();
+        $entry->elementStart('entry', $attributes);
+        $entry->element('id', null, $id);
+        $entry->element('title', null, $text);
+        $entry->element('summary', null, $text);
+        $entry->element('published', null, common_date_w3dtf(common_sql_now()));
+
+        $entry->element('activity:verb', null, $verb);
+        $entry->raw($actor->asAtomAuthor());
+        $entry->raw($actor->asActivityActor());
+        $entry->raw($object->asActivityNoun('object'));
+        if ($target != null) {
+            $entry->raw($target->asActivityNoun('target'));
+        }
+        $entry->elementEnd('entry');
+
+        $xml = $entry->getString();
+        common_log(LOG_INFO, "Posting to Salmon endpoint $this->salmonuri: $xml");
+
+        $salmon = new Salmon();
+        $salmon->post($this->salmonuri, $xml, $actor);
     }
 
     /**
