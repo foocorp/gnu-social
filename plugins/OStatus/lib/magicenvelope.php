@@ -153,21 +153,23 @@ class MagicEnvelope
      * @param <type> $text
      * @param <type> $mimetype
      * @param Magicsig $magicsig    Magicsig with private key available.
+     *
      * @return MagicEnvelope object with all properties set
+     *
+     * @throws Exception of various kinds on signing failure
      */
-    public static function signMessage($text, $mimetype, Magicsig $magicsig)
+    public function signMessage($text, $mimetype, Magicsig $magicsig)
     {
-        $magic_env = new MagicEnvelope();
+        assert($magicsig->privateKey instanceof Crypt_RSA);
 
         // Prepare text and metadata for signing
-        $magic_env->data      = Magicsig::base64_url_encode($text);
-        $magic_env->data_type = $mimetype;
-        $magic_env->encoding  = self::ENCODING;
-        $magic_env->alg       = $magicsig->getName();
-        // Get the actual signature
-        $magic_env->sig = $magicsig->sign($magic_env->signingText());
+        $this->data = Magicsig::base64_url_encode($text);
+        $this->data_type = $mimetype;
+        $this->encoding  = self::ENCODING;
+        $this->alg       = $magicsig->getName();
 
-        return $magic_env;
+        // Get the actual signature
+        $this->sig = $magicsig->sign($this->signingText());
     }
 
     /**
@@ -182,7 +184,7 @@ class MagicEnvelope
         $xs->element('me:data', array('type' => $this->data_type), $this->data);
         $xs->element('me:encoding', null, $this->encoding);
         $xs->element('me:alg', null, $this->alg);
-        $xs->element('me:sig', null, $this->sig);
+        $xs->element('me:sig', null, $this->getSignature());
         $xs->elementEnd('me:env');
 
         $string =  $xs->getString();
@@ -220,7 +222,7 @@ class MagicEnvelope
             $prov->appendChild($enc);
             $alg = $dom->createElementNS(self::NS, 'me:alg', $this->alg);
             $prov->appendChild($alg);
-            $sig = $dom->createElementNS(self::NS, 'me:sig', $this->sig);
+            $sig = $dom->createElementNS(self::NS, 'me:sig', $this->getSignature());
             $prov->appendChild($sig);
     
             $dom->documentElement->appendChild($prov);
@@ -229,6 +231,11 @@ class MagicEnvelope
             throw new ServerException('Unknown Salmon payload data type');
         }
         return $dom;
+    }
+
+    public function getSignature()
+    {
+        return $this->sig;
     }
 
     /**
@@ -280,7 +287,7 @@ class MagicEnvelope
             return false;
         }
 
-        return $magicsig->verify($this->signingText(), $this->sig);
+        return $magicsig->verify($this->signingText(), $this->getSignature());
     }
 
     /**
@@ -326,24 +333,22 @@ class MagicEnvelope
      * @param string $text XML fragment to sign, assumed to be Atom
      * @param User $user User who cryptographically signs $text
      *
-     * @return string XML string representation of magic envelope
+     * @return MagicEnvelope object complete with signature
      *
      * @throws Exception on bad profile input or key generation problems
-     * @fixme if signing fails, this seems to return the original text without warning. Is there a reason for this?
      */
     public static function signAsUser($text, User $user)
     {
         // Find already stored key
         $magicsig = Magicsig::getKV('user_id', $user->id);
         if (!$magicsig instanceof Magicsig) {
-            // No keypair yet, let's generate one.
-            $magicsig = new Magicsig();
-            $magicsig->generate($user);
+            $magicsig = Magicsig::generate($user);
         }
+        assert($magicsig instanceof Magicsig);
+        assert($magicsig->privateKey instanceof Crypt_RSA);
 
-        $magic_env = self::signMessage($text, 'application/atom+xml', $magicsig);
-
-        assert($magic_env instanceof MagicEnvelope);
+        $magic_env = new MagicEnvelope();
+        $magic_env->signMessage($text, 'application/atom+xml', $magicsig);
 
         return $magic_env;
     }

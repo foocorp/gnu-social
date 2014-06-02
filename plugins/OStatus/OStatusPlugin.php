@@ -1344,9 +1344,7 @@ class OStatusPlugin extends Plugin
         // Get this profile's keypair
         $magicsig = Magicsig::getKV('user_id', $target->id);
         if (!$magicsig instanceof Magicsig && $target->isLocal()) {
-            // No keypair yet, let's generate one. Only for local users.
-            $magicsig = new Magicsig();
-            $magicsig->generate($target->getUser());
+            $magicsig = Magicsig::generate($target->getUser());
         }
 
         if ($magicsig instanceof Magicsig) {

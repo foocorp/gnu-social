@@ -132,7 +132,7 @@ class Magicsig extends Managed_DataObject
      */
     function insert()
     {
-        $this->keypair = $this->toString();
+        $this->keypair = $this->toString(true);
 
         return parent::insert();
     }
@@ -145,20 +145,25 @@ class Magicsig extends Managed_DataObject
      *
      * @param User $user the local user (since we don't have remote private keys)
      */
-    public function generate(User $user, $bits=1024)
+    public static function generate(User $user, $bits=1024, $alg='RSA-SHA256')
     {
+        $magicsig = new Magicsig($alg);
+        $magicsig->user_id = $user->id;
+
         $rsa = new Crypt_RSA();
 
         $keypair = $rsa->createKey($bits);
 
-        $this->privateKey = new Crypt_RSA();
-        $this->privateKey->loadKey($keypair['privatekey']);
+        $magicsig->privateKey = new Crypt_RSA();
+        $magicsig->privateKey->loadKey($keypair['privatekey']);
 
-        $this->publicKey = new Crypt_RSA();
-        $this->publicKey->loadKey($keypair['publickey']);
+        $magicsig->publicKey = new Crypt_RSA();
+        $magicsig->publicKey->loadKey($keypair['publickey']);
 
-        $this->user_id = $user->id;
-        $this->insert();
+        $magicsig->insert();        // will do $this->keypair = $this->toString(true);
+        $magicsig->importKeys();    // seems it's necessary to re-read keys from text keypair
+
+        return $magicsig;
     }
 
     /**
@@ -172,7 +177,7 @@ class Magicsig extends Managed_DataObject
         $mod = Magicsig::base64_url_encode($this->publicKey->modulus->toBytes());
         $exp = Magicsig::base64_url_encode($this->publicKey->exponent->toBytes());
         $private_exp = '';
-        if ($full_pair && $this->privateKey->exponent->toBytes()) {
+        if ($full_pair && $this->privateKey instanceof Crypt_RSA && $this->privateKey->exponent->toBytes()) {
             $private_exp = '.' . Magicsig::base64_url_encode($this->privateKey->exponent->toBytes());
         }
 
