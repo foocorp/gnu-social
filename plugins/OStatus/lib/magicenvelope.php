@@ -251,11 +251,12 @@ class MagicEnvelope
      *
      * Details of failure conditions are dumped to output log and not exposed to caller.
      *
-     * @param Profile $profile optional profile used to get locally cached public signature key.
+     * @param Profile $profile profile used to get locally cached public signature key
+     *                         or if necessary perform discovery on.
      *
      * @return boolean
      */
-    public function verify(Profile $profile=null)
+    public function verify(Profile $profile)
     {
         if ($this->alg != 'RSA-SHA256') {
             common_log(LOG_DEBUG, "Salmon error: bad algorithm");

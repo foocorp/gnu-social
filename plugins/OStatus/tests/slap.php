@@ -60,7 +60,9 @@ print "\n\n";
 
 echo "== Testing local verification ==\n\n";
 $magic_env = new MagicEnvelope($envxml);
-$ok = $magic_env->verify();
+$activity = new Activity($magic_env->getPayload()->documentElement);
+$profile = Profile::fromUri($activity->actor->id);
+$ok = $magic_env->verify($profile);
 if ($ok) {
     print "OK\n\n";
 } else {
