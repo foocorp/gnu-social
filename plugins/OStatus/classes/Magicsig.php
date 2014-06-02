@@ -282,7 +282,7 @@ class Magicsig extends Managed_DataObject
      * using our private key.
      *
      * @param string $bytes as raw byte string
-     * @return string base64-encoded signature
+     * @return string base64url-encoded signature
      */
     public function sign($bytes)
     {
@@ -296,7 +296,7 @@ class Magicsig extends Managed_DataObject
     /**
      *
      * @param string $signed_bytes as raw byte string
-     * @param string $signature as base64
+     * @param string $signature as base64url encoded
      * @return boolean
      */
     public function verify($signed_bytes, $signature)
