@@ -151,8 +151,6 @@ class Magicsig extends Managed_DataObject
 
         $keypair = $rsa->createKey($bits);
 
-        $rsa->loadKey($keypair['privatekey']);
-
         $this->privateKey = new Crypt_RSA();
         $this->privateKey->loadKey($keypair['privatekey']);
 
@@ -193,8 +191,8 @@ class Magicsig extends Managed_DataObject
         $magic_sig = new Magicsig();
 
         // remove whitespace
-        $magic_sig->keypair = preg_replace('/\s+/', '', $text);
-        $magic_sig->importKeys();
+        $text = preg_replace('/\s+/', '', $text);
+        $magic_sig->importKeys($text);
 
         // Please note this object will be missing the user_id field
         return $magic_sig;
@@ -203,11 +201,15 @@ class Magicsig extends Managed_DataObject
     /**
      * importKeys will load the object's keypair string, which initiates
      * loadKey() and configures Crypt_RSA objects.
+     *
+     * @param string $keypair optional, otherwise the object's "keypair" property will be used
      */
-    public function importKeys()
+    public function importKeys($keypair=null)
     {
+        $keypair = $keypair ?: $this->keypair;
+
         // parse components
-        if (!preg_match('/RSA\.([^\.]+)\.([^\.]+)(.([^\.]+))?/', $this->keypair, $matches)) {
+        if (!preg_match('/RSA\.([^\.]+)\.([^\.]+)(\.([^\.]+))?/', $keypair, $matches)) {
             common_debug('Magicsig error: RSA key not found in provided string.');
             throw new ServerException('RSA key not found in keypair string.');
         }
@@ -240,7 +242,7 @@ class Magicsig extends Managed_DataObject
 
         $rsa = new Crypt_RSA();
         $rsa->signatureMode = CRYPT_RSA_SIGNATURE_PKCS1;
-        $rsa->setHash('sha256');
+        $rsa->setHash($this->getHash());
         $rsa->modulus = new Math_BigInteger(Magicsig::base64_url_decode($mod), 256);
         $rsa->k = strlen($rsa->modulus->toBytes());
         $rsa->exponent = new Math_BigInteger(Magicsig::base64_url_decode($exp), 256);
@@ -266,15 +268,14 @@ class Magicsig extends Managed_DataObject
      * Returns the name of a hash function to use for signing with this key.
      *
      * @return string
-     * @fixme is this used? doesn't seem to be called by name.
      */
     public function getHash()
     {
         switch ($this->alg) {
-
         case 'RSA-SHA256':
             return 'sha256';
         }
+        throw new ServerException('Unknown or unsupported hash algorithm for Salmon');
     }
 
     /**
@@ -301,7 +302,7 @@ class Magicsig extends Managed_DataObject
      */
     public function verify($signed_bytes, $signature)
     {
-        $signature = Magicsig::base64_url_decode($signature);
+        $signature = self::base64_url_decode($signature);
         return $this->publicKey->verify($signed_bytes, $signature);
     }
 
