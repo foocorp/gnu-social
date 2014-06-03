@@ -94,7 +94,7 @@ class BookmarkPlugin extends MicroAppPlugin
      */
     function onEndShowStyles($action)
     {
-        $action->cssLink($this->path('bookmark.css'));
+        $action->cssLink($this->path('css/bookmark.css'));
         return true;
     }
 
