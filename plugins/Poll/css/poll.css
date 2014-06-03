@@ -1,3 +1,5 @@
+/* Poll specific styles */
+
 .poll-block {
     float: left;
     height: 16px;
@@ -7,4 +9,12 @@
 
 .poll-winner {
     background: #4af;
+}
+
+.notice div.poll-content {
+    opacity: 1;
+}
+
+#poll-response-submit {
+    min-width: 100px;
 }

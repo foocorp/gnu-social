@@ -77,7 +77,7 @@ class PollPlugin extends MicroAppPlugin
      */
     function onEndShowStyles($action)
     {
-        $action->cssLink($this->path('poll.css'));
+        $action->cssLink($this->path('css/poll.css'));
         return true;
     }
 

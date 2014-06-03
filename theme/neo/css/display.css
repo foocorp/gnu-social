@@ -1103,16 +1103,6 @@ td.entity_profile {
     -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Poll specific styles */
-
-.notice div.poll-content {
-    opacity: 1;
-}
-
-#poll-response-submit {
-    min-width: 100px;
-}
-
 /* SNOD CompanyLogo styling */
 /* TODO move to plugin */
 
