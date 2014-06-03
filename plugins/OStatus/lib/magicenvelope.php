@@ -188,7 +188,6 @@ class MagicEnvelope
         $xs->elementEnd('me:env');
 
         $string =  $xs->getString();
-        common_debug('MagicEnvelope XML: ' . $string);
         return $string;
     }
 

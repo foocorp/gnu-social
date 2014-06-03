@@ -224,8 +224,6 @@ class Magicsig extends Managed_DataObject
      */
     public function loadKey($mod, $exp, $type = 'public')
     {
-        common_log(LOG_DEBUG, "Adding ".$type." key: (".$mod .', '. $exp .")");
-
         $rsa = new Crypt_RSA();
         $rsa->setSignatureMode(CRYPT_RSA_SIGNATURE_PKCS1);
         $rsa->setHash($this->getHash());
