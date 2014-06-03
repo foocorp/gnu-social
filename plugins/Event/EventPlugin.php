@@ -316,7 +316,7 @@ class EventPlugin extends MicroappPlugin
 
     function onEndShowStyles($action)
     {
-        $action->cssLink($this->path('event.css'));
+        $action->cssLink($this->path('css/event.css'));
         return true;
     }
 

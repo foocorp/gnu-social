@@ -1,0 +1,131 @@
+/* Event specific styles */
+
+.event-tags li { display: inline; }
+.event-mentions li { display: inline; }
+.event-avatar { float: left; }
+.event-notice-count { float: right; }
+.event-info { float: left; }
+.event-title { margin-left: 0px; }
+#content .event .entry-title { margin-left: 0px; }
+#content .event .entry-content { margin-left: 0px; }
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+}
+
+.attending-list { list-style-type: none; float: left; width: 100%; }
+
+#form_event_rsvp { clear: left; }
+
+li.rsvp-list { float: left; clear: left; }
+
+li.rsvp-list ul.entities {
+    display:inline;
+}
+li.rsvp-list .entities li {
+    list-style-type: none;
+    margin-right: 3px;
+    margin-bottom: 8px;
+    display: inline;
+}
+li.rsvp-list .entities li .photo {
+    margin: 0 !important;
+    float: none !important;
+}
+li.rsvp-list .entities li .fn {
+    display: none;
+}
+
+.notice .vevent div {
+    margin-bottom: 8px;
+}
+
+.event-info {
+    margin-left: 0px !important;
+    margin-top: 2px !important;
+}
+
+.notice .event-info + .notice-options {
+    margin-top: 14px;
+}
+
+.notice .threaded-replies .event-info + .notice-options {
+    margin-top: 20px;
+}
+
+#form_event_rsvp #new_rsvp_data {
+    display: inline;
+    margin: 10px 0px;
+}
+
+#form_event_rsvp input.submit {
+    height: auto;
+    padding: 0px 10px;
+    margin-left: 10px;
+    color:#fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+    border: 1px solid #d7621c;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background: #FB6104;
+    background: -moz-linear-gradient(top, #ff9d63 0%, #fb6104 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff9d63), color-stop(100%,#fb6104));
+    background: -webkit-linear-gradient(top, #ff9d63 0%,#fb6104 100%);
+    background: -o-linear-gradient(top, #ff9d63 0%,#fb6104 100%);
+    background: -ms-linear-gradient(top, #ff9d63 0%,#fb6104 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9d63', endColorstr='#fb6104',GradientType=0 );
+    background: linear-gradient(top, #ff9d63 0%,#fb6104 100%);
+}
+
+#form_event_rsvp input.submit:hover {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.6);
+    background: #ff9d63;
+    background: -moz-linear-gradient(top, #fb6104 0%, #fc8035 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fb6104), color-stop(100%,#fc8035));
+    background: -webkit-linear-gradient(top, #fb6104 0%,#fc8035 100%);
+    background: -o-linear-gradient(top, #fb6104 0%,#fc8035 100%);
+    background: -ms-linear-gradient(top, #fb6104 0%,#fc8035 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fb6104', endColorstr='#fc8035',GradientType=0 );
+    background: linear-gradient(top, #fb6104 0%,#fc8035 100%);
+}
+
+#wrap .vevent form.processing input.submit {
+    text-indent: 0;
+    background: #ff9d63;
+}
+
+#input_form_event .form_settings .form_data {
+    float: left;
+}
+
+#input_form_event .form_settings .form_data li {
+    float: left;
+    width: auto;
+}
+
+#input_form_event .form_settings .form_data label {
+    width: auto;
+}
+
+label[for=event-starttime], label[for=event-endtime] {
+    display: none !important;
+}
+
+#event-starttime, #event-endtime {
+    margin-top:  -1px;
+    margin-bottom:  -1px;
+    height: 2em;
+}
+
+#event-startdate, #event-enddate {
+    margin-right: 20px;
+    width: 120px;
+}
