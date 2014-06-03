@@ -169,10 +169,10 @@ class Magicsig extends Managed_DataObject
     /**
      * Encode the keypair or public key as a string.
      *
-     * @param boolean $full_pair set to false to leave out the private key.
+     * @param boolean $full_pair set to true to include the private key.
      * @return string
      */
-    public function toString($full_pair = true)
+    public function toString($full_pair=false)
     {
         $mod = Magicsig::base64_url_encode($this->publicKey->modulus->toBytes());
         $exp = Magicsig::base64_url_encode($this->publicKey->exponent->toBytes());

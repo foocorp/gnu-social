@@ -1349,7 +1349,7 @@ class OStatusPlugin extends Plugin
 
         if ($magicsig instanceof Magicsig) {
             $xrd->links[] = new XML_XRD_Element_Link(Magicsig::PUBLICKEYREL,
-                                'data:application/magic-public-key,'. $magicsig->toString(false));
+                                'data:application/magic-public-key,'. $magicsig->toString());
         }
 
         // TODO - finalize where the redirect should go on the publisher
