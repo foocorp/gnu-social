@@ -141,14 +141,14 @@ class Notice extends Managed_DataObject
     const GROUP_SCOPE     = 4;
     const FOLLOWER_SCOPE  = 8;
 
-    protected $_profile = -1;
+    protected $_profile = array();
     
     public function getProfile()
     {
-        if ($this->_profile === -1) {
+        if (!isset($this->_profile[$this->profile_id])) {
             $this->_setProfile(Profile::getKV('id', $this->profile_id));
         }
-        return $this->_profile;
+        return $this->_profile[$this->profile_id];
     }
     
     public function _setProfile(Profile $profile=null)
@@ -156,7 +156,7 @@ class Notice extends Managed_DataObject
         if (!$profile instanceof Profile) {
             throw new NoProfileException($this->profile_id);
         }
-        $this->_profile = $profile;
+        $this->_profile[$this->profile_id] = $profile;
     }
 
     function delete($useWhere=false)
