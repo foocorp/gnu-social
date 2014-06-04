@@ -40,15 +40,15 @@ class WebfingerAction extends XrdAction
             Event::handle('EndGetWebFingerResource', array($this->resource, &$this->target, $this->args));
         }
 
+        if (!$this->target instanceof WebFingerResource) {
+            throw new ServerException('Resource not found in local database.', 404);
+        }
+
         return true;
     }
 
     protected function setXRD()
     {
-        if (!($this->target instanceof WebFingerResource)) {
-            throw new Exception(_('Target not set for resource descriptor'));
-        }
-
         $this->xrd->subject = $this->resource;
 
         foreach ($this->target->getAliases() as $alias) {
