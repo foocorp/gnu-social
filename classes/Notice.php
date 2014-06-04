@@ -509,10 +509,19 @@ class Notice extends Managed_DataObject
 
             $notice->repeat_of = $repeat_of;
         } else {
-            $reply = self::getReplyTo($reply_to, $profile_id, $source, $final);
+            $reply = null;
 
-            if (!empty($reply)) {
+            // If $reply_to is specified, we check that it exists, and then
+            // return it if it does
+            if (!empty($reply_to)) {
+                $reply = Notice::getKV('id', $reply_to);
+            } elseif (in_array($source, array('xmpp', 'mail', 'sms'))) {
+                // If the source lacks capability of sending the "reply_to"
+                // metadata, let's try to find an inline replyto-reference.
+                $reply = self::getInlineReplyTo($profile, $final);
+            }
 
+            if ($reply instanceof Notice) {
                 if (!$reply->inScope($profile)) {
                     // TRANS: Client error displayed when trying to reply to a notice a the target has no access to.
                     // TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
@@ -523,8 +532,8 @@ class Notice extends Managed_DataObject
                 $notice->reply_to     = $reply->id;
                 $notice->conversation = $reply->conversation;
 
-                // If the original is private to a group, and notice has no group specified,
-                // make it to the same group(s)
+                // If the original is private to a group, and notice has
+                // no group specified, make it to the same group(s)
 
                 if (empty($groups) && ($reply->scope & Notice::GROUP_SCOPE)) {
                     $groups = array();
@@ -1734,75 +1743,37 @@ class Notice extends Managed_DataObject
      * Determine which notice, if any, a new notice is in reply to.
      *
      * For conversation tracking, we try to see where this notice fits
-     * in the tree. Rough algorithm is:
+     * in the tree. Beware that this may very well give false positives
+     * and add replies to wrong threads (if there have been newer posts
+     * by the same user as we're replying to).
      *
-     * if (reply_to is set and valid) {
-     *     return reply_to;
-     * } else if ((source not API or Web) and (content starts with "T NAME" or "@name ")) {
-     *     return ID of last notice by initial @name in content;
-     * }
-     *
-     * Note that all @nickname instances will still be used to save "reply" records,
-     * so the notice shows up in the mentioned users' "replies" tab.
-     *
-     * @param integer $reply_to   ID passed in by Web or API
-     * @param integer $profile_id ID of author
-     * @param string  $source     Source tag, like 'web' or 'gwibber'
+     * @param Profile $sender     Author profile
      * @param string  $content    Final notice content
      *
      * @return integer ID of replied-to notice, or null for not a reply.
      */
 
-    static function getReplyTo($reply_to, $profile_id, $source, $content)
+    static function getInlineReplyTo(Profile $sender, $content)
     {
-        static $lb = array('xmpp', 'mail', 'sms', 'omb');
-
-        // If $reply_to is specified, we check that it exists, and then
-        // return it if it does
-
-        if (!empty($reply_to)) {
-            $reply_notice = Notice::getKV('id', $reply_to);
-            if ($reply_notice instanceof Notice) {
-                return $reply_notice;
-            }
-        }
-
-        // If it's not a "low bandwidth" source (one where you can't set
-        // a reply_to argument), we return. This is mostly web and API
-        // clients.
-
-        if (!in_array($source, $lb)) {
-            return null;
-        }
-
         // Is there an initial @ or T?
-
-        if (preg_match('/^T ([A-Z0-9]{1,64}) /', $content, $match) ||
-            preg_match('/^@([a-z0-9]{1,64})\s+/', $content, $match)) {
+        if (preg_match('/^T ([A-Z0-9]{1,64}) /', $content, $match)
+                || preg_match('/^@([a-z0-9]{1,64})\s+/', $content, $match)) {
             $nickname = common_canonical_nickname($match[1]);
         } else {
             return null;
         }
 
         // Figure out who that is.
-
-        $sender = Profile::getKV('id', $profile_id);
-        if (!$sender instanceof Profile) {
-            return null;
-        }
-
         $recipient = common_relative_profile($sender, $nickname, common_sql_now());
 
-        if (!$recipient instanceof Profile) {
-            return null;
-        }
-
-        // Get their last notice
-
-        $last = $recipient->getCurrentNotice();
-
-        if ($last instanceof Notice) {
-            return $last;
+        if ($recipient instanceof Profile) {
+            // Get their last notice
+            $last = $recipient->getCurrentNotice();
+            if ($last instanceof Notice) {
+                return $last;
+            }
+            // Maybe in the future we want to handle something else below
+            // so don't return getCurrentNotice() immediately.
         }
 
         return null;

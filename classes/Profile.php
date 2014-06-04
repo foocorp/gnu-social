@@ -226,9 +226,9 @@ class Profile extends Managed_DataObject
                 return $notice->_items[0];
             }
             return $notice;
-        } else {
-            return null;
         }
+        
+        return null;
     }
 
     function getTaggedNotices($tag, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
