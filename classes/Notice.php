@@ -507,7 +507,8 @@ class Notice extends Managed_DataObject
                 throw new ClientException(_('You already repeated that notice.'));
             }
 
-            $notice->repeat_of = $repeat_of;
+            $notice->repeat_of = $repeat->id;
+            $notice->conversation = $repeat->conversation;
         } else {
             $reply = null;
 
