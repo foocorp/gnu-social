@@ -908,12 +908,11 @@ class Notice extends Managed_DataObject
         return true;
     }
 
-	protected $_attachments = -1;
+	protected $_attachments = array();
 	
     function attachments() {
-
-		if ($this->_attachments != -1)  {
-            return $this->_attachments;
+		if (isset($this->_attachments[$this->id])) {
+            return $this->_attachments[$this->id];
         }
 		
         $f2ps = File_to_post::listGet('post_id', array($this->id));
@@ -926,14 +925,14 @@ class Notice extends Managed_DataObject
 		
 		$files = File::multiGet('id', $ids);
 
-		$this->_attachments = $files->fetchAll();
+		$this->_attachments[$this->id] = $files->fetchAll();
 		
-        return $this->_attachments;
+        return $this->_attachments[$this->id];
     }
 
 	function _setAttachments($attachments)
 	{
-	    $this->_attachments = $attachments;
+	    $this->_attachments[$this->id] = $attachments;
 	}
 
     function publicStream($offset=0, $limit=20, $since_id=0, $max_id=0)
@@ -1385,7 +1384,7 @@ class Notice extends Managed_DataObject
         return $reply;
     }
 
-    protected $_replies = -1;
+    protected $_replies = array();
 
     /**
      * Pull the complete list of @-reply targets for this notice.
@@ -1394,8 +1393,8 @@ class Notice extends Managed_DataObject
      */
     function getReplies()
     {
-        if ($this->_replies != -1) {
-            return $this->_replies;
+        if (isset($this->_replies[$this->id])) {
+            return $this->_replies[$this->id];
         }
 
         $replyMap = Reply::listGet('notice_id', array($this->id));
@@ -1406,14 +1405,14 @@ class Notice extends Managed_DataObject
             $ids[] = $reply->profile_id;
         }
 
-        $this->_replies = $ids;
+        $this->_replies[$this->id] = $ids;
 
         return $ids;
     }
 
     function _setReplies($replies)
     {
-        $this->_replies = $replies;
+        $this->_replies[$this->id] = $replies;
     }
 
     /**
@@ -1461,7 +1460,7 @@ class Notice extends Managed_DataObject
      * @return array of Group objects
      */
     
-    protected $_groups = -1;
+    protected $_groups = array();
     
     function getGroups()
     {
@@ -1471,9 +1470,8 @@ class Notice extends Managed_DataObject
             return array();
         }
         
-        if ($this->_groups != -1)
-        {
-            return $this->_groups;
+        if (isset($this->_groups[$this->id])) {
+            return $this->_groups[$this->id];
         }
         
         $gis = Group_inbox::listGet('notice_id', array($this->id));
@@ -1487,14 +1485,14 @@ class Notice extends Managed_DataObject
 		
 		$groups = User_group::multiGet('id', $ids);
 		
-		$this->_groups = $groups->fetchAll();
+		$this->_groups[$this->id] = $groups->fetchAll();
 		
-		return $this->_groups;
+		return $this->_groups[$this->id];
     }
     
     function _setGroups($groups)
     {
-        $this->_groups = $groups;
+        $this->_groups[$this->id] = $groups;
     }
 
     /**
@@ -2598,7 +2596,7 @@ class Notice extends Managed_DataObject
 		}
     }
 
-    protected $_faves;
+    protected $_faves = array();
 
     /**
      * All faves of this notice
@@ -2608,17 +2606,17 @@ class Notice extends Managed_DataObject
 
     function getFaves()
     {
-        if (isset($this->_faves) && is_array($this->_faves)) {
-            return $this->_faves;
+        if (isset($this->_faves[$this->id])) {
+            return $this->_faves[$this->id];
         }
         $faveMap = Fave::listGet('notice_id', array($this->id));
-        $this->_faves = $faveMap[$this->id];
-        return $this->_faves;
+        $this->_faves[$this->id] = $faveMap[$this->id];
+        return $this->_faves[$this->id];
     }
 
     function _setFaves($faves)
     {
-        $this->_faves = $faves;
+        $this->_faves[$this->id] = $faves;
     }
 
     static function fillFaves(&$notices)
@@ -2653,21 +2651,21 @@ class Notice extends Managed_DataObject
         }
     }
 
-    protected $_repeats;
+    protected $_repeats = array();
 
     function getRepeats()
     {
-        if (isset($this->_repeats) && is_array($this->_repeats)) {
-            return $this->_repeats;
+        if (isset($this->_repeats[$this->id])) {
+            return $this->_repeats[$this->id];
         }
         $repeatMap = Notice::listGet('repeat_of', array($this->id));
-        $this->_repeats = $repeatMap[$this->id];
-        return $this->_repeats;
+        $this->_repeats[$this->id] = $repeatMap[$this->id];
+        return $this->_repeats[$this->id];
     }
 
     function _setRepeats($repeats)
     {
-        $this->_repeats = $repeats;
+        $this->_repeats[$this->id] = $repeats;
     }
 
     static function fillRepeats(&$notices)
