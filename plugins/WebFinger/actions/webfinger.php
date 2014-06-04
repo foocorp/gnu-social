@@ -36,12 +36,17 @@ class WebfingerAction extends XrdAction
         // throws exception if resource is empty
         $this->resource = Discovery::normalize($this->trimmed('resource'));
 
-        if (Event::handle('StartGetWebFingerResource', array($this->resource, &$this->target, $this->args))) {
-            Event::handle('EndGetWebFingerResource', array($this->resource, &$this->target, $this->args));
+        try {
+            if (Event::handle('StartGetWebFingerResource', array($this->resource, &$this->target, $this->args))) {
+                Event::handle('EndGetWebFingerResource', array($this->resource, &$this->target, $this->args));
+            }
+        } catch (NoSuchUserException $e) {
+            throw new ServerException($e->getMessage(), 404);
         }
 
         if (!$this->target instanceof WebFingerResource) {
-            throw new ServerException('Resource not found in local database.', 404);
+            // TRANS: Error message when an object URI which we cannot find was requested
+            throw new ServerException(_m('Resource not found in local database.'), 404);
         }
 
         return true;
