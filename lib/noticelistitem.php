@@ -70,7 +70,7 @@ class NoticeListItem extends Widget
         parent::__construct($out);
         if (!empty($notice->repeat_of)) {
             $original = Notice::getKV('id', $notice->repeat_of);
-            if (empty($original)) { // could have been deleted
+            if (!$original instanceof Notice) { // could have been deleted
                 $this->notice = $notice;
             } else {
                 $this->notice = $original;

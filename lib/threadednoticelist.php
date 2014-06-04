@@ -89,7 +89,7 @@ class ThreadedNoticeList extends NoticeList
             
             if ($notice->repeat_of) {
                 $orig = Notice::getKV('id', $notice->repeat_of);
-                if ($orig) {
+                if ($orig instanceof Notice) {
                     $notice = $orig;
                 }
             }
@@ -102,7 +102,7 @@ class ThreadedNoticeList extends NoticeList
 
             // Get the convo's root notice
             $root = $notice->conversationRoot($this->userProfile);
-            if ($root) {
+            if ($root instanceof Notice) {
                 $notice = $root;
             }
 
@@ -208,6 +208,11 @@ class ThreadedNoticeListItem extends NoticeListItem
             $moreCutoff = null;
             while ($notice->fetch()) {
                 if (Event::handle('StartAddNoticeReply', array($this, $this->notice, $notice))) {
+                    // Don't list repeats as separate notices in a conversation
+                    if (!empty($notice->repeat_of)) {
+                        continue;
+                    }
+
                     if ($notice->id == $this->notice->id) {
                         // Skip!
                         continue;
@@ -316,6 +321,8 @@ class ThreadedNoticeListSubItem extends NoticeListItem
     {
         $item = new ThreadedNoticeListInlineFavesItem($this->notice, $this->out);
         $hasFaves = $item->show();
+        $item = new ThreadedNoticeListInlineRepeatsItem($this->notice, $this->out);
+        $hasRepeats = $item->show();
         parent::showEnd();
     }
 }
@@ -551,7 +558,7 @@ class ThreadedNoticeListInlineFavesItem extends ThreadedNoticeListFavesItem
 }
 
 /**
- * Placeholder for showing faves...
+ * Placeholder for showing repeats...
  */
 class ThreadedNoticeListRepeatsItem extends NoticeListActorsItem
 {
@@ -610,5 +617,19 @@ class ThreadedNoticeListRepeatsItem extends NoticeListActorsItem
     function showEnd()
     {
         $this->out->elementEnd('li');
+    }
+}
+
+// @todo FIXME: needs documentation.
+class ThreadedNoticeListInlineRepeatsItem extends ThreadedNoticeListRepeatsItem
+{
+    function showStart()
+    {
+        $this->out->elementStart('div', array('class' => 'entry-content notice-repeats'));
+    }
+
+    function showEnd()
+    {
+        $this->out->elementEnd('div');
     }
 }
