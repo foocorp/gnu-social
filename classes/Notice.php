@@ -143,6 +143,10 @@ class Notice extends Managed_DataObject
 
     protected $_profile = array();
     
+    /**
+     * Will always return a profile, if anything fails it will
+     * (through _setProfile) throw a NoProfileException.
+     */
     public function getProfile()
     {
         if (!isset($this->_profile[$this->profile_id])) {
@@ -1317,19 +1321,17 @@ class Notice extends Managed_DataObject
             return array();
         }
 
-        $sender = Profile::getKV($this->profile_id);
+        $sender = $this->getProfile();
 
         $replied = array();
 
         // If it's a reply, save for the replied-to author
         try {
             $parent = $this->getParent();
-            $author = $parent->getProfile();
-            if ($author instanceof Profile) {
-                $this->saveReply($author->id);
-                $replied[$author->id] = 1;
-                self::blow('reply:stream:%d', $author->id);
-            }
+            $parentauthor = $parent->getProfile();
+            $this->saveReply($parentauthor->id);
+            $replied[$parentauthor->id] = 1;
+            self::blow('reply:stream:%d', $parentauthor->id);
         } catch (Exception $e) {
             // Not a reply, since it has no parent!
         }
