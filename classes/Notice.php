@@ -530,7 +530,13 @@ class Notice extends Managed_DataObject
                                                       $profile->nickname, $reply->id), 403);
                 }
 
-                $notice->reply_to     = $reply->id;
+                // If it's a repeat, the reply_to should be to the original
+                if (!empty($reply->repeat_of)) {
+                    $notice->reply_to = $reply->repeat_of;
+                } else {
+                    $notice->reply_to = $reply->id;
+                }
+                // But the conversation ought to be the same :)
                 $notice->conversation = $reply->conversation;
 
                 // If the original is private to a group, and notice has
