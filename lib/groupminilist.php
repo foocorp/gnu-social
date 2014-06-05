@@ -33,7 +33,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 require_once INSTALLDIR.'/lib/grouplist.php';
 
-define('GROUPS_PER_MINILIST', 8);
+define('GROUPS_PER_MINILIST', MINILIST_PER_PAGE);
 
 /**
  * Widget to show a list of groups, good for sidebar

@@ -34,6 +34,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 require_once INSTALLDIR.'/lib/widget.php';
 require_once INSTALLDIR.'/lib/peopletags.php';
 
+define('MINILIST_PER_PAGE', 12);
+
 /**
  * Widget to show a list of profiles
  *

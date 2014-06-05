@@ -346,9 +346,9 @@ h6 {font-size: 1em;}
 }
 
 .section .entities li {
-    margin-right: 3.6px;
-    margin-bottom: 5px;
-    width: 24px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    width: 32px;
 }
 
 #popular_notices .avatar {
@@ -366,7 +366,11 @@ h6 {font-size: 1em;}
     line-height: 1.6em;
 }
 
-.section .avatar {
+.section .author .avatar, .notice .author .avatar {
+    border-radius: 5%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+.section .author .avatar {
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -456,10 +460,6 @@ h6 {font-size: 1em;}
 
 .notice-options .form_repeat.dialogbox input.submit_dialogbox {
     min-width: 80px;
-}
-
-#content .threaded-replies .notice .author .photo {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .user_in.realtime-popup .notice div.entry-content {
