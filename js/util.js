@@ -1177,18 +1177,22 @@ var SN = { // StatusNet
                                 }
                             }
                         } else {
-                            var cookieValue = JSON.parse($.cookie(SN.C.S.NoticeDataGeoCookie));
+                            try {
+                                var cookieValue = JSON.parse($.cookie(SN.C.S.NoticeDataGeoCookie));
 
-                            form.find('[name=lat]').val(cookieValue.NLat);
-                            form.find('[name=lon]').val(cookieValue.NLon);
-                            form.find('[name=location_ns]').val(cookieValue.NLNS);
-                            form.find('[name=location_id]').val(cookieValue.NLID);
-                            form.find('[name=notice_data-geo]').prop('checked', cookieValue.NDG);
+                                form.find('[name=lat]').val(cookieValue.NLat);
+                                form.find('[name=lon]').val(cookieValue.NLon);
+                                form.find('[name=location_ns]').val(cookieValue.NLNS);
+                                form.find('[name=location_id]').val(cookieValue.NLID);
+                                form.find('[name=notice_data-geo]').prop('checked', cookieValue.NDG);
 
-                            SN.U.NoticeGeoStatus(form, cookieValue.NLN, cookieValue.NLat, cookieValue.NLon, cookieValue.NLNU);
-                            label
-                                .attr('title', NoticeDataGeo_text.ShareDisable + ' (' + cookieValue.NLN + ')')
-                                .addClass('checked');
+                               SN.U.NoticeGeoStatus(form, cookieValue.NLN, cookieValue.NLat, cookieValue.NLon, cookieValue.NLNU);
+                                label
+                                    .attr('title', NoticeDataGeo_text.ShareDisable + ' (' + cookieValue.NLN + ')')
+                                    .addClass('checked');
+                            } catch (e) {
+                                console.log('Parsing error:', e);
+                            }
                         }
                     } else {
                         removeNoticeDataGeo();
