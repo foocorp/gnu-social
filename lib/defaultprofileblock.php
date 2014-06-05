@@ -56,16 +56,6 @@ class DefaultProfileBlock extends AccountProfileBlock
         parent::__construct($out, $user->getProfile());
     }
 
-    function avatarSize()
-    {
-        return AVATAR_STREAM_SIZE;
-    }
-
-    function avatar()
-    {
-        return $this->profile->avatarUrl(AVATAR_STREAM_SIZE);
-    }
-
     function location()
     {
         return null;
