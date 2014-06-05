@@ -113,7 +113,7 @@ class User extends Managed_DataObject
         );
     }
 
-    protected $_profile = null;
+    protected $_profile = array();
 
     /**
      * @return Profile
@@ -122,14 +122,18 @@ class User extends Managed_DataObject
      */
     public function getProfile()
     {
-        if (!($this->_profile instanceof Profile)) {
-            $this->_profile = Profile::getKV('id', $this->id);
-            if (!($this->_profile instanceof Profile)) {
-                throw new UserNoProfileException($this);
-            }
+        if (!isset($this->_profile[$this->id])) {
+            $this->_setProfile(Profile::getKV('id', $this->id));
         }
+        return $this->_profile[$this->id];
+    }
 
-        return $this->_profile;
+    public function _setProfile(Profile $profile=null)
+    {
+        if (!$profile instanceof Profile) {
+            throw new UserNoProfileException($this);
+        }
+        $this->_profile[$this->id] = $profile;
     }
 
     public function getUri()
