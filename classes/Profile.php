@@ -92,32 +92,40 @@ class Profile extends Managed_DataObject
         return $user->getProfile();
     } 
 
-    protected $_user = -1;  // Uninitialized value distinct from null
+    protected $_user = array();
 
     public function getUser()
     {
-        if ($this->_user === -1) {
-            $this->_user = User::getKV('id', $this->id);
+        if (!isset($this->_user[$this->id])) {
+            $this->_setUser(User::getKV('id', $this->id));
         }
-        if (!$this->_user instanceof User) {
-            throw new NoSuchUserException(array('id'=>$this->id));
-        }
-
-        return $this->_user;
+        return $this->_user[$this->id];
     }
 
-    protected $_group = -1;
+    public function _setUser(User $user=null)
+    {
+        if (!$user instanceof User) {
+            throw new NoSuchUserException(array('id'=>$this->id));
+        }
+        $this->_user[$this->id] = $user;
+    }
+
+    protected $_group = array();
 
     public function getGroup()
     {
-        if ($this->_group === -1) {
-            $this->_group = User_group::getKV('profile_id', $this->id);
+        if (!isset($this->_group[$this->id])) {
+            $this->_setGroup(User_group::getKV('profile_id', $this->id));
         }
-        if (!$this->_group instanceof User_group) {
+        return $this->_group[$this->id];
+    }
+
+    public function _setGroup(User_group $group=null)
+    {
+        if (!$group instanceof User_group) {
             throw new NoSuchGroupException(array('profile_id'=>$this->id));
         }
-
-        return $this->_group;
+        $this->_group[$this->id] = $group;
     }
 
     public function isGroup()
@@ -139,8 +147,6 @@ class Profile extends Managed_DataObject
         }
         return true;
     }
-
-    protected $_avatars = array();
 
     public function getAvatar($width, $height=null)
     {
@@ -1539,7 +1545,7 @@ class Profile extends Managed_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_user', '_avatars');
+        $skip = array('_user', '_group');
         return array_diff($vars, $skip);
     }
 
