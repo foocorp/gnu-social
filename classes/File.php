@@ -418,13 +418,6 @@ class File extends Managed_DataObject
         list($width, $height, $x, $y, $w2, $h2) =
                                 $image->scaleToFit($width, $height, $crop);
 
-        // Doublecheck that parameters are sane and integers.
-        if ($width < 1 || $width > common_config('thumbnail', 'maxsize')
-                || $height < 1 || $height > common_config('thumbnail', 'maxsize')) {
-            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
-            throw new ServerException('Bad thumbnail size parameters.');
-        }
-
         $params = array('file_id'=> $this->id,
                         'width'  => $width,
                         'height' => $height);
@@ -437,7 +430,9 @@ class File extends Managed_DataObject
         $outname = "thumb-{$width}x{$height}-" . $this->filename;
         $outpath = self::path($outname);
 
-        $image->resizeTo($outpath, $width, $height, $x, $y, $w2, $h2);
+        $image->resizeTo($outpath, array('width'=>$width, 'height'=>$height,
+                                         'x'=>$x,         'y'=>$y,
+                                         'w'=>$w2,        'h'=>$h2));
 
         // Avoid deleting the original
         if ($image->getPath() != $this->getPath()) {

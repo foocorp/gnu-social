@@ -52,6 +52,7 @@ class ImageFile
     var $height;
     var $width;
     var $rotate=0;  // degrees to rotate for properly oriented image (extrapolated from EXIF etc.)
+    var $animated = false;  // Animated image? (has more than 2 frames)
 
     function __construct($id=null, $filepath=null, $type=null, $width=null, $height=null)
     {
@@ -97,6 +98,8 @@ class ImageFile
                 // If we ever write this back, Orientation should be set to '1'
             }
         }
+
+        Event::handle('FillImageFileMetadata', array($this));
     }
 
     public static function fromFileObject(File $file)
@@ -193,7 +196,9 @@ class ImageFile
                                     $size,
                                     common_timestamp());
         $outpath = Avatar::path($outname);
-        $this->resizeTo($outpath, $size, $size, $x, $y, $w, $h);
+        $this->resizeTo($outpath, array('width'=>$size, 'height'=>$size,
+                                        'x'=>$x,        'y'=>$y,
+                                        'w'=>$w,        'h'=>$h));
         return $outname;
     }
 
@@ -207,26 +212,35 @@ class ImageFile
      */
     function copyTo($outpath)
     {
-        return $this->resizeTo($outpath, $this->width, $this->height);
+        return $this->resizeTo($outpath, array('width' =>$this->width,
+                                               'height'=>$this->height));
     }
 
     /**
      * Create and save a thumbnail image.
      *
      * @param string $outpath
-     * @param int $width target width
-     * @param int $height target height
-     * @param int $x (default 0) upper-left corner to crop from
-     * @param int $y (default 0) upper-left corner to crop from
-     * @param int $w (default full) width of image area to crop
-     * @param int $h (default full) height of image area to crop
+     * @param array $box    width, height, boundary box (x,y,w,h) defaults to full image
      * @return string full local filesystem filename
      */
-    function resizeTo($outpath, $width, $height, $x=0, $y=0, $w=null, $h=null)
+    function resizeTo($outpath, array $box=array())
     {
-        $w = ($w === null) ? $this->width:$w;
-        $h = ($h === null) ? $this->height:$h;
-        $targetType = $this->preferredType();
+        $box['width'] = isset($box['width']) ? intval($box['width']) : $this->width;
+        $box['height'] = isset($box['height']) ? intval($box['height']) : $this->height;
+        $box['x'] = isset($box['x']) ? intval($box['x']) : 0;
+        $box['y'] = isset($box['y']) ? intval($box['y']) : 0;
+        $box['w'] = isset($box['w']) ? intval($box['w']) : $this->width;
+        $box['h'] = isset($box['h']) ? intval($box['h']) : $this->height;
+
+        // Doublecheck that parameters are sane and integers.
+        if ($box['width'] < 1 || $box['width'] > common_config('thumbnail', 'maxsize')
+                || $box['height'] < 1 || $box['height'] > common_config('thumbnail', 'maxsize')
+                || $box['w'] < 1 || $box['x'] >= $this->width
+                || $box['h'] < 1 || $box['y'] >= $this->height) {
+            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
+            common_debug("Boundary box parameters for resize of {$this->filepath} : ".var_export($box,true));
+            throw new ServerException('Bad thumbnail size parameters.');
+        }
 
         if (!file_exists($this->filepath)) {
             // TRANS: Exception thrown during resize when image has been registered as present, but is no longer there.
@@ -234,38 +248,47 @@ class ImageFile
         }
 
         // Don't crop/scale if it isn't necessary
-        if ($width === $this->width
-            && $height === $this->height
-            && $x === 0
-            && $y === 0
-            && $w === $this->width
-            && $h === $this->height
-            && $this->type == $targetType) {
+        if ($box['width'] === $this->width
+            && $box['height'] === $this->height
+            && $box['x'] === 0
+            && $box['y'] === 0
+            && $box['w'] === $this->width
+            && $box['h'] === $this->height
+            && $this->type == $this->preferredType()) {
 
             @copy($this->filepath, $outpath);
             return $outpath;
         }
 
+        if (Event::handle('StartResizeImageFile', array($this, $outpath, $box))) {
+            $this->resizeToFile($outpath, $box);
+        }
+
+        return $outpath;
+    }
+
+    protected function resizeToFile($outpath, array $box)
+    {
         switch ($this->type) {
-         case IMAGETYPE_GIF:
+        case IMAGETYPE_GIF:
             $image_src = imagecreatefromgif($this->filepath);
             break;
-         case IMAGETYPE_JPEG:
+        case IMAGETYPE_JPEG:
             $image_src = imagecreatefromjpeg($this->filepath);
             break;
-         case IMAGETYPE_PNG:
+        case IMAGETYPE_PNG:
             $image_src = imagecreatefrompng($this->filepath);
             break;
-         case IMAGETYPE_BMP:
+        case IMAGETYPE_BMP:
             $image_src = imagecreatefrombmp($this->filepath);
             break;
-         case IMAGETYPE_WBMP:
+        case IMAGETYPE_WBMP:
             $image_src = imagecreatefromwbmp($this->filepath);
             break;
-         case IMAGETYPE_XBM:
+        case IMAGETYPE_XBM:
             $image_src = imagecreatefromxbm($this->filepath);
             break;
-         default:
+        default:
             // TRANS: Exception thrown when trying to resize an unknown file type.
             throw new Exception(_('Unknown file type'));
         }
@@ -274,7 +297,7 @@ class ImageFile
             $image_src = imagerotate($image_src, $this->rotate, 0);
         }
 
-        $image_dest = imagecreatetruecolor($width, $height);
+        $image_dest = imagecreatetruecolor($box['width'], $box['height']);
 
         if ($this->type == IMAGETYPE_GIF || $this->type == IMAGETYPE_PNG || $this->type == IMAGETYPE_BMP) {
 
@@ -297,9 +320,9 @@ class ImageFile
             }
         }
 
-        imagecopyresampled($image_dest, $image_src, 0, 0, $x, $y, $width, $height, $w, $h);
+        imagecopyresampled($image_dest, $image_src, 0, 0, $box['x'], $box['y'], $box['width'], $box['height'], $box['w'], $box['h']);
 
-        switch ($targetType) {
+        switch ($this->preferredType()) {
          case IMAGETYPE_GIF:
             imagegif($image_dest, $outpath);
             break;
@@ -316,9 +339,8 @@ class ImageFile
 
         imagedestroy($image_src);
         imagedestroy($image_dest);
-
-        return $outpath;
     }
+
 
     /**
      * Several obscure file types should be normalized to PNG on resize.

@@ -1459,6 +1459,11 @@ CreateFileImageThumbnailSource: Hook to create image thumbnail source from a Fil
 - &$imgPath: Path to image file which can be used as source for our thumbnail algorithm.
 - $media:   MIME media type ('image', 'video', 'audio' etc.)
 
+StartResizeImageFile: Hook to resize an image and output it to a file. No matching End event yet.
+- $imagefile: ImageFile object we're resizing.
+- $outpath:   string with output filepath
+- $box:       array with size ('width', 'height') and boundary box('x', 'y', 'w', 'h').
+
 StartShowAttachmentRepresentation: Attachment representation, full file (or in rare cases thumbnails/previews).
 - $out:     HTMLOutputter class to use for outputting HTML.
 - $file:    'File' object which we're going to show representation for.
