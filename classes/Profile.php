@@ -97,17 +97,13 @@ class Profile extends Managed_DataObject
     public function getUser()
     {
         if (!isset($this->_user[$this->id])) {
-            $this->_setUser(User::getKV('id', $this->id));
+            $user = User::getKV('id', $this->id);
+            if (!$user instanceof User) {
+                throw new NoSuchUserException(array('id'=>$this->id));
+            }
+            $this->_user[$this->id] = $user;
         }
         return $this->_user[$this->id];
-    }
-
-    public function _setUser(User $user=null)
-    {
-        if (!$user instanceof User) {
-            throw new NoSuchUserException(array('id'=>$this->id));
-        }
-        $this->_user[$this->id] = $user;
     }
 
     protected $_group = array();
@@ -115,17 +111,13 @@ class Profile extends Managed_DataObject
     public function getGroup()
     {
         if (!isset($this->_group[$this->id])) {
-            $this->_setGroup(User_group::getKV('profile_id', $this->id));
+            $group = User_group::getKV('profile_id', $this->id);
+            if (!$group instanceof User_group) {
+                throw new NoSuchGroupException(array('profile_id'=>$this->id));
+            }
+            $this->_group[$this->id] = $group;
         }
         return $this->_group[$this->id];
-    }
-
-    public function _setGroup(User_group $group=null)
-    {
-        if (!$group instanceof User_group) {
-            throw new NoSuchGroupException(array('profile_id'=>$this->id));
-        }
-        $this->_group[$this->id] = $group;
     }
 
     public function isGroup()

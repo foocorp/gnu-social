@@ -123,17 +123,13 @@ class User extends Managed_DataObject
     public function getProfile()
     {
         if (!isset($this->_profile[$this->id])) {
-            $this->_setProfile(Profile::getKV('id', $this->id));
+            $profile = Profile::getKV('id', $this->id);
+            if (!$profile instanceof Profile) {
+                throw new UserNoProfileException($this);
+            }
+            $this->_profile[$this->id] = $profile;
         }
         return $this->_profile[$this->id];
-    }
-
-    public function _setProfile(Profile $profile=null)
-    {
-        if (!$profile instanceof Profile) {
-            throw new UserNoProfileException($this);
-        }
-        $this->_profile[$this->id] = $profile;
     }
 
     public function getUri()

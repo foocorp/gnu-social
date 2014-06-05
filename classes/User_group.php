@@ -84,17 +84,13 @@ class User_group extends Managed_DataObject
     public function getProfile()
     {
         if (!isset($this->_profile[$this->profile_id])) {
-            $this->_setProfile(Profile::getKV('id', $this->profile_id));
+            $profile = Profile::getKV('id', $this->profile_id);
+            if (!$profile instanceof Profile) {
+                throw new GroupNoProfileException($this);
+            }
+            $this->_profile[$this->profile_id] = $profile;
         }
         return $this->_profile[$this->profile_id];
-    }
-
-    public function _setProfile(Profile $profile=null)
-    {
-        if (!$profile instanceof Profile) {
-            throw new GroupNoProfileException($this);
-        }
-        $this->_profile[$this->profile_id] = $profile;
     }
 
     public static function defaultLogo($size)
