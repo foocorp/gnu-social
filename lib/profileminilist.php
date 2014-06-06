@@ -33,7 +33,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 require_once INSTALLDIR.'/lib/profilelist.php';
 
-define('PROFILES_PER_MINILIST', MINILIST_PER_PAGE);
+define('PROFILES_PER_MINILIST', 8);
 
 /**
  * Widget to show a list of profiles, good for sidebar

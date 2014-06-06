@@ -648,6 +648,7 @@ address .poweredby {
 
 #core .vcard .photo {
     display: inline;
+    margin-right: 11px;
     float: left;
 }
 
@@ -659,8 +660,8 @@ address .poweredby {
 }
 
 #content .notice .entry-title {
-    margin: 2px 7px 0px 75px;
-    min-height: 51px;
+    margin: 2px 7px 0px 59px;
+    min-height: 35px;
 }
 
 .vcard .url {
@@ -725,7 +726,7 @@ font-style:italic;
 .notice div.entry-content {
     clear:left;
     float:left;
-    margin-left:75px;
+    margin-left:59px;
     margin-top: 10px;
 }
 
@@ -857,7 +858,7 @@ content: ":";
     clear: both;
     float: left;
     width: 458px;
-    margin-left: 75px;
+    margin-left: 59px;
     margin-top: 10px;
     margin-bottom: 10px;
     padding-right: 2px;
@@ -893,19 +894,19 @@ content: ":";
 }
 
 #content .threaded-replies .notice .author .photo {
-    height: 48px;
-    width: 48px;
+    height: 24px;
+    width: 24px;
     top: 12px;
 }
 
 #content .notice .threaded-replies .notice .entry-title {
-    margin: 2px 7px 0px 57px;
+    margin: 2px 7px 0px 35px;
 }
 
 #content .notice .threaded-replies .notice div.entry-content {
     clear:left;
     float:left;
-    margin-left: 57px;
+    margin-left: 35px;
     margin-top: 6px !important;
 }
 
@@ -986,7 +987,7 @@ content: ":";
 }
 
 #conversation .notices .threaded-replies {
-    margin-left: 75px;
+    margin-left: 59px;
     background: #fafafa;
 }
 
@@ -1901,7 +1902,7 @@ clear:none;
 .profile .entity_profile .url,
 .profile .entity_profile .entity_tags,
 .profile .entity_profile .form_subscription_edit {
-margin-left:75px;
+margin-left:59px;
 clear:none;
 display:block;
 width:auto;
