@@ -204,16 +204,16 @@ class ImageFile
 
     /**
      * Copy the image file to the given destination.
-     * For obscure formats, this will automatically convert to PNG;
-     * otherwise the original file will be copied as-is.
+     *
+     * This function may modify the resulting file. Please use the
+     * returned ImageFile object to read metadata (width, height etc.)
      *
      * @param string $outpath
-     * @return string filename
+     * @return ImageFile the image stored at target path
      */
     function copyTo($outpath)
     {
-        return $this->resizeTo($outpath, array('width' =>$this->width,
-                                               'height'=>$this->height));
+        return new ImageFile(null, $this->resizeTo($outpath));
     }
 
     /**
@@ -232,33 +232,38 @@ class ImageFile
         $box['w'] = isset($box['w']) ? intval($box['w']) : $this->width;
         $box['h'] = isset($box['h']) ? intval($box['h']) : $this->height;
 
-        // Doublecheck that parameters are sane and integers.
-        if ($box['width'] < 1 || $box['width'] > common_config('thumbnail', 'maxsize')
-                || $box['height'] < 1 || $box['height'] > common_config('thumbnail', 'maxsize')
-                || $box['w'] < 1 || $box['x'] >= $this->width
-                || $box['h'] < 1 || $box['y'] >= $this->height) {
-            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
-            common_debug("Boundary box parameters for resize of {$this->filepath} : ".var_export($box,true));
-            throw new ServerException('Bad thumbnail size parameters.');
-        }
-
         if (!file_exists($this->filepath)) {
             // TRANS: Exception thrown during resize when image has been registered as present, but is no longer there.
             throw new Exception(_('Lost our file.'));
         }
 
-        // Don't crop/scale if it isn't necessary
+        // Don't rotate/crop/scale if it isn't necessary
         if ($box['width'] === $this->width
-            && $box['height'] === $this->height
-            && $box['x'] === 0
-            && $box['y'] === 0
-            && $box['w'] === $this->width
-            && $box['h'] === $this->height
-            && $this->type == $this->preferredType()) {
-
-            @copy($this->filepath, $outpath);
-            return $outpath;
+                && $box['height'] === $this->height
+                && $box['x'] === 0
+                && $box['y'] === 0
+                && $box['w'] === $this->width
+                && $box['h'] === $this->height
+                && $this->type == $this->preferredType()) {
+            if ($this->rotate == 0) {
+                // No rotational difference, just copy it as-is
+                @copy($this->filepath, $outpath);
+                return $outpath;
+            } elseif (abs($this->rotate) == 90) {
+                // Box is rotated 90 degrees in either direction,
+                // so we have to redefine x to y and vice versa.
+                $tmp = $box['width'];
+                $box['width'] = $box['height'];
+                $box['height'] = $tmp;
+                $tmp = $box['x'];
+                $box['x'] = $box['y'];
+                $box['y'] = $tmp;
+                $tmp = $box['w'];
+                $box['w'] = $box['h'];
+                $box['h'] = $tmp;
+            }
         }
+
 
         if (Event::handle('StartResizeImageFile', array($this, $outpath, $box))) {
             $this->resizeToFile($outpath, $box);

@@ -415,7 +415,7 @@ class File extends Managed_DataObject
         // We have to do it through an ImageFile object because of orientation etc.
         // Only other solution would've been to rotate + rewrite uploaded files.
         $image = ImageFile::fromFileObject($this);
-        list($width, $height, $x, $y, $w2, $h2) =
+        list($width, $height, $x, $y, $w, $h) =
                                 $image->scaleToFit($width, $height, $crop);
 
         $params = array('file_id'=> $this->id,
@@ -430,9 +430,23 @@ class File extends Managed_DataObject
         $outname = "thumb-{$width}x{$height}-" . $this->filename;
         $outpath = self::path($outname);
 
-        $image->resizeTo($outpath, array('width'=>$width, 'height'=>$height,
-                                         'x'=>$x,         'y'=>$y,
-                                         'w'=>$w2,        'h'=>$h2));
+        // The boundary box for our resizing
+        $box = array('width'=>$width, 'height'=>$height,
+                     'x'=>$x,         'y'=>$y,
+                     'w'=>$w,         'h'=>$h);
+
+        // Doublecheck that parameters are sane and integers.
+        if ($box['width'] < 1 || $box['width'] > common_config('thumbnail', 'maxsize')
+                || $box['height'] < 1 || $box['height'] > common_config('thumbnail', 'maxsize')
+                || $box['w'] < 1 || $box['x'] >= $this->width
+                || $box['h'] < 1 || $box['y'] >= $this->height) {
+            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
+            common_debug("Boundary box parameters for resize of {$this->filepath} : ".var_export($box,true));
+            throw new ServerException('Bad thumbnail size parameters.');
+        }
+
+        // Perform resize and store into file
+        $image->resizeTo($outpath, $box);
 
         // Avoid deleting the original
         if ($image->getPath() != $this->getPath()) {

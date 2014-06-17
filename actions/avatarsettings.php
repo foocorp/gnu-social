@@ -329,7 +329,7 @@ class AvatarsettingsAction extends SettingsAction
                                      'tmp'.common_timestamp());
 
         $filepath = Avatar::path($filename);
-        $imagefile->copyTo($filepath);
+        $imagefile = $imagefile->copyTo($filepath);
 
         $filedata = array('filename' => $filename,
                           'filepath' => $filepath,
