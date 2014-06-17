@@ -264,6 +264,10 @@ class ImageFile
             $this->resizeToFile($outpath, $box);
         }
 
+        if (!file_exists($outpath)) {
+            throw new UseFileAsThumbnailException($this->id);
+        }
+
         return $outpath;
     }
 

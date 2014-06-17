@@ -578,6 +578,8 @@ class ActivityObject
             try {
                 $thumbnail = $file->getThumbnail();
                 $object->thumbnail = $thumbnail;
+            } catch (UseFileAsThumbnailException $e) {
+                $object->thumbnail = null;
             } catch (UnsupportedMediaException $e) {
                 $object->thumbnail = null;
             }

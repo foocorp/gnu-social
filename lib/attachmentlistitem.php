@@ -115,6 +115,8 @@ class AttachmentListItem extends Widget
                     try {
                         $thumb = $this->attachment->getThumbnail();
                         $this->out->element('img', array('src' => $thumb->getUrl(), 'alt' => ''));
+                    } catch (UseFileAsThumbnailException $e) {
+                        $this->out->element('img', array('src' => $e->file->getUrl(), 'alt' => $e->file->title));
                     } catch (UnsupportedMediaException $e) {
                         // FIXME: Show a good representation of unsupported/unshowable images
                     }

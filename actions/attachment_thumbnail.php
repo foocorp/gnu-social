@@ -58,7 +58,12 @@ class Attachment_thumbnailAction extends AttachmentAction
     function showPage()
     {
         // Returns a File_thumbnail object or throws exception if not available
-        $thumbnail = $this->attachment->getThumbnail($this->thumb_w, $this->thumb_h, $this->thumb_c);
+        try {
+            $thumbnail = $this->attachment->getThumbnail($this->thumb_w, $this->thumb_h, $this->thumb_c);
+        } catch (UseFileAsThumbnailException $e) {
+            // Since we're only using the ->getUrl() function, we can use the File object
+            $thumbnail = $e->file;
+        }
         common_redirect($thumbnail->getUrl());
     }
 }
