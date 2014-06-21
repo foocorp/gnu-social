@@ -142,7 +142,7 @@ class ProfileListItem extends Widget
 
     function startItem()
     {
-        $this->out->elementStart('li', array('class' => 'profile hentry',
+        $this->out->elementStart('li', array('class' => 'profile h-entry',
                                              'id' => 'profile-' . $this->profile->id));
     }
 
@@ -184,14 +184,14 @@ class ProfileListItem extends Widget
 
     function startProfile()
     {
-        $this->out->elementStart('div', 'entity_profile vcard entry-content');
+        $this->out->elementStart('div', 'entity_profile h-card');
     }
 
     function showFullName()
     {
         if (!empty($this->profile->fullname)) {
             $this->out->text(' ');
-            $this->out->elementStart('span', 'fn');
+            $this->out->elementStart('span', 'p-name');
             $this->out->raw($this->highlight($this->profile->fullname));
             $this->out->elementEnd('span');
         }
@@ -304,13 +304,13 @@ class ProfileListItem extends Widget
     function linkAttributes()
     {
         return array('href' => $this->profile->profileurl,
-                     'class' => 'url entry-title',
+                     'class' => 'u-url',
                      'rel' => 'contact');
     }
 
     function homepageAttributes()
     {
         return array('href' => $this->profile->homepage,
-                     'class' => 'url');
+                     'class' => 'u-url');
     }
 }

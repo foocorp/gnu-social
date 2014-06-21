@@ -68,7 +68,7 @@ ul.bookmark-tags a:hover {
     top: 2px;
 }
 
-.bookmark div.entry-content {
+.bookmark div.e-content {
     font-size: 0.88em;
     line-height: 1.2em;
     margin-top: 6px;
@@ -76,7 +76,7 @@ ul.bookmark-tags a:hover {
     margin-bottom: 0px;
 }
 
-.bookmark:hover div.entry-content {
+.bookmark:hover div.e-content {
     opacity: 1;
 }
 

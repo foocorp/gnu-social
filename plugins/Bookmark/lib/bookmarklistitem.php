@@ -74,7 +74,7 @@ class BookmarkListItem extends NoticeListItemAdapter
 
         $profile = $notice->getProfile();
 
-        $out->elementStart('p', array('class' => 'entry-content'));
+        $out->elementStart('p', array('class' => 'e-content'));
 
         // Whether to nofollow
 

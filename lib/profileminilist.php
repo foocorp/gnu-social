@@ -74,7 +74,7 @@ class ProfileMiniListItem extends ProfileListItem
 {
     function show()
     {
-        $this->out->elementStart('li', 'vcard');
+        $this->out->elementStart('li', 'h-card');
         if (Event::handle('StartProfileListItemProfileElements', array($this))) {
             if (Event::handle('StartProfileListItemAvatar', array($this))) {
                 $aAttrs = $this->linkAttributes();
@@ -83,11 +83,8 @@ class ProfileMiniListItem extends ProfileListItem
                 $this->out->element('img', array('src' => $avatarUrl,
                                                  'width' => AVATAR_MINI_SIZE,
                                                  'height' => AVATAR_MINI_SIZE,
-                                                 'class' => 'avatar photo',
-                                                 'alt' =>  ($this->profile->fullname) ?
-                                                 $this->profile->fullname :
-                                                 $this->profile->nickname));
-                $this->out->element('span', 'fn nickname', $this->profile->nickname);
+                                                 'class' => 'avatar u-photo',
+                                                 'alt' =>  $this->profile->getBestName()));
                 $this->out->elementEnd('a');
                 Event::handle('EndProfileListItemAvatar', array($this));
             }
@@ -103,7 +100,7 @@ class ProfileMiniListItem extends ProfileListItem
 
         $aAttrs['title'] = $this->profile->getBestName();
         $aAttrs['rel']   = 'contact member'; // @todo: member? always?
-        $aAttrs['class'] = 'url';
+        $aAttrs['class'] = 'u-url p-name';
 
         return $aAttrs;
     }

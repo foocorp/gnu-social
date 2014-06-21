@@ -352,6 +352,6 @@ label[for=blog-entry-content] {
     content: '\003E';
 }
 
-.user_in .notice div.entry-content {
+.user_in .notice div.e-content {
   max-width: 150px;
 }

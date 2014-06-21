@@ -77,27 +77,18 @@ class GroupSection extends Section
     {
         $this->out->elementStart('tr');
         $this->out->elementStart('td');
-        $this->out->elementStart('span', 'vcard');
-        $this->out->elementStart('a', array('title' => ($group->fullname) ?
-                                            $group->fullname :
-                                            $group->nickname,
+        $this->out->elementStart('a', array('title' => $group->getBestName(),
                                             'href' => $group->homeUrl(),
                                             'rel' => 'contact group',
-                                            'class' => 'url'));
-        $this->out->text(' ');
-        $logo = ($group->stream_logo) ?
-          $group->stream_logo : User_group::defaultLogo(AVATAR_STREAM_SIZE);
+                                            'class' => 'h-card org nickname'));
+        $logo = $group->stream_logo ?: User_group::defaultLogo(AVATAR_STREAM_SIZE);
         $this->out->element('img', array('src' => $logo,
                                          'width' => AVATAR_MINI_SIZE,
                                          'height' => AVATAR_MINI_SIZE,
-                                         'class' => 'avatar photo',
-                                         'alt' =>  ($group->fullname) ?
-                                         $group->fullname :
-                                         $group->nickname));
-        $this->out->text(' ');
-        $this->out->element('span', 'fn org nickname', $group->nickname);
+                                         'class' => 'avatar u-photo',
+                                         'alt' =>  $group->getBestName()));
+        $this->out->text($group->nickname);
         $this->out->elementEnd('a');
-        $this->out->elementEnd('span');
         $this->out->elementEnd('td');
         if ($group->value) {
             $this->out->element('td', 'value', $group->value);

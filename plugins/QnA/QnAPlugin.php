@@ -265,7 +265,7 @@ class QnAPlugin extends MicroAppPlugin
         {
         case QnA_Question::OBJECT_TYPE:
             $id = (empty($nli->repeat)) ? $nli->notice->id : $nli->repeat->id;
-            $class = 'hentry notice question';
+            $class = 'h-entry notice question';
             if ($nli->notice->scope != 0 && $nli->notice->scope != 1) {
                 $class .= ' limited-scope';
             }
@@ -288,7 +288,7 @@ class QnAPlugin extends MicroAppPlugin
         case QnA_Answer::OBJECT_TYPE:
             $id = (empty($nli->repeat)) ? $nli->notice->id : $nli->repeat->id;
 
-            $cls = array('hentry', 'notice', 'answer');
+            $cls = array('h-entry', 'notice', 'answer');
 
             $answer = QnA_Answer::getKV('uri', $nli->notice->uri);
 
@@ -345,7 +345,7 @@ class QnAPlugin extends MicroAppPlugin
         $nli = new NoticeListItem($notice, $out);
         $nli->showNotice();
 
-        $out->elementStart('div', array('class' => 'entry-content question-description'));
+        $out->elementStart('div', array('class' => 'e-content question-description'));
 
         $question = QnA_Question::getByNotice($notice);
 
@@ -361,7 +361,7 @@ class QnAPlugin extends MicroAppPlugin
         $out->elementEnd('div');
 
         // @fixme
-        $out->elementStart('div', array('class' => 'entry-content'));
+        $out->elementStart('div', array('class' => 'e-content'));
     }
 
     /**
@@ -437,7 +437,7 @@ class QnAPlugin extends MicroAppPlugin
         $nli = new NoticeListItem($notice, $out);
         $nli->showNotice();
 
-        $out->elementStart('div', array('class' => 'entry-content answer-content'));
+        $out->elementStart('div', array('class' => 'e-content answer-content'));
 
         if (!empty($answer)) {
             $form = new QnashowanswerForm($out, $answer);
@@ -450,7 +450,7 @@ class QnAPlugin extends MicroAppPlugin
         $out->elementEnd('div');
 
         // @todo FIXME
-        $out->elementStart('div', array('class' => 'entry-content'));
+        $out->elementStart('div', array('class' => 'e-content'));
     }
 
     static function shorten($content, $notice)

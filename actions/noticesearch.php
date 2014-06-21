@@ -202,7 +202,7 @@ class SearchNoticeListItem extends NoticeListItem {
     function showContent()
     {
         // FIXME: URL, image, video, audio
-        $this->out->elementStart('p', array('class' => 'entry-content'));
+        $this->out->elementStart('p', array('class' => 'e-content'));
         if ($this->notice->rendered) {
             $this->out->raw($this->highlight($this->notice->rendered, $this->terms));
         } else {

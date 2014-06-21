@@ -39,7 +39,7 @@ function getNoticeFromElement(noticeElement)
             parseFloat(latlon[1])] };
     }
 
-    notice['html'] = noticeElement.find(".entry-content").html();
+    notice['html'] = noticeElement.find(".e-content").html();
     notice['url'] = noticeElement.find("a.timestamp").attr('href');
     notice['created_at'] = noticeElement.find("abbr.published").text();
 

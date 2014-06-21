@@ -90,7 +90,7 @@ class AttachmentList extends Widget
 
     function showListStart()
     {
-        $this->out->elementStart('ol', array('class' => 'attachments entry-content'));
+        $this->out->elementStart('ol', array('class' => 'attachments'));
     }
 
     function showListEnd()

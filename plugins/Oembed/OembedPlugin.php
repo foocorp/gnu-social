@@ -109,7 +109,7 @@ class OembedPlugin extends Plugin
         if (empty($oembed->author_name) && empty($oembed->provider)) {
             return true;
         }
-        $out->elementStart('div', array('id'=>'oembed_info', 'class'=>'entry-content'));
+        $out->elementStart('div', array('id'=>'oembed_info', 'class'=>'e-content'));
         if (!empty($oembed->author_name)) {
             $out->elementStart('div', 'fn vcard author');
             if (empty($oembed->author_url)) {

@@ -548,7 +548,7 @@ class ThreadedNoticeListInlineFavesItem extends ThreadedNoticeListFavesItem
 {
     function showStart()
     {
-        $this->out->elementStart('div', array('class' => 'entry-content notice-faves'));
+        $this->out->elementStart('div', array('class' => 'e-content notice-faves'));
     }
 
     function showEnd()
@@ -625,7 +625,7 @@ class ThreadedNoticeListInlineRepeatsItem extends ThreadedNoticeListRepeatsItem
 {
     function showStart()
     {
-        $this->out->elementStart('div', array('class' => 'entry-content notice-repeats'));
+        $this->out->elementStart('div', array('class' => 'e-content notice-repeats'));
     }
 
     function showEnd()

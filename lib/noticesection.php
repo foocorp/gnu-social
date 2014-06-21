@@ -78,28 +78,21 @@ class NoticeSection extends Section
                                             $notice->id));
             return;
         }
-        $this->out->elementStart('li', 'hentry notice');
-        $this->out->elementStart('div', 'entry-title');
-        $this->out->elementStart('span', 'vcard author');
-        $this->out->elementStart('a', array('title' => ($profile->fullname) ?
-                                            $profile->fullname :
-                                            $profile->nickname,
+        $this->out->elementStart('li', 'h-entry notice');
+        $this->out->elementStart('div', 'h-card');
+        $this->out->elementStart('a', array('title' => $profile->getBestName(),
                                             'href' => $profile->profileurl,
-                                            'class' => 'url'));
+                                            'class' => 'p-author u-url p-name'));
         $avatarUrl = $profile->avatarUrl(AVATAR_MINI_SIZE);
         $this->out->element('img', array('src' => $avatarUrl,
                                          'width' => AVATAR_MINI_SIZE,
                                          'height' => AVATAR_MINI_SIZE,
-                                         'class' => 'avatar photo',
-                                         'alt' =>  ($profile->fullname) ?
-                                         $profile->fullname :
-                                         $profile->nickname));
-        $this->out->text(' ');
-        $this->out->element('span', 'fn nickname', $profile->nickname);
+                                         'class' => 'avatar u-photo',
+                                         'alt' => $profile->getBestName()));
+        $this->out->text($profile->getBestName());
         $this->out->elementEnd('a');
-        $this->out->elementEnd('span');
 
-        $this->out->elementStart('p', 'entry-content');
+        $this->out->elementStart('p', 'e-content');
         $this->out->text(mb_strlen($notice->content) > $this->maxchars
             ? mb_substr($notice->content, 0, $this->maxchars) . '[…]'
             : $notice->content);

@@ -70,7 +70,7 @@ class GroupMessageListItem extends Widget
         $group  = $this->gm->getGroup();
         $sender = $this->gm->getSender();
 
-        $this->out->elementStart('li', array('class' => 'hentry notice message group-message',
+        $this->out->elementStart('li', array('class' => 'h-entry notice message group-message',
                                          'id' => 'message-' . $this->gm->id));
 
         $this->out->elementStart('div', 'entry-title');
@@ -90,12 +90,12 @@ class GroupMessageListItem extends Widget
         $this->out->elementEnd('a');
         $this->out->elementEnd('span');
 
-        $this->out->elementStart('p', array('class' => 'entry-content message-content'));
+        $this->out->elementStart('p', array('class' => 'e-content message-content'));
         $this->out->raw($this->gm->rendered);
         $this->out->elementEnd('p');
         $this->out->elementEnd('div');
 
-        $this->out->elementStart('div', 'entry-content');
+        $this->out->elementStart('div', 'e-content');
         $this->out->elementStart('a', array('rel' => 'bookmark',
                                             'class' => 'timestamp',
                                             'href' => $this->gm->url));

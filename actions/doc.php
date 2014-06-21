@@ -96,11 +96,11 @@ class DocAction extends Action
      */
     function showContentBlock()
     {
-        $this->elementStart('div', array('id' => 'content', 'class' => 'hentry'));
+        $this->elementStart('div', array('id' => 'content', 'class' => 'h-entry'));
         $this->showPageTitle();
         $this->showPageNoticeBlock();
         $this->elementStart('div', array('id' => 'content_inner',
-                                         'class' => 'entry-content'));
+                                         'class' => 'e-content'));
         // show the actual content (forms, lists, whatever)
         $this->showContent();
         $this->elementEnd('div');

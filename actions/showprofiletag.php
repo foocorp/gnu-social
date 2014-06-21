@@ -364,7 +364,7 @@ class Peopletag extends PeopletagListItem
     function showStart()
     {
         $mode = $this->peopletag->private ? 'private' : 'public';
-        $this->out->elementStart('div', array('class' => 'hentry peopletag peopletag-profile mode-'.$mode,
+        $this->out->elementStart('div', array('class' => 'h-entry peopletag peopletag-profile mode-'.$mode,
                                              'id' => 'peopletag-' . $this->peopletag->id));
     }
 

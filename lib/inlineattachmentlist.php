@@ -35,7 +35,7 @@ class InlineAttachmentList extends AttachmentList
 {
     function showListStart()
     {
-        $this->out->elementStart('div', array('class' => 'entry-content thumbnails'));
+        $this->out->elementStart('div', array('class' => 'attachments'));
     }
 
     function showListEnd()

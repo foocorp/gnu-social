@@ -101,7 +101,7 @@ class TagprofileAction extends Action
     function showContent()
     {
         if (Event::handle('StartShowTagProfileForm', array($this, $this->profile)) && $this->profile) {
-            $this->elementStart('div', 'entity_profile vcard author');
+            $this->elementStart('div', 'entity_profile h-card p-author');
             // TRANS: Header in list form.
             $this->element('h2', null, _('User profile'));
 
@@ -118,7 +118,7 @@ class TagprofileAction extends Action
                                       'class' => 'entity_nickname nickname'),
                            $this->profile->nickname);
             if ($this->profile->fullname) {
-                $this->element('div', 'fn entity_fn', $this->profile->fullname);
+                $this->element('div', 'p-name entity_fn', $this->profile->fullname);
             }
 
             if ($this->profile->location) {
@@ -128,7 +128,7 @@ class TagprofileAction extends Action
             if ($this->profile->homepage) {
                 $this->element('a', array('href' => $this->profile->homepage,
                                           'rel' => 'me',
-                                          'class' => 'url entity_url'),
+                                          'class' => 'u-url entity_url'),
                                $this->profile->homepage);
             }
 

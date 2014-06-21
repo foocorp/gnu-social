@@ -259,7 +259,7 @@ class BookmarkPlugin extends MicroAppPlugin
         }
 	        
 	    $id = (empty($nli->repeat)) ? $nli->notice->id : $nli->repeat->id;
-	    $class = 'hentry notice bookmark';
+	    $class = 'h-entry notice bookmark';
 	    if ($nli->notice->scope != 0 && $nli->notice->scope != 1) {
 	    	$class .= ' limited-scope';
 	    }

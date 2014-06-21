@@ -87,50 +87,26 @@ class ApplicationList extends Widget
     {
         $user = common_current_user();
 
-        $this->out->elementStart(
-            'li',
-            array(
-                'class' => 'application',
-                'id'    => 'oauthclient-' . $this->application->id
-            )
-        );
+        $this->out->elementStart('li', array('class' => 'application h-entry',
+                                             'id'    => 'oauthclient-' . $this->application->id));
 
-        $this->out->elementStart('span', 'vcard author');
-
-        $this->out->elementStart(
-            'a',
-            array(
-                'href' => common_local_url(
-                    'showapplication',
-                    array('id' => $this->application->id)),
-                    'class' => 'url'
-            )
-        );
+        $this->out->elementStart('a', array('href' => common_local_url('showapplication',
+                                                                       array('id' => $this->application->id)),
+                                            'class' => 'h-card'));
 
         if (!empty($this->application->icon)) {
-            $this->out->element(
-                'img',
-                array(
-                    'src' => $this->application->icon,
-                    'class' => 'photo avatar'
-                )
-            );
+            $this->out->element('img', array('src' => $this->application->icon,
+                                             'class' => 'avatar u-photo'));
         }
 
-        $this->out->element('span', 'fn', $this->application->name);
+        $this->out->text($this->application->name);
         $this->out->elementEnd('a');
-        $this->out->elementEnd('span');
 
         $this->out->raw(' by ');
 
-        $this->out->element(
-            'a',
-            array(
-                'href' => $this->application->homepage,
-                'class' => 'url'
-            ),
-            $this->application->organization
-        );
+        $this->out->element('a', array('href' => $this->application->homepage,
+                                       'class' => 'u-url'),
+                            $this->application->organization);
 
         $this->out->element('p', 'note', $this->application->description);
         $this->out->elementEnd('li');
@@ -204,44 +180,23 @@ class ConnectedAppsList extends Widget
     {
         $app = Oauth_application::getKV('id', $this->connection->application_id);
 
-        $this->out->elementStart(
-            'li',
-            array(
-                'class' => 'application',
-                'id'    => 'oauthclient-' . $app->id
-            )
-        );
+        $this->out->elementStart('li', array('class' => 'application h-entry',
+                                             'id'    => 'oauthclient-' . $app->id));
 
-        $this->out->elementStart('span', 'vcard author');
-
-        $this->out->elementStart(
-            'a',
-            array(
-                'href' => $app->source_url,
-                'class' => 'url'
-            )
-        );
+        $this->out->elementStart('a', array('href' => $app->source_url,
+                                            'class' => 'h-card p-name'));
 
         if (!empty($app->icon)) {
-            $this->out->element(
-                'img',
-                array(
-                    'src' => $app->icon,
-                    'class' => 'photo avatar'
-                )
-            );
+            $this->out->element('img', array('src' => $app->icon,
+                                             'class' => 'avatar u-photo'));
         }
         if ($app->name != 'anonymous') {
-            $this->out->element('span', 'fn', $app->name);
+            $this->out->text($app->name);
+        } else {
+            // TRANS: Name for an anonymous application in application list.
+            $this->out->element('span', 'p-name', _('Unknown application'));
         }
         $this->out->elementEnd('a');
-
-        if ($app->name == 'anonymous') {
-            // TRANS: Name for an anonymous application in application list.
-            $this->out->element('span', 'fn', _('Unknown application'));
-        }
-
-        $this->out->elementEnd('span');
 
         if ($app->name != 'anonymous') {
             // @todo FIXME: i18n trouble.
@@ -249,14 +204,9 @@ class ConnectedAppsList extends Widget
             // TRANS: Before this message the application name is put, behind it the organisation that manages it.
             $this->out->raw(_(' by '));
 
-            $this->out->element(
-                'a',
-                array(
-                    'href' => $app->homepage,
-                    'class' => 'url'
-                ),
-                $app->organization
-            );
+            $this->out->element('a', array('href' => $app->homepage,
+                                           'class' => 'h-card'),
+                                $app->organization);
         }
 
         // TRANS: Application access type

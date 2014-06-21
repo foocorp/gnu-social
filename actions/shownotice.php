@@ -40,7 +40,7 @@ require_once INSTALLDIR.'/lib/noticelist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ShownoticeAction extends Action
+class ShownoticeAction extends ManagedAction
 {
     /**
      * Notice object to show
@@ -184,33 +184,7 @@ class ShownoticeAction extends Action
      */
     function title()
     {
-        $base = $this->profile->getFancyName();
-
-        // TRANS: Title of the page that shows a notice.
-        // TRANS: %1$s is a user name, %2$s is the notice creation date/time.
-        return sprintf(_('%1$s\'s status on %2$s'),
-                       $base,
-                       common_exact_date($this->notice->created));
-    }
-
-    /**
-     * Handle input
-     *
-     * Only handles get, so just show the page.
-     *
-     * @param array $args $_REQUEST data (unused)
-     *
-     * @return void
-     */
-    protected function handle()
-    {
-        parent::handle();
-
-        if (StatusNet::isAjax()) {
-            $this->showAjax();
-        } else {
-            $this->showPage();
-        }
+        return $this->notice->getTitle();
     }
 
     /**
@@ -223,23 +197,9 @@ class ShownoticeAction extends Action
     function showContent()
     {
         $this->elementStart('ol', array('class' => 'notices xoxo'));
-        $nli = new SingleNoticeItem($this->notice, $this);
-        $nli->show();
-        $this->elementEnd('ol');
-    }
-
-    function showAjax()
-    {
-        $this->startHTML('text/xml;charset=utf-8');
-        $this->elementStart('head');
-        // TRANS: Title for page that shows a notice.
-        $this->element('title', null, _m('TITLE','Notice'));
-        $this->elementEnd('head');
-        $this->elementStart('body');
         $nli = new NoticeListItem($this->notice, $this);
         $nli->show();
-        $this->elementEnd('body');
-        $this->endHTML();
+        $this->elementEnd('ol');
     }
 
     /**
@@ -270,7 +230,7 @@ class ShownoticeAction extends Action
     {
         $user = User::getKV($this->profile->id);
 
-        if (!$user) {
+        if (!$user instanceof User) {
             return;
         }
 
@@ -287,14 +247,5 @@ class ShownoticeAction extends Action
                                      'content' => $avatarUrl));
         $this->element('meta', array('property' => 'og:description',
                                      'content' => $this->notice->content));
-    }
-}
-
-// @todo FIXME: Class documentation missing.
-class SingleNoticeItem extends DoFollowListItem
-{
-    function avatarSize()
-    {
-        return AVATAR_STREAM_SIZE;
     }
 }

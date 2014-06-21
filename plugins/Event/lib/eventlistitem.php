@@ -48,10 +48,8 @@ class EventListItem extends NoticeListItemAdapter
 {
     function showNotice()
     {
-        $this->nli->out->elementStart('div', 'entry-title');
         $this->nli->showAuthor();
         $this->showContent();
-        $this->nli->out->elementEnd('div');
     }
 
     function showContent()
@@ -68,9 +66,9 @@ class EventListItem extends NoticeListItemAdapter
             return;
         }
 
-        $out->elementStart('div', 'vevent event'); // VEVENT IN
+        $out->elementStart('div', 'vevent event e-content'); // VEVENT IN
 
-        $out->elementStart('h3');  // VEVENT/H3 IN
+        $out->elementStart('h3', 'summary');  // VEVENT/H3 IN
 
         if (!empty($event->url)) {
             $out->element('a',

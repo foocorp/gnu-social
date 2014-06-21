@@ -2,7 +2,7 @@ var QnA = {
 
     // @fixme: Should use ID
     close: function (form, best) {
-        var notice = $(form).closest('li.hentry.notice.question');
+        var notice = $(form).closest('li.h-entry.notice.question');
 
         notice.find('input#qna-best-answer,#qna-question-close').hide();
         notice.find('textarea').hide();
@@ -87,7 +87,7 @@ var QnA = {
             $('body').click(function (e) {
                 var dummyAnswer = $('ul.qna-dummy', notice);
                 var style = dummyAnswer.attr('style');
-                var ans = $(notice).find('li.hentry.notice.anwer', notice)
+                var ans = $(notice).find('li.h-entry.notice.anwer', notice)
                 if (ans > 0) {
                     hideReplyPlaceholders(notice);
                 }
@@ -300,7 +300,7 @@ var QnA = {
                     var list = form.closest('.threaded-replies');
 
                     // if the inserted notice's parent question needs it give it a placeholder
-                    var ans = questionItem.find('ul > li.hentry.notice.answer');
+                    var ans = questionItem.find('ul > li.h-entry.notice.answer');
                     if (ans.length == 0) {
                         SN.U.NoticeInlineReplyPlaceholder(questionItem);
                     }

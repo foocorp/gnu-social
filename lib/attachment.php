@@ -38,12 +38,12 @@ class Attachment extends AttachmentListItem
     function showLink() {
         if (Event::handle('StartShowAttachmentLink', array($this->out, $this->attachment))) {
             $this->out->elementStart('div', array('id' => 'attachment_view',
-                                                  'class' => 'hentry'));
+                                                  'class' => 'h-entry'));
             $this->out->elementStart('div', 'entry-title');
             $this->out->element('a', $this->linkAttr(), _('Download link'));
             $this->out->elementEnd('div');
 
-            $this->out->elementStart('div', 'entry-content');
+            $this->out->elementStart('div', 'e-content');
             $this->showRepresentation();
             $this->out->elementEnd('div');
             Event::handle('EndShowAttachmentLink', array($this->out, $this->attachment));

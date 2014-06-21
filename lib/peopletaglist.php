@@ -142,7 +142,7 @@ class PeopletagListItem extends Widget
     function showStart()
     {
         $mode = ($this->peopletag->private) ? 'private' : 'public';
-        $this->out->elementStart('li', array('class' => 'hentry peopletag mode-' . $mode,
+        $this->out->elementStart('li', array('class' => 'h-entry peopletag mode-' . $mode,
                                              'id' => 'peopletag-' . $this->peopletag->id));
     }
 
@@ -221,20 +221,16 @@ class PeopletagListItem extends Widget
 
     function showCreator()
     {
-        $this->out->elementStart('span', 'author vcard');
         $attrs = array();
         $attrs['href'] = $this->profile->profileurl;
-        $attrs['class'] = 'url';
+        $attrs['class'] = 'h-card p-author nickname p-name';
         $attrs['rel'] = 'contact';
+        $attrs['title'] = $this->profile->getFancyName();
 
-        if (!empty($this->profile->fullname)) {
-            $attrs['title'] = $this->profile->fullname . ' (' . $this->profile->nickname . ')';
-        }
         $this->out->elementStart('a', $attrs);
         $this->showAvatar($this->profile);
         $this->out->text($this->profile->getNickname());
         $this->out->elementEnd('a');
-        $this->out->elementEnd('span');
     }
 
     function showUpdated()
@@ -287,7 +283,6 @@ class PeopletagListItem extends Widget
 
     function showDescription()
     {
-        $this->out->element('div', 'entry-content description',
-                            $this->peopletag->description);
+        $this->out->element('div', 'e-content description', $this->peopletag->description);
     }
 }

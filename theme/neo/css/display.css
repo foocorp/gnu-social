@@ -421,26 +421,20 @@ h6 {font-size: 1em;}
     border-bottom: 2px dotted #eee;
 }
 
-.notice div.entry-content {
-    font-size: 0.88em;
+.notice div.e-content {
     line-height: 1.2em;
-    margin-top: 6px;
 }
 
-.user_in .notice div.entry-content {
+.user_in .notice div.e-content {
     max-width: 440px;
 }
 
-.entry-content a.conversation:before {
+.e-content a.conversation:before {
 	content: " (";
 }
 
-.entry-content a.conversation:after {
+.e-content a.conversation:after {
 	content: ")";
-}
-
-.notice-options {
-    margin-top: 4px;
 }
 
 .notice-options .form_repeat.dialogbox {
@@ -459,11 +453,7 @@ h6 {font-size: 1em;}
     min-width: 80px;
 }
 
-#content .threaded-replies .notice .author .photo {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-.user_in.realtime-popup .notice div.entry-content {
+.user_in.realtime-popup .notice div.e-content {
     max-width: 320px;
 }
 
@@ -747,31 +737,31 @@ padding-right:0;
 
 /* Limited-scope */
 
-.limited-scope .entry-content .timestamp {
+.limited-scope .e-content .timestamp {
     padding-left: 20px;
     position: relative;
 }
 
-.limited-scope .entry-content .timestamp:before {
+.limited-scope .e-content .timestamp:before {
     content: url(../images/lock.png);
     position: absolute;
     top: -2px;
     left: 0px;
 }
 
-.limited-scope li .entry-content .timestamp {
+.limited-scope li .e-content .timestamp {
     padding-left: 0px;
 }
 
-.limited-scope li .entry-content .timestamp:before {
+.limited-scope li .e-content .timestamp:before {
     content: none;
 }
 
-.limited-scope li.limited-scope .entry-content .timestamp {
+.limited-scope li.limited-scope .e-content .timestamp {
     padding-left: 20px;
 }
 
-.limited-scope li.limited-scope .entry-content .timestamp:before {
+.limited-scope li.limited-scope .e-content .timestamp:before {
     content: url(../images/lock.png);
     position: absolute;
     top: -2px;
@@ -970,13 +960,13 @@ td.entity_profile {
     min-width: 250px;
 }
 
-.profile_list .fn {
+.profile_list .p-name {
     display: block;
     font-size: 1.1em;
     width: auto;
 }
 
-.profile_list .nickname, .profile_list .fn.nickname {
+.profile_list .nickname, .profile_list .p-name.nickname {
     position: relative;
     top: -8px;
     display: block;

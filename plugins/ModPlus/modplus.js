@@ -5,7 +5,7 @@
 
 $(function() {
     // Notice lists...
-    $(document).on('mouseenter', '.notice .author', function(e) {
+    $(document).on('mouseenter', '.notice .p-author', function(e) {
         var notice = $(this).closest('.notice');
         var popup = notice.find('.remote-profile-options');
         if (popup.length) {
@@ -21,7 +21,7 @@ $(function() {
     });
 
     // Profile lists...
-    $(document).on('mouseenter', '.profile .avatar', function(e) {
+    $(document).on('mouseenter', '.profile .u-photo', function(e) {
         var profile = $(this).closest('.profile');
         var popup = profile.find('.remote-profile-options');
         if (popup.length) {

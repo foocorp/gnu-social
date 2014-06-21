@@ -78,26 +78,17 @@ class ProfileSection extends Section
     {
         $this->out->elementStart('tr');
         $this->out->elementStart('td');
-        $this->out->elementStart('span', 'vcard');
-        $this->out->elementStart('a', array('title' => ($profile->fullname) ?
-                                       $profile->fullname :
-                                       $profile->nickname,
+        $this->out->elementStart('a', array('title' => $profile->getBestName(),
                                        'href' => $profile->profileurl,
                                        'rel' => 'contact member',
-                                       'class' => 'url'));
-        $this->out->text(' ');
+                                       'class' => 'h-card u-url'));
         $avatarUrl = $profile->avatarUrl(AVATAR_MINI_SIZE);
         $this->out->element('img', array('src' => $avatarUrl,
                                     'width' => AVATAR_MINI_SIZE,
                                     'height' => AVATAR_MINI_SIZE,
-                                    'class' => 'avatar photo',
-                                    'alt' =>  ($profile->fullname) ?
-                                    $profile->fullname :
-                                    $profile->nickname));
-        $this->out->text(' ');
-        $this->out->element('span', 'fn nickname', $profile->nickname);
+                                    'class' => 'avatar u-photo',
+                                    'alt' => $profile->getBestName()));
         $this->out->elementEnd('a');
-        $this->out->elementEnd('span');
         $this->out->elementEnd('td');
         if (isset($profile->value)) {
             $this->out->element('td', 'value', $profile->value);

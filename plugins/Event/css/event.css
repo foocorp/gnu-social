@@ -6,8 +6,8 @@
 .event-notice-count { float: right; }
 .event-info { float: left; }
 .event-title { margin-left: 0px; }
-#content .event .entry-title { margin-left: 0px; }
-#content .event .entry-content { margin-left: 0px; }
+#content .event .h-entry { margin-left: 0px; }
+#content .event .e-content { margin-left: 0px; }
 .ui-autocomplete {
     max-height: 100px;
     overflow-y: auto;
@@ -32,12 +32,9 @@ li.rsvp-list .entities li {
     margin-bottom: 8px;
     display: inline;
 }
-li.rsvp-list .entities li .photo {
+li.rsvp-list .entities li .u-photo {
     margin: 0 !important;
     float: none !important;
-}
-li.rsvp-list .entities li .fn {
-    display: none;
 }
 
 .notice .vevent div {

@@ -73,7 +73,7 @@ class NoticeTree extends NoticeList
 
         // We take responsibility for doing the li
 
-        $this->out->elementStart('li', array('class' => 'hentry notice',
+        $this->out->elementStart('li', array('class' => 'h-entry notice',
                                              'id' => 'notice-' . $item->notice->id));
 
         $item->show();

@@ -863,7 +863,7 @@ var SN = { // StatusNet
                     var m = $(this);
                     m.addClass(SN.C.S.Processing);
                     $.get(m.attr('href'), {ajax: 1}, function (data) {
-                        m.parent('.entry-content').html($(data).find('#attachment_view .entry-content').html());
+                        m.parent('.e-content').html($(data).find('#attachment_view .e-content').html());
                     });
 
                     return false;
@@ -1361,7 +1361,7 @@ var SN = { // StatusNet
 
             var profileLink = $('#nav_profile a').attr('href');
             if (profileLink) {
-                var authorUrl = $(notice).find('.vcard.author a.url').attr('href');
+                var authorUrl = $(notice).find('.h-card.u-url').attr('href');
                 if (authorUrl == profileLink) {
                     if (action == 'all' || action == 'showstream') {
                         // Posts always show on your own friends and profile streams.

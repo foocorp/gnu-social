@@ -189,7 +189,7 @@ address img {
     max-width: 158px;
 }
 
-address img + .fn {
+address img + .p-name {
     display: none;
 }
 
@@ -626,52 +626,52 @@ address .poweredby {
     width:100%;
 }
 
-.notice .author {
+.notice .p-author {
     margin-right: 8px;
 }
 
-.notice .addressees:before {
+.notice .addressees::before {
     content: '\25B8';
+}
+.notice .addressees, .notice .addressees li {
+    display: inline;
+}
+.notice .addressees > li::before {
+    content: ',';
+}
+.notice .addressees > li:first-child::before {
+    content: '';
 }
 
 .notice .addressees .group {
     font-style: italic;
 }
 
-.fn {
+.p-name {
     overflow: hidden;
 }
 
-.notice .author .fn {
+.notice .p-author {
     font-weight: bold;
 }
 
-#core .vcard .photo {
-    display: inline;
-    margin-right: 11px;
+#core .h-card .u-photo {
     float: left;
 }
 
-#content .notice .author .photo {
-    position: absolute;
-    top: 7px;
-    left: 0px;
-    float: none;
+#content .notice .h-entry {
+    margin: 2px 0 0 0;
+    min-height: 32px;
 }
 
-#content .notice .entry-title {
-    margin: 2px 7px 0px 59px;
-    min-height: 35px;
-}
-
-.vcard .url {
+.h-card .u-url, .h-card.u-url {
     text-decoration:none;
 }
-.vcard .url:hover {
+.h-card .u-url:hover, .h-card.u-url:hover {
     text-decoration:underline;
 }
 
-.notice .entry-title {
+.notice .h-entry {
     overflow:hidden;
     word-wrap:break-word;
 }
@@ -688,11 +688,8 @@ font-style:italic;
     display:none;
 }
 
-#remoteprofile .notice .entry-title, #remoteprofile .notice div.entry-content,
-#showstream .notice .entry-title, #showstream .notice div.entry-content {
-    margin-left: 0;
-}
-
+#remoteprofile .notice .h-entry,
+#showstream .notice .h-entry,
 #remoteprofile .notice .entry-title,
 #showstream .notice .entry-title {
     min-height: 1px;
@@ -708,33 +705,22 @@ font-style:italic;
     min-height: 1em; 
 }
 
-#shownotice .notice .entry-title {
+#shownotice .notice .h-entry {,
     font-size:2.2em;
     min-height:123px;
     font-size: 1.6em;
     line-height: 1.2em;
 }
 
-#shownotice .notice div.entry-content {
-    margin-left:0;
+.notice div.e-content {
+    margin-left: 55px;
 }
 
-.notice p.entry-content {
-    display:inline;
-}
-
-.notice div.entry-content {
-    clear:left;
-    float:left;
-    margin-left:59px;
-    margin-top: 10px;
-}
-
-.entry-content .repeat {
+.entry-metadata .repeat {
     display: block;
 }
 
-.entry-content .repeat .photo {
+.entry-metadata .repeat .u-photo {
 float:none;
 margin-right:1px;
 position:relative;
@@ -742,11 +728,19 @@ top:4px;
 left:0;
 }
 
+.entry-metadata {
+    clear: left;
+    float: left;
+    font-size: 0.88em;
+}
+
+.entry-metadata, .notice-options {
+    margin-bottom: 7px;
+    margin-top: 12px;
+}
+
 .notice-options {
     float: right;    
-    margin-top: 12px;
-    margin-right: -6px;
-    margin-bottom: 10px;
 }
 
 .notice-options fieldset {
@@ -858,10 +852,10 @@ content: ":";
     clear: both;
     float: left;
     width: 458px;
-    margin-left: 59px;
-    margin-top: 10px;
+    margin-left: 55px;
     margin-bottom: 10px;
     padding-right: 2px;
+    padding-top: 5px;
     border-left: 3px solid #ECECF2;
     background: #fafafa;
     color: #222;
@@ -870,10 +864,6 @@ content: ":";
 
 .threaded-replies:empty {
     margin-bottom: 0px; 
-}
-
-.user_in .threaded-replies {
-    margin-top: 0px;
 }
 
 #content .notice .threaded-replies .notice,
@@ -889,34 +879,27 @@ content: ":";
     background: none;
 }
 
+#content .notice .threaded-replies .h-entry,
 #content .notice .threaded-replies .entry-title {
     min-height: 1px;
 }
 
-#content .threaded-replies .notice .author .photo {
+#content .threaded-replies .notice .p-author .u-photo {
     height: 24px;
     width: 24px;
     top: 12px;
 }
 
-#content .notice .threaded-replies .notice .entry-title {
-    margin: 2px 7px 0px 35px;
+#content .notice .threaded-replies .notice .h-entry p.e-content {
+    margin-left: 32px;
 }
 
-#content .notice .threaded-replies .notice div.entry-content {
-    clear:left;
-    float:left;
-    margin-left: 35px;
-    margin-top: 6px !important;
+#content .notice .threaded-replies .notice div.e-content {
+    margin-left: 32px;
 }
 
-#content .notice .threaded-replies .notice div.entry-content.notice-faves {
-    margin-top: 2px !important;
-}
-
-#content .notice .threaded-replies .notice .notice-options {
-    margin-top: 5px;
-    margin-bottom: 0px;
+#content .notice .threaded-replies .notice div.e-content.notice-faves {
+    clear: both;
 }
 
 .threaded-replies li {
@@ -986,11 +969,6 @@ content: ":";
     width: auto;
 }
 
-#conversation .notices .threaded-replies {
-    margin-left: 59px;
-    background: #fafafa;
-}
-
 #conversation .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices  {
     background: none;
     margin-left: 0px;
@@ -1003,7 +981,12 @@ content: ":";
 clear:both;
 }
 
-.section .vcard .photo {
+.notice p.e-content {
+    clear: none;
+    display: block;
+}
+
+.section .h-card .u-photo {
 margin-right:7px;
 margin-bottom:0;
 }
@@ -1021,8 +1004,9 @@ padding-top:0;
 .section .notice .author {
 margin-right:0;
 }
-.section .notice .author .fn {
-display:none;
+
+.p-name.metadata {
+    display:none;
 }
 
 #aside_primary ol.notices {
@@ -1084,11 +1068,8 @@ content: ":";
     margin-bottom: 8px;
     display: inline;
 }
-.section .entities li .photo {
+.section .entities li .u-photo {
     margin: 0;
-}
-.section .entities li .fn {
-    display: none;
 }
 
 .tag-cloud {
@@ -1160,7 +1141,7 @@ clear:both;
 margin-bottom:18px;
 }
 
-.entry-content .success {
+.e-content .success {
     padding: 6px;
 }
 
@@ -1477,16 +1458,20 @@ margin-left:11px;
 width:auto;
 }
 
-.hentry .entry-content .form_settings ul {
+.h-entry .e-content .form_settings ul {
 margin-left:0;
 }
 
-.limited-scope .entry-content .timestamp:before {
+.entry-metadata .timestamp span.p-name {
+    display: none;
+}
+
+.limited-scope .e-content .timestamp:before {
 content:'☠';
 font-size:150%;
 }
 
-#content .notice-source-activity div.entry-title, .notice-source-activity div.entry-content {
+#content .notice-source-activity div.entry-title, .notice-source-activity div.e-content {
     margin-left: 0;
 } 
 
@@ -1609,25 +1594,25 @@ height:16px;
 margin-left:0;
 }
 
-.entity_profile .nickname {
+.entity_profile .p-nickname {
     font-size:1.4em;
 }
 
-.entity_profile .fn {
+.entity_profile .p-name {
     font-size: 1.2em;
     clear: left;
 }
 
-.entity_profile .fn:before {
+.entity_profile .p-name:before {
 content: "(";
 font-weight:normal;
 }
-.entity_profile .fn:after {
+.entity_profile .p-name:after {
 content: ")";
 font-weight:normal;
 }
-.entity_profile .nickname:after,
-.entity_profile .nickname:before {
+.entity_profile .p-nickname:after,
+.entity_profile .p-nickname:before {
 content:"";
 }
 .entity_profile dt,
@@ -1884,13 +1869,13 @@ display:none;
     margin-bottom: 20px;
 }
 
-.profile .entity_profile .fn.nickname,
-.profile .entity_profile .url[rel~=contact] {
+.profile .entity_profile .p-name,
+.profile .entity_profile .u-url[rel~=contact] {
 margin-left:0;
 display:inline;
 }
 
-.profile .entity_profile .fn,
+.profile .entity_profile .p-name,
 .profile .entity_profile .label {
 margin-left:11px;
 margin-bottom:4px;
@@ -1899,10 +1884,10 @@ clear:none;
 }
 
 .profile .entity_profile .note,
-.profile .entity_profile .url,
+.profile .entity_profile .u-url,
 .profile .entity_profile .entity_tags,
 .profile .entity_profile .form_subscription_edit {
-margin-left:59px;
+margin-left:55px;
 clear:none;
 display:block;
 width:auto;
@@ -1933,7 +1918,7 @@ min-height: 90px;
 list-style: none;
 }
 
-.peopletag .entry-content {
+.peopletag .e-content {
 width:auto;
 }
 
@@ -1976,13 +1961,13 @@ font-weight:normal;
 margin-right:10px;
 }
 
-.profile-lister li .photo {
+.profile-lister li .u-photo {
 display:inline;
 margin-right:7px;
 margin-bottom:-5px;
 }
 
-.profile-lister li .fn {
+.profile-lister li .p-name {
 font-weight:bold;
 }
 
@@ -2082,8 +2067,8 @@ width:68%;
 #showapplication .entity_profile .entity_fn {
 margin-left:0;
 }
-#showapplication .entity_profile .fn:before,
-#showapplication .entity_profile .fn:after {
+#showapplication .entity_profile .p-name:before,
+#showapplication .entity_profile .p-name:after {
 content:'';
 }
 #showapplication .entity_data {

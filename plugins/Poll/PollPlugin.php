@@ -401,7 +401,7 @@ class PollPlugin extends MicroAppPlugin
         $nli = new NoticeListItem($notice, $out);
         $nli->showNotice();
 
-        $out->elementStart('div', array('class' => 'entry-content poll-content'));
+        $out->elementStart('div', array('class' => 'e-content poll-content'));
         $poll = Poll::getByNotice($notice);
         if ($poll) {
             if ($user) {
@@ -422,7 +422,7 @@ class PollPlugin extends MicroAppPlugin
         $out->elementEnd('div');
 
         // @fixme
-        $out->elementStart('div', array('class' => 'entry-content'));
+        $out->elementStart('div', array('class' => 'e-content'));
     }
 
     function showNoticePollResponse(Notice $notice, $out)
@@ -434,7 +434,7 @@ class PollPlugin extends MicroAppPlugin
         $nli->showNotice();
 
         // @fixme
-        $out->elementStart('div', array('class' => 'entry-content'));
+        $out->elementStart('div', array('class' => 'e-content'));
     }
 
     function entryForm($out)

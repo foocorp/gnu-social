@@ -326,7 +326,7 @@ class NoticeAnswerListItem extends NoticeListItem
      */
     function showContent()
     {
-        $this->out->elementStart('p', array('class' => 'entry-content answer-content'));
+        $this->out->elementStart('p', array('class' => 'e-content answer-content'));
         if ($this->notice->rendered) {
             $this->out->raw($this->notice->rendered);
         } else {

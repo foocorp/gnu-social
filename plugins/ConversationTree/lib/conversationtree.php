@@ -110,7 +110,7 @@ class ConversationTree extends NoticeList
     {
         $notice = $this->table[$id];
 
-        $this->out->elementStart('li', array('class' => 'hentry notice',
+        $this->out->elementStart('li', array('class' => 'h-entry notice',
                                              'id' => 'notice-' . $id));
 
         $item = $this->newListItem($notice);

@@ -232,6 +232,19 @@ class Notice extends Managed_DataObject
         return common_local_url('shownotice', array('notice' => $this->id), null, null, false);
     }
 
+    public function getTitle()
+    {
+        $title = null;
+        if (Event::handle('GetNoticeTitle', array($this, &$title))) {
+            // TRANS: Title of a notice posted without a title value.
+            // TRANS: %1$s is a user name, %2$s is the notice creation date/time.
+            $title = sprintf(_('%1$s\'s status on %2$s'),
+                             $this->getProfile()->getFancyName(),
+                             common_exact_date($this->created));
+        }
+        return $title;
+    }
+
     /*
      * Get the original representation URL of this notice.
      */

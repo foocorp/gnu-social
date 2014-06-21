@@ -67,13 +67,11 @@ class GroupMiniList extends GroupList
 
     function showGroup()
     {
-        $this->out->elementStart('li', 'vcard');
-        $this->out->elementStart('a', array('title' => ($this->group->fullname) ?
-                                       $this->group->fullname :
-                                       $this->group->nickname,
+        $this->out->elementStart('li', 'h-card');
+        $this->out->elementStart('a', array('title' => $this->group->getBestName(),
                                        'href' => $this->group->homeUrl(),
                                        'rel' => 'contact group',
-                                       'class' => 'url'));
+                                       'class' => 'p-name u-url org'));
 
         $logo = ($this->group->mini_logo) ?
           $this->group->mini_logo : User_group::defaultLogo(AVATAR_MINI_SIZE);
@@ -82,10 +80,7 @@ class GroupMiniList extends GroupList
                                     'width' => AVATAR_MINI_SIZE,
                                     'height' => AVATAR_MINI_SIZE,
                                     'class' => 'avatar photo',
-                                    'alt' =>  ($this->group->fullname) ?
-                                    $this->group->fullname :
-                                    $this->group->nickname));
-        $this->out->element('span', 'fn org nickname', $this->group->nickname);
+                                    'alt' => $this->group->getBestName()));
         $this->out->elementEnd('a');
         $this->out->elementEnd('li');
     }

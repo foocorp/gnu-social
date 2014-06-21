@@ -376,19 +376,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         <link rel="stylesheet" type="text/css" href="theme/base/css/display.css" media="screen, projection, tv"/>
         <link rel="stylesheet" type="text/css" href="theme/neo/css/display.css" media="screen, projection, tv"/>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/base/css/ie.css" /><![endif]-->
-        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" theme/base/css/ie6.css" /><![endif]-->
-        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" theme/base/css/ie7.css" /><![endif]-->
         <script src="js/extlib/jquery.js"></script>
         <script src="js/install.js"></script>
     </head>
     <body id="install">
         <div id="wrap">
             <div id="header">
-                <address id="site_contact" class="vcard">
-                    <a class="url home bookmark" href=".">
-                        <img class="logo photo" src="theme/neo/logo.png" alt="GNU social"/>
-                        <span class="fn org">GNU social</span>
+                <address id="site_contact" class="h-card">
+                    <a class="u-url p-name home bookmark org" href=".">
+                        <img class="logo u-photo" src="theme/neo/logo.png" alt="GNU social"/>
+                        GNU social
                     </a>
                 </address>
                 <div id="site_nav_global_primary"></div>

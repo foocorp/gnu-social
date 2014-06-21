@@ -191,7 +191,7 @@ class SortableSubscriptionListItem extends SubscriptionListItem
 
     function startProfile()
     {
-        $this->out->elementStart('td', 'entity_profile vcard entry-content');
+        $this->out->elementStart('td', 'entity_profile h-card e-content');
     }
 
     function endProfile()

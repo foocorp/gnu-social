@@ -114,9 +114,9 @@ class AttachmentListItem extends Widget
                 case 'image/jpeg':
                     try {
                         $thumb = $this->attachment->getThumbnail();
-                        $this->out->element('img', array('src' => $thumb->getUrl(), 'alt' => ''));
+                        $this->out->element('img', array('class'=>'u-photo', 'src' => $thumb->getUrl(), 'alt' => $e->file->title));
                     } catch (UseFileAsThumbnailException $e) {
-                        $this->out->element('img', array('src' => $e->file->getUrl(), 'alt' => $e->file->title));
+                        $this->out->element('img', array('class'=>'u-photo', 'src' => $e->file->getUrl(), 'alt' => $e->file->title));
                     } catch (UnsupportedMediaException $e) {
                         // FIXME: Show a good representation of unsupported/unshowable images
                     }
@@ -151,7 +151,7 @@ class AttachmentListItem extends Widget
                         $poster = null;
                     }
                     $this->out->elementStart($mediatype,
-                                        array('class'=>'attachment_player',
+                                        array('class'=>"attachment_player u-{$mediatype}",
                                             'poster'=>$poster,
                                             'controls'=>'controls'));
                     $this->out->element('source',

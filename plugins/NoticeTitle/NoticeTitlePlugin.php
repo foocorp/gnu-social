@@ -181,14 +181,15 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onStartShowNoticeItem($nli)
+    function onStartShowNoticeTitle(NoticeListItem $nli)
     {
         $title = Notice_title::fromNotice($nli->notice);
 
         if (!empty($title)) {
-            $nli->out->elementStart('h4', array('class' => 'notice_title'));
-            $nli->out->element('a', array('href' => $nli->notice->getUrl()), $title);
-            $nli->out->elementEnd('h4');
+            $nli->elementStart('h4', array('class' => 'p-name'));
+            $nli->element('a', array('href' => $nli->notice->getUrl()), $title);
+            $nli->elementEnd('h4');
+            return false;
         }
 
         return true;
@@ -284,20 +285,16 @@ class NoticeTitlePlugin extends Plugin
     /**
      * If a notice has a title, show it in the <h1> element
      *
-     * @param Action $action Action being executed
+     * @param Notice $notice Notice we're getting the title for
+     * @param string $title  Reference to the variable which we set to the notice's title
      *
      * @return boolean hook value
      */
-    function onStartShowPageTitle($action)
+    function onGetNoticeTitle(Notice $notice, &$title)
     {
-        $actionName = $action->trimmed('action');
-
-        if ($actionName == 'shownotice') {
-            $title = Notice_title::fromNotice($action->notice);
-            if (!empty($title)) {
-                $action->element('h1', null, $title);
-                return false;
-            }
+        $title = Notice_title::fromNotice($notice);
+        if (!is_null($title)) {
+            return false;
         }
 
         return true;

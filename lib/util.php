@@ -635,17 +635,13 @@ function common_linkify_mention($mention)
         $xs = new XMLStringer(false);
 
         $attrs = array('href' => $mention['url'],
-                       'class' => 'url');
+                       'class' => 'h-card '.$mention['type']);
 
         if (!empty($mention['title'])) {
             $attrs['title'] = $mention['title'];
         }
 
-        $xs->elementStart('span', 'vcard');
-        $xs->elementStart('a', $attrs);
-        $xs->element('span', 'fn nickname '.$mention['type'], $mention['text']);
-        $xs->elementEnd('a');
-        $xs->elementEnd('span');
+        $xs->element('a', $attrs, $mention['text']);
 
         $output = $xs->getString();
 

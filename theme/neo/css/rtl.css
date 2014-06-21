@@ -15,7 +15,7 @@ span.rtl{
     direction: rtl !important;
 }
 
-#content .notice .entry-title{
+#content .notice .h-entry {
     direction: ltr;
 }
 
@@ -27,12 +27,12 @@ span.rtl{
     float: left;
 }
 
-.notice div.entry-content {
+.notice div.e-content {
     float: right;
     clear: right;
 }
 
-#content .notice .threaded-replies .notice div.entry-content{
+#content .notice .threaded-replies .notice div.e-content{
     clear: right;
     float: right;
 }
@@ -86,7 +86,7 @@ address{
     margin-left: 0;
 }
 
-.notice p.entry-content {
+.notice p.e-content {
     float: left;
 }
 
@@ -104,15 +104,7 @@ address{
 /*    background-position: right center; */
 }
 
-#content .notice .threaded-replies .notice .entry-title{
-    margin: 2px 35px 0 7px;
-}
-
-#content .notice .entry-title {
-    margin: 2px 59px 0 7px;
-}
-
-#content .notice .author .photo{
+#content .notice .author .u-photo{
     right: 0;
     left: auto;
 }
@@ -121,12 +113,12 @@ address{
     float: left;
 }
 
-.notice div.entry-content {
+.notice div.e-content {
     margin-right: 59px;
     margin-left: 0;
 }
 
-#core .vcard .photo {
+#core .h-card .u-photo {
     margin-left: 11px;
     margin-right: 0;
 }
@@ -135,12 +127,8 @@ address{
     margin: 2px 10px 4px 0;
 }
 
-#shownotice .notice div.entry-content {
+#shownotice .notice div.e-content {
     margin-right: 0;
-}
-
-.notice .addressees:before {
-    content: '\25C2';
 }
 
 #content thead th {
@@ -270,12 +258,12 @@ select {
     float: left;
 }
 
-.profile .entity_profile .fn, .profile .entity_profile .label {
+.profile .entity_profile .p-name, .profile .entity_profile .label {
     margin-right: 11px;
     margin-left: 0;
 }
 
-#core .vcard .photo {
+#core .h-card .u-photo {
     float: right;
 }
 
@@ -302,16 +290,16 @@ select {
     margin-right: 0;
 }
 
-#showstream .notice .entry-title, #showstream .notice div.entry-content {
+#showstream .notice .h-entry, #showstream .notice div.e-content {
     margin-right: 0;
 }
 
-.limited-scope .entry-content .timestamp:before {
+.limited-scope .e-content .timestamp:before {
     right: 0;
     left: auto;
 }
 
-.limited-scope .entry-content .timestamp {
+.limited-scope .e-content .timestamp {
     padding-left: 0;
     padding-right: 20px;
 }

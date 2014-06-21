@@ -582,8 +582,7 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showLogo()
     {
-        $this->elementStart('address', array('id' => 'site_contact',
-                                             'class' => 'vcard'));
+        $this->elementStart('address', array('id' => 'site_contact', 'class' => 'h-card'));
         if (Event::handle('StartAddressData', array($this))) {
             if (common_config('singleuser', 'enabled')) {
                 $user = User::singleUser();
@@ -596,7 +595,7 @@ class Action extends HTMLOutputter // lawsuit
                 $url = common_local_url('public');
             }
 
-            $this->elementStart('a', array('class' => 'url home bookmark',
+            $this->elementStart('a', array('class' => 'home bookmark',
                                            'href' => $url));
 
             if (StatusNet::isHTTPS()) {
@@ -622,13 +621,11 @@ class Action extends HTMLOutputter // lawsuit
             }
 
             if (!empty($logoUrl)) {
-                $this->element('img', array('class' => 'logo photo',
+                $this->element('img', array('class' => 'logo u-photo p-name',
                                             'src' => $logoUrl,
                                             'alt' => common_config('site', 'name')));
             }
 
-            $this->text(' ');
-            $this->element('span', array('class' => 'fn org'), common_config('site', 'name'));
             $this->elementEnd('a');
 
             Event::handle('EndAddressData', array($this));

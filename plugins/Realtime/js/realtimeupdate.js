@@ -632,7 +632,7 @@ RealtimeUpdate = {
       */
      initPopupWindow: function()
      {
-         $('.notices .entry-title a, .notices .entry-content a').bind('click', function() {
+         $('.notices .entry-title a, .notices .e-content a').bind('click', function() {
             window.open(this.href, '');
 
             return false;

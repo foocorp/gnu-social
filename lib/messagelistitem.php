@@ -67,32 +67,25 @@ abstract class MessageListItem extends Widget
      */
     function show()
     {
-        $this->out->elementStart('li', array('class' => 'hentry notice',
+        $this->out->elementStart('li', array('class' => 'h-entry notice',
                                              'id' => 'message-' . $this->message->id));
 
         $profile = $this->getMessageProfile();
 
-        $this->out->elementStart('div', 'entry-title');
-        $this->out->elementStart('span', 'vcard author');
         $this->out->elementStart('a', array('href' => $profile->profileurl,
-                                            'class' => 'url'));
+                                            'class' => 'p-author'));
         $avatarUrl = $profile->avatarUrl(AVATAR_STREAM_SIZE);
         $this->out->element('img', array('src' => $avatarUrl,
-                                         'class' => 'photo avatar',
+                                         'class' => 'avatar u-photo',
                                          'width' => AVATAR_STREAM_SIZE,
                                          'height' => AVATAR_STREAM_SIZE,
-                                         'alt' =>
-                                         ($profile->fullname) ? $profile->fullname :
-                                         $profile->nickname));
-        $this->out->element('span', array('class' => 'nickname fn'),
-                            $profile->nickname);
+                                         'alt' => $profile->getBestName()));
+        $this->out->element('span', array('class' => 'nickname fn'), $profile->getNickname());
         $this->out->elementEnd('a');
-        $this->out->elementEnd('span');
 
         // FIXME: URL, image, video, audio
-        $this->out->elementStart('p', array('class' => 'entry-content'));
+        $this->out->elementStart('div', array('class' => 'e-content'));
         $this->out->raw($this->message->rendered);
-        $this->out->elementEnd('p');
         $this->out->elementEnd('div');
 
         $messageurl = common_local_url('showmessage',
@@ -104,7 +97,7 @@ abstract class MessageListItem extends Widget
             $messageurl = $this->message->uri;
         }
 
-        $this->out->elementStart('div', 'entry-content');
+        $this->out->elementStart('div', 'entry-metadata');
         $this->out->elementStart('a', array('rel' => 'bookmark',
                                             'class' => 'timestamp',
                                             'href' => $messageurl));

@@ -86,7 +86,7 @@ class ModPlusPlugin extends Plugin
      * @param NoticeListItem $item
      * @return boolean hook value
      */
-    function onStartShowNoticeItem($item)
+    function onStartShowNoticeItem(NoticeListItem $item)
     {
         $this->showProfileOptions($item->out, $item->profile);
         return true;
@@ -108,12 +108,11 @@ class ModPlusPlugin extends Plugin
      * Currently only adds output for remote profiles, nothing for local users.
      *
      * @param HTMLOutputter $out
-     * @param Profile $profile (may also be an ArrayWrapper... sigh)
+     * @param Profile $profile
      */
-    protected function showProfileOptions(HTMLOutputter $out, $profile)
+    protected function showProfileOptions(HTMLOutputter $out, Profile $profile)
     {
-        $isRemote = !(User::getKV('id', $profile->id));
-        if ($isRemote) {
+        if (!$profile->isLocal()) {
             $target = common_local_url('remoteprofile', array('id' => $profile->id));
             // TRANS: Label for access to remote profile options.
             $label = _m('Remote profile options...');

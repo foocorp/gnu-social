@@ -205,9 +205,8 @@ class SortableGroupListItem extends SortableSubscriptionListItem
     {
         $this->startProfile();
 
-        $hasFN = ($this->profile->fullname) ? 'nickname' : 'fn org nickname';
         $this->out->elementStart('a', array('href'  => $this->profile->homeUrl(),
-                                            'class' => 'h-card org nickname',
+                                            'class' => 'h-card p-org p-nickname',
                                             'rel'   => 'contact group'));
         // getProfile here is because $this->profile is a User_group, which it should stop
         // being by making sure the group listing runs a ->getGroup when it's necessary.

@@ -113,15 +113,25 @@ class NoticeListItem extends Widget
 
     function showNotice()
     {
-        $this->out->elementStart('div', 'entry-title');
+        $this->showNoticeTitle();
         $this->showAuthor();
+        $this->showAddressees();
         $this->showContent();
-        $this->out->elementEnd('div');
+    }
+
+    function showNoticeTitle()
+    {
+        if (Event::handle('StartShowNoticeTitle', array($this))) {
+            $this->element('a', array('href' => $this->notice->getUrl(),
+                                      'class' => 'p-name metadata'),
+                           $this->notice->getTitle());
+            Event::handle('EndShowNoticeTitle', array($this));
+        }
     }
 
     function showNoticeInfo()
     {
-        $this->out->elementStart('div', 'entry-content');
+        $this->out->elementStart('div', 'entry-metadata');
         if (Event::handle('StartShowNoticeInfo', array($this))) {
             $this->showNoticeLink();
             $this->showNoticeSource();
@@ -164,7 +174,7 @@ class NoticeListItem extends Widget
     {
         if (Event::handle('StartOpenNoticeListItemElement', array($this))) {
             $id = (empty($this->repeat)) ? $this->notice->id : $this->repeat->id;
-            $class = 'hentry notice';
+            $class = 'h-entry notice';
             if ($this->notice->scope != 0 && $this->notice->scope != 1) {
                 $class .= ' limited-scope';
             }
@@ -209,24 +219,14 @@ class NoticeListItem extends Widget
 
     function showAuthor()
     {
-        $this->out->elementStart('div', 'author');
-
-        $this->out->elementStart('span', 'vcard author');
-
         $attrs = array('href' => $this->profile->profileurl,
-                       'class' => 'url',
-                       'title' => $this->profile->nickname);
+                       'class' => 'h-card p-author',
+                       'title' => $this->profile->getNickname());
 
         $this->out->elementStart('a', $attrs);
         $this->showAvatar($this->profile);
         $this->out->text($this->profile->getStreamName());
         $this->out->elementEnd('a');
-
-        $this->out->elementEnd('span');
-
-        $this->showAddressees();
-
-        $this->out->elementEnd('div');
     }
 
     function showAddressees()
@@ -234,21 +234,16 @@ class NoticeListItem extends Widget
         $pa = $this->getProfileAddressees();
 
         if (!empty($pa)) {
-            $this->out->elementStart('span', 'addressees');
+            $this->out->elementStart('ul', 'addressees');
             $first = true;
             foreach ($pa as $addr) {
-                if (!$first) {
-                    // TRANS: Separator in profile addressees list.
-                    $this->out->text(_m('SEPARATOR',', '));
-                } else {
-                    // Start of profile addressees list.
-                    $first = false;
-                }
+                $this->out->elementStart('li', 'h-card');
                 $text = $addr['text'];
                 unset($addr['text']);
                 $this->out->element('a', $addr, $text);
+                $this->out->elementEnd('li');
             }
-            $this->out->elementEnd('span', 'addressees');
+            $this->out->elementEnd('ul', 'addressees');
         }
     }
 
@@ -261,7 +256,7 @@ class NoticeListItem extends Widget
         foreach ($attentions as $attn) {
             $class = $attn->isGroup() ? 'group' : 'account';
             $pa[] = array('href' => $attn->profileurl,
-                          'title' => $attn->nickname,
+                          'title' => $attn->getNickname(),
                           'class' => "addressee {$class}",
                           'text' => $attn->getStreamName());
         }
@@ -283,8 +278,8 @@ class NoticeListItem extends Widget
      */
     function showNickname()
     {
-        $this->out->raw('<span class="nickname fn">' .
-                        htmlspecialchars($this->profile->nickname) .
+        $this->out->raw('<span class="p-name">' .
+                        htmlspecialchars($this->profile->getNickname()) .
                         '</span>');
     }
 
@@ -300,7 +295,7 @@ class NoticeListItem extends Widget
     function showContent()
     {
         // FIXME: URL, image, video, audio
-        $this->out->elementStart('p', array('class' => 'entry-content'));
+        $this->out->elementStart('div', array('class' => 'e-content'));
         if ($this->notice->rendered) {
             $this->out->raw($this->notice->rendered);
         } else {
@@ -309,7 +304,7 @@ class NoticeListItem extends Widget
             // versions (>> 0.4.x)
             $this->out->raw(common_render_content($this->notice->content, $this->notice));
         }
-        $this->out->elementEnd('p');
+        $this->out->elementEnd('div');
     }
 
     function showNoticeAttachments() {
@@ -329,7 +324,7 @@ class NoticeListItem extends Widget
     function showNoticeLink()
     {
         $this->out->elementStart('a', array('rel' => 'bookmark',
-                                            'class' => 'timestamp',
+                                            'class' => 'u-url timestamp',
                                             'href' => $this->notice->getLocalUrl()));
         $this->out->element('time', array('class' => 'dt-published',
                                           'datetime' => common_date_iso8601($this->notice->created),
@@ -511,21 +506,15 @@ class NoticeListItem extends Widget
             $repeater = Profile::getKV('id', $this->repeat->profile_id);
 
             $attrs = array('href' => $repeater->profileurl,
-                           'class' => 'url');
+                           'class' => 'h-card p-author',
+                           'title' => $repeater->getFancyName());
 
-            if (!empty($repeater->fullname)) {
-                $attrs['title'] = $repeater->fullname . ' (' . $repeater->nickname . ')';
-            }
-
-            $this->out->elementStart('span', 'repeat vcard');
+            $this->out->elementStart('span', 'repeat h-entry');
 
             // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
-            $this->out->raw(_('Repeated by'));
-            $this->out->raw(' ');
+            $this->out->raw(_('Repeated by').' ');
 
-            $this->out->elementStart('a', $attrs);
-            $this->out->element('span', 'fn nickname', $repeater->nickname);
-            $this->out->elementEnd('a');
+            $this->out->element('a', $attrs, $repeater->getNickname());
 
             $this->out->elementEnd('span');
         }
@@ -544,7 +533,7 @@ class NoticeListItem extends Widget
         if (common_logged_in()) {
             $this->out->text(' ');
             $reply_url = common_local_url('newnotice',
-                                          array('replyto' => $this->profile->nickname, 'inreplyto' => $this->notice->id));
+                                          array('replyto' => $this->profile->getNickname(), 'inreplyto' => $this->notice->id));
             $this->out->elementStart('a', array('href' => $reply_url,
                                                 'class' => 'notice_reply',
                                                 // TRANS: Link title in notice list item to reply to a notice.

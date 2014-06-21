@@ -83,36 +83,29 @@ class GroupList extends Widget
 
     function showGroup()
     {
-        $this->out->elementStart('li', array('class' => 'profile hentry',
+        $this->out->elementStart('li', array('class' => 'profile h-card',
                                              'id' => 'group-' . $this->group->id));
 
         $user = common_current_user();
 
-        $this->out->elementStart('div', 'entity_profile vcard entry-content');
+        $this->out->elementStart('div', 'entity_profile');
 
-        $logo = ($this->group->stream_logo) ?
-          $this->group->stream_logo : User_group::defaultLogo(AVATAR_STREAM_SIZE);
+        $logo = $this->group->stream_logo ?: User_group::defaultLogo(AVATAR_STREAM_SIZE);
 
         $this->out->elementStart('a', array('href' => $this->group->homeUrl(),
-                                            'class' => 'url entry-title',
+                                            'class' => 'u-url p-nickname',
                                             'rel' => 'contact group'));
         $this->out->element('img', array('src' => $logo,
-                                         'class' => 'photo avatar',
+                                         'class' => 'avatar u-photo',
                                          'width' => AVATAR_STREAM_SIZE,
                                          'height' => AVATAR_STREAM_SIZE,
-                                         'alt' =>
-                                         ($this->group->fullname) ? $this->group->fullname :
-                                         $this->group->nickname));
-        $this->out->text(' ');
-        $hasFN = ($this->group->fullname) ? 'nickname' : 'fn org nickname';
-        $this->out->elementStart('span', $hasFN);
-        $this->out->raw($this->highlight($this->group->nickname));
-        $this->out->elementEnd('span');
+                                         'alt' => $this->group->getBestName()));
+        $this->out->text($this->group->getNickname());
         $this->out->elementEnd('a');
 
         if ($this->group->fullname) {
             $this->out->text(' ');
-            $this->out->elementStart('span', 'fn org');
+            $this->out->elementStart('span', 'p-name');
             $this->out->raw($this->highlight($this->group->fullname));
             $this->out->elementEnd('span');
         }
@@ -125,7 +118,7 @@ class GroupList extends Widget
         if ($this->group->homepage) {
             $this->out->text(' ');
             $this->out->elementStart('a', array('href' => $this->group->homepage,
-                                                'class' => 'url'));
+                                                'class' => 'u-url'));
             $this->out->raw($this->highlight($this->group->homepage));
             $this->out->elementEnd('a');
         }

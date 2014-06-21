@@ -147,20 +147,20 @@ class ShowApplicationAction extends Action
 
         $consumer = $this->application->getConsumer();
 
-        $this->elementStart('div', 'entity_profile vcard');
+        $this->elementStart('div', 'entity_profile h-card');
         // TRANS: Header on the OAuth application page.
         $this->element('h2', null, _('Application profile'));
         if (!empty($this->application->icon)) {
             $this->element('img', array('src' => $this->application->icon,
-                                        'class' => 'photo logo entity_depiction'));
+                                        'class' => 'u-photo logo entity_depiction'));
         }
 
         $this->element('a', array('href' =>  $this->application->source_url,
-                                  'class' => 'url fn entity_fn'),
+                                  'class' => 'u-url p-name entity_fn'),
                             $this->application->name);
 
         $this->element('a', array('href' =>  $this->application->homepage,
-                                  'class' => 'url entity_org'),
+                                  'class' => 'u-url entity_org'),
                             $this->application->organization);
 
         $this->element('div',
