@@ -218,9 +218,8 @@ class NoticeListItem extends Widget
                        'title' => $this->profile->nickname);
 
         $this->out->elementStart('a', $attrs);
-        $this->showAvatar();
-        $this->out->text(' ');
-        $this->out->element('span',array('class' => 'fn'), $this->profile->getStreamName());
+        $this->showAvatar($this->profile);
+        $this->out->text($this->profile->getStreamName());
         $this->out->elementEnd('a');
 
         $this->out->elementEnd('span');
@@ -273,35 +272,6 @@ class NoticeListItem extends Widget
     function getReplyProfiles()
     {
         return $this->notice->getReplyProfiles();
-    }
-
-    /**
-     * show the avatar of the notice's author
-     *
-     * This will use the default avatar if no avatar is assigned for the author.
-     * It makes a link to the author's profile.
-     *
-     * @return void
-     */
-    function showAvatar()
-    {
-        $avatar_size = $this->avatarSize();
-
-        $avatarUrl = $this->profile->avatarUrl($avatar_size);
-
-        $this->out->element('img', array('src' => $avatarUrl,
-                                         'class' => 'avatar photo',
-                                         'width' => $avatar_size,
-                                         'height' => $avatar_size,
-                                         'alt' =>
-                                         ($this->profile->fullname) ?
-                                         $this->profile->fullname :
-                                         $this->profile->nickname));
-    }
-
-    function avatarSize()
-    {
-        return AVATAR_STREAM_SIZE;
     }
 
     /**

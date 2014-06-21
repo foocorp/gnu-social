@@ -48,6 +48,8 @@ define('PEOPLETAGS_PER_SECTION', 6);
  */
 class PeopletagSection extends Section
 {
+    protected $avatarSize = AVATAR_MINI_SIZE;
+
     function showContent()
     {
         $tags = $this->getPeopletags();
@@ -134,10 +136,5 @@ class PeopletagSectionItem extends PeopletagListItem
                   'title' => $title),
             htmlspecialchars($this->peopletag->tag));
         $this->out->elementEnd('span');
-    }
-
-    function showAvatar()
-    {
-        parent::showAvatar(AVATAR_MINI_SIZE);
     }
 }

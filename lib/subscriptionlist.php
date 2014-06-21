@@ -76,7 +76,7 @@ class SubscriptionListItem extends ProfileListItem
     function showProfile()
     {
         $this->startProfile();
-        $this->showAvatar();
+        $this->showAvatar($this->profile);
         $this->showFullName();
         $this->showLocation();
         $this->showHomepage();

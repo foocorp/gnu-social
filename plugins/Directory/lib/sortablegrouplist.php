@@ -167,37 +167,15 @@ class SortableGroupListItem extends SortableSubscriptionListItem
 
     }
 
-    function showAvatar()
+    function showAvatar(Profile $profile, $size=null)
     {
-        $logo = ($this->profile->stream_logo) ?
-        $this->profile->stream_logo : User_group::defaultLogo(AVATAR_STREAM_SIZE);
+        $logo = $profile->getGroup()->stream_logo ?: User_group::defaultLogo($size ?: $this->avatarSize());
 
-        $this->out->elementStart(
-            'a',
-            array(
-                'href'  => $this->profile->homeUrl(),
-                'class' => 'url entry-title',
-                'rel'   => 'contact group'
-            )
-        );
-        $this->out->element(
-            'img',
-            array(
-                'src'    => $logo,
-                'class'  => 'photo avatar',
-                'width'  => AVATAR_STREAM_SIZE,
-                'height' => AVATAR_STREAM_SIZE,
-                'alt'    => ($this->profile->fullname)
-                    ? $this->profile->fullname : $this->profile->nickname
-            )
-        );
-
-        $this->out->text(' ');
-        $hasFN = ($this->profile->fullname) ? 'nickname' : 'fn org nickname';
-        $this->out->elementStart('span', $hasFN);
-        $this->out->raw($this->highlight($this->profile->nickname));
-        $this->out->elementEnd('span');
-        $this->out->elementEnd('a');
+        $this->out->element('img', array('src'    => $logo,
+                                         'class'  => 'photo avatar',
+                                         'width'  => AVATAR_STREAM_SIZE,
+                                         'height' => AVATAR_STREAM_SIZE,
+                                         'alt'    => $profile->getBestName()));
     }
 
     function show()
@@ -226,7 +204,17 @@ class SortableGroupListItem extends SortableSubscriptionListItem
     function showProfile()
     {
         $this->startProfile();
-        $this->showAvatar();
+
+        $hasFN = ($this->profile->fullname) ? 'nickname' : 'fn org nickname';
+        $this->out->elementStart('a', array('href'  => $this->profile->homeUrl(),
+                                            'class' => 'h-card org nickname',
+                                            'rel'   => 'contact group'));
+        // getProfile here is because $this->profile is a User_group, which it should stop
+        // being by making sure the group listing runs a ->getGroup when it's necessary.
+        $this->showAvatar($this->profile->getProfile());
+        $this->out->text($this->profile->getNickname());
+        $this->out->elementEnd('a');
+
         $this->showFullName();
         $this->showLocation();
         $this->showHomepage();

@@ -52,12 +52,17 @@ class GroupProfileBlock extends ProfileBlock
     {
         parent::__construct($out);
         $this->group = $group;
+        $this->profile = $this->group->getProfile();
     }
 
-    function avatar()
-    {
-        return ($this->group->homepage_logo) ?
-            $this->group->homepage_logo : User_group::defaultLogo(AVATAR_PROFILE_SIZE);
+    protected function showAvatar(Profile $profile, $size=null)
+    {   
+        $avatar_url = $profile->getGroup()->homepage_logo ?: User_group::defaultLogo($size ?: $this->avatarSize());
+        $this->out->element('img', array('src' => $avatar_url,
+                                         'class' => 'avatar u-photo',
+                                         'width' => $this->avatarSize(),
+                                         'height' => $this->avatarSize(),
+                                         'alt' => $profile->getBestName()));
     }
 
     function name()

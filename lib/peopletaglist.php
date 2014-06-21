@@ -231,11 +231,8 @@ class PeopletagListItem extends Widget
             $attrs['title'] = $this->profile->fullname . ' (' . $this->profile->nickname . ')';
         }
         $this->out->elementStart('a', $attrs);
-        $this->showAvatar();
-        $this->out->text(' ');
-        $this->out->element('span', 'nickname fn',
-                        htmlspecialchars($this->profile->nickname));
-
+        $this->showAvatar($this->profile);
+        $this->out->text($this->profile->getNickname());
         $this->out->elementEnd('a');
         $this->out->elementEnd('span');
     }
@@ -270,29 +267,6 @@ class PeopletagListItem extends Widget
                   'href'  => $this->url()),
             htmlspecialchars($this->peopletag->tag));
         $this->out->elementEnd('span');
-    }
-
-    /**
-     * show the avatar of the peopletag's creator
-     *
-     * This will use the default avatar if no avatar is assigned for the author.
-     * It makes a link to the author's profile.
-     *
-     * @return void
-     */
-
-    function showAvatar($size=AVATAR_STREAM_SIZE)
-    {
-        $avatarUrl = $this->profile->avatarUrl($size);
-
-        $this->out->element('img', array('src' => $avatarUrl,
-                                         'class' => 'avatar photo',
-                                         'width' => $size,
-                                         'height' => $size,
-                                         'alt' =>
-                                         ($this->profile->fullname) ?
-                                         $this->profile->fullname :
-                                         $this->profile->nickname));
     }
 
     function showActions()

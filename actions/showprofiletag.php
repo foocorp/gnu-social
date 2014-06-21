@@ -359,6 +359,8 @@ class ShowprofiletagAction extends Action
 
 class Peopletag extends PeopletagListItem
 {
+    protected $avatarSize = AVATAR_PROFILE_SIZE;
+
     function showStart()
     {
         $mode = $this->peopletag->private ? 'private' : 'public';
@@ -369,10 +371,5 @@ class Peopletag extends PeopletagListItem
     function showEnd()
     {
         $this->out->elementEnd('div');
-    }
-
-    function showAvatar()
-    {
-        parent::showAvatar(AVATAR_PROFILE_SIZE);
     }
 }

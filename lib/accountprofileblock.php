@@ -63,11 +63,6 @@ class AccountProfileBlock extends ProfileBlock
         }
     }
 
-    function avatar()
-    {
-        return $this->profile->avatarUrl(AVATAR_PROFILE_SIZE);
-    }
-
     function name()
     {
         return $this->profile->getBestName();

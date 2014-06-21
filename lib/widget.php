@@ -51,6 +51,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class Widget
 {
+    protected $avatarSize = AVATAR_STREAM_SIZE;
+
     /**
      * HTMLOutputter to use for output
      */
@@ -104,5 +106,23 @@ class Widget
     function __call($name, $arguments)
     {
         return call_user_func_array(array($this->out, $name), $arguments);
+    }
+
+    /**
+     * Default avatar size for this widget.
+     */
+    public function avatarSize()
+    {
+        return $this->avatarSize;
+    }
+
+    protected function showAvatar(Profile $profile, $size=null)
+    {
+        $avatar_url = $profile->avatarUrl($size ?: $this->avatarSize());
+        $this->out->element('img', array('src' => $avatar_url,
+                                         'class' => 'avatar u-photo',
+                                         'width' => $this->avatarSize(),
+                                         'height' => $this->avatarSize(),
+                                         'alt' => $profile->getBestName()));
     }
 }

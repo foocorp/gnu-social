@@ -31,7 +31,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/widget.php';
 require_once INSTALLDIR.'/lib/peopletags.php';
 
 /**
@@ -107,11 +106,6 @@ class ProfileList extends Widget
     {
         return PROFILES_PER_PAGE;
     }
-
-    function avatarSize()
-    {
-        return AVATAR_STREAM_SIZE;
-    }
 }
 
 class ProfileListItem extends Widget
@@ -157,7 +151,10 @@ class ProfileListItem extends Widget
         $this->startProfile();
         if (Event::handle('StartProfileListItemProfileElements', array($this))) {
             if (Event::handle('StartProfileListItemAvatar', array($this))) {
+                $aAttrs = $this->linkAttributes();
+                $this->out->elementStart('a', $aAttrs);
                 $this->showAvatar();
+                $this->out->elementEnd('a');
                 Event::handle('EndProfileListItemAvatar', array($this));
             }
             if (Event::handle('StartProfileListItemFullName', array($this))) {
@@ -188,26 +185,6 @@ class ProfileListItem extends Widget
     function startProfile()
     {
         $this->out->elementStart('div', 'entity_profile vcard entry-content');
-    }
-
-    function showAvatar()
-    {
-        $avatarUrl = $this->profile->avatarUrl(AVATAR_STREAM_SIZE);
-        $aAttrs = $this->linkAttributes();
-        $this->out->elementStart('a', $aAttrs);
-        $this->out->element('img', array('src' => $avatarUrl,
-                                         'class' => 'photo avatar',
-                                         'width' => AVATAR_STREAM_SIZE,
-                                         'height' => AVATAR_STREAM_SIZE,
-                                         'alt' =>
-                                         ($this->profile->fullname) ? $this->profile->fullname :
-                                         $this->profile->nickname));
-        $this->out->text(' ');
-        $hasFN = (!empty($this->profile->fullname)) ? 'nickname' : 'fn nickname';
-        $this->out->elementStart('span', $hasFN);
-        $this->out->raw($this->highlight($this->profile->nickname));
-        $this->out->elementEnd('span');
-        $this->out->elementEnd('a');
     }
 
     function showFullName()

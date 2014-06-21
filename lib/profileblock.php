@@ -47,7 +47,8 @@ if (!defined('STATUSNET')) {
 
 abstract class ProfileBlock extends Widget
 {
-    abstract function avatar();
+    protected $avatarSize = AVATAR_PROFILE_SIZE;
+
     abstract function name();
     abstract function url();
     abstract function location();
@@ -57,29 +58,13 @@ abstract class ProfileBlock extends Widget
     function show()
     {
         $this->showActions();
-        $this->showAvatar();
+        $this->showAvatar($this->profile);
         $this->showName();
         $this->showLocation();
         $this->showHomepage();
         $this->showOtherProfiles();
         $this->showDescription();
         $this->showTags();
-    }
-
-    function showAvatar()
-    {
-        $size = $this->avatarSize();
-
-        $this->out->element(
-            'img',
-            array(
-                'src'  => $this->avatar(),
-                'class'  => 'ur_face',
-                'alt'    => $this->name(),
-                'width'  => $size,
-                'height' => $size
-            )
-        );
     }
 
     function showName()
@@ -159,11 +144,6 @@ abstract class ProfileBlock extends Widget
 
             $this->out->elementEnd('ul');
         }
-    }
-
-    function avatarSize()
-    {
-        return AVATAR_PROFILE_SIZE;
     }
 
     function showTags()
