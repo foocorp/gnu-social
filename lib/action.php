@@ -319,19 +319,6 @@ class Action extends HTMLOutputter // lawsuit
             $this->cssLink('js/extlib/jquery-ui/css/smoothness/jquery-ui.css');
 
             if (Event::handle('StartShowUAStyles', array($this))) {
-                $this->comment('[if IE]><link rel="stylesheet" type="text/css" '.
-                               'href="'.Theme::path('css/ie.css', 'base').'?version='.GNUSOCIAL_VERSION.'" /><![endif]');
-                foreach (array(6,7) as $ver) {
-                    if (file_exists(Theme::file('css/ie'.$ver.'.css', 'base'))) {
-                        // Yes, IE people should be put in jail.
-                        $this->comment('[if lte IE '.$ver.']><link rel="stylesheet" type="text/css" '.
-                                       'href="'.Theme::path('css/ie'.$ver.'.css', 'base').'?version='.GNUSOCIAL_VERSION.'" /><![endif]');
-                    }
-                }
-                if (file_exists(Theme::file('css/ie.css'))) {
-                    $this->comment('[if IE]><link rel="stylesheet" type="text/css" '.
-                               'href="'.Theme::path('css/ie.css', null).'?version='.GNUSOCIAL_VERSION.'" /><![endif]');
-                }
                 Event::handle('EndShowUAStyles', array($this));
             }
 

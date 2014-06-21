@@ -431,10 +431,6 @@ subdirectory with the name of your theme. Each theme can have the
 following files:
 
 display.css: a CSS2 file for "default" styling for all browsers.
-ie6.css: a CSS2 file for override styling for fixing up Internet
-    Explorer 6.
-ie7.css: a CSS2 file for override styling for fixing up Internet
-    Explorer 7.
 logo.png: a logo image for the site.
 default-avatar-profile.png: a 96x96 pixel image to use as the avatar for
     users who don't upload their own.
