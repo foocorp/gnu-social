@@ -114,7 +114,7 @@ class AttachmentListItem extends Widget
                 case 'image/jpeg':
                     try {
                         $thumb = $this->attachment->getThumbnail();
-                        $this->out->element('img', array('class'=>'u-photo', 'src' => $thumb->getUrl(), 'alt' => $e->file->title));
+                        $this->out->element('img', array('class'=>'u-photo', 'src' => $thumb->getUrl(), 'alt' => ''));
                     } catch (UseFileAsThumbnailException $e) {
                         $this->out->element('img', array('class'=>'u-photo', 'src' => $e->file->getUrl(), 'alt' => $e->file->title));
                     } catch (UnsupportedMediaException $e) {
