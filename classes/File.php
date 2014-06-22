@@ -245,7 +245,7 @@ class File extends Managed_DataObject
         }
 
         // Normalize and make the original filename more URL friendly.
-        $origname = basename($origname, $ext);
+        $origname = basename($origname, ".$ext");
         if (class_exists('Normalizer')) {
             // http://php.net/manual/en/class.normalizer.php
             // http://www.unicode.org/reports/tr15/
@@ -253,7 +253,7 @@ class File extends Managed_DataObject
         }
         $origname = preg_replace('/[^A-Za-z0-9\.\_]/', '_', $origname);
 
-        $nickname = $profile->nickname;
+        $nickname = $profile->getNickname();
         $datestamp = strftime('%Y%m%d', time());
         do {
             // generate new random strings until we don't run into a filename collision.
