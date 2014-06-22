@@ -153,7 +153,7 @@ class ProfileListItem extends Widget
             if (Event::handle('StartProfileListItemAvatar', array($this))) {
                 $aAttrs = $this->linkAttributes();
                 $this->out->elementStart('a', $aAttrs);
-                $this->showAvatar();
+                $this->showAvatar($this->profile);
                 $this->out->elementEnd('a');
                 Event::handle('EndProfileListItemAvatar', array($this));
             }
