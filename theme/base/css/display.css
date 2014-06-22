@@ -230,8 +230,6 @@ address .poweredby {
 }
 
 #site_notice { 
-    float: right;
-    width: 300px;
     margin: 26px 0px 4px 0px;
     padding: 10px;
     background-color: #f2f2f2;
