@@ -118,8 +118,8 @@ class EventListItem extends NoticeListItemAdapter
         $out->text(' – ');
         $out->element('time', array('class' => 'dt-end',
                                     'datetime' => common_date_iso8601($event->end_time)),
-                      $startDateStr == $endDateStr
-                                    ? "$endDatestr $endTimeStr"
+                      $startDateStr != $endDateStr
+                                    ? "$endDateStr $endTimeStr"
                                     :  $endTimeStr);
 
         $out->elementEnd('div'); // VEVENT/EVENT-TIMES OUT
