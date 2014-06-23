@@ -40,7 +40,8 @@ class DiscoveryHints {
                 }
                 break;
             case Discovery::HCARD:
-                $hints['hcardurl'] = $link->href;
+            case Discovery::MF2_HCARD:
+                $hints['hcard'] = $link->href;
                 break;
             default:
                 break;
