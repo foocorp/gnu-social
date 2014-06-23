@@ -39,6 +39,7 @@ class Discovery
     const LRDD_REL    = 'lrdd';
     const UPDATESFROM = 'http://schemas.google.com/g/2010#updates-from';
     const HCARD       = 'http://microformats.org/profile/hcard';
+    const MF2_HCARD   = 'http://microformats.org/profile/h-card';   // microformats2 h-card
 
     const JRD_MIMETYPE_OLD = 'application/json';    // RFC6415 uses this
     const JRD_MIMETYPE = 'application/jrd+json';

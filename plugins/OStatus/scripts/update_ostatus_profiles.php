@@ -214,9 +214,12 @@ class LooseOstatusProfile extends Ostatus_profile
 
         $hints = array('webfinger' => $addr);
 
-        $dhints = DiscoveryHints::fromXRD($xrd);
-
-        $hints = array_merge($hints, $dhints);
+        try {
+            $dHints = DiscoveryHints::fromXRD($xrd);
+            $hints = array_merge($hints, $xrdHints);
+        } catch (Exception $e) {
+            // No hints available from XRD
+        }
 
         // If there's an Hcard, let's grab its info
         if (array_key_exists('hcard', $hints)) {

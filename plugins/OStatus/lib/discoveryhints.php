@@ -77,39 +77,28 @@ class DiscoveryHints {
 
         // XXX: don't copy stuff into an array and then copy it again
 
-        if (array_key_exists('nickname', $hcard)) {
-            $hints['nickname'] = $hcard['nickname'];
+        if (array_key_exists('nickname', $hcard) && !empty($hcard['nickname'][0])) {
+            $hints['nickname'] = $hcard['nickname'][0];
         }
 
-        if (array_key_exists('fn', $hcard)) {
-            $hints['fullname'] = $hcard['fn'];
-        } else if (array_key_exists('n', $hcard)) {
-            $hints['fullname'] = implode(' ', $hcard['n']);
+        if (array_key_exists('name', $hcard) && !empty($hcard['name'][0])) {
+            $hints['fullname'] = $hcard['name'][0];
         }
 
         if (array_key_exists('photo', $hcard) && count($hcard['photo'])) {
             $hints['avatar'] = $hcard['photo'][0];
         }
 
-        if (array_key_exists('note', $hcard)) {
-            $hints['bio'] = $hcard['note'];
+        if (array_key_exists('note', $hcard) && !empty($hcard['note'][0])) {
+            $hints['bio'] = $hcard['note'][0];
         }
 
-        if (array_key_exists('adr', $hcard)) {
-            if (is_string($hcard['adr'])) {
-                $hints['location'] = $hcard['adr'];
-            } else if (is_array($hcard['adr'])) {
-                $hints['location'] = implode(' ', $hcard['adr']);
-            }
+        if (array_key_exists('adr', $hcard) && !empty($hcard['adr'][0])) {
+            $hints['location'] = $hcard['adr'][0]['value'];
         }
 
-        if (array_key_exists('url', $hcard)) {
-            if (is_string($hcard['url'])) {
-                $hints['homepage'] = $hcard['url'];
-            } else if (is_array($hcard['url']) && !empty($hcard['url'])) {
-                // HACK get the last one; that's how our hcards look
-                $hints['homepage'] = $hcard['url'][count($hcard['url'])-1];
-            }
+        if (array_key_exists('url', $hcard) && !empty($hcard['url'][0])) {
+            $hints['homepage'] = $hcard['url'][0];
         }
 
         return $hints;
@@ -117,141 +106,34 @@ class DiscoveryHints {
 
     static function _hcard($body, $url)
     {
-        // DOMDocument::loadHTML may throw warnings on unrecognized elements,
-        // and notices on unrecognized namespaces.
-
-        $old = error_reporting(error_reporting() & ~(E_WARNING | E_NOTICE));
-
-        $doc = new DOMDocument();
-        $doc->loadHTML($body);
-
-        error_reporting($old);
-
-        $xp = new DOMXPath($doc);
-
-        $hcardNodes = self::_getChildrenByClass($doc->documentElement, 'vcard', $xp);
+        $mf2 = new Mf2\Parser($body, $url);
+        $mf2 = $mf2->parse();
+        
+        if (empty($mf2['items'])) {
+            return null;
+        }
 
         $hcards = array();
 
-        for ($i = 0; $i < $hcardNodes->length; $i++) {
-
-            $hcardNode = $hcardNodes->item($i);
-
-            $hcard = self::_hcardFromNode($hcardNode, $xp, $url);
-
-            $hcards[] = $hcard;
-        }
-
-        $repr = null;
-
-        foreach ($hcards as $hcard) {
-            if (in_array($url, $hcard['url'])) {
-                $repr = $hcard;
-                break;
+        foreach ($mf2['items'] as $item) {
+            if (!in_array('h-card', $item['type'])) {
+                continue;
             }
+
+            // We found a match, return it immediately
+            if (isset($item['properties']['url']) && in_array($url, $item['properties']['url'])) {
+                return $item['properties'];
+            }
+
+            // Let's keep all the hcards for later, to return one of them at least
+            $hcards[] = $item['properties'];
         }
 
-        if (!is_null($repr)) {
-            return $repr;
-        } else if (count($hcards) > 0) {
+        // No match immediately for the url we expected, but there were h-cards found
+        if (count($hcards) > 0) {
             return $hcards[0];
-        } else {
-            return null;
-        }
-    }
-
-    function _getChildrenByClass($el, $cls, $xp)
-    {
-        // borrowed from hkit. Thanks dudes!
-
-        $qry = ".//*[contains(concat(' ',normalize-space(@class),' '),' $cls ')]";
-
-        $nodes = $xp->query($qry, $el);
-
-        return $nodes;
-    }
-
-    function _hcardFromNode($hcardNode, $xp, $base)
-    {
-        $hcard = array();
-
-        $hcard['url'] = array();
-
-        $urlNodes = self::_getChildrenByClass($hcardNode, 'url', $xp);
-
-        for ($j = 0; $j < $urlNodes->length; $j++) {
-
-            $urlNode = $urlNodes->item($j);
-
-            if ($urlNode->hasAttribute('href')) {
-                $url = $urlNode->getAttribute('href');
-            } else {
-                $url = $urlNode->textContent;
-            }
-
-            $hcard['url'][] = self::_rel2abs($url, $base);
         }
 
-        $hcard['photo'] = array();
-
-        $photoNodes = self::_getChildrenByClass($hcardNode, 'photo', $xp);
-
-        for ($j = 0; $j < $photoNodes->length; $j++) {
-            $photoNode = $photoNodes->item($j);
-            if ($photoNode->hasAttribute('src')) {
-                $url = $photoNode->getAttribute('src');
-            } else if ($photoNode->hasAttribute('href')) {
-                $url = $photoNode->getAttribute('href');
-            } else {
-                $url = $photoNode->textContent;
-            }
-            $hcard['photo'][] = self::_rel2abs($url, $base);
-        }
-
-        $singles = array('nickname', 'note', 'fn', 'n', 'adr');
-
-        foreach ($singles as $single) {
-
-            $nodes = self::_getChildrenByClass($hcardNode, $single, $xp);
-
-            if ($nodes->length > 0) {
-                $node = $nodes->item(0);
-                $hcard[$single] = $node->textContent;
-            }
-        }
-
-        return $hcard;
-    }
-
-    // XXX: this is a first pass; we probably need
-    // to handle things like ../ and ./ and so on
-
-    static function _rel2abs($rel, $wrt)
-    {
-        $parts = parse_url($rel);
-
-        if ($parts === false) {
-            return false;
-        }
-
-        // If it's got a scheme, use it
-
-        if (!empty($parts['scheme'])) {
-            return $rel;
-        }
-
-        $w = parse_url($wrt);
-
-        $base = $w['scheme'].'://'.$w['host'];
-
-        if ($rel[0] == '/') {
-            return $base.$rel;
-        }
-
-        $wp = explode('/', $w['path']);
-
-        array_pop($wp);
-
-        return $base.implode('/', $wp).'/'.$rel;
+        return null;
     }
 }
