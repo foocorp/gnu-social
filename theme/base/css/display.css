@@ -805,6 +805,12 @@ z-index:99;
 position:static;
 }
 
+.notice.h-entry .attachments {
+    clear: both;
+    position: relative;
+    top: 1em;
+}
+
 #attachments {
 clear:both;
 float:left;
