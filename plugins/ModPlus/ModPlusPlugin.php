@@ -43,22 +43,19 @@ class ModPlusPlugin extends Plugin
     }
 
     /**
-     * Load JS at runtime if we're logged in.
+     * Load JS at runtime.
      *
      * @param Action $action
      * @return boolean hook result
      */
-    function onEndShowScripts($action)
+    function onEndShowScripts(Action $action)
     {
-        $user = common_current_user();
-        if ($user) {
-            $action->script($this->path('modplus.js'));
-        }
+        $action->script($this->path('js/modplus.js'));
         return true;
     }
 
     public function onEndShowStylesheets(Action $action) {
-        $action->cssLink($this->path('modplus.css'));
+        $action->cssLink($this->path('css/modplus.css'));
         return true;
     }
 
