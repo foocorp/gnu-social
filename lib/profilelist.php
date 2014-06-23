@@ -157,6 +157,10 @@ class ProfileListItem extends Widget
                 $this->out->elementEnd('a');
                 Event::handle('EndProfileListItemAvatar', array($this));
             }
+            if (Event::handle('StartProfileListItemNickname', array($this))) {
+                $this->showNickname();
+                Event::handle('EndProfileListItemNickname', array($this));
+            }
             if (Event::handle('StartProfileListItemFullName', array($this))) {
                 $this->showFullName();
                 Event::handle('EndProfileListItemFullName', array($this));
@@ -187,23 +191,24 @@ class ProfileListItem extends Widget
         $this->out->elementStart('div', 'entity_profile h-card');
     }
 
+    function showNickname()
+    {
+        $this->out->element('a', array('href'=>$this->profile->getUrl(),
+                                       'class'=>'p-nickname'),
+                            $this->profile->getNickname());
+    }
+
     function showFullName()
     {
         if (!empty($this->profile->fullname)) {
-            $this->out->text(' ');
-            $this->out->elementStart('span', 'p-name');
-            $this->out->raw($this->highlight($this->profile->fullname));
-            $this->out->elementEnd('span');
+            $this->out->element('span', 'p-name', $this->profile->fullname);
         }
     }
 
     function showLocation()
     {
         if (!empty($this->profile->location)) {
-            $this->out->text(' ');
-            $this->out->elementStart('span', 'label');
-            $this->out->raw($this->highlight($this->profile->location));
-            $this->out->elementEnd('span');
+            $this->out->element('span', 'label p-location', $this->profile->location);
         }
     }
 

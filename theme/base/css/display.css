@@ -1593,6 +1593,13 @@ height:16px;
     top: -3px;
 }
 
+table.profile_list .h-card .u-photo {
+    margin-right: 4px;
+}
+table.profile_list .h-card .p-nickname {
+    display: block;
+}
+
 .entity_profile .entity_nickname,
 .entity_profile .entity_fn {
 margin-left:0;
@@ -1877,14 +1884,6 @@ display:none;
 .profile .entity_profile .u-url[rel~=contact] {
 margin-left:0;
 display:inline;
-}
-
-.profile .entity_profile .p-name,
-.profile .entity_profile .label {
-margin-left:11px;
-margin-bottom:4px;
-width:auto;
-clear:none;
 }
 
 .profile .entity_profile .note,
