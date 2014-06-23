@@ -224,12 +224,12 @@ class RSVP extends Managed_DataObject
         return $notice;
     }
 
-    static function fromNotice($notice)
+    static function fromNotice(Notice $notice)
     {
         return RSVP::getKV('uri', $notice->uri);
     }
 
-    static function forEvent($event)
+    static function forEvent(Happening $event)
     {
         $keypart = sprintf('rsvp:for-event:%s', $event->id);
 
