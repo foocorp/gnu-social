@@ -169,23 +169,6 @@ class SubscriptionsList extends SubscriptionList
 
 class SubscriptionsListItem extends SubscriptionListItem
 {
-    function showProfile()
-    {
-        $this->startProfile();
-        $this->showAvatar($this->profile);
-        $this->showFullName();
-        $this->showLocation();
-        $this->showHomepage();
-        $this->showBio();
-        $this->showTags();
-        // Relevant portion!
-        $cur = common_current_user();
-        if (!empty($cur) && $cur->id == $this->owner->id) {
-            $this->showOwnerControls();
-        }
-        $this->endProfile();
-    }
-
     function showOwnerControls()
     {
         $sub = Subscription::pkeyGet(array('subscriber' => $this->owner->id,
@@ -239,6 +222,5 @@ class SubscriptionsListItem extends SubscriptionListItem
         // TRANS: Save button for settings for a profile in a subscriptions list.
         $this->out->submit('save', _m('BUTTON','Save'));
         $this->out->elementEnd('form');
-        return;
     }
 }

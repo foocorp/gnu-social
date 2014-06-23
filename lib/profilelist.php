@@ -74,7 +74,7 @@ class ProfileList extends Widget
 
     function startList()
     {
-        $this->out->elementStart('ul', 'profiles xoxo');
+        $this->out->elementStart('ul', 'profile_list xoxo');
     }
 
     function endList()
@@ -142,7 +142,7 @@ class ProfileListItem extends Widget
 
     function startItem()
     {
-        $this->out->elementStart('li', array('class' => 'profile h-entry',
+        $this->out->elementStart('li', array('class' => 'profile',
                                              'id' => 'profile-' . $this->profile->id));
     }
 
@@ -208,7 +208,7 @@ class ProfileListItem extends Widget
     function showLocation()
     {
         if (!empty($this->profile->location)) {
-            $this->out->element('span', 'label p-location', $this->profile->location);
+            $this->out->element('span', 'label p-locality', $this->profile->location);
         }
     }
 

@@ -1593,10 +1593,18 @@ height:16px;
     top: -3px;
 }
 
-table.profile_list .h-card .u-photo {
+ul.profile_list {
+    list-style-type:none;
+}
+
+ul.profile_list li {
+    margin-bottom: 20px;
+}
+
+.profile_list .h-card .u-photo {
     margin-right: 4px;
 }
-table.profile_list .h-card .p-nickname {
+.profile_list .h-card .p-nickname {
     display: block;
 }
 
@@ -1870,14 +1878,6 @@ min-height:60px;
 .form_user_add_peopletag legend,
 .form_user_remove_peopletag legend {
 display:none;
-}
-
-.profiles {
-    list-style-type:none;
-}
-
-.profiles li {
-    margin-bottom: 20px;
 }
 
 .profile .entity_profile .p-name,

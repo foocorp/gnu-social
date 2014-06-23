@@ -31,8 +31,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/profilelist.php';
-
 /**
  * Widget to show a list of subscriptions
  *
@@ -84,7 +82,15 @@ class SubscriptionListItem extends ProfileListItem
         $this->showBio();
         // Relevant portion!
         $this->showTags();
+        if ($this->isOwn()) {
+            $this->showOwnerControls();
+        }
         $this->endProfile();
+    }
+
+    function showOwnerControls()
+    {
+        // pass
     }
 
     function isOwn()
