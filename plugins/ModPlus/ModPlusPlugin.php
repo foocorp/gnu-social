@@ -99,7 +99,7 @@ class ModPlusPlugin extends Plugin
      */
     function onStartProfileListItemProfile($item)
     {
-        $this->showProfileOptions($item->out, $item->profile);
+        $this->showProfileOptions($item->out, $item->profile->getProfile());
         return true;
     }
 

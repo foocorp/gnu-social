@@ -167,12 +167,13 @@ class SortableGroupListItem extends SortableSubscriptionListItem
 
     }
 
+    // TODO: Make sure we can do ->getAvatar() for group profiles too!
     function showAvatar(Profile $profile, $size=null)
     {
         $logo = $profile->getGroup()->stream_logo ?: User_group::defaultLogo($size ?: $this->avatarSize());
 
         $this->out->element('img', array('src'    => $logo,
-                                         'class'  => 'photo avatar',
+                                         'class'  => 'avatar u-photo',
                                          'width'  => AVATAR_STREAM_SIZE,
                                          'height' => AVATAR_STREAM_SIZE,
                                          'alt'    => $profile->getBestName()));
@@ -205,14 +206,11 @@ class SortableGroupListItem extends SortableSubscriptionListItem
     {
         $this->startProfile();
 
-        $this->out->elementStart('a', array('href'  => $this->profile->homeUrl(),
-                                            'class' => 'h-card p-org p-nickname',
-                                            'rel'   => 'contact group'));
-        // getProfile here is because $this->profile is a User_group, which it should stop
-        // being by making sure the group listing runs a ->getGroup when it's necessary.
         $this->showAvatar($this->profile->getProfile());
-        $this->out->text($this->profile->getNickname());
-        $this->out->elementEnd('a');
+        $this->out->element('a', array('href'  => $this->profile->homeUrl(),
+                                            'class' => 'p-org p-nickname',
+                                            'rel'   => 'contact group'),
+                                 $this->profile->getNickname());
 
         $this->showFullName();
         $this->showLocation();
