@@ -149,16 +149,17 @@ class Happening extends Managed_DataObject
                            $location,
                            $description);
 
-        // TRANS: Rendered event description. %1$s is a title, %2$s is start time, %3$s is start time,
+        // TRANS: Rendered microformats2 tagged event description.
+        // TRANS: %1$s is a title, %2$s is start time, %3$s is start time,
         // TRANS: %4$s is end time, %5$s is end time, %6$s is location, %7$s is description.
         // TRANS: Class names should not be translated.
-        $rendered = sprintf(_m('<span class="vevent">'.
-                              '<span class="summary">%1$s</span> '.
-                              '<abbr class="dtstart" title="%2$s">%3$s</a> - '.
-                              '<abbr class="dtend" title="%4$s">%5$s</a> '.
-                              '(<span class="location">%6$s</span>): '.
-                              '<span class="description">%7$s</span> '.
-                              '</span>'),
+        $rendered = sprintf(_m('<div class="h-event">'.
+                              '<p class="p-name p-summary">%1$s</p> '.
+                              '<time class="dt-start" datetime="%2$s">%3$s</time> - '.
+                              '<time class="dt-end" datetime="%4$s">%5$s</time> '.
+                              '(<span class="p-location">%6$s</span>): '.
+                              '<div class="p-description">%7$s</div> '.
+                              '</div>'),
                             htmlspecialchars($title),
                             htmlspecialchars(common_date_iso8601($ev->start_time)),
                             htmlspecialchars(common_exact_date($ev->start_time)),
@@ -185,6 +186,20 @@ class Happening extends Managed_DataObject
                                  $options);
 
         return $saved;
+    }
+
+    /**
+     * Returns the profile's canonical url, not necessarily a uri/unique id
+     *
+     * @return string $url
+     */
+    public function getUrl()
+    {
+        if (empty($this->url) ||
+                !filter_var($this->url, FILTER_VALIDATE_URL)) {
+            throw new InvalidUrlException($this->url);
+        }
+        return $this->url;
     }
 
     function getNotice()

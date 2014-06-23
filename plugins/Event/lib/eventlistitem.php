@@ -66,16 +66,14 @@ class EventListItem extends NoticeListItemAdapter
             return;
         }
 
-        $out->elementStart('div', 'vevent event e-content'); // VEVENT IN
+        // e-content since we're part of a h-entry
+        $out->elementStart('div', 'h-event e-content'); // VEVENT IN
 
-        $out->elementStart('h3', 'summary');  // VEVENT/H3 IN
+        $out->elementStart('h3', 'p-summary p-name');  // VEVENT/H3 IN
 
-        if (!empty($event->url)) {
-            $out->element('a',
-                          array('href' => $event->url,
-                                'class' => 'event-title entry-title summary'),
-                          $event->title);
-        } else {
+        try {
+            $out->element('a', array('href' => $event->getUrl()), $event->title);
+        } catch (InvalidUrlException $e) {
             $out->text($event->title);
         }
 
@@ -114,19 +112,15 @@ class EventListItem extends NoticeListItemAdapter
         // TRANS: Field label for event description.
         $out->element('strong', null, _m('Time:'));
 
-        $out->element('abbr', array('class' => 'dtstart',
-                                    'title' => common_date_iso8601($event->start_time)),
+        $out->element('time', array('class' => 'dt-start',
+                                    'datetime' => common_date_iso8601($event->start_time)),
                       $startDateStr . ' ' . $startTimeStr);
         $out->text(' – ');
-        if ($startDateStr == $endDateStr) {
-            $out->element('span', array('class' => 'dtend',
-                                        'title' => common_date_iso8601($event->end_time)),
-                          $endTimeStr);
-        } else {
-            $out->element('span', array('class' => 'dtend',
-                                        'title' => common_date_iso8601($event->end_time)),
-                          $endDateStr . ' ' . $endTimeStr);
-        }
+        $out->element('time', array('class' => 'dt-end',
+                                    'datetime' => common_date_iso8601($event->end_time)),
+                      $startDateStr == $endDateStr
+                                    ? "$endDatestr $endTimeStr"
+                                    :  $endTimeStr);
 
         $out->elementEnd('div'); // VEVENT/EVENT-TIMES OUT
 
@@ -134,7 +128,7 @@ class EventListItem extends NoticeListItemAdapter
             $out->elementStart('div', 'event-location');
             // TRANS: Field label for event description.
             $out->element('strong', null, _m('Location:'));
-            $out->element('span', 'location', $event->location);
+            $out->element('span', 'p-location', $event->location);
             $out->elementEnd('div');
         }
 
@@ -142,22 +136,21 @@ class EventListItem extends NoticeListItemAdapter
             $out->elementStart('div', 'event-description');
             // TRANS: Field label for event description.
             $out->element('strong', null, _m('Description:'));
-            $out->element('span', 'description', $event->description);
+            $out->element('div', 'p-description', $event->description);
             $out->elementEnd('div');
         }
 
         $rsvps = $event->getRSVPs();
 
         $out->elementStart('div', 'event-rsvps');
-        // TRANS: Field label for event description.
 
-        $out->text(_('Attending:'));
+        // TRANS: Field label for event description.
+        $out->element('strong', null, _m('Attending:'));
         $out->elementStart('ul', 'attending-list');
 
         foreach ($rsvps as $verb => $responses) {
             $out->elementStart('li', 'rsvp-list');
-            switch ($verb)
-            {
+            switch ($verb) {
             case RSVP::POSITIVE:
                 $out->text(_('Yes:'));
                 break;
@@ -173,9 +166,7 @@ class EventListItem extends NoticeListItemAdapter
                 $ids[] = $response->profile_id;
             }
             $ids = array_slice($ids, 0, ProfileMiniList::MAX_PROFILES + 1);
-            $profiles = Profile::pivotGet('id', $ids);
-            $profile  = new ArrayWrapper(array_values($profiles));
-            $minilist = new ProfileMiniList($profile, $out);
+            $minilist = new ProfileMiniList(Profile::multiGet('id', $ids), $out);
             $minilist->show();
 
             $out->elementEnd('li');

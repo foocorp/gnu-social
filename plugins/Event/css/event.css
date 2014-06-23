@@ -6,8 +6,6 @@
 .event-notice-count { float: right; }
 .event-info { float: left; }
 .event-title { margin-left: 0px; }
-#content .event .h-entry { margin-left: 0px; }
-#content .event .e-content { margin-left: 0px; }
 .ui-autocomplete {
     max-height: 100px;
     overflow-y: auto;
@@ -37,7 +35,7 @@ li.rsvp-list .entities li .u-photo {
     float: none !important;
 }
 
-.notice .vevent div {
+.notice .h-event div {
     margin-bottom: 8px;
 }
 
@@ -94,7 +92,7 @@ li.rsvp-list .entities li .u-photo {
     background: linear-gradient(top, #fb6104 0%,#fc8035 100%);
 }
 
-#wrap .vevent form.processing input.submit {
+#wrap .h-event form.processing input.submit {
     text-indent: 0;
     background: #ff9d63;
 }

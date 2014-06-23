@@ -311,7 +311,7 @@ class EventPlugin extends MicroappPlugin
 
     function onEndShowScripts($action)
     {
-        $action->script($this->path('event.js'));
+        $action->script($this->path('js/event.js'));
     }
 
     function onEndShowStyles($action)
