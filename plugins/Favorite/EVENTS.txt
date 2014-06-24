@@ -1,0 +1,36 @@
+Events that come with the Favorite plugin
+=========================================
+
+StartFavorNotice: Saving a notice as a favorite
+- $profile: profile of the person faving (can be remote!)
+- $notice: notice being faved
+- &$fave: Favor object; null to start off with, but feel free to override.
+
+EndFavorNotice: After saving a notice as a favorite
+- $profile: profile of the person faving (can be remote!)
+- $notice: notice being faved
+
+StartDisfavorNotice: Saving a notice as a favorite
+- $profile: profile of the person faving (can be remote!)
+- $notice: notice being faved
+- &$result: result of the disfavoring (if you override)
+
+EndDisfavorNotice: After saving a notice as a favorite
+- $profile: profile of the person faving (can be remote!)
+- $notice: notice being faved
+
+StartFavorNoticeForm: starting the data in the form for favoring a notice
+- $FavorForm: the favor form being shown
+- $notice: notice being favored
+
+EndFavorNoticeForm: Ending the data in the form for favoring a notice
+- $FavorForm: the favor form being shown
+- $notice: notice being favored
+
+StartDisFavorNoticeForm: starting the data in the form for disfavoring a notice
+- $DisfavorForm: the disfavor form being shown
+- $notice: notice being difavored
+
+EndDisFavorNoticeForm: Ending the data in the form for disfavoring a notice
+- $DisfavorForm: the disfavor form being shown
+- $notice: notice being disfavored
