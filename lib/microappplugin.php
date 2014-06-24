@@ -48,7 +48,7 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-abstract class MicroAppPlugin extends Plugin
+abstract class MicroAppPlugin extends ActivityHandlerPlugin
 {
     /**
      * Returns a localized string which represents this micro-app,
@@ -69,22 +69,6 @@ abstract class MicroAppPlugin extends Plugin
      * All micro-app classes must override this method.
      */
     abstract function tag();
-
-    /**
-     * Return a list of ActivityStreams object type URIs
-     * which this micro-app handles. Default implementations
-     * of the base class will use this list to check if a
-     * given ActivityStreams object belongs to us, via
-     * $this->isMyNotice() or $this->isMyActivity.
-     *
-     * All micro-app classes must override this method.
-     *
-     * @fixme can we confirm that these types are the same
-     * for Atom and JSON streams? Any limitations or issues?
-     *
-     * @return array of strings
-     */
-    abstract function types();
 
     /**
      * Given a parsed ActivityStreams activity, your plugin
@@ -168,42 +152,6 @@ abstract class MicroAppPlugin extends Plugin
     public function newFormAction() {
         // such as 'newbookmark' or 'newevent' route
         return 'new'.$this->tag();
-    }
-
-    /**
-     * Check if a given notice object should be handled by this micro-app
-     * plugin.
-     *
-     * The default implementation checks against the activity type list
-     * returned by $this->types(). You can override this method to expand
-     * your checks.
-     *
-     * @param Notice $notice
-     * @return boolean
-     */
-    function isMyNotice($notice) {
-        $types = $this->types();
-        return ($notice->verb == ActivityVerb::POST) && in_array($notice->object_type, $types);
-    }
-
-    /**
-     * Check if a given ActivityStreams activity should be handled by this
-     * micro-app plugin.
-     *
-     * The default implementation checks against the activity type list
-     * returned by $this->types(), and requires that exactly one matching
-     * object be present. You can override this method to expand
-     * your checks or to compare the activity's verb, etc.
-     *
-     * @param Activity $activity
-     * @return boolean
-     */
-    function isMyActivity($activity) {
-        $types = $this->types();
-        return (count($activity->objects) == 1 &&
-                ($activity->objects[0] instanceof ActivityObject) &&
-                ($activity->verb == ActivityVerb::POST) &&
-                in_array($activity->objects[0]->type, $types));
     }
 
     /**

@@ -346,4 +346,15 @@ class ActivityUtils
 
         return null;
     }
+
+    static function compareTypes($type, $objects)    // this does verbs too!
+    {
+        $type = ActivityObject::canonicalType($type);
+        foreach ((array)$objects as $object) {
+            if ($type === ActivityObject::canonicalType($object)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
