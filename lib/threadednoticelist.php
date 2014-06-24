@@ -443,9 +443,9 @@ abstract class NoticeListActorsItem extends NoticeListItem
                 array_unshift($links, _m('FAVELIST', 'You'));
             } else {
                 $profile = Profile::getKV('id', $id);
-                if ($profile) {
-                    $links[] = sprintf('<a href="%s">%s</a>',
-                                       htmlspecialchars($profile->profileurl),
+                if ($profile instanceof Profile) {
+                    $links[] = sprintf('<a class="h-card" href="%s">%s</a>',
+                                       htmlspecialchars($profile->getUrl()),
                                        htmlspecialchars($profile->getBestName()));
                 }
             }
@@ -548,7 +548,7 @@ class ThreadedNoticeListInlineFavesItem extends ThreadedNoticeListFavesItem
 {
     function showStart()
     {
-        $this->out->elementStart('div', array('class' => 'e-content notice-faves'));
+        $this->out->elementStart('div', array('class' => 'notice-faves'));
     }
 
     function showEnd()
@@ -625,7 +625,7 @@ class ThreadedNoticeListInlineRepeatsItem extends ThreadedNoticeListRepeatsItem
 {
     function showStart()
     {
-        $this->out->elementStart('div', array('class' => 'e-content notice-repeats'));
+        $this->out->elementStart('div', array('class' => 'notice-repeats'));
     }
 
     function showEnd()

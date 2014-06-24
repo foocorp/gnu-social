@@ -902,8 +902,10 @@ content: ":";
     margin-left: 32px;
 }
 
-#content .notice .threaded-replies .notice div.e-content.notice-faves {
+.threaded-replies .notice-repeats,
+.threaded-replies .notice-faves {
     clear: both;
+    font-size: 0.88em;
 }
 
 .threaded-replies li {
