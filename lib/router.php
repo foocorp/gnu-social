@@ -143,7 +143,7 @@ class Router
             $main = array('login', 'logout', 'register', 'subscribe',
                           'unsubscribe', 'cancelsubscription', 'approvesub',
                           'confirmaddress', 'recoverpassword',
-                          'invite', 'favor', 'disfavor', 'sup',
+                          'invite', 'sup',
                           'block', 'unblock', 'subedit',
                           'groupblock', 'groupunblock',
                           'sandbox', 'unsandbox',
@@ -454,11 +454,6 @@ class Router
                               'format' => '(xml|json)'));
 
             // START qvitter API additions
-
-            $m->connect('api/statuses/favs/:id.:format',
-                        array('action' => 'ApiStatusesFavs',
-                              'id' => '[0-9]+',
-                              'format' => '(xml|json)'));
             
             $m->connect('api/attachment/:id.:format',
                         array('action' => 'ApiAttachment',
@@ -594,39 +589,6 @@ class Router
 
             $m->connect('api/account/rate_limit_status.:format',
                         array('action' => 'ApiAccountRateLimitStatus'));
-
-            // favorites
-
-            $m->connect('api/favorites/create.:format',
-                        array('action' => 'ApiFavoriteCreate',
-                              'format' => '(xml|json)'));
-
-            $m->connect('api/favorites/destroy.:format',
-                        array('action' => 'ApiFavoriteDestroy',
-                              'format' => '(xml|json)'));
-
-            $m->connect('api/favorites/list.:format',
-                        array('action' => 'ApiTimelineFavorites',
-                              'format' => '(xml|json|rss|atom|as)'));
-
-            $m->connect('api/favorites/:id.:format',
-                        array('action' => 'ApiTimelineFavorites',
-                              'id' => Nickname::INPUT_FMT,
-                              'format' => '(xml|json|rss|atom|as)'));
-
-            $m->connect('api/favorites.:format',
-                        array('action' => 'ApiTimelineFavorites',
-                              'format' => '(xml|json|rss|atom|as)'));
-
-            $m->connect('api/favorites/create/:id.:format',
-                        array('action' => 'ApiFavoriteCreate',
-                              'id' => '[0-9]+',
-                              'format' => '(xml|json)'));
-
-            $m->connect('api/favorites/destroy/:id.:format',
-                        array('action' => 'ApiFavoriteDestroy',
-                              'id' => '[0-9]+',
-                              'format' => '(xml|json)'));
 
             // blocks
 
@@ -921,15 +883,11 @@ class Router
                                       'nickname' => $nickname));
                 }
 
-                foreach (array('all', 'replies', 'favorites') as $a) {
+                foreach (array('all', 'replies') as $a) {
                     $m->connect($a.'/rss',
                                 array('action' => $a.'rss',
                                       'nickname' => $nickname));
                 }
-
-                $m->connect('favorites',
-                            array('action' => 'showfavorites',
-                                  'nickname' => $nickname));
 
                 $m->connect('avatar',
                             array('action' => 'avatarbynickname',
@@ -1011,11 +969,8 @@ class Router
                 $m->connect('', array('action' => 'public'));
                 $m->connect('rss', array('action' => 'publicrss'));
                 $m->connect('featuredrss', array('action' => 'featuredrss'));
-                $m->connect('favoritedrss', array('action' => 'favoritedrss'));
                 $m->connect('featured/', array('action' => 'featured'));
                 $m->connect('featured', array('action' => 'featured'));
-                $m->connect('favorited/', array('action' => 'favorited'));
-                $m->connect('favorited', array('action' => 'favorited'));
                 $m->connect('rsd.xml', array('action' => 'rsd'));
 
                 foreach (array('subscriptions', 'subscribers',
@@ -1096,15 +1051,11 @@ class Router
                                 array('nickname' => Nickname::DISPLAY_FMT));
                 }
 
-                foreach (array('all', 'replies', 'favorites') as $a) {
+                foreach (array('all', 'replies') as $a) {
                     $m->connect(':nickname/'.$a.'/rss',
                                 array('action' => $a.'rss'),
                                 array('nickname' => Nickname::DISPLAY_FMT));
                 }
-
-                $m->connect(':nickname/favorites',
-                            array('action' => 'showfavorites'),
-                            array('nickname' => Nickname::DISPLAY_FMT));
 
                 $m->connect(':nickname/avatar',
                             array('action' => 'avatarbynickname'),
@@ -1154,15 +1105,6 @@ class Router
             $m->connect('api/statusnet/app/subscriptions/:subscriber.atom',
                         array('action' => 'AtomPubSubscriptionFeed'),
                         array('subscriber' => '[0-9]+'));
-
-            $m->connect('api/statusnet/app/favorites/:profile/:notice.atom',
-                        array('action' => 'AtomPubShowFavorite'),
-                        array('profile' => '[0-9]+',
-                              'notice' => '[0-9]+'));
-
-            $m->connect('api/statusnet/app/favorites/:profile.atom',
-                        array('action' => 'AtomPubFavoriteFeed'),
-                        array('profile' => '[0-9]+'));
 
             $m->connect('api/statusnet/app/memberships/:profile/:group.atom',
                         array('action' => 'AtomPubShowMembership'),

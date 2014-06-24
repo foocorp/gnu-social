@@ -294,6 +294,7 @@ $default =
         array('core' => array(
                             'AuthCrypt' => array(),
                             'Cronish' => array(),
+                            'Favorite' => array(),
                             'LRDD' => array(),
                             'StrictTransportSecurity' => array(),
                         ),
