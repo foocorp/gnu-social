@@ -249,12 +249,9 @@ class ActivitySpamPlugin extends Plugin
     /**
      * Pre-cache our spam scores if needed.
      */
-    function onEndNoticeListPrefill(&$notices, &$profiles, $avatarSize) {
+    function onEndNoticeListPrefill(array &$notices, array &$profiles, array $notice_ids, Profile $scoped=null) {
         if ($this->hideSpam) {
-            foreach ($notices as $notice) {
-                $ids[] = $notice->id;
-            }
-            Spam_score::multiGet('notice_id', $ids);
+            Spam_score::multiGet('notice_id', $notice_ids);
         }
         return true;
     }

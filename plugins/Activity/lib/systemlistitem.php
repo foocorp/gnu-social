@@ -79,8 +79,10 @@ class SystemListItem extends NoticeListItemAdapter
             $user = common_current_user();
             if (!empty($user)) {
                 $this->nli->out->elementStart('div', 'notice-options');
-                $this->showFaveForm();
-                $this->showReplyLink();
+                if (Event::handle('StartShowNoticeOptionItems', array($this))) {
+                    $this->showReplyLink();
+                    Event::handle('EndShowNoticeOptionItems', array($this));
+                }
                 $this->nli->out->elementEnd('div');
             }
             Event::handle('EndShowNoticeOptions', array($this));

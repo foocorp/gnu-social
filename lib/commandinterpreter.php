@@ -37,7 +37,7 @@ class CommandInterpreter
 
         $cmd = strtolower($cmd);
 
-        if (Event::handle('StartIntepretCommand', array($cmd, $arg, $user, &$result))) {
+        if (Event::handle('StartInterpretCommand', array($cmd, $arg, $user, &$result))) {
             switch($cmd) {
             case 'help':
                 if ($arg) {
@@ -228,18 +228,6 @@ class CommandInterpreter
                         $result = null;
                     } else {
                         $result = new WhoisCommand($user, $other);
-                    }
-                }
-                break;
-            case 'fav':
-                if (!$arg) {
-                    $result = null;
-                } else {
-                    list($other, $extra) = $this->split_arg($arg);
-                    if ($extra) {
-                        $result = null;
-                    } else {
-                        $result = new FavCommand($user, $other);
                     }
                 }
                 break;

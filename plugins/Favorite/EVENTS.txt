@@ -34,3 +34,10 @@ StartDisFavorNoticeForm: starting the data in the form for disfavoring a notice
 EndDisFavorNoticeForm: Ending the data in the form for disfavoring a notice
 - $DisfavorForm: the disfavor form being shown
 - $notice: notice being disfavored
+
+StartShowFaveForm: just before showing the fave form
+- $item: the NoticeListItem object being shown
+
+EndShowFaveForm: just after showing the fave form
+- $item: the NoticeListItem object being shown
+

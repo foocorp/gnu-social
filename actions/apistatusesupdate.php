@@ -337,12 +337,14 @@ class ApiStatusesUpdateAction extends ApiAuthAction
     function supported($cmd)
     {
         static $cmdlist = array('MessageCommand', 'SubCommand', 'UnsubCommand',
-            'FavCommand', 'OnCommand', 'OffCommand', 'JoinCommand', 'LeaveCommand');
+            'OnCommand', 'OffCommand', 'JoinCommand', 'LeaveCommand');
 
-        if (in_array(get_class($cmd), $cmdlist)) {
-            return true;
+        $supported = null;
+
+        if (Event::handle('CommandSupportedAPI', array($cmd, &$supported))) {
+            $supported = $supported || in_array(get_class($cmd), $cmdlist);
         }
 
-        return false;
+        return $supported;
     }
 }

@@ -124,8 +124,8 @@ class AnonymousFavePlugin extends Plugin
         if (!common_logged_in() && $this->hasAnonFaving($item)) {
 
             $profile = AnonymousFavePlugin::getAnonProfile();
-            if (!empty($profile)) {
-                if ($profile->hasFave($item->notice)) {
+            if ($profile instanceof Profile) {
+                if (Fave::existsForProfile($item->notice, $profile)) {
                     $disfavor = new AnonDisFavorForm($item->out, $item->notice);
                     $disfavor->show();
                 } else {

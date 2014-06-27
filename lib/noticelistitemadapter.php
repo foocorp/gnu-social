@@ -70,4 +70,9 @@ class NoticeListItemAdapter
     {
         return call_user_func_array(array($this->nli, $name), $arguments);
     }
+
+    function __get($name)
+    {
+        return $this->nli->$name;
+    }
 }

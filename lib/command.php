@@ -276,57 +276,6 @@ class StatsCommand extends Command
     }
 }
 
-class FavCommand extends Command
-{
-    var $other = null;
-
-    function __construct($user, $other)
-    {
-        parent::__construct($user);
-        $this->other = $other;
-    }
-
-    function handle($channel)
-    {
-        $notice = $this->getNotice($this->other);
-
-        $fave            = new Fave();
-        $fave->user_id   = $this->user->id;
-        $fave->notice_id = $notice->id;
-        $fave->find();
-
-        if ($fave->fetch()) {
-            // TRANS: Error message text shown when a favorite could not be set because it has already been favorited.
-            $channel->error($this->user, _('Could not create favorite: Already favorited.'));
-            return;
-        }
-
-        $fave = Fave::addNew($this->user->getProfile(), $notice);
-
-        if (!$fave) {
-            // TRANS: Error message text shown when a favorite could not be set.
-            $channel->error($this->user, _('Could not create favorite.'));
-            return;
-        }
-
-        // @fixme favorite notification should be triggered
-        // at a lower level
-
-        $other = User::getKV('id', $notice->profile_id);
-
-        if ($other && $other->id != $this->user->id) {
-            if ($other->email && $other->emailnotifyfav) {
-                mail_notify_fave($other, $this->user, $notice);
-            }
-        }
-
-        $this->user->blowFavesCache();
-
-        // TRANS: Text shown when a notice has been marked as favourite successfully.
-        $channel->output($this->user, _('Notice marked as fave.'));
-    }
-}
-
 class JoinCommand extends Command
 {
     var $other = null;
@@ -1036,10 +985,6 @@ class HelpCommand extends Command
                           "whois <nickname>" => _m('COMMANDHELP', "get profile info on user"),
                           // TRANS: Help message for IM/SMS command "lose <nickname>".
                           "lose <nickname>" => _m('COMMANDHELP', "force user to stop following you"),
-                          // TRANS: Help message for IM/SMS command "fav <nickname>".
-                          "fav <nickname>" => _m('COMMANDHELP', "add user's last notice as a 'fave'"),
-                          // TRANS: Help message for IM/SMS command "fav #<notice_id>".
-                          "fav #<notice_id>" => _m('COMMANDHELP', "add notice with the given id as a 'fave'"),
                           // TRANS: Help message for IM/SMS command "repeat #<notice_id>".
                           "repeat #<notice_id>" => _m('COMMANDHELP', "repeat a notice with a given id"),
                           // TRANS: Help message for IM/SMS command "repeat <nickname>".
@@ -1089,6 +1034,8 @@ class HelpCommand extends Command
 
         // Give plugins a chance to add or override...
         Event::handle('HelpCommandMessages', array($this, &$commands));
+
+        sort($commands);
         foreach ($commands as $command => $help) {
             $out[] = "$command - $help";
         }

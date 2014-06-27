@@ -37,6 +37,8 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * Based on experience with the Comet and Meteor plugins,
  * this superclass extracts out some of the common functionality
  *
+ * Currently depends on Favorite plugin.
+ *
  * @category Plugin
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>

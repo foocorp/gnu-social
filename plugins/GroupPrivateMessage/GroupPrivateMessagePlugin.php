@@ -230,7 +230,7 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onStartIntepretCommand($cmd, $arg, $user, &$result)
+    function onStartInterpretCommand($cmd, $arg, $user, &$result)
     {
         if ($cmd == 'd' || $cmd == 'dm') {
 

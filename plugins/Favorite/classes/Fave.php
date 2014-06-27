@@ -157,6 +157,12 @@ class Fave extends Managed_DataObject
         return $act;
     }
 
+    static function existsForProfile($notice, Profile $scoped) {
+        $fave = self::pkeyGet(array('user_id'=>$scoped->id, 'notice_id'=>$notice->id));
+
+        return ($fave instanceof Fave);
+    }
+
     /**
      * Fetch a stream of favorites by profile
      *
@@ -200,5 +206,29 @@ class Fave extends Managed_DataObject
                             $profile_id,
                             $notice_id,
                             common_date_iso8601($modified));
+    }
+
+
+    static protected $_faves = array();
+
+    /**
+     * All faves of this notice
+     *
+     * @param Notice $notice A notice we wish to get faves for (may still be ArrayWrapper)
+     *
+     * @return array Array of Fave objects
+     */
+    static public function byNotice($notice)
+    {
+        if (!isset(self::$_faves[$notice->id])) {
+            self::fillFaves(array($notice->id));
+        }
+        return self::$_faves[$notice->id];
+    }
+
+    static public function fillFaves(array $notice_ids)
+    {
+        $faveMap = Fave::listGet('notice_id', $notice_ids);
+        self::$_faves = array_replace(self::$_faves, $faveMap);
     }
 }

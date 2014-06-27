@@ -62,9 +62,9 @@ class AnonFavorAction extends RedirectingAction
         $notice = Notice::getKV($id);
         $token  = $this->checkSessionToken();
 
-        if ($profile->hasFave($notice)) {
+        if (Fave::existsForProfile($notice, $profile)) {
             // TRANS: Client error.
-            $this->clientError(_m('This notice is already a favorite!'));
+            throw new AlreadyFulfilledException(_m('This notice is already a favorite!'));
         }
         $fave = Fave::addNew($profile, $notice);
 

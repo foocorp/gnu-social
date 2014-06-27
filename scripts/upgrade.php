@@ -51,7 +51,6 @@ function main()
         initLocalGroup();
         initNoticeReshare();
     
-        initFaveURI();
         initSubscriptionURI();
         initGroupMemberURI();
 
@@ -285,35 +284,6 @@ function initNoticeReshare()
                 $notice->update($orig);
             } catch (Exception $e) {
                 printfv("Error updating verb and object_type for {$notice->id}:" . $e->getMessage());
-            }
-        }
-    }
-
-    printfnq("DONE.\n");
-}
-
-function initFaveURI() 
-{
-    printfnq("Ensuring all faves have a URI...");
-
-    $fave = new Fave();
-    $fave->whereAdd('uri IS NULL');
-
-    if ($fave->find()) {
-        while ($fave->fetch()) {
-            try {
-                $fave->decache();
-                $fave->query(sprintf('update fave '.
-                                     'set uri = "%s", '.
-                                     '    modified = "%s" '.
-                                     'where user_id = %d '.
-                                     'and notice_id = %d',
-                                     Fave::newURI($fave->user_id, $fave->notice_id, $fave->modified),
-                                     common_sql_date(strtotime($fave->modified)),
-                                     $fave->user_id,
-                                     $fave->notice_id));
-            } catch (Exception $e) {
-                common_log(LOG_ERR, "Error updated fave URI: " . $e->getMessage());
             }
         }
     }

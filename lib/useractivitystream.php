@@ -20,7 +20,7 @@
 /**
  * Class for activity streams
  *
- * Includes faves, notices, and subscriptions.
+ * Includes objects like notices, subscriptions and from plugins.
  *
  * We extend atomusernoticefeed since it does some nice setup for us.
  *
@@ -28,6 +28,7 @@
 class UserActivityStream extends AtomUserNoticeFeed
 {
     public $activities = array();
+    public $after = null;
 
     const OUTPUT_STRING = 1;
     const OUTPUT_RAW = 2;
@@ -74,21 +75,20 @@ class UserActivityStream extends AtomUserNoticeFeed
         $subscriptions = $this->getSubscriptions();
         $subscribers   = $this->getSubscribers();
         $groups        = $this->getGroups();
-        $faves         = $this->getFaves();
         $messagesFrom  = $this->getMessagesFrom();
         $messagesTo    = $this->getMessagesTo();
 
-        $objs = array_merge($subscriptions, $subscribers, $groups, $faves, $notices, $messagesFrom, $messagesTo);
+        $objs = array_merge($subscriptions, $subscribers, $groups, $notices, $messagesFrom, $messagesTo);
+
+        Event::handle('AppendUserActivityStreamObjects', array($this, &$objs));
 
         $subscriptions = null;
         $subscribers   = null;
         $groups        = null;
-        $faves         = null;
 
         unset($subscriptions);
         unset($subscribers);
         unset($groups);
-        unset($faves);
 
         // Sort by create date
 
@@ -101,7 +101,7 @@ class UserActivityStream extends AtomUserNoticeFeed
     }
 
     /**
-     * Interleave the pre-sorted subs/groups/faves with the user's
+     * Interleave the pre-sorted objects with the user's
      * notices, all in reverse chron order.
      */
     function renderEntries($format=Feed::ATOM, $handle=null)
@@ -276,27 +276,6 @@ class UserActivityStream extends AtomUserNoticeFeed
         }
 
         return $subs;
-    }
-
-    function getFaves()
-    {
-        $faves = array();
-
-        $fave = new Fave();
-
-        $fave->user_id = $this->user->id;
-
-        if (!empty($this->after)) {
-            $fave->whereAdd("modified > '" . common_sql_date($this->after) . "'");
-        }
-
-        if ($fave->find()) {
-            while ($fave->fetch()) {
-                $faves[] = clone($fave);
-            }
-        }
-
-        return $faves;
     }
 
     /**

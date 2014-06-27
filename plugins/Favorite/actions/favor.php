@@ -55,12 +55,12 @@ class FavorAction extends FormAction
         if (!($notice instanceof Notice)) {
             $this->serverError(_('Notice not found'));
         }
-        if ($this->scoped->hasFave($notice)) {
+        if (Fave::existsForProfile($notice, $this->scoped)) {
             // TRANS: Client error displayed when trying to mark a notice as favorite that already is a favorite.
-            $this->clientError(_('This notice is already a favorite!'));
+            throw new AlreadyFulfilledException(_('This notice is already a favorite!'));
         }
         $fave = Fave::addNew($this->scoped, $notice);
-        if (!$fave) {
+        if (!$fave instanceof Fave) {
             // TRANS: Server error displayed when trying to mark a notice as favorite fails in the database.
             $this->serverError(_('Could not create favorite.'));
         }

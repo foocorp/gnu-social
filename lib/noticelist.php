@@ -116,33 +116,25 @@ class NoticeList extends Widget
         return new NoticeListItem($notice, $this->out);
     }
     
-    static function prefill(&$notices, $avatarSize=AVATAR_STREAM_SIZE)
+    static function prefill(array &$notices)
     {
-        if (Event::handle('StartNoticeListPrefill', array(&$notices, $avatarSize))) {
+        $scoped = Profile::current();
+        $notice_ids = Notice::_idsOf($notices);
+
+        if (Event::handle('StartNoticeListPrefill', array(&$notices, $notice_ids, $scoped))) {
 
             // Prefill attachments
             Notice::fillAttachments($notices);
-            // Prefill attachments
-            Notice::fillFaves($notices);
             // Prefill repeat data
             Notice::fillRepeats($notices);
             // Prefill the profiles
             $profiles = Notice::fillProfiles($notices);
-    	
-            $p = Profile::current();
-            if ($p instanceof Profile) {
 
-                $ids = array();
-    	
-                foreach ($notices as $notice) {
-                    $ids[] = $notice->id;
-                }
-    	
-                Fave::pivotGet('notice_id', $ids, array('user_id' => $p->id));
-                Notice::pivotGet('repeat_of', $ids, array('profile_id' => $p->id));
+            if ($scoped instanceof Profile) {
+                Notice::pivotGet('repeat_of', $notice_ids, array('profile_id' => $scoped->id));
             }
 
-            Event::handle('EndNoticeListPrefill', array(&$notices, &$profiles, $avatarSize));
+            Event::handle('EndNoticeListPrefill', array(&$notices, &$profiles, $notice_ids, $scoped));
         }
     }
 }

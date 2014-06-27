@@ -118,7 +118,7 @@ class ApiFavoriteCreateAction extends ApiAuthAction
 
         // Note: Twitter lets you fave things repeatedly via API.
 
-        if ($this->user->hasFave($this->notice)) {
+        if (Fave::existsForProfile($this->notice, $this->scoped)) {
             $this->clientError(
                 // TRANS: Client error displayed when trying to mark a notice favourite that already is a favourite.
                 _('This status is already a favorite.'),

@@ -93,7 +93,7 @@ class ActivityMover extends QueueHandler
         }
 
         switch ($act->verb) {
-        case ActivityVerb::FAVORITE:
+/*        case ActivityVerb::FAVORITE:
             $this->log(LOG_INFO,
                        "Moving favorite of {$act->objects[0]->id} by ".
                        "{$act->actor->id} to {$remote->nickname}.");
@@ -105,7 +105,7 @@ class ActivityMover extends QueueHandler
                                             'notice_id' => $notice->id));
                 $fave->delete();
             }
-            break;
+            break;*/
         case ActivityVerb::POST:
             $this->log(LOG_INFO,
                        "Moving notice {$act->objects[0]->id} by ".

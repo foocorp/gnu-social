@@ -153,7 +153,6 @@ class NoticeListItem extends Widget
             if ($user) {
                 $this->out->elementStart('div', 'notice-options');
                 if (Event::handle('StartShowNoticeOptionItems', array($this))) {
-                    $this->showFaveForm();
                     $this->showReplyLink();
                     $this->showRepeatForm();
                     $this->showDeleteLink();
@@ -184,28 +183,6 @@ class NoticeListItem extends Widget
             $this->out->elementStart('li', array('class' => $class,
                                                  'id' => 'notice-' . $id));
             Event::handle('EndOpenNoticeListItemElement', array($this));
-        }
-    }
-
-    /**
-     * show the "favorite" form
-     *
-     * @return void
-     */
-    function showFaveForm()
-    {
-        if (Event::handle('StartShowFaveForm', array($this))) {
-            $user = common_current_user();
-            if ($user) {
-                if ($user->hasFave($this->notice)) {
-                    $disfavor = new DisfavorForm($this->out, $this->notice);
-                    $disfavor->show();
-                } else {
-                    $favor = new FavorForm($this->out, $this->notice);
-                    $favor->show();
-                }
-            }
-            Event::handle('EndShowFaveForm', array($this));
         }
     }
 

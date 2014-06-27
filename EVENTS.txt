@@ -267,12 +267,6 @@ StartShowNoticeOptions: just before showing notice options like fave, repeat, et
 EndShowNoticeOptions: just after showing notice options like fave, repeat, etc.
 - $item: the NoticeListItem object being shown
 
-StartShowFaveForm: just before showing the fave form
-- $item: the NoticeListItem object being shown
-
-EndShowFaveForm: just after showing the fave form
-- $item: the NoticeListItem object being shown
-
 StartShowPageNotice: just before showing the page notice (instructions or error)
 - $action: action object being shown
 

@@ -194,7 +194,6 @@ class Notice extends Managed_DataObject
 
             $this->clearReplies();
             $this->clearRepeats();
-            $this->clearFaves();
             $this->clearTags();
             $this->clearGroupInboxes();
             $this->clearFiles();
@@ -1730,15 +1729,17 @@ class Notice extends Managed_DataObject
 
         // favorite and repeated
 
+        $scoped = null;
         if (!empty($cur)) {
-            $cp = $cur->getProfile();
-            $noticeInfoAttr['favorite'] = ($cp->hasFave($this)) ? "true" : "false";
-            $noticeInfoAttr['repeated'] = ($cp->hasRepeated($this)) ? "true" : "false";
+            $scoped = $cur->getProfile();
+            $noticeInfoAttr['repeated'] = ($scoped->hasRepeated($this)) ? "true" : "false";
         }
 
         if (!empty($this->repeat_of)) {
             $noticeInfoAttr['repeat_of'] = $this->repeat_of;
         }
+
+        Event::handle('StatusNetApiNoticeInfo', array($this, &$noticeInfoAttr, $scoped));
 
         return array('statusnet:notice_info', $noticeInfoAttr, null);
     }
@@ -2019,24 +2020,6 @@ class Notice extends Managed_DataObject
                 $repeatNotice->update($orig);
             }
         }
-    }
-
-    function clearFaves()
-    {
-        $fave = new Fave();
-        $fave->notice_id = $this->id;
-
-        if ($fave->find()) {
-            while ($fave->fetch()) {
-                self::blow('fave:ids_by_user_own:%d', $fave->user_id);
-                self::blow('fave:ids_by_user_own:%d;last', $fave->user_id);
-                self::blow('fave:ids_by_user:%d', $fave->user_id);
-                self::blow('fave:ids_by_user:%d;last', $fave->user_id);
-                $fave->delete();
-            }
-        }
-
-        $fave->free();
     }
 
     function clearTags()
@@ -2570,14 +2553,13 @@ class Notice extends Managed_DataObject
 		}
 	}
 
-    static function _idsOf(&$notices)
+    static function _idsOf(array &$notices)
     {
 		$ids = array();
 		foreach ($notices as $notice) {
-			$ids[] = $notice->id;
+			$ids[$notice->id] = true;
 		}
-		$ids = array_unique($ids);
-        return $ids;
+		return array_keys($ids);
     }
 
     static function fillAttachments(&$notices)
@@ -2607,47 +2589,6 @@ class Notice extends Managed_DataObject
 			}
 		    $notice->_setAttachments($files);
 		}
-    }
-
-    protected $_faves = array();
-
-    /**
-     * All faves of this notice
-     *
-     * @return array Array of Fave objects
-     */
-
-    function getFaves()
-    {
-        if (isset($this->_faves[$this->id])) {
-            return $this->_faves[$this->id];
-        }
-        $faveMap = Fave::listGet('notice_id', array($this->id));
-        $this->_faves[$this->id] = $faveMap[$this->id];
-        return $this->_faves[$this->id];
-    }
-
-    function _setFaves($faves)
-    {
-        $this->_faves[$this->id] = $faves;
-    }
-
-    static function fillFaves(&$notices)
-    {
-        $ids = self::_idsOf($notices);
-        $faveMap = Fave::listGet('notice_id', $ids);
-        $cnt = 0;
-        $faved = array();
-        foreach ($faveMap as $id => $faves) {
-            $cnt += count($faves);
-            if (count($faves) > 0) {
-                $faved[] = $id;
-            }
-        }
-        foreach ($notices as $notice) {
-        	$faves = $faveMap[$notice->id];
-            $notice->_setFaves($faves);
-        }
     }
 
     static function fillReplies(&$notices)

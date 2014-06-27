@@ -133,9 +133,9 @@ class CommandInterpreterTest extends PHPUnit_Framework_TestCase
             array('whois foo', 'WhoisCommand'),
             array('whois foo bar', null),
 
-            array('fav', null),
+/*            array('fav', null),
             array('fav foo', 'FavCommand'),
-            array('fav foo bar', null),
+            array('fav foo bar', null),*/
 
             array('nudge', null),
             array('nudge foo', 'NudgeCommand'),

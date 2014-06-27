@@ -229,16 +229,22 @@ class ThreadedNoticeListItem extends NoticeListItem
             }
 
             if (Event::handle('StartShowThreadedNoticeTail', array($this, $this->notice, &$notices))) {
+                $threadActive = count($notices) > 0; // has this thread had any activity?
+
                 $this->out->elementStart('ul', 'notices threaded-replies xoxo');
 
-                $item = new ThreadedNoticeListFavesItem($this->notice, $this->out);
-                $hasFaves = $item->show();
+                if (Event::handle('StartShowThreadedNoticeTailItems', array($this, $this->notice, &$threadActive))) {
 
-                $item = new ThreadedNoticeListRepeatsItem($this->notice, $this->out);
-                $hasRepeats = $item->show();
+                    // Show the repeats-button for this notice. If there are repeats,
+                    // the show() function will return true, definitely setting our
+                    // $threadActive flag, which will be used later to show a reply box.
+                    $item = new ThreadedNoticeListRepeatsItem($this->notice, $this->out);
+                    $threadActive = $item->show() || $threadActive;
 
-                if ($notices) {
+                    Event::handle('EndShowThreadedNoticeTailItems', array($this, $this->notice, &$threadActive));
+                }
 
+                if (count($notices)>0) {
                     if ($moreCutoff) {
                         $item = new ThreadedNoticeListMoreItem($moreCutoff, $this->out, count($notices));
                         $item->show();
@@ -247,18 +253,16 @@ class ThreadedNoticeListItem extends NoticeListItem
                         if (Event::handle('StartShowThreadedNoticeSub', array($this, $this->notice, $notice))) {
                             $item = new ThreadedNoticeListSubItem($notice, $this->notice, $this->out);
                             $item->show();
-                            Event::handle('StartShowThreadedNoticeSub', array($this, $this->notice, $notice));
+                            Event::handle('EndShowThreadedNoticeSub', array($this, $this->notice, $notice));
                         }
                     }
                 }
 
-                if ($notices || $hasFaves || $hasRepeats) {
+                if ($threadActive && Profile::current() instanceof Profile) {
                     // @fixme do a proper can-post check that's consistent
                     // with the JS side
-                    if (common_current_user()) {
-                        $item = new ThreadedNoticeListReplyItem($this->notice, $this->out);
-                        $item->show();
-                    }
+                    $item = new ThreadedNoticeListReplyItem($this->notice, $this->out);
+                    $item->show();
                 }
                 $this->out->elementEnd('ul');
                 Event::handle('EndShowThreadedNoticeTail', array($this, $this->notice, $notices));
@@ -319,10 +323,12 @@ class ThreadedNoticeListSubItem extends NoticeListItem
 
     function showEnd()
     {
-        $item = new ThreadedNoticeListInlineFavesItem($this->notice, $this->out);
-        $hasFaves = $item->show();
-        $item = new ThreadedNoticeListInlineRepeatsItem($this->notice, $this->out);
-        $hasRepeats = $item->show();
+        $threadActive = null;   // unused here for now, but maybe in the future?
+        if (Event::handle('StartShowThreadedNoticeTailItems', array($this, $this->notice, &$threadActive))) {
+            $item = new ThreadedNoticeListInlineRepeatsItem($this->notice, $this->out);
+            $hasRepeats = $item->show();
+            Event::handle('EndShowThreadedNoticeTailItems', array($this, $this->notice, &$threadActive));
+        }
         parent::showEnd();
     }
 }
@@ -416,144 +422,6 @@ class ThreadedNoticeListReplyItem extends NoticeListItem
         $this->out->element('input', array('class' => 'placeholder',
                                            // TRANS: Field label for reply mini form.
                                            'value' => _('Write a reply...')));
-    }
-}
-
-/**
- * Placeholder for showing faves...
- */
-abstract class NoticeListActorsItem extends NoticeListItem
-{
-    /**
-     * @return array of profile IDs
-     */
-    abstract function getProfiles();
-
-    abstract function getListMessage($count, $you);
-
-    function show()
-    {
-        $links = array();
-        $you = false;
-        $cur = common_current_user();
-        foreach ($this->getProfiles() as $id) {
-            if ($cur && $cur->id == $id) {
-                $you = true;
-                // TRANS: Reference to the logged in user in favourite list.
-                array_unshift($links, _m('FAVELIST', 'You'));
-            } else {
-                $profile = Profile::getKV('id', $id);
-                if ($profile instanceof Profile) {
-                    $links[] = sprintf('<a class="h-card" href="%s">%s</a>',
-                                       htmlspecialchars($profile->getUrl()),
-                                       htmlspecialchars($profile->getBestName()));
-                }
-            }
-        }
-
-        if ($links) {
-            $count = count($links);
-            $msg = $this->getListMessage($count, $you);
-            $out = sprintf($msg, $this->magicList($links));
-
-            $this->showStart();
-            $this->out->raw($out);
-            $this->showEnd();
-            return $count;
-        } else {
-            return 0;
-        }
-    }
-
-    function magicList($items)
-    {
-        if (count($items) == 0) {
-            return '';
-        } else if (count($items) == 1) {
-            return $items[0];
-        } else {
-            $first = array_slice($items, 0, -1);
-            $last = array_slice($items, -1, 1);
-            // TRANS: Separator in list of user names like "Jim, Bob, Mary".
-            $separator = _(', ');
-            // TRANS: For building a list such as "Jim, Bob, Mary and 5 others like this".
-            // TRANS: %1$s is a list of users, separated by a separator (default: ", "), %2$s is the last user in the list.
-            return sprintf(_m('FAVELIST', '%1$s and %2$s'), implode($separator, $first), implode($separator, $last));
-        }
-    }
-}
-
-/**
- * Placeholder for showing faves...
- */
-class ThreadedNoticeListFavesItem extends NoticeListActorsItem
-{
-    function getProfiles()
-    {
-        $faves = $this->notice->getFaves();
-        $profiles = array();
-        foreach ($faves as $fave) {
-            $profiles[] = $fave->user_id;
-        }
-        return $profiles;
-    }
-
-    function magicList($items)
-    {
-        if (count($items) > 4) {
-            return parent::magicList(array_slice($items, 0, 3));
-        } else {
-            return parent::magicList($items);
-        }
-    }
-
-    function getListMessage($count, $you)
-    {
-        if ($count == 1 && $you) {
-            // darn first person being different from third person!
-            // TRANS: List message for notice favoured by logged in user.
-            return _m('FAVELIST', 'You like this.');
-        } else if ($count > 4) {
-            // TRANS: List message for when more than 4 people like something.
-            // TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
-            // TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
-            return sprintf(_m('%%s and %d others like this.',
-                              '%%s and %d others like this.',
-                              $count),
-                           $count - 3);
-        } else {
-            // TRANS: List message for favoured notices.
-            // TRANS: %%s is a list of users liking a notice.
-            // TRANS: Plural is based on the number of of users that have favoured a notice.
-            return sprintf(_m('%%s likes this.',
-                              '%%s like this.',
-                              $count),
-                           $count);
-        }
-    }
-
-    function showStart()
-    {
-        $this->out->elementStart('li', array('class' => 'notice-data notice-faves'));
-    }
-
-    function showEnd()
-    {
-        $this->out->elementEnd('li');
-    }
-}
-
-// @todo FIXME: needs documentation.
-class ThreadedNoticeListInlineFavesItem extends ThreadedNoticeListFavesItem
-{
-    function showStart()
-    {
-        $this->out->elementStart('div', array('class' => 'notice-faves'));
-    }
-
-    function showEnd()
-    {
-        $this->out->elementEnd('div');
     }
 }
 
