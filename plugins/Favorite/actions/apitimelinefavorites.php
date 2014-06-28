@@ -181,23 +181,13 @@ class ApiTimelineFavoritesAction extends ApiBareAuthAction
 
         common_debug("since id = " . $this->since_id . " max id = " . $this->max_id);
 
-        if (!empty($this->auth_user) && $this->auth_user->id == $this->target->id) {
-            $notice = $this->target->favoriteNotices(
-                true,
-                ($this->page-1) * $this->count,
-                $this->count,
-                $this->since_id,
-                $this->max_id
-            );
-        } else {
-            $notice = $this->target->favoriteNotices(
-                false,
-                ($this->page-1) * $this->count,
-                $this->count,
-                $this->since_id,
-                $this->max_id
-            );
-        }
+        $notice = Fave::stream($this->target->id,
+                               ($this->page-1) * $this->count,  // offset
+                               $this->count,                    // limit
+                               (!empty($this->auth_user) && $this->auth_user->id == $this->target->id),   // own feed?
+                               $this->since_id,
+                               $this->max_id
+                              );
 
         while ($notice->fetch()) {
             $notices[] = clone($notice);

@@ -440,11 +440,6 @@ class User extends Managed_DataObject
         }
     }
 
-    function hasFave($notice)
-    {
-        return $this->getProfile()->hasFave($notice);
-    }
-
     function mutuallySubscribed(Profile $other)
     {
         return $this->getProfile()->mutuallySubscribed($other);
@@ -477,16 +472,6 @@ class User extends Managed_DataObject
     function getNotices($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
     {
         return $this->getProfile()->getNotices($offset, $limit, $since_id, $before_id);
-    }
-
-    function favoriteNotices($own=false, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
-    {
-        return $this->getProfile()->favoriteNotices($own, $offset, $limit, $since_id, $max_id);
-    }
-
-    function blowFavesCache()
-    {
-        $this->getProfile()->blowFavesCache();
     }
 
     function getSelfTags()
@@ -641,7 +626,7 @@ class User extends Managed_DataObject
             common_log(LOG_INFO, "User {$this->nickname} has no profile; continuing deletion.");
         }
 
-        $related = array('Fave',
+        $related = array(
                          'Confirm_address',
                          'Remember_me',
                          'Foreign_link',

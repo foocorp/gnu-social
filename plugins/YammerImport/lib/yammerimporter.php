@@ -20,6 +20,8 @@
 /**
  * Basic client class for Yammer's OAuth/JSON API.
  *
+ * Depends on Favorite plugin
+ *
  * @package YammerImportPlugin
  * @author Brion Vibber <brion@status.net>
  */

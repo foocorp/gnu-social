@@ -88,13 +88,6 @@ class PublicGroupNav extends Menu
                     _('Featured users'), $this->actionName == 'featured', 'nav_featured');
             }
 
-            if (!common_config('singleuser', 'enabled')) {
-                // TRANS: Menu item in search group navigation panel.
-                $this->out->menuItem(common_local_url('favorited'), _m('MENU','Popular'),
-                                     // TRANS: Menu item title in search group navigation panel.
-                                     _('Popular notices'), $this->actionName == 'favorited', 'nav_timeline_favorited');
-            }
-
             Event::handle('EndPublicGroupNav', array($this));
         }
         $this->action->elementEnd('ul');

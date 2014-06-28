@@ -116,17 +116,13 @@ class ShowfavoritesAction extends Action
 
         $cur = common_current_user();
 
-        if (!empty($cur) && $cur->id == $this->user->id) {
-
-            // Show imported/gateway notices as well as local if
-            // the user is looking at their own favorites
-
-            $this->notice = $this->user->favoriteNotices(true, ($this->page-1)*NOTICES_PER_PAGE,
-                                                   NOTICES_PER_PAGE + 1);
-        } else {
-            $this->notice = $this->user->favoriteNotices(false, ($this->page-1)*NOTICES_PER_PAGE,
-                                                   NOTICES_PER_PAGE + 1);
-        }
+        // Show imported/gateway notices as well as local if
+        // the user is looking at their own favorites, otherwise not.
+        $this->notice = Fave::stream($this->user->id,
+                                     ($this->page-1)*NOTICES_PER_PAGE,  // offset
+                                     NOTICES_PER_PAGE + 1,              // limit
+                                     (!empty($cur) && $cur->id == $this->user->id)  // own feed?
+                                    );
 
         if (empty($this->notice)) {
             // TRANS: Server error displayed when favourite notices could not be retrieved from the database.

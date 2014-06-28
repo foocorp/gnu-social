@@ -44,7 +44,7 @@ class FavCommand extends Command
             } 
         } 
  
-        $this->user->blowFavesCache(); 
+        Fave::blowCacheForProfileId($this->user->id);
  
         // TRANS: Text shown when a notice has been marked as favourite successfully. 
         $channel->output($this->user, _('Notice marked as fave.')); 

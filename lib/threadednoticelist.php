@@ -467,9 +467,9 @@ class ThreadedNoticeListRepeatsItem extends NoticeListActorsItem
                               $count - 3),
                            $count - 3);
         } else {
-            // TRANS: List message for favoured notices.
-            // TRANS: %%s is a list of users liking a notice.
-            // TRANS: Plural is based on the number of of users that have favoured a notice.
+            // TRANS: List message for repeated notices.
+            // TRANS: %%s is a list of users who have repeated a notice.
+            // TRANS: Plural is based on the number of of users that have repeated a notice.
             return sprintf(_m('%%s repeated this.',
                               '%%s repeated this.',
                               $count),

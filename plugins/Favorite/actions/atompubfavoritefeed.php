@@ -269,8 +269,8 @@ class AtompubfavoritefeedAction extends ApiAuthAction
 
             $fave = Fave::addNew($profile, $notice);
 
-            if (!empty($fave)) {
-                $this->_profile->blowFavesCache();
+            if ($fave instanceof Fave) {
+                Fave::blowCacheForProfileId($this->_profile->id);
                 $this->notify($fave, $notice, $this->auth_user);
             }
 

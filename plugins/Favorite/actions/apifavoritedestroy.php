@@ -143,7 +143,7 @@ class ApiFavoriteDestroyAction extends ApiAuthAction
             return;
         }
 
-        $this->user->blowFavesCache();
+        Fave::blowCacheForProfileId($this->user->id);
 
         if ($this->format == 'xml') {
             $this->showSingleXmlStatus($this->notice);

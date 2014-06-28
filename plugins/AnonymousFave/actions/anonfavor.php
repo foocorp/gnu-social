@@ -68,12 +68,12 @@ class AnonFavorAction extends RedirectingAction
         }
         $fave = Fave::addNew($profile, $notice);
 
-        if (!$fave) {
+        if (!$fave instanceof Fave) {
             // TRANS: Server error.
             $this->serverError(_m('Could not create favorite.'));
         }
 
-        $profile->blowFavesCache();
+        Fave::blowCacheForProfileId($profile->id);
 
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');

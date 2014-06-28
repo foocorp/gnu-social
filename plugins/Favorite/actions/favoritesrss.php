@@ -85,8 +85,7 @@ class FavoritesrssAction extends Rss10Action
      */
     function getNotices($limit=0)
     {
-        $user    = $this->user;
-        $notice  = $user->favoriteNotices(false, 0, $limit);
+        $notice  = Fave::stream($this->user->id, 0, $limit, $false);
         $notices = array();
         while ($notice->fetch()) {
             $notices[] = clone($notice);

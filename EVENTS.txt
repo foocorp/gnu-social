@@ -216,7 +216,9 @@ EndShowBody: called after showing the <body> element (and </body>)
 - $action: action object being shown
 
 StartPersonalGroupNav: beginning of personal group nav menu
-- $action: action object being shown
+- $menu: Menu list object being shown
+- $target: Profile for whom it is shown
+- $scoped: Profile of currently logged in user (or null)
 
 EndPersonalGroupNav: end of personal group nav menu (good place to add a menu item)
 - $action: action object being shown

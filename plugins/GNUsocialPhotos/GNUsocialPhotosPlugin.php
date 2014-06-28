@@ -149,7 +149,7 @@ class GNUsocialPhotosPlugin extends Plugin
                                      'title' => _('Upload a photo')));
     }
     */
-    function onEndPersonalGroupNav($nav)
+    function onEndPersonalGroupNav(Menu $nav, Profile $target, Profile $scoped=null)
     {
       
         $nav->out->menuItem(common_local_url('photos',

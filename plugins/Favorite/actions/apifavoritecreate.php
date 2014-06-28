@@ -141,7 +141,7 @@ class ApiFavoriteCreateAction extends ApiAuthAction
         }
 
         $this->notify($fave, $this->notice, $this->user);
-        $this->user->blowFavesCache();
+        Fave::blowCacheForProfileId($this->user->id);
 
         if ($this->format == 'xml') {
             $this->showSingleXmlStatus($this->notice);

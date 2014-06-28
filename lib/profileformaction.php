@@ -92,8 +92,6 @@ class ProfileFormAction extends RedirectingAction
     /**
      * Handle request
      *
-     * Shows a page with list of favorite notices
-     *
      * @param array $args $_REQUEST args; handled in prepare()
      *
      * @return void

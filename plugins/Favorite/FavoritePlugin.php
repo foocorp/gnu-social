@@ -162,6 +162,11 @@ class FavoritePlugin extends ActivityHandlerPlugin
         return true;
     }
 
+    public function onTwitterUserArray(Profile $profile, array &$userdata, Profile $scoped=null, array $args=array())
+    {
+        $userdata['favourites_count'] = Fave::countByProfile($profile);
+    }
+
     /**
      * Typically just used to fill out StatusNet specific data in API calls in the referenced $info array.
      */
@@ -180,15 +185,22 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
         if ($fave->find()) {
             while ($fave->fetch()) {
-                Memcached_DataObject::blow('fave:ids_by_user_own:%d', $fave->user_id);
-                Memcached_DataObject::blow('fave:ids_by_user_own:%d;last', $fave->user_id);
-                Memcached_DataObject::blow('fave:ids_by_user:%d', $fave->user_id);
-                Memcached_DataObject::blow('fave:ids_by_user:%d;last', $fave->user_id);
+                Fave::blowCacheForProfileId($fave->user_id);
                 $fave->delete();
             }
         }
 
         $fave->free();
+    }
+
+    public function onUserDeleteRelated(User $user, array &$related)
+    {
+        $fave = new Fave();
+        $fave->user_id = $user->id;
+        $fave->delete();    // Will perform a DELETE matching "user_id = {$user->id}"
+
+        Fave::blowCacheForProfileId($user->id);
+        return true;
     }
 
     public function onStartNoticeListPrefill(array &$notices, array $notice_ids, Profile $scoped=null)
@@ -299,6 +311,31 @@ class FavoritePlugin extends ActivityHandlerPlugin
     public function onCommandSupportedAPI(Command $cmd, array &$supported)
     {
         $supported = $supported || $cmd instanceof FavCommand;
+    }
+
+    // Layout stuff
+
+    public function onEndPersonalGroupNav(Menu $menu, Profile $target, Profile $scoped=null)
+    {
+        $menu->out->menuItem(common_local_url('showfavorites', array('nickname' => $target->getNickname())),
+                             // TRANS: Menu item in personal group navigation menu.
+                             _m('MENU','Favorites'),
+                             // @todo i18n FIXME: Need to make this two messages.
+                             // TRANS: Menu item title in personal group navigation menu.
+                             // TRANS: %s is a username.
+                             sprintf(_('%s\'s favorite notices'), $target->getBestName()),
+                             $scoped instanceof Profile && $target->id === $scoped->id && $menu->actionName =='showfavorites',
+                            'nav_timeline_favorites');
+    }
+
+    public function onEndPublicGroupNav(Menu $menu)
+    {
+        if (!common_config('singleuser', 'enabled')) {
+            // TRANS: Menu item in search group navigation panel.
+            $menu->out->menuItem(common_local_url('favorited'), _m('MENU','Popular'),
+                                 // TRANS: Menu item title in search group navigation panel.
+                                 _('Popular notices'), $menu->actionName == 'favorited', 'nav_timeline_favorited');
+        }
     }
 
     public function onPluginVersion(array &$versions)

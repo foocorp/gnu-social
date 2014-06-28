@@ -50,24 +50,27 @@ class PersonalGroupNav extends Menu
      *
      * @return void
      */
-    function show()
+    public function show()
     {
-        $user         = common_current_user();
+        // FIXME: Legacy StatusNet behaviour was to do this, but really it should be the GroupNav
+        // of the targeted user! ($this->action->arg('nickname')
+        $target = Profile::current();
 
-        if (empty($user)) {
+        if (!$target instanceof Profile) {
             throw new ServerException('Cannot show personal group navigation without a current user.');
         }
 
-        $user_profile = $user->getProfile();
-        $nickname     = $user->nickname;
-        $name         = $user_profile->getBestName();
+        $nickname  = $target->getNickname();
+        $name      = $target->getBestName();
+
+        $scoped = Profile::current();
 
         $action = $this->actionName;
         $mine = ($this->action->arg('nickname') == $nickname); // @fixme kinda vague
 
         $this->out->elementStart('ul', array('class' => 'nav'));
 
-        if (Event::handle('StartPersonalGroupNav', array($this))) {
+        if (Event::handle('StartPersonalGroupNav', array($this, $target, $scoped))) {
             $this->out->menuItem(common_local_url('all', array('nickname' =>
                                                                $nickname)),
                                  // TRANS: Menu item in personal group navigation menu.
@@ -92,21 +95,9 @@ class PersonalGroupNav extends Menu
                                  // TRANS: %s is a username.
                                  sprintf(_('Replies to %s'), $name),
                                  $mine && $action =='replies', 'nav_timeline_replies');
-            $this->out->menuItem(common_local_url('showfavorites', array('nickname' =>
-                                                                         $nickname)),
-                                 // TRANS: Menu item in personal group navigation menu.
-                                 _m('MENU','Favorites'),
-                                 // @todo i18n FIXME: Need to make this two messages.
-                                 // TRANS: Menu item title in personal group navigation menu.
-                                 // TRANS: %s is a username.
-                                 sprintf(_('%s\'s favorite notices'),
-                                         // TRANS: Replaces %s in '%s\'s favorite notices'. (Yes, we know we need to fix this.)
-                                         ($user_profile) ? $name : _m('FIXME','User')),
-                                 $mine && $action =='showfavorites', 'nav_timeline_favorites');
 
-            $cur = common_current_user();
 
-            if ($cur && $cur->id == $user->id &&
+            if ($scoped instanceof Profile && $scoped->id == $target->id &&
                 !common_config('singleuser', 'enabled')) {
 
                 $this->out->menuItem(common_local_url('inbox', array('nickname' =>
@@ -118,7 +109,7 @@ class PersonalGroupNav extends Menu
                                      $mine && $action =='inbox');
             }
 
-            Event::handle('EndPersonalGroupNav', array($this));
+            Event::handle('EndPersonalGroupNav', array($this, $target, $scoped));
         }
         $this->out->elementEnd('ul');
     }

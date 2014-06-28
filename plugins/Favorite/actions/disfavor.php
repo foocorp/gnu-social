@@ -73,7 +73,7 @@ class DisfavorAction extends FormAction
             // TRANS: Server error displayed when removing a favorite from the database fails.
             $this->serverError(_('Could not delete favorite.'));
         }
-        $this->scoped->blowFavesCache();
+        Fave::blowCacheForProfileId($this->scoped->id);
         if (StatusNet::isAjax()) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');

@@ -760,39 +760,6 @@ class Profile extends Managed_DataObject
           $other->isSubscribed($this);
     }
 
-    function hasFave($notice)
-    {
-        $fave = Fave::pkeyGet(array('user_id' => $this->id,
-                                    'notice_id' => $notice->id));
-        return ((is_null($fave)) ? false : true);
-    }
-
-    function faveCount()
-    {
-        $c = Cache::instance();
-        if (!empty($c)) {
-            $cnt = $c->get(Cache::key('profile:fave_count:'.$this->id));
-            if (is_integer($cnt)) {
-                return (int) $cnt;
-            }
-        }
-
-        $faves = new Fave();
-        $faves->user_id = $this->id;
-        $cnt = (int) $faves->count('notice_id');
-
-        if (!empty($c)) {
-            $c->set(Cache::key('profile:fave_count:'.$this->id), $cnt);
-        }
-
-        return $cnt;
-    }
-
-    function favoriteNotices($own=false, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
-    {
-        return Fave::stream($this->id, $offset, $limit, $own, $since_id, $max_id);
-    }
-
     function noticeCount()
     {
         $c = Cache::instance();
@@ -815,20 +782,6 @@ class Profile extends Managed_DataObject
         return $cnt;
     }
 
-    function blowFavesCache()
-    {
-        $cache = Cache::instance();
-        if ($cache) {
-            // Faves don't happen chronologically, so we need to blow
-            // ;last cache, too
-            $cache->delete(Cache::key('fave:ids_by_user:'.$this->id));
-            $cache->delete(Cache::key('fave:ids_by_user:'.$this->id.';last'));
-            $cache->delete(Cache::key('fave:ids_by_user_own:'.$this->id));
-            $cache->delete(Cache::key('fave:ids_by_user_own:'.$this->id.';last'));
-        }
-        $this->blowFaveCount();
-    }
-
     function blowSubscriberCount()
     {
         $c = Cache::instance();
@@ -842,14 +795,6 @@ class Profile extends Managed_DataObject
         $c = Cache::instance();
         if (!empty($c)) {
             $c->delete(Cache::key('profile:subscription_count:'.$this->id));
-        }
-    }
-
-    function blowFaveCount()
-    {
-        $c = Cache::instance();
-        if (!empty($c)) {
-            $c->delete(Cache::key('profile:fave_count:'.$this->id));
         }
     }
 

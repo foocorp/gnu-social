@@ -80,7 +80,7 @@ class AnonDisfavorAction extends RedirectingAction
             $this->serverError(_m('Could not delete favorite.'));
         }
 
-        $profile->blowFavesCache();
+        Fave::blowCacheForProfileId($profile->id);
 
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');

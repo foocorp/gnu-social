@@ -65,7 +65,7 @@ class FavorAction extends FormAction
             $this->serverError(_('Could not create favorite.'));
         }
         $this->notify($notice, $this->scoped->getUser());
-        $this->scoped->blowFavesCache();
+        Fave::blowCacheForProfileId($this->scoped->id);
         if (StatusNet::isAjax()) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');

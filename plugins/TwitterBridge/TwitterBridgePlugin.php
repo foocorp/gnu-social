@@ -37,6 +37,8 @@ require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
  *
  * This class allows users to link their Twitter accounts
  *
+ * Depends on Favorite plugin.
+ *
  * @category Plugin
  * @package  StatusNet
  * @author   Zach Copley <zach@status.net>

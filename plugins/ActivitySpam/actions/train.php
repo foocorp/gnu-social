@@ -141,8 +141,8 @@ class TrainAction extends Action
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
-            // TRANS: Page title for page on which favorite notices can be unfavourited.
-            $this->element('title', null, _('Disfavor favorite.'));
+            // TRANS: Page title for page on which we train the spam filter for ham or spam
+            $this->element('title', null, _('Train spam filter'));
             $this->elementEnd('head');
             $this->elementStart('body');
             $form->show();

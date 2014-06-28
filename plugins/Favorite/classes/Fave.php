@@ -191,6 +191,27 @@ class Fave extends Managed_DataObject
         return $fav;
     }
 
+    static function countByProfile(Profile $profile)
+    {
+        $c = Cache::instance();
+        if (!empty($c)) {
+            $cnt = $c->get(Cache::key('fave:count_by_profile:'.$profile->id));
+            if (is_integer($cnt)) {
+                return $cnt;
+            }
+        }
+
+        $faves = new Fave();
+        $faves->user_id = $profile->id;
+        $cnt = (int) $faves->count('notice_id');
+
+        if (!empty($c)) {
+            $c->set(Cache::key('fave:count_by_profile:'.$profile->id), $cnt);
+        }
+
+        return $cnt;
+    }
+
     function getURI()
     {
         if (!empty($this->uri)) {
@@ -230,5 +251,19 @@ class Fave extends Managed_DataObject
     {
         $faveMap = Fave::listGet('notice_id', $notice_ids);
         self::$_faves = array_replace(self::$_faves, $faveMap);
+    }
+
+    static public function blowCacheForProfileId($profile_id)
+    {
+        $cache = Cache::instance();
+        if ($cache) {
+            // Faves don't happen chronologically, so we need to blow
+            // ;last cache, too
+            $cache->delete(Cache::key('fave:ids_by_user:'.$profile_id));
+            $cache->delete(Cache::key('fave:ids_by_user:'.$profile_id.';last'));
+            $cache->delete(Cache::key('fave:ids_by_user_own:'.$profile_id));
+            $cache->delete(Cache::key('fave:ids_by_user_own:'.$profile_id.';last'));
+            $cache->delete(Cache::key('fave:count_by_profile:'.$profile_id));
+        }
     }
 }

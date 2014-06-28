@@ -243,8 +243,6 @@ class ApiAction extends Action
 
         $twitter_user['created_at'] = $this->dateTwitter($profile->created);
 
-        $twitter_user['favourites_count'] = $profile->faveCount(); // British spelling!
-
         $timezone = 'UTC';
 
         if (!empty($user) && $user->timezone) {
@@ -289,6 +287,9 @@ class ApiAction extends Action
         // StatusNet-specific
 
         $twitter_user['statusnet_profile_url'] = $profile->profileurl;
+
+        // The event call to handle NoticeSimpleStatusArray lets plugins add data to the output array
+        Event::handle('TwitterUserArray', array($profile, &$twitter_user, $this->scoped, array()));
 
         return $twitter_user;
     }

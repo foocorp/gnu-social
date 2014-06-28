@@ -131,7 +131,7 @@ class GNUsocialProfileExtensionsPlugin extends Plugin
         return true;
     }
 
-    function onStartPersonalGroupNav($nav)
+    function onStartPersonalGroupNav(Menu $nav, Profile $target, Profile $scoped=null)
     { 
         $nav->out->menuItem(common_local_url('bio',
                            array('nickname' => $nav->action->trimmed('nickname'))), _('Bio'), 
