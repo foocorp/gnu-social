@@ -295,17 +295,12 @@ class ApiAction extends Action
 
     function twitterStatusArray($notice, $include_user=true)
     {
-        // The event call to handle NoticeSimpleStatusArray lets plugins add data to the output array
         $base = $this->twitterSimpleStatusArray($notice, $include_user);
-        Event::handle('NoticeSimpleStatusArray', array($notice, &$base, $this->scoped,
-                                                       array('include_user'=>$include_user)));
 
         if (!empty($notice->repeat_of)) {
             $original = Notice::getKV('id', $notice->repeat_of);
             if ($original instanceof Notice) {
                 $orig_array = $this->twitterSimpleStatusArray($original, $include_user);
-                Event::handle('NoticeSimpleStatusArray', array($original, &$orig_array, $this->scoped,
-                                                               array('include_user'=>$include_user)));
                 $base['retweeted_status'] = $orig_array;
             }
         }
@@ -410,6 +405,10 @@ class ApiAction extends Action
 
         $twitter_status['statusnet_html'] = $notice->rendered;
         $twitter_status['statusnet_conversation_id'] = intval($notice->conversation);
+
+        // The event call to handle NoticeSimpleStatusArray lets plugins add data to the output array
+        Event::handle('NoticeSimpleStatusArray', array($notice, &$twitter_status, $this->scoped,
+                                                       array('include_user'=>$include_user)));
 
         return $twitter_status;
     }
