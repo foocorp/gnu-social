@@ -177,7 +177,7 @@ class Action extends HTMLOutputter // lawsuit
 
     public function getScoped()
     {
-        return ($this->scoped instanceof Profile) ? $this-scoped : null;
+        return ($this->scoped instanceof Profile) ? $this->scoped : null;
     }
 
     // Must be run _after_ prepare
