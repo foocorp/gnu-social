@@ -27,13 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/publicgroupnav.php';
-require_once INSTALLDIR.'/lib/noticelist.php';
-require_once INSTALLDIR.'/lib/feedlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 // Farther than any human will go
 
@@ -261,8 +255,6 @@ class PublicAction extends Action
 
         $p = Profile::current();
 
-        $pop = new PopularNoticeSection($this, $p);
-        $pop->show();
         if (!common_config('performance', 'high')) {
             $cloud = new PublicTagCloudSection($this);
             $cloud->show();

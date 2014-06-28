@@ -79,7 +79,7 @@ abstract class UAPPlugin extends Plugin
      *
      * @return boolean hook flag
      */
-    function onStartShowAside($action)
+    function onStartShowAside(Action $action)
     {
         if (!is_null($this->mediumRectangle)) {
 
@@ -141,7 +141,7 @@ abstract class UAPPlugin extends Plugin
      *
      * @return boolean hook flag
      */
-    function onStartShowSections($action)
+    function onStartShowSections(Action $action)
     {
         if (!is_null($this->rectangle)) {
             $action->elementStart('div',
@@ -161,7 +161,7 @@ abstract class UAPPlugin extends Plugin
      *
      * @return boolean hook flag
      */
-    function onEndShowAside($action)
+    function onEndShowAside(Action $action)
     {
         if (!is_null($this->wideSkyscraper)) {
             $action->elementStart('div',

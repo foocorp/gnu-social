@@ -139,7 +139,7 @@ class MapstractionPlugin extends Plugin
         return true;
     }
 
-    function onEndShowSections($action)
+    function onEndShowSections(Action $action)
     {
         $actionName = $action->trimmed('action');
         // These are the ones that have maps on 'em

@@ -169,15 +169,34 @@ class Action extends HTMLOutputter // lawsuit
         return true;
     }
 
-    function updateScopedProfile() {
+    public function updateScopedProfile()
+    {
         $this->scoped = Profile::current();
         return $this->scoped;
+    }
+
+    public function getScoped()
+    {
+        return ($this->scoped instanceof Profile) ? $this-scoped : null;
     }
 
     // Must be run _after_ prepare
     public function getActionName()
     {
         return $this->action;
+    }
+
+    public function isAction(array $names)
+    {
+        foreach ($names as $class) {
+            // PHP is case insensitive, and we have stuff like ApiUpperCaseAction,
+            // but we at least make a point out of wanting to do stuff case-sensitive.
+            $class = ucfirst($class) . 'Action';
+            if ($this instanceof $class) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

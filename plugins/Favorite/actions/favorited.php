@@ -28,12 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/publicgroupnav.php';
-require_once INSTALLDIR.'/lib/noticelist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * List of popular notices

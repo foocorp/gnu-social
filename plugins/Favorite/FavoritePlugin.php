@@ -338,6 +338,18 @@ class FavoritePlugin extends ActivityHandlerPlugin
         }
     }
 
+    public function onEndShowSections(Action $action)
+    {
+        if (!$action->isAction(array('all', 'public'))) {
+            return true;
+        }
+
+        if (!common_config('performance', 'high')) {
+            $section = new PopularNoticeSection($action, $action->getScoped());
+            $section->show();
+        }
+    }
+
     public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Favorite',

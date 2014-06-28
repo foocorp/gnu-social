@@ -51,7 +51,7 @@ class WikiHashtagsPlugin extends Plugin
         parent::__construct();
     }
 
-    function onStartShowSections($action)
+    function onStartShowSections(Action $action)
     {
         $name = $action->trimmed('action');
 

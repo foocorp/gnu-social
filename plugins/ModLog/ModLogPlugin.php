@@ -116,7 +116,7 @@ class ModLogPlugin extends Plugin
         return true;
     }
 
-    function onEndShowSections($action)
+    function onEndShowSections(Action $action)
     {
         if ($action->arg('action') != 'showstream') {
             return true;

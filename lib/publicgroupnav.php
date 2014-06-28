@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/widget.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Menu for public group of actions

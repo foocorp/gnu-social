@@ -60,7 +60,7 @@ class SiteNoticeInSidebarPlugin extends Plugin
         return false;
     }
 
-    function onStartShowSections($action)
+    function onStartShowSections(Action $action)
     {
         $text = common_config('site', 'notice');
         if (!empty($text)) {
