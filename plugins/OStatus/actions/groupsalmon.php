@@ -48,8 +48,8 @@ class GroupsalmonAction extends SalmonAction
 
         $this->target = $this->group;
 
-        $oprofile = Ostatus_profile::getKV('group_id', $id);
-        if ($oprofile instanceof Ostatus_profile) {
+        $remote_group = Ostatus_profile::getKV('group_id', $id);
+        if ($remote_group instanceof Ostatus_profile) {
             // TRANS: Client error.
             $this->clientError(_m('Cannot accept remote posts for a remote group.'));
         }
@@ -121,36 +121,30 @@ class GroupsalmonAction extends SalmonAction
      */
     function handleJoin()
     {
-        $oprofile = $this->ensureProfile();
-        if (!$oprofile instanceof Ostatus_profile) {
-            // TRANS: Client error.
-            $this->clientError(_m('Cannot read profile to set up group membership.'));
-        }
-        if ($oprofile->isGroup()) {
+        if ($this->oprofile->isGroup()) {
             // TRANS: Client error.
             $this->clientError(_m('Groups cannot join groups.'));
         }
 
-        common_log(LOG_INFO, "Remote profile {$oprofile->uri} joining local group {$this->group->nickname}");
-        $profile = $oprofile->localProfile();
+        common_log(LOG_INFO, sprintf('Remote profile %s joining local group %s', $this->oprofile->getUri(), $this->group->getNickname()));
 
-        if ($profile->isMember($this->group)) {
+        if ($this->actor->isMember($this->group)) {
             // Already a member; we'll take it silently to aid in resolving
             // inconsistencies on the other side.
             return true;
         }
 
-        if (Group_block::isBlocked($this->group, $profile)) {
+        if (Group_block::isBlocked($this->group, $this->actor)) {
             // TRANS: Client error displayed when trying to join a group the user is blocked from by a group admin.
             $this->clientError(_m('You have been blocked from that group by the admin.'), 403);
         }
 
         try {
-            $profile->joinGroup($this->group);
+            $this->actor->joinGroup($this->group);
         } catch (Exception $e) {
             // TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
             $this->serverError(sprintf(_m('Could not join remote user %1$s to group %2$s.'),
-                                       $oprofile->uri, $this->group->nickname));
+                                       $this->oprofile->getUri(), $this->group->getNickname()));
         }
     }
 
@@ -159,26 +153,20 @@ class GroupsalmonAction extends SalmonAction
      */
     function handleLeave()
     {
-        $oprofile = $this->ensureProfile();
-        if (!$oprofile instanceof Ostatus_profile) {
-            // TRANS: Client error displayed when group membership cannot be cancelled
-            // TRANS: because the remote profile could not be read.
-            $this->clientError(_m('Cannot read profile to cancel group membership.'));
-        }
-        if ($oprofile->isGroup()) {
+        // ensureProfile throws exception on failure
+        if ($this->oprofile->isGroup()) {
             // TRANS: Client error displayed when trying to have a group join another group.
-            $this->clientError(_m('Groups cannot join groups.'));
+            throw new AlreadyFulfilledException(_m('Groups cannot be members of groups'));
         }
 
-        common_log(LOG_INFO, "Remote profile {$oprofile->uri} leaving local group {$this->group->nickname}");
-        $profile = $oprofile->localProfile();
+        common_log(LOG_INFO, sprintf('Remote profile %s leaving local group %s', $this->oprofile->getUri(), $this->group->getNickname()));
 
         try {
-            $profile->leaveGroup($this->group);
+            $this->actor->leaveGroup($this->group);
         } catch (Exception $e) {
             // TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
             $this->serverError(sprintf(_m('Could not remove remote user %1$s from group %2$s.'),
-                                       $oprofile->uri, $this->group->nickname));
+                                       $this->oprofile->getUri(), $this->group->getNickname()));
         }
     }
 }

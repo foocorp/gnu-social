@@ -1387,7 +1387,7 @@ class Ostatus_profile extends Managed_DataObject
     public static function ensureActivityObjectProfile($object, $hints=array())
     {
         $profile = self::getActivityObjectProfile($object);
-        if ($profile) {
+        if ($profile instanceof Ostatus_profile) {
             $profile->updateFromActivityObject($object, $hints);
         } else {
             $profile = self::createActivityObjectProfile($object, $hints);

@@ -110,13 +110,8 @@ class UsersalmonAction extends SalmonAction
      */
     function handleFollow()
     {
-        $oprofile = $this->ensureProfile();
-        if ($oprofile instanceof Ostatus_profile) {
-            common_log(LOG_INFO, sprintf('Setting up subscription from remote %s to local %s', $oprofile->getUri(), $this->target->getNickname()));
-            Subscription::start($oprofile->localProfile(), $this->target);
-        } else {
-            common_log(LOG_INFO, "Can't set up subscription from remote; missing profile.");
-        }
+        common_log(LOG_INFO, sprintf('Setting up subscription from remote %s to local %s', $this->oprofile->getUri(), $this->target->getNickname()));
+        Subscription::start($this->actor, $this->target);
     }
 
     /**
@@ -127,16 +122,11 @@ class UsersalmonAction extends SalmonAction
      */
     function handleUnfollow()
     {
-        $oprofile = $this->ensureProfile();
-        if ($oprofile instanceof Ostatus_profile) {
-            common_log(LOG_INFO, sprintf('Canceling subscription from remote %s to local %s', $oprofile->getUri(), $this->target->getNickname()));
-            try {
-                Subscription::cancel($oprofile->localProfile(), $this->target);
-            } catch (NoProfileException $e) {
-                common_debug('Could not find profile for Subscription: '.$e->getMessage());
-            }
-        } else {
-            common_log(LOG_ERR, "Can't cancel subscription from remote, didn't find the profile");
+        common_log(LOG_INFO, sprintf('Canceling subscription from remote %s to local %s', $this->oprofile->getUri(), $this->target->getNickname()));
+        try {
+            Subscription::cancel($this->actor, $this->target);
+        } catch (NoProfileException $e) {
+            common_debug('Could not find profile for Subscription: '.$e->getMessage());
         }
     }
 
@@ -148,9 +138,8 @@ class UsersalmonAction extends SalmonAction
     function handleFavorite()
     {
         $notice = $this->getNotice($this->activity->objects[0]);
-        $profile = $this->ensureProfile()->localProfile();
 
-        $old = Fave::pkeyGet(array('user_id' => $profile->id,
+        $old = Fave::pkeyGet(array('user_id' => $this->actor->id,
                                    'notice_id' => $notice->id));
 
         if ($old instanceof Fave) {
@@ -158,7 +147,7 @@ class UsersalmonAction extends SalmonAction
             throw new AlreadyFulfilledException(_m('This is already a favorite.'));
         }
 
-        if (!Fave::addNew($profile, $notice)) {
+        if (!Fave::addNew($this->actor, $notice)) {
            // TRANS: Client exception.
            throw new ClientException(_m('Could not save new favorite.'));
         }
@@ -171,9 +160,8 @@ class UsersalmonAction extends SalmonAction
     function handleUnfavorite()
     {
         $notice = $this->getNotice($this->activity->objects[0]);
-        $profile = $this->ensureProfile()->localProfile();
 
-        $fave = Fave::pkeyGet(array('user_id' => $profile->id,
+        $fave = Fave::pkeyGet(array('user_id' => $this->actor->id,
                                    'notice_id' => $notice->id));
         if (!$fave instanceof Fave) {
             // TRANS: Client exception.
@@ -204,7 +192,6 @@ class UsersalmonAction extends SalmonAction
             }
 
             // save the list
-            $tagger = $this->ensureProfile();
             $list   = Ostatus_profile::ensureActivityObjectProfile($this->activity->target);
 
             $ptag = $list->localPeopletag();
@@ -222,7 +209,6 @@ class UsersalmonAction extends SalmonAction
             if ($this->activity->objects[0]->type != ActivityObject::PERSON) {
                 // TRANS: Client exception.
                 throw new ClientException(_m('Not a person object.'));
-                return false;
             }
             // this is a peopletag
             $tagged = User::getKV('uri', $this->activity->objects[0]->id);
@@ -238,7 +224,6 @@ class UsersalmonAction extends SalmonAction
             }
 
             // save the list
-            $tagger = $this->ensureProfile();
             $list   = Ostatus_profile::ensureActivityObjectProfile($this->activity->target);
 
             $ptag = $list->localPeopletag();

@@ -28,6 +28,9 @@ class SalmonAction extends Action
 {
     protected $needPost = true;
 
+    protected $oprofile = null; // Ostatus_profile of the actor
+    protected $actor    = null; // Profile object of the actor
+
     var $xml      = null;
     var $activity = null;
     var $target   = null;
@@ -62,6 +65,9 @@ class SalmonAction extends Action
             // TRANS: Client error.
             $this->clientError(_m('Salmon signature verification failed.'));
         }
+
+        $this->oprofile = $this->ensureProfile();
+        $this->actor    = $this->oprofile->localProfile();
 
         return true;
     }
@@ -216,6 +222,7 @@ class SalmonAction extends Action
             throw new Exception(_m('Received a salmon slap from unidentified actor.'));
         }
 
+        // ensureActivityObjectProfile throws exception on failure
         return Ostatus_profile::ensureActivityObjectProfile($actor);
     }
 
