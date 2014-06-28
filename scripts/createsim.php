@@ -31,7 +31,7 @@ $longoptions = array(
     'words=',
     'prefix=',
     'groupprefix=',
-    'faves='
+//    'faves=',
 );
 
 $helptext = <<<END_OF_CREATESIM_HELP
@@ -40,7 +40,6 @@ Creates a lot of test users and notices to (loosely) simulate a real server.
     -b --subscriptions Average subscriptions per user (default no. users/20)
     -g --groups        Number of groups (default 20)
     -j --joins         Number of groups per user (default 5)
-    -f --faves         Number of faves per user (default notices/10)
     -n --notices       Average notices per user (default 100)
     -t --tags          Number of distinct hash tags (default 10000)
     -u --users         Number of users (default 100)
@@ -275,6 +274,7 @@ function newJoin($u, $g)
     }
 }
 
+/* Plugins should be part of the simulation too!
 function newFave($u)
 {
     global $userprefix;
@@ -317,7 +317,7 @@ function newFave($u)
     }
 
     Fave::addNew($user->getProfile(), $notice);
-}
+}*/
 
 function testNoticeContent()
 {
@@ -344,7 +344,8 @@ function testNoticeContent()
     return $text;
 }
 
-function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $messageavg, $tagmax)
+//function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $messageavg, $tagmax)
+function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $messageavg, $tagmax)
 {
     global $config;
     $config['site']['dupelimit'] = -1;
@@ -372,7 +373,8 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesav
 
     // # registrations + # notices + # subs
 
-    $events = $usercount + $groupcount + ($usercount * ($noticeavg + $subsavg + $joinsavg + $favesavg + $messageavg));
+    //$events = $usercount + $groupcount + ($usercount * ($noticeavg + $subsavg + $joinsavg + $favesavg + $messageavg));
+    $events = $usercount + $groupcount + ($usercount * ($noticeavg + $subsavg + $joinsavg + $messageavg));
 
     $events -= $preuser;
     $events -= $pregroup;
@@ -382,7 +384,7 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesav
     $nt = $gt + ($usercount * $noticeavg);
     $st = $nt + ($usercount * $subsavg);
     $jt = $st + ($usercount * $joinsavg);
-    $ft = $jt + ($usercount * $favesavg);
+//    $ft = $jt + ($usercount * $favesavg);
     $mt = $ft + ($usercount * $messageavg);
 
     printfv("$events events ($ut, $gt, $nt, $st, $jt, $ft, $mt)\n");
@@ -408,9 +410,9 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesav
         } else if ($e > $st && $e <= $jt) {
             printfv("$i Making a new group join\n");
             newJoin($n, $g);
-        } else if ($e > $jt && $e <= $ft) {
+/*        } else if ($e > $jt && $e <= $ft) {
             printfv("$i Making a new fave\n");
-            newFave($n);
+            newFave($n);*/
         } else if ($e > $ft && $e <= $mt) {
             printfv("$i Making a new message\n");
             newMessage($n);
@@ -427,7 +429,7 @@ $groupcount  = (have_option('g', 'groups')) ? get_option_value('g', 'groups') : 
 $noticeavg   = (have_option('n', 'notices')) ? get_option_value('n', 'notices') : 100;
 $subsavg     = (have_option('b', 'subscriptions')) ? get_option_value('b', 'subscriptions') : max($usercount/20, 10);
 $joinsavg    = (have_option('j', 'joins')) ? get_option_value('j', 'joins') : 5;
-$favesavg    = (have_option('f', 'faves')) ? get_option_value('f', 'faves') : max($noticeavg/10, 5);
+//$favesavg    = (have_option('f', 'faves')) ? get_option_value('f', 'faves') : max($noticeavg/10, 5);
 $messageavg  = (have_option('m', 'messages')) ? get_option_value('m', 'messages') : max($noticeavg/10, 5);
 $tagmax      = (have_option('t', 'tags')) ? get_option_value('t', 'tags') : 10000;
 $userprefix  = (have_option('x', 'prefix')) ? get_option_value('x', 'prefix') : 'testuser';
@@ -445,7 +447,8 @@ if (is_readable($wordsfile)) {
 }
 
 try {
-    main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $messageavg, $tagmax);
+    //main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $messageavg, $tagmax);
+    main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $messageavg, $tagmax);
 } catch (Exception $e) {
     printfv("Got an exception: ".$e->getMessage());
 }
