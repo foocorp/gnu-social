@@ -237,15 +237,13 @@ class AtompubmembershipfeedAction extends ApiAuthAction
             if ($activity->verb != ActivityVerb::JOIN) {
                 // TRANS: Client error displayed when not using the join verb.
                 throw new ClientException(_('Can only handle join activities.'));
-                return;
             }
 
             $groupObj = $activity->objects[0];
 
             if ($groupObj->type != ActivityObject::GROUP) {
-                // TRANS: Client exception thrown when trying favorite an object that is not a notice.
-                throw new ClientException(_('Can only fave notices.'));
-                return;
+                // TRANS: Client exception thrown when trying to join something which is not a group
+                throw new ClientException(_('Can only join groups.'));
             }
 
             $group = User_group::getKV('uri', $groupObj->id);
