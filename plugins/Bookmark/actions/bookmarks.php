@@ -145,13 +145,13 @@ class BookmarksAction extends Action
                                                     'id' => $this->user->nickname,
                                                     'format' => 'as')),
                               // TRANS: Feed link text. %s is a username.
-                              sprintf(_('Feed for favorites of %s (Activity Streams JSON)'),
+                              sprintf(_('Feed for bookmarks of %s (Activity Streams JSON)'),
                                       $this->user->nickname)),
                      new Feed(Feed::RSS1,
                               common_local_url('bookmarksrss',
                                                array('nickname' => $this->user->nickname)),
                               // TRANS: Feed link text. %s is a username.
-                              sprintf(_('Feed for favorites of %s (RSS 1.0)'),
+                              sprintf(_('Feed for bookmarks of %s (RSS 1.0)'),
                                       $this->user->nickname)),
                      new Feed(Feed::RSS2,
                               common_local_url('ApiTimelineBookmarks',
@@ -159,7 +159,7 @@ class BookmarksAction extends Action
                                                     'id' => $this->user->nickname,
                                                     'format' => 'rss')),
                               // TRANS: Feed link text. %s is a username.
-                              sprintf(_('Feed for favorites of %s (RSS 2.0)'),
+                              sprintf(_('Feed for bookmarks of %s (RSS 2.0)'),
                                       $this->user->nickname)),
                      new Feed(Feed::ATOM,
                               common_local_url('ApiTimelineBookmarks',
@@ -167,7 +167,7 @@ class BookmarksAction extends Action
                                                     'id' => $this->user->nickname,
                                                     'format' => 'atom')),
                               // TRANS: Feed link text. %s is a username.
-                              sprintf(_('Feed for favorites of %s (Atom)'),
+                              sprintf(_('Feed for bookmarks of %s (Atom)'),
                                       $this->user->nickname)));
     }
 

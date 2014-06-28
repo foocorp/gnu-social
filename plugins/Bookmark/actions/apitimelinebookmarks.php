@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Show a user's favorite notices
+ * Show a user's bookmark activities
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ if (!defined('STATUSNET')) {
 }
 
 /**
- * Returns the 20 most recent favorite notices for the authenticating user or user
+ * Returns the most recent bookmark activities for the authenticating user or user
  * specified by the ID parameter in the requested format.
  *
  * @category API
