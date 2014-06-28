@@ -440,7 +440,7 @@ class ActivityObject
             $object->type    = (empty($notice->object_type)) ? ActivityObject::NOTE : $notice->object_type;
 
             $object->id      = $notice->uri;
-            $object->title = 'New ' . ActivityObject::canonicalType($object->type) . ' by ';
+            $object->title = 'New ' . self::canonicalType($object->type) . ' by ';
             try {
                 $object->title .= $notice->getProfile()->getAcctUri();
             } catch (ProfileNoAcctUriException $e) {
@@ -584,7 +584,7 @@ class ActivityObject
                 $object->thumbnail = null;
             }
 
-            switch (ActivityObject::canonicalType($object->type)) {
+            switch (self::canonicalType($object->type)) {
             case 'image':
                 $object->largerImage = $file->url;
                 break;
@@ -860,7 +860,7 @@ class ActivityObject
             // We can probably use the whole schema URL here but probably the
             // relative simple name is easier to parse
 
-            $object['objectType'] = ActivityObject::canonicalType($this->type);
+            $object['objectType'] = self::canonicalType($this->type);
 
             // summary
             $object['summary'] = $this->summary;
@@ -945,7 +945,7 @@ class ActivityObject
                 }
             }
 
-            switch (ActivityObject::canonicalType($this->type)) {
+            switch (self::canonicalType($this->type)) {
             case 'image':
                 if (!empty($this->largerImage)) {
                     $object['fullImage'] = array('url' => $this->largerImage);
@@ -964,13 +964,18 @@ class ActivityObject
         return array_filter($object);
     }
 
-    static function canonicalType($type) {
-        $ns = 'http://activitystrea.ms/schema/1.0/';
-        if (substr($type, 0, mb_strlen($ns)) == $ns) {
-            return substr($type, mb_strlen($ns));
-        } else {
-            return $type;
+    public function getIdentifiers() {
+        $ids = array();
+        foreach(array('id', 'link', 'url') as $id) {
+            if (isset($this->$id)) {
+                $ids[] = $this->$id;
+            }
         }
+        return array_unique($ids);
+    }
+
+    static function canonicalType($type) {
+        return ActivityUtils::resolveUri($type, true);
     }
 
     static function mimeTypeToObjectType($mimeType) {

@@ -214,6 +214,28 @@ class Notice extends Managed_DataObject
     }
 
     /*
+     * Get a Notice object by URI. Will call external plugins for help
+     * using the event StartGetNoticeFromURI.
+     *
+     * @param string $uri A unique identifier for a resource (notice in this case)
+     */
+    static function fromUri($uri)
+    {
+        $notice = null;
+
+        if (Event::handle('StartGetNoticeFromUri', array($uri, &$notice))) {
+            $notice = Notice::getKV('uri', $uri);
+            Event::handle('EndGetNoticeFromUri', array($uri, $notice));
+        }
+
+        if (!$notice instanceof Notice) {
+            throw new UnknownUriException($uri);
+        }
+
+        return $notice;
+    }
+
+    /*
      * @param $root boolean If true, link to just the conversation root.
      *
      * @return URL to conversation
