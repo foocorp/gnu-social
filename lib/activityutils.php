@@ -402,4 +402,35 @@ class ActivityUtils
         }
         return $object;
     }
+
+    // Check authorship by supplying a Profile as a default and letting plugins
+    // set it to something else if the activity's author is actually someone
+    // else (like with a group or peopletag feed as handled in OStatus).
+    //
+    // NOTE: Returned is not necessarily the supplied profile! For example,
+    // the "feed author" may be a group, but the "activity author" is a person!
+    static function checkAuthorship(Activity $activity, Profile $profile)
+    {
+        if (Event::handle('CheckActivityAuthorship', array($activity, &$profile))) {
+            // if (empty($activity->actor)), then we generated this Activity ourselves and can trust $profile
+
+            $actor_uri = $profile->getUri();
+
+            if (!in_array($actor_uri, array($activity->actor->id, $activity->actor->link))) {
+                // A mismatch between our locally stored URI and the supplied author?
+                // Probably not more than a blog feed or something (with multiple authors or so)
+                // but log it for future inspection.
+                common_log(LOG_WARNING, "Got an actor '{$activity->actor->title}' ({$activity->actor->id}) on single-user feed for " . $actor_uri);
+            } elseif (empty($activity->actor->id)) {
+                // Plain <author> without ActivityStreams actor info.
+                // We'll just ignore this info for now and save the update under the feed's identity.
+            }
+        }
+
+        if (!$profile instanceof Profile) {
+            throw new ServerException('Could not get an author Profile for activity');
+        }
+
+        return $profile;
+    }
 }

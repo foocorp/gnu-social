@@ -51,6 +51,8 @@ class PollPlugin extends MicroAppPlugin
     const POLL_OBJECT          = 'http://activityschema.org/object/poll';
     const POLL_RESPONSE_OBJECT = 'http://activityschema.org/object/poll-response';
 
+    var $oldSaveNew = true;
+
     /**
      * Database schema setup
      *

@@ -1365,4 +1365,19 @@ class OStatusPlugin extends Plugin
     {
         list($mentions, $groups) = Ostatus_profile::filterAttention($actor, $attention_uris);
     }
+
+    // FIXME: Maybe this shouldn't be so authoritative that it breaks other remote profile lookups?
+    static public function onCheckActivityAuthorship(Activity $activity, Profile &$profile)
+    {
+        try {
+            $oprofile = Ostatus_profile::getFromProfile($profile);
+            $oprofile = $oprofile->checkAuthorship($activity);
+            $profile = $oprofile->localProfile();
+        } catch (Exception $e) {
+            common_log(LOG_ERR, 'Could not get a profile or check authorship ('.get_class($e).': "'.$e->getMessage().'")');
+            $profile = null;
+            return false;
+        }
+        return true;
+    }
 }

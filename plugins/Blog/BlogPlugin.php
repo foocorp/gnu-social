@@ -50,6 +50,9 @@ if (!defined('STATUSNET')) {
 
 class BlogPlugin extends MicroAppPlugin
 {
+
+    var $oldSaveNew = true;
+
     /**
      * Database schema setup
      *

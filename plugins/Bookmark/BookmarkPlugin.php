@@ -48,6 +48,8 @@ class BookmarkPlugin extends MicroAppPlugin
     const VERSION         = '0.1';
     const IMPORTDELICIOUS = 'BookmarkPlugin:IMPORTDELICIOUS';
 
+    var $oldSaveNew = true;
+
     /**
      * Authorization for importing delicious bookmarks
      *

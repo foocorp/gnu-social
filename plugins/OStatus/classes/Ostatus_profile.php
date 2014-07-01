@@ -478,7 +478,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // The "WithProfile" events were added later.
 
-        if (Event::handle('StartHandleFeedEntryWithProfile', array($activity, $this, &$notice)) &&
+        if (Event::handle('StartHandleFeedEntryWithProfile', array($activity, $this->localProfile(), &$notice)) &&
             Event::handle('StartHandleFeedEntry', array($activity))) {
 
             switch ($activity->verb) {
@@ -516,10 +516,9 @@ class Ostatus_profile extends Managed_DataObject
     {
         $notice = null;
 
-        $oprofile = $this->checkAuthorship($activity);
-
-        if (!$oprofile instanceof Ostatus_profile) {
-            common_log(LOG_INFO, "No author matched share activity");
+        try {
+            $profile = ActivityUtils::checkAuthorship($activity, $this->localProfile());
+        } catch (ServerException $e) {
             return null;
         }
 
@@ -670,7 +669,7 @@ class Ostatus_profile extends Managed_DataObject
         if ($activity->context) {
             // TODO: context->attention
             list($options['groups'], $options['replies'])
-                = self::filterAttention($oprofile->localProfile(), $activity->context->attention);
+                = self::filterAttention($profile, $activity->context->attention);
 
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
@@ -713,7 +712,7 @@ class Ostatus_profile extends Managed_DataObject
             $options['urls'][] = $href;
         }
 
-        $notice = Notice::saveNew($oprofile->profile_id,
+        $notice = Notice::saveNew($profile->id,
                                   $content,
                                   'ostatus',
                                   $options);
@@ -732,11 +731,7 @@ class Ostatus_profile extends Managed_DataObject
     {
         $notice = null;
 
-        $oprofile = $this->checkAuthorship($activity);
-
-        if (!$oprofile instanceof Ostatus_profile) {
-            return null;
-        }
+        $profile = $this->checkAuthorship($activity, $this->localProfile());
 
         // It's not always an ActivityObject::NOTE, but... let's just say it is.
 
@@ -839,7 +834,7 @@ class Ostatus_profile extends Managed_DataObject
         if ($activity->context) {
             // TODO: context->attention
             list($options['groups'], $options['replies'])
-                = self::filterAttention($oprofile->localProfile(), $activity->context->attention);
+                = self::filterAttention($profile, $activity->context->attention);
 
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
@@ -882,7 +877,7 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         try {
-            $saved = Notice::saveNew($oprofile->profile_id,
+            $saved = Notice::saveNew($profile->id,
                                      $content,
                                      'ostatus',
                                      $options);
@@ -1077,17 +1072,17 @@ class Ostatus_profile extends Managed_DataObject
             return null;
         }
 
-        // Is it a known Ostatus profile?
-        $oprofile = Ostatus_profile::getKV('profile_id', $profile->id);
-        if ($oprofile instanceof Ostatus_profile) {
+        try {
+            $oprofile = self::getFromProfile($profile);
+            // We found the profile, return it!
             return $oprofile;
-        }
-
-        // Is it a local user?
-        $user = User::getKV('id', $profile->id);
-        if ($user instanceof User) {
-            // @todo i18n FIXME: use sprintf and add i18n (?)
-            throw new OStatusShadowException($profile, "'$profile_url' is the profile for local user '{$user->nickname}'.");
+        } catch (NoResultException $e) {
+            // Could not find an OStatus profile, is it instead a local user?
+            $user = User::getKV('id', $profile->id);
+            if ($user instanceof User) {
+                // @todo i18n FIXME: use sprintf and add i18n (?)
+                throw new OStatusShadowException($profile, "'$profile_url' is the profile for local user '{$user->nickname}'.");
+            }
         }
 
         // Continue discovery; it's a remote profile
@@ -1095,6 +1090,16 @@ class Ostatus_profile extends Managed_DataObject
         // support OStatus
 
         return null;
+    }
+
+    static function getFromProfile(Profile $profile)
+    {
+        $oprofile = new Ostatus_profile();
+        $oprofile->profile_id = $profile->id;
+        if (!$oprofile->find(true)) {
+            throw new NoResultException($oprofile);
+        }
+        return $oprofile;
     }
 
     /**
@@ -2130,7 +2135,7 @@ class Ostatus_profile extends Managed_DataObject
         return $oprofile;
     }
 
-    function checkAuthorship($activity)
+    public function checkAuthorship(Activity $activity)
     {
         if ($this->isGroup() || $this->isPeopletag()) {
             // A group or propletag feed will contain posts from multiple authors.
@@ -2165,7 +2170,7 @@ class Ostatus_profile extends Managed_DataObject
             $oprofile = $this;
         }
 
-        return $oprofile;
+        return $oprofile->localProfile();
     }
 }
 

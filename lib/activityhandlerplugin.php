@@ -109,19 +109,8 @@ abstract class ActivityHandlerPlugin extends Plugin
      * gets to figure out how to actually save it into a notice
      * and any additional data structures you require.
      *
-     * This will handle things received via AtomPub, OStatus
-     * (PuSH and Salmon transports), or ActivityStreams-based
-     * backup/restore of account data.
-     *
-     * You should be able to accept as input the output from your
-     * $this->activityObjectFromNotice(). Where applicable, try to
-     * use existing ActivityStreams structures and object types,
-     * and be liberal in accepting input from what might be other
-     * compatible apps.
-     *
-     * All micro-app classes must override this method.
-     *
-     * @fixme are there any standard options?
+     * This function is deprecated and in the future, Notice::saveActivity
+     * should be called from onStartHandleFeedEntryWithProfile in this class.
      *
      * @param Activity $activity
      * @param Profile $actor
@@ -129,7 +118,36 @@ abstract class ActivityHandlerPlugin extends Plugin
      *
      * @return Notice the resulting notice
      */
-    abstract function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array());
+    public function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
+    {
+        // Any plugin which has not implemented saveObjectFromActivity _must_
+        // override this function (which will be deleted when all plugins are migrated).
+
+        if (isset($this->oldSaveNew)) {
+            throw new ServerException('A function has been called for new saveActivity functionality, but is still set with an oldSaveNew configuration');
+        }
+
+        return Notice::saveActivity($activity, $actor, $options);
+    }
+
+    /*
+     * This usually gets called from Notice::saveActivity after a Notice object has been created,
+     * so it contains a proper id and a uri for the object to be saved.
+     */
+    public function onStoreActivityObject(Activity $act, Notice $stored, array $options=array(), &$object) {
+        // $this->oldSaveNew is there during a migration period of plugins, to start using
+        // Notice::saveActivity instead of Notice::saveNew
+        if (!$this->isMyActivity($act) || isset($this->oldSaveNew)) {
+            return true;
+        }
+        $object = $this->saveObjectFromActivity($act, $stored, $options);
+        try {
+            $act->context->attention = array_merge($act->context->attention, $object->getAttentionArray());
+        } catch (Exception $e) {
+            common_debug('WARNING: Could not get attention list from object '.get_class($object).'!');
+        }
+        return false;
+    }
 
     /**
      * Given an existing Notice object, your plugin gets to
@@ -242,22 +260,18 @@ abstract class ActivityHandlerPlugin extends Plugin
      * Handle a posted object from PuSH
      *
      * @param Activity        $activity activity to handle
-     * @param Ostatus_profile $oprofile Profile for the feed
+     * @param Profile         $actor Profile for the feed
      *
      * @return boolean hook value
      */
-    function onStartHandleFeedEntryWithProfile(Activity $activity, $oprofile, &$notice)
+    function onStartHandleFeedEntryWithProfile(Activity $activity, Profile $profile, &$notice)
     {
         if (!$this->isMyActivity($activity)) {
             return true;
         }
 
-        $actor = $oprofile->checkAuthorship($activity);
-
-        if (!$actor instanceof Ostatus_profile) {
-            // TRANS: Client exception thrown when no author for an activity was found.
-            throw new ClientException(_('Cannot get author for activity.'));
-        }
+        // We are guaranteed to get a Profile back from checkAuthorship (or it throws an exception)
+        $profile = ActivityUtils::checkAuthorship($activity, $profile);
 
         $object = $activity->objects[0];
 
@@ -266,8 +280,7 @@ abstract class ActivityHandlerPlugin extends Plugin
                          'is_local' => Notice::REMOTE,
                          'source' => 'ostatus');
 
-        // $actor is an ostatus_profile
-        $notice = $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
+        $notice = $this->saveNoticeFromActivity($activity, $profile, $options);
 
         return false;
     }

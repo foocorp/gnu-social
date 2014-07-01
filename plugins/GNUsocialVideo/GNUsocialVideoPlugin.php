@@ -33,6 +33,8 @@ if (!defined('STATUSNET')) {
 class GNUsocialVideoPlugin extends MicroAppPlugin
 {
 
+    var $oldSaveNew = true;
+
     function onCheckSchema()
     {
         $schema = Schema::get();

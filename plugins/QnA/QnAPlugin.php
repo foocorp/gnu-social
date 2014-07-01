@@ -46,6 +46,9 @@ if (!defined('STATUSNET')) {
  */
 class QnAPlugin extends MicroAppPlugin
 {
+
+    var $oldSaveNew = true;
+
     /**
      * Set up our tables (question and answer)
      *
