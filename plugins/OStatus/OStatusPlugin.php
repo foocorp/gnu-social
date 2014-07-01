@@ -1360,4 +1360,9 @@ class OStatusPlugin extends Plugin
 
         return true;
     }
+
+    public function onGetLocalAttentions(Profile $actor, array $attention_uris, array &$mentions, array &$groups)
+    {
+        list($mentions, $groups) = Ostatus_profile::filterAttention($actor, $attention_uris);
+    }
 }

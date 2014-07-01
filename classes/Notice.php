@@ -627,41 +627,13 @@ class Notice extends Managed_DataObject
             $notice->object_type = $object_type;
         }
 
-        if (is_null($scope)) { // 0 is a valid value
-            if (!empty($reply)) {
-                $notice->scope = $reply->scope;
-            } else {
-                $notice->scope = self::defaultScope();
-            }
+        if (is_null($scope) && $reply instanceof Notice) {
+            $notice->scope = $reply->scope;
         } else {
             $notice->scope = $scope;
         }
 
-        // For private streams
-
-        try {
-            $user = $profile->getUser();
-
-            if ($user->private_stream &&
-                ($notice->scope == Notice::PUBLIC_SCOPE ||
-                 $notice->scope == Notice::SITE_SCOPE)) {
-                $notice->scope |= Notice::FOLLOWER_SCOPE;
-            }
-        } catch (NoSuchUserException $e) {
-            // Cannot handle private streams for remote profiles
-        }
-
-        // Force the scope for private groups
-
-        foreach ($groups as $groupId) {
-            $group = User_group::getKV('id', $groupId);
-            if ($group instanceof User_group) {
-                if ($group->force_scope) {
-                    $notice->scope |= Notice::GROUP_SCOPE;
-                    break;
-                }
-            }
-        }
+        $notice->scope = self::figureOutScope($profile, $groups, $notice->scope);
 
         if (Event::handle('StartNoticeSave', array(&$notice))) {
 
@@ -747,6 +719,252 @@ class Notice extends Managed_DataObject
         }
 
         return $notice;
+    }
+
+    static function saveActivity(Activity $act, Profile $actor, array $options=array()) {
+
+        // First check if we're going to let this Activity through from the specific actor
+        if (!$actor->hasRight(Right::NEWNOTICE)) {
+            common_log(LOG_WARNING, "Attempted post from user disallowed to post: " . $actor->getNickname());
+
+            // TRANS: Client exception thrown when a user tries to post while being banned.
+            throw new ClientException(_m('You are banned from posting notices on this site.'), 403);
+        }
+        if (common_config('throttle', 'enabled') && !self::checkEditThrottle($actor->id)) {
+            common_log(LOG_WARNING, 'Excessive posting by profile #' . $actor->id . '; throttled.');
+            // TRANS: Client exception thrown when a user tries to post too many notices in a given time frame.
+            throw new ClientException(_m('Too many notices too fast; take a breather '.
+                                        'and post again in a few minutes.'));
+        }
+
+        // Get ActivityObject properties
+        $actobj = count($act->objects)==1 ? $act->objects[0] : null;
+        if (!is_null($actobj) && $actobj->id) {
+            $options['uri'] = $actobj->id;
+            if ($actobj->link) {
+                $options['url'] = $actobj->link;
+            } elseif ($act->link) {
+                $options['url'] = $act->link;
+            } elseif (preg_match('!^https?://!', $actobj->id)) {
+                $options['url'] = $actobj->id;
+            }
+        } else {
+            // implied object
+            $options['uri'] = $act->id;
+            $options['url'] = $act->link;
+        }
+
+        $defaults = array(
+                          'groups'   => array(),
+                          'is_local' => self::LOCAL_PUBLIC,
+                          'mentions' => array(),
+                          'reply_to' => null,
+                          'repeat_of' => null,
+                          'scope' => null,
+                          'source' => 'unknown',
+                          'tags' => array(),
+                          'uri' => null,
+                          'url' => null,
+                          'urls' => array(),
+                          'distribute' => true);
+
+        // options will have default values when nothing has been supplied
+        $options = array_merge($defaults, $options); 
+        foreach (array_keys($defaults) as $key) {
+            // Only convert the keynames we specify ourselves from 'defaults' array into variables
+            $$key = $options[$key];
+        }
+        extract($options, EXTR_SKIP);
+
+        $stored = new Notice();
+        if (!empty($uri)) {
+            $stored->uri = $uri;
+            if ($stored->find()) {
+                common_debug('cannot create duplicate Notice URI: '.$stored->uri);
+                throw new Exception('Notice URI already exists');
+            }
+        }
+
+        $stored->profile_id = $actor->id;
+        $stored->source = $source;
+        $stored->uri = $uri;
+        $stored->url = $url;
+        $stored->verb = $act->verb;
+
+        $autosource = common_config('public', 'autosource');
+
+        // Sandboxed are non-false, but not 1, either
+        if (!$actor->hasRight(Right::PUBLICNOTICE) ||
+            ($source && $autosource && in_array($source, $autosource))) {
+            $stored->is_local = Notice::LOCAL_NONPUBLIC;
+        }
+
+        // Maybe a missing act-time should be fatal if the actor is not local?
+        if (!empty($act->time)) {
+            $stored->created = common_sql_date($act->time);
+        } else {
+            $stored->created = common_sql_now();
+        }
+
+        $reply = null;
+        if ($act->context instanceof ActivityContext && !empty($act->context->replyToID)) {
+            $reply = self::getKV('uri', $act->context->replyToID);
+        }
+        if (!$reply instanceof Notice && $act->target instanceof ActivityObject) {
+            $reply = self::getKV('uri', $act->target->id);
+        }
+
+        if ($reply instanceof Notice) {
+            if (!$reply->inScope($actor)) {
+                // TRANS: Client error displayed when trying to reply to a notice a the target has no access to.
+                // TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
+                throw new ClientException(sprintf(_m('%1$s has no right to reply to notice %2$d.'), $actor->getNickname(), $reply->id), 403);
+            }
+
+            $stored->reply_to     = $reply->id;
+            $stored->conversation = $reply->conversation;
+
+            // If the original is private to a group, and notice has no group specified,
+            // make it to the same group(s)
+            if (empty($groups) && ($reply->scope & Notice::GROUP_SCOPE)) {
+                $groups = array();
+                $replyGroups = $reply->getGroups();
+                foreach ($replyGroups as $group) {
+                    if ($actor->isMember($group)) {
+                        $groups[] = $group->id;
+                    }
+                }
+            }
+
+            if (is_null($scope)) {
+                $scope = $reply->scope;
+            }
+        }
+
+        if ($act->context instanceof ActivityContext) {
+            $location = $act->context->location;
+            if ($location) {
+                $stored->lat = $location->lat;
+                $stored->lon = $location->lon;
+                if ($location->location_id) {
+                    $stored->location_ns = $location->location_ns;
+                    $stored->location_id = $location->location_id;
+                }
+            }
+        } else {
+            $act->context = new ActivityContext();
+        }
+
+        $stored->scope = self::figureOutScope($actor, $groups, $scope);
+
+        foreach ($act->categories as $cat) {
+            if ($cat->term) {
+                $term = common_canonical_tag($cat->term);
+                if (!empty($term)) {
+                    $tags[] = $term;
+                }
+            }
+        }
+
+        foreach ($act->enclosures as $href) {
+            // @todo FIXME: Save these locally or....?
+            $urls[] = $href;
+        }
+
+        if (Event::handle('StartNoticeSave', array(&$stored))) {
+            // XXX: some of these functions write to the DB
+
+            try {
+                $stored->insert();    // throws exception on error
+
+                $object = null;
+                Event::handle('StoreActivityObject', array($act, $stored, $options, &$object));
+                if (empty($object)) {
+                    throw new ServerException('No object from StoreActivityObject '.$stored->uri . ': '.$act->asString());
+                }
+                $orig = clone($stored);
+                $stored->object_type = ActivityUtils::resolveUri($object->type, true);
+                $stored->update($orig);
+            } catch (Exception $e) {
+                if (empty($stored->id)) {
+                    common_debug('Failed to save stored object entry in database ('.$e->getMessage().')');
+                } else {
+                    common_debug('Failed to store activity object in database ('.$e->getMessage().'), deleting notice id '.$stored->id);
+                    $stored->delete();
+                }
+                throw $e;
+            }
+        }
+
+
+        // Save per-notice metadata...
+        $mentions = array();
+        $groups   = array();
+
+        // This event lets plugins filter out non-local recipients (attentions we don't care about)
+        // Used primarily for OStatus (and if we don't federate, all attentions would be local anyway)
+        Event::handle('GetLocalAttentions', array($actor, $act->context->attention, &$mentions, &$groups));
+
+        if (!empty($mentions)) {
+            $stored->saveKnownReplies($mentions);
+        } else {
+            $stored->saveReplies();
+        }
+
+        if (!empty($tags)) {
+            $stored->saveKnownTags($tags);
+        } else {
+            $stored->saveTags();
+        }
+
+        // Note: groups may save tags, so must be run after tags are saved
+        // to avoid errors on duplicates.
+        // Note: groups should always be set.
+
+        $stored->saveKnownGroups($groups);
+
+        if (!empty($urls)) {
+            $stored->saveKnownUrls($urls);
+        } else {
+            $stored->saveUrls();
+        }
+
+        if ($distribute) {
+            // Prepare inbox delivery, may be queued to background.
+            $stored->distribute();
+        }
+
+        return $stored;
+    }
+
+    static public function figureOutScope(Profile $actor, array $groups, $scope=null) {
+        if (is_null($scope)) {
+            $scope = self::defaultScope();
+        }
+
+        // For private streams
+        try {
+            $user = $actor->getUser();
+            // FIXME: We can't do bit comparison with == (Legacy StatusNet thing. Let's keep it for now.)
+            if ($user->private_stream && ($scope == Notice::PUBLIC_SCOPE || $scope == Notice::SITE_SCOPE)) {
+                $scope |= Notice::FOLLOWER_SCOPE;
+            }
+        } catch (NoSuchUserException $e) {
+            // TODO: Not a local user, so we don't know about scope preferences... yet!
+        }
+
+        // Force the scope for private groups
+        foreach ($groups as $group_id) {
+            $group = User_group::staticGet('id', $group_id);
+            if ($group instanceof User_group) {
+                if ($group->force_scope) {
+                    $scope |= Notice::GROUP_SCOPE;
+                    break;
+                }
+            }
+        }
+
+        return $scope;
     }
 
     function blowOnInsert($conversation = false)

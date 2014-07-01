@@ -670,7 +670,7 @@ class Ostatus_profile extends Managed_DataObject
         if ($activity->context) {
             // TODO: context->attention
             list($options['groups'], $options['replies'])
-                = $this->filterAttention($oprofile, $activity->context->attention);
+                = self::filterAttention($oprofile->localProfile(), $activity->context->attention);
 
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
@@ -839,7 +839,7 @@ class Ostatus_profile extends Managed_DataObject
         if ($activity->context) {
             // TODO: context->attention
             list($options['groups'], $options['replies'])
-                = $this->filterAttention($oprofile, $activity->context->attention);
+                = self::filterAttention($oprofile->localProfile(), $activity->context->attention);
 
             // Maintain direct reply associations
             // @todo FIXME: What about conversation ID?
@@ -913,11 +913,11 @@ class Ostatus_profile extends Managed_DataObject
 
     /**
      * Filters a list of recipient ID URIs to just those for local delivery.
-     * @param Ostatus_profile local profile of sender
+     * @param Profile local profile of sender
      * @param array in/out &$attention_uris set of URIs, will be pruned on output
      * @return array of group IDs
      */
-    protected function filterAttention($sender, array $attention)
+    static public function filterAttention(Profile $sender, array $attention)
     {
         common_log(LOG_DEBUG, "Original reply recipients: " . implode(', ', array_keys($attention)));
         $groups = array();
@@ -937,16 +937,11 @@ class Ostatus_profile extends Managed_DataObject
             if ($id) {
                 $group = User_group::getKV('id', $id);
                 if ($group instanceof User_group) {
-                    try {
-                        // Deliver to all members of this local group if allowed.
-                        $profile = $sender->localProfile();
-                        if ($profile->isMember($group)) {
-                            $groups[] = $group->id;
-                        } else {
-                            common_log(LOG_DEBUG, "Skipping reply to local group $group->nickname as sender $profile->id is not a member");
-                        }
-                    } catch (NoProfileException $e) {
-                        // Sender has no profile! Do some garbage collection, please.
+                    // Deliver to all members of this local group if allowed.
+                    if ($sender->isMember($group)) {
+                        $groups[] = $group->id;
+                    } else {
+                        common_log(LOG_DEBUG, sprintf('Skipping reply to local group %s as sender %d is not a member', $group->getNickname(), $sender->id));
                     }
                     continue;
                 } else {
