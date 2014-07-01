@@ -103,17 +103,16 @@ class AtompubshowfavoriteAction extends ApiAuthAction
         parent::handle($argarray);
 
         switch ($_SERVER['REQUEST_METHOD']) {
-        case GET:
-        case HEAD:
+        case 'GET':
+        case 'HEAD':
             $this->showFave();
             break;
-        case DELETE:
+        case 'DELETE':
             $this->deleteFave();
             break;
         default:
             // TRANS: Client exception thrown using an unsupported HTTP method.
-            throw new ClientException(_('HTTP method not supported.'),
-                                      405);
+            throw new ClientException(_('HTTP method not supported.'), 405);
         }
         return true;
     }
