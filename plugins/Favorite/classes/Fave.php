@@ -69,7 +69,8 @@ class Fave extends Managed_DataObject
                 common_log_db_error($fave, 'INSERT', __FILE__);
                 return false;
             }
-            self::blow('fave:list-ids:notice_id:%d', $fave->notice_id);
+            self::blowCacheForProfileId($fave->user_id);
+            self::blowCacheForNoticeId($fave->notice_id);
             self::blow('popular');
 
             Event::handle('EndFavorNotice', array($profile, $notice));
@@ -88,7 +89,9 @@ class Fave extends Managed_DataObject
         if (Event::handle('StartDisfavorNotice', array($profile, $notice, &$result))) {
 
             $result = parent::delete($useWhere);
-            self::blow('fave:list-ids:notice_id:%d', $this->notice_id);
+
+            self::blowCacheForProfileId($this->user_id);
+            self::blowCacheForNoticeId($this->notice_id);
             self::blow('popular');
 
             if ($result) {
@@ -264,6 +267,13 @@ class Fave extends Managed_DataObject
             $cache->delete(Cache::key('fave:ids_by_user_own:'.$profile_id));
             $cache->delete(Cache::key('fave:ids_by_user_own:'.$profile_id.';last'));
             $cache->delete(Cache::key('fave:count_by_profile:'.$profile_id));
+        }
+    }
+    static public function blowCacheForNoticeId($notice_id)
+    {
+        $cache = Cache::instance();
+        if ($cache) {
+            $cache->delete(Cache::key('fave:list-ids:notice_id:'.$notice_id));
         }
     }
 }
