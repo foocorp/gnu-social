@@ -130,47 +130,6 @@ class UsersalmonAction extends SalmonAction
         }
     }
 
-    /**
-     * Remote user likes one of our posts.
-     * Confirm the post is ours, and save a local favorite event.
-     */
-
-    function handleFavorite()
-    {
-        $notice = $this->getNotice($this->activity->objects[0]);
-
-        $old = Fave::pkeyGet(array('user_id' => $this->actor->id,
-                                   'notice_id' => $notice->id));
-
-        if ($old instanceof Fave) {
-            // TRANS: Client exception.
-            throw new AlreadyFulfilledException(_m('This is already a favorite.'));
-        }
-
-        if (!Fave::addNew($this->actor, $notice)) {
-           // TRANS: Client exception.
-           throw new ClientException(_m('Could not save new favorite.'));
-        }
-    }
-
-    /**
-     * Remote user doesn't like one of our posts after all!
-     * Confirm the post is ours, and save a local favorite event.
-     */
-    function handleUnfavorite()
-    {
-        $notice = $this->getNotice($this->activity->objects[0]);
-
-        $fave = Fave::pkeyGet(array('user_id' => $this->actor->id,
-                                   'notice_id' => $notice->id));
-        if (!$fave instanceof Fave) {
-            // TRANS: Client exception.
-            throw new AlreadyFulfilledException(_m('Notice was not favorited!'));
-        }
-
-        $fave->delete();
-    }
-
     function handleTag()
     {
         if ($this->activity->target->type == ActivityObject::_LIST) {

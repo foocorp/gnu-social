@@ -398,7 +398,7 @@ class ActivityUtils
         if (!empty($object)) {
             Event::handle('EndFindLocalActivityObject', array($object->getUri(), $type, $object));
         } else {
-            throw new Exception('Could not find any activityobject stored locally with given URI');
+            throw new ServerException('Could not find any activityobject stored locally with given URI');
         }
         return $object;
     }

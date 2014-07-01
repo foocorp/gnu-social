@@ -79,7 +79,8 @@ class Fave extends Managed_DataObject
     }
 
     // exception throwing takeover!
-    public function insert() {
+    public function insert()
+    {
         if (!parent::insert()) {
             throw new ServerException(sprintf(_m('Could not store new object of type %s'), get_called_class()));
         }
@@ -169,7 +170,8 @@ class Fave extends Managed_DataObject
         return $act;
     }
 
-    static function existsForProfile($notice, Profile $scoped) {
+    static function existsForProfile($notice, Profile $scoped)
+    {
         $fave = self::pkeyGet(array('user_id'=>$scoped->id, 'notice_id'=>$notice->id));
 
         return ($fave instanceof Fave);
@@ -270,7 +272,8 @@ class Fave extends Managed_DataObject
 
     // Remember that we want the _activity_ notice here, not faves applied
     // to the supplied Notice (as with byNotice)!
-    static public function fromStored(Notice $stored) {
+    static public function fromStored(Notice $stored)
+    {
         $class = get_called_class();
         $object = new $class;
         $object->uri = $stored->uri;
@@ -280,16 +283,18 @@ class Fave extends Managed_DataObject
         return $object;
     }
 
-    static public function verbToTitle($verb) {
+    static public function verbToTitle($verb)
+    {
         return ucfirst($verb);
     }
 
-    static public function object_type()
+    static public function getObjectType()
     {
         return 'activity';
     }
 
-    public function asActivityObject(Profile $scoped=null) {
+    public function asActivityObject(Profile $scoped=null)
+    {
         $actobj = new ActivityObject();
         $actobj->id = $this->getUri();
         $actobj->type = ActivityUtils::resolveUri(ActivityObject::ACTIVITY);
@@ -301,35 +306,51 @@ class Fave extends Managed_DataObject
         return $actobj;
     }
 
-    static public function parseActivityObject(ActivityObject $actobj, Notice $stored) {
+    static public function parseActivityObject(ActivityObject $actobj, Notice $stored)
+    {
+        // The ActivityObject we get here is the _favored_ notice (kind of what we're "in-reply-to")
+        // The Notice we get is the _activity_ stored in our Notice table
+
+        $type = isset($actobj->type) ? ActivityUtils::resolveUri($actobj->type, true) : ActivityObject::NOTE;
+        $local = ActivityUtils::findLocalObject($actobj->getIdentifiers(), $type); 
+        if (!$local instanceof Notice) {
+            // $local always returns something, but this was not what we expected. Something is wrong.
+            throw new Exception('Something other than a Notice was returned from findLocalObject');
+        }
+ 
         $actor = $stored->getProfile();
         $object = new Fave();
-        $object->user_id = $actor->id;
-        $object->notice_id = $stored->id;
-        $object->object_uri = $stored->uri;
+        $object->user_id = $stored->getProfile()->id;
+        $object->notice_id = $local->id;
+        $object->uri = $stored->uri;
         $object->created = $stored->created;
+        $object->modified = $stored->modified;
         return $object;
     }
 
-    static function saveActivityObject(ActivityObject $actobj, Notice $stored) {
+    static function saveActivityObject(ActivityObject $actobj, Notice $stored)
+    {
         $object = self::parseActivityObject($actobj, $stored);
         $object->insert();  // exception throwing!
         return $object;
     }
 
 
-    public function getTarget() {
+    public function getTarget()
+    {
         // throws exception on failure
         return ActivityUtils::findLocalObject(array($this->uri), $this->type);
     }
 
-    public function getTargetObject() {
+    public function getTargetObject()
+    {
         return $this->getTarget()->asActivityObject();
     }
 
     protected $_stored = array();
 
-    public function getStored() {
+    public function getStored()
+    {
         if (!isset($this->_stored[$this->uri])) {
             $stored = new Notice();
             $stored->uri = $this->uri;
@@ -341,7 +362,8 @@ class Fave extends Managed_DataObject
         return $this->_stored[$this->uri];
     }
 
-    public function getActor() {
+    public function getActor()
+    {
         $profile = new Profile();
         $profile->id = $this->user_id;
         if (!$profile->find(true)) {
@@ -350,7 +372,8 @@ class Fave extends Managed_DataObject
         return $profile;
     }
 
-    public function getActorObject() {
+    public function getActorObject()
+    {
         return $this->getActor()->asActivityObject();
     }
 
@@ -371,7 +394,7 @@ class Fave extends Managed_DataObject
         }
         return TagURI::mint(strtolower(get_called_class()).':%d:%s:%d:%s',
                                         $actor->id,
-                                        ActivityUtils::resolveUri(self::object_type(), true),
+                                        ActivityUtils::resolveUri(self::getObjectType(), true),
                                         $target->id,
                                         common_date_iso8601($created));
     }

@@ -147,39 +147,31 @@ class FavoritePlugin extends ActivityHandlerPlugin
                           'format' => '(xml|json)'));
     }
 
-    public function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
-    {
-    }
-
-    // FIXME: Set this to abstract public when all plugins have migrated!
-    public function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())  
+    // FIXME: Set this to abstract public in lib/activityhandlerplugin.php ddwhen all plugins have migrated!
+    protected function saveObjectFromActivity(Activity $act, Notice $stored, array $options=array())  
     {
         assert($this->isMyActivity($act));
-        $actor = $stored->getProfile();
-        $uris = array();
-        if (count($act->objects) != 1) {
-            // TRANS: Exception thrown when a favor activity has anything but 1 object
-            throw new ClientException(_('Favoring activites can only be done one at a time'));
+
+        // If empty, we should've created it ourselves on our node.
+        if (!isset($options['created'])) {
+            $options['created'] = !empty($act->time) ? common_sql_date($act->time) : common_sql_now();
+        }
+        if (!isset($options['uri'])) {
+            $options['uri'] = !empty($act->id) ? $act->id : $act->selfLink;
         }
 
-        $obj = $act->objects[0];
-        $type = isset($obj->type) ? ActivityUtils::resolveUri($obj->type, true) : ActivityObject::NOTE;
-        $uris = $obj->getIdentifiers();
+        // We must have an objects[0] here because in isMyActivity we require the count to be == 1
+        $actobj = $act->objects[0];
+
         try {
-            $local = ActivityUtils::findLocalObject($uris, $type);
-        } catch (Exception $e) {
-            // TODO: if it's not available locally, we should import the favorited object!
-            common_debug('Could not find favored notice locally: '.var_export($uris,true));
+            $object = Fave::saveActivityObject($actobj, $stored);
+        } catch (ServerException $e) {
+            // Probably that the favored notice doesn't exist in our local database
+            // but may also be some missing profile or so, which we could catch in a
+            // more explicit catch-statement.
             return null;
         }
-
-        if (!empty($act->time)) {
-            // This should reasonably mean that it was created on our instance.
-            $options['created'] = common_sql_date($act->time);
-        }
-
-        $options['uri'] = !empty($act->id) ? $act->id : $act->selfLink;
-        $object = Fave::saveNew($actor, $local, $type, $options);
+        common_debug(get_called_class().' returning '.get_class($object).' object with uri: '.$object->uri);
         return $object;
     }
 

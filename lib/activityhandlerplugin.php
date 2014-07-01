@@ -158,7 +158,7 @@ abstract class ActivityHandlerPlugin extends Plugin
     *
     * @return Notice the resulting notice
     */
-    public function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
+    protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
     {
         throw new ServerException('This function should be abstract when all plugins have migrated to saveObjectFromActivity');
     }
@@ -317,7 +317,11 @@ abstract class ActivityHandlerPlugin extends Plugin
                          'is_local' => Notice::REMOTE,
                          'source' => 'ostatus');
 
-        $notice = $this->saveNoticeFromActivity($activity, $profile, $options);
+        if (!isset($this->oldSaveNew)) {
+            $notice = Notice::saveActivity($activity, $profile, $options);
+        } else {
+            $notice = $this->saveNoticeFromActivity($activity, $profile, $options);
+        }
 
         return false;
     }
@@ -339,22 +343,28 @@ abstract class ActivityHandlerPlugin extends Plugin
 
         $this->log(LOG_INFO, "Checking {$activity->id} as a valid Salmon slap.");
 
-        if ($target instanceof User_group) {
+        if ($target instanceof User_group || $target->isGroup()) {
             $uri = $target->getUri();
             if (!array_key_exists($uri, $activity->context->attention)) {
                 // @todo FIXME: please document (i18n).
                 // TRANS: Client exception thrown when ...
                 throw new ClientException(_('Object not posted to this group.'));
             }
-        } else if ($target instanceof User) {
-            $uri      = $target->uri;
+        } elseif ($target instanceof Profile && $target->isLocal()) {
+            common_debug(get_called_class() . ' got a salmon slap against target profile ID: '.$target->id);
             $original = null;
+            // FIXME: Shouldn't favorites show up with a 'target' activityobject?
+            if (!ActivityUtils::compareTypes($activity->verb, array(ActivityVerb::POST)) && isset($activity->objects[0])) {
+                // If this is not a post, it's a verb targeted at something (such as a Favorite attached to a note)
+                if (!empty($activity->objects[0]->id)) {
+                    $activity->context->replyToID = $activity->objects[0]->id;
+                }
+            }
             if (!empty($activity->context->replyToID)) {
                 $original = Notice::getKV('uri', $activity->context->replyToID);
             }
-            if (!array_key_exists($uri, $activity->context->attention) &&
-                (empty($original) ||
-                 $original->profile_id != $target->id)) {
+            if ((!$original instanceof Notice || $original->profile_id != $target->id)
+                    && !array_key_exists($target->getUri(), $activity->context->attention)) {
                 // @todo FIXME: Please document (i18n).
                 // TRANS: Client exception when ...
                 throw new ClientException(_('Object not posted to this user.'));
@@ -364,9 +374,15 @@ abstract class ActivityHandlerPlugin extends Plugin
             throw new ServerException(_('Do not know how to handle this kind of target.'));
         }
 
+        common_debug(get_called_class() . ' ensuring ActivityObject profile for '.$activity->actor->id);
         $actor = Ostatus_profile::ensureActivityObjectProfile($activity->actor);
 
-        $object = $activity->objects[0];
+        // FIXME: will this work in all cases? I made it work for Favorite...
+        if (ActivityUtils::compareTypes($activity->verb, array(ActivityVerb::POST))) {
+            $object = $activity->objects[0];
+        } else {
+            $object = $activity;
+        }
 
         $options = array('uri' => $object->id,
                          'url' => $object->link,
@@ -374,7 +390,12 @@ abstract class ActivityHandlerPlugin extends Plugin
                          'source' => 'ostatus');
 
         // $actor is an ostatus_profile
-        $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
+        common_debug(get_called_class() . ' going to save notice from activity!');
+        if (!isset($this->oldSaveNew)) {
+            $notice = Notice::saveActivity($activity, $target, $options);
+        } else {
+            $notice = $this->saveNoticeFromActivity($activity, $target, $options);
+        }
 
         return false;
     }

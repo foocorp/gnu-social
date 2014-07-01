@@ -91,12 +91,6 @@ class SalmonAction extends Action
                 case ActivityVerb::SHARE:
                     $this->handleShare();
                     break;
-                case ActivityVerb::FAVORITE:
-                    $this->handleFavorite();
-                    break;
-                case ActivityVerb::UNFAVORITE:
-                    $this->handleUnfavorite();
-                    break;
                 case ActivityVerb::FOLLOW:
                 case ActivityVerb::FRIEND:
                     $this->handleFollow();
@@ -150,18 +144,6 @@ class SalmonAction extends Action
     {
         // TRANS: Client exception.
         throw new ClientException(_m('This target does not understand unfollows.'));
-    }
-
-    function handleFavorite()
-    {
-        // TRANS: Client exception.
-        throw new ClientException(_m('This target does not understand favorites.'));
-    }
-
-    function handleUnfavorite()
-    {
-        // TRANS: Client exception.
-        throw new ClientException(_m('This target does not understand unfavorites.'));
     }
 
     function handleShare()

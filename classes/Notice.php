@@ -721,8 +721,8 @@ class Notice extends Managed_DataObject
         return $notice;
     }
 
-    static function saveActivity(Activity $act, Profile $actor, array $options=array()) {
-
+    static function saveActivity(Activity $act, Profile $actor, array $options=array())
+    {
         // First check if we're going to let this Activity through from the specific actor
         if (!$actor->hasRight(Right::NEWNOTICE)) {
             common_log(LOG_WARNING, "Attempted post from user disallowed to post: " . $actor->getNickname());
@@ -737,6 +737,7 @@ class Notice extends Managed_DataObject
                                         'and post again in a few minutes.'));
         }
 
+/* This interferes with stuff like Favorites from old StatusNet installations (first object in objects is the favored notice)
         // Get ActivityObject properties
         $actobj = count($act->objects)==1 ? $act->objects[0] : null;
         if (!is_null($actobj) && $actobj->id) {
@@ -753,6 +754,7 @@ class Notice extends Managed_DataObject
             $options['uri'] = $act->id;
             $options['url'] = $act->link;
         }
+*/
 
         $defaults = array(
                           'groups'   => array(),
@@ -883,7 +885,7 @@ class Notice extends Managed_DataObject
                     throw new ServerException('No object from StoreActivityObject '.$stored->uri . ': '.$act->asString());
                 }
                 $orig = clone($stored);
-                $stored->object_type = ActivityUtils::resolveUri($object->type, true);
+                $stored->object_type = ActivityUtils::resolveUri($object->getObjectType(), true);
                 $stored->update($orig);
             } catch (Exception $e) {
                 if (empty($stored->id)) {
@@ -896,7 +898,7 @@ class Notice extends Managed_DataObject
             }
         }
 
-
+        common_debug(get_called_class().' looking up mentions metadata etc.');
         // Save per-notice metadata...
         $mentions = array();
         $groups   = array();
@@ -933,6 +935,8 @@ class Notice extends Managed_DataObject
             // Prepare inbox delivery, may be queued to background.
             $stored->distribute();
         }
+        
+        common_debug(get_called_class().' returning stored activity - success!');
 
         return $stored;
     }
