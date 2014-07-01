@@ -2,21 +2,15 @@
 /**
  * Table Definition for fave
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 class Fave extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
     public $__table = 'fave';                            // table name
     public $notice_id;                       // int(4)  primary_key not_null
     public $user_id;                         // int(4)  primary_key not_null
     public $uri;                             // varchar(255)
+    public $created;                         // datetime  multiple_key not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
-
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 
     public static function schemaDef()
     {
@@ -25,6 +19,7 @@ class Fave extends Managed_DataObject
                 'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice that is the favorite'),
                 'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user who likes this notice'),
                 'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
             'primary key' => array('notice_id', 'user_id'),
@@ -61,11 +56,15 @@ class Fave extends Managed_DataObject
 
             $fave->user_id   = $profile->id;
             $fave->notice_id = $notice->id;
+            $fave->created   = common_sql_now();
             $fave->modified  = common_sql_now();
-            $fave->uri       = self::newURI($fave->user_id,
-                                            $fave->notice_id,
-                                            $fave->modified);
-            if (!$fave->insert()) {
+            $fave->uri       = self::newURI($profile,
+                                            $notice,
+                                            $fave->created);
+
+            try {
+                $fave->insert();
+            } catch (ServerException $e) {
                 common_log_db_error($fave, 'INSERT', __FILE__);
                 return false;
             }
@@ -79,7 +78,17 @@ class Fave extends Managed_DataObject
         return $fave;
     }
 
-    function delete($useWhere=false)
+    // exception throwing takeover!
+    public function insert() {
+        if (!parent::insert()) {
+            throw new ServerException(sprintf(_m('Could not store new object of type %s'), get_called_class()));
+        }
+        self::blowCacheForProfileId($this->user_id);
+        self::blowCacheForNoticeId($this->notice_id);
+        return $this;
+    }
+
+    public function delete($useWhere=false)
     {
         $profile = Profile::getKV('id', $this->user_id);
         $notice  = Notice::getKV('id', $this->notice_id);
@@ -215,24 +224,6 @@ class Fave extends Managed_DataObject
         return $cnt;
     }
 
-    function getURI()
-    {
-        if (!empty($this->uri)) {
-            return $this->uri;
-        } else {
-            return self::newURI($this->user_id, $this->notice_id, $this->modified);
-        }
-    }
-
-    static function newURI($profile_id, $notice_id, $modified)
-    {
-        return TagURI::mint('favor:%d:%d:%s',
-                            $profile_id,
-                            $notice_id,
-                            common_date_iso8601($modified));
-    }
-
-
     static protected $_faves = array();
 
     /**
@@ -275,5 +266,113 @@ class Fave extends Managed_DataObject
         if ($cache) {
             $cache->delete(Cache::key('fave:list-ids:notice_id:'.$notice_id));
         }
+    }
+
+    // Remember that we want the _activity_ notice here, not faves applied
+    // to the supplied Notice (as with byNotice)!
+    static public function fromStored(Notice $stored) {
+        $class = get_called_class();
+        $object = new $class;
+        $object->uri = $stored->uri;
+        if (!$object->find(true)) {
+            throw new NoResultException($object);
+        }
+        return $object;
+    }
+
+    static public function verbToTitle($verb) {
+        return ucfirst($verb);
+    }
+
+    static public function object_type()
+    {
+        return 'activity';
+    }
+
+    public function asActivityObject(Profile $scoped=null) {
+        $actobj = new ActivityObject();
+        $actobj->id = $this->getUri();
+        $actobj->type = ActivityUtils::resolveUri(ActivityObject::ACTIVITY);
+        $actobj->actor = $this->getActorObject();
+        $actobj->objects = array(clone($actobj->target));
+        $actobj->title = Stored_ActivityVerb::verbToTitle($this->verb);
+        //$actobj->verb = $this->verb;
+        //$actobj->target = $this->getTargetObject();
+        return $actobj;
+    }
+
+    static public function parseActivityObject(ActivityObject $actobj, Notice $stored) {
+        $actor = $stored->getProfile();
+        $object = new Fave();
+        $object->user_id = $actor->id;
+        $object->notice_id = $stored->id;
+        $object->object_uri = $stored->uri;
+        $object->created = $stored->created;
+        return $object;
+    }
+
+    static function saveActivityObject(ActivityObject $actobj, Notice $stored) {
+        $object = self::parseActivityObject($actobj, $stored);
+        $object->insert();  // exception throwing!
+        return $object;
+    }
+
+
+    public function getTarget() {
+        // throws exception on failure
+        return ActivityUtils::findLocalObject(array($this->uri), $this->type);
+    }
+
+    public function getTargetObject() {
+        return $this->getTarget()->asActivityObject();
+    }
+
+    protected $_stored = array();
+
+    public function getStored() {
+        if (!isset($this->_stored[$this->uri])) {
+            $stored = new Notice();
+            $stored->uri = $this->uri;
+            if (!$stored->find(true)) {
+                throw new NoResultException($stored);
+            }
+            $this->_stored[$this->uri] = $stored;
+        }
+        return $this->_stored[$this->uri];
+    }
+
+    public function getActor() {
+        $profile = new Profile();
+        $profile->id = $this->user_id;
+        if (!$profile->find(true)) {
+            throw new NoResultException($profile);
+        }
+        return $profile;
+    }
+
+    public function getActorObject() {
+        return $this->getActor()->asActivityObject();
+    }
+
+    public function getURI()
+    {
+        if (!empty($this->uri)) {
+            return $this->uri;
+        }
+
+        // We (should've in this case) created it ourselves, so we tag it ourselves
+        return self::newURI($this->getActor(), $this->getTarget(), $this->created);
+    }
+
+    static function newURI(Profile $actor, Managed_DataObject $target, $created=null)
+    {
+        if (is_null($created)) {
+            $created = common_sql_now();
+        }
+        return TagURI::mint(strtolower(get_called_class()).':%d:%s:%d:%s',
+                                        $actor->id,
+                                        ActivityUtils::resolveUri(self::object_type(), true),
+                                        $target->id,
+                                        common_date_iso8601($created));
     }
 }

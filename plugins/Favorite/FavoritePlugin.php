@@ -151,12 +151,53 @@ class FavoritePlugin extends ActivityHandlerPlugin
     {
     }
 
+    // FIXME: Set this to abstract public when all plugins have migrated!
+    public function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())  
+    {
+        assert($this->isMyActivity($act));
+        $actor = $stored->getProfile();
+        $uris = array();
+        if (count($act->objects) != 1) {
+            // TRANS: Exception thrown when a favor activity has anything but 1 object
+            throw new ClientException(_('Favoring activites can only be done one at a time'));
+        }
+
+        $obj = $act->objects[0];
+        $type = isset($obj->type) ? ActivityUtils::resolveUri($obj->type, true) : ActivityObject::NOTE;
+        $uris = $obj->getIdentifiers();
+        try {
+            $local = ActivityUtils::findLocalObject($uris, $type);
+        } catch (Exception $e) {
+            // TODO: if it's not available locally, we should import the favorited object!
+            common_debug('Could not find favored notice locally: '.var_export($uris,true));
+            return null;
+        }
+
+        if (!empty($act->time)) {
+            // This should reasonably mean that it was created on our instance.
+            $options['created'] = common_sql_date($act->time);
+        }
+
+        $options['uri'] = !empty($act->id) ? $act->id : $act->selfLink;
+        $object = Fave::saveNew($actor, $local, $type, $options);
+        return $object;
+    }
+
+
     public function activityObjectFromNotice(Notice $notice)
     {
+        $fave = Fave::fromStored($notice);
+        return $fave->asActivityObject();
     }
 
     public function deleteRelated(Notice $notice)
     {
+        try {
+            $fave = Fave::fromStored($notice);
+            $fave->delete();
+        } catch (NoResultException $e) {
+            // Cool, no problem. We wanted to get rid of it anyway.
+        }
     }
 
     // API stuff
@@ -196,15 +237,15 @@ class FavoritePlugin extends ActivityHandlerPlugin
     {
         parent::onNoticeDeleteRelated($notice);
 
-        // The below algorithm is because we have faves not stored as
-        // proper activities in Notice from legacy versions of SN/GNU social
+        // The below algorithm is because we want to delete fave
+        // activities on any notice which _has_ faves, and not as
+        // in the parent function only ones that _are_ faves.
 
         $fave = new Fave();
         $fave->notice_id = $notice->id;
 
         if ($fave->find()) {
             while ($fave->fetch()) {
-                Fave::blowCacheForProfileId($fave->user_id);
                 $fave->delete();
             }
         }

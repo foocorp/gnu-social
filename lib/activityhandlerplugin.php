@@ -110,7 +110,8 @@ abstract class ActivityHandlerPlugin extends Plugin
      * and any additional data structures you require.
      *
      * This function is deprecated and in the future, Notice::saveActivity
-     * should be called from onStartHandleFeedEntryWithProfile in this class.
+     * should be called from onStartHandleFeedEntryWithProfile in this class
+     * (which instead turns to saveObjectFromActivity).
      *
      * @param Activity $activity
      * @param Profile $actor
@@ -121,13 +122,45 @@ abstract class ActivityHandlerPlugin extends Plugin
     public function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
     {
         // Any plugin which has not implemented saveObjectFromActivity _must_
-        // override this function (which will be deleted when all plugins are migrated).
+        // override this function until they are migrated (this function will
+        // be deleted when all plugins are migrated to saveObjectFromActivity).
 
         if (isset($this->oldSaveNew)) {
             throw new ServerException('A function has been called for new saveActivity functionality, but is still set with an oldSaveNew configuration');
         }
 
         return Notice::saveActivity($activity, $actor, $options);
+    }
+
+    /**
+    * Given a parsed ActivityStreams activity, your plugin gets
+    * to figure out itself how to store the additional data into
+    * the database, besides the base data stored by the core.
+    *
+    * This will handle just about all events where an activity
+    * object gets saved, whether it is via AtomPub, OStatus
+    * (PuSH and Salmon transports), or ActivityStreams-based
+    * backup/restore of account data.
+    *
+    * You should be able to accept as input the output from an
+    * asActivity() call on the stored object. Where applicable,
+    * try to use existing ActivityStreams structures and object
+    * types, and be liberal in accepting input from what might
+    * be other compatible apps.
+    *
+    * All micro-app classes must override this method.
+    *
+    * @fixme are there any standard options?
+    *
+    * @param Activity $activity
+    * @param Profile $actor
+    * @param array $options=array()
+    *
+    * @return Notice the resulting notice
+    */
+    public function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
+    {
+        throw new ServerException('This function should be abstract when all plugins have migrated to saveObjectFromActivity');
     }
 
     /*
@@ -252,7 +285,11 @@ abstract class ActivityHandlerPlugin extends Plugin
             return true;
         }
 
-        $object = $this->activityObjectFromNotice($notice);
+        try {
+            $object = $this->activityObjectFromNotice($notice);
+        } catch (NoResultException $e) {
+            $object = null; // because getKV returns null on failure
+        }
         return false;
     }
 
