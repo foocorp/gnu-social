@@ -112,7 +112,7 @@ class BlogPlugin extends MicroAppPlugin
         return array(Blog_entry::TYPE);
     }
 
-    function saveNoticeFromActivity($activity, $actor, $options=array())
+    function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
     {
         if (count($activity->objects) != 1) {
             // TRANS: Exception thrown when there are too many activity objects.
@@ -143,7 +143,7 @@ class BlogPlugin extends MicroAppPlugin
         return $notice;
     }
 
-    function activityObjectFromNotice($notice)
+    function activityObjectFromNotice(Notice $notice)
     {
         $entry = Blog_entry::fromNotice($notice);
 
@@ -161,7 +161,7 @@ class BlogPlugin extends MicroAppPlugin
         return new BlogEntryForm($out);
     }
 
-    function deleteRelated($notice)
+    function deleteRelated(Notice $notice)
     {
         if ($notice->object_type == Blog_entry::TYPE) {
             $entry = Blog_entry::fromNotice($notice);

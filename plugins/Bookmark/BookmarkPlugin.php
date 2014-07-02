@@ -309,7 +309,7 @@ class BookmarkPlugin extends MicroAppPlugin
      *
      * @return boolean hook value
      */
-    function deleteRelated($notice)
+    function deleteRelated(Notice $notice)
     {
     	if ($this->isMyNotice($notice)) {
     		
@@ -327,12 +327,12 @@ class BookmarkPlugin extends MicroAppPlugin
      * Save a bookmark from an activity
      *
      * @param Activity $activity Activity to save
-     * @param Profile  $profile  Profile to use as author
+     * @param Profile  $actor    Profile to use as author
      * @param array    $options  Options to pass to bookmark-saving code
      *
      * @return Notice resulting notice
      */
-    function saveNoticeFromActivity($activity, $profile, $options=array())
+    function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
     {
         $bookmark = $activity->objects[0];
 
@@ -403,7 +403,7 @@ class BookmarkPlugin extends MicroAppPlugin
             }
         }
 
-        return Bookmark::saveNew($profile,
+        return Bookmark::saveNew($actor,
                                  $bookmark->title,
                                  $url,
                                  $tags,
@@ -411,7 +411,7 @@ class BookmarkPlugin extends MicroAppPlugin
                                  $options);
     }
 
-    function activityObjectFromNotice($notice)
+    function activityObjectFromNotice(Notice $notice)
     {
         assert($this->isMyNotice($notice));
 

@@ -69,7 +69,7 @@ class GNUsocialPhotoPlugin extends MicroAppPlugin
         return array(Photo::OBJECT_TYPE);
     }
 
-    function saveNoticeFromActivity($activity, $actor, $options=array())
+    function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
     {
 
         if(count($activity->objects) != 1) {
@@ -97,7 +97,7 @@ class GNUsocialPhotoPlugin extends MicroAppPlugin
    
     }
 
-    function activityObjectFromNotice($notice)
+    function activityObjectFromNotice(Notice $notice)
     {
 
         $photo = Photo::getByNotice($notice);
@@ -132,7 +132,7 @@ class GNUsocialPhotoPlugin extends MicroAppPlugin
         }
     }
 
-    function deleteRelated($notice)
+    function deleteRelated(Notice $notice)
     {
         $photo = Photo::getByNotice($notice);
         if ($photo) {

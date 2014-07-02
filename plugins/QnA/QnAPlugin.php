@@ -161,7 +161,7 @@ class QnAPlugin extends MicroAppPlugin
      *
      * @return Notice the resulting notice
      */
-    function saveNoticeFromActivity($activity, $actor, $options=array())
+    function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
     {
         if (count($activity->objects) != 1) {
             // TRANS: Exception thrown when there are too many activity objects.
@@ -211,7 +211,7 @@ class QnAPlugin extends MicroAppPlugin
      * @return ActivityObject
      */
 
-    function activityObjectFromNotice($notice)
+    function activityObjectFromNotice(Notice $notice)
     {
         $question = null;
 
@@ -492,7 +492,7 @@ class QnAPlugin extends MicroAppPlugin
      *
      * @param Notice $notice
      */
-    function deleteRelated($notice)
+    function deleteRelated(Notice $notice)
     {
         switch ($notice->object_type) {
         case QnA_Question::OBJECT_TYPE:

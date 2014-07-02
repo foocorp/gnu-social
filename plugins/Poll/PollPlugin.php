@@ -142,7 +142,7 @@ class PollPlugin extends MicroAppPlugin
      *
      * @return boolean hook value
      */
-    function deleteRelated($notice)
+    function deleteRelated(Notice $notice)
     {
         $p = Poll::getByNotice($notice);
 
@@ -162,7 +162,7 @@ class PollPlugin extends MicroAppPlugin
      *
      * @return Notice resulting notice
      */
-    function saveNoticeFromActivity($activity, $profile, $options=array())
+    function saveNoticeFromActivity(Activity $activity, Profile $profile, array $options=array())
     {
         // @fixme
         common_log(LOG_DEBUG, "XXX activity: " . var_export($activity, true));
@@ -219,7 +219,7 @@ class PollPlugin extends MicroAppPlugin
         }
     }
 
-    function activityObjectFromNotice($notice)
+    function activityObjectFromNotice(Notice $notice)
     {
         assert($this->isMyNotice($notice));
 
@@ -235,7 +235,7 @@ class PollPlugin extends MicroAppPlugin
         }
     }
 
-    function activityObjectFromNoticePollResponse($notice)
+    function activityObjectFromNoticePollResponse(Notice $notice)
     {
         $object = new ActivityObject();
         $object->id      = $notice->uri;
@@ -258,7 +258,7 @@ class PollPlugin extends MicroAppPlugin
         return $object;
     }
 
-    function activityObjectFromNoticePoll($notice)
+    function activityObjectFromNoticePoll(Notice $notice)
     {
         $object = new ActivityObject();
         $object->id      = $notice->uri;

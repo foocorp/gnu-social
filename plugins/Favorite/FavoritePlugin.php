@@ -147,6 +147,20 @@ class FavoritePlugin extends ActivityHandlerPlugin
                           'format' => '(xml|json)'));
     }
 
+    public function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
+    {
+    }
+
+    public function activityObjectFromNotice(Notice $notice)
+    {
+    }
+
+    public function deleteRelated(Notice $notice)
+    {
+    }
+
+    // API stuff
+
     /**
      * Typically just used to fill out Twitter-compatible API status data.
      *
@@ -180,6 +194,11 @@ class FavoritePlugin extends ActivityHandlerPlugin
     
     public function onNoticeDeleteRelated(Notice $notice)
     {
+        parent::onNoticeDeleteRelated($notice);
+
+        // The below algorithm is because we have faves not stored as
+        // proper activities in Notice from legacy versions of SN/GNU social
+
         $fave = new Fave();
         $fave->notice_id = $notice->id;
 

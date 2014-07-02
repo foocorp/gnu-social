@@ -69,7 +69,7 @@ class GNUsocialVideoPlugin extends MicroAppPlugin
         return array(Video::OBJECT_TYPE);
     }
 
-    function saveNoticeFromActivity($activity, $actor, $options=array())
+    function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
     {
         if(count($activity->objects) != 1) {
             throw new Exception('Too many activity objects.');
@@ -91,7 +91,7 @@ class GNUsocialVideoPlugin extends MicroAppPlugin
    
     }
 
-    function activityObjectFromNotice($notice)
+    function activityObjectFromNotice(Notice $notice)
     {
         $object = new ActivityObject();
         $object->id = $notice->uri;
@@ -120,7 +120,7 @@ class GNUsocialVideoPlugin extends MicroAppPlugin
         }
     }
 
-    function deleteRelated($notice)
+    function deleteRelated(Notice $notice)
     {
         $vid = Video::getByNotice($notice);
         if ($vid) {

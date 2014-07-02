@@ -128,7 +128,7 @@ class EventPlugin extends MicroappPlugin
      *
      * @return Notice the resulting notice
      */
-    function saveNoticeFromActivity($activity, $actor, $options=array())
+    function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
     {
         if (count($activity->objects) != 1) {
             // TRANS: Exception thrown when there are too many activity objects.
@@ -182,7 +182,7 @@ class EventPlugin extends MicroappPlugin
      *
      * @return ActivityObject
      */
-    function activityObjectFromNotice($notice)
+    function activityObjectFromNotice(Notice $notice)
     {
         $happening = null;
 
@@ -288,7 +288,7 @@ class EventPlugin extends MicroappPlugin
      *
      * @param Notice $notice
      */
-    function deleteRelated($notice)
+    function deleteRelated(Notice $notice)
     {
         switch ($notice->object_type) {
         case Happening::OBJECT_TYPE:
