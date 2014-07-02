@@ -132,7 +132,7 @@ class Ostatus_profile extends Managed_DataObject
         } else if ($this->isPeopletag()) {
             return ActivityObject::fromPeopletag($this->localPeopletag());
         } else {
-            return ActivityObject::fromProfile($this->localProfile());
+            return $this->localProfile()->asActivityObject();
         }
     }
 
@@ -156,7 +156,7 @@ class Ostatus_profile extends Managed_DataObject
             $noun = ActivityObject::fromPeopletag($this->localPeopletag());
             return $noun->asString('activity:' . $element);
         } else {
-            $noun = ActivityObject::fromProfile($this->localProfile());
+            $noun = $this->localProfile()->asActivityObject();
             return $noun->asString('activity:' . $element);
         }
     }

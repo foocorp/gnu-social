@@ -267,8 +267,8 @@ class Subscription extends Managed_DataObject
                                $subscriber->getBestName(),
                                $subscribed->getBestName());
 
-        $act->actor     = ActivityObject::fromProfile($subscriber);
-        $act->objects[] = ActivityObject::fromProfile($subscribed);
+        $act->actor     = $subscriber->asActivityObject();
+        $act->objects[] = $subscribed->asActivityObject();
 
         $url = common_local_url('AtomPubShowSubscription',
                                 array('subscriber' => $subscriber->id,

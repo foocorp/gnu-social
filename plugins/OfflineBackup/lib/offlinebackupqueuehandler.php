@@ -294,7 +294,7 @@ class OfflineBackupQueueHandler extends QueueHandler
 
         $profile = $user->getProfile();
 
-        $author = ActivityObject::fromProfile($profile);
+        $author = $profile->asActivityObject();
 
         $xs = new XMLStringer();
         $author->outputTo($xs, 'author');

@@ -62,7 +62,7 @@ class AtomUserNoticeFeed extends AtomNoticeFeed
 
             $profile = $user->getProfile();
 
-            $ao = ActivityObject::fromProfile($profile);
+            $ao = $profile->asActivityObject();
 
             array_push($ao->extra, $profile->profileInfo($cur));
 

@@ -390,7 +390,7 @@ class ActivityPlugin extends Plugin
             if (!empty($sub)) {
                 $profile = Profile::getKV('id', $sub->subscribed);
                 if (!empty($profile)) {
-                    $activity->objects = array(ActivityObject::fromProfile($profile));
+                    $activity->objects = array($profile->asActivityObject());
                 }
             }
             break;

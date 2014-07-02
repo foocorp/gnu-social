@@ -691,8 +691,8 @@ class OStatusPlugin extends Plugin
                                $profile->getBestName(),
                                $other->getBestName());
 
-        $act->actor   = ActivityObject::fromProfile($profile);
-        $act->object  = ActivityObject::fromProfile($other);
+        $act->actor   = $profile->asActivityObject();
+        $act->object  = $other->asActivityObject();
 
         $oprofile->notifyActivity($act, $profile);
 
@@ -728,7 +728,7 @@ class OStatusPlugin extends Plugin
                                 $group->id,
                                 common_date_iso8601(time()));
 
-        $act->actor = ActivityObject::fromProfile($profile);
+        $act->actor = $profile->asActivityObject();
         $act->verb = ActivityVerb::JOIN;
         $act->object = $oprofile->asActivityObject();
 
@@ -782,7 +782,7 @@ class OStatusPlugin extends Plugin
                                 $group->id,
                                 common_date_iso8601(time()));
 
-        $act->actor = ActivityObject::fromProfile($member);
+        $act->actor = $member->asActivityObject();
         $act->verb = ActivityVerb::LEAVE;
         $act->object = $oprofile->asActivityObject();
 
@@ -828,7 +828,7 @@ class OStatusPlugin extends Plugin
                                 $peopletag->id,
                                 common_date_iso8601(time()));
 
-        $act->actor = ActivityObject::fromProfile($sub);
+        $act->actor = $sub->asActivityObject();
         $act->verb = ActivityVerb::FOLLOW;
         $act->object = $oprofile->asActivityObject();
 
@@ -880,7 +880,7 @@ class OStatusPlugin extends Plugin
                                 $peopletag->id,
                                 common_date_iso8601(time()));
 
-        $act->actor = ActivityObject::fromProfile($member);
+        $act->actor = $member->asActivityObject();
         $act->verb = ActivityVerb::UNFOLLOW;
         $act->object = $oprofile->asActivityObject();
 
@@ -973,8 +973,8 @@ class OStatusPlugin extends Plugin
                                 $tagged->getBestName(),
                                 $plist->getBestName());
 
-        $act->actor  = ActivityObject::fromProfile($tagger);
-        $act->objects = array(ActivityObject::fromProfile($tagged));
+        $act->actor  = $tagger->asActivityObject();
+        $act->objects = array($tagged->asActivityObject());
         $act->target = ActivityObject::fromPeopletag($plist);
 
         $oprofile->notifyDeferred($act, $tagger);
@@ -1024,8 +1024,8 @@ class OStatusPlugin extends Plugin
                                 $tagged->getBestName(),
                                 $plist->getBestName());
 
-        $act->actor  = ActivityObject::fromProfile($tagger);
-        $act->objects = array(ActivityObject::fromProfile($tagged));
+        $act->actor  = $tagger->asActivityObject();
+        $act->objects = array($tagged->asActivityObject());
         $act->target = ActivityObject::fromPeopletag($plist);
 
         $oprofile->notifyDeferred($act, $tagger);
@@ -1073,7 +1073,7 @@ class OStatusPlugin extends Plugin
                                $profile->getBestName(),
                                $notice->getUrl());
 
-        $act->actor   = ActivityObject::fromProfile($profile);
+        $act->actor   = $profile->asActivityObject();
         $act->object  = ActivityObject::fromNotice($notice);
 
         $oprofile->notifyActivity($act, $profile);
@@ -1191,7 +1191,7 @@ class OStatusPlugin extends Plugin
         $act->content = sprintf(_m('%s has updated their profile page.'),
                                $profile->getBestName());
 
-        $act->actor   = ActivityObject::fromProfile($profile);
+        $act->actor   = $profile->asActivityObject();
         $act->object  = $act->actor;
 
         while ($oprofile->fetch()) {

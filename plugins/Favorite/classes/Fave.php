@@ -157,7 +157,7 @@ class Fave extends Managed_DataObject
                                $profile->getBestName(),
                                $notice->getUrl());
 
-        $act->actor     = ActivityObject::fromProfile($profile);
+        $act->actor     = $profile->asActivityObject();
         $act->objects[] = ActivityObject::fromNotice($notice);
 
         $url = common_local_url('AtomPubShowFavorite',

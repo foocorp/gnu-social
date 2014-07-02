@@ -457,11 +457,6 @@ class ActivityObject
         return $object;
     }
 
-    static function fromProfile(Profile $profile)
-    {
-        return $profile->asActivityObject();
-    }
-
     static function fromGroup(User_group $group)
     {
         $object = new ActivityObject();

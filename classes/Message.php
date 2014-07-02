@@ -183,7 +183,7 @@ class Message extends Managed_DataObject
                 throw new Exception(sprintf("Sender profile not found: %d", $this->from_profile));
             }
             
-            $act->actor            = ActivityObject::fromProfile($profile);
+            $act->actor            = $profile->asActivityObject();
             $act->actor->extra[]   = $profile->profileInfo(null);
 
             $act->verb = ActivityVerb::POST;

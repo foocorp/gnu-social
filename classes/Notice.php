@@ -1782,7 +1782,7 @@ class Notice extends Managed_DataObject
 
             $profile = $this->getProfile();
 
-            $act->actor            = ActivityObject::fromProfile($profile);
+            $act->actor            = $profile->asActivityObject();
             $act->actor->extra[]   = $profile->profileInfo($cur);
 
             $act->verb = $this->verb;

@@ -990,7 +990,7 @@ class User extends Managed_DataObject
 
         $act = new Activity();
 
-        $act->actor = ActivityObject::fromProfile($profile);
+        $act->actor = $profile->asActivityObject();
         $act->verb = ActivityVerb::JOIN;
 
         $act->objects[] = $service;
