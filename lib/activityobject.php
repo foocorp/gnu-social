@@ -459,58 +459,7 @@ class ActivityObject
 
     static function fromProfile(Profile $profile)
     {
-        $object = new ActivityObject();
-
-        if (Event::handle('StartActivityObjectFromProfile', array($profile, &$object))) {
-            $object->type   = ActivityObject::PERSON;
-            $object->id     = $profile->getUri();
-            $object->title  = $profile->getBestName();
-            $object->link   = $profile->profileurl;
-
-            try {
-                $avatar = Avatar::getUploaded($profile);
-                $object->avatarLinks[] = AvatarLink::fromAvatar($avatar);
-            } catch (NoAvatarException $e) {
-                // Could not find an original avatar to link
-            }
-
-            $sizes = array(
-                AVATAR_PROFILE_SIZE,
-                AVATAR_STREAM_SIZE,
-                AVATAR_MINI_SIZE
-            );
-
-            foreach ($sizes as $size) {
-                $alink  = null;
-                try {
-                    $avatar = Avatar::byProfile($profile, $size);
-                    $alink = AvatarLink::fromAvatar($avatar);
-                } catch (NoAvatarException $e) {
-                    $alink = new AvatarLink();
-                    $alink->type   = 'image/png';
-                    $alink->height = $size;
-                    $alink->width  = $size;
-                    $alink->url    = Avatar::defaultImage($size);
-                }
-
-                $object->avatarLinks[] = $alink;
-            }
-
-            if (isset($profile->lat) && isset($profile->lon)) {
-                $object->geopoint = (float)$profile->lat
-                    . ' ' . (float)$profile->lon;
-            }
-
-            $object->poco = PoCo::fromProfile($profile);
-
-            if ($profile->isLocal()) {
-                $object->extra[] = array('followers', array('url' => common_local_url('subscribers', array('nickname' => $profile->nickname))));
-            }
-
-            Event::handle('EndActivityObjectFromProfile', array($profile, &$object));
-        }
-
-        return $object;
+        return $profile->asActivityObject();
     }
 
     static function fromGroup(User_group $group)

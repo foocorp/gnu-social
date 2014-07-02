@@ -22,8 +22,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 /**
  * Table Definition for profile
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
-
 class Profile extends Managed_DataObject
 {
     ###START_AUTOCODE
@@ -138,6 +136,16 @@ class Profile extends Managed_DataObject
             return false;
         }
         return true;
+    }
+
+    public function getObjectType()
+    {
+        // FIXME: More types... like peopletags and whatever
+        if ($this->isGroup()) {
+            return ActivityObject::GROUP;
+        } else {
+            return ActivityObject::PERSON;
+        }
     }
 
     public function getAvatar($width, $height=null)
@@ -1303,8 +1311,64 @@ class Profile extends Managed_DataObject
      */
     function asActivityNoun($element)
     {
-        $noun = ActivityObject::fromProfile($this);
+        $noun = $this->asActivityObject();
         return $noun->asString('activity:' . $element);
+    }
+
+    public function asActivityObject()
+    {
+        $object = new ActivityObject();
+
+        if (Event::handle('StartActivityObjectFromProfile', array($this, &$object))) {
+            $object->type   = $this->getObjectType();
+            $object->id     = $this->getUri();
+            $object->title  = $this->getBestName();
+            $object->link   = $this->getUrl();
+
+            try {
+                $avatar = Avatar::getUploaded($this);
+                $object->avatarLinks[] = AvatarLink::fromAvatar($avatar);
+            } catch (NoAvatarException $e) {
+                // Could not find an original avatar to link
+            }
+
+            $sizes = array(
+                AVATAR_PROFILE_SIZE,
+                AVATAR_STREAM_SIZE,
+                AVATAR_MINI_SIZE
+            );
+
+            foreach ($sizes as $size) {
+                $alink  = null;
+                try {
+                    $avatar = Avatar::byProfile($this, $size);
+                    $alink = AvatarLink::fromAvatar($avatar);
+                } catch (NoAvatarException $e) {
+                    $alink = new AvatarLink();
+                    $alink->type   = 'image/png';
+                    $alink->height = $size;
+                    $alink->width  = $size;
+                    $alink->url    = Avatar::defaultImage($size);
+                }
+
+                $object->avatarLinks[] = $alink;
+            }
+
+            if (isset($this->lat) && isset($this->lon)) {
+                $object->geopoint = (float)$this->lat
+                    . ' ' . (float)$this->lon;
+            }
+
+            $object->poco = PoCo::fromProfile($this);
+
+            if ($this->isLocal()) {
+                $object->extra[] = array('followers', array('url' => common_local_url('subscribers', array('nickname' => $this->getNickname()))));
+            }
+
+            Event::handle('EndActivityObjectFromProfile', array($this, &$object));
+        }
+
+        return $object;
     }
 
     /**
