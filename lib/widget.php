@@ -54,7 +54,7 @@ class Widget
     protected $avatarSize = AVATAR_STREAM_SIZE;
 
     /**
-     * HTMLOutputter to use for output
+     * Action (HTMLOutputter) to use for output
      */
 
     var $out = null;
@@ -62,10 +62,10 @@ class Widget
     /**
      * Prepare the widget for use
      *
-     * @param HTMLOutputter $out output helper, defaults to null
+     * @param Action $out output helper, defaults to null
      */
 
-    function __construct(HTMLOutputter $out=null)
+    function __construct(Action $out=null)
     {
         $this->out = $out;
     }

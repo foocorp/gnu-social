@@ -51,7 +51,7 @@ class AccountProfileBlock extends ProfileBlock
     protected $profile = null;
     protected $user    = null;
 
-    function __construct(HTMLOutputter $out, Profile $profile)
+    function __construct(Action $out, Profile $profile)
     {
         parent::__construct($out);
         $this->profile = $profile;
