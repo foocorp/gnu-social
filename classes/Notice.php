@@ -901,7 +901,6 @@ class Notice extends Managed_DataObject
             }
         }
 
-        common_debug(get_called_class().' looking up mentions metadata etc.');
         // Save per-notice metadata...
         $mentions = array();
         $groups   = array();
@@ -939,8 +938,6 @@ class Notice extends Managed_DataObject
             $stored->distribute();
         }
         
-        common_debug(get_called_class().' returning stored activity - success!');
-
         return $stored;
     }
 

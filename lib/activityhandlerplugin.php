@@ -351,7 +351,6 @@ abstract class ActivityHandlerPlugin extends Plugin
                 throw new ClientException(_('Object not posted to this group.'));
             }
         } elseif ($target instanceof Profile && $target->isLocal()) {
-            common_debug(get_called_class() . ' got a salmon slap against target profile ID: '.$target->id);
             $original = null;
             // FIXME: Shouldn't favorites show up with a 'target' activityobject?
             if (!ActivityUtils::compareTypes($activity->verb, array(ActivityVerb::POST)) && isset($activity->objects[0])) {
@@ -374,8 +373,8 @@ abstract class ActivityHandlerPlugin extends Plugin
             throw new ServerException(_('Do not know how to handle this kind of target.'));
         }
 
-        common_debug(get_called_class() . ' ensuring ActivityObject profile for '.$activity->actor->id);
-        $actor = Ostatus_profile::ensureActivityObjectProfile($activity->actor);
+        $oactor = Ostatus_profile::ensureActivityObjectProfile($activity->actor);
+        $actor = $oactor->localProfile();
 
         // FIXME: will this work in all cases? I made it work for Favorite...
         if (ActivityUtils::compareTypes($activity->verb, array(ActivityVerb::POST))) {
@@ -389,12 +388,10 @@ abstract class ActivityHandlerPlugin extends Plugin
                          'is_local' => Notice::REMOTE,
                          'source' => 'ostatus');
 
-        // $actor is an ostatus_profile
-        common_debug(get_called_class() . ' going to save notice from activity!');
         if (!isset($this->oldSaveNew)) {
-            $notice = Notice::saveActivity($activity, $target, $options);
+            $notice = Notice::saveActivity($activity, $actor, $options);
         } else {
-            $notice = $this->saveNoticeFromActivity($activity, $target, $options);
+            $notice = $this->saveNoticeFromActivity($activity, $actor, $options);
         }
 
         return false;
