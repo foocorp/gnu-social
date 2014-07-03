@@ -233,36 +233,6 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
-    function onStartShowTagProfileForm($action, $profile)
-    {
-        $action->elementStart('form', array('method' => 'post',
-                                           'id' => 'form_tag_user',
-                                           'class' => 'form_settings',
-                                           'name' => 'tagprofile',
-                                           'action' => common_local_url('tagprofile', array('id' => @$profile->id))));
-
-        $action->elementStart('fieldset');
-        // TRANS: Fieldset legend.
-        $action->element('legend', null, _m('List remote profile'));
-        $action->hidden('token', common_session_token());
-
-        $user = common_current_user();
-
-        $action->elementStart('ul', 'form_data');
-        $action->elementStart('li');
-
-        // TRANS: Field label.
-        $action->input('uri', _m('LABEL','Remote profile'), $action->trimmed('uri'),
-                     // TRANS: Field title.
-                     _m('OStatus user\'s address, like nickname@example.com or http://example.net/nickname.'));
-        $action->elementEnd('li');
-        $action->elementEnd('ul');
-        // TRANS: Button text to fetch remote profile.
-        $action->submit('fetch', _m('BUTTON','Fetch'));
-        $action->elementEnd('fieldset');
-        $action->elementEnd('form');
-    }
-
     function onStartTagProfileAction($action, $profile)
     {
         $err = null;
