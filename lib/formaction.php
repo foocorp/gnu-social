@@ -98,6 +98,26 @@ class FormAction extends ManagedAction
         return null;
     }
 
+    public function showForm($msg=null, $success=false)
+    {
+        $this->msg = $msg;
+        $this->success = $success;
+        $this->showPage();
+    }
+
+    public function showContent()
+    {
+        $form = $this->getForm();
+        $form->show();
+    }
+
+    protected function getForm()
+    {
+        $class = $this->form.'Form';
+        $form = new $class($this);
+        return $form;
+    }
+
     /**
      * Gets called from handle() if isPost() is true;
      * @return void

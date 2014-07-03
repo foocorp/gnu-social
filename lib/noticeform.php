@@ -107,7 +107,7 @@ class NoticeForm extends Form
         // Do we have to worry about sub-second race conditions?
         // XXX: Needs to be above the parent::__construct() call...?
 
-        $this->id_suffix = time();
+        $this->id_suffix = rand();
 
         parent::__construct($action);
 

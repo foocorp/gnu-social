@@ -121,7 +121,12 @@ option {
     right: 239px; 
     background-color: #fff;  
     border-right: 1px solid #ccc;
-}  
+}
+
+#content_inner {
+    display: block;
+    position: relative;
+}
 
 #site_nav_local_views_wrapper  {  
     width: 100%;  
@@ -277,10 +282,6 @@ address .poweredby {
 
 .input_form.current { 
     display: block;
-}
-
-#input_form_status, #input_form_direct {
-    padding-bottom: 50px;
 }
 
 .form_notice { 
@@ -544,9 +545,8 @@ address .poweredby {
 
 .form_notice input.submit {
     position: absolute;
-    top: 100%;
-    left: 0px;
-    margin-top: -49px;
+    right: 0px;
+    margin-top: -1.5em;
     float: left;
     width: 100px;
     padding: 0px;
@@ -959,9 +959,8 @@ content: ":";
     right: 50px;
 }
 
-.threaded-replies .form_notice #notice_action-submit {
-    left: 10px;
-    margin-top: -44px;
+.threaded-replies .form_notice input.submit {
+    bottom: 0;
 }
 
 .threaded-replies .form_notice .error,

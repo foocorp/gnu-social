@@ -47,28 +47,11 @@ class ManagedAction extends Action
             }
         }
 
-        if (StatusNet::isAjax()) {
-            $this->showAjax();
-        } else {
-            $this->showPage();
-        }
+        $this->showPage();
     }
 
     protected function handlePost()
     {
         // This will only be run if the Action has the property canPost==true
-    }
-
-    public function showAjax()
-    {
-        $this->startHTML('text/xml;charset=utf-8');
-        $this->elementStart('head');
-        // TRANS: Title for conversation page.
-        $this->element('title', null, _m('TITLE','Notice'));
-        $this->elementEnd('head');
-        $this->elementStart('body');
-        $this->showContent();
-        $this->elementEnd('body');
-        $this->endHTML();
     }
 }

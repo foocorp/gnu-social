@@ -47,6 +47,8 @@ if (!defined('STATUSNET')) {
  */
 class NewnoticeAction extends FormAction
 {
+    protected $form = 'Notice';
+
     /**
      * Title of the page
      *
@@ -274,69 +276,6 @@ class NewnoticeAction extends FormAction
         }
 
         parent::showForm($msg, $success);
-    }
-
-    /**
-     * // XXX: Should we be showing the notice form with microapps here?
-     *
-     * Overload for replies or bad results
-     *
-     * We show content in the notice form if there were replies or results.
-     *
-     * @return void
-     */
-    function showNoticeForm()
-    {
-        $content = $this->trimmed('status_textarea');
-        if (!$content) {
-            $replyto = $this->trimmed('replyto');
-            $inreplyto = $this->trimmed('inreplyto');
-            $profile = Profile::getKV('nickname', $replyto);
-            if ($profile) {
-                $content = '@' . $profile->nickname . ' ';
-            }
-        } else {
-            // @fixme most of these bits above aren't being passed on above
-            $inreplyto = null;
-        }
-
-        $this->elementStart('div', 'input_forms');
-        $this->elementStart(
-            'div',
-            array(
-                'id'    => 'input_form_status',
-                'class' => 'input_form current nonav'
-            )
-        );
-
-        $notice_form = new NoticeForm(
-            $this,
-            array(
-                'content' => $content,
-                'inreplyto' => $inreplyto
-            )
-        );
-
-        $notice_form->show();
-
-        $this->elementEnd('div');
-        $this->elementEnd('div');
-    }
-
-    /**
-     * Show an error message
-     *
-     * Shows an error message if there is one.
-     *
-     * @return void
-     *
-     * @todo maybe show some instructions?
-     */
-    function showPageNotice()
-    {
-        if ($this->msg) {
-            $this->element('p', array('id' => 'error'), $this->msg);
-        }
     }
 
     /**

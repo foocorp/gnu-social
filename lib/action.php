@@ -206,6 +206,10 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showPage()
     {
+        if (StatusNet::isAjax()) {
+            self::showAjax();
+            return;
+        }
         if (Event::handle('StartShowHTML', array($this))) {
             $this->startHTML();
             $this->flush();
@@ -224,6 +228,19 @@ class Action extends HTMLOutputter // lawsuit
             $this->endHTML();
             Event::handle('EndEndHTML', array($this));
         }
+    }
+
+    public function showAjax()
+    {
+        $this->startHTML('text/xml;charset=utf-8');
+        $this->elementStart('head');
+        // TRANS: Title for conversation page.
+        $this->element('title', null, _m('TITLE','Notice'));
+        $this->elementEnd('head');
+        $this->elementStart('body');
+        $this->showContent();
+        $this->elementEnd('body');
+        $this->endHTML();
     }
 
     function endHTML()
