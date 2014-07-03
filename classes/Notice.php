@@ -150,7 +150,10 @@ class Notice extends Managed_DataObject
     public function getProfile()
     {
         if (!isset($this->_profile[$this->profile_id])) {
-            $this->_setProfile(Profile::getKV('id', $this->profile_id));
+            // We could've sent getKV directly to _setProfile, but occasionally we get
+            // a "false" (instead of null), likely because it indicates a cache miss.
+            $profile = Profile::getKV('id', $this->profile_id);
+            $this->_setProfile($profile instanceof Profile ? $profile : null);
         }
         return $this->_profile[$this->profile_id];
     }
