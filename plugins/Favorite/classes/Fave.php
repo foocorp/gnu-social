@@ -297,12 +297,12 @@ class Fave extends Managed_DataObject
     {
         $actobj = new ActivityObject();
         $actobj->id = $this->getUri();
-        $actobj->type = ActivityUtils::resolveUri(ActivityObject::ACTIVITY);
+        $actobj->type = ActivityUtils::resolveUri($this->getObjectType());
         $actobj->actor = $this->getActorObject();
+        $actobj->target = $this->getTarget()->asActivityObject();
         $actobj->objects = array(clone($actobj->target));
         $actobj->title = Stored_ActivityVerb::verbToTitle($this->verb);
-        //$actobj->verb = $this->verb;
-        //$actobj->target = $this->getTargetObject();
+        $actobj->verb = ActivityVerb::FAVORITE;
         return $actobj;
     }
 
