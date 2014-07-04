@@ -17,26 +17,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 // @todo FIXME: documentation missing.
-class TagAction extends Action
+class TagAction extends ManagedAction
 {
     var $notice;
     var $tag;
     var $page;
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
+
         $taginput = $this->trimmed('tag');
         $this->tag = common_canonical_tag($taginput);
 
-        if (!$this->tag) {
+        if (empty($this->tag)) {
             common_redirect(common_local_url('publictagcloud'), 301);
         }
 
-        if ($this->tag != $taginput) {
+        // after common_canonical_tag we have a lowercase, no-specials tag string
+        if ($this->tag !== $taginput) {
             common_redirect(common_local_url('tag', array('tag' => $this->tag)), 301);
         }
 
@@ -67,13 +69,6 @@ class TagAction extends Action
                            $this->tag,
                            $this->page);
         }
-    }
-
-    function handle($args)
-    {
-        parent::handle($args);
-
-        $this->showPage();
     }
 
     function getFeeds()
@@ -111,7 +106,7 @@ class TagAction extends Action
                                       $this->tag)));
     }
 
-    function showContent()
+    protected function showContent()
     {
         if(Event::handle('StartTagShowContent', array($this))) {
 
