@@ -1350,4 +1350,11 @@ class OStatusPlugin extends Plugin
         }
         return true;
     }
+
+    public function onProfileDeleteRelated($profile, &$related)
+    {
+        // Ostatus_profile has a 'profile_id' property, which will be used to find the object
+        $related[] = 'Ostatus_profile';
+        return true;
+    }
 }
