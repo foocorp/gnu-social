@@ -105,7 +105,7 @@ class FormAction extends ManagedAction
         $this->showPage();
     }
 
-    public function showContent()
+    protected function showContent()
     {
         $form = $this->getForm();
         $form->show();
