@@ -289,6 +289,19 @@ class FavoritePlugin extends ActivityHandlerPlugin
         }
     }
 
+    public function showNoticeListItem(NoticeListItem $nli)
+    {
+        // pass
+    }
+    public function openNoticeListItemElement(NoticeListItem $nli)
+    {
+        // pass
+    }
+    public function closeNoticeListItemElement(NoticeListItem $nli)
+    {
+        // pass
+    }
+
     public function onAppendUserActivityStreamObjects(UserActivityStream $uas, array &$objs)
     {
         $faves = array();

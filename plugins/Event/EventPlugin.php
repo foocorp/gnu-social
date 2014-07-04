@@ -44,7 +44,7 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class EventPlugin extends MicroappPlugin
+class EventPlugin extends MicroAppPlugin
 {
     /**
      * Set up our tables (event and rsvp)

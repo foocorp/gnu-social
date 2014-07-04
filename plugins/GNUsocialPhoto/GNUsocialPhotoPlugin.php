@@ -119,7 +119,7 @@ class GNUsocialPhotoPlugin extends MicroAppPlugin
         
     }
 
-    function showNotice($notice, $out)
+    function showNoticeContent(Notice $notice, HTMLOutputter $out)
     {
         $photo = Photo::getByNotice($notice);
         if ($photo) {

@@ -273,13 +273,16 @@ class NoticeListItem extends Widget
     {
         // FIXME: URL, image, video, audio
         $this->out->elementStart('div', array('class' => 'e-content'));
-        if ($this->notice->rendered) {
-            $this->out->raw($this->notice->rendered);
-        } else {
-            // XXX: may be some uncooked notices in the DB,
-            // we cook them right now. This should probably disappear in future
-            // versions (>> 0.4.x)
-            $this->out->raw(common_render_content($this->notice->content, $this->notice));
+        if (Event::handle('StartShowNoticeContent', array($this->notice, $this->out, $this->out->getScoped()))) {
+            if ($this->notice->rendered) {
+                $this->out->raw($this->notice->rendered);
+            } else {
+                // XXX: may be some uncooked notices in the DB,
+                // we cook them right now. This should probably disappear in future
+                // versions (>> 0.4.x)
+                $this->out->raw(common_render_content($this->notice->content, $this->notice));
+            }
+            Event::handle('EndShowNoticeContent', array($this->notice, $this->out, $this->out->getScoped()));
         }
         $this->out->elementEnd('div');
     }

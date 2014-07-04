@@ -62,15 +62,6 @@ abstract class MicroAppPlugin extends ActivityHandlerPlugin
     abstract function appTitle();
 
     /**
-     * Returns a key string which represents this micro-app in HTML
-     * ids etc, as when offering selection of what type of post to make.
-     * This is paired with the user-visible localizable $this->appTitle().
-     *
-     * All micro-app classes must override this method.
-     */
-    abstract function tag();
-
-    /**
      * When building the primary notice form, we'll fetch also some
      * alternate forms for specialized types -- that's you!
      *
@@ -99,10 +90,8 @@ abstract class MicroAppPlugin extends ActivityHandlerPlugin
      * @param NoticeListItem $nli The list item being shown.
      *
      * @return boolean hook value
-     *
-     * @fixme WARNING WARNING WARNING this closes a 'div' that is implicitly opened in BookmarkPlugin's showNotice implementation
      */
-    function onStartShowNoticeItem($nli)
+    function onStartShowNoticeItem(NoticeListItem $nli)
     {
         if (!$this->isMyNotice($nli->notice)) {
             return true;
@@ -110,14 +99,14 @@ abstract class MicroAppPlugin extends ActivityHandlerPlugin
 
         $adapter = $this->adaptNoticeListItem($nli);
 
-        if (!empty($adapter)) {
-            $adapter->showNotice();
-            $adapter->showNoticeAttachments();
-            $adapter->showNoticeInfo();
-            $adapter->showNoticeOptions();
-        } else {
-            $this->oldShowNotice($nli);
+        if (empty($adapter)) {
+            throw new ServerException('Could not adapt NoticeListItem');
         }
+
+        $adapter->showNotice();
+        $adapter->showNoticeAttachments();
+        $adapter->showNoticeInfo();
+        $adapter->showNoticeOptions();
 
         return false;
     }
@@ -133,32 +122,6 @@ abstract class MicroAppPlugin extends ActivityHandlerPlugin
     function adaptNoticeListItem($nli)
     {
       return null;
-    }
-
-    function oldShowNotice($nli)
-    {
-        $out = $nli->out;
-        $notice = $nli->notice;
-
-        try {
-            $this->showNotice($notice, $out);
-        } catch (Exception $e) {
-            common_log(LOG_ERR, $e->getMessage());
-            // try to fall back
-            $out->elementStart('div');
-            $nli->showAuthor();
-            $nli->showContent();
-        }
-
-        $nli->showNoticeLink();
-        $nli->showNoticeSource();
-        $nli->showNoticeLocation();
-        $nli->showContext();
-        $nli->showRepeat();
-
-        $out->elementEnd('div');
-
-        $nli->showNoticeOptions();
     }
 
     function onStartShowEntryForms(&$tabs)
@@ -177,11 +140,5 @@ abstract class MicroAppPlugin extends ActivityHandlerPlugin
         }
 
         return true;
-    }
-
-    function showNotice($notice, $out)
-    {
-        // TRANS: Server exception thrown when a micro app plugin developer has not done his job too well.
-        throw new ServerException(_('You must implement either adaptNoticeListItem() or showNotice().'));
     }
 }

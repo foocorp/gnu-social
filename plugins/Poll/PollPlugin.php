@@ -376,12 +376,7 @@ class PollPlugin extends MicroAppPlugin
     }
 
 
-    /**
-     * @fixme WARNING WARNING WARNING parent class closes the final div that we
-     * open here, but we probably shouldn't open it here. Check parent class
-     * and Bookmark plugin for if that's right.
-     */
-    function showNotice(Notice $notice, $out)
+    function showNoticeContent(Notice $notice, HTMLOutputter $out)
     {
         switch ($notice->object_type) {
         case self::POLL_OBJECT:

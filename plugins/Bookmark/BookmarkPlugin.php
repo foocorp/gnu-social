@@ -240,39 +240,6 @@ class BookmarkPlugin extends MicroAppPlugin
     }
 
     /**
-     * Output our CSS class for bookmark notice list elements
-     *
-     * @param NoticeListItem $nli The item being shown
-     *
-     * @return boolean hook value
-     */
-
-    function onStartOpenNoticeListItemElement($nli)
-    {
-    	if (!$this->isMyNotice($nli->notice)) {
-    		return true;
-    	}
-    	
-        $nb = Bookmark::getByNotice($nli->notice);
-        
-        if (empty($nb)) {
-        	$this->log(LOG_INFO, "Notice {$nli->notice->id} has bookmark class but no matching Bookmark record.");
-        	return true;
-        }
-	        
-	    $id = (empty($nli->repeat)) ? $nli->notice->id : $nli->repeat->id;
-	    $class = 'h-entry notice bookmark';
-	    if ($nli->notice->scope != 0 && $nli->notice->scope != 1) {
-	    	$class .= ' limited-scope';
-	    }
-	    $nli->out->elementStart('li', array('class' => $class,
-	                                        'id' => 'notice-' . $id));
-	                                        
-	    Event::handle('EndOpenNoticeListItemElement', array($nli));
-	    return false;
-    }
-
-    /**
      * Modify the default menu to link to our custom action
      *
      * Using event handlers, it's possible to modify the default UI for pages

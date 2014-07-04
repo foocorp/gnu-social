@@ -74,7 +74,7 @@ class BookmarkListItem extends NoticeListItemAdapter
 
         $profile = $notice->getProfile();
 
-        $out->elementStart('p', array('class' => 'e-content'));
+        $out->elementStart('div', array('class' => 'e-content'));
 
         // Whether to nofollow
 
@@ -139,6 +139,6 @@ class BookmarkListItem extends NoticeListItemAdapter
                           $nb->description);
         }
 
-        $out->elementEnd('p');
+        $out->elementEnd('div');
     }
 }

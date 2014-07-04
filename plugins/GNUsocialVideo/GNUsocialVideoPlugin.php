@@ -112,7 +112,7 @@ class GNUsocialVideoPlugin extends MicroAppPlugin
         
     }
 
-    function showNotice($notice, $out)
+    function showNotice(Notice $notice, HTMLOutputter $out)
     {
         $vid = Video::getByNotice($notice);
         if ($vid) {

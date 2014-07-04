@@ -322,7 +322,7 @@ class QnAPlugin extends MicroAppPlugin
      * @param Notice $notice
      * @param HTMLOutputter $out
      */
-    function showNotice(Notice $notice, $out)
+    function showNoticeContent(Notice $notice, $out)
     {
         switch ($notice->object_type) {
         case QnA_Question::OBJECT_TYPE:

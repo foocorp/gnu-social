@@ -31,6 +31,15 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 abstract class ActivityHandlerPlugin extends Plugin
 {
+    /** 
+     * Returns a key string which represents this activity in HTML classes,
+     * ids etc, as when offering selection of what type of post to make. 
+     * In MicroAppPlugin, this is paired with the user-visible localizable appTitle(). 
+     *
+     * @return string (compatible with HTML classes)
+     */ 
+    abstract function tag();
+
     /**
      * Return a list of ActivityStreams object type IRIs
      * which this micro-app handles. Default implementations
@@ -39,8 +48,6 @@ abstract class ActivityHandlerPlugin extends Plugin
      * $this->isMyNotice() or $this->isMyActivity.
      *
      * An empty list means any type is ok. (Favorite verb etc.)
-     *
-     * All micro-app classes must override this method.
      *
      * @return array of strings
      */
@@ -57,7 +64,7 @@ abstract class ActivityHandlerPlugin extends Plugin
      *
      * @return array of strings
      */
-    function verbs() {
+    public function verbs() {
         return array(ActivityVerb::POST);
     }
 
@@ -495,5 +502,89 @@ abstract class ActivityHandlerPlugin extends Plugin
             $this->activityObjectOutputJson($obj, $out);
         }
         return true;
+    }
+
+    public function onStartOpenNoticeListItemElement(NoticeListItem $nli)
+    {   
+        if (!$this->isMyNotice($nli->notice)) {
+            return true;
+        }
+
+        $this->openNoticeListItemElement($nli);
+
+        Event::handle('EndOpenNoticeListItemElement', array($nli));
+        return false;
+    }
+
+    public function onStartCloseNoticeListItemElement(NoticeListItem $nli)
+    {   
+        if (!$this->isMyNotice($nli->notice)) {
+            return true;
+        }
+
+        $this->closeNoticeListItemElement($nli);
+
+        Event::handle('EndCloseNoticeListItemElement', array($nli));
+        return false;
+    }
+
+    protected function openNoticeListItemElement(NoticeListItem $nli)
+    {
+        $id = (empty($nli->repeat)) ? $nli->notice->id : $nli->repeat->id;
+        $class = 'h-entry notice ' . $this->tag();
+        if ($nli->notice->scope != 0 && $nli->notice->scope != 1) {
+            $class .= ' limited-scope';
+        }
+        $nli->out->elementStart('li', array('class' => $class,
+                                            'id' => 'notice-' . $id));
+    }
+
+    protected function closeNoticeListItemElement(NoticeListItem $nli)
+    {
+        $nli->out->elementEnd('li');
+    }
+
+
+    // FIXME: This is overriden in MicroAppPlugin but shouldn't have to be
+    public function onStartShowNoticeItem(NoticeListItem $nli)
+    {   
+        if (!$this->isMyNotice($nli->notice)) {
+            return true;
+        }
+
+        try {
+            $this->showNoticeListItem($nli);
+        } catch (Exception $e) {
+            $nli->out->element('p', 'error', 'Error showing notice: '.htmlspecialchars($e->getMessage()));
+        }
+
+        Event::handle('EndShowNoticeItem', array($nli));
+        return false;
+    }
+
+    protected function showNoticeListItem(NoticeListItem $nli)
+    {
+        $nli->showNotice();
+        $nli->showNoticeAttachments();
+        $nli->showNoticeInfo();
+        $nli->showNoticeOptions();
+
+        $nli->showNoticeLink();
+        $nli->showNoticeSource();
+        $nli->showNoticeLocation();
+        $nli->showContext();
+        $nli->showRepeat();
+
+        $nli->showNoticeOptions();
+    }
+
+    public function onStartShowNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
+    {
+        if (!$this->isMyNotice($stored)) {
+            return true;
+        }
+
+        $out->text($stored->getContent());
+        return false;
     }
 }
