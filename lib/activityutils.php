@@ -433,4 +433,14 @@ class ActivityUtils
 
         return $profile;
     }
+
+    static public function typeToTitle($type)
+    {
+        return ucfirst(self::resolveUri($type, true));
+    }
+
+    static public function verbToTitle($verb)
+    {
+        return ucfirst(self::resolveUri($verb, true));
+    }
 }

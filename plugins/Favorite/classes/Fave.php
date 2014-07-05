@@ -58,7 +58,7 @@ class Fave extends Managed_DataObject
             $fave->notice_id = $notice->id;
             $fave->created   = common_sql_now();
             $fave->modified  = common_sql_now();
-            $fave->uri       = self::newURI($profile,
+            $fave->uri       = self::newUri($profile,
                                             $notice,
                                             $fave->created);
 
@@ -128,17 +128,8 @@ class Fave extends Managed_DataObject
 
     function asActivity()
     {
-        $notice = Notice::getKV('id', $this->notice_id);
-
-        if (!$notice) {
-            throw new Exception("Fave for non-existent notice: " . $this->notice_id);
-        }
-
-        $profile = Profile::getKV('id', $this->user_id);
-
-        if (!$profile) {
-            throw new Exception("Fave by non-existent profile: " . $this->user_id);
-        }
+        $notice  = $this->getTarget();
+        $profile = $this->getActor();
 
         $act = new Activity();
 
@@ -146,7 +137,7 @@ class Fave extends Managed_DataObject
 
         // FIXME: rationalize this with URL below
 
-        $act->id   = $this->getURI();
+        $act->id   = $this->getUri();
 
         $act->time    = strtotime($this->modified);
         // TRANS: Activity title when marking a notice as favorite.
@@ -158,11 +149,13 @@ class Fave extends Managed_DataObject
                                $notice->getUrl());
 
         $act->actor     = $profile->asActivityObject();
-        $act->objects[] = ActivityObject::fromNotice($notice);
+        // $act->target    = $notice->asActivityObject();
+        // $act->objects   = array(clone($act->target));
+        $act->objects[] = $notice->asActivityObject();
 
         $url = common_local_url('AtomPubShowFavorite',
-                                          array('profile' => $this->user_id,
-                                                'notice'  => $this->notice_id));
+                                          array('profile' => $profile->id,
+                                                'notice'  => $notice->id));
 
         $act->selfLink = $url;
         $act->editLink = $url;
@@ -283,11 +276,6 @@ class Fave extends Managed_DataObject
         return $object;
     }
 
-    static public function verbToTitle($verb)
-    {
-        return ucfirst($verb);
-    }
-
     static public function getObjectType()
     {
         return 'activity';
@@ -297,22 +285,22 @@ class Fave extends Managed_DataObject
     {
         $actobj = new ActivityObject();
         $actobj->id = $this->getUri();
-        $actobj->type = ActivityUtils::resolveUri($this->getObjectType());
+        $actobj->type = ActivityUtils::resolveUri(self::getObjectType());
         $actobj->actor = $this->getActorObject();
         $actobj->target = $this->getTarget()->asActivityObject();
         $actobj->objects = array(clone($actobj->target));
-        $actobj->title = Stored_ActivityVerb::verbToTitle($this->verb);
         $actobj->verb = ActivityVerb::FAVORITE;
+        $actobj->title = ActivityUtils::verbToTitle($actobj->verb);
         return $actobj;
     }
 
+    /**
+     * @param ActivityObject $actobj The _favored_ notice (which we're "in-reply-to")
+     * @param Notice         $stored The _activity_ notice, i.e. the favor itself.
+     */
     static public function parseActivityObject(ActivityObject $actobj, Notice $stored)
     {
-        // The ActivityObject we get here is the _favored_ notice (kind of what we're "in-reply-to")
-        // The Notice we get is the _activity_ stored in our Notice table
-
-        $type = isset($actobj->type) ? ActivityUtils::resolveUri($actobj->type, true) : ActivityObject::NOTE;
-        $local = ActivityUtils::findLocalObject($actobj->getIdentifiers(), $type); 
+        $local = ActivityUtils::findLocalObject($actobj->getIdentifiers());
         if (!$local instanceof Notice) {
             // $local always returns something, but this was not what we expected. Something is wrong.
             throw new Exception('Something other than a Notice was returned from findLocalObject');
@@ -332,6 +320,7 @@ class Fave extends Managed_DataObject
     {
         $object = self::parseActivityObject($actobj, $stored);
         $object->insert();  // exception throwing!
+        Event::handle('EndFavorNotice', array($stored->getProfile(), $object->getTarget()));
         return $object;
     }
 
@@ -339,7 +328,13 @@ class Fave extends Managed_DataObject
     public function getTarget()
     {
         // throws exception on failure
-        return ActivityUtils::findLocalObject(array($this->uri));
+        $target = new Notice();
+        $target->id = $this->notice_id;
+        if (!$target->find(true)) {
+            throw new NoResultException($target);
+        }
+
+        return $target;
     }
 
     public function getTargetObject()
@@ -377,17 +372,17 @@ class Fave extends Managed_DataObject
         return $this->getActor()->asActivityObject();
     }
 
-    public function getURI()
+    public function getUri()
     {
         if (!empty($this->uri)) {
             return $this->uri;
         }
 
         // We (should've in this case) created it ourselves, so we tag it ourselves
-        return self::newURI($this->getActor(), $this->getTarget(), $this->created);
+        return self::newUri($this->getActor(), $this->getTarget(), $this->created);
     }
 
-    static function newURI(Profile $actor, Managed_DataObject $target, $created=null)
+    static function newUri(Profile $actor, Managed_DataObject $target, $created=null)
     {
         if (is_null($created)) {
             $created = common_sql_now();

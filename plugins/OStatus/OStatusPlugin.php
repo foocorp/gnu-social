@@ -1044,7 +1044,7 @@ class OStatusPlugin extends Plugin
                                $notice->getUrl());
 
         $act->actor   = $profile->asActivityObject();
-        $act->object  = ActivityObject::fromNotice($notice);
+        $act->object  = $notice->asActivityObject();
 
         $oprofile->notifyActivity($act, $profile);
 

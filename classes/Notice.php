@@ -647,53 +647,20 @@ class Notice extends Managed_DataObject
 
             // XXX: some of these functions write to the DB
 
-            $id = $notice->insert();
-
-            if (!$id) {
-                common_log_db_error($notice, 'INSERT', __FILE__);
-                // TRANS: Server exception thrown when a notice cannot be saved.
-                throw new ServerException(_('Problem saving notice.'));
-            }
-
-            // Update ID-dependent columns: URI, conversation
-
-            $orig = clone($notice);
-
-            $changed = false;
-
-            // We can only get here if it's a local notice, since remote notices
-            // should've bailed out earlier due to lacking a URI.
-            if (empty($notice->uri)) {
-                $notice->uri = sprintf('%s%s=%d:%s=%s',
-                                    TagURI::mint(),
-                                    'noticeId', $notice->id,
-                                    'objectType', $notice->get_object_type(true));
-                $changed = true;
-            }
-
-            // If it's not part of a conversation, it's
-            // the beginning of a new conversation.
-
-            if (empty($notice->conversation)) {
-                $conv = Conversation::create($notice);
-                $notice->conversation = $conv->id;
-                $changed = true;
-            }
-
-            if ($changed) {
-                if ($notice->update($orig) === false) {
-                    common_log_db_error($notice, 'UPDATE', __FILE__);
-                    // TRANS: Server exception thrown when a notice cannot be updated.
-                    throw new ServerException(_('Problem saving notice.'));
+            try {
+                $notice->insert();  // throws exception on failure
+            } catch (Exception $e) {
+                // Let's test if we managed initial insert, which would imply
+                // failing on some update-part (check 'insert()'). Delete if
+                // something had been stored to the database.
+                if (!empty($notice->id)) {
+                    $notice->delete();
                 }
             }
-
         }
 
         // Clear the cache for subscribed users, so they'll update at next request
         // XXX: someone clever could prepend instead of clearing the cache
-
-        $notice->blowOnInsert();
 
         // Save per-notice metadata...
 
@@ -904,6 +871,9 @@ class Notice extends Managed_DataObject
                 }
                 throw $e;
             }
+        }
+        if (!$stored instanceof Notice) {
+            throw new ServerException('StartNoticeSave did not give back a Notice');
         }
 
         // Save per-notice metadata...
@@ -1798,7 +1768,7 @@ class Notice extends Managed_DataObject
                     $act->objects[] = $repeated->asActivity($cur);
                 }
             } else {
-                $act->objects[] = ActivityObject::fromNotice($this);
+                $act->objects[] = $this->asActivityObject();
             }
 
             // XXX: should this be handled by default processing for object entry?
@@ -2005,8 +1975,27 @@ class Notice extends Managed_DataObject
 
     function asActivityNoun($element)
     {
-        $noun = ActivityObject::fromNotice($this);
+        $noun = $this->asActivityObject();
         return $noun->asString('activity:' . $element);
+    }
+
+    public function asActivityObject()
+    {
+        $object = new ActivityObject();
+
+        if (Event::handle('StartActivityObjectFromNotice', array($this, &$object))) {
+            $object->type    = $this->object_type ?: ActivityObject::NOTE;
+            $object->id      = $this->getUri();
+            $object->title   = sprintf('New %1$s by %2$s', $object->type, $this->getProfile()->getNickname());
+            $object->content = $this->rendered;
+            $object->link    = $this->getUrl();
+
+            $object->extra[] = array('status_net', array('notice_id' => $this->id));
+
+            Event::handle('EndActivityObjectFromNotice', array($this, &$object));
+        }
+
+        return $object;
     }
 
     /**
@@ -2335,19 +2324,54 @@ class Notice extends Managed_DataObject
     {
         $result = parent::insert();
 
-        if ($result !== false) {
-            // Profile::hasRepeated() abuses pkeyGet(), so we
-            // have to clear manually
-            if (!empty($this->repeat_of)) {
-                $c = self::memcache();
-                if (!empty($c)) {
-                    $ck = self::multicacheKey('Notice',
-                                              array('profile_id' => $this->profile_id,
-                                                    'repeat_of' => $this->repeat_of));
-                    $c->delete($ck);
-                }
+        if ($result === false) {
+            common_log_db_error($this, 'INSERT', __FILE__);
+            // TRANS: Server exception thrown when a stored object entry cannot be saved.
+            throw new ServerException('Could not save Notice');
+        }
+
+        // Profile::hasRepeated() abuses pkeyGet(), so we
+        // have to clear manually
+        if (!empty($this->repeat_of)) {
+            $c = self::memcache();
+            if (!empty($c)) {
+                $ck = self::multicacheKey('Notice',
+                                          array('profile_id' => $this->profile_id,
+                                                'repeat_of' => $this->repeat_of));
+                $c->delete($ck);
             }
         }
+
+        // Update possibly ID-dependent columns: URI, conversation
+        // (now that INSERT has added the notice's local id)
+        $orig = clone($this);
+        $changed = false;
+
+        // We can only get here if it's a local notice, since remote notices
+        // should've bailed out earlier due to lacking a URI.
+        if (empty($this->uri)) {
+            $this->uri = sprintf('%s%s=%d:%s=%s',
+                                TagURI::mint(),
+                                'noticeId', $this->id,
+                                'objectType', $this->get_object_type(true));
+            $changed = true;
+        }
+
+        // If it's not part of a conversation, it's
+        // the beginning of a new conversation.
+        if (empty($this->conversation)) {
+            $conv = Conversation::create($this);
+            $this->conversation = $conv->id;
+            $changed = true;
+        }
+
+        if ($changed && $this->update($orig) === false) {
+            common_log_db_error($notice, 'UPDATE', __FILE__);
+            // TRANS: Server exception thrown when a notice cannot be updated.
+            throw new ServerException(_('Problem saving notice.'));
+        }
+
+        $this->blowOnInsert();
 
         return $result;
     }

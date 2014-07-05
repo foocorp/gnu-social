@@ -431,32 +431,6 @@ class ActivityObject
         }
     }
 
-    static function fromNotice(Notice $notice)
-    {
-        $object = new ActivityObject();
-
-        if (Event::handle('StartActivityObjectFromNotice', array($notice, &$object))) {
-
-            $object->type    = (empty($notice->object_type)) ? ActivityObject::NOTE : $notice->object_type;
-
-            $object->id      = $notice->uri;
-            $object->title = 'New ' . self::canonicalType($object->type) . ' by ';
-            try {
-                $object->title .= $notice->getProfile()->getAcctUri();
-            } catch (ProfileNoAcctUriException $e) {
-                $object->title .= $e->profile->nickname;
-            }
-            $object->content = $notice->rendered;
-            $object->link    = $notice->getUrl();
-
-            $object->extra[] = array('status_net', array('notice_id' => $notice->id));
-
-            Event::handle('EndActivityObjectFromNotice', array($notice, &$object));
-        }
-
-        return $object;
-    }
-
     static function fromGroup(User_group $group)
     {
         $object = new ActivityObject();

@@ -48,40 +48,61 @@ class FavorAction extends FormAction
 {
     protected $needPost = true;
 
+    protected $object = null;
+
+    protected function prepare(array $args=array())
+    {
+        parent::prepare($args);
+
+        $this->target = Notice::getKV($this->trimmed('notice'));
+        if (!$this->target instanceof Notice) {
+            throw new ServerException(_m('No such notice.'));
+        }
+        if (!$this->target->inScope($this->scoped)) {
+            // TRANS: Client error displayed when trying to reply to a notice a the target has no access to.
+            // TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
+            throw new ClientException(sprintf(_m('%1$s has no right to reply to notice %2$d.'), $this->scoped->getNickname(), $this->target->id), 403);
+        }
+
+        return true;
+    }
+
     protected function handlePost()
     {
-        $id     = $this->trimmed('notice');
-        $notice = Notice::getKV($id);
-        if (!($notice instanceof Notice)) {
-            $this->serverError(_('Notice not found'));
-        }
-        if (Fave::existsForProfile($notice, $this->scoped)) {
+        parent::handlePost();
+
+        if (Fave::existsForProfile($this->target, $this->scoped)) {
             // TRANS: Client error displayed when trying to mark a notice as favorite that already is a favorite.
-            throw new AlreadyFulfilledException(_('This notice is already a favorite!'));
+            throw new AlreadyFulfilledException(_('You have already favorited this!'));
         }
-        $fave = Fave::addNew($this->scoped, $notice);
-        if (!$fave instanceof Fave) {
-            // TRANS: Server error displayed when trying to mark a notice as favorite fails in the database.
-            $this->serverError(_('Could not create favorite.'));
-        }
-        $this->notify($notice, $this->scoped->getUser());
+
+        $now = common_sql_now();
+
+        $act = new Activity();
+        $act->id = Fave::newUri($this->scoped, $this->target, $now);
+        $act->type = Fave::getObjectType();
+        $act->actor = $this->scoped->asActivityObject();
+        $act->target = $this->target->asActivityObject();
+        $act->objects = array(clone($act->target));
+        $act->verb = ActivityVerb::FAVORITE;
+        $act->title = ActivityUtils::verbToTitle($act->verb);
+        $act->time = strtotime($now);
+
+        $stored = Notice::saveActivity($act, $this->scoped,
+                                        array('uri'=>$act->id));
+
+        $this->notify($stored, $this->scoped->getUser());
         Fave::blowCacheForProfileId($this->scoped->id);
-        if (StatusNet::isAjax()) {
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Page title for page on which favorite notices can be unfavourited.
-            $this->element('title', null, _('Disfavor favorite.'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-            $disfavor = new DisFavorForm($this, $notice);
+
+        return _('Favorited the notice');
+    }
+
+    protected function showContent()
+    {
+        if ($this->target instanceof Notice) {
+            $disfavor = new DisfavorForm($this, $this->target);
             $disfavor->show();
-            $this->elementEnd('body');
-            $this->endHTML();
-            exit;
         }
-        common_redirect(common_local_url('showfavorites',
-                                         array('nickname' => $this->scoped->nickname)),
-                            303);
     }
 
     /**

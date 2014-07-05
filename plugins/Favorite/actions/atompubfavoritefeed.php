@@ -133,7 +133,7 @@ class AtompubfavoritefeedAction extends ApiAuthAction
         $feed->setUpdated('now');
 
         $feed->addAuthor($this->_profile->getBestName(),
-                         $this->_profile->getURI());
+                         $this->_profile->getUri());
 
         // TRANS: Title for Atom favorites feed.
         // TRANS: %s is a user nickname.

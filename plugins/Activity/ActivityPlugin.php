@@ -142,50 +142,6 @@ class ActivityPlugin extends Plugin
         return true;
     }
 
-    function onEndFavorNotice($profile, $notice)
-    {
-        //  Only do this if config is enabled
-        if(!$this->StartLike) return true;
-
-        if (!$profile->isLocal()) {
-            return true;
-        }
-
-        $author = $notice->getProfile();
-        $fave   = Fave::pkeyGet(array('user_id' => $profile->id,
-                                      'notice_id' => $notice->id));
-
-        // TRANS: Text for "liked" item in activity plugin.
-        // TRANS: %1$s is a profile URL, %2$s is a profile name,
-        // TRANS: %3$s is a notice URL, %4$s is an author name.
-        $rendered = sprintf(_m('<a href="%1$s">%2$s</a> liked <a href="%3$s">%4$s\'s update</a>.'),
-                            $profile->getUrl(),
-                            $profile->getBestName(),
-                            $notice->getUrl(),
-                            $author->getBestName());
-        // TRANS: Text for "liked" item in activity plugin.
-        // TRANS: %1$s is a profile name, %2$s is a profile URL,
-        // TRANS: %3$s is an author name, %4$s is a notice URL.
-        $content  = sprintf(_m('%1$s (%2$s) liked %3$s\'s status (%4$s).'),
-                            $profile->getBestName(),
-                            $profile->getUrl(),
-                            $author->getBestName(),
-                            $notice->getUrl());
-
-        $notice = Notice::saveNew($profile->id,
-                                  $content,
-                                  ActivityPlugin::SOURCE,
-                                  array('rendered' => $rendered,
-                                        'urls' => array(),
-                                        'replies' => array($author->getUri()),
-                                        'uri' => $fave->getURI(),
-                                        'verb' => ActivityVerb::FAVORITE,
-                                        'object_type' => (($notice->verb == ActivityVerb::POST) ?
-                                                         $notice->object_type : ActivityObject::ACTIVITY)));
-
-        return true;
-    }
-
     function onEndDisfavorNotice($profile, $notice)
     {
         // Only do this if config is enabled
