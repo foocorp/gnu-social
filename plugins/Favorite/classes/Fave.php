@@ -339,7 +339,7 @@ class Fave extends Managed_DataObject
     public function getTarget()
     {
         // throws exception on failure
-        return ActivityUtils::findLocalObject(array($this->uri), $this->type);
+        return ActivityUtils::findLocalObject(array($this->uri));
     }
 
     public function getTargetObject()
