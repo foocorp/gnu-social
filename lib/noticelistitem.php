@@ -200,10 +200,13 @@ class NoticeListItem extends Widget
                        'class' => 'h-card p-author',
                        'title' => $this->profile->getNickname());
 
-        $this->out->elementStart('a', $attrs);
-        $this->showAvatar($this->profile);
-        $this->out->text($this->profile->getStreamName());
-        $this->out->elementEnd('a');
+        if (Event::handle('StartShowNoticeItemAuthor', array($this->profile, $this->out, &$attrs))) {
+            $this->out->elementStart('a', $attrs);
+            $this->showAvatar($this->profile);
+            $this->out->text($this->profile->getStreamName());
+            $this->out->elementEnd('a');
+            Event::handle('EndShowNoticeItemAuthor', array($this->profile, $this->out));
+        }
     }
 
     function showAddressees()

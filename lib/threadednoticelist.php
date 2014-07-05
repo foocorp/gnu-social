@@ -371,6 +371,11 @@ class ThreadedNoticeListMoreItem extends NoticeListItem
         $this->out->elementStart('li', array('class' => 'notice-reply-comments'));
     }
 
+    function showEnd()
+    {
+        $this->out->elementEnd('li');
+    }
+
     function showMiniForm()
     {
         $id = $this->notice->conversation;

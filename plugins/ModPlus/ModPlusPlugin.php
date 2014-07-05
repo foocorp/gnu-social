@@ -83,9 +83,9 @@ class ModPlusPlugin extends Plugin
      * @param NoticeListItem $item
      * @return boolean hook value
      */
-    function onStartShowNoticeItem(NoticeListItem $item)
+    function onEndShowNoticeItemAuthor(Profile $profile, HTMLOutputter $out)
     {
-        $this->showProfileOptions($item->out, $item->profile);
+        $this->showProfileOptions($out, $profile);
         return true;
     }
 
