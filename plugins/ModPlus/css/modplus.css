@@ -2,7 +2,7 @@
     position: absolute;
     z-index: 999;
 
-    background: url(../../theme/base/images/icons/twotone/green/admin.gif) no-repeat 8px 8px white;
+    background: url(../../../theme/base/images/icons/twotone/green/admin.gif) no-repeat 8px 8px white;
     border: solid 1px #c0c0c0;
 
     margin-top: 32px;
