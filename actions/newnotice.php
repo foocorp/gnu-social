@@ -62,6 +62,15 @@ class NewnoticeAction extends FormAction
         return _m('TITLE','New notice');
     }
 
+    protected function doPreparation()
+    {
+        foreach(array('inreplyto') as $opt) {
+            if (!empty($this->trimmed($opt))) {
+                $this->formOpts[$opt] = $this->trimmed($opt);
+            }
+        }
+    }
+
     /**
      * This handlePost saves a new notice, based on arguments
      *
@@ -164,118 +173,39 @@ class NewnoticeAction extends FormAction
 
         if (Event::handle('StartNoticeSaveWeb', array($this, &$author_id, &$text, &$options))) {
 
-            $notice = Notice::saveNew($this->scoped->id, $content_shortened, 'web', $options);
+            $this->stored = Notice::saveNew($this->scoped->id, $content_shortened, 'web', $options);
 
             if (isset($upload)) {
-                $upload->attachToNotice($notice);
+                $upload->attachToNotice($this->stored);
             }
 
-            Event::handle('EndNoticeSaveWeb', array($this, $notice));
+            Event::handle('EndNoticeSaveWeb', array($this, $this->stored));
         }
-
-        assert($notice instanceof Notice);
 
         Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content_shortened, &$options));
 
-        if (StatusNet::isAjax()) {
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Page title after sending a notice.
-            $this->element('title', null, _('Notice posted'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-            $this->showNotice($notice);
-            $this->elementEnd('body');
-            $this->endHTML();
-            exit;
-        } else {
+        if (!StatusNet::isAjax()) {
             $returnto = $this->trimmed('returnto');
 
             if ($returnto) {
                 $url = common_local_url($returnto,
-                                        array('nickname' => $this->scoped->nickname));
+                                        array('nickname' => $this->scoped->getNickname()));
             } else {
-                $url = common_local_url('shownotice',
-                                        array('notice' => $notice->id));
+                $url = common_local_url('shownotice', array('notice' => $this->stored->id));
             }
             common_redirect($url, 303);
         }
+
+        return _('Saved the notice!');
     }
 
-    /**
-     * Show an Ajax-y error message
-     *
-     * Goes back to the browser, where it's shown in a popup.
-     *
-     * @param string $msg Message to show
-     *
-     * @return void
-     */
-    function ajaxErrorMsg($msg)
+    protected function showContent()
     {
-        $this->startHTML('text/xml;charset=utf-8', true);
-        $this->elementStart('head');
-        // TRANS: Page title after an AJAX error occurs on the send notice page.
-        $this->element('title', null, _('Ajax Error'));
-        $this->elementEnd('head');
-        $this->elementStart('body');
-        $this->element('p', array('id' => 'error'), $msg);
-        $this->elementEnd('body');
-        $this->endHTML();
-    }
-
-    /**
-     * Show an Ajax-y notice form
-     *
-     * Goes back to the browser, where it's shown in a popup.
-     *
-     * @param string $msg Message to show
-     *
-     * @return void
-     */
-    function ajaxShowForm()
-    {
-        $this->startHTML('text/xml;charset=utf-8', true);
-        $this->elementStart('head');
-        // TRANS: Title for form to send a new notice.
-        $this->element('title', null, _m('TITLE','New notice'));
-        $this->elementEnd('head');
-        $this->elementStart('body');
-
-        $form = new NoticeForm($this);
-        $form->show();
-
-        $this->elementEnd('body');
-        $this->endHTML();
-    }
-
-    /**
-     * Formerly page output
-     *
-     * This used to be the whole page output; now that's been largely
-     * subsumed by showPage. So this just stores an error message, if
-     * it was passed, and calls showPage.
-     *
-     * Note that since we started doing Ajax output, this page is rarely
-     * seen.
-     *
-     * @param string  $msg     An error/info message, if any
-     * @param boolean $success false for error indication, true for info
-     *
-     * @return void
-     */
-    function showForm($msg=null, $success=false)
-    {
-        if (StatusNet::isAjax()) {
-            if ($msg) {
-                $this->ajaxErrorMsg($msg);
-            } else {
-                $this->ajaxShowForm();
-            }
-            return;
+        if ($this->getInfo() && $this->stored instanceof Notice) {
+            $this->showNotice($this->stored);
+        } elseif (!$this->getError()) {
+            parent::showContent();
         }
-
-        parent::showForm($msg, $success);
     }
 
     /**
