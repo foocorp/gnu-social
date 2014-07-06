@@ -124,6 +124,7 @@ option {
 }
 
 #content_inner {
+    clear: both;
     display: block;
     position: relative;
 }
