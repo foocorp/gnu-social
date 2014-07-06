@@ -44,6 +44,7 @@ if (!defined('STATUSNET')) {
 class FormAction extends ManagedAction
 {
     protected $form = null;
+    protected $formOpts = array();
     protected $type = null;
     protected $needLogin = true;
     protected $canPost = true;
@@ -114,7 +115,7 @@ class FormAction extends ManagedAction
     protected function getForm()
     {
         $class = $this->form.'Form';
-        $form = new $class($this);
+        $form = new $class($this, $this->formOpts);
         return $form;
     }
 

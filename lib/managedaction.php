@@ -32,6 +32,20 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class ManagedAction extends Action
 {
+    protected function prepare(array $args=array())
+    {
+        if (!parent::prepare($args)) {
+            return false;
+        }
+        $this->doPreparation();
+        return true;
+    }
+
+    protected function doPreparation()
+    {
+        // pass by default
+    }
+
     /**
      * Handler method
      */
@@ -53,5 +67,6 @@ class ManagedAction extends Action
     protected function handlePost()
     {
         // This will only be run if the Action has the property canPost==true
+        assert($this->canPost);
     }
 }

@@ -238,7 +238,11 @@ class Action extends HTMLOutputter // lawsuit
         $this->element('title', null, _m('TITLE','Notice'));
         $this->elementEnd('head');
         $this->elementStart('body');
-        $this->showContent();
+        if ($this->getError()) {
+            $this->element('p', array('id'=>'error'), $msg);
+        } else {
+            $this->showContent();
+        }
         $this->elementEnd('body');
         $this->endHTML();
     }
