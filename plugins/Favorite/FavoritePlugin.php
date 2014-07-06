@@ -191,6 +191,18 @@ class FavoritePlugin extends ActivityHandlerPlugin
         }
     }
 
+    protected function notifyMentioned(Notice $stored, array &$mentioned_ids)
+    {
+        require_once INSTALLDIR.'/lib/mail.php';
+
+        foreach ($mentioned_ids as $id) {
+            $mentioned = User::getKV('id', $id);
+            if ($mentioned instanceof User && $mentioned->id != $stored->profile_id) {
+                mail_notify_fave($mentioned, $stored->getProfile(), $stored->getParent());
+            }
+        }
+    }
+
     // API stuff
 
     /**

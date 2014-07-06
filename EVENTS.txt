@@ -1437,3 +1437,11 @@ EndShowAttachmentRepresentation: Executed after Attachment representation, despi
 ShowUnsupportedAttachmentRepresentation: Attachment representation, full file (or in rare cases thumbnails/previews).
 - $out:     HTMLOutputter class to use for outputting HTML.
 - $file:    'File' object which we're going to show representation for.
+
+StartNotifyMentioned: During notice distribution, we send notifications (email, im...) to the profiles who were somehow mentioned.
+- $stored:         Notice object that is being distributed.
+- &$mentioned_ids: Array of profile IDs (not just for local users) who got mentioned by the notice.
+
+EndNotifyMentioned: During notice distribution, we send notifications (email, im...) to the profiles who were somehow mentioned.
+- $stored:         Notice object that is being distributed.
+- $mentioned_ids:  Array of profile IDs (not just for local users) who got mentioned by the notice.

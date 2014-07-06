@@ -577,7 +577,7 @@ class Notice extends Managed_DataObject
                 }
 
                 // If it's a repeat, the reply_to should be to the original
-                if (!empty($reply->repeat_of)) {
+                if ($reply->isRepeat()) {
                     $notice->reply_to = $reply->repeat_of;
                 } else {
                     $notice->reply_to = $reply->id;
@@ -619,7 +619,7 @@ class Notice extends Managed_DataObject
         }
 
         if (empty($verb)) {
-            if (!empty($notice->repeat_of)) {
+            if ($notice->isRepeat()) {
                 $notice->verb        = ActivityVerb::SHARE;
                 $notice->object_type = ActivityObject::ACTIVITY;
             } else {
@@ -957,7 +957,7 @@ class Notice extends Managed_DataObject
         self::blow('notice:list-ids:conversation:%s', $this->conversation);
         self::blow('conversation:notice_count:%d', $this->conversation);
 
-        if (!empty($this->repeat_of)) {
+        if ($this->isRepeat()) {
             // XXX: we should probably only use one of these
             $this->blowStream('notice:repeats:%d', $this->repeat_of);
             self::blow('notice:list-ids:repeat_of:%d', $this->repeat_of);
@@ -1333,7 +1333,7 @@ class Notice extends Managed_DataObject
             // Exclude any deleted, non-local, or blocking recipients.
             $profile = $this->getProfile();
             $originalProfile = null;
-            if ($this->repeat_of) {
+            if ($this->isRepeat()) {
                 // Check blocks against the original notice's poster as well.
                 $original = Notice::getKV('id', $this->repeat_of);
                 if ($original instanceof Notice) {
@@ -1547,7 +1547,7 @@ class Notice extends Managed_DataObject
     {
         // Don't save reply data for repeats
 
-        if (!empty($this->repeat_of)) {
+        if ($this->isRepeat()) {
             return array();
         }
 
@@ -1670,17 +1670,19 @@ class Notice extends Managed_DataObject
     {
         // Don't send reply notifications for repeats
 
-        if (!empty($this->repeat_of)) {
+        if ($this->isRepeat()) {
             return array();
         }
 
         $recipientIds = $this->getReplies();
-
-        foreach ($recipientIds as $recipientId) {
-            $user = User::getKV('id', $recipientId);
-            if ($user instanceof User) {
-                mail_notify_attn($user, $this);
+        if (Event::handle('StartNotifyMentioned', array($this, &$recipientIds))) {
+            foreach ($recipientIds as $recipientId) {
+                $user = User::getKV('id', $recipientId);
+                if ($user instanceof User) {
+                    mail_notify_attn($user, $this);
+                }
             }
+            Event::handle('EndNotifyMentioned', array($this, $recipientIds));
         }
     }
 
@@ -2422,6 +2424,11 @@ class Notice extends Managed_DataObject
     {
         return ($this->is_local == Notice::LOCAL_PUBLIC ||
                 $this->is_local == Notice::LOCAL_NONPUBLIC);
+    }
+
+    public function isRepeat()
+    {
+        return !empty($this->repeat_of);
     }
 
     /**

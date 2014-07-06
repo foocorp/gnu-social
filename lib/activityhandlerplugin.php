@@ -223,6 +223,11 @@ abstract class ActivityHandlerPlugin extends Plugin
      */
     abstract function deleteRelated(Notice $notice);
 
+    protected function notifyMentioned(Notice $stored, array &$mentioned_ids)
+    {
+        // pass through silently by default
+    }
+
     /**
      * Called when generating Atom XML ActivityStreams output from an
      * ActivityObject belonging to this plugin. Gives the plugin
@@ -271,11 +276,28 @@ abstract class ActivityHandlerPlugin extends Plugin
      */
     function onNoticeDeleteRelated(Notice $notice)
     {
-        if (!$this->isMyNotice($notice)) {
+        if ($this->isMyNotice($notice)) {
+            $this->deleteRelated($notice);
+        }
+
+        // Always continue this event in our activity handling plugins.
+        return true;
+    }
+
+    /**
+     * @param Notice $stored            The notice being distributed
+     * @param array  &$mentioned_ids    List of profiles (from $stored->getReplies())
+     */
+    public function onStartNotifyMentioned(Notice $stored, array &$mentioned_ids)
+    {
+        if (!$this->isMyNotice($stored)) {
             return true;
         }
 
-        $this->deleteRelated($notice);
+        $this->notifyMentioned($stored, $mentioned_ids);
+
+        // If it was _our_ notice, only we should do anything with the mentions.
+        return false;
     }
 
     /**

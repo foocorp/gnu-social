@@ -31,8 +31,6 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-require_once INSTALLDIR.'/lib/mail.php';
-
 /**
  * FavorAction class.
  *
@@ -91,7 +89,6 @@ class FavorAction extends FormAction
         $stored = Notice::saveActivity($act, $this->scoped,
                                         array('uri'=>$act->id));
 
-        $this->notify($stored, $this->scoped->getUser());
         Fave::blowCacheForProfileId($this->scoped->id);
 
         return _('Favorited the notice');
@@ -102,26 +99,6 @@ class FavorAction extends FormAction
         if ($this->target instanceof Notice) {
             $disfavor = new DisfavorForm($this, $this->target);
             $disfavor->show();
-        }
-    }
-
-    /**
-     * Notifies a user when their notice is favorited.
-     *
-     * @param class $notice favorited notice
-     * @param class $user   user declaring a favorite
-     *
-     * @return void
-     */
-    function notify($notice, $user)
-    {
-        $other = User::getKV('id', $notice->profile_id);
-        if ($other && $other->id != $user->id) {
-            if ($other->email && $other->emailnotifyfav) {
-                mail_notify_fave($other, $user, $notice);
-            }
-            // XXX: notify by IM
-            // XXX: notify by SMS
         }
     }
 }
