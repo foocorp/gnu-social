@@ -95,6 +95,12 @@ class RawConversationNoticeStream extends NoticeStream
             $notice->limit($offset, $limit);
         }
 
+        if (!$this->allVerbs) {
+            $notice->whereAdd(sprintf('verb="%s" OR verb="%s"',
+                                      ActivityVerb::POST,
+                                      ActivityUtils::resolveUri(ActivityVerb::POST, true)));
+        }
+
         // ORDER BY
         // currently imitates the previously used "_reverseChron" sorting
         $notice->orderBy('notice.created DESC');

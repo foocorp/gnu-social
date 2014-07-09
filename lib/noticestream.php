@@ -46,6 +46,8 @@ if (!defined('STATUSNET')) {
  */
 abstract class NoticeStream
 {
+    protected $allVerbs = false;    // Will only get 'post' activityverbs by default.
+
     abstract function getNoticeIds($offset, $limit, $since_id, $max_id);
 
     function getNotices($offset, $limit, $sinceId = null, $maxId = null)

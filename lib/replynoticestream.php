@@ -86,6 +86,12 @@ class RawReplyNoticeStream extends NoticeStream
         Notice::addWhereSinceId($reply, $since_id, 'notice_id', 'modified');
         Notice::addWhereMaxId($reply, $max_id, 'notice_id', 'modified');
 
+        if (!$this->allVerbs) {
+            $notice->whereAdd(sprintf('verb="%s" OR verb="%s"',
+                                      ActivityVerb::POST,
+                                      ActivityUtils::resolveUri(ActivityVerb::POST, true)));
+        }
+
         $reply->orderBy('modified DESC, notice_id DESC');
 
         if (!is_null($offset)) {
