@@ -1988,7 +1988,7 @@ class Notice extends Managed_DataObject
         if (Event::handle('StartActivityObjectFromNotice', array($this, &$object))) {
             $object->type    = $this->object_type ?: ActivityObject::NOTE;
             $object->id      = $this->getUri();
-            $object->title   = sprintf('New %1$s by %2$s', $object->type, $this->getProfile()->getNickname());
+            $object->title   = sprintf('New %1$s by %2$s', ActivityObject::canonicalType($object->type), $this->getProfile()->getNickname());
             $object->content = $this->rendered;
             $object->link    = $this->getUrl();
 
