@@ -141,6 +141,11 @@ function handleError($error)
 
 set_exception_handler('handleError');
 
+// quick check for fancy URL auto-detection support in installer.
+if (preg_replace("/\?.+$/", "", $_SERVER['REQUEST_URI']) === preg_replace("/^\/$/", "", (dirname($_SERVER['REQUEST_URI']))) . '/check-fancy') {
+    die("Fancy URL support detection succeeded. We suggest you enable this to get fancy (pretty) URLs.");
+}
+
 require_once INSTALLDIR . '/lib/common.php';
 
 /**
@@ -216,12 +221,6 @@ function isLoginAction($action)
 
 function main()
 {
-    $_SERVER['REDIRECT_URL'] = preg_replace("/\?.+$/", "", $_SERVER['REQUEST_URI']);
-
-    // quick check for fancy URL auto-detection support in installer.
-    if (isset($_SERVER['REDIRECT_URL']) && (preg_replace("/^\/$/", "", (dirname($_SERVER['REQUEST_URI']))) . '/check-fancy') === $_SERVER['REDIRECT_URL']) {
-        die("Fancy URL support detection succeeded. We suggest you enable this to get fancy (pretty) URLs.");
-    }
     global $user, $action;
 
     if (!_have_config()) {

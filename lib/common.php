@@ -19,10 +19,6 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-// @fixme shouldn't this be in index.php instead?
-//exit with 200 response, if this is checking fancy from the installer
-if (isset($_REQUEST['p']) && $_REQUEST['p'] == 'check-fancy') {  exit; }
-
 // All the fun stuff to actually initialize StatusNet's framework code,
 // without loading up a site configuration.
 require_once INSTALLDIR . '/lib/framework.php';
