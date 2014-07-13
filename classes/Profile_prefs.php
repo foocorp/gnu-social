@@ -112,8 +112,17 @@ class Profile_prefs extends Managed_DataObject
         return $pref;
     }
 
-    static function getData(Profile $profile, $namespace, $topic) {
-        $pref = self::getTopic($profile, $namespace, $topic);
+    static function getData(Profile $profile, $namespace, $topic, $def=null) {
+        try {
+            $pref = self::getTopic($profile, $namespace, $topic);
+        } catch (NoResultException $e) {
+            if ($def === null) {
+                // If no default value was set, continue the exception.
+                throw $e;
+            }
+            // If there was a default value, return that.
+            return $def;
+        }
         return $pref->data;
     }
 
