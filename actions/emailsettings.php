@@ -206,7 +206,7 @@ class EmailsettingsAction extends SettingsAction
 
         $this->elementStart('ul', 'form_data');
 
-        if (Event::handle('StartEmailFormData', array($this))) {
+        if (Event::handle('StartEmailFormData', array($this, $this->scoped))) {
             $this->elementStart('li');
             $this->checkbox('emailnotifysub',
                             // TRANS: Checkbox label in e-mail preferences form.
@@ -244,7 +244,7 @@ class EmailsettingsAction extends SettingsAction
                             _('Publish a MicroID for my email address.'),
                             $user->emailmicroid);
             $this->elementEnd('li');
-            Event::handle('EndEmailFormData', array($this));
+            Event::handle('EndEmailFormData', array($this, $this->scoped));
         }
         $this->elementEnd('ul');
         // TRANS: Button label to save e-mail preferences.

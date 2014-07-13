@@ -96,18 +96,17 @@ class EmailSummaryPlugin extends Plugin
      * Add a checkbox to turn off email summaries
      *
      * @param Action $action Action being executed (emailsettings)
+     * @param Profile $scoped Profile for whom settings are configured (current user)
      *
      * @return boolean hook value
      */
-    function onEndEmailFormData($action)
+    public function onEndEmailFormData(Action $action, Profile $scoped)
     {
-        $user = common_current_user();
-
         $action->elementStart('li');
         $action->checkbox('emailsummary',
                           // TRANS: Checkbox label in e-mail preferences form.
                           _m('Send me a periodic summary of updates from my network'),
-                          Email_summary_status::getSendSummary($user->id));
+                          Email_summary_status::getSendSummary($scoped->id));
         $action->elementEnd('li');
         return true;
     }

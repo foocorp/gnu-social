@@ -290,11 +290,13 @@ StartProfileSaveForm: before starting to save a profile settings form
 EndProfileSaveForm: after saving a profile settings form (after commit, no profile or user object!)
 - $action: action object being shown
 
-StartEmailFormData: just before showing text entry fields on email settings page
-- $action: action object being shown
+StartEmailFormData: just before showing form input fields on email settings page
+- $action: Action object being shown
+- $scoped: Profile for whom settings are being configured
 
-EndEmailFormData: just after showing text entry fields on email settings page
+EndEmailFormData: just after showing form input fields on email settings page
 - $action: action object being shown
+- $scoped: Profile for whom settings are being configured
 
 StartEmailSaveForm: before starting to save a email settings form
 - $action: action object being shown
