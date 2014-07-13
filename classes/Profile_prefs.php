@@ -168,6 +168,7 @@ class Profile_prefs extends Managed_DataObject
         $pref->namespace  = $namespace;
         $pref->topic      = $topic;
         $pref->data       = $data;
+        $pref->created    = common_sql_now();
         
         if ($pref->insert() === false) {
             throw new ServerException('Could not save profile preference.');
