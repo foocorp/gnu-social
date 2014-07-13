@@ -79,8 +79,12 @@ class RawFaveNoticeStream extends NoticeStream
 
     function __construct($user_id, $own)
     {
+        parent::__construct();
+
         $this->user_id = $user_id;
         $this->own     = $own;
+
+        $this->selectVerbs = array();
     }
 
     /**

@@ -118,6 +118,9 @@ class RawInboxNoticeStream extends NoticeStream
         if (!empty($max_id)) {
             $notice->whereAdd(sprintf('notice.id <= %d', $max_id));
         }
+        if (!empty($this->selectVerbs)) {
+            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
+        }
         $notice->limit($offset, $limit);
         // notice.id will give us even really old posts, which were
         // recently imported. For example if a remote instance had

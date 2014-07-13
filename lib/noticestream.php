@@ -46,7 +46,13 @@ if (!defined('STATUSNET')) {
  */
 abstract class NoticeStream
 {
-    protected $allVerbs = false;    // Will only get 'post' activityverbs by default.
+    // Will only get notices with the 'post' activityverb by default.
+    protected $selectVerbs = array();
+
+    public function __construct()
+    {
+        $this->selectVerbs = array(ActivityVerb::POST, ActivityUtils::resolveUri(ActivityVerb::POST, true));
+    }
 
     abstract function getNoticeIds($offset, $limit, $since_id, $max_id);
 
