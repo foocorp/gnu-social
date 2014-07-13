@@ -1007,4 +1007,14 @@ class User extends Managed_DataObject
                                 $service->title);
         return $act;
     }
+
+    public function getPref($namespace, $topic, $default=null)
+    {
+        return $this->getProfile()->getPref($namespace, $topic, $default);
+    }
+
+    public function setPref($namespace, $topic, $data)
+    {
+        return $this->getProfile()->setPref($namespace, $topic, $data);
+    }
 }

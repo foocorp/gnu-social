@@ -1570,4 +1570,12 @@ class Profile extends Managed_DataObject
     {
         return $this->getUser()->shortenLinks($text, $always);
     }
+
+    public function getPref($namespace, $topic, $default=null) {
+        return Profile_prefs::getData($this, $namespace, $topic, $default);
+    }
+
+    public function setPref($namespace, $topic, $data) {
+        return Profile_prefs::setData($this, $namespace, $topic, $data);
+    }
 }
