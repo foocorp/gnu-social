@@ -73,7 +73,7 @@ class User extends Managed_DataObject
                 'email' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for password recovery etc.'),
                 'incomingemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for post-by-email'),
                 'emailnotifysub' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of subscriptions'),
-                'emailnotifyfav' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of favorites'),
+                'emailnotifyfav' => array('type' => 'int', 'size' => 'tiny', 'default' => null, 'description' => 'Notify by email of favorites'),
                 'emailnotifynudge' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of nudges'),
                 'emailnotifymsg' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of direct messages'),
                 'emailnotifyattn' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of @-replies'),
@@ -289,7 +289,6 @@ class User extends Managed_DataObject
         // initially for sites using caching, since the initial encache
         // doesn't know about the defaults in the database.
         $user->emailnotifysub = 1;
-        $user->emailnotifyfav = 1;
         $user->emailnotifynudge = 1;
         $user->emailnotifymsg = 1;
         $user->emailnotifyattn = 1;

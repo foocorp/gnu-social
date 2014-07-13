@@ -38,12 +38,10 @@ class FavCommand extends Command
  
         $other = User::getKV('id', $notice->profile_id); 
  
-        if ($other && $other->id != $this->user->id) { 
-            if ($other->email && $other->emailnotifyfav) { 
-                require_once INSTALLDIR.'/lib/mail.php';
+        if ($other && $other->id != $this->user->id && !empty($other->email)) { 
+            require_once INSTALLDIR.'/lib/mail.php';
 
-                mail_notify_fave($other, $this->user->getProfile(), $notice);
-            } 
+            mail_notify_fave($other, $this->user->getProfile(), $notice);
         } 
  
         Fave::blowCacheForProfileId($this->user->id);

@@ -25,6 +25,8 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class FavoritePlugin extends ActivityHandlerPlugin
 {
+    protected $notify_email_fave = 1;
+
     public function tag()
     {
         return 'favorite';
@@ -45,6 +47,27 @@ class FavoritePlugin extends ActivityHandlerPlugin
         $schema = Schema::get();
         $schema->ensureTable('fave', Fave::schemaDef());
         return true;
+    }
+
+    public function onStartUpgrade()
+    {
+        // This is a migration feature that will make sure we move
+        // certain User preferences to the Profile_prefs table.
+        // Introduced after commit b5fd2a048fc621ea05d756caba17275ab3dd0af4
+        // on Sun Jul 13 16:30:37 2014 +0200
+        $user = new User();
+        $user->whereAdd('emailnotifyfav IS NOT NULL');
+        if ($user->find()) {
+            printfnq("Detected old User table (emailnotifyfav IS NOT NULL). Moving 'emailnotifyfav' property to Profile_prefs...");
+            // Make sure we have our own tables setup properly
+            while ($user->fetch()) {
+                $user->setPref('email', 'notify_fave', $user->emailnotifyfav);
+                $orig = clone($user);
+                $user->emailnotifyfav = 'null';   // flag this preference as migrated
+                $user->update($orig);
+            }
+            printfnq("DONE.\n");
+        }
     }
     
     public function onEndUpgrade()
@@ -198,7 +221,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
         foreach ($mentioned_ids as $id) {
             $mentioned = User::getKV('id', $id);
             if ($mentioned instanceof User && $mentioned->id != $stored->profile_id
-                    && $mentioned->email && $mentioned->emailnotifyfav) {   // do we have an email, and does user want it?
+                    && $mentioned->email && $mentioned->getPref('email', 'notify_fave', $this->notify_email_fave)) {   // do we have an email, and does user want it?
                 mail_notify_fave($mentioned, $stored->getProfile(), $stored->getParent());
             }
         }
@@ -388,6 +411,41 @@ class FavoritePlugin extends ActivityHandlerPlugin
     public function onCommandSupportedAPI(Command $cmd, array &$supported)
     {
         $supported = $supported || $cmd instanceof FavCommand;
+    }
+
+    // Form stuff (settings etc.)
+
+    public function onEndEmailFormData(Action $action, Profile $scoped)
+    {
+        // getConfigData will fall back on systemwide default
+        // and we only wish to save numerical true or false.
+        $emailfave = $scoped->getPref('email', 'notify_fave', $this->notify_email_fave) ? 1 : 0;
+
+        $action->elementStart('li');
+        $action->checkbox('email-notify_fave',
+                        // TRANS: Checkbox label in e-mail preferences form.
+                        _('Send me email when someone adds my notice as a favorite.'),
+                        $emailfave);
+        $action->elementEnd('li');
+
+        return true;
+    }
+
+    public function onStartEmailSaveForm(Action $action, Profile $scoped)
+    {
+        $emailfave = $action->boolean('email-notify_fave') ? 1 : 0;
+        try {
+            if ($emailfave == $scoped->getPref('email', 'notify_fave')) {
+                // No need to update setting
+                return true;
+            }
+        } catch (NoResultException $e) {
+            // Apparently there's no previously stored setting, then continue to save it as it is now.
+        }
+
+        $scoped->setPref('email', 'notify_fave', $emailfave);
+
+        return true;
     }
 
     // Layout stuff

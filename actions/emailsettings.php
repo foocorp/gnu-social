@@ -214,13 +214,6 @@ class EmailsettingsAction extends SettingsAction
                             $user->emailnotifysub);
             $this->elementEnd('li');
             $this->elementStart('li');
-            $this->checkbox('emailnotifyfav',
-                            // TRANS: Checkbox label in e-mail preferences form.
-                            _('Send me email when someone '.
-                              'adds my notice as a favorite.'),
-                            $user->emailnotifyfav);
-            $this->elementEnd('li');
-            $this->elementStart('li');
             $this->checkbox('emailnotifymsg',
                             // TRANS: Checkbox label in e-mail preferences form.
                             _('Send me email when someone sends me a private message.'),
@@ -324,7 +317,6 @@ class EmailsettingsAction extends SettingsAction
 
         if (Event::handle('StartEmailSaveForm', array($this, $this->scoped))) {
             $emailnotifysub   = $this->boolean('emailnotifysub');
-            $emailnotifyfav   = $this->boolean('emailnotifyfav');
             $emailnotifymsg   = $this->boolean('emailnotifymsg');
             $emailnotifynudge = $this->boolean('emailnotifynudge');
             $emailnotifyattn  = $this->boolean('emailnotifyattn');
@@ -338,7 +330,6 @@ class EmailsettingsAction extends SettingsAction
             $original = clone($user);
 
             $user->emailnotifysub   = $emailnotifysub;
-            $user->emailnotifyfav   = $emailnotifyfav;
             $user->emailnotifymsg   = $emailnotifymsg;
             $user->emailnotifynudge = $emailnotifynudge;
             $user->emailnotifyattn  = $emailnotifyattn;

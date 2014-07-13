@@ -162,12 +162,10 @@ class ApiFavoriteCreateAction extends ApiAuthAction
     function notify($fave, $notice, $user)
     {
         $other = User::getKV('id', $notice->profile_id);
-        if ($other && $other->id != $user->id) {
-            if ($other->email && $other->emailnotifyfav) {
-                require_once INSTALLDIR.'/lib/mail.php';
+        if ($other && $other->id != $user->id && !empty($other->email)) {
+            require_once INSTALLDIR.'/lib/mail.php';
 
-                mail_notify_fave($other, $user->getProfile(), $notice);
-            }
+            mail_notify_fave($other, $user->getProfile(), $notice);
             // XXX: notify by IM
             // XXX: notify by SMS
         }

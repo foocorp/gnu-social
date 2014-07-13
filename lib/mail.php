@@ -683,6 +683,10 @@ function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
         return;
     }
 
+    if (!$rcpt->getPref('notify', 'email_fave', 1)) {
+        return;
+    }
+
     $bestname = $profile->getBestName();
 
     common_switch_locale($rcpt->language);
