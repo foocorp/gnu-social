@@ -322,7 +322,7 @@ class EmailsettingsAction extends SettingsAction
     {
         $user = common_current_user();
 
-        if (Event::handle('StartEmailSaveForm', array($this, &$user))) {
+        if (Event::handle('StartEmailSaveForm', array($this, $this->scoped))) {
             $emailnotifysub   = $this->boolean('emailnotifysub');
             $emailnotifyfav   = $this->boolean('emailnotifyfav');
             $emailnotifymsg   = $this->boolean('emailnotifymsg');
@@ -355,7 +355,7 @@ class EmailsettingsAction extends SettingsAction
 
             $user->query('COMMIT');
 
-            Event::handle('EndEmailSaveForm', array($this));
+            Event::handle('EndEmailSaveForm', array($this, $this->scoped));
 
             // TRANS: Confirmation message for successful e-mail preferences save.
             $this->showForm(_('Email preferences saved.'), true);

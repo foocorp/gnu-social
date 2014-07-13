@@ -300,11 +300,11 @@ EndEmailFormData: just after showing form input fields on email settings page
 
 StartEmailSaveForm: before starting to save a email settings form
 - $action: action object being shown
-- &$user: user being saved
+- $scoped: Profile user having their email settings saved
 
 EndEmailSaveForm: after saving a email settings form (after commit)
 - $action: action object being shown
-- &$user: user being saved
+- $scoped: Profile user having their email settings saved
 
 StartRegistrationFormData: just before showing text entry fields on registration page
 - $action: action object being shown

@@ -115,39 +115,35 @@ class EmailSummaryPlugin extends Plugin
      * Add a checkbox to turn off email summaries
      *
      * @param Action $action Action being executed (emailsettings)
+     * @param Profile $scoped Profile for whom settings are configured (current user)
      *
      * @return boolean hook value
      */
-    function onEndEmailSaveForm($action)
+    public function onEndEmailSaveForm(Action $action, Profile $scoped)
     {
         $sendSummary = $action->boolean('emailsummary');
 
-        $user = common_current_user();
+        $ess = Email_summary_status::getKV('user_id', $scoped->id);
 
-        if (!empty($user)) {
+        if (empty($ess)) {
 
-            $ess = Email_summary_status::getKV('user_id', $user->id);
+            $ess = new Email_summary_status();
 
-            if (empty($ess)) {
+            $ess->user_id      = $scoped->id;
+            $ess->send_summary = $sendSummary;
+            $ess->created      = common_sql_now();
+            $ess->modified     = common_sql_now();
 
-                $ess = new Email_summary_status();
+            $ess->insert();
 
-                $ess->user_id      = $user->id;
-                $ess->send_summary = $sendSummary;
-                $ess->created      = common_sql_now();
-                $ess->modified     = common_sql_now();
+        } else {
 
-                $ess->insert();
+            $orig = clone($ess);
 
-            } else {
+            $ess->send_summary = $sendSummary;
+            $ess->modified     = common_sql_now();
 
-                $orig = clone($ess);
-
-                $ess->send_summary = $sendSummary;
-                $ess->modified     = common_sql_now();
-
-                $ess->update($orig);
-            }
+            $ess->update($orig);
         }
 
         return true;
