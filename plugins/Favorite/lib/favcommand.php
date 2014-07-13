@@ -40,7 +40,9 @@ class FavCommand extends Command
  
         if ($other && $other->id != $this->user->id) { 
             if ($other->email && $other->emailnotifyfav) { 
-                mail_notify_fave($other, $this->user, $notice); 
+                require_once INSTALLDIR.'/lib/mail.php';
+
+                mail_notify_fave($other, $this->user->getProfile(), $notice);
             } 
         } 
  

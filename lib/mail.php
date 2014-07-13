@@ -666,31 +666,30 @@ function mail_notify_message($message, $from=null, $to=null)
  * want to receive notification of faves. Maybe this happens higher
  * up the stack...?
  *
- * @param User   $other  The user whose notice was faved
- * @param User   $user   The user who faved the notice
- * @param Notice $notice The notice that was faved
+ * @param User    $rcpt   The user whose notice was faved
+ * @param Profile $sender The user who faved the notice
+ * @param Notice  $notice The notice that was faved
  *
  * @return void
  */
-function mail_notify_fave($other, $user, $notice)
+function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
 {
-    if (!$user->hasRight(Right::EMAILONFAVE)) {
+    if (!$sender->hasRight(Right::EMAILONFAVE)) {
         return;
     }
 
-    $profile = $user->getProfile();
-    if ($other->hasBlocked($profile)) {
+    if ($rcpt->hasBlocked($sender)) {
         // If the author has blocked us, don't spam them with a notification.
         return;
     }
 
     $bestname = $profile->getBestName();
 
-    common_switch_locale($other->language);
+    common_switch_locale($rcpt->language);
 
     // TRANS: Subject for favorite notification e-mail.
     // TRANS: %1$s is the adding user's long name, %2$s is the adding user's nickname.
-    $subject = sprintf(_('%1$s (@%2$s) added your notice as a favorite'), $bestname, $user->nickname);
+    $subject = sprintf(_('%1$s (@%2$s) added your notice as a favorite'), $bestname, $sender->getNickname());
 
     // TRANS: Body for favorite notification e-mail.
     // TRANS: %1$s is the adding user's long name, $2$s is the date the notice was created,
@@ -711,15 +710,15 @@ function mail_notify_fave($other, $user, $notice)
                                      array('notice' => $notice->id)),
                     $notice->content,
                     common_local_url('showfavorites',
-                                     array('nickname' => $user->nickname)),
+                                     array('nickname' => $sender->getNickname())),
                     common_config('site', 'name'),
-                    $user->nickname) .
+                    $sender->getNickname()) .
             mail_footer_block();
 
-    $headers = _mail_prepare_headers('fave', $other->nickname, $user->nickname);
+    $headers = _mail_prepare_headers('fave', $rcpt->getNickname(), $sender->getNickname());
 
     common_switch_locale();
-    mail_to_user($other, $subject, $body, $headers);
+    mail_to_user($rcpt, $subject, $body, $headers);
 }
 
 /**
