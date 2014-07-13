@@ -197,7 +197,8 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
         foreach ($mentioned_ids as $id) {
             $mentioned = User::getKV('id', $id);
-            if ($mentioned instanceof User && $mentioned->id != $stored->profile_id) {
+            if ($mentioned instanceof User && $mentioned->id != $stored->profile_id
+                    && $mentioned->email && $mentioned->emailnotifyfav) {   // do we have an email, and does user want it?
                 mail_notify_fave($mentioned, $stored->getProfile(), $stored->getParent());
             }
         }
