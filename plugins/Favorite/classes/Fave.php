@@ -128,8 +128,8 @@ class Fave extends Managed_DataObject
 
     function asActivity()
     {
-        $notice  = $this->getTarget();
-        $profile = $this->getActor();
+        $target = $this->getTarget();
+        $actor  = $this->getActor();
 
         $act = new Activity();
 
@@ -139,23 +139,22 @@ class Fave extends Managed_DataObject
 
         $act->id   = $this->getUri();
 
-        $act->time    = strtotime($this->modified);
+        $act->time    = strtotime($this->created);
         // TRANS: Activity title when marking a notice as favorite.
         $act->title   = _("Favor");
-        // TRANS: Ntofication given when a user marks a notice as favorite.
+        // If the rendered notice content does not exist, generate our own content.
+        // TRANS: Notification given when a user marks a notice as favorite.
         // TRANS: %1$s is a user nickname or full name, %2$s is a notice URI.
-        $act->content = sprintf(_('%1$s marked notice %2$s as a favorite.'),
-                               $profile->getBestName(),
-                               $notice->getUrl());
+        $act->content = $target->rendered ?: sprintf(_('%1$s marked notice %2$s as a favorite.'),
+                                            $actor->getBestName(), $target->getUrl());
 
-        $act->actor     = $profile->asActivityObject();
-        // $act->target    = $notice->asActivityObject();
-        // $act->objects   = array(clone($act->target));
-        $act->objects[] = $notice->asActivityObject();
+        $act->actor     = $actor->asActivityObject();
+        $act->target    = $target->asActivityObject();
+        $act->objects   = array(clone($act->target));
 
         $url = common_local_url('AtomPubShowFavorite',
-                                          array('profile' => $profile->id,
-                                                'notice'  => $notice->id));
+                                          array('profile' => $actor->id,
+                                                'notice'  => $target->id));
 
         $act->selfLink = $url;
         $act->editLink = $url;
@@ -287,10 +286,16 @@ class Fave extends Managed_DataObject
         $actobj->id = $this->getUri();
         $actobj->type = ActivityUtils::resolveUri(self::getObjectType());
         $actobj->actor = $this->getActorObject();
-        $actobj->target = $this->getTarget()->asActivityObject();
+        $actobj->target = $this->getTargetObject();
         $actobj->objects = array(clone($actobj->target));
         $actobj->verb = ActivityVerb::FAVORITE;
         $actobj->title = ActivityUtils::verbToTitle($actobj->verb);
+        // If the rendered notice content does not exist, generate our own content.
+        // TRANS: Notification given when a user marks a notice as favorite.
+        // TRANS: %1$s is a user nickname or full name, %2$s is a notice URI.
+        $actobj->content = $target->rendered ?: sprintf(_('%1$s marked notice %2$s as a favorite.'),
+                                                        $this->getActor()->getBestName(),
+                                                        $this->getTarget()->getUrl());
         return $actobj;
     }
 
