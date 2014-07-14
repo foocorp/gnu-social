@@ -712,24 +712,22 @@ class Notice extends Managed_DataObject
                                         'and post again in a few minutes.'));
         }
 
-/* This interferes with stuff like Favorites from old StatusNet installations (first object in objects is the favored notice)
         // Get ActivityObject properties
-        $actobj = count($act->objects)==1 ? $act->objects[0] : null;
-        if (!is_null($actobj) && $actobj->id) {
-            $options['uri'] = $actobj->id;
-            if ($actobj->link) {
-                $options['url'] = $actobj->link;
-            } elseif ($act->link) {
-                $options['url'] = $act->link;
-            } elseif (preg_match('!^https?://!', $actobj->id)) {
-                $options['url'] = $actobj->id;
-            }
-        } else {
+        if (!empty($act->id)) {
             // implied object
             $options['uri'] = $act->id;
             $options['url'] = $act->link;
+        } else {
+            $actobj = count($act->objects)==1 ? $act->objects[0] : null;
+            if (!is_null($actobj) && !empty($actobj->id)) {
+                $options['uri'] = $actobj->id;
+                if ($actobj->link) {
+                    $options['url'] = $actobj->link;
+                } elseif (preg_match('!^https?://!', $actobj->id)) {
+                    $options['url'] = $actobj->id;
+                }
+            }
         }
-*/
 
         $defaults = array(
                           'groups'   => array(),

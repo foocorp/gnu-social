@@ -179,9 +179,6 @@ class FavoritePlugin extends ActivityHandlerPlugin
         if (!isset($options['created'])) {
             $options['created'] = !empty($act->time) ? common_sql_date($act->time) : common_sql_now();
         }
-        if (!isset($options['uri'])) {
-            $options['uri'] = !empty($act->id) ? $act->id : $act->selfLink;
-        }
 
         // We must have an objects[0] here because in isMyActivity we require the count to be == 1
         $actobj = $act->objects[0];
