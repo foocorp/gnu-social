@@ -687,7 +687,7 @@ function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
         return;
     }
 
-    $bestname = $profile->getBestName();
+    $bestname = $sender->getBestName();
 
     common_switch_locale($rcpt->language);
 
