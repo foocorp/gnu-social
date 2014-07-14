@@ -768,6 +768,11 @@ class Notice extends Managed_DataObject
         $stored->url = $url;
         $stored->verb = $act->verb;
 
+        // Use the local user's shortening preferences, if applicable.
+        $stored->content = $actor->isLocal()
+                                ? $actor->shortenLinks($act->content)
+                                : $act->content;
+
         $autosource = common_config('public', 'autosource');
 
         // Sandboxed are non-false, but not 1, either
