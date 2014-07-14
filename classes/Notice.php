@@ -769,9 +769,10 @@ class Notice extends Managed_DataObject
         $stored->verb = $act->verb;
 
         // Use the local user's shortening preferences, if applicable.
-        $stored->content = $actor->isLocal()
+        $stored->rendered = $actor->isLocal()
                                 ? $actor->shortenLinks($act->content)
                                 : $act->content;
+        $stored->content = common_strip_html($stored->rendered);
 
         $autosource = common_config('public', 'autosource');
 

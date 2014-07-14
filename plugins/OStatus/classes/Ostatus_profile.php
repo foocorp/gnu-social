@@ -607,7 +607,7 @@ class Ostatus_profile extends Managed_DataObject
         // Get (safe!) HTML and text versions of the content
 
         $rendered = $this->purify($sourceContent);
-        $content = html_entity_decode(strip_tags($rendered), ENT_QUOTES, 'UTF-8');
+        $content = common_strip_html($rendered);
 
         $shortened = common_shorten_links($content);
 
@@ -618,7 +618,7 @@ class Ostatus_profile extends Managed_DataObject
 
         if (Notice::contentTooLong($shortened)) {
             $attachment = $this->saveHTMLFile($activity->title, $rendered);
-            $summary = html_entity_decode(strip_tags($activity->summary), ENT_QUOTES, 'UTF-8');
+            $summary = common_strip_html($activity->summary);
             if (empty($summary)) {
                 $summary = $content;
             }
@@ -774,7 +774,7 @@ class Ostatus_profile extends Managed_DataObject
         // Get (safe!) HTML and text versions of the content
 
         $rendered = $this->purify($sourceContent);
-        $content = html_entity_decode(strip_tags($rendered), ENT_QUOTES, 'UTF-8');
+        $content = common_strip_html($rendered);
 
         $shortened = common_shorten_links($content);
 
@@ -785,7 +785,7 @@ class Ostatus_profile extends Managed_DataObject
 
         if (Notice::contentTooLong($shortened)) {
             $attachment = $this->saveHTMLFile($note->title, $rendered);
-            $summary = html_entity_decode(strip_tags($note->summary), ENT_QUOTES, 'UTF-8');
+            $summary = common_strip_html($note->summary);
             if (empty($summary)) {
                 $summary = $content;
             }

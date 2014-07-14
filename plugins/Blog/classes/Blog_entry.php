@@ -174,10 +174,10 @@ class Blog_entry extends Managed_DataObject
                 XMLStringer::estring('a', array('href' => $url,
                                                 'class' => 'blog-entry'),
                                      _('More...'));
-            $text = html_entity_decode(strip_tags($be->summary), ENT_QUOTES, 'UTF-8');
+            $text = common_strip_html($be->summary);
         } else {
             $options['rendered'] = $be->content;
-            $text = html_entity_decode(strip_tags($be->content), ENT_QUOTES, 'UTF-8');
+            $text = common_strip_html($be->content);
         }
 
 

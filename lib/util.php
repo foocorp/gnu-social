@@ -2360,3 +2360,12 @@ function common_log_delta($comment=null)
 
     common_debug(sprintf("%s: %d %d", $comment, $mtotal, round($ttotal * 1000000)));
 }
+
+function common_strip_html($html, $trim=true, $save_whitespace=false)
+{
+    if (!$save_whitespace) {
+        $html = preg_replace('/\s+/', ' ', $html);
+    }
+    $text = html_entity_decode(strip_tags($html), ENT_QUOTES, 'UTF-8');
+    return $trim ? trim($text) : $text;
+}

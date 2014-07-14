@@ -200,7 +200,7 @@ class ActivityObject
         $title = ActivityUtils::childHtmlContent($element, self::TITLE);
 
         if (!empty($title)) {
-            $this->title = html_entity_decode(strip_tags($title), ENT_QUOTES, 'UTF-8');
+            $this->title = common_strip_html($title);
         }
 
         // fall back to <atom:name>
@@ -251,10 +251,7 @@ class ActivityObject
         $this->content = ActivityUtils::getContent($element);
 
         // We don't like HTML in our titles, although it's technically allowed
-
-        $title = ActivityUtils::childHtmlContent($element, self::TITLE);
-
-        $this->title = html_entity_decode(strip_tags($title), ENT_QUOTES, 'UTF-8');
+        $this->title = common_strip_html(ActivityUtils::childHtmlContent($element, self::TITLE));
 
         $this->source  = $this->_getSource($element);
 

@@ -341,7 +341,7 @@ class DomainStatusNetworkInstaller extends Installer
         $breakout = preg_replace('/<a[^>+]\bhref="(.*)"[^>]*>(.*)<\/a>/',
                                  '\2 &lt;\1&gt;',
                                  $html);
-        return html_entity_decode(strip_tags($breakout), ENT_QUOTES, 'UTF-8');
+        return common_strip_html($breakout);
     }
 
     function databaseize($nickname)

@@ -105,17 +105,6 @@ class TinyMCEPlugin extends Plugin
     }
 
     /**
-     * Strip HTML to plaintext string
-     *
-     * @param string $html HTML
-     * @return string plaintext, single line
-     */
-    private function stripHtml($html)
-    {
-        return str_replace("\n", " ", html_entity_decode(strip_tags($html), ENT_QUOTES, 'UTF-8'));
-    }
-
-    /**
      * Hook for new-notice form processing to take our HTML goodies;
      * won't affect API posting etc.
      *
@@ -130,7 +119,7 @@ class TinyMCEPlugin extends Plugin
         if ($action->arg('richedit') && $this->isAllowedRichEdit()) {
             $html = $this->sanitizeHtml($content);
             $options['rendered'] = $html;
-            $content = $this->stripHtml($html);
+            $content = common_strip_html($html);
         }
         return true;
     }
