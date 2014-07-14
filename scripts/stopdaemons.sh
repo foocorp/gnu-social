@@ -33,9 +33,10 @@ fi
 SDIR=`dirname $0`
 DIR=`php $SDIR/getpiddir.php $SITE`
 
-for f in ombhandler smshandler pinghandler queuedaemon \
-	 twitterhandler facebookhandler imdaemon \
-	 twitterstatusfetcher synctwitterfriends pluginhandler rsscloudhandler; do
+DAEMONS=`php $SDIR/getvaliddaemons.php`
+
+for f in $DAEMONS; do
+    f=$(basename $f .php)
 
 	FILES="$DIR/$f.$ID.pid"
 
