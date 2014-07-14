@@ -286,7 +286,7 @@ class Fave extends Managed_DataObject
         $actobj->objects = array(clone($actobj->target));
         $actobj->verb = ActivityVerb::FAVORITE;
         $actobj->title = ActivityUtils::verbToTitle($actobj->verb);
-        $actobj->content = $target->rendered ?: $target->content;
+        $actobj->content = $this->getTarget()->rendered ?: $this->getTarget()->content;
         return $actobj;
     }
 
