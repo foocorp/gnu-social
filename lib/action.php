@@ -235,7 +235,7 @@ class Action extends HTMLOutputter // lawsuit
         $this->startHTML('text/xml;charset=utf-8');
         $this->elementStart('head');
         // TRANS: Title for conversation page.
-        $this->element('title', null, _m('TITLE','Notice'));
+        $this->element('title', null, $this->title());
         $this->elementEnd('head');
         $this->elementStart('body');
         if ($this->getError()) {

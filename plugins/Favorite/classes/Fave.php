@@ -142,11 +142,7 @@ class Fave extends Managed_DataObject
         $act->time    = strtotime($this->created);
         // TRANS: Activity title when marking a notice as favorite.
         $act->title   = _("Favor");
-        // If the rendered notice content does not exist, generate our own content.
-        // TRANS: Notification given when a user marks a notice as favorite.
-        // TRANS: %1$s is a user nickname or full name, %2$s is a notice URI.
-        $act->content = $target->rendered ?: sprintf(_('%1$s marked notice %2$s as a favorite.'),
-                                            $actor->getBestName(), $target->getUrl());
+        $act->content = $target->rendered ?: $target->content;
 
         $act->actor     = $actor->asActivityObject();
         $act->target    = $target->asActivityObject();
@@ -290,12 +286,7 @@ class Fave extends Managed_DataObject
         $actobj->objects = array(clone($actobj->target));
         $actobj->verb = ActivityVerb::FAVORITE;
         $actobj->title = ActivityUtils::verbToTitle($actobj->verb);
-        // If the rendered notice content does not exist, generate our own content.
-        // TRANS: Notification given when a user marks a notice as favorite.
-        // TRANS: %1$s is a user nickname or full name, %2$s is a notice URI.
-        $actobj->content = $target->rendered ?: sprintf(_('%1$s marked notice %2$s as a favorite.'),
-                                                        $this->getActor()->getBestName(),
-                                                        $this->getTarget()->getUrl());
+        $actobj->content = $target->rendered ?: $target->content;
         return $actobj;
     }
 

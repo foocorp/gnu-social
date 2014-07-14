@@ -58,6 +58,10 @@ class NewnoticeAction extends FormAction
      */
     function title()
     {
+        if ($this->getInfo() && $this->stored instanceof Notice) {
+            // TRANS: Page title after sending a notice.
+            return _('Notice posted');
+        }
         // TRANS: Page title for sending a new notice.
         return _m('TITLE','New notice');
     }

@@ -86,9 +86,11 @@ class FavorAction extends FormAction
         $act->title = ActivityUtils::verbToTitle($act->verb);
         $act->time = strtotime($now);
         // TRANS: Notification given when a user marks a notice as favorite.
-        // TRANS: %1$s is a user nickname or full name, %2$s is a notice URI.
-        $act->content = sprintf(_('%1$s marked notice %2$s as a favorite.'),
-                                $this->scoped->getBestName(), $this->target->getUrl());
+        // TRANS: %1$s is a user name or full name, %2$s is a notice URI, %3$s the link to the user's profile.
+        $act->content = sprintf(_('<a href="%3$s">%1$s</a> marked notice <a href="%2$s">%2$s</a> as a favorite.'),
+                                htmlspecialchars($this->scoped->getBestName()),
+                                htmlspecialchars($this->target->getUrl()),
+                                htmlspecialchars($this->scoped->getUrl()));
 
 
         $stored = Notice::saveActivity($act, $this->scoped,
