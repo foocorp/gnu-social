@@ -73,6 +73,7 @@ class RawConversationNoticeStream extends NoticeStream
 
     function __construct($id)
     {
+        parent::__construct();
         $this->id = $id;
     }
 

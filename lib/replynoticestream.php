@@ -75,6 +75,7 @@ class RawReplyNoticeStream extends NoticeStream
 
     function __construct($userId)
     {
+        parent::__construct();
         $this->userId = $userId;
     }
 
@@ -85,6 +86,11 @@ class RawReplyNoticeStream extends NoticeStream
 
         Notice::addWhereSinceId($reply, $since_id, 'notice_id', 'modified');
         Notice::addWhereMaxId($reply, $max_id, 'notice_id', 'modified');
+
+        if (!empty($this->selectVerbs)) {
+            $reply->joinAdd(array('notice_id', 'notice:id'));
+            $reply->whereAddIn('notice.verb', $this->selectVerbs, 'string');
+        }
 
         $reply->orderBy('modified DESC, notice_id DESC');
 
