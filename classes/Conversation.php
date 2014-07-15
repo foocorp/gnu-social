@@ -97,6 +97,7 @@ class Conversation extends Managed_DataObject
 
         $notice               = new Notice();
         $notice->conversation = $id;
+        $notice->whereAddIn('verb', array(ActivityVerb::POST, ActivityUtils::resolveUri(ActivityVerb::POST, true)), $notice->columnType('verb'));
         $cnt                  = $notice->count();
 
         self::cacheSet($keypart, $cnt);
