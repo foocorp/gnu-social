@@ -72,7 +72,7 @@ class MobileProfilePlugin extends WAP20Plugin
         } else if (isset($_COOKIE['MobileOverride'])) {
             // Cookie override is controlled by link at bottom.
             $this->serveMobile = (bool)$_COOKIE['MobileOverride'];
-        } else {
+        } elseif (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
             // If they like the WAP 2.0 mimetype, serve them MP
             // @fixme $type is undefined, making this if case useless and spewing errors.
             // What's the intent?
