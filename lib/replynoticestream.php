@@ -82,7 +82,11 @@ class RawReplyNoticeStream extends NoticeStream
     function getNoticeIds($offset, $limit, $since_id, $max_id)
     {
         $reply = new Reply();
-        $reply->profile_id = $this->userId;
+
+        $reply->selectAdd();
+        $reply->selectAdd('notice_id');
+
+        $reply->whereAdd(sprintf('reply.profile_id = %u', $this->userId));
 
         Notice::addWhereSinceId($reply, $since_id, 'notice_id', 'modified');
         Notice::addWhereMaxId($reply, $max_id, 'notice_id', 'modified');
@@ -92,7 +96,7 @@ class RawReplyNoticeStream extends NoticeStream
             $reply->whereAddIn('notice.verb', $this->selectVerbs, 'string');
         }
 
-        $reply->orderBy('modified DESC, notice_id DESC');
+        $reply->orderBy('reply.modified DESC, reply.notice_id DESC');
 
         if (!is_null($offset)) {
             $reply->limit($offset, $limit);
