@@ -183,14 +183,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
         // We must have an objects[0] here because in isMyActivity we require the count to be == 1
         $actobj = $act->objects[0];
 
-        try {
-            $object = Fave::saveActivityObject($actobj, $stored);
-        } catch (ServerException $e) {
-            // Probably that the favored notice doesn't exist in our local database
-            // but may also be some missing profile or so, which we could catch in a
-            // more explicit catch-statement.
-            return null;
-        }
+        $object = Fave::saveActivityObject($actobj, $stored);
         return $object;
     }
 
