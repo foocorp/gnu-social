@@ -69,7 +69,7 @@ class NewnoticeAction extends FormAction
     protected function doPreparation()
     {
         foreach(array('inreplyto') as $opt) {
-            if (!empty($this->trimmed($opt))) {
+            if ($this->trimmed($opt)) {
                 $this->formOpts[$opt] = $this->trimmed($opt);
             }
         }
