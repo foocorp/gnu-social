@@ -104,15 +104,11 @@ class RawReplyNoticeStream extends NoticeStream
 
         $ids = array();
 
-        try {
         if ($reply->find()) {
             while ($reply->fetch()) {
                 $ids[] = $reply->notice_id;
             }
         }
-} catch (Exception $e) {
-    common_debug('MMNDEBUG: '.$e->getMessage().' on '.var_export($reply, true));
-}
 
         return $ids;
     }
