@@ -88,8 +88,8 @@ class RawReplyNoticeStream extends NoticeStream
 
         $reply->whereAdd(sprintf('reply.profile_id = %u', $this->userId));
 
-        Notice::addWhereSinceId($reply, $since_id, 'notice_id', 'modified');
-        Notice::addWhereMaxId($reply, $max_id, 'notice_id', 'modified');
+        Notice::addWhereSinceId($reply, $since_id, 'notice_id', 'reply.modified');
+        Notice::addWhereMaxId($reply, $max_id, 'notice_id', 'reply.modified');
 
         if (!empty($this->selectVerbs)) {
             $reply->joinAdd(array('notice_id', 'notice:id'));
@@ -104,11 +104,15 @@ class RawReplyNoticeStream extends NoticeStream
 
         $ids = array();
 
+        try {
         if ($reply->find()) {
             while ($reply->fetch()) {
                 $ids[] = $reply->notice_id;
             }
         }
+} catch (Exception $e) {
+    common_debug('MMNDEBUG: '.$e->getMessage().' on '.var_export($reply, true));
+}
 
         return $ids;
     }
