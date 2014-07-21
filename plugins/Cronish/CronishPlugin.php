@@ -7,28 +7,30 @@
  * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2013 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
- * @link      http://www.gnu.org/software/social/
+ * @link      http://gnu.io/social/
  */
+
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class CronishPlugin extends Plugin {
     public function onCronMinutely()
     {
-        common_debug('CRON: Running minutely cron job!');
+        common_debug('CRON: Running near-minutely cron job!');
     }
 
     public function onCronHourly()
     {
-        common_debug('CRON: Running hourly cron job!');
+        common_debug('CRON: Running near-hourly cron job!');
     }
 
     public function onCronDaily()
     {
-        common_debug('CRON: Running daily cron job!');
+        common_debug('CRON: Running near-daily cron job!');
     }
 
     public function onCronWeekly()
     {
-        common_debug('CRON: Running weekly cron job!');
+        common_debug('CRON: Running near-weekly cron job!');
     }
 
     /**
@@ -51,7 +53,7 @@ class CronishPlugin extends Plugin {
                             'homepage' => 'http://www.gnu.org/software/social/',
                             'description' =>
                             // TRANS: Plugin description.
-                            _m('Cronish plugin that executes events on a near-hour/day/week basis.'));
+                            _m('Cronish plugin that executes events on a near-minutely/hour/day/week basis.'));
         return true;
     }
 }
