@@ -683,7 +683,7 @@ function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
         return;
     }
 
-    if (!$rcpt->getPref('notify', 'email_fave', 1)) {
+    if (!$rcpt->getPref('email', 'notify_fave', 1)) {
         return;
     }
 

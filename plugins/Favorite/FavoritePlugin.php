@@ -25,7 +25,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class FavoritePlugin extends ActivityHandlerPlugin
 {
-    protected $notify_email_fave = 1;
+    protected $email_notify_fave = 1;
 
     public function tag()
     {
@@ -211,7 +211,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
         foreach ($mentioned_ids as $id) {
             $mentioned = User::getKV('id', $id);
             if ($mentioned instanceof User && $mentioned->id != $stored->profile_id
-                    && $mentioned->email && $mentioned->getPref('email', 'notify_fave', $this->notify_email_fave)) {   // do we have an email, and does user want it?
+                    && $mentioned->email && $mentioned->getPref('email', 'notify_fave', $this->email_notify_fave)) {   // do we have an email, and does user want it?
                 mail_notify_fave($mentioned, $stored->getProfile(), $stored->getParent());
             }
         }
@@ -409,7 +409,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
     {
         // getConfigData will fall back on systemwide default
         // and we only wish to save numerical true or false.
-        $emailfave = $scoped->getPref('email', 'notify_fave', $this->notify_email_fave) ? 1 : 0;
+        $emailfave = $scoped->getPref('email', 'notify_fave', $this->email_notify_fave) ? 1 : 0;
 
         $action->elementStart('li');
         $action->checkbox('email-notify_fave',
