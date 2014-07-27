@@ -326,7 +326,7 @@ class OStatusPlugin extends Plugin
                                                'type' => 'mention',
                                                'text' => $target,
                                                'position' => $pos,
-                                               'url' => $profile->profileurl);
+                                               'url' => $profile->getUrl());
                     }
                 } catch (Exception $e) {
                     $this->log(LOG_ERR, "Webfinger check failed: " . $e->getMessage());
@@ -353,7 +353,7 @@ class OStatusPlugin extends Plugin
                                                    'type' => 'mention',
                                                    'text' => $target,
                                                    'position' => $pos,
-                                                   'url' => $profile->profileurl);
+                                                   'url' => $profile->getUrl());
                             break;
                         }
                     } catch (Exception $e) {

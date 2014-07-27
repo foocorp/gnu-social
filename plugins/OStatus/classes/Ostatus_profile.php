@@ -1959,7 +1959,9 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         // If we got a feed URL, try that
+        $feedUrl = null;
         if (array_key_exists('feedurl', $hints)) {
+            $feedUrl = $hints['feedurl'];
             try {
                 common_log(LOG_INFO, "Discovery on acct:$addr with feed URL " . $hints['feedurl']);
                 $oprofile = self::ensureFeedURL($hints['feedurl'], $hints);
@@ -1972,7 +1974,9 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         // If we got a profile page, try that!
+        $profileUrl = null;
         if (array_key_exists('profileurl', $hints)) {
+            $profileUrl = $hints['profileurl'];
             try {
                 common_log(LOG_INFO, "Discovery on acct:$addr with profile URL $profileUrl");
                 $oprofile = self::ensureProfileURL($hints['profileurl'], $hints);
@@ -2009,7 +2013,7 @@ class Ostatus_profile extends Managed_DataObject
             $profile->nickname = self::nicknameFromUri($uri);
             $profile->created  = common_sql_now();
 
-            if (isset($profileUrl)) {
+            if (!is_null($profileUrl)) {
                 $profile->profileurl = $profileUrl;
             }
 
@@ -2028,13 +2032,14 @@ class Ostatus_profile extends Managed_DataObject
             $oprofile->profile_id = $profile_id;
             $oprofile->created    = common_sql_now();
 
-            if (isset($feedUrl)) {
-                $profile->feeduri = $feedUrl;
+            if (!is_null($feedUrl)) {
+                $oprofile->feeduri = $feedUrl;
             }
 
             $result = $oprofile->insert();
 
             if ($result === false) {
+                $profile->delete();
                 common_log_db_error($oprofile, 'INSERT', __FILE__);
                 // TRANS: Exception. %s is a webfinger address.
                 throw new Exception(sprintf(_m('Could not save OStatus profile for "%s".'),$addr));
