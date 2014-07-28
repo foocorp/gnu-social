@@ -217,19 +217,19 @@ class NoticeTitlePlugin extends Plugin
     /**
      * Show the notice title in Atom output
      *
-     * @param Notice      &$notice Notice being shown
-     * @param XMLStringer &$xs     output context
-     * @param string      &$output string to be output as title
+     * @param Notice      $notice Notice being shown
+     * @param Activity    $act   Activity object to be modified
+     * @param Profile     $scoped Currently logged in/scoped profile
      *
      * @return boolean hook value
      */
-    function onEndNoticeAsActivity($notice, &$activity)
+    function onEndNoticeAsActivity(Notice $stored, Activity $act, Profile $scoped=null)
     {
-        $title = Notice_title::fromNotice($notice);
+        $title = Notice_title::fromNotice($stored);
 
         if (!empty($title)) {
-            foreach ($activity->objects as $obj) {
-                if ($obj->id == $notice->uri) {
+            foreach ($act->objects as $obj) {
+                if ($obj->id == $stored->getUri()) {
                     $obj->title = $title;
                     break;
                 }

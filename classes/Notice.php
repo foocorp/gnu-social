@@ -1751,7 +1751,7 @@ class Notice extends Managed_DataObject
         }
         $act = new Activity();
 
-        if (Event::handle('StartNoticeAsActivity', array($this, &$act))) {
+        if (Event::handle('StartNoticeAsActivity', array($this, $act, $scoped))) {
 
             $act->id      = $this->uri;
             $act->time    = strtotime($this->created);
@@ -1898,7 +1898,7 @@ class Notice extends Managed_DataObject
                 $act->editLink = $act->selfLink;
             }
 
-            Event::handle('EndNoticeAsActivity', array($this, &$act));
+            Event::handle('EndNoticeAsActivity', array($this, $act, $scoped));
         }
 
         self::cacheSet(Cache::codeKey('notice:as-activity:'.$this->id), $act);

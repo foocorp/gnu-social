@@ -308,22 +308,21 @@ class ActivityPlugin extends Plugin
         return true;
     }
 
-    function onEndNoticeAsActivity($notice, &$activity)
+    public function onEndNoticeAsActivity(Notice $stored, Activity $act, Profile $scoped=null)
     {
-        switch ($notice->verb) {
+        switch ($stored->verb) {
         case ActivityVerb::FAVORITE:
-            $fave = Fave::getKV('uri', $notice->uri);
+            $fave = Fave::getKV('uri', $stored->uri);
             if (!empty($fave)) {
-                $notice = Notice::getKV('id', $fave->notice_id);
-                if (!empty($notice)) {
-                    $cur = common_current_user();
-                    $target = $notice->asActivity($cur->getProfile());
+                $stored = Notice::getKV('id', $fave->notice_id);
+                if (!empty($stored)) {
+                    $target = $stored->asActivity($scoped);
                     if ($target->verb == ActivityVerb::POST) {
                         // "I like the thing you posted"
-                        $activity->objects = $target->objects;
+                        $act->objects = $target->objects;
                     } else {
                         // "I like that you did whatever you did"
-                        $activity->objects = array($target);
+                        $act->objects = array($target);
                     }
                 }
             }
@@ -332,21 +331,21 @@ class ActivityPlugin extends Plugin
             // FIXME: do something here
             break;
         case ActivityVerb::JOIN:
-            $mem = Group_member::getKV('uri', $notice->uri);
+            $mem = Group_member::getKV('uri', $stored->uri);
             if (!empty($mem)) {
                 $group = $mem->getGroup();
-                $activity->objects = array(ActivityObject::fromGroup($group));
+                $act->objects = array(ActivityObject::fromGroup($group));
             }
             break;
         case ActivityVerb::LEAVE:
             // FIXME: ????
             break;
         case ActivityVerb::FOLLOW:
-            $sub = Subscription::getKV('uri', $notice->uri);
+            $sub = Subscription::getKV('uri', $stored->uri);
             if (!empty($sub)) {
                 $profile = Profile::getKV('id', $sub->subscribed);
                 if (!empty($profile)) {
-                    $activity->objects = array($profile->asActivityObject());
+                    $act->objects = array($profile->asActivityObject());
                 }
             }
             break;

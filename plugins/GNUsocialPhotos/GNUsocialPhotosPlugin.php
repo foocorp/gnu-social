@@ -68,18 +68,18 @@ class GNUsocialPhotosPlugin extends Plugin
         return true;
     }
 
-    function onEndNoticeAsActivity($notice, &$activity)
+    function onEndNoticeAsActivity(Notice $stored, Activity $act, Profile $scoped=null)
     {
         common_log(LOG_INFO, 'photo plugin: EndNoticeAsActivity');
-        $photo = GNUsocialPhoto::getKV('notice_id', $notice->id);
+        $photo = GNUsocialPhoto::getKV('notice_id', $stored->id);
         if(!$photo) {
             common_log(LOG_INFO, 'not a photo.');
             return true;
         }
 
-        $activity->objects[0]->type = ActivityObject::PHOTO;
-        $activity->objects[0]->thumbnail = $photo->thumb_uri;
-        $activity->objects[0]->largerImage = $photo->uri;
+        $act->objects[0]->type = ActivityObject::PHOTO;
+        $act->objects[0]->thumbnail = $photo->thumb_uri;
+        $act->objects[0]->largerImage = $photo->uri;
         return false;
     }
 

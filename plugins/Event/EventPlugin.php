@@ -243,12 +243,12 @@ class EventPlugin extends MicroAppPlugin
      *
      * @return ActivityObject
      */
-    function onEndNoticeAsActivity($notice, &$act) {
-        switch ($notice->object_type) {
+    function onEndNoticeAsActivity(Notice $stored, Activity $act, Profile $scoped=null) {
+        switch ($stored->object_type) {
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
         case RSVP::POSSIBLE:
-            $act->verb = $notice->object_type;
+            $act->verb = $stored->object_type;
             break;
         }
         return true;
