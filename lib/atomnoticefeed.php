@@ -45,6 +45,7 @@ if (!defined('STATUSNET'))
 class AtomNoticeFeed extends Atom10Feed
 {
     var $cur;
+    protected $scoped=null;
 
     /**
      * Constructor - adds a bunch of XML namespaces we need in our
@@ -58,7 +59,8 @@ class AtomNoticeFeed extends Atom10Feed
     function __construct($cur = null, $indent = true) {
         parent::__construct($indent);
 
-        $this->cur = $cur;
+        $this->cur = $cur ?: common_current_user();
+        $this->scoped = !is_null($this->cur) ? $this->cur->getProfile() : null;
 
         // Feeds containing notice info use these namespaces
 
@@ -129,9 +131,7 @@ class AtomNoticeFeed extends Atom10Feed
             $source = $this->showSource();
             $author = $this->showAuthor();
 
-            $cur = empty($this->cur) ? common_current_user() : $this->cur;
-
-            $this->addEntryRaw($notice->asAtomEntry(false, $source, $author, $cur));
+            $this->addEntryRaw($notice->asAtomEntry(false, $source, $author, $this->scoped));
         } catch (Exception $e) {
             common_log(LOG_ERR, $e->getMessage());
             // we continue on exceptions

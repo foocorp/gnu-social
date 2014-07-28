@@ -54,6 +54,7 @@ class ActivityStreamJSONDocument extends JSONActivityCollection
 
     /* The current authenticated user */
     protected $cur;
+    protected $scoped = null;
 
     /* Title of the document */
     protected $title;
@@ -75,7 +76,8 @@ class ActivityStreamJSONDocument extends JSONActivityCollection
     {
         parent::__construct($items, $url);
 
-        $this->cur = $cur;
+        $this->cur = $cur ?: common_current_user();
+        $this->scoped = !is_null($this->cur) ? $this->cur->getProfile() : null;
 
         /* Title of the JSON document */
         $this->title = $title;
@@ -138,10 +140,8 @@ class ActivityStreamJSONDocument extends JSONActivityCollection
 
     function addItemFromNotice($notice)
     {
-        $cur = empty($this->cur) ? common_current_user() : $this->cur;
-
-        $act          = $notice->asActivity($cur);
-        $act->extra[] = $notice->noticeInfo($cur->getProfile());
+        $act          = $notice->asActivity($this->scoped);
+        $act->extra[] = $notice->noticeInfo($this->scoped);
         array_push($this->items, $act->asArray());
         $this->count++;
     }
