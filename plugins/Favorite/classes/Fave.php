@@ -271,6 +271,19 @@ class Fave extends Managed_DataObject
         return $object;
     }
 
+    /**
+     * Retrieves the _targeted_ notice of a verb (such as the notice that was
+     * _favorited_, but not the favorite activity itself).
+     *
+     * @param Notice $stored    The activity notice.
+     *
+     * @throws NoResultException when it can't find what it's looking for.
+     */
+    static public function getTargetFromStored(Notice $stored)
+    {
+        return self::fromStored($stored)->getTarget();
+    }
+
     static public function getObjectType()
     {
         return 'activity';
@@ -310,6 +323,17 @@ class Fave extends Managed_DataObject
         $object->created = $stored->created;
         $object->modified = $stored->modified;
         return $object;
+    }
+
+    static public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        $target = self::getTargetFromStored($stored);
+
+        $act->target = $target->asActivityObject();
+        $act->objects = array(clone($act->target));
+        $act->context->replyToID = $target->getUri();
+        $act->context->replyToUrl = $target->getUrl();
+        $act->title = ActivityUtils::verbToTitle($act->verb);
     }
 
     static function saveActivityObject(ActivityObject $actobj, Notice $stored)

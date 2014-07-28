@@ -187,6 +187,24 @@ class FavoritePlugin extends ActivityHandlerPlugin
         return $object;
     }
 
+    // FIXME: Put this in lib/activityhandlerplugin.php when we're ready
+    //          with the other microapps/activityhandlers as well.
+    //          Also it should be StartNoticeAsActivity (with a prepped Activity, including ->context etc.)
+    public function onEndNoticeAsActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        if (!$this->isMyNotice($stored)) {
+            return true;
+        }
+
+        common_debug('Extending activity '.$stored->id.' with '.get_called_class());
+        $this->extendActivity($stored, $act, $scoped);
+        return false;
+    }
+
+    public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        Fave::extendActivity($stored, $act, $scoped);
+    }
 
     public function activityObjectFromNotice(Notice $notice)
     {
