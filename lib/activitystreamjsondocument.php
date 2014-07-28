@@ -141,7 +141,7 @@ class ActivityStreamJSONDocument extends JSONActivityCollection
         $cur = empty($this->cur) ? common_current_user() : $this->cur;
 
         $act          = $notice->asActivity($cur);
-        $act->extra[] = $notice->noticeInfo($cur);
+        $act->extra[] = $notice->noticeInfo($cur->getProfile());
         array_push($this->items, $act->asArray());
         $this->count++;
     }

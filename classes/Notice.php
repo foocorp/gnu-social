@@ -1737,12 +1737,12 @@ class Notice extends Managed_DataObject
     /**
      * Convert a notice into an activity for export.
      *
-     * @param User $cur Current user
+     * @param Profile $scoped   The currently logged in/scoped profile
      *
      * @return Activity activity object representing this Notice.
      */
 
-    function asActivity($cur=null)
+    function asActivity(Profile $scoped=null)
     {
         $act = self::cacheGet(Cache::codeKey('notice:as-activity:'.$this->id));
 
@@ -1766,14 +1766,14 @@ class Notice extends Managed_DataObject
             $profile = $this->getProfile();
 
             $act->actor            = $profile->asActivityObject();
-            $act->actor->extra[]   = $profile->profileInfo($cur);
+            $act->actor->extra[]   = $profile->profileInfo($scoped);
 
             $act->verb = $this->verb;
 
             if ($this->repeat_of) {
                 $repeated = Notice::getKV('id', $this->repeat_of);
                 if ($repeated instanceof Notice) {
-                    $act->objects[] = $repeated->asActivity($cur);
+                    $act->objects[] = $repeated->asActivity($scoped);
                 }
             } else {
                 $act->objects[] = $this->asActivityObject();
@@ -1912,10 +1912,10 @@ class Notice extends Managed_DataObject
     function asAtomEntry($namespace=false,
                          $source=false,
                          $author=true,
-                         $cur=null)
+                         Profile $scoped=null)
     {
-        $act = $this->asActivity($cur);
-        $act->extra[] = $this->noticeInfo($cur);
+        $act = $this->asActivity($scoped);
+        $act->extra[] = $this->noticeInfo($scoped);
         return $act->asString($namespace, $author, $source);
     }
 
@@ -1925,12 +1925,12 @@ class Notice extends Managed_DataObject
      * Clients use some extra notice info in the atom stream.
      * This gives it to them.
      *
-     * @param User $cur Current user
+     * @param Profile $scoped   The currently logged in/scoped profile
      *
      * @return array representation of <statusnet:notice_info> element
      */
 
-    function noticeInfo($cur)
+    function noticeInfo(Profile $scoped=null)
     {
         // local notice ID (useful to clients for ordering)
 
@@ -1956,9 +1956,7 @@ class Notice extends Managed_DataObject
 
         // favorite and repeated
 
-        $scoped = null;
-        if (!empty($cur)) {
-            $scoped = $cur->getProfile();
+        if ($scoped instanceof Profile) {
             $noticeInfoAttr['repeated'] = ($scoped->hasRepeated($this)) ? "true" : "false";
         }
 

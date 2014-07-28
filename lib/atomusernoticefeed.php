@@ -64,7 +64,7 @@ class AtomUserNoticeFeed extends AtomNoticeFeed
 
             $ao = $profile->asActivityObject();
 
-            array_push($ao->extra, $profile->profileInfo($cur));
+            array_push($ao->extra, $profile->profileInfo($cur->getProfile()));
 
             $this->addAuthorRaw($ao->asString('author'));
         }

@@ -317,7 +317,7 @@ class ActivityPlugin extends Plugin
                 $notice = Notice::getKV('id', $fave->notice_id);
                 if (!empty($notice)) {
                     $cur = common_current_user();
-                    $target = $notice->asActivity($cur);
+                    $target = $notice->asActivity($cur->getProfile());
                     if ($target->verb == ActivityVerb::POST) {
                         // "I like the thing you posted"
                         $activity->objects = $target->objects;

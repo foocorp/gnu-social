@@ -1266,20 +1266,20 @@ class Profile extends Managed_DataObject
      * Clients use some extra profile info in the atom stream.
      * This gives it to them.
      *
-     * @param User $cur Current user
+     * @param Profile $scoped The currently logged in/scoped profile
      *
      * @return array representation of <statusnet:profile_info> element or null
      */
 
-    function profileInfo($cur)
+    function profileInfo(Profile $scoped=null)
     {
         $profileInfoAttr = array('local_id' => $this->id);
 
-        if ($cur != null) {
+        if ($scoped instanceof Profile) {
             // Whether the current user is a subscribed to this profile
-            $profileInfoAttr['following'] = $cur->isSubscribed($this) ? 'true' : 'false';
+            $profileInfoAttr['following'] = $scoped->isSubscribed($this) ? 'true' : 'false';
             // Whether the current user is has blocked this profile
-            $profileInfoAttr['blocking']  = $cur->hasBlocked($this) ? 'true' : 'false';
+            $profileInfoAttr['blocking']  = $scoped->hasBlocked($this) ? 'true' : 'false';
         }
 
         return array('statusnet:profile_info', $profileInfoAttr, null);
