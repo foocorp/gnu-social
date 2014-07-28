@@ -329,8 +329,15 @@ class Fave extends Managed_DataObject
     {
         $target = self::getTargetFromStored($stored);
 
-        $act->target = $target->asActivityObject();
-        $act->objects = array(clone($act->target));
+        // The following logic was copied from StatusNet's Activity plugin
+        if (ActivityUtils::compareTypes($target->verb, array(ActivityVerb::POST))) {
+            // "I like the thing you posted"
+            $act->objects = $target->asActivity()->objects;
+        } else {
+            // "I like that you did whatever you did"
+            $act->target = $target->asActivityObject();
+            $act->objects = array(clone($act->target));
+        }
         $act->context->replyToID = $target->getUri();
         $act->context->replyToUrl = $target->getUrl();
         $act->title = ActivityUtils::verbToTitle($act->verb);

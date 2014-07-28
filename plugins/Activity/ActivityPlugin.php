@@ -279,10 +279,6 @@ class ActivityPlugin extends Plugin
         $adapter = null;
 
         switch ($notice->verb) {
-        case ActivityVerb::FAVORITE:
-        case ActivityVerb::UNFAVORITE:
-            $adapter = new SystemListItem($nli);
-            break;
         case ActivityVerb::JOIN:
             $adapter = new JoinListItem($nli);
             break;
@@ -311,22 +307,6 @@ class ActivityPlugin extends Plugin
     public function onEndNoticeAsActivity(Notice $stored, Activity $act, Profile $scoped=null)
     {
         switch ($stored->verb) {
-        case ActivityVerb::FAVORITE:
-            $fave = Fave::getKV('uri', $stored->uri);
-            if (!empty($fave)) {
-                $stored = Notice::getKV('id', $fave->notice_id);
-                if (!empty($stored)) {
-                    $target = $stored->asActivity($scoped);
-                    if ($target->verb == ActivityVerb::POST) {
-                        // "I like the thing you posted"
-                        $act->objects = $target->objects;
-                    } else {
-                        // "I like that you did whatever you did"
-                        $act->objects = array($target);
-                    }
-                }
-            }
-            break;
         case ActivityVerb::UNFAVORITE:
             // FIXME: do something here
             break;
