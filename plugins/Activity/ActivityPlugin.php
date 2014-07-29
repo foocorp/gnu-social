@@ -283,7 +283,7 @@ class ActivityPlugin extends Plugin
             $adapter = new JoinListItem($nli);
             break;
         case ActivityVerb::LEAVE:
-            $adapter = new JoinListItem($nli);
+            $adapter = new LeaveListItem($nli);
             break;
         case ActivityVerb::FOLLOW:
             $adapter = new FollowListItem($nli);
