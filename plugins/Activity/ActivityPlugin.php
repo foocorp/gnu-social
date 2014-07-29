@@ -311,9 +311,10 @@ class ActivityPlugin extends Plugin
             // FIXME: do something here
             break;
         case ActivityVerb::JOIN:
-            $mem = Group_member::getKV('uri', $stored->uri);
-            if (!empty($mem)) {
+            $mem = Group_member::getKV('uri', $stored->getUri());
+            if ($mem instanceof Group_member) {
                 $group = $mem->getGroup();
+                $act->title = $stored->getTitle();
                 $act->objects = array(ActivityObject::fromGroup($group));
             }
             break;
@@ -322,9 +323,10 @@ class ActivityPlugin extends Plugin
             break;
         case ActivityVerb::FOLLOW:
             $sub = Subscription::getKV('uri', $stored->uri);
-            if (!empty($sub)) {
+            if ($sub instanceof Subscription) {
                 $profile = Profile::getKV('id', $sub->subscribed);
-                if (!empty($profile)) {
+                if ($profile instanceof Profile) {
+                    $act->title = $stored->getTitle();
                     $act->objects = array($profile->asActivityObject());
                 }
             }
