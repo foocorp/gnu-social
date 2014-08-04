@@ -812,6 +812,15 @@ position:static;
     top: 1em;
 }
 
+.notice.h-entry .attachments .inline-attachment * {
+    max-width: 100%;
+}
+.notice.h-entry .attachments .inline-attachment > a {
+    font-size: 0.88em;
+    line-height: 16px;
+    height: 16px;
+}
+
 #attachments {
 clear:both;
 float:left;

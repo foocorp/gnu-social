@@ -59,20 +59,8 @@ class InlineAttachmentList extends AttachmentList
 class InlineAttachmentListItem extends AttachmentListItem
 {
     function showLink() {
-        $this->out->elementStart('a', $this->linkAttr());
+        $this->out->element('a', $this->linkAttr(), $this->title());
         $this->showRepresentation();
-        $this->out->elementEnd('a');
-    }
-
-    /**
-     * Build HTML attributes for the link
-     * @return array
-     */
-    function linkAttr()
-    {
-        $attr = parent::linkAttr();
-        $attr['class'] = 'attachment-thumbnail';
-        return $attr;
     }
 
     /**
