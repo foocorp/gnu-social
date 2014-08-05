@@ -230,8 +230,6 @@ class SingleuserSite extends SiteProfileSettings
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
                     'MobileProfile'           => array(),
-                    'TwitterBridge'           => array(),
-                    'FacebookBridge'          => array(),
                 )),
                 'disable-Directory' => 1,
             ),
