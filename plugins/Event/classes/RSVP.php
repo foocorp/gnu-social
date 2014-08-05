@@ -226,7 +226,12 @@ class RSVP extends Managed_DataObject
 
     static function fromNotice(Notice $notice)
     {
-        return RSVP::getKV('uri', $notice->uri);
+        $rsvp = new RSVP();
+        $rsvp->uri = $notice->uri;
+        if (!$rsvp->find(true)) {
+            throw new NoResultException($rsvp);
+        }
+        return $rsvp;
     }
 
     static function forEvent(Happening $event)
