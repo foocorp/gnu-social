@@ -74,18 +74,28 @@ class AttachmentList extends Widget
      */
     function show()
     {
-    	$att = $this->notice->attachments();
-        if (empty($att)) return 0;
+    	$attachments = $this->notice->attachments();
+        $representable = false;
+        foreach ($attachments as $key=>$att) {
+            // Only show attachments representable with a title
+            if ($att->getTitle() === null) {
+                unset($attachments[$key]);
+            }
+        }
+        if (!count($attachments)) {
+            return 0;
+        }
+
         $this->showListStart();
 
-        foreach ($att as $n=>$attachment) {
-            $item = $this->newListItem($attachment);
+        foreach ($attachments as $att) {
+            $item = $this->newListItem($att);
             $item->show();
         }
 
         $this->showListEnd();
 
-        return count($att);
+        return count($attachments);
     }
 
     function showListStart()

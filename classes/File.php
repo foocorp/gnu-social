@@ -541,4 +541,11 @@ class File extends Managed_DataObject
         // And finally remove the entry from the database
         return parent::delete($useWhere);
     }
+
+    public function getTitle()
+    {
+        $title = $this->title ?: $this->filename;
+
+        return $title ?: null;
+    }
 }
