@@ -704,7 +704,7 @@ font-style:italic;
     min-height: 1em; 
 }
 
-#shownotice .notice .h-entry {,
+#shownotice .notice .h-entry {
     font-size:2.2em;
     min-height:123px;
     font-size: 1.6em;
@@ -2493,7 +2493,7 @@ display:none;
     list-style-type: none;
 }
 
-/*end of @media screen, projection, tv*/
+}/*end of @media screen, projection, tv*/
 
 
 @media print {
