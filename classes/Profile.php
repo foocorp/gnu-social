@@ -1324,6 +1324,7 @@ class Profile extends Managed_DataObject
             $object->id     = $this->getUri();
             $object->title  = $this->getBestName();
             $object->link   = $this->getUrl();
+            $object->summary = $this->getDescription();
 
             try {
                 $avatar = Avatar::getUploaded($this);
@@ -1388,6 +1389,11 @@ class Profile extends Managed_DataObject
     public function getNickname()
     {
         return $this->nickname;
+    }
+
+    public function getDescription()
+    {
+        return $this->bio;
     }
 
     /**
