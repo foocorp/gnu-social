@@ -2000,8 +2000,6 @@ margin:0;
 #profile_search_results {
 display:block;
 border-radius:4px;
--moz-border-radius:4px;
--webkit-border-radius:4px;
 max-height:800px;
 margin:10px 0;
 padding: 5px;
@@ -2070,8 +2068,6 @@ float:left;
     padding: 6px;
     margin: 4px 0px 0px 4px;
     border-top-left-radius: 7px;
-    -moz-border-radius-topleft: 7px;
-    -webkit-border-top-left-radius: 7px;
 }
 
 .oauth-desktop-mode fieldset {
