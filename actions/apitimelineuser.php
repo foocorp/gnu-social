@@ -59,6 +59,8 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 {
     var $notices = null;
 
+    var $next_id = null;
+
     /**
      * Take arguments for running
      *
@@ -126,10 +128,12 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
 
         // paging links
-        $nextUrl = common_local_url('ApiTimelineUser',
+        $nextUrl = !empty($this->next_id)
+                    ? common_local_url('ApiTimelineUser',
                                     array('format' => $this->format,
                                           'id' => $this->target->id),
-                                    array('max_id' => $this->next_id));
+                                    array('max_id' => $this->next_id))
+                    : null;
         $lastNotice = $this->notices[0];
         $lastId     = $lastNotice->id;
         $prevUrl = common_local_url('ApiTimelineUser',
@@ -166,22 +170,18 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             // change too quickly!
 
             if (!empty($this->next_id)) {
-
                 $atom->addLink($nextUrl,
                                array('rel' => 'next',
                                      'type' => 'application/atom+xml'));
             }
 
             if (($this->page > 1 || !empty($this->max_id)) && !empty($this->notices)) {
-
-
                 $atom->addLink($prevUrl,
                                array('rel' => 'prev',
                                      'type' => 'application/atom+xml'));
             }
 
             if ($this->page > 1 || !empty($this->since_id) || !empty($this->max_id)) {
-
                 $atom->addLink($firstUrl,
                                array('rel' => 'first',
                                      'type' => 'application/atom+xml'));
