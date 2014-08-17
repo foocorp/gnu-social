@@ -137,6 +137,11 @@ class PollPlugin extends MicroAppPlugin
         return array(self::POLL_OBJECT, self::POLL_RESPONSE_OBJECT);
     }
 
+
+    function adaptNoticeListItem($nli) {
+        return new PollListItem($nli);
+    }
+
     /**
      * When a notice is deleted, delete the related Poll
      *
@@ -373,65 +378,6 @@ class PollPlugin extends MicroAppPlugin
                           'selection'  => $obj->pollSelection);
             $out['pollResponse'] = $data;
         }
-    }
-
-
-    function showNoticeContent(Notice $notice, HTMLOutputter $out)
-    {
-        switch ($notice->object_type) {
-        case self::POLL_OBJECT:
-            return $this->showNoticePoll($notice, $out);
-        case self::POLL_RESPONSE_OBJECT:
-            return $this->showNoticePollResponse($notice, $out);
-        default:
-            // TRANS: Exception thrown when performing an unexpected action on a poll.
-            // TRANS: %s is the unexpected object type.
-            throw new Exception(sprintf(_m('Unexpected type for poll plugin: %s.'), $notice->object_type));
-        }
-    }
-
-    function showNoticePoll(Notice $notice, $out)
-    {
-        $user = common_current_user();
-
-        // @hack we want regular rendering, then just add stuff after that
-        $nli = new NoticeListItem($notice, $out);
-        $nli->showNotice();
-
-        $out->elementStart('div', array('class' => 'e-content poll-content'));
-        $poll = Poll::getByNotice($notice);
-        if ($poll) {
-            if ($user) {
-                $profile = $user->getProfile();
-                $response = $poll->getResponse($profile);
-                if ($response) {
-                    // User has already responded; show the results.
-                    $form = new PollResultForm($poll, $out);
-                } else {
-                    $form = new PollResponseForm($poll, $out);
-                }
-                $form->show();
-            }
-        } else {
-            // TRANS: Error text displayed if no poll data could be found.
-            $out->text(_m('Poll data is missing'));
-        }
-        $out->elementEnd('div');
-
-        // @fixme
-        $out->elementStart('div', array('class' => 'e-content'));
-    }
-
-    function showNoticePollResponse(Notice $notice, $out)
-    {
-        $user = common_current_user();
-
-        // @hack we want regular rendering, then just add stuff after that
-        $nli = new NoticeListItem($notice, $out);
-        $nli->showNotice();
-
-        // @fixme
-        $out->elementStart('div', array('class' => 'e-content'));
     }
 
     function entryForm($out)
