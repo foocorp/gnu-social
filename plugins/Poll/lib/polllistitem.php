@@ -51,11 +51,8 @@ class PollListItem extends NoticeListItemAdapter
     const POLL_OBJECT          = 'http://activityschema.org/object/poll';
     const POLL_RESPONSE_OBJECT = 'http://activityschema.org/object/poll-response';
 
-    function showNotice()
+    function showNotice(Notice $notice, $out)
     {
-        $notice = $this->nli->notice;
-        $out = $this->nli->out;
-
         switch ($notice->object_type) {
         case self::POLL_OBJECT:
             return $this->showNoticePoll($notice, $out);
