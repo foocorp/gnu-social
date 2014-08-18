@@ -33,6 +33,9 @@ by the startdaemons script
 
 ENDOFHELP;
 
+// No error reporting to avoid invalid daemon names
+error_reporting(0);
+
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
 $daemons = array();
