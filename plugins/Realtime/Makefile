@@ -3,7 +3,7 @@
 all: realtimeupdate.min.js
 
 clean:
-	rm -f realtimeupdate.min.js
+	rm -f js/realtimeupdate.min.js
 
-realtimeupdate.min.js: realtimeupdate.js
-	yui-compressor realtimeupdate.js > realtimeupdate.min.js
+realtimeupdate.min.js: js/realtimeupdate.js
+	yui-compressor js/realtimeupdate.js > js/realtimeupdate.min.js
