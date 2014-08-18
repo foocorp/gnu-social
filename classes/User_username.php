@@ -30,6 +30,9 @@ class User_username extends Managed_DataObject
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
             'primary key' => array('provider_name', 'username'),
+            'indexes' => array(
+                'user_id_idx' => array('user_id')
+            ),
             'foreign keys' => array(
                 'user_username_user_id_fkey' => array('user', array('user_id' => 'id')),
             ),

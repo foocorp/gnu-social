@@ -97,11 +97,12 @@ class Blog_entry extends Managed_DataObject
             'unique keys' => array(
                 'blog_entry_uri_key' => array('uri'),
             ),
+            'indexes' => array(
+                'blog_entry_profile_id_idx' => array('profile_id'),
+                'blog_entry_created_idx' => array('created')
+            ),
             'foreign keys' => array(
                 'blog_entry_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
-            ),
-            'indexes' => array(
-                'blog_entry_created_idx' => array('created')
             ),
         );
     }
