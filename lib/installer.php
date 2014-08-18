@@ -293,6 +293,11 @@ abstract class Installer
             }
         }
 
+        if (!$conn instanceof DB_common) {
+            // Is not the right instance
+            throw new Exception('Cannot connect to database: ' . $conn->getMessage());
+        }
+
         $res = $this->updateStatus("Creating database tables...");
         if (!$this->createCoreTables($conn)) {
             $this->updateStatus("Error creating tables.", true);
