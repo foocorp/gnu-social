@@ -127,6 +127,7 @@ class ApiAction extends Action
     var $since_id  = null;
     var $source    = null;
     var $callback  = null;
+    var $format    = null;
 
     var $access    = self::READ_ONLY;  // read (default) or read-write
 

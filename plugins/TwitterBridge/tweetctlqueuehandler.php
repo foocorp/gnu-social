@@ -19,7 +19,7 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
+require_once __DIR__ . '/twitter.php';
 
 /**
  * Queue handler to deal with incoming Twitter status updates, as retrieved by

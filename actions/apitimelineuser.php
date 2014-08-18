@@ -59,6 +59,8 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 {
     var $notices = null;
 
+    var $next_id = null;
+
     /**
      * Take arguments for running
      *
@@ -124,6 +126,24 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         $suplink = common_local_url('sup', null, null, $this->target->id);
         header('X-SUP-ID: ' . $suplink);
 
+
+        // paging links
+        $nextUrl = !empty($this->next_id)
+                    ? common_local_url('ApiTimelineUser',
+                                    array('format' => $this->format,
+                                          'id' => $this->target->id),
+                                    array('max_id' => $this->next_id))
+                    : null;
+        $lastNotice = $this->notices[0];
+        $lastId     = $lastNotice->id;
+        $prevUrl = common_local_url('ApiTimelineUser',
+                                    array('format' => $this->format,
+                                          'id' => $this->target->id),
+                                    array('since_id' => $lastId));
+        $firstUrl = common_local_url('ApiTimelineUser',
+                                    array('format' => $this->format,
+                                          'id' => $this->target->id));
+
         switch($this->format) {
         case 'xml':
             $this->showXmlTimeline($this->notices);
@@ -150,37 +170,18 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             // change too quickly!
 
             if (!empty($this->next_id)) {
-                $nextUrl = common_local_url('ApiTimelineUser',
-                                            array('format' => 'atom',
-                                                  'id' => $this->target->id),
-                                            array('max_id' => $this->next_id));
-
                 $atom->addLink($nextUrl,
                                array('rel' => 'next',
                                      'type' => 'application/atom+xml'));
             }
 
             if (($this->page > 1 || !empty($this->max_id)) && !empty($this->notices)) {
-
-                $lastNotice = $this->notices[0];
-                $lastId     = $lastNotice->id;
-
-                $prevUrl = common_local_url('ApiTimelineUser',
-                                            array('format' => 'atom',
-                                                  'id' => $this->target->id),
-                                            array('since_id' => $lastId));
-
                 $atom->addLink($prevUrl,
                                array('rel' => 'prev',
                                      'type' => 'application/atom+xml'));
             }
 
             if ($this->page > 1 || !empty($this->since_id) || !empty($this->max_id)) {
-
-                $firstUrl = common_local_url('ApiTimelineUser',
-                                            array('format' => 'atom',
-                                                  'id' => $this->target->id));
-
                 $atom->addLink($firstUrl,
                                array('rel' => 'first',
                                      'type' => 'application/atom+xml'));
@@ -201,7 +202,23 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             $doc->addLink($link, 'alternate', 'text/html');
             $doc->addItemsFromNotices($this->notices);
 
-            // XXX: Add paging extension?
+            if (!empty($this->next_id)) {
+                $doc->addLink($nextUrl,
+                               array('rel' => 'next',
+                                     'type' => ActivityStreamJSONDocument::CONTENT_TYPE));
+            }
+
+            if (($this->page > 1 || !empty($this->max_id)) && !empty($this->notices)) {
+                $doc->addLink($prevUrl,
+                               array('rel' => 'prev',
+                                     'type' => ActivityStreamJSONDocument::CONTENT_TYPE));
+            }
+
+            if ($this->page > 1 || !empty($this->since_id) || !empty($this->max_id)) {
+                $doc->addLink($firstUrl,
+                               array('rel' => 'first',
+                                     'type' => ActivityStreamJSONDocument::CONTENT_TYPE));
+            }
 
             $this->raw($doc->asString());
             break;

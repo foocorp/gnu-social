@@ -30,7 +30,7 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
+require_once __DIR__ . '/twitter.php';
 
 /**
  * Plugin for sending and importing Twitter statuses
