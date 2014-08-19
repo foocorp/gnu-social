@@ -63,7 +63,7 @@ class AttachmentListItem extends Widget
     }
 
     function title() {
-        return $this->attachment->title ?: $this->attachment->filename;
+        return $this->attachment->getTitle();
     }
 
     function linkTitle() {

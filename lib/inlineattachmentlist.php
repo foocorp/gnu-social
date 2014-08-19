@@ -35,12 +35,8 @@ class InlineAttachmentList extends AttachmentList
 {
     function showListStart()
     {
-        $this->out->elementStart('div', array('class' => 'attachments'));
-    }
-
-    function showListEnd()
-    {
-        $this->out->elementEnd('div');
+        $this->out->element('h2', null, _('Attachments'));
+        parent::showListStart();
     }
 
     /**
@@ -59,20 +55,8 @@ class InlineAttachmentList extends AttachmentList
 class InlineAttachmentListItem extends AttachmentListItem
 {
     function showLink() {
-        $this->out->elementStart('a', $this->linkAttr());
+        $this->out->element('a', $this->linkAttr(), $this->title());
         $this->showRepresentation();
-        $this->out->elementEnd('a');
-    }
-
-    /**
-     * Build HTML attributes for the link
-     * @return array
-     */
-    function linkAttr()
-    {
-        $attr = parent::linkAttr();
-        $attr['class'] = 'attachment-thumbnail';
-        return $attr;
     }
 
     /**
@@ -84,7 +68,7 @@ class InlineAttachmentListItem extends AttachmentListItem
     {
         // XXX: RDFa
         // TODO: add notice_type class e.g., notice_video, notice_image
-        $this->out->elementStart('span', array('class' => 'inline-attachment'));
+        $this->out->elementStart('li', array('class' => 'inline-attachment'));
     }
 
     /**
@@ -96,6 +80,6 @@ class InlineAttachmentListItem extends AttachmentListItem
      */
     function showEnd()
     {
-        $this->out->elementEnd('span');
+        $this->out->elementEnd('li');
     }
 }

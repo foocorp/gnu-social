@@ -31,7 +31,7 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
+require_once dirname(__DIR__) . '/twitter.php';
 
 /**
  * Encapsulation of the Twitter status -> notice incoming bridge import.

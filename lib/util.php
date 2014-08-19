@@ -1820,6 +1820,15 @@ function common_get_mime_media($type)
     return strtolower($tmp[0]);
 }
 
+function common_bare_mime($mimetype)
+{
+    $mimetype = mb_strtolower($mimetype);
+    if ($semicolon = mb_strpos($mimetype, ';')) {
+        $mimetype = mb_substr($mimetype, 0, $semicolon);
+    }
+    return $mimetype;
+}
+
 function common_mime_type_match($type, $avail)
 {
     if(array_key_exists($type, $avail)) {
