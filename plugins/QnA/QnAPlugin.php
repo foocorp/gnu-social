@@ -317,57 +317,6 @@ class QnAPlugin extends MicroAppPlugin
     }
 
     /**
-     * Custom HTML output for our notices
-     *
-     * @param Notice $notice
-     * @param HTMLOutputter $out
-     */
-    function showNoticeContent(Notice $notice, $out)
-    {
-        switch ($notice->object_type) {
-        case QnA_Question::OBJECT_TYPE:
-            return $this->showNoticeQuestion($notice, $out);
-        case QnA_Answer::OBJECT_TYPE:
-            return $this->showNoticeAnswer($notice, $out);
-        default:
-            throw new Exception(
-                // TRANS: Exception thrown when performing an unexpected action on a question.
-                // TRANS: %s is the unpexpected object type.
-                sprintf(_m('Unexpected type for QnA plugin: %s.'),
-                        $notice->object_type
-                )
-            );
-        }
-    }
-
-    function showNoticeQuestion(Notice $notice, $out)
-    {
-        $user = common_current_user();
-
-        // @hack we want regular rendering, then just add stuff after that
-        $nli = new NoticeListItem($notice, $out);
-        $nli->showNotice();
-
-        $out->elementStart('div', array('class' => 'e-content question-description'));
-
-        $question = QnA_Question::getByNotice($notice);
-
-        if (!empty($question)) {
-
-            $form = new QnashowquestionForm($out, $question);
-            $form->show();
-
-        } else {
-            // TRANS: Error message displayed when question data is not present.
-            $out->text(_m('Question data is missing.'));
-        }
-        $out->elementEnd('div');
-
-        // @fixme
-        $out->elementStart('div', array('class' => 'e-content'));
-    }
-
-    /**
      * Output the HTML for this kind of object in a list
      *
      * @param NoticeListItem $nli The list item being shown.
@@ -385,7 +334,7 @@ class QnAPlugin extends MicroAppPlugin
         $out = $nli->out;
         $notice = $nli->notice;
 
-        $this->showNotice($notice, $out);
+        $nli->showNotice($notice, $out);
 
         $nli->showNoticeLink();
         $nli->showNoticeSource();
@@ -430,30 +379,8 @@ class QnAPlugin extends MicroAppPlugin
         return false;
     }
 
-    function showNoticeAnswer(Notice $notice, $out)
-    {
-        $user = common_current_user();
-
-        $answer   = QnA_Answer::getByNotice($notice);
-        $question = $answer->getQuestion();
-
-        $nli = new NoticeListItem($notice, $out);
-        $nli->showNotice();
-
-        $out->elementStart('div', array('class' => 'e-content answer-content'));
-
-        if (!empty($answer)) {
-            $form = new QnashowanswerForm($out, $answer);
-            $form->show();
-        } else {
-            // TRANS: Error message displayed when answer data is not present.
-            $out->text(_m('Answer data is missing.'));
-        }
-
-        $out->elementEnd('div');
-
-        // @todo FIXME
-        $out->elementStart('div', array('class' => 'e-content'));
+    function adaptNoticeListItem($nli) {
+        return new QnAListItem($nli);
     }
 
     static function shorten($content, $notice)
