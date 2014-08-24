@@ -133,6 +133,9 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
         $feed->addNamespace('media',
                             'http://purl.org/syndication/atommedia');
 
+        $feed->addNamespace('georss',
+                            'http://www.georss.org/georss');
+
         $feed->id = $url;
 
         $feed->setUpdated('now');
