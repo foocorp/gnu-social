@@ -33,8 +33,8 @@ by the startdaemons script
 
 ENDOFHELP;
 
-// No error reporting to avoid invalid daemon names
-error_reporting(0);
+// No unnecessary error reporting to avoid invalid daemon names
+error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE);
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
