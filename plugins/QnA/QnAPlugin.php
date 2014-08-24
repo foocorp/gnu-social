@@ -342,8 +342,6 @@ class QnAPlugin extends MicroAppPlugin
         $nli->showContext();
         $nli->showRepeat();
 
-        $out->elementEnd('div');
-
         $nli->showNoticeOptions();
 
         if ($notice->object_type == QnA_Question::OBJECT_TYPE) {
