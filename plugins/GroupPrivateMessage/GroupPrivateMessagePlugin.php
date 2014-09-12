@@ -190,7 +190,7 @@ class GroupPrivateMessagePlugin extends Plugin
     function onEndGroupSaveForm(Action $action)
     {
         // The Action class must contain this method
-        assert(is_callable(array($action 'getGroup')));
+        assert(is_callable(array($action, 'getGroup')));
 
         $gps = null;
 
