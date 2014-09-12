@@ -101,7 +101,7 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @see Action
      */
-    function onEndGroupGroupNav($groupnav)
+    function onEndGroupGroupNav(Menu $groupnav)
     {
         $action = $groupnav->action;
         $group  = $groupnav->group;
@@ -146,7 +146,7 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @param GroupEditForm $form form being shown
      */
-    function onEndGroupEditFormData($form)
+    function onEndGroupEditFormData(GroupEditForm $form)
     {
         $gps = null;
 
@@ -187,19 +187,19 @@ class GroupPrivateMessagePlugin extends Plugin
         return true;
     }
 
-    function onEndGroupSaveForm($action)
+    function onEndGroupSaveForm(GroupAction $action)
     {
         $gps = null;
 
-        if (!empty($action->group)) {
-            $gps = Group_privacy_settings::getKV('group_id', $action->group->id);
+        if (!empty($action->getGroup())) {
+            $gps = Group_privacy_settings::getKV('group_id', $action->getGroup()->id);
         }
 
         $orig = null;
 
         if (empty($gps)) {
             $gps = new Group_privacy_settings();
-            $gps->group_id = $action->group->id;
+            $gps->group_id = $action->getGroup()->id;
         } else {
             $orig = clone($gps);
         }
@@ -230,7 +230,7 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onStartInterpretCommand($cmd, $arg, $user, &$result)
+    function onStartInterpretCommand($cmd, $arg, User $user, &$result)
     {
         if ($cmd == 'd' || $cmd == 'dm') {
 
@@ -264,7 +264,7 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onEndGroupActionsList($widget, $group)
+    function onEndGroupActionsList(Widget $widget, User_group $group)
     {
         $cur = common_current_user();
         $action = $widget->out;
@@ -299,7 +299,7 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @param
      */
-    function onStartNoticeSave(&$notice) {
+    function onStartNoticeSave(Notice &$notice) {
         // Look for group tags
         // FIXME: won't work for remote groups
         // @fixme if Notice::saveNew is refactored so we can just pull its list
@@ -378,7 +378,7 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onEndGroupProfileElements($action, $group)
+    function onEndGroupProfileElements(Action $action, User_group $group)
     {
         $gps = Group_privacy_settings::forGroup($group);
 
@@ -390,10 +390,10 @@ class GroupPrivateMessagePlugin extends Plugin
         return true;
     }
 
-    function onStartShowExportData($action)
+    function onStartShowExportData(GroupAction $action)
     {
         if ($action instanceof ShowgroupAction) {
-            $gps = Group_privacy_settings::forGroup($action->group);
+            $gps = Group_privacy_settings::forGroup($action->getGroup());
 
             if ($gps->allow_privacy == Group_privacy_settings::ALWAYS) {
                 return false;

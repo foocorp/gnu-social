@@ -32,7 +32,7 @@ class GroupFavoritedPlugin extends Plugin
      * @param Net_URL_Mapper $m path-to-action mapper
      * @return boolean hook return
      */
-    function onRouterInitialized($m)
+    function onRouterInitialized(Net_URL_Mapper $m)
     {
         $m->connect('group/:nickname/favorited',
                     array('action' => 'groupfavorited'),
@@ -41,7 +41,7 @@ class GroupFavoritedPlugin extends Plugin
         return true;
     }
 
-    function onEndGroupGroupNav(GroupNav $nav)
+    function onEndGroupGroupNav(Menu $nav)
     {
         $action_name = $nav->action->trimmed('action');
         $nickname = $nav->group->nickname;
@@ -65,7 +65,7 @@ class GroupFavoritedPlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $url = 'http://status.net/wiki/Plugin:GroupFavorited';
 

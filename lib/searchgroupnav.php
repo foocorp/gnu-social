@@ -51,7 +51,7 @@ class SearchGroupNav extends Menu
      *
      * @param Action $action current action, used for output
      */
-    function __construct($action=null, $q = null)
+    function __construct(Action $action=null, $q = null)
     {
         parent::__construct($action);
         $this->q = $q;

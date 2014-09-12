@@ -284,6 +284,11 @@ class GroupAction extends Action
 
         return $options;
     }
+
+    function getGroup()
+    {
+        return $this->group;
+    }
 }
 
 class GroupAdminSection extends ProfileSection

@@ -61,7 +61,7 @@ class PeopletagGroupNav extends Widget
      *
      * @param Action $action current action, used for output
      */
-    function __construct($action=null)
+    function __construct(Action $action=null)
     {
         parent::__construct($action);
         $this->action = $action;

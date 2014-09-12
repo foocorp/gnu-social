@@ -56,7 +56,7 @@ class Menu extends Widget
      *
      * @param Action $action current action, used for output
      */
-    function __construct($action=null)
+    function __construct(Action $action=null)
     {
         parent::__construct($action);
 
@@ -104,7 +104,7 @@ class Menu extends Widget
         }
     }
     
-    function item($actionName, $args, $label, $description, $id=null, $cls=null)
+    function item($actionName, array $args, $label, $description, $id=null, $cls=null)
     {
         if (empty($id)) {
             $id = $this->menuItemID($actionName, $args);
@@ -120,7 +120,7 @@ class Menu extends Widget
                              $cls);
     }
 
-    function isCurrent($actionName, $args)
+    function isCurrent($actionName, array $args)
     {
         if ($actionName != $this->actionName) {
             return false;

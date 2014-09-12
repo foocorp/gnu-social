@@ -50,8 +50,9 @@ class SubGroupNav extends Menu
      * Construction
      *
      * @param Action $action current action, used for output
+     * @param User   $user   Current user or NULL if "guest"
      */
-    function __construct($action=null, $user=null)
+    function __construct(Action $action=null, User $user=null)
     {
         parent::__construct($action);
         $this->user = $user;
