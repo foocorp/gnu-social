@@ -46,6 +46,12 @@ if (!defined('STATUSNET')) {
  */
 class NewgroupAction extends FormAction
 {
+    protected $group;
+
+    function getGroup() {
+        return $this->group;
+    }
+
     function title()
     {
         // TRANS: Title for form to create a group.

@@ -187,8 +187,11 @@ class GroupPrivateMessagePlugin extends Plugin
         return true;
     }
 
-    function onEndGroupSaveForm(GroupAction $action)
+    function onEndGroupSaveForm(Action $action)
     {
+        // The Action class must contain this method
+        assert(is_callable(array($action 'getGroup')));
+
         $gps = null;
 
         if (!empty($action->getGroup())) {
@@ -390,7 +393,7 @@ class GroupPrivateMessagePlugin extends Plugin
         return true;
     }
 
-    function onStartShowExportData(GroupAction $action)
+    function onStartShowExportData(Action $action)
     {
         if ($action instanceof ShowgroupAction) {
             $gps = Group_privacy_settings::forGroup($action->getGroup());
