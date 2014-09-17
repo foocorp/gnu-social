@@ -95,7 +95,6 @@ class LdapCommon
             return false;
         }
 
-        return parent::onAutoload($cls);
     }
 
     function get_ldap_config(){
