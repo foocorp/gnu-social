@@ -95,6 +95,7 @@ class LdapCommon
             return false;
         }
 
+        return true;
     }
 
     function get_ldap_config(){
