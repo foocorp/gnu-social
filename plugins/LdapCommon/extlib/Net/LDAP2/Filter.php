@@ -10,7 +10,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2009 Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: Filter.php 289978 2009-10-27 09:56:41Z beni $
+* @version   SVN: $Id: Filter.php 332305 2013-12-09 08:51:41Z beni $
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -18,7 +18,8 @@
 * Includes
 */
 require_once 'PEAR.php';
-require_once 'Util.php';
+require_once 'Net/LDAP2/Util.php';
+require_once 'Net/LDAP2/Entry.php';
 
 /**
 * Object representation of a part of a LDAP filter.
@@ -134,6 +135,9 @@ class Net_LDAP2_Filter extends PEAR
     *    - lessOrEqual:    The attributes value is less or equal than $value
     *    - approx:         One of the attributes values is similar to $value
     *
+    * Negation ("not") can be done by prepending the above operators with the
+    * "not" or "!" keyword, see example below. 
+    *
     * If $escape is set to true (default) then $value will be escaped
     * properly. If it is set to false then $value will be treaten as raw filter value string.
     * You should escape yourself using {@link Net_LDAP2_Util::escape_filter_value()}!
@@ -141,10 +145,13 @@ class Net_LDAP2_Filter extends PEAR
     * Examples:
     * <code>
     *   // This will find entries that contain an attribute "sn" that ends with "foobar":
-    *   $filter = new Net_LDAP2_Filter('sn', 'ends', 'foobar');
+    *   $filter = Net_LDAP2_Filter::create('sn', 'ends', 'foobar');
     *
     *   // This will find entries that contain an attribute "sn" that has any value set:
-    *   $filter = new Net_LDAP2_Filter('sn', 'any');
+    *   $filter = Net_LDAP2_Filter::create('sn', 'any');
+    *
+    *   // This will build a negated equals filter:
+    *   $filter = Net_LDAP2_Filter::create('sn', 'not equals', 'foobar');
     * </code>
     *
     * @param string  $attr_name Name of the attribute the filter should apply to
@@ -161,8 +168,22 @@ class Net_LDAP2_Filter extends PEAR
             $array = Net_LDAP2_Util::escape_filter_value(array($value));
             $value = $array[0];
         }
-        switch (strtolower($match)) {
+
+        $match = strtolower($match);
+
+        // detect negation
+        $neg_matches   = array();
+        $negate_filter = false;
+        if (preg_match('/^(?:not|!)[\s_-](.+)/', $match, $neg_matches)) {
+            $negate_filter = true;
+            $match         = $neg_matches[1];
+        }
+
+        // build basic filter
+        switch ($match) {
         case 'equals':
+        case '=':
+        case '==':
             $leaf_filter->_filter = '(' . $attr_name . '=' . $value . ')';
             break;
         case 'begins':
@@ -175,9 +196,11 @@ class Net_LDAP2_Filter extends PEAR
             $leaf_filter->_filter = '(' . $attr_name . '=*' . $value . '*)';
             break;
         case 'greater':
+        case '>':
             $leaf_filter->_filter = '(' . $attr_name . '>' . $value . ')';
             break;
         case 'less':
+        case '<':
             $leaf_filter->_filter = '(' . $attr_name . '<' . $value . ')';
             break;
         case 'greaterorequal':
@@ -199,6 +222,12 @@ class Net_LDAP2_Filter extends PEAR
         default:
             return PEAR::raiseError('Net_LDAP2_Filter create error: matching rule "' . $match . '" not known!');
         }
+        
+        // negate if requested
+        if ($negate_filter) {
+           $leaf_filter = Net_LDAP2_Filter::combine('!', $leaf_filter);
+        }
+
         return $leaf_filter;
     }
 
@@ -207,10 +236,10 @@ class Net_LDAP2_Filter extends PEAR
     *
     * This static method combines two or more filter objects and returns one single
     * filter object that contains all the others.
-    * Call this method statically: $filter = Net_LDAP2_Filter('or', array($filter1, $filter2))
+    * Call this method statically: $filter = Net_LDAP2_Filter::combine('or', array($filter1, $filter2))
     * If the array contains filter strings instead of filter objects, we will try to parse them.
     *
-    * @param string                 $log_op  The locicall operator. May be "and", "or", "not" or the subsequent logical equivalents "&", "|", "!"
+    * @param string                 $log_op  The locical operator. May be "and", "or", "not" or the subsequent logical equivalents "&", "|", "!"
     * @param array|Net_LDAP2_Filter $filters array with Net_LDAP2_Filter objects
     *
     * @return Net_LDAP2_Filter|Net_LDAP2_Error
@@ -241,8 +270,13 @@ class Net_LDAP2_Filter extends PEAR
                     $filters = array($filter_o);
                 }
             } elseif (is_array($filters)) {
-                $err = PEAR::raiseError('Net_LDAP2_Filter combine error: operator is "not" but $filter is an array!');
-                return $err;
+                if (count($filters) != 1) {
+                    $err = PEAR::raiseError('Net_LDAP2_Filter combine error: operator is "not" but $filter is an array!');
+                    return $err;
+                } elseif (!($filters[0] instanceof Net_LDAP2_Filter)) {
+                     $err = PEAR::raiseError('Net_LDAP2_Filter combine error: operator is "not" but $filter is not a valid Net_LDAP2_Filter nor a filter string!');
+                     return $err;
+                }
             } else {
                 $err = PEAR::raiseError('Net_LDAP2_Filter combine error: operator is "not" but $filter is not a valid Net_LDAP2_Filter nor a filter string!');
                 return $err;
@@ -294,6 +328,17 @@ class Net_LDAP2_Filter extends PEAR
     public static function parse($FILTER)
     {
         if (preg_match('/^\((.+?)\)$/', $FILTER, $matches)) {
+            // Check for right bracket syntax: count of unescaped opening
+            // brackets must match count of unescaped closing brackets.
+            // At this stage we may have:
+            //   1. one filter component with already removed outer brackets
+            //   2. one or more subfilter components
+            $c_openbracks  = preg_match_all('/(?<!\\\\)\(/' , $matches[1], $notrelevant);
+            $c_closebracks = preg_match_all('/(?<!\\\\)\)/' , $matches[1], $notrelevant);
+            if ($c_openbracks != $c_closebracks) {
+                return PEAR::raiseError("Filter parsing error: invalid filter syntax - opening brackets do not match close brackets!");
+            }
+
             if (in_array(substr($matches[1], 0, 1), array('!', '|', '&'))) {
                 // Subfilter processing: pass subfilters to parse() and combine
                 // the objects using the logical operator detected
@@ -378,7 +423,7 @@ class Net_LDAP2_Filter extends PEAR
                 if (stristr($matches[1], ')(')) {
                     return PEAR::raiseError("Filter parsing error: invalid filter syntax - multiple leaf components detected!");
                 } else {
-                    $filter_parts = preg_split('/(?<!\\\\)(=|=~|>|<|>=|<=)/', $matches[1], 2, PREG_SPLIT_DELIM_CAPTURE);
+                    $filter_parts = Net_LDAP2_Util::split_attribute_string($matches[1], true, true);
                     if (count($filter_parts) != 3) {
                         return PEAR::raiseError("Filter parsing error: invalid filter syntax - unknown matching rule used");
                     } else {
@@ -510,5 +555,121 @@ class Net_LDAP2_Filter extends PEAR
             return true; // Leaf!
         }
     }
+
+    /**
+    * Filter entries using this filter or see if a filter matches
+    *
+    * @todo Currently slow and naive implementation with preg_match, could be optimized (esp. begins, ends filters etc)
+    * @todo Currently only "="-based matches (equals, begins, ends, contains, any) implemented; Implement all the stuff!
+    * @todo Implement expert code with schema checks in case $entry is connected to a directory
+    * @param array|Net_LDAP2_Entry The entry (or array with entries) to check
+    * @param array                 If given, the array will be appended with entries who matched the filter. Return value is true if any entry matched.
+    * @return int|Net_LDAP2_Error Returns the number of matched entries or error
+    */
+    function matches(&$entries, &$results=array()) {
+        $numOfMatches = 0;
+
+        if (!is_array($entries)) {
+            $all_entries = array(&$entries);
+        } else {
+            $all_entries = &$entries;
+        }
+
+        foreach ($all_entries as $entry) {
+            // look at the current entry and see if filter matches
+
+            $entry_matched = false;
+            // if this is not a single component, do calculate all subfilters,
+            // then assert the partial results with the given combination modifier
+            if (!$this->isLeaf()) {
+        
+                // get partial results from subfilters
+                $partial_results = array();
+                foreach ($this->_subfilters as $filter) {
+                    $partial_results[] = $filter->matches($entry);
+                }
+            
+                // evaluate partial results using this filters combination rule
+                switch ($this->_match) {
+                    case '!':
+                        // result is the neagtive result of the assertion
+                        $entry_matched = !$partial_results[0];
+                    break;
+
+                    case '&':
+                        // all partial results have to be boolean-true
+                        $entry_matched = !in_array(false, $partial_results);
+                    break;
+                
+                    case '|':
+                        // at least one partial result has to be true
+                        $entry_matched = in_array(true, $partial_results);
+                    break;
+                }
+            
+            } else {
+                // Leaf filter: assert given entry
+                // [TODO]: Could be optimized to avoid preg_match especially with "ends", "begins" etc
+            
+                // Translate the LDAP-match to some preg_match expression and evaluate it
+                list($attribute, $match, $assertValue) = $this->getComponents();
+                switch ($match) {
+                    case '=':
+                        $regexp = '/^'.str_replace('*', '.*', $assertValue).'$/i'; // not case sensitive unless specified by schema
+                        $entry_matched = $entry->pregMatch($regexp, $attribute);
+                    break;
+                
+                    // -------------------------------------
+                    // [TODO]: implement <, >, <=, >= and =~
+                    // -------------------------------------
+                
+                    default:
+                        $err = PEAR::raiseError("Net_LDAP2_Filter match error: unsupported match rule '$match'!");
+                        return $err;
+                }
+            
+            }
+
+            // process filter matching result
+            if ($entry_matched) {
+                $numOfMatches++;
+                $results[] = $entry;
+            }
+
+        }
+
+        return $numOfMatches;
+    }
+
+
+    /**
+    * Retrieve this leaf-filters attribute, match and value component.
+    *
+    * For leaf filters, this returns array(attr, match, value).
+    * Match is be the logical operator, not the text representation,
+    * eg "=" instead of "equals". Note that some operators are really
+    * a combination of operator+value with wildcard, like
+    * "begins": That will return "=" with the value "value*"!
+    *
+    * For non-leaf filters this will drop an error.
+    *
+    * @todo $this->_match is not always available and thus not usable here; it would be great if it would set in the factory methods and constructor.
+    * @return array|Net_LDAP2_Error
+    */
+    function getComponents() {
+        if ($this->isLeaf()) {
+            $raw_filter = preg_replace('/^\(|\)$/', '', $this->_filter);
+            $parts = Net_LDAP2_Util::split_attribute_string($raw_filter, true, true);
+            if (count($parts) != 3) {
+                return PEAR::raiseError("Net_LDAP2_Filter getComponents() error: invalid filter syntax - unknown matching rule used");
+            } else {
+                return $parts;
+            }
+        } else {
+            return PEAR::raiseError('Net_LDAP2_Filter getComponents() call is invalid for non-leaf filters!');
+        }
+    }
+
+
 }
 ?>

@@ -11,7 +11,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2009 Tarjej Huse, Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: Search.php 286718 2009-08-03 07:30:49Z beni $
+* @version   SVN: $Id: Search.php 328961 2013-01-03 09:04:30Z beni $
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -106,12 +106,21 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     /**
     * Cache variable for storing entries fetched internally
     *
-    * This currently is only used by {@link pop_entry()}
+    * This currently is not used by all functions and need consolidation.
     *
     * @access protected
     * @var array
     */
     protected $_entry_cache = false;
+
+    /**
+    * Cache variable for count()
+    *
+    * @see count()
+    * @access protected
+    * @var int
+    */
+    protected $_count_cache = null;
 
     /**
     * Constructor
@@ -143,7 +152,7 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     }
 
     /**
-    * Returns an array of entry objects
+    * Returns an array of entry objects.
     *
     * @return array Array of entry objects.
     */
@@ -151,15 +160,19 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     {
         $entries = array();
 
-        while ($entry = $this->shiftEntry()) {
-            $entries[] = $entry;
+        if (false === $this->_entry_cache) {
+            // cache is empty: fetch from LDAP
+            while ($entry = $this->shiftEntry()) {
+                $entries[] = $entry;
+            }
+            $this->_entry_cache = $entries; // store result in cache
         }
 
-        return $entries;
+        return $this->_entry_cache;
     }
 
     /**
-    * Get the next entry in the searchresult.
+    * Get the next entry in the searchresult from LDAP server.
     *
     * This will return a valid Net_LDAP2_Entry object or false, so
     * you can use this method to easily iterate over the entries inside
@@ -169,22 +182,20 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     */
     public function &shiftEntry()
     {
-        if ($this->count() == 0 ) {
-            $false = false;
-            return $false;
-        }
-
         if (is_null($this->_entry)) {
-            $this->_entry = @ldap_first_entry($this->_link, $this->_search);
+            if(!$this->_entry = @ldap_first_entry($this->_link, $this->_search)) {
+                $false = false;
+                return $false;
+            }
             $entry = Net_LDAP2_Entry::createConnected($this->_ldap, $this->_entry);
-            if ($entry instanceof Net_LDAP2_Error) $entry = false;
+            if ($entry instanceof PEAR_Error) $entry = false;
         } else {
             if (!$this->_entry = @ldap_next_entry($this->_link, $this->_entry)) {
                 $false = false;
                 return $false;
             }
             $entry = Net_LDAP2_Entry::createConnected($this->_ldap, $this->_entry);
-            if ($entry instanceof Net_LDAP2_Error) $entry = false;
+            if ($entry instanceof PEAR_Error) $entry = false;
         }
         return $entry;
     }
@@ -461,7 +472,13 @@ class Net_LDAP2_Search extends PEAR implements Iterator
         if (!$this->_search) {
             return 0;
         }
-        return @ldap_count_entries($this->_link, $this->_search);
+        // ldap_count_entries is slow (see pear bug #18752) with large results,
+        // so we cache the result internally.
+        if ($this->_count_cache === null) {
+            $this->_count_cache = @ldap_count_entries($this->_link, $this->_search);
+        }
+
+        return $this->_count_cache;
     }
 
     /**

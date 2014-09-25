@@ -12,7 +12,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2009 Tarjej Huse, Jan Wagner, Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: Entry.php 286787 2009-08-04 06:03:12Z beni $
+* @version   SVN: $Id: Entry.php 332301 2013-12-09 08:17:14Z beni $
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -20,7 +20,7 @@
 * Includes
 */
 require_once 'PEAR.php';
-require_once 'Util.php';
+require_once 'Net/LDAP2/Util.php';
 
 /**
 * Object representation of a directory entry
@@ -309,7 +309,7 @@ class Net_LDAP2_Entry extends PEAR
     public function dn($dn = null)
     {
         if (false == is_null($dn)) {
-            if (is_null($this->_dn)) {
+            if (is_null($this->_dn) ) {
                 $this->_dn = $dn;
             } else {
                 $this->_newdn = $dn;
@@ -419,6 +419,7 @@ class Net_LDAP2_Entry extends PEAR
     * The returned hash has the form
     * <code>array('attributename' => 'single value',
     *       'attributename' => array('value1', value2', value3'))</code>
+    * Only attributes present at the entry will be returned.
     *
     * @access public
     * @return array Hash of all attributes with their values
@@ -437,31 +438,59 @@ class Net_LDAP2_Entry extends PEAR
     *
     * The first parameter is the name of the attribute
     * The second parameter influences the way the value is returned:
-    * 'single': only the first value is returned as string
-    * 'all': all values including the value count are returned in an
-    *               array
+    * 'single':  only the first value is returned as string
+    * 'all':     all values are returned in an array
     * 'default': in all other cases an attribute value with a single value is
     *            returned as string, if it has multiple values it is returned
-    *            as an array (without value count)
+    *            as an array
     *
-    * @param string $attr   Attribute name
-    * @param string $option Option
+    * If the attribute is not set at this entry (no value or not defined in
+    * schema), "false" is returned when $option is 'single', an empty string if
+    * 'default', and an empty array when 'all'.
+    *
+    * You may use Net_LDAP2_Schema->checkAttribute() to see if the attribute
+    * is defined for the objectClasses of this entry.
+    *
+    * @param string  $attr         Attribute name
+    * @param string  $option       Option
     *
     * @access public
-    * @return string|array|PEAR_Error string, array or PEAR_Error
+    * @return string|array
     */
     public function getValue($attr, $option = null)
     {
         $attr = $this->getAttrName($attr);
 
-        if (false == array_key_exists($attr, $this->_attributes)) {
-            return PEAR::raiseError("Unknown attribute ($attr) requested");
-        }
+        // return depending on set $options
+        if (!array_key_exists($attr, $this->_attributes)) {
+            // attribute not set
+            switch ($option) {
+                case 'single':
+                    $value = false;
+                break;
+                case 'all':
+                    $value = array();
+                break;
+                default:
+                    $value = '';
+            }
 
-        $value = $this->_attributes[$attr];
-
-        if ($option == "single" || (count($value) == 1 && $option != 'all')) {
-            $value = array_shift($value);
+        } else {
+            // attribute present
+            switch ($option) {
+                case 'single':
+                    $value = $this->_attributes[$attr][0];
+                break;
+                case 'all':
+                    $value = $this->_attributes[$attr];
+                break;
+                default:
+                    $value = $this->_attributes[$attr];
+                    if (count($value) == 1) {
+                        $value = array_shift($value);
+                    }
+            }
+            
         }
 
         return $value;
@@ -529,6 +558,9 @@ class Net_LDAP2_Entry extends PEAR
         if (false == is_array($attr)) {
             return PEAR::raiseError("Parameter must be an array");
         }
+        if ($this->isNew()) {
+            $this->setAttributes($attr);
+        }
         foreach ($attr as $k => $v) {
             $k = $this->getAttrName($k);
             if (false == is_array($v)) {
@@ -547,11 +579,12 @@ class Net_LDAP2_Entry extends PEAR
                 $this->_attributes[$k]      = $v;
             }
             // save changes for update()
-            if (empty($this->_changes["add"][$k])) {
+            if (!isset($this->_changes["add"][$k])) {
                 $this->_changes["add"][$k] = array();
             }
             $this->_changes["add"][$k] = array_unique(array_merge($this->_changes["add"][$k], $v));
         }
+
         $return = true;
         return $return;
     }
@@ -760,6 +793,14 @@ class Net_LDAP2_Entry extends PEAR
             $this->_changes['replace'] = array();
             $this->_original           = $this->_attributes;
 
+            // In case the "new" entry was moved after creation, we must
+            // adjust the internal DNs as the entry was already created
+            // with the most current DN.
+            if (false == is_null($this->_newdn)) {
+                $this->_dn    = $this->_newdn;
+                $this->_newdn = null;
+            }
+
             $return = true;
             return $return;
         }
@@ -785,7 +826,8 @@ class Net_LDAP2_Entry extends PEAR
             $parent = Net_LDAP2_Util::canonical_dn($parent);
 
             // rename/move
-            if (false == @ldap_rename($link, $this->_dn, $child, $parent, true)) {
+            if (false == @ldap_rename($link, $this->_dn, $child, $parent, false)) {
+
                 return PEAR::raiseError("Entry not renamed: " .
                                         @ldap_error($link), @ldap_errno($link));
             }
@@ -795,51 +837,55 @@ class Net_LDAP2_Entry extends PEAR
         }
 
         /*
-        * Carry out modifications to the entry
+        * Retrieve a entry that has all attributes we need so that the list of changes to build is created accurately
         */
+        $fullEntry = $ldap->getEntry( $this->dn() );
+        if ( Net_LDAP2::isError($fullEntry) ) {
+            return PEAR::raiseError("Could not retrieve a full set of attributes to reconcile changes with");
+        }
+        $modifications = array();
+
         // ADD
         foreach ($this->_changes["add"] as $attr => $value) {
-            // if attribute exists, add new values
-            if ($this->exists($attr)) {
-                if (false === @ldap_mod_add($link, $this->dn(), array($attr => $value))) {
-                    return PEAR::raiseError("Could not add new values to attribute $attr: " .
-                                            @ldap_error($link), @ldap_errno($link));
-                }
-            } else {
-                // new attribute
-                if (false === @ldap_modify($link, $this->dn(), array($attr => $value))) {
-                    return PEAR::raiseError("Could not add new attribute $attr: " .
-                                            @ldap_error($link), @ldap_errno($link));
-                }
-            }
-            // all went well here, I guess
-            unset($this->_changes["add"][$attr]);
+            // if attribute exists, we need to combine old and new values
+            if ($fullEntry->exists($attr)) {
+                $currentValue = $fullEntry->getValue($attr, "all");
+                $value = array_merge( $currentValue, $value );
+            } 
+            
+            $modifications[$attr] = $value;
         }
 
         // DELETE
         foreach ($this->_changes["delete"] as $attr => $value) {
             // In LDAPv3 you need to specify the old values for deleting
             if (is_null($value) && $ldap->getLDAPVersion() === 3) {
-                $value = $this->_original[$attr];
+                $value = $fullEntry->getValue($attr);
             }
-            if (false === @ldap_mod_del($link, $this->dn(), array($attr => $value))) {
-                return PEAR::raiseError("Could not delete attribute $attr: " .
-                                        @ldap_error($link), @ldap_errno($link));
+            if (!is_array($value)) {
+                $value = array($value);
             }
-            unset($this->_changes["delete"][$attr]);
+            
+            // Find out what is missing from $value and exclude it
+            $currentValue = isset($modifications[$attr]) ? $modifications[$attr] : $fullEntry->getValue($attr, "all");
+            $modifications[$attr] = array_values( array_diff( $currentValue, $value ) );
         }
 
         // REPLACE
         foreach ($this->_changes["replace"] as $attr => $value) {
-            if (false === @ldap_modify($link, $this->dn(), array($attr => $value))) {
-                return PEAR::raiseError("Could not replace attribute $attr values: " .
-                                        @ldap_error($link), @ldap_errno($link));
-            }
-            unset($this->_changes["replace"][$attr]);
+            $modifications[$attr] = $value;
         }
 
-        // all went well, so _original (server) becomes _attributes (local copy)
-        $this->_original = $this->_attributes;
+        // COMMIT
+        if (false === @ldap_modify($link, $this->dn(), $modifications)) {
+            return PEAR::raiseError("Could not modify the entry: " . @ldap_error($link), @ldap_errno($link));
+        }
+
+        // all went well, so _original (server) becomes _attributes (local copy), reset _changes too...
+        $this->_changes['add']     = array();
+        $this->_changes['delete']  = array();
+        $this->_changes['replace'] = array();
+        $this->_original           = $this->_attributes;
 
         $return = true;
         return $return;
@@ -964,11 +1010,6 @@ class Net_LDAP2_Entry extends PEAR
 
         // fetch attribute values
         $attr = $this->getValue($attr_name, 'all');
-        if (Net_LDAP2::isError($attr)) {
-            return $attr;
-        } else {
-            unset($attr['count']);
-        }
 
         // perform preg_match() on all values
         $match = false;

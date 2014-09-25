@@ -10,7 +10,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2009 Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: Util.php 286718 2009-08-03 07:30:49Z beni $
+* @version   SVN: $Id: Util.php 332278 2013-12-05 11:01:15Z beni $
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -525,17 +525,29 @@ class Net_LDAP2_Util extends PEAR
     }
 
     /**
-    * Splits a attribute=value syntax into an array
+    * Splits an attribute=value syntax into an array
     *
-    * The split will occur at the first unescaped '=' character.
+    * If escaped delimeters are used, they are returned escaped as well.
+    * The split will occur at the first unescaped delimeter character.
+    * In case an invalid delimeter is given, no split will be performed and an
+    * one element array gets returned.
+    * Optional also filter-assertion delimeters can be considered (>, <, >=, <=, ~=).
     *
-    * @param string $attr Attribute and Value Syntax
+    * @param string  $attr      Attribute and Value Syntax ("foo=bar")
+    * @param boolean $extended  If set to true, also filter-assertion delimeter will be matched
+    * @param boolean $withDelim If set to true, the return array contains the delimeter at index 1, putting the value to index 2
     *
-    * @return array Indexed array: 0=attribute name, 1=attribute value
+    * @return array Indexed array: 0=attribute name, 1=attribute value OR ($withDelim=true): 0=attr, 1=delimeter, 2=value
     */
-    public static function split_attribute_string($attr)
+    public static function split_attribute_string($attr, $extended=false, $withDelim=false)
     {
-        return preg_split('/(?<!\\\\)=/', $attr, 2);
+	if ($withDelim) $withDelim = PREG_SPLIT_DELIM_CAPTURE;
+
+        if (!$extended) {
+            return preg_split('/(?<!\\\\)(=)/', $attr, 2, $withDelim);
+        } else {
+            return preg_split('/(?<!\\\\)(>=|<=|>|<|~=|=)/', $attr, 2, $withDelim);
+        }
     }
 
     /**

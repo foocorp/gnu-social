@@ -13,7 +13,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2003-2007 Tarjej Huse, Jan Wagner, Del Elson, Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: LDAP2.php 286788 2009-08-04 06:05:49Z beni $
+* @version   SVN: $Id: LDAP2.php 332308 2013-12-09 09:15:47Z beni $
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -39,7 +39,7 @@ define('NET_LDAP2_ERROR', 1000);
 /**
 * Net_LDAP2 Version
 */
-define('NET_LDAP2_VERSION', '2.0.7');
+define('NET_LDAP2_VERSION', '2.1.0');
 
 /**
 * Net_LDAP2 - manipulate LDAP servers the right way!
@@ -612,30 +612,47 @@ class Net_LDAP2 extends PEAR
     */
     public function startTLS()
     {
-        // Test to see if the server supports TLS first.
-        // This is done via testing the extensions offered by the server.
-        // The OID 1.3.6.1.4.1.1466.20037 tells us, if TLS is supported.
+        /* Test to see if the server supports TLS first.
+           This is done via testing the extensions offered by the server.
+           The OID 1.3.6.1.4.1.1466.20037 tells us, if TLS is supported.
+           Note, that not all servers allow to feth either the rootDSE or
+           attributes over an unencrypted channel, so we must ignore errors. */
         $rootDSE = $this->rootDse();
         if (self::isError($rootDSE)) {
-            return $this->raiseError("Unable to fetch rootDSE entry ".
-            "to see if TLS is supoported: ".$rootDSE->getMessage(), $rootDSE->getCode());
-        }
-
-        $supported_extensions = $rootDSE->getValue('supportedExtension');
-        if (self::isError($supported_extensions)) {
-            return $this->raiseError("Unable to fetch rootDSE attribute 'supportedExtension' ".
-            "to see if TLS is supoported: ".$supported_extensions->getMessage(), $supported_extensions->getCode());
-        }
-
-        if (in_array('1.3.6.1.4.1.1466.20037', $supported_extensions)) {
-            if (false === @ldap_start_tls($this->_link)) {
-                return $this->raiseError("TLS not started: " .
-                                        @ldap_error($this->_link),
-                                        @ldap_errno($this->_link));
-            }
-            return true;
+            /* IGNORE this error, because server may refuse fetching the
+               RootDSE over an unencrypted connection. */
+            //return $this->raiseError("Unable to fetch rootDSE entry ".
+            //"to see if TLS is supoported: ".$rootDSE->getMessage(), $rootDSE->getCode());
         } else {
-            return $this->raiseError("Server reports that it does not support TLS");
+            /* Fetch suceeded, see, if the server supports TLS. Again, we
+               ignore errors, because the server may refuse to return
+               attributes over unencryted connections. */
+            $supported_extensions = $rootDSE->getValue('supportedExtension');
+            if (self::isError($supported_extensions)) {
+                /* IGNORE error, because server may refuse attribute
+                   returning over an unencrypted connection. */
+                //return $this->raiseError("Unable to fetch rootDSE attribute 'supportedExtension' ".
+                //"to see if TLS is supoported: ".$supported_extensions->getMessage(), $supported_extensions->getCode());
+            } else {
+                // fetch succeedet, lets see if the server supports it.
+                // if not, then drop an error. If supported, then do nothing,
+                // because then we try to issue TLS afterwards.
+                if (!in_array('1.3.6.1.4.1.1466.20037', $supported_extensions)) {
+                    return $this->raiseError("Server reports that it does not support TLS.");
+                 }
+            }
+        }
+
+        // Try to establish TLS.
+        if (false === @ldap_start_tls($this->_link)) {
+            // Starting TLS failed. This may be an error, or because
+            // the server does not support it but did not enable us to
+            // detect that above.
+            return $this->raiseError("TLS could not be started: " .
+                                    @ldap_error($this->_link),
+                                    @ldap_errno($this->_link));
+        } else {
+            return true; // TLS is started now.
         }
     }
 
@@ -728,7 +745,7 @@ class Net_LDAP2 extends PEAR
                 // We have a failure.  What type?  We may be able to reconnect
                 // and try again.
                 $error_code = @ldap_errno($link);
-                $error_name = $this->errorMessage($error_code);
+                $error_name = Net_LDAP2::errorMessage($error_code);
 
                 if (($error_name === 'LDAP_OPERATIONS_ERROR') &&
                     ($this->_config['auto_reconnect'])) {
@@ -802,9 +819,9 @@ class Net_LDAP2 extends PEAR
                 // We have a failure.  What type?
                 // We may be able to reconnect and try again.
                 $error_code = @ldap_errno($link);
-                $error_name = $this->errorMessage($error_code);
+                $error_name = Net_LDAP2::errorMessage($error_code);
 
-                if (($this->errorMessage($error_code) === 'LDAP_OPERATIONS_ERROR') &&
+                if ((Net_LDAP2::errorMessage($error_code) === 'LDAP_OPERATIONS_ERROR') &&
                     ($this->_config['auto_reconnect'])) {
                     // The server has become disconnected before trying the
                     // operation.  We should try again, possibly with a 
@@ -898,9 +915,9 @@ class Net_LDAP2 extends PEAR
                         // We have a failure.  What type?  We may be able to reconnect
                         // and try again.
                         $error_code = $msg->getCode();
-                        $error_name = $this->errorMessage($error_code);
+                        $error_name = Net_LDAP2::errorMessage($error_code);
 
-                        if (($this->errorMessage($error_code) === 'LDAP_OPERATIONS_ERROR') &&
+                        if ((Net_LDAP2::errorMessage($error_code) === 'LDAP_OPERATIONS_ERROR') &&
                             ($this->_config['auto_reconnect'])) {
 
                             // The server has become disconnected before trying the
@@ -937,9 +954,9 @@ class Net_LDAP2 extends PEAR
                         // We have a failure.  What type?  We may be able to reconnect
                         // and try again.
                         $error_code = $msg->getCode();
-                        $error_name = $this->errorMessage($error_code);
+                        $error_name = Net_LDAP2::errorMessage($error_code);
 
-                        if (($this->errorMessage($error_code) === 'LDAP_OPERATIONS_ERROR') &&
+                        if ((Net_LDAP2::errorMessage($error_code) === 'LDAP_OPERATIONS_ERROR') &&
                             ($this->_config['auto_reconnect'])) {
 
                             // The server has become disconnected before trying the
@@ -1078,14 +1095,14 @@ class Net_LDAP2 extends PEAR
                     return $obj = new Net_LDAP2_Search ($search, $this, $attributes);
                 } elseif ($err == 87) {
                     // bad search filter
-                    return $this->raiseError($this->errorMessage($err) . "($filter)", $err);
+                    return $this->raiseError(Net_LDAP2::errorMessage($err) . "($filter)", $err);
                 } elseif (($err == 1) && ($this->_config['auto_reconnect'])) {
                     // Errorcode 1 = LDAP_OPERATIONS_ERROR but we can try a reconnect.
                     $this->_link = false;
                     $this->performReconnect();
                 } else {
                     $msg = "\nParameters:\nBase: $base\nFilter: $filter\nScope: $scope";
-                    return $this->raiseError($this->errorMessage($err) . $msg, $err);
+                    return $this->raiseError(Net_LDAP2::errorMessage($err) . $msg, $err);
                 }
             } else {
                 return $obj = new Net_LDAP2_Search($search, $this, $attributes);
@@ -1114,7 +1131,7 @@ class Net_LDAP2 extends PEAR
                         $msg = @ldap_err2str($err);
                     } else {
                         $err = NET_LDAP2_ERROR;
-                        $msg = $this->errorMessage($err);
+                        $msg = Net_LDAP2::errorMessage($err);
                     }
                     return $this->raiseError($msg, $err);
                 }
@@ -1146,7 +1163,7 @@ class Net_LDAP2 extends PEAR
                         $msg = @ldap_err2str($err);
                     } else {
                         $err = NET_LDAP2_ERROR;
-                        $msg = $this->errorMessage($err);
+                        $msg = Net_LDAP2::errorMessage($err);
                     }
                     return $this->raiseError($msg, $err);
                 }
@@ -1239,30 +1256,21 @@ class Net_LDAP2 extends PEAR
             return PEAR::raiseError('Parameter $dn is not a string nor an entry object!');
         }
 
-        // make dn relative to parent
-        $base = Net_LDAP2_Util::ldap_explode_dn($dn, array('casefold' => 'none', 'reverse' => false, 'onlyvalues' => false));
-        if (self::isError($base)) {
-            return $base;
-        }
-        $entry_rdn = array_shift($base);
-        if (is_array($entry_rdn)) {
-            // maybe the dn consist of a multivalued RDN, we must build the dn in this case
-            // because the $entry_rdn is an array!
-            $filter_dn = Net_LDAP2_Util::canonical_dn($entry_rdn);
-        }
-        $base = Net_LDAP2_Util::canonical_dn($base);
+        // search LDAP for that DN by performing a baselevel search for any
+        // object. We can only find the DN in question this way, or nothing.
+        $s_opts = array(
+            'scope'      => 'base',
+            'sizelimit'  => 1,
+            'attributes' => '1.1' // select no attrs
+        );
+        $search = $this->search($dn, '(objectClass=*)', $s_opts);
 
-        $result = @ldap_list($this->_link, $base, $entry_rdn, array(), 1, 1);
-        if (@ldap_count_entries($this->_link, $result)) {
-            return true;
+        if (self::isError($search)) {
+            return $search;
         }
-        if (ldap_errno($this->_link) == 32) {
-            return false;
-        }
-        if (ldap_errno($this->_link) != 0) {
-            return PEAR::raiseError(ldap_error($this->_link), ldap_errno($this->_link));
-        }
-        return false;
+
+        // retun wehter the DN exists; that is, we found an entry
+        return ($search->count() == 0)? false : true;
     }
 
 
@@ -1400,7 +1408,7 @@ class Net_LDAP2 extends PEAR
     *
     * @return string The errorstring for the error.
     */
-    public function errorMessage($errorcode)
+    public static function errorMessage($errorcode)
     {
         $errorMessages = array(
                               0x00 => "LDAP_SUCCESS",
@@ -1629,7 +1637,7 @@ class Net_LDAP2 extends PEAR
     }
 
     /**
-    * Encodes given attributes to UTF8 if needed by schema
+    * Encodes given attributes from ISO-8859-1 to UTF-8 if needed by schema
     *
     * This function takes attributes in an array and then checks against the schema if they need
     * UTF8 encoding. If that is so, they will be encoded. An encoded array will be returned and
@@ -1650,7 +1658,7 @@ class Net_LDAP2 extends PEAR
     }
 
     /**
-    * Decodes the given attribute values if needed by schema
+    * Decodes the given attribute values from UTF-8 to ISO-8859-1 if needed by schema
     *
     * $attributes is expected to be an array with keys describing
     * the attribute names and the values as the value of this attribute:
@@ -1668,7 +1676,7 @@ class Net_LDAP2 extends PEAR
     }
 
     /**
-    * Encodes or decodes attribute values if needed
+    * Encodes or decodes UTF-8/ISO-8859-1 attribute values if needed by schema
     *
     * @param array $attributes Array of attributes
     * @param array $function   Function to apply to attribute values
@@ -1701,7 +1709,10 @@ class Net_LDAP2 extends PEAR
                         continue;
                     }
 
-                    if (false !== strpos($attr['syntax'], '1.3.6.1.4.1.1466.115.121.1.15')) {
+                    // Encoding is needed if this is a DIR_STR. We assume also
+                    // needed encoding in case the schema contains no syntax
+                    // information (he does not need to, see rfc2252, 4.2)
+                    if (!array_key_exists('syntax', $attr) || false !== strpos($attr['syntax'], '1.3.6.1.4.1.1466.115.121.1.15')) {
                         $encode = true;
                     } else {
                         $encode = false;
