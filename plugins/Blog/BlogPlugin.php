@@ -69,6 +69,10 @@ class BlogPlugin extends MicroAppPlugin
 
         return true;
     }
+    
+    public function newFormAction(){
+        return 'newblogentry';
+    }
 
     /**
      * Map URLs to actions
