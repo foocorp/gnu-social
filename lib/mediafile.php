@@ -132,7 +132,7 @@ class MediaFile
     {
         $file_redir = File_redirection::getKV('url', $url);
 
-        if ($file_redir instanceof File_redirection) {
+        if (!$file_redir instanceof File_redirection) {
             $file_redir = new File_redirection;
             $file_redir->url = $url;
             $file_redir->file_id = $file_id;
