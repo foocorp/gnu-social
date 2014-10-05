@@ -1361,7 +1361,7 @@ var SN = { // StatusNet
 
             var profileLink = $('#nav_profile a').attr('href');
             if (profileLink) {
-                var authorUrl = $(notice).find('.h-card.u-url').attr('href');
+                var authorUrl = $(notice).find('.h-card.p-author').attr('href');
                 if (authorUrl == profileLink) {
                     if (action == 'all' || action == 'showstream') {
                         // Posts always show on your own friends and profile streams.
