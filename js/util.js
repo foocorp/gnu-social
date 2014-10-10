@@ -773,7 +773,7 @@ var SN = { // StatusNet
          *
          */
         NoticeRepeat: function () {
-            $('.form_repeat').on('click', function (e) {
+            $('body').on('click', '.form_repeat', function (e) {
                 e.preventDefault();
 
                 SN.U.NoticeRepeatConfirmation($(this));
@@ -1374,7 +1374,7 @@ var SN = { // StatusNet
             // Mismatch between id-based and name-based user/group links currently complicates
             // the lookup, since all our inline mentions contain the absolute links but the
             // UI links currently on the page use malleable names.
-
+            
             return false;
         },
 
