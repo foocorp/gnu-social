@@ -749,8 +749,7 @@ var SN = { // StatusNet
                     SN.U.NoticeInlineReplyTrigger(notice);
                     return false;
                 });
-            $('li.notice-reply-comments a')
-                .on('click', function () {
+            $(document).on('click', 'li.notice-reply-comments a', function () {
                     var url = $(this).attr('href');
                     var area = $(this).closest('.threaded-replies');
                     $.get(url, {ajax: 1}, function (data, textStatus, xhr) {
