@@ -74,28 +74,13 @@ class FavorAction extends FormAction
             throw new AlreadyFulfilledException(_('You have already favorited this!'));
         }
 
-        $now = common_sql_now();
+        $fave = Fave::addNew($this->scoped, $this->target);
 
-        $act = new Activity();
-        $act->id = Fave::newUri($this->scoped, $this->target, $now);
-        $act->type = Fave::getObjectType();
-        $act->actor = $this->scoped->asActivityObject();
-        $act->target = $this->target->asActivityObject();
-        $act->objects = array(clone($act->target));
-        $act->verb = ActivityVerb::FAVORITE;
-        $act->title = ActivityUtils::verbToTitle($act->verb);
-        $act->time = strtotime($now);
-        // TRANS: Notification given when a user marks a notice as favorite.
-        // TRANS: %1$s is a user name or full name, %2$s is a notice URI, %3$s the link to the user's profile.
-        $act->content = sprintf(_('<a href="%3$s">%1$s</a> marked notice <a href="%2$s">%2$s</a> as a favorite.'),
-                                htmlspecialchars($this->scoped->getBestName()),
-                                htmlspecialchars($this->target->getUrl()),
-                                htmlspecialchars($this->scoped->getUrl()));
+        if (empty($fave)) {
+            $this->serverError(_('Could not create favorite.'));
+        }
 
-
-        $stored = Notice::saveActivity($act, $this->scoped,
-                                        array('uri'=>$act->id));
-
+        $this->notify($fave, $this->target, $this->scoped);
         Fave::blowCacheForProfileId($this->scoped->id);
 
         return _('Favorited the notice');
@@ -108,4 +93,25 @@ class FavorAction extends FormAction
             $disfavor->show();
         }
     }
+
+    /**
+     * Notify the author of the favorite that the user likes their notice
+     *
+     * @param Favorite $fave   the favorite in question
+     * @param Notice   $notice the notice that's been faved
+     * @param User     $user   the user doing the favoriting
+     *
+     * @return void
+     */
+    function notify($fave, $notice, $user)
+    {
+        $other = User::getKV('id', $notice->profile_id);
+        if ($other && $other->id != $user->id && !empty($other->email)) {
+            require_once INSTALLDIR.'/lib/mail.php';
+
+            mail_notify_fave($other, $user->getProfile(), $notice);
+            // XXX: notify by IM
+            // XXX: notify by SMS
+        }
+    }    
 }
