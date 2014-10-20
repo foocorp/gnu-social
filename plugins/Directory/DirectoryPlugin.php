@@ -80,10 +80,39 @@ class DirectoryPlugin extends Plugin
     {
 
         $m->connect(
+            'directory/users/:filter/sort_by/:sort/reverse/:reverse',
+            array('action' => 'userdirectory'),
+            array('filter' => '[0-9a-zA-Z]|(0-9)'),            
+            array('sort' => '[a-z]+'),
+            array('reverse' => '[0-9]')                        
+        );
+
+        $m->connect(
+            'directory/users/:filter/sort_by/:sort',
+            array('action' => 'userdirectory'),
+            array('filter' => '[0-9a-zA-Z]|(0-9)'),            
+            array('sort' => '[a-z]+')            
+        );  
+
+
+        $m->connect(
             'directory/users/:filter',
             array('action' => 'userdirectory'),
             array('filter' => '[0-9a-zA-Z]|(0-9)')
         );
+        
+        $m->connect(
+            'directory/users/sort_by/:sort/reverse/:reverse',
+            array('action' => 'userdirectory'),
+            array('sort' => '[a-z]+'),
+            array('reverse' => '[0-9]')                        
+        );
+
+        $m->connect(
+            'directory/users/sort_by/:sort',
+            array('action' => 'userdirectory'),
+            array('sort' => '[a-z]+')            
+        );        
 
         $m->connect(
             'directory/users',
@@ -100,6 +129,12 @@ class DirectoryPlugin extends Plugin
             'groups',
             array('action' => 'groupdirectory')
         );
+
+        $m->connect(
+            'groups/all',
+            array('action' => 'groupdirectory')
+        );
+
 
         return true;
     }

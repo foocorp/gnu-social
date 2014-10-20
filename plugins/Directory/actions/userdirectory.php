@@ -233,6 +233,13 @@ class UserdirectoryAction extends Action
         } elseif (isset($this->filter) && $this->filter != 'all') {
             $args['filter'] = $this->filter;
         }
+        
+        if (isset($this->sort)) {
+            $args['sort'] = $this->sort;
+        }        
+        if (!empty($this->reverse)) {
+            $args['reverse'] = $this->reverse;
+        }
 
         $this->pagination(
             $this->page > 1,
