@@ -580,13 +580,16 @@ class ApiAction extends Action
     {
         $details = array();
 
+		$source_profile = $source->getProfile();
+		$target_profile = $target->getProfile();		
+
         $details['screen_name'] = $source->nickname;
-        $details['followed_by'] = $target->isSubscribed($source);
-        $details['following'] = $source->isSubscribed($target);
+        $details['followed_by'] = $target->isSubscribed($source_profile);
+        $details['following'] = $source->isSubscribed($target_profile);
 
         $notifications = false;
 
-        if ($source->isSubscribed($target)) {
+        if ($source->isSubscribed($target_profile)) {
             $sub = Subscription::pkeyGet(array('subscriber' =>
                 $source->id, 'subscribed' => $target->id));
 
@@ -596,7 +599,7 @@ class ApiAction extends Action
         }
 
         $details['notifications_enabled'] = $notifications;
-        $details['blocking'] = $source->hasBlocked($target);
+        $details['blocking'] = $source->hasBlocked($target_profile);
         $details['id'] = intval($source->id);
 
         return $details;
