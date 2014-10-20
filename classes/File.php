@@ -356,7 +356,7 @@ class File extends Managed_DataObject
             $enclosure->$key = $this->$key;
         }
 
-        $needMoreMetadataMimetypes = array(null, 'text/html', 'application/xhtml+xml');
+        $needMoreMetadataMimetypes = array(null, 'application/xhtml+xml');
 
         if (!isset($this->filename) && in_array(common_bare_mime($enclosure->mimetype), $needMoreMetadataMimetypes)) {
             // This fetches enclosure metadata for non-local links with unset/HTML mimetypes,
