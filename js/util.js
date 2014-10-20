@@ -856,18 +856,16 @@ var SN = { // StatusNet
                 return;
             }
 
-            var attachment_more = notice.find('.attachment.more');
-            if (attachment_more.length > 0) {
-                $(attachment_more[0]).click(function () {
-                    var m = $(this);
-                    m.addClass(SN.C.S.Processing);
-                    $.get(m.attr('href'), {ajax: 1}, function (data) {
-                        m.parent('.e-content').html($(data).find('#attachment_view .e-content').html());
-                    });
+			$(document).on('click','.attachment.more',function () {
+				var m = $(this);
+				m.addClass(SN.C.S.Processing);
+				$.get(m.attr('href'), {ajax: 1}, function (data) {
+					m.parent('.e-content').html($(data).find('#attachment_view .e-content').html());
+				});
 
-                    return false;
-                }).attr('title', SN.msg('showmore_tooltip'));
-            }
+				return false;
+			});
+
         },
 
         /**
