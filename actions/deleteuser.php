@@ -101,6 +101,8 @@ class DeleteuserAction extends ProfileFormAction
 
     function showContent() {
         $this->areYouSureForm();
+        $block = new AccountProfileBlock($this, $this->profile);
+        $block->show();        
     }
 
     function title() {
