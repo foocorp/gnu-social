@@ -212,7 +212,7 @@ class SortableSubscriptionListItem extends SubscriptionListItem
 		$cur = common_current_user();
         list($action, $r2args) = $this->out->returnToArgs();
         $r2args['action'] = $action;        
-		if ($cur->hasRight(Right::DELETEUSER)) {
+		if ($cur instanceof User && $cur->hasRight(Right::DELETEUSER)) {
 			$this->out->elementStart('li', 'entity_delete');
 			$df = new DeleteUserForm($this->out, $this->profile, $r2args);
 			$df->show();		
