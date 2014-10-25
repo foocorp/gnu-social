@@ -102,10 +102,15 @@ for additional terms.
 
 ## New this version
 
-This is a security fix and bug fix release since 1.1.0,
-released 2 July 2012. All 1.1.0 sites should upgrade to this version.
+This is a security fix and bug fix release since 1.1.1-alpha2.
+The current release base version, 1.1.2, began work on 2014-10-25.
+All 1.1.1 sites should upgrade to this version.
 
-It includes the following changes:
+So far it includes the following changes:
+
+- XSS security fix (thanks Simon Waters, https://www.surevine.com/ )
+
+Upgrades from _StatusNet_ 1.1.1 will also experience these improvements:
 
 - Fixes for SQL injection errors in profile lists.
 - Improved ActivityStreams JSON representation of activities and objects.
@@ -113,6 +118,7 @@ It includes the following changes:
 - More robust handling of errors in distribution.
 - Fix error in OStatus subscription for remote groups.
 - Fix error in XMPP distribution.
+
 
 ### Troubleshooting
 
@@ -130,36 +136,34 @@ conflicts in your code.
 ### Unstable version
 
 If you're adventurous or impatient, you may want
-to install the development version of
-StatusNet. To get it, use the git version control
-tool <http://git-scm.com/> like so:
+to install the development version of GNU social.
+To get it, use the git version control tool
+<http://git-scm.com/> like so:
 
     git clone git@gitorious.org:social/mainline.git
 
-Using it is a mixed bag. On the positive side, it
-usually includes the latest security and bug fix
-patches. On the downside, it may also include
-changes that require admin intervention (like
-running a script or even raw SQL!) that may not be
-documented yet. It may be a good idea to test this
-version before installing it on your production
-machines.
+In the current phase of development it is probably
+recommended to use git as a means to stay up to date
+with the source code. You can choose between these
+branches:
+- 1.1.x     "stable", few updates, well tested code
+- master    "testing", more updates, usually working well
+- nightly   "unstable", most updates, not always working
 
-To keep it up-to-date, use 'git pull'. Watch for
-conflicts!
+To keep it up-to-date, use 'git pull'. Watch for conflicts!
 
 ## Further information
 
-There are several ways to get more information
-about GNU social.
+There are several ways to get more information about GNU social.
 
 * The #social IRC channel on freenode.net <http://www.freenode.net/>.
 * The GNU social website
 * Following us on GNU social -- http://quitter.se/gnusocial
-* Following us on Twitter -- https://twitter.com/gnusocial
 
 * GNU social has a bug tracker for any defects you may find, or ideas for
   making things better. http://bugz.foocorp.net/
+* Patches are welcome, either on the bug tracker or our repository at
+  Gitorious. https://gitorious.org/social/mainline
 
 Credits
 =======
@@ -218,6 +222,7 @@ Thanks to all of the StatusNet developers:
 * Brion Vibber, StatusNet, Inc.
 * James Walker, StatusNet, Inc.
 * Samantha Doherty, designer, StatusNet, Inc.
+* Simon Waters, Surevine
 
 ### Extra special thanks to the GNU socialites
 
