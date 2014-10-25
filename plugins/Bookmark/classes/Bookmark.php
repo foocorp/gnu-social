@@ -134,6 +134,10 @@ class Bookmark extends Managed_DataObject
     static function saveNew($profile, $title, $url, $rawtags, $description,
                             $options=null)
     {
+        if (!common_valid_http_url($url)) {
+            throw new ClientException(_m('Only web bookmarks can be posted (HTTP or HTTPS).'));
+        }
+
         $nb = self::getByURL($profile, $url);
 
         if (!empty($nb)) {
