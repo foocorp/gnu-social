@@ -1344,7 +1344,7 @@ class OStatusPlugin extends Plugin
             $oprofile = $oprofile->checkAuthorship($activity);
             $profile = $oprofile->localProfile();
         } catch (Exception $e) {
-            common_log(LOG_ERR, 'Could not get a profile or check authorship ('.get_class($e).': "'.$e->getMessage().'")');
+            common_log(LOG_ERR, 'Could not get a profile or check authorship ('.get_class($e).': "'.$e->getMessage().'") for activity ID: '.$activity->id);
             $profile = null;
             return false;
         }
