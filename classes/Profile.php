@@ -305,7 +305,7 @@ class Profile extends Managed_DataObject
         }
 
         try {
-            return User_group::listFind('id', $ids);
+            return User_group::multiGet('id', $ids);
         } catch (NoResultException $e) {
             return null;    // throw exception when we handle it everywhere
         }
@@ -593,7 +593,7 @@ class Profile extends Managed_DataObject
     {
         $subs = Subscription::getSubscribedIDs($this->id, $offset, $limit);
         try {
-            $profiles = Profile::listFind('id', $subs);
+            $profiles = Profile::multiGet('id', $subs);
         } catch (NoResultException $e) {
             return $e->obj;
         }
@@ -604,7 +604,7 @@ class Profile extends Managed_DataObject
     {
         $subs = Subscription::getSubscriberIDs($this->id, $offset, $limit);
         try {
-            $profiles = Profile::listFind('id', $subs);
+            $profiles = Profile::multiGet('id', $subs);
         } catch (NoResultException $e) {
             return $e->obj;
         }
