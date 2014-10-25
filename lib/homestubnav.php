@@ -50,7 +50,7 @@ class HomeStubNav extends Menu
     function getItems()
     {
         return array(array('top',
-                           null,
+                           array(),
                            // TRANS: Menu item in personal group navigation menu.
                            _m('MENU','Home'),
                            // TRANS: Menu item title in personal group navigation menu.
