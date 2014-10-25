@@ -194,7 +194,7 @@ class GroupPrivateMessagePlugin extends Plugin
 
         $gps = null;
 
-        if (!empty($action->getGroup())) {
+        if ($action->getGroup() instanceof User_group) {
             $gps = Group_privacy_settings::getKV('group_id', $action->getGroup()->id);
         }
 
