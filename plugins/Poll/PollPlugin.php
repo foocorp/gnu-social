@@ -137,11 +137,6 @@ class PollPlugin extends MicroAppPlugin
         return array(self::POLL_OBJECT, self::POLL_RESPONSE_OBJECT);
     }
 
-
-    function adaptNoticeListItem($nli) {
-        return new PollListItem($nli);
-    }
-
     /**
      * When a notice is deleted, delete the related Poll
      *
@@ -444,5 +439,32 @@ class PollPlugin extends MicroAppPlugin
                           $action_name === 'pollsettings');
 
         return true;
+    }
+
+    protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
+    {
+        if ($stored->object_type == self::POLL_RESPONSE_OBJECT) {
+            parent::showNoticeContent($stored, $out, $scoped);
+            return;
+        }
+
+        // If the stored notice is a POLL_OBJECT
+        $poll = Poll::getByNotice($stored);
+        if ($poll instanceof Poll and $scoped instanceof Profile) {
+            $response = $poll->getResponse($scoped);
+            if ($response instanceof Poll_response) {
+                // User has already responded; show the results.
+                $form = new PollResultForm($poll, $out);
+            } else {
+                $form = new PollResponseForm($poll, $out);
+            }
+            $form->show();
+        } elseif (!$scoped instanceof Profile) {
+            // TRANS: No current user's profile, so we can't take a reply.
+            $out->text(_m('You must be logged in to respond to this poll.'));
+        } else {
+            // TRANS: Error text displayed if no poll data could be found.
+            $out->text(_m('Poll data is missing'));
+        }
     }
 }

@@ -606,7 +606,12 @@ abstract class ActivityHandlerPlugin extends Plugin
             return true;
         }
 
-        $out->text($stored->getContent());
+        $this->showNoticeContent($stored, $out, $scoped);
         return false;
+    }
+
+    protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
+    {
+        $out->text($stored->getContent());
     }
 }

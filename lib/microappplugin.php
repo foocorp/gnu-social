@@ -97,11 +97,10 @@ abstract class MicroAppPlugin extends ActivityHandlerPlugin
             return true;
         }
 
-        $adapter = $this->adaptNoticeListItem($nli);
-
-        if (empty($adapter)) {
-            throw new ServerException('Could not adapt NoticeListItem');
-        }
+        // Legacy use was creating a "NoticeListItemAdapter", but
+        // nowadays we solve that using event handling for microapps.
+        // This section will remain until all plugins are fixed.
+        $adapter = $this->adaptNoticeListItem($nli) ?: $nli;
 
         $adapter->showNotice();
         $adapter->showNoticeAttachments();
