@@ -1303,20 +1303,16 @@ form label.submit {
 display:none;
 }
 
-.form_settings {
-    clear:both;
-}
-
 .form_settings fieldset {
     margin-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     border: none;
 }
 
 .form_settings fieldset fieldset {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     padding: 10px;
-    padding-top: 30px;
+    padding-top: 10px;
     border-width:1px;
     border-style:solid;
     background:rgba(240, 240, 240, 0.2);
