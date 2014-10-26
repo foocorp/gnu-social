@@ -257,6 +257,22 @@ StartShowNoticeItem: just before showing the notice item
 EndShowNoticeItem: just after showing the notice item
 - $item: the NoticeListItem object being shown
 
+StartShowNoticeItemNotice: just before outputting the "top" notice part of a NoticeListItem to HTML
+- $item: The NoticeListItem object being shown
+
+EndShowNoticeItemNotice: just after outputting the "top" notice part of a NoticeListItem to HTML
+- $item: The NoticeListItem object being shown
+
+StartShowNoticeContent: just before outputting the content part of a Notice
+- $stored: The Notice object
+- $out: HTMLOutputter for writing to
+- $scoped: optional Profile object for permission scoping
+
+EndShowNoticeContent: just after outputting the content part of a Notice, plugins must call this manually
+- $stored: The Notice object
+- $out: HTMLOutputter for writing to
+- $scoped: optional Profile object for permission scoping
+
 StartShowNoticeInfo: just before showing notice info
 - $item: The NoticeListItem object being shown
 

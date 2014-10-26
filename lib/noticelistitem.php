@@ -113,10 +113,13 @@ class NoticeListItem extends Widget
 
     function showNotice()
     {
-        $this->showNoticeTitle();
-        $this->showAuthor();
-        $this->showAddressees();
-        $this->showContent();
+        if (Event::handle('StartShowNoticeItemNotice', array($this))) {
+            $this->showNoticeTitle();
+            $this->showAuthor();
+            $this->showAddressees();
+            $this->showContent();
+            Event::handle('EndShowNoticeItemNotice', array($this-));
+        }
     }
 
     function showNoticeTitle()
