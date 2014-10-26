@@ -450,18 +450,14 @@ class PollPlugin extends MicroAppPlugin
 
         // If the stored notice is a POLL_OBJECT
         $poll = Poll::getByNotice($stored);
-        if ($poll instanceof Poll and $scoped instanceof Profile) {
-            $response = $poll->getResponse($scoped);
-            if ($response instanceof Poll_response) {
-                // User has already responded; show the results.
+        if ($poll instanceof Poll) {
+            if (!$scoped instanceof Profile || $poll->getResponse($scoped) instanceof Poll_response) {
+                // Either the user is not logged in or it has already responded; show the results.
                 $form = new PollResultForm($poll, $out);
             } else {
                 $form = new PollResponseForm($poll, $out);
             }
             $form->show();
-        } elseif (!$scoped instanceof Profile) {
-            // TRANS: No current user's profile, so we can't take a reply.
-            $out->text(_m('You must be logged in to respond to this poll.'));
         } else {
             // TRANS: Error text displayed if no poll data could be found.
             $out->text(_m('Poll data is missing'));
