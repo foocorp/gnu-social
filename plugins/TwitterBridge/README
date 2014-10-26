@@ -14,13 +14,12 @@ Installation
 ------------
 
 OAuth 1.0a (http://oauth.net) is used to to access protected resources
-on Twitter (as opposed to HTTP Basic Auth)*.  To use Twitter bridging
-you will need to register your instance of StatusNet as an application
-on Twitter (http://twitter.com/apps).  During the application
-registration process your application will be assigned a "consumer" key
-and secret, which the plugin will use to make OAuth requests to Twitter.
-You can either pass the consumer key and secret in when you enable the
-plugin, or set it using the Twitter administration panel**.
+on Twitter. To use Twitter bridging you will need to register your
+instance of StatusNet as an application on Twitter (http://twitter.com/apps).
+During the application registration process your application will be assigned
+a "consumer" key and secret, which the plugin will use to make OAuth requests
+to Twitter. You can either pass the consumer key and secret in when you
+enable the plugin, or set it using the Twitter administration panel.
 
 When registering your application with Twitter set the type to "Browser"
 and your Callback URL to:
@@ -42,52 +41,26 @@ To enable the plugin, add the following to your config.php:
         )
     );
 
-or just:
+or if you want to set the variables from the website's administration panel:
 
    addPlugin('TwitterBridge');
 
-if you want to set the consumer key and secret from the Twitter bridge
-administration panel.  (The Twitter bridge wont work at all
-unless you configure it with a consumer key and secret.)
-
-* Note: The plugin will still push notices to Twitter for users who
-  have previously set up the Twitter bridge using their Twitter name and
-  password under an older version of StatusNet, but all new Twitter
-  bridge connections will use OAuth.
-
-** For multi-site setups you can also set a global consumer key and
-   secret.  The Twitter bridge will fall back on the global key pair if
-   it can't find a local pair, e.g.:
-
-   $config['twitter']['global_consumer_key']    = 'YOUR_CONSUMER_KEY';
-   $config['twitter']['global_consumer_secret'] = 'YOUR_CONSUMER_SECRET';
-
-Upgrade
--------
-
-If you've used the Twitter bridge plugin prior to version 0.9.5,
-you'll need to run the new scripts/initialize_notice_to_status.php
-script to initialize the new notice-to-status mapping file, which
-greatly improves the integration between StatusNet and Twitter.
+After saving your configuration file, please run 'php scripts/upgrade.php'
+and also restart the background daemons if they are active on your instance.
 
 Administration panel
 --------------------
 
-As of StatusNet 0.9.0 there is a new administration panel that allows
-you to configure Twitter bridge settings within StatusNet itself,
-instead of having to specify them manually in your config.php.
-
-To access it, you'll need to use a user with the "administrator"
-role (see: scripts/userrole.php).
+To access the administration panel, you'll need to use a user with the
+"administrator" role (see: scripts/userrole.php).
 
 Sign in with Twitter
 --------------------
 
-With 0.9.0, StatusNet optionally allows users to register and
-authenticate using their Twitter credentials via the "Sign in with
-Twitter" pattern described here:
+GNU social optionally allows users to register and authenticate using their
+Twitter credentials via the "Sign in with Twitter" pattern described here:
 
-    http://apiwiki.twitter.com/Sign-in-with-Twitter
+    https://dev.twitter.com/web/sign-in
 
 The option is _on_ by default when you install the plugin, but it can
 disabled via the Twitter bridge administration panel, or by adding the
