@@ -118,7 +118,7 @@ class NoticeListItem extends Widget
             $this->showAuthor();
             $this->showAddressees();
             $this->showContent();
-            Event::handle('EndShowNoticeItemNotice', array($this-));
+            Event::handle('EndShowNoticeItemNotice', array($this));
         }
     }
 

@@ -440,19 +440,6 @@ class BookmarkPlugin extends MicroAppPlugin
         return $object;
     }
 
-    /**
-     * Given a notice list item, returns an adapter specific
-     * to this plugin.
-     *
-     * @param NoticeListItem $nli item to adapt
-     *
-     * @return NoticeListItemAdapter adapter or null
-     */
-    function adaptNoticeListItem($nli)
-    {
-        return new BookmarkListItem($nli);
-    }
-
     function entryForm($out)
     {
         return new InitialBookmarkForm($out);
@@ -504,5 +491,88 @@ class BookmarkPlugin extends MicroAppPlugin
         $out['targetUrl']   = $bm->url;
 
         return true;
+    }
+
+    protected function showNoticeItemNotice(NoticeListItem $nli)
+    {
+        $nli->out->elementStart('div', 'entry-title');
+        $nli->showAuthor();
+        $nli->showContent();
+        $nli->out->elementEnd('div');
+    }
+
+    protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
+    {
+        $nb = Bookmark::getByNotice($stored);
+
+        if (empty($nb)) {
+            common_log(LOG_ERR, "No bookmark for notice {$stored->id}");
+            parent::showContent();
+            return;
+        } else if (empty($nb->url)) {
+            common_log(LOG_ERR, "No url for bookmark {$nb->id} for notice {$stored->id}");
+            parent::showContent();
+            return;
+        }
+
+        $profile = $stored->getProfile();
+
+        // Whether to nofollow
+        $attrs = array('href' => $nb->url, 'class' => 'bookmark-title');
+
+        $nf = common_config('nofollow', 'external');
+
+        if ($nf == 'never' || ($nf == 'sometimes' and $out instanceof ShowstreamAction)) {
+            $attrs['rel'] = 'external';
+        } else {
+            $attrs['rel'] = 'nofollow external';
+        }
+
+        $out->elementStart('h3');
+        $out->element('a', $attrs, $nb->title);
+        $out->elementEnd('h3');
+
+        // Replies look like "for:" tags
+        $replies = $stored->getReplies();
+        $tags = $stored->getTags();
+
+        if (!empty($replies) || !empty($tags)) {
+
+            $out->elementStart('ul', array('class' => 'bookmark-tags'));
+
+            foreach ($replies as $reply) {
+                $other = Profile::getKV('id', $reply);
+                if (!empty($other)) {
+                    $out->elementStart('li');
+                    $out->element('a', array('rel' => 'tag',
+                                             'href' => $other->profileurl,
+                                             'title' => $other->getBestName()),
+                                  sprintf('for:%s', $other->nickname));
+                    $out->elementEnd('li');
+                    $out->text(' ');
+                }
+            }
+
+            foreach ($tags as $tag) {
+                $tag = trim($tag);
+                if (!empty($tag)) {
+                    $out->elementStart('li');
+                    $out->element('a',
+                                  array('rel' => 'tag',
+                                        'href' => Notice_tag::url($tag)),
+                                  $tag);
+                    $out->elementEnd('li');
+                    $out->text(' ');
+                }
+            }
+
+            $out->elementEnd('ul');
+        }
+
+        if (!empty($nb->description)) {
+            $out->element('p',
+                          array('class' => 'bookmark-description'),
+                          $nb->description);
+        }
     }
 }

@@ -600,6 +600,26 @@ abstract class ActivityHandlerPlugin extends Plugin
         $nli->showNoticeOptions();
     }
 
+    public function onStartShowNoticeItemNotice(NoticeListItem $nli)
+    {
+        if (!$this->isMyNotice($nli->notice)) {
+            return true;
+        }
+
+        $this->showNoticeItemNotice($nli);
+
+        Event::handle('EndShowNoticeItemNotice', array($nli));
+        return false;
+    }
+
+    protected function showNoticeItemNotice(NoticeListItem $nli)
+    {
+        $nli->showNoticeTitle();
+        $nli->showAuthor();
+        $nli->showAddressees();
+        $nli->showContent();
+    }
+
     public function onStartShowNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
     {
         if (!$this->isMyNotice($stored)) {
