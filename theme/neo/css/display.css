@@ -48,13 +48,6 @@ a:hover {color: blue;}
 
 abbr {border-bottom: none;}
 
-h1 {font-size: 1.6em;}
-h2 {font-size: 1.6em;}
-h3 {font-size: 1.4em;}
-h4 {font-size: 1.4em;}
-h5 {font-size: 1.2em;}
-h6 {font-size: 1em;}
-
 #wrap {
     background: #fff url('../images/brdr_black_dot.png') repeat-x 0px 10px;
 }
