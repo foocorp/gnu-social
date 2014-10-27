@@ -254,24 +254,6 @@ class EventPlugin extends MicroAppPlugin
         return true;
     }
 
-    function adaptNoticeListItem($nli)
-    {
-        $notice = $nli->notice;
-
-        switch ($notice->object_type) {
-        case Happening::OBJECT_TYPE:
-            return new EventListItem($nli);
-            break;
-        case RSVP::POSITIVE:
-        case RSVP::NEGATIVE:
-        case RSVP::POSSIBLE:
-            return new RSVPListItem($nli);
-            break;
-        }
-        return null;
-    }
-
-
     /**
      * Form for our app
      *
@@ -328,5 +310,173 @@ class EventPlugin extends MicroAppPlugin
             return false;
         }
         return true;
+    }
+
+    protected function showNoticeItemNotice(NoticeListItem $nli)
+    {
+        $nli->showAuthor();
+        $nli->showContent();
+    }
+
+    protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
+    {
+        switch ($stored->object_type) {
+        case Happening::OBJECT_TYPE:
+            $this->showEvent($stored, $out, $scoped);
+            break;
+        case RSVP::POSITIVE:
+        case RSVP::NEGATIVE:
+        case RSVP::POSSIBLE:
+            $this->showRSVP($stored, $out, $scoped);
+            break;
+        }
+    }
+
+    protected function showEvent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
+    {
+        $profile = $stored->getProfile();
+        $event   = Happening::fromNotice($stored);
+
+        if (!$event instanceof Happening) {
+            // TRANS: Content for a deleted RSVP list item (RSVP stands for "please respond").
+            $out->element('p', null, _m('Deleted.'));
+            return;
+        }
+
+        $out->elementStart('div', 'h-event');
+
+        $out->elementStart('h3', 'p-summary p-name');
+
+        try {
+            $out->element('a', array('href' => $event->getUrl()), $event->title);
+        } catch (InvalidUrlException $e) {
+            $out->text($event->title);
+        }
+
+        $out->elementEnd('h3');
+
+        $now       = new DateTime();
+        $startDate = new DateTime($event->start_time);
+        $endDate   = new DateTime($event->end_time);
+        $userTz    = new DateTimeZone(common_timezone());
+
+        // Localize the time for the observer
+        $now->setTimeZone($userTz);
+        $startDate->setTimezone($userTz);
+        $endDate->setTimezone($userTz);
+
+        $thisYear  = $now->format('Y');
+        $startYear = $startDate->format('Y');
+        $endYear   = $endDate->format('Y');
+
+        $dateFmt = 'D, F j, '; // e.g.: Mon, Aug 31
+
+        if ($startYear != $thisYear || $endYear != $thisYear) {
+            $dateFmt .= 'Y,'; // append year if we need to think about years
+        }
+
+        $startDateStr = $startDate->format($dateFmt);
+        $endDateStr = $endDate->format($dateFmt);
+
+        $timeFmt = 'g:ia';
+
+        $startTimeStr = $startDate->format($timeFmt);
+        $endTimeStr = $endDate->format("{$timeFmt} (T)");
+
+        $out->elementStart('div', 'event-times'); // VEVENT/EVENT-TIMES IN
+
+        // TRANS: Field label for event description.
+        $out->element('strong', null, _m('Time:'));
+
+        $out->element('time', array('class' => 'dt-start',
+                                    'datetime' => common_date_iso8601($event->start_time)),
+                      $startDateStr . ' ' . $startTimeStr);
+        $out->text(' – ');
+        $out->element('time', array('class' => 'dt-end',
+                                    'datetime' => common_date_iso8601($event->end_time)),
+                      $startDateStr != $endDateStr
+                                    ? "$endDateStr $endTimeStr"
+                                    :  $endTimeStr);
+
+        $out->elementEnd('div'); // VEVENT/EVENT-TIMES OUT
+
+        if (!empty($event->location)) {
+            $out->elementStart('div', 'event-location');
+            // TRANS: Field label for event description.
+            $out->element('strong', null, _m('Location:'));
+            $out->element('span', 'p-location', $event->location);
+            $out->elementEnd('div');
+        }
+
+        if (!empty($event->description)) {
+            $out->elementStart('div', 'event-description');
+            // TRANS: Field label for event description.
+            $out->element('strong', null, _m('Description:'));
+            $out->element('div', 'p-description', $event->description);
+            $out->elementEnd('div');
+        }
+
+        $rsvps = $event->getRSVPs();
+
+        $out->elementStart('div', 'event-rsvps');
+
+        // TRANS: Field label for event description.
+        $out->element('strong', null, _m('Attending:'));
+        $out->elementStart('ul', 'attending-list');
+
+        foreach ($rsvps as $verb => $responses) {
+            $out->elementStart('li', 'rsvp-list');
+            switch ($verb) {
+            case RSVP::POSITIVE:
+                $out->text(_('Yes:'));
+                break;
+            case RSVP::NEGATIVE:
+                $out->text(_('No:'));
+                break;
+            case RSVP::POSSIBLE:
+                $out->text(_('Maybe:'));
+                break;
+            }
+            $ids = array();
+            foreach ($responses as $response) {
+                $ids[] = $response->profile_id;
+            }
+            $ids = array_slice($ids, 0, ProfileMiniList::MAX_PROFILES + 1);
+            $minilist = new ProfileMiniList(Profile::multiGet('id', $ids), $out);
+            $minilist->show();
+
+            $out->elementEnd('li');
+        }
+
+        $out->elementEnd('ul');
+        $out->elementEnd('div');
+
+        if ($scoped instanceof Profile) {
+            $rsvp = $event->getRSVP($scoped);
+
+            if (empty($rsvp)) {
+                $form = new RSVPForm($event, $out);
+            } else {
+                $form = new CancelRSVPForm($rsvp, $out);
+            }
+
+            $form->show();
+        }
+        $out->elementEnd('div');
+    }
+
+    protected function showRSVP(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
+    {
+        $rsvp = RSVP::fromNotice($stored);
+
+        if (empty($rsvp)) {
+            // TRANS: Content for a deleted RSVP list item (RSVP stands for "please respond").
+            $out->element('p', null, _m('Deleted.'));
+            return;
+        }
+
+        $out->elementStart('div', 'rsvp');
+        $out->raw($rsvp->asHTML());
+        $out->elementEnd('div');
     }
 }

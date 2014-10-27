@@ -342,7 +342,6 @@ class RSVP extends Managed_DataObject
             // TRANS: Exception thrown when requesting a user's RSVP status for a non-existing response code.
             // TRANS: %s is the non-existing response code.
             throw new Exception(sprintf(_m('Unknown response code %s.'),$response));
-            break;
         }
 
         if (empty($event)) {
