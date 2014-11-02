@@ -148,6 +148,7 @@ function mail_to_user(&$user, $subject, $body, $headers=array(), $address=null)
     $recipients = $address;
     $profile    = $user->getProfile();
 
+    $headers['Date']    = date("r", time());
     $headers['From']    = mail_notify_from();
     $headers['To']      = $profile->getBestName() . ' <' . $address . '>';
     $headers['Subject'] = $subject;
