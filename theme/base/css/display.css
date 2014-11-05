@@ -983,6 +983,14 @@ content: ":";
     display: none;
 }
 
+.notice .permalink:after {
+    content: ']';
+}
+
+.notice .permalink:before {
+    content: '[';
+}
+
 /* old school conversation style */
 
 #conversation .notices .notices {

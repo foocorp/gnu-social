@@ -70,18 +70,6 @@ class ConversationTreeItem extends NoticeListItem
     }
 
     /**
-     * show link to notice conversation page
-     *
-     * Since we're only used on the conversation page, we skip this
-     *
-     * @return void
-     */
-    function showContext()
-    {
-        return;
-    }
-
-    /**
      * show people this notice is in reply to
      *
      * Tree context shows this, so we skip it.

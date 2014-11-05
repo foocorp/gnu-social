@@ -139,9 +139,7 @@ class NoticeListItem extends Widget
             $this->showNoticeLink();
             $this->showNoticeSource();
             $this->showNoticeLocation();
-            if ($this->notice->hasConversation()) {
-                $this->showContext();
-            }
+            $this->showPermalink();
             $this->showRepeat();
             Event::handle('EndShowNoticeInfo', array($this));
         }
@@ -311,7 +309,7 @@ class NoticeListItem extends Widget
     {
         $this->out->elementStart('a', array('rel' => 'bookmark',
                                             'class' => 'u-url timestamp',
-                                            'href' => $this->notice->getLocalUrl()));
+                                            'href' => Conversation::getUrlFromNotice($this->notice)));
         $this->out->element('time', array('class' => 'dt-published',
                                           'datetime' => common_date_iso8601($this->notice->created),
                                           // TRANS: Timestamp title (tooltip text) for NoticeListItem
@@ -464,20 +462,19 @@ class NoticeListItem extends Widget
     }
 
     /**
-     * show link to notice this notice is a reply to
+     * show link to single-notice view for this notice item
      *
-     * If this notice is a reply, show a link to the notice it is replying to. The
-     * heavy lifting for figuring out replies happens at save time.
+     * A permalink that goes to this specific object and nothing else
      *
      * @return void
      */
-    function showContext()
+    function showPermalink()
     {
         $this->out->element('a',
-                            array('href' => $this->notice->getConversationUrl(),
-                                  'class' => 'conversation'),
-                            // TRANS: Addition in notice list item if notice is part of a conversation.
-                            _('in context'));
+                            array('href' => $this->notice->getLocalUrl(),
+                                  'class' => 'permalink'),
+                            // TRANS: Addition in notice list item for single-notice view.
+                            _('permalink'));
     }
 
     /**

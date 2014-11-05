@@ -594,7 +594,7 @@ abstract class ActivityHandlerPlugin extends Plugin
         $nli->showNoticeLink();
         $nli->showNoticeSource();
         $nli->showNoticeLocation();
-        $nli->showContext();
+        $nli->showPermalink();
         $nli->showRepeat();
 
         $nli->showNoticeOptions();

@@ -146,11 +146,6 @@ class NoticeTreeItem extends NoticeListItem
         return;
     }
 
-    function showContext()
-    {
-        return;
-    }
-
     //Just changing the link...
     function showReplyLink()
     {

@@ -185,11 +185,6 @@ class ThreadedNoticeListItem extends NoticeListItem
         return 3;
     }
 
-    function showContext()
-    {
-        // Silence!
-    }
-
     /**
      * finish the notice
      *
@@ -295,11 +290,6 @@ class ThreadedNoticeListSubItem extends NoticeListItem
     }
 
     function showNoticeSource()
-    {
-        //
-    }
-
-    function showContext()
     {
         //
     }
