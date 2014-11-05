@@ -308,7 +308,7 @@ class NoticeListItem extends Widget
     function showNoticeLink()
     {
         $this->out->elementStart('a', array('rel' => 'bookmark',
-                                            'class' => 'u-url timestamp',
+                                            'class' => 'timestamp',
                                             'href' => Conversation::getUrlFromNotice($this->notice)));
         $this->out->element('time', array('class' => 'dt-published',
                                           'datetime' => common_date_iso8601($this->notice->created),
@@ -472,11 +472,19 @@ class NoticeListItem extends Widget
      */
     function showPermalink()
     {
-        $this->out->element('a',
-                            array('href' => $this->notice->getLocalUrl(),
-                                  'class' => 'permalink'),
-                            // TRANS: Addition in notice list item for single-notice view.
-                            _('permalink'));
+        $class = 'permalink u-url';
+        if (!$this->notice->isLocal()) {
+            $class .= ' external';
+        }
+        try {
+            $this->out->element('a',
+                        array('href' => $this->notice->getUrl(),
+                              'class' => $class),
+                        // TRANS: Addition in notice list item for single-notice view.
+                        _('permalink'));
+        } catch (InvalidUrlException $e) {
+            // no permalink available
+        }
     }
 
     /**
