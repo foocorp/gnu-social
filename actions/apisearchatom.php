@@ -339,7 +339,7 @@ class ApiSearchAtomAction extends ApiPrivateAuthAction
         $source = null;
 
         $ns = $notice->getSource();
-        if ($ns) {
+        if ($ns instanceof Notice_source) {
             if (!empty($ns->name) && !empty($ns->url)) {
                 $source = '<a href="'
                    . htmlspecialchars($ns->url)

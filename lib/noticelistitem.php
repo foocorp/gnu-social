@@ -417,48 +417,50 @@ class NoticeListItem extends Widget
     {
         $ns = $this->notice->getSource();
 
-        if ($ns) {
-            // TRANS: A possible notice source (web interface).
-            $source_name = (empty($ns->name)) ? ($ns->code ? _($ns->code) : _m('SOURCE','web')) : _($ns->name);
-            $this->out->text(' ');
-            $this->out->elementStart('span', 'source');
-            // @todo FIXME: probably i18n issue. If "from" is followed by text, that should be a parameter to "from" (from %s).
-            // TRANS: Followed by notice source.
-            $this->out->text(_('from'));
-            $this->out->text(' ');
-
-            $name  = $source_name;
-            $url   = $ns->url;
-            $title = null;
-
-            if (Event::handle('StartNoticeSourceLink', array($this->notice, &$name, &$url, &$title))) {
-                $name = $source_name;
-                $url  = $ns->url;
-            }
-            Event::handle('EndNoticeSourceLink', array($this->notice, &$name, &$url, &$title));
-
-            // if $ns->name and $ns->url are populated we have
-            // configured a source attr somewhere
-            if (!empty($name) && !empty($url)) {
-                $this->out->elementStart('span', 'device');
-
-                $attrs = array(
-                    'href' => $url,
-                    'rel' => 'external'
-                );
-
-                if (!empty($title)) {
-                    $attrs['title'] = $title;
-                }
-
-                $this->out->element('a', $attrs, $name);
-                $this->out->elementEnd('span');
-            } else {
-                $this->out->element('span', 'device', $name);
-            }
-
-            $this->out->elementEnd('span');
+        if (!$ns instanceof Notice_source) {
+            return false;
         }
+
+        // TRANS: A possible notice source (web interface).
+        $source_name = (empty($ns->name)) ? ($ns->code ? _($ns->code) : _m('SOURCE','web')) : _($ns->name);
+        $this->out->text(' ');
+        $this->out->elementStart('span', 'source');
+        // @todo FIXME: probably i18n issue. If "from" is followed by text, that should be a parameter to "from" (from %s).
+        // TRANS: Followed by notice source.
+        $this->out->text(_('from'));
+        $this->out->text(' ');
+
+        $name  = $source_name;
+        $url   = $ns->url;
+        $title = null;
+
+        if (Event::handle('StartNoticeSourceLink', array($this->notice, &$name, &$url, &$title))) {
+            $name = $source_name;
+            $url  = $ns->url;
+        }
+        Event::handle('EndNoticeSourceLink', array($this->notice, &$name, &$url, &$title));
+
+        // if $ns->name and $ns->url are populated we have
+        // configured a source attr somewhere
+        if (!empty($name) && !empty($url)) {
+            $this->out->elementStart('span', 'device');
+
+            $attrs = array(
+                'href' => $url,
+                'rel' => 'external'
+            );
+
+            if (!empty($title)) {
+                $attrs['title'] = $title;
+            }
+
+            $this->out->element('a', $attrs, $name);
+            $this->out->elementEnd('span');
+        } else {
+            $this->out->element('span', 'device', $name);
+        }
+
+        $this->out->elementEnd('span');
     }
 
     /**

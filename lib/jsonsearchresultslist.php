@@ -264,7 +264,7 @@ class ResultItem
             break;
         default:
             $ns = Notice_source::getKV($source);
-            if ($ns) {
+            if ($ns instanceof Notice_source) {
                 $source_name = '<a href="' . $ns->url . '">' . $ns->name . '</a>';
             }
             break;

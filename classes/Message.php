@@ -139,30 +139,32 @@ class Message extends Managed_DataObject
 
     function getSource()
     {
+        if (empty($this->source)) {
+            return false;
+        }
+
         $ns = new Notice_source();
-        if (!empty($this->source)) {
-            switch ($this->source) {
-            case 'web':
-            case 'xmpp':
-            case 'mail':
-            case 'omb':
-            case 'system':
-            case 'api':
+        switch ($this->source) {
+        case 'web':
+        case 'xmpp':
+        case 'mail':
+        case 'omb':
+        case 'system':
+        case 'api':
+            $ns->code = $this->source;
+            break;
+        default:
+            $ns = Notice_source::getKV($this->source);
+            if (!$ns instanceof Notice_source) {
+                $ns = new Notice_source();
                 $ns->code = $this->source;
-                break;
-            default:
-                $ns = Notice_source::getKV($this->source);
-                if (!$ns) {
-                    $ns = new Notice_source();
-                    $ns->code = $this->source;
-                    $app = Oauth_application::getKV('name', $this->source);
-                    if ($app) {
-                        $ns->name = $app->name;
-                        $ns->url  = $app->source_url;
-                    }
+                $app = Oauth_application::getKV('name', $this->source);
+                if ($app) {
+                    $ns->name = $app->name;
+                    $ns->url  = $app->source_url;
                 }
-                break;
             }
+            break;
         }
         return $ns;
     }
@@ -204,7 +206,7 @@ class Message extends Managed_DataObject
 
             $source = $this->getSource();
 
-            if ($source) {
+            if ($source instanceof Notice_source) {
                 $act->generator = ActivityObject::fromNoticeSource($source);
             }
 

@@ -2407,31 +2407,34 @@ class Notice extends Managed_DataObject
      */
     function getSource()
     {
-        $ns = new Notice_source();
-        if (!empty($this->source)) {
-            switch ($this->source) {
-            case 'web':
-            case 'xmpp':
-            case 'mail':
-            case 'omb':
-            case 'system':
-            case 'api':
-                $ns->code = $this->source;
-                break;
-            default:
-                $ns = Notice_source::getKV($this->source);
-                if (!$ns) {
-                    $ns = new Notice_source();
-                    $ns->code = $this->source;
-                    $app = Oauth_application::getKV('name', $this->source);
-                    if ($app) {
-                        $ns->name = $app->name;
-                        $ns->url  = $app->source_url;
-                    }
-                }
-                break;
-            }
+        if (empty($this->source)) {
+            return false;
         }
+
+        $ns = new Notice_source();
+        switch ($this->source) {
+        case 'web':
+        case 'xmpp':
+        case 'mail':
+        case 'omb':
+        case 'system':
+        case 'api':
+            $ns->code = $this->source;
+            break;
+        default:
+            $ns = Notice_source::getKV($this->source);
+            if (!$ns) {
+                $ns = new Notice_source();
+                $ns->code = $this->source;
+                $app = Oauth_application::getKV('name', $this->source);
+                if ($app) {
+                    $ns->name = $app->name;
+                    $ns->url  = $app->source_url;
+                }
+            }
+            break;
+        }
+
         return $ns;
     }
 
