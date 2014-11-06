@@ -9,6 +9,8 @@ We cannot support migrating from any other version of StatusNet than
 follow the upgrade procedures for each respective StatusNet version.
 
 You are now running StatusNet 1.1.1 and want to migrate to GNU social.
+Beware there may be changes in minimum required version of PHP and the
+modules used, so double-check the INSTALL file's requirements list.
 
 Before you begin: Make backups. Always make backups. Of your entire 
 directory structure and the database too. All tables. All data. Alles.
@@ -35,7 +37,7 @@ directory structure and the database too. All tables. All data. Alles.
     
     5. Start your queue daemons: 'php scripts/startdaemons.php'
     
-    6. Report any issues at https://gitorious.org/statusnet/gnu-social/ 
+    6. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
 
 
 Legacy StatusNet instructions
@@ -95,22 +97,3 @@ panels from /admin/* to /panel/*. This now allows the (popular)
 username 'admin', but blocks the considerably less popular username
 'panel'. If you have an existing user named 'panel', you should rename
 them before upgrading.
-
-Privacy
-=======
-
-With StatusNet 1.0, our default install profile is for private sites.
-
-If you did not specify the privacy level of your site previously, it
-was public. Now, it's private.
-
-If you upgrade a public site, you will need to reset the privacy
-level. You can do this in your config.php:
-
-       $config['site']['private'] = false;
-
-...or with setconfig.php in the db:
-
-       php setconfig.php site private false
-
-...or with the site admin panel.
