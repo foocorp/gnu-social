@@ -36,6 +36,7 @@ require_once 'Crypt/RSA.php';
 class Magicsig extends Managed_DataObject
 {
     const PUBLICKEYREL = 'magic-public-key';
+    const DIASPORA_PUBLICKEYREL = 'diaspora-public-key';
 
     public $__table = 'magicsig';
 
@@ -182,6 +183,12 @@ class Magicsig extends Managed_DataObject
         }
 
         return 'RSA.' . $mod . '.' . $exp . $private_exp;
+    }
+
+    public function exportPublicKey($format=CRYPT_RSA_PUBLIC_FORMAT_PKCS1)
+    {
+        $this->publicKey->setPublicKey();
+        return $this->publicKey->getPublicKey($format);
     }
 
     /**
