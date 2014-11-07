@@ -54,7 +54,7 @@
 
     @subsection usermethods_sec User Methods
 
-    @subsection directmessagemethods_sec Direct Message Methods
+    @subsection directmessagemethods_sec Direct Message Methods (now a plugin)
 
     @subsection friendshipmethods_sec Friendship Methods
 
