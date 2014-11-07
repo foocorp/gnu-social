@@ -55,6 +55,27 @@ class DirectMessagePlugin extends Plugin
         return true;
     }
 
+    public function onAppendUserActivityStreamObjects(UserActivityStream $uas, array &$objs)
+    {
+        // Messages _from_ the user
+        $msgMap = Message::listGet('from_profile', array($this->user->id));
+        $messages = $msgMap[$uas->user->id];
+        if (!empty($uas->after)) {
+            $messages = array_filter($messages, array($uas, 'createdAfter'));
+        }
+        $objs[] = $messages;
+
+        // Messages _to_ the user
+        $msgMap = Message::listGet('to_profile', array($this->user->id));
+        $messages = $msgMap[$uas->user->id];
+        if (!empty($uas->after)) {
+            $messages = array_filter($messages, array($uas, 'createdAfter'));
+        }
+        $objs[] = $messages;
+
+        return true;
+    }
+
     public function onEndPersonalGroupNav(Menu $menu, Profile $target, Profile $scoped=null)
     {
         if ($scoped instanceof Profile && $scoped->id == $target->id

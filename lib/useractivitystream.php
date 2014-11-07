@@ -75,10 +75,8 @@ class UserActivityStream extends AtomUserNoticeFeed
         $subscriptions = $this->getSubscriptions();
         $subscribers   = $this->getSubscribers();
         $groups        = $this->getGroups();
-        $messagesFrom  = $this->getMessagesFrom();
-        $messagesTo    = $this->getMessagesTo();
 
-        $objs = array_merge($subscriptions, $subscribers, $groups, $notices, $messagesFrom, $messagesTo);
+        $objs = array_merge($subscriptions, $subscribers, $groups, $notices);
 
         Event::handle('AppendUserActivityStreamObjects', array($this, &$objs));
 
@@ -351,32 +349,6 @@ class UserActivityStream extends AtomUserNoticeFeed
         }
 
         return $groups;
-    }
-
-    function getMessagesTo()
-    {
-        $msgMap = Message::listGet('to_profile', array($this->user->id));
-
-        $messages = $msgMap[$this->user->id];
-
-        if (!empty($this->after)) {
-            $messages = array_filter($messages, array($this, 'createdAfter'));
-        }
-
-        return $messages;
-    }
-
-    function getMessagesFrom()
-    {
-        $msgMap = Message::listGet('from_profile', array($this->user->id));
-
-        $messages = $msgMap[$this->user->id];
-
-        if (!empty($this->after)) {
-            $messages = array_filter($messages, array($this, 'createdAfter'));
-        }
-
-        return $messages;
     }
 
     function createdAfter($item) {
