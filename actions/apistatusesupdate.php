@@ -336,7 +336,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
      */
     function supported($cmd)
     {
-        static $cmdlist = array('MessageCommand', 'SubCommand', 'UnsubCommand',
+        static $cmdlist = array('SubCommand', 'UnsubCommand',
             'OnCommand', 'OffCommand', 'JoinCommand', 'LeaveCommand');
 
         $supported = null;

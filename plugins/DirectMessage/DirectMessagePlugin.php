@@ -76,6 +76,41 @@ class DirectMessagePlugin extends Plugin
         return true;
     }
 
+    /**
+     * Are we allowed to perform a certain command over the API?
+     */
+    public function onCommandSupportedAPI(Command $cmd, &$supported)
+    {
+        $supported = $supported || $cmd instanceof MessageCommand;
+        return true;
+    }
+
+    /**
+     * EndInterpretCommand will handle the 'd' and 'dm' commands.
+     *
+     * @param string  $cmd     Command being run
+     * @param string  $arg     Rest of the message (including address)
+     * @param User    $user    User sending the message
+     * @param Command &$result The resulting command object to be run.
+     *
+     * @return boolean hook value
+     */
+    public function onStartInterpretCommand($cmd, $arg, $user, &$result)
+    {
+        $dm_cmds = array('d', 'dm');
+
+        if ($result === false && in_array($cmd, $dm_cmds)) {
+            if (!empty($arg)) {
+                list($other, $extra) = CommandInterpreter::split_arg($arg);
+                if (!empty($extra)) {
+                    $result = new MessageCommand($user, $other, $extra);
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
     public function onEndPersonalGroupNav(Menu $menu, Profile $target, Profile $scoped=null)
     {
         if ($scoped instanceof Profile && $scoped->id == $target->id

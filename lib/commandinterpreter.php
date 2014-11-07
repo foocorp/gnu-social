@@ -28,7 +28,7 @@ class CommandInterpreter
         // XXX: localise
 
         $text = preg_replace('/\s+/', ' ', trim($text));
-        list($cmd, $arg) = $this->split_arg($text);
+        list($cmd, $arg) = self::split_arg($text);
 
         // We try to support all the same commands as Twitter, see
         // http://getsatisfaction.com/twitter/topics/what_are_the_twitter_commands
@@ -55,7 +55,7 @@ class CommandInterpreter
                 break;
             case 'lose':
                 if ($arg) {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -88,7 +88,7 @@ class CommandInterpreter
                 break;
             case 'on':
                 if ($arg) {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -100,7 +100,7 @@ class CommandInterpreter
                 break;
             case 'off':
                 if ($arg) {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -122,7 +122,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -134,7 +134,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -147,7 +147,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -160,7 +160,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -173,23 +173,11 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 }
-                list($other, $extra) = $this->split_arg($arg);
+                list($other, $extra) = self::split_arg($arg);
                 if ($extra) {
                     $result = null;
                 } else {
                     $result = new GetCommand($user, $other);
-                }
-                break;
-            case 'd':
-            case 'dm':
-                if (!$arg) {
-                    $result = null;
-                }
-                list($other, $extra) = $this->split_arg($arg);
-                if (!$extra) {
-                    $result = null;
-                } else {
-                    $result = new MessageCommand($user, $other, $extra);
                 }
                 break;
             case 'r':
@@ -197,7 +185,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 }
-                list($other, $extra) = $this->split_arg($arg);
+                list($other, $extra) = self::split_arg($arg);
                 if (!$extra) {
                     $result = null;
                 } else {
@@ -211,7 +199,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -223,7 +211,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -235,7 +223,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -254,7 +242,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($other, $extra) = $this->split_arg($arg);
+                    list($other, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else {
@@ -268,7 +256,7 @@ class CommandInterpreter
                     $result = null;
                     break;
                 }
-                list($other, $tags) = $this->split_arg($arg);
+                list($other, $tags) = self::split_arg($arg);
                 if (!$tags) {
                     $result = null;
                 } else {
@@ -281,7 +269,7 @@ class CommandInterpreter
                     $result = null;
                     break;
                 }
-                list($other, $tags) = $this->split_arg($arg);
+                list($other, $tags) = self::split_arg($arg);
                 if (!$tags) {
                     $result = null;
                 } else {
@@ -292,7 +280,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($word, $extra) = $this->split_arg($arg);
+                    list($word, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else if ($word == 'off') {
@@ -306,7 +294,7 @@ class CommandInterpreter
                 if (!$arg) {
                     $result = null;
                 } else {
-                    list($word, $extra) = $this->split_arg($arg);
+                    list($word, $extra) = self::split_arg($arg);
                     if ($extra) {
                         $result = null;
                     } else if ($word == 'all') {
@@ -337,7 +325,7 @@ class CommandInterpreter
     /**
      * Split arguments without triggering a PHP notice warning
      */
-    function split_arg($text)
+    static function split_arg($text)
     {
         $pieces = explode(' ', $text, 2);
         if (count($pieces) == 1) {
