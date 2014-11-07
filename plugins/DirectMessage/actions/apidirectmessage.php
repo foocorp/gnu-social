@@ -218,6 +218,108 @@ class ApiDirectMessageAction extends ApiAuthAction
         return null;
     }
 
+    // BEGIN import from lib/apiaction.php
+
+    function showSingleXmlDirectMessage($message)
+    {
+        $this->initDocument('xml');
+        $dmsg = $this->directMessageArray($message);
+        $this->showXmlDirectMessage($dmsg, true);
+        $this->endDocument('xml');
+    }
+
+    function showSingleJsonDirectMessage($message)
+    {
+        $this->initDocument('json');
+        $dmsg = $this->directMessageArray($message);
+        $this->showJsonObjects($dmsg);
+        $this->endDocument('json');
+    }
+
+    function showXmlDirectMessage($dm, $namespaces=false)
+    {
+        $attrs = array();
+        if ($namespaces) {
+            $attrs['xmlns:statusnet'] = 'http://status.net/schema/api/1/';
+        }
+        $this->elementStart('direct_message', $attrs);
+        foreach($dm as $element => $value) {
+            switch ($element) {
+            case 'sender':
+            case 'recipient':
+                $this->showTwitterXmlUser($value, $element);
+                break;
+            case 'text':
+                $this->element($element, null, common_xml_safe_str($value));
+                break;
+            default:
+                $this->element($element, null, $value);
+                break;
+            }
+        }
+        $this->elementEnd('direct_message');
+    }
+
+    function directMessageArray($message)
+    {
+        $dmsg = array();
+
+        $from_profile = $message->getFrom();
+        $to_profile = $message->getTo();
+
+        $dmsg['id'] = intval($message->id);
+        $dmsg['sender_id'] = intval($from_profile->id);
+        $dmsg['text'] = trim($message->content);
+        $dmsg['recipient_id'] = intval($to_profile->id);
+        $dmsg['created_at'] = $this->dateTwitter($message->created);
+        $dmsg['sender_screen_name'] = $from_profile->nickname;
+        $dmsg['recipient_screen_name'] = $to_profile->nickname;
+        $dmsg['sender'] = $this->twitterUserArray($from_profile, false);
+        $dmsg['recipient'] = $this->twitterUserArray($to_profile, false);
+
+        return $dmsg;
+    }
+
+    function rssDirectMessageArray($message)
+    {
+        $entry = array();
+
+        $from = $message->getFrom();
+
+        $entry['title'] = sprintf('Message from %1$s to %2$s',
+            $from->nickname, $message->getTo()->nickname);
+
+        $entry['content'] = common_xml_safe_str($message->rendered);
+        $entry['link'] = common_local_url('showmessage', array('message' => $message->id));
+        $entry['published'] = common_date_iso8601($message->created);
+
+        $taguribase = TagURI::base();
+
+        $entry['id'] = "tag:$taguribase:$entry[link]";
+        $entry['updated'] = $entry['published'];
+
+        $entry['author-name'] = $from->getBestName();
+        $entry['author-uri'] = $from->homepage;
+
+        $entry['avatar'] = $from->avatarUrl(AVATAR_STREAM_SIZE);
+        try {
+            $avatar = $from->getAvatar(AVATAR_STREAM_SIZE);
+            $entry['avatar-type'] = $avatar->mediatype;
+        } catch (Exception $e) {
+            $entry['avatar-type'] = 'image/png';
+        }
+
+        // RSS item specific
+
+        $entry['description'] = $entry['content'];
+        $entry['pubDate'] = common_date_rfc2822($message->created);
+        $entry['guid'] = $entry['link'];
+
+        return $entry;
+    }
+
+    // END import from lib/apiaction.php
+
     /**
      * Shows a list of direct messages as Twitter-style XML array
      *
