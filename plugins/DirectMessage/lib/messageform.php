@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/form.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Form for posting a direct message

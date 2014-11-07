@@ -1,8 +1,10 @@
 <?php
+
+if (!defined('GNUSOCIAL')) { exit(1); }
+
 /**
  * Table Definition for message
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 class Message extends Managed_DataObject
 {
