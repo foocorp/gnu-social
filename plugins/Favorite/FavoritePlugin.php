@@ -416,7 +416,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
     /**
      * Are we allowed to perform a certain command over the API?
      */
-    public function onCommandSupportedAPI(Command $cmd, array &$supported)
+    public function onCommandSupportedAPI(Command $cmd, &$supported)
     {
         $supported = $supported || $cmd instanceof FavCommand;
     }
