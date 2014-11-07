@@ -861,7 +861,6 @@ class Profile extends Managed_DataObject
     {
         $this->_deleteNotices();
         $this->_deleteSubscriptions();
-        $this->_deleteMessages();
         $this->_deleteTags();
         $this->_deleteBlocks();
         $this->_deleteAttentions();
@@ -935,17 +934,6 @@ class Profile extends Managed_DataObject
         $self->subscribed = $this->id;
 
         $self->delete();
-    }
-
-    function _deleteMessages()
-    {
-        $msg = new Message();
-        $msg->from_profile = $this->id;
-        $msg->delete();
-
-        $msg = new Message();
-        $msg->to_profile = $this->id;
-        $msg->delete();
     }
 
     function _deleteTags()

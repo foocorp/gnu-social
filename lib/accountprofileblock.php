@@ -171,17 +171,6 @@ class AccountProfileBlock extends ProfileBlock
                         $this->out->elementEnd('li');
 
                         if ($this->profile->isLocal() && $cur->mutuallySubscribed($this->profile)) {
-
-                            // message
-
-                            $this->out->elementStart('li', 'entity_send-a-message');
-                            $this->out->element('a', array('href' => common_local_url('newmessage', array('to' => $this->user->id)),
-                                                      // TRANS: Link title for link on user profile.
-                                                      'title' => _('Send a direct message to this user.')),
-                                           // TRANS: Link text for link on user profile.
-                                           _m('BUTTON','Message'));
-                            $this->out->elementEnd('li');
-
                             // nudge
 
                             if ($this->user->email && $this->user->emailnotifynudge) {

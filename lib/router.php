@@ -249,12 +249,6 @@ class Router
                         array('action' => 'conversation'),
                         array('id' => '[0-9]+'));
 
-            $m->connect('message/new', array('action' => 'newmessage'));
-            $m->connect('message/new?to=:to', array('action' => 'newmessage'), array('to' => Nickname::DISPLAY_FMT));
-            $m->connect('message/:message',
-                        array('action' => 'showmessage'),
-                        array('message' => '[0-9]+'));
-
             $m->connect('user/:id',
                         array('action' => 'userbyid'),
                         array('id' => '[0-9]+'));
@@ -505,21 +499,6 @@ class Router
             $m->connect('api/users/profile_image/:screen_name.:format',
                         array('action' => 'ApiUserProfileImage',
                               'screen_name' => Nickname::DISPLAY_FMT,
-                              'format' => '(xml|json)'));
-
-            // direct messages
-
-            $m->connect('api/direct_messages.:format',
-                        array('action' => 'ApiDirectMessage',
-                              'format' => '(xml|json|rss|atom)'));
-
-            $m->connect('api/direct_messages/sent.:format',
-                        array('action' => 'ApiDirectMessage',
-                              'format' => '(xml|json|rss|atom)',
-                              'sent' => true));
-
-            $m->connect('api/direct_messages/new.:format',
-                        array('action' => 'ApiDirectMessageNew',
                               'format' => '(xml|json)'));
 
             // friendships

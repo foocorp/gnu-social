@@ -96,19 +96,6 @@ class PersonalGroupNav extends Menu
                                  sprintf(_('Replies to %s'), $name),
                                  $mine && $action =='replies', 'nav_timeline_replies');
 
-
-            if ($scoped instanceof Profile && $scoped->id == $target->id &&
-                !common_config('singleuser', 'enabled')) {
-
-                $this->out->menuItem(common_local_url('inbox', array('nickname' =>
-                                                                     $nickname)),
-                                     // TRANS: Menu item in personal group navigation menu.
-                                     _m('MENU','Messages'),
-                                     // TRANS: Menu item title in personal group navigation menu.
-                                     _('Your incoming messages'),
-                                     $mine && $action =='inbox');
-            }
-
             Event::handle('EndPersonalGroupNav', array($this, $target, $scoped));
         }
         $this->out->elementEnd('ul');
