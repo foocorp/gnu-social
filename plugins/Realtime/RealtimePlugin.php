@@ -71,10 +71,10 @@ class RealtimePlugin extends Plugin
     /**
      * Hook for RouterInitialized event.
      *
-     * @param Net_URL_Mapper $m path-to-action mapper
+     * @param URLMapper $m path-to-action mapper
      * @return boolean hook return
      */
-    function onRouterInitialized($m)
+    public function onRouterInitialized(URLMapper $m)
     {
         $m->connect('main/channel/:channelkey/keepalive',
                     array('action' => 'keepalivechannel'),

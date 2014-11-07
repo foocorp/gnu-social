@@ -274,11 +274,11 @@ class BlacklistPlugin extends Plugin
     /**
      * Add our actions to the URL router
      *
-     * @param Net_URL_Mapper $m URL mapper for this hit
+     * @param URLMapper $m URL mapper for this hit
      *
      * @return boolean hook return
      */
-    function onRouterInitialized($m)
+    public function onRouterInitialized(URLMapper $m)
     {
         $m->connect('panel/blacklist', array('action' => 'blacklistadminpanel'));
         return true;

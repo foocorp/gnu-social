@@ -67,11 +67,11 @@ class UserFlagPlugin extends Plugin
     /**
      * Add our actions to the URL router
      *
-     * @param Net_URL_Mapper $m URL mapper for this hit
+     * @param URLMapper $m URL mapper for this hit
      *
      * @return boolean hook return
      */
-    function onRouterInitialized($m)
+    public function onRouterInitialized(URLMapper $m)
     {
         $m->connect('main/flag/profile', array('action' => 'flagprofile'));
         $m->connect('main/flag/clear', array('action' => 'clearflag'));

@@ -64,11 +64,11 @@ class ModPlusPlugin extends Plugin
      *
      * Hook for RouterInitialized event.
      *
-     * @param Net_URL_Mapper $m URL mapper
+     * @param URLMapper $m URL mapper
      *
      * @return boolean hook return
      */
-    function onStartInitializeRouter($m)
+    public function onStartInitializeRouter(URLMapper $m)
     {
         $m->connect('user/remote/:id',
                 array('action' => 'remoteprofile'),

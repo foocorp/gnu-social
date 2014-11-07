@@ -29,10 +29,10 @@ class GroupFavoritedPlugin extends Plugin
     /**
      * Hook for RouterInitialized event.
      *
-     * @param Net_URL_Mapper $m path-to-action mapper
+     * @param URLMapper $m path-to-action mapper
      * @return boolean hook return
      */
-    function onRouterInitialized(Net_URL_Mapper $m)
+    function onRouterInitialized(URLMapper $m)
     {
         $m->connect('group/:nickname/favorited',
                     array('action' => 'groupfavorited'),

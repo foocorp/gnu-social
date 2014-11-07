@@ -75,12 +75,12 @@ class QnAPlugin extends MicroAppPlugin
     /**
      * Map URLs to actions
      *
-     * @param Net_URL_Mapper $m path-to-action mapper
+     * @param URLMapper $m path-to-action mapper
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
 
-    function onRouterInitialized($m)
+    public function onRouterInitialized(URLMapper $m)
     {
         $UUIDregex = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}';
 

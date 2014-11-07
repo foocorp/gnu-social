@@ -70,11 +70,11 @@ class GroupPrivateMessagePlugin extends Plugin
     /**
      * Map URLs to actions
      *
-     * @param Net_URL_Mapper $m path-to-action mapper
+     * @param URLMapper $m path-to-action mapper
      *
      * @return boolean hook value
      */
-    function onRouterInitialized($m)
+    public function onRouterInitialized(URLMapper $m)
     {
         $m->connect('group/:nickname/inbox',
                     array('action' => 'groupinbox'),

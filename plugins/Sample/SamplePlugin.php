@@ -182,11 +182,11 @@ class SamplePlugin extends Plugin
      * action will be named 'FoobarAction', where action = 'foobar'. The class
      * must be loaded in the onAutoload() method.
      *
-     * @param Net_URL_Mapper $m path-to-action mapper
+     * @param URLMapper $m path-to-action mapper
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-    function onRouterInitialized($m)
+    public function onRouterInitialized(URLMapper $m)
     {
         $m->connect('main/hello',
                     array('action' => 'hello'));
