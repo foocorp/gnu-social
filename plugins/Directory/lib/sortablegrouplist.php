@@ -221,6 +221,23 @@ class SortableGroupListItem extends SortableSubscriptionListItem
         $this->endProfile();
     }
 
+    function endActions()
+    {
+        // delete button
+        $cur = common_current_user();
+        list($action, $r2args) = $this->out->returnToArgs();
+        $r2args['action'] = $action;
+        if ($cur instanceof User && $cur->hasRight(Right::DELETEGROUP)) {
+            $this->out->elementStart('li', 'entity_delete');
+            $df = new DeleteGroupForm($this->out, $this->profile, $r2args);
+            $df->show();
+            $this->out->elementEnd('li');
+        }
+
+        $this->out->elementEnd('ul');
+        $this->out->elementEnd('td');
+    }
+
     function showActions()
     {
         $this->startActions();

@@ -171,6 +171,8 @@ class DeletegroupAction extends RedirectingAction
 
     function showContent() {
         $this->areYouSureForm();
+        $block = new GroupProfileBlock($this, $this->group);
+        $block->show();
     }
 
     /**
