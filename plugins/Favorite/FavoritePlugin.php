@@ -393,7 +393,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
             if (empty($arg)) {
                 $result = null;
             } else {
-                list($other, $extra) = $this->split_arg($arg);
+                list($other, $extra) = CommandInterpreter::split_arg($arg);
                 if (!empty($extra)) {
                     $result = null;
                 } else {
