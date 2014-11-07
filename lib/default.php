@@ -303,6 +303,7 @@ $default =
                             'Bookmark' => array(),
                             'ClientSideShorten' => array(),
                             'Directory' => array(),
+                            'DirectMessage' => array(),
                             'EmailAuthentication' => array(),
                             'Event' => array(),
                             'Oembed' => array(),
