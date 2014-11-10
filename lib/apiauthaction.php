@@ -97,16 +97,12 @@ class ApiAuthAction extends ApiAction
         } else {
             $oauthReq = $this->getOAuthRequest();
 
-            if (!$oauthReq) {
-                if ($this->requiresAuth()) {
-                    $this->checkBasicAuthUser(true);
-                } else {
-                    // Check to see if a basic auth user is there even
-                    // if one's not required
-                    $this->checkBasicAuthUser(false);
-                }
-            } else {
+            if ($oauthReq instanceof OAuthRequest) {
                 $this->checkOAuthRequest($oauthReq);
+            } else {
+                // If not using OAuth, check if there is a basic auth
+                // and require it if the current action requires it.
+                $this->checkBasicAuthUser($this->requiresAuth());
             }
 
             // NOTE: Make sure we're scoped properly based on the auths!
