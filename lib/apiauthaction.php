@@ -290,6 +290,7 @@ class ApiAuthAction extends ApiAction
             $this->clientError(_('Could not authenticate you.'), 401);
 
         } elseif ($required) {
+            // $this->auth_user_nickname - i.e. PHP_AUTH_USER - will have a value since it was not empty
 
             $user = common_check_user($this->auth_user_nickname,
                                       $this->auth_user_password);
@@ -310,7 +311,7 @@ class ApiAuthAction extends ApiAction
             // By default, basic auth users have rw access
             $this->access = self::READ_WRITE;
 
-            if (!$this->auth_user instanceof User && isset($_SERVER['PHP_AUTH_USER'])) {
+            if (!$this->auth_user instanceof User) {
                 $msg = sprintf(
                     "basic auth nickname = %s",
                     $this->auth_user_nickname
