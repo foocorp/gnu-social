@@ -310,7 +310,7 @@ class ApiAuthAction extends ApiAction
             // By default, basic auth users have rw access
             $this->access = self::READ_WRITE;
 
-            if (!$this->auth_user instanceof User && ($required || isset($_SERVER['PHP_AUTH_USER']))) {
+            if (!$this->auth_user instanceof User && isset($_SERVER['PHP_AUTH_USER'])) {
                 $msg = sprintf(
                     "basic auth nickname = %s",
                     $this->auth_user_nickname
