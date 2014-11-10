@@ -317,11 +317,14 @@ class ApiAuthAction extends ApiAction
                     $this->auth_user_nickname
                 );
                 $this->logAuthFailure($msg);
+
+                // We must present WWW-Authenticate in accordance to HTTP status code 401
+                header('WWW-Authenticate: Basic realm="' . $realm . '"');
                 // TRANS: Client error thrown when authentication fails.
                 $this->clientError(_('Could not authenticate you.'), 401);
             }
         } else {
-            // all get rw access for actions that don't need auth
+            // all get rw access for actions that don't require auth
             $this->access = self::READ_WRITE;
         }
     }
