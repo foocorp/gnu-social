@@ -296,7 +296,7 @@ class ApiAuthAction extends ApiAction
 
             if (Event::handle('StartSetApiUser', array(&$user))) {
 
-                if (!empty($user)) {
+                if ($user instanceof User) {
                     if (!$user->hasRight(Right::API)) {
                         // TRANS: Authorization exception thrown when a user without API access tries to access the API.
                         throw new AuthorizationException(_('Not allowed to use API.'));
@@ -310,7 +310,7 @@ class ApiAuthAction extends ApiAction
             // By default, basic auth users have rw access
             $this->access = self::READ_WRITE;
 
-            if (empty($this->auth_user) && ($required || isset($_SERVER['PHP_AUTH_USER']))) {
+            if (!$this->auth_user instanceof User && ($required || isset($_SERVER['PHP_AUTH_USER']))) {
                 $msg = sprintf(
                     "basic auth nickname = %s",
                     $this->auth_user_nickname
