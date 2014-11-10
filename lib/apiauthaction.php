@@ -82,28 +82,39 @@ class ApiAuthAction extends ApiAction
     {
         parent::prepare($args);
 
-        // NOTE: $this->auth_user has to get set in prepare(), not handle(),
-        // because subclasses do stuff with it in their prepares.
+        // NOTE: $this->scoped and $this->auth_user has to get set in
+        // prepare(), not handle(), as subclasses use them in prepares.
 
-        $oauthReq = $this->getOAuthRequest();
-
-        if (!$oauthReq) {
-            if ($this->requiresAuth()) {
-                $this->checkBasicAuthUser(true);
-            } else {
-                // Check to see if a basic auth user is there even
-                // if one's not required
-                $this->checkBasicAuthUser(false);
+        // Allow regular login session
+        if (common_logged_in()) {
+            $this->scoped = Profile::current();
+            $this->auth_user = $this->scoped->getUser();
+            if (!$this->auth_user->hasRight(Right::API)) {
+                // TRANS: Authorization exception thrown when a user without API access tries to access the API.
+                throw new AuthorizationException(_('Not allowed to use API.'));
             }
+            $this->access = self::READ_WRITE;
         } else {
-            $this->checkOAuthRequest($oauthReq);
-        }
+            $oauthReq = $this->getOAuthRequest();
 
-        // NOTE: Make sure we're scoped properly based on the auths!
-        if (isset($this->auth_user) && !empty($this->auth_user)) {
-            $this->scoped = $this->auth_user->getProfile();
-        } else {
-            $this->scoped = null;
+            if (!$oauthReq) {
+                if ($this->requiresAuth()) {
+                    $this->checkBasicAuthUser(true);
+                } else {
+                    // Check to see if a basic auth user is there even
+                    // if one's not required
+                    $this->checkBasicAuthUser(false);
+                }
+            } else {
+                $this->checkOAuthRequest($oauthReq);
+            }
+
+            // NOTE: Make sure we're scoped properly based on the auths!
+            if (isset($this->auth_user) && $this->auth_user instanceof User) {
+                $this->scoped = $this->auth_user->getProfile();
+            } else {
+                $this->scoped = null;
+            }
         }
 
         // legacy user transferral
@@ -215,7 +226,7 @@ class ApiAuthAction extends ApiAction
                         // does lots of session stuff.
                         global $_cur;
                         $_cur = $this->auth_user;
-                        Event::handle('EndSetApiUser', array($user)); 
+                        Event::handle('EndSetApiUser', array($user));
                     }
 
                     $msg = "API OAuth authentication for user '%s' (id: %d) on behalf of " .
@@ -279,10 +290,10 @@ class ApiAuthAction extends ApiAction
             header('WWW-Authenticate: Basic realm="' . $realm . '"');
 
             // show error if the user clicks 'cancel'
-            // TRANS: Client error thrown when authentication fails becaus a user clicked "Cancel".
+            // TRANS: Client error thrown when authentication fails because a user clicked "Cancel".
             $this->clientError(_('Could not authenticate you.'), 401);
 
-        } else {
+        } elseif ($required) {
 
             $user = common_check_user($this->auth_user_nickname,
                                       $this->auth_user_password);
@@ -312,6 +323,9 @@ class ApiAuthAction extends ApiAction
                 // TRANS: Client error thrown when authentication fails.
                 $this->clientError(_('Could not authenticate you.'), 401);
             }
+        } else {
+            // all get rw access for actions that don't need auth
+            $this->access = self::READ_WRITE;
         }
     }
 
