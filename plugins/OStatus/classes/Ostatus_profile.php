@@ -1922,7 +1922,7 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         // Try looking it up
-        $oprofile = Ostatus_profile::getKV('uri', 'acct:'.$addr);
+        $oprofile = Ostatus_profile::getKV('uri', Discovery::normalize($addr));
 
         if ($oprofile instanceof Ostatus_profile) {
             self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->getUri());
