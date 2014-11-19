@@ -18,6 +18,7 @@ run correctly.
 Your PHP installation must include the following PHP extensions for a
 functional setup of GNU Social:
 
+- openssl       (compiled in for Debian, enabled manually in Arch Linux)
 - php5-curl     Fetching files by HTTP.
 - php5-gd       Image manipulation (scaling).
 - php5-gmp      For Salmon signatures (part of OStatus).
