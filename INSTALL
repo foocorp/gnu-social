@@ -7,7 +7,7 @@ run correctly.
 - PHP 5.4+      For newer versions, some functions that are used may be
                 disabled by default, such as the pcntl_* family. See the
                 section on 'Queues and daemons' for more information.
-- MariaDB 5.x   GNU Social uses, by default, a MariaDB server for data
+- MariaDB 5+    GNU Social uses, by default, a MariaDB server for data
                 storage. Versions 5.x and 10.x have both reportedly
                 worked well. It is also possible to run MySQL 5.x.
 - Web server    Apache, lighttpd and nginx will all work. CGI mode is
@@ -18,13 +18,16 @@ run correctly.
 Your PHP installation must include the following PHP extensions for a
 functional setup of GNU Social:
 
-- Curl          Fetching files by HTTP.
-- XMLWriter     For formatting XML and HTML output.
-- mysqlnd       The native driver for PHP5 MariaDB connections. If you
-                use MySQL, 'mysql' or 'mysqli' may work.
-- GD            Image manipulation (scaling).
-- mbstring      For handling Unicode (UTF-8) encoded strings.
-- bcmath or gmp For Salmon signatures (part of OStatus).
+- php5-curl     Fetching files by HTTP.
+- php5-gd       Image manipulation (scaling).
+- php5-gmp      For Salmon signatures (part of OStatus).
+- php5-json     For WebFinger lookups and more.
+- php5-mysqlnd  The native driver for PHP5 MariaDB connections. If you
+                  use MySQL, 'mysql' or 'mysqli' may work.
+
+The above package names are for Debian based systems. In the case of
+Arch Linux, PHP is compiled with support for most extensions but they
+require manual enabling in the relevant php.ini file (mostly php5-gmp).
 
 Better performance
 ------------------
