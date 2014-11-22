@@ -252,6 +252,11 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             }
         }
 
+        if (empty($notices)) {
+            // TRANS: When no posts were found with specific or default parameters
+            $this->clientError(_('Did not find any posts within search parameters'), 404);
+        }
+
         return $notices;
     }
 
