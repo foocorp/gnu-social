@@ -224,7 +224,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             break;
         default:
             // TRANS: Client error displayed when coming across a non-supported API method.
-            $this->clientError(_('API method not found.'), $code = 404);
+            $this->clientError(_('API method not found.'), 404);
         }
     }
 
