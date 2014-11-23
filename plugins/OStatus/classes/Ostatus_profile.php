@@ -88,6 +88,10 @@ class Ostatus_profile extends Managed_DataObject
      */
     public function localProfile()
     {
+        if ($this->isGroup()) {
+            return $this->localGroup()->getProfile();
+        }
+
         $profile = Profile::getKV('id', $this->profile_id);
         if ($profile instanceof Profile) {
             return $profile;
