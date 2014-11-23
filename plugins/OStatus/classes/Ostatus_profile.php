@@ -2150,7 +2150,7 @@ class Ostatus_profile extends Managed_DataObject
                 common_log(LOG_WARNING,
                     "OStatus: skipping post with group listed ".
                     "as author: " . $oprofile->getUri() . " in feed from " . $this->getUri());
-                return false;
+                throw new ServerException('Activity author is a non-actor');
             }
         } else {
             $actor = $activity->actor;
