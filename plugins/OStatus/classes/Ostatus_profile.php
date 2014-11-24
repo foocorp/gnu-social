@@ -735,7 +735,7 @@ class Ostatus_profile extends Managed_DataObject
     {
         $notice = null;
 
-        $profile = $this->checkAuthorship($activity, $this->localProfile());
+        $profile = ActivityUtils::checkAuthorship($activity, $this->localProfile());
 
         // It's not always an ActivityObject::NOTE, but... let's just say it is.
 
