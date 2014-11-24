@@ -173,7 +173,7 @@ class UserEmailSummaryHandler extends QueueHandler
             $out->text(' ');
             $out->raw($notice->rendered);
             $out->elementStart('div', array('style' => 'font-size: 0.8em; padding-top: 4px;'));
-            $noticeurl = $notice->getUrl();
+            $noticeurl = $notice->getLocalUrl();
             // above should always return an URL
             assert(!empty($noticeurl));
             $out->elementStart('a', array('rel' => 'bookmark',
