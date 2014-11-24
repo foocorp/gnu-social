@@ -117,8 +117,8 @@ class UserEmailSummaryHandler extends QueueHandler
 
         $new_top = null;
 
-        if ($notice instanceof ArrayWrapper) {
-            $new_top = $notice->_items[0]->id;
+        if ($notice->fetch()) {
+            $new_top = $notice->id;
         }
 
         // TRANS: Subject for e-mail.
@@ -145,7 +145,7 @@ class UserEmailSummaryHandler extends QueueHandler
         $out->elementStart('table', array('width' => '550px',
                                           'style' => 'border: none; border-collapse: collapse;', 'cellpadding' => '6'));
 
-        while ($notice->fetch()) {
+        do {
             $profile = Profile::getKV('id', $notice->profile_id);
 
             if (empty($profile)) {
@@ -189,7 +189,7 @@ class UserEmailSummaryHandler extends QueueHandler
             $out->elementEnd('div');
             $out->elementEnd('td');
             $out->elementEnd('tr');
-        }
+        } while ($notice->fetch());
 
         $out->elementEnd('table');
 
