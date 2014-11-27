@@ -34,6 +34,8 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 function main()
 {
     if (Event::handle('StartUpgrade')) {
+        fixupConversationURIs();
+
         updateSchemaCore();
         updateSchemaPlugins();
 
@@ -194,6 +196,29 @@ function initConversation()
                        $conv->escape($uri),
                        $conv->escape(common_sql_now()));
         $conv->query($sql);
+    }
+
+    printfnq("DONE.\n");
+}
+
+function fixupConversationURIs()
+{
+    printfnq("Ensuring all conversations have a URI...");
+
+    $conv = new Conversation();
+    $conv->whereAdd('uri IS NULL');
+
+    if ($conv->find()) {
+        $rounds = 0;
+        while ($conv->fetch()) {
+            $uri = common_local_url('conversation', array('id' => $conv->id));
+            $sql = sprintf('UPDATE conversation SET uri="%1$s" WHERE id="%2$d";',
+                            $conv->escape($uri), $conv->id);
+            $conv->query($sql);
+            if (($conv->N-++$rounds) % 500 == 0) {
+                printfnq(sprintf(' %d items left...', $conv->N-$rounds));
+            }
+        }
     }
 
     printfnq("DONE.\n");
