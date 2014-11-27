@@ -417,8 +417,9 @@ class Notice extends Managed_DataObject
     static function saveNew($profile_id, $content, $source, array $options=null) {
         $defaults = array('uri' => null,
                           'url' => null,
-                          'reply_to' => null,
-                          'repeat_of' => null,
+                          'conversation' => null,   // URI of conversation
+                          'reply_to' => null,       // This will override convo URI if the parent is known
+                          'repeat_of' => null,      // This will override convo URI if the repeated notice is known
                           'scope' => null,
                           'distribute' => true,
                           'object_type' => null,
@@ -599,6 +600,17 @@ class Notice extends Managed_DataObject
                 }
 
                 // Scope set below
+            }
+
+            // If we don't know the reply, we might know the conversation!
+            // This will happen if a known remote user replies to an
+            // unknown remote user - within a known conversation.
+            if (empty($notice->conversation) and !empty($options['conversation'])) {
+                $conv = Conversation::getKV('uri', $options['conversation']);
+                if ($conv instanceof Conversation and $activity->time > $conv->created) {
+                    common_debug('Conversation stitched together from (probably) reply to unknown remote user. Activity creation time ('.$activity->time.') is greater than conversation creation time ('.$conv->created.').');
+                    $notice->conversation = $conv->id;
+                }
             }
         }
 
