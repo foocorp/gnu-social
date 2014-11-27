@@ -44,7 +44,7 @@ class Conversation extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'int', 'not null' => true, 'description' => 'should be set from root notice id (since 2014-03-01 commit)'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'URI of the conversation'),
+                'uri' => array('type' => 'varchar', 'not null'=>true, 'length' => 255, 'description' => 'URI of the conversation'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
