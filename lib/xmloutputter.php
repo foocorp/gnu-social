@@ -142,6 +142,15 @@ class XMLOutputter
         $this->elementEnd($tag);
     }
 
+    function elementNS(array $ns, $tag, $attrs=null, $content=null)
+    {
+        $this->elementStartNS($ns, $tag, $attrs);
+        if (!is_null($content)) {
+            $this->xw->text($content);
+        }
+        $this->elementEnd($tag);
+    }
+
     /**
      * output a start tag for an element
      *
@@ -160,6 +169,20 @@ class XMLOutputter
     function elementStart($tag, $attrs=null)
     {
         $this->xw->startElement($tag);
+        if (is_array($attrs)) {
+            foreach ($attrs as $name => $value) {
+                $this->xw->writeAttribute($name, $value);
+            }
+        } else if (is_string($attrs)) {
+            $this->xw->writeAttribute('class', $attrs);
+        }
+    }
+
+    function elementStartNS(array $ns, $tag, $attrs=null)
+    {
+        reset($ns); // array pointer to 0
+        $uri = key($ns);
+        $this->xw->startElementNS($ns[$uri], $tag, $uri);
         if (is_array($attrs)) {
             foreach ($attrs as $name => $value) {
                 $this->xw->writeAttribute($name, $value);
