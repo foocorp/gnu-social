@@ -118,7 +118,7 @@ Upgrades from _StatusNet_ 1.1.1 will also experience these improvements:
 - More robust handling of errors in distribution.
 - Fix error in OStatus subscription for remote groups.
 - Fix error in XMPP distribution.
-
+- Tracking of conversation URI metadata (more coherent convos)
 
 ### Troubleshooting
 
