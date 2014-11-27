@@ -63,7 +63,7 @@ class Conversation extends Managed_DataObject
      *
      * @return Conversation the new conversation DO
      */
-    static function create(Notice $notice)
+    static function create(Notice $notice, $uri=null)
     {
         if (empty($notice->id)) {
             throw new ServerException(_('Tried to create conversation for not yet inserted notice'));
@@ -71,7 +71,7 @@ class Conversation extends Managed_DataObject
         $conv = new Conversation();
         $conv->created = common_sql_now();
         $conv->id = $notice->id;
-        $conv->uri = sprintf('%s%s=%d:%s=%s',
+        $conv->uri = $uri ?: sprintf('%s%s=%d:%s=%s',
                              TagURI::mint(),
                              'noticeId', $notice->id,
                              'objectType', 'thread');

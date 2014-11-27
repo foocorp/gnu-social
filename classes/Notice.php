@@ -607,10 +607,19 @@ class Notice extends Managed_DataObject
             // unknown remote user - within a known conversation.
             if (empty($notice->conversation) and !empty($options['conversation'])) {
                 $conv = Conversation::getKV('uri', $options['conversation']);
-                if ($conv instanceof Conversation and $activity->time > $conv->created) {
-                    common_debug('Conversation stitched together from (probably) reply to unknown remote user. Activity creation time ('.$activity->time.') is greater than conversation creation time ('.$conv->created.').');
+                if ($conv instanceof Conversation) {
+                    common_debug('Conversation stitched together from (probably) reply to unknown remote user. Activity creation time ('.$activity->time.') should maybe be compared to conversation creation time ('.$conv->created.').');
                     $notice->conversation = $conv->id;
+                } else {
+                    // Conversation URI was not found, so we must create it. But we can't create it
+                    // until we have a Notice ID because of the database layout...
+                    $notice->tmp_conv_uri = $options['conversation'];
                 }
+            } else {
+                // If we're not using the attached conversation URI let's remove it
+                // so we don't mistake ourselves later, when creating our own Conversation.
+                // This implies that the notice knows which conversation it belongs to.
+                $options['conversation'] = null;
             }
         }
 
@@ -661,6 +670,15 @@ class Notice extends Managed_DataObject
 
             try {
                 $notice->insert();  // throws exception on failure
+                // If it's not part of a conversation, it's
+                // the beginning of a new conversation.
+                if (empty($notice->conversation)) { 
+                    $orig = clone($notice);
+                    // $act->context->conversation will be null if it was not provided
+                    $conv = Conversation::create($notice, $options['conversation']);
+                    $notice->conversation = $conv->id;
+                    $notice->update($orig);
+                }
             } catch (Exception $e) {
                 // Let's test if we managed initial insert, which would imply
                 // failing on some update-part (check 'insert()'). Delete if
@@ -869,13 +887,21 @@ class Notice extends Managed_DataObject
 
             try {
                 $stored->insert();    // throws exception on error
+                $orig = clone($stored); // for updating later in this try clause
+
+                // If it's not part of a conversation, it's
+                // the beginning of a new conversation.
+                if (empty($stored->conversation)) {
+                    // $act->context->conversation will be null if it was not provided
+                    $conv = Conversation::create($stored, $act->context->conversation);
+                    $stored->conversation = $conv->id;
+                }
 
                 $object = null;
                 Event::handle('StoreActivityObject', array($act, $stored, $options, &$object));
                 if (empty($object)) {
                     throw new ServerException('No object from StoreActivityObject '.$stored->uri . ': '.$act->asString());
                 }
-                $orig = clone($stored);
                 $stored->object_type = ActivityUtils::resolveUri($object->getObjectType(), true);
                 $stored->update($orig);
             } catch (Exception $e) {
@@ -2389,14 +2415,6 @@ class Notice extends Managed_DataObject
                                 TagURI::mint(),
                                 'noticeId', $this->id,
                                 'objectType', $this->get_object_type(true));
-            $changed = true;
-        }
-
-        // If it's not part of a conversation, it's
-        // the beginning of a new conversation.
-        if (empty($this->conversation)) {
-            $conv = Conversation::create($this);
-            $this->conversation = $conv->id;
             $changed = true;
         }
 
