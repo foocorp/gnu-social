@@ -686,6 +686,7 @@ class Notice extends Managed_DataObject
                 if (!empty($notice->id)) {
                     $notice->delete();
                 }
+                throw $e;
             }
         }
 
