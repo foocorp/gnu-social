@@ -59,6 +59,10 @@ class FavoritePlugin extends ActivityHandlerPlugin
         $user->whereAdd('emailnotifyfav IS NOT NULL');
         if ($user->find()) {
             printfnq("Detected old User table (emailnotifyfav IS NOT NULL). Moving 'emailnotifyfav' property to Profile_prefs...");
+            // First we'll make sure Profile_prefs exists
+            $schema = Schema::get();
+            $schema->ensureTable('profile_prefs', Profile_prefs::schemaDef());
+
             // Make sure we have our own tables setup properly
             while ($user->fetch()) {
                 $user->setPref('email', 'notify_fave', $user->emailnotifyfav);
