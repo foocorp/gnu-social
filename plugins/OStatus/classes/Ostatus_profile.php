@@ -684,10 +684,6 @@ class Ostatus_profile extends Managed_DataObject
                     $options['reply_to'] = $orig->id;
                 }
             }
-            if (!empty($activity->context->conversation)) {
-                // we store the URI here, Notice class can look it up later
-                $options['conversation'] = $activity->context->conversation;
-            }
 
             $location = $activity->context->location;
             if ($location) {
@@ -851,6 +847,10 @@ class Ostatus_profile extends Managed_DataObject
                 if ($orig instanceof Notice) {
                     $options['reply_to'] = $orig->id;
                 }
+            }
+            if (!empty($activity->context->conversation)) {
+                // we store the URI here, Notice class can look it up later
+                $options['conversation'] = $activity->context->conversation;
             }
 
             $location = $activity->context->location;
