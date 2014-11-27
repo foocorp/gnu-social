@@ -71,10 +71,11 @@ class Conversation extends Managed_DataObject
         $conv = new Conversation();
         $conv->created = common_sql_now();
         $conv->id = $notice->id;
-        $conv->uri = $uri ?: sprintf('%s%s=%d:%s=%s',
+        $conv->uri = $uri ?: sprintf('%s%s=%d:%s=%s:%s=%x',
                              TagURI::mint(),
                              'noticeId', $notice->id,
-                             'objectType', 'thread');
+                             'objectType', 'thread',
+                             'crc32', crc32($notice->content));
         $result = $conv->insert();
 
         if ($result === false) {
