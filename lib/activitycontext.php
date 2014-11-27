@@ -48,12 +48,14 @@ class ActivityContext
     const INREPLYTO  = 'in-reply-to';
     const REF        = 'ref';
     const HREF       = 'href';
+
+    // OStatus element names with prefixes
     const OBJECTTYPE = 'ostatus:object-type';   // FIXME: Undocumented!
+    const CONVERSATION = 'ostatus:conversation';
 
     const POINT     = 'point';
 
     const MENTIONED    = 'mentioned';
-    const CONVERSATION = 'ostatus:conversation';
 
     const ATTN_PUBLIC  = 'http://activityschema.org/collection/public';
 
@@ -72,7 +74,14 @@ class ActivityContext
 
         $this->location = $this->getLocation($element);
 
-        $this->conversation = ActivityUtils::getLink($element, self::CONVERSATION);
+        $convs = $element->getElementsByTagNameNS(self::OSTATUS, self::CONVERSATION);
+        foreach ($convs as $conv) {
+            $this->conversation = $conv->textContent;
+        }
+        if (empty($this->conversation)) {
+            // fallback to the atom:link rel="ostatus:conversation" element
+            $this->conversation = ActivityUtils::getLink($element, self::CONVERSATION);
+        }
 
         // Multiple attention links allowed
 

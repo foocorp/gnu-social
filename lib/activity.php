@@ -627,6 +627,14 @@ class Activity
             if (!empty($this->context->conversation)) {
                 $xs->element('link', array('rel' => ActivityContext::CONVERSATION,
                                            'href' => $this->context->conversation));
+                $xs->element(ActivityContext::CONVERSATION, null, $this->context->conversation);
+                /* Since we use XMLWriter we just use the previously hardcoded prefix for ostatus,
+                    otherwise we should use something like this:
+                $xs->elementNS(array(ActivityContext::OSTATUS => 'ostatus'),    // namespace
+                                'conversation',  // tag (or the element name from ActivityContext::CONVERSATION)
+                                null,   // attributes
+                                $this->context->conversation);  // content
+                */
             }
 
             foreach ($this->context->attention as $attnURI=>$type) {
