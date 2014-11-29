@@ -1261,6 +1261,7 @@ function common_path($relative, $ssl=false, $addSession=true)
     $pathpart = (common_config('site', 'path')) ? common_config('site', 'path')."/" : '';
 
     if (($ssl && (common_config('site', 'ssl') === 'sometimes'))
+        || StatusNet::isHTTPS()
         || common_config('site', 'ssl') === 'always') {
         $proto = 'https';
         if (is_string(common_config('site', 'sslserver')) &&
