@@ -608,7 +608,7 @@ class Notice extends Managed_DataObject
             if (empty($notice->conversation) and !empty($options['conversation'])) {
                 $conv = Conversation::getKV('uri', $options['conversation']);
                 if ($conv instanceof Conversation) {
-                    common_debug('Conversation stitched together from (probably) reply to unknown remote user. Activity creation time ('.$activity->time.') should maybe be compared to conversation creation time ('.$conv->created.').');
+                    common_debug('Conversation stitched together from (probably) reply to unknown remote user. Activity creation time ('.$notice->created.') should maybe be compared to conversation creation time ('.$conv->created.').');
                     $notice->conversation = $conv->id;
                 } else {
                     // Conversation URI was not found, so we must create it. But we can't create it
