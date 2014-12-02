@@ -1363,9 +1363,6 @@ float:left;
 }
 
 
-.form_settings .form_data input {
-width:39%;
-}
 .form_settings .form_data input.submit,
 .form_settings .form_data input.checkbox,
 .form_settings .form_data input.radio {
