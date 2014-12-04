@@ -136,7 +136,7 @@ class SearchAction extends Action
             $message .= sprintf(_("You can also try your search on other engines:
 
 * [Google](http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)
-* [Yahoo](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)
+* [Yahoo!](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)
 "), $qe, $qe);
             $message .= "\n";
         }
