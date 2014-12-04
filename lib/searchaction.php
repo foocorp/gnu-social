@@ -135,11 +135,9 @@ class SearchAction extends Action
             // TRANS: Standard search suggestions shown when a search does not give any results.
             $message .= sprintf(_("You can also try your search on other engines:
 
-* [Twingly](http://www.twingly.com/search?q=%s&content=microblog&site=%%%%site.server%%%%)
-* [Tweet scan](http://www.tweetscan.com/indexi.php?s=%s)
 * [Google](http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)
 * [Yahoo](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)
-* [Collecta](http://collecta.com/#q=%s)"), $qe, $qe, $qe, $qe, $qe);
+"), $qe, $qe);
             $message .= "\n";
         }
         $this->elementStart('div', 'help instructions');
