@@ -136,9 +136,10 @@ class SearchAction extends Action
             $message .= sprintf(_("You can also try your search on other engines:
 
 * [DuckDuckGo](https://duckduckgo.com/?q=site%%3A%%%%site.server%%%%+%s)
+* [Ixquick](https://ixquick.com/do/search?query=site%%3A%%%%site.server%%%%+%s)
 * [Google](http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)
 * [Yahoo!](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)
-"), $qe, $qe, $qe);
+"), $qe, $qe, $qe, $qe);
             $message .= "\n";
         }
         $this->elementStart('div', 'help instructions');
