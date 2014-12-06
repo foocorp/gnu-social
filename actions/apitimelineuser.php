@@ -134,12 +134,17 @@ class ApiTimelineUserAction extends ApiBareAuthAction
                                           'id' => $this->target->id),
                                     array('max_id' => $this->next_id))
                     : null;
-        $lastNotice = $this->notices[0];
-        $lastId     = $lastNotice->id;
+
+        $prevExtra = array();
+        if (!empty($this->notices)) {
+            assert($this->notices[0] instanceof Notice);
+            $prevExtra['since_id'] = $this->notices[0]->id;
+        }
+
         $prevUrl = common_local_url('ApiTimelineUser',
                                     array('format' => $this->format,
                                           'id' => $this->target->id),
-                                    array('since_id' => $lastId));
+                                    $prevExtra);
         $firstUrl = common_local_url('ApiTimelineUser',
                                     array('format' => $this->format,
                                           'id' => $this->target->id));
