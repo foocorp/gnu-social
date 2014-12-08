@@ -985,7 +985,7 @@ class Ostatus_profile extends Managed_DataObject
      * @throws Exception on various error conditions
      * @throws OStatusShadowException if this reference would obscure a local user/group
      */
-    public static function ensureProfileURL($profile_url, $hints=array())
+    public static function ensureProfileURL($profile_url, array $hints=array())
     {
         $oprofile = self::getFromProfileURL($profile_url);
 
@@ -1118,7 +1118,7 @@ class Ostatus_profile extends Managed_DataObject
      * @return Ostatus_profile
      * @throws Exception
      */
-    public static function ensureFeedURL($feed_url, $hints=array())
+    public static function ensureFeedURL($feed_url, array $hints=array())
     {
         $discover = new FeedDiscovery();
 
@@ -1161,7 +1161,7 @@ class Ostatus_profile extends Managed_DataObject
      * @return Ostatus_profile
      * @throws Exception
      */
-    public static function ensureAtomFeed($feedEl, $hints)
+    public static function ensureAtomFeed(DOMElement $feedEl, array $hints)
     {
         $author = ActivityUtils::getFeedAuthor($feedEl);
 
@@ -1187,7 +1187,7 @@ class Ostatus_profile extends Managed_DataObject
      * @return Ostatus_profile
      * @throws Exception
      */
-    public static function ensureRssChannel($feedEl, $hints)
+    public static function ensureRssChannel(DOMElement $feedEl, array $hints)
     {
         // Special-case for Posterous. They have some nice metadata in their
         // posterous:author elements. We should use them instead of the channel.
@@ -1296,7 +1296,7 @@ class Ostatus_profile extends Managed_DataObject
      * @param array $hints
      * @return mixed URL string or false
      */
-    public static function getActivityObjectAvatar($object, $hints=array())
+    public static function getActivityObjectAvatar(ActivityObject $object, array $hints=array())
     {
         if ($object->avatarLinks) {
             $best = false;
@@ -1325,7 +1325,7 @@ class Ostatus_profile extends Managed_DataObject
      * @param DOMElement $feed
      * @return string
      */
-    protected static function getAvatar($actor, $feed)
+    protected static function getAvatar(ActivityObject $actor, DOMElement $feed)
     {
         $url = '';
         $icon = '';
@@ -1376,7 +1376,7 @@ class Ostatus_profile extends Managed_DataObject
      * @return Ostatus_profile
      * @throws Exception
      */
-    public static function ensureActorProfile($activity, $hints=array())
+    public static function ensureActorProfile(Activity $activity, array $hints=array())
     {
         return self::ensureActivityObjectProfile($activity->actor, $hints);
     }
@@ -1392,7 +1392,7 @@ class Ostatus_profile extends Managed_DataObject
      * @return Ostatus_profile
      * @throws Exception
      */
-    public static function ensureActivityObjectProfile($object, $hints=array())
+    public static function ensureActivityObjectProfile(ActivityObject $object, array $hints=array())
     {
         $profile = self::getActivityObjectProfile($object);
         if ($profile instanceof Ostatus_profile) {
@@ -1408,7 +1408,7 @@ class Ostatus_profile extends Managed_DataObject
      * @return mixed matching Ostatus_profile or false if none known
      * @throws ServerException if feed info invalid
      */
-    public static function getActorProfile($activity)
+    public static function getActorProfile(Activity $activity)
     {
         return self::getActivityObjectProfile($activity->actor);
     }
@@ -1418,7 +1418,7 @@ class Ostatus_profile extends Managed_DataObject
      * @return mixed matching Ostatus_profile or false if none known
      * @throws ServerException if feed info invalid
      */
-    protected static function getActivityObjectProfile($object)
+    protected static function getActivityObjectProfile(ActivityObject $object)
     {
         $uri = self::getActivityObjectProfileURI($object);
         return Ostatus_profile::getKV('uri', $uri);
@@ -1433,7 +1433,7 @@ class Ostatus_profile extends Managed_DataObject
      * @return string
      * @throws ServerException if feed info invalid
      */
-    protected static function getActivityObjectProfileURI($object)
+    protected static function getActivityObjectProfileURI(ActivityObject $object)
     {
         if ($object->id) {
             if (ActivityUtils::validateUri($object->id)) {
@@ -1466,7 +1466,7 @@ class Ostatus_profile extends Managed_DataObject
      *
      * @return Ostatus_profile
      */
-    protected static function createActivityObjectProfile($object, $hints=array())
+    protected static function createActivityObjectProfile(ActivityObject $object, array $hints=array())
     {
         $homeuri = $object->id;
         $discover = false;
@@ -1631,7 +1631,7 @@ class Ostatus_profile extends Managed_DataObject
      * @param ActivityObject $object
      * @param array $hints
      */
-    public function updateFromActivityObject($object, $hints=array())
+    public function updateFromActivityObject(ActivityObject $object, array $hints=array())
     {
         if ($this->isGroup()) {
             $group = $this->localGroup();
@@ -1654,7 +1654,7 @@ class Ostatus_profile extends Managed_DataObject
         }
     }
 
-    public static function updateProfile($profile, $object, $hints=array())
+    public static function updateProfile(Profile $profile, ActivityObject $object, array $hints=array())
     {
         $orig = clone($profile);
 
@@ -1719,7 +1719,7 @@ class Ostatus_profile extends Managed_DataObject
         }
     }
 
-    protected static function updateGroup(User_group $group, $object, $hints=array())
+    protected static function updateGroup(User_group $group, ActivityObject $object, array $hints=array())
     {
         $orig = clone($group);
 
@@ -1743,7 +1743,7 @@ class Ostatus_profile extends Managed_DataObject
         }
     }
 
-    protected static function updatePeopletag($tag, $object, $hints=array()) {
+    protected static function updatePeopletag($tag, ActivityObject $object, array $hints=array()) {
         $orig = clone($tag);
 
         $tag->tag = $object->title;
@@ -1764,7 +1764,7 @@ class Ostatus_profile extends Managed_DataObject
         }
     }
 
-    protected static function getActivityObjectHomepage($object, $hints=array())
+    protected static function getActivityObjectHomepage(ActivityObject $object, array $hints=array())
     {
         $homepage = null;
         $poco     = $object->poco;
@@ -1781,7 +1781,7 @@ class Ostatus_profile extends Managed_DataObject
         return $homepage;
     }
 
-    protected static function getActivityObjectLocation($object, $hints=array())
+    protected static function getActivityObjectLocation(ActivityObject $object, array $hints=array())
     {
         $location = null;
 
@@ -1803,7 +1803,7 @@ class Ostatus_profile extends Managed_DataObject
         return $location;
     }
 
-    protected static function getActivityObjectBio($object, $hints=array())
+    protected static function getActivityObjectBio(ActivityObject $object, array $hints=array())
     {
         $bio  = null;
 
@@ -1827,7 +1827,7 @@ class Ostatus_profile extends Managed_DataObject
         return $bio;
     }
 
-    public static function getActivityObjectNickname($object, $hints=array())
+    public static function getActivityObjectNickname(ActivityObject $object, array $hints=array())
     {
         if ($object->poco) {
             if (!empty($object->poco->preferredUsername)) {
