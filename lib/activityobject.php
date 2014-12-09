@@ -195,15 +195,22 @@ class ActivityObject
             $this->type = self::PERSON; // XXX: is this fair?
         }
 
-        // start with <atom:title>
 
-        $title = ActivityUtils::childHtmlContent($element, self::TITLE);
+        // Start with <poco::displayName>
 
-        if (!empty($title)) {
-            $this->title = common_strip_html($title);
+        $this->title = ActivityUtils::childContent($element, PoCo::DISPLAYNAME, PoCo::NS);
+
+        // try falling back to <atom:title>
+
+        if (empty($this->title)) {
+            $title = ActivityUtils::childHtmlContent($element, self::TITLE);
+
+            if (!empty($title)) {
+                $this->title = common_strip_html($title);
+            }
         }
 
-        // fall back to <atom:name>
+        // fall back to <atom:name> as a last resort
 
         if (empty($this->title)) {
             $this->title = $this->_childContent($element, self::NAME);
