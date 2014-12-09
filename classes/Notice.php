@@ -1271,10 +1271,16 @@ class Notice extends Managed_DataObject
         }
 
         // If this isn't a reply to anything, then it's its own
-        // root.
+        // root if it's the earliest notice in the conversation:
 
         if (empty($this->reply_to)) {
-            return $this;
+            $root = new Notice;
+            $root->conversation = $this->conversation;
+            $root->orderBy('notice.created ASC');
+            $root->find();
+            $root->fetch();
+            $root->free();
+            return $root;
         }
         
         if (is_null($profile)) {
