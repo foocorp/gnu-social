@@ -25,6 +25,8 @@ SITENAME=
 SITE=
 ID="*"
 
+# stopdaemons.sh [server [path]]
+
 if [ $# -gt 0 ] ; then
 	SITENAME="$1"
 	SITE="-s$SITENAME"
