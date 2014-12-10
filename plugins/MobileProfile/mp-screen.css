@@ -351,7 +351,3 @@ label[for=blog-entry-content] {
 .notice .addressees:before {
     content: '\003E';
 }
-
-.user_in .notice div.e-content {
-  max-width: 150px;
-}
