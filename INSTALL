@@ -1,5 +1,24 @@
+TABLE OF CONTENTS
+=================
+* Prerequisites
+    - PHP modules
+    - Better performance
+* Installation
+    - Getting it up and running
+    - Fancy URLs
+    - Sphinx
+    - SMS
+    - Queues and daemons
+    - Themes
+    - Translation
+    - Backups
+    - Private
+
 Prerequisites
 =============
+
+PHP modules
+-----------
 
 The following software packages are *required* for this software to
 run correctly.
@@ -55,53 +74,11 @@ your site's config.php with:
 
     addPlugin('XCache');
 
-External libraries
-------------------
-
-A number of external PHP libraries are used to provide basic
-functionality and optional functionality for your system. For your
-convenience, they are available in the "extlib" directory of this
-package, and you do not have to download and install them. However,
-you may want to keep them up-to-date with the latest upstream version,
-and the URLs are listed here for your convenience.
-
-- DB_DataObject http://pear.php.net/package/DB_DataObject
-- Validate http://pear.php.net/package/Validate
-- OpenID by Janrain, http://janrain.com/openid-enabled/
-- PEAR DB. Although this is an older data access system (new
-  packages should use PDO), the OpenID libraries depend on PEAR DB
-  or MDB2.
-- OAuth.php from http://oauth.googlecode.com/svn/code/php/
-- markdown.php from http://michelf.com/projects/php-markdown/
-- PEAR Mail, for sending out mail notifications
-  http://pear.php.net/package/Mail
-- PEAR Net_SMTP, if you use the SMTP factory for notifications
-  http://pear.php.net/package/Net_SMTP
-- PEAR Net_Socket, if you use the SMTP factory for notifications
-  http://pear.php.net/package/Net_Socket
-- XMPPHP, the follow-up to Class.Jabber.php. Probably the best XMPP
-  library available for PHP. http://xmpphp.googlecode.com/. Note that
-  as of this writing the version of this library that is available in
-  the extlib directory is *significantly different* from the upstream
-  version (patches have been submitted). Upgrading to the upstream
-  version may render your StatusNet site unable to send or receive XMPP
-  messages.
-- Facebook library. Used for the Facebook application.
-- PEAR Validate is used for URL and email validation.
-- Console_GetOpt for parsing command-line options.
-  predecessor to OStatus.
-- HTTP_Request2, a library for making HTTP requests.
-- PEAR Net_URL2 is an HTTP_Request2 dependency.
-
-A design goal of GNU Social is that the basic Web functionality should
-work on even the most restrictive commercial hosting services.
-However, additional functionality, such as receiving messages by XMPP,
-require that you be able to run long-running processes on your account.
-In addition, posting by email require that you be able to install a mail
-filter in your mail server.
-
 Installation
 ============
+
+Getting it up and running
+-------------------------
 
 Installing the basic GNU Social web component is relatively easy,
 especially if you've previously installed PHP/MariaDB packages.
@@ -310,10 +287,6 @@ For this to work, there *must* be a domain or sub-domain for which all
 
        $config['mail']['domain'] = 'yourdomain.example.net';
 
-At this point, post-by-email and post-by-SMS-gateway should work. Note
-that if your mail server is on a different computer from your email
-server, you'll need to have a full installation of StatusNet, a working
-config.php, and access to the StatusNet database from the mail server.
 
 
 Queues and daemons

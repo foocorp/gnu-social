@@ -16,7 +16,8 @@ Forking upstream software for trivial reasons makes us bad citizens in
 the Open Source community and adds unnecessary heartache for our
 users. Don't make us "that" project.
 
-FAQ:
+Frequently Asked Questions
+--------------------------
 
 Q: What should we do when we find a bug in upstream software?
 
@@ -45,7 +46,7 @@ Q: I tried again, and upstream is still unresponsive and nobody's
    checked on my patch. Now what?
 
 A: If the upstream project is moribund and there's a way to adopt it,
-   propose having the StatusNet dev team adopt the project. Or, adopt
+   propose having the GNU social dev team adopt the project. Or, adopt
    it yourself.
 
 Q: What if there's no upstream authority and it can't be adopted?
@@ -56,3 +57,50 @@ A: Then we fork it. Make a new name and a new version. Include it in
 
    This is a last resort; consult with the rest of the dev group
    before taking this radical step.
+
+List of external libraries
+--------------------------
+
+A number of external PHP libraries are used to provide basic
+functionality and optional functionality for your system. For your
+convenience, they are available in the "extlib" directory of this
+package, and you do not have to download and install them. However,
+you may want to keep them up-to-date with the latest upstream version,
+and the URLs are listed here for your convenience.
+
+- DB_DataObject http://pear.php.net/package/DB_DataObject
+- Validate http://pear.php.net/package/Validate
+- OpenID by Janrain, http://janrain.com/openid-enabled/
+- PEAR DB. Although this is an older data access system (new
+  packages should use PDO), the OpenID libraries depend on PEAR DB
+  or MDB2.
+- OAuth.php from http://oauth.googlecode.com/svn/code/php/
+                            (has been edited to avoid colliding autoload)
+- markdown.php from http://michelf.com/projects/php-markdown/
+- PEAR Mail, for sending out mail notifications
+  http://pear.php.net/package/Mail
+- PEAR Net_SMTP, if you use the SMTP factory for notifications
+  http://pear.php.net/package/Net_SMTP
+- PEAR Net_Socket, if you use the SMTP factory for notifications
+  http://pear.php.net/package/Net_Socket
+- XMPPHP, the follow-up to Class.Jabber.php. Probably the best XMPP
+  library available for PHP. http://xmpphp.googlecode.com/. Note that
+  as of this writing the version of this library that is available in
+  the extlib directory is *significantly different* from the upstream
+  version (patches have been submitted). Upgrading to the upstream
+  version may render your GNU social site unable to send or receive XMPP
+  messages.
+- Facebook library. Used for the Facebook application.
+- PEAR Validate is used for URL and email validation.
+- Console_GetOpt for parsing command-line options.
+- HTTP_Request2, a library for making HTTP requests.
+- PEAR Net_URL2 is an HTTP_Request2 dependency.
+- Michelf/Markdown.php      Markdown parser library
+- Mf2/Parser.php            microformats2 parser library
+
+A design goal of GNU Social is that the basic Web functionality should
+work on even the most restrictive commercial hosting services.
+However, additional functionality, such as receiving messages by XMPP,
+require that you be able to run long-running processes on your account.
+In addition, posting by email require that you be able to install a mail
+filter in your mail server.
