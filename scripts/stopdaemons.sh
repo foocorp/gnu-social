@@ -20,6 +20,7 @@
 # This program tries to stop the daemons for GNU social that were
 # previously started by startdaemons.sh
 
+ARGSG=
 SITENAME=
 SITE=
 ID="*"
@@ -28,12 +29,17 @@ if [ $# -gt 0 ] ; then
 	SITENAME="$1"
 	SITE="-s$SITENAME"
 	ID=`echo $SITENAME | sed s/\\\\./_/g`
+	ARGSG="$ARGSG -s$1"
+fi
+
+if [ $# -gt 1 ]; then
+	ARGSG="$ARGSG -p$2"
 fi
 
 SDIR=`dirname $0`
 DIR=`php $SDIR/getpiddir.php $SITE`
 
-DAEMONS=`php $SDIR/getvaliddaemons.php`
+DAEMONS=`php $SDIR/getvaliddaemons.php $ARGSG`
 
 for f in $DAEMONS; do
     f=$(basename $f .php)
