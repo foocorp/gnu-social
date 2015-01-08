@@ -53,15 +53,35 @@ class NoticeList extends Widget
 
     var $notice = null;
 
+    protected $addressees = true;
+    protected $attachments = true;
+    protected $maxchars = 0;
+    protected $options = true;
+    protected $show_n = NOTICES_PER_PAGE;
+
     /**
      * constructor
      *
      * @param Notice $notice stream of notices from DB_DataObject
      */
-    function __construct(Notice $notice, $out=null)
+    function __construct(Notice $notice, $out=null, array $prefs=array())
     {
         parent::__construct($out);
         $this->notice = $notice;
+
+        // integer preferences
+        foreach(array('show_n', 'maxchars') as $key) {
+            if (array_key_exists($key, $prefs)) {
+                $this->$key = (int)$prefs[$key];
+            }
+        }
+        // boolean preferences
+        foreach(array('addressees', 'attachments', 'options') as $key) {
+            if (array_key_exists($key, $prefs)) {
+                $this->$key = (bool)$prefs[$key];
+            }
+        }
+
     }
 
     /**
@@ -70,7 +90,9 @@ class NoticeList extends Widget
      * "Uses up" the stream by looping through it. So, probably can't
      * be called twice on the same list.
      *
-     * @return int count of notices listed.
+     * @param integer $n    The amount of notices to show.
+     *
+     * @return int  Total amount of notices actually available.
      */
     function show()
     {
@@ -79,7 +101,7 @@ class NoticeList extends Widget
 
 		$notices = $this->notice->fetchAll();
 		$total   = count($notices);
-		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
+		$notices = array_slice($notices, 0, $this->show_n);
 		
     	self::prefill($notices);
     	
@@ -113,7 +135,11 @@ class NoticeList extends Widget
      */
     function newListItem(Notice $notice)
     {
-        return new NoticeListItem($notice, $this->out);
+        $prefs = array('addressees' => $this->addressees,
+                       'attachments' => $this->attachments,
+                       'maxchars' => $this->maxchars,
+                       'options' => $this->options);
+        return new NoticeListItem($notice, $this->out, $prefs);
     }
     
     static function prefill(array &$notices)

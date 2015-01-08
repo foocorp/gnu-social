@@ -58,6 +58,11 @@ class NoticeListItem extends Widget
     /** The profile of the author of the notice, extracted once for convenience. */
     var $profile = null;
 
+    protected $addressees = true;
+    protected $attachments = true;
+    protected $options = true;
+    protected $maxchars = 0;   // if <= 0 it means use full posts
+
     /**
      * constructor
      *
@@ -65,7 +70,7 @@ class NoticeListItem extends Widget
      *
      * @param Notice $notice The notice we'll display
      */
-    function __construct(Notice $notice, Action $out=null)
+    function __construct(Notice $notice, Action $out=null, array $prefs=array())
     {
         parent::__construct($out);
         if (!empty($notice->repeat_of)) {
@@ -79,7 +84,21 @@ class NoticeListItem extends Widget
         } else {
             $this->notice  = $notice;
         }
+
         $this->profile = $this->notice->getProfile();
+        
+        // integer preferences
+        foreach(array('maxchars') as $key) {
+            if (array_key_exists($key, $prefs)) {
+                $this->$key = (int)$prefs[$key];
+            }
+        }
+        // boolean preferences
+        foreach(array('addressees', 'attachments', 'options') as $key) {
+            if (array_key_exists($key, $prefs)) {
+                $this->$key = (bool)$prefs[$key];
+            }
+        }
     }
 
     /**
@@ -123,7 +142,7 @@ class NoticeListItem extends Widget
         $this->elementStart('section', array('class'=>'notice-headers'));
         $this->showNoticeTitle();
         $this->showAuthor();
-        $this->showAddressees();
+        if ($this->addressees) { $this->showAddressees(); }
         $this->elementEnd('section');
     }
 
@@ -131,8 +150,8 @@ class NoticeListItem extends Widget
     {
         $this->elementStart('footer');
         $this->showNoticeInfo();
-        $this->showNoticeAttachments();
-        $this->showNoticeOptions();
+        if ($this->attachments) { $this->showNoticeAttachments(); }
+        if ($this->options) { $this->showNoticeOptions(); }
         $this->elementEnd('footer');
     }
 
@@ -289,7 +308,9 @@ class NoticeListItem extends Widget
         // FIXME: URL, image, video, audio
         $this->out->elementStart('article', array('class' => 'e-content'));
         if (Event::handle('StartShowNoticeContent', array($this->notice, $this->out, $this->out->getScoped()))) {
-            if ($this->notice->rendered) {
+            if ($this->maxchars > 0 && mb_strlen($this->notice->content) > $this->maxchars) {
+                $this->out->text(mb_substr($this->notice->content, 0, $this->maxchars) . '[…]');
+            } elseif ($this->notice->rendered) {
                 $this->out->raw($this->notice->rendered);
             } else {
                 // XXX: may be some uncooked notices in the DB,

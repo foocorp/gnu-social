@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('GNUSOCIAL')) { exit(1); }
 
 define('NOTICES_PER_SECTION', 6);
 
@@ -50,65 +48,27 @@ define('NOTICES_PER_SECTION', 6);
 
 class NoticeSection extends Section
 {
+    protected $addressees = false;
+    protected $attachments = false;
     protected $maxchars = 140;
+    protected $options = false;
+    protected $show_n = NOTICES_PER_SECTION;
 
     function showContent()
     {
-        $notices = $this->getNotices();
-        $cnt = 0;
-        $this->out->elementStart('ol', 'notices xoxo');
-        while ($notices->fetch() && ++$cnt <= NOTICES_PER_SECTION) {
-            $this->showNotice($notices);
-        }
-
-        $this->out->elementEnd('ol');
-        return ($cnt > NOTICES_PER_SECTION);
+        // args: notice object, html outputter, preference array for list and items
+        $list = new NoticeList($this->getNotices(), $this->out,
+                                array('addressees' => $this->addressees,
+                                      'attachments' => $this->attachments,
+                                      'maxchars'=> $this->maxchars,
+                                      'options' => $this->options,
+                                      'show_n'  => $this->show_n));
+        $total = $list->show(); // returns total amount of notices available
+        return ($total > NOTICES_PER_SECTION);  // do we have more to show?
     }
 
     function getNotices()
     {
         return null;
-    }
-
-    function showNotice(Notice $notice)
-    {
-        $profile = $notice->getProfile();
-        if (empty($profile)) {
-            common_log(LOG_WARNING, sprintf("Notice %d has no profile",
-                                            $notice->id));
-            return;
-        }
-        $this->out->elementStart('li', 'h-entry notice');
-        $this->out->elementStart('div', 'h-card');
-        $this->out->elementStart('a', array('title' => $profile->getBestName(),
-                                            'href' => $profile->profileurl,
-                                            'class' => 'p-author u-url p-name'));
-        $avatarUrl = $profile->avatarUrl(AVATAR_MINI_SIZE);
-        $this->out->element('img', array('src' => $avatarUrl,
-                                         'width' => AVATAR_MINI_SIZE,
-                                         'height' => AVATAR_MINI_SIZE,
-                                         'class' => 'avatar u-photo',
-                                         'alt' => $profile->getBestName()));
-        $this->out->text($profile->getBestName());
-        $this->out->elementEnd('a');
-
-        $this->out->elementStart('p', 'e-content');
-        $this->out->text(mb_strlen($notice->content) > $this->maxchars
-            ? mb_substr($notice->content, 0, $this->maxchars) . '[…]'
-            : $notice->content);
-        $this->out->elementEnd('p');
-
-        $this->out->elementStart('div', 'entry_content');
-        $nli = new NoticeListItem($notice, $this->out);
-        $nli->showNoticeLink();
-        $this->out->elementEnd('div');
-
-        if (!empty($notice->value)) {
-            $this->out->elementStart('p');
-            $this->out->text($notice->value);
-            $this->out->elementEnd('p');
-        }
-        $this->out->elementEnd('div');
-        $this->out->elementEnd('li');
     }
 }
