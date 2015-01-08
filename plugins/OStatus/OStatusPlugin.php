@@ -1342,7 +1342,7 @@ class OStatusPlugin extends Plugin
     static public function onCheckActivityAuthorship(Activity $activity, Profile &$profile)
     {
         try {
-            $oprofile = Ostatus_profile::ensureProfileURI($profile->getUri());
+            $oprofile = Ostatus_profile::ensureProfileURL($profile->getUrl());
             $profile = $oprofile->checkAuthorship($activity);
         } catch (Exception $e) {
             common_log(LOG_ERR, 'Could not get a profile or check authorship ('.get_class($e).': "'.$e->getMessage().'") for activity ID: '.$activity->id);
