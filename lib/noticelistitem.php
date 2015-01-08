@@ -103,9 +103,6 @@ class NoticeListItem extends Widget
         $this->showStart();
         if (Event::handle('StartShowNoticeItem', array($this))) {
             $this->showNotice();
-            $this->showNoticeAttachments();
-            $this->showNoticeInfo();
-            $this->showNoticeOptions();
             Event::handle('EndShowNoticeItem', array($this));
         }
         $this->showEnd();
@@ -114,19 +111,36 @@ class NoticeListItem extends Widget
     function showNotice()
     {
         if (Event::handle('StartShowNoticeItemNotice', array($this))) {
-            $this->showNoticeTitle();
-            $this->showAuthor();
-            $this->showAddressees();
+            $this->showNoticeHeaders();
             $this->showContent();
+            $this->showNoticeFooter();
             Event::handle('EndShowNoticeItemNotice', array($this));
         }
+    }
+
+    function showNoticeHeaders()
+    {
+        $this->elementStart('section', array('class'=>'notice-headers'));
+        $this->showNoticeTitle();
+        $this->showAuthor();
+        $this->showAddressees();
+        $this->elementEnd('section');
+    }
+
+    function showNoticeFooter()
+    {
+        $this->elementStart('footer');
+        $this->showNoticeInfo();
+        $this->showNoticeAttachments();
+        $this->showNoticeOptions();
+        $this->elementEnd('footer');
     }
 
     function showNoticeTitle()
     {
         if (Event::handle('StartShowNoticeTitle', array($this))) {
             $this->element('a', array('href' => $this->notice->getUrl(),
-                                      'class' => 'p-name metadata'),
+                                      'class' => 'notice-title'),
                            $this->notice->getTitle());
             Event::handle('EndShowNoticeTitle', array($this));
         }
@@ -134,7 +148,6 @@ class NoticeListItem extends Widget
 
     function showNoticeInfo()
     {
-        $this->out->elementStart('div', 'entry-metadata');
         if (Event::handle('StartShowNoticeInfo', array($this))) {
             $this->showNoticeLink();
             $this->showNoticeSource();
@@ -143,8 +156,6 @@ class NoticeListItem extends Widget
             $this->showRepeat();
             Event::handle('EndShowNoticeInfo', array($this));
         }
-
-        $this->out->elementEnd('div');
     }
 
     function showNoticeOptions()
@@ -276,7 +287,7 @@ class NoticeListItem extends Widget
     function showContent()
     {
         // FIXME: URL, image, video, audio
-        $this->out->elementStart('div', array('class' => 'e-content'));
+        $this->out->elementStart('article', array('class' => 'e-content'));
         if (Event::handle('StartShowNoticeContent', array($this->notice, $this->out, $this->out->getScoped()))) {
             if ($this->notice->rendered) {
                 $this->out->raw($this->notice->rendered);
@@ -288,7 +299,7 @@ class NoticeListItem extends Widget
             }
             Event::handle('EndShowNoticeContent', array($this->notice, $this->out, $this->out->getScoped()));
         }
-        $this->out->elementEnd('div');
+        $this->out->elementEnd('article');
     }
 
     function showNoticeAttachments() {

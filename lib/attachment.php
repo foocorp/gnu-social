@@ -43,9 +43,9 @@ class Attachment extends AttachmentListItem
             $this->out->element('a', $this->linkAttr(), _('Download link'));
             $this->out->elementEnd('div');
 
-            $this->out->elementStart('div', 'e-content');
+            $this->out->elementStart('article', 'e-content');
             $this->showRepresentation();
-            $this->out->elementEnd('div');
+            $this->out->elementEnd('article');
             Event::handle('EndShowAttachmentLink', array($this->out, $this->attachment));
             $this->out->elementEnd('div');
         }

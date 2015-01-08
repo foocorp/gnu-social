@@ -662,25 +662,11 @@ address .poweredby {
     float: left;
 }
 
-#content .notice .h-entry {
-    margin: 2px 0 0 0;
-    min-height: 32px;
-}
-
 .h-card .u-url, .h-card.u-url {
     text-decoration:none;
 }
 .h-card .u-url:hover, .h-card.u-url:hover {
     text-decoration:underline;
-}
-
-.notice .h-entry {
-    overflow:hidden;
-    word-wrap:break-word;
-}
-
-.notice .entry-title.ov {
-overflow:visible;
 }
 
 .notice .automatic { 
@@ -715,29 +701,11 @@ font-style:italic;
     line-height: 1.2em;
 }
 
-.notice div.e-content {
+.notice .e-content {
     margin-left: 55px;
 }
 
-.entry-metadata .repeat {
-    display: block;
-}
-
-.entry-metadata .repeat .u-photo {
-float:none;
-margin-right:1px;
-position:relative;
-top:4px;
-left:0;
-}
-
-.entry-metadata {
-    clear: left;
-    float: left;
-    font-size: 0.88em;
-}
-
-.entry-metadata, .notice-options {
+.notice-options {
     margin-bottom: 7px;
     margin-top: 12px;
 }
@@ -820,7 +788,7 @@ position:static;
     max-width: 100%;
 }
 .notice.h-entry .attachments .inline-attachment > a {
-    font-size: 0.88em;
+    font-size: 0.8em;
     line-height: 16px;
     height: 16px;
 }
@@ -881,7 +849,7 @@ content: ":";
 }
 
 .threaded-replies:empty {
-    margin-bottom: 0px; 
+    display: none;
 }
 
 #content .notice .threaded-replies .notice,
@@ -897,7 +865,7 @@ content: ":";
     background: none;
 }
 
-#content .notice .threaded-replies .h-entry,
+#content .notice .threaded-replies .notice.h-entry,
 #content .notice .threaded-replies .entry-title {
     min-height: 1px;
 }
@@ -908,11 +876,7 @@ content: ":";
     top: 12px;
 }
 
-#content .notice .threaded-replies .notice .h-entry p.e-content {
-    margin-left: 32px;
-}
-
-#content .notice .threaded-replies .notice div.e-content {
+#content .threaded-replies .notice.h-entry .e-content {
     margin-left: 32px;
 }
 
@@ -1044,7 +1008,7 @@ padding-top:0;
 margin-right:0;
 }
 
-.p-name.metadata {
+.notice-title {
     display:none;
 }
 
@@ -1494,7 +1458,12 @@ width:auto;
 margin-left:0;
 }
 
-.entry-metadata .timestamp span.p-name {
+.notice > footer {
+    clear: left;
+    font-size: 0.8em;
+}
+
+.notice > footer .timestamp span.p-name {
     display: none;
 }
 

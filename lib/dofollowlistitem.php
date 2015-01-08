@@ -66,7 +66,7 @@ class DoFollowListItem extends NoticeListItem
     function showContent()
     {
         // FIXME: URL, image, video, audio
-        $this->out->elementStart('div', array('class' => 'e-content'));
+        $this->out->elementStart('article', array('class' => 'e-content'));
 
         if (!empty($this->notice->rendered)) {
             $html = $this->notice->rendered;
