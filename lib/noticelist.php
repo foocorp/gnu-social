@@ -94,9 +94,8 @@ class NoticeList extends Widget
      *
      * @return int  Total amount of notices actually available.
      */
-    function show()
+    public function show()
     {
-        $this->out->elementStart('div', array('id' =>'notices_primary'));
         $this->out->elementStart('ol', array('class' => 'notices xoxo'));
 
 		$notices = $this->notice->fetchAll();
@@ -118,8 +117,6 @@ class NoticeList extends Widget
         }
 
         $this->out->elementEnd('ol');
-        $this->out->elementEnd('div');
-
         return $total;
     }
 

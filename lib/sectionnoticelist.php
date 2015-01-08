@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Base class for sections showing lists of notices
+ * widget for displaying a list of notices
  *
  * PHP version 5
  *
@@ -19,45 +19,34 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Widget
+ * @category  UI
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @author    Sarven Capadisli <csarven@status.net>
+ * @copyright 2008 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
 
-if (!defined('GNUSOCIAL') && !defined('GNUSOCIAL')) { exit(1); }
-
-define('NOTICES_PER_SECTION', 6);
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
- * Base class for sections showing lists of notices
+ * widget for displaying a list of notices in the primary content area
  *
- * These are the widgets that show interesting data about a person
- * group, or site.
- *
- * @todo migrate this to use a variant of NoticeList
- *
- * @category Widget
+ * @category UI
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
+ * @see      Notice
+ * @see      NoticeListItem
+ * @see      ProfileNoticeList
  */
-
-class NoticeSection extends Section
+class SectionNoticeList extends NoticeList
 {
-    function showContent()
-    {
-        // args: notice object, html outputter, preference array for list and items
-        $list = new SectionNoticeList($this->getNotices(), $this->out);
-        $total = $list->show(); // returns total amount of notices available
-        return ($total > NOTICES_PER_SECTION);  // do we have more to show?
-    }
-
-    function getNotices()
-    {
-        return null;
-    }
+    protected $addressees = false;
+    protected $attachments = false;
+    protected $maxchars = 140;
+    protected $options = false;
+    protected $show_n = NOTICES_PER_SECTION;
 }
