@@ -156,7 +156,7 @@ class AllAction extends ProfileAction
             }
 
             if (!empty($current_user) && $current_user->streamModeOnly()) {
-                $nl = new NoticeList($this->notice, $this);
+                $nl = new PrimaryNoticeList($this->notice, $this, array('show_n'=>NOTICES_PER_PAGE));
             } else {
                 $nl = new ThreadedNoticeList($this->notice, $this, $profile);
             }

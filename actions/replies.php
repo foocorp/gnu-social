@@ -186,7 +186,7 @@ class RepliesAction extends Action
      */
     function showContent()
     {
-        $nl = new NoticeList($this->notice, $this);
+        $nl = new PrimaryNoticeList($this->notice, $this, array('show_n'=>NOTICES_PER_PAGE));
 
         $cnt = $nl->show();
         if (0 === $cnt) {

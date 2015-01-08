@@ -110,7 +110,7 @@ class TagAction extends ManagedAction
     {
         if(Event::handle('StartTagShowContent', array($this))) {
 
-            $nl = new NoticeList($this->notice, $this);
+            $nl = new PrimaryNoticeList($this->notice, $this, array('show_n'=>NOTICES_PER_PAGE));
 
             $cnt = $nl->show();
 

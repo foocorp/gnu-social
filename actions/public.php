@@ -220,7 +220,7 @@ class PublicAction extends Action
         $user = common_current_user();
 
         if (!empty($user) && $user->streamModeOnly()) {
-            $nl = new NoticeList($this->notice, $this);
+            $nl = new PrimaryNoticeList($this->notice, $this, array('show_n'=>NOTICES_PER_PAGE));
         } else {
             $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
         }
