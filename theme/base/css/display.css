@@ -983,30 +983,6 @@ content: ":";
 clear:both;
 }
 
-.notice p.e-content {
-    clear: none;
-    display: block;
-}
-
-.section .h-card .u-photo {
-margin-right:7px;
-margin-bottom:0;
-}
-
-.section .notice {
-padding-top:7px;
-padding-bottom:7px;
-border-top:0;
-}
-
-.section .notice:first-child {
-padding-top:0;
-}
-
-.section .notice .author {
-margin-right:0;
-}
-
 .notice-title {
     display:none;
 }
@@ -1019,12 +995,13 @@ margin-right:0;
     width: 100%;
 }
 
-#aside_primary .notices li {
-    margin-bottom: 8px;
+#aside_primary .notice .h-card .u-photo {
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
 }
-
-#aside_primary .notice {
-    min-height: 24px;
+#aside_primary .notice .e-content {
+    margin-left: 32px;
 }
 
 #export_data li {
