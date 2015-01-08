@@ -248,15 +248,14 @@ address .poweredby {
 /* input forms */
 
 .input_forms {
-    float: left;
     position: relative;
     margin-bottom: 10px;
     border-bottom: 1px dotted #ccc;
+    width: 100%;
 }
 
 #input_form_nav {
     float: left;
-    width: 100%;
     margin-bottom: 10px;
     list-style-type: none;
 }

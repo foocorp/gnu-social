@@ -433,7 +433,7 @@ var SN = { // StatusNet
                                         .css({display: 'none'})
                                         .fadeIn(2500);
                                     SN.U.NoticeWithAttachment($('#' + notice.id));
-                                    SN.U.switchInputFormTab("placeholder");
+                                    SN.U.switchInputFormTab(null);
                                 }
                             } else {
                                 // Not on a timeline that this belongs on?
@@ -1382,14 +1382,10 @@ var SN = { // StatusNet
          *
          * @param {String} tag
          */
-    switchInputFormTab: function (tag) {
-        // The one that's current isn't current anymore
-        $('.input_form_nav_tab.current').removeClass('current');
-            if (tag == 'placeholder') {
-                // Hack: when showing the placeholder, mark the tab
-                // as current for 'Status'.
-                $('#input_form_nav_status').addClass('current');
-            } else {
+        switchInputFormTab: function (tag) {
+            // The one that's current isn't current anymore
+            $('.input_form_nav_tab.current').removeClass('current');
+            if (tag != null) {
                 $('#input_form_nav_' + tag).addClass('current');
             }
 
@@ -1401,17 +1397,22 @@ var SN = { // StatusNet
                 return;
             }
 
-        $('.input_form.current').removeClass('current');
-        $('#input_form_' + tag)
-                .addClass('current')
-                .find('.ajax-notice').each(function () {
-                    var form = $(this);
-                    SN.Init.NoticeFormSetup(form);
-                })
-                .find('.notice_data-text').focus();
+            $('.input_form.current').removeClass('current');
+            if (tag == null) {
+                // we're done here, no new inputform to focus on
+                return false;
+            }
 
-        return false;
-    },
+            $('#input_form_' + tag)
+                    .addClass('current')
+                    .find('.ajax-notice').each(function () {
+                        var form = $(this);
+                        SN.Init.NoticeFormSetup(form);
+                    })
+                    .find('.notice_data-text').focus();
+
+            return false;
+        },
 
         showMoreMenuItems: function (menuid) {
             $('#' + menuid + ' .more_link').remove();
@@ -1436,11 +1437,6 @@ var SN = { // StatusNet
                 // SN.Init.NoticeFormSetup() will get run
                 // when forms get displayed for the first time...
 
-                // Hack to initialize the placeholder at top
-                $('#input_form_placeholder input.placeholder').focus(function () {
-                    SN.U.switchInputFormTab("status");
-                });
-
                 // Make inline reply forms self-close when clicking out.
                 $('body').on('click', function (e) {
                     var currentForm = $('#content .input_forms div.current');
@@ -1453,7 +1449,7 @@ var SN = { // StatusNet
                                 anything = anything || $(this).val();
                             });
                             if (!anything) {
-                                SN.U.switchInputFormTab("placeholder");
+                                SN.U.switchInputFormTab(null);
                             }
                         }
                     }
