@@ -226,4 +226,9 @@ class NewnoticeAction extends FormAction
         $nli = new NoticeListItem($notice, $this);
         $nli->show();
     }
+
+    public function showNoticeForm()
+    {
+        // pass
+    }
 }
