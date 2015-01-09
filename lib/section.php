@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/widget.php';
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Base class for sections
@@ -45,7 +41,7 @@ require_once INSTALLDIR.'/lib/widget.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class Section extends Widget
+abstract class Section extends Widget
 {
     /**
      * Show the form
@@ -94,10 +90,7 @@ class Section extends Widget
         $this->out->elementEnd('p');
     }
 
-    function divId()
-    {
-        return 'generic_section';
-    }
+    abstract public function divId();
 
     function title()
     {

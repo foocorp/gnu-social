@@ -70,6 +70,6 @@ class AttachmentNoticeSection extends NoticeSection
 
     function divId()
     {
-        return 'popular_notices';
+        return 'attachment_section';
     }
 }

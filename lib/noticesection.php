@@ -46,14 +46,26 @@ define('NOTICES_PER_SECTION', 6);
  * @link     http://status.net/
  */
 
-class NoticeSection extends Section
+abstract class NoticeSection extends Section
 {
+    protected $addressees = false;
+    protected $attachments = false;
+    protected $maxchars = 140;
+    protected $options = false;
+    protected $show_n = NOTICES_PER_SECTION;
+
     function showContent()
     {
-        // args: notice object, html outputter, preference array for list and items
-        $list = new SectionNoticeList($this->getNotices(), $this->out);
+        $prefs = array();
+        foreach (array('addressees', 'attachments', 'maxchars', 'options', 'show_n') as $key) {
+            $prefs[$key] = $this->$key;
+        }
+        $prefs['id_prefix'] = $this->divId();
+
+        // args: notice object, html outputter, preference array for notice lists and their items
+        $list = new NoticeList($this->getNotices(), $this->out, $prefs);
         $total = $list->show(); // returns total amount of notices available
-        return ($total > NOTICES_PER_SECTION);  // do we have more to show?
+        return ($total > $this->show_n);  // do we have more to show?
     }
 
     function getNotices()

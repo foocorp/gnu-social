@@ -55,6 +55,7 @@ class NoticeList extends Widget
 
     protected $addressees = true;
     protected $attachments = true;
+    protected $id_prefix = null;
     protected $maxchars = 0;
     protected $options = true;
     protected $show_n = NOTICES_PER_PAGE;
@@ -81,7 +82,12 @@ class NoticeList extends Widget
                 $this->$key = (bool)$prefs[$key];
             }
         }
-
+        // string preferences
+        foreach(array('id_prefix') as $key) {
+            if (array_key_exists($key, $prefs)) {
+                $this->$key = $prefs[$key];
+            }
+        }
     }
 
     /**
@@ -134,6 +140,7 @@ class NoticeList extends Widget
     {
         $prefs = array('addressees' => $this->addressees,
                        'attachments' => $this->attachments,
+                       'id_prefix' => $this->id_prefix,
                        'maxchars' => $this->maxchars,
                        'options' => $this->options);
         return new NoticeListItem($notice, $this->out, $prefs);

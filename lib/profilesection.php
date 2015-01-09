@@ -46,7 +46,7 @@ define('PROFILES_PER_SECTION', 6);
  * @link     http://status.net/
  */
 
-class ProfileSection extends Section
+abstract class ProfileSection extends Section
 {
     function showContent()
     {

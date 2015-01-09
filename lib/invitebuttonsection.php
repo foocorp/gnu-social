@@ -64,6 +64,11 @@ class InviteButtonSection extends Section
         return false;
     }
 
+    function divId()
+    {
+        return 'invite_button';
+    }
+
     function showContent()
     {
         $this->out->element(

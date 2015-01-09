@@ -47,7 +47,7 @@ class PopularNoticeSection extends NoticeSection
 {
     protected $viewer;
 
-    function __construct($out, $viewer)
+    function __construct($out, Profile $viewer=null)
     {
         parent::__construct($out);
         $this->viewer = $viewer;
@@ -67,7 +67,7 @@ class PopularNoticeSection extends NoticeSection
 
     function divId()
     {
-        return 'popular_notices';
+        return 'popular_section';
     }
 
     function moreUrl()

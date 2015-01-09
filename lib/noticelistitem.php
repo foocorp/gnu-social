@@ -60,6 +60,7 @@ class NoticeListItem extends Widget
 
     protected $addressees = true;
     protected $attachments = true;
+    protected $id_prefix = null;
     protected $options = true;
     protected $maxchars = 0;   // if <= 0 it means use full posts
 
@@ -97,6 +98,12 @@ class NoticeListItem extends Widget
         foreach(array('addressees', 'attachments', 'options') as $key) {
             if (array_key_exists($key, $prefs)) {
                 $this->$key = (bool)$prefs[$key];
+            }
+        }
+        // string preferences
+        foreach(array('id_prefix') as $key) {
+            if (array_key_exists($key, $prefs)) {
+                $this->$key = $prefs[$key];
             }
         }
     }
@@ -211,8 +218,9 @@ class NoticeListItem extends Widget
             if (!empty($this->notice->source)) {
                 $class .= ' notice-source-'.$this->notice->source;
             }
+            $id_prefix = (strlen($this->id_prefix) ? $this->id_prefix . '-' : '');
             $this->out->elementStart('li', array('class' => $class,
-                                                 'id' => 'notice-' . $id));
+                                                 'id' => "${id_prefix}notice-${id}"));
             Event::handle('EndOpenNoticeListItemElement', array($this));
         }
     }
