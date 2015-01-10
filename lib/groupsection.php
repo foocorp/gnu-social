@@ -45,7 +45,7 @@ define('GROUPS_PER_SECTION', 6);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class GroupSection extends Section
+abstract class GroupSection extends Section
 {
     function showContent()
     {
