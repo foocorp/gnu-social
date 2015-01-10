@@ -81,6 +81,14 @@ class Ostatus_profile extends Managed_DataObject
         return $this->uri;
     }
 
+    public function fromProfile(Profile $profile)
+    {
+        $oprofile = Ostatus_profile::getKV('profile_id', $profile->id);
+        if (!$oprofile instanceof Ostatus_profile) {
+            throw new Exception('No Ostatus_profile for Profile ID: '.$profile->id);
+        }
+    }
+
     /**
      * Fetch the locally stored profile for this feed
      * @return Profile

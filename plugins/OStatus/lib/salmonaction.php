@@ -52,8 +52,13 @@ class SalmonAction extends Action
 
             $entry = $magic_env->getPayload();  // Not cryptographically verified yet!
             $this->activity = new Activity($entry->documentElement);
-            $profile = Profile::fromUri($this->activity->actor->id);
-            assert($profile instanceof Profile);
+            if (empty($this->activity->actor->id)) {
+                common_log(LOG_ERR, "broken actor: " . var_export($this->activity->actor->id, true));
+                common_log(LOG_ERR, "activity with no actor: " . var_export($this->activity, true));
+                // TRANS: Exception.
+                throw new Exception(_m('Received a salmon slap from unidentified actor.'));
+            }
+            $profile = $this->profileFromActor($this->activity->actor);
         } catch (Exception $e) {
             common_debug('Salmon envelope parsing failed with: '.$e->getMessage());
             $this->clientError($e->getMessage());
@@ -66,8 +71,8 @@ class SalmonAction extends Action
             $this->clientError(_m('Salmon signature verification failed.'));
         }
 
-        $this->oprofile = $this->ensureProfile();
-        $this->actor    = $this->oprofile->localProfile();
+        $this->actor    = $profile;
+        $this->oprofile = Ostatus_profile::fromProfile($profile);
 
         return true;
     }
@@ -191,21 +196,70 @@ class SalmonAction extends Action
         }
     }
 
-    /**
-     * @return Ostatus_profile
-     */
-    function ensureProfile()
+    function profileFromActor(ActivityObject $actor)
     {
-        $actor = $this->activity->actor;
-        if (empty($actor->id)) {
-            common_log(LOG_ERR, "broken actor: " . var_export($actor, true));
-            common_log(LOG_ERR, "activity with no actor: " . var_export($this->activity, true));
-            // TRANS: Exception.
-            throw new Exception(_m('Received a salmon slap from unidentified actor.'));
-        }
+        try {
+            $profile = Profile::fromUri($actor->id);
+        } catch (UnknownUriException $e) {
+            // Apparently we didn't find the Profile object based on our URI,
+            // so OStatus doesn't have it with this URI in ostatus_profile.
+            // Try to look it up again, remote side may have changed from http to https
+            // or maybe publish an acct: URI now instead of an http: URL.
+            //
+            // Steps:
+            // 1. Check the newly received URI. Who does it say it is?
+            // 2. Compare these alleged identities to our local database.
+            // 3. If we found any locally stored identities, ask it about its aliases.
+            // 4. Do any of the aliases from our known identity match the recently introduced one?
+            //
+            // Example: We have stored http://example.com/user/1 but this URI says https://example.com/user/1
+            common_debug('No local Profile object found for a magicsigned activity author URI: '.$e->object_uri);
+            $disco = new Discovery();
+            $xrd = $disco->lookup($e->object_uri);
+            // Step 1: We got a bunch of discovery data for https://example.com/user/1 which includes
+            //         aliases https://example.com/user and hopefully our original http://example.com/user/1 too
+            $all_ids = array_merge(array($xrd->subject), $xrd->aliases);
 
-        // ensureActivityObjectProfile throws exception on failure
-        return Ostatus_profile::ensureActivityObjectProfile($actor);
+            if (!in_array($e->object_uri, $all_ids)) {
+                common_debug('The activity author URI we got was not listed itself when doing discovery on it.');
+                throw $e;
+            }
+
+            // Go through each reported alias from lookup to see if we know this already
+            foreach ($all_ids as $aliased_uri) {
+                $oprofile = Ostatus_profile::getKV('uri', $aliased_uri);
+                if (!$oprofile instanceof Ostatus_profile) {
+                    continue;   // unknown locally, check the next alias
+                }
+                // Step 2: We found the alleged http://example.com/user/1 URI in our local database,
+                //         but this can't be trusted yet because anyone can publish any alias.
+                common_debug('Found a local Ostatus_profile for "'.$e->object_uri.'" with this URI: '.$aliased_uri);
+
+                // We found an existing OStatus profile, but is it really the same? Do a callback to the URI's origin
+                // Step 3: lookup our previously known http://example.com/user/1 webfinger etc.
+                $xrd = $disco->lookup($oprofile->getUri()); // getUri returns ->uri, which we filtered on earlier
+                $doublecheck_aliases = array_merge(array($xrd->subject), $xrd->aliases);
+                common_debug('Trying to match known "'.$aliased_uri.'" against its returned aliases: '.implode(' ', $doublecheck_aliases));
+                // if we find our original URI here, it is a legitimate alias
+                // Step 4: Is the newly introduced https://example.com/user/1 URI in the list of aliases
+                //         presented by http://example.com/user/1 (i.e. do they both say they are the same identity?)
+                if (in_array($e->object_uri, $doublecheck_aliases)) {
+                    common_debug('These identities both say they are each other: "'.$aliased_uri.'" and "'.$e->object_uri);
+                    $profile = $oprofile->localProfile();
+                    break;  // don't iterate through aliases anymore
+                }
+            }
+            // We might end up here after $all_ids is iterated through without a $profile value,
+            // so after this catch we'll have to make sure we don't return a non-Profile value.
+        }
+        if (!$profile instanceof Profile) {
+            common_debug("We do not have a local profile to connect to this activity's author. Let's create one.");
+            // ensureActivityObjectProfile throws exception on failure
+            $oprofile = Ostatus_profile::createActivityObjectProfile($actor);
+            $profile = $oprofile->localProfile();
+        }
+        assert($profile instanceof Profile);
+        return $profile;
     }
 
     function saveNotice()
