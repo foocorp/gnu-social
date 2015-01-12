@@ -123,6 +123,8 @@ class ApiAction extends Action
     var $auth_user = null;
     var $page      = null;
     var $count     = null;
+    var $offset    = null;
+    var $limit     = null;
     var $max_id    = null;
     var $since_id  = null;
     var $source    = null;
@@ -151,6 +153,10 @@ class ApiAction extends Action
         $this->count    = (int)$this->arg('count', 20);
         $this->max_id   = (int)$this->arg('max_id', 0);
         $this->since_id = (int)$this->arg('since_id', 0);
+
+        // These two are not used everywhere, mainly just AtompubAction extensions
+        $this->offset   = ($this->page-1) * $this->count;
+        $this->limit    = $this->count + 1;
 
         if ($this->arg('since')) {
             header('X-StatusNet-Warning: since parameter is disabled; use since_id');

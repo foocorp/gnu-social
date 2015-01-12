@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Feed of group memberships for a user, in ActivityStreams format
@@ -44,67 +40,34 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class AtompubmembershipfeedAction extends ApiAuthAction
+class AtompubmembershipfeedAction extends AtompubAction
 {
     private $_profile     = null;
     private $_memberships = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function atompubPrepare()
     {
-        parent::prepare($argarray);
+        $this->_profile = Profile::getKV('id', $this->trimmed('profile'));
 
-        $profileId = $this->trimmed('profile');
-
-        $this->_profile = Profile::getKV('id', $profileId);
-
-        if (empty($this->_profile)) {
+        if (!$this->_profile instanceof Profile) {
             // TRANS: Client exception.
             throw new ClientException(_('No such profile.'), 404);
         }
 
-        $offset = ($this->page-1) * $this->count;
-        $limit  = $this->count + 1;
-
         $this->_memberships = Group_member::byMember($this->_profile->id,
-                                                     $offset,
-                                                     $limit);
-
+                                                     $this->offset,
+                                                     $this->limit);
         return true;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
+    protected function handleGet()
     {
-        parent::handle($argarray);
+        return $this->showFeed();
+    }
 
-        switch ($_SERVER['REQUEST_METHOD']) {
-        case 'HEAD':
-        case 'GET':
-            $this->showFeed();
-            break;
-        case 'POST':
-            $this->addMembership();
-            break;
-        default:
-            // TRANS: Client exception thrown when using an unsupported HTTP method.
-            throw new ClientException(_('HTTP method not supported.'), 405);
-            return;
-        }
-
-        return;
+    protected function handlePost()
+    {
+        return $this->addMembership();
     }
 
     /**
@@ -288,25 +251,6 @@ class AtompubmembershipfeedAction extends ApiAuthAction
     }
 
     /**
-     * Return true if read only.
-     *
-     * MAY override
-     *
-     * @param array $args other arguments
-     *
-     * @return boolean is read only action?
-     */
-    function isReadOnly($args)
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
-            $_SERVER['REQUEST_METHOD'] == 'HEAD') {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Return last modified, if applicable.
      *
      * MAY override
@@ -330,20 +274,5 @@ class AtompubmembershipfeedAction extends ApiAuthAction
     function etag()
     {
         return null;
-    }
-
-    /**
-     * Does this require authentication?
-     *
-     * @return boolean true if delete, else false
-     */
-    function requiresAuth()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
-            $_SERVER['REQUEST_METHOD'] == 'HEAD') {
-            return false;
-        } else {
-            return true;
-        }
     }
 }

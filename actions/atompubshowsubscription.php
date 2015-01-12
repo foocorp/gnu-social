@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Show a single subscription
@@ -44,27 +40,19 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class AtompubshowsubscriptionAction extends ApiAuthAction
+class AtompubshowsubscriptionAction extends AtompubAction
 {
     private $_subscriber   = null;
     private $_subscribed   = null;
     private $_subscription = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function atompubPrepare()
     {
-        parent::prepare($argarray);
         $subscriberId = $this->trimmed('subscriber');
 
         $this->_subscriber = Profile::getKV('id', $subscriberId);
 
-        if (empty($this->_subscriber)) {
+        if (!$this->_subscriber instanceof Profile) {
             // TRANS: Client exception thrown when trying to display a subscription for a non-existing profile ID.
             // TRANS: %d is the non-existing profile ID number.
             throw new ClientException(sprintf(_('No such profile id: %d.'),
@@ -75,18 +63,14 @@ class AtompubshowsubscriptionAction extends ApiAuthAction
 
         $this->_subscribed = Profile::getKV('id', $subscribedId);
 
-        if (empty($this->_subscribed)) {
+        if (!$this->_subscribed instanceof Profile) {
             // TRANS: Client exception thrown when trying to display a subscription for a non-existing profile ID.
             // TRANS: %d is the non-existing profile ID number.
             throw new ClientException(sprintf(_('No such profile id: %d.'),
                                               $subscribedId), 404);
         }
 
-        $this->_subscription =
-            Subscription::pkeyGet(array('subscriber' => $subscriberId,
-                                        'subscribed' => $subscribedId));
-
-        if (empty($this->_subscription)) {
+        if (!$this->_subscriber->isSubscribed($this->_subscribed)) {
             // TRANS: Client exception thrown when trying to display a subscription for a non-subscribed profile ID.
             // TRANS: %1$d is the non-existing subscriber ID number, $2$d is the ID of the profile that was not subscribed to.
             $msg = sprintf(_('Profile %1$d not subscribed to profile %2$d.'),
@@ -97,30 +81,14 @@ class AtompubshowsubscriptionAction extends ApiAuthAction
         return true;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
+    protected function handleGet()
     {
-        parent::handle($argarray);
-        switch ($_SERVER['REQUEST_METHOD']) {
-        case 'HEAD':
-        case 'GET':
-            $this->showSubscription();
-            break;
-        case 'DELETE':
-            $this->deleteSubscription();
-            break;
-        default:
-            // TRANS: Client error shown when using a non-supported HTTP method.
-            $this->clientError(_('HTTP method not supported.'), 405);
-        }
+        $this->showSubscription();
+    }
 
-        return;
+    protected function handleDelete()
+    {
+        $this->deleteSubscription();
     }
 
     /**
@@ -137,8 +105,6 @@ class AtompubshowsubscriptionAction extends ApiAuthAction
         $this->startXML();
         $this->raw($activity->asString(true, true, true));
         $this->endXML();
-
-        return;
     }
 
     /**
@@ -148,17 +114,13 @@ class AtompubshowsubscriptionAction extends ApiAuthAction
      */
     function deleteSubscription()
     {
-        if (empty($this->auth_user) ||
-            $this->auth_user->id != $this->_subscriber->id) {
+        if (!$this->scoped instanceof Profile ||
+                $this->scoped->id != $this->_subscriber->id) {
             // TRANS: Client exception thrown when trying to delete a subscription of another user.
-            throw new ClientException(_("Cannot delete someone else's ".
-                                        "subscription."), 403);
+            throw new ClientException(_("Cannot delete someone else's subscription."), 403);
         }
 
-        Subscription::cancel($this->_subscriber,
-                             $this->_subscribed);
-
-        return;
+        Subscription::cancel($this->_subscriber, $this->_subscribed);
     }
 
     /**
@@ -172,9 +134,9 @@ class AtompubshowsubscriptionAction extends ApiAuthAction
     {
         if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 
     /**

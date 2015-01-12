@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Show (or delete) a single membership event as an ActivityStreams entry
@@ -44,47 +40,34 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class AtompubshowmembershipAction extends ApiAuthAction
+class AtompubshowmembershipAction extends AtompubAction
 {
-    private $_profile    = null;
+    private $_private    = null;
     private $_group      = null;
     private $_membership = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function atompubPrepare()
     {
-        parent::prepare($argarray);
+        $this->_profile = Profile::getKV('id', $this->trimmed('profile'));
 
-        $profileId = $this->trimmed('profile');
-
-        $this->_profile = Profile::getKV('id', $profileId);
-
-        if (empty($this->_profile)) {
+        if (!$this->_profile instanceof Profile) {
             // TRANS: Client exception.
             throw new ClientException(_('No such profile.'), 404);
         }
 
-        $groupId = $this->trimmed('group');
+        $this->_group = User_group::getKV('id', $this->trimmed('group'));
 
-        $this->_group = User_group::getKV('id', $groupId);
-
-        if (empty($this->_group)) {
+        if (!$this->_group instanceof User_group) {
             // TRANS: Client exception thrown when referencing a non-existing group.
             throw new ClientException(_('No such group.'), 404);
         }
 
         $kv = array('group_id' => $groupId,
-                    'profile_id' => $profileId);
+                    'profile_id' => $this->_profile->id);
 
         $this->_membership = Group_member::pkeyGet($kv);
 
-        if (empty($this->_membership)) {
+        if (!$this->_profile->isMembmer($this->_group)) {
             // TRANS: Client exception thrown when trying to show membership of a non-subscribed group
             throw new ClientException(_('Not a member.'), 404);
         }
@@ -92,29 +75,12 @@ class AtompubshowmembershipAction extends ApiAuthAction
         return true;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
-    {
-        switch ($_SERVER['REQUEST_METHOD']) {
-        case 'GET':
-        case 'HEAD':
-            $this->showMembership();
-            break;
-        case 'DELETE':
-            $this->deleteMembership();
-            break;
-        default:
-            // TRANS: Client exception thrown when using an unsupported HTTP method.
-            throw new ClientException(_('HTTP method not supported.'), 405);
-            break;
-        }
-        return;
+    protected function handleGet() {
+        return $this->showMembership();
+    }
+
+    protected function handleDelete() {
+        return $this->deleteMembership();
     }
 
     /**
@@ -155,25 +121,6 @@ class AtompubshowmembershipAction extends ApiAuthAction
     }
 
     /**
-     * Return true if read only.
-     *
-     * MAY override
-     *
-     * @param array $args other arguments
-     *
-     * @return boolean is read only action?
-     */
-    function isReadOnly($args)
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
-            $_SERVER['REQUEST_METHOD'] == 'HEAD') {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Return last modified, if applicable.
      *
      * Because the representation depends on the profile and group,
@@ -208,20 +155,5 @@ class AtompubshowmembershipAction extends ApiAuthAction
                                           $this->_group->id,
                                           $adminflag,
                                           $ctime)) . '"';
-    }
-
-    /**
-     * Does this require authentication?
-     *
-     * @return boolean true if delete, else false
-     */
-    function requiresAuth()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
-            $_SERVER['REQUEST_METHOD'] == 'HEAD') {
-            return false;
-        } else {
-            return true;
-        }
     }
 }

@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Subscription feed class for AtomPub
@@ -46,68 +42,39 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class AtompubsubscriptionfeedAction extends ApiAuthAction
+class AtompubsubscriptionfeedAction extends AtompubAction
 {
     private $_profile       = null;
     private $_subscriptions = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function atompubPrepare()
     {
-        parent::prepare($argarray);
-
         $subscriber = $this->trimmed('subscriber');
 
         $this->_profile = Profile::getKV('id', $subscriber);
 
-        if (empty($this->_profile)) {
+        if (!$this->_profile instanceof Profile) {
             // TRANS: Client exception thrown when trying to display a subscription for a non-existing profile ID.
             // TRANS: %d is the non-existing profile ID number.
             throw new ClientException(sprintf(_('No such profile id: %d.'),
                                               $subscriber), 404);
         }
 
-        // page and count from ApiAction
-
-        $offset = ($this->page-1) * $this->count;
-
-        $this->_subscriptions = Subscription::bySubscriber($subscriber,
-                                                           $offset,
-                                                           $this->count + 1);
+        $this->_subscriptions = Subscription::bySubscriber($this->_profile->id,
+                                                           $this->offset,
+                                                           $this->limit);
 
         return true;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
+    protected function handleGet()
     {
-        parent::handle($argarray);
-        switch ($_SERVER['REQUEST_METHOD']) {
-        case 'HEAD':
-        case 'GET':
-            $this->showFeed();
-            break;
-        case 'POST':
-            $this->addSubscription();
-            break;
-        default:
-            // TRANS: Client exception thrown when using an unsupported HTTP method.
-            $this->clientError(_('HTTP method not supported.'), 405);
-        }
+        $this->showFeed();
+    }
 
-        return;
+    protected function handlePost()
+    {
+        $this->addSubscription();
     }
 
     /**
@@ -289,52 +256,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
             $this->startXML();
             $this->raw($act->asString(true, true, true));
             $this->endXML();
-        }
-    }
-
-    /**
-     * Return true if read only.
-     *
-     * @param array $args other arguments
-     *
-     * @return boolean is read only action?
-     */
-    function isReadOnly($args)
-    {
-        return $_SERVER['REQUEST_METHOD'] != 'POST';
-    }
-
-    /**
-     * Return last modified, if applicable.
-     *
-     * @return string last modified http header
-     */
-    function lastModified()
-    {
-        return null;
-    }
-
-    /**
-     * Return etag, if applicable.
-     *
-     * @return string etag http header
-     */
-    function etag()
-    {
-        return null;
-    }
-
-    /**
-     * Does this require authentication?
-     *
-     * @return boolean true if delete, else false
-     */
-    function requiresAuth()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            return true;
-        } else {
-            return false;
         }
     }
 }
