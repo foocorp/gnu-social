@@ -110,7 +110,37 @@ class File_thumbnail extends Managed_DataObject
 
     public function getUrl()
     {
+        if (!empty($this->filename)) {
+            // A locally stored file, so let's generate a URL for our instance.
+            $url = File::url($this->filename);
+            if ($url != $this->url) {
+                // For indexing purposes, in case we do a lookup on the 'url' field.
+                // also we're fixing possible changes from http to https, or paths
+                $this->updateUrl($url);
+            }
+            return $url;
+        }
+
+        // No local filename available, return the URL we have stored
         return $this->url;
+    }
+
+    public function updateUrl($url)
+    {
+        $file = File_thumbnail::getKV('url', $url);
+        if ($file instanceof File_thumbnail) {
+            throw new ServerException('URL already exists in DB');
+        }
+        $sql = 'UPDATE %1$s SET url=%2$s WHERE url=%3$s;';
+        $result = $this->query(sprintf($sql, $this->__table,
+                                             $this->_quote((string)$url),
+                                             $this->_quote((string)$this->url)));
+        if ($result === false) {
+            common_log_db_error($this, 'UPDATE', __FILE__);
+            throw new ServerException("Could not UPDATE {$this->__table}.url");
+        }
+
+        return $result;
     }
 
     public function delete($useWhere=false)
