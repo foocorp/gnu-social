@@ -970,12 +970,12 @@ EndRevokeRole: when a role has been revoked
 
 StartAtomPubNewActivity: When a new activity comes in through Atom Pub API
 - &$activity: received activity
-- $user: user publishing the entry
+- $profile: profile of the user publishing the entry
 - &$notice: notice created; initially null, can be set
 
 EndAtomPubNewActivity: When a new activity comes in through Atom Pub API
 - $activity: received activity
-- $user: user publishing the entry
+- $profile: profile of the user publishing the entry
 - $notice: notice that was created
 
 AdminPanelCheck: When checking whether the current user can access a given admin panel
