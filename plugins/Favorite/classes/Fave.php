@@ -44,7 +44,8 @@ class Fave extends Managed_DataObject
      *
      * @param Profile $profile the local or remote user who likes
      * @param Notice $notice the notice that is liked
-     * @return mixed false on failure, or Fave record on success
+     * @return Fave record on success
+     * @throws Exception on failure
      */
     static function addNew(Profile $profile, Notice $notice) {
 
@@ -66,7 +67,7 @@ class Fave extends Managed_DataObject
                 $fave->insert();
             } catch (ServerException $e) {
                 common_log_db_error($fave, 'INSERT', __FILE__);
-                return false;
+                throw $e;
             }
             self::blowCacheForProfileId($fave->user_id);
             self::blowCacheForNoticeId($fave->notice_id);
@@ -158,7 +159,7 @@ class Fave extends Managed_DataObject
         return $act;
     }
 
-    static function existsForProfile($notice, Profile $scoped)
+    static function existsForProfile(Notice $notice, Profile $scoped)
     {
         $fave = self::pkeyGet(array('user_id'=>$scoped->id, 'notice_id'=>$notice->id));
 

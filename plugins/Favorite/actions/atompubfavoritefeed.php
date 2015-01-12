@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * Feed of ActivityStreams 'favorite' actions
@@ -49,20 +45,13 @@ class AtompubfavoritefeedAction extends ApiAuthAction
     private $_profile = null;
     private $_faves   = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function prepare(array $args=array())
     {
-        parent::prepare($argarray);
+        parent::prepare($args);
 
         $this->_profile = Profile::getKV('id', $this->trimmed('profile'));
 
-        if (empty($this->_profile)) {
+        if (!$this->_profile instanceof Profile) {
             // TRANS: Client exception thrown when requesting a favorite feed for a non-existing profile.
             throw new ClientException(_('No such profile.'), 404);
         }
@@ -77,16 +66,9 @@ class AtompubfavoritefeedAction extends ApiAuthAction
         return true;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
+    protected function handle()
     {
-        parent::handle($argarray);
+        parent::handle();
 
         switch ($_SERVER['REQUEST_METHOD']) {
         case 'HEAD':
@@ -99,10 +81,9 @@ class AtompubfavoritefeedAction extends ApiAuthAction
         default:
             // TRANS: Client exception thrown when using an unsupported HTTP method.
             throw new ClientException(_('HTTP method not supported.'), 405);
-            return;
         }
 
-        return;
+        return true;
     }
 
     /**
@@ -209,11 +190,10 @@ class AtompubfavoritefeedAction extends ApiAuthAction
     {
         // XXX: Refactor this; all the same for atompub
 
-        if (empty($this->auth_user) ||
-            $this->auth_user->id != $this->_profile->id) {
+        if (!$this->scoped instanceof Profile ||
+            $this->scoped->id != $this->_profile->id) {
             // TRANS: Client exception thrown when trying to set a favorite for another user.
-            throw new ClientException(_("Cannot add someone else's".
-                                        " subscription."), 403);
+            throw new ClientException(_("Cannot add someone else's subscription."), 403);
         }
 
         $xml = file_get_contents('php://input');
@@ -224,69 +204,24 @@ class AtompubfavoritefeedAction extends ApiAuthAction
             $dom->documentElement->localName != 'entry') {
             // TRANS: Client error displayed when not using an Atom entry.
             throw new ClientException(_('Atom post must be an Atom entry.'));
-            return;
         }
 
         $activity = new Activity($dom->documentElement);
+        $notice = null;
 
-        $fave = null;
+        // Favorite plugin handles these as ActivityHandlerPlugin through Notice->saveActivity
+        // which in turn uses "StoreActivityObject" event.
+        Event::handle('StartAtomPubNewActivity', array(&$activity, $this->scoped, &$notice));
+        assert($notice instanceof Notice);
 
-        if (Event::handle('StartAtomPubNewActivity', array(&$activity))) {
+        $act = $notice->asActivity();
 
-            if ($activity->verb != ActivityVerb::FAVORITE) {
-                // TRANS: Client exception thrown when trying use an incorrect activity verb for the Atom pub method.
-                throw new ClientException(_('Can only handle favorite activities.'));
-                return;
-            }
+        header('Content-Type: application/atom+xml; charset=utf-8');
+        header('Content-Location: ' . $act->selfLink);
 
-            $note = $activity->objects[0];
-
-            if (!in_array($note->type, array(ActivityObject::NOTE,
-                                             ActivityObject::BLOGENTRY,
-                                             ActivityObject::STATUS))) {
-                // TRANS: Client exception thrown when trying favorite an object that is not a notice.
-                throw new ClientException(_('Can only fave notices.'));
-                return;
-            }
-
-            $notice = Notice::getKV('uri', $note->id);
-
-            if (empty($notice)) {
-                // XXX: import from listed URL or something
-                // TRANS: Client exception thrown when trying favorite a notice without content.
-                throw new ClientException(_('Unknown notice.'));
-            }
-
-            $old = Fave::pkeyGet(array('user_id' => $this->auth_user->id,
-                                       'notice_id' => $notice->id));
-
-            if (!empty($old)) {
-                // TRANS: Client exception thrown when trying favorite an already favorited notice.
-                throw new ClientException(_('Already a favorite.'));
-            }
-
-            $profile = $this->auth_user->getProfile();
-
-            $fave = Fave::addNew($profile, $notice);
-
-            if ($fave instanceof Fave) {
-                Fave::blowCacheForProfileId($this->_profile->id);
-                $this->notify($fave, $notice, $this->auth_user);
-            }
-
-            Event::handle('EndAtomPubNewActivity', array($activity, $fave));
-        }
-
-        if (!empty($fave)) {
-            $act = $fave->asActivity();
-
-            header('Content-Type: application/atom+xml; charset=utf-8');
-            header('Content-Location: ' . $act->selfLink);
-
-            $this->startXML();
-            $this->raw($act->asString(true, true, true));
-            $this->endXML();
-        }
+        $this->startXML();
+        $this->raw($act->asString(true, true, true));
+        $this->endXML();
     }
 
     /**
@@ -346,27 +281,6 @@ class AtompubfavoritefeedAction extends ApiAuthAction
             return false;
         } else {
             return true;
-        }
-    }
-
-    /**
-     * Notify the author of the favorite that the user likes their notice
-     *
-     * @param Favorite $fave   the favorite in question
-     * @param Notice   $notice the notice that's been faved
-     * @param User     $user   the user doing the favoriting
-     *
-     * @return void
-     */
-    function notify($fave, $notice, $user)
-    {
-        $other = User::getKV('id', $notice->profile_id);
-        if ($other && $other->id != $user->id && !empty($other->email)) {
-            require_once INSTALLDIR.'/lib/mail.php';
-
-            mail_notify_fave($other, $user->getProfile(), $notice);
-            // XXX: notify by IM
-            // XXX: notify by SMS
         }
     }
 }

@@ -25,13 +25,12 @@ class FavCommand extends Command
             return; 
         } 
  
-        $fave = Fave::addNew($this->user->getProfile(), $notice); 
- 
-        if (!$fave) { 
-            // TRANS: Error message text shown when a favorite could not be set. 
-            $channel->error($this->user, _('Could not create favorite.')); 
-            return; 
-        } 
+        try {
+            $fave = Fave::addNew($this->user->getProfile(), $notice); 
+        } catch (Exception $e) {
+            $channel->error($this->user, $e->getMessage());
+            return;
+        }
  
         // @fixme favorite notification should be triggered 
         // at a lower level 

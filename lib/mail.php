@@ -675,6 +675,7 @@ function mail_notify_message($message, $from=null, $to=null)
  */
 function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
 {
+    // This test is actually "if the sender is sandboxed"
     if (!$sender->hasRight(Right::EMAILONFAVE)) {
         return;
     }

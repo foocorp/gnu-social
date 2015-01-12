@@ -430,12 +430,13 @@ abstract class ActivityHandlerPlugin extends Plugin
      * Handle object posted via AtomPub
      *
      * @param Activity &$activity Activity that was posted
-     * @param User     $user      User that posted it
+     * @param Profile   $scoped   Profile of user posting
      * @param Notice   &$notice   Resulting notice
      *
      * @return boolean hook value
      */
-    function onStartAtomPubNewActivity(Activity &$activity, $user, &$notice)
+    // FIXME: Make sure we can really do strong Notice typing with a $notice===null without having =null here
+    public function onStartAtomPubNewActivity(Activity &$activity, Profile $scoped, Notice &$notice)
     {
         if (!$this->isMyActivity($activity)) {
             return true;
@@ -443,10 +444,9 @@ abstract class ActivityHandlerPlugin extends Plugin
 
         $options = array('source' => 'atompub');
 
-        // $user->getProfile() is a Profile
-        $notice = $this->saveNoticeFromActivity($activity,
-                                                $user->getProfile(),
-                                                $options);
+        $notice = $this->saveNoticeFromActivity($activity, $scoped, $options);
+
+        Event::handle('EndAtomPubNewActivity', array($activity, $scoped, $notice));
 
         return false;
     }
