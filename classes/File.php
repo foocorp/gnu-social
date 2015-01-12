@@ -303,7 +303,7 @@ class File extends Managed_DataObject
 
         }
 
-        if (StatusNet::isHTTPS()) {
+        if (StatusNet::useHTTPS()) {
 
             $sslserver = common_config('attachments', 'sslserver');
 

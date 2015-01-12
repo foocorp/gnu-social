@@ -423,11 +423,20 @@ class StatusNet
     static function isHTTPS()
     {
         // There are some exceptions to this; add them here!
-        if(empty($_SERVER['HTTPS'])) {
+        if (empty($_SERVER['HTTPS'])) {
             return false;
-        } else {
-            return $_SERVER['HTTPS'] !== 'off';
         }
+
+        // If it is _not_ "off", it is on, so "true".
+        return strtolower($_SERVER['HTTPS']) !== 'off';
+    }
+
+    /**
+     * Can we use HTTPS? Then do! Only return false if it's not configured ("never").
+     */
+    static function useHTTPS()
+    {
+        return self::isHTTPS() || common_config('site', 'ssl') != 'never';
     }
 }
 
