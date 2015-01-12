@@ -1437,6 +1437,9 @@ var SN = { // StatusNet
                 // SN.Init.NoticeFormSetup() will get run
                 // when forms get displayed for the first time...
 
+                // Initially show Status tab
+                SN.U.switchInputFormTab("status");
+
                 // Make inline reply forms self-close when clicking out.
                 $('body').on('click', function (e) {
                     var currentForm = $('#content .input_forms div.current');
@@ -1476,7 +1479,6 @@ var SN = { // StatusNet
 
                 // Infield labels for notice form inputs.
                 $('.input_forms fieldset fieldset label').inFieldLabels({ fadeOpacity:0 });
-
             }
         },
 
