@@ -159,7 +159,7 @@ class Fave extends Managed_DataObject
         return $act;
     }
 
-    static function existsForProfile(Notice $notice, Profile $scoped)
+    static function existsForProfile($notice, Profile $scoped)
     {
         $fave = self::pkeyGet(array('user_id'=>$scoped->id, 'notice_id'=>$notice->id));
 
