@@ -264,7 +264,6 @@ class SalmonAction extends Action
 
     function saveNotice()
     {
-        $oprofile = $this->ensureProfile();
-        return $oprofile->processPost($this->activity, 'salmon');
+        return $this->oprofile->processPost($this->activity, 'salmon');
     }
 }

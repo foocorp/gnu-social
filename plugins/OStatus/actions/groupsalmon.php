@@ -88,7 +88,6 @@ class GroupsalmonAction extends SalmonAction
             }
         }
 
-        $profile = $this->ensureProfile();
         $this->saveNotice();
     }
 
@@ -153,7 +152,6 @@ class GroupsalmonAction extends SalmonAction
      */
     function handleLeave()
     {
-        // ensureProfile throws exception on failure
         if ($this->oprofile->isGroup()) {
             // TRANS: Client error displayed when trying to have a group join another group.
             throw new AlreadyFulfilledException(_m('Groups cannot be members of groups'));
