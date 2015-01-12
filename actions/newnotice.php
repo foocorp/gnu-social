@@ -189,14 +189,7 @@ class NewnoticeAction extends FormAction
         Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content_shortened, &$options));
 
         if (!StatusNet::isAjax()) {
-            $returnto = $this->trimmed('returnto');
-
-            if ($returnto) {
-                $url = common_local_url($returnto,
-                                        array('nickname' => $this->scoped->getNickname()));
-            } else {
-                $url = common_local_url('shownotice', array('notice' => $this->stored->id));
-            }
+            $url = common_local_url('shownotice', array('notice' => $this->stored->id));
             common_redirect($url, 303);
         }
 
