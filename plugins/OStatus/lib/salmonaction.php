@@ -255,7 +255,7 @@ class SalmonAction extends Action
         if (!$profile instanceof Profile) {
             common_debug("We do not have a local profile to connect to this activity's author. Let's create one.");
             // ensureActivityObjectProfile throws exception on failure
-            $oprofile = Ostatus_profile::createActivityObjectProfile($actor);
+            $oprofile = Ostatus_profile::ensureActivityObjectProfile($actor);
             $profile = $oprofile->localProfile();
         }
         assert($profile instanceof Profile);
