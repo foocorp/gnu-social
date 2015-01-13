@@ -67,7 +67,7 @@ class AtompubshowmembershipAction extends AtompubAction
 
         $this->_membership = Group_member::pkeyGet($kv);
 
-        if (!$this->_profile->isMembmer($this->_group)) {
+        if (!$this->_membership instanceof Group_member) {
             // TRANS: Client exception thrown when trying to show membership of a non-subscribed group
             throw new ClientException(_('Not a member.'), 404);
         }

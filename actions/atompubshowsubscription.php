@@ -70,7 +70,9 @@ class AtompubshowsubscriptionAction extends AtompubAction
                                               $subscribedId), 404);
         }
 
-        if (!$this->_subscriber->isSubscribed($this->_subscribed)) {
+        $this->_subscription = Subscription::pkeyGet(array('subscriber' => $subscriberId,
+                                                           'subscribed' => $subscribedId));
+        if (!$this->_subscription instanceof Subscription) {
             // TRANS: Client exception thrown when trying to display a subscription for a non-subscribed profile ID.
             // TRANS: %1$d is the non-existing subscriber ID number, $2$d is the ID of the profile that was not subscribed to.
             $msg = sprintf(_('Profile %1$d not subscribed to profile %2$d.'),
