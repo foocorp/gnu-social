@@ -21,15 +21,13 @@
  * @package OStatusPlugin
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class PeopletagsalmonAction extends SalmonAction
 {
     var $peopletag = null;
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 

@@ -58,21 +58,19 @@ class SalmonAction extends Action
                 // TRANS: Exception.
                 throw new Exception(_m('Received a salmon slap from unidentified actor.'));
             }
-            $profile = $this->profileFromActor($this->activity->actor);
+            // ensureProfiles sets $this->actor and $this->oprofile
+            $this->ensureProfiles();
         } catch (Exception $e) {
             common_debug('Salmon envelope parsing failed with: '.$e->getMessage());
             $this->clientError($e->getMessage());
         }
 
         // Cryptographic verification test
-        if (!$magic_env->verify($profile)) {
+        if (!$magic_env->verify($this->actor)) {
             common_log(LOG_DEBUG, "Salmon signature verification failed.");
             // TRANS: Client error.
             $this->clientError(_m('Salmon signature verification failed.'));
         }
-
-        $this->actor    = $profile;
-        $this->oprofile = Ostatus_profile::fromProfile($profile);
 
         return true;
     }
@@ -196,10 +194,13 @@ class SalmonAction extends Action
         }
     }
 
-    function profileFromActor(ActivityObject $actor)
+    function ensureProfiles()
     {
         try {
-            $profile = Profile::fromUri($actor->id);
+            $this->oprofile = Ostatus_profile::getActorProfile($this->activity);
+            if (!$this->oprofile instanceof Ostatus_profile) {
+                throw new UnknownUriException($this->activity->actor->id);
+            }
         } catch (UnknownUriException $e) {
             // Apparently we didn't find the Profile object based on our URI,
             // so OStatus doesn't have it with this URI in ostatus_profile.
@@ -245,25 +246,29 @@ class SalmonAction extends Action
                 //         presented by http://example.com/user/1 (i.e. do they both say they are the same identity?)
                 if (in_array($e->object_uri, $doublecheck_aliases)) {
                     common_debug('These identities both say they are each other: "'.$aliased_uri.'" and "'.$e->object_uri);
-                    $profile = $oprofile->localProfile();
+                    $this->oprofile = $oprofile;
                     break;  // don't iterate through aliases anymore
                 }
             }
-            // We might end up here after $all_ids is iterated through without a $profile value,
-            // so after this catch we'll have to make sure we don't return a non-Profile value.
+
+            // We might end up here after $all_ids is iterated through without a $this->oprofile value,
+            if (!$this->oprofile instanceof Ostatus_profile) {
+                common_debug("We do not have a local profile to connect to this activity's author. Let's create one.");
+                // ensureActivityObjectProfile throws exception on failure
+                $this->oprofile = Ostatus_profile::ensureActivityObjectProfile($this->activity->actor);
+            }
         }
-        if (!$profile instanceof Profile) {
-            common_debug("We do not have a local profile to connect to this activity's author. Let's create one.");
-            // ensureActivityObjectProfile throws exception on failure
-            $oprofile = Ostatus_profile::ensureActivityObjectProfile($actor);
-            $profile = $oprofile->localProfile();
-        }
-        assert($profile instanceof Profile);
-        return $profile;
+
+        assert($this->oprofile instanceof Ostatus_profile);
+
+        $this->actor = $this->oprofile->localProfile();
     }
 
     function saveNotice()
     {
+        if (!$this->oprofile instanceof Ostatus_profile) {
+            common_debug('Ostatus_profile missing in ' . get_class(). ' profile: '.var_export($this->profile));
+        }
         return $this->oprofile->processPost($this->activity, 'salmon');
     }
 }
