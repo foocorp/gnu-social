@@ -101,10 +101,10 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         $profile = Profile::getKV('id', $this->profile_id);
-        if ($profile instanceof Profile) {
-            return $profile;
+        if (!$profile instanceof Profile) {
+            throw new NoProfileException($this->profile_id);
         }
-        throw new NoProfileException($this->profile_id);
+        return $profile;
     }
 
     /**
