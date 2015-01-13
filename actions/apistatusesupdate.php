@@ -252,7 +252,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
                 $this->clientError($e->getMessage(), $e->getCode());
             }
 
-            if (isset($upload)) {
+            if ($upload instanceof MediaFile) {
                 $this->status .= ' ' . $upload->shortUrl();
 
                 /* Do not call shortenlinks until the whole notice has been build */
