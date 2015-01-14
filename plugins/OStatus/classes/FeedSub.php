@@ -435,7 +435,7 @@ class FeedSub extends Managed_DataObject
     {
         common_log(LOG_INFO, __METHOD__ . ": packet for \"" . $this->getUri() . "\"! $hmac $post");
 
-        if ($this->sub_state != 'active') {
+        if (!in_array($this->sub_state, array('active', 'nohub'))) {
             common_log(LOG_ERR, __METHOD__ . ": ignoring PuSH for inactive feed " . $this->getUri() . " (in state '$this->sub_state')");
             return;
         }
