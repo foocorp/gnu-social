@@ -16,7 +16,6 @@ class FeedPollQueueHandler extends QueueHandler
 
     public function handle($item)
     {
-        common_debug('Enqueueing FeedPoll feeds but actually running the queue handler!');
         $feedsub = FeedSub::getKV('id', $item['id']);
         if (!$feedsub instanceof FeedSub) {
             // Removed from the feedsub table I guess
@@ -27,14 +26,11 @@ class FeedPollQueueHandler extends QueueHandler
             return true;
         }
 
-        common_debug('Enqueueing FeedPoll feeds but actually checking updates');
         try {
             FeedPoll::checkUpdates($feedsub);
         } catch (Exception $e) {
             common_log(LOG_ERR, "Failed to check feedsub id= ".$feedsub->id.' ("'.$e->getMessage().'")');
         }
-
-        common_debug('Enqueueing FeedPoll feeds but actually done with '.$feedsub->id);
 
         return true;
     }

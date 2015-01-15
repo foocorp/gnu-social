@@ -40,7 +40,6 @@ class FeedPoll {
             $orig = clone($feedsub);
             $item = array('id' => $feedsub->id);
             $qm->enqueue($item, self::QUEUE_CHECK);
-            common_debug('Enqueueing FeedPoll feeds, currently: '.$feedsub->uri);
             $feedsub->last_update = common_sql_now();
             $feedsub->update($orig);
         }
@@ -59,7 +58,6 @@ class FeedPoll {
     public function checkUpdates(FeedSub $feedsub)
     {
         $request = new HTTPClient();
-        common_debug('Enqueueing FeedPoll feeds went well, now checking updates for: '.$feedsub->getUri());
         $feed = $request->get($feedsub->uri);
         if (!$feed->isOk()) {
             throw new ServerException('FeedSub could not fetch id='.$feedsub->id.' (Error '.$feed->getStatus().': '.$feed->getBody());
