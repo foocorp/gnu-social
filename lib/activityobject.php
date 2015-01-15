@@ -274,6 +274,10 @@ class ActivityObject
     // @todo FIXME: rationalize with Activity::_fromRssItem()
     private function _fromRssItem($item)
     {
+        if (empty($this->type)) {
+            $this->type = ActivityObject::NOTE;
+        }
+
         $this->title = ActivityUtils::childContent($item, ActivityObject::TITLE, Activity::RSS);
 
         $contentEl = ActivityUtils::child($item, ActivityUtils::CONTENT, Activity::CONTENTNS);
