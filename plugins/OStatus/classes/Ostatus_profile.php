@@ -1141,8 +1141,9 @@ class Ostatus_profile extends Managed_DataObject
                         ?: $discover->getAtomLink(Salmon::NS_REPLIES);
         $hints['salmon'] = $salmonuri;
 
-        if (!$huburi && !common_config('feedsub', 'fallback_hub')) {
+        if (!$huburi && !common_config('feedsub', 'fallback_hub') && !common_config('feedsub', 'nohub')) {
             // We can only deal with folks with a PuSH hub
+            // unless we have something similar available locally.
             throw new FeedSubNoHubException();
         }
 
@@ -1534,7 +1535,7 @@ class Ostatus_profile extends Managed_DataObject
             $huburi = $discover->getHubLink();
         }
 
-        if (!$huburi && !common_config('feedsub', 'fallback_hub')) {
+        if (!$huburi && !common_config('feedsub', 'fallback_hub') && !common_config('feedsub', 'nohub')) {
             // We can only deal with folks with a PuSH hub
             throw new FeedSubNoHubException();
         }

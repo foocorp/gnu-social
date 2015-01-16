@@ -168,7 +168,7 @@ class FeedSub extends Managed_DataObject
         $discover->discoverFromFeedURL($feeduri);
 
         $huburi = $discover->getHubLink();
-        if (!$huburi && !common_config('feedsub', 'fallback_hub')) {
+        if (!$huburi && !common_config('feedsub', 'fallback_hub') && !common_config('feedsub', 'nohub')) {
             throw new FeedSubNoHubException();
         }
 
@@ -211,8 +211,8 @@ class FeedSub extends Managed_DataObject
                 // No native hub on this feed?
                 // Use our fallback hub, which handles polling on our behalf.
             } else if (common_config('feedsub', 'nohub')) {
-                // Fake it! We're just testing remote feeds w/o hubs.
-                // We'll never actually get updates in this mode.
+                // For this to actually work, we'll need some polling mechanism.
+                // The FeedPoller plugin should take care of it.
                 return;
             } else {
                 // TRANS: Server exception.
@@ -247,8 +247,8 @@ class FeedSub extends Managed_DataObject
                 // No native hub on this feed?
                 // Use our fallback hub, which handles polling on our behalf.
             } else if (common_config('feedsub', 'nohub')) {
-                // Fake it! We're just testing remote feeds w/o hubs.
-                // We'll never actually get updates in this mode.
+                // We need a feedpolling plugin (like FeedPoller) active so it will
+                // set the 'nohub' state to 'inactive' for us.
                 return;
             } else {
                 // TRANS: Server exception.
