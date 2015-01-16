@@ -1,0 +1,123 @@
+body {
+    background-image: none;
+    min-width: 0;
+}
+
+#header {
+    padding: 0;
+}
+
+#site_nav_global_primary {
+    top: 0;
+    -webkit-border-top-right-radius: 0px;
+    -moz-border-radius-topright: 0px;
+    border-top-right-radius: 0px;
+    line-height: 16px;
+}
+
+#site_nav_global_primary li {
+    float: left;
+    margin-right: 8px;
+}
+
+#site_nav_local_views {
+    line-height: 2em;
+}
+
+#site_nav_local_views h3 {
+    color: #333;
+    background: none;
+    text-transform: none;
+    letter-spacing: 0;
+    padding-bottom: 0;
+}
+
+#site_nav_local_views li li {
+    margin: 0 6px 6px 0;
+}
+
+#login #site_nav_local_views li, #register #site_nav_local_views li, #openidlogin #site_nav_local_views li {
+    margin: 0 6px 6px 0;
+}
+
+#site_nav_local_views a {
+    color: #fff;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);;
+    background: #364a84;
+    background: -moz-linear-gradient(top, #7b8dbb , #364a84);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7b8dbb), color-stop(100%,#364a84));
+    font-size: 0.9em;
+    width: auto;
+}
+
+#site_nav_local_views a:hover {
+    background: #7b8dbb;
+    background: -moz-linear-gradient(top, #364a84 , #7b8dbb);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#364a84), color-stop(100%,#7b8dbb));
+}
+
+.input_forms { 
+    top: -10px;
+    padding-right: 0;
+}
+
+#input_form_nav li a {
+    padding: 0px 4px 1px 4px;
+}
+
+.form_notice .count {
+    top: 44px;
+    left: 276px;
+}
+
+#form_notice-direct.form_notice .count {
+    top: 74px;
+    left: 276px;
+}
+
+#event-startdate, #event-starttime, #event-enddate, #event-endtime {
+    width: 120px;
+    margin-right: 12px;
+}
+
+.input_form .form_settings .submit {
+    font-size: 1em;
+}
+
+.form_notice input.submit {
+    font-size: 1em;
+}
+
+.question div.question-description {
+    max-width: 100% !important;
+}
+
+ul.qna-dummy {
+    width: 80%;
+}
+
+.qna-dummy-placeholder input {
+    width: 92%;
+}
+
+.question #qna-answer, .qna-full-question #qna-answer {
+    width: 220px;
+}
+
+.threaded-replies #answer-form fieldset {
+    width: 220px;
+}
+
+.threaded-replies #qna-answer-submit {
+    float: left;
+    clear: left;
+    position: relative;
+    top: 0;
+    bottom: 0px;
+    left: 0;
+    margin-top: 10px;
+}
+
+a.company_logo {
+    display: none !important;
+}

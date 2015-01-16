@@ -1,0 +1,314 @@
+/** theme: neo
+ *
+ * @package   StatusNet
+ * @author    Osama Khalid <osamak@gnu.org>
+ * @copyright Osama Khalid
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
+ * @link      http://status.net/
+ */
+
+body {
+    direction: rtl;
+}
+
+span.rtl{
+    direction: rtl !important;
+}
+
+#content .notice .h-entry {
+    direction: ltr;
+}
+
+.form_notice textarea{
+    direction: ltr;
+}
+
+#site_nav_global_primary ul{
+    float: left;
+}
+
+.notice div.e-content {
+    float: right;
+    clear: right;
+}
+
+#content .notice .threaded-replies .notice div.e-content{
+    clear: right;
+    float: right;
+}
+
+#content h1{
+    font-weight: bold;
+    letter-spacing: 0;
+}
+
+.threaded-replies {
+    border-right: 3px solid #ECECF2;
+    border-left: 0;
+    margin-right: 59px;
+    margin-left: 0;
+}
+
+address{
+    float: right;
+}
+
+#site_nav_global_primary {
+    left: 0;
+    right: auto;
+}
+
+.input_form .form_settings .submit{
+    float: left;
+}
+
+.input_form .form_settings fieldset fieldset{
+    float: right;
+}
+
+.input_form fieldset fieldset label{
+    right: 6px;
+    text-align: right;
+}
+
+#input_form_event .form_settings .form_data li{
+    float: right;
+}
+
+.notice .author {
+    direction: rtl;
+    float: right;
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.section .notice .author {
+    margin-left: 0;
+}
+
+.notice p.e-content {
+    float: left;
+}
+
+.threaded-replies .form_notice #notice_action-submit {
+    right: 10px;
+}
+
+.form_notice input.submit{
+    float: right;
+}
+
+#export_data li a{
+    padding-right: 30px;
+    padding-left: 0;
+/*    background-position: right center; */
+}
+
+#content .notice .author .u-photo{
+    right: 0;
+    left: auto;
+}
+
+.notice-options{
+    float: left;
+}
+
+.notice div.e-content {
+    margin-right: 59px;
+    margin-left: 0;
+}
+
+#core .h-card .u-photo {
+    margin-left: 11px;
+    margin-right: 0;
+}
+
+.threaded-replies .notice-reply-comments {
+    margin: 2px 10px 4px 0;
+}
+
+#shownotice .notice div.e-content {
+    margin-right: 0;
+}
+
+#content thead th {
+    text-align: right;
+}
+
+.profile_list th.current a {
+    background-position: left top;
+    padding-left: 25px;
+}
+
+.form_settings .form_data textarea, .form_settings .form_data select, .form_settings .form_data input {
+    float: right;
+    margin-right: 1.795%;
+}
+
+.form_settings .form_data label {
+    float: right;
+}
+
+.form_settings label {
+    text-align: left;
+}
+
+#form_search input.submit {
+    margin-right: 5px;
+}
+
+#site_nav_local_views H3{
+    font-weight: bold;
+    letter-spacing: 0;
+}
+
+#aside_primary h2{
+    font-weight: bold;
+    letter-spacing: 0;
+}
+
+.form_settings label[for="notice_to"] {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+select {
+    padding-left: 10px;
+}
+
+#input_form_nav li a {
+    float: right;
+}
+
+#content table.extended-profile td {
+    padding-left: 0 !important;
+    padding-right: 8px !important;
+}
+
+.experience-item, .education-item {
+    float: right;
+}
+
+#site_nav_global_primary a {
+    float: right;
+}
+
+.form_settings .form_data p.form_guide {
+    margin-right: 27%;
+}
+
+.form_settings label.checkbox {
+    text-align: right;
+}
+
+.form_settings label.checkbox, .form_settings label.radio {
+    left: 0;
+    right: -25px;
+}
+
+.form_settings input.checkbox, .form_settings input.radio {
+    margin-right: 25%;
+    margin-left: 20px;
+    right: -14px;
+    left: 0;
+}
+
+.form_settings input {
+    margin-left: 20px;
+}
+
+.form_settings .form_data li {
+    float: right;
+}
+
+#header-search {
+    float: left;
+}
+
+#header-search input[type="submit"] {
+    left: 0;
+    right: auto;
+}
+
+#avatarfile {
+    width: 100%;
+}
+
+.form_settings .checkbox-wrapper label.checkbox {
+    right: -3px;
+    left: auto;
+}
+
+.checkbox-wrapper.unchecked label.checkbox, .checkbox-wrapper.checked label.checkbox {
+    padding-right: 20px;
+    padding-left: 0;
+    background-position: right center;
+}
+
+.input_form .form_settings .form_data p.form_guide {
+    margin-right: 5px;
+    margin-left: 27%;
+}
+
+.experience-item, .education-item {
+    float: right !important;
+}
+
+.profile_block .entity_actions {
+    float: left;
+}
+
+.profile .entity_profile .p-name, .profile .entity_profile .label {
+    margin-right: 11px;
+    margin-left: 0;
+}
+
+#core .h-card .u-photo {
+    float: right;
+}
+
+.profile_list .label {
+    margin-right: 59px !important;
+}
+
+.profile .entity_profile .note, .profile .entity_profile .url, .profile .entity_profile .entity_tags, .profile .entity_profile .form_subscription_edit {
+    margin-right: 59px;
+    margin-left: 0;
+}
+
+.profile_list .entity_actions ul {
+    left: 20px;
+    right: auto;
+}
+
+.entity_actions input.submit {
+   text-align: right;
+}
+
+#entity_statistics dt, #entity_statistics dd {
+    margin-left: 11px;
+    margin-right: 0;
+}
+
+#showstream .notice .h-entry, #showstream .notice div.e-content {
+    margin-right: 0;
+}
+
+.limited-scope .e-content .timestamp:before {
+    right: 0;
+    left: auto;
+}
+
+.limited-scope .e-content .timestamp {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.section ul.entities {
+    float: right;
+}
+
+.section .entities li {
+    float: right;
+}
+
