@@ -665,6 +665,7 @@ address .poweredby {
 
 #core .h-card .u-photo {
     float: left;
+    margin-right: 8px;
 }
 
 .h-card .u-url, .h-card.u-url {
@@ -707,7 +708,7 @@ font-style:italic;
 }
 
 .notice .e-content {
-    margin-left: 55px;
+    margin-left: 56px;
 }
 
 .notice-options {
