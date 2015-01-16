@@ -1438,7 +1438,15 @@ var SN = { // StatusNet
                 // when forms get displayed for the first time...
 
                 // Initially hide all tabs on the top of the page
-                SN.U.switchInputFormTab(null);
+                // if there's no data in there yet.
+                var fields = $('#content .input_forms .input_form.current').find('textarea, input[type=text], input[type=""]');
+                var anything = false;
+                fields.each(function () {
+                    anything = anything || $(this).val();
+                });
+                if (!anything) {
+                    SN.U.switchInputFormTab(null);
+                }
 
                 // Make inline reply forms self-close when clicking out.
                 $('body').on('click', function (e) {
