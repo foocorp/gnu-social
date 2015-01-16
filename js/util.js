@@ -1437,8 +1437,8 @@ var SN = { // StatusNet
                 // SN.Init.NoticeFormSetup() will get run
                 // when forms get displayed for the first time...
 
-                // Initially show Status tab
-                SN.U.switchInputFormTab("status");
+                // Initially hide all tabs on the top of the page
+                SN.U.switchInputFormTab(null);
 
                 // Make inline reply forms self-close when clicking out.
                 $('body').on('click', function (e) {

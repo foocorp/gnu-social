@@ -726,6 +726,8 @@ class Action extends HTMLOutputter // lawsuit
 
         $this->elementStart('div', 'input_forms');
 
+        $this->element('label', array('for'=>'input_form_nav'), _m('TAB', 'Share your:'));
+
         if (Event::handle('StartShowEntryForms', array(&$tabs))) {
             $this->elementStart('ul', array('class' => 'nav',
                                             'id' => 'input_form_nav'));

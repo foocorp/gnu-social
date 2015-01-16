@@ -254,6 +254,12 @@ address .poweredby {
     width: 100%;
 }
 
+.input_forms > label {
+    float: left;
+    margin-right: 1em;
+    opacity: 0.6;
+}
+
 #input_form_nav {
     float: left;
     margin-bottom: 10px;
