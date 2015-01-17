@@ -433,8 +433,12 @@ body#doc #content_inner p.faq-credits {
     width: 542px;
 }
 
+.input_forms > label {
+    margin: 4px 1ex;
+}
+
 #input_form_nav {
-    display:none;
+    margin: 2px;
 }
 
 #input_form_nav li a {
