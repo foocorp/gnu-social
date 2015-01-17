@@ -92,7 +92,6 @@ class OpportunisticQueueManager extends DBQueueManager
             try {
                 $this->poll();
             } catch (RunQueueOutOfWorkException $e) {
-                common_debug('Opportunistic queue manager finished.');
                 return true;
             }
         }
