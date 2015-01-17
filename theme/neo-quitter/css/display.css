@@ -233,7 +233,7 @@ address a {
 #site_nav_global_primary #top_nav_doc_faq a:before {
 	content: "\f085";
     display: inline-block;
-    font: 20px/1 "fa";
+    font: 18px/1 "fa";
     padding-right:10px;
     vertical-align:middle;
     padding-bottom:3px;
