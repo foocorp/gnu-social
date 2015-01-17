@@ -41,15 +41,11 @@ if (!defined('STATUSNET')) {
 class oEmbedHelper
 {
     protected static $apiMap = array(
-        'flickr.com' => 'http://www.flickr.com/services/oembed/',
-        'yfrog.com' => 'http://www.yfrog.com/api/oembed',
-        'youtube.com' => 'http://www.youtube.com/oembed',
+        'flickr.com' => 'https://www.flickr.com/services/oembed/',
+        'youtube.com' => 'https://www.youtube.com/oembed',
         'viddler.com' => 'http://lab.viddler.com/services/oembed/',
-        'qik.com' => 'http://qik.com/api/oembed.json',
-        'revision3.com' => 'http://revision3.com/api/oembed/',
-        'hulu.com' => 'http://www.hulu.com/api/oembed.json',
-        'vimeo.com' => 'http://www.vimeo.com/api/oembed.json',
-        'my.opera.com' => 'http://my.opera.com/service/oembed',
+        'revision3.com' => 'https://revision3.com/api/oembed/',
+        'vimeo.com' => 'https://vimeo.com/api/oembed.json',
     );
     protected static $functionMap = array(
         'twitpic.com' => 'oEmbedHelper::twitPic',

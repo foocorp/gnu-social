@@ -1,5 +1,7 @@
 <?php
 
+if (!defined('GNUSOCIAL')) { exit(1); }
+
 class OembedPlugin extends Plugin
 {
     public function onCheckSchema()
