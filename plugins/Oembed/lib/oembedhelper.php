@@ -48,7 +48,6 @@ class oEmbedHelper
         'vimeo.com' => 'https://vimeo.com/api/oembed.json',
     );
     protected static $functionMap = array(
-        'twitpic.com' => 'oEmbedHelper::twitPic',
     );
 
     /**
@@ -248,51 +247,6 @@ class oEmbedHelper
         }
 
         return $data;
-    }
-
-    /**
-     * Using a local function for twitpic lookups, as oohembed's adapter
-     * doesn't return a valid result:
-     * http://code.google.com/p/oohembed/issues/detail?id=19
-     *
-     * This code fetches metadata from Twitpic's own API, and attempts
-     * to guess proper thumbnail size from the original's size.
-     *
-     * @todo respect maxwidth and maxheight params
-     *
-     * @param string $url
-     * @param array $params
-     * @return object
-     */
-    static function twitPic($url, $params=array())
-    {
-        $matches = array();
-        if (preg_match('!twitpic\.com/(\w+)!', $url, $matches)) {
-            $id = $matches[1];
-        } else {
-            throw new Exception("Invalid twitpic URL");
-        }
-
-        // Grab metadata from twitpic's API...
-        // http://dev.twitpic.com/docs/2/media_show
-        $data = self::json('http://api.twitpic.com/2/media/show.json',
-                array('id' => $id));
-        $oembed = (object)array('type' => 'photo',
-                                'url' => 'http://twitpic.com/show/full/' . $data->short_id,
-                                'width' => $data->width,
-                                'height' => $data->height);
-        if (!empty($data->message)) {
-            $oembed->title = $data->message;
-        }
-
-        // Thumbnail is cropped and scaled to 150x150 box:
-        // http://dev.twitpic.com/docs/thumbnails/
-        $thumbSize = 150;
-        $oembed->thumbnail_url = 'http://twitpic.com/show/thumb/' . $data->short_id;
-        $oembed->thumbnail_width = $thumbSize;
-        $oembed->thumbnail_height = $thumbSize;
-
-        return $oembed;
     }
 
     /**

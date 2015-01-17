@@ -98,9 +98,7 @@ class oEmbedTest extends PHPUnit_Framework_TestCase
     static public function knownSources()
     {
         $sources = array(
-            array('http://www.flickr.com/photos/brionv/5172500179/', 'photo'),
-            array('http://yfrog.com/fy42747177j', 'photo'),
-            array('http://twitpic.com/36adw6', 'photo'),
+            array('https://www.flickr.com/photos/brionv/5172500179/', 'photo'),
         );
         return $sources;
     }
