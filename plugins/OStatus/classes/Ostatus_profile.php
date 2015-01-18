@@ -1233,7 +1233,7 @@ class Ostatus_profile extends Managed_DataObject
      * @param string $url
      * @throws Exception in various failure cases
      */
-    protected function updateAvatar($url)
+    public function updateAvatar($url)
     {
         if ($url == $this->avatar) {
             // We've already got this one.
@@ -1262,10 +1262,15 @@ class Ostatus_profile extends Managed_DataObject
         // ripped from oauthstore.php (for old OMB client)
         $temp_filename = tempnam(sys_get_temp_dir(), 'listener_avatar');
         try {
-            if (!copy($url, $temp_filename)) {
+            $client = new HTTPClient();
+            $response = $client->get($url);
+
+            if (!$response->isOk()) {
                 // TRANS: Server exception. %s is a URL.
-                throw new ServerException(sprintf(_m('Unable to fetch avatar from %s.'), $url));
+                throw new ServerException(sprintf(_m('Unable to fetch avatar from %s.').':%s', $url, $response->getReasonPhrase()));
             }
+            // FIXME: make sure it's an image here instead of _after_ writing to a file?
+            file_put_contents($response->getBody(), $temp_filename);
 
             if ($this->isGroup()) {
                 $id = $this->group_id;
