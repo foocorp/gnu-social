@@ -22,9 +22,6 @@ if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 abstract class AtompubAction extends ApiAuthAction
 {
-    protected $_profile = null;
-    protected $target = null;
-
     protected function prepare(array $args=array())
     {
         parent::prepare($args);
