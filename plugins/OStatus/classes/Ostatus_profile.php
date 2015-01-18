@@ -1267,7 +1267,7 @@ class Ostatus_profile extends Managed_DataObject
 
             if (!$response->isOk()) {
                 // TRANS: Server exception. %s is a URL.
-                throw new ServerException(sprintf(_m('Unable to fetch avatar from %s.').':%s', $url, $response->getReasonPhrase()));
+                throw new ServerException(sprintf(_m('Unable to fetch avatar from %s.'), $url));
             }
             // FIXME: make sure it's an image here instead of _after_ writing to a file?
             file_put_contents($response->getBody(), $temp_filename);
