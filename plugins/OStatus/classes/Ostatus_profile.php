@@ -1270,7 +1270,7 @@ class Ostatus_profile extends Managed_DataObject
                 throw new ServerException(sprintf(_m('Unable to fetch avatar from %s.'), $url));
             }
             // FIXME: make sure it's an image here instead of _after_ writing to a file?
-            file_put_contents($response->getBody(), $temp_filename);
+            file_put_contents($temp_filename, $response->getBody());
 
             if ($this->isGroup()) {
                 $id = $this->group_id;
