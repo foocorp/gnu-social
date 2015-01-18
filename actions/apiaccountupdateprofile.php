@@ -111,7 +111,7 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
         if (!empty($this->location)) {
             $profile->location = $this->location;
 
-            $loc = Location::fromName($location);
+            $loc = Location::fromName($this->location);
 
             if (!empty($loc)) {
                 $profile->lat         = $loc->lat;
