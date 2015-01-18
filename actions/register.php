@@ -64,7 +64,7 @@ class RegisterAction extends Action
      * @param $args
      * @return string title
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         $this->code = $this->trimmed('code');
@@ -83,7 +83,7 @@ class RegisterAction extends Action
 
         if (!empty($this->code)) {
             $this->invite = Invitation::getKV('code', $this->code);
-            if (empty($this->invite)) {
+            if (!$this->invite instanceof Invitation) {
             // TRANS: Client error displayed when trying to register to an invite-only site without a valid invitation.
                 $this->clientError(_('Sorry, invalid invitation code.'));
             }

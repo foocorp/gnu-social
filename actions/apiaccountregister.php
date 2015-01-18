@@ -163,8 +163,8 @@ class ApiAccountRegisterAction extends ApiAction
 	                                                'homepage' => $homepage,
 	                                                'bio' => $bio,
 	                                                'location' => $location,
-	                                                'code' => $code))) {
-	            if (!$user) {
+	                                                'code' => $this->code))) {
+	            if (!$user instanceof User) {
 	                // TRANS: Form validation error displayed when trying to register with an invalid username or password.
 	                $this->clientError(_('Invalid username or password.'), 400);
 	            }

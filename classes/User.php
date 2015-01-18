@@ -276,7 +276,7 @@ class User extends Managed_DataObject
 
         if (!empty($code)) {
             $invite = Invitation::getKV($code);
-            if ($invite && $invite->address && $invite->address_type == 'email' && $invite->address == $email) {
+            if ($invite instanceof Invitation && $invite->address && $invite->address_type == 'email' && $invite->address == $email) {
                 $user->email = $invite->address;
             }
         }
