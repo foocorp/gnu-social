@@ -1170,7 +1170,7 @@ class Action extends HTMLOutputter // lawsuit
                 $link = sprintf('<a class="license" rel="external license" href="%1$s">%2$s</a>',
                                 htmlspecialchars(common_config('license', 'url')),
                                 htmlspecialchars(common_config('license', 'title')));
-                $this->raw(sprintf(htmlspecialchars($notice),
+                $this->raw(@sprintf(htmlspecialchars($notice),
                                    htmlspecialchars(common_config('site', 'name')),
                                    $link));
                 $this->elementEnd('p');
