@@ -67,12 +67,9 @@ For some functionality, you will also need the following extensions:
                 will be emulated if not present.
 - exif          For thumbnails to be properly oriented.
 
-You may also experience better performance from your site if you install
-a PHP bytecode cache/accelerator. Currently the recommended cache module
-is 'xcache', which after installation (php5-xcache) can be enabled in
-your site's config.php with:
-
-    addPlugin('XCache');
+You may also experience better performance from your site if you configure
+a PHP cache/accelerator. Most distributions come with "opcache" support.
+Enable it in your php.ini, it is documented there together with its settings.
 
 Installation
 ============
