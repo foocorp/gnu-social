@@ -1570,7 +1570,12 @@ class Profile extends Managed_DataObject
     }
 
     public function getPref($namespace, $topic, $default=null) {
-        return Profile_prefs::getData($this, $namespace, $topic, $default);
+        // If you want an exception to be thrown, call Profile_prefs::getData directly
+        try {
+            return Profile_prefs::getData($this, $namespace, $topic, $default);
+        } catch (NoResultException $e) {
+            return null;
+        }
     }
 
     public function setPref($namespace, $topic, $data) {

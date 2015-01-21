@@ -53,7 +53,8 @@ class PublicAction extends Action
 
     var $page = null;
     var $notice;
-    var $userProfile = null;
+
+    protected $stream = null;
 
     function isReadOnly($args)
     {
@@ -67,7 +68,7 @@ class PublicAction extends Action
      *
      * @return boolean success value
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
@@ -80,17 +81,9 @@ class PublicAction extends Action
 
         common_set_returnto($this->selfUrl());
 
-        $this->userProfile = Profile::current();
+        $this->streamPrepare();
 
-        $user = common_current_user();
-
-        if (!empty($user) && $user->streamModeOnly()) {
-            $stream = new PublicNoticeStream($this->userProfile);
-        } else {
-            $stream = new ThreadingPublicNoticeStream($this->userProfile);
-        }
-
-        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
+        $this->notice = $this->stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
                                             NOTICES_PER_PAGE + 1);
 
         if (!$this->notice) {
@@ -98,12 +91,21 @@ class PublicAction extends Action
             $this->serverError(_('Could not retrieve public timeline.'));
         }
 
-        if($this->page > 1 && $this->notice->N == 0){
+        if ($this->page > 1 && $this->notice->N == 0){
             // TRANS: Server error when page not found (404).
             $this->serverError(_('No such page.'),$code=404);
         }
 
         return true;
+    }
+
+    protected function streamPrepare()
+    {
+        if ($this->scoped instanceof Profile && $this->scoped->isLocal() && $this->scoped->getUser()->streamModeOnly()) {
+            $this->stream = new PublicNoticeStream($this->scoped);
+        } else {
+            $this->stream = new ThreadingPublicNoticeStream($this->scoped);
+        }
     }
 
     /**
@@ -115,9 +117,9 @@ class PublicAction extends Action
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         $this->showPage();
     }
@@ -222,7 +224,7 @@ class PublicAction extends Action
         if (!empty($user) && $user->streamModeOnly()) {
             $nl = new PrimaryNoticeList($this->notice, $this, array('show_n'=>NOTICES_PER_PAGE));
         } else {
-            $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
+            $nl = new ThreadedNoticeList($this->notice, $this, $this->scoped);
         }
 
         $cnt = $nl->show();

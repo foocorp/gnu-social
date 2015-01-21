@@ -163,6 +163,9 @@ class Router
                 $m->connect('main/'.$a, array('action' => $a));
             }
 
+            $m->connect('main/public', array('action' => 'public'));
+            $m->connect('main/all', array('action' => 'networkpublic'));
+
             $m->connect('main/tagprofile/:id', array('action' => 'tagprofile'),
                                                array('id' => '[0-9]+'));
 
@@ -945,7 +948,9 @@ class Router
                                 array('tag' => self::REGEX_TAG));
                 }
             } else {
+                $m->connect('main/public', array('action' => 'public'));
                 $m->connect('', array('action' => 'public'));
+                $m->connect('main/all', array('action' => 'networkpublic'));
                 $m->connect('rss', array('action' => 'publicrss'));
                 $m->connect('featuredrss', array('action' => 'featuredrss'));
                 $m->connect('featured/', array('action' => 'featured'));

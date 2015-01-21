@@ -48,18 +48,9 @@ if (!defined('STATUSNET')) {
  */
 class ApiAccountVerifyCredentialsAction extends ApiAuthAction
 {
-    /**
-     * Handle the request
-     *
-     * Check whether the credentials are valid and output the result
-     *
-     * @param array $args $_REQUEST data (unused)
-     *
-     * @return void
-     */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if (!in_array($this->format, array('xml', 'json'))) {
             // TRANS: Client error displayed when coming across a non-supported API method.
