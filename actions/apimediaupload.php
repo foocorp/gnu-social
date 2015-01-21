@@ -26,9 +26,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Upload an image via the API.  Returns a shortened URL for the image
@@ -42,6 +40,8 @@ if (!defined('STATUSNET')) {
  */
 class ApiMediaUploadAction extends ApiAuthAction
 {
+    protected $needPost = true;
+
     /**
      * Handle the request
      *
@@ -53,17 +53,9 @@ class ApiMediaUploadAction extends ApiAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400, $this->format
-            );
-        }
+        parent::handle();
 
         // Workaround for PHP returning empty $_POST and $_FILES when POST
         // length > post_max_size in php.ini
@@ -80,31 +72,21 @@ class ApiMediaUploadAction extends ApiAuthAction
             $this->clientError(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
         }
 
-        $upload = null;
+        // we could catch "NoUploadedMediaException" as "no media uploaded", but here we _always_ want an upload
+        $upload = MediaFile::fromUpload('media', $this->auth_user->getProfile());
 
-        try {
-            $upload = MediaFile::fromUpload('media', $this->auth_user->getProfile());
-        } catch (Exception $e) {
-            $this->clientError($e->getMessage(), $e->getCode());
-        }
-
-        if (isset($upload)) {
-            $this->showResponse($upload);
-        } else {
-            // TRANS: Client error displayed when uploading a media file has failed.
-            $this->clientError(_('Upload failed.'));
-        }
+        $this->showResponse($upload);
     }
 
     /**
      * Show a Twitpic-like response with the ID of the media file
      * and a (hopefully) shortened URL for it.
      *
-     * @param File $upload  the uploaded file
+     * @param MediaFile $upload  the uploaded file
      *
      * @return void
      */
-    function showResponse($upload)
+    function showResponse(MediaFile $upload)
     {
         $this->initDocument();
         $this->elementStart('rsp', array('stat' => 'ok'));

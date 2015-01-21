@@ -129,10 +129,10 @@ class NewnoticeAction extends FormAction
             $options['reply_to'] = $replyto;
         }
 
-        $upload = MediaFile::fromUpload('attach', $this->scoped);
-
-        if (isset($upload)) {
-
+        $upload = null;
+        try {
+            // throws exception on failure
+            $upload = MediaFile::fromUpload('attach', $this->scoped);
             if (Event::handle('StartSaveNewNoticeAppendAttachment', array($this, $upload, &$content_shortened, &$options))) {
                 $content_shortened .= ' ' . $upload->shortUrl();
             }
@@ -147,7 +147,10 @@ class NewnoticeAction extends FormAction
                                               Notice::maxContent()),
                                            Notice::maxContent()));
             }
+        } catch (NoUploadedMediaException $e) {
+            // simply no attached media to the new notice
         }
+
 
         if ($this->scoped->shareLocation()) {
             // use browser data if checked; otherwise profile data
@@ -179,7 +182,7 @@ class NewnoticeAction extends FormAction
 
             $this->stored = Notice::saveNew($this->scoped->id, $content_shortened, 'web', $options);
 
-            if (isset($upload)) {
+            if ($upload instanceof MediaFile) {
                 $upload->attachToNotice($this->stored);
             }
 

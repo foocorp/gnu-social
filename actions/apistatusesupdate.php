@@ -245,24 +245,19 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             }
 
             $upload = null;
-
             try {
                 $upload = MediaFile::fromUpload('media', $this->scoped);
-            } catch (Exception $e) {
-                $this->clientError($e->getMessage(), $e->getCode());
-            }
-
-            if ($upload instanceof MediaFile) {
                 $this->status .= ' ' . $upload->shortUrl();
-
                 /* Do not call shortenlinks until the whole notice has been build */
+            } catch (NoUploadedMediaException $e) {
+                // There was no uploaded media for us today.
             }
 
             /* Do call shortenlinks here & check notice length since notice is about to be saved & sent */
             $status_shortened = $this->auth_user->shortenlinks($this->status);
 
             if (Notice::contentTooLong($status_shortened)) {
-                if (isset($upload)) {
+                if ($upload instanceof MediaFile) {
                     $upload->delete();
                 }
                 // TRANS: Client error displayed exceeding the maximum notice length.

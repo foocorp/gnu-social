@@ -147,14 +147,15 @@ class MediaFile
         }
     }
 
-    static function fromUpload($param = 'media', Profile $scoped)
+    static function fromUpload($param='media', Profile $scoped=null)
     {
         if (is_null($scoped)) {
             $scoped = Profile::current();
         }
 
-        if (!isset($_FILES[$param]['error'])){
-            return;
+        // The existence of the "error" element means PHP has processed it properly even if it was ok.
+        if (!isset($_FILES[$param]) || !isset($_FILES[$param]['error'])) {
+            throw new NoUploadedMediaException($param);
         }
 
         switch ($_FILES[$param]['error']) {
