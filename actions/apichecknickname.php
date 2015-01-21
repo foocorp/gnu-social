@@ -5,7 +5,7 @@
  *
  * Check nickname
  *
- * Returns 1 if nickname is ok, 0 if not
+ * Returns 1 if nickname is available on this instance, 0 if not. Error if site is private.
  *
  * PHP version 5
  *
@@ -37,6 +37,10 @@ class ApiCheckNicknameAction extends ApiAction
     protected function prepare(array $args=array())
     {
         parent::prepare($args);
+
+        if (common_config('site', 'private')) {
+            throw new ClientException(_('This site is private.'), 403);
+        }
 
         if ($this->format !== 'json') {
             $this->clientError('This method currently only serves JSON.', 415);
