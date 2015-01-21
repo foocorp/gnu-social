@@ -251,8 +251,8 @@ function common_check_user($nickname, $password)
                 $authenticatedUser = $user;
             }
         }
-        Event::handle('EndCheckPassword', array($nickname, $password, $authenticatedUser));
     }
+    Event::handle('EndCheckPassword', array($nickname, $password, $authenticatedUser));
 
     return $authenticatedUser;
 }
