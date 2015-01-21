@@ -300,6 +300,7 @@ $default =
                         ),
               'default' => array(
                             'Activity' => array(),
+                            'AntiBrute' => array(),
                             'Bookmark' => array(),
                             'ClientSideShorten' => array(),
                             'Directory' => array(),
