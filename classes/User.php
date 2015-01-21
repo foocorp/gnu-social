@@ -1007,6 +1007,11 @@ class User extends Managed_DataObject
         return $act;
     }
 
+    public function delPref($namespace, $topic)
+    {
+        return $this->getProfile()->delPref($namespace, $topic);
+    }
+
     public function getPref($namespace, $topic, $default=null)
     {
         return $this->getProfile()->getPref($namespace, $topic, $default);
