@@ -52,6 +52,8 @@ class NewmessageAction extends FormAction
     var $to = null;
     var $other = null;
 
+    protected $form = 'message';    // will become MessageForm later
+
     /**
      * Title of the page
      *
