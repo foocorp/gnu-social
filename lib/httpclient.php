@@ -145,6 +145,10 @@ class HTTPClient extends HTTP_Request2
             $this->config['ssl_verify_peer'] = false;
         }
 
+        // This means "verify the cert hostname against what we connect to", it does not
+        // imply CA trust or anything like that. Just the hostname.
+        $this->config['ssl_verify_host'] = common_config('http', 'ssl_verify_host');
+
         if (common_config('http', 'curl') && extension_loaded('curl')) {
             $this->config['adapter'] = 'HTTP_Request2_Adapter_Curl';
         }

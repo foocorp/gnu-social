@@ -345,7 +345,8 @@ $default =
               'maxurllength' => 100,
               'maxnoticelength' => -1),
         'http' => // HTTP client settings when contacting other sites
-        array('ssl_cafile' => false, // To enable SSL cert validation, point to a CA bundle (eg '/usr/lib/ssl/certs/ca-certificates.crt')
+        array('ssl_cafile' => false, // To enable SSL cert validation, point to a CA bundle (eg '/usr/lib/ssl/certs/ca-certificates.crt') (this activates "ssl_verify_peer")
+              'ssl_verify_host' => true,    // HTTPRequest2 makes sure this is set to CURLOPT_SSL_VERIFYHOST==2 if using curl
               'curl' => false, // Use CURL backend for HTTP fetches if available. (If not, PHP's socket streams will be used.)
               'proxy_host' => null,
               'proxy_port' => null,
