@@ -51,9 +51,11 @@ if (!$sub) {
     exit(1);
 }
 
-$xml = file_get_contents($feedurl);
-if ($xml === false) {
-    print "Bad fetch.\n";
+// Fetch the URL
+try {
+    $xml = HTTPClient::quickGet($feedurl);
+} catch (Exception $e) {
+    echo sprintf("Could not fetch feedurl %s (%d).\n", $e->getMessage(), $e->getCode());
     exit(1);
 }
 
@@ -85,4 +87,5 @@ if ($skip || $count) {
     }
 }
 
+echo "Calling event StartFeedSubReceive\n";
 Event::handle('StartFeedSubReceive', array($sub, $feed));
