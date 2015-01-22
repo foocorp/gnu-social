@@ -171,6 +171,21 @@ class HTTPClient extends HTTP_Request2
     }
 
     /**
+     * Quick static function to GET a URL
+     */
+    public static function quickGet($url, $accept='text/html,application/xhtml+xml')
+    {
+        $client = new HTTPClient();
+        $client->setHeader('Accept', $accept);
+        $response = $client->get($url);
+        if (!$response->isOk()) {
+            // TRANS: Exception. %s is a profile URL.
+            throw new Exception(sprintf(_m('Could not GET URL %s.'), $url), $response->getStatus());
+        }
+        return $response->getBody();
+    }
+
+    /**
      * Convenience function to run a GET request.
      *
      * @return GNUsocial_HTTPResponse
