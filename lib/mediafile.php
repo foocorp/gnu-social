@@ -177,7 +177,7 @@ class MediaFile
                             ' partially uploaded.'));
             case UPLOAD_ERR_NO_FILE:
                 // No file; probably just a non-AJAX submission.
-                return;
+                throw new NoUploadedMediaException($param);
             case UPLOAD_ERR_NO_TMP_DIR:
                 // TRANS: Client exception thrown when a temporary folder is not present to store a file upload.
                 throw new ClientException(_('Missing a temporary folder.'));
