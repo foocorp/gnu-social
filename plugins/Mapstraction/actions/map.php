@@ -143,14 +143,14 @@ class MapAction extends Action
         $act = new ApiAction('/dev/null');
 
         $arr = $act->twitterStatusArray($notice, true);
-        $arr['url'] = $notice->getUrl();
+        $arr['url'] = $notice->getUrl(true);
         $arr['html'] = $notice->rendered;
         $arr['source'] = $arr['source'];
 
         if (!empty($notice->reply_to)) {
             $reply_to = Notice::getKV('id', $notice->reply_to);
             if (!empty($reply_to)) {
-                $arr['in_reply_to_status_url'] = $reply_to->getUrl();
+                $arr['in_reply_to_status_url'] = $reply_to->getUrl(true);
             }
             $reply_to = null;
         }
