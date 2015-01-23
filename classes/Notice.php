@@ -276,8 +276,10 @@ class Notice extends Managed_DataObject
 
     /*
      * Get the original representation URL of this notice.
+     *
+     * @param boolean $fallback     Whether to fall back to generate a local URL or throw InvalidUrlException
      */
-    public function getUrl()
+    public function getUrl($fallback=false)
     {
         // The risk is we start having empty urls and non-http uris...
         // and we can't really handle any other protocol right now.
@@ -286,7 +288,7 @@ class Notice extends Managed_DataObject
             return $this->url;
         case !$this->isLocal() && common_valid_http_url($this->uri): // Sometimes we only have the URI for remote posts.
             return $this->uri;
-        case $this->isLocal():
+        case $this->isLocal() || $fallback:
             // let's generate a valid link to our locally available notice on demand
             return common_local_url('shownotice', array('notice' => $this->id), null, null, false);
         default:
