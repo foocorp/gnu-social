@@ -79,6 +79,15 @@ class MediaFile
         @unlink($filepath);
     }
 
+    public function getFile()
+    {
+        if (!$this->fileRecord instanceof File) {
+            throw new ServerException('File record did not exist for MediaFile');
+        }
+
+        return $this->fileRecord;
+    }
+
     protected function storeFile()
     {
 
