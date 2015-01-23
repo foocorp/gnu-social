@@ -320,7 +320,7 @@ class RealtimePlugin extends Plugin
         $act = new ApiAction('/dev/null');
 
         $arr = $act->twitterStatusArray($notice, true);
-        $arr['url'] = $notice->getUrl();
+        $arr['url'] = $notice->getUrl(true);
         $arr['html'] = htmlspecialchars($notice->rendered);
         $arr['source'] = htmlspecialchars($arr['source']);
         $arr['conversation_url'] = $notice->getConversationUrl();
@@ -333,7 +333,7 @@ class RealtimePlugin extends Plugin
         if (!empty($notice->repeat_of)) {
             $original = Notice::getKV('id', $notice->repeat_of);
             if ($original instanceof Notice) {
-                $arr['retweeted_status']['url'] = $original->getUrl();
+                $arr['retweeted_status']['url'] = $original->getUrl(true);
                 $arr['retweeted_status']['html'] = htmlspecialchars($original->rendered);
                 $arr['retweeted_status']['source'] = htmlspecialchars($original->source);
                 $originalProfile = $original->getProfile();
