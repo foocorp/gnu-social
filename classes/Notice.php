@@ -284,11 +284,11 @@ class Notice extends Managed_DataObject
         switch (true) {
         case common_valid_http_url($this->url): // should we allow non-http/https URLs?
             return $this->url;
+        case !$this->isLocal() && common_valid_http_url($this->uri): // Sometimes we only have the URI for remote posts.
+            return $this->uri;
         case $this->isLocal():
             // let's generate a valid link to our locally available notice on demand
             return common_local_url('shownotice', array('notice' => $this->id), null, null, false);
-        case common_valid_http_url($this->uri):
-            return $this->uri;
         default:
             common_debug('No URL available for notice: id='.$this->id);
             throw new InvalidUrlException($this->url);
