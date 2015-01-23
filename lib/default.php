@@ -255,7 +255,7 @@ $default =
               ),
         'thumbnail' =>
         array('crop' => false,      // overridden to true if thumb height === null
-              'maxsize' => 600,     // thumbs with an edge larger than this will not be generated
+              'maxsize' => 1000,     // thumbs with an edge larger than this will not be generated
               'width' => 450,
               'height' => 600),
         'application' =>
