@@ -353,7 +353,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
     {
         $faves = array();
         $fave = new Fave();
-        $fave->user_id = $uas->user->id;
+        $fave->user_id = $uas->getUser()->id;
 
         if (!empty($uas->after)) {
             $fave->whereAdd("modified > '" . common_sql_date($uas->after) . "'");
