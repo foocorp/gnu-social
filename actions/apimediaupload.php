@@ -73,7 +73,7 @@ class ApiMediaUploadAction extends ApiAuthAction
         }
 
         // we could catch "NoUploadedMediaException" as "no media uploaded", but here we _always_ want an upload
-        $upload = MediaFile::fromUpload('media', $this->auth_user->getProfile());
+        $upload = MediaFile::fromUpload('media', $this->scoped);
 
         $this->showResponse($upload);
     }
