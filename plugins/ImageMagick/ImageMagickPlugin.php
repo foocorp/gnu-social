@@ -35,11 +35,15 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  *
  * Provides:
  *  Animated image support (for image/gif at least)
+ *
+ * Bugs:
+ *  Not even ImageMagick is very good at resizing animated GIFs.
  */
 
 class ImageMagickPlugin extends Plugin
 {
-    protected $resize_animated = false;
+    // configurable plugin options must be declared public
+    public $resize_animated = false;
 
     /**
      * @param ImageFile $file An ImageFile object we're getting metadata for
