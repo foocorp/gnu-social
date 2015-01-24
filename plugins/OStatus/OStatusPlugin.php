@@ -1356,6 +1356,12 @@ class OStatusPlugin extends Plugin
     {
         // Ostatus_profile has a 'profile_id' property, which will be used to find the object
         $related[] = 'Ostatus_profile';
+
+        // Magicsig has a "user_id" column instead, so we have to delete it more manually:
+        $magicsig = Magicsig::getKV('user_id', $profile->id);
+        if ($magicsig instanceof Magicsig) {
+            $magicsig->delete();
+        }
         return true;
     }
 }
