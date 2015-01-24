@@ -76,6 +76,10 @@ class MagicEnvelope
             $magicsig = new Magicsig();
             $magicsig->user_id = $profile->id;
             $magicsig->importKeys($keypair);
+            // save the public key for this profile in our database.
+            // TODO: If the profile generates a new key remotely, we must be able to replace
+            //       this (of course after callback-verification).
+            $magicsig->insert();
         } elseif (!$magicsig instanceof Magicsig) { // No discovery request, so we'll give up.
             throw new ServerException(sprintf('No public key found for profile (id==%d)', $profile->id));
         }
