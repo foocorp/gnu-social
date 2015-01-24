@@ -39,7 +39,7 @@ class Salmon
      * Sign and post the given Atom entry as a Salmon message.
      *
      * Side effects: may generate a keypair on-demand for the given user,
-     * which can be very slow on some systems.
+     * which can be very slow on some systems (like those without php5-gmp).
      *
      * @param string $endpoint_uri
      * @param string $xml string representation of payload
