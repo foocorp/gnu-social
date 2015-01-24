@@ -74,17 +74,8 @@ class ApiMediaUploadAction extends ApiAuthAction
 
         // we could catch "NoUploadedMediaException" as "no media uploaded", but here we _always_ want an upload
         $upload = MediaFile::fromUpload('media', $this->scoped);
-
-        // Hack to make a thumbnail before giving back a response
-        // (the file should instead actually be attached to a notice in the file_to_post table)
-        try {
-            if ($upload->fileRecord instanceof File) {
-                $upload->fileRecord->getThumbnail();
-            }
-        } catch (Exception $e) {
-            common_debug(sprintf('A hack is buggy: MediaFile fileRecord could not getThumbnail for file id==%u',
-                                 $upload->fileRecord->id));
-        }
+        
+        // Thumbnails will be generated/cached on demand when accessed (such as with /attachment/:id/thumbnail)
 
         $this->showResponse($upload);
     }
