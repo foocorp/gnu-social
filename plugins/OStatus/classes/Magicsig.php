@@ -38,6 +38,9 @@ class Magicsig extends Managed_DataObject
     const PUBLICKEYREL = 'magic-public-key';
     const DIASPORA_PUBLICKEYREL = 'diaspora-public-key';
 
+    const DEFAULT_KEYLEN = 1024;
+    const DEFAULT_SIGALG = 'RSA-SHA256';
+
     public $__table = 'magicsig';
 
     /**
@@ -77,7 +80,7 @@ class Magicsig extends Managed_DataObject
      */
     public $privateKey;
 
-    public function __construct($alg = 'RSA-SHA256')
+    public function __construct($alg=self::DEFAULT_SIGALG)
     {
         $this->alg = $alg;
     }
@@ -144,9 +147,12 @@ class Magicsig extends Managed_DataObject
      * Warning: this can be very slow on systems without the GMP module.
      * Runtimes of 20-30 seconds are not unheard-of.
      *
+     * FIXME: More than 1024 bits please. But StatusNet _discards_ non-1024 bits,
+     *        so we'll have to wait the last mohican out before switching defaults.
+     *
      * @param User $user the local user (since we don't have remote private keys)
      */
-    public static function generate(User $user, $bits=1024, $alg='RSA-SHA256')
+    public static function generate(User $user, $bits=self::DEFAULT_KEYLEN, $alg=self::DEFAULT_SIGALG)
     {
         $magicsig = new Magicsig($alg);
         $magicsig->user_id = $user->id;
