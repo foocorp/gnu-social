@@ -36,6 +36,12 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * Provides:
  *  Animated image support (for image/gif at least)
  *
+ * Suggestions:
+ *  After enabling the ImageMagick plugin, you might want to regenerate
+ *  thumbnails for the newly support formats. This is easiest done with
+ *  a script in the GNU social-bundled scripts directory:
+ *  $ php scripts/clean_thumbnails.php
+ *
  * Bugs:
  *  Not even ImageMagick is very good at resizing animated GIFs.
  */
