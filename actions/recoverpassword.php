@@ -105,12 +105,8 @@ class RecoverpasswordAction extends Action
         if (!$user->email) {
             $orig = clone($user);
             $user->email = $email;
-            $result = $user->updateWithKeys($orig);
-            if (!$result) {
-                common_log_db_error($user, 'UPDATE', __FILE__);
-                // TRANS: Server error displayed when updating a user's e-mail address in the database fails while recovering a password.
-                $this->serverError(_('Could not update user with confirmed email address.'));
-            }
+            // Throws exception on failure.
+            $user->updateWithKeys($orig);
         }
 
         // Success!

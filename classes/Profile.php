@@ -838,12 +838,8 @@ class Profile extends Managed_DataObject
                 common_debug("Updating User ({$this->id}) nickname from {$dataObject->nickname} to {$this->nickname}");
                 $origuser = clone($local);
                 $local->nickname = $this->nickname;
-                $result = $local->updateWithKeys($origuser);
-                if ($result === false) {
-                    common_log_db_error($local, 'UPDATE', __FILE__);
-                    // TRANS: Server error thrown when user profile settings could not be updated.
-                    throw new ServerException(_('Could not update user nickname.'));
-                }
+                // updateWithKeys throws exception on failure.
+                $local->updateWithKeys($origuser);
 
                 // Clear the site owner, in case nickname changed
                 if ($local->hasRole(Profile_role::OWNER)) {

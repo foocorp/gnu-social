@@ -288,10 +288,8 @@ class OembedPlugin extends Plugin
         $thumbnail->filename = $filename;
         $thumbnail->width = $info[0];    // array indexes documented on php.net:
         $thumbnail->height = $info[1];   // https://php.net/manual/en/function.getimagesize.php
-        if (!$thumbnail->update($orig)) {
-            unlink($fullpath);  // delete the file if database failed to write
-            throw new ServerException(_('Failed to update remotely downloaded file info in database.'));
-        }
+        // Throws exception on failure.
+        $thumbnail->updateWithKeys($orig);
     }
 
     public function onPluginVersion(array &$versions)

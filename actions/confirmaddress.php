@@ -108,13 +108,8 @@ class ConfirmaddressAction extends Action
                 $cur->smsemail = $carrier->toEmailAddress($cur->sms);
             }
 
-            $result = $cur->updateWithKeys($orig_user);
-
-            if (!$result) {
-                common_log_db_error($cur, 'UPDATE', __FILE__);
-                // TRANS: Server error displayed when confirming an e-mail address or IM address fails.
-                $this->serverError(_('Could not update user.'));
-            }
+            // Throws exception on failure.
+            $cur->updateWithKeys($orig_user);
 
             if ($type == 'email') {
                 $cur->emailChanged();

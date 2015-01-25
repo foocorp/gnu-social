@@ -436,21 +436,14 @@ class SmssettingsAction extends SettingsAction
             return;
         }
 
-        $user->query('BEGIN');
-
         $original = clone($user);
 
         $user->sms      = null;
         $user->carrier  = null;
         $user->smsemail = null;
 
-        $result = $user->updateWithKeys($original);
-        if (!$result) {
-            common_log_db_error($user, 'UPDATE', __FILE__);
-            // TRANS: Server error thrown on database error removing a registered SMS phone number.
-            $this->serverError(_('Could not update user.'));
-        }
-        $user->query('COMMIT');
+        // Throws exception on failure. Also performs it within a transaction.
+        $user->updateWithKeys($original);
 
         // TRANS: Message given after successfully removing a registered SMS phone number.
         $this->showForm(_('The SMS phone number was removed.'), true);
@@ -556,11 +549,8 @@ class SmssettingsAction extends SettingsAction
 
         $user->incomingemail = null;
 
-        if (!$user->updateWithKeys($orig)) {
-            common_log_db_error($user, 'UPDATE', __FILE__);
-            // TRANS: Server error displayed when the user could not be updated in SMS settings.
-            $this->serverError(_('Could not update user record.'));
-        }
+        // Throws exception on failure. Also performs it within a transaction.
+        $user->updateWithKeys($orig);
 
         // TRANS: Confirmation text after updating SMS settings.
         $this->showForm(_('Incoming email address removed.'), true);
@@ -581,11 +571,8 @@ class SmssettingsAction extends SettingsAction
 
         $user->incomingemail = mail_new_incoming_address();
 
-        if (!$user->updateWithKeys($orig)) {
-            common_log_db_error($user, 'UPDATE', __FILE__);
-            // TRANS: Server error displayed when the user could not be updated in SMS settings.
-            $this->serverError(_('Could not update user record.'));
-        }
+        // Throws exception on failure. Also performs it within a transaction.
+        $user->updateWithKeys($orig);
 
         // TRANS: Confirmation text after updating SMS settings.
         $this->showForm(_('New incoming email address added.'), true);

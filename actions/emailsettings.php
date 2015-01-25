@@ -478,20 +478,12 @@ class EmailsettingsAction extends SettingsAction
             return;
         }
 
-        $user->query('BEGIN');
-
         $original = clone($user);
 
         $user->email = null;
 
-        $result = $user->updateWithKeys($original);
-
-        if (!$result) {
-            common_log_db_error($user, 'UPDATE', __FILE__);
-            // TRANS: Server error thrown on database error removing a registered e-mail address.
-            $this->serverError(_('Could not update user.'));
-        }
-        $user->query('COMMIT');
+        // Throws exception on failure. Also performs it within a transaction.
+        $user->updateWithKeys($original);
 
         // TRANS: Message given after successfully removing a registered e-mail address.
         $this->showForm(_('The email address was removed.'), true);
@@ -517,11 +509,8 @@ class EmailsettingsAction extends SettingsAction
         $user->incomingemail = null;
         $user->emailpost = 0;
 
-        if (!$user->updateWithKeys($orig)) {
-            common_log_db_error($user, 'UPDATE', __FILE__);
-            // TRANS: Server error thrown on database error removing incoming e-mail address.
-            $this->serverError(_('Could not update user record.'));
-        }
+        // Throws exception on failure. Also performs it within a transaction.
+        $user->updateWithKeys($orig);
 
         // TRANS: Message given after successfully removing an incoming e-mail address.
         $this->showForm(_('Incoming email address removed.'), true);
@@ -541,11 +530,8 @@ class EmailsettingsAction extends SettingsAction
         $user->incomingemail = mail_new_incoming_address();
         $user->emailpost = 1;
 
-        if (!$user->updateWithKeys($orig)) {
-            common_log_db_error($user, 'UPDATE', __FILE__);
-            // TRANS: Server error thrown on database error adding incoming e-mail address.
-            $this->serverError(_('Could not update user record.'));
-        }
+        // Throws exception on failure. Also performs it within a transaction.
+        $user->updateWithKeys($orig);
 
         // TRANS: Message given after successfully adding an incoming e-mail address.
         $this->showForm(_('New incoming email address added.'), true);

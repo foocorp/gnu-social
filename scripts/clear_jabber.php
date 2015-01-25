@@ -75,7 +75,11 @@ function clear_jabber($id)
         } else {
             $original = clone($user);
             $user->jabber = null;
-            $result = $user->updateWithKeys($original);
+            try {
+                $user->updateWithKeys($original);
+            } catch (Exception $e) {
+                echo "WARNING: user update failed (setting jabber to null): ".$e->getMessage()."\n";
+            }
         }
         echo "\n";
     } else if (!$user) {

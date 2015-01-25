@@ -339,7 +339,13 @@ abstract class Managed_DataObject extends Memcached_DataObject
             }
         }
         if (count($parts) == 0) {
-            // No changes, unless made in the ->update call
+            // No changes to keys, it's safe to run ->update(...)
+            if ($this->update($orig) === false) {
+                common_log_db_error($this, 'UPDATE', __FILE__);
+                // rollback as something bad occurred
+                $this->query('ROLLBACK');
+                throw new ServerException("Could not UPDATE non-keys for {$this->__table}");
+            }
             return true;
         }
         $toupdate = implode(', ', $parts);
@@ -357,6 +363,8 @@ abstract class Managed_DataObject extends Memcached_DataObject
         }
 
         // Update non-keys too, if the previous endeavour worked.
+        // The ->update call uses "$this" values for keys, that's why we can't do this until
+        // the keys are updated (because they might differ from $orig and update the wrong entries).
         if ($this->update($orig) === false) {
             common_log_db_error($this, 'UPDATE', __FILE__);
             // rollback as something bad occurred

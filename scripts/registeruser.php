@@ -69,10 +69,8 @@ try {
 
         $user->email = $email;
 
-        if (!$user->updateWithKeys($orig)) {
-            print "Failed!\n";
-            throw new Exception("Can't update email address.");
-        }
+        // Throws exception on failure.
+        $user->updateWithKeys($orig);
     }
 
 } catch (Exception $e) {
