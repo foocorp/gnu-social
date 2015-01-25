@@ -44,18 +44,16 @@ class Attachment_thumbnailAction extends AttachmentAction
     protected $thumb_h = null;  // max height
     protected $thumb_c = null;  // crop?
 
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
+        parent::doPreparation();
 
         $this->thumb_w = $this->int('w');
         $this->thumb_h = $this->int('h');
         $this->thumb_c = $this->boolean('c');
-
-        return true;
     }
 
-    function showPage()
+    public function showPage()
     {
         // Returns a File_thumbnail object or throws exception if not available
         try {
