@@ -152,34 +152,6 @@ class User extends Managed_DataObject
         return $this->getProfile()->hasPendingSubscription($other);
     }
 
-    // 'update' won't write key columns, so we have to do it ourselves.
-
-    function updateKeys(&$orig)
-    {
-        $this->_connect();
-        $parts = array();
-        foreach (array('nickname', 'email', 'incomingemail', 'sms', 'carrier', 'smsemail') as $k) {
-            if (strcmp($this->$k, $orig->$k) != 0) {
-                $parts[] = $k . ' = ' . $this->_quote($this->$k);
-            }
-        }
-        if (count($parts) == 0) {
-            // No changes
-            return true;
-        }
-        $toupdate = implode(', ', $parts);
-
-        $table = common_database_tablename($this->tableName());
-        $qry = 'UPDATE ' . $table . ' SET ' . $toupdate .
-          ' WHERE id = ' . $this->id;
-        $orig->decache();
-        $result = $this->query($qry);
-        if ($result) {
-            $this->encache();
-        }
-        return $result;
-    }
-
     /**
      * Get the most recent notice posted by this user, if any.
      *

@@ -320,4 +320,35 @@ abstract class Managed_DataObject extends Memcached_DataObject
         // FIXME: How about forcing to return an int? Or will that overflow eventually?
         return $this->id;
     }
+
+    // 'update' won't write key columns, so we have to do it ourselves.
+    public function updateKeys(&$orig)
+    {
+        if (!$orig instanceof $this) {
+            throw new ServerException('Tried updating a DataObject with a different class than itself.');
+        }
+
+        $this->_connect();
+        $parts = array();
+        foreach ($this->keys() as $k) {
+            if (strcmp($this->$k, $orig->$k) != 0) {
+                $parts[] = $k . ' = ' . $this->_quote($this->$k);
+            }
+        }
+        if (count($parts) == 0) {
+            // No changes
+            return true;
+        }
+        $toupdate = implode(', ', $parts);
+
+        $table = common_database_tablename($this->tableName());
+        $qry = 'UPDATE ' . $table . ' SET ' . $toupdate .
+          ' WHERE id = ' . $this->getID();
+        $orig->decache();
+        $result = $this->query($qry);
+        if ($result !== false) {
+            $this->encache();
+        }
+        return $result;
+    }
 }

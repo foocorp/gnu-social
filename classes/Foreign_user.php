@@ -70,33 +70,4 @@ class Foreign_user extends Managed_DataObject
             return empty($result) ? null : $fuser;
         }
     }
-
-    function updateKeys(&$orig)
-    {
-        $this->_connect();
-        $parts = array();
-        foreach (array('id', 'service', 'uri', 'nickname') as $k) {
-            if (strcmp($this->$k, $orig->$k) != 0) {
-                $parts[] = $k . ' = ' . $this->_quote($this->$k);
-            }
-        }
-        if (count($parts) == 0) {
-            // No changes
-            return true;
-        }
-        $toupdate = implode(', ', $parts);
-
-        $table = $this->tableName();
-        if(common_config('db','quote_identifiers')) {
-            $table = '"' . $table . '"';
-        }
-        $qry = 'UPDATE ' . $table . ' SET ' . $toupdate .
-          ' WHERE id = ' . $this->id;
-        $orig->decache();
-        $result = $this->query($qry);
-        if ($result) {
-            $this->encache();
-        }
-        return $result;
-    }
 }
