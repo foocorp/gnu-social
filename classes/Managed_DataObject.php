@@ -323,7 +323,12 @@ abstract class Managed_DataObject extends Memcached_DataObject
 
     // 'update' won't write key columns, so we have to do it ourselves.
     // This also automatically calls "update" _before_ it sets the keys.
-    public function updateWithKeys(&$orig)
+    // FIXME: This only works with single-column primary keys so far! Beware!
+    /**
+     * @param DB_DataObject &$orig  Must be "instanceof" $this
+     * @param string         $pid   Primary ID column (no escaping is done on column name!)
+     */
+    public function updateWithKeys(&$orig, $pid='id')
     {
         if (!$orig instanceof $this) {
             throw new ServerException('Tried updating a DataObject with a different class than itself.');
@@ -346,14 +351,17 @@ abstract class Managed_DataObject extends Memcached_DataObject
                 $this->query('ROLLBACK');
                 throw new ServerException("Could not UPDATE non-keys for {$this->__table}");
             }
+            $orig->decache();
+            $this->encache();
             return true;
         }
-        $toupdate = implode(', ', $parts);
 
-        $table = common_database_tablename($this->tableName());
-        $qry = 'UPDATE ' . $table . ' SET ' . $toupdate .
-          ' WHERE id = ' . $this->getID();
-        $orig->decache();
+        $qry = sprintf('UPDATE %1$s SET %2$s WHERE %3$s = %4$s',
+                            common_database_tablename($this->tableName()),
+                            implode(', ', $parts),
+                            $pid,
+                            $this->_quote($this->$pid));
+
         $result = $this->query($qry);
         if ($result === false) {
             common_log_db_error($this, 'UPDATE', __FILE__);
@@ -371,6 +379,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
             $this->query('ROLLBACK');
             throw new ServerException("Could not UPDATE non-keys for {$this->__table}");
         }
+        $orig->decache();
         $this->encache();
 
         // commit our db transaction
