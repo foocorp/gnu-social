@@ -798,6 +798,9 @@ position:static;
     line-height: 16px;
     height: 16px;
 }
+.notice.h-entry .attachments .inline-attachment > img {
+    display: block;
+}
 
 #attachments {
 clear:both;
