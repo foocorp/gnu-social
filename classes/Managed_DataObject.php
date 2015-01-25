@@ -329,8 +329,8 @@ abstract class Managed_DataObject extends Memcached_DataObject
             throw new ServerException('Tried updating a DataObject with a different class than itself.');
         }
 
-        // Update non-keys first, if necessary.
-        $this->update($orig);
+        // do it in a transaction
+        $this->query('BEGIN');
 
         $parts = array();
         foreach ($this->keys() as $k) {
@@ -339,7 +339,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
             }
         }
         if (count($parts) == 0) {
-            // No changes
+            // No changes, unless made in the ->update call
             return true;
         }
         $toupdate = implode(', ', $parts);
@@ -349,9 +349,24 @@ abstract class Managed_DataObject extends Memcached_DataObject
           ' WHERE id = ' . $this->getID();
         $orig->decache();
         $result = $this->query($qry);
-        if ($result !== false) {
-            $this->encache();
+        if ($result === false) {
+            common_log_db_error($this, 'UPDATE', __FILE__);
+            // rollback as something bad occurred
+            $this->query('ROLLBACK');
+            throw new ServerException("Could not UPDATE key fields for {$this->__table}");
         }
+
+        // Update non-keys too, if the previous endeavour worked.
+        if ($this->update($orig) === false) {
+            common_log_db_error($this, 'UPDATE', __FILE__);
+            // rollback as something bad occurred
+            $this->query('ROLLBACK');
+            throw new ServerException("Could not UPDATE non-keys for {$this->__table}");
+        }
+        $this->encache();
+
+        // commit our db transaction
+        $this->query('COMMIT');
         return $result;
     }
 }
