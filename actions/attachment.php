@@ -92,21 +92,14 @@ class AttachmentAction extends ManagedAction
         return $a->title();
     }
 
-    /**
-     * Handle input
-     *
-     * Only handles get, so just show the page.
-     *
-     * @return void
-     */
-    protected function handle()
+    public function showPage()
     {
         if (empty($this->attachment->filename)) {
             // if it's not a local file, gtfo
             common_redirect($this->attachment->url, 303);
         }
 
-        parent::handle();
+        parent::showPage();
     }
 
     /**
