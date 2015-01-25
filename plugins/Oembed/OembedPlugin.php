@@ -5,8 +5,9 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class OembedPlugin extends Plugin
 {
     // settings which can be set in config.php with addPlugin('Oembed', array('param'=>'value', ...));
+    // WARNING, these are _regexps_ (slashes added later). Always escape your dots and end your strings
     public $domain_whitelist = array(       // hostname => service provider
-                                    'i.ytimg.com' => 'YouTube',
+                                    '^i\d*\.ytimg\.com$' => 'YouTube',
                                     );
     public $append_whitelist = array(); // fill this array as domain_whitelist to add more trusted sources
     public $check_whitelist  = true;    // security/abuse precaution
@@ -233,7 +234,7 @@ class OembedPlugin extends Plugin
     }
 
     /**
-     * @return boolean          false on no check made, true on success
+     * @return boolean          false on no check made, provider name on success
      * @throws ServerException  if check is made but fails
      */
     protected function checkWhitelist($url)
@@ -243,11 +244,13 @@ class OembedPlugin extends Plugin
         }
 
         $host = parse_url($url, PHP_URL_HOST);
-        if (!in_array($host, array_keys($this->domain_whitelist))) {
-            throw new ServerException(sprintf(_('Domain not in remote thumbnail source whitelist: %s'), $host));
+        foreach ($this->domain_whitelist as $regex => $provider) {
+            if (preg_match("/$regex/", $host)) {
+                return $provider;    // we trust this source, return provider name
+            }
         }
 
-        return true;    // we trust this source
+        throw new ServerException(sprintf(_('Domain not in remote thumbnail source whitelist: %s'), $host));
     }
 
     protected function storeRemoteFileThumbnail(File_thumbnail $thumbnail)
