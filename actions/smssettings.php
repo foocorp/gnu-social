@@ -444,7 +444,7 @@ class SmssettingsAction extends SettingsAction
         $user->carrier  = null;
         $user->smsemail = null;
 
-        $result = $user->updateKeys($original);
+        $result = $user->updateWithKeys($original);
         if (!$result) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing a registered SMS phone number.
@@ -556,7 +556,7 @@ class SmssettingsAction extends SettingsAction
 
         $user->incomingemail = null;
 
-        if (!$user->updateKeys($orig)) {
+        if (!$user->updateWithKeys($orig)) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error displayed when the user could not be updated in SMS settings.
             $this->serverError(_('Could not update user record.'));
@@ -581,7 +581,7 @@ class SmssettingsAction extends SettingsAction
 
         $user->incomingemail = mail_new_incoming_address();
 
-        if (!$user->updateKeys($orig)) {
+        if (!$user->updateWithKeys($orig)) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error displayed when the user could not be updated in SMS settings.
             $this->serverError(_('Could not update user record.'));

@@ -75,7 +75,7 @@ function clear_jabber($id)
         } else {
             $original = clone($user);
             $user->jabber = null;
-            $result = $user->updateKeys($original);
+            $result = $user->updateWithKeys($original);
         }
         echo "\n";
     } else if (!$user) {

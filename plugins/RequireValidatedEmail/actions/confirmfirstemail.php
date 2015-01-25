@@ -150,7 +150,7 @@ class ConfirmfirstemailAction extends Action
 
         $this->user->email = $this->confirm->address;
 
-        $this->user->updateKeys($orig);
+        $this->user->updateWithKeys($orig);
 
         $this->user->emailChanged();
 

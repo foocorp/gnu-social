@@ -108,7 +108,7 @@ class ConfirmaddressAction extends Action
                 $cur->smsemail = $carrier->toEmailAddress($cur->sms);
             }
 
-            $result = $cur->updateKeys($orig_user);
+            $result = $cur->updateWithKeys($orig_user);
 
             if (!$result) {
                 common_log_db_error($cur, 'UPDATE', __FILE__);

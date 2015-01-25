@@ -484,7 +484,7 @@ class EmailsettingsAction extends SettingsAction
 
         $user->email = null;
 
-        $result = $user->updateKeys($original);
+        $result = $user->updateWithKeys($original);
 
         if (!$result) {
             common_log_db_error($user, 'UPDATE', __FILE__);
@@ -517,7 +517,7 @@ class EmailsettingsAction extends SettingsAction
         $user->incomingemail = null;
         $user->emailpost = 0;
 
-        if (!$user->updateKeys($orig)) {
+        if (!$user->updateWithKeys($orig)) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing incoming e-mail address.
             $this->serverError(_('Could not update user record.'));
@@ -541,7 +541,7 @@ class EmailsettingsAction extends SettingsAction
         $user->incomingemail = mail_new_incoming_address();
         $user->emailpost = 1;
 
-        if (!$user->updateKeys($orig)) {
+        if (!$user->updateWithKeys($orig)) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error adding incoming e-mail address.
             $this->serverError(_('Could not update user record.'));

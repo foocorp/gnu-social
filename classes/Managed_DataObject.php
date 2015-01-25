@@ -322,13 +322,16 @@ abstract class Managed_DataObject extends Memcached_DataObject
     }
 
     // 'update' won't write key columns, so we have to do it ourselves.
-    public function updateKeys(&$orig)
+    // This also automatically calls "update" _before_ it sets the keys.
+    public function updateWithKeys(&$orig)
     {
         if (!$orig instanceof $this) {
             throw new ServerException('Tried updating a DataObject with a different class than itself.');
         }
 
-        $this->_connect();
+        // Update non-keys first, if necessary.
+        $this->update($orig);
+
         $parts = array();
         foreach ($this->keys() as $k) {
             if (strcmp($this->$k, $orig->$k) != 0) {

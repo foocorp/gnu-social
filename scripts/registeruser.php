@@ -69,7 +69,7 @@ try {
 
         $user->email = $email;
 
-        if (!$user->updateKeys($orig)) {
+        if (!$user->updateWithKeys($orig)) {
             print "Failed!\n";
             throw new Exception("Can't update email address.");
         }
