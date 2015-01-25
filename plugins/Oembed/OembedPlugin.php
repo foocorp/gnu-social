@@ -4,6 +4,23 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class OembedPlugin extends Plugin
 {
+    // settings which can be set in config.php with addPlugin('Oembed', array('param'=>'value', ...));
+    public $domain_whitelist = array(       // hostname => service provider
+                                    'i.ytimg.com' => 'YouTube',
+                                    );
+    public $append_whitelist = array(); // fill this array as domain_whitelist to add more trusted sources
+    public $check_whitelist  = true;    // security/abuse precaution
+
+    protected $imgData = array();
+
+    // these should be declared protected everywhere
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->domain_whitelist = array_merge($this->domain_whitelist, $this->append_whitelist);
+    }
+
     public function onCheckSchema()
     {
         $schema = Schema::get();
@@ -178,6 +195,99 @@ class OembedPlugin extends Plugin
 
         default:
             Event::handle('ShowUnsupportedAttachmentRepresentation', array($out, $file));
+        }
+    }
+
+    public function onCreateFileImageThumbnailSource(File $file, &$imgPath, $media=null)
+    {
+        // If we are on a private node, we won't do any remote calls (just as a precaution until
+        // we can configure this from config.php for the private nodes)
+        if (common_config('site', 'private')) {
+            return true;
+        }
+
+        // All our remote Oembed images lack a local filename property in the File object
+        if ($file->filename !== null) {
+            return true;
+        }
+
+        try {
+            // If we have proper oEmbed data, there should be an entry in the File_oembed
+            // and File_thumbnail tables respectively. If not, we're not going to do anything.
+            $file_oembed = File_oembed::byFile($file);
+            $thumbnail   = File_thumbnail::byFile($file);
+        } catch (Exception $e) {
+            // Not Oembed data, or at least nothing we either can or want to use.
+            return true;
+        }
+
+        try {
+            $this->storeRemoteFileThumbnail($thumbnail);
+        } catch (AlreadyFulfilledException $e) {
+            // aw yiss!
+        }
+
+        $imgPath = $thumbnail->getPath();
+
+        return false;
+    }
+
+    /**
+     * @return boolean          false on no check made, true on success
+     * @throws ServerException  if check is made but fails
+     */
+    protected function checkWhitelist($url)
+    {
+        if (!$this->check_whitelist) {
+            return false;   // indicates "no check made"
+        }
+
+        $host = parse_url($url, PHP_URL_HOST);
+        if (!in_array($host, array_keys($this->domain_whitelist))) {
+            throw new ServerException(sprintf(_('Domain not in remote thumbnail source whitelist: %s'), $host));
+        }
+
+        return true;    // we trust this source
+    }
+
+    protected function storeRemoteFileThumbnail(File_thumbnail $thumbnail)
+    {
+        if (!empty($thumbnail->filename) && file_exists($thumbnail->getPath())) {
+            throw new AlreadyFulfilledException(sprintf('A thumbnail seems to already exist for remote file with id==%u', $thumbnail->file_id));
+        }
+
+        $url = $thumbnail->getUrl();
+        $this->checkWhitelist($url);
+
+        // First we download the file to memory and test whether it's actually an image file
+        // FIXME: To support remote video/whatever files, this needs reworking.
+        common_debug(sprintf('Downloading remote thumbnail for file id==%u with thumbnail URL: %s', $thumbnail->file_id, $url));
+        $imgData = HTTPClient::quickGet($url);
+        $info = @getimagesizefromstring($imgData);
+        if ($info === false) {
+            throw new UnsupportedMediaException(_('Remote file format was not identified as an image.'), $url);
+        } elseif (!$info[0] || !$info[1]) {
+            throw new UnsupportedMediaException(_('Image file had impossible geometry (0 width or height)'));
+        }
+
+        // We'll trust sha256 not to have collision issues any time soon :)
+        $filename = hash('sha256', $imgData) . '.' . common_supported_mime_to_ext($info['mime']);
+        $fullpath = File_thumbnail::path($filename);
+        // Write the file to disk. Throw Exception on failure
+        if (!file_exists($fullpath) && file_put_contents($fullpath, $imgData) === false) {
+            throw new ServerException(_('Could not write downloaded file to disk.'));
+        }
+        // Get rid of the file from memory
+        unset($imgData);
+
+        // Updated our database for the file record
+        $orig = clone($thumbnail);
+        $thumbnail->filename = $filename;
+        $thumbnail->width = $info[0];    // array indexes documented on php.net:
+        $thumbnail->height = $info[1];   // https://php.net/manual/en/function.getimagesize.php
+        if (!$thumbnail->update($orig)) {
+            unlink($fullpath);  // delete the file if database failed to write
+            throw new ServerException(_('Failed to update remotely downloaded file info in database.'));
         }
     }
 
