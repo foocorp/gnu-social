@@ -61,9 +61,9 @@ class Attachment_thumbnailAction extends AttachmentAction
         try {
             $thumbnail = $this->attachment->getThumbnail($this->thumb_w, $this->thumb_h, $this->thumb_c);
         } catch (UseFileAsThumbnailException $e) {
-            // Since we're only using the ->getUrl() function, we can use the File object
-            $thumbnail = $e->file;
+            common_redirect($e->file->getUrl());
         }
+
         common_redirect($thumbnail->getUrl());
     }
 }
