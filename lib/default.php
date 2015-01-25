@@ -131,8 +131,7 @@ $default =
               'delete' => false,
               'move' => true),
         'image' =>
-        array('jpegquality' => 85,
-              'resize_animated' => false),  // true doesn't mean we _can_, only that we will _try_ (plugins might do it)
+        array('jpegquality' => 85),
         'avatar' =>
         array('server' => null,
               'dir' => INSTALLDIR . '/avatar/',
@@ -258,7 +257,8 @@ $default =
         array('crop' => false,      // overridden to true if thumb height === null
               'maxsize' => 1000,     // thumbs with an edge larger than this will not be generated
               'width' => 450,
-              'height' => 600),
+              'height' => 600,
+              'animated' => null), // null="UseFileAsThumbnail", false="take still image". true requires ImageMagickPlugin
         'application' =>
         array('desclimit' => null),
         'group' =>

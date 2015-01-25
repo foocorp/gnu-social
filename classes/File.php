@@ -386,7 +386,7 @@ class File extends Managed_DataObject
     {
         // Get some more information about this file through our ImageFile class
         $image = ImageFile::fromFileObject($this);
-        if ($image->animated && !common_config('image', 'resize_animated')) {
+        if ($image->animated && is_null(common_config('thumbnail', 'animated'))) {
             throw new UseFileAsThumbnailException($this->id);
         }
 

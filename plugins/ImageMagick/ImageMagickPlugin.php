@@ -34,32 +34,18 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  *  php5-imagick
  *
  * Provides:
- *  Animated image support (for image/gif at least)
+ *  Animated GIF resize support
  *
- * Suggestions:
- *  After enabling the ImageMagick plugin, you might want to regenerate
- *  thumbnails for the newly support formats. This is easiest done with
- *  a script in the GNU social-bundled scripts directory:
- *  $ php scripts/clean_thumbnails.php
+ * Comments:
+ *  Animated GIF resize requires setting $config['thumbnail']['animated'] = true;
  *
  * Bugs:
  *  Not even ImageMagick is very good at resizing animated GIFs.
+ *  We are not infinitely fast, so resizing animated GIFs is _not_ recommended.
  */
 
 class ImageMagickPlugin extends Plugin
 {
-    // configurable plugin options must be declared public
-    public $resize_animated = null;
-
-    public function initialize()
-    {
-        parent::initialize();
-
-        if (is_null($this->resize_animated)) {
-            $this->resize_animated = common_config('image', 'resize_animated');
-        }
-    }
-
     /**
      * @param ImageFile $file An ImageFile object we're getting metadata for
      * @param array $info The response from getimagesize()
@@ -76,12 +62,8 @@ class ImageMagickPlugin extends Plugin
 
     public function onStartResizeImageFile(ImageFile $imagefile, $outpath, array $box) {
         // So far we only take over the resize for IMAGETYPE_GIF
-        // (and only animated for gifs!)
-        if ($imagefile->type == IMAGETYPE_GIF && $imagefile->animated) {
-            if (!$this->resize_animated) {
-                // Don't resize if not desired, due to CPU/time limitations
-                return false;
-            }
+        // (and only animated for gifs! (and only if we really want to resize the animation!))
+        if ($imagefile->type == IMAGETYPE_GIF && $imagefile->animated && common_config('thumbnail', 'animated')) {
             $magick = new Imagick($imagefile->filepath);
             $magick = $magick->coalesceImages();
             $magick->setIteratorIndex(0);
@@ -111,8 +93,7 @@ class ImageMagickPlugin extends Plugin
                             'homepage' => 'http://gnu.io/social',
                             'rawdescription' =>
                             // TRANS: Plugin description.
-                            _m('Use ImageMagick for better image support.'));
+                            _m('Use ImageMagick for some more image support.'));
         return true;
     }
 }
-
