@@ -49,7 +49,16 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class ImageMagickPlugin extends Plugin
 {
     // configurable plugin options must be declared public
-    public $resize_animated = false;
+    public $resize_animated = null;
+
+    public function initialize()
+    {
+        parent::initialize();
+
+        if (is_null($this->resize_animated)) {
+            $this->resize_animated = common_config('image', 'resize_animated');
+        }
+    }
 
     /**
      * @param ImageFile $file An ImageFile object we're getting metadata for

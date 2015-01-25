@@ -52,7 +52,7 @@ class ImageFile
     var $height;
     var $width;
     var $rotate=0;  // degrees to rotate for properly oriented image (extrapolated from EXIF etc.)
-    var $animated = false;  // Animated image? (has more than 2 frames)
+    var $animated = false;  // Animated image? (has more than 1 frame)
 
     function __construct($id=null, $filepath=null, $type=null, $width=null, $height=null)
     {
