@@ -384,6 +384,12 @@ class File extends Managed_DataObject
      */
     public function getThumbnail($width=null, $height=null, $crop=false)
     {
+        // Get some more information about this file through our ImageFile class
+        $image = ImageFile::fromFileObject($this);
+        if ($image->animated && !common_config('image', 'resize_animated')) {
+            throw new UseFileAsThumbnailException($this->id);
+        }
+
         if ($width === null) {
             $width = common_config('thumbnail', 'width');
             $height = common_config('thumbnail', 'height');
@@ -398,7 +404,6 @@ class File extends Managed_DataObject
         // Get proper aspect ratio width and height before lookup
         // We have to do it through an ImageFile object because of orientation etc.
         // Only other solution would've been to rotate + rewrite uploaded files.
-        $image = ImageFile::fromFileObject($this);
         list($width, $height, $x, $y, $w, $h) =
                                 $image->scaleToFit($width, $height, $crop);
 

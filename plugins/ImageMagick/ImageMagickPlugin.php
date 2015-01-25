@@ -65,12 +65,10 @@ class ImageMagickPlugin extends Plugin
      * @param array $info The response from getimagesize()
      */
     public function onFillImageFileMetadata(ImageFile $imagefile) {
-        switch ($imagefile->type) {
-        case IMAGETYPE_GIF:
+        if (is_null($imagefile->animated) && $imagefile->type === IMAGETYPE_GIF) {
             $magick = new Imagick($imagefile->filepath);
             $magick = $magick->coalesceImages();
             $imagefile->animated = $magick->getNumberImages()>1;
-            return true;
         }
 
         return true;

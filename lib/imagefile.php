@@ -52,7 +52,7 @@ class ImageFile
     var $height;
     var $width;
     var $rotate=0;  // degrees to rotate for properly oriented image (extrapolated from EXIF etc.)
-    var $animated = false;  // Animated image? (has more than 1 frame)
+    var $animated = null;  // Animated image? (has more than 1 frame). null means untested
 
     function __construct($id=null, $filepath=null, $type=null, $width=null, $height=null)
     {
@@ -98,6 +98,8 @@ class ImageFile
                 }
                 // If we ever write this back, Orientation should be set to '1'
             }
+        } elseif ($this->type === IMAGETYPE_GIF) {
+            $this->animated = $this->isAnimatedGif();
         }
 
         Event::handle('FillImageFileMetadata', array($this));
@@ -499,6 +501,41 @@ class ImageFile
                     intval($cx), intval($cy),
                     is_null($cw) ? $width : intval($cw),
                     is_null($ch) ? $height : intval($ch));
+    }
+
+    /**
+     * Animated GIF test, courtesy of frank at huddler dot com et al:
+     * http://php.net/manual/en/function.imagecreatefromgif.php#104473
+     * Modified so avoid landing inside of a header (and thus not matching our regexp).
+     */
+    protected function isAnimatedGif()
+    {
+        if (!($fh = @fopen($this->filepath, 'rb'))) {
+            return false;
+        }
+
+        $count = 0;
+        //an animated gif contains multiple "frames", with each frame having a
+        //header made up of:
+        // * a static 4-byte sequence (\x00\x21\xF9\x04)
+        // * 4 variable bytes
+        // * a static 2-byte sequence (\x00\x2C)
+        // In total the header is maximum 10 bytes.
+
+        // We read through the file til we reach the end of the file, or we've found
+        // at least 2 frame headers
+        while(!feof($fh) && $count < 2) {
+            $chunk = fread($fh, 1024 * 100); //read 100kb at a time
+            $count += preg_match_all('#\x00\x21\xF9\x04.{4}\x00\x2C#s', $chunk, $matches);
+            // rewind in case we ended up in the middle of the header, but avoid
+            // infinite loop (i.e. don't rewind if we're already in the end).
+            if (!feof($fh) && ftell($fh) >= 9) {
+                fseek($fh, -9, SEEK_CUR);
+            }
+        }
+
+        fclose($fh);
+        return $count > 1;
     }
 }
 
