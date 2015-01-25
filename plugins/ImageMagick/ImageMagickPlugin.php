@@ -70,7 +70,7 @@ class ImageMagickPlugin extends Plugin
             $magick = new Imagick($imagefile->filepath);
             $magick = $magick->coalesceImages();
             $imagefile->animated = $magick->getNumberImages()>1;
-            return false;
+            return true;
         }
 
         return true;
