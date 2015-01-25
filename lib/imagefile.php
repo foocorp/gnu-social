@@ -47,7 +47,7 @@ class ImageFile
 {
     var $id;
     var $filepath;
-    var $barename;
+    var $filename;
     var $type;
     var $height;
     var $width;
@@ -58,6 +58,7 @@ class ImageFile
     {
         $this->id = $id;
         $this->filepath = $filepath;
+        $this->filename = basename($filepath);
 
         $info = @getimagesize($this->filepath);
 
