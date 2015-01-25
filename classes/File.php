@@ -384,13 +384,6 @@ class File extends Managed_DataObject
      */
     public function getThumbnail($width=null, $height=null, $crop=false)
     {
-        if (intval($this->width) < 1 || intval($this->height) < 1) {
-            // Old files may have 0 until migrated with scripts/upgrade.php
-            // For any legitimately unrepresentable ones, we could generate our
-            // own image (like a square with MIME type in text)
-            throw new UnsupportedMediaException('No image geometry available.');
-        }
-
         if ($width === null) {
             $width = common_config('thumbnail', 'width');
             $height = common_config('thumbnail', 'height');
@@ -418,7 +411,7 @@ class File extends Managed_DataObject
         }
 
         // throws exception on failure to generate thumbnail
-        $outname = "thumb-{$width}x{$height}-" . $this->filename;
+        $outname = "thumb-{$width}x{$height}-" . $image->filename;
         $outpath = self::path($outname);
 
         // The boundary box for our resizing
@@ -429,18 +422,19 @@ class File extends Managed_DataObject
         // Doublecheck that parameters are sane and integers.
         if ($box['width'] < 1 || $box['width'] > common_config('thumbnail', 'maxsize')
                 || $box['height'] < 1 || $box['height'] > common_config('thumbnail', 'maxsize')
-                || $box['w'] < 1 || $box['x'] >= $this->width
-                || $box['h'] < 1 || $box['y'] >= $this->height) {
+                || $box['w'] < 1 || $box['x'] >= $image->width
+                || $box['h'] < 1 || $box['y'] >= $image->height) {
             // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
-            common_debug("Boundary box parameters for resize of {$this->filepath} : ".var_export($box,true));
+            common_debug("Boundary box parameters for resize of {$image->filepath} : ".var_export($box,true));
             throw new ServerException('Bad thumbnail size parameters.');
         }
 
+        common_debug(sprintf('Generating a thumbnail of File id==%u of size %ux%u', $this->id, $width, $height));
         // Perform resize and store into file
         $image->resizeTo($outpath, $box);
 
         // Avoid deleting the original
-        if ($image->getPath() != $this->getPath()) {
+        if ($image->getPath() != self::path($image->filename)) {
             $image->unlink();
         }
         return File_thumbnail::saveThumbnail($this->id,
