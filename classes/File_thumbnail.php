@@ -17,9 +17,7 @@
  * along with this program.     If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for file_thumbnail
@@ -81,6 +79,17 @@ class File_thumbnail extends Managed_DataObject
     }
 
     /**
+     * Fetch an entry by using a File's id
+     */
+    static function byFile(File $file) {
+        $file_thumbnail = self::getKV('file_id', $file->id);
+        if (!$file_thumbnail instanceof File_thumbnail) {
+            throw new ServerException(sprintf('No File_thumbnail entry for File id==%u', $file->id));
+        }
+        return $file_thumbnail;
+    }
+
+    /**
      * Save a thumbnail record for the referenced file record.
      *
      * FIXME: Add error handling
@@ -108,10 +117,15 @@ class File_thumbnail extends Managed_DataObject
         return File::path($filename);
     }
 
+    public function getPath()
+    {
+        return self::path($this->filename);
+    }
+
     public function getUrl()
     {
-        if (!empty($this->filename)) {
-            // A locally stored file, so let's generate a URL for our instance.
+        if (!empty($this->getFile()->filename)) {
+            // A locally stored File, so let's generate a URL for our instance.
             $url = File::url($this->filename);
             if ($url != $this->url) {
                 // For indexing purposes, in case we do a lookup on the 'url' field.
