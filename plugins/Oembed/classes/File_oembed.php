@@ -80,6 +80,17 @@ class File_oembed extends Managed_DataObject
         }
     }
 
+    /**
+     * Fetch an entry by using a File's id
+     */
+    static function byFile(File $file) {
+        $file_oembed = self::getKV('file_id', $file->id);
+        if (!$file_oembed instanceof File_oembed) {
+            throw new ServerException(sprintf('No File_oembed entry for File id==%u', $file->id));
+        }
+        return $file_oembed;
+    }
+
     public function getUrl()
     {
         return $this->url;
