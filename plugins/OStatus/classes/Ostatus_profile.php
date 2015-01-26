@@ -1233,9 +1233,9 @@ class Ostatus_profile extends Managed_DataObject
      * @param string $url
      * @throws Exception in various failure cases
      */
-    public function updateAvatar($url)
+    public function updateAvatar($url, $force)
     {
-        if ($url == $this->avatar) {
+        if ($url == $this->avatar && !$force) {
             // We've already got this one.
             return;
         }

@@ -20,8 +20,8 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/../../..'));
 
-$shortoptions = 'u:a';
-$longoptions = array('uri=', 'all');
+$shortoptions = 'u:af';
+$longoptions = array('uri=', 'all', 'force');
 
 $helptext = <<<UPDATE_OSTATUS_PROFILES
 update_ostatus_profiles.php [options]
@@ -32,6 +32,7 @@ you have no backup.
     -u --uri OStatus profile URI to update
     -a --all update all
 
+    -f --force  Force update (despite identical avatar URLs etc.)
 
 UPDATE_OSTATUS_PROFILES;
 
@@ -230,6 +231,8 @@ if (have_option('u', 'uri')) {
     exit(1);
 }
 
+$forceUpdates = have_option('f', 'force');
+
 $cnt = $lop->find();
 
 if (!empty($cnt)) {
@@ -252,7 +255,7 @@ while($lop->fetch()) {
             $orig = clone($lop);
             $lop->avatar = $oprofile->avatar;
             $lop->update($orig);
-            $lop->updateAvatar($oprofile->avatar);
+            $lop->updateAvatar($oprofile->avatar, $forceUpdates);
             if (!$quiet) { print "Done.\n"; }
         }
     } catch (Exception $e) {
