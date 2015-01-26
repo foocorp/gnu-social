@@ -382,12 +382,16 @@ class File extends Managed_DataObject
      *
      * @return File_thumbnail
      */
-    public function getThumbnail($width=null, $height=null, $crop=false)
+    public function getThumbnail($width=null, $height=null, $crop=false, $force_still=true)
     {
         // Get some more information about this file through our ImageFile class
         $image = ImageFile::fromFileObject($this);
-        if ($image->animated && is_null(common_config('thumbnail', 'animated'))) {
-            throw new UseFileAsThumbnailException($this->id);
+        if ($image->animated && !common_config('thumbnail', 'animated')) {
+            // null  means "always use file as thumbnail"
+            // false means you get choice between frozen frame or original when calling getThumbnail
+            if (is_null(common_config('thumbnail', 'animated')) || !$force_still) {
+                throw new UseFileAsThumbnailException($this->id);
+            }
         }
 
         if ($width === null) {

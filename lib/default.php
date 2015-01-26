@@ -258,7 +258,7 @@ $default =
               'maxsize' => 1000,     // thumbs with an edge larger than this will not be generated
               'width' => 450,
               'height' => 600,
-              'animated' => null), // null="UseFileAsThumbnail", false="take still image". true requires ImageMagickPlugin
+              'animated' => false), // null="UseFileAsThumbnail", false="can use still frame". true requires ImageMagickPlugin
         'application' =>
         array('desclimit' => null),
         'group' =>

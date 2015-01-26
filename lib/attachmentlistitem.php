@@ -113,7 +113,8 @@ class AttachmentListItem extends Widget
                 case 'image/jpg':
                 case 'image/jpeg':
                     try {
-                        $thumb = $this->attachment->getThumbnail();
+                        // Tell getThumbnail that we can show an animated image if it has one (4th arg, "force_still")
+                        $thumb = $this->attachment->getThumbnail(null, null, false, false);
                         $this->out->element('img', array('class'=>'u-photo', 'src' => $thumb->getUrl(), 'alt' => ''));
                     } catch (UseFileAsThumbnailException $e) {
                         $this->out->element('img', array('class'=>'u-photo', 'src' => $e->file->getUrl(), 'alt' => $e->file->title));
