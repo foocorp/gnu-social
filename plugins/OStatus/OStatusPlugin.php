@@ -1289,27 +1289,56 @@ class OStatusPlugin extends Plugin
     function onEndWebFingerNoticeLinks(XML_XRD $xrd, Notice $target)
     {
         $author = $target->getProfile();
-        $salmon_url = common_local_url('usersalmon', array('id' => $author->id));
+        $profiletype = $this->profileTypeString($author);
+        $salmon_url = common_local_url("{$profiletype}salmon", array('id' => $author->id));
         $xrd->links[] = new XML_XRD_Element_Link(Salmon::REL_SALMON, $salmon_url);
         return true;
     }
 
     function onEndWebFingerProfileLinks(XML_XRD $xrd, Profile $target)
     {
-        $xrd->links[] = new XML_XRD_Element_Link(Discovery::UPDATESFROM,
-                            common_local_url('ApiTimelineUser',
-                                array('id' => $target->id, 'format' => 'atom')),
-                            'application/atom+xml');
+        if ($target->getObjectType() === ActivityObject::PERSON) {
+            $this->addWebFingerPersonLinks($xrd, $target);
+        }
 
-                // Salmon
-        $salmon_url = common_local_url('usersalmon',
-                                       array('id' => $target->id));
+        // Salmon
+        $profiletype = $this->profileTypeString($target);
+        $salmon_url = common_local_url("{$profiletype}salmon", array('id' => $target->id));
 
         $xrd->links[] = new XML_XRD_Element_Link(Salmon::REL_SALMON, $salmon_url);
 
         // XXX: these are deprecated, but StatusNet only looks for NS_REPLIES
         $xrd->links[] = new XML_XRD_Element_Link(Salmon::NS_REPLIES, $salmon_url);
         $xrd->links[] = new XML_XRD_Element_Link(Salmon::NS_MENTIONS, $salmon_url);
+
+        // TODO - finalize where the redirect should go on the publisher
+        $xrd->links[] = new XML_XRD_Element_Link('http://ostatus.org/schema/1.0/subscribe',
+                              common_local_url('ostatussub') . '?profile={uri}',
+                              null, // type not set
+                              true); // isTemplate
+
+        return true;
+    }
+
+    protected function profileTypeString(Profile $target)
+    {
+        // This is just used to have a definitive string response to "USERsalmon" or "GROUPsalmon"
+        switch ($target->getObjectType()) {
+        case ActivityObject::PERSON:
+            return 'user';
+        case ActivityObject::GROUP:
+            return 'group';
+        default:
+            throw new ServerException('Unknown profile type for WebFinger profile links');
+        }
+    }
+
+    protected function addWebFingerPersonLinks(XML_XRD $xrd, Profile $target)
+    {
+        $xrd->links[] = new XML_XRD_Element_Link(Discovery::UPDATESFROM,
+                            common_local_url('ApiTimelineUser',
+                                array('id' => $target->id, 'format' => 'atom')),
+                            'application/atom+xml');
 
         // Get this profile's keypair
         $magicsig = Magicsig::getKV('user_id', $target->id);
@@ -1323,14 +1352,6 @@ class OStatusPlugin extends Plugin
             $xrd->links[] = new XML_XRD_Element_Link(Magicsig::DIASPORA_PUBLICKEYREL,
                                 base64_encode($magicsig->exportPublicKey()));
         }
-
-        // TODO - finalize where the redirect should go on the publisher
-        $xrd->links[] = new XML_XRD_Element_Link('http://ostatus.org/schema/1.0/subscribe',
-                              common_local_url('ostatussub') . '?profile={uri}',
-                              null, // type not set
-                              true); // isTemplate
-
-        return true;
     }
 
     public function onGetLocalAttentions(Profile $actor, array $attention_uris, array &$mentions, array &$groups)
