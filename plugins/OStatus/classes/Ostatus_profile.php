@@ -1231,14 +1231,22 @@ class Ostatus_profile extends Managed_DataObject
      * Download and update given avatar image
      *
      * @param string $url
+     * @return Avatar    The Avatar we have on disk. (seldom used)
      * @throws Exception in various failure cases
      */
     public function updateAvatar($url, $force)
     {
-        if ($url == $this->avatar && !$force) {
-            // We've already got this one.
-            return;
+        try {
+            // If avatar URL differs: update. If URLs were identical but we're forced: update.
+            if ($url == $this->avatar && !$force) {
+                // If there's no locally stored avatar, throw an exception and continue fetching below.
+                $avatar = Avatar::getUploaded($this->localProfile()) instanceof Avatar;
+                return $avatar;
+            }
+        } catch (NoAvatarException $e) {
+            // No avatar available, let's fetch it.
         }
+
         if (!common_valid_http_url($url)) {
             // TRANS: Server exception. %s is a URL.
             throw new ServerException(sprintf(_m('Invalid avatar URL %s.'), $url));
@@ -1301,6 +1309,8 @@ class Ostatus_profile extends Managed_DataObject
         $orig = clone($this);
         $this->avatar = $url;
         $this->update($orig);
+
+        return Avatar::getUploaded($self);
     }
 
     /**
