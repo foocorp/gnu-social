@@ -57,7 +57,7 @@ $default =
               'ssl' => 'never',
               'sslserver' => null,
               'dupelimit' => 60, // default for same person saying the same thing
-              'textlimit' => 0, // in chars; 0 == no limit
+              'textlimit' => 1000, // in chars; 0 == no limit
               'indent' => true,
               'use_x_sendfile' => false,
               'notice' => null, // site wide notice text
