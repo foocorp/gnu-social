@@ -113,7 +113,7 @@ class User_group extends Managed_DataObject
             // normally stored in mainpage, but older ones may be null
             if (!empty($this->mainpage)) {
                 $url = $this->mainpage;
-            } else {
+            } elseif ($this->isLocal()) {
                 $url = common_local_url('showgroup',
                                         array('nickname' => $this->nickname));
             }
@@ -128,7 +128,7 @@ class User_group extends Managed_DataObject
         if (Event::handle('StartUserGroupGetUri', array($this, &$uri))) {
             if (!empty($this->uri)) {
                 $uri = $this->uri;
-            } else {
+            } elseif ($this->isLocal()) {
                 $uri = common_local_url('groupbyid',
                                         array('id' => $this->id));
             }
@@ -141,8 +141,10 @@ class User_group extends Managed_DataObject
     {
         $url = null;
         if (Event::handle('StartUserGroupPermalink', array($this, &$url))) {
-            $url = common_local_url('groupbyid',
-                                    array('id' => $this->id));
+            if ($this->isLocal()) {
+                $url = common_local_url('groupbyid',
+                                        array('id' => $this->id));
+            }
         }
         Event::handle('EndUserGroupPermalink', array($this, &$url));
         return $url;
