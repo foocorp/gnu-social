@@ -1237,7 +1237,7 @@ class Ostatus_profile extends Managed_DataObject
      * @return Avatar    The Avatar we have on disk. (seldom used)
      * @throws Exception in various failure cases
      */
-    public function updateAvatar($url, $force)
+    public function updateAvatar($url, $force=false)
     {
         try {
             // If avatar URL differs: update. If URLs were identical but we're forced: update.
