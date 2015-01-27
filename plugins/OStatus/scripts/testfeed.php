@@ -53,7 +53,7 @@ if (!$sub) {
 
 // Fetch the URL
 try {
-    $xml = HTTPClient::quickGet($feedurl);
+    $xml = HTTPClient::quickGet($feedurl, 'text/html,application/xhtml+xml');
 } catch (Exception $e) {
     echo sprintf("Could not fetch feedurl %s (%d).\n", $e->getMessage(), $e->getCode());
     exit(1);

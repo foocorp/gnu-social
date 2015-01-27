@@ -177,10 +177,12 @@ class HTTPClient extends HTTP_Request2
     /**
      * Quick static function to GET a URL
      */
-    public static function quickGet($url, $accept='text/html,application/xhtml+xml')
+    public static function quickGet($url, $accept=null)
     {
         $client = new HTTPClient();
-        $client->setHeader('Accept', $accept);
+        if (!is_null($accept)) {
+            $client->setHeader('Accept', $accept);
+        }
         $response = $client->get($url);
         if (!$response->isOk()) {
             // TRANS: Exception. %s is a profile URL.

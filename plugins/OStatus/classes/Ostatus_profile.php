@@ -1261,15 +1261,13 @@ class Ostatus_profile extends Managed_DataObject
         // ripped from oauthstore.php (for old OMB client)
         $temp_filename = tempnam(sys_get_temp_dir(), 'listener_avatar');
         try {
-            $client = new HTTPClient();
-            $response = $client->get($url);
-
-            if (!$response->isOk()) {
-                // TRANS: Server exception. %s is a URL.
-                throw new ServerException(sprintf(_m('Unable to fetch avatar from %s.'), $url));
+            $imgData = HTTPClient::quickGet($url);
+            // Make sure it's at least an image file. ImageFile can do the rest.
+            if (false === getimagesizefromstring($imgData)) {
+                throw new UnsupportedMediaException(_('Downloaded group avatar was not an image.'));
             }
-            // FIXME: make sure it's an image here instead of _after_ writing to a file?
-            file_put_contents($temp_filename, $response->getBody());
+            file_put_contents($temp_filename, $imgData);
+            unset($imgData);    // No need to carry this in memory.
 
             if ($this->isGroup()) {
                 $id = $this->group_id;
