@@ -155,6 +155,11 @@ class Profile extends Managed_DataObject
 
     public function setOriginal($filename)
     {
+        if ($this->isGroup()) {
+            // Until Group avatars are handled just like profile avatars.
+            return $this->getGroup()->setOriginal($filename);
+        }
+
         $imagefile = new ImageFile($this->id, Avatar::path($filename));
 
         $avatar = new Avatar();
