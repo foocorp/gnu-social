@@ -113,10 +113,13 @@ class Ostatus_profile extends Managed_DataObject
      */
     public function localGroup()
     {
-        if ($this->group_id) {
-            return User_group::getKV('id', $this->group_id);
+        $group = User_group::getKV('id', $this->group_id);
+
+        if (!$group instanceof User_group) {
+            throw new NoSuchGroupException(array('id'=>$this->group_id));
         }
-        return null;
+
+        return $group;
     }
 
     /**
@@ -1252,19 +1255,7 @@ class Ostatus_profile extends Managed_DataObject
             throw new ServerException(sprintf(_m('Invalid avatar URL %s.'), $url));
         }
 
-        if ($this->isGroup()) {
-            // FIXME: throw exception for localGroup
-            $self = $this->localGroup();
-        } else {
-            // this throws an exception already
-            $self = $this->localProfile();
-        }
-        if (!$self) {
-            throw new ServerException(sprintf(
-                // TRANS: Server exception. %s is a URI.
-                _m('Tried to update avatar for unsaved remote profile %s.'),
-                $this->getUri()));
-        }
+        $self = $this->localProfile();
 
         // @todo FIXME: This should be better encapsulated
         // ripped from oauthstore.php (for old OMB client)
