@@ -62,6 +62,6 @@ class NoSuchGroupException extends ServerException
 
         // Here we could log the failed lookup
 
-        parent::__construct(_('No such user found.'));
+        parent::__construct(_('No such group found.'));
     }
 }
