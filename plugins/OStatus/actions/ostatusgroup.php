@@ -58,10 +58,6 @@ class OStatusGroupAction extends OStatusSubAction
      */
     function showInputForm()
     {
-        $user = common_current_user();
-
-        $profile = $user->getProfile();
-
         $this->elementStart('form', array('method' => 'post',
                                           'id' => 'form_ostatus_sub',
                                           'class' => 'form_settings',
@@ -97,11 +93,9 @@ class OStatusGroupAction extends OStatusSubAction
      */
     function preview()
     {
-        $oprofile = $this->oprofile;
-        $group = $oprofile->localGroup();
+        $group = $this->oprofile->localGroup();
 
-        $cur = common_current_user();
-        if ($cur->isMember($group)) {
+        if ($this->scoped->isMember($group)) {
             $this->element('div', array('class' => 'error'),
                            // TRANS: Error text displayed when trying to join a remote group the user is already a member of.
                            _m('You are already a member of this group.'));
@@ -122,8 +116,7 @@ class OStatusGroupAction extends OStatusSubAction
      */
     function success()
     {
-        $cur = common_current_user();
-        $url = common_local_url('usergroups', array('nickname' => $cur->nickname));
+        $url = common_local_url('usergroups', array('nickname' => $this->scoped->getNickname()));
         common_redirect($url, 303);
     }
 
@@ -135,16 +128,15 @@ class OStatusGroupAction extends OStatusSubAction
      */
     function saveFeed()
     {
-        $user = common_current_user();
         $group = $this->oprofile->localGroup();
-        if ($user->isMember($group)) {
+        if ($this->scoped->isMember($group)) {
             // TRANS: OStatus remote group subscription dialog error.
             $this->showForm(_m('Already a member!'));
             return;
         }
 
         try {
-            $user->joinGroup($group);
+            $this->scoped->joinGroup($group);
         } catch (Exception $e) {
             common_log(LOG_ERR, "Exception on remote group join: " . $e->getMessage());
             common_log(LOG_ERR, $e->getTraceAsString());
