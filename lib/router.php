@@ -949,8 +949,12 @@ class Router
                 }
             } else {
                 $m->connect('main/public', array('action' => 'public'));
-                $m->connect('', array('action' => 'public'));
                 $m->connect('main/all', array('action' => 'networkpublic'));
+                if (common_config('site', 'localonly')) {
+                    $m->connect('', array('action' => 'public'));
+                } else {
+                    $m->connect('', array('action' => 'networkpublic'));
+                }
                 $m->connect('rss', array('action' => 'publicrss'));
                 $m->connect('featuredrss', array('action' => 'featuredrss'));
                 $m->connect('featured/', array('action' => 'featured'));

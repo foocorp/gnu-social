@@ -81,13 +81,8 @@ class RawPublicNoticeStream extends NoticeStream
             $notice->limit($offset, $limit);
         }
 
-        if (common_config('public', 'localonly')) {
-            $notice->whereAdd('is_local = ' . Notice::LOCAL_PUBLIC);
-        } else {
-            // -1 == blacklisted, -2 == gateway (i.e. Twitter)
-            $notice->whereAdd('is_local !='. Notice::LOCAL_NONPUBLIC);
-            $notice->whereAdd('is_local !='. Notice::GATEWAY);
-        }
+        // This feed always gives only local activities.
+        $notice->whereAdd('is_local = ' . Notice::LOCAL_PUBLIC);
 
         Notice::addWhereSinceId($notice, $since_id);
         Notice::addWhereMaxId($notice, $max_id);

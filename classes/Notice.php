@@ -997,6 +997,7 @@ class Notice extends Managed_DataObject
 
         if ($this->isPublic()) {
             $this->blowStream('public');
+            $this->blowStream('networkpublic');
         }
 
         self::blow('notice:list-ids:conversation:%s', $this->conversation);
@@ -1041,6 +1042,7 @@ class Notice extends Managed_DataObject
 
         if ($this->isPublic()) {
             self::blow('public;last');
+            self::blow('networkpublic;last');
         }
 
         self::blow('fave:by_notice', $this->id);
@@ -2636,12 +2638,8 @@ class Notice extends Managed_DataObject
 
     function isPublic()
     {
-        if (common_config('public', 'localonly')) {
-            return ($this->is_local == Notice::LOCAL_PUBLIC);
-        } else {
-            return (($this->is_local != Notice::LOCAL_NONPUBLIC) &&
-                    ($this->is_local != Notice::GATEWAY));
-        }
+        return (($this->is_local != Notice::LOCAL_NONPUBLIC) &&
+                ($this->is_local != Notice::GATEWAY));
     }
 
     /**

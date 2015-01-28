@@ -45,7 +45,7 @@ define('MAX_PUBLIC_PAGE', 100);
  * @see      PublicrssAction
  * @see      PublicxrdsAction
  */
-class PublicAction extends Action
+class PublicAction extends ManagedAction
 {
     /**
      * page of the stream we're on; default = 1
@@ -61,16 +61,8 @@ class PublicAction extends Action
         return true;
     }
 
-    /**
-     * Read and validate arguments
-     *
-     * @param array $args URL parameters
-     *
-     * @return boolean success value
-     */
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
 
         if ($this->page > MAX_PUBLIC_PAGE) {
@@ -106,22 +98,6 @@ class PublicAction extends Action
         } else {
             $this->stream = new ThreadingPublicNoticeStream($this->scoped);
         }
-    }
-
-    /**
-     * handle request
-     *
-     * Show the public stream, using recipe method showPage()
-     *
-     * @param array $args arguments, mostly unused
-     *
-     * @return void
-     */
-    protected function handle()
-    {
-        parent::handle();
-
-        $this->showPage();
     }
 
     /**
@@ -219,9 +195,7 @@ class PublicAction extends Action
      */
     function showContent()
     {
-        $user = common_current_user();
-
-        if (!empty($user) && $user->streamModeOnly()) {
+        if ($this->scoped instanceof Profile && $this->scoped->isLocal() && $this->scoped->getUser()->streamModeOnly()) {
             $nl = new PrimaryNoticeList($this->notice, $this, array('show_n'=>NOTICES_PER_PAGE));
         } else {
             $nl = new ThreadedNoticeList($this->notice, $this, $this->scoped);
@@ -234,7 +208,7 @@ class PublicAction extends Action
         }
 
         $this->pagination($this->page > 1, $cnt > NOTICES_PER_PAGE,
-                          $this->page, 'public');
+                          $this->page, $this->action);
     }
 
     function showSections()
@@ -283,13 +257,5 @@ class PublicAction extends Action
         $this->elementStart('div', array('id' => 'anon_notice'));
         $this->raw(common_markup_to_html($m));
         $this->elementEnd('div');
-    }
-}
-
-class ThreadingPublicNoticeStream extends ThreadingNoticeStream
-{
-    function __construct($profile)
-    {
-        parent::__construct(new PublicNoticeStream($profile));
     }
 }
