@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Administer site access settings
@@ -83,7 +81,8 @@ class AccessadminpanelAction extends AdminPanelAction
      */
     function saveSettings()
     {
-        static $booleans = array('site' => array('private', 'inviteonly', 'closed'));
+        static $booleans = array('site' => array('private', 'inviteonly', 'closed'),
+                                 'public' => array('localonly'));
 
         foreach ($booleans as $section => $parts) {
             foreach ($parts as $setting) {
@@ -146,18 +145,10 @@ class AccessAdminPanelForm extends AdminForm
      */
     function formData()
     {
-	$this->out->elementStart('fieldset', array('id' => 'settings_admin_access'));
-	// TRANS: Form legend for registration form.
+        $this->out->elementStart('fieldset', array('id' => 'settings_admin_account_access'));
+        // TRANS: Form legend for registration form.
         $this->out->element('legend', null, _('Registration'));
         $this->out->elementStart('ul', 'form_data');
-        $this->li();
-        // TRANS: Checkbox instructions for admin setting "Private".
-        $instructions = _('Prohibit anonymous users (not logged in) from viewing site?');
-        // TRANS: Checkbox label for prohibiting anonymous users from viewing site.
-        $this->out->checkbox('private', _m('LABEL', 'Private'),
-                             (bool) $this->value('private'),
-                             $instructions);
-        $this->unli();
 
         $this->li();
         // TRANS: Checkbox instructions for admin setting "Invite only".
@@ -176,6 +167,34 @@ class AccessAdminPanelForm extends AdminForm
                              (bool) $this->value('closed'),
                              $instructions);
         $this->unli();
+
+        $this->out->elementEnd('ul');
+        $this->out->elementEnd('fieldset');
+
+
+        // Public access settings (login requirements for feeds etc.)
+	    $this->out->elementStart('fieldset', array('id' => 'settings_admin_public_access'));
+	    // TRANS: Form legend for registration form.
+        $this->out->element('legend', null, _('Feed access'));
+        $this->out->elementStart('ul', 'form_data');
+        $this->li();
+        // TRANS: Checkbox instructions for admin setting "Private".
+        $instructions = _('Prohibit anonymous users (not logged in) from viewing site?');
+        // TRANS: Checkbox label for prohibiting anonymous users from viewing site.
+        $this->out->checkbox('private', _m('LABEL', 'Private'),
+                             (bool) $this->value('private'),
+                             $instructions);
+        $this->unli();
+
+        $this->li();
+        // TRANS: Description of the full network notice stream views..
+        $instructions = _('The full network view includes (public) remote notices which may be unrelated to local conversations.');
+        // TRANS: Checkbox label for hiding remote network posts if they have not been interacted with locally.
+        $this->out->checkbox('localonly', _('Restrict full network view to accounts'),
+                             (bool) $this->value('localonly', 'public'),
+                             $instructions);
+        $this->unli();
+
         $this->out->elementEnd('ul');
         $this->out->elementEnd('fieldset');
     }
