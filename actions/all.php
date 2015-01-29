@@ -57,8 +57,8 @@ class AllAction extends ProfileAction
                                             NOTICES_PER_PAGE + 1);
 
         if ($this->page > 1 && $this->notice->N == 0) {
-            // TRANS: Server error when page not found (404).
-            $this->serverError(_('No such page.'), 404);
+            // TRANS: Client error when page not found (404).
+            $this->clientError(_('No such page.'), 404);
         }
 
         return true;

@@ -51,9 +51,9 @@ class OembedAction extends Action
 
             $proxy_args = $r->map($path);
             if (!$proxy_args) {
-                // TRANS: Server error displayed in oEmbed action when path not found.
+                // TRANS: Client error displayed in oEmbed action when path not found.
                 // TRANS: %s is a path.
-                $this->serverError(sprintf(_('"%s" not found.'),$path), 404);
+                $this->clientError(sprintf(_('"%s" not found.'),$path), 404);
             }
 
             $oembed=array();
@@ -67,9 +67,9 @@ class OembedAction extends Action
                 $id = $proxy_args['notice'];
                 $notice = Notice::getKV($id);
                 if(empty($notice)){
-                    // TRANS: Server error displayed in oEmbed action when notice not found.
+                    // TRANS: Client error displayed in oEmbed action when notice not found.
                     // TRANS: %s is a notice.
-                    $this->serverError(sprintf(_("Notice %s not found."),$id), 404);
+                    $this->clientError(sprintf(_("Notice %s not found."),$id), 404);
                 }
                 $profile = $notice->getProfile();
                 if (empty($profile)) {
@@ -91,9 +91,9 @@ class OembedAction extends Action
                 $id = $proxy_args['attachment'];
                 $attachment = File::getKV($id);
                 if(empty($attachment)){
-                    // TRANS: Server error displayed in oEmbed action when attachment not found.
+                    // TRANS: Client error displayed in oEmbed action when attachment not found.
                     // TRANS: %d is an attachment ID.
-                    $this->serverError(sprintf(_('Attachment %s not found.'),$id), 404);
+                    $this->clientError(sprintf(_('Attachment %s not found.'),$id), 404);
                 }
                 if (empty($attachment->filename) && $file_oembed = File_oembed::getKV('file_id', $attachment->id)) {
                     // Proxy the existing oembed information
@@ -174,6 +174,7 @@ class OembedAction extends Action
             }
         } else {
             // TRANS: Error message displaying attachments. %s is the site's base URL.
+            // FIXME: 404 not found?! (this will automatically become a 500 because it's not a serverError!)
             $this->serverError(sprintf(_('Only %s URLs over plain HTTP please.'), common_root_url()), 404);
         }
     }
