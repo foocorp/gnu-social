@@ -894,8 +894,7 @@ class Router
                                   'nickname' => $nickname));
 
                 $m->connect('',
-                            array('action' => 'showstream',
-                                  'nickname' => $nickname));
+                            array('action' => 'startpage'));
 
                 // peopletags
 
@@ -948,13 +947,9 @@ class Router
                                 array('tag' => self::REGEX_TAG));
                 }
             } else {
+                $m->connect('', array('action' => 'startpage'));
                 $m->connect('main/public', array('action' => 'public'));
                 $m->connect('main/all', array('action' => 'networkpublic'));
-                if (common_config('site', 'localonly')) {
-                    $m->connect('', array('action' => 'public'));
-                } else {
-                    $m->connect('', array('action' => 'networkpublic'));
-                }
                 $m->connect('rss', array('action' => 'publicrss'));
                 $m->connect('featuredrss', array('action' => 'featuredrss'));
                 $m->connect('featured/', array('action' => 'featured'));

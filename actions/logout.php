@@ -28,9 +28,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Logout action class.
@@ -42,7 +40,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class LogoutAction extends Action
+class LogoutAction extends ManagedAction
 {
     /**
      * This is read only.
@@ -54,36 +52,22 @@ class LogoutAction extends Action
         return false;
     }
 
-    /**
-     * Class handler.
-     *
-     * @param array $args array of arguments
-     *
-     * @return nothing
-     */
-    function handle($args)
+    protected function doPreparation()
     {
-        parent::handle($args);
         if (!common_logged_in()) {
-            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-            $this->clientError(_('Not logged in.'));
-        } else {
-            if (Event::handle('StartLogout', array($this))) {
-                $this->logout();
-            }
-            Event::handle('EndLogout', array($this));
-
-            if (common_config('singleuser', 'enabled')) {
-                $user = User::singleUser();
-                common_redirect(common_local_url('showstream',
-                                                 array('nickname' => $user->nickname)));
-            } else {
-                common_redirect(common_local_url('public'), 303);
-            }
+            // TRANS: Error message displayed when trying to logout even though you are not logged in.
+            throw new AlreadyFulfilledException(_('Cannot log you out if you are not logged in.'));
         }
+        if (Event::handle('StartLogout', array($this))) {
+            $this->logout();
+        }
+        Event::handle('EndLogout', array($this));
+
+        common_redirect(common_local_url('startpage'));
     }
 
-    function logout()
+    // Accessed through the action on events
+    public function logout()
     {
         common_set_user(null);
         common_real_login(false); // not logged in
