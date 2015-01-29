@@ -7,7 +7,7 @@ class NetworkpublicAction extends PublicAction
     protected function streamPrepare()
     {
         if (!$this->scoped instanceof Profile && common_config('public', 'localonly')) {
-            $this->serverError(_('Network wide public feed is not permitted without authorization'), 403);
+            $this->clientError(_('Network wide public feed is not permitted without authorization'), 403);
         }
         if ($this->scoped instanceof Profile && $this->scoped->isLocal() && $this->scoped->getUser()->streamModeOnly()) {
             $this->stream = new NetworkPublicNoticeStream($this->scoped);

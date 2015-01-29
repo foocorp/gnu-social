@@ -11,6 +11,9 @@ class ApiTimelineNetworkPublicAction extends ApiTimelinePublicAction
 
     protected function getStream()
     {
+        if (!$this->scoped instanceof Profile && common_config('public', 'localonly')) {
+            $this->clientError(_('Network wide public feed is not permitted without authorization'), 403);
+        }
         return new NetworkPublicNoticeStream($this->scoped);
     }
 }
