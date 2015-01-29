@@ -151,6 +151,7 @@ class PrivateSite extends SiteProfileSettings
                 'disable-OStatus' => 1,
                 'disable-WebFinger' => 1,
              ),
+            'public'        => array('localonly' => true),
             'profile'       => array('delete' => 'true'),
             'license'       => array('type'   => 'private'),
             'attachments'   => array(
@@ -199,6 +200,7 @@ class CommunitySite extends SiteProfileSettings
                 'default' => array_merge(self::defaultPlugins(), array(
                 ))
             ),
+            'public'    => array('localonly' => true),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
         );
     }
@@ -224,6 +226,7 @@ class SingleuserSite extends SiteProfileSettings
                 $config['site'], array(
                     'private'    => false,
                     'closed'     => true,
+                    'localonly'  => true,
                 )
             ),
             'plugins' => array(
@@ -233,6 +236,7 @@ class SingleuserSite extends SiteProfileSettings
                 )),
                 'disable-Directory' => 1,
             ),
+            'public'    => array('localonly' => true),
             'discovery' => array('cors' => true) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
         );
     }
