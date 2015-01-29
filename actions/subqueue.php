@@ -127,7 +127,7 @@ class SubQueueListItem extends ProfileListItem
     function showApproveButtons()
     {
         $this->out->elementStart('li', 'entity_approval');
-        $form = new ApproveSubForm($this->out, $this->target);
+        $form = new ApproveSubForm($this->out, $this->profile);
         $form->show();
         $this->out->elementEnd('li');
     }
