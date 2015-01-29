@@ -334,6 +334,11 @@ class Router
                         array('action' => 'ApiTimelinePublic',
                               'format' => '(xml|json|rss|atom|as)'));
 
+            // this is not part of the Twitter API. Also may require authentication depending on server config!
+            $m->connect('api/statuses/networkpublic_timeline.:format',
+                        array('action' => 'ApiTimelineNetworkPublic',
+                              'format' => '(xml|json|rss|atom|as)'));
+
             $m->connect('api/statuses/friends_timeline/:id.:format',
                         array('action' => 'ApiTimelineFriends',
                               'id' => Nickname::INPUT_FMT,

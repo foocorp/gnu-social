@@ -154,7 +154,7 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -168,14 +168,18 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      *
      * Just show the notices
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $this->showTimeline();
+    }
+
+    function title()
+    {
+        // TRANS: Title for site timeline. %s is the GNU social sitename.
+        return sprintf(_("%s public timeline"), common_config('site', 'name'));
     }
 
     /**
@@ -185,16 +189,16 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      */
     function showTimeline()
     {
-        $sitename   = common_config('site', 'name');
+        $nonapi_action = substr($this->action, strlen('apitimeline'));  // Just so we don't need to set this explicitly
+
         $sitelogo   = (common_config('site', 'logo')) ? common_config('site', 'logo') : Theme::path('logo.png');
-        // TRANS: Title for site timeline. %s is the StatusNet sitename.
-        $title      = sprintf(_("%s public timeline"), $sitename);
+        $title      = $this->title();
         $taguribase = TagURI::base();
-        $id         = "tag:$taguribase:PublicTimeline";
-        $link       = common_local_url('public');
+        $id         = "tag:$taguribase:" . ucfirst($nonapi_action) . 'Timeline';    // Public or Networkpublic probably
+        $link       = common_local_url($nonapi_action);
         $self       = $this->getSelfUri();
-        // TRANS: Subtitle for site timeline. %s is the StatusNet sitename.
-        $subtitle   = sprintf(_("%s updates from everyone!"), $sitename);
+        // TRANS: Subtitle for site timeline. %s is the GNU social sitename.
+        $subtitle   = sprintf(_("%s updates from everyone!"), common_config('site', 'name'));
 
         switch($this->format) {
         case 'xml':
@@ -222,7 +226,7 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
             $atom->setSubtitle($subtitle);
             $atom->setLogo($sitelogo);
             $atom->setUpdated('now');
-            $atom->addLink(common_local_url('public'));
+            $atom->addLink(common_local_url($nonapi_action));
             $atom->setSelfLink($self);
             $atom->addEntryFromNotices($this->notices);
 
@@ -256,9 +260,7 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
     {
         $notices = array();
 
-        $profile = ($this->auth_user) ? $this->auth_user->getProfile() : null;
-
-        $stream = new PublicNoticeStream($profile);
+        $stream = $this->getStream();
 
         $notice = $stream->getNotices(($this->page - 1) * $this->count,
                                       $this->count,
@@ -270,6 +272,11 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
         NoticeList::prefill($notices);
 
         return $notices;
+    }
+
+    protected function getStream()
+    {
+        return new PublicNoticeStream($this->scoped);
     }
 
     /**

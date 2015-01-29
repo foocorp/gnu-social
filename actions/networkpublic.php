@@ -56,11 +56,25 @@ class NetworkpublicAction extends PublicAction
         // Network public tag cloud?
     }
 
-    /**
-     * FIXME: Network public feed! Get a template from PublicAction
-     */
     function getFeeds()
     {
-        return array();
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelineNetworkPublic',
+                                               array('format' => 'as')),
+                              // TRANS: Link description for public timeline feed.
+                              _('Public Timeline Feed (Activity Streams JSON)')),
+                    new Feed(Feed::RSS1, common_local_url('publicrss'),
+                              // TRANS: Link description for public timeline feed.
+                              _('Public Timeline Feed (RSS 1.0)')),
+                     new Feed(Feed::RSS2,
+                              common_local_url('ApiTimelineNetworkPublic',
+                                               array('format' => 'rss')),
+                              // TRANS: Link description for public timeline feed.
+                              _('Public Timeline Feed (RSS 2.0)')),
+                     new Feed(Feed::ATOM,
+                              common_local_url('ApiTimelineNetworkPublic',
+                                               array('format' => 'atom')),
+                              // TRANS: Link description for public timeline feed.
+                              _('Public Timeline Feed (Atom)')));
     }
 }
