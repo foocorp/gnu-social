@@ -34,9 +34,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Returns the notice specified by id as a Twitter-style status and inline user
@@ -65,7 +63,7 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -76,11 +74,11 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
 
         $this->notice_id = (int)$this->trimmed('id');
 
-        if (empty($notice_id)) {
-            $this->notice_id = (int)$this->arg('id');
+        $this->notice = Notice::getKV($this->notice_id);
+        if (!$this->notice->inScope($this->scoped)) {
+            // TRANS: Client exception thrown when trying a view a notice the user has no access to.
+            throw new ClientException(_('Access restricted.'), 403);
         }
-
-        $this->notice = Notice::getKV((int)$this->notice_id);
 
         return true;
     }
@@ -90,13 +88,11 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
      *
      * Check the format and show the notice
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if (!in_array($this->format, array('xml', 'json', 'atom'))) {
             // TRANS: Client error displayed when coming across a non-supported API method.

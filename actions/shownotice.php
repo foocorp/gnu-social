@@ -77,7 +77,7 @@ class ShownoticeAction extends ManagedAction
 
         if (!$this->notice->inScope($this->scoped)) {
             // TRANS: Client exception thrown when trying a view a notice the user has no access to.
-            throw new ClientException(_('Not available.'), 403);
+            throw new ClientException(_('Access restricted.'), 403);
         }
 
         $this->profile = $this->notice->getProfile();
