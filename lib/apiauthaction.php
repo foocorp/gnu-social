@@ -93,6 +93,8 @@ class ApiAuthAction extends ApiAction
                 // TRANS: Authorization exception thrown when a user without API access tries to access the API.
                 throw new AuthorizationException(_('Not allowed to use API.'));
             }
+            // Let's run this in the same way as if we've just authenticated the user (basic/oauth auth)
+            Event::handle('EndSetApiUser', array($this->auth_user));
             $this->access = self::READ_WRITE;
         } else {
             $oauthReq = $this->getOAuthRequest();
