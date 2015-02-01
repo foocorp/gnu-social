@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/form.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Form for posting a notice
@@ -209,6 +205,7 @@ class NoticeForm extends Form
             // XXX: vary by defined max size
             $this->out->element('textarea', array('class' => 'notice_data-text',
                                                   'required' => 'required',
+                                                  'placeholder' => _('Share your status...'),
                                                   'cols' => 35,
                                                   'rows' => 4,
                                                   'name' => 'status_textarea'),
