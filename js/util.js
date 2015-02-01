@@ -1382,7 +1382,7 @@ var SN = { // StatusNet
          *
          * @param {String} tag
          */
-        switchInputFormTab: function (tag) {
+        switchInputFormTab: function (tag, setFocus=true) {
             // The one that's current isn't current anymore
             $('.input_form_nav_tab.current').removeClass('current');
             if (tag != null) {
@@ -1403,13 +1403,15 @@ var SN = { // StatusNet
                 return false;
             }
 
-            $('#input_form_' + tag)
+            var noticeForm = $('#input_form_' + tag)
                     .addClass('current')
                     .find('.ajax-notice').each(function () {
                         var form = $(this);
                         SN.Init.NoticeFormSetup(form);
-                    })
-                    .find('.notice_data-text').focus();
+                    });
+            if (setFocus) {
+                noticeForm.find('.notice_data-text').focus();
+            }
 
             return false;
         },
@@ -1437,16 +1439,11 @@ var SN = { // StatusNet
                 // SN.Init.NoticeFormSetup() will get run
                 // when forms get displayed for the first time...
 
-                // Initially hide all tabs on the top of the page
-                // if there's no data in there yet.
-                var fields = $('#content .input_forms .input_form.current').find('textarea, input[type=text], input[type=""]');
-                var anything = false;
-                fields.each(function () {
-                    anything = anything || $(this).val();
+                // Initialize the input form field
+                $('#input_form_nav .input_form_nav_tab.current').each(function () {
+                    current_tab_id = $(this).attr('id').substring('input_form_nav_'.length);
+                    SN.U.switchInputFormTab(current_tab_id, false);
                 });
-                if (!anything) {
-                    SN.U.switchInputFormTab(null);
-                }
 
                 // Make inline reply forms self-close when clicking out.
                 $('body').on('click', function (e) {
