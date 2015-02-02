@@ -8,6 +8,7 @@ class OembedPlugin extends Plugin
     // WARNING, these are _regexps_ (slashes added later). Always escape your dots and end your strings
     public $domain_whitelist = array(       // hostname => service provider
                                     '^i\d*\.ytimg\.com$' => 'YouTube',
+                                    '^i\d*\.vimeocdn\.com$' => 'Vimeo',
                                     );
     public $append_whitelist = array(); // fill this array as domain_whitelist to add more trusted sources
     public $check_whitelist  = true;    // security/abuse precaution
