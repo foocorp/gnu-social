@@ -1004,6 +1004,11 @@ class User extends Managed_DataObject
         return $this->getProfile()->getPref($namespace, $topic, $default);
     }
 
+    public function getConfigPref($namespace, $topic)
+    {
+        return $this->getProfile()->getConfigPref($namespace, $topic);
+    }
+
     public function setPref($namespace, $topic, $data)
     {
         return $this->getProfile()->setPref($namespace, $topic, $data);
