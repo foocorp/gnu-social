@@ -1579,6 +1579,12 @@ class Profile extends Managed_DataObject
         }
     }
 
+    // The same as getPref but will fall back to common_config value for the same namespace/topic
+    public function getConfigPref($namespace, $topic)
+    {
+        return Profile_prefs::getConfigData($this, $namespace, $topic);
+    }
+
     public function setPref($namespace, $topic, $data) {
         return Profile_prefs::setData($this, $namespace, $topic, $data);
     }
