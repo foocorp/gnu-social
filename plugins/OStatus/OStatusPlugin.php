@@ -868,6 +868,42 @@ class OStatusPlugin extends Plugin
     }
 
     /**
+     * Notify remote users when their notices get favorited.
+     *
+     * @param Profile or User $profile of local user doing the faving
+     * @param Notice $notice being favored
+     * @return hook return value
+     */
+    function onEndFavorNotice(Profile $profile, Notice $notice)
+    {
+        // Only distribute local users' favor actions, remote users
+        // will have already distributed theirs.
+        if (!$profile->isLocal()) {
+            return true;
+        }
+
+        $oprofile = Ostatus_profile::getKV('profile_id', $notice->profile_id);
+        if (!$oprofile instanceof Ostatus_profile) {
+            return true;
+        }
+
+        $fav = Fave::pkeyGet(array('user_id' => $profile->id,
+                                   'notice_id' => $notice->id));
+
+        if (!$fav instanceof Fave) {
+            // That's weird.
+            // TODO: Make pkeyGet throw exception, since this is a critical failure.
+            return true;
+        }
+
+        $act = $fav->asActivity();
+
+        $oprofile->notifyActivity($act, $profile);
+
+        return true;
+    }
+
+    /**
      * Notify remote user it has got a new people tag
      *   - tag verb is queued
      *   - the subscription is done immediately if not present
