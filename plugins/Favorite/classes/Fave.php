@@ -42,25 +42,25 @@ class Fave extends Managed_DataObject
      * Save a favorite record.
      * @fixme post-author notification should be moved here
      *
-     * @param Profile $profile the local or remote user who likes
-     * @param Notice $notice the notice that is liked
+     * @param Profile $actor  the local or remote Profile who favorites
+     * @param Notice  $target the notice that is favorited
      * @return Fave record on success
      * @throws Exception on failure
      */
-    static function addNew(Profile $profile, Notice $notice) {
+    static function addNew(Profile $actor, Notice $target) {
 
         $fave = null;
 
-        if (Event::handle('StartFavorNotice', array($profile, $notice, &$fave))) {
+        if (Event::handle('StartFavorNotice', array($actor, $target, &$fave))) {
 
             $fave = new Fave();
 
-            $fave->user_id   = $profile->id;
-            $fave->notice_id = $notice->id;
+            $fave->user_id   = $actor->id;
+            $fave->notice_id = $target->id;
             $fave->created   = common_sql_now();
             $fave->modified  = common_sql_now();
-            $fave->uri       = self::newUri($profile,
-                                            $notice,
+            $fave->uri       = self::newUri($actor,
+                                            $target,
                                             $fave->created);
 
             // throws exception (Fave specific until migrated into Managed_DataObject
@@ -70,7 +70,7 @@ class Fave extends Managed_DataObject
             self::blowCacheForNoticeId($fave->notice_id);
             self::blow('popular');
 
-            Event::handle('EndFavorNotice', array($profile, $notice));
+            Event::handle('EndFavorNotice', array($actor, $target));
         }
 
         return $fave;
