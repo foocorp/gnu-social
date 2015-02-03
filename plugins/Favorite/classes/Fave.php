@@ -63,12 +63,9 @@ class Fave extends Managed_DataObject
                                             $notice,
                                             $fave->created);
 
-            try {
-                $fave->insert();
-            } catch (ServerException $e) {
-                common_log_db_error($fave, 'INSERT', __FILE__);
-                throw $e;
-            }
+            // throws exception (Fave specific until migrated into Managed_DataObject
+            $fave->insert();
+
             self::blowCacheForProfileId($fave->user_id);
             self::blowCacheForNoticeId($fave->notice_id);
             self::blow('popular');
@@ -82,7 +79,8 @@ class Fave extends Managed_DataObject
     // exception throwing takeover!
     public function insert()
     {
-        if (!parent::insert()) {
+        if (parent::insert()===false) {
+            common_log_db_error($this, 'INSERT', __FILE__);
             throw new ServerException(sprintf(_m('Could not store new object of type %s'), get_called_class()));
         }
         self::blowCacheForProfileId($this->user_id);
