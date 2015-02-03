@@ -49,6 +49,11 @@ class FavoritePlugin extends ActivityHandlerPlugin
         return true;
     }
 
+    public function initialize()
+    {
+        common_config_set('email', 'notify_fave', $this->email_notify_fave);
+    }
+
     public function onStartUpgrade()
     {
         // This is a migration feature that will make sure we move
@@ -432,9 +437,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
     public function onEndEmailFormData(Action $action, Profile $scoped)
     {
-        // getConfigData will fall back on systemwide default
-        // and we only wish to save numerical true or false.
-        $emailfave = $scoped->getPref('email', 'notify_fave', $this->email_notify_fave) ? 1 : 0;
+        $emailfave = $scoped->getConfigPref('email', 'notify_fave') ? 1 : 0;
 
         $action->elementStart('li');
         $action->checkbox('email-notify_fave',
@@ -525,7 +528,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
  */
 function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
 {
-    if (!$rcpt->receivesEmailNotifications() || !$rcpt->getPref('email', 'notify_fave', $rcpt->email_notify_fave)) {
+    if (!$rcpt->receivesEmailNotifications() || !$rcpt->getConfigPref('email', 'notify_fave')) {
         return;
     }
 
