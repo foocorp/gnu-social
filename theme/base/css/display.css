@@ -709,6 +709,8 @@ font-style:italic;
 
 .notice .e-content {
     margin-left: 56px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .notice-options {
