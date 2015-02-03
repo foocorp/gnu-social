@@ -1066,15 +1066,15 @@ class Router
                 $m->connect(':nickname/rsd.xml',
                             array('action' => 'rsd'),
                             array('nickname' => Nickname::DISPLAY_FMT));
-
-                $m->connect(':nickname',
-                            array('action' => 'showstream'),
-                            array('nickname' => Nickname::DISPLAY_FMT));
-
-                $m->connect(':nickname/',
-                            array('action' => 'showstream'),
-                            array('nickname' => Nickname::DISPLAY_FMT));
             }
+
+            $m->connect(':nickname',
+                        array('action' => 'showstream'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
+
+            $m->connect(':nickname/',
+                        array('action' => 'showstream'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
 
             // AtomPub API
 
