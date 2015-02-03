@@ -24,15 +24,14 @@
  * @author    Craig Andrews <candrews@integralblue.com>
  * @author    Evan Prodromou <evan@status.net>
  * @author    Zach Copley <zach@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2009 StatusNet, Inc.
  * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link      http://status.net/
+ * @link      http://gnu.io/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Favorites the status specified in the ID parameter as the authenticating user.
@@ -43,27 +42,22 @@ if (!defined('STATUSNET')) {
  * @author   Craig Andrews <candrews@integralblue.com>
  * @author   Evan Prodromou <evan@status.net>
  * @author   Zach Copley <zach@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
+ * @link     http://gnu.io/
  */
 class ApiFavoriteCreateAction extends ApiAuthAction
 {
     var $notice = null;
 
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected $needPost = true;
+
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
-        $this->user   = $this->auth_user;
         $this->notice = Notice::getKV($this->arg('id'));
-        if ($this->notice->repeat_of != '' ) {
+        if (!empty($this->notice->repeat_of)) {
                 common_log(LOG_DEBUG, 'Trying to Fave '.$this->notice->id.', repeat of '.$this->notice->repeat_of);
                 common_log(LOG_DEBUG, 'Will Fave '.$this->notice->repeat_of.' instead');
                 $real_notice_id = $this->notice->repeat_of;
@@ -73,28 +67,9 @@ class ApiFavoriteCreateAction extends ApiAuthAction
         return true;
     }
 
-    /**
-     * Handle the request
-     *
-     * Check the format and show the user info
-     *
-     * @param array $args $_REQUEST data (unused)
-     *
-     * @return void
-     */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400,
-                $this->format
-            );
-            return;
-        }
+        parent::handle();
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
@@ -103,7 +78,6 @@ class ApiFavoriteCreateAction extends ApiAuthAction
                 404,
                 $this->format
             );
-            return;
         }
 
         if (empty($this->notice)) {
@@ -113,7 +87,6 @@ class ApiFavoriteCreateAction extends ApiAuthAction
                 404,
                 $this->format
             );
-            return;
         }
 
         // Note: Twitter lets you fave things repeatedly via API.
@@ -125,49 +98,15 @@ class ApiFavoriteCreateAction extends ApiAuthAction
                 403,
                 $this->format
             );
-            return;
         }
 
-        $fave = Fave::addNew($this->user->getProfile(), $this->notice);
-
-        if (empty($fave)) {
-            $this->clientError(
-                // TRANS: Client error displayed when marking a notice as favourite fails.
-                _('Could not create favorite.'),
-                403,
-                $this->format
-            );
-            return;
-        }
-
-        $this->notify($fave, $this->notice, $this->user);
-        Fave::blowCacheForProfileId($this->user->id);
+        // throws exception on failure
+        $stored = Fave::addNew($this->scoped, $this->notice);
 
         if ($this->format == 'xml') {
             $this->showSingleXmlStatus($this->notice);
         } elseif ($this->format == 'json') {
             $this->show_single_json_status($this->notice);
-        }
-    }
-
-    /**
-     * Notify the author of the favorite that the user likes their notice
-     *
-     * @param Favorite $fave   the favorite in question
-     * @param Notice   $notice the notice that's been faved
-     * @param User     $user   the user doing the favoriting
-     *
-     * @return void
-     */
-    function notify($fave, $notice, $user)
-    {
-        $other = User::getKV('id', $notice->profile_id);
-        if ($other && $other->id != $user->id && !empty($other->email)) {
-            require_once INSTALLDIR.'/lib/mail.php';
-
-            mail_notify_fave($other, $user->getProfile(), $notice);
-            // XXX: notify by IM
-            // XXX: notify by SMS
         }
     }
 }

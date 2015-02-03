@@ -160,7 +160,12 @@ class YammerImporter
             foreach ($data['faves'] as $nickname) {
                 $user = User::getKV('nickname', $nickname);
                 if ($user) {
-                    Fave::addNew($user->getProfile(), $notice);
+                    try {
+                        Fave::addNew($user->getProfile(), $notice);
+                    } catch (Exception $e) {
+                        // failed, let's move to the next
+                        common_debug('YammerImport failed favoriting a notice: '.$e->getMessage());
+                    }
                 }
             }
 

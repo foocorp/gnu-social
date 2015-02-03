@@ -55,13 +55,13 @@ class AtompubshowfavoriteAction extends ApiAuthAction
     /**
      * For initializing members of the class.
      *
-     * @param array $argarray misc. arguments
+     * @param array $args misc. arguments
      *
      * @return boolean true
      */
-    function prepare($argarray)
+    protected function prepare(array $args=array())
     {
-        parent::prepare($argarray);
+        parent::prepare($args);
 
         $profileId = $this->trimmed('profile');
         $noticeId  = $this->trimmed('notice');
@@ -94,13 +94,11 @@ class AtompubshowfavoriteAction extends ApiAuthAction
     /**
      * Handler method
      *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
      * @return void
      */
-    function handle($argarray=null)
+    protected function handle()
     {
-        parent::handle($argarray);
+        parent::handle();
 
         switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':

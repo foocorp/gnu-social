@@ -74,14 +74,8 @@ class FavorAction extends FormAction
             throw new AlreadyFulfilledException(_('You have already favorited this!'));
         }
 
-        $fave = Fave::addNew($this->scoped, $this->target);
-
-        if (empty($fave)) {
-            $this->serverError(_('Could not create favorite.'));
-        }
-
-        $this->notify($fave, $this->target, $this->scoped);
-        Fave::blowCacheForProfileId($this->scoped->id);
+        // throws exception on failure
+        $stored = Fave::addNew($this->scoped, $this->target);
 
         return _('Favorited the notice');
     }
@@ -93,25 +87,4 @@ class FavorAction extends FormAction
             $disfavor->show();
         }
     }
-
-    /**
-     * Notify the author of the favorite that the user likes their notice
-     *
-     * @param Favorite $fave   the favorite in question
-     * @param Notice   $notice the notice that's been faved
-     * @param User     $user   the user doing the favoriting
-     *
-     * @return void
-     */
-    function notify($fave, $notice, $user)
-    {
-        $other = User::getKV('id', $notice->profile_id);
-        if ($other && $other->id != $user->id && !empty($other->email)) {
-            require_once INSTALLDIR.'/lib/mail.php';
-
-            mail_notify_fave($other, $user->getProfile(), $notice);
-            // XXX: notify by IM
-            // XXX: notify by SMS
-        }
-    }    
 }

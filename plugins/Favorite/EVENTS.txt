@@ -1,11 +1,6 @@
 Events that come with the Favorite plugin
 =========================================
 
-StartFavorNotice: Saving a notice as a favorite
-- $profile: profile of the person faving (can be remote!)
-- $notice: notice being faved
-- &$fave: Favor object; null to start off with, but feel free to override.
-
 EndFavorNotice: After saving a notice as a favorite
 - $profile: profile of the person faving (can be remote!)
 - $notice: notice being faved

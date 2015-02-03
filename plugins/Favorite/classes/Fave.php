@@ -48,32 +48,29 @@ class Fave extends Managed_DataObject
      * @throws Exception on failure
      */
     static function addNew(Profile $actor, Notice $target) {
+        $act = new Activity();
+        $act->verb    = ActivityVerb::FAVORITE;
+        $act->time    = time();
+        $act->id      = self::newUri($actor, $target, common_sql_date($act->time));
+        $act->title   = _("Favor");
+        // TRANS: Message that is the "content" of a favorite (%1$s is the actor's nickname, %2$ is the favorited
+        //        notice's nickname and %3$s is the content of the favorited notice.)
+        $act->content = sprintf(_('%1$s favorited something by %2$s: %3$s'),
+                                $actor->getNickname(), $target->getProfile()->getNickname(),
+                                $target->rendered ?: $target->content);
+        $act->actor   = $actor->asActivityObject();
+        $act->target  = $target->asActivityObject();
+        $act->objects = array(clone($act->target));
 
-        $fave = null;
+        $url = common_local_url('AtomPubShowFavorite', array('profile'=>$actor->id, 'notice'=>$target->id));
+        $act->selfLink = $url;
+        $act->editLink = $url;
 
-        if (Event::handle('StartFavorNotice', array($actor, $target, &$fave))) {
+        // saveActivity will in turn also call Fave::saveActivityObject which does
+        // what this function used to do before this commit.
+        $stored = Notice::saveActivity($act, $actor);
 
-            $fave = new Fave();
-
-            $fave->user_id   = $actor->id;
-            $fave->notice_id = $target->id;
-            $fave->created   = common_sql_now();
-            $fave->modified  = common_sql_now();
-            $fave->uri       = self::newUri($actor,
-                                            $target,
-                                            $fave->created);
-
-            // throws exception (Fave specific until migrated into Managed_DataObject
-            $fave->insert();
-
-            self::blowCacheForProfileId($fave->user_id);
-            self::blowCacheForNoticeId($fave->notice_id);
-            self::blow('popular');
-
-            Event::handle('EndFavorNotice', array($actor, $target));
-        }
-
-        return $fave;
+        return $stored;
     }
 
     // exception throwing takeover!
@@ -141,7 +138,11 @@ class Fave extends Managed_DataObject
         $act->time    = strtotime($this->created);
         // TRANS: Activity title when marking a notice as favorite.
         $act->title   = _("Favor");
-        $act->content = $target->rendered ?: $target->content;
+        // TRANS: Message that is the "content" of a favorite (%1$s is the actor's nickname, %2$ is the favorited
+        //        notice's nickname and %3$s is the content of the favorited notice.)
+        $act->content = sprintf(_('%1$s favorited something by %2$s: %3$s'),
+                                $actor->getNickname(), $target->getProfile()->getNickname(),
+                                $target->rendered ?: $target->content);
 
         $act->actor     = $actor->asActivityObject();
         $act->target    = $target->asActivityObject();
@@ -345,7 +346,12 @@ class Fave extends Managed_DataObject
     static function saveActivityObject(ActivityObject $actobj, Notice $stored)
     {
         $object = self::parseActivityObject($actobj, $stored);
-        $object->insert();  // exception throwing!
+        $object->insert();  // exception throwing in Fave's case!
+
+        self::blowCacheForProfileId($fave->user_id);
+        self::blowCacheForNoticeId($fave->notice_id);
+        self::blow('popular');
+
         Event::handle('EndFavorNotice', array($stored->getProfile(), $object->getTarget()));
         return $object;
     }

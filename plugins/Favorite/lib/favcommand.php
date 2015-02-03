@@ -32,19 +32,6 @@ class FavCommand extends Command
             return;
         }
  
-        // @fixme favorite notification should be triggered 
-        // at a lower level 
- 
-        $other = User::getKV('id', $notice->profile_id); 
- 
-        if ($other && $other->id != $this->user->id && !empty($other->email)) { 
-            require_once INSTALLDIR.'/lib/mail.php';
-
-            mail_notify_fave($other, $this->user->getProfile(), $notice);
-        } 
- 
-        Fave::blowCacheForProfileId($this->user->id);
- 
         // TRANS: Text shown when a notice has been marked as favourite successfully. 
         $channel->output($this->user, _('Notice marked as fave.')); 
     } 

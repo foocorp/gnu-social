@@ -226,19 +226,6 @@ class FavoritePlugin extends ActivityHandlerPlugin
         }
     }
 
-    protected function notifyMentioned(Notice $stored, array &$mentioned_ids)
-    {
-        require_once INSTALLDIR.'/lib/mail.php';
-
-        foreach ($mentioned_ids as $id) {
-            $mentioned = User::getKV('id', $id);
-            if ($mentioned instanceof User && $mentioned->id != $stored->profile_id
-                    && $mentioned->email && $mentioned->getPref('email', 'notify_fave', $this->email_notify_fave)) {   // do we have an email, and does user want it?
-                mail_notify_fave($mentioned, $stored->getProfile(), $stored->getParent());
-            }
-        }
-    }
-
     // API stuff
 
     /**
@@ -380,6 +367,22 @@ class FavoritePlugin extends ActivityHandlerPlugin
         return true;
     }
 
+    public function onEndFavorNotice(Profile $actor, Notice $target)
+    {
+        try {
+            $notice_author = $target->getProfile();
+            // Don't notify ourselves of our own favorite on our own notice,
+            // or if it's a remote user (since we don't know their email addresses etc.)
+            if ($notice_author->id == $actor->id || !$notice_author->isLocal()) {
+                return true;
+            }
+            $local_user = $notice_author->getUser();
+            mail_notify_fave($local_user, $actor, $target);
+        } catch (Exception $e) {
+            // Mm'kay, probably not a local user. Let's skip this favor notification.
+        }
+    }
+
     /**
      * EndInterpretCommand for FavoritePlugin will handle the 'fav' command
      * using the class FavCommand.
@@ -509,4 +512,70 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
         return true;
     }
+}
+
+/**
+ * Notify a user that one of their notices has been chosen as a 'fave'
+ *
+ * @param User    $rcpt   The user whose notice was faved
+ * @param Profile $sender The user who faved the notice
+ * @param Notice  $notice The notice that was faved
+ *
+ * @return void
+ */
+function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
+{
+    if (!$rcpt->receivesEmailNotifications() || !$rcpt->getPref('email', 'notify_fave', $this->email_notify_fave)) {
+        return;
+    }
+
+    // This test is actually "if the sender is sandboxed"
+    if (!$sender->hasRight(Right::EMAILONFAVE)) {
+        return;
+    }
+
+    if ($rcpt->hasBlocked($sender)) {
+        // If the author has blocked us, don't spam them with a notification.
+        return;
+    }
+
+    // We need the global mail.php for various mail related functions below.
+    require_once INSTALLDIR.'/lib/mail.php';
+
+    $bestname = $sender->getBestName();
+
+    common_switch_locale($rcpt->language);
+
+    // TRANS: Subject for favorite notification e-mail.
+    // TRANS: %1$s is the adding user's long name, %2$s is the adding user's nickname.
+    $subject = sprintf(_('%1$s (@%2$s) added your notice as a favorite'), $bestname, $sender->getNickname());
+
+    // TRANS: Body for favorite notification e-mail.
+    // TRANS: %1$s is the adding user's long name, $2$s is the date the notice was created,
+    // TRANS: %3$s is a URL to the faved notice, %4$s is the faved notice text,
+    // TRANS: %5$s is a URL to all faves of the adding user, %6$s is the StatusNet sitename,
+    // TRANS: %7$s is the adding user's nickname.
+    $body = sprintf(_("%1\$s (@%7\$s) just added your notice from %2\$s".
+                      " as one of their favorites.\n\n" .
+                      "The URL of your notice is:\n\n" .
+                      "%3\$s\n\n" .
+                      "The text of your notice is:\n\n" .
+                      "%4\$s\n\n" .
+                      "You can see the list of %1\$s's favorites here:\n\n" .
+                      "%5\$s"),
+                    $bestname,
+                    common_exact_date($notice->created),
+                    common_local_url('shownotice',
+                                     array('notice' => $notice->id)),
+                    $notice->content,
+                    common_local_url('showfavorites',
+                                     array('nickname' => $sender->getNickname())),
+                    common_config('site', 'name'),
+                    $sender->getNickname()) .
+            mail_footer_block();
+
+    $headers = _mail_prepare_headers('fave', $rcpt->getNickname(), $sender->getNickname());
+
+    common_switch_locale();
+    mail_to_user($rcpt, $subject, $body, $headers);
 }

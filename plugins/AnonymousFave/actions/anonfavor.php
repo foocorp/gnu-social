@@ -66,14 +66,9 @@ class AnonFavorAction extends RedirectingAction
             // TRANS: Client error.
             throw new AlreadyFulfilledException(_m('This notice is already a favorite!'));
         }
-        $fave = Fave::addNew($profile, $notice);
 
-        if (!$fave instanceof Fave) {
-            // TRANS: Server error.
-            $this->serverError(_m('Could not create favorite.'));
-        }
-
-        Fave::blowCacheForProfileId($profile->id);
+        // Throws exception
+        $stored = Fave::addNew($profile, $notice);
 
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
