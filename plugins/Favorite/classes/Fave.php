@@ -348,8 +348,8 @@ class Fave extends Managed_DataObject
         $object = self::parseActivityObject($actobj, $stored);
         $object->insert();  // exception throwing in Fave's case!
 
-        self::blowCacheForProfileId($fave->user_id);
-        self::blowCacheForNoticeId($fave->notice_id);
+        self::blowCacheForProfileId($object->user_id);
+        self::blowCacheForNoticeId($object->notice_id);
         self::blow('popular');
 
         Event::handle('EndFavorNotice', array($stored->getProfile(), $object->getTarget()));
