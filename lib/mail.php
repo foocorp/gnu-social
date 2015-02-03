@@ -737,7 +737,7 @@ function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
  */
 function mail_notify_attn($user, $notice)
 {
-    if (!$user->email || !$user->emailnotifyattn) {
+    if (!$user->receivesEmailNotifications()) {
         return;
     }
 
@@ -747,12 +747,13 @@ function mail_notify_attn($user, $notice)
         return;
     }
 
+    // See if the notice's author who mentions this user is sandboxed
     if (!$sender->hasRight(Right::EMAILONREPLY)) {
         return;
     }
 
+    // If the author has blocked the author, don't spam them with a notification.
     if ($user->hasBlocked($sender)) {
-        // If the author has blocked us, don't spam them with a notification.
         return;
     }
 

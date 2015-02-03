@@ -658,6 +658,21 @@ class User extends Managed_DataObject
         return $this->getProfile()->isSilenced();
     }
 
+    function receivesEmailNotifications()
+    {
+        // We could do this in one large if statement, but that's not as easy to read
+        // Don't send notifications if we don't know the user's email address or it is
+        // explicitly undesired by the user's own settings.
+        if (empty($this->email) || !$this->emailnotifyattn) {
+            return false;
+        }
+        // Don't send notifications to a user who is sandboxed or silenced
+        if ($this->isSandboxed() || $this->isSilenced()) {
+            return false;
+        }
+        return true;
+    }
+
     function repeatedByMe($offset=0, $limit=20, $since_id=null, $max_id=null)
     {
         $stream = new RepeatedByMeNoticeStream($this);
