@@ -49,6 +49,7 @@ class Fave extends Managed_DataObject
      */
     static function addNew(Profile $actor, Notice $target) {
         $act = new Activity();
+        $act->type    = ActivityObject::ACTIVITY;
         $act->verb    = ActivityVerb::FAVORITE;
         $act->time    = time();
         $act->id      = self::newUri($actor, $target, common_sql_date($act->time));
