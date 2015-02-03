@@ -35,6 +35,7 @@ ini_set("max_execution_time", "0");
 ini_set("max_input_time", "0");
 set_time_limit(0);
 mb_internal_encoding('UTF-8');
+error_reporting(E_ALL & ~E_STRICT & ~E_DEPRECATED);
 
 // Add extlib to our path so we can get Console_Getopt
 
