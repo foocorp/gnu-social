@@ -525,7 +525,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
  */
 function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
 {
-    if (!$rcpt->receivesEmailNotifications() || !$rcpt->getPref('email', 'notify_fave', $this->email_notify_fave)) {
+    if (!$rcpt->receivesEmailNotifications() || !$rcpt->getPref('email', 'notify_fave', $rcpt->email_notify_fave)) {
         return;
     }
 
