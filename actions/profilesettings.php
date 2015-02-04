@@ -70,7 +70,7 @@ class ProfilesettingsAction extends SettingsAction
     function showScripts()
     {
         parent::showScripts();
-        $this->autofocus('nickname');
+        $this->autofocus('fullname');
     }
 
     /**
@@ -100,9 +100,11 @@ class ProfilesettingsAction extends SettingsAction
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
             $this->input('nickname', _('Nickname'),
-                         ($this->arg('nickname')) ? $this->arg('nickname') : $profile->nickname,
+                         $this->arg('nickname') ?: $profile->nickname,
                          // TRANS: Tooltip for field label in form for profile settings.
-                         _('1-64 lowercase letters or numbers, no punctuation or spaces.'));
+                         _('1-64 lowercase letters or numbers, no punctuation or spaces.'),
+                         null, false,   // "name" (will be set to id), then "required"
+                         !common_config('profile', 'changenick') ? array('disabled'=>'disabled') : array());
             $this->elementEnd('li');
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
@@ -237,19 +239,21 @@ class ProfilesettingsAction extends SettingsAction
 
         if (Event::handle('StartProfileSaveForm', array($this))) {
 
-            $nickname = $this->trimmed('nickname');
-            try {
-                $nickname = Nickname::normalize($nickname, true);
-            } catch (NicknameTakenException $e) {
-                // Abort only if the nickname is occupied by another local profile
-                if ($e->profile->id != $this->scoped->id) {
+            // $nickname will only be set if this changenick value is true.
+            if (common_config('profile', 'changenick') == true) {
+                try {
+                    $nickname = Nickname::normalize($this->trimmed('nickname'), true);
+                } catch (NicknameTakenException $e) {
+                    // Abort only if the nickname is occupied by another local profile
+                    if ($e->profile->id != $this->scoped->id) {
+                        $this->showForm($e->getMessage());
+                        return;
+                    }
+                    $nickname = Nickname::normalize($this->trimmed('nickname')); // without in-use check this time
+                } catch (NicknameException $e) {
                     $this->showForm($e->getMessage());
                     return;
                 }
-                $nickname = Nickname::normalize($nickname); // without in-use check this time
-            } catch (NicknameException $e) {
-                $this->showForm($e->getMessage());
-                return;
             }
 
             $fullname = $this->trimmed('fullname');
@@ -353,7 +357,12 @@ class ProfilesettingsAction extends SettingsAction
 
             $orig_profile = clone($profile);
 
-            $profile->nickname = $nickname;
+            if (common_config('profile', 'changenick') == true && $profile->nickname !== $nickname) {
+                assert(Nickname::normalize($nickname)===$nickname);
+                common_debug("Changing user nickname from '{$profile->nickname}' to '{$nickname}'.");
+                $profile->nickname = $nickname;
+                $profile->profileurl = common_profile_url($profile->nickname);
+            }
             $profile->fullname = $fullname;
             $profile->homepage = $homepage;
             $profile->bio = $bio;
@@ -372,8 +381,6 @@ class ProfilesettingsAction extends SettingsAction
                 $profile->location_id = $loc->location_id;
                 $profile->location_ns = $loc->location_ns;
             }
-
-            $profile->profileurl = common_profile_url($nickname);
 
             if (common_config('location', 'share') == 'user') {
 

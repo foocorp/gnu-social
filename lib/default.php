@@ -126,6 +126,7 @@ $default =
         'profile' =>
         array('banned' => array(),
               'biolimit' => null,
+              'changenick' => false,
               'backup' => true,
               'restore' => true,
               'delete' => false,

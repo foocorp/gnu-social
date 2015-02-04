@@ -152,7 +152,7 @@ class EditgroupAction extends GroupAction
     function showScripts()
     {
         parent::showScripts();
-        $this->autofocus('newnickname');
+        $this->autofocus('fullname');
     }
 
     function trySave()
@@ -165,19 +165,21 @@ class EditgroupAction extends GroupAction
 
         if (Event::handle('StartGroupSaveForm', array($this))) {
 
-            $nickname = $this->trimmed('newnickname');
-            try {
-                $nickname = Nickname::normalize($nickname, true);
-            } catch (NicknameTakenException $e) {
-                // Abort only if the nickname is occupied by _another_ group
-                if ($e->profile->id != $this->group->profile_id) {
+            // $nickname will only be set if this changenick value is true.
+            if (common_config('profile', 'changenick') == true) {
+                try {
+                    $nickname = Nickname::normalize($this->trimmed('newnickname'), true);
+                } catch (NicknameTakenException $e) {
+                    // Abort only if the nickname is occupied by _another_ group
+                    if ($e->profile->id != $this->group->profile_id) {
+                        $this->showForm($e->getMessage());
+                        return;
+                    }
+                    $nickname = Nickname::normalize($this->trimmed('newnickname')); // without in-use check this time
+                } catch (NicknameException $e) {
                     $this->showForm($e->getMessage());
                     return;
                 }
-                $nickname = Nickname::normalize($nickname); // without in-use check this time
-            } catch (NicknameException $e) {
-                $this->showForm($e->getMessage());
-                return;
             }
 
             $fullname    = $this->trimmed('fullname');
@@ -239,12 +241,16 @@ class EditgroupAction extends GroupAction
 
             $orig = clone($this->group);
 
-            $this->group->nickname    = $nickname;
+            if (common_config('profile', 'changenick') == true && $this->group->nickname !== $nickname) {
+                assert(Nickname::normalize($nickname)===$nickname);
+                common_debug("Changing group nickname from '{$profile->nickname}' to '{$nickname}'.");
+                $this->group->nickname = $nickname;
+                $this->group->mainpage = common_local_url('showgroup', array('nickname' => $this->group->nickname));
+            }
             $this->group->fullname    = $fullname;
             $this->group->homepage    = $homepage;
             $this->group->description = $description;
             $this->group->location    = $location;
-            $this->group->mainpage    = common_local_url('showgroup', array('nickname' => $nickname));
             $this->group->join_policy = $join_policy;
             $this->group->force_scope = $force_scope;
 
@@ -269,7 +275,7 @@ class EditgroupAction extends GroupAction
         }
 
         if ($this->group->nickname != $orig->nickname) {
-            common_redirect(common_local_url('editgroup', array('nickname' => $nickname)), 303);
+            common_redirect(common_local_url('editgroup', array('nickname' => $this->group->nickname)), 303);
         } else {
             // TRANS: Group edit form success message.
             $this->showForm(_('Options saved.'));

@@ -147,7 +147,11 @@ class GroupEditForm extends Form
             $this->out->input('newnickname', _('Nickname'),
                               ($this->out->arg('newnickname')) ? $this->out->arg('newnickname') : $nickname,
                               // TRANS: Field title on group edit form.
-                              _('1-64 lowercase letters or numbers, no punctuation or spaces.'));
+                              _('1-64 lowercase letters or numbers, no punctuation or spaces.'),
+                              null, false,
+                              $this->group instanceof User_group && !common_config('profile', 'changenick')
+                                    ? array('disabled'=>'disabled') // can't change nickname
+                                    : array()); // either we can change nickname, or we're creating a new group.
             $this->out->elementEnd('li');
             $this->out->elementStart('li');
             // TRANS: Field label on group edit form.

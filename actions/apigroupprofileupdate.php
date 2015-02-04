@@ -55,7 +55,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
     {
         parent::prepare($args);
 
-        $this->nickname    = common_canonical_nickname($this->trimmed('nickname'));
+        $this->nickname    = Nickname::normalize($this->trimmed('nickname'));
 
         $this->fullname    = $this->trimmed('fullname');
         $this->homepage    = $this->trimmed('homepage');
@@ -106,14 +106,9 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
 
         try {
 
-            if (!empty($this->nickname)) {
+            if (common_config('profile', 'changenick') == true && $this->group->nickname !== $this->nickname) {
                 try {
                     $this->group->nickname = Nickname::normalize($this->nickname, true);
-                } catch (NicknameTakenException $e) {
-                    // Abort only if the nickname is occupied by _another_ local group
-                    if ($e->profile->id != $this->group->id) {
-                        throw new ApiValidationException($e->getMessage());
-                    }
                 } catch (NicknameException $e) {
                     throw new ApiValidationException($e->getMessage());
                 }
