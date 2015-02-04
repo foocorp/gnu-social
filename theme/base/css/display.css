@@ -970,6 +970,10 @@ content: ":";
     content: '[';
 }
 
+.notice footer .source + .permalink.external {
+    display: none;
+}
+
 /* old school conversation style */
 
 #conversation .notices .notices {
