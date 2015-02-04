@@ -951,122 +951,122 @@ class Router
                                 array('action' => $a),
                                 array('tag' => self::REGEX_TAG));
                 }
-            } else {
-                $m->connect('', array('action' => 'startpage'));
-                $m->connect('main/public', array('action' => 'public'));
-                $m->connect('main/all', array('action' => 'networkpublic'));
-                $m->connect('rss', array('action' => 'publicrss'));
-                $m->connect('featuredrss', array('action' => 'featuredrss'));
-                $m->connect('featured/', array('action' => 'featured'));
-                $m->connect('featured', array('action' => 'featured'));
-                $m->connect('rsd.xml', array('action' => 'rsd'));
+            }
 
-                foreach (array('subscriptions', 'subscribers',
-                               'nudge', 'all', 'foaf', 'replies',
-                               'inbox', 'outbox', 'microsummary') as $a) {
-                    $m->connect(':nickname/'.$a,
-                                array('action' => $a),
-                                array('nickname' => Nickname::DISPLAY_FMT));
-                }
-                $m->connect(':nickname/subscribers/pending',
-                            array('action' => 'subqueue'),
-                            array('nickname' => Nickname::DISPLAY_FMT));
+            $m->connect('', array('action' => 'startpage'));
+            $m->connect('main/public', array('action' => 'public'));
+            $m->connect('main/all', array('action' => 'networkpublic'));
+            $m->connect('rss', array('action' => 'publicrss'));
+            $m->connect('featuredrss', array('action' => 'featuredrss'));
+            $m->connect('featured/', array('action' => 'featured'));
+            $m->connect('featured', array('action' => 'featured'));
+            $m->connect('rsd.xml', array('action' => 'rsd'));
 
-                // people tags
-
-                $m->connect(':nickname/peopletags',
-                                array('action' => 'peopletagsbyuser',
-                                      'nickname' => Nickname::DISPLAY_FMT));
-
-                $m->connect(':nickname/peopletags/private',
-                                array('action' => 'peopletagsbyuser',
-                                      'nickname' => Nickname::DISPLAY_FMT,
-                                      'private' => 1));
-
-                $m->connect(':nickname/peopletags/public',
-                                array('action' => 'peopletagsbyuser',
-                                      'nickname' => Nickname::DISPLAY_FMT,
-                                      'public' => 1));
-
-                $m->connect(':nickname/othertags',
-                                array('action' => 'peopletagsforuser',
-                                      'nickname' => Nickname::DISPLAY_FMT));
-
-                $m->connect(':nickname/peopletagsubscriptions',
-                                array('action' => 'peopletagsubscriptions',
-                                      'nickname' => Nickname::DISPLAY_FMT));
-
-                $m->connect(':tagger/all/:tag/subscribers',
-                                array('action' => 'peopletagsubscribers',
-                                      'tagger' => Nickname::DISPLAY_FMT,
-                                      'tag' => self::REGEX_TAG));
-
-                $m->connect(':tagger/all/:tag/tagged',
-                                array('action' => 'peopletagged',
-                                      'tagger' => Nickname::DISPLAY_FMT,
-                                      'tag' => self::REGEX_TAG));
-
-                $m->connect(':tagger/all/:tag/edit',
-                                array('action' => 'editpeopletag',
-                                      'tagger' => Nickname::DISPLAY_FMT,
-                                      'tag' => self::REGEX_TAG));
-
-                foreach(array('subscribe', 'unsubscribe') as $v) {
-                    $m->connect('peopletag/:id/'.$v,
-                                    array('action' => $v.'peopletag',
-                                          'id' => '[0-9]{1,64}'));
-                }
-                $m->connect('user/:tagger_id/profiletag/:id/id',
-                                array('action' => 'profiletagbyid',
-                                      'tagger_id' => '[0-9]+',
-                                      'id' => '[0-9]+'));
-
-                $m->connect(':tagger/all/:tag',
-                                array('action' => 'showprofiletag',
-                                      'tagger' => Nickname::DISPLAY_FMT,
-                                      'tag' => self::REGEX_TAG));
-
-                foreach (array('subscriptions', 'subscribers') as $a) {
-                    $m->connect(':nickname/'.$a.'/:tag',
-                                array('action' => $a),
-                                array('tag' => self::REGEX_TAG,
-                                      'nickname' => Nickname::DISPLAY_FMT));
-                }
-
-                foreach (array('rss', 'groups') as $a) {
-                    $m->connect(':nickname/'.$a,
-                                array('action' => 'user'.$a),
-                                array('nickname' => Nickname::DISPLAY_FMT));
-                }
-
-                foreach (array('all', 'replies') as $a) {
-                    $m->connect(':nickname/'.$a.'/rss',
-                                array('action' => $a.'rss'),
-                                array('nickname' => Nickname::DISPLAY_FMT));
-                }
-
-                $m->connect(':nickname/avatar',
-                            array('action' => 'avatarbynickname'),
-                            array('nickname' => Nickname::DISPLAY_FMT));
-                $m->connect(':nickname/avatar/:size',
-                            array('action' => 'avatarbynickname'),
-                            array('size' => '(|original|\d+)',
-                                  'nickname' => Nickname::DISPLAY_FMT));
-
-                $m->connect(':nickname/tag/:tag/rss',
-                            array('action' => 'userrss'),
-                            array('nickname' => Nickname::DISPLAY_FMT),
-                            array('tag' => self::REGEX_TAG));
-
-                $m->connect(':nickname/tag/:tag',
-                            array('action' => 'showstream'),
-                            array('nickname' => Nickname::DISPLAY_FMT),
-                            array('tag' => self::REGEX_TAG));
-
-                $m->connect(':nickname/rsd.xml',
-                            array('action' => 'rsd'),
+            foreach (array('subscriptions', 'subscribers',
+                           'nudge', 'all', 'foaf', 'replies',
+                           'inbox', 'outbox', 'microsummary') as $a) {
+                $m->connect(':nickname/'.$a,
+                            array('action' => $a),
                             array('nickname' => Nickname::DISPLAY_FMT));
             }
+            $m->connect(':nickname/subscribers/pending',
+                        array('action' => 'subqueue'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
+
+            // people tags
+
+            $m->connect(':nickname/peopletags',
+                            array('action' => 'peopletagsbyuser',
+                                  'nickname' => Nickname::DISPLAY_FMT));
+
+            $m->connect(':nickname/peopletags/private',
+                            array('action' => 'peopletagsbyuser',
+                                  'nickname' => Nickname::DISPLAY_FMT,
+                                  'private' => 1));
+
+            $m->connect(':nickname/peopletags/public',
+                            array('action' => 'peopletagsbyuser',
+                                  'nickname' => Nickname::DISPLAY_FMT,
+                                  'public' => 1));
+
+            $m->connect(':nickname/othertags',
+                            array('action' => 'peopletagsforuser',
+                                  'nickname' => Nickname::DISPLAY_FMT));
+
+            $m->connect(':nickname/peopletagsubscriptions',
+                            array('action' => 'peopletagsubscriptions',
+                                  'nickname' => Nickname::DISPLAY_FMT));
+
+            $m->connect(':tagger/all/:tag/subscribers',
+                            array('action' => 'peopletagsubscribers',
+                                  'tagger' => Nickname::DISPLAY_FMT,
+                                  'tag' => self::REGEX_TAG));
+
+            $m->connect(':tagger/all/:tag/tagged',
+                            array('action' => 'peopletagged',
+                                  'tagger' => Nickname::DISPLAY_FMT,
+                                  'tag' => self::REGEX_TAG));
+
+            $m->connect(':tagger/all/:tag/edit',
+                            array('action' => 'editpeopletag',
+                                  'tagger' => Nickname::DISPLAY_FMT,
+                                  'tag' => self::REGEX_TAG));
+
+            foreach(array('subscribe', 'unsubscribe') as $v) {
+                $m->connect('peopletag/:id/'.$v,
+                                array('action' => $v.'peopletag',
+                                      'id' => '[0-9]{1,64}'));
+            }
+            $m->connect('user/:tagger_id/profiletag/:id/id',
+                            array('action' => 'profiletagbyid',
+                                  'tagger_id' => '[0-9]+',
+                                  'id' => '[0-9]+'));
+
+            $m->connect(':tagger/all/:tag',
+                            array('action' => 'showprofiletag',
+                                  'tagger' => Nickname::DISPLAY_FMT,
+                                  'tag' => self::REGEX_TAG));
+
+            foreach (array('subscriptions', 'subscribers') as $a) {
+                $m->connect(':nickname/'.$a.'/:tag',
+                            array('action' => $a),
+                            array('tag' => self::REGEX_TAG,
+                                  'nickname' => Nickname::DISPLAY_FMT));
+            }
+
+            foreach (array('rss', 'groups') as $a) {
+                $m->connect(':nickname/'.$a,
+                            array('action' => 'user'.$a),
+                            array('nickname' => Nickname::DISPLAY_FMT));
+            }
+
+            foreach (array('all', 'replies') as $a) {
+                $m->connect(':nickname/'.$a.'/rss',
+                            array('action' => $a.'rss'),
+                            array('nickname' => Nickname::DISPLAY_FMT));
+            }
+
+            $m->connect(':nickname/avatar',
+                        array('action' => 'avatarbynickname'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
+            $m->connect(':nickname/avatar/:size',
+                        array('action' => 'avatarbynickname'),
+                        array('size' => '(|original|\d+)',
+                              'nickname' => Nickname::DISPLAY_FMT));
+
+            $m->connect(':nickname/tag/:tag/rss',
+                        array('action' => 'userrss'),
+                        array('nickname' => Nickname::DISPLAY_FMT),
+                        array('tag' => self::REGEX_TAG));
+
+            $m->connect(':nickname/tag/:tag',
+                        array('action' => 'showstream'),
+                        array('nickname' => Nickname::DISPLAY_FMT),
+                        array('tag' => self::REGEX_TAG));
+
+            $m->connect(':nickname/rsd.xml',
+                        array('action' => 'rsd'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
 
             $m->connect(':nickname',
                         array('action' => 'showstream'),
