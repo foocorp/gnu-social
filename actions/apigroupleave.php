@@ -80,12 +80,12 @@ class ApiGroupLeaveAction extends ApiAuthAction
     {
         parent::handle();
 
-        if (empty($this->user)) {
+        if (!$this->scoped instanceof Profile) {
             // TRANS: Client error displayed when trying to have a non-existing user leave a group.
             $this->clientError(_('No such user.'), 404);
         }
 
-        if (empty($this->group)) {
+        if (!$this->group instanceof User_group) {
             // TRANS: Client error displayed when trying to leave a group that does not exist.
             $this->clientError(_('Group not found.'), 404);
         }
@@ -93,7 +93,7 @@ class ApiGroupLeaveAction extends ApiAuthAction
         $member = new Group_member();
 
         $member->group_id   = $this->group->id;
-        $member->profile_id = $this->auth_user->id;
+        $member->profile_id = $this->scoped->id;
 
         if (!$member->find(true)) {
             // TRANS: Server error displayed when trying to leave a group the user is not a member of.
@@ -106,7 +106,7 @@ class ApiGroupLeaveAction extends ApiAuthAction
             // TRANS: Server error displayed when leaving a group failed in the database.
             // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
             $this->serverError(sprintf(_('Could not remove user %1$s from group %2$s.'),
-                                       $cur->nickname, $this->group->nickname));
+                                       $this->scoped->getNickname(), $this->group->nickname));
         }
         switch($this->format) {
         case 'xml':
