@@ -173,6 +173,8 @@ class HTMLOutputter extends XMLOutputter
      * a cluster of elements, including a <label> and an associated
      * instructions span.
      *
+     * If $attrs['type'] does not exist it will be set to 'text'.
+     *
      * @param string $id           element ID, must be unique on page
      * @param string $label        text of label for the element
      * @param string $value        value of the element, default null
@@ -180,6 +182,7 @@ class HTMLOutputter extends XMLOutputter
      * @param string $name         name of the element; if null, the id will
      *                             be used
      * @param bool   $required     HTML5 required attribute (exclude when false)
+     * @param array  $attrs        Initial attributes manually set in an array (overwritten by previous options)
      *
      * @todo add a $maxLength parameter
      * @todo add a $size parameter
@@ -187,11 +190,13 @@ class HTMLOutputter extends XMLOutputter
      * @return void
      */
 
-    function input($id, $label, $value=null, $instructions=null, $name=null, $required=false)
+    function input($id, $label, $value=null, $instructions=null, $name=null, $required=false, array $attrs=array())
     {
         $this->element('label', array('for' => $id), $label);
-        $attrs = array('type' => 'text',
-                       'id'   => $id);
+        if (!array_key_exists('type', $attrs)) {
+            $attrs['type'] = 'text';
+        }
+        $attrs['id'] = $id;
         $attrs['name'] = is_null($name) ? $id : $name;
         if (!is_null($value)) { // value can be 0 or ''
             $attrs['value'] = $value;
