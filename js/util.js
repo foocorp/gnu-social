@@ -1382,7 +1382,8 @@ var SN = { // StatusNet
          *
          * @param {String} tag
          */
-        switchInputFormTab: function (tag, setFocus=true) {
+        switchInputFormTab: function (tag, setFocus) {
+            if (typeof setFocus === 'undefined') { setFocus = True; }
             // The one that's current isn't current anymore
             $('.input_form_nav_tab.current').removeClass('current');
             if (tag != null) {
