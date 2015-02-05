@@ -444,23 +444,6 @@ user: If set, the daemons will try to change their effective user ID
 group: If set, the daemons will try to change their effective group ID
     to this named group. Again, a name, not a numerical ID.
 
-memcached
----------
-
-You can get a significant boost in performance by caching some
-database data in memcached <http://www.danga.com/memcached/>.
-
-enabled: Set to true to enable. Default false.
-server: a string with the hostname of the memcached server. Can also
-    be an array of hostnames, if you've got more than one server.
-base: memcached uses key-value pairs to store data. We build long,
-    funny-looking keys to make sure we don't have any conflicts. The
-    base of the key is usually a simplified version of the site name
-    (like "Identi.ca" => "identica"), but you can overwrite this if
-    you need to. You can safely ignore it if you only have one
-    StatusNet site using your memcached server.
-port: Port to connect to; defaults to 11211.
-
 emailpost
 ---------
 
@@ -610,7 +593,7 @@ sessions
 Session handling.
 
 handle: boolean. Whether we should register our own PHP session-handling
-    code (using the database and memcache if enabled). Defaults to false.
+    code (using the database and cache layers if enabled). Defaults to false.
     Setting this to true makes some sense on large or multi-server
     sites, but it probably won't hurt for smaller ones, either.
 debug: whether to output debugging info for session storage. Can help
@@ -765,11 +748,10 @@ router
 We use a router class for mapping URLs to code. This section controls
 how that router works.
 
-cache: whether to cache the router in memcache (or another caching
-    mechanism). Defaults to true, but may be set to false for
-    developers (who might be actively adding pages, so won't want the
-    router cached) or others who see strange behavior. You're unlikely
-    to need this unless you're a developer.
+cache: whether to cache the router in cache layers. Defaults to true,
+    but may be set to false for developers (who might be actively
+    adding pages, so won't want the router cached) or others who see
+    strange behavior. You're unlikely to need this unless developing..
 
 http
 ----
