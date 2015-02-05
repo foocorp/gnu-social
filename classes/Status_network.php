@@ -113,7 +113,7 @@ class Status_network extends Safe_DataObject
     }
 
     static function cacheKey($k, $v) {
-        return 'statusnet:' . self::$base . ':status_network:'.$k.':'.$v;
+        return 'gnusocial:' . self::$base . ':status_network:'.$k.':'.$v;
     }
 
     static function memGet($k, $v)
