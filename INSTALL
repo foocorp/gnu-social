@@ -54,10 +54,9 @@ Better performance
 
 For some functionality, you will also need the following extensions:
 
-- memcache      A client for the memcached server, which caches database
-                information in volatile memory. This is important for
-                adequate performance on high-traffic sites. You will
-                also need a memcached server to store the data in.
+- opcache       Improves performance a _lot_. Included in PHP, must be
+                enabled manually in php.ini for most distributions. Find
+                and set at least:  opcache.enable=1
 - mailparse     Efficient parsing of email requires this extension.
                 Submission by email or SMS-over-email uses this.
 - sphinx        A client for the sphinx server, an alternative to MySQL
