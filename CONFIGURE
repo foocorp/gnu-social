@@ -538,6 +538,8 @@ in php.ini to be large enough to handle your upload. In httpd.conf
 (if you're using apache), check that the LimitRequestBody directive isn't
 set too low (it's optional, so it may not be there at all).
 
+process_links: follow redirects and save all available file information
+    (mimetype, date, size, oembed, etc.). Defaults to true.
 file_quota: maximum size for a single file upload in bytes. A user can send
     any amount of notices with attachments as long as each attachment
     is smaller than file_quota.
