@@ -86,7 +86,7 @@ class FeedSub extends Managed_DataObject
                 'sub_state' => array('type' => 'enum("subscribe","active","unsubscribe","inactive","nohub")', 'not null' => true, 'description' => 'subscription state'),
                 'sub_start' => array('type' => 'datetime', 'description' => 'subscription start'),
                 'sub_end' => array('type' => 'datetime', 'description' => 'subscription end'),
-                'last_update' => array('type' => 'datetime', 'not null' => true, 'description' => 'when this record was last updated'),
+                'last_update' => array('type' => 'datetime', 'description' => 'when this record was last updated'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
