@@ -58,7 +58,7 @@ class HubSub extends Managed_DataObject
                 'topic' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'HubSub topic'),
                 'callback' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'HubSub callback'),
                 'secret' => array('type' => 'text', 'description' => 'HubSub stored secret'),
-                'lease' => array('type' => 'int', 'not null' => true, 'description' => 'HubSub leasetime'),
+                'lease' => array('type' => 'int', 'description' => 'HubSub leasetime'),
                 'sub_start' => array('type' => 'datetime', 'description' => 'subscription start'),
                 'sub_end' => array('type' => 'datetime', 'description' => 'subscription end'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
