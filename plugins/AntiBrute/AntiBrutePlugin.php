@@ -23,7 +23,8 @@ class AntiBrutePlugin extends Plugin {
         }
 
         // This probably needs some work. For example with IPv6 you can easily generate new IPs...
-        $this->client_ip = common_client_ip()[0] ?: common_client_ip()[1];   // [0] is proxy, [1] should be the real IP
+        $client_ip = common_client_ip();
+        $this->client_ip = $client_ip[0] ?: $client_ip[1];   // [0] is proxy, [1] should be the real IP
         $this->failed_attempts = (int)$this->unauthed_user->getPref(self::FAILED_LOGIN_IP_SECTION, $this->client_ip);
         switch (true) {
         case $this->failed_attempts >= 5:
