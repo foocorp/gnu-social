@@ -56,6 +56,7 @@ class Attention extends Managed_DataObject
         $att->notice_id = $notice->getID();
         $att->profile_id = $profile->getID();
         $att->reason = $reason;
+        $att->created = common_sql_now();
         $result = $att->insert();
 
         if ($result === false) {
