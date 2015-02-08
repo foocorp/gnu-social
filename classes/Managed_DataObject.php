@@ -353,6 +353,9 @@ abstract class Managed_DataObject extends Memcached_DataObject
             }
             $orig->decache();
             $this->encache();
+
+            // commit our db transaction since we won't reach the COMMIT below
+            $this->query('COMMIT');
             return true;
         }
 
