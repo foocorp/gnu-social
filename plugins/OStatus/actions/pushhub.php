@@ -133,54 +133,61 @@ class PushHubAction extends Action
      * user or group Atom feeds.
      *
      * @param string $feed URL
-     * @return boolean true if it matches
+     * @return boolean true if it matches, false if not a recognized local feed
+     * @throws exception if local entity does not exist
      */
-    function recognizedFeed($feed)
+    protected function recognizedFeed($feed)
     {
         $matches = array();
+        // Simple mapping to local ID for user or group
         if (preg_match('!/(\d+)\.atom$!', $feed, $matches)) {
             $id = $matches[1];
             $params = array('id' => $id, 'format' => 'atom');
-            $userFeed = common_local_url('ApiTimelineUser', $params);
-            $groupFeed = common_local_url('ApiTimelineGroup', $params);
 
-            if ($feed == $userFeed) {
+            // Double-check against locally generated URLs
+            switch ($feed) {
+            case common_local_url('ApiTimelineUser', $params):
                 $user = User::getKV('id', $id);
-                if (!$user) {
+                if (!$user instanceof User) {
                     // TRANS: Client exception. %s is a feed URL.
-                    throw new ClientException(sprintt(_m('Invalid hub.topic "%s". User does not exist.'),$feed));
-                } else {
-                    return true;
+                    throw new ClientException(sprintf(_m('Invalid hub.topic "%s". User does not exist.'),$feed));
                 }
-            }
-            if ($feed == $groupFeed) {
-                $user = User_group::getKV('id', $id);
-                if (!$user) {
+                return true;
+
+            case common_local_url('ApiTimelineGroup', $params):
+                $group = Local_group::getKV('group_id', $id);
+                if (!$group instanceof Local_group) {
                     // TRANS: Client exception. %s is a feed URL.
-                    throw new ClientException(sprintf(_m('Invalid hub.topic "%s". Group does not exist.'),$feed));
-                } else {
-                    return true;
+                    throw new ClientException(sprintf(_m('Invalid hub.topic "%s". Local_group does not exist.'),$feed));
                 }
+                return true;
             }
-        } else if (preg_match('!/(\d+)/lists/(\d+)/statuses\.atom$!', $feed, $matches)) {
+            common_debug("Feed was not recognized by any local User or Group Atom feed URLs: {$feed}");
+            return false;
+        }
+
+        // Profile lists are unique per user, so we need both IDs
+        if (preg_match('!/(\d+)/lists/(\d+)/statuses\.atom$!', $feed, $matches)) {
             $user = $matches[1];
             $id = $matches[2];
             $params = array('user' => $user, 'id' => $id, 'format' => 'atom');
-            $listFeed = common_local_url('ApiTimelineList', $params);
 
-            if ($feed == $listFeed) {
+            // Double-check against locally generated URLs
+            switch ($feed) {
+            case common_local_url('ApiTimelineList', $params):
                 $list = Profile_list::getKV('id', $id);
                 $user = User::getKV('id', $user);
-                if (!$list || !$user || $list->tagger != $user->id) {
+                if (!$list instanceof Profile_list || !$user instanceof User || $list->tagger != $user->id) {
                     // TRANS: Client exception. %s is a feed URL.
                     throw new ClientException(sprintf(_m('Invalid hub.topic %s; list does not exist.'),$feed));
-                } else {
-                    return true;
                 }
+                return true;
             }
-            common_log(LOG_DEBUG, "Not a user, group or people tag feed? $feed $userFeed $groupFeed $listFeed");
+            common_debug("Feed was not recognized by any local Profile_list Atom feed URL: {$feed}");
+            return false;
         }
-        common_log(LOG_DEBUG, "LOST $feed");
+
+        common_debug("Unknown feed URL structure, can't match against local user, group or profile_list: {$feed}");
         return false;
     }
 
