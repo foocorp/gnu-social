@@ -3,8 +3,7 @@
 .bookmark-tags li { display: inline; }
 
 .bookmark h3 {
-    margin: 0px 0px 8px 0px;
-    line-height: 3em;
+    margin: 4px 0px 8px 0px;
 }
 
 .bookmark-notice-count {
@@ -42,7 +41,7 @@
 
 .bookmark-tags {
     clear: both;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     line-height: 1.6em;
 }
 

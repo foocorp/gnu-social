@@ -536,6 +536,12 @@ class BookmarkPlugin extends MicroAppPlugin
         $replies = $stored->getReplies();
         $tags = $stored->getTags();
 
+        if (!empty($nb->description)) {
+            $out->element('p',
+                          array('class' => 'bookmark-description'),
+                          $nb->description);
+        }
+
         if (!empty($replies) || !empty($tags)) {
 
             $out->elementStart('ul', array('class' => 'bookmark-tags'));
@@ -569,10 +575,5 @@ class BookmarkPlugin extends MicroAppPlugin
             $out->elementEnd('ul');
         }
 
-        if (!empty($nb->description)) {
-            $out->element('p',
-                          array('class' => 'bookmark-description'),
-                          $nb->description);
-        }
     }
 }

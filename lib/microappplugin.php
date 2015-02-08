@@ -104,8 +104,7 @@ abstract class MicroAppPlugin extends ActivityHandlerPlugin
 
         $adapter->showNotice();
         $adapter->showNoticeAttachments();
-        $adapter->showNoticeInfo();
-        $adapter->showNoticeOptions();
+        $adapter->showNoticeFooter();
 
         return false;
     }
