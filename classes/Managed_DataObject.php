@@ -356,6 +356,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
 
             // commit our db transaction since we won't reach the COMMIT below
             $this->query('COMMIT');
+            // @FIXME return true only if something changed (otherwise 0)
             return true;
         }
 
@@ -387,6 +388,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
 
         // commit our db transaction
         $this->query('COMMIT');
+        // @FIXME return true only if something changed (otherwise 0)
         return $result;
     }
 }
