@@ -52,9 +52,7 @@ service, Identi.ca <http://identi.ca/>.
 It is shared with you in hope that you too make an
 service available to your users. To learn more,
 please see the Open Software Service Definition
-1.1:
-
-    http://www.opendefinition.org/ossd
+1.1: <http://www.opendefinition.org/ossd>
 
 ### License
 
@@ -82,16 +80,16 @@ License along with this program, in the file "COPYING".  If not, see
 
 Documentation in the /doc-src/ directory is available under the
 Creative Commons Attribution 3.0 Unported license, with attribution to
-"GNU social". See http://creativecommons.org/licenses/by/3.0/ for details.
+"GNU social". See <http://creativecommons.org/licenses/by/3.0/> for details.
 
 CSS and images in the /theme/ directory are available under the
 Creative Commons Attribution 3.0 Unported license, with attribution to
-"GNU social". See http://creativecommons.org/licenses/by/3.0/ for details.
+"GNU social". See <http://creativecommons.org/licenses/by/3.0/> for details.
 
 Our understanding and intention is that if you add your own theme that
 uses only CSS and images, those files are not subject to the copyleft
 requirements of the Affero General Public License 3.0. See
-http://wordpress.org/news/2009/07/themes-are-gpl-too/ . This is not
+<http://wordpress.org/news/2009/07/themes-are-gpl-too/>. This is not
 legal advice; consult your lawyer.
 
 Additional library software has been made available in the 'extlib'
@@ -108,7 +106,7 @@ All 1.1.1 sites should upgrade to this version.
 
 So far it includes the following changes:
 
-- XSS security fix (thanks Simon Waters, https://www.surevine.com/ )
+- XSS security fix (thanks Simon Waters, <https://www.surevine.com/> )
 
 Upgrades from _StatusNet_ 1.1.1 will also experience these improvements:
 
@@ -157,13 +155,13 @@ To keep it up-to-date, use 'git pull'. Watch for conflicts!
 There are several ways to get more information about GNU social.
 
 * The #social IRC channel on freenode.net <http://www.freenode.net/>.
-* The GNU social website
-* Following us on GNU social -- http://quitter.se/gnusocial
+* The GNU social website <http://gnu.io/social/>
+* Following us on GNU social -- <http://quitter.se/gnusocial>
 
 * GNU social has a bug tracker for any defects you may find, or ideas for
-  making things better. http://bugz.foocorp.net/
+  making things better. <http://bugz.foocorp.net/>
 * Patches are welcome, either on the bug tracker or our repository at
-  Gitorious. https://gitorious.org/social/mainline
+  Gitorious. <https://gitorious.org/social/mainline>
 
 Credits
 =======
