@@ -66,6 +66,7 @@ class Ostatus_source extends Managed_DataObject
         $osource->notice_id = $notice->id;
         $osource->profile_uri = $oprofile->uri;
         $osource->method = $method;
+        $osource->created = common_sql_now();
         if ($osource->insert()) {
            return true;
         } else {
