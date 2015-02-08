@@ -383,6 +383,7 @@ function common_rememberme($user=null)
 
     if (!$result) {
         common_log_db_error($rm, 'INSERT', __FILE__);
+        $rm->query('ROLLBACK');
         return false;
     }
 
