@@ -277,6 +277,14 @@ class EditpeopletagAction extends Action
             return;
         }
 
+        // We tested $delete && !$confirm earlier so confirmation is required before getting here
+        if ($delete) {
+            // This might take quite a bit of time.
+            $this->peopletag->delete();
+            // send home.
+            common_redirect(common_local_url('all', array('nickname' => $this->tagger->getNickname())), 303);
+        }
+
         $this->peopletag->query('BEGIN');
 
         $orig = clone($this->peopletag);
@@ -299,13 +307,6 @@ class EditpeopletagAction extends Action
 
         if ($set_private && $confirm) {
             Profile_tag_subscription::cleanup($this->peopletag);
-        }
-
-        if ($delete) {
-            // This might take quite a bit of time.
-            $this->peopletag->delete();
-            // send home.
-            common_redirect(common_local_url('all', array('nickname' => $this->tagger->nickname)), 303);
         }
 
         if ($tag != $orig->tag) {
