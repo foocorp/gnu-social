@@ -183,7 +183,9 @@ class SyncTwitterFriendsDaemon extends ParallelizingDaemon
                            "of Twitter user $flink->foreign_id friends.");
                 continue;
             } else {
-                $friends = array_merge($friends, $more_friends);
+                if (is_array($more_friends)) {
+                    $friends = array_merge($friends, $more_friends);
+                }
             }
         }
 
