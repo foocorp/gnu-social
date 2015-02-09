@@ -1493,7 +1493,7 @@ class Notice extends Managed_DataObject
         foreach (array_unique($group_ids) as $id) {
             $group = User_group::getKV('id', $id);
             if ($group instanceof User_group) {
-                common_log(LOG_ERR, "Local delivery to group id $id, $group->nickname");
+                common_log(LOG_DEBUG, "Local delivery to group id $id, $group->nickname");
                 $result = $this->addToGroupInbox($group);
                 if (!$result) {
                     common_log_db_error($gi, 'INSERT', __FILE__);
