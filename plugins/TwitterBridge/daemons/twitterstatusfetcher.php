@@ -187,7 +187,7 @@ class TwitterStatusFetcher extends ParallelizingDaemon
         }
 
         if (empty($timeline)) {
-            common_log(LOG_WARNING, $this->name() .  " - Empty '" . $timelineUri . "' timeline.");
+            common_log(LOG_DEBUG, $this->name() .  " - Empty '" . $timelineUri . "' timeline.");
             return;
         }
 
