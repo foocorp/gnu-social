@@ -73,6 +73,10 @@ class NewnoticeAction extends FormAction
                 $this->formOpts[$opt] = $this->trimmed($opt);
             }
         }
+
+        if ($this->trimmed('content')) {
+            $this->formOpts['content'] = $this->trimmed('content');
+        }
     }
 
     /**
