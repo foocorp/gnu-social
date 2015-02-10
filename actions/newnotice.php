@@ -73,6 +73,10 @@ class NewnoticeAction extends FormAction
                 $this->formOpts[$opt] = $this->trimmed($opt);
             }
         }
+
+        // Backwards compatibility for "share this" widget things.
+        // If no 'content', use 'status_textarea'
+        $this->formOpts['content'] = $this->trimmed('content') ?: $this->trimmed('status_textarea');
     }
 
     /**
