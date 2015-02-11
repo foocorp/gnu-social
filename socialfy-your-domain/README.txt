@@ -24,7 +24,7 @@ $s = "";
 
 This can be anything you like...
 
-$s = "johnny-five";
+$s = "johnny5";
 
 or 
 
@@ -32,23 +32,33 @@ $s = "12345";
 
 It really doesn't matter too much.
 
+
 Step 3
+======
+
+Edit the .well-known/host-meta file and replace all occurrences of
+"example.com" with your domain name.
+
+Step 4
 ======
 
 For each user on your site, and this might only be you...
 
-Make a copy of the example@example.com.xml file so that it's called...
+In the xrd directory, make a copy of the example@example.com.xml file
+so that it's called...
 
      yoursecretusername@domain.com.xml
 
-     So, if your secret is 'johnny5' and your name is ben and your
-     domain is titanictoycorp.biz, your file should be called
-     johnny5ben@titanictoycorp.biz.xml
+So, if your secret from step 2 is 'johnny5' and your name is 'ben' and
+your domain is 'titanictoycorp.biz', your file should be called
+johnny5ben@titanictoycorp.biz.xml
 
-Finally, edit the file to point at your account on your social
-site. If you are the only user, then you probably don't need to worry
-about user/1 as this will be you. For multi user sites, the user ID is
-on the profile page.
+Then edit the file, replacing "social.example.com" with your GNU
+social instance's base path, and change the user ID number (and
+nickname for the FOAF link) to that of your account on your social
+site. If you don't know your user ID number, you can see this on your
+GNU social profile page by looking at the destination URLs in the
+Feeds links.
 
 Finally
 =======
