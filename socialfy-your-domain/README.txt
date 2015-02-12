@@ -15,6 +15,9 @@ they load at:
 
      (Remember the . at the beginning of this one)
 
+NOTE: If you're using https, make sure each instance of http:// for
+      your own domain ("example.com") is replaced with https://
+
 Step 2
 ======
 
