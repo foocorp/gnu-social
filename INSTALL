@@ -28,7 +28,7 @@ run correctly.
                 section on 'Queues and daemons' for more information.
 - MariaDB 5+    GNU Social uses, by default, a MariaDB server for data
                 storage. Versions 5.x and 10.x have both reportedly
-                worked well. It is also possible to run MySQL 5.x.
+                worked well. It is also possible to run MySQL 5.5+.
 - Web server    Apache, lighttpd and nginx will all work. CGI mode is
                 recommended and also some variant of 'suexec' (or a
                 proper setup php-fpm pool)
