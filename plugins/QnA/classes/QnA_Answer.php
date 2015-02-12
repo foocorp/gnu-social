@@ -67,24 +67,25 @@ class QnA_Answer extends Managed_DataObject
                 'id' => array(
                     'type'     => 'char',
                     'length'   => 36,
-                    'not null' => true, 'description' => 'UUID of the response'),
-                    'uri'      => array(
-                        'type'        => 'varchar',
-                        'length'      => 255,
-                        'not null'    => true,
-                        'description' => 'UUID to the answer notice'
-                    ),
-                    'question_id' => array(
-                        'type'        => 'char',
-                        'length'      => 36,
-                        'not null'    => true,
-                        'description' => 'UUID of question being responded to'
-                    ),
-                    'content'    => array('type' => 'text'), // got a better name?
-                    'best'       => array('type' => 'int', 'size' => 'tiny'),
-                    'revisions'  => array('type' => 'int'),
-                    'profile_id' => array('type' => 'int'),
-                    'created'    => array('type' => 'datetime', 'not null' => true),
+                    'not null' => true, 'description' => 'UUID of the response',
+                ),
+                'uri'      => array(
+                    'type'        => 'varchar',
+                    'length'      => 255,
+                    'not null'    => true,
+                    'description' => 'UUID to the answer notice',
+                ),
+                'question_id' => array(
+                    'type'        => 'char',
+                    'length'      => 36,
+                    'not null'    => true,
+                    'description' => 'UUID of question being responded to',
+                ),
+                'content'    => array('type' => 'text'), // got a better name?
+                'best'       => array('type' => 'int', 'size' => 'tiny'),
+                'revisions'  => array('type' => 'int'),
+                'profile_id' => array('type' => 'int'),
+                'created'    => array('type' => 'datetime', 'not null' => true),
             ),
             'primary key' => array('id'),
             'unique keys' => array(
