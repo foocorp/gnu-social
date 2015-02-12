@@ -161,12 +161,6 @@ address a {
 }
 
 
-#core .h-card .u-photo {
-    float: left;
-    margin-right: 8px;
-    margin-left: 4px;
-}
-
 #aside_primary_wrapper {
     background-color: transparent;
 }
@@ -598,6 +592,7 @@ ul.profile_list li {
 }
 
 .profile_list .h-card .u-photo {
+    margin-left: 10px;
     margin-right: 10px;
 }
 
