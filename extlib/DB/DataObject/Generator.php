@@ -15,7 +15,7 @@
  * @author     Alan Knowles <alan@akbkhome.com>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS: $Id: Generator.php 327926 2012-10-08 02:42:09Z alan_k $
+ * @version    CVS: $Id: Generator.php 315531 2011-08-26 02:21:29Z alan_k $
  * @link       http://pear.php.net/package/DB_DataObject
  */
  
@@ -1349,6 +1349,9 @@ class DB_DataObject_Generator extends DB_DataObject
             $defs =  $__DB->tableInfo($quotedTable);
         } else {
             $defs =  $__DB->reverse->tableInfo($quotedTable);
+            if (PEAR::isError($defs)) {
+                return $defs;
+            }
             foreach ($defs as $k => $v) {
                 if (!isset($defs[$k]['length'])) {
                     continue;
@@ -1357,12 +1360,12 @@ class DB_DataObject_Generator extends DB_DataObject
             }
         }
         
-         
-        
-        
         if (PEAR::isError($defs)) {
             return $defs;
-        }
+        } 
+        
+        
+        
         if (@$_DB_DATAOBJECT['CONFIG']['debug'] > 2) {
             $this->debug("getting def for $database/$table",'fillTable');
             $this->debug(print_r($defs,true),'defs');
