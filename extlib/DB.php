@@ -5,7 +5,7 @@
 /**
  * Database independent query interface
  *
- * PHP versions 4 and 5
+ * PHP version 5
  *
  * LICENSE: This source file is subject to version 3.0 of the PHP license
  * that is available through the world-wide-web at the following URI:
@@ -20,7 +20,7 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id: DB.php,v 1.88 2007/08/12 05:27:25 aharvey Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -426,12 +426,12 @@ define('DB_PORTABILITY_ALL', 63);
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.13
+ * @version    Release: 1.8.2
  * @link       http://pear.php.net/package/DB
  */
 class DB
 {
-    // {{{ &factory()
+    // {{{ factory()
 
     /**
      * Create a new DB object for the specified database type but don't
@@ -444,7 +444,7 @@ class DB
      *
      * @see DB_common::setOption()
      */
-    function &factory($type, $options = false)
+    public static function factory($type, $options = false)
     {
         if (!is_array($options)) {
             $options = array('persistent' => $options);
@@ -480,7 +480,7 @@ class DB
     }
 
     // }}}
-    // {{{ &connect()
+    // {{{ connect()
 
     /**
      * Create a new DB object including a connection to the specified database
@@ -495,7 +495,7 @@ class DB
      *     'portability' => DB_PORTABILITY_ALL,
      * );
      *
-     * $db =& DB::connect($dsn, $options);
+     * $db = DB::connect($dsn, $options);
      * if (PEAR::isError($db)) {
      *     die($db->getMessage());
      * }
@@ -515,7 +515,7 @@ class DB
      *
      * @uses DB::parseDSN(), DB_common::setOption(), PEAR::isError()
      */
-    function &connect($dsn, $options = array())
+    public static function connect($dsn, $options = array())
     {
         $dsninfo = DB::parseDSN($dsn);
         $type = $dsninfo['phptype'];
@@ -539,7 +539,8 @@ class DB
         if (!class_exists($classname)) {
             $tmp = PEAR::raiseError(null, DB_ERROR_NOT_FOUND, null, null,
                                     "Unable to include the DB/{$type}.php"
-                                    . " file for '$dsn'",
+                                    . " file for '"
+                                    . DB::getDSNString($dsn, true) . "'",
                                     'DB_Error', true);
             return $tmp;
         }
@@ -576,7 +577,7 @@ class DB
      */
     function apiVersion()
     {
-        return '1.7.13';
+        return '1.8.2';
     }
 
     // }}}
@@ -589,9 +590,9 @@ class DB
      *
      * @return bool  whether $value is DB_Error object
      */
-    function isError($value)
+    public static function isError($value)
     {
-        return is_a($value, 'DB_Error');
+        return is_object($value) && is_a($value, 'DB_Error');		
     }
 
     // }}}
@@ -604,7 +605,7 @@ class DB
      *
      * @return bool  whether $value is a DB_<driver> object
      */
-    function isConnection($value)
+    public static function isConnection($value)
     {
         return (is_object($value) &&
                 is_subclass_of($value, 'db_common') &&
@@ -625,7 +626,7 @@ class DB
      *
      * @return boolean  whether $query is a data manipulation query
      */
-    function isManip($query)
+    public static function isManip($query)
     {
         $manips = 'INSERT|UPDATE|DELETE|REPLACE|'
                 . 'CREATE|DROP|'
@@ -649,7 +650,7 @@ class DB
      * @return string  the error message or false if the error code was
      *                  not recognized
      */
-    function errorMessage($value)
+    public static function errorMessage($value)
     {
         static $errorMessages;
         if (!isset($errorMessages)) {
@@ -730,7 +731,7 @@ class DB
      *  + username: User name for login
      *  + password: Password for login
      */
-    function parseDSN($dsn)
+    public static function parseDSN($dsn)
     {
         $parsed = array(
             'phptype'  => false,
@@ -859,7 +860,7 @@ class DB
      * @param boolean true to hide the password, false to include it
      * @return string
      */
-    function getDSNString($dsn, $hidePassword) {
+    public static function getDSNString($dsn, $hidePassword) {
         /* Calling parseDSN will ensure that we have all the array elements
          * defined, and means that we deal with strings and array in the same
          * manner. */
@@ -940,7 +941,7 @@ class DB
  * @author     Stig Bakken <ssb@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.13
+ * @version    Release: 1.8.2
  * @link       http://pear.php.net/package/DB
  */
 class DB_Error extends PEAR_Error
@@ -987,7 +988,7 @@ class DB_Error extends PEAR_Error
  * @author     Stig Bakken <ssb@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.13
+ * @version    Release: 1.8.2
  * @link       http://pear.php.net/package/DB
  */
 class DB_result
@@ -1452,7 +1453,7 @@ class DB_result
  * @author     Stig Bakken <ssb@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.13
+ * @version    Release: 1.8.2
  * @link       http://pear.php.net/package/DB
  * @see        DB_common::setFetchMode()
  */

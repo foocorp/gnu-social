@@ -6,7 +6,7 @@
  * The PEAR DB driver for PHP's oci8 extension
  * for interacting with Oracle databases
  *
- * PHP versions 4 and 5
+ * PHP version 5
  *
  * LICENSE: This source file is subject to version 3.0 of the PHP license
  * that is available through the world-wide-web at the following URI:
@@ -20,7 +20,7 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id: oci8.php,v 1.116 2007/11/28 02:22:39 aharvey Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -47,7 +47,7 @@ require_once 'DB/common.php';
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.14RC1
+ * @version    Release: 1.8.2
  * @link       http://pear.php.net/package/DB
  */
 class DB_oci8 extends DB_common
@@ -452,6 +452,7 @@ class DB_oci8 extends DB_common
         if (isset($this->prepare_types[(int)$stmt])) {
             unset($this->prepare_types[(int)$stmt]);
             unset($this->manip_query[(int)$stmt]);
+            unset($this->_prepared_queries[(int)$stmt]);
         } else {
             return false;
         }
@@ -670,7 +671,8 @@ class DB_oci8 extends DB_common
                 $tmp = $this->oci8RaiseError($stmt);
                 return $tmp;
             }
-            $this->last_query = preg_replace("/:bind$i/",$this->quoteSmart($data[$key]),$this->last_query,1);
+            $this->last_query = preg_replace("/:bind$i(?!\d)/",
+                    $this->quoteSmart($data[$key]), $this->last_query, 1);
             $i++;
         }
         if ($this->autocommit) {

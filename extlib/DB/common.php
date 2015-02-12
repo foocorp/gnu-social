@@ -5,7 +5,7 @@
 /**
  * Contains the DB_common base class
  *
- * PHP versions 4 and 5
+ * PHP version 5
  *
  * LICENSE: This source file is subject to version 3.0 of the PHP license
  * that is available through the world-wide-web at the following URI:
@@ -20,7 +20,7 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id: common.php,v 1.144 2007/11/26 22:54:03 aharvey Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -42,7 +42,7 @@ require_once 'PEAR.php';
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.14RC1
+ * @version    Release: 1.8.2
  * @link       http://pear.php.net/package/DB
  */
 class DB_common extends PEAR
@@ -204,7 +204,7 @@ class DB_common extends PEAR
     function __wakeup()
     {
         if ($this->was_connected) {
-            $this->connect($this->dsn, $this->options);
+            $this->connect($this->dsn, $this->options['persistent']);
         }
     }
 
@@ -261,7 +261,7 @@ class DB_common extends PEAR
      */
     function quoteString($string)
     {
-        $string = $this->quote($string);
+        $string = $this->quoteSmart($string);
         if ($string{0} == "'") {
             return substr($string, 1, -1);
         }
@@ -284,8 +284,7 @@ class DB_common extends PEAR
      */
     function quote($string = null)
     {
-        return ($string === null) ? 'NULL'
-                                  : "'" . str_replace("'", "''", $string) . "'";
+        return $this->quoteSmart($string);
     }
 
     // }}}
@@ -1249,7 +1248,7 @@ class DB_common extends PEAR
             return $query;
         }
         $result = $this->query($query, $params);
-        if (is_a($result, 'DB_result')) {
+        if (is_object($result) && is_a($result, 'DB_result')) {
             $result->setOption('limit_from', $from);
             $result->setOption('limit_count', $count);
         }
