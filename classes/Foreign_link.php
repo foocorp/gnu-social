@@ -13,7 +13,7 @@ class Foreign_link extends Managed_DataObject
     public $user_id;                         // int(4)  primary_key not_null
     public $foreign_id;                      // bigint(8)  primary_key not_null unsigned
     public $service;                         // int(4)  primary_key not_null
-    public $credentials;                     // varchar(255)
+    public $credentials;                     // varchar(191)   not 255 because utf8mb4 takes more space
     public $noticesync;                      // tinyint(1)   not_null default_1
     public $friendsync;                      // tinyint(1)   not_null default_2
     public $profilesync;                     // tinyint(1)   not_null default_1
@@ -32,7 +32,7 @@ class Foreign_link extends Managed_DataObject
                 'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'link to user on this system, if exists'),
                 'foreign_id' => array('type' => 'int', 'size' => 'big', 'unsigned' => true, 'not null' => true, 'description' => 'link to user on foreign service, if exists'),
                 'service' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to service'),
-                'credentials' => array('type' => 'varchar', 'length' => 255, 'description' => 'authc credentials, typically a password'),
+                'credentials' => array('type' => 'varchar', 'length' => 191, 'description' => 'authc credentials, typically a password'),
                 'noticesync' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 1, 'description' => 'notice synchronization, bit 1 = sync outgoing, bit 2 = sync incoming, bit 3 = filter local replies'),
                 'friendsync' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 2, 'description' => 'friend synchronization, bit 1 = sync outgoing, bit 2 = sync incoming'),
                 'profilesync' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 1, 'description' => 'profile synchronization, bit 1 = sync outgoing, bit 2 = sync incoming'),

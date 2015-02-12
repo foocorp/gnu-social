@@ -734,7 +734,7 @@ class Memcached_DataObject extends Safe_DataObject
         return $string;
     }
 
-    // We overload so that 'SET NAMES "utf8"' is called for
+    // We overload so that 'SET NAMES "utf8mb4"' is called for
     // each connection
 
     function _connect()
@@ -784,9 +784,9 @@ class Memcached_DataObject extends Safe_DataObject
                 $conn = $DB->connection;
                 if (!empty($conn)) {
                     if ($DB instanceof DB_mysqli || $DB instanceof MDB2_Driver_mysqli) {
-                        mysqli_set_charset($conn, 'utf8');
+                        mysqli_set_charset($conn, 'utf8mb4');
                     } else if ($DB instanceof DB_mysql || $DB instanceof MDB2_Driver_mysql) {
-                        mysql_set_charset('utf8', $conn);
+                        mysql_set_charset('utf8mb4', $conn);
                     }
                 }
             }

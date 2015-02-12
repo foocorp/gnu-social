@@ -13,8 +13,8 @@ class User_openid extends Managed_DataObject
     /* the code below is auto generated do not remove the above tag */
 
     public $__table = 'user_openid';                     // table name
-    public $canonical;                       // varchar(255)  primary_key not_null
-    public $display;                         // varchar(255)  unique_key not_null
+    public $canonical;                       // varchar(191)  primary_key not_null
+    public $display;                         // varchar(191)  unique_key not_null
     public $user_id;                         // int(4)   not_null
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -26,8 +26,8 @@ class User_openid extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'canonical' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'OpenID canonical string'),
-                'display' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'OpenID display string'),
+                'canonical' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'OpenID canonical string'),
+                'display' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'OpenID display string'),
                 'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'User ID for OpenID owner'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),

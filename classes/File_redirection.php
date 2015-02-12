@@ -29,7 +29,7 @@ class File_redirection extends Managed_DataObject
     /* the code below is auto generated do not remove the above tag */
 
     public $__table = 'file_redirection';                // table name
-    public $url;                             // varchar(255)  primary_key not_null
+    public $url;                             // varchar(191)  primary_key not_null   not 255 because utf8mb4 takes more space
     public $file_id;                         // int(4)
     public $redirections;                    // int(4)
     public $httpcode;                        // int(4)
@@ -42,7 +42,7 @@ class File_redirection extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'url' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'short URL (or any other kind of redirect) for file (id)'),
+                'url' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'short URL (or any other kind of redirect) for file (id)'),
                 'file_id' => array('type' => 'int', 'description' => 'short URL for what URL/file'),
                 'redirections' => array('type' => 'int', 'description' => 'redirect count'),
                 'httpcode' => array('type' => 'int', 'description' => 'HTTP status code (20x, 30x, etc.)'),

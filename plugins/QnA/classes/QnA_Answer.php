@@ -48,7 +48,7 @@ class QnA_Answer extends Managed_DataObject
 
     public $__table = 'qna_answer'; // table name
     public $id;          // char(36) primary key not null -> UUID
-    public $uri;         // varchar(255)
+    public $uri;         // varchar(191)   not 255 because utf8mb4 takes more space
     public $question_id; // char(36) -> question.id UUID
     public $profile_id;  // int -> question.id
     public $best;        // (boolean) int -> whether the question asker has marked this as the best answer
@@ -71,7 +71,7 @@ class QnA_Answer extends Managed_DataObject
                 ),
                 'uri'      => array(
                     'type'        => 'varchar',
-                    'length'      => 255,
+                    'length'      => 191,
                     'not null'    => true,
                     'description' => 'UUID to the answer notice',
                 ),

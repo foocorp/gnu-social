@@ -31,8 +31,8 @@ class Profile_prefs extends Managed_DataObject
 {
     public $__table = 'profile_prefs';       // table name
     public $profile_id;                      // int(4)  primary_key not_null
-    public $namespace;                       // varchar(255)  not_null
-    public $topic;                           // varchar(255)  not_null
+    public $namespace;                       // varchar(191)  not_null
+    public $topic;                           // varchar(191)  not_null
     public $data;                            // text
     public $created;                         // datetime   not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
@@ -42,8 +42,8 @@ class Profile_prefs extends Managed_DataObject
         return array(
             'fields' => array(
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'user'),
-                'namespace' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'namespace, like pluginname or category'),
-                'topic' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'preference key, i.e. description, age...'),
+                'namespace' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'namespace, like pluginname or category'),
+                'topic' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'preference key, i.e. description, age...'),
                 'data' => array('type' => 'blob', 'description' => 'topic data, may be anything'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),

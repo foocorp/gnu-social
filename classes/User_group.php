@@ -15,18 +15,18 @@ class User_group extends Managed_DataObject
     public $__table = 'user_group';                      // table name
     public $id;                              // int(4)  primary_key not_null
     public $nickname;                        // varchar(64)
-    public $fullname;                        // varchar(255)
-    public $homepage;                        // varchar(255)
+    public $fullname;                        // varchar(191)   not 255 because utf8mb4 takes more space
+    public $homepage;                        // varchar(191)   not 255 because utf8mb4 takes more space
     public $description;                     // text
-    public $location;                        // varchar(255)
-    public $original_logo;                   // varchar(255)
-    public $homepage_logo;                   // varchar(255)
-    public $stream_logo;                     // varchar(255)
-    public $mini_logo;                       // varchar(255)
+    public $location;                        // varchar(191)   not 255 because utf8mb4 takes more space
+    public $original_logo;                   // varchar(191)   not 255 because utf8mb4 takes more space
+    public $homepage_logo;                   // varchar(191)   not 255 because utf8mb4 takes more space
+    public $stream_logo;                     // varchar(191)   not 255 because utf8mb4 takes more space
+    public $mini_logo;                       // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                         // datetime   not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
-    public $uri;                             // varchar(255)  unique_key
-    public $mainpage;                        // varchar(255)
+    public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
+    public $mainpage;                        // varchar(191)   not 255 because utf8mb4 takes more space
     public $join_policy;                     // tinyint
     public $force_scope;                     // tinyint
 
@@ -41,21 +41,21 @@ class User_group extends Managed_DataObject
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
 
                 'nickname' => array('type' => 'varchar', 'length' => 64, 'description' => 'nickname for addressing'),
-                'fullname' => array('type' => 'varchar', 'length' => 255, 'description' => 'display name'),
-                'homepage' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL, cached so we dont regenerate'),
+                'fullname' => array('type' => 'varchar', 'length' => 191, 'description' => 'display name'),
+                'homepage' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL, cached so we dont regenerate'),
                 'description' => array('type' => 'text', 'description' => 'group description'),
-                'location' => array('type' => 'varchar', 'length' => 255, 'description' => 'related physical location, if any'),
+                'location' => array('type' => 'varchar', 'length' => 191, 'description' => 'related physical location, if any'),
 
-                'original_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'original size logo'),
-                'homepage_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'homepage (profile) size logo'),
-                'stream_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'stream-sized logo'),
-                'mini_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'mini logo'),
+                'original_logo' => array('type' => 'varchar', 'length' => 191, 'description' => 'original size logo'),
+                'homepage_logo' => array('type' => 'varchar', 'length' => 191, 'description' => 'homepage (profile) size logo'),
+                'stream_logo' => array('type' => 'varchar', 'length' => 191, 'description' => 'stream-sized logo'),
+                'mini_logo' => array('type' => 'varchar', 'length' => 191, 'description' => 'mini logo'),
 
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
 
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universal identifier'),
-                'mainpage' => array('type' => 'varchar', 'length' => 255, 'description' => 'page for group info to link to'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universal identifier'),
+                'mainpage' => array('type' => 'varchar', 'length' => 191, 'description' => 'page for group info to link to'),
                 'join_policy' => array('type' => 'int', 'size' => 'tiny', 'description' => '0=open; 1=requires admin approval'),      
                 'force_scope' => array('type' => 'int', 'size' => 'tiny', 'description' => '0=never,1=sometimes,-1=always'),
             ),

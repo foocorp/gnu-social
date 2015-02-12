@@ -13,12 +13,12 @@ class Message extends Managed_DataObject
 
     public $__table = 'message';                         // table name
     public $id;                              // int(4)  primary_key not_null
-    public $uri;                             // varchar(255)  unique_key
+    public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $from_profile;                    // int(4)   not_null
     public $to_profile;                      // int(4)   not_null
     public $content;                         // text()
     public $rendered;                        // text()
-    public $url;                             // varchar(255)
+    public $url;                             // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
     public $source;                          // varchar(32)
@@ -31,12 +31,12 @@ class Message extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier'),
                 'from_profile' => array('type' => 'int', 'not null' => true, 'description' => 'who the message is from'),
                 'to_profile' => array('type' => 'int', 'not null' => true, 'description' => 'who the message is to'),
                 'content' => array('type' => 'text', 'description' => 'message content'),
                 'rendered' => array('type' => 'text', 'description' => 'HTML version of the content'),
-                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
+                'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
                 'source' => array('type' => 'varchar', 'length' => 32, 'description' => 'source of comment, like "web", "im", or "clientname"'),

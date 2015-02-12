@@ -8,7 +8,7 @@ class Fave extends Managed_DataObject
     public $__table = 'fave';                            // table name
     public $notice_id;                       // int(4)  primary_key not_null
     public $user_id;                         // int(4)  primary_key not_null
-    public $uri;                             // varchar(255)
+    public $uri;                             // varchar(191)   not 255 because utf8mb4 takes more space   not 255 because utf8mb4 takes more space
     public $created;                         // datetime  multiple_key not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -18,7 +18,7 @@ class Fave extends Managed_DataObject
             'fields' => array(
                 'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice that is the favorite'),
                 'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user who likes this notice'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier, usually a tag URI'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),

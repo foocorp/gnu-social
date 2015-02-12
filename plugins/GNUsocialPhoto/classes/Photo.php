@@ -39,10 +39,10 @@ class Photo extends Managed_DataObject
 
     public $__table = 'photo'; // table name
     public $id;                // char (36) // UUID
-    public $uri;               // varchar (255)  // This is the corresponding notice's uri.
-    public $photo_uri;         // varchar (255)
-    public $thumb_uri;         // varchar (255)
-    public $title;             // varchar (255)
+    public $uri;               // varchar (191)  // This is the corresponding notice's uri.   not 255 because utf8mb4 takes more space
+    public $photo_uri;         // varchar (191)   not 255 because utf8mb4 takes more space
+    public $thumb_uri;         // varchar (191)   not 255 because utf8mb4 takes more space
+    public $title;             // varchar (191)   not 255 because utf8mb4 takes more space
     public $description;       // text
     public $profile_id;        // int
 
@@ -66,13 +66,13 @@ class Photo extends Managed_DataObject
                               'not null' => true,
                               'description' => 'UUID'),
                 'uri' => array('type' => 'varchar',
-                               'length' => 255,
+                               'length' => 191,
                                'not null' => true),
                 'photo_uri' => array('type' => 'varchar',
-                               'length' => 255,
+                               'length' => 191,
                                'not null' => true),
                 'photo_uri' => array('type' => 'varchar',
-                               'length' => 255,
+                               'length' => 191,
                                'not null' => true),
                 'profile_id' => array('type' => 'int', 'not null' => true),
             ),

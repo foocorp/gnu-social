@@ -51,12 +51,12 @@ class Ostatus_profile extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'uri' => array('type' => 'varchar', 'length' => 255, 'not null' => true),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'not null' => true),
                 'profile_id' => array('type' => 'integer'),
                 'group_id' => array('type' => 'integer'),
                 'peopletag_id' => array('type' => 'integer'),
-                'feeduri' => array('type' => 'varchar', 'length' => 255),
-                'salmonuri' => array('type' => 'varchar', 'length' => 255),
+                'feeduri' => array('type' => 'varchar', 'length' => 191),
+                'salmonuri' => array('type' => 'varchar', 'length' => 191),
                 'avatar' => array('type' => 'text'),
                 'created' => array('type' => 'datetime', 'not null' => true),
                 'modified' => array('type' => 'datetime', 'not null' => true),
@@ -1806,8 +1806,8 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         if (!empty($location)) {
-            if (mb_strlen($location) > 255) {
-                $location = mb_substr($note, 0, 255 - 3) . ' … ';
+            if (mb_strlen($location) > 191) {   // not 255 because utf8mb4 takes more space
+                $location = mb_substr($note, 0, 191 - 3) . ' … ';
             }
         }
 

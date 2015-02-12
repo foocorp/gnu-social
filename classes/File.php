@@ -26,13 +26,13 @@ class File extends Managed_DataObject
 {
     public $__table = 'file';                            // table name
     public $id;                              // int(4)  primary_key not_null
-    public $url;                             // varchar(255)  unique_key
+    public $url;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $mimetype;                        // varchar(50)
     public $size;                            // int(4)
-    public $title;                           // varchar(255)
+    public $title;                           // varchar(191)   not 255 because utf8mb4 takes more space
     public $date;                            // int(4)
     public $protected;                       // int(4)
-    public $filename;                        // varchar(255)
+    public $filename;                        // varchar(191)   not 255 because utf8mb4 takes more space
     public $width;                           // int(4)
     public $height;                          // int(4)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -42,13 +42,13 @@ class File extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true),
-                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'destination URL after following redirections'),
+                'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'destination URL after following redirections'),
                 'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
                 'size' => array('type' => 'int', 'description' => 'size of resource when available'),
-                'title' => array('type' => 'varchar', 'length' => 255, 'description' => 'title of resource when available'),
+                'title' => array('type' => 'varchar', 'length' => 191, 'description' => 'title of resource when available'),
                 'date' => array('type' => 'int', 'description' => 'date of resource according to http query'),
                 'protected' => array('type' => 'int', 'description' => 'true when URL is private (needs login)'),
-                'filename' => array('type' => 'varchar', 'length' => 255, 'description' => 'if a local file, name of the file'),
+                'filename' => array('type' => 'varchar', 'length' => 191, 'description' => 'if a local file, name of the file'),
                 'width' => array('type' => 'int', 'description' => 'width in pixels, if it can be described as such and data is available'),
                 'height' => array('type' => 'int', 'description' => 'height in pixels, if it can be described as such and data is available'),
 
@@ -152,7 +152,7 @@ class File extends Managed_DataObject
                 }
 
                 // TODO: max field length
-                if ($redir_url === $given_url || strlen($redir_url) > 255 || !$followRedirects) {
+                if ($redir_url === $given_url || strlen($redir_url) > 191 || !$followRedirects) {
                     // Save the File object based on our lookup trace
                     $file = File::saveNew($redir_data, $given_url);
                 } else {

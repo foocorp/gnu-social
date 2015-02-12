@@ -53,13 +53,13 @@ class Happening extends Managed_DataObject
 
     public $__table = 'happening'; // table name
     public $id;                    // varchar(36) UUID
-    public $uri;                   // varchar(255)
+    public $uri;                   // varchar(191)   not 255 because utf8mb4 takes more space
     public $profile_id;            // int
     public $start_time;            // datetime
     public $end_time;              // datetime
-    public $title;                 // varchar(255)
-    public $location;              // varchar(255)
-    public $url;                   // varchar(255)
+    public $title;                 // varchar(191)   not 255 because utf8mb4 takes more space
+    public $location;              // varchar(191)   not 255 because utf8mb4 takes more space
+    public $url;                   // varchar(191)   not 255 because utf8mb4 takes more space
     public $description;           // text
     public $created;               // datetime
 
@@ -76,18 +76,18 @@ class Happening extends Managed_DataObject
                               'not null' => true,
                               'description' => 'UUID'),
                 'uri' => array('type' => 'varchar',
-                               'length' => 255,
+                               'length' => 191,
                                'not null' => true),
                 'profile_id' => array('type' => 'int', 'not null' => true),
                 'start_time' => array('type' => 'datetime', 'not null' => true),
                 'end_time' => array('type' => 'datetime', 'not null' => true),
                 'title' => array('type' => 'varchar',
-                                 'length' => 255,
+                                 'length' => 191,
                                  'not null' => true),
                 'location' => array('type' => 'varchar',
-                                    'length' => 255),
+                                    'length' => 191),
                 'url' => array('type' => 'varchar',
-                               'length' => 255),
+                               'length' => 191),
                 'description' => array('type' => 'text'),
                 'created' => array('type' => 'datetime',
                                    'not null' => true),

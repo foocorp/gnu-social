@@ -62,7 +62,7 @@ class FeedSub extends Managed_DataObject
     public $__table = 'feedsub';
 
     public $id;
-    public $uri;
+    public $uri;    // varchar(191)   not 255 because utf8mb4 takes more space
 
     // PuSH subscription data
     public $huburi;
@@ -80,7 +80,7 @@ class FeedSub extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'FeedSub local unique id'),
-                'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'FeedSub uri'),
+                'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'FeedSub uri'),
                 'huburi' => array('type' => 'text', 'description' => 'FeedSub hub-uri'),
                 'secret' => array('type' => 'text', 'description' => 'FeedSub stored secret'),
                 'sub_state' => array('type' => 'enum("subscribe","active","unsubscribe","inactive","nohub")', 'not null' => true, 'description' => 'subscription state'),

@@ -271,7 +271,7 @@ class MysqlSchema extends Schema
     function endCreateTable($name, array $def)
     {
         $engine = $this->preferredEngine($def);
-        return ") ENGINE=$engine CHARACTER SET utf8 COLLATE utf8_bin";
+        return ") ENGINE=$engine CHARACTER SET utf8mb4 COLLATE utf8mb4_bin";
     }
     
     function preferredEngine($def)
@@ -335,9 +335,10 @@ class MysqlSchema extends Schema
         if (strtolower($oldProps['ENGINE']) != strtolower($engine)) {
             $phrase[] = "ENGINE=$engine";
         }
-        if (strtolower($oldProps['TABLE_COLLATION']) != 'utf8_bin') {
-            $phrase[] = 'DEFAULT CHARSET=utf8';
-            $phrase[] = 'COLLATE=utf8_bin';
+        if (strtolower($oldProps['TABLE_COLLATION']) != 'utf8mb4_bin') {
+            $phrase[] = 'CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin';
+            $phrase[] = 'DEFAULT CHARACTER SET = utf8mb4';
+            $phrase[] = 'DEFAULT COLLATE = utf8mb4_bin';
         }
     }
 

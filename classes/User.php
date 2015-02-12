@@ -34,9 +34,9 @@ class User extends Managed_DataObject
     public $__table = 'user';                            // table name
     public $id;                              // int(4)  primary_key not_null
     public $nickname;                        // varchar(64)  unique_key
-    public $password;                        // varchar(255)
-    public $email;                           // varchar(255)  unique_key
-    public $incomingemail;                   // varchar(255)  unique_key
+    public $password;                        // varchar(191)               not 255 because utf8mb4 takes more space
+    public $email;                           // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
+    public $incomingemail;                   // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $emailnotifysub;                  // tinyint(1)   default_1
     public $emailnotifyfav;                  // tinyint(1)   default_1
     public $emailnotifynudge;                // tinyint(1)   default_1
@@ -50,8 +50,8 @@ class User extends Managed_DataObject
     public $carrier;                         // int(4)
     public $smsnotify;                       // tinyint(1)
     public $smsreplies;                      // tinyint(1)
-    public $smsemail;                        // varchar(255)
-    public $uri;                             // varchar(255)  unique_key
+    public $smsemail;                        // varchar(191)               not 255 because utf8mb4 takes more space
+    public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $autosubscribe;                   // tinyint(1)
     public $subscribe_policy;                // tinyint(1)
     public $urlshorteningservice;            // varchar(50)   default_ur1.ca
@@ -69,9 +69,9 @@ class User extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
                 'nickname' => array('type' => 'varchar', 'length' => 64, 'description' => 'nickname or username, duped in profile'),
-                'password' => array('type' => 'varchar', 'length' => 255, 'description' => 'salted password, can be null for OpenID users'),
-                'email' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for password recovery etc.'),
-                'incomingemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for post-by-email'),
+                'password' => array('type' => 'varchar', 'length' => 191, 'description' => 'salted password, can be null for OpenID users'),
+                'email' => array('type' => 'varchar', 'length' => 191, 'description' => 'email address for password recovery etc.'),
+                'incomingemail' => array('type' => 'varchar', 'length' => 191, 'description' => 'email address for post-by-email'),
                 'emailnotifysub' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of subscriptions'),
                 'emailnotifyfav' => array('type' => 'int', 'size' => 'tiny', 'default' => null, 'description' => 'Notify by email of favorites'),
                 'emailnotifynudge' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of nudges'),
@@ -85,8 +85,8 @@ class User extends Managed_DataObject
                 'carrier' => array('type' => 'int', 'description' => 'foreign key to sms_carrier'),
                 'smsnotify' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to send notices to SMS'),
                 'smsreplies' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to send notices to SMS on replies'),
-                'smsemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'built from sms and carrier'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'smsemail' => array('type' => 'varchar', 'length' => 191, 'description' => 'built from sms and carrier'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier, usually a tag URI'),
                 'autosubscribe' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'automatically subscribe to users who subscribe to us'),
                 'subscribe_policy' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => '0 = anybody can subscribe; 1 = require approval'),
                 'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'internal', 'description' => 'service to use for auto-shortening URLs'),

@@ -36,8 +36,8 @@ class User_im_prefs extends Managed_DataObject
 
     public $__table = 'user_im_prefs';       // table name
     public $user_id;                         // int(4)  primary_key not_null
-    public $screenname;                      // varchar(255)  not_null
-    public $transport;                       // varchar(255)  not_null
+    public $screenname;                      // varchar(191)  not_null   not 255 because utf8mb4 takes more space
+    public $transport;                       // varchar(191)  not_null   not 255 because utf8mb4 takes more space
     public $notify;                          // tinyint(1)
     public $replies;                         // tinyint(1)
     public $microid;                         // tinyint(1)
@@ -53,8 +53,8 @@ class User_im_prefs extends Managed_DataObject
         return array(
             'fields' => array(
                 'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user'),
-                'screenname' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'screenname on this service'),
-                'transport' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'transport (ex xmpp, aim)'),
+                'screenname' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'screenname on this service'),
+                'transport' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'transport (ex xmpp, aim)'),
                 'notify' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 0, 'description' => 'Notify when a new notice is sent'),
                 'replies' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 0, 'description' => 'Send replies  from people not subscribed to'),
                 'microid' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 1, 'description' => 'Publish a MicroID'),

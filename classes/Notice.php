@@ -55,10 +55,10 @@ class Notice extends Managed_DataObject
     public $__table = 'notice';                          // table name
     public $id;                              // int(4)  primary_key not_null
     public $profile_id;                      // int(4)  multiple_key not_null
-    public $uri;                             // varchar(255)  unique_key
+    public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $content;                         // text
     public $rendered;                        // text
-    public $url;                             // varchar(255)
+    public $url;                             // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                         // datetime  multiple_key not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
     public $reply_to;                        // int(4)
@@ -70,8 +70,8 @@ class Notice extends Managed_DataObject
     public $location_id;                     // int(4)
     public $location_ns;                     // int(4)
     public $repeat_of;                       // int(4)
-    public $verb;                            // varchar(255)
-    public $object_type;                     // varchar(255)
+    public $verb;                            // varchar(191)   not 255 because utf8mb4 takes more space
+    public $object_type;                     // varchar(191)   not 255 because utf8mb4 takes more space
     public $scope;                           // int(4)
 
     /* the code above is auto generated do not remove the tag below */
@@ -83,10 +83,10 @@ class Notice extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'who made the update'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier, usually a tag URI'),
                 'content' => array('type' => 'text', 'description' => 'update content', 'collate' => 'utf8_general_ci'),
                 'rendered' => array('type' => 'text', 'description' => 'HTML version of the content'),
-                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
+                'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
                 'reply_to' => array('type' => 'int', 'description' => 'notice replied to (usually a guess)'),
@@ -98,8 +98,8 @@ class Notice extends Managed_DataObject
                 'location_id' => array('type' => 'int', 'description' => 'location id if possible'),
                 'location_ns' => array('type' => 'int', 'description' => 'namespace for location'),
                 'repeat_of' => array('type' => 'int', 'description' => 'notice this is a repeat of'),
-                'object_type' => array('type' => 'varchar', 'length' => 255, 'description' => 'URI representing activity streams object type', 'default' => 'http://activitystrea.ms/schema/1.0/note'),
-                'verb' => array('type' => 'varchar', 'length' => 255, 'description' => 'URI representing activity streams verb', 'default' => 'http://activitystrea.ms/schema/1.0/post'),
+                'object_type' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI representing activity streams object type', 'default' => 'http://activitystrea.ms/schema/1.0/note'),
+                'verb' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI representing activity streams verb', 'default' => 'http://activitystrea.ms/schema/1.0/post'),
                 'scope' => array('type' => 'int',
                                  'description' => 'bit map for distribution scope; 0 = everywhere; 1 = this server only; 2 = addressees; 4 = followers; null = default'),
             ),

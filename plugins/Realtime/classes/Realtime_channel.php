@@ -53,9 +53,9 @@ class Realtime_channel extends Managed_DataObject
     public $__table = 'realtime_channel'; // table name
 
     public $user_id;       // int -> user.id, can be null
-    public $action;        // string
-    public $arg1;          // argument
-    public $arg2;          // argument, usually null
+    public $action;        // varchar(191)                  not 255 because utf8mb4 takes more space
+    public $arg1;          // varchar(191)   argument       not 255 because utf8mb4 takes more space
+    public $arg2;          // varchar(191)   usually null   not 255 because utf8mb4 takes more space
     public $channel_key;   // 128-bit shared secret key
     public $audience;      // listener count
     public $created;       // created date
@@ -73,15 +73,15 @@ class Realtime_channel extends Managed_DataObject
                                    'not null' => false,
                                    'description' => 'user viewing page; can be null'),
                 'action' => array('type' => 'varchar',
-                                  'length' => 255,
+                                  'length' => 191,
                                   'not null' => true,
                                   'description' => 'page being viewed'),
                 'arg1' => array('type' => 'varchar',
-                                'length' => 255,
+                                'length' => 191,
                                 'not null' => false,
                                 'description' => 'page argument, like username or tag'),
                 'arg2' => array('type' => 'varchar',
-                                'length' => 255,
+                                'length' => 191,
                                 'not null' => false,
                                 'description' => 'second page argument, like tag for showstream'),
                 'channel_key' => array('type' => 'varchar',

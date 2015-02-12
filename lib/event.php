@@ -139,6 +139,11 @@ class Event {
         return false;
     }
 
+    public static function getHandlers($name)
+    {
+        return Event::$_handlers[$name];
+    }
+
     /**
      * Disables any and all handlers that have been set up so far;
      * use only if you know it's safe to reinitialize all plugins.
