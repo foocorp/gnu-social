@@ -343,7 +343,6 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
     public function onAppendUserActivityStreamObjects(UserActivityStream $uas, array &$objs)
     {
-        $faves = array();
         $fave = new Fave();
         $fave->user_id = $uas->getUser()->id;
 
@@ -353,11 +352,11 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
         if ($fave->find()) {
             while ($fave->fetch()) {
-                $faves[] = clone($fave);
+                $objs[] = clone($fave);
             }
         }
 
-        return $faves;
+        return true;
     }
 
     public function onStartShowThreadedNoticeTailItems(NoticeListItem $nli, Notice $notice, &$threadActive)
