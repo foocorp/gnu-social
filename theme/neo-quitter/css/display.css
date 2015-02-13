@@ -968,13 +968,30 @@ background:none;
     height: 60px;
 }
 
+.checkbox-wrapper.checked label.checkbox,
 .checkbox-wrapper.unchecked label.checkbox {
-    background: url("../images/lock_open.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-image:none;
 }
 
+.checkbox-wrapper.checked label.checkbox:before,
+.checkbox-wrapper.unchecked label.checkbox:before {
+    content: "\f023";
+    display: block;
+    font: 20px/1 "fa";
+    height: 35px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 35px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color:rgba(0,0,0,0.6);
+    text-indent:0;
+    text-align:left;
+}
 
-.checkbox-wrapper.checked label.checkbox {
-    background: url("../images/lock.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+.checkbox-wrapper.unchecked label.checkbox:before {
+    content: "\f09c";
 }
 
 .form_notice label.notice_data-attach {
