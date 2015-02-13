@@ -58,16 +58,16 @@ class DirectMessagePlugin extends Plugin
     public function onAppendUserActivityStreamObjects(UserActivityStream $uas, array &$objs)
     {
         // Messages _from_ the user
-        $msgMap = Message::listGet('from_profile', array($this->user->id));
-        $messages = $msgMap[$uas->user->id];
+        $msgMap = Message::listGet('from_profile', array($uas->getUser()->id));
+        $messages = $msgMap[$uas->getUser()->id];
         if (!empty($uas->after)) {
             $messages = array_filter($messages, array($uas, 'createdAfter'));
         }
         $objs[] = $messages;
 
         // Messages _to_ the user
-        $msgMap = Message::listGet('to_profile', array($this->user->id));
-        $messages = $msgMap[$uas->user->id];
+        $msgMap = Message::listGet('to_profile', array($uas->getUser()->id));
+        $messages = $msgMap[$uas->getUser()->id];
         if (!empty($uas->after)) {
             $messages = array_filter($messages, array($uas, 'createdAfter'));
         }
