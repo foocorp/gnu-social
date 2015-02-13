@@ -63,7 +63,9 @@ class DirectMessagePlugin extends Plugin
         if (!empty($uas->after)) {
             $messages = array_filter($messages, array($uas, 'createdAfter'));
         }
-        $objs[] = $messages;
+        foreach ($messages as $message) {
+            $objs[] = clone($message);
+        }
 
         // Messages _to_ the user
         $msgMap = Message::listGet('to_profile', array($uas->getUser()->id));
@@ -71,7 +73,9 @@ class DirectMessagePlugin extends Plugin
         if (!empty($uas->after)) {
             $messages = array_filter($messages, array($uas, 'createdAfter'));
         }
-        $objs[] = $messages;
+        foreach ($messages as $message) {
+            $objs[] = clone($message);
+        }
 
         return true;
     }
