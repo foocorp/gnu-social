@@ -443,7 +443,7 @@ body#doc #content_inner p.faq-credits {
 
 .input_form fieldset fieldset label {
     left: 10px;
-    background: #f7f7f7;
+    background: #fff;
 }
 
 .input_forms > label {
@@ -953,6 +953,7 @@ background:none;
 .threaded-replies .placeholder {
     border-radius: 0;
     box-shadow: none;
+    background: none repeat scroll 0 0 #fff;
 }
 
 .form_notice textarea {
