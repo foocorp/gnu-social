@@ -441,6 +441,10 @@ body#doc #content_inner p.faq-credits {
     margin: 0 0 5px 5px;
 }
 
+.input_form .form_settings li textarea {
+    margin: 0 0 5px 5px;
+}
+
 .input_form fieldset fieldset label {
     left: 10px;
     background: #fff;
@@ -499,6 +503,10 @@ body#doc #content_inner p.faq-credits {
 
 .input_form_nav_tab a, .input_form_nav_tab.current a {
     text-decoration: none;
+}
+
+#input_form_event .form_settings .form_data li {
+    width: 100% !important;
 }
 
 .form_notice .error, .form_notice .success, .form_notice .notice-status {
