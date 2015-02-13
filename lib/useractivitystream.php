@@ -180,7 +180,7 @@ class UserActivityStream extends AtomUserNoticeFeed
                 }
                 foreach ($notices as $noticeAct) {
                     try {
-                        $nact = $noticeAct->asActivity($this->user);
+                        $nact = $noticeAct->asActivity($this->user->getProfile());
                         if ($format == Feed::ATOM) {
                             $nact->outputTo($this, false, false);
                         } else {
