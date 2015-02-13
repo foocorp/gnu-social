@@ -1,5 +1,5 @@
-# GNU social 1.1.2 (alpha)
-August 2014
+# GNU social 1.1.3 (beta3)
+February 2015
 
 (c) Free Software Foundation, Inc
 (c) StatusNet, Inc
@@ -41,13 +41,13 @@ XMPP), and specially-designed desktop clients that
 support the Twitter API.
 
 GNU social supports an open standard called
-OStatus <http://ostatus.org/> that lets users in
+OStatus <https://www.w3.org/community/ostatus/> that lets users in
 different networks follow each other. It enables a
 distributed social network spread all across the
 Web.
 
-GNU social was originally developed for the
-service, Identi.ca <http://identi.ca/>.
+GNU social was originally developed as "StatusNet" by
+StatusNet, Inc. with Evan Prodromou as lead developer.
 
 It is shared with you in hope that you too make an
 service available to your users. To learn more,
@@ -100,13 +100,15 @@ for additional terms.
 
 ## New this version
 
-This is a security fix and bug fix release since 1.1.1-alpha2.
-The current release base version, 1.1.2, began work on 2014-10-25.
-All 1.1.1 sites should upgrade to this version.
+This is a security fix and bug fix release since 1.1.3-beta2.
+All 1.1.x sites should upgrade to this version.
 
 So far it includes the following changes:
 
-- XSS security fix (thanks Simon Waters, <https://www.surevine.com/> )
+- XSS security fix (thanks Simon Waters, <https://www.surevine.com/>)
+- Many improvements to ease adoption of the Qvitter front-end <https://github.com/hannesmannerheim/qvitter>
+- Protocol adaptions for improved performance and stability
+- Backing up a user's account now appears to work as it should
 
 Upgrades from _StatusNet_ 1.1.1 will also experience these improvements:
 
@@ -154,14 +156,14 @@ To keep it up-to-date, use 'git pull'. Watch for conflicts!
 
 There are several ways to get more information about GNU social.
 
-* The #social IRC channel on freenode.net <http://www.freenode.net/>.
-* The GNU social website <http://gnu.io/social/>
-* Following us on GNU social -- <http://quitter.se/gnusocial>
+* The #social IRC channel on freenode.net <https://www.freenode.net/>.
+* The unofficial XMPP room linked to IRC on <xmpp:gnusocial@conference.bka.li>
+* The GNU social website <https://gnu.io/social/>
+* Following us on GNU social -- <https://quitter.se/gnusocial>
 
 * GNU social has a bug tracker for any defects you may find, or ideas for
-  making things better. <http://bugz.foocorp.net/>
-* Patches are welcome, either on the bug tracker or our repository at
-  Gitorious. <https://gitorious.org/social/mainline>
+  making things better. <https://bugz.foocorp.net/>
+* Patches are welcome, preferrably to our repository on Gitorious. <https://gitorious.org/social/mainline>
 
 Credits
 =======
@@ -221,6 +223,7 @@ Thanks to all of the StatusNet developers:
 * James Walker, StatusNet, Inc.
 * Samantha Doherty, designer, StatusNet, Inc.
 * Simon Waters, Surevine
+* Joshua Judson Rosen (rozzin)
 
 ### Extra special thanks to the GNU socialites
 
