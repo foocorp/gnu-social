@@ -627,10 +627,10 @@ EndSetUser: After setting the currently logged in user
 - $user: user
 
 StartSetApiUser: Before setting the current API user
-- $user: user
+- &$user: user, can be set during event handling (return false to stop processing)
 
 EndSetApiUser: After setting the current API user
-- $user: user
+- $user: user, only called if this is an actual user
 
 StartHasRole: Before determing if the a profile has a given role
 - $profile: profile in question

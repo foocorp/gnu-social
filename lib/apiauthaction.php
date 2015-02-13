@@ -212,20 +212,24 @@ class ApiAuthAction extends ApiAction
                     // Set the auth user
                     if (Event::handle('StartSetApiUser', array(&$user))) {
                         $user = User::getKV('id', $appUser->profile_id);
-                        if (!empty($user)) {
-                            if (!$user->hasRight(Right::API)) {
-                                // TRANS: Authorization exception thrown when a user without API access tries to access the API.
-                                throw new AuthorizationException(_('Not allowed to use API.'));
-                            }
+                    }
+                    if ($user instanceof User) {
+                        if (!$user->hasRight(Right::API)) {
+                            // TRANS: Authorization exception thrown when a user without API access tries to access the API.
+                            throw new AuthorizationException(_('Not allowed to use API.'));
                         }
                         $this->auth_user = $user;
-                        // FIXME: setting the value returned by common_current_user()
-                        // There should probably be a better method for this. common_set_user()
-                        // does lots of session stuff.
-                        global $_cur;
-                        $_cur = $this->auth_user;
-                        Event::handle('EndSetApiUser', array($user));
+                        Event::handle('EndSetApiUser', array($this->auth_user));
+                    } else {
+                        // If $user is not a real User, let's force it to null.
+                        $this->auth_user = null;
                     }
+
+                    // FIXME: setting the value returned by common_current_user()
+                    // There should probably be a better method for this. common_set_user()
+                    // does lots of session stuff.
+                    global $_cur;
+                    $_cur = $this->auth_user;
 
                     $msg = "API OAuth authentication for user '%s' (id: %d) on behalf of " .
                         "application '%s' (id: %d) with %s access.";
@@ -297,17 +301,17 @@ class ApiAuthAction extends ApiAction
             $user = common_check_user($this->auth_user_nickname,
                                       $this->auth_user_password);
 
-            if (Event::handle('StartSetApiUser', array(&$user))) {
-
-                if ($user instanceof User) {
-                    if (!$user->hasRight(Right::API)) {
-                        // TRANS: Authorization exception thrown when a user without API access tries to access the API.
-                        throw new AuthorizationException(_('Not allowed to use API.'));
-                    }
-                    $this->auth_user = $user;
+            Event::handle('StartSetApiUser', array(&$user));
+            if ($user instanceof User) {
+                if (!$user->hasRight(Right::API)) {
+                    // TRANS: Authorization exception thrown when a user without API access tries to access the API.
+                    throw new AuthorizationException(_('Not allowed to use API.'));
                 }
+                $this->auth_user = $user;
 
-                Event::handle('EndSetApiUser', array($user));
+                Event::handle('EndSetApiUser', array($this->auth_user));
+            } else {
+                $this->auth_user = null;
             }
 
             // By default, basic auth users have rw access
