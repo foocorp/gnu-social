@@ -1463,3 +1463,12 @@ StartNotifyMentioned: During notice distribution, we send notifications (email, 
 EndNotifyMentioned: During notice distribution, we send notifications (email, im...) to the profiles who were somehow mentioned.
 - $stored:         Notice object that is being distributed.
 - $mentioned_ids:  Array of profile IDs (not just for local users) who got mentioned by the notice.
+
+StartHomeStubNavItems: Go back Home nav items. Default includes just one item 'home'
+- $action: action being executed (for output and params)
+- $items: array of items in the nav
+
+EndHomeStubNavItems:
+- $action: action being executed (for output and params)
+- $items: array of items in the nav
+

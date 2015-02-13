@@ -49,17 +49,18 @@ class HomeStubNav extends Menu
 {
     function getItems()
     {
-        if (Event::handle('StartHomeStubNav', array(&$this->action))) {
-            return array(array('top',
-                               array(),
-                               // TRANS: Menu item in personal group navigation menu.
-                               _m('MENU','Home'),
-                               // TRANS: Menu item title in personal group navigation menu.
-                               // TRANS: %s is a username.
-                               _('Back to top'),
-                               'nav_return_top'));
-            Event::handle('EndHomeStubNav', array(&$this->action));
+        $items = array();
+        if (Event::handle('StartHomeStubNavItems', array($this->action, &$items))) {
+            $items[] = array('top',
+                            array(),
+                            // TRANS: Menu item in personal group navigation menu.
+                            _m('MENU','Home'),
+                            // TRANS: Menu item title in personal group navigation menu.
+                            // TRANS: %s is a username.
+                            _('Back to top'),
+                            'nav_return_top');
+            Event::handle('EndHomeStubNavItems', array($this->action, &$items));
         }
-        return Null;
+        return $items;
     }
 }
