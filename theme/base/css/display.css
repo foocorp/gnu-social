@@ -1449,6 +1449,7 @@ margin-left:0;
 .notice > footer {
     clear: left;
     font-size: 0.8em;
+    margin-left: 56px;
 }
 
 .notice > footer .timestamp span.p-name {
