@@ -150,6 +150,9 @@ class Menu extends Widget
 
     function submenu($label, $menu)
     {
+        if (empty($menu->getItems())){
+            return false;
+        }
         $this->action->elementStart('li');
         $this->action->element('h3', null, $label);
         $menu->show();
