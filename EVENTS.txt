@@ -1465,12 +1465,12 @@ EndNotifyMentioned: During notice distribution, we send notifications (email, im
 - $mentioned_ids:  Array of profile IDs (not just for local users) who got mentioned by the notice.
 
 StartHomeStubNavItems: Go back Home nav items. Default includes just one item 'home'
-- $action: action being executed (for output and params)
-- $items: array of items in the nav
+- $out:     HTMLOutputter used to output (usually an Action, but not always!)
+- &$items:  Referenced array of items in the nav (add if desired)
 
 EndHomeStubNavItems:
-- $action: action being executed (for output and params)
-- $items: array of items in the nav
+- $out:     HTMLOutputter used to output (usually an Action, but not always!)
+- $items:   array of menu items
 
 EndSubMenu: After outputting a submenu (including enclosing tags) to HTML
 - $out:     HTMLOutputter used to output (usually an Action, but not always!)
