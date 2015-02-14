@@ -1472,3 +1472,12 @@ EndHomeStubNavItems:
 - $action: action being executed (for output and params)
 - $items: array of items in the nav
 
+EndSubMenu: After outputting a submenu (including enclosing tags) to HTML
+- $out:     HTMLOutputter used to output (usually an Action, but not always!)
+- $menu:    The Menu object outputted as a submenu.
+- $label:   Localized text which represents the menu item.
+
+StartSubMenu: Before outputting a submenu (including enclosing tags) to HTML
+- $out:     HTMLOutputter used to output (usually an Action, but not always!)
+- $menu:    The Menu object outputted as a submenu.
+- $label:   Localized text which represents the menu item.
