@@ -980,6 +980,9 @@ background:none;
 .checkbox-wrapper.checked label.checkbox,
 .checkbox-wrapper.unchecked label.checkbox {
     background-image:none;
+    opacity: 0.6;
+    padding-left: 30px;
+    color:transparent;
 }
 
 .checkbox-wrapper.checked label.checkbox:before,
