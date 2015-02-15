@@ -1580,7 +1580,7 @@ var SN = { // StatusNet
             // don't navigate away from the field on tab when selecting an item
             txtBox.on( "keydown", function ( event ) {
                 if ( event.keyCode === $.ui.keyCode.TAB &&
-                        $(this).data( "autocomplete" ).menu.active ) {
+                        $(this).data( "ui-autocomplete" ).menu.active ) {
                     event.preventDefault();
                 }
             }).autocomplete({
@@ -1601,7 +1601,7 @@ var SN = { // StatusNet
                     this.value = terms.join(" ");
                     return false;
                 }
-            }).data('autocomplete')._renderItem = function (ul, item) {
+            }).data('ui-autocomplete')._renderItem = function (ul, item) {
                     // FIXME: with jQuery UI you cannot have it highlight the match
                     var _l = '<a class="ptag-ac-line-tag">' + item.tag
                           + ' <em class="privacy_mode">' + item.mode + '</em>'
