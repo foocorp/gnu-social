@@ -34,7 +34,12 @@ abstract class WebFingerResource
         $aliases = array();
 
         // Add the URI as an identity, this is _not_ necessarily an HTTP url
-        $aliases[] = $this->object->getUri();
+        $uri = $this->object->getUri();
+        $aliases[] = $uri;
+        if (common_config('webfinger', 'http_alias')
+                && strtolower(parse_url($uri, PHP_URL_SCHEME)) === 'https') {
+            $aliases[] = preg_replace('/^https:/', 'http:', $uri, 1);
+        }
 
         try {
             $aliases[] = $this->object->getUrl();
