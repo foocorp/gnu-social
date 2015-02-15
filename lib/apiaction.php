@@ -1516,6 +1516,11 @@ class ApiAction extends Action
             $aargs['id'] = $id;
         }
 
+        $user = $this->arg('user');
+        if (!empty($user)) {
+            $aargs['user'] = $user;
+        }
+
         $tag = $this->arg('tag');
         if (!empty($tag)) {
             $aargs['tag'] = $tag;
