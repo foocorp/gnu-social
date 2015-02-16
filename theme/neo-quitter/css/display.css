@@ -961,8 +961,6 @@ background:none;
 .checkbox-wrapper.checked label.checkbox,
 .checkbox-wrapper.unchecked label.checkbox {
     background-image:none;
-    opacity: 0.6;
-    padding-left: 30px;
     color:transparent;
 }
 
@@ -970,9 +968,9 @@ background:none;
 .checkbox-wrapper.unchecked label.checkbox:before {
     content: "\f023";
     display: block;
-    font: 20px/1 "fa";
+    font: 22px/1 "fa";
     height: 35px;
-    left: 0px;
+    left: 10px;
     position: absolute;
     top: 0px;
     width: 35px;
