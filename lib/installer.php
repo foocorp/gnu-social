@@ -101,7 +101,7 @@ abstract class Installer
             $pass = false;
         }
 
-        $reqs = array('gd', 'curl', 'json',
+        $reqs = array('gd', 'curl', 'intl', 'json',
                       'xmlwriter', 'mbstring', 'xml', 'dom', 'simplexml');
 
         foreach ($reqs as $req) {
