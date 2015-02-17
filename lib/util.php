@@ -1116,6 +1116,20 @@ function common_xml_safe_str($str)
     return preg_replace('/[\p{Cc}\p{Cs}]/u', '*', $str);
 }
 
+function common_slugify($str)
+{
+    $str = transliterator_transliterate(
+                        'Any-Latin;' .      // any charset to latin compatible
+                            'NFD;' .        // decompose
+                            '[:Nonspacing Mark:] Remove;' . // remove nonspacing marks (accents etc.)
+                            'NFC;' .        // composite again
+                            '[:Punctuation:] Remove;' . // remove punctuation (.,¿? etc.)
+                            'Lower();' .    // turn into lowercase
+                            'Latin-ASCII;',  // get ASCII equivalents (ð to d for example)
+                        $str);
+    return preg_replace('/[^\pL\pN]/', '', $str);
+}
+
 function common_tag_link($tag)
 {
     $canonical = common_canonical_tag($tag);
@@ -1139,11 +1153,9 @@ function common_tag_link($tag)
 
 function common_canonical_tag($tag)
 {
-  // only alphanum
-  $tag = preg_replace('/[^\pL\pN]/u', '', $tag);
-  $tag = mb_convert_case($tag, MB_CASE_LOWER, "UTF-8");
-  $tag = substr($tag, 0, 64);
-  return $tag;
+    $tag = common_slugify($tag);
+    $tag = substr($tag, 0, 64);
+    return $tag;
 }
 
 function common_valid_profile_tag($str)
