@@ -29,9 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Allows the authenticating users to follow (subscribe) the user specified in
@@ -90,7 +88,7 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
             $this->clientError(_('Could not follow user: profile not found.'), 403);
         }
 
-        if ($this->user->isSubscribed($this->other)) {
+        if ($this->scoped->isSubscribed($this->other)) {
             $errmsg = sprintf(
                 // TRANS: Client error displayed when trying to follow a user that's already being followed.
                 // TRANS: %s is the nickname of the user that is already being followed.
@@ -101,7 +99,7 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
         }
 
         try {
-            Subscription::start($this->user->getProfile(), $this->other);
+            Subscription::start($this->scoped, $this->other);
         } catch (Exception $e) {
             $this->clientError($e->getMessage(), 403);
         }
