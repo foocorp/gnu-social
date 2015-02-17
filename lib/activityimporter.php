@@ -213,7 +213,7 @@ class ActivityImporter extends QueueHandler
 
         // Get (safe!) HTML and text versions of the content
 
-        $rendered = $this->purify($sourceContent);
+        $rendered = common_purify($sourceContent);
         $content = common_strip_html($rendered);
 
         $shortened = $user->shortenLinks($content);
@@ -337,16 +337,5 @@ class ActivityImporter extends QueueHandler
         }
 
         return array($groups, $replies);
-    }
-
-
-    function purify($content)
-    {
-        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-
-        $config = array('safe' => 1,
-                        'deny_attribute' => 'id,style,on*');
-
-        return htmLawed($content, $config);
     }
 }
