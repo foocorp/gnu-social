@@ -687,11 +687,9 @@ class User extends Managed_DataObject
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
-
-    function repeatedToMe($offset=0, $limit=20, $since_id=null, $max_id=null)
+    public function repeatedToMe($offset=0, $limit=20, $since_id=null, $max_id=null)
     {
-        // TRANS: Exception thrown when trying view "repeated to me".
-        throw new Exception(_('Not implemented since inbox change.'));
+        return $this->getProfile()->repeatedToMe($offset, $limit, $since_id, $max_id);
     }
 
     public static function siteOwner()

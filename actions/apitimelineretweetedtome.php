@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Show most recent notices that are repeats in user's inbox
@@ -59,7 +57,7 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -79,35 +77,33 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
      *
      * show a timeline of the user's repeated notices
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         $offset = ($this->page-1) * $this->cnt;
         $limit  = $this->cnt;
 
         // TRANS: Title for Atom feed "repeated to me". %s is the user nickname.
-        $title      = sprintf(_("Repeated to %s"), $this->auth_user->nickname);
+        $title      = sprintf(_("Repeated to %s"), $this->scoped->getNickname());
         $subtitle   = sprintf(
             // @todo FIXME: $profile is not defined.
             // TRANS: Subtitle for API action that shows most recent notices that are repeats in user's inbox.
             // TRANS: %1$s is the sitename, %2$s is a user nickname, %3$s is a user profile name.
             _('%1$s notices that were to repeated to %2$s / %3$s.'),
-            $sitename, $this->user->nickname, $profile->getBestName()
+            $sitename, $this->scoped->getNickname(), $profile->getBestName()
         );
         $taguribase = TagURI::base();
-        $id         = "tag:$taguribase:RepeatedToMe:" . $this->auth_user->id;
+        $id         = "tag:$taguribase:RepeatedToMe:" . $this->scoped->id;
 
         $link = common_local_url(
             'all',
-             array('nickname' => $this->auth_user->nickname)
+             array('nickname' => $this->scoped->getNickname())
         );
 
-        $strm = $this->auth_user->repeatedToMe($offset, $limit, $this->since_id, $this->max_id);
+        $strm = $this->scoped->repeatedToMe($offset, $limit, $this->since_id, $this->max_id);
 
         switch ($this->format) {
         case 'xml':
@@ -119,7 +115,7 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
         case 'atom':
             header('Content-Type: application/atom+xml; charset=utf-8');
 
-            $atom = new AtomNoticeFeed($this->auth_user);
+            $atom = new AtomNoticeFeed($this->scoped->getUser());
 
             $atom->setId($id);
             $atom->setTitle($title);
@@ -137,7 +133,7 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
             break;
         case 'as':
             header('Content-Type: ' . ActivityStreamJSONDocument::CONTENT_TYPE);
-            $doc = new ActivityStreamJSONDocument($this->auth_user);
+            $doc = new ActivityStreamJSONDocument($this->scoped->getUser());
             $doc->setTitle($title);
             $doc->addLink($link, 'alternate', 'text/html');
             $doc->addItemsFromNotices($strm);

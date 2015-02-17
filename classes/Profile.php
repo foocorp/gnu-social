@@ -1451,6 +1451,12 @@ class Profile extends Managed_DataObject
         return $feed;
     }
 
+    public function repeatedToMe($offset=0, $limit=20, $since_id=null, $max_id=null)
+    {
+        // TRANS: Exception thrown when trying view "repeated to me".
+        throw new Exception(_('Not implemented since inbox change.'));
+    }
+
     /*
      * Get a Profile object by URI. Will call external plugins for help
      * using the event StartGetProfileFromURI.
