@@ -232,9 +232,25 @@ class Subscription extends Managed_DataObject
 
     static function exists(Profile $subscriber, Profile $other)
     {
-        $sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
-                                           'subscribed' => $other->id));
-        return ($sub instanceof Subscription);
+        try {
+            $sub = self::getSubscription($subscriber, $other);
+        } catch (NoResultException $e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static function getSubscription(Profile $subscriber, Profile $other)
+    {
+        // This is essentially a pkeyGet but we have an object to return in NoResultException
+        $sub = new Subscription();
+        $sub->subscriber = $subscriber->id;
+        $sub->subscribed = $other->id;
+        if (!$sub->find(true)) {
+            throw new NoResultException($sub);
+        }
+        return $sub;
     }
 
     function asActivity()
