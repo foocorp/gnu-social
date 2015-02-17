@@ -207,6 +207,9 @@ $default =
         'newuser' =>
         array('default' => null,
               'welcome' => null),
+        'linkify' => array(
+            'bare_domains' => false,  // convert domain.com to <a href="http://domain.com/" ...>domain.com</a> ?
+        ),
         'attachments' =>
         array('server' => null,
               'dir' => INSTALLDIR . '/file/',
