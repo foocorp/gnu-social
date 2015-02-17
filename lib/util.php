@@ -576,6 +576,25 @@ function common_canonical_email($email)
     return $email;
 }
 
+function common_purify($html)
+{
+    require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
+
+    $config = array('safe' => 1,
+                    'deny_attribute' => 'id,style,on*');
+
+    $html = common_remove_unicode_formatting($html);
+
+    return htmLawed($html, $config);
+}
+
+function common_remove_unicode_formatting($text)
+{
+    // Strip Unicode text formatting/direction codes
+    // this is pretty dangerous for visualisation of text and can be used for mischief
+    return preg_replace('/[\\x{200b}-\\x{200f}\\x{202a}-\\x{202e}]/u', '', $text);
+}
+
 /**
  * Partial notice markup rendering step: build links to !group references.
  *
@@ -585,9 +604,9 @@ function common_canonical_email($email)
  */
 function common_render_content($text, Notice $notice)
 {
-    $r = common_render_text($text);
-    $r = common_linkify_mentions($r, $notice);
-    return $r;
+    $text = common_render_text($text);
+    $text = common_linkify_mentions($text, $notice);
+    return $text;
 }
 
 /**
@@ -829,14 +848,15 @@ function common_find_mentions_raw($text)
 
 function common_render_text($text)
 {
-    $r = nl2br(htmlspecialchars($text));
+    $text = common_remove_unicode_formatting($text);
+    $text = nl2br(htmlspecialchars($text));
 
-    $r = preg_replace('/[\x{0}-\x{8}\x{b}-\x{c}\x{e}-\x{19}]/', '', $r);
-    $r = common_replace_urls_callback($r, 'common_linkify');
-    $r = preg_replace_callback('/(^|\&quot\;|\'|\(|\[|\{|\s+)#([\pL\pN_\-\.]{1,64})/u',
-                function ($m) { return "{$m[1]}#".common_tag_link($m[2]); }, $r);
+    $text = preg_replace('/[\x{0}-\x{8}\x{b}-\x{c}\x{e}-\x{19}]/', '', $text);
+    $text = common_replace_urls_callback($text, 'common_linkify');
+    $text = preg_replace_callback('/(^|\&quot\;|\'|\(|\[|\{|\s+)#([\pL\pN_\-\.]{1,64})/u',
+                function ($m) { return "{$m[1]}#".common_tag_link($m[2]); }, $text);
     // XXX: machine tags
-    return $r;
+    return $text;
 }
 
 /**
