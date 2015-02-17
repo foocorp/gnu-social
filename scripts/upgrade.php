@@ -76,11 +76,46 @@ function updateSchemaCore()
     $schema = Schema::get();
     $schemaUpdater = new SchemaUpdater($schema);
     foreach (tableDefs() as $table => $def) {
+        preAlterFixes($schemaUpdater, $table);
         $schemaUpdater->register($table, $def);
     }
     $schemaUpdater->checkSchema();
 
     printfnq("DONE.\n");
+}
+
+function preAlterFixes($schemaUpdater, $table)
+{
+    switch ($table) {
+    case 'file':
+        $schemadef = $schemaUpdater->schema->getTableDef($table);
+        if (isset($schemadef['fields']['urlhash'])) {
+            // We already have the urlhash field, so no need to migrate it.
+            break;
+        }
+        printfnq("\nFound old $table table, upgrading it to contain 'urlhash' field...\n");
+        // We have to create a urlhash that is _not_ the primary key,
+        // transfer data and THEN run checkSchema
+        $schemadef['fields']['urlhash'] = array (
+                                              'type' => 'varchar',
+                                              'length' => 64,
+                                              'description' => 'sha256 of destination URL after following redirections',
+                                            );
+        $schemaUpdater->schema->ensureTable($table, $schemadef);
+        printfnq("DONE.\n");
+
+        $filefix = new File();
+        // urlhash is hash('sha256', $url) in the File table
+        printfnq("Updating urlhash fields in $table table...\n");
+        $filefix->query(sprintf('UPDATE %1$s SET %2$s=%3$s;',
+                            $schemaUpdater->schema->quoteIdentifier($table),
+                            'urlhash',
+                            // The line below is "result of sha256 on column `url`"
+                            'SHA2(url, 256)'));
+        printfnq("DONE.\n");
+        printfnq("Resuming core schema upgrade...");
+        break;
+    }
 }
 
 function updateSchemaPlugins()

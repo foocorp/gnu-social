@@ -26,7 +26,8 @@ class File extends Managed_DataObject
 {
     public $__table = 'file';                            // table name
     public $id;                              // int(4)  primary_key not_null
-    public $url;                             // varchar(255)  unique_key
+    public $urlhash;                         // varchar(64)  unique_key
+    public $url;                             // text
     public $mimetype;                        // varchar(50)
     public $size;                            // int(4)
     public $title;                           // varchar(255)
@@ -37,12 +38,15 @@ class File extends Managed_DataObject
     public $height;                          // int(4)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
+    const URLHASH_ALG = 'sha256';
+
     public static function schemaDef()
     {
         return array(
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true),
-                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'destination URL after following redirections'),
+                'urlhash' => array('type' => 'varchar', 'length' => 64, 'description' => 'sha256 of destination URL (url field)'),
+                'url' => array('type' => 'text', 'description' => 'destination URL after following redirections'),
                 'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
                 'size' => array('type' => 'int', 'description' => 'size of resource when available'),
                 'title' => array('type' => 'varchar', 'length' => 255, 'description' => 'title of resource when available'),
@@ -56,7 +60,7 @@ class File extends Managed_DataObject
             ),
             'primary key' => array('id'),
             'unique keys' => array(
-                'file_url_key' => array('url'),
+                'file_urlhash_key' => array('urlhash'),
             ),
         );
     }
@@ -77,10 +81,11 @@ class File extends Managed_DataObject
         // I don't know why we have to keep doing this but I'm adding this last check to avoid
         // uniqueness bugs.
 
-        $file = File::getKV('url', $given_url);
+        $file = File::getKV('urlhash', self::hashurl($given_url));
         
         if (!$file instanceof File) {
             $file = new File;
+            $file->urlhash = self::hashurl($given_url);
             $file->url = $given_url;
             if (!empty($redir_data['protected'])) $file->protected = $redir_data['protected'];
             if (!empty($redir_data['title'])) $file->title = $redir_data['title'];
@@ -462,7 +467,7 @@ class File extends Managed_DataObject
         if (!empty($this->filename)) {
             // A locally stored file, so let's generate a URL for our instance.
             $url = self::url($this->filename);
-            if ($url != $this->url) {
+            if (self::urlhash($url) !== $this->urlhash) {
                 // For indexing purposes, in case we do a lookup on the 'url' field.
                 // also we're fixing possible changes from http to https, or paths
                 $this->updateUrl($url);
@@ -476,14 +481,15 @@ class File extends Managed_DataObject
 
     public function updateUrl($url)
     {
-        $file = File::getKV('url', $url);
+        $file = File::getKV('urlhash', self::hashurl($url));
         if ($file instanceof File) {
             throw new ServerException('URL already exists in DB');
         }
-        $sql = 'UPDATE %1$s SET url=%2$s WHERE url=%3$s;';
+        $sql = 'UPDATE %1$s SET urlhash=%2$s, url=%3$s WHERE urlhash=%4$s;';
         $result = $this->query(sprintf($sql, $this->__table,
+                                             $this->_quote((string)self::hashurl($url)),
                                              $this->_quote((string)$url),
-                                             $this->_quote((string)$this->url)));
+                                             $this->_quote((string)$this->urlhash)));
         if ($result === false) {
             common_log_db_error($this, 'UPDATE', __FILE__);
             throw new ServerException("Could not UPDATE {$this->__table}.url");
@@ -502,9 +508,9 @@ class File extends Managed_DataObject
 
     function blowCache($last=false)
     {
-        self::blow('file:notice-ids:%s', $this->url);
+        self::blow('file:notice-ids:%s', $this->urlhash);
         if ($last) {
-            self::blow('file:notice-ids:%s;last', $this->url);
+            self::blow('file:notice-ids:%s;last', $this->urlhash);
         }
         self::blow('file:notice-count:%d', $this->id);
     }
@@ -581,5 +587,13 @@ class File extends Managed_DataObject
         $title = $this->title ?: $this->filename;
 
         return $title ?: null;
+    }
+
+    static public function hashurl($url)
+    {
+        if (empty($url)) {
+            throw new Exception('No URL provided to hash algorithm.');
+        }
+        return hash(self::URLHASH_ALG, $url);
     }
 }
