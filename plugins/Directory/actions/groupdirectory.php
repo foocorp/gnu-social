@@ -27,12 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET'))
-{
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/publicgroupnav.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Group directory
@@ -40,6 +35,7 @@ require_once INSTALLDIR . '/lib/publicgroupnav.php';
  * @category Directory
  * @package  StatusNet
  * @author   Zach Copley <zach@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
@@ -308,6 +304,14 @@ class GroupdirectoryAction extends Action
 
         if (isset($this->q)) {
 
+            // Disable this to get global group searches
+            $group->joinAdd(array('id', 'local_group:group_id'));
+
+            $wheres = array('nickname', 'fullname', 'homepage', 'description', 'location');
+            foreach ($wheres as $where) {
+                $group->whereAdd("LOWER({$group->__table}.{$where}) LIKE LOWER('%".$group->escape($this->q)."%')", 'OR');
+            }
+
              $order = 'user_group.created ASC';
 
              if ($this->sort == 'nickname') {
@@ -322,17 +326,8 @@ class GroupdirectoryAction extends Action
                  }
              }
 
-             $sql = <<< GROUP_QUERY_END
-SELECT user_group.*
-FROM user_group
-JOIN local_group ON user_group.id = local_group.group_id
-ORDER BY %s
-LIMIT %d, %d
-GROUP_QUERY_END;
-
-        $cnt = 0;
-        $group->query(sprintf($sql, $order, $limit, $offset));
-        $group->find();
+            $group->orderBy($order);
+            $group->limit($offset, $limit);
 
         } else {
             // User is browsing via AlphaNav
@@ -370,6 +365,8 @@ GROUP_QUERY_END;
 
             $group->query($sql);
         }
+
+        $group->find();
 
         return $group;
     }
