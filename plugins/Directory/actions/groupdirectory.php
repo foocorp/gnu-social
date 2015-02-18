@@ -302,7 +302,7 @@ class GroupdirectoryAction extends Action
         $offset = ($this->page-1) * PROFILES_PER_PAGE;
         $limit  = PROFILES_PER_PAGE + 1;
 
-        if (isset($this->q)) {
+        if (!empty($this->q)) {
 
             // Disable this to get global group searches
             $group->joinAdd(array('id', 'local_group:group_id'));
@@ -312,19 +312,15 @@ class GroupdirectoryAction extends Action
                 $group->whereAdd("LOWER({$group->__table}.{$where}) LIKE LOWER('%".$group->escape($this->q)."%')", 'OR');
             }
 
-             $order = 'user_group.created ASC';
+            $order = "{$group->__table}.created ASC";
 
-             if ($this->sort == 'nickname') {
-                 if ($this->reverse) {
-                     $order = 'user_group.nickname DESC';
-                 } else {
-                     $order = 'user_group.nickname ASC';
-                 }
-             } else {
-                 if ($this->reverse) {
-                     $order = 'user_group.created DESC';
-                 }
-             }
+            if ($this->sort == 'nickname') {
+                $order = $this->reverse
+                        ? "{$group->__table}.nickname DESC"
+                        : "{$group->__table}.nickname ASC";
+            } elseif ($this->reverse) {
+                $order = "{$group->__table}.created DESC";
+            }
 
             $group->orderBy($order);
             $group->limit($offset, $limit);
