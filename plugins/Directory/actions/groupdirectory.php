@@ -275,68 +275,58 @@ class GroupdirectoryAction extends ManagedAction
     {
         $group = new User_group();
 
-        $offset = ($this->page-1) * PROFILES_PER_PAGE;
-        $limit  = PROFILES_PER_PAGE + 1;
+        // Disable this to get global group searches
+        $group->joinAdd(array('id', 'local_group:group_id'));
+
+        $order = false;
 
         if (!empty($this->q)) {
-
-            // Disable this to get global group searches
-            $group->joinAdd(array('id', 'local_group:group_id'));
-
             $wheres = array('nickname', 'fullname', 'homepage', 'description', 'location');
             foreach ($wheres as $where) {
-                $group->whereAdd("LOWER({$group->__table}.{$where}) LIKE LOWER('%".$group->escape($this->q)."%')", 'OR');
+                // Double % because of sprintf
+                $group->whereAdd(sprintf('LOWER(%1$s.%2$s) LIKE LOWER("%%%3$s%%")',
+                                        $group->escapedTableName(), $where,
+                                        $group->escape($this->q)),
+                                    'OR');
             }
 
-            $order = "{$group->__table}.created ASC";
-
-            if ($this->sort == 'nickname') {
-                $order = $this->reverse
-                        ? "{$group->__table}.nickname DESC"
-                        : "{$group->__table}.nickname ASC";
-            } elseif ($this->reverse) {
-                $order = "{$group->__table}.created DESC";
-            }
-
-            $group->orderBy($order);
-            $group->limit($offset, $limit);
-
+            $order = sprintf('%1$s.%2$s %3$s',
+                            $group->escapedTableName(),
+                            $this->getSortKey('created'),
+                            $this->reverse ? 'DESC' : 'ASC');
         } else {
             // User is browsing via AlphaNav
-            $sort   = $this->getSortKey();
 
-            $sql = <<< GROUP_QUERY_END
-SELECT user_group.*
-FROM user_group
-JOIN local_group ON user_group.id = local_group.group_id
-GROUP_QUERY_END;
-
-            switch($this->filter)
-            {
+            switch($this->filter) {
             case 'all':
                 // NOOP
                 break;
             case '0-9':
-                $sql .=
-                    '  AND LEFT(user_group.nickname, 1) BETWEEN \'0\' AND \'9\'';
+                $group->whereAdd(sprintf('LEFT(%1$s.%2$s, 1) BETWEEN %3$s AND %4$s',
+                                        $group->escapedTableName(),
+                                        'nickname',
+                                        $group->_quote("0"),
+                                        $group->_quote("9")));
                 break;
             default:
-                $sql .= sprintf(
-                    ' AND LEFT(LOWER(user_group.nickname), 1) = \'%s\'',
-                    $this->filter
-                );
+                $group->whereAdd(sprintf('LEFT(LOWER(%1$s.%2$s), 1) = %3$s',
+                                            $group->escapedTableName(),
+                                            'nickname',
+                                            $group->_quote($this->filter)));
             }
 
-            $sql .= sprintf(
-                ' ORDER BY user_group.%s %s, user_group.nickname ASC LIMIT %d, %d',
-                $sort,
-                $this->reverse ? 'DESC' : 'ASC',
-                $offset,
-                $limit
-            );
-
-            $group->query($sql);
+            $order = sprintf('%1$s.%2$s %3$s, %1$s.%4$s ASC',
+                            $group->escapedTableName(),
+                            $this->getSortKey('nickname'),
+                            $this->reverse ? 'DESC' : 'ASC',
+                            'nickname');
         }
+
+        $offset = ($this->page-1) * PROFILES_PER_PAGE;
+        $limit  = PROFILES_PER_PAGE + 1;
+
+        $group->orderBy($order);
+        $group->limit($offset, $limit);
 
         $group->find();
 
@@ -348,17 +338,14 @@ GROUP_QUERY_END;
      *
      * @return string   a column name for sorting
      */
-    function getSortKey()
+    function getSortKey($def='created')
     {
         switch ($this->sort) {
         case 'nickname':
-            return $this->sort;
-            break;
         case 'created':
             return $this->sort;
-            break;
         default:
-            return 'nickname';
+            return $def;
         }
     }
 
