@@ -39,7 +39,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class GroupdirectoryAction extends Action
+class GroupdirectoryAction extends ManagedAction
 {
     /**
      * The page we're on
@@ -134,17 +134,8 @@ class GroupdirectoryAction extends Action
         return true;
     }
 
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $this->page    = ($this->arg('page')) ? ($this->arg('page') + 0) : 1;
         $this->filter  = $this->arg('filter', 'all');
         $this->reverse = $this->boolean('reverse');
@@ -154,21 +145,6 @@ class GroupdirectoryAction extends Action
         common_set_returnto($this->selfUrl());
 
         return true;
-    }
-
-    /**
-     * Handle request
-     *
-     * Shows the page
-     *
-     * @param array $args $_REQUEST args; handled in prepare()
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
     }
 
     /**
