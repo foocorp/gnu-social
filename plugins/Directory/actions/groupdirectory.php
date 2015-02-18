@@ -143,8 +143,6 @@ class GroupdirectoryAction extends ManagedAction
         $this->sort    = $this->arg('sort', 'nickname');
 
         common_set_returnto($this->selfUrl());
-
-        return true;
     }
 
     /**
