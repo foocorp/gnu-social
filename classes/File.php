@@ -479,6 +479,16 @@ class File extends Managed_DataObject
         return $this->url;
     }
 
+    static public function getByUrl($url)
+    {
+        $file = new File();
+        $file->urlhash = self::hashurl($url);
+        if (!$file->find(true)) {
+            throw new NoResultException($file);
+        }
+        return $file;
+    }
+
     public function updateUrl($url)
     {
         $file = File::getKV('urlhash', self::hashurl($url));

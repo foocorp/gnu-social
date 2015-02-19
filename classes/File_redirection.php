@@ -29,7 +29,8 @@ class File_redirection extends Managed_DataObject
     /* the code below is auto generated do not remove the above tag */
 
     public $__table = 'file_redirection';                // table name
-    public $url;                             // varchar(255)  primary_key not_null
+    public $urlhash;                         // varchar(64) primary_key not_null
+    public $url;                             // text
     public $file_id;                         // int(4)
     public $redirections;                    // int(4)
     public $httpcode;                        // int(4)
@@ -42,17 +43,28 @@ class File_redirection extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'url' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'short URL (or any other kind of redirect) for file (id)'),
+                'urlhash' => array('type' => 'varchar', 'length' => 64, 'description' => 'sha256 hash of the URL'),
+                'url' => array('type' => 'text', 'description' => 'short URL (or any other kind of redirect) for file (id)'),
                 'file_id' => array('type' => 'int', 'description' => 'short URL for what URL/file'),
                 'redirections' => array('type' => 'int', 'description' => 'redirect count'),
                 'httpcode' => array('type' => 'int', 'description' => 'HTTP status code (20x, 30x, etc.)'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
-            'primary key' => array('url'),
+            'primary key' => array('urlhash'),
             'foreign keys' => array(
                 'file_redirection_file_id_fkey' => array('file' => array('file_id' => 'id')),
             ),
         );
+    }
+
+    static public function getByUrl($url)
+    {
+        $file = new File_redirection();
+        $file->urlhash = File::hashurl($url);
+        if (!$file->find(true)) {
+            throw new NoResultException($file);
+        }
+        return $file;
     }
 
     static function _commonHttp($url, $redirs) {
@@ -161,17 +173,18 @@ class File_redirection extends Managed_DataObject
      */
     public function where($in_url, $discover=true) {
         // let's see if we know this...
-        $a = File::getKV('url', $in_url);
-
-        if (!empty($a)) {
+        try {
+            $a = File::getByUrl($in_url);
             // this is a direct link to $a->url
             return $a->url;
-        } else {
-            $b = File_redirection::getKV('url', $in_url);
-            if (!empty($b)) {
+        } catch (NoResultException $e) {
+            try {
+                $b = File_redirection::getByUrl($in_url);
                 // this is a redirect to $b->file_id
                 $a = File::getKV('id', $b->file_id);
                 return $a->url;
+            } catch (NoResultException $e) {
+                // Oh well, let's keep going
             }
         }
 
@@ -274,6 +287,7 @@ class File_redirection extends Managed_DataObject
             $file_redir = File_redirection::getKV('url', $short_url);
             if (!$file_redir instanceof File_redirection) {
                 $file_redir = new File_redirection;
+                $file_redir->urlhash = File::hashurl($short_url);
                 $file_redir->url = $short_url;
                 $file_redir->file_id = $file_id;
                 $file_redir->insert();
@@ -334,6 +348,7 @@ class File_redirection extends Managed_DataObject
 
     function saveNew($data, $file_id, $url) {
         $file_redir = new File_redirection;
+        $file_redir->urlhash = File::hashurl($short_url);
         $file_redir->url = $url;
         $file_redir->file_id = $file_id;
         $file_redir->redirections = intval($data['redirects']);
