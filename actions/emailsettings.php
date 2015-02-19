@@ -340,6 +340,7 @@ class EmailsettingsAction extends SettingsAction
 
             if ($result === false) {
                 common_log_db_error($user, 'UPDATE', __FILE__);
+                $user->query('ROLLBACK');
                 // TRANS: Server error thrown on database error updating e-mail preferences.
                 $this->serverError(_('Could not update user.'));
             }
