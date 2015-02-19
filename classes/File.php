@@ -467,7 +467,7 @@ class File extends Managed_DataObject
         if (!empty($this->filename)) {
             // A locally stored file, so let's generate a URL for our instance.
             $url = self::url($this->filename);
-            if (self::urlhash($url) !== $this->urlhash) {
+            if (self::hashurl($url) !== $this->urlhash) {
                 // For indexing purposes, in case we do a lookup on the 'url' field.
                 // also we're fixing possible changes from http to https, or paths
                 $this->updateUrl($url);
