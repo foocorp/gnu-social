@@ -127,51 +127,56 @@ class File extends Managed_DataObject
             throw new ServerException('No canonical URL from given URL to process');
         }
 
-        $file = File::getKV('url', $given_url);
-        if (!$file instanceof File) {
+        $file = null;
+
+        try {
+            $file = File::getByUrl($given_url);
+        } catch (NoResultException $e) {
             // First check if we have a lookup trace for this URL already
-            $file_redir = File_redirection::getKV('url', $given_url);
-            if ($file_redir instanceof File_redirection) {
+            try {
+                $file_redir = File_redirection::getByUrl($given_url);
                 $file = File::getKV('id', $file_redir->file_id);
                 if (!$file instanceof File) {
                     // File did not exist, let's clean up the File_redirection entry
                     $file_redir->delete();
                 }
+            } catch (NoResultException $e) {
+                // We just wanted to doublecheck whether a File_thumbnail we might've had
+                // actually referenced an existing File object.
+            }
+        }
+
+        // If we still don't have a File object, let's create one now!
+        if (!$file instanceof File) {
+            // @fixme for new URLs this also looks up non-redirect data
+            // such as target content type, size, etc, which we need
+            // for File::saveNew(); so we call it even if not following
+            // new redirects.
+            $redir_data = File_redirection::where($given_url);
+            if (is_array($redir_data)) {
+                $redir_url = $redir_data['url'];
+            } elseif (is_string($redir_data)) {
+                $redir_url = $redir_data;
+                $redir_data = array();
+            } else {
+                // TRANS: Server exception thrown when a URL cannot be processed.
+                throw new ServerException(sprintf(_("Cannot process URL '%s'"), $given_url));
             }
 
-            // If we still don't have a File object, let's create one now!
-            if (!$file instanceof File) {
-                // @fixme for new URLs this also looks up non-redirect data
-                // such as target content type, size, etc, which we need
-                // for File::saveNew(); so we call it even if not following
-                // new redirects.
-                $redir_data = File_redirection::where($given_url);
-                if (is_array($redir_data)) {
-                    $redir_url = $redir_data['url'];
-                } elseif (is_string($redir_data)) {
-                    $redir_url = $redir_data;
-                    $redir_data = array();
-                } else {
-                    // TRANS: Server exception thrown when a URL cannot be processed.
-                    throw new ServerException(sprintf(_("Cannot process URL '%s'"), $given_url));
-                }
-
-                // TODO: max field length
-                if ($redir_url === $given_url || strlen($redir_url) > 255 || !$followRedirects) {
-                    // Save the File object based on our lookup trace
-                    $file = File::saveNew($redir_data, $given_url);
-                } else {
-                    // This seems kind of messed up... for now skipping this part
-                    // if we're already under a redirect, so we don't go into
-                    // horrible infinite loops if we've been given an unstable
-                    // redirect (where the final destination of the first request
-                    // doesn't match what we get when we ask for it again).
-                    //
-                    // Seen in the wild with clojure.org, which redirects through
-                    // wikispaces for auth and appends session data in the URL params.
-                    $file = self::processNew($redir_url, $notice_id, /*followRedirects*/false);
-                    File_redirection::saveNew($redir_data, $file->id, $given_url);
-                }
+            if ($redir_url === $given_url || !$followRedirects) {
+                // Save the File object based on our lookup trace
+                $file = File::saveNew($redir_data, $given_url);
+            } else {
+                // This seems kind of messed up... for now skipping this part
+                // if we're already under a redirect, so we don't go into
+                // horrible infinite loops if we've been given an unstable
+                // redirect (where the final destination of the first request
+                // doesn't match what we get when we ask for it again).
+                //
+                // Seen in the wild with clojure.org, which redirects through
+                // wikispaces for auth and appends session data in the URL params.
+                $file = self::processNew($redir_url, $notice_id, /*followRedirects*/false);
+                File_redirection::saveNew($redir_data, $file->id, $given_url);
             }
 
             if (!$file instanceof File) {
