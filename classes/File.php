@@ -623,7 +623,7 @@ class File extends Managed_DataObject
             // We already have the urlhash field, so no need to migrate it.
             return;
         }
-        echo "\nFound old $table table, upgrading it to contain 'urlhash' field...\n";
+        echo "\nFound old $table table, upgrading it to contain 'urlhash' field...";
         // We have to create a urlhash that is _not_ the primary key,
         // transfer data and THEN run checkSchema
         $schemadef['fields']['urlhash'] = array (
@@ -637,7 +637,7 @@ class File extends Managed_DataObject
         $classname = ucfirst($table);
         $tablefix = new $classname;
         // urlhash is hash('sha256', $url) in the File table
-        echo "Updating urlhash fields in $table table...\n";
+        echo "Updating urlhash fields in $table table...";
         // Maybe very MySQL specific :(
         $tablefix->query(sprintf('UPDATE %1$s SET %2$s=%3$s;',
                             $schema->quoteIdentifier($table),
