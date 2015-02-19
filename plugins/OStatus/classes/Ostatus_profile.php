@@ -2087,13 +2087,15 @@ class Ostatus_profile extends Managed_DataObject
                                    'text/html');
 
         $filepath = File::path($filename);
+        $fileurl = File::url($filename);
 
         file_put_contents($filepath, $final);
 
         $file = new File;
 
         $file->filename = $filename;
-        $file->url      = File::url($filename);
+        $file->urlhash  = File::hashurl($fileurl);
+        $file->url      = $fileurl;
         $file->size     = filesize($filepath);
         $file->date     = time();
         $file->mimetype = 'text/html';

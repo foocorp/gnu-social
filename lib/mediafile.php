@@ -90,11 +90,13 @@ class MediaFile
 
     protected function storeFile()
     {
+        $fileurl = File::url($this->filename);
 
         $file = new File;
 
         $file->filename = $this->filename;
-        $file->url      = File::url($this->filename);
+        $file->urlhash  = File::hashurl($fileurl);
+        $file->url      = $fileurl;
         $filepath       = File::path($this->filename);
         $file->size     = filesize($filepath);
         $file->date     = time();

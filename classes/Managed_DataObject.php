@@ -396,4 +396,9 @@ abstract class Managed_DataObject extends Memcached_DataObject
         // @FIXME return true only if something changed (otherwise 0)
         return $result;
     }
+
+    static public function beforeSchemaUpdate()
+    {
+        // NOOP
+    }
 }

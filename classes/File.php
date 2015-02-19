@@ -606,4 +606,40 @@ class File extends Managed_DataObject
         }
         return hash(self::URLHASH_ALG, $url);
     }
+
+    static public function beforeSchemaUpdate()
+    {
+        $table = strtolower(get_called_class());
+        $schema = Schema::get();
+        $schemadef = $schema->getTableDef($table);
+
+        // 2015-02-19 We have to upgrade our table definitions to have the urlhash field populated
+        if (isset($schemadef['fields']['urlhash']) && in_array('file_urlhash_key', $schemadef['unique keys'])) {
+            // We already have the urlhash field, so no need to migrate it.
+            return;
+        }
+        echo "\nFound old $table table, upgrading it to contain 'urlhash' field...\n";
+        // We have to create a urlhash that is _not_ the primary key,
+        // transfer data and THEN run checkSchema
+        $schemadef['fields']['urlhash'] = array (
+                                              'type' => 'varchar',
+                                              'length' => 64,
+                                              'description' => 'sha256 of destination URL after following redirections',
+                                            );
+        $schema->ensureTable($table, $schemadef);
+        echo "DONE.\n";
+
+        $classname = ucfirst($table);
+        $tablefix = new $classname;
+        // urlhash is hash('sha256', $url) in the File table
+        echo "Updating urlhash fields in $table table...\n";
+        // Maybe very MySQL specific :(
+        $tablefix->query(sprintf('UPDATE %1$s SET %2$s=%3$s;',
+                            $schema->quoteIdentifier($table),
+                            'urlhash',
+                            // The line below is "result of sha256 on column `url`"
+                            'SHA2(url, 256)'));
+        echo "DONE.\n";
+        echo "Resuming core schema upgrade...";
+    }
 }

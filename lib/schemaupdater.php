@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class SchemaUpdater
 {
@@ -46,6 +44,11 @@ class SchemaUpdater
      */
     public function register($tableName, array $tableDef)
     {
+        // Check if the table we're registering is related to a Managed_DataObject
+        if (is_a(ucfirst($tableName), 'Managed_DataObject', true)) {
+            call_user_func("{$tableName}::beforeSchemaUpdate");
+        }
+
         $this->tables[$tableName] = $tableDef;
     }
 
