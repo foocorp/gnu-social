@@ -373,8 +373,14 @@ class File_redirection extends Managed_DataObject
         $schemadef['fields']['urlhash'] = array (
                                               'type' => 'varchar',
                                               'length' => 64,
-                                              'description' => 'sha256 of destination URL after following redirections',
+                                              'not null' => true,
+                                              'description' => 'sha256 hash of the URL',
                                             );
+        $schemadef['fields']['url'] = array (
+                                              'type' => 'text',
+                                              'description' => 'short URL (or any other kind of redirect) for file (id)',
+                                            );
+        unset($schemadef['primary key']);
         $schema->ensureTable($table, $schemadef);
         echo "DONE.\n";
 

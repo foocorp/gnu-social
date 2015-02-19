@@ -46,7 +46,7 @@ class File extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true),
                 'urlhash' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'sha256 of destination URL (url field)'),
-                'url' => array('type' => 'text', 'description' => 'destination URL after following redirections'),
+                'url' => array('type' => 'text', 'description' => 'destination URL after following possible redirections'),
                 'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
                 'size' => array('type' => 'int', 'description' => 'size of resource when available'),
                 'title' => array('type' => 'varchar', 'length' => 191, 'description' => 'title of resource when available'),
@@ -629,8 +629,14 @@ class File extends Managed_DataObject
         $schemadef['fields']['urlhash'] = array (
                                               'type' => 'varchar',
                                               'length' => 64,
-                                              'description' => 'sha256 of destination URL after following redirections',
+                                              'not null' => true,
+                                              'description' => 'sha256 of destination URL (url field)',
                                             );
+        $schemadef['fields']['url'] = array (
+                                              'type' => 'text',
+                                              'description' => 'destination URL after following possible redirections',
+                                            );
+        unset($schemadef['unique keys']);
         $schema->ensureTable($table, $schemadef);
         echo "DONE.\n";
 
