@@ -109,6 +109,7 @@ So far it includes the following changes:
 - Many improvements to ease adoption of the Qvitter front-end <https://github.com/hannesmannerheim/qvitter>
 - Protocol adaptions for improved performance and stability
 - Backing up a user's account now appears to work as it should
+- Emojis 😸
 
 Upgrades from _StatusNet_ 1.1.1 will also experience these improvements:
 
