@@ -39,8 +39,8 @@ class Video extends Managed_DataObject
 
     public $__table = 'video'; // table name
     public $id;                // char (36) // UUID
-    public $uri;               // varchar (255)  // This is the corresponding notice's uri.
-    public $url;               // varchar (255)
+    public $uri;               // varchar (191)   This is the corresponding notice's uri.   not 255 because utf8mb4 takes more space
+    public $url;               // varchar (191)   not 255 because utf8mb4 takes more space
     public $profile_id;        // int
 
     public static function getByNotice($notice)
@@ -63,10 +63,10 @@ class Video extends Managed_DataObject
                               'not null' => true,
                               'description' => 'UUID'),
                 'uri' => array('type' => 'varchar',
-                               'length' => 255,
+                               'length' => 191,
                                'not null' => true),
                 'url' => array('type' => 'varchar',
-                               'length' => 255,
+                               'length' => 191,
                                'not null' => true),
                 'profile_id' => array('type' => 'int', 'not null' => true),
             ),

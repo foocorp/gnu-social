@@ -29,15 +29,15 @@ class Status_network extends Safe_DataObject
     public $__table = 'status_network';                  // table name
     public $site_id;                         // int(4) primary_key not_null
     public $nickname;                        // varchar(64)   unique_key not_null
-    public $hostname;                        // varchar(255)  unique_key
-    public $pathname;                        // varchar(255)  unique_key
-    public $dbhost;                          // varchar(255)
-    public $dbuser;                          // varchar(255)
-    public $dbpass;                          // varchar(255)
-    public $dbname;                          // varchar(255)
-    public $sitename;                        // varchar(255)
-    public $theme;                           // varchar(255)
-    public $logo;                            // varchar(255)
+    public $hostname;                        // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
+    public $pathname;                        // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
+    public $dbhost;                          // varchar(191)               not 255 because utf8mb4 takes more space
+    public $dbuser;                          // varchar(191)               not 255 because utf8mb4 takes more space
+    public $dbpass;                          // varchar(191)               not 255 because utf8mb4 takes more space
+    public $dbname;                          // varchar(191)               not 255 because utf8mb4 takes more space
+    public $sitename;                        // varchar(191)               not 255 because utf8mb4 takes more space
+    public $theme;                           // varchar(191)               not 255 because utf8mb4 takes more space
+    public $logo;                            // varchar(191)               not 255 because utf8mb4 takes more space
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 

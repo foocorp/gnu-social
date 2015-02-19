@@ -22,7 +22,7 @@ class Attention extends Managed_DataObject
     public $__table = 'attention';  // table name
     public $notice_id;              // int(4) primary_key not_null
     public $profile_id;             // int(4) primary_key not_null
-    public $reason;                 // varchar(255)
+    public $reason;                 // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                // datetime()   not_null
     public $modified;               // timestamp   not_null default_CURRENT_TIMESTAMP
 
@@ -33,7 +33,7 @@ class Attention extends Managed_DataObject
             'fields' => array(
                 'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice_id to give attention'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'profile_id for feed receiver'),
-                'reason' => array('type' => 'varchar', 'length' => 255, 'description' => 'Optional reason why this was brought to the attention of profile_id'),
+                'reason' => array('type' => 'varchar', 'length' => 191, 'description' => 'Optional reason why this was brought to the attention of profile_id'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),

@@ -47,10 +47,10 @@ class Bookmark extends Managed_DataObject
     public $__table = 'bookmark'; // table name
     public $id;          // char(36) primary_key not_null
     public $profile_id;  // int(4) not_null
-    public $url;         // varchar(255) not_null
-    public $title;       // varchar(255)
+    public $url;         // varchar(191) not_null   not 255 because utf8mb4 takes more space
+    public $title;       // varchar(191)   not 255 because utf8mb4 takes more space
+    public $uri;         // varchar(191)   not 255 because utf8mb4 takes more space
     public $description; // text
-    public $uri;         // varchar(255)
     public $created;     // datetime
 
     public static function schemaDef()
@@ -62,12 +62,12 @@ class Bookmark extends Managed_DataObject
                             'not null' => true),
                 'profile_id' => array('type' => 'int', 'not null' => true),
                 'uri' => array('type' => 'varchar',
-                            'length' => 255,
+                            'length' => 191,
                             'not null' => true),
                 'url' => array('type' => 'varchar',
-                            'length' => 255,
+                            'length' => 191,
                             'not null' => true),
-                'title' => array('type' => 'varchar', 'length' => 255),
+                'title' => array('type' => 'varchar', 'length' => 191),
                 'description' => array('type' => 'text'),
                 'created' => array('type' => 'datetime', 'not null' => true),
             ),

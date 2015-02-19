@@ -46,11 +46,11 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  */
 class Notice_title extends Managed_DataObject
 {
-    const MAXCHARS = 255;
+    const MAXCHARS = 191;   // not 255 because utf8mb4 takes more space
 
     public $__table = 'notice_title'; // table name
     public $notice_id;                         // int(11)  primary_key not_null
-    public $title;                             // varchar(255)
+    public $title;                             // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                           // datetime()   not_null
     public $modified;                          // timestamp()   not_null default_CURRENT_TIMESTAMP
 

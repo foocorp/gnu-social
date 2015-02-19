@@ -10,7 +10,7 @@ class Nonce extends Managed_DataObject
     /* the code below is auto generated do not remove the above tag */
 
     public $__table = 'nonce';                           // table name
-    public $consumer_key;                    // varchar(255)  primary_key not_null
+    public $consumer_key;                    // varchar(191)  primary_key not_null   not 255 because utf8mb4 takes more space
     public $tok;                             // char(32)
     public $nonce;                           // char(32)  primary_key not_null
     public $ts;                              // datetime()  primary_key not_null
@@ -39,7 +39,7 @@ class Nonce extends Managed_DataObject
         return array(
             'description' => 'OAuth nonce record',
             'fields' => array(
-                'consumer_key' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'unique identifier, root URL'),
+                'consumer_key' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'unique identifier, root URL'),
                 'tok' => array('type' => 'char', 'length' => 32, 'description' => 'buggy old value, ignored'),
                 'nonce' => array('type' => 'char', 'length' => 32, 'not null' => true, 'description' => 'nonce'),
                 'ts' => array('type' => 'datetime', 'not null' => true, 'description' => 'timestamp sent'),

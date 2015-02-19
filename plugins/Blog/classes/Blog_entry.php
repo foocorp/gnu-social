@@ -51,11 +51,11 @@ class Blog_entry extends Managed_DataObject
 
     public $id; // UUID
     public $profile_id; // int
-    public $title; // varchar(255)
+    public $title; // varchar(191)   not 255 because utf8mb4 takes more space
     public $summary; // text
     public $content; // text
-    public $uri; // text
-    public $url; // text
+    public $uri; // varchar(191)   not 255 because utf8mb4 takes more space
+    public $url; // varchar(191)   not 255 because utf8mb4 takes more space
     public $created; // datetime
     public $modified; // datetime
 
@@ -74,17 +74,17 @@ class Blog_entry extends Managed_DataObject
                                       'not null' => true,
                                       'description' => 'Author profile ID'),
                 'title' => array('type' => 'varchar',
-                                 'length' => 255,
+                                 'length' => 191,
                                  'description' => 'title of the entry'),
                 'summary' => array('type' => 'text',
                                    'description' => 'initial summary'),
                 'content' => array('type' => 'text',
                                    'description' => 'HTML content of the entry'),
                 'uri' => array('type' => 'varchar',
-                               'length' => 255,
+                               'length' => 191,
                                'description' => 'URI (probably http://) for this entry'),
                 'url' => array('type' => 'varchar',
-                               'length' => 255,
+                               'length' => 191,
                                'description' => 'URL (probably http://) for this entry'),
                 'created' => array('type' => 'datetime',
                                    'not null' => true,

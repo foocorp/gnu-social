@@ -35,7 +35,7 @@ class Conversation extends Managed_DataObject
 {
     public $__table = 'conversation';        // table name
     public $id;                              // int(4)  primary_key not_null
-    public $uri;                             // varchar(255)  unique_key
+    public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $created;                         // datetime   not_null
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
 
@@ -44,7 +44,7 @@ class Conversation extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'int', 'not null' => true, 'description' => 'should be set from root notice id (since 2014-03-01 commit)'),
-                'uri' => array('type' => 'varchar', 'not null'=>true, 'length' => 255, 'description' => 'URI of the conversation'),
+                'uri' => array('type' => 'varchar', 'not null'=>true, 'length' => 191, 'description' => 'URI of the conversation'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),

@@ -37,9 +37,9 @@ class GNUsocialProfileExtensionField extends Managed_DataObject
     public $__table = 'gnusocialprofileextensionfield';
     public $id;          // int(11)
     public $systemname;  // varchar(64)
-    public $title;       // varchar(255)
+    public $title;       // varchar(191)   not 255 because utf8mb4 takes more space
     public $description; // text
-    public $type;        // varchar(255)
+    public $type;        // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;     // datetime()   not_null
     public $modified;    // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -49,9 +49,9 @@ class GNUsocialProfileExtensionField extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'Unique ID for extension field'),
                 'systemname' => array('type' => 'varchar', 'not null' => true, 'length' => 64, 'description' => 'field systemname'),
-                'title' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'field title'),
+                'title' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'field title'),
                 'description' => array('type' => 'text', 'not null' => true, 'description' => 'field description'),
-                'type' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'field type'),
+                'type' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'field type'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),

@@ -962,6 +962,7 @@ class DB_Error extends PEAR_Error
     function DB_Error($code = DB_ERROR, $mode = PEAR_ERROR_RETURN,
                       $level = E_USER_NOTICE, $debuginfo = null)
     {
+        common_debug(var_export($debuginfo,true));
         if (is_int($code)) {
             $this->PEAR_Error('DB Error: ' . DB::errorMessage($code), $code,
                               $mode, $level, $debuginfo);

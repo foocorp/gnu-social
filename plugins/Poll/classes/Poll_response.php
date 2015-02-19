@@ -46,7 +46,7 @@ class Poll_response extends Managed_DataObject
 {
     public $__table = 'poll_response'; // table name
     public $id;          // char(36) primary key not null -> UUID
-    public $uri;          // varchar(255)
+    public $uri;         // varchar(191)   not 255 because utf8mb4 takes more space
     public $poll_id;     // char(36) -> poll.id UUID
     public $profile_id;  // int -> profile.id
     public $selection;   // int -> choice #
@@ -61,7 +61,7 @@ class Poll_response extends Managed_DataObject
             'description' => 'Record of responses to polls',
             'fields' => array(
                 'id' => array('type' => 'char', 'length' => 36, 'not null' => true, 'description' => 'UUID of the response'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'UUID to the response notice'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'UUID to the response notice'),
                 'poll_id' => array('type' => 'char', 'length' => 36, 'not null' => true, 'description' => 'UUID of poll being responded to'),
                 'profile_id' => array('type' => 'int'),
                 'selection' => array('type' => 'int'),

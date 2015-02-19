@@ -31,14 +31,14 @@ class File_oembed extends Managed_DataObject
     public $type;                            // varchar(20)
     public $mimetype;                        // varchar(50)
     public $provider;                        // varchar(50)
-    public $provider_url;                    // varchar(255)
+    public $provider_url;                    // varchar(191)   not 255 because utf8mb4 takes more space
     public $width;                           // int(4)
     public $height;                          // int(4)
     public $html;                            // text()
-    public $title;                           // varchar(255)
+    public $title;                           // varchar(191)   not 255 because utf8mb4 takes more space
     public $author_name;                     // varchar(50)
-    public $author_url;                      // varchar(255)
-    public $url;                             // varchar(255)
+    public $author_url;                      // varchar(191)   not 255 because utf8mb4 takes more space
+    public $url;                             // varchar(191)   not 255 because utf8mb4 takes more space
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
     public static function schemaDef()
@@ -50,14 +50,14 @@ class File_oembed extends Managed_DataObject
                 'type' => array('type' => 'varchar', 'length' => 20, 'description' => 'oEmbed type: photo, video, link, rich'),
                 'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
                 'provider' => array('type' => 'varchar', 'length' => 50, 'description' => 'name of this oEmbed provider'),
-                'provider_url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL of this oEmbed provider'),
+                'provider_url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL of this oEmbed provider'),
                 'width' => array('type' => 'int', 'description' => 'width of oEmbed resource when available'),
                 'height' => array('type' => 'int', 'description' => 'height of oEmbed resource when available'),
                 'html' => array('type' => 'text', 'description' => 'html representation of this oEmbed resource when applicable'),
-                'title' => array('type' => 'varchar', 'length' => 255, 'description' => 'title of oEmbed resource when available'),
+                'title' => array('type' => 'varchar', 'length' => 191, 'description' => 'title of oEmbed resource when available'),
                 'author_name' => array('type' => 'varchar', 'length' => 50, 'description' => 'author name for this oEmbed resource'),
-                'author_url' => array('type' => 'varchar', 'length' => 255, 'description' => 'author URL for this oEmbed resource'),
-                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL for this oEmbed resource when applicable (photo, link)'),
+                'author_url' => array('type' => 'varchar', 'length' => 191, 'description' => 'author URL for this oEmbed resource'),
+                'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL for this oEmbed resource when applicable (photo, link)'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
             'primary key' => array('file_id'),

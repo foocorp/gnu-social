@@ -40,7 +40,7 @@ class Ostatus_source extends Managed_DataObject
         return array(
             'fields' => array(
                 'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'Notice ID relation'),
-                'profile_uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'Profile URI'),
+                'profile_uri' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'Profile URI'),
                 'method' => array('type' => 'enum("push","salmon")', 'not null' => true, 'description' => 'source method'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),

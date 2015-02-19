@@ -52,7 +52,7 @@ class Notice_to_item extends Managed_DataObject
 {
     public $__table = 'notice_to_item'; // table name
     public $notice_id;                  // int(4)  primary_key not_null
-    public $item_id;                    // varchar(255) not null
+    public $item_id;                    // varchar(191) not null   not 255 because utf8mb4 takes more space
     public $created;                    // datetime
 
     /**
@@ -76,7 +76,7 @@ class Notice_to_item extends Managed_DataObject
     {
         return array(
             new ColumnDef('notice_id', 'integer', null, false, 'PRI'),
-            new ColumnDef('item_id', 'varchar', 255, false, 'UNI'),
+            new ColumnDef('item_id', 'varchar', 191, false, 'UNI'),
             new ColumnDef('created', 'datetime',  null, false)
         );
     }
