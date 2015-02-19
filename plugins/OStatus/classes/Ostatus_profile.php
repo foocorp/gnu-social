@@ -621,7 +621,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // Get (safe!) HTML and text versions of the content
 
-        $rendered = $this->purify($sourceContent);
+        $rendered = common_purify($sourceContent);
         $content = common_strip_html($rendered);
 
         $shortened = common_shorten_links($content);
@@ -788,7 +788,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // Get (safe!) HTML and text versions of the content
 
-        $rendered = $this->purify($sourceContent);
+        $rendered = common_purify($sourceContent);
         $content = common_strip_html($rendered);
 
         $shortened = common_shorten_links($content);
@@ -912,17 +912,6 @@ class Ostatus_profile extends Managed_DataObject
         }
         common_log(LOG_INFO, "OStatus saved remote message $sourceUri as notice id $saved->id");
         return $saved;
-    }
-
-    /**
-     * Clean up HTML
-     */
-    protected function purify($html)
-    {
-        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-        $config = array('safe' => 1,
-                        'deny_attribute' => 'id,style,on*');
-        return htmLawed($html, $config);
     }
 
     /**

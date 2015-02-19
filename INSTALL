@@ -41,6 +41,7 @@ functional setup of GNU Social:
 - php5-curl     Fetching files by HTTP.
 - php5-gd       Image manipulation (scaling).
 - php5-gmp      For Salmon signatures (part of OStatus).
+- php5-intl     Internationalization support (transliteration et al).
 - php5-json     For WebFinger lookups and more.
 - php5-mysqlnd  The native driver for PHP5 MariaDB connections. If you
                   use MySQL, 'mysql' or 'mysqli' may work.

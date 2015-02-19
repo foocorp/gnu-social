@@ -249,7 +249,7 @@ class SalmonAction extends Action
                     $orig = clone($oprofile);
                     $oprofile->uri = $e->object_uri;
                     common_debug('URIFIX Updating Ostatus_profile URI for '.$aliased_uri.' to '.$oprofile->uri);
-                    $oprofile->updateWithKeys($orig);
+                    $oprofile->updateWithKeys($orig, 'uri');    // 'uri' is the primary key column
                     unset($orig);
                     $this->oprofile = $oprofile;
                     break;  // don't iterate through aliases anymore

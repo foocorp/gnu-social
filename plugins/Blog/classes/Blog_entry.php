@@ -117,10 +117,10 @@ class Blog_entry extends Managed_DataObject
         $be->id         = (string) new UUID();
         $be->profile_id = $profile->id;
         $be->title      = $title; // Note: not HTML-protected
-        $be->content    = self::purify($content);
+        $be->content    = common_purify($content);
 
         if (array_key_exists('summary', $options)) {
-            $be->summary = self::purify($options['summary']);
+            $be->summary = common_purify($options['summary']);
         } else {
             // Already purified
             $be->summary = self::summarize($be->content);
@@ -240,19 +240,5 @@ class Blog_entry extends Managed_DataObject
         $obj->link    = $this->url;
 
         return $obj;
-    }
-
-    /**
-     * Clean up input HTML
-     */
-    static function purify($html)
-    {
-        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-
-        $config = array('safe' => 1,
-                        'deny_attribute' => 'id,style,on*');
-        $pure = htmLawed($html, $config);
-
-        return $pure;
     }
 }
