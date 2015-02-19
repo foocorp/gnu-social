@@ -313,7 +313,7 @@ class EmailsettingsAction extends SettingsAction
      */
     function savePreferences()
     {
-        $user = common_current_user();
+        $user = $this->scoped->getUser();
 
         if (Event::handle('StartEmailSaveForm', array($this, $this->scoped))) {
             $emailnotifysub   = $this->boolean('emailnotifysub');
@@ -322,8 +322,6 @@ class EmailsettingsAction extends SettingsAction
             $emailnotifyattn  = $this->boolean('emailnotifyattn');
             $emailmicroid     = $this->boolean('emailmicroid');
             $emailpost        = $this->boolean('emailpost');
-
-            assert(!is_null($user)); // should already be checked
 
             $user->query('BEGIN');
 
