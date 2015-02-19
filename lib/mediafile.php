@@ -141,10 +141,11 @@ class MediaFile
 
     function maybeAddRedir($file_id, $url)
     {
-        $file_redir = File_redirection::getKV('url', $url);
-
-        if (!$file_redir instanceof File_redirection) {
+        try {
+            $file_redir = File_redirection::getByUrl($url);
+        } catch (NoResultException $e) {
             $file_redir = new File_redirection;
+            $file_redir->urlhash = File::hashurl($url);
             $file_redir->url = $url;
             $file_redir->file_id = $file_id;
 
