@@ -547,13 +547,13 @@ class OpenIDPlugin extends Plugin
                              array(
                                  'fields' => array(
                                      'server_url' => array('type' => 'blob', 'not null' => true),
-                                     'handle' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'default' => ''), // character set latin1,
+                                     'handle' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'default' => ''), // character set latin1,
                                      'secret' => array('type' => 'blob'),
                                      'issued' => array('type' => 'int'),
                                      'lifetime' => array('type' => 'int'),
                                      'assoc_type' => array('type' => 'varchar', 'length' => 64),
                                  ),
-                                 'primary key' => array(array('server_url', 255), 'handle'),
+                                 'primary key' => array(array('server_url', 191), 'handle'),
                              ));
         $schema->ensureTable('oid_nonces',
                              array(
@@ -563,7 +563,7 @@ class OpenIDPlugin extends Plugin
                                      'salt' => array('type' => 'char', 'length' => 40),
                                  ),
                                  'unique keys' => array(
-                                     'oid_nonces_server_url_timestamp_salt_key' => array(array('server_url', 255), 'timestamp', 'salt'),
+                                     'oid_nonces_server_url_timestamp_salt_key' => array(array('server_url', 191), 'timestamp', 'salt'),
                                  ),
                              ));
 
