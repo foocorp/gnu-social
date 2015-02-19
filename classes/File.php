@@ -45,7 +45,7 @@ class File extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true),
-                'urlhash' => array('type' => 'varchar', 'length' => 64, 'description' => 'sha256 of destination URL (url field)'),
+                'urlhash' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'sha256 of destination URL (url field)'),
                 'url' => array('type' => 'text', 'description' => 'destination URL after following redirections'),
                 'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
                 'size' => array('type' => 'int', 'description' => 'size of resource when available'),

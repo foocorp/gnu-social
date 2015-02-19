@@ -43,7 +43,7 @@ class File_redirection extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'urlhash' => array('type' => 'varchar', 'length' => 64, 'description' => 'sha256 hash of the URL'),
+                'urlhash' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'sha256 hash of the URL'),
                 'url' => array('type' => 'text', 'description' => 'short URL (or any other kind of redirect) for file (id)'),
                 'file_id' => array('type' => 'int', 'description' => 'short URL for what URL/file'),
                 'redirections' => array('type' => 'int', 'description' => 'redirect count'),
