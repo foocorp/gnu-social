@@ -619,7 +619,7 @@ class File extends Managed_DataObject
         $schemadef = $schema->getTableDef($table);
 
         // 2015-02-19 We have to upgrade our table definitions to have the urlhash field populated
-        if (isset($schemadef['fields']['urlhash']) && in_array('file_urlhash_key', $schemadef['unique keys'])) {
+        if (isset($schemadef['fields']['urlhash']) && isset($schemadef['unique keys']['file_urlhash_key'])) {
             // We already have the urlhash field, so no need to migrate it.
             return;
         }
