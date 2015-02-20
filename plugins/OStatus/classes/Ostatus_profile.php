@@ -1120,6 +1120,11 @@ class Ostatus_profile extends Managed_DataObject
      */
     public static function ensureFeedURL($feed_url, array $hints=array())
     {
+        $oprofile = Ostatus_profile::getKV('feeduri', $feed_url);
+        if ($oprofile instanceof Ostatus_profile) {
+            return $oprofile;
+        }
+
         $discover = new FeedDiscovery();
 
         $feeduri = $discover->discoverFromFeedURL($feed_url);
