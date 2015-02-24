@@ -1456,6 +1456,10 @@ margin-left:0;
     margin-left: 56px;
 }
 
+.threaded-replies .notice > footer, .section .notice > footer {
+    margin-left:33px;
+}
+
 .notice > footer .timestamp span.p-name {
     display: none;
 }

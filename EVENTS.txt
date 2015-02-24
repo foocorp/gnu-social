@@ -1481,3 +1481,9 @@ EndSubMenu: After outputting a submenu (including enclosing tags) to HTML
 - $out:     HTMLOutputter used to output (usually an Action, but not always!)
 - $menu:    The Menu object outputted as a submenu.
 - $label:   Localized text which represents the menu item.
+
+StartDocNav: Before outputting the docs Nav
+- $nav: The DoclNav widget
+
+EndDocNav: After outputting the docs Nav
+- $nav: The DoclNav widget
