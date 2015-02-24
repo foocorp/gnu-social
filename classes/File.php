@@ -28,6 +28,7 @@ class File extends Managed_DataObject
     public $id;                              // int(4)  primary_key not_null
     public $urlhash;                         // varchar(64)  unique_key
     public $url;                             // text
+    public $filehash;                        // varchar(64)     indexed
     public $mimetype;                        // varchar(50)
     public $size;                            // int(4)
     public $title;                           // varchar(191)   not 255 because utf8mb4 takes more space
@@ -39,6 +40,7 @@ class File extends Managed_DataObject
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
     const URLHASH_ALG = 'sha256';
+    const FILEHASH_ALG = 'sha256';
 
     public static function schemaDef()
     {
@@ -47,6 +49,7 @@ class File extends Managed_DataObject
                 'id' => array('type' => 'serial', 'not null' => true),
                 'urlhash' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'sha256 of destination URL (url field)'),
                 'url' => array('type' => 'text', 'description' => 'destination URL after following possible redirections'),
+                'filehash' => array('type' => 'varchar', 'length' => 64, 'not null' => false, 'description' => 'sha256 of the file contents, only for locally stored files of course'),
                 'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
                 'size' => array('type' => 'int', 'description' => 'size of resource when available'),
                 'title' => array('type' => 'varchar', 'length' => 191, 'description' => 'title of resource when available'),
@@ -61,6 +64,9 @@ class File extends Managed_DataObject
             'primary key' => array('id'),
             'unique keys' => array(
                 'file_urlhash_key' => array('urlhash'),
+            ),
+            'indexes' => array(
+                'file_filehash_idx' => array('filehash'),
             ),
         );
     }
@@ -247,12 +253,7 @@ class File extends Managed_DataObject
 
     static function filename(Profile $profile, $origname, $mimetype)
     {
-        try {
-            $ext = common_supported_mime_to_ext($mimetype);
-        } catch (Exception $e) {
-            // We don't support this mimetype, but let's guess the extension
-            $ext = substr(strrchr($mimetype, '/'), 1);
-        }
+        $ext = self::guessMimeExtension($mimetype);
 
         // Normalize and make the original filename more URL friendly.
         $origname = basename($origname, ".$ext");
@@ -271,6 +272,17 @@ class File extends Managed_DataObject
             $filename = "$nickname-$datestamp-$origname-$random.$ext";
         } while (file_exists(self::path($filename)));
         return $filename;
+    }
+
+    static function guessMimeExtension($mimetype)
+    {
+        try {
+            $ext = common_supported_mime_to_ext($mimetype);
+        } catch (Exception $e) {
+            // We don't support this mimetype, but let's guess the extension
+            $ext = substr(strrchr($mimetype, '/'), 1);
+        }
+        return strtolower($ext);
     }
 
     /**
@@ -464,7 +476,11 @@ class File extends Managed_DataObject
 
     public function getPath()
     {
-        return self::path($this->filename);
+        $filepath = self::path($this->filename);
+        if (!file_exists($filepath)) {
+            throw new FileNotFoundException($filepath);
+        }
+        return $filepath;
     }
 
     public function getUrl()
@@ -488,6 +504,19 @@ class File extends Managed_DataObject
     {
         $file = new File();
         $file->urlhash = self::hashurl($url);
+        if (!$file->find(true)) {
+            throw new NoResultException($file);
+        }
+        return $file;
+    }
+
+    /**
+     * @param   string  $hashstr    String of (preferrably lower case) hexadecimal characters, same as result of 'hash_file(...)'
+     */
+    static public function getByHash($hashstr, $alg=File::FILEHASH_ALG)
+    {
+        $file = new File();
+        $file->filehash = strtolower($hashstr);
         if (!$file->find(true)) {
             throw new NoResultException($file);
         }

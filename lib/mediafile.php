@@ -42,12 +42,13 @@ class MediaFile
     var $short_fileurl = null;
     var $mimetype      = null;
 
-    function __construct(Profile $scoped, $filename = null, $mimetype = null)
+    function __construct(Profile $scoped, $filename = null, $mimetype = null, $filehash = null)
     {
         $this->scoped = $scoped;
 
         $this->filename   = $filename;
         $this->mimetype   = $mimetype;
+        $this->filehash   = $filehash;
         $this->fileRecord = $this->storeFile();
 
         $this->fileurl = common_local_url('attachment',
@@ -90,6 +91,24 @@ class MediaFile
 
     protected function storeFile()
     {
+        $filepath       = File::path($this->filename);
+        if (!empty($this->filename) && $this->filehash === null) {
+            // Calculate if we have an older upload method somewhere (Qvitter) that
+            // doesn't do this before calling new MediaFile on its local files...
+            $this->filehash = hash_file(File::FILEHASH_ALG, $filepath);
+            if ($this->filehash === false) {
+                throw new ServerException('Could not read file for hashing');
+            }
+        }
+
+        try {
+            $file = File::getByHash($this->filehash);
+            // We're done here. Yes. Already. We assume sha256 won't collide on us anytime soon.
+            return $file;
+        } catch (NoResultException $e) {
+            // Well, let's just continue below.
+        }
+
         $fileurl = File::url($this->filename);
 
         $file = new File;
@@ -97,10 +116,14 @@ class MediaFile
         $file->filename = $this->filename;
         $file->urlhash  = File::hashurl($fileurl);
         $file->url      = $fileurl;
-        $filepath       = File::path($this->filename);
+        $file->filehash = $this->filehash;
         $file->size     = filesize($filepath);
+        if ($file->size === false) {
+            throw new ServerException('Could not read file to get its size');
+        }
         $file->date     = time();
         $file->mimetype = $this->mimetype;
+
 
         $file_id = $file->insert();
 
@@ -206,49 +229,86 @@ class MediaFile
                 throw new ClientException(_('System error uploading file.'));
         }
 
-        // Throws exception if additional size does not respect quota
-        File::respectsQuota($scoped, $_FILES[$param]['size']);
+        // TODO: Make documentation clearer that this won't work for files >2GiB because
+        //       PHP is stupid in its 32bit head. But noone accepts 2GiB files with PHP
+        //       anyway... I hope.
+        $filehash = hash_file(File::FILEHASH_ALG, $_FILES[$param]['tmp_name']);
 
-        $mimetype = self::getUploadedMimeType($_FILES[$param]['tmp_name'],
-                $_FILES[$param]['name']);
+        try {
+            $file = File::getByHash($filehash);
+            // If no exception is thrown the file exists locally, so we'll use that and just add redirections.
+            $filename = $file->filename;
+            $mimetype = $file->mimetype;
 
-        $basename = basename($_FILES[$param]['name']);
-        $filename = File::filename($scoped, $basename, $mimetype);
-        $filepath = File::path($filename);
+        } catch (NoResultException $e) {
+            // We have to save the upload as a new local file. This is the normal course of action.
 
-        $result = move_uploaded_file($_FILES[$param]['tmp_name'], $filepath);
+            // Throws exception if additional size does not respect quota
+            // This test is only needed, of course, if we're uploading something new.
+            File::respectsQuota($scoped, $_FILES[$param]['size']);
 
-        if (!$result) {
-            // TRANS: Client exception thrown when a file upload operation fails because the file could
-            // TRANS: not be moved from the temporary folder to the permanent file location.
-            throw new ClientException(_('File could not be moved to destination directory.'));
+            $mimetype = self::getUploadedMimeType($_FILES[$param]['tmp_name'], $_FILES[$param]['name']);
+
+            switch (common_config('attachments', 'filename_base')) {
+            case 'upload':
+                $basename = basename($_FILES[$param]['name']);
+                $filename = File::filename($scoped, $basename, $mimetype);
+                break;
+            case 'hash':
+            default:
+                $filename = strtolower($filehash) . '.' . File::guessMimeExtension($mimetype); 
+            }
+            $filepath = File::path($filename);
+
+            $result = move_uploaded_file($_FILES[$param]['tmp_name'], $filepath);
+
+            if (!$result) {
+                // TRANS: Client exception thrown when a file upload operation fails because the file could
+                // TRANS: not be moved from the temporary folder to the permanent file location.
+                throw new ClientException(_('File could not be moved to destination directory.'));
+            }
         }
 
-        return new MediaFile($scoped, $filename, $mimetype);
+        return new MediaFile($scoped, $filename, $mimetype, $filehash);
     }
 
     static function fromFilehandle($fh, Profile $scoped) {
-
         $stream = stream_get_meta_data($fh);
+        // So far we're only handling filehandles originating from tmpfile(),
+        // so we can always do hash_file on $stream['uri'] as far as I can tell!
+        $filehash = hash_file(File::FILEHASH_ALG, $stream['uri']);
 
-        File::respectsQuota($scoped, filesize($stream['uri']));
+        try {
+            $file = File::getByHash($filehash);
+            // Already have it, so let's reuse the locally stored File
+            $filename = $file->filename;
+            $mimetype = $file->mimetype;
+        } catch (NoResultException $e) {
+            File::respectsQuota($scoped, filesize($stream['uri']));
 
-        $mimetype = self::getUploadedMimeType($stream['uri']);
+            $mimetype = self::getUploadedMimeType($stream['uri']);
 
-        $filename = File::filename($scoped, "email", $mimetype);
+            switch (common_config('attachments', 'filename_base')) {
+            case 'upload':
+                $filename = File::filename($scoped, "email", $mimetype);
+                break;
+            case 'hash':
+            default:
+                $filename = strtolower($filehash) . '.' . File::guessMimeExtension($mimetype);
+            }
+            $filepath = File::path($filename);
 
-        $filepath = File::path($filename);
+            $result = copy($stream['uri'], $filepath) && chmod($filepath, 0664);
 
-        $result = copy($stream['uri'], $filepath) && chmod($filepath, 0664);
-
-        if (!$result) {
-            // TRANS: Client exception thrown when a file upload operation fails because the file could
-            // TRANS: not be moved from the temporary folder to the permanent file location.
-            throw new ClientException(_('File could not be moved to destination directory.' .
-                $stream['uri'] . ' ' . $filepath));
+            if (!$result) {
+                // TRANS: Client exception thrown when a file upload operation fails because the file could
+                // TRANS: not be moved from the temporary folder to the permanent file location.
+                throw new ClientException(_('File could not be moved to destination directory.' .
+                    $stream['uri'] . ' ' . $filepath));
+            }
         }
 
-        return new MediaFile($scoped, $filename, $mimetype);
+        return new MediaFile($scoped, $filename, $mimetype, $filehash);
     }
 
     /**

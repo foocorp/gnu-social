@@ -119,7 +119,11 @@ class File_thumbnail extends Managed_DataObject
 
     public function getPath()
     {
-        return self::path($this->filename);
+        $filepath = self::path($this->filename);
+        if (!file_exists($filepath)) {
+            throw new FileNotFoundException($filepath);
+        }
+        return $filepath;
     }
 
     public function getUrl()
