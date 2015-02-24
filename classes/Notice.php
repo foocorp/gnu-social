@@ -2676,7 +2676,7 @@ class Notice extends Managed_DataObject
             $scope = self::defaultScope();
         }
 
-        if ($scope == 0) { // Not scoping, so it is public.
+        if ($scope == 0 && !$this->getProfile()->isPrivateStream()) { // Not scoping, so it is public.
             return !$this->isHiddenSpam($profile);
         }
 
@@ -2727,18 +2727,9 @@ class Notice extends Managed_DataObject
             }
         }
 
-        // Only for followers of the author
-        $author = null;
+        if ($scope & Notice::FOLLOWER_SCOPE || $this->getProfile()->isPrivateStream()) {
 
-        if ($scope & Notice::FOLLOWER_SCOPE) {
-
-            try {
-                $author = $this->getProfile();
-            } catch (Exception $e) {
-                return false;
-            }
-
-            if (!Subscription::exists($profile, $author)) {
+            if (!Subscription::exists($profile, $this->getProfile())) {
                 return false;
             }
         }

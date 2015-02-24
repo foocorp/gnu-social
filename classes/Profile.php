@@ -1572,6 +1572,15 @@ class Profile extends Managed_DataObject
         return $this->getUser()->shortenLinks($text, $always);
     }
 
+    public function isPrivateStream()
+    {
+        // We only know of public remote users as of yet...
+        if (!$this->isLocal()) {
+            return false;
+        }
+        return $this->getUser()->private_stream ? true : false;
+    }
+
     public function delPref($namespace, $topic) {
         return Profile_prefs::setData($this, $namespace, $topic, null);
     }

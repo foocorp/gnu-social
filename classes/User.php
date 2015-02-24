@@ -992,6 +992,11 @@ class User extends Managed_DataObject
         return $act;
     }
 
+    public function isPrivateStream()
+    {
+        return $this->getProfile()->isPrivateStream();
+    }
+
     public function delPref($namespace, $topic)
     {
         return $this->getProfile()->delPref($namespace, $topic);
