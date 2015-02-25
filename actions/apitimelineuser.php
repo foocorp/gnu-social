@@ -79,6 +79,10 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             $this->clientError(_('No such user.'), 404);
         }
 
+        if (!$this->target->isLocal()) {
+            $this->serverError(_('Remote user timelines are not available here yet.'), 501);
+        }
+
         $this->notices = $this->getNotices();
 
         return true;
