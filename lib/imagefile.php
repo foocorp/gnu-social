@@ -141,7 +141,7 @@ class ImageFile
     public function getPath()
     {
         if (!file_exists($this->filepath)) {
-            throw new ServerException('No file in ImageFile filepath');
+            throw new FileNotFoundException($this->filepath);
         }
 
         return $this->filepath;
