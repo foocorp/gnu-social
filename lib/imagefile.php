@@ -53,6 +53,7 @@ class ImageFile
     var $width;
     var $rotate=0;  // degrees to rotate for properly oriented image (extrapolated from EXIF etc.)
     var $animated = null;  // Animated image? (has more than 1 frame). null means untested
+    var $mimetype = null;   // The _ImageFile_ mimetype, _not_ the originating File object
 
     function __construct($id, $filepath)
     {
@@ -77,6 +78,7 @@ class ImageFile
         $this->width    = $info[0];
         $this->height   = $info[1];
         $this->type     = $info[2];
+        $this->mimetype = $info['mime'];
 
         if ($this->type == IMAGETYPE_JPEG && function_exists('exif_read_data')) {
             // Orientation value to rotate thumbnails properly
