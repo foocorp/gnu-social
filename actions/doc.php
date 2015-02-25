@@ -174,11 +174,15 @@ class DocNav extends Menu
 {
     function show()
     {
-        $stub = new HomeStubNav($this->action);
-        $this->submenu(_m('MENU','Home'), $stub);
+        if (Event::handle('StartDocNav', array($this))) {
+            $stub = new HomeStubNav($this->action);
+            $this->submenu(_m('MENU','Home'), $stub);
 
-        $docs = new DocListNav($this->action);
-        $this->submenu(_m('MENU','Docs'), $docs);
+            $docs = new DocListNav($this->action);
+            $this->submenu(_m('MENU','Docs'), $docs);
+            
+            Event::handle('EndDocNav', array($this));
+        }
     }
 }
 
