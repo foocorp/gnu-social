@@ -38,27 +38,6 @@
   font-style: normal;
 }
 
-@font-face {
-    font-family: 'Lato';
-    src: url('../fonts/Lato-Regular.eot?') format('eot'), url('../fonts/Lato-Regular.woff') format('woff'), url('../fonts/Lato-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Lato';
-    src: url('../fonts/Lato-Bold.eot?') format('eot'), url('../fonts/Lato-Bold.woff') format('woff'), url('../fonts/Lato-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Lato';
-    src: url('../fonts/Lato-Italic.eot?') format('eot'), url('../fonts/Lato-Italic.woff') format('woff'), url('../fonts/Lato-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-}
-
 @media screen, projection, tv {
 
 /* general styles and layout */
@@ -70,11 +49,11 @@ html, body {
 body {
     background-color: #E9EAED;
     color: #222;
-    font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 input, textarea, select, option {
-    font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 a {color: #006c9b;}
@@ -112,7 +91,7 @@ address {
     background-image: url("../icons-hires.png?v=2");
     background-size: 150px 2786px;
     background-repeat:no-repeat;
-    }
+}
 
 address {
     background-position: -10px -600px;
@@ -126,19 +105,21 @@ address {
     width: 89px;
     z-index: 1001;
     background-color:#0084B4;
-    }
+}
+
 address:hover {
     background-position: -10px -635px;
-    }
+}
+
 address a {
     height: 34px;
     width: 89px;
     display:block;
-    }
+}
 
 .logo {
     display: none;
-    }
+}
 
 #header {
     background-color: #fff;
@@ -590,7 +571,7 @@ ul.profile_list li {
     content:"@";
 }
 
-#groupdirectory    .profile_list .h-card .p-nickname:before {
+#groupdirectory .profile_list .h-card .p-nickname:before {
     content:"!";
 }
 
@@ -980,8 +961,6 @@ background:none;
 .checkbox-wrapper.checked label.checkbox,
 .checkbox-wrapper.unchecked label.checkbox {
     background-image:none;
-    opacity: 0.6;
-    padding-left: 30px;
     color:transparent;
 }
 
@@ -989,9 +968,9 @@ background:none;
 .checkbox-wrapper.unchecked label.checkbox:before {
     content: "\f023";
     display: block;
-    font: 20px/1 "fa";
+    font: 22px/1 "fa";
     height: 35px;
-    left: 0px;
+    left: 10px;
     position: absolute;
     top: 0px;
     width: 35px;
