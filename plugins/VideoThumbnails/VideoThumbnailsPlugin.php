@@ -58,7 +58,7 @@ class VideoThumbnailsPlugin extends Plugin
         // Let's save our frame to a temporary file. If we fail, remove it.
         $imgPath = tempnam(sys_get_temp_dir(), 'socialthumb-');
 
-        $result = exec('avconv -i '.escapeshellarg($file->getPath()).' -vcodec mjpeg -vframes 1 -f mjpeg -an '.escapeshellarg($imgPath));
+        $result = exec('avconv -i '.escapeshellarg($file->getPath()).' -vcodec mjpeg -vframes 1 -f image2 -an '.escapeshellarg($imgPath));
 
         if (!getimagesize($imgPath)) {
             common_debug('exec of "avconv" produced a bad/nonexisting image it seems');
