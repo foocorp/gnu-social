@@ -157,8 +157,8 @@ class NoticeListItem extends Widget
     {
         $this->elementStart('footer');
         $this->showNoticeInfo();
-        if ($this->attachments) { $this->showNoticeAttachments(); }
         if ($this->options) { $this->showNoticeOptions(); }
+        if ($this->attachments) { $this->showNoticeAttachments(); }
         $this->elementEnd('footer');
     }
 
