@@ -51,7 +51,7 @@ class VideoThumbnailsPlugin extends Plugin
     {
         // The calling function might accidentally pass application/ogg videos.
         // If that's a problem, let's fix it in the calling function.
-        if ($media !== 'video') {
+        if ($media !== 'video' || empty($file->filename)) {
             return true;
         }
 
