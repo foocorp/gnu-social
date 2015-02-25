@@ -212,7 +212,7 @@ class XMLOutputter
     {
         static $empty_tag = array('base', 'meta', 'link', 'hr',
                                   'br', 'param', 'img', 'area',
-                                  'input', 'col');
+                                  'input', 'col', 'source');
         // XXX: check namespace
         if (in_array($tag, $empty_tag)) {
             $this->xw->endElement();
