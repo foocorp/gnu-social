@@ -403,6 +403,10 @@ class File extends Managed_DataObject
      * @param $crop   bool  Crop to the max-values' aspect ratio
      *
      * @return File_thumbnail
+     *
+     * @throws UseFileAsThumbnailException  if the file is considered an image itself and should be itself as thumbnail
+     * @throws UnsupportedMediaException    if, despite trying, we can't understand how to make a thumbnail for this format
+     * @throws ServerException              on various other errors
      */
     public function getThumbnail($width=null, $height=null, $crop=false, $force_still=true)
     {
@@ -429,7 +433,8 @@ class File extends Managed_DataObject
 
         // Get proper aspect ratio width and height before lookup
         // We have to do it through an ImageFile object because of orientation etc.
-        // Only other solution would've been to rotate + rewrite uploaded files.
+        // Only other solution would've been to rotate + rewrite uploaded files
+        // which we don't want to do because we like original, untouched data!
         list($width, $height, $x, $y, $w, $h) =
                                 $image->scaleToFit($width, $height, $crop);
 
@@ -441,8 +446,8 @@ class File extends Managed_DataObject
             return $thumb;
         }
 
-        // throws exception on failure to generate thumbnail
-        $outname = "thumb-{$width}x{$height}-{$image->filename}." . File::guessMimeExtension($image->mimetype);
+        $filename = $this->filehash ?: $image->filename;    // Remote files don't have $this->filename
+        $outname = "thumb-{$this->id}-{$width}x{$height}-{$filename}." . File::guessMimeExtension($image->mimetype);
         $outpath = self::path($outname);
 
         // The boundary box for our resizing
