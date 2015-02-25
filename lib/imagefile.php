@@ -54,7 +54,7 @@ class ImageFile
     var $rotate=0;  // degrees to rotate for properly oriented image (extrapolated from EXIF etc.)
     var $animated = null;  // Animated image? (has more than 1 frame). null means untested
 
-    function __construct($id=null, $filepath=null, $type=null, $width=null, $height=null)
+    function __construct($id, $filepath)
     {
         $this->id = $id;
         $this->filepath = $filepath;
@@ -74,9 +74,9 @@ class ImageFile
             throw new UnsupportedMediaException(_('Unsupported image format.'), $this->filepath);
         }
 
-        $this->type = ($info) ? $info[2]:$type;
-        $this->width = ($info) ? $info[0]:$width;
-        $this->height = ($info) ? $info[1]:$height;
+        $this->width    = $info[0];
+        $this->height   = $info[1];
+        $this->type     = $info[2];
 
         if ($this->type == IMAGETYPE_JPEG && function_exists('exif_read_data')) {
             // Orientation value to rotate thumbnails properly
