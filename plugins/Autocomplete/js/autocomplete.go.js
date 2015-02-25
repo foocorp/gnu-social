@@ -135,4 +135,3 @@ SN.Init.PeopletagAutocomplete = function(txtBox) {
 $(document).on('click', '.peopletags_edit_button', function () {
     SN.Init.PeopletagAutocomplete($(this).closest('dd').find('[name="tags"]'));
 });
-
