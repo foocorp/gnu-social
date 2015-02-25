@@ -13,7 +13,7 @@ SN.Init.NoticeFormSetup = function(form) {
 
     // Only attach to traditional-style forms
     var textarea = form.find('.notice_data-text:first');
-    if (textarea.length == 0) {
+    if (textarea.length === 0) {
         return;
     }
 
@@ -69,3 +69,70 @@ SN.Init.NoticeFormSetup = function(form) {
                 .appendTo(ul);
         };
 };
+
+/**
+ * Called when a people tag edit box is shown in the interface
+ *
+ * - loads the jQuery UI autocomplete plugin
+ * - sets event handlers for tag completion
+ *
+ */
+SN.Init.PeopletagAutocomplete = function(txtBox) {
+    var split,
+        extractLast;
+
+    split = function(val) {
+        return val.split( /\s+/ );
+    };
+
+     extractLast = function(term) {
+        return split(term).pop();
+    };
+
+    // don't navigate away from the field on tab when selecting an item
+    txtBox
+        .on('keydown', function(event) {
+            if (event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).data('ui-autocomplete').menu.active) {
+                event.preventDefault();
+            }
+        })
+        .autocomplete({
+            minLength: 0,
+            source: function(request, response) {
+                // delegate back to autocomplete, but extract the last term
+                response($.ui.autocomplete.filter(
+                    SN.C.PtagACData, extractLast(request.term)));
+            },
+            focus: function () {
+                return false;
+            },
+            select: function(event, ui) {
+                var terms = split(this.value);
+                terms.pop();
+                terms.push(ui.item.value);
+                terms.push('');
+                this.value = terms.join(' ');
+                return false;
+            }
+        })
+        .data('ui-autocomplete')
+        ._renderItem = function (ul, item) {
+            // FIXME: with jQuery UI you cannot have it highlight the match
+            var _l = '<a class="ptag-ac-line-tag">' + item.tag +
+                     ' <em class="privacy_mode">' + item.mode + '</em>' +
+                     '<span class="freq">' + item.freq + '</span></a>';
+
+            return $('<li/>')
+                    .addClass('mode-' + item.mode)
+                    .addClass('ptag-ac-line')
+                    .data('item.autocomplete', item)
+                    .append(_l)
+                    .appendTo(ul);
+        };
+};
+
+$(document).on('click', '.peopletags_edit_button', function () {
+    SN.Init.PeopletagAutocomplete($(this).closest('dd').find('[name="tags"]'));
+});
+
