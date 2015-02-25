@@ -442,7 +442,7 @@ class File extends Managed_DataObject
         }
 
         // throws exception on failure to generate thumbnail
-        $outname = "thumb-{$width}x{$height}-" . $image->filename;
+        $outname = "thumb-{$width}x{$height}-{$image->filename}." . File::guessMimeExtension($image->mimetype);
         $outpath = self::path($outname);
 
         // The boundary box for our resizing
