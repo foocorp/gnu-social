@@ -2,7 +2,7 @@
 /**
  * GNU social - a federating social network
  *
- * Plugin to make thumbnails of video files with ffmpeg
+ * Plugin to make thumbnails of video files with avconv
  *
  * PHP version 5
  *
@@ -31,10 +31,13 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 /*
  * Dependencies:
- *  php5-ffmpeg
+ *  avconv (external program call)
  *  php5-gd
  *
- * Video support will depend on your ffmpeg.
+ * Todo:
+ *  Make sure we support ffmpeg too, so we're not super Debian oriented.
+ *
+ * Video support will depend on your avconv.
  */
 
 class VideoThumbnailsPlugin extends Plugin
@@ -52,23 +55,13 @@ class VideoThumbnailsPlugin extends Plugin
             return true;
         }
 
-        $movie = new ffmpeg_movie($file->getPath(), false);
-
-        $frames = $movie->getFrameCount();
-        if ($frames > 0) {
-            $frame = $movie->getFrame(floor($frames/2));
-        } else {
-            $frame = $movie->getNextKeyFrame();
-        }
-
-        // We failed to get a frame.
-        if (!$frame instanceof ffmpeg_frame) {
-            return true;
-        }
-
         // Let's save our frame to a temporary file. If we fail, remove it.
-        $imgPath = tempnam(sys_get_temp_dir(), 'socialthumb');
-        if (!imagejpeg($frame->toGDImage(), $imgPath)) {
+        $imgPath = tempnam(sys_get_temp_dir(), 'socialthumb-');
+
+        $result = exec('avconv -i '.escapeshellarg($file->getPath()).' -vcodec mjpeg -vframes 1 -f mjpeg -an '.escapeshellarg($imgPath));
+
+        if (!getimagesize($imgPath)) {
+            common_debug('exec of "avconv" produced a bad/nonexisting image it seems');
             @unlink($imgPath);
             return true;
         }
