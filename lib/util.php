@@ -1141,6 +1141,13 @@ function common_xml_safe_str($str)
 
 function common_slugify($str)
 {
+    // php5-intl is highly recommended...
+    if (!function_exists('transliterator_transliterate')) {
+        $str = preg_replace('/[^\pL\pN]/u', '', $str);
+        $str = mb_convert_case($str, MB_CASE_LOWER, 'UTF-8');
+        $str = substr($str, 0, 64);
+        return $str;
+    }
     $str = transliterator_transliterate(
                         'Any-Latin;' .      // any charset to latin compatible
                             'NFD;' .        // decompose
