@@ -15,7 +15,7 @@ modules used, so double-check the INSTALL file's requirements list.
 Before you begin: Make backups. Always make backups. Of your entire 
 directory structure and the database too. All tables. All data. Alles.
 
-    0. Stop your queue daemons 'php scripts/stopdaemon.php' should do it.
+    0. Stop your queue daemons 'bash scripts/stopdaemons.sh' should do it.
         Not everyone runs queue daemons, but the above command won't hurt.
 
     1. Unpack your GNU social code to a fresh directory.
@@ -35,7 +35,7 @@ directory structure and the database too. All tables. All data. Alles.
     
     4. Run the upgrade script: 'php scripts/upgrade.php'
     
-    5. Start your queue daemons: 'php scripts/startdaemons.php'
+    5. Start your queue daemons: 'bash scripts/startdaemons.sh'
     
     6. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
 
