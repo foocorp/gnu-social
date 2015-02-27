@@ -1,5 +1,5 @@
-# GNU social 1.1.3 (beta3)
-February 2015
+# GNU social 1.2.x
+2015
 
 (c) Free Software Foundation, Inc
 (c) StatusNet, Inc
@@ -100,16 +100,19 @@ for additional terms.
 
 ## New this version
 
-This is a security fix and bug fix release since 1.1.3-beta2.
-All 1.1.x sites should upgrade to this version.
+This is the development branch for the 1.2.x version of GNU social.
+All daring 1.1.x admins should upgrade to this version.
 
 So far it includes the following changes:
+
+- Backing up a user's account is more and more complete.
+- Emojis 😸 (utf8mb4 support)
+
+The last release, 1.1.3, gave us these improvements:
 
 - XSS security fix (thanks Simon Waters, <https://www.surevine.com/>)
 - Many improvements to ease adoption of the Qvitter front-end <https://github.com/hannesmannerheim/qvitter>
 - Protocol adaptions for improved performance and stability
-- Backing up a user's account now appears to work as it should
-- Emojis 😸
 
 Upgrades from _StatusNet_ 1.1.1 will also experience these improvements:
 
@@ -147,7 +150,7 @@ In the current phase of development it is probably
 recommended to use git as a means to stay up to date
 with the source code. You can choose between these
 branches:
-- 1.1.x     "stable", few updates, well tested code
+- 1.2.x     "stable", few updates, well tested code
 - master    "testing", more updates, usually working well
 - nightly   "unstable", most updates, not always working
 
