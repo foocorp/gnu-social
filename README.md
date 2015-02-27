@@ -1,5 +1,5 @@
-# GNU social 1.1.3 (beta3)
-February 2015
+# GNU social 1.1.3
+February 2015-02-27
 
 (c) Free Software Foundation, Inc
 (c) StatusNet, Inc
