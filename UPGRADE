@@ -1,6 +1,40 @@
 Upgrading
 =========
 
+GNU social 1.1.x to GNU social 1.2.x
+------------------------------------
+
+If you are tracking the GNU social git repository, we currently recommend
+using the "master" branch (or nightly if you want to use latest features)
+and follow this procedure: 
+
+0. Backup your data. The StatusNet upgrade discussions below have some
+    guidelines to back up the database and files (mysqldump and rsync).
+
+1. Stop your queue daemons (you can run this command even if you do not
+    use the queue daemons):
+    $ bash scripts/stopdaemons.sh
+
+2. Run the command to fetch the latest sourcecode:
+    $ git pull
+    
+    If you are not using git we recommend following the instructions below
+    for upgrading "StatusNet 1.1.x to GNU social 1.2.x" as they are similar.
+
+3. Run the upgrade script:
+    $ php scripts/upgrade.php
+
+   The upgrade script will likely take a long time because it will
+    upgrade the tables to another character encoding and make other
+    automated upgrades. Make sure it ends without errors. If you get
+    errors, create a new task on https://bugz.foocorp.net/
+
+4. Start your queue daemons again (you can run this command even if you
+    do not use the queue daemons):
+    $ bash scripts/startdaemons.sh
+
+5. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
+
 StatusNet 1.1.x to GNU social 1.2.x
 -----------------------------------
 
@@ -16,18 +50,18 @@ newly added dependency for example).
 * Before you begin: Make backups. Always make backups. Of your entire 
 directory structure and the database too. All tables. All data. Alles.
 
-To do a backup of the database, you can use a variant of this command
-(you will be interactively prompted for the db user's password):
+0. Make a backup of everything. To backup the database, you can use a
+variant of this command (you will be prompted for the database password):
     $ mysqldump -u dbuser -p dbname > social-backup.sql
 
-0. Stop your queue daemons 'bash scripts/stopdaemons.sh' should do it.
+1. Stop your queue daemons 'bash scripts/stopdaemons.sh' should do it.
     Not everyone runs queue daemons, but the above command won't hurt.
 
-1. Unpack your GNU social code to a fresh directory. You can do this
+2. Unpack your GNU social code to a fresh directory. You can do this
     by cloning our git repository:
     $ git clone https://gitorious.org/social/mainline.git gnusocial
 
-2. Synchronize your local files to the GNU social directory. These 
+3. Synchronize your local files to the GNU social directory. These 
     will be the local files such as avatars, config and files:
 
         avatar/*
@@ -40,15 +74,15 @@ To do a backup of the database, you can use a variant of this command
     This command will point you in the right direction on how to do it:
     $ rsync -avP statusnet/{.htaccess,avatar,background,file,local,config.php} gnusocial/
 
-3. Replace your old StatusNet directory with the new GNU social
+4. Replace your old StatusNet directory with the new GNU social
     directory in your webserver root.
 
-4. Run the upgrade script: 'php scripts/upgrade.php'
+5. Run the upgrade script: 'php scripts/upgrade.php'
    The upgrade script will likely take a long time because it will
     upgrade the tables to another character encoding and make other
     automated upgrades. Make sure it ends without errors. If you get
     errors, create a new task on https://bugz.foocorp.net/
 
-5. Start your queue daemons: 'bash scripts/startdaemons.sh'
+6. Start your queue daemons: 'bash scripts/startdaemons.sh'
 
-6. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
+7. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
