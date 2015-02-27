@@ -89,7 +89,7 @@ class Rss10Action extends Action
             if (!isset($_SERVER['PHP_AUTH_USER'])) {
 
                 // This header makes basic auth go
-                header('WWW-Authenticate: Basic realm="StatusNet RSS"');
+                header('WWW-Authenticate: Basic realm="GNU social RSS"');
 
                 // If the user hits cancel -- bam!
                 $this->show_basic_auth_error();

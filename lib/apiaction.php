@@ -159,7 +159,7 @@ class ApiAction extends Action
         $this->limit    = $this->count + 1;
 
         if ($this->arg('since')) {
-            header('X-StatusNet-Warning: since parameter is disabled; use since_id');
+            header('X-GNUsocial-Warning: since parameter is disabled; use since_id');
         }
 
         $this->source = $this->trimmed('source');
