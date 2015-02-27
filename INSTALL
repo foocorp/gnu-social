@@ -6,13 +6,16 @@ TABLE OF CONTENTS
 * Installation
     - Getting it up and running
     - Fancy URLs
+    - Themes
+    - Private
+* Extra features
     - Sphinx
     - SMS
-    - Queues and daemons
-    - Themes
     - Translation
+    - Queues and daemons
+* After installation
     - Backups
-    - Private
+    - Upgrading
 
 Prerequisites
 =============
@@ -44,7 +47,7 @@ functional setup of GNU Social:
 - php5-intl     Internationalization support (transliteration et al).
 - php5-json     For WebFinger lookups and more.
 - php5-mysqlnd  The native driver for PHP5 MariaDB connections. If you
-                  use MySQL, 'mysql' or 'mysqli' may work.
+                  use MySQL, 'php5-mysql' or 'php5-mysqli' may be enough.
 
 The above package names are for Debian based systems. In the case of
 Arch Linux, PHP is compiled with support for most extensions but they
@@ -69,7 +72,7 @@ For some functionality, you will also need the following extensions:
 
 You may also experience better performance from your site if you configure
 a PHP cache/accelerator. Most distributions come with "opcache" support.
-Enable it in your php.ini, it is documented there together with its settings.
+Enable it in your php.ini where it is documented together with its settings.
 
 Installation
 ============
@@ -131,9 +134,9 @@ especially if you've previously installed PHP/MariaDB packages.
    writeable by the Web server group, as noted above.
 
 5. Create a database to hold your site data. Something like this
-   should work:
+   should work (you will be prompted for your database password):
 
-       mysqladmin -u "root" --password="rootpassword" create gnusocial
+       mysqladmin -u "root" -p create social
 
    Note that GNU Social should have its own database; you should not share
    the database with another program. You can name it whatever you want,
@@ -147,17 +150,17 @@ especially if you've previously installed PHP/MariaDB packages.
    database. If you have shell access, this will probably work from the
    MariaDB shell:
 
-       GRANT ALL on gnusocial.*
-       TO 'gnusocial'@'localhost'
+       GRANT ALL on social.*
+       TO 'social'@'localhost'
        IDENTIFIED BY 'agoodpassword';
 
-   You should change the user identifier 'gnusocial' and 'agoodpassword'
+   You should change the user identifier 'social' and 'agoodpassword'
    to your preferred new database username and password. You may want to
    test logging in to MariaDB as this new user.
 
 7. In a browser, navigate to the GNU Social install script; something like:
 
-       http://social.example.net/install.php
+       https://social.example.net/install.php
 
    Enter the database connection information and your site name. The
    install program will configure your site and install the initial,
@@ -171,55 +174,100 @@ Fancy URLs
 ----------
 
 By default, GNU Social will use URLs that include the main PHP program's
-name in them. For example, a user's home profile might be found at:
+name in them. For example, a user's home profile might be found at either
+of these URLS depending on the webserver's configuration and capabilities:
 
-    http://example.net/gnusocial/index.php/gnusocial/fred
+    https://social.example.net/index.php/fred
+    https://social.example.net/index.php?p=fred
 
-On certain systems that don't support this kind of syntax, they'll
-look like this:
+It's possible to configure the software to use fancy URLs so it looks like
+this instead:
 
-    http://example.net/gnusocial/index.php?p=gnusocial/fred
-
-It's possible to configure the software so it looks like this instead:
-
-    http://example.net/gnusocial/fred
+    https://social.example.net/fred
 
 These "fancy URLs" are more readable and memorable for users. To use
 fancy URLs, you must either have Apache 2.x with .htaccess enabled and
 mod_rewrite enabled, -OR- know how to configure "url redirection" in
 your server (like lighttpd or nginx).
 
-1. Copy the htaccess.sample file to .htaccess in your StatusNet
-   directory.
+1. See the instructions for each respective webserver software:
+    * For Apache, inspect the "htaccess.sample" file and save it as
+        ".htaccess" after making any necessary modifications. Our sample
+        file is well commented. 
+    * For lighttpd, inspect the lighttpd.conf.example file and apply the
+        appropriate changes in your virtualhost configuration for lighttpd.
+    * For nginx and other webservers, we gladly accept contributions of
+        server configuration examples.
 
-2. Change the "RewriteBase" in the new .htaccess file to be the URL path
-   to your GNU Social installation on your server. Typically this will
-   be the path to your GNU Social directory relative to your Web root.
-   If you are installing it in the root directory, leave it as '/'.
-
-3. Add, uncomment or change a line in your config.php file so it says:
-
+2. Assuming your webserver is properly configured and have its settings
+    applied (remember to reload/restart it), you can add this to your
+    GNU social's config.php file: 
        $config['site']['fancy'] = true;
 
 You should now be able to navigate to a "fancy" URL on your server,
 like:
 
-    http://example.net/gnusocial/main/register
+    https://social.example.net/main/register
 
-If you changed your HTTP server configuration, you may need to restart
-the server first.
+Themes
+------
 
-If it doesn't work, double-check that AllowOverride for the GNU Social
-directory is 'All' in your Apache configuration file. This is usually
-/etc/httpd.conf, /etc/apache/httpd.conf, or (on Debian and Ubuntu)
-/etc/apache2/sites-available/default. See the Apache documentation for
-.htaccess files for more details:
+As of right now, your ability change the theme is limited to CSS
+stylesheets and some image files; you can't change the HTML output,
+like adding or removing menu items, without the help of a plugin.
 
-    http://httpd.apache.org/docs/2.2/howto/htaccess.html
+You can choose a theme using the $config['site']['theme'] element in
+the config.php file. See below for details.
 
-Also, check that mod_rewrite is installed and enabled:
+You can add your own theme by making a sub-directory of the 'theme'
+subdirectory with the name of your theme. Each theme can have the
+following files:
 
-    http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html
+display.css: a CSS2 file for "default" styling for all browsers.
+logo.png: a logo image for the site.
+default-avatar-profile.png: a 96x96 pixel image to use as the avatar for
+    users who don't upload their own.
+default-avatar-stream.png: Ditto, but 48x48. For streams of notices.
+default-avatar-mini.png: Ditto ditto, but 24x24. For subscriptions
+    listing on profile pages.
+
+You may want to start by copying the files from the default theme to
+your own directory.
+
+Private
+-------
+
+A GNU social node can be configured as "private", which means it will not
+federate with other nodes in the network. It is not a recommended method
+of using GNU social and we cannot at the current state of development
+guarantee that there are no leaks (what a public network sees as features,
+private sites will likely see as bugs). 
+
+Private nodes are however an easy way to easily setup collaboration and
+image sharing within a workgroup or a smaller community where federation
+is not a desired feature. Also, it is possible to change this setting and
+instantly gain full federation features.
+
+Access to file attachments can also be restricted to logged-in users only:
+
+1. Add a directory outside the web root where your file uploads will be
+   stored. Use this command as an initial guideline to create it:
+
+       mkdir /var/www/gnusocial-files
+
+2. Make the file uploads directory writeable by the web server. An
+   insecure way to do this is (to do it properly, read up on UNIX file
+   permissions and configure your webserver accordingly):
+
+       chmod a+x /var/www/gnusocial-files
+
+3. Tell GNU social to use this directory for file uploads. Add a line
+   like this to your config.php:
+
+       $config['attachments']['dir'] = '/var/www/gnusocial-files';
+
+Extra features
+==============
 
 Sphinx
 ------
@@ -284,7 +332,21 @@ For this to work, there *must* be a domain or sub-domain for which all
 
        $config['mail']['domain'] = 'yourdomain.example.net';
 
+Translations
+------------
 
+For info on helping with translations, see the platform currently in use
+for translations: https://www.transifex.com/projects/p/gnu-social/
+
+Translations use the gettext system <http://www.gnu.org/software/gettext/>.
+If you for some reason do not wish to sign up to the Transifex service,
+you can review the files in the "locale/" sub-directory of GNU social.
+Each plugin also has its own translation files.
+
+To get your own site to use all the translated languages, and you are
+tracking the git repo, you will need to install at least 'gettext' on
+your system and then run:
+    $ make translations
 
 Queues and daemons
 ------------------
@@ -346,16 +408,13 @@ separate server is probably a good idea for high-volume sites.
    .htaccess file, but make sure that your config.php file is close
    to, or identical to, your Web server's version.
 
-3. In your config.php files (both the Web server and the queues
-   server!), set the following variable:
+3. In your config.php files (on the server where you run the queue
+    daemon), set the following variable:
 
-       $config['queue']['enabled'] = true;
        $config['queue']['daemon'] = true;
 
-   You may also want to look at the 'daemon' section of this file for
-   more daemon options. Note that if you set the 'user' and/or 'group'
-   options, you'll need to create that user and/or group by hand.
-   They're not created automatically.
+   You may also want to look at the 'Queues and Daemons' section in
+   this file for more background processing options.
 
 4. On the queues server, run the command scripts/startdaemons.sh.
 
@@ -385,85 +444,20 @@ It is also possible to use a STOMP server instead of our kind of hacky
 home-grown DB-based queue solution. This is strongly recommended for
 best response time, especially when using XMPP.
 
-Themes
-------
-
-Older themes (version 0.9.x and below) no longer work with StatusNet
-1.0.x, due to major changes in the site layout. We ship with three new
-themes for this version, 'neo', 'neo-blue' and 'neo-light'.
-
-As of right now, your ability to change the theme is site-wide; users
-can't choose their own theme. Additionally, the only thing you can
-change in the theme is CSS stylesheets and some image files; you can't
-change the HTML output, like adding or removing menu items.
-
-You can choose a theme using the $config['site']['theme'] element in
-the config.php file. See below for details.
-
-You can add your own theme by making a sub-directory of the 'theme'
-subdirectory with the name of your theme. Each theme can have the
-following files:
-
-display.css: a CSS2 file for "default" styling for all browsers.
-logo.png: a logo image for the site.
-default-avatar-profile.png: a 96x96 pixel image to use as the avatar for
-    users who don't upload their own.
-default-avatar-stream.png: Ditto, but 48x48. For streams of notices.
-default-avatar-mini.png: Ditto ditto, but 24x24. For subscriptions
-    listing on profile pages.
-
-You may want to start by copying the files from the default theme to
-your own directory.
-
-Translation
------------
-
-Translations in StatusNet use the gettext system <http://www.gnu.org/software/gettext/>.
-Theoretically, you can add your own sub-directory to the locale/
-subdirectory to add a new language to your system. You'll need to
-compile the ".po" files into ".mo" files, however.
-
-Contributions of translation information to StatusNet are very easy:
-you can use the Web interface at translatewiki.net to add one
-or a few or lots of new translations -- or even new languages. You can
-also download more up-to-date .po files there, if you so desire.
-
-For info on helping with translations, see http://status.net/wiki/Translations
+After installation
+==================
 
 Backups
 -------
 
-There is no built-in system for doing backups in StatusNet. You can make
+There is no built-in system for doing backups in GNU social. You can make
 backups of a working StatusNet system by backing up the database and
-the Web directory. To backup the database use mysqldump <http://ur1.ca/7xo>
+the Web directory. To backup the database use mysqldump <https://mariadb.com/kb/en/mariadb/mysqldump/>
 and to backup the Web directory, try tar.
 
-Private
--------
+Upgrading
+---------
 
-The administrator can set the "private" flag for a site so that it's
-not visible to non-logged-in users. (This is the default for new installs of version 1.0!)
-
-This might be useful for workgroups who want to share a social
-networking site for project management, but host it on a public
-server.
-
-Total privacy is attempted but not guaranteed or ensured. Private sites
-currently don't work well with OStatus federation.
-
-Access to file attachments can also be restricted to logged-in users only.
-
-1. Add a directory outside the web root where your file uploads will be
-   stored. Usually a command like this will work:
-
-       mkdir /var/www/statusnet-files
-
-2. Make the file uploads directory writeable by the web server. An
-   insecure way to do this is:
-
-       chmod a+x /var/www/statusnet-files
-
-3. Tell StatusNet to use this directory for file uploads. Add a line
-   like this to your config.php:
-
-       $config['attachments']['dir'] = '/var/www/statusnet-files';
+Upgrading is strongly recommended to stay up to date with security fixes
+and new features. For instructions on how to upgrade GNU social code,
+please see the UPGRADE file.
