@@ -788,7 +788,7 @@ class ApiAction extends Action
     function showSingleAtomStatus($notice)
     {
         header('Content-Type: application/atom+xml; charset=utf-8');
-        print $notice->asAtomEntry(true, true, true, $this->auth_user);
+        print $notice->asAtomEntry(true, true, true, $this->auth_user->getProfile());
     }
 
     function show_single_json_status($notice)
