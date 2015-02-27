@@ -2,6 +2,13 @@ InitializePlugin: a chance to initialize a plugin in a complete environment
 
 CleanupPlugin: a chance to cleanup a plugin at the end of a program
 
+StartActionExecute: Right before the "prepare" call of the current Action
+- $action:  the current Action object
+- &$args:   array of arguments, referenced so you can modify the array
+
+EndActionExecute:   Right after the "handle" call of the current Action
+- $action:      the current Action object
+
 StartPrimaryNav: Showing the primary nav menu
 - $action: the current action
 
