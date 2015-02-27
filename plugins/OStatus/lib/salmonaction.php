@@ -37,7 +37,7 @@ class SalmonAction extends Action
 
     protected function prepare(array $args=array())
     {
-        StatusNet::setApi(true); // Send smaller error pages
+        GNUsocial::setApi(true); // Send smaller error pages
 
         parent::prepare($args);
 

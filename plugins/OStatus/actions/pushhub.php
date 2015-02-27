@@ -49,7 +49,7 @@ class PushHubAction extends Action
 
     protected function prepare(array $args=array())
     {
-        StatusNet::setApi(true); // reduce exception reports to aid in debugging
+        GNUsocial::setApi(true); // reduce exception reports to aid in debugging
         return parent::prepare($args);
     }
 

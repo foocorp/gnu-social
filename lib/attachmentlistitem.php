@@ -163,7 +163,7 @@ class AttachmentListItem extends Widget
 
                 case 'text/html':
                     if (!empty($this->attachment->filename)
-                            && (StatusNet::isAjax() || common_config('attachments', 'show_html'))) {
+                            && (GNUsocial::isAjax() || common_config('attachments', 'show_html'))) {
                         // Locally-uploaded HTML. Scrub and display inline.
                         $this->showHtmlFile($this->attachment);
                         break;

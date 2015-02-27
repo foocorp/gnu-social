@@ -638,9 +638,9 @@ class StompQueueManager extends QueueManager
      */
     function switchSite($site)
     {
-        if ($site != StatusNet::currentSite()) {
+        if ($site != GNUsocial::currentSite()) {
             $this->stats('switch');
-            StatusNet::switchSite($site);
+            GNUsocial::switchSite($site);
             $this->initialize();
         }
     }
@@ -683,7 +683,7 @@ class StompQueueManager extends QueueManager
     protected function queueName($queue)
     {
         $group = $this->queueGroup($queue);
-        $site = StatusNet::currentSite();
+        $site = GNUsocial::currentSite();
 
         $specs = array("$group/$queue/$site",
                        "$group/$queue");

@@ -59,7 +59,7 @@ class GlobalApiAction extends Action
 
     function prepare($args)
     {
-        StatusNet::setApi(true); // reduce exception reports to aid in debugging
+        GNUsocial::setApi(true); // reduce exception reports to aid in debugging
 
         parent::prepare($args);
 

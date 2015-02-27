@@ -30,7 +30,7 @@ class PushCallbackAction extends Action
 {
     protected function handle()
     {
-        StatusNet::setApi(true); // Minimize error messages to aid in debugging
+        GNUsocial::setApi(true); // Minimize error messages to aid in debugging
         parent::handle();
         if ($this->isPost()) {
             return $this->handlePost();

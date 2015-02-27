@@ -551,7 +551,7 @@ abstract class Installer
         }
 
         require_once INSTALLDIR . '/lib/framework.php';
-        StatusNet::initDefaults($this->server, $this->path);
+        GNUsocial::initDefaults($this->server, $this->path);
 
         if ($this->siteProfile == "singleuser") {
             // Until we use ['site']['profile']==='singleuser' everywhere

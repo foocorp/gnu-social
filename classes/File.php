@@ -325,7 +325,7 @@ class File extends Managed_DataObject
 
         }
 
-        if (StatusNet::useHTTPS()) {
+        if (GNUsocial::useHTTPS()) {
 
             $sslserver = common_config('attachments', 'sslserver');
 

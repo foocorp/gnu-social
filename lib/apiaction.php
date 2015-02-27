@@ -144,7 +144,7 @@ class ApiAction extends Action
      */
     protected function prepare(array $args=array())
     {
-        StatusNet::setApi(true); // reduce exception reports to aid in debugging
+        GNUsocial::setApi(true); // reduce exception reports to aid in debugging
         parent::prepare($args);
 
         $this->format   = $this->arg('format');

@@ -74,7 +74,7 @@ class DisfavorAction extends FormAction
             $this->serverError(_('Could not delete favorite.'));
         }
         Fave::blowCacheForProfileId($this->scoped->id);
-        if (StatusNet::isAjax()) {
+        if (GNUsocial::isAjax()) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Title for page on which favorites can be added.

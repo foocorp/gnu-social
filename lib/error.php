@@ -56,7 +56,7 @@ class ErrorAction extends InfoAction
 
         $this->code = $code;
         $this->message = $message;
-        $this->minimal = StatusNet::isApi();
+        $this->minimal = GNUsocial::isApi();
 
         // XXX: hack alert: usually we aren't going to
         // call this page directly, but because it's
@@ -66,7 +66,7 @@ class ErrorAction extends InfoAction
 
     function showPage()
     {
-        if (StatusNet::isAjax()) {
+        if (GNUsocial::isAjax()) {
             $this->extraHeaders();
             $this->ajaxErrorMsg();
             exit();

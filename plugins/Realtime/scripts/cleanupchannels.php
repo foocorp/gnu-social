@@ -62,7 +62,7 @@ if (have_option('u', 'universe')) {
     if ($sn->find()) {
         while ($sn->fetch()) {
             $server = $sn->getServerName();
-            StatusNet::init($server);
+            GNUsocial::init($server);
             cleanupChannels();
         }
     }

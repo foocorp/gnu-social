@@ -70,7 +70,7 @@ class CancelsubscriptionAction extends FormAction
             common_debug('Tried to cancel a non-existing pending subscription');
         }
 
-        if (StatusNet::isAjax()) {
+        if (GNUsocial::isAjax()) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Title after unsubscribing from a group.

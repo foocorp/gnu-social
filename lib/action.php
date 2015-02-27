@@ -158,8 +158,8 @@ class Action extends HTMLOutputter // lawsuit
         $this->action = strtolower($this->trimmed('action'));
 
         if ($this->ajax || $this->boolean('ajax')) {
-            // check with StatusNet::isAjax()
-            StatusNet::setAjax(true);
+            // check with GNUsocial::isAjax()
+            GNUsocial::setAjax(true);
         }
 
         if ($this->needLogin) {
@@ -208,7 +208,7 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showPage()
     {
-        if (StatusNet::isAjax()) {
+        if (GNUsocial::isAjax()) {
             self::showAjax();
             return;
         }
@@ -328,7 +328,7 @@ class Action extends HTMLOutputter // lawsuit
         } else {
             // favicon.ico should be HTTPS if the rest of the page is
             $this->element('link', array('rel' => 'shortcut icon',
-                                         'href' => common_path('favicon.ico', StatusNet::isHTTPS())));
+                                         'href' => common_path('favicon.ico', GNUsocial::isHTTPS())));
         }
 
         if (common_config('site', 'mobile')) {
@@ -417,7 +417,7 @@ class Action extends HTMLOutputter // lawsuit
                 $this->script('extlib/jquery.form.js');
                 $this->script('extlib/jquery-ui/jquery-ui.js');
                 $this->script('extlib/jquery.cookie.js');
-                $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', StatusNet::isHTTPS()).'"); }');
+                $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', GNUsocial::isHTTPS()).'"); }');
                 $this->script('extlib/jquery.infieldlabel.js');
 
                 Event::handle('EndShowJQueryScripts', array($this));
@@ -640,7 +640,7 @@ class Action extends HTMLOutputter // lawsuit
             $this->elementStart('a', array('class' => 'home bookmark',
                                            'href' => $url));
 
-            if (StatusNet::isHTTPS()) {
+            if (GNUsocial::isHTTPS()) {
                 $logoUrl = common_config('site', 'ssllogo');
                 if (empty($logoUrl)) {
                     // if logo is an uploaded file, try to fall back to HTTPS file URL
@@ -1146,7 +1146,7 @@ class Action extends HTMLOutputter // lawsuit
                 $image    = common_config('license', 'image');
                 $sslimage = common_config('license', 'sslimage');
 
-                if (StatusNet::isHTTPS()) {
+                if (GNUsocial::isHTTPS()) {
                     if (!empty($sslimage)) {
                         $url = $sslimage;
                     } else if (preg_match('#^http://i.creativecommons.org/#', $image)) {

@@ -72,7 +72,7 @@ class NewrsvpAction extends Action
     {
         parent::prepare($argarray);
         if ($this->boolean('ajax')) {
-            StatusNet::setApi(true); // short error results!
+            GNUsocial::setApi(true); // short error results!
         }
 
         $eventId = $this->trimmed('event');

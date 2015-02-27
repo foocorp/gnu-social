@@ -74,7 +74,7 @@ class QnanewanswerAction extends Action
     {
         parent::prepare($argarray);
         if ($this->boolean('ajax')) {
-            StatusNet::setApi(true);
+            GNUsocial::setApi(true);
         }
         common_debug("in qnanewanswer");
         $this->user = common_current_user();

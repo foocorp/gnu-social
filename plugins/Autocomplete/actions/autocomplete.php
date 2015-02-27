@@ -92,7 +92,7 @@ class AutocompleteAction extends Action
     protected function prepare(array $args=array())
     {
         // If we die, show short error messages.
-        StatusNet::setApi(true);
+        GNUsocial::setApi(true);
 
         parent::prepare($args);
 

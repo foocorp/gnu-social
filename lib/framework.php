@@ -97,12 +97,12 @@ require_once(INSTALLDIR.'/lib/plugin.php');
 
 function addPlugin($name, array $attrs=array())
 {
-    return StatusNet::addPlugin($name, $attrs);
+    return GNUsocial::addPlugin($name, $attrs);
 }
 
 function _have_config()
 {
-    return StatusNet::haveConfig();
+    return GNUsocial::haveConfig();
 }
 
 function GNUsocial_class_autoload($cls)
