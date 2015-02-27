@@ -1,99 +1,54 @@
 Upgrading
 =========
 
-StatusNet 1.1.1 to GNU social
------------------------------
+StatusNet 1.1.x to GNU social 1.2.x
+-----------------------------------
 
 We cannot support migrating from any other version of StatusNet than 
 1.1.1. If you are running a StatusNet version lower than this, please 
 follow the upgrade procedures for each respective StatusNet version.
 
-You are now running StatusNet 1.1.1 and want to migrate to GNU social.
-Beware there may be changes in minimum required version of PHP and the
-modules used, so double-check the INSTALL file's requirements list.
+You are now running StatusNet 1.1.1 and want to migrate to GNU social
+1.2.x. Beware there may be changes in minimum required version of PHP
+and the modules required, so review the INSTALL file (php5-intl is a
+newly added dependency for example).
 
-Before you begin: Make backups. Always make backups. Of your entire 
+* Before you begin: Make backups. Always make backups. Of your entire 
 directory structure and the database too. All tables. All data. Alles.
 
-    0. Stop your queue daemons 'bash scripts/stopdaemons.sh' should do it.
-        Not everyone runs queue daemons, but the above command won't hurt.
+To do a backup of the database, you can use a variant of this command
+(you will be interactively prompted for the db user's password):
+    $ mysqldump -u dbuser -p dbname > social-backup.sql
 
-    1. Unpack your GNU social code to a fresh directory.
-    
-    2. Synchronize your local files to the GNU social directory. These 
-        will be the local files such as avatars, config and files:
+0. Stop your queue daemons 'bash scripts/stopdaemons.sh' should do it.
+    Not everyone runs queue daemons, but the above command won't hurt.
 
-            avatar/*
-            background/*
-            file/*
-            local/*
-            .htaccess
-            config.php
+1. Unpack your GNU social code to a fresh directory. You can do this
+    by cloning our git repository:
+    $ git clone https://gitorious.org/social/mainline.git gnusocial
 
-    3. Replace your old StatusNet directory with the new GNU social
-        directory in your webserver root.
-    
-    4. Run the upgrade script: 'php scripts/upgrade.php'
-    
-    5. Start your queue daemons: 'bash scripts/startdaemons.sh'
-    
-    6. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
+2. Synchronize your local files to the GNU social directory. These 
+    will be the local files such as avatars, config and files:
 
+        avatar/*
+        background/*
+        file/*
+        local/*
+        .htaccess
+        config.php
 
-Legacy StatusNet instructions
------------------------------
+    This command will point you in the right direction on how to do it:
+    $ rsync -avP statusnet/{.htaccess,avatar,background,file,local,config.php} gnusocial/
 
-These instructions are here for historical and perhaps informational
-purposes.
+3. Replace your old StatusNet directory with the new GNU social
+    directory in your webserver root.
 
-If you've been using StatusNet 1.0 or lower, or if you've
-been tracking the "git" version of the software, you will probably
-want to upgrade and keep your existing data. Try these step-by-step
-instructions; read to the end first before trying them.
+4. Run the upgrade script: 'php scripts/upgrade.php'
+   The upgrade script will likely take a long time because it will
+    upgrade the tables to another character encoding and make other
+    automated upgrades. Make sure it ends without errors. If you get
+    errors, create a new task on https://bugz.foocorp.net/
 
-0. Download StatusNet and set up all the prerequisites as if you were
-   doing a new install.
-1. Make backups of both your database and your Web directory. UNDER NO
-   CIRCUMSTANCES should you try to do an upgrade without a known-good
-   backup. You have been warned.
-2. Shut down Web access to your site, either by turning off your Web
-   server or by redirecting all pages to a "sorry, under maintenance"
-   page.
-3. Shut down XMPP access to your site, typically by shutting down the
-   xmppdaemon.php process and all other daemons that you're running.
-   If you've got "monit" or "cron" automatically restarting your
-   daemons, make sure to turn that off, too.
-4. Shut down SMS and email access to your site. The easy way to do
-   this is to comment out the line piping incoming email to your
-   maildaemon.php file, and running something like "newaliases".
-5. Once all writing processes to your site are turned off, make a
-   final backup of the Web directory and database.
-6. Move your StatusNet directory to a backup spot, like "statusnet.bak".
-7. Unpack your StatusNet 1.1.1 tarball and move it to "statusnet" or
-   wherever your code used to be.
-8. Copy the config.php file and the contents of the avatar/, background/,
-   file/, and local/ subdirectories from your old directory to your new
-   directory.
-9. Copy htaccess.sample to .htaccess in the new directory. Change the
-   RewriteBase to use the correct path.
-10. Upgrade the database.
+5. Start your queue daemons: 'bash scripts/startdaemons.sh'
 
-    NOTE: this step is destructive and cannot be
-    reversed. YOU CAN EASILY DESTROY YOUR SITE WITH THIS STEP. Don't
-    do it without a known-good backup!
-
-    In your new StatusNet 1.1.1 directory and AFTER YOU MAKE A
-    BACKUP run the upgrade.php script like this:
-
-        php ./scripts/upgrade.php
-
-11. Use mysql or psql client to log into your database and make sure that
-    the notice, user, profile, subscription etc. tables are non-empty.
-12. Turn back on the Web server, and check that things still work.
-13. Turn back on XMPP bots and email maildaemon.
-
-NOTE: the 1.0.0 version of StatusNet changed the URLs for all admin
-panels from /admin/* to /panel/*. This now allows the (popular)
-username 'admin', but blocks the considerably less popular username
-'panel'. If you have an existing user named 'panel', you should rename
-them before upgrading.
+6. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
