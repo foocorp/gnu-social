@@ -35,6 +35,16 @@ and follow this procedure:
 
 5. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
 
+If you are using ssh keys to log in to your server, you can make this
+procedure pretty painless (assuming you have automated backups already).
+Make sure you "cd" into the correct directory (in this case "htdocs")
+and use the correct login@hostname combo:
+    $ ssh social@domain.example 'cd htdocs
+            && bash scripts/stopdaemons.sh
+            && git pull
+            && time php scripts/upgrade.php
+            && bash scripts/startdaemons.sh'
+
 StatusNet 1.1.x to GNU social 1.2.x
 -----------------------------------
 
