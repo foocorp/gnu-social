@@ -33,13 +33,13 @@ class Avatar extends Managed_DataObject
                 'height' => array('type' => 'int', 'not null' => true, 'description' => 'image height'),
                 'mediatype' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'description' => 'file type'),
                 'filename' => array('type' => 'varchar', 'length' => 191, 'description' => 'local filename, if local'),
-                'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'avatar location'),
+                'url' => array('type' => 'text', 'description' => 'avatar location, not indexed - do not use in WHERE statement'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
             'primary key' => array('profile_id', 'width', 'height'),
             'unique keys' => array(
-                'avatar_url_key' => array('url'),
+//                'avatar_filename_key' => array('filename'),
             ),
             'foreign keys' => array(
                 'avatar_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
