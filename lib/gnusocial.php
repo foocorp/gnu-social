@@ -27,6 +27,7 @@ global $config, $_server, $_path;
  */
 class GNUsocial
 {
+    protected static $config_files = array();
     protected static $have_config;
     protected static $is_api;
     protected static $is_ajax;
@@ -258,6 +259,15 @@ class GNUsocial
         return self::$have_config;
     }
 
+    /**
+     * Returns a list of configuration files that have
+     * been loaded for this instance of GNU social.
+     */
+    public static function configFiles()
+    {
+        return self::$config_files;
+    }
+
     public static function isApi()
     {
         return self::$is_api;
@@ -393,8 +403,8 @@ class GNUsocial
             if (@file_exists($_config_file)) {
                 // Ignore 0-byte config files
                 if (filesize($_config_file) > 0) {
-                    common_log(LOG_INFO, "Including config file: " . $_config_file);
                     include($_config_file);
+                    self::$config_files[] = $_config_file;
                     self::$have_config = true;
                 }
             }
