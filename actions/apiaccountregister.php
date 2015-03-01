@@ -171,7 +171,7 @@ class ApiAccountRegisterAction extends ApiAction
                 $this->endDocument('json');
 
             } catch (Exception $e) {
-                $this->clientError($e->getMessage()), 400);
+                $this->clientError($e->getMessage(), 400);
             }
         }
     }
