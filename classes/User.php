@@ -191,7 +191,8 @@ class User extends Managed_DataObject
      *              string 'password' (may be missing for eg OpenID registrations)
      *              string 'code' invite code
      *              ?string 'uri' permalink to notice; defaults to local notice URL
-     * @return mixed User object or false on failure
+     * @return  User object
+     * @throws  Exception on failure
      */
     static function register(array $fields) {
 
@@ -205,12 +206,8 @@ class User extends Managed_DataObject
             $email = common_canonical_email($email);
         }
 
-        try {
-            $profile->nickname = Nickname::normalize($nickname, true);
-        } catch (NicknameException $e) {
-            common_log(LOG_WARNING, sprintf('Bad nickname during User registration for %s: %s', $nickname, $e->getMessage()), __FILE__);
-            return false;
-        }
+        // Normalize _and_ check whether it is in use. Throw NicknameException on failure.
+        $profile->nickname = Nickname::normalize($nickname, true);
 
         $profile->profileurl = common_profile_url($profile->nickname);
 
@@ -277,7 +274,9 @@ class User extends Managed_DataObject
             $id = $profile->insert();
             if ($id === false) {
                 common_log_db_error($profile, 'INSERT', __FILE__);
-                return false;
+                $profile->query('ROLLBACK');
+                // TRANS: Profile data could not be inserted for some reason.
+                throw new ServerException(_m('Could not insert profile data for new user.'));
             }
 
             $user->id = $id;
@@ -297,7 +296,8 @@ class User extends Managed_DataObject
             if ($result === false) {
                 common_log_db_error($user, 'INSERT', __FILE__);
                 $profile->query('ROLLBACK');
-                return false;
+                // TRANS: User data could not be inserted for some reason.
+                throw new ServerException(_m('Could not insert user data for new user.'));
             }
 
             // Everyone is subscribed to themself
@@ -312,7 +312,8 @@ class User extends Managed_DataObject
             if (!$result) {
                 common_log_db_error($subscription, 'INSERT', __FILE__);
                 $profile->query('ROLLBACK');
-                return false;
+                // TRANS: Subscription data could not be inserted for some reason.
+                throw new ServerException(_m('Could not insert subscription data for new user.'));
             }
 
             // Mark that this invite was converted
@@ -334,7 +335,8 @@ class User extends Managed_DataObject
                 if (!$result) {
                     common_log_db_error($confirm, 'INSERT', __FILE__);
                     $profile->query('ROLLBACK');
-                    return false;
+                    // TRANS: Email confirmation data could not be inserted for some reason.
+                    throw new ServerException(_m('Could not insert email confirmation data for new user.'));
                 }
             }
 
@@ -383,6 +385,10 @@ class User extends Managed_DataObject
             }
 
             Event::handle('EndUserRegister', array($profile));
+        }
+
+        if (!$user instanceof User) {
+            throw new ServerException('User could not be registered. Probably an event hook that failed.');
         }
 
         return $user;

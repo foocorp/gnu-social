@@ -513,9 +513,9 @@ abstract class Installer
         if ($this->adminEmail) {
             $data['email'] = $this->adminEmail;
         }
-        $user = User::register($data);
-
-        if (empty($user)) {
+        try {
+            $user = User::register($data);
+        } catch (Exception $e) {
             return false;
         }
 
