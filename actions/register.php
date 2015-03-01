@@ -236,7 +236,7 @@ class RegisterAction extends Action
                                                     'homepage' => $homepage,
                                                     'bio' => $bio,
                                                     'location' => $location,
-                                                    'code' => $code))) {
+                                                    'code' => $code));
                     // success!
                     if (!common_set_user($user)) {
                         // TRANS: Server error displayed when saving fails during user registration.

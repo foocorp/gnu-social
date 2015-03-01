@@ -163,7 +163,7 @@ class ApiAccountRegisterAction extends ApiAction
                                                     'homepage' => $homepage,
                                                     'bio' => $bio,
                                                     'location' => $location,
-                                                    'code' => $this->code))) {
+                                                    'code' => $this->code));
                 Event::handle('EndRegistrationTry', array($this));
 
                 $this->initDocument('json');
