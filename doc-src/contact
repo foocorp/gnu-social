@@ -8,9 +8,9 @@ people for %%site.name%%.
 Bugs
 ----
 
-If you think you've found a bug in the [StatusNet](http://status.net/) software,
-or if there's a new feature you'd like to see, add it into the [StatusNet bug database](http://status.net/bugs/). Don't forget to check the list of
-existing bugs to make sure it hasn't already been reported!
+If you think you've found a bug in the underlying [GNU social](https://gnu.io/social/) software,
+or if there's a new feature you'd like to see, add it into the [GNU social task list](https://bugz.foocorp.net/).
+Don't forget to check the list of existing bugs to make sure it hasn't already been reported!
 
 Email
 -----
@@ -20,7 +20,6 @@ You can reach the responsible party for this server at [%%site.email%%](mailto:%
 Post a notice
 -------------
 
-If you have a question about how to do something, just post a notice
-with your question. Watch your inbox [public timeline](%%action.top%%)
-for answers.
+If you have a question about how to do something, just post a notice with
+your question, preferrably tagged with #NewHere. Watch your inbox for replies.
 
