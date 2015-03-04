@@ -63,7 +63,7 @@ class ImageFile
         if (!empty($this->id)) {
             $this->fileRecord = new File();
             $this->fileRecord->id = $this->id;
-            if (!$this->find(true)) {
+            if (!$this->fileRecord->find(true)) {
                 // If we have set an ID, we need that ID to exist!
                 throw new NoResultException($this->fileRecord);
             }
