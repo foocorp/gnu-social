@@ -100,8 +100,8 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
 
         try {
             Subscription::start($this->scoped, $this->other);
-        } catch (Exception $e) {
-            $this->clientError($e->getMessage(), 403);
+        } catch (AlreadyFulfilledException $e) {
+            $this->clientError($e->getMessage(), 409);
         }
 
         $this->initDocument($this->format);

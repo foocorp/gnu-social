@@ -109,7 +109,7 @@ class ActivityImporter extends QueueHandler
 
             // XXX: don't do this for untrusted input!
 
-            Subscription::start($otherProfile, $profile);
+            Subscription::ensureStart($otherProfile, $profile);
         } else if (empty($activity->actor)
                    || $activity->actor->id == $author->id) {
 
@@ -123,7 +123,7 @@ class ActivityImporter extends QueueHandler
                 throw new ClientException(_('Unknown profile.'));
             }
 
-            Subscription::start($profile, $otherProfile);
+            Subscription::ensureStart($profile, $otherProfile);
         } else {
             // TRANS: Client exception thrown when trying to import an event not related to the importing user.
             throw new Exception(_('This activity seems unrelated to our user.'));

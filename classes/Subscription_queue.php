@@ -36,6 +36,9 @@ class Subscription_queue extends Managed_DataObject
 
     public static function saveNew(Profile $subscriber, Profile $subscribed)
     {
+        if (self::exists($subscriber, $subscribed)) {
+            throw new AlreadyFulfilledException(_('This subscription request is already in progress.'));
+        }
         $rq = new Subscription_queue();
         $rq->subscriber = $subscriber->id;
         $rq->subscribed = $subscribed->id;

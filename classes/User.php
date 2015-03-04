@@ -354,7 +354,7 @@ class User extends Managed_DataObject
                     common_log(LOG_WARNING, sprintf("Default user %s does not exist.", $defnick),
                                __FILE__);
                 } else {
-                    Subscription::start($profile, $defuser->getProfile());
+                    Subscription::ensureStart($profile, $defuser->getProfile());
                 }
             }
 

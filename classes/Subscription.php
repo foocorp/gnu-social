@@ -94,6 +94,7 @@ class Subscription extends Managed_DataObject
         if (Event::handle('StartSubscribe', array($subscriber, $other))) {
             $otherUser = User::getKV('id', $other->id);
             if ($otherUser instanceof User && $otherUser->subscribe_policy == User::SUBSCRIBE_POLICY_MODERATE && !$force) {
+                // Will throw an AlreadyFulfilledException if this queue item already exists.
                 $sub = Subscription_queue::saveNew($subscriber, $other);
                 $sub->notify();
             } else {
@@ -129,6 +130,17 @@ class Subscription extends Managed_DataObject
             }
         }
 
+        return $sub;
+    }
+
+    static function ensureStart(Profile $subscriber, Profile $other, $force=false)
+    {
+        try {
+            $sub = self::start($subscriber, $other, $force);
+        } catch (AlreadyFulfilledException $e) {
+            // Nothing to see here, move along...
+            return self::getSubscription($subscriber, $other);
+        }
         return $sub;
     }
 

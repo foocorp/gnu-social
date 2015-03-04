@@ -230,18 +230,11 @@ class AtompubsubscriptionfeedAction extends AtompubAction
                 $this->clientError(sprintf(_('Unknown profile %s.'), $person->id));
             }
 
-            if (Subscription::exists($this->_profile, $profile)) {
+            try {
+                $sub = Subscription::start($this->_profile, $profile);
+            } catch (AlreadyFulfilledException $e) {
                 // 409 Conflict
-                // TRANS: Client error displayed trying to subscribe to an already subscribed profile.
-                // TRANS: %s is the profile the user already has a subscription on.
-                $this->clientError(sprintf(_('Already subscribed to %s.'),
-                                           $person->id),
-                                   409);
-            }
-
-            if (Subscription::start($this->_profile, $profile)) {
-                $sub = Subscription::pkeyGet(array('subscriber' => $this->_profile->id,
-                                                   'subscribed' => $profile->id));
+                $this->clientError($e->getMessage(), 409);
             }
 
             Event::handle('EndAtomPubNewActivity', array($activity, $sub));
