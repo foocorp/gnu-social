@@ -63,6 +63,7 @@ class VideoThumbnailsPlugin extends Plugin
         if (!getimagesize($imgPath)) {
             common_debug('exec of "avconv" produced a bad/nonexisting image it seems');
             @unlink($imgPath);
+            $imgPath = null;    // pretend we didn't touch it
             return true;
         }
         return false;
