@@ -61,11 +61,16 @@ class ImageFile
     {
         $this->id = $id;
         if (!empty($this->id)) {
-            $this->fileRecord = File::getKV('id', $this->id);
-            if (!$this->fileRecord instanceof File) {
-                throw new ServerException('Expected File object did not exist.');
+            $this->fileRecord = new File();
+            $this->fileRecord->id = $this->id;
+            if (!$this->find(true)) {
+                // If we have set an ID, we need that ID to exist!
+                throw new NoResultException($this->fileRecord);
             }
         }
+
+        // These do not have to be the same as fileRecord->filename for example,
+        // since we may have generated an image source file from something else!
         $this->filepath = $filepath;
         $this->filename = basename($filepath);
 
