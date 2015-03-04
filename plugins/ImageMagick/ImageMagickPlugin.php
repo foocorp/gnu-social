@@ -51,7 +51,7 @@ class ImageMagickPlugin extends Plugin
      * @param array $info The response from getimagesize()
      */
     public function onFillImageFileMetadata(ImageFile $imagefile) {
-        if (is_null($imagefile->animated) && $imagefile->type === IMAGETYPE_GIF) {
+        if (is_null($imagefile->animated) && $imagefile->mimetype === 'image/gif') {
             $magick = new Imagick($imagefile->filepath);
             $magick = $magick->coalesceImages();
             $imagefile->animated = $magick->getNumberImages()>1;
@@ -60,29 +60,38 @@ class ImageMagickPlugin extends Plugin
         return true;
     }
 
-    public function onStartResizeImageFile(ImageFile $imagefile, $outpath, array $box) {
-        // So far we only take over the resize for IMAGETYPE_GIF
-        // (and only animated for gifs! (and only if we really want to resize the animation!))
-        if ($imagefile->type == IMAGETYPE_GIF && $imagefile->animated && common_config('thumbnail', 'animated')) {
-            $magick = new Imagick($imagefile->filepath);
-            $magick = $magick->coalesceImages();
-            $magick->setIteratorIndex(0);
-            do {
-                $magick->cropImage($box['w'], $box['h'], $box['x'], $box['y']);
-                $magick->thumbnailImage($box['width'], $box['height']);
-                $magick->setImagePage($box['width'], $box['height'], 0, 0);
-            } while ($magick->nextImage());
-            $magick = $magick->deconstructImages();
-
-            // $magick->writeImages($outpath, true); did not work, had to use filehandle
-            // There's been bugs for writeImages in php5-imagick before, probably now too
-            $fh = fopen($outpath, 'w+');
-            $success = $magick->writeImagesFile($fh);
-            fclose($fh);
-
-            return !$success;
+    public function onStartResizeImageFile(ImageFile $imagefile, $outpath, array $box)
+    {
+        switch ($imagefile->mimetype) {
+        case 'image/gif':
+            // If GIF, then only for animated gifs! (and only if we really want to resize the animation!)
+            if ($imagefile->animated && common_config('thumbnail', 'animated')) {
+                return $this->resizeImageFileAnimatedGif($imagefile, $outpath, $box);
+            }
+            break;
         }
         return true;
+    }
+
+    protected function resizeImageFileAnimatedGif(ImageFile $imagefile, $outpath, array $box)
+    {
+        $magick = new Imagick($imagefile->filepath);
+        $magick = $magick->coalesceImages();
+        $magick->setIteratorIndex(0);
+        do {
+            $magick->cropImage($box['w'], $box['h'], $box['x'], $box['y']);
+            $magick->thumbnailImage($box['width'], $box['height']);
+            $magick->setImagePage($box['width'], $box['height'], 0, 0);
+        } while ($magick->nextImage());
+        $magick = $magick->deconstructImages();
+
+        // $magick->writeImages($outpath, true); did not work, had to use filehandle
+        // There's been bugs for writeImages in php5-imagick before, probably now too
+        $fh = fopen($outpath, 'w+');
+        $success = $magick->writeImagesFile($fh);
+        fclose($fh);
+
+        return !$success;
     }
 
     public function onPluginVersion(&$versions)
