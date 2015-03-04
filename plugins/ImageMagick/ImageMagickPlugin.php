@@ -90,6 +90,7 @@ class ImageMagickPlugin extends Plugin
         $fh = fopen($outpath, 'w+');
         $success = $magick->writeImagesFile($fh);
         fclose($fh);
+        $magick->destroy();
 
         return !$success;
     }
