@@ -46,6 +46,8 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class ImageMagickPlugin extends Plugin
 {
+    public $preview_imageformat = 'PNG';    // Image format strings: http://www.imagemagick.org/script/formats.php#supported
+
     /**
      * @param ImageFile $file An ImageFile object we're getting metadata for
      * @param array $info The response from getimagesize()
@@ -93,6 +95,33 @@ class ImageMagickPlugin extends Plugin
         $magick->destroy();
 
         return !$success;
+    }
+
+    public function onCreateFileImageThumbnailSource(File $file, &$imgPath, $media=null)
+    {
+        switch ($file->mimetype) {
+        case 'image/svg+xml':
+            // Let's save our frame to a temporary file. If we fail, remove it.
+            $imgPath = tempnam(sys_get_temp_dir(), 'socialthumb-');
+            if (!$this->createImagePreview($file, $imgPath)) {
+                common_debug('Could not create ImageMagick preview of File id=='.$file->id);
+                @unlink($imgPath);
+                $imgPath = null;
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    protected function createImagePreview(File $file, $outpath)
+    {
+        $magick = new Imagick($file->getPath());
+        $magick->setImageFormat($this->preview_imageformat);
+        $magick->writeImage($outpath);
+        $magick->destroy();
+
+        return getimagesize($outpath);  // Verify that we wrote an understandable image.
     }
 
     public function onPluginVersion(&$versions)
