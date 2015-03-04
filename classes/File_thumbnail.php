@@ -38,7 +38,7 @@ class File_thumbnail extends Managed_DataObject
         return array(
             'fields' => array(
                 'file_id' => array('type' => 'int', 'not null' => true, 'description' => 'thumbnail for what URL/file'),
-                'url' => array('type' => 'text', 'description' => 'URL of thumbnail'),
+                'url' => array('type' => 'text', 'not null' => false, 'description' => 'URL of thumbnail'),
                 'filename' => array('type' => 'varchar', 'length' => 191, 'description' => 'if stored locally, filename is put here'),
                 'width' => array('type' => 'int', 'description' => 'width of thumbnail'),
                 'height' => array('type' => 'int', 'description' => 'height of thumbnail'),
@@ -117,6 +117,12 @@ class File_thumbnail extends Managed_DataObject
         return File::path($filename);
     }
 
+    static function url($filename)
+    {
+        // TODO: Store thumbnails in their own directory and don't use File::url here
+        return File::url($filename);
+    }
+
     public function getPath()
     {
         $filepath = self::path($this->filename);
@@ -129,36 +135,18 @@ class File_thumbnail extends Managed_DataObject
     public function getUrl()
     {
         if (!empty($this->getFile()->filename)) {
-            // A locally stored File, so let's generate a URL for our instance.
-            $url = File::url($this->filename);
-            if ($url != $this->url) {
-                // For indexing purposes, in case we do a lookup on the 'url' field.
-                // also we're fixing possible changes from http to https, or paths
-                $this->updateUrl($url);
+            // A locally stored File, so we can dynamically generate a URL.
+            if (!empty($this->url)) {
+                // Let's just clear this field as there is no point in having it for local files.
+                $orig = clone($this);
+                $this->url = null;
+                $this->update($orig);
             }
-            return $url;
+            return self::url($this->filename);
         }
 
         // No local filename available, return the URL we have stored
         return $this->url;
-    }
-
-    public function updateUrl($url)
-    {
-        $file = File_thumbnail::getKV('url', $url);
-        if ($file instanceof File_thumbnail) {
-            throw new ServerException('URL already exists in DB');
-        }
-        $sql = 'UPDATE %1$s SET url=%2$s WHERE url=%3$s;';
-        $result = $this->query(sprintf($sql, $this->__table,
-                                             $this->_quote((string)$url),
-                                             $this->_quote((string)$this->url)));
-        if ($result === false) {
-            common_log_db_error($this, 'UPDATE', __FILE__);
-            throw new ServerException("Could not UPDATE {$this->__table}.url");
-        }
-
-        return $result;
     }
 
     public function delete($useWhere=false)

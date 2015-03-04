@@ -409,7 +409,7 @@ class BookmarkPlugin extends MicroAppPlugin
         $target = $attachments[0];
 
         $attrs = array('rel' => 'related',
-                       'href' => $target->url);
+                       'href' => $target->getUrl());
 
         if (!empty($target->title)) {
             $attrs['title'] = $target->title;
@@ -422,7 +422,7 @@ class BookmarkPlugin extends MicroAppPlugin
         try {
             $thumbnail = $target->getThumbnail();
             $tattrs = array('rel' => 'preview',
-                            'href' => $thumbnail->url);
+                            'href' => $thumbnail->getUrl());
 
             if (!empty($thumbnail->width)) {
                 $tattrs['media:width'] = $thumbnail->width;
