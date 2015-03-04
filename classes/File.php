@@ -420,63 +420,7 @@ class File extends Managed_DataObject
             }
         }
 
-        if ($width === null) {
-            $width = common_config('thumbnail', 'width');
-            $height = common_config('thumbnail', 'height');
-            $crop = common_config('thumbnail', 'crop');
-        }
-
-        if ($height === null) {
-            $height = $width;
-            $crop = true;
-        }
-
-        // Get proper aspect ratio width and height before lookup
-        // We have to do it through an ImageFile object because of orientation etc.
-        // Only other solution would've been to rotate + rewrite uploaded files
-        // which we don't want to do because we like original, untouched data!
-        list($width, $height, $x, $y, $w, $h) =
-                                $image->scaleToFit($width, $height, $crop);
-
-        $params = array('file_id'=> $this->id,
-                        'width'  => $width,
-                        'height' => $height);
-        $thumb = File_thumbnail::pkeyGet($params);
-        if ($thumb instanceof File_thumbnail) {
-            return $thumb;
-        }
-
-        $filename = $this->filehash ?: $image->filename;    // Remote files don't have $this->filename
-        $outname = "thumb-{$this->id}-{$width}x{$height}-{$filename}." . File::guessMimeExtension($image->mimetype);
-        $outpath = self::path($outname);
-
-        // The boundary box for our resizing
-        $box = array('width'=>$width, 'height'=>$height,
-                     'x'=>$x,         'y'=>$y,
-                     'w'=>$w,         'h'=>$h);
-
-        // Doublecheck that parameters are sane and integers.
-        if ($box['width'] < 1 || $box['width'] > common_config('thumbnail', 'maxsize')
-                || $box['height'] < 1 || $box['height'] > common_config('thumbnail', 'maxsize')
-                || $box['w'] < 1 || $box['x'] >= $image->width
-                || $box['h'] < 1 || $box['y'] >= $image->height) {
-            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
-            common_debug("Boundary box parameters for resize of {$image->filepath} : ".var_export($box,true));
-            throw new ServerException('Bad thumbnail size parameters.');
-        }
-
-        common_debug(sprintf('Generating a thumbnail of File id==%u of size %ux%u', $this->id, $width, $height));
-        // Perform resize and store into file
-        $image->resizeTo($outpath, $box);
-
-        // Avoid deleting the original
-        if ($image->getPath() != self::path($image->filename)) {
-            $image->unlink();
-        }
-        return File_thumbnail::saveThumbnail($this->id,
-                                      self::url($outname),
-                                      $width, $height,
-                                      $outname);
+        return $image->getFileThumbnail($width, $height, $crop);
     }
 
     public function getPath()

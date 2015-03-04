@@ -55,9 +55,17 @@ class ImageFile
     var $animated = null;  // Animated image? (has more than 1 frame). null means untested
     var $mimetype = null;   // The _ImageFile_ mimetype, _not_ the originating File object
 
+    protected $fileRecord = null;
+
     function __construct($id, $filepath)
     {
         $this->id = $id;
+        if (!empty($this->id)) {
+            $this->fileRecord = File::getKV('id', $this->id);
+            if (!$this->fileRecord instanceof File) {
+                throw new ServerException('Expected File object did not exist.');
+            }
+        }
         $this->filepath = $filepath;
         $this->filename = basename($filepath);
 
@@ -541,6 +549,73 @@ class ImageFile
 
         fclose($fh);
         return $count > 1;
+    }
+
+    public function getFileThumbnail($width, $height, $crop)
+    {
+        if (!$this->fileRecord instanceof File) {
+            throw new ServerException('No File object attached to this ImageFile object.');
+        }
+
+        if ($width === null) {
+            $width = common_config('thumbnail', 'width');
+            $height = common_config('thumbnail', 'height');
+            $crop = common_config('thumbnail', 'crop');
+        }
+
+        if ($height === null) {
+            $height = $width;
+            $crop = true;
+        }
+
+        // Get proper aspect ratio width and height before lookup
+        // We have to do it through an ImageFile object because of orientation etc.
+        // Only other solution would've been to rotate + rewrite uploaded files
+        // which we don't want to do because we like original, untouched data!
+        list($width, $height, $x, $y, $w, $h) = $this->scaleToFit($width, $height, $crop);
+
+        $thumb = File_thumbnail::pkeyGet(array(
+                                            'file_id'=> $this->fileRecord->id,
+                                            'width'  => $width,
+                                            'height' => $height,
+                                        ));
+        if ($thumb instanceof File_thumbnail) {
+            return $thumb;
+        }
+
+        $filename = $this->fileRecord->filehash ?: $this->filename;    // Remote files don't have $this->filehash
+        $extension = File::guessMimeExtension($this->mimetype);
+        $outname = "thumb-{$this->fileRecord->id}-{$width}x{$height}-{$filename}." . $extension;
+        $outpath = File_thumbnail::path($outname);
+
+        // The boundary box for our resizing
+        $box = array('width'=>$width, 'height'=>$height,
+                     'x'=>$x,         'y'=>$y,
+                     'w'=>$w,         'h'=>$h);
+
+        // Doublecheck that parameters are sane and integers.
+        if ($box['width'] < 1 || $box['width'] > common_config('thumbnail', 'maxsize')
+                || $box['height'] < 1 || $box['height'] > common_config('thumbnail', 'maxsize')
+                || $box['w'] < 1 || $box['x'] >= $this->width
+                || $box['h'] < 1 || $box['y'] >= $this->height) {
+            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
+            common_debug("Boundary box parameters for resize of {$this->filepath} : ".var_export($box,true));
+            throw new ServerException('Bad thumbnail size parameters.');
+        }
+
+        common_debug(sprintf('Generating a thumbnail of File id==%u of size %ux%u', $this->fileRecord->id, $width, $height));
+
+        // Perform resize and store into file
+        $this->resizeTo($outpath, $box);
+
+        // Avoid deleting the original
+        if ($this->getPath() != File_thumbnail::path($this->filename)) {
+            $this->unlink();
+        }
+        return File_thumbnail::saveThumbnail($this->fileRecord->id,
+                                      File_thumbnail::url($outname),
+                                      $width, $height,
+                                      $outname);
     }
 }
 
