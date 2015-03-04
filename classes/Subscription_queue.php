@@ -54,6 +54,18 @@ class Subscription_queue extends Managed_DataObject
         return ($sub instanceof Subscription_queue);
     }
 
+    static function getSubQueue(Profile $subscriber, Profile $other)
+    {
+        // This is essentially a pkeyGet but we have an object to return in NoResultException
+        $sub = new Subscription_queue();
+        $sub->subscriber = $subscriber->id;
+        $sub->subscribed = $other->id;
+        if (!$sub->find(true)) {
+            throw new NoResultException($sub);
+        }
+        return $sub;
+    }
+
     /**
      * Complete a pending subscription, as we've got approval of some sort.
      *
