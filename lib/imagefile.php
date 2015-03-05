@@ -128,6 +128,14 @@ class ImageFile
             if (empty($file->filename)) {
                 throw new UnsupportedMediaException(_('File without filename could not get a thumbnail source.'));
             }
+
+            // First some mimetype specific exceptions
+            switch ($file->mimetype) {
+            case 'image/svg+xml':
+                throw new UseFileAsThumbnailException($file->id);
+            }
+
+            // And we'll only consider it an image if it has such a media type
             switch ($media) {
             case 'image':
                 $imgPath = $file->getPath();
