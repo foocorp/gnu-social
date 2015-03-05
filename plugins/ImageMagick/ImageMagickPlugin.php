@@ -47,6 +47,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class ImageMagickPlugin extends Plugin
 {
     public $preview_imageformat = 'PNG';    // Image format strings: http://www.imagemagick.org/script/formats.php#supported
+    public $rasterize_vectors = false;       // Whether we want to turn SVG into PNG etc.
 
     /**
      * @param ImageFile $file An ImageFile object we're getting metadata for
@@ -101,17 +102,24 @@ class ImageMagickPlugin extends Plugin
     {
         switch ($file->mimetype) {
         case 'image/svg+xml':
-            // Let's save our frame to a temporary file. If we fail, remove it.
-            $imgPath = tempnam(sys_get_temp_dir(), 'socialthumb-');
-            if (!$this->createImagePreview($file, $imgPath)) {
-                common_debug('Could not create ImageMagick preview of File id=='.$file->id);
-                @unlink($imgPath);
-                $imgPath = null;
+            if (!$this->rasterize_vectors) {
+                // ImageMagick seems to be hard to trick into scaling vector graphics...
                 return true;
             }
-            return false;
+            break;
+        default:
+            // If we don't know the format, let's try not to mess with anything.
+            return true;
         }
-        return true;
+
+        $imgPath = tempnam(sys_get_temp_dir(), 'socialthumb-');
+        if (!$this->createImagePreview($file, $imgPath)) {
+            common_debug('Could not create ImageMagick preview of File id=='.$file->id);
+            @unlink($imgPath);
+            $imgPath = null;
+            return true;
+        }
+        return false;
     }
 
     protected function createImagePreview(File $file, $outpath)
