@@ -1357,6 +1357,19 @@ class Action extends HTMLOutputter // lawsuit
     }
 
     /**
+     * This is a cheap hack to avoid a bug in DB_DataObject
+     * where '' is non-type-aware compared to 0, which means it
+     * will always be true for values like false and 0 too...
+     *
+     * Upstream bug is::
+     * https://pear.php.net/bugs/bug.php?id=20291
+     */
+    function booleanintstring($key, $def)
+    {
+        return $this->boolean($key, $def) ? '1' : '0';
+    }
+
+    /**
      * Integer value of an argument
      *
      * @param string $key      query key we're interested in

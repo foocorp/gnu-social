@@ -316,12 +316,12 @@ class EmailsettingsAction extends SettingsAction
         $user = $this->scoped->getUser();
 
         if (Event::handle('StartEmailSaveForm', array($this, $this->scoped))) {
-            $emailnotifysub   = $this->boolean('emailnotifysub');
-            $emailnotifymsg   = $this->boolean('emailnotifymsg');
-            $emailnotifynudge = $this->boolean('emailnotifynudge');
-            $emailnotifyattn  = $this->boolean('emailnotifyattn');
-            $emailmicroid     = $this->boolean('emailmicroid');
-            $emailpost        = $this->boolean('emailpost');
+            $emailnotifysub   = $this->booleanintstring('emailnotifysub');
+            $emailnotifymsg   = $this->booleanintstring('emailnotifymsg');
+            $emailnotifynudge = $this->booleanintstring('emailnotifynudge');
+            $emailnotifyattn  = $this->booleanintstring('emailnotifyattn');
+            $emailmicroid     = $this->booleanintstring('emailmicroid');
+            $emailpost        = $this->booleanintstring('emailpost');
 
             $user->query('BEGIN');
 
