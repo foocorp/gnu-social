@@ -332,6 +332,7 @@ class MediaFile
         $unclearTypes = array('application/octet-stream',
                               'application/vnd.ms-office',
                               'application/zip',
+                              'text/html',  // Ironically, Wikimedia Commons' SVG_logo.svg is identified as text/html
                               // TODO: for XML we could do better content-based sniffing too
                               'text/xml');
 
