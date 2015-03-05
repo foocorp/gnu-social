@@ -91,7 +91,7 @@ class EmailsettingsAction extends SettingsAction
      */
     function showContent()
     {
-        $user = common_current_user();
+        $user = $this->scoped->getUser();
 
         $this->elementStart('form', array('method' => 'post',
                                           'id' => 'form_settings_email',
