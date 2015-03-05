@@ -107,11 +107,10 @@ class AttachmentListItem extends Widget
     function showRepresentation() {
         if (Event::handle('StartShowAttachmentRepresentation', array($this->out, $this->attachment))) {
             if (!empty($this->attachment->mimetype)) {
-                switch ($this->attachment->mimetype) {
-                case 'image/gif':
-                case 'image/png':
-                case 'image/jpg':
-                case 'image/jpeg':
+                $mediatype = common_get_mime_media($this->attachment->mimetype);
+                switch ($mediatype) {
+                // Anything we understand as an image, if we need special treatment, do it in StartShowAttachmentRepresentation
+                case 'image':
                     try {
                         // Tell getThumbnail that we can show an animated image if it has one (4th arg, "force_still")
                         $thumb = $this->attachment->getThumbnail(null, null, false, false);
@@ -123,27 +122,9 @@ class AttachmentListItem extends Widget
                     }
                     break;
 
-                case 'application/ogg':
-                    $arr  = array('type' => $this->attachment->mimetype,
-                        'data' => $this->attachment->url,
-                        'width' => 320,
-                        'height' => 240
-                    );
-                    $this->out->elementStart('object', $arr);
-                    $this->out->element('param', array('name' => 'src', 'value' => $this->attachment->url));
-                    $this->out->element('param', array('name' => 'autoStart', 'value' => 1));
-                    $this->out->elementEnd('object');
-                    break;
-
-                case 'audio/ogg':
-                case 'audio/x-speex':
-                case 'video/mpeg':
-                case 'audio/mpeg':
-                case 'video/mp4':
-                case 'video/ogg':
-                case 'video/quicktime':
-                case 'video/webm':
-                    $mediatype = common_get_mime_media($this->attachment->mimetype);
+                // HTML5 media elements
+                case 'audio':
+                case 'video':
                     try {
                         $thumb = $this->attachment->getThumbnail();
                         $poster = $thumb->getUrl();
@@ -156,22 +137,36 @@ class AttachmentListItem extends Widget
                                             'poster'=>$poster,
                                             'controls'=>'controls'));
                     $this->out->element('source',
-                                        array('src'=>$this->attachment->url,
+                                        array('src'=>$this->attachment->getUrl(),
                                             'type'=>$this->attachment->mimetype));
                     $this->out->elementEnd($mediatype);
                     break;
 
-                case 'text/html':
-                    if (!empty($this->attachment->filename)
-                            && (GNUsocial::isAjax() || common_config('attachments', 'show_html'))) {
-                        // Locally-uploaded HTML. Scrub and display inline.
-                        $this->showHtmlFile($this->attachment);
-                        break;
-                    }
-                    // Fall through to default.
-
                 default:
-                    Event::handle('ShowUnsupportedAttachmentRepresentation', array($this->out, $this->attachment));
+                    switch ($this->attachment->mimetype) {
+                    // Ogg media that we're not really sure what it is...
+                    case 'application/ogg':
+                        $arr  = array('type' => $this->attachment->mimetype,
+                            'data' => $this->attachment->getUrl(),
+                            'width' => 320,
+                            'height' => 240
+                        );
+                        $this->out->elementStart('object', $arr);
+                        $this->out->element('param', array('name' => 'src', 'value' => $this->attachment->getUrl()));
+                        $this->out->element('param', array('name' => 'autoStart', 'value' => 1));
+                        $this->out->elementEnd('object');
+                        break;
+                    case 'text/html':
+                        if (!empty($this->attachment->filename)
+                                && (GNUsocial::isAjax() || common_config('attachments', 'show_html'))) {
+                            // Locally-uploaded HTML. Scrub and display inline.
+                            $this->showHtmlFile($this->attachment);
+                            break;
+                        }
+                        // Fall through to default if it wasn't a _local_ text/html File object
+                    default:
+                        Event::handle('ShowUnsupportedAttachmentRepresentation', array($this->out, $this->attachment));
+                    }
                 }
             } else {
                 Event::handle('ShowUnsupportedAttachmentRepresentation', array($this->out, $this->attachment));
