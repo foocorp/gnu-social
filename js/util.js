@@ -94,12 +94,12 @@ var SN = { // StatusNet
          * @access private
          */
         FormNoticeEnhancements: function (form) {
-            if (jQuery.data(form[0], 'ElementData') === undefined) {
+            if ($.data(form[0], 'ElementData') === undefined) {
                 var MaxLength = form.find('.count').text();
                 if (MaxLength === undefined) {
                     MaxLength = SN.C.I.MaxLength;
                 }
-                jQuery.data(form[0], 'ElementData', {MaxLength: MaxLength});
+                $.data(form[0], 'ElementData', {MaxLength: MaxLength});
 
                 SN.U.Counter(form);
 
@@ -122,7 +122,7 @@ var SN = { // StatusNet
                 NDT.on('cut', delayedUpdate)
                     .on('paste', delayedUpdate);
             } else {
-                form.find('.count').text(jQuery.data(form[0], 'ElementData').MaxLength);
+                form.find('.count').text($.data(form[0], 'ElementData').MaxLength);
             }
         },
 
@@ -143,7 +143,7 @@ var SN = { // StatusNet
         Counter: function (form) {
             SN.C.I.FormNoticeCurrent = form;
 
-            var MaxLength = jQuery.data(form[0], 'ElementData').MaxLength;
+            var MaxLength = $.data(form[0], 'ElementData').MaxLength;
 
             if (MaxLength <= 0) {
                 return;
@@ -375,7 +375,7 @@ var SN = { // StatusNet
                         if ($('.' + SN.C.S.Error, response).length > 0) {
                             form.append(document._importNode($('.' + SN.C.S.Error, response)[0], true));
                         } else {
-                            if (parseInt(xhr.status) === 0 || jQuery.inArray(parseInt(xhr.status), SN.C.I.HTTP20x30x) >= 0) {
+                            if (parseInt(xhr.status) === 0 || $.inArray(parseInt(xhr.status), SN.C.I.HTTP20x30x) >= 0) {
                                 form
                                     .resetForm()
                                     .find('.attach-status').remove();
@@ -411,7 +411,7 @@ var SN = { // StatusNet
                                     $(notice).insertBefore(replyItem);
                                 } // else Realtime came through before us...
 
-                                alert('reset form now');
+                                replyItem.remove();
 
                             } else if (notices.length > 0 && SN.U.belongsOnTimeline(notice)) {
                                 // Not a reply. If on our timeline, show it at the top!
@@ -666,28 +666,24 @@ var SN = { // StatusNet
             if (replyItem.length == 0) {
                 replyItem = $('<li class="notice-reply"></li>');
 
-                var intermediateStep = function (formMaster) {
-                    var formEl = document._importNode(formMaster, true);
+                // Fetch a fresh copy of the notice form over AJAX.
+                var url = $('#input_form_status > form').attr('action');
+                $.get(url, {ajax: 1, inreplyto: id}, function (data, textStatus, xhr) {
+                    var formEl = document._importNode($('form', data)[0], true);
                     replyItem.append(formEl);
-                    list.append(replyItem); // *after* the placeholder
+                    list.append(replyItem);
 
-                    var form = $(formEl);
-                    replyForm = form;
-                    SN.Init.NoticeFormSetup(form);
-
+                    replyForm = $(formEl);
+                    SN.Init.NoticeFormSetup(replyForm);
                     nextStep();
-                };
-                if (SN.C.I.NoticeFormMaster) {
-                    // We've already saved a master copy of the form.
-                    // Clone it in!
-                    intermediateStep(SN.C.I.NoticeFormMaster);
-                }
+                });
             } else {
-                replyItem.show();
-                replyTextarea = replyItem.find('textarea');
-                if (replyTextarea) {
-                    replyTextarea.focus();
+                replyForm = replyItem.children('form');
+                if (SN.Init.NoticeFormSetup(replyForm)) {
+                    nextStep();
                 }
+                replyItem.show();
+                replyItem.find('textarea').focus();
             }
         },
 
@@ -697,7 +693,6 @@ var SN = { // StatusNet
          * Uses 'on' rather than 'live' or 'bind', so applies to future as well as present items.
          */
         NoticeInlineReplySetup: function () {
-            $('#content .notice-reply').hide();
             // Expand conversation links
             $(document).on('click', 'li.notice-reply-comments a', function () {
                     var url = $(this).attr('href');
@@ -993,7 +988,7 @@ var SN = { // StatusNet
 
             function removeNoticeDataGeo(error) {
                 label
-                    .attr('title', jQuery.trim(label.text()))
+                    .attr('title', $.trim(label.text()))
                     .removeClass('checked');
 
                 form.find('[name=lat]').val('');
@@ -1431,13 +1426,14 @@ var SN = { // StatusNet
          * @param {jQuery} form
          */
         NoticeFormSetup: function (form) {
-            if (!form.data('NoticeFormSetup')) {
-                SN.U.NoticeLocationAttach(form);
-                SN.U.FormNoticeXHR(form);
-                SN.U.FormNoticeEnhancements(form);
-                SN.U.NoticeDataAttach(form);
-                form.data('NoticeFormSetup', true);
+            if (form.data('NoticeFormSetup')) {
+                return false;
             }
+            SN.U.NoticeLocationAttach(form);
+            SN.U.FormNoticeXHR(form);
+            SN.U.FormNoticeEnhancements(form);
+            SN.U.NoticeDataAttach(form);
+            form.data('NoticeFormSetup', true);
         },
 
         /**
