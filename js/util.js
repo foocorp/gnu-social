@@ -405,16 +405,14 @@ var SN = { // StatusNet
                             if (replyItem.length > 0) {
                                 // If this is an inline reply, remove the form...
                                 var list = form.closest('.threaded-replies');
-                                var placeholder = list.find('.notice-reply-placeholder');
-                                replyItem.remove();
 
                                 var id = $(notice).attr('id');
                                 if ($('#' + id).length == 0) {
-                                    $(notice).insertBefore(placeholder);
+                                    $(notice).insertBefore(replyItem);
                                 } // else Realtime came through before us...
 
-                                // ...and show the placeholder form.
-                                placeholder.show();
+                                alert('reset form now');
+
                             } else if (notices.length > 0 && SN.U.belongsOnTimeline(notice)) {
                                 // Not a reply. If on our timeline, show it at the top!
 
@@ -616,7 +614,7 @@ var SN = { // StatusNet
         NoticeInlineReplyTrigger: function (notice, initialText) {
             // Find the notice we're replying to...
             var id = $($('.notice_id', notice)[0]).text();
-            var replyForm, placeholder;
+            var replyForm;
             var parentNotice = notice;
             var stripForm = true; // strip a couple things out of reply forms that are inline
 
