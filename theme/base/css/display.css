@@ -79,6 +79,10 @@ option {
     padding-bottom: 0px;
 }
 
+.hidden {
+    display: none;
+}
+
 #wrap {
     position: relative;
     width: 960px;

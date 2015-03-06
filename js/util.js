@@ -661,41 +661,32 @@ var SN = { // StatusNet
                 }
             };
 
-            // See if the form's already open...
-            replyForm = $('.notice-reply-form', list);
-            if (replyForm.length > 0) {
-                // Update the existing form...
-                nextStep();
+            // Create the reply form entry at the end
+            var replyItem = $('li.notice-reply', list);
+            if (replyItem.length == 0) {
+                replyItem = $('<li class="notice-reply"></li>');
+
+                var intermediateStep = function (formMaster) {
+                    var formEl = document._importNode(formMaster, true);
+                    replyItem.append(formEl);
+                    list.append(replyItem); // *after* the placeholder
+
+                    var form = $(formEl);
+                    replyForm = form;
+                    SN.Init.NoticeFormSetup(form);
+
+                    nextStep();
+                };
+                if (SN.C.I.NoticeFormMaster) {
+                    // We've already saved a master copy of the form.
+                    // Clone it in!
+                    intermediateStep(SN.C.I.NoticeFormMaster);
+                }
             } else {
-                // Create the reply form entry at the end
-                var replyItem = $('li.notice-reply > form', list);
-                if (replyItem.length == 0) {
-                    replyItem = $('<li class="notice-reply"></li>');
-
-                    var intermediateStep = function (formMaster) {
-                        var formEl = document._importNode(formMaster, true);
-                        replyItem.append(formEl);
-                        list.append(replyItem); // *after* the placeholder
-
-                        var form = $(formEl);
-                        replyForm = form;
-                        SN.Init.NoticeFormSetup(form);
-
-                        nextStep();
-                    };
-                    if (SN.C.I.NoticeFormMaster) {
-                        // We've already saved a master copy of the form.
-                        // Clone it in!
-                        intermediateStep(SN.C.I.NoticeFormMaster);
-                    } else {
-                        // Fetch a fresh copy of the notice form over AJAX.
-                        // Warning: this can have a delay, which looks bad.
-                        // @fixme this fallback may or may not work
-                        var url = $('#form_notice').attr('action');
-                        $.get(url, {ajax: 1}, function (data, textStatus, xhr) {
-                            intermediateStep($('form', data)[0]);
-                        });
-                    }
+                replyItem.show();
+                replyTextarea = replyItem.find('textarea');
+                if (replyTextarea) {
+                    replyTextarea.focus();
                 }
             }
         },
@@ -706,6 +697,7 @@ var SN = { // StatusNet
          * Uses 'on' rather than 'live' or 'bind', so applies to future as well as present items.
          */
         NoticeInlineReplySetup: function () {
+            $('#content .notice-reply').hide();
             // Expand conversation links
             $(document).on('click', 'li.notice-reply-comments a', function () {
                     var url = $(this).attr('href');
@@ -1418,7 +1410,7 @@ var SN = { // StatusNet
                                 // Only close if there's been no edit.
                                 if (cur == '' || cur == textarea.data('initialText')) {
                                     var parentNotice = replyItem.closest('li.notice');
-                                    replyItem.remove();
+                                    replyItem.hide();
                                     parentNotice.find('li.notice-reply-placeholder').show();
                                 }
                             }
