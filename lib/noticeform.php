@@ -99,13 +99,11 @@ class NoticeForm extends Form
      */
     function __construct($action, $options=null)
     {
-        // XXX: ??? Is this to keep notice forms distinct?
-        // Do we have to worry about sub-second race conditions?
-        // XXX: Needs to be above the parent::__construct() call...?
-
-        $this->id_suffix = rand();
-
         parent::__construct($action);
+
+        // When creating a notice form we don't want to collide with
+        // possibly existing HTML elements, as naming conventions are similar.
+        $this->id_suffix = rand();
 
         if (is_null($options)) {
             $options = array();
@@ -190,6 +188,15 @@ class NoticeForm extends Form
         $this->out->element('legend', null, _('Send a notice'));
     }
 
+    protected function placeholderText()
+    {
+        if ($this->inreplyto) {
+            return _('Write a reply...');
+        }
+
+        return _('Share your status...');
+    }
+
     /**
      * Data elements
      *
@@ -205,7 +212,7 @@ class NoticeForm extends Form
             // XXX: vary by defined max size
             $this->out->element('textarea', array('class' => 'notice_data-text',
                                                   'required' => 'required',
-                                                  'placeholder' => _('Share your status...'),
+                                                  'placeholder' => $this->placeholderText(),
                                                   'cols' => 35,
                                                   'rows' => 4,
                                                   'name' => 'status_textarea'),
