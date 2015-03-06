@@ -578,6 +578,28 @@ var SN = { // StatusNet
         /**
          * Setup function -- DOES NOT trigger actions immediately.
          *
+         * Sets up event handlers on all visible notice's option <a> elements
+         * so they are called with AJAX enabled.
+         *
+         * (without javascript the link goes to a page that expects you to verify
+         * the action through a form)
+         *
+         * @access private
+         */
+        NoticeOptionsAjax: function () {
+            $(document).on('click', '.notice-options > a', function (e) {
+                e.preventDefault();
+                var noticeEl = $(this).closest('.notice');
+                $.get($(this).attr('href'), {ajax: 1}, function (data, textStatus, xhr) {
+                    noticeEl.replaceWith($('body', data).html());
+                });
+                return false;
+            });
+        },
+
+        /**
+         * Setup function -- DOES NOT trigger actions immediately.
+         *
          * Sets up event handlers on all visible notice's reply buttons to
          * tweak the new-notice form with needed variables and focus it
          * when pushed.
@@ -1446,6 +1468,7 @@ var SN = { // StatusNet
                 SN.U.NoticeRepeat();
                 SN.U.NoticeReply();
                 SN.U.NoticeInlineReplySetup();
+                SN.U.NoticeOptionsAjax();
             }
 
             SN.U.NoticeAttachments();
