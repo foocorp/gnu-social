@@ -452,14 +452,9 @@ address .poweredby {
 }
 
 .input_form fieldset fieldset label {
-    position: absolute;
-    top: 0;
-    left: 6px;
     float: none;
     text-align: left;
     color: #888;
-    cursor: text;
-    background: #fff;
 }
 
 .input_form .form_settings li input {

@@ -1433,9 +1433,6 @@ var SN = { // StatusNet
                         });
                     }
                 });
-
-                // Infield labels for notice form inputs.
-                $('.input_forms fieldset fieldset label').inFieldLabels({ fadeOpacity:0 });
             }
         },
 
