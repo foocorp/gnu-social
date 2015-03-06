@@ -620,37 +620,18 @@ var SN = { // StatusNet
             var parentNotice = notice;
             var stripForm = true; // strip a couple things out of reply forms that are inline
 
-            // Find the threaded replies view we'll be adding to...
             var list = notice.closest('.notices');
-            if (list.closest('.old-school').length) {
-                // We're replying to an old-school conversation thread;
-                // use the old-style ping into the top form.
-                SN.U.switchInputFormTab("status");
-                replyForm = $('#input_form_status').find('form');
-                stripForm = false;
-            } else if (list.hasClass('threaded-replies')) {
+            if (list.hasClass('threaded-replies')) {
                 // We're replying to a reply; use reply form on the end of this list.
-                // We'll add our form at the end of this; grab the root notice.
-                parentNotice = list.closest('.notice');
-
-                // See if the form's already open...
-                replyForm = $('.notice-reply-form', list);
             } else {
                 // We're replying to a parent notice; pull its threaded list
-                // and we'll add on the end of it. Will add if needed.
-                list = $('ul.threaded-replies', notice);
+                // and we'll add on the end of it. Will add the threaded list if needed.
+                var list = $('ul.threaded-replies', notice);
                 if (list.length == 0) {
-                    SN.U.NoticeInlineReplyPlaceholder(notice);
-                    list = $('ul.threaded-replies', notice);
-                } else {
-                    placeholder = $('li.notice-reply-placeholder', notice);
-                    if (placeholder.length == 0) {
-                        SN.U.NoticeInlineReplyPlaceholder(notice);
-                    }
+                    list = $('<ul class="notices threaded-replies xoxo"></ul>');
+                    notice.append(list);
+                    list = notice.find('ul.threaded-replies');
                 }
-
-                // See if the form's already open...
-                replyForm = $('.notice-reply-form', list);
             }
 
             var nextStep = function () {
@@ -681,15 +662,15 @@ var SN = { // StatusNet
                     text[0].setSelectionRange(len, len);
                 }
             };
+
+            // See if the form's already open...
+            replyForm = $('.notice-reply-form', list);
             if (replyForm.length > 0) {
                 // Update the existing form...
                 nextStep();
             } else {
-                // Hide the placeholder...
-                placeholder = list.find('li.notice-reply-placeholder').hide();
-
                 // Create the reply form entry at the end
-                var replyItem = $('li.notice-reply', list);
+                var replyItem = $('li.notice-reply > form', list);
                 if (replyItem.length == 0) {
                     replyItem = $('<li class="notice-reply"></li>');
 
@@ -721,34 +702,13 @@ var SN = { // StatusNet
             }
         },
 
-        NoticeInlineReplyPlaceholder: function (notice) {
-            var list = notice.find('ul.threaded-replies');
-            if (list.length == 0) {
-                list = $('<ul class="notices threaded-replies xoxo"></ul>');
-                notice.append(list);
-                list = notice.find('ul.threaded-replies');
-            }
-            var placeholder = $('<li class="notice-reply-placeholder">' +
-                                    '<input class="placeholder" />' +
-                                '</li>');
-            placeholder.find('input')
-                .val(SN.msg('reply_placeholder'));
-            list.append(placeholder);
-        },
-
         /**
          * Setup function -- DOES NOT apply immediately.
          *
-         * Sets up event handlers for inline reply mini-form placeholders.
          * Uses 'on' rather than 'live' or 'bind', so applies to future as well as present items.
          */
         NoticeInlineReplySetup: function () {
-            $('li.notice-reply-placeholder input')
-                .on('focus', function () {
-                    var notice = $(this).closest('li.notice');
-                    SN.U.NoticeInlineReplyTrigger(notice);
-                    return false;
-                });
+            // Expand conversation links
             $(document).on('click', 'li.notice-reply-comments a', function () {
                     var url = $(this).attr('href');
                     var area = $(this).closest('.threaded-replies');

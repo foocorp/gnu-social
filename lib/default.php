@@ -309,6 +309,7 @@ $default =
                             'AntiBrute' => array(),
                             'Bookmark' => array(),
                             'ClientSideShorten' => array(),
+                            'DefaultLayout' => array(),
                             'Directory' => array(),
                             'DirectMessage' => array(),
                             'EmailAuthentication' => array(),
