@@ -32,7 +32,6 @@ var SN = { // StatusNet
             MaxLength: 140,
             PatternUsername: /^[0-9a-zA-Z\-_.]*$/,
             HTTP20x30x: [200, 201, 202, 203, 204, 205, 206, 300, 301, 302, 303, 304, 305, 306, 307],
-            NoticeFormMaster: null // to be cloned from the one at top
         },
 
         /**
@@ -1444,10 +1443,6 @@ var SN = { // StatusNet
          */
         Notices: function () {
             if ($('body.user_in').length > 0) {
-                var masterForm = $('.form_notice:first');
-                if (masterForm.length > 0) {
-                    SN.C.I.NoticeFormMaster = document._importNode(masterForm[0], true);
-                }
                 SN.U.NoticeRepeat();
                 SN.U.NoticeReply();
                 SN.U.NoticeInlineReplySetup();
