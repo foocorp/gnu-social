@@ -450,7 +450,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
     public function onStartEmailSaveForm(Action $action, Profile $scoped)
     {
-        $emailfave = $action->boolean('email-notify_fave') ? 1 : 0;
+        $emailfave = $action->booleanintstring('email-notify_fave');
         try {
             if ($emailfave == $scoped->getPref('email', 'notify_fave')) {
                 // No need to update setting
