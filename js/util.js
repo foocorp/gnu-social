@@ -703,6 +703,7 @@ var SN = { // StatusNet
                 });
             } else {
                 replyForm = replyItem.children('form');
+                SN.Init.NoticeFormSetup(replyForm);
                 nextStep();
             }
         },
