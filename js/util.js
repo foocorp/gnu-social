@@ -579,7 +579,7 @@ var SN = { // StatusNet
          * Setup function -- DOES NOT trigger actions immediately.
          *
          * Sets up event handlers on all visible notice's option <a> elements
-         * so they are called with AJAX enabled.
+         * with the "popup" class so they behave as expected with AJAX.
          *
          * (without javascript the link goes to a page that expects you to verify
          * the action through a form)
@@ -587,17 +587,17 @@ var SN = { // StatusNet
          * @access private
          */
         NoticeOptionsAjax: function () {
-            $(document).on('click', '.notice-options > a', function (e) {
+            $(document).on('click', '.notice-options > a.popup', function (e) {
                 e.preventDefault();
                 var noticeEl = $(this).closest('.notice');
                 $.get($(this).attr('href'), {ajax: 1}, function (data, textStatus, xhr) {
-                    SN.U.NoticeOptionPopup(data);
+                    SN.U.NoticeOptionPopup(data, noticeEl);
                 });
                 return false;
             });
         },
 
-        NoticeOptionPopup: function (data) {
+        NoticeOptionPopup: function (data, noticeEl) {
             title = $('head > title', data).text();
             body = $('body', data).html();
             dialog = $(body).dialog({
@@ -651,20 +651,10 @@ var SN = { // StatusNet
             var parentNotice = notice;
             var stripForm = true; // strip a couple things out of reply forms that are inline
 
-            var list = notice.closest('.notices');
-            if (list.hasClass('threaded-replies')) {
-                // We're replying to a reply; use reply form on the end of this list.
-            } else {
-                // We're replying to a parent notice; pull its threaded list
-                // and we'll add on the end of it. Will add the threaded list if needed.
-                var list = $('ul.threaded-replies', notice);
-                if (list.length == 0) {
-                    list = $('<ul class="notices threaded-replies xoxo"></ul>');
-                    notice.append(list);
-                    list = notice.find('ul.threaded-replies');
-                }
+            var list = notice.find('.threaded-replies');
+            if (list.length == 0) {
+                list = notice.closest('.threaded-replies');
             }
-
             var nextStep = function () {
                 // Override...?
                 replyForm.find('input[name=inreplyto]').val(id);
@@ -675,6 +665,7 @@ var SN = { // StatusNet
                     replyForm.find('label[for=notice_to]').hide();
                     replyForm.find('label[for=notice_private]').hide();
                 }
+                replyItem.show();
 
                 // Set focus...
                 var text = replyForm.find('textarea');
@@ -694,7 +685,7 @@ var SN = { // StatusNet
                 }
             };
 
-            // Create the reply form entry at the end
+            // Create the reply form entry
             var replyItem = $('li.notice-reply', list);
             if (replyItem.length == 0) {
                 replyItem = $('<li class="notice-reply"></li>');
@@ -712,11 +703,7 @@ var SN = { // StatusNet
                 });
             } else {
                 replyForm = replyItem.children('form');
-                if (SN.Init.NoticeFormSetup(replyForm)) {
-                    nextStep();
-                }
-                replyItem.show();
-                replyItem.find('textarea').focus();
+                nextStep();
             }
         },
 

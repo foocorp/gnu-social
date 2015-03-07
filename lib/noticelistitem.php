@@ -596,7 +596,7 @@ class NoticeListItem extends Widget
             $deleteurl = common_local_url('deletenotice',
                                           array('notice' => $todel->id));
             $this->out->element('a', array('href' => $deleteurl,
-                                           'class' => 'notice_delete',
+                                           'class' => 'notice_delete popup',
                                            // TRANS: Link title in notice list item to delete a notice.
                                            'title' => _('Delete this notice from the timeline.')),
                                            // TRANS: Link text in notice list item to delete a notice.
