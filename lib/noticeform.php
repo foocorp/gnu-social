@@ -228,15 +228,17 @@ class NoticeForm extends Form
 
             if (common_config('attachments', 'uploads')) {
                 $this->out->hidden('MAX_FILE_SIZE', common_config('attachments', 'file_quota'));
-                $this->out->elementStart('label', array('class' => 'notice_data-attach'));
-                // TRANS: Input label in notice form for adding an attachment.
-                $this->out->text(_('Attach'));
+                $this->out->element('label', array('class' => 'notice_data-attach',
+                                                   'for'   => $this->id().'-notice_data-attach'),
+                                    // TRANS: Input label in notice form for adding an attachment.
+                                    _('Attach'));
+                // The actual input element tends to be hidden with CSS.
                 $this->out->element('input', array('class' => 'notice_data-attach',
                                                    'type' => 'file',
                                                    'name' => 'attach',
+                                                   'id' => $this->id().'-notice_data-attach',
                                                    // TRANS: Title for input field to attach a file to a notice.
                                                    'title' => _('Attach a file.')));
-                $this->out->elementEnd('label');
             }
             if (!empty($this->actionName)) {
                 $this->out->hidden('notice_return-to', $this->actionName, 'returnto');
@@ -261,9 +263,7 @@ class NoticeForm extends Form
                                                       'data-api' => common_local_url('geocode')));
 
                 // @fixme checkbox method allows no way to change the id without changing the name
-                //// TRANS: Checkbox label to allow sharing geo location in notices.
                 //$this->out->checkbox('notice_data-geo', _('Share my location'), true);
-                $this->out->elementStart('label', 'notice_data-geo');
                 $this->out->element('input', array(
                     'name' => 'notice_data-geo',
                     'type' => 'checkbox',
@@ -271,10 +271,10 @@ class NoticeForm extends Form
                     'id' => $this->id() . '-notice_data-geo',
                     'checked' => true, // ?
                 ));
-                $this->out->text(' ');
-                // TRANS: Field label to add location to a notice.
-                $this->out->text(_('Share my location'));
-                $this->out->elementEnd('label');
+                $this->out->element('label', array('class' => 'notice_data-geo',
+                                                   'for'   => $this->id().'-notice_data-geo'),
+                                    // TRANS: Checkbox label to allow sharing geo location in notices.
+                                    _('Share my location'));
                                
                 $this->out->elementEnd('div');
                 // TRANS: Text to not share location for a notice in notice form.
