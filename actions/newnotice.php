@@ -62,6 +62,9 @@ class NewnoticeAction extends FormAction
             // TRANS: Page title after sending a notice.
             return _('Notice posted');
         }
+        if ($this->int('inreplyto')) {
+            return _m('TITLE', 'New reply');
+        }
         // TRANS: Page title for sending a new notice.
         return _m('TITLE','New notice');
     }
@@ -128,7 +131,7 @@ class NewnoticeAction extends FormAction
                                        Notice::maxContent()));
         }
 
-        $replyto = intval($this->trimmed('inreplyto'));
+        $replyto = $this->int('inreplyto');
         if ($replyto) {
             $options['reply_to'] = $replyto;
         }
