@@ -591,14 +591,22 @@ var SN = { // StatusNet
                 e.preventDefault();
                 var noticeEl = $(this).closest('.notice');
                 $.get($(this).attr('href'), {ajax: 1}, function (data, textStatus, xhr) {
-                    SN.U.NoticeOptionPopup($('body', data).html());
+                    SN.U.NoticeOptionPopup(data);
                 });
                 return false;
             });
         },
 
-        NoticeOptionPopup: function (html) {
-            dialog = $(html).dialog();
+        NoticeOptionPopup: function (data) {
+            title = $('head > title', data).text();
+            body = $('body', data).html();
+            dialog = $(body).dialog({
+                    height: "auto",
+                    width: "auto",
+                    modal: true,
+                    resizable: true,
+                    title: title,
+                });
         },
 
         /**
@@ -797,14 +805,6 @@ var SN = { // StatusNet
 
                 return false;
             });
-        },
-
-        NoticeOptionPopup: function (html) {
-            dialog = $(html).dialog({
-                    resizable: false,
-                    height: 150,
-                    modal: true,
-                });
         },
 
         /**
