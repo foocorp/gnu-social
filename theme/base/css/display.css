@@ -951,7 +951,8 @@ content: ":";
 }
 
 .threaded-replies .form_notice input.submit {
-    bottom: 0;
+    bottom: 1ex;
+    right: 1ex;
 }
 
 .threaded-replies .form_notice .error,
