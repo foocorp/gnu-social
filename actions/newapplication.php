@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Add a new application
@@ -51,10 +49,8 @@ class NewApplicationAction extends FormAction
         return _('New application');
     }
 
-    protected function handlePost()
+    protected function doPost()
     {
-        parent::handlePost();
-
         if ($this->arg('cancel')) {
             common_redirect(common_local_url('oauthappssettings'), 303);
         } elseif ($this->arg('save')) {
@@ -181,6 +177,7 @@ class NewApplicationAction extends FormAction
 
         if (!$result) {
             common_log_db_error($consumer, 'INSERT', __FILE__);
+            $app->query('ROLLBACK');
             // TRANS: Server error displayed when an application could not be registered in the database through the "New application" form.
             $this->serverError(_('Could not create application.'));
         }
@@ -191,9 +188,9 @@ class NewApplicationAction extends FormAction
 
         if (!$this->app_id) {
             common_log_db_error($app, 'INSERT', __FILE__);
+            $app->query('ROLLBACK');
             // TRANS: Server error displayed when an application could not be registered in the database through the "New application" form.
             $this->serverError(_('Could not create application.'));
-            $app->query('ROLLBACK');
         }
 
         try {
