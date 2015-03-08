@@ -1,67 +1,175 @@
-# Translation of StatusNet - GroupPrivateMessage to Basque (euskara)
-# Exported from translatewiki.net
-#
-# Author: An13sa
-# Author: Artsuaga
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - GroupPrivateMessage\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:48+0000\n"
-"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:43+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Basque (http://www.transifex.com/projects/p/gnu-social/language/eu/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 13:48:53+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: eu\n"
-"X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Client exception thrown when trying to send a private group message while not logged in.
+#. TRANS: Form legend for sending private message to group %s.
+#: forms/groupmessage.php:89
+#, php-format
+msgid "Message to %s"
+msgstr "%s(r)i mezua"
+
+#. TRANS: Field label for private group message to group %s.
+#: forms/groupmessage.php:128
+#, php-format
+msgid "Direct message to %s"
+msgstr "%s(r)i mezu zuzena"
+
+#. TRANS: Indicator for number of chatacters still available for notice.
+#: forms/groupmessage.php:141
+msgid "Available characters"
+msgstr "Karaktere erabilgarriak"
+
+#. TRANS: Send button text for sending private group notice.
+#: forms/groupmessage.php:162
+msgctxt "Send button for sending notice"
+msgid "Send"
+msgstr "Bidali"
+
+#. TRANS: Client exception thrown when trying to view group inbox while not
+#. logged in.
+#: actions/groupinbox.php:66
+msgid "Only for logged-in users."
+msgstr "Saioa hasitako erabiltzaileentzat soilik."
+
+#. TRANS: Client exception thrown when trying to view group inbox for non-
+#. existing group.
+#. TRANS: Client exception thrown when trying to send a private group message
+#. to a non-existing group.
+#: actions/groupinbox.php:82 actions/groupinbox.php:89
+#: actions/newgroupmessage.php:90 actions/newgroupmessage.php:97
+msgid "No such group."
+msgstr "Ez dago talde hori."
+
+#. TRANS: Client exception thrown when trying to view group inbox while not a
+#. member.
+#: actions/groupinbox.php:94
+msgid "Only for members."
+msgstr "Erabiltzaileentzako soilik."
+
+#. TRANS: Text of group inbox if no private messages were sent to it.
+#: actions/groupinbox.php:128
+msgid "This group has not received any private messages."
+msgstr "Talde honek ez du mezu pribaturik jaso."
+
+#. TRANS: Title of inbox for group %s.
+#: actions/groupinbox.php:174
+#, php-format
+msgid "%s group inbox"
+msgstr "%s taldearen sarrera"
+
+#. TRANS: Page title for any but first group page.
+#. TRANS: %1$s is a group name, $2$s is a page number.
+#: actions/groupinbox.php:178
+#, php-format
+msgid "%1$s group inbox, page %2$d"
+msgstr "%1$s taldearen sarrera, %2$d. orria"
+
+#. TRANS: Instructions for user inbox page.
+#: actions/groupinbox.php:209
+msgid ""
+"This is the group inbox, which lists all incoming private messages for this "
+"group."
+msgstr "Hau taldearen sarrera ontzia da, talde honek jasotako mezu pribatu guztiak zerrendatzen ditu."
+
+#. TRANS: Client exception thrown when trying to send a private group message
+#. while not logged in.
+#: actions/newgroupmessage.php:68
 msgid "Must be logged in."
 msgstr "Saioa hasi behar duzu."
 
-#. TRANS: Exception thrown when user %s is not allowed to send a private group message.
-#. TRANS: Exception thrown when trying to send group private message without having the right to do that.
+#. TRANS: Exception thrown when user %s is not allowed to send a private group
+#. message.
+#. TRANS: Exception thrown when trying to send group private message without
+#. having the right to do that.
 #. TRANS: %s is a user nickname.
+#: actions/newgroupmessage.php:73 classes/Group_message.php:96
 #, php-format
 msgid "User %s is not allowed to send private messages."
 msgstr "%s erabiltzailea ez dago baimendurik mezu pribatuak bidaltzeko."
 
-#. TRANS: Client exception thrown when trying to send a private group message to a non-existing group.
-#. TRANS: Client exception thrown when trying to view group inbox for non-existing group.
-msgid "No such group."
-msgstr "Ez dago talde hori."
-
 #. TRANS: Title after sending a private group message.
+#: actions/newgroupmessage.php:142
 msgid "Message sent"
 msgstr "Mezua bidalita"
 
 #. TRANS: Succes text after sending a direct message to group %s.
+#: actions/newgroupmessage.php:148
 #, php-format
 msgid "Direct message to %s sent."
 msgstr "%s(r)i mezu zuzena bidalita."
 
 #. TRANS: Title of form for new private group message.
+#: actions/newgroupmessage.php:160
 #, php-format
 msgid "New message to group %s"
 msgstr "%s taldeari mezu berria"
 
+#. TRANS: Client exception thrown when trying to view group private messages
+#. without being logged in.
+#: actions/showgroupmessage.php:69
+msgid "Only logged-in users can view private messages."
+msgstr "Saioa hasi duten erabiltzaileek soilik ikus ditzakete mezu pribatuak."
+
+#. TRANS: Client exception thrown when trying to view a non-existing group
+#. private message.
+#: actions/showgroupmessage.php:79
+msgid "No such message."
+msgstr "Ez dago mezu hori."
+
+#. TRANS: Server exception thrown when trying to view group private messages
+#. for a non-exsting group.
+#: actions/showgroupmessage.php:86
+msgid "Group not found."
+msgstr "Ez da taldea aurkitu."
+
+#. TRANS: Client exception thrown when trying to view a group private message
+#. without being a group member.
+#: actions/showgroupmessage.php:91
+msgid "Cannot read message."
+msgstr "Ezin da mezua irakurri."
+
+#. TRANS: Server exception thrown when trying to view a group private message
+#. without a sender.
+#: actions/showgroupmessage.php:98
+msgid "No sender found."
+msgstr "Ez da bidaltzailerik aurkitu."
+
+#. TRANS: Title for private group message.
+#. TRANS: %1$s is the sender name, %2$s is the group name, %3$s is a
+#. timestamp.
+#: actions/showgroupmessage.php:123
+#, php-format
+msgid "Message from %1$s to group %2$s on %3$s"
+msgstr "%1$s(e)k %3$s(e)ko %2$s taldera bidalitako mezua"
+
 #. TRANS: Subject for direct-message notification email.
 #. TRANS: %1$s is the sending user's nickname, %2$s is the group nickname.
+#: classes/Group_message_profile.php:114
 #, php-format
 msgid "New private message from %1$s to group %2$s"
 msgstr "%1$s(e)k %2$s taldera bidalitako mezu pribatu berria"
 
 #. TRANS: Body for direct-message notification email.
-#. TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
+#. TRANS: %1$s is the sending user's long name, %2$s is the sending user's
+#. nickname,
 #. TRANS: %3$s is the message content, %4$s a URL to the message,
 #. TRANS: %5$s is the StatusNet sitename.
+#: classes/Group_message_profile.php:120
 #, php-format
 msgid ""
 "%1$s (%2$s) sent a private message to group %3$s:\n"
@@ -78,214 +186,169 @@ msgid ""
 "\n"
 "With kind regards,\n"
 "%6$s"
-msgstr ""
-"%1$s(e)k (%2$s) %3$s taldera mezu pribatu berria bidali du:\n"
-"\n"
-"------------------------------------------------------\n"
-"%4$s\n"
-"------------------------------------------------------\n"
-"\n"
-"Mezuari hemen erantzun diezaiokezu:\n"
-"\n"
-"%5$s\n"
-"\n"
-"Ez erantzun email honi; ez da inora iritsiko eta.\n"
-"\n"
-"Ondo segi,\n"
-"%6$s"
+msgstr "%1$s(e)k (%2$s) %3$s taldera mezu pribatu berria bidali du:\n\n------------------------------------------------------\n%4$s\n------------------------------------------------------\n\nMezuari hemen erantzun diezaiokezu:\n\n%5$s\n\nEz erantzun email honi; ez da inora iritsiko eta.\n\nOndo segi,\n%6$s"
 
-#. TRANS: Menu item in group page.
-msgctxt "MENU"
-msgid "Inbox"
-msgstr "Sarrera"
-
-#. TRANS: Menu title in group page.
-msgid "Private messages for this group."
-msgstr "Mezu pribatuak talde honentzat."
-
-#. TRANS: Dropdown label in group settings page for if group allows private messages.
-msgid "Private messages"
-msgstr "Mezu pribatuak"
-
-#. TRANS: Dropdown option in group settings page for allowing private messages.
-msgid "Sometimes"
-msgstr "Batzutan"
-
-#. TRANS: Dropdown option in group settings page for allowing private messages.
-msgid "Always"
-msgstr "Beti"
-
-#. TRANS: Dropdown option in group settings page for allowing private messages.
-msgid "Never"
-msgstr "Inoiz"
-
-#. TRANS: Dropdown title in group settings page for if group allows private messages.
-msgid "Whether to allow private messages to this group."
-msgstr "Talde hontan mezu pribatuen onarpena."
-
-#. TRANS: Dropdown label in group settings page for who can send private messages to the group.
-msgid "Private senders"
-msgstr "Mezu pribatu bidaltzaileak"
-
-#. TRANS: Dropdown option in group settings page for who can send private messages.
-msgid "Everyone"
-msgstr "Denak"
-
-#. TRANS: Dropdown option in group settings page for who can send private messages.
-msgid "Member"
-msgstr "Kideak"
-
-#. TRANS: Dropdown option in group settings page for who can send private messages.
-msgid "Admin"
-msgstr "Administrazaileak"
-
-#. TRANS: Dropdown title in group settings page for who can send private messages to the group.
-msgid "Who can send private messages to the group."
-msgstr "Nork bidal ditzakeen mezu pribatuak taldera."
-
-#. TRANS: Title for action in group actions list.
-msgid "Send a direct message to this group."
-msgstr "Bidali mezu zuzen bat talde honi."
-
-#. TRANS: Link text for action in group actions list to send a private message to a group.
-msgctxt "LINKTEXT"
-msgid "Message"
-msgstr "Mezua"
-
-#. TRANS: Client exception thrown when a private group message has to be forced.
-msgid "Forced notice to private group message."
-msgstr "Derrigorrezko oharra talde pribatuko mezuari."
-
-#. TRANS: Indicator on the group page that the group is (essentially) private.
-msgid "Private"
-msgstr "Pribatua"
-
-#. TRANS: Plugin description.
-msgid "Allow posting private messages to groups."
-msgstr "Utzi mezu pribatuak taldeetan argitaratzen."
-
-#. TRANS: Client exception thrown when trying to view group inbox while not logged in.
-msgid "Only for logged-in users."
-msgstr "Saioa hasitako erabiltzaileentzat soilik."
-
-#. TRANS: Client exception thrown when trying to view group inbox while not a member.
-msgid "Only for members."
-msgstr "Erabiltzaileentzako soilik."
-
-#. TRANS: Text of group inbox if no private messages were sent to it.
-msgid "This group has not received any private messages."
-msgstr "Talde honek ez du mezu pribaturik jaso."
-
-#. TRANS: Title of inbox for group %s.
-#, php-format
-msgid "%s group inbox"
-msgstr "%s taldearen sarrera"
-
-#. TRANS: Page title for any but first group page.
-#. TRANS: %1$s is a group name, $2$s is a page number.
-#, php-format
-msgid "%1$s group inbox, page %2$d"
-msgstr "%1$s taldearen sarrera, %2$d. orria"
-
-#. TRANS: Instructions for user inbox page.
-msgid ""
-"This is the group inbox, which lists all incoming private messages for this "
-"group."
-msgstr ""
-"Hau taldearen sarrera ontzia da, talde honek jasotako mezu pribatu guztiak "
-"zerrendatzen ditu."
-
-#. TRANS: Form legend for sending private message to group %s.
-#, php-format
-msgid "Message to %s"
-msgstr "%s(r)i mezua"
-
-#. TRANS: Field label for private group message to group %s.
-#, php-format
-msgid "Direct message to %s"
-msgstr "%s(r)i mezu zuzena"
-
-#. TRANS: Indicator for number of chatacters still available for notice.
-msgid "Available characters"
-msgstr "Karaktere erabilgarriak"
-
-#. TRANS: Send button text for sending private group notice.
-msgctxt "Send button for sending notice"
-msgid "Send"
-msgstr "Bidali"
-
-#. TRANS: Exception thrown when trying to set group privacy setting if group %s does not allow private messages.
-#, php-format
-msgid "Group %s does not allow private messages."
-msgstr "%s taldeak ez ditu mezu pribatuak onartzen."
-
-#. TRANS: Exception thrown when trying to send group private message while blocked from that group.
-#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
-#, php-format
-msgid "User %1$s is blocked from group %2$s."
-msgstr "%1$s erabiltzailea %2$s taldean blokeaturik dago."
-
-#. TRANS: Exception thrown when trying to send group private message while not a member.
-#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
-#, php-format
-msgid "User %1$s is not a member of group %2$s."
-msgstr "%1$s erabiltzailea ez da %2$s taldeko kidea."
-
-#. TRANS: Exception thrown when trying to send group private message while not a group administrator.
-#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
-#, php-format
-msgid "User %1$s is not an administrator of group %2$s."
-msgstr "%1$s erabiltzailea ez da %2$s taldeko administratzailea."
-
-#. TRANS: Exception thrown when encountering undefined group privacy settings.
-#. TRANS: %s is a group nickname.
-#, php-format
-msgid "Unknown privacy settings for group %s."
-msgstr "%s taldearentzako pribazitate aukera ezezagunak."
-
-#. TRANS: Exception thrown when trying to send group private message that is too long.
+#. TRANS: Exception thrown when trying to send group private message that is
+#. too long.
 #. TRANS: %d is the maximum meggage length.
+#: classes/Group_message.php:109
 #, php-format
 msgid "That's too long. Maximum message size is %d character."
 msgid_plural "That's too long. Maximum message size is %d characters."
 msgstr[0] "Luzeegia.Gehienezko mezu luzera karaktera %d da."
 msgstr[1] "Luzeegia.Gehienezko mezu luzera %d karaktere dira."
 
-#. TRANS: Exception thrown when trying to send group private message to a non-existing group.
+#. TRANS: Exception thrown when trying to send group private message to a non-
+#. existing group.
+#: classes/Group_message.php:153
 msgid "No group for group message."
 msgstr "Ez dago talderik talde mezurako."
 
-#. TRANS: Exception thrown when trying to send group private message without having a sender.
+#. TRANS: Exception thrown when trying to send group private message without
+#. having a sender.
+#: classes/Group_message.php:163
 msgid "No sender for group message."
 msgstr "Ez dago bidaltzailerik talde mezurako."
 
-#. TRANS: Client exception thrown when trying to view group private messages without being logged in.
-msgid "Only logged-in users can view private messages."
-msgstr "Saioa hasi duten erabiltzaileek soilik ikus ditzakete mezu pribatuak."
-
-#. TRANS: Client exception thrown when trying to view a non-existing group private message.
-msgid "No such message."
-msgstr "Ez dago mezu hori."
-
-#. TRANS: Server exception thrown when trying to view group private messages for a non-exsting group.
-msgid "Group not found."
-msgstr "Ez da taldea aurkitu."
-
-#. TRANS: Client exception thrown when trying to view a group private message without being a group member.
-msgid "Cannot read message."
-msgstr "Ezin da mezua irakurri."
-
-#. TRANS: Server exception thrown when trying to view a group private message without a sender.
-msgid "No sender found."
-msgstr "Ez da bidaltzailerik aurkitu."
-
-#. TRANS: Title for private group message.
-#. TRANS: %1$s is the sender name, %2$s is the group name, %3$s is a timestamp.
+#. TRANS: Exception thrown when trying to set group privacy setting if group
+#. %s does not allow private messages.
+#: classes/Group_privacy_settings.php:110
 #, php-format
-msgid "Message from %1$s to group %2$s on %3$s"
-msgstr "%1$s(e)k %3$s(e)ko %2$s taldera bidalitako mezua"
+msgid "Group %s does not allow private messages."
+msgstr "%s taldeak ez ditu mezu pribatuak onartzen."
+
+#. TRANS: Exception thrown when trying to send group private message while
+#. blocked from that group.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#: classes/Group_privacy_settings.php:120
+#, php-format
+msgid "User %1$s is blocked from group %2$s."
+msgstr "%1$s erabiltzailea %2$s taldean blokeaturik dago."
+
+#. TRANS: Exception thrown when trying to send group private message while not
+#. a member.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#: classes/Group_privacy_settings.php:129
+#, php-format
+msgid "User %1$s is not a member of group %2$s."
+msgstr "%1$s erabiltzailea ez da %2$s taldeko kidea."
+
+#. TRANS: Exception thrown when trying to send group private message while not
+#. a group administrator.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#: classes/Group_privacy_settings.php:138
+#, php-format
+msgid "User %1$s is not an administrator of group %2$s."
+msgstr "%1$s erabiltzailea ez da %2$s taldeko administratzailea."
+
+#. TRANS: Exception thrown when encountering undefined group privacy settings.
+#. TRANS: %s is a group nickname.
+#: classes/Group_privacy_settings.php:146
+#, php-format
+msgid "Unknown privacy settings for group %s."
+msgstr "%s taldearentzako pribazitate aukera ezezagunak."
 
 #. TRANS: Succes message after sending private group message to group %s.
+#: lib/groupmessagecommand.php:79
 #, php-format
 msgid "Direct message to group %s sent."
 msgstr "Bidali da mezu zuzena %s taldera."
+
+#. TRANS: Menu item in group page.
+#: GroupPrivateMessagePlugin.php:112
+msgctxt "MENU"
+msgid "Inbox"
+msgstr "Sarrera"
+
+#. TRANS: Menu title in group page.
+#: GroupPrivateMessagePlugin.php:114
+msgid "Private messages for this group."
+msgstr "Mezu pribatuak talde honentzat."
+
+#. TRANS: Dropdown label in group settings page for if group allows private
+#. messages.
+#: GroupPrivateMessagePlugin.php:160
+msgid "Private messages"
+msgstr "Mezu pribatuak"
+
+#. TRANS: Dropdown option in group settings page for allowing private
+#. messages.
+#: GroupPrivateMessagePlugin.php:162
+msgid "Sometimes"
+msgstr "Batzutan"
+
+#. TRANS: Dropdown option in group settings page for allowing private
+#. messages.
+#: GroupPrivateMessagePlugin.php:164
+msgid "Always"
+msgstr "Beti"
+
+#. TRANS: Dropdown option in group settings page for allowing private
+#. messages.
+#: GroupPrivateMessagePlugin.php:166
+msgid "Never"
+msgstr "Inoiz"
+
+#. TRANS: Dropdown title in group settings page for if group allows private
+#. messages.
+#: GroupPrivateMessagePlugin.php:168
+msgid "Whether to allow private messages to this group."
+msgstr "Talde hontan mezu pribatuen onarpena."
+
+#. TRANS: Dropdown label in group settings page for who can send private
+#. messages to the group.
+#: GroupPrivateMessagePlugin.php:175
+msgid "Private senders"
+msgstr "Mezu pribatu bidaltzaileak"
+
+#. TRANS: Dropdown option in group settings page for who can send private
+#. messages.
+#: GroupPrivateMessagePlugin.php:177
+msgid "Everyone"
+msgstr "Denak"
+
+#. TRANS: Dropdown option in group settings page for who can send private
+#. messages.
+#: GroupPrivateMessagePlugin.php:179
+msgid "Member"
+msgstr "Kideak"
+
+#. TRANS: Dropdown option in group settings page for who can send private
+#. messages.
+#: GroupPrivateMessagePlugin.php:181
+msgid "Admin"
+msgstr "Administrazaileak"
+
+#. TRANS: Dropdown title in group settings page for who can send private
+#. messages to the group.
+#: GroupPrivateMessagePlugin.php:183
+msgid "Who can send private messages to the group."
+msgstr "Nork bidal ditzakeen mezu pribatuak taldera."
+
+#. TRANS: Title for action in group actions list.
+#: GroupPrivateMessagePlugin.php:288
+msgid "Send a direct message to this group."
+msgstr "Bidali mezu zuzen bat talde honi."
+
+#. TRANS: Link text for action in group actions list to send a private message
+#. to a group.
+#: GroupPrivateMessagePlugin.php:290
+msgctxt "LINKTEXT"
+msgid "Message"
+msgstr "Mezua"
+
+#. TRANS: Client exception thrown when a private group message has to be
+#. forced.
+#: GroupPrivateMessagePlugin.php:368
+msgid "Forced notice to private group message."
+msgstr "Derrigorrezko oharra talde pribatuko mezuari."
+
+#. TRANS: Indicator on the group page that the group is (essentially) private.
+#: GroupPrivateMessagePlugin.php:390
+msgid "Private"
+msgstr "Pribatua"
+
+#. TRANS: Plugin description.
+#: GroupPrivateMessagePlugin.php:416
+msgid "Allow posting private messages to groups."
+msgstr "Utzi mezu pribatuak taldeetan argitaratzen."

@@ -1,53 +1,55 @@
-# Translation of StatusNet - ShareNotice to Catalan (català)
-# Exported from translatewiki.net
-#
-# Author: Toniher
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - ShareNotice\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:57+0000\n"
-"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:47+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Catalan (http://www.transifex.com/projects/p/gnu-social/language/ca/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 13:49:02+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: ca\n"
-"X-Message-Group: #out-statusnet-plugin-sharenotice\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
+#. TRANS: %s is notice content that is shared on Twitter, Facebook or another
+#. platform.
+#: ShareNoticePlugin.php:106 ShareNoticePlugin.php:197
 #, php-format
 msgid "\"%s\""
 msgstr "«%s»"
 
 #. TRANS: Truncation symbol.
+#: ShareNoticePlugin.php:113
 msgid "…"
-msgstr ""
+msgstr "…"
 
 #. TRANS: Tooltip for image to share a notice on Twitter.
+#: ShareNoticePlugin.php:133
 msgid "Share on Twitter"
 msgstr "Comparteix al Twitter"
 
-#. TRANS: Tooltip for image to share a notice on another platform (other than Twitter or Facebook).
+#. TRANS: Tooltip for image to share a notice on another platform (other than
+#. Twitter or Facebook).
 #. TRANS: %s is a host name.
+#: ShareNoticePlugin.php:166
 #, php-format
 msgid "Share on %s"
 msgstr "Comparteix a %s"
 
 #. TRANS: Tooltip for image to share a notice on Facebook.
+#: ShareNoticePlugin.php:189
 msgid "Share on Facebook"
 msgstr "Comparteix al Facebook"
 
 #. TRANS: Plugin description.
+#: ShareNoticePlugin.php:222
 msgid ""
 "This plugin allows sharing of notices to Twitter, Facebook and other "
 "platforms."
-msgstr ""
-"Aquest connector permet compartir avisos al Twitter, al Facebook i a altres "
-"plataformes."
+msgstr "Aquest connector permet compartir avisos al Twitter, al Facebook i a altres plataformes."

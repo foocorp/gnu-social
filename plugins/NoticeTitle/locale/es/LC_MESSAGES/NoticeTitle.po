@@ -1,38 +1,39 @@
-# Translation of StatusNet - NoticeTitle to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Armando-Martin
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - NoticeTitle\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:19+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:42+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:51:09+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Plugin description.
+#: NoticeTitlePlugin.php:97
 msgid "Adds optional titles to notices."
 msgstr "Agrega títulos opcionales a las notas."
 
 #. TRANS: Exception thrown when a notice title is too long.
-#. TRANS: %d is the maximum number of characters allowed in a title (used for plural).
+#. TRANS: %d is the maximum number of characters allowed in a title (used for
+#. plural).
+#: NoticeTitlePlugin.php:140
 #, php-format
 msgid "The notice title is too long (maximum %d character)."
 msgid_plural "The notice title is too long (maximum %d characters)."
-msgstr[0] ""
-"El título de la nota es demasiado largo (el máximo  es %d  carácter). "
-msgstr[1] ""
-"El título del aviso es demasiado largo (el máximo son  %d  caracteres)."
+msgstr[0] "El título de la nota es demasiado largo (el máximo  es %d  carácter). "
+msgstr[1] "El título del aviso es demasiado largo (el máximo son  %d  caracteres)."
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
+#: NoticeTitlePlugin.php:276
 #, php-format
 msgid "%1$s - %2$s"
 msgstr "%1$s - %2$s"

@@ -1,89 +1,85 @@
-# Translation of StatusNet - AnonymousFave to Macedonian (македонски)
-# Exported from translatewiki.net
-#
-# Author: Bjankuloski06
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - AnonymousFave\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:36+0000\n"
-"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-05 17:40+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Macedonian (http://www.transifex.com/projects/p/gnu-social/language/mk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:49:09+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: mk\n"
-"X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
-"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
-
-#. TRANS: Server exception.
-#. TRANS: %d is the notice ID (number).
-#, php-format
-msgid "Could not update favorite tally for notice ID %d."
-msgstr ""
-"Не можев да го поновам бројот на бендисувања за забелешката со назнака %d."
-
-#. TRANS: Server exception.
-#. TRANS: %d is the notice ID (number).
-#, php-format
-msgid "Could not create favorite tally for notice ID %d."
-msgstr "Не можев создадам бројач на бендисувања за забелешката со назнака %d."
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #. TRANS: Client error.
-msgid ""
-"Could not disfavor notice! Please make sure your browser has cookies enabled."
-msgstr ""
-"Не можев да ја одбендисам забелешката! Проверете дали имате овозможено "
-"колачиња во прелистувачот."
-
-#. TRANS: Client error.
-msgid "There was a problem with your session token. Try again, please."
-msgstr "Се појави проблем со жетонот на Вашата сесија. Обидете се подоцна."
-
-#. TRANS: Client error.
-msgid "This notice is not a favorite!"
-msgstr "Оваа забелешка не Ви е бендисана!"
-
-#. TRANS: Server error.
-msgid "Could not delete favorite."
-msgstr "Не можев да ја избришам бендисаната забелешка."
-
-#. TRANS: Title.
-msgid "Add to favorites"
-msgstr "Додај во бендисани"
-
-#. TRANS: Label for tally for number of times a notice was favored.
-msgid "Favored"
-msgstr "Бендисано"
-
-#. TRANS: Server exception.
-msgid "Could not create anonymous user session."
-msgstr "Не можев да создадам анонимна корисничка сесија."
-
-#. TRANS: Plugin description.
-msgid "Allow anonymous users to favorite notices."
-msgstr "Дозволи анонимни корисници да бендисуваат забелешки."
-
-#. TRANS: Client error.
+#: actions/anonfavor.php:58
 msgid ""
 "Could not favor notice! Please make sure your browser has cookies enabled."
-msgstr ""
-"Не можев да ја бендисам заблешката. Проверете дали имате овозможено колачиња "
-"во прелистувачот."
+msgstr "Не можев да ја бендисам заблешката. Проверете дали имате овозможено колачиња во прелистувачот."
 
 #. TRANS: Client error.
+#: actions/anonfavor.php:67
 msgid "This notice is already a favorite!"
 msgstr "Веќе сте ја бендисале оваа забелешка!"
 
 #. TRANS: Server error.
+#: actions/anonfavor.php:73
 msgid "Could not create favorite."
 msgstr "Не можев да создадам бендисана забелешка."
 
 #. TRANS: Title.
+#: actions/anonfavor.php:82
 msgid "Disfavor favorite"
 msgstr "Одбендисај бендисана"
+
+#. TRANS: Client error.
+#: actions/anondisfavor.php:59
+msgid ""
+"Could not disfavor notice! Please make sure your browser has cookies "
+"enabled."
+msgstr "Не можев да ја одбендисам забелешката! Проверете дали имате овозможено колачиња во прелистувачот."
+
+#. TRANS: Server error.
+#: actions/anondisfavor.php:80
+msgid "Could not delete favorite."
+msgstr "Не можев да ја избришам бендисаната забелешка."
+
+#. TRANS: Title.
+#: actions/anondisfavor.php:89
+msgid "Add to favorites"
+msgstr "Додај во бендисани"
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: classes/Fave_tally.php:96 classes/Fave_tally.php:125
+#, php-format
+msgid "Could not update favorite tally for notice ID %d."
+msgstr "Не можев да го поновам бројот на бендисувања за забелешката со назнака %d."
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: classes/Fave_tally.php:156
+#, php-format
+msgid "Could not create favorite tally for notice ID %d."
+msgstr "Не можев создадам бројач на бендисувања за забелешката со назнака %d."
+
+#. TRANS: Label for tally for number of times a notice was favored.
+#: AnonymousFavePlugin.php:165
+msgid "Favored"
+msgstr "Бендисано"
+
+#. TRANS: Server exception.
+#: AnonymousFavePlugin.php:198 AnonymousFavePlugin.php:209
+msgid "Could not create anonymous user session."
+msgstr "Не можев да создадам анонимна корисничка сесија."
+
+#. TRANS: Plugin description.
+#: AnonymousFavePlugin.php:284
+msgid "Allow anonymous users to favorite notices."
+msgstr "Дозволи анонимни корисници да бендисуваат забелешки."

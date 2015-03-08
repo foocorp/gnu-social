@@ -1,92 +1,92 @@
-# Translation of StatusNet - RSSCloud to Tagalog (Tagalog)
-# Exported from translatewiki.net
-#
-# Author: AnakngAraw
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - RSSCloud\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:53+0000\n"
-"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:32+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Tagalog (http://www.transifex.com/projects/p/gnu-social/language/tl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-16 06:59:35+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: tl\n"
-"X-Message-Group: #out-statusnet-plugin-rsscloud\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tl\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. TRANS: Plugin description.
+#: RSSCloudPlugin.php:209
+msgid ""
+"The RSSCloud plugin enables your StatusNet instance to publish real-time "
+"updates for profile RSS feeds using the <a "
+"href=\"http://rsscloud.org/\">RSSCloud protocol</a>."
+msgstr "Ang pamasak ng RSSCloud ay nagpapahintulot sa iyong pagkakataon ng StatusNet na maglathala ng mga pagsasapanahong pangtunay na oras para sa mga balangkas ng mga pakain ng RSS na gumagamit ng <a href=\"http://rsscloud.org/\">protokolo ng RSSCloud</a>."
 
 #. TRANS: Form validation error displayed when a URL parameter is missing.
+#: actions/loggingaggregator.php:86
 msgid "A URL parameter is required."
 msgstr "Kailangan ang isang parametro ng URL."
 
 #. TRANS: Form validation error displayed when HTTP GET is not used.
+#: actions/loggingaggregator.php:94
 msgid "This resource requires an HTTP GET."
 msgstr "Ang pinagkunang ito ay nangangailangan ng HTTP GET."
 
 #. TRANS: Form validation error displayed when HTTP POST is not used.
+#: actions/loggingaggregator.php:104
 msgid "This resource requires an HTTP POST."
 msgstr "Ang pinagkukunang ito ay nangangailangan ng HTTP POST."
 
 #. TRANS: Form validation error displayed when POST is not used.
+#: actions/rsscloudrequestnotify.php:91
 msgid "Request must be POST."
 msgstr "Ang hiling ay dapat na POST."
 
 #. TRANS: Form validation error displayed when HTTP POST is not used.
+#: actions/rsscloudrequestnotify.php:109
 msgid "Only HTTP POST notifications are supported at this time."
-msgstr ""
-"Tanging mga pabatid na HTTP POST lamang ang tinatangkilik sa panahong ito."
+msgstr "Tanging mga pabatid na HTTP POST lamang ang tinatangkilik sa panahong ito."
 
 #. TRANS: List separator.
+#: actions/rsscloudrequestnotify.php:120
 msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
-#. TRANS: Form validation error displayed when a request body is missing expected parameters.
-#. TRANS: %s is a list of parameters separated by a list separator (default: ", ").
+#. TRANS: Form validation error displayed when a request body is missing
+#. expected parameters.
+#. TRANS: %s is a list of parameters separated by a list separator (default:
+#. ", ").
+#: actions/rsscloudrequestnotify.php:123
 #, php-format
 msgid "The following parameters were missing from the request body: %s."
 msgstr "Nawawala ang sumusunod na mga parametro mula sa katawan ng hiling: %s."
 
-#. TRANS: Form validation error displayed when not providing any valid profile feed URLs.
+#. TRANS: Form validation error displayed when not providing any valid profile
+#. feed URLs.
+#: actions/rsscloudrequestnotify.php:130
 msgid ""
 "You must provide at least one valid profile feed URL (url1, url2, url3 ... "
 "urlN)."
-msgstr ""
-"Dapat kang magbigay ng kahit na isang katanggap-tanggap na URL ng pakain ng "
-"balangkas (url1, url2, url3 ... urlN)."
+msgstr "Dapat kang magbigay ng kahit na isang katanggap-tanggap na URL ng pakain ng balangkas (url1, url2, url3 ... urlN)."
 
 #. TRANS: Form validation error displayed when not providing a valid feed URL.
+#: actions/rsscloudrequestnotify.php:146
 msgid "Feed subscription failed: Not a valid feed."
 msgstr "Nabigo ang pagtanggap ng pakain: Hindi isang tanggap na pakain."
 
 #. TRANS: Form validation error displayed when feed subscription failed.
+#: actions/rsscloudrequestnotify.php:153
 msgid ""
 "Feed subscription failed: Notification handler does not respond correctly."
-msgstr ""
-"Nabigo ang pagpapasipi ng pakain: Hindi tama ang pagtugon ng tagapaghawak ng "
-"pabatid."
+msgstr "Nabigo ang pagpapasipi ng pakain: Hindi tama ang pagtugon ng tagapaghawak ng pabatid."
 
 #. TRANS: Success message after subscribing to one or more feeds.
+#: actions/rsscloudrequestnotify.php:168
 msgid ""
 "Thanks for the subscription. When the feed(s) update(s), you will be "
 "notified."
-msgstr ""
-"Salamat sa pagtatanggap.  Kapag nagsapanahon ang (mga) pakain, pababatiran "
-"ka."
-
-#. TRANS: Plugin description.
-msgid ""
-"The RSSCloud plugin enables your StatusNet instance to publish real-time "
-"updates for profile RSS feeds using the <a href=\"http://rsscloud.org/"
-"\">RSSCloud protocol</a>."
-msgstr ""
-"Ang pamasak ng RSSCloud ay nagpapahintulot sa iyong pagkakataon ng StatusNet "
-"na maglathala ng mga pagsasapanahong pangtunay na oras para sa mga balangkas "
-"ng mga pakain ng RSS na gumagamit ng <a href=\"http://rsscloud.org/"
-"\">protokolo ng RSSCloud</a>."
+msgstr "Salamat sa pagtatanggap.  Kapag nagsapanahon ang (mga) pakain, pababatiran ka."

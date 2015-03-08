@@ -1,72 +1,92 @@
-# Translation of StatusNet - RSSCloud to Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
-# Expored from translatewiki.net
-#
-# Author: Nghtwlkr
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - RSSCloud\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:52+0000\n"
-"Language-Team: Norwegian (bokmål)‬ <http://translatewiki.net/wiki/Portal:no>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:47+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/gnu-social/language/nb/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:54+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: no\n"
-"X-Message-Group: #out-statusnet-plugin-rsscloud\n"
+"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: RSSCloudRequestNotify.php:90
+#. TRANS: Plugin description.
+#: RSSCloudPlugin.php:209
+msgid ""
+"The RSSCloud plugin enables your StatusNet instance to publish real-time "
+"updates for profile RSS feeds using the <a "
+"href=\"http://rsscloud.org/\">RSSCloud protocol</a>."
+msgstr ""
+
+#. TRANS: Form validation error displayed when a URL parameter is missing.
+#: actions/loggingaggregator.php:86
+msgid "A URL parameter is required."
+msgstr ""
+
+#. TRANS: Form validation error displayed when HTTP GET is not used.
+#: actions/loggingaggregator.php:94
+msgid "This resource requires an HTTP GET."
+msgstr "Denne ressursen krever en HTTP GET."
+
+#. TRANS: Form validation error displayed when HTTP POST is not used.
+#: actions/loggingaggregator.php:104
+msgid "This resource requires an HTTP POST."
+msgstr "Denne ressursen krever en HTTP POST."
+
+#. TRANS: Form validation error displayed when POST is not used.
+#: actions/rsscloudrequestnotify.php:91
 msgid "Request must be POST."
 msgstr "Forespørsel må være POST."
 
-#: RSSCloudRequestNotify.php:107
-msgid "Only http-post notifications are supported at this time."
+#. TRANS: Form validation error displayed when HTTP POST is not used.
+#: actions/rsscloudrequestnotify.php:109
+msgid "Only HTTP POST notifications are supported at this time."
 msgstr ""
 
-#. TRANS: %s is a comma separated list of parameters.
-#: RSSCloudRequestNotify.php:118
+#. TRANS: List separator.
+#: actions/rsscloudrequestnotify.php:120
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr ", "
+
+#. TRANS: Form validation error displayed when a request body is missing
+#. expected parameters.
+#. TRANS: %s is a list of parameters separated by a list separator (default:
+#. ", ").
+#: actions/rsscloudrequestnotify.php:123
 #, php-format
 msgid "The following parameters were missing from the request body: %s."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:124
+#. TRANS: Form validation error displayed when not providing any valid profile
+#. feed URLs.
+#: actions/rsscloudrequestnotify.php:130
 msgid ""
-"You must provide at least one valid profile feed url (url1, url2, url3 ... "
+"You must provide at least one valid profile feed URL (url1, url2, url3 ... "
 "urlN)."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:141
+#. TRANS: Form validation error displayed when not providing a valid feed URL.
+#: actions/rsscloudrequestnotify.php:146
 msgid "Feed subscription failed: Not a valid feed."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:147
+#. TRANS: Form validation error displayed when feed subscription failed.
+#: actions/rsscloudrequestnotify.php:153
 msgid ""
-"Feed subscription failed - notification handler doesn't respond correctly."
+"Feed subscription failed: Notification handler does not respond correctly."
 msgstr ""
 
-#: RSSCloudRequestNotify.php:161
+#. TRANS: Success message after subscribing to one or more feeds.
+#: actions/rsscloudrequestnotify.php:168
 msgid ""
 "Thanks for the subscription. When the feed(s) update(s), you will be "
 "notified."
-msgstr ""
-
-#: LoggingAggregator.php:93
-msgid "This resource requires an HTTP GET."
-msgstr "Denne ressursen krever en HTTP GET."
-
-#: LoggingAggregator.php:104
-msgid "This resource requires an HTTP POST."
-msgstr "Denne ressursen krever en HTTP POST."
-
-#: RSSCloudPlugin.php:248
-msgid ""
-"The RSSCloud plugin enables your StatusNet instance to publish real-time "
-"updates for profile RSS feeds using the <a href=\"http://rsscloud.org/"
-"\">RSSCloud protocol</a>."
 msgstr ""

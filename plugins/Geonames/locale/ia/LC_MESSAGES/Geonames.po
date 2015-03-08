@@ -1,51 +1,52 @@
-# Translation of StatusNet - Geonames to Interlingua (interlingua)
-# Exported from translatewiki.net
-#
-# Author: McDutchie
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Geonames\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:41+0000\n"
-"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:34+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Interlingua (http://www.transifex.com/projects/p/gnu-social/language/ia/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:14+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: ia\n"
-"X-Message-Group: #out-statusnet-plugin-geonames\n"
+"Language: ia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown when a geo names service is not used because of a recent timeout.
+#. TRANS: Exception thrown when a geo names service is not used because of a
+#. recent timeout.
+#: GeonamesPlugin.php:439
 msgid "Skipping due to recent web service timeout."
 msgstr "Es saltate proque le servicio web non habeva respondite recentemente."
 
-#. TRANS: Exception thrown when a geo names service does not return an expected response.
+#. TRANS: Exception thrown when a geo names service does not return an
+#. expected response.
 #. TRANS: %s is an HTTP error code.
+#: GeonamesPlugin.php:457
 #, php-format
 msgid "HTTP error code %s."
 msgstr "Codice de error HTTP %s."
 
 #. TRANS: Exception thrown when a geo names service returns an empty body.
+#: GeonamesPlugin.php:464
 msgid "Empty HTTP body in response."
 msgstr "Corpore de HTTP vacue in le responsa."
 
-#. TRANS: Exception thrown when a geo names service return a specific error number and error text.
+#. TRANS: Exception thrown when a geo names service return a specific error
+#. number and error text.
 #. TRANS: %1$s is an error code, %2$s is an error message.
+#: GeonamesPlugin.php:482
 #, php-format
 msgid "Error #%1$s (\"%2$s\")."
 msgstr "Error №%1$s (\"%2$s\")."
 
 #. TRANS: Plugin description.
+#: GeonamesPlugin.php:498
 msgid ""
 "Uses <a href=\"http://geonames.org/\">Geonames</a> service to get human-"
 "readable names for locations based on user-provided lat/long pairs."
-msgstr ""
-"Usa le servicio <a href=\"http://geonames.org/\">Geonames</a> pro obtener "
-"nomines geographic ben legibile a base de coordinatas latitude/longitude "
-"fornite per usatores."
+msgstr "Usa le servicio <a href=\"http://geonames.org/\">Geonames</a> pro obtener nomines geographic ben legibile a base de coordinatas latitude/longitude fornite per usatores."

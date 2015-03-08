@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-05 16:12+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Interlingua (http://www.transifex.com/projects/p/gnu-social/language/ia/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ia\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Button text for adding the favourite status to a notice.
+#: forms/favor.php:122
+msgctxt "BUTTON"
+msgid "Favor"
+msgstr ""
+
+#. TRANS: Button text for removing the favourite status for a favourite
+#. notice.
+#: forms/disfavor.php:123
+msgctxt "BUTTON"
+msgid "Disfavor favorite"
+msgstr ""
+
+#. TRANS: Help message for IM/SMS command "fav <nickname>".
+#: FavoritePlugin.php:415
+msgctxt "COMMANDHELP"
+msgid "add user's last notice as a 'fave'"
+msgstr ""
+
+#. TRANS: Help message for IM/SMS command "fav #<notice_id>".
+#: FavoritePlugin.php:417
+msgctxt "COMMANDHELP"
+msgid "add notice with the given id as a 'fave'"
+msgstr ""
+
+#. TRANS: Menu item in personal group navigation menu.
+#: FavoritePlugin.php:469
+msgctxt "MENU"
+msgid "Favorites"
+msgstr ""
+
+#. TRANS: Menu item in search group navigation panel.
+#: FavoritePlugin.php:482
+msgctxt "MENU"
+msgid "Popular"
+msgstr "Popular"
+
+#. TRANS: Plugin description.
+#: FavoritePlugin.php:508
+msgid "Favorites (likes) using ActivityStreams."
+msgstr ""
+
+#: actions/favor.php:57
+msgid "No such notice."
+msgstr "Nota non trovate."
+
+#. TRANS: Client error displayed when trying to reply to a notice a the target
+#. has no access to.
+#. TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
+#: actions/favor.php:62
+#, php-format
+msgid "%1$s has no right to reply to notice %2$d."
+msgstr ""
+
+#: classes/Fave.php:86
+#, php-format
+msgid "Could not store new object of type %s"
+msgstr ""
+
+#. TRANS: List message for notice favoured by logged in user.
+#: lib/threadednoticelistfavesitem.php:51
+msgctxt "FAVELIST"
+msgid "You like this."
+msgstr ""
+
+#. TRANS: List message for when more than 4 people like something.
+#. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that
+#. like the notice.
+#. TRANS: Plural is decided on the total number of users liking the notice
+#. (count of %%s + %d).
+#: lib/threadednoticelistfavesitem.php:56
+#, php-format
+msgid "%%s and %d others like this."
+msgid_plural "%%s and %d others like this."
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: List message for favoured notices.
+#. TRANS: %%s is a list of users liking a notice.
+#. TRANS: Plural is based on the number of of users that have favoured a
+#. notice.
+#: lib/threadednoticelistfavesitem.php:64
+#, php-format
+msgid "%%s likes this."
+msgid_plural "%%s like this."
+msgstr[0] ""
+msgstr[1] ""

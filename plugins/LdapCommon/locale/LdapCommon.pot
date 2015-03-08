@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,14 +34,14 @@ msgstr ""
 
 #. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
 #. TRANS: %s is the error message.
-#: LdapCommon.php:130
+#: LdapCommon.php:133
 #, php-format
 msgid "Could not connect to LDAP server: %s"
 msgstr ""
 
 #. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
 #. TRANS: %s is the error message.
-#: LdapCommon.php:134
+#: LdapCommon.php:137
 #, php-format
 msgid "Could not connect to LDAP server: %s."
 msgstr ""

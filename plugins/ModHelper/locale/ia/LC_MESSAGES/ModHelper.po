@@ -1,29 +1,24 @@
-# Translation of StatusNet - ModHelper to Interlingua (interlingua)
-# Exported from translatewiki.net
-#
-# Author: McDutchie
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - ModHelper\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:15+0000\n"
-"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:31+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Interlingua (http://www.transifex.com/projects/p/gnu-social/language/ia/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:51:05+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: ia\n"
-"X-Message-Group: #out-statusnet-plugin-modhelper\n"
+"Language: ia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Plugin description.
+#: ModHelperPlugin.php:40
 msgid ""
 "Lets users who have been manually marked as \"modhelper\"s silence accounts."
-msgstr ""
-"Permitte al usatores qui ha essite manualmente marcate como \"modhelper\" de "
-"silentiar contos."
+msgstr "Permitte al usatores qui ha essite manualmente marcate como \"modhelper\" de silentiar contos."

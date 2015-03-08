@@ -1,555 +1,216 @@
-# Translation of StatusNet - OpenID to Korean (한국어)
-# Exported from translatewiki.net
-#
-# Author: Changwoo
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - OpenID\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:26+0000\n"
-"Language-Team: Korean <https://translatewiki.net/wiki/Portal:ko>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:32+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Korean (http://www.transifex.com/projects/p/gnu-social/language/ko/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: ko\n"
-"X-Message-Group: #out-statusnet-plugin-openid\n"
+"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. TRANS: Title for identity verification page.
-msgid "OpenID Identity Verification"
-msgstr "오픈아이디 신원 확인"
-
-#. TRANS: Client error when visiting page directly.
-msgid ""
-"This page should only be reached during OpenID processing, not directly."
-msgstr ""
-"이 페이지는 오픈아이디 처리 중에만 접근할 수 있고, 직접 접근할 수 없습니다."
-
-#. TRANS: Page notice. %s is a trustroot name.
-#, fuzzy, php-format
-msgid ""
-"%s has asked to verify your identity. Click Continue to verify your identity "
-"and login without creating a new password."
-msgstr ""
-"%s님이 신원 확인을 요청했습니다. \"계속\"을 눌러 신원을 확인하면 새 비밀 번호"
-"를 만들지 않고 로그인합니다.ing a new password."
-
-#. TRANS: Button text to continue OpenID identity verification.
-#. TRANS: button label for OAuth authorization page when needing OpenID authentication first.
-msgctxt "BUTTON"
-msgid "Continue"
-msgstr "계속"
-
-#. TRANS: Button text to cancel OpenID identity verification.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Cancel"
-msgstr "취소"
-
-#. TRANS: Client exception thrown when an action is not available.
-msgid "Unavailable action."
-msgstr ""
-
-#. TRANS: Tooltip for main menu option "Login"
-#, fuzzy
-msgctxt "TOOLTIP"
-msgid "Login to the site."
-msgstr "사이트에 로그인"
-
-#. TRANS: Main menu option when not logged in to log in
-msgctxt "MENU"
-msgid "Login"
-msgstr "로그인"
-
-#. TRANS: Tooltip for main menu option "Help"
-msgctxt "TOOLTIP"
-msgid "Help me!"
-msgstr "도와주세요!"
-
-#. TRANS: Main menu option for help on the StatusNet site
-msgctxt "MENU"
-msgid "Help"
-msgstr "도움말"
-
-#. TRANS: Tooltip for main menu option "Search"
-#, fuzzy
-msgctxt "TOOLTIP"
-msgid "Search for people or text."
-msgstr "사람 또는 글 검색"
-
-#. TRANS: Main menu option when logged in or when the StatusNet instance is not private
-msgctxt "MENU"
-msgid "Search"
-msgstr "검색"
-
-#. TRANS: OpenID plugin menu item on site logon page.
-#. TRANS: OpenID plugin menu item on user settings page.
-#. TRANS: OpenID configuration menu item.
-msgctxt "MENU"
-msgid "OpenID"
-msgstr "오픈아이디"
-
-#. TRANS: OpenID plugin tooltip for logon menu item.
-#, fuzzy
-msgid "Login or register with OpenID."
-msgstr "오픈아이디로 로그인 또는 가입"
-
-#. TRANS: OpenID plugin tooltip for user settings menu item.
-#, fuzzy
-msgid "Add or remove OpenIDs."
-msgstr "오픈아이디 추가 또는 제거"
-
-#. TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
-#. TRANS: This message contains Markdown links in the form (description)[link].
-#, php-format
-msgid ""
-"(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
-"action.openidsettings%%)!"
-msgstr ""
-
-#. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
-#. TRANS: This message contains Markdown links in the form (description)[link].
-#, php-format
-msgid ""
-"(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
-"action.openidlogin%%)!)"
-msgstr ""
-
-#. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
-#. TRANS: This message contains Markdown links in the form (description)[link].
-#, php-format
-msgid ""
-"(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
-"openidlogin%%)!)"
-msgstr ""
-
-#. TRANS: Tooltip for OpenID configuration menu item.
-#, fuzzy
-msgid "OpenID configuration."
-msgstr "오픈아이디 설정"
-
-#. TRANS: Plugin description.
-msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
-msgstr ""
-"사이트에 로그인하려면 <a href=\"http://openid.net/\">오픈아이디</a>를 사용하"
-"십시오."
-
-#. TRANS: OpenID plugin logon form legend.
-#, fuzzy
-msgctxt "LEGEND"
-msgid "OpenID login"
-msgstr "오픈아이디 로그인"
-
-#. TRANS: Field label.
-msgid "OpenID provider"
-msgstr "오픈아이디 서비스 공급자"
-
-#. TRANS: Form guide.
-msgid "Enter your username."
-msgstr "사용자 이름을 입력하십시오."
-
-#. TRANS: Form guide.
-msgid "You will be sent to the provider's site for authentication."
-msgstr "서비스 제공자의 사이트로 이동합니다."
-
-#. TRANS: OpenID plugin logon form field label.
-#. TRANS: Field label.
-#. TRANS: OpenID plugin logon form field label.
-msgid "OpenID URL"
-msgstr "오픈아이디 URL"
-
-#. TRANS: OpenID plugin logon form field instructions.
-#. TRANS: OpenID plugin logon form field title.
-#, fuzzy
-msgid "Your OpenID URL."
-msgstr "내 오픈아이디 URL"
-
-#. TRANS: Client error message trying to log on with OpenID while already logged on.
-msgid "Already logged in."
-msgstr "이미 로그인했습니다."
-
-#. TRANS: Message given when there is a problem with the user's session token.
-#. TRANS: Client error displayed when the session token does not match or is not given.
-msgid "There was a problem with your session token. Try again, please."
-msgstr "세션 토큰에 문제가 있습니다. 다시 시도해 보십시오."
-
-#. TRANS: Message given if user does not agree with the site's license.
-#, fuzzy
-msgid "You cannot register if you do not agree to the license."
-msgstr "라이선스에 동의하지 않으면 등록할 수 없습니다."
-
-#. TRANS: Messag given on an unknown error.
-msgid "An unknown error has occured."
-msgstr "알 수 없는 오류가 발생했습니다."
-
-#. TRANS: Instructions given after a first successful logon using OpenID.
-#. TRANS: %s is the site name.
-#, fuzzy, php-format
-msgid ""
-"This is the first time you have logged into %s so we must connect your "
-"OpenID to a local account. You can either create a new account, or connect "
-"with your existing account, if you have one."
-msgstr ""
-"처음으로 %s 사이트에 로그인했으므로 오픈아이디를 로컬 계정에 연결해야 합니"
-"다. 새 계정을 만들거나, 계정이 있으면 기존 계정을 오픈아이디에 연결할 수 있습"
-"니다."
-
-#. TRANS: Title
-#, fuzzy
-msgctxt "TITLE"
-msgid "OpenID Account Setup"
-msgstr "오픈아이디 계정 설정"
-
-#. TRANS: Fieldset legend.
-msgid "Create new account"
-msgstr "새 계정 만들기"
-
-#. TRANS: Form guide.
-msgid "Create a new user with this nickname."
-msgstr "이 이름으로 새 사용자 만들기"
-
-#. TRANS: Field label.
-msgid "New nickname"
-msgstr "새 이름"
-
-#. TRANS: Field title.
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
-msgstr "1-64 사이의 영소문자 또는 숫자, 기호나 공백을 쓰면 안 됩니다."
-
-#. TRANS: Field label.
-msgid "Email"
-msgstr "메일"
-
-#. TRANS: Field title.
-msgid "Used only for updates, announcements, and password recovery."
-msgstr "업데이트, 공지 사항, 비밀 번호 복구에만 사용합니다."
-
-#. TRANS: OpenID plugin link text.
-#. TRANS: %s is a link to a license with the license name as link text.
-#, php-format
-msgid ""
-"My text and files are available under %s except this private data: password, "
-"email address, IM address, and phone number."
-msgstr ""
-"내 글과 파일은 %s 조건에 따릅니다. 다음 개인 데이터는 제외합니다: 비밀 번호, "
-"메일 주소, 메신저 주소, 전화 번호."
-
-#. TRANS: Button label in form in which to create a new user on the site for an OpenID.
-msgctxt "BUTTON"
-msgid "Create"
-msgstr "만들기"
-
-#. TRANS: Used as form legend for form in which to connect an OpenID to an existing user on the site.
-msgid "Connect existing account"
-msgstr "기존 계정에 연결"
-
-#. TRANS: User instructions for form in which to connect an OpenID to an existing user on the site.
-msgid ""
-"If you already have an account, login with your username and password to "
-"connect it to your OpenID."
-msgstr ""
-"계정이 있으면, 아이디와 비밀 번호로 로그인해서 오픈아이디에 연결하십시오."
-
-#. TRANS: Field label in form in which to connect an OpenID to an existing user on the site.
-msgid "Existing nickname"
-msgstr "기존 이름"
-
-#. TRANS: Field label in form in which to connect an OpenID to an existing user on the site.
-msgid "Password"
-msgstr "비밀 번호"
-
-#. TRANS: Button text in form in which to connect an OpenID to an existing user on the site.
-msgctxt "BUTTON"
-msgid "Connect"
-msgstr "연결"
-
-#. TRANS: Status message in case the response from the OpenID provider is that the logon attempt was cancelled.
-msgid "OpenID authentication cancelled."
-msgstr "오픈아이디 인증이 취소되었습니다."
-
-#. TRANS: OpenID authentication failed; display the error message. %s is the error message.
-#. TRANS: OpenID authentication failed; display the error message.
-#. TRANS: %s is the error message.
-#, fuzzy, php-format
-msgid "OpenID authentication failed: %s."
-msgstr "오픈아이디 인증이 실패했습니다: %s"
-
-#. TRANS: Message displayed when OpenID authentication is aborted.
-#. TRANS: OpenID authentication error.
-#, fuzzy
-msgid ""
-"OpenID authentication aborted: You are not allowed to login to this site."
-msgstr ""
-"오픈아이디 인증이 중지되었습니다: 이 사이트에 로그인을 허용하지 않습니다."
-
-#. TRANS: OpenID plugin message. No new user registration is allowed on the site.
-#. TRANS: OpenID plugin message. No new user registration is allowed on the site without an invitation code, and none was provided.
-msgid "Registration not allowed."
-msgstr "가입이 허용되지 않습니다."
-
-#. TRANS: OpenID plugin message. No new user registration is allowed on the site without an invitation code, and the one provided was not valid.
-msgid "Not a valid invitation code."
-msgstr "초대 코드가 잘못되었습니다."
-
-#. TRANS: OpenID plugin message. The entered new user name is blacklisted.
-msgid "Nickname not allowed."
-msgstr "허용되지 않는 이름입니다."
-
-#. TRANS: OpenID plugin message. The entered new user name is already used.
-msgid "Nickname already in use. Try another one."
-msgstr "이름이 이미 사용 중입니다. 다른 이름을 사용해 보십시오."
-
-#. TRANS: OpenID plugin server error. A stored OpenID cannot be retrieved.
-#. TRANS: OpenID plugin server error. A stored OpenID cannot be found.
-msgid "Stored OpenID not found."
-msgstr "저장한 오픈아이디가 없습니다."
-
 #. TRANS: OpenID plugin server error.
-msgid "Creating new account for OpenID that already has a user."
-msgstr "새로 만드는 계정의 오픈아이디에는 연결된 사용자가 이미 있습니다."
-
-#. TRANS: OpenID plugin message.
-msgid "Invalid username or password."
-msgstr "사용자 이름이나 비밀 번호가 틀렸습니다."
-
-#. TRANS: OpenID plugin server error. The user or user profile could not be saved.
-msgid "Error connecting user to OpenID."
-msgstr "사용자를 오픈아이디에 연결하는데 오류."
-
-#. TRANS: OpenID plugin server error.
+#: openid.php:139
 msgid "Cannot instantiate OpenID consumer object."
 msgstr "오픈아이디 컨수머 오브젝트 인스턴스를 만들 수 없습니다."
 
 #. TRANS: OpenID plugin message. Given when an OpenID is not valid.
+#: openid.php:151
 msgid "Not a valid OpenID."
 msgstr "올바른 오픈아이디가 아닙니다."
 
-#. TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
+#. TRANS: OpenID plugin server error. Given when the OpenID authentication
+#. request fails.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#: openid.php:156
+#, php-format
 msgid "OpenID failure: %s."
-msgstr "오픈아이디 실패: %s"
+msgstr ""
 
-#. TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
+#. TRANS: OpenID plugin server error. Given when the OpenID authentication
+#. request cannot be redirected.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#: openid.php:206
+#, php-format
 msgid "Could not redirect to server: %s."
-msgstr "서버에 리다이렉션할 수 없습니다: %s"
+msgstr ""
 
 #. TRANS: OpenID plugin user instructions.
+#: openid.php:245
 msgid ""
 "This form should automatically submit itself. If not, click the submit "
 "button to go to your OpenID provider."
-msgstr ""
-"다음 양식은 자동으로 전송됩니다. 자동으로 되지 않으면 제출 단추를 직접 눌러 "
-"오픈아이디 서비스 제공자 사이트로 이동하십시오."
+msgstr "다음 양식은 자동으로 전송됩니다. 자동으로 되지 않으면 제출 단추를 직접 눌러 오픈아이디 서비스 제공자 사이트로 이동하십시오."
 
 #. TRANS: OpenID plugin server error.
+#: openid.php:281
 msgid "Error saving the profile."
 msgstr "프로필 저장에 오류."
 
 #. TRANS: OpenID plugin server error.
+#: openid.php:293
 msgid "Error saving the user."
 msgstr "사용자 저장 중 오류."
 
 #. TRANS: OpenID plugin client exception (403).
+#: openid.php:323
 msgid "Unauthorized URL used for OpenID login."
 msgstr "오픈아이디 로그인에 사용하기에 인증되지 않은 URL입니다."
 
 #. TRANS: Title
+#: openid.php:371
 msgid "OpenID Login Submission"
 msgstr "오픈아이디 로그인 제출"
 
-#. TRANS: OpenID plugin message used while requesting authorization user's OpenID login provider.
+#. TRANS: OpenID plugin message used while requesting authorization user's
+#. OpenID login provider.
+#: openid.php:382
 msgid "Requesting authorization from your login provider..."
 msgstr "로그인 서비스 제공자에 인증 정보를 요청하는 중입니다..."
 
-#. TRANS: OpenID plugin message. User instruction while requesting authorization user's OpenID login provider.
+#. TRANS: OpenID plugin message. User instruction while requesting
+#. authorization user's OpenID login provider.
+#: openid.php:386
 msgid ""
 "If you are not redirected to your login provider in a few seconds, try "
 "pushing the button below."
-msgstr ""
-"몇 초 뒤에 로그인 서비스 제공자로 리다이렉션이 되지 않으면, 아래 단추를 직접 "
-"눌러 보십시오."
+msgstr "몇 초 뒤에 로그인 서비스 제공자로 리다이렉션이 되지 않으면, 아래 단추를 직접 눌러 보십시오."
 
-#. TRANS: Title for OpenID bridge administration page.
-#, fuzzy
-msgctxt "TITLE"
-msgid "OpenID Settings"
-msgstr "오픈아이디 설정"
-
-#. TRANS: Page instructions.
-msgid "OpenID settings"
-msgstr "오픈아이디 설정"
-
-#. TRANS: Client error displayed when OpenID provider URL is too long.
-#, fuzzy
-msgid "Invalid provider URL. Maximum length is 255 characters."
-msgstr "서비스 제공자 URL이 잘못되었습니다. 최대값은 255자입니다."
-
-#. TRANS: Client error displayed when Launchpad team name is too long.
-#, fuzzy
-msgid "Invalid team name. Maximum length is 255 characters."
-msgstr "팀 이름이 잘못되었습니다. 최대 길이는 255자입니다."
-
-#. TRANS: Fieldset legend.
-#, fuzzy
-msgctxt "LEGEND"
-msgid "Trusted provider"
-msgstr "신뢰하는 서비스 공급자"
-
-#. TRANS: Form guide.
-msgid ""
-"By default, users are allowed to authenticate with any OpenID provider. If "
-"you are using your own OpenID service for shared sign-in, you can restrict "
-"access to only your own users here."
-msgstr ""
-"기본값으로 사용자는 모든 오픈아이디 서비스 제공자에게서 인증을 받을 수 있습니"
-"다. 로그인 공유를 위해 직접 오픈아이디를 제공한다면, 여기에서 사용자의 오픈아"
-"이디 사이트 접근을 제한할 수 있습니다."
-
-#. TRANS: Field label.
-msgid "Provider URL"
-msgstr "서비스 제공자 URL"
-
-#. TRANS: Field title.
-msgid ""
-"All OpenID logins will be sent to this URL; other providers may not be used."
-msgstr ""
-"모든 오픈아이디 로그인은 이 URL로 보냅니다. 다른 서비스 제공자는 사용할 수 없"
-"습니다."
-
-#. TRANS: Checkbox label.
-msgid "Append a username to base URL"
-msgstr "기본 URL에 사용자 이름을 붙이기"
-
-#. TRANS: Checkbox title.
-msgid ""
-"Login form will show the base URL and prompt for a username to add at the "
-"end. Use when OpenID provider URL should be the profile page for individual "
-"users."
-msgstr ""
-"로그인 양식에서 기본 URL을 표시하고 뒤에 붙일 사용자 일므을 물어봅니다. 오픈"
-"아이디 서비스 제공자 URL이 각 사용자의 프로필 페이지와 같을 때 사용하십시오."
-
-#. TRANS: Field label.
-msgid "Required team"
-msgstr "필수 팀"
-
-#. TRANS: Field title.
-msgid "Only allow logins from users in the given team (Launchpad extension)."
-msgstr "지정한 팀의 사용자만 로그인 허용 (런치패드 확장)"
-
-#. TRANS: Fieldset legend.
-#, fuzzy
-msgctxt "LEGEND"
-msgid "Options"
-msgstr "옵션"
-
-#. TRANS: Checkbox label.
-msgid "Enable OpenID-only mode"
-msgstr "오픈아이디 전용 모드 사용"
-
-#. TRANS: Checkbox title.
-msgid ""
-"Require all users to login via OpenID. Warning: disables password "
-"authentication for all users!"
-msgstr ""
-"모든 사용자가 오픈아이디로 로그인해야 합니다. 경고: 모든 사용가 비밀 번호 로"
-"그인을 사용할 수 없습니다!"
-
-#. TRANS: Button text to save OpenID settings.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Save"
-msgstr "저장"
-
-#. TRANS: Button title to save OpenID settings.
-msgid "Save OpenID settings."
-msgstr "오픈아이디 설정 저장"
-
-#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+#. TRANS: Error message displayed when trying to perform an action that
+#. requires a logged in user.
+#: actions/finishaddopenid.php:66
 msgid "Not logged in."
 msgstr "로그인하지 않았습니다."
 
-#. TRANS: Message in case a user tries to add an OpenID that is already connected to them.
+#. TRANS: Status message in case the response from the OpenID provider is that
+#. the logon attempt was cancelled.
+#: actions/finishaddopenid.php:87 actions/finishopenidlogin.php:243
+msgid "OpenID authentication cancelled."
+msgstr "오픈아이디 인증이 취소되었습니다."
+
+#. TRANS: OpenID authentication failed; display the error message.
+#. TRANS: %s is the error message.
+#. TRANS: OpenID authentication failed; display the error message. %s is the
+#. error message.
+#: actions/finishaddopenid.php:92 actions/finishopenidlogin.php:247
+#, php-format
+msgid "OpenID authentication failed: %s."
+msgstr ""
+
+#. TRANS: OpenID authentication error.
+#. TRANS: Message displayed when OpenID authentication is aborted.
+#: actions/finishaddopenid.php:109 actions/finishopenidlogin.php:268
+msgid ""
+"OpenID authentication aborted: You are not allowed to login to this site."
+msgstr ""
+
+#. TRANS: Message in case a user tries to add an OpenID that is already
+#. connected to them.
+#: actions/finishaddopenid.php:120
 msgid "You already have this OpenID!"
 msgstr "이미 이 오픈아이디가 있습니다!"
 
-#. TRANS: Message in case a user tries to add an OpenID that is already used by another user.
+#. TRANS: Message in case a user tries to add an OpenID that is already used
+#. by another user.
+#: actions/finishaddopenid.php:123
 msgid "Someone else already has this OpenID."
 msgstr "다른 사람이 이미 이 오픈아이디를 사용합니다!"
 
 #. TRANS: Message in case the OpenID object cannot be connected to the user.
+#: actions/finishaddopenid.php:136
 msgid "Error connecting user."
 msgstr "사용자 연결에 오류."
 
-#. TRANS: Message in case the user or the user profile cannot be saved in StatusNet.
-#, fuzzy
+#. TRANS: Message in case the user or the user profile cannot be saved in
+#. StatusNet.
+#: actions/finishaddopenid.php:143
 msgid "Error updating profile."
-msgstr "프로필 업데이트에 오류"
+msgstr ""
 
 #. TRANS: Title after getting the status of the OpenID authorisation request.
+#: actions/finishaddopenid.php:183
 msgid "OpenID Login"
 msgstr "오픈아이디 로그인"
 
+#. TRANS: OpenID plugin client error given trying to add an unauthorised
+#. OpenID to a user (403).
+#. TRANS: %s is a request identity.
+#: actions/openidserver.php:115
+#, php-format
+msgid "You are not authorized to use the identity %s."
+msgstr "%s 아이디 사용을 인증하지 않았습니다."
+
+#. TRANS: OpenID plugin client error given when not getting a response for a
+#. given OpenID provider (500).
+#: actions/openidserver.php:136
+msgid "Just an OpenID provider. Nothing to see here, move along..."
+msgstr "오픈아이디 서비스 제공자입니다. 여기에는 내용이 없고 계속합니다..."
+
 #. TRANS: Title of OpenID settings page for a user.
-#, fuzzy
+#: actions/openidsettings.php:57
 msgctxt "TITLE"
 msgid "OpenID settings"
-msgstr "오픈아이디 설정"
+msgstr ""
 
 #. TRANS: Form instructions for OpenID settings.
-#. TRANS: This message contains Markdown links in the form [description](link).
+#. TRANS: This message contains Markdown links in the form
+#. [description](link).
+#: actions/openidsettings.php:69
 #, php-format
 msgid ""
 "[OpenID](%%doc.openid%%) lets you log into many sites with the same user "
 "account. Manage your associated OpenIDs from here."
-msgstr ""
-"[오픈아이디](%%doc.openid%%)를 사용하면 여러 사이트를 같은 사용자 계정으로 로"
-"그인할 수 있습니다. 여기에서 연결한 오픈아이디를 관리합니다."
+msgstr "[오픈아이디](%%doc.openid%%)를 사용하면 여러 사이트를 같은 사용자 계정으로 로그인할 수 있습니다. 여기에서 연결한 오픈아이디를 관리합니다."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
+#: actions/openidsettings.php:100
 msgctxt "LEGEND"
 msgid "Add OpenID"
-msgstr "오픈아이디 추가"
+msgstr ""
 
 #. TRANS: Form guide.
+#: actions/openidsettings.php:104
 msgid ""
 "If you want to add an OpenID to your account, enter it in the box below and "
 "click \"Add\"."
-msgstr ""
-"계정에 오픈아이디를 추가하려면, 아래 입력창에 오픈아이디를 입력하고 \"추가"
-"\"를 누르십시오."
+msgstr "계정에 오픈아이디를 추가하려면, 아래 입력창에 오픈아이디를 입력하고 \"추가\"를 누르십시오."
+
+#. TRANS: Field label.
+#. TRANS: OpenID plugin logon form field label.
+#: actions/openidsettings.php:110 actions/openidlogin.php:155
+#: OpenIDPlugin.php:702
+msgid "OpenID URL"
+msgstr "오픈아이디 URL"
 
 #. TRANS: Button text for adding an OpenID URL.
-#, fuzzy
+#: actions/openidsettings.php:121
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "추가"
 
 #. TRANS: Header on OpenID settings page.
-#, fuzzy
+#: actions/openidsettings.php:133
 msgctxt "HEADER"
 msgid "Remove OpenID"
-msgstr "오픈아이디 제거"
-
-#. TRANS: Form guide.
-msgid ""
-"Removing your only OpenID would make it impossible to log in! If you need to "
-"remove it, add another OpenID first."
 msgstr ""
-"하나밖에 없는 오픈아이디를 제거하면 로그인할 수 없게 됩니다! 이 오픈아이디를 "
-"제거하려면, 다른 오픈아이디를 먼저 추가하십시오."
 
 #. TRANS: Form guide.
+#: actions/openidsettings.php:139
+msgid ""
+"Removing your only OpenID would make it impossible to log in! If you need to"
+" remove it, add another OpenID first."
+msgstr "하나밖에 없는 오픈아이디를 제거하면 로그인할 수 없게 됩니다! 이 오픈아이디를 제거하려면, 다른 오픈아이디를 먼저 추가하십시오."
+
+#. TRANS: Form guide.
+#: actions/openidsettings.php:155
 msgid ""
 "You can remove an OpenID from your account by clicking the button marked "
 "\"Remove\"."
@@ -557,100 +218,528 @@ msgstr "\"제거\" 단추를 눌러 계정에서 오픈아이디를 제거할 �
 
 #. TRANS: Button text to remove an OpenID.
 #. TRANS: Button text to remove an OpenID trustroot.
-#, fuzzy
+#: actions/openidsettings.php:179 actions/openidsettings.php:223
 msgctxt "BUTTON"
 msgid "Remove"
 msgstr "제거"
 
 #. TRANS: Fieldset legend.
+#: actions/openidsettings.php:194
 msgid "OpenID Trusted Sites"
 msgstr "오픈아이디 신뢰하는 사이트"
 
 #. TRANS: Form guide.
+#: actions/openidsettings.php:198
 msgid ""
 "The following sites are allowed to access your identity and log you in. You "
 "can remove a site from this list to deny it access to your OpenID."
-msgstr ""
-"다음 사이트에 대해 개인 정보 접근과 로그인을 허용합니다. 오픈아이디 접근을 거"
-"부하려면 이 목록에서 사이트를 제거할 수 있습니다."
+msgstr "다음 사이트에 대해 개인 정보 접근과 로그인을 허용합니다. 오픈아이디 접근을 거부하려면 이 목록에서 사이트를 제거할 수 있습니다."
+
+#: actions/openidsettings.php:229
+msgctxt "LEGEND"
+msgid "Preferences"
+msgstr "기본 설정"
+
+#. TRANS: Button text to save OpenID prefs
+#. TRANS: Button text to save OpenID settings.
+#: actions/openidsettings.php:237 actions/openidadminpanel.php:284
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "저장"
+
+#. TRANS: Client error displayed when the session token does not match or is
+#. not given.
+#. TRANS: Message given when there is a problem with the user's session token.
+#: actions/openidsettings.php:257 actions/finishopenidlogin.php:42
+msgid "There was a problem with your session token. Try again, please."
+msgstr "세션 토큰에 문제가 있습니다. 다시 시도해 보십시오."
 
 #. TRANS: Form validation error if no OpenID providers can be added.
-#, fuzzy
+#: actions/openidsettings.php:265
 msgid "Cannot add new providers."
-msgstr "새 서비스 제공자를 추가할 수 없습니다."
+msgstr ""
 
 #. TRANS: Unexpected form validation error.
+#: actions/openidsettings.php:281
 msgid "Something weird happened."
 msgstr "이상한 일이 발생했습니다."
 
-#. TRANS: Form validation error when trying to remove a non-existing trustroot.
+#. TRANS: Form validation error when trying to remove a non-existing
+#. trustroot.
+#: actions/openidsettings.php:305
 msgid "No such OpenID trustroot."
 msgstr "그런 오픈아이디 트러스트루트가 없습니다."
 
 #. TRANS: Success message after removing trustroots.
-#, fuzzy
+#: actions/openidsettings.php:310
 msgid "Trustroots removed."
-msgstr "트러스트루트 제거"
+msgstr ""
 
 #. TRANS: Form validation error for a non-existing OpenID.
+#: actions/openidsettings.php:333
 msgid "No such OpenID."
 msgstr "그런 오픈아이디가 없습니다."
 
 #. TRANS: Form validation error if OpenID is connected to another user.
+#: actions/openidsettings.php:339
 msgid "That OpenID does not belong to you."
 msgstr "내 오픈아이디가 아닙니다."
 
 #. TRANS: Success message after removing an OpenID.
+#: actions/openidsettings.php:344
 msgid "OpenID removed."
 msgstr "오픈아이디 제거."
 
-#. TRANS: OpenID plugin client error given trying to add an unauthorised OpenID to a user (403).
-#. TRANS: %s is a request identity.
+#: actions/openidsettings.php:383
+msgid "OpenID preferences saved."
+msgstr ""
+
+#. TRANS: Client error message trying to log on with OpenID while already
+#. logged on.
+#: actions/finishopenidlogin.php:37 actions/openidlogin.php:33
+msgid "Already logged in."
+msgstr "이미 로그인했습니다."
+
+#. TRANS: Message given if user does not agree with the site's license.
+#: actions/finishopenidlogin.php:48
+msgid "You cannot register if you do not agree to the license."
+msgstr "약관에 동의하지 않으면 가입할 수 없습니다."
+
+#. TRANS: Messag given on an unknown error.
+#: actions/finishopenidlogin.php:57
+msgid "An unknown error has occured."
+msgstr "알 수 없는 오류가 발생했습니다."
+
+#. TRANS: Instructions given after a first successful logon using OpenID.
+#. TRANS: %s is the site name.
+#: actions/finishopenidlogin.php:73
 #, php-format
-msgid "You are not authorized to use the identity %s."
-msgstr "%s 아이디 사용을 인증하지 않았습니다."
+msgid ""
+"This is the first time you have logged into %s so we must connect your "
+"OpenID to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
 
-#. TRANS: OpenID plugin client error given when not getting a response for a given OpenID provider (500).
-msgid "Just an OpenID provider. Nothing to see here, move along..."
-msgstr "오픈아이디 서비스 제공자입니다. 여기에는 내용이 없고 계속합니다..."
+#. TRANS: Title
+#: actions/finishopenidlogin.php:80
+msgctxt "TITLE"
+msgid "OpenID Account Setup"
+msgstr ""
 
-#. TRANS: OpenID plugin message. Rememberme logins have to reauthenticate before changing any profile settings.
+#. TRANS: Fieldset legend.
+#: actions/finishopenidlogin.php:118
+msgid "Create new account"
+msgstr "새 계정 만들기"
+
+#. TRANS: Form guide.
+#: actions/finishopenidlogin.php:121
+msgid "Create a new user with this nickname."
+msgstr "이 이름으로 새 사용자 만들기"
+
+#. TRANS: Field label.
+#: actions/finishopenidlogin.php:129
+msgid "New nickname"
+msgstr "새 이름"
+
+#. TRANS: Field title.
+#: actions/finishopenidlogin.php:132
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr "1-64 사이의 영소문자 또는 숫자, 기호나 공백을 쓰면 안 됩니다."
+
+#. TRANS: Field label.
+#: actions/finishopenidlogin.php:136
+msgid "Email"
+msgstr "메일"
+
+#. TRANS: Field title.
+#: actions/finishopenidlogin.php:138
+msgid "Used only for updates, announcements, and password recovery."
+msgstr "업데이트, 공지 사항, 비밀 번호 복구에만 사용합니다."
+
+#. TRANS: OpenID plugin link text.
+#. TRANS: %s is a link to a license with the license name as link text.
+#: actions/finishopenidlogin.php:155
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password,"
+" email address, IM address, and phone number."
+msgstr "내 글과 파일은 %s 조건에 따릅니다. 다음 개인 데이터는 제외합니다: 비밀 번호, 메일 주소, 메신저 주소, 전화 번호."
+
+#. TRANS: Button label in form in which to create a new user on the site for
+#. an OpenID.
+#: actions/finishopenidlogin.php:168
+msgctxt "BUTTON"
+msgid "Create"
+msgstr "만들기"
+
+#. TRANS: Used as form legend for form in which to connect an OpenID to an
+#. existing user on the site.
+#: actions/finishopenidlogin.php:182
+msgid "Connect existing account"
+msgstr "기존 계정에 연결"
+
+#. TRANS: User instructions for form in which to connect an OpenID to an
+#. existing user on the site.
+#: actions/finishopenidlogin.php:185
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your OpenID."
+msgstr "계정이 있으면, 아이디와 비밀 번호로 로그인해서 오픈아이디에 연결하십시오."
+
+#. TRANS: Field label in form in which to connect an OpenID to an existing
+#. user on the site.
+#: actions/finishopenidlogin.php:189
+msgid "Existing nickname"
+msgstr "기존 이름"
+
+#. TRANS: Field label in form in which to connect an OpenID to an existing
+#. user on the site.
+#: actions/finishopenidlogin.php:193
+msgid "Password"
+msgstr "비밀 번호"
+
+#. TRANS: Button text in form in which to connect an OpenID to an existing
+#. user on the site.
+#: actions/finishopenidlogin.php:197
+msgctxt "BUTTON"
+msgid "Connect"
+msgstr "연결"
+
+#. TRANS: OpenID plugin message. No new user registration is allowed on the
+#. site.
+#. TRANS: OpenID plugin message. No new user registration is allowed on the
+#. site without an invitation code, and none was provided.
+#: actions/finishopenidlogin.php:324 actions/finishopenidlogin.php:333
+msgid "Registration not allowed."
+msgstr "가입이 허용되지 않습니다."
+
+#. TRANS: OpenID plugin message. No new user registration is allowed on the
+#. site without an invitation code, and the one provided was not valid.
+#: actions/finishopenidlogin.php:340
+msgid "Not a valid invitation code."
+msgstr "초대 코드가 잘못되었습니다."
+
+#. TRANS: OpenID plugin server error. A stored OpenID cannot be retrieved.
+#. TRANS: OpenID plugin server error. A stored OpenID cannot be found.
+#: actions/finishopenidlogin.php:355 actions/finishopenidlogin.php:438
+msgid "Stored OpenID not found."
+msgstr "저장한 오픈아이디가 없습니다."
+
+#. TRANS: OpenID plugin server error.
+#: actions/finishopenidlogin.php:364
+msgid "Creating new account for OpenID that already has a user."
+msgstr "새로 만드는 계정의 오픈아이디에는 연결된 사용자가 이미 있습니다."
+
+#. TRANS: OpenID plugin message.
+#: actions/finishopenidlogin.php:426
+msgid "Invalid username or password."
+msgstr "사용자 이름이나 비밀 번호가 틀렸습니다."
+
+#. TRANS: OpenID plugin server error. The user or user profile could not be
+#. saved.
+#: actions/finishopenidlogin.php:445
+msgid "Error connecting user to OpenID."
+msgstr "사용자를 오픈아이디에 연결하는데 오류."
+
+#. TRANS: OpenID plugin message. Rememberme logins have to reauthenticate
+#. before changing any profile settings.
 #. TRANS: "OpenID" is the display text for a link with URL "(%%doc.openid%%)".
+#: actions/openidlogin.php:74
 #, php-format
 msgid ""
 "For security reasons, please re-login with your [OpenID](%%doc.openid%%) "
 "before changing your settings."
-msgstr ""
-"보안 이유 때문에 설정을 바꾸기 전에 [오픈아이디](%%doc.openid%%)로 다시 로그"
-"인해야 합니다."
+msgstr "보안 이유 때문에 설정을 바꾸기 전에 [오픈아이디](%%doc.openid%%)로 다시 로그인해야 합니다."
 
 #. TRANS: OpenID plugin message.
 #. TRANS: "OpenID" is the display text for a link with URL "(%%doc.openid%%)".
+#: actions/openidlogin.php:80
 #, php-format
 msgid "Login with an [OpenID](%%doc.openid%%) account."
 msgstr "[오픈아이디](%%doc.openid%%) 계정으로 로그인."
 
 #. TRANS: OpenID plugin message. Title.
-#, fuzzy
+#: actions/openidlogin.php:114
 msgctxt "TITLE"
 msgid "OpenID Login"
-msgstr "오픈아이디 로그인"
+msgstr ""
+
+#. TRANS: OpenID plugin logon form legend.
+#: actions/openidlogin.php:132 OpenIDPlugin.php:679
+msgctxt "LEGEND"
+msgid "OpenID login"
+msgstr ""
 
 #. TRANS: Field label.
-#, fuzzy
+#: actions/openidlogin.php:140
 msgctxt "LABEL"
 msgid "OpenID provider"
-msgstr "오픈아이디 서비스 공급자"
+msgstr ""
 
-#. TRANS: OpenID plugin logon form checkbox label for setting to put the OpenID information in a cookie.
+#. TRANS: Form guide.
+#: actions/openidlogin.php:149 OpenIDPlugin.php:696
+msgid "Enter your username."
+msgstr "사용자 이름을 입력하십시오."
+
+#. TRANS: Form guide.
+#: actions/openidlogin.php:151 OpenIDPlugin.php:698
+msgid "You will be sent to the provider's site for authentication."
+msgstr "서비스 제공자의 사이트로 이동합니다."
+
+#. TRANS: OpenID plugin logon form field title.
+#. TRANS: OpenID plugin logon form field instructions.
+#: actions/openidlogin.php:158 OpenIDPlugin.php:705
+msgid "Your OpenID URL."
+msgstr ""
+
+#. TRANS: OpenID plugin logon form checkbox label for setting to put the
+#. OpenID information in a cookie.
+#: actions/openidlogin.php:163
 msgid "Remember me"
 msgstr "자동 로그인"
 
 #. TRANS: OpenID plugin logon form field title.
+#: actions/openidlogin.php:165
 msgid "Automatically login in the future; not for shared computers!"
 msgstr "앞으로는 자동으로 로그인합니다. 공용 컴퓨터에서는 이용하지 마십시오!"
 
-#. TRANS: OpenID plugin logon form button label to start logon with the data provided in the logon form.
+#. TRANS: OpenID plugin logon form button label to start logon with the data
+#. provided in the logon form.
+#: actions/openidlogin.php:170
 msgctxt "BUTTON"
 msgid "Login"
 msgstr "로그인"
+
+#. TRANS: Title for OpenID bridge administration page.
+#: actions/openidadminpanel.php:53
+msgctxt "TITLE"
+msgid "OpenID Settings"
+msgstr ""
+
+#. TRANS: Page instructions.
+#: actions/openidadminpanel.php:64
+msgid "OpenID settings"
+msgstr "오픈아이디 설정"
+
+#. TRANS: Client error displayed when OpenID provider URL is too long.
+#: actions/openidadminpanel.php:145
+msgid "Invalid provider URL. Maximum length is 255 characters."
+msgstr ""
+
+#. TRANS: Client error displayed when Launchpad team name is too long.
+#: actions/openidadminpanel.php:152
+msgid "Invalid team name. Maximum length is 255 characters."
+msgstr ""
+
+#. TRANS: Fieldset legend.
+#: actions/openidadminpanel.php:206
+msgctxt "LEGEND"
+msgid "Trusted provider"
+msgstr ""
+
+#. TRANS: Form guide.
+#: actions/openidadminpanel.php:209
+msgid ""
+"By default, users are allowed to authenticate with any OpenID provider. If "
+"you are using your own OpenID service for shared sign-in, you can restrict "
+"access to only your own users here."
+msgstr "기본값으로 사용자는 모든 오픈아이디 서비스 제공자에게서 인증을 받을 수 있습니다. 로그인 공유를 위해 직접 오픈아이디를 제공한다면, 여기에서 사용자의 오픈아이디 사이트 접근을 제한할 수 있습니다."
+
+#. TRANS: Field label.
+#: actions/openidadminpanel.php:218
+msgid "Provider URL"
+msgstr "서비스 제공자 URL"
+
+#. TRANS: Field title.
+#: actions/openidadminpanel.php:220
+msgid ""
+"All OpenID logins will be sent to this URL; other providers may not be used."
+msgstr "모든 오픈아이디 로그인은 이 URL로 보냅니다. 다른 서비스 제공자는 사용할 수 없습니다."
+
+#. TRANS: Checkbox label.
+#: actions/openidadminpanel.php:228
+msgid "Append a username to base URL"
+msgstr "기본 URL에 사용자 이름을 붙이기"
+
+#. TRANS: Checkbox title.
+#: actions/openidadminpanel.php:231
+msgid ""
+"Login form will show the base URL and prompt for a username to add at the "
+"end. Use when OpenID provider URL should be the profile page for individual "
+"users."
+msgstr "로그인 양식에서 기본 URL을 표시하고 뒤에 붙일 사용자 일므을 물어봅니다. 오픈아이디 서비스 제공자 URL이 각 사용자의 프로필 페이지와 같을 때 사용하십시오."
+
+#. TRANS: Field label.
+#: actions/openidadminpanel.php:240
+msgid "Required team"
+msgstr "필수 팀"
+
+#. TRANS: Field title.
+#: actions/openidadminpanel.php:242
+msgid "Only allow logins from users in the given team (Launchpad extension)."
+msgstr "지정한 팀의 사용자만 로그인 허용 (런치패드 확장)"
+
+#. TRANS: Fieldset legend.
+#: actions/openidadminpanel.php:255
+msgctxt "LEGEND"
+msgid "Options"
+msgstr "설정"
+
+#. TRANS: Checkbox label.
+#: actions/openidadminpanel.php:263
+msgid "Enable OpenID-only mode"
+msgstr "오픈아이디 전용 모드 사용"
+
+#. TRANS: Checkbox title.
+#: actions/openidadminpanel.php:266
+msgid ""
+"Require all users to login via OpenID. Warning: disables password "
+"authentication for all users!"
+msgstr "모든 사용자가 오픈아이디로 로그인해야 합니다. 경고: 모든 사용가 비밀 번호 로그인을 사용할 수 없습니다!"
+
+#. TRANS: Button title to save OpenID settings.
+#: actions/openidadminpanel.php:286
+msgid "Save OpenID settings."
+msgstr "오픈아이디 설정 저장"
+
+#. TRANS: Title for identity verification page.
+#: actions/openidtrust.php:51
+msgid "OpenID Identity Verification"
+msgstr "오픈아이디 신원 확인"
+
+#. TRANS: Client error when visiting page directly.
+#: actions/openidtrust.php:69
+msgid ""
+"This page should only be reached during OpenID processing, not directly."
+msgstr "이 페이지는 오픈아이디 처리 중에만 접근할 수 있고, 직접 접근할 수 없습니다."
+
+#. TRANS: Page notice. %s is a trustroot name.
+#: actions/openidtrust.php:118
+#, php-format
+msgid ""
+"%s has asked to verify your identity. Click Continue to verify your identity"
+" and login without creating a new password."
+msgstr ""
+
+#. TRANS: Button text to continue OpenID identity verification.
+#. TRANS: button label for OAuth authorization page when needing OpenID
+#. authentication first.
+#: actions/openidtrust.php:136 OpenIDPlugin.php:662
+msgctxt "BUTTON"
+msgid "Continue"
+msgstr "계속"
+
+#. TRANS: Button text to cancel OpenID identity verification.
+#: actions/openidtrust.php:138
+msgctxt "BUTTON"
+msgid "Cancel"
+msgstr "취소"
+
+#. TRANS: Client exception thrown when an action is not available.
+#: OpenIDPlugin.php:139
+msgid "Unavailable action."
+msgstr ""
+
+#. TRANS: Tooltip for main menu option "Login"
+#: OpenIDPlugin.php:219
+msgctxt "TOOLTIP"
+msgid "Login to the site."
+msgstr "이 사이트에 로그인."
+
+#. TRANS: Main menu option when not logged in to log in
+#: OpenIDPlugin.php:222
+msgctxt "MENU"
+msgid "Login"
+msgstr "로그인"
+
+#. TRANS: Tooltip for main menu option "Help"
+#: OpenIDPlugin.php:227
+msgctxt "TOOLTIP"
+msgid "Help me!"
+msgstr "도와주세요!"
+
+#. TRANS: Main menu option for help on the StatusNet site
+#: OpenIDPlugin.php:230
+msgctxt "MENU"
+msgid "Help"
+msgstr "도움말"
+
+#. TRANS: Tooltip for main menu option "Search"
+#: OpenIDPlugin.php:236
+msgctxt "TOOLTIP"
+msgid "Search for people or text."
+msgstr ""
+
+#. TRANS: Main menu option when logged in or when the StatusNet instance is
+#. not private
+#: OpenIDPlugin.php:239
+msgctxt "MENU"
+msgid "Search"
+msgstr "검색"
+
+#. TRANS: OpenID plugin menu item on site logon page.
+#. TRANS: OpenID plugin menu item on user settings page.
+#. TRANS: OpenID configuration menu item.
+#: OpenIDPlugin.php:296 OpenIDPlugin.php:332 OpenIDPlugin.php:524
+#: OpenIDPlugin.php:604
+msgctxt "MENU"
+msgid "OpenID"
+msgstr "오픈아이디"
+
+#. TRANS: OpenID plugin tooltip for logon menu item.
+#: OpenIDPlugin.php:298
+msgid "Login or register with OpenID."
+msgstr ""
+
+#. TRANS: OpenID plugin tooltip for user settings menu item.
+#: OpenIDPlugin.php:334
+msgid "Add or remove OpenIDs."
+msgstr ""
+
+#. TRANS: Page notice for logged in users to try and get them to add an OpenID
+#. account to their StatusNet account.
+#. TRANS: This message contains Markdown links in the form
+#. (description)[link].
+#: OpenIDPlugin.php:466
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? [Add an OpenID to your "
+"account](%%action.openidsettings%%)!"
+msgstr ""
+
+#. TRANS: Page notice for anonymous users to try and get them to register with
+#. an OpenID account.
+#. TRANS: This message contains Markdown links in the form
+#. (description)[link].
+#: OpenIDPlugin.php:471
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID "
+"registration](%%action.openidlogin%%)!)"
+msgstr ""
+
+#. TRANS: Page notice on the login page to try and get them to log on with an
+#. OpenID account.
+#. TRANS: This message contains Markdown links in the form
+#. (description)[link].
+#: OpenIDPlugin.php:479
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID "
+"login](%%action.openidlogin%%)!)"
+msgstr ""
+
+#. TRANS: Tooltip for OpenID configuration menu item.
+#: OpenIDPlugin.php:606
+msgid "OpenID configuration."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: OpenIDPlugin.php:652
+msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
+msgstr "사이트에 로그인하려면 <a href=\"http://openid.net/\">오픈아이디</a>를 사용하십시오."
+
+#. TRANS: Field label.
+#: OpenIDPlugin.php:687
+msgid "OpenID provider"
+msgstr "오픈아이디 서비스 공급자"

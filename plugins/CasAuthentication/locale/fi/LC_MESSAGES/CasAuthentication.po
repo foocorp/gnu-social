@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 15:05+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/gnu-social/language/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client error displayed when trying to log in while already logged
+#. on.
+#: actions/caslogin.php:29
+msgid "Already logged in."
+msgstr "Olet jo kirjautunut sisään."
+
+#. TRANS: Server error displayed when trying to log in with incorrect username
+#. or password.
+#: actions/caslogin.php:41
+msgid "Incorrect username or password."
+msgstr "Väärä käyttäjätunnus tai salasana"
+
+#. TRANS: Server error displayed when login fails in CAS authentication
+#. plugin.
+#: actions/caslogin.php:47
+msgid "Error setting user. You are probably not authorized."
+msgstr ""
+
+#. TRANS: Menu item. CAS is Central Authentication Service.
+#: CasAuthenticationPlugin.php:83
+msgid "CAS"
+msgstr ""
+
+#. TRANS: Tooltip for menu item. CAS is Central Authentication Service.
+#: CasAuthenticationPlugin.php:85
+msgid "Login or register with CAS."
+msgstr ""
+
+#. TRANS: Invitation to users with a CAS account to log in using the service.
+#. TRANS: "[CAS login]" is a link description. (%%action.caslogin%%) is the
+#. URL.
+#. TRANS: These two elements may not be separated.
+#: CasAuthenticationPlugin.php:101
+#, php-format
+msgid "(Have an account with CAS? Try our [CAS login](%%action.caslogin%%)!)"
+msgstr ""
+
+#. TRANS: Exception thrown when the CAS Authentication plugin has been
+#. configured incorrectly.
+#: CasAuthenticationPlugin.php:129
+msgid "Specifying a server is required."
+msgstr ""
+
+#. TRANS: Exception thrown when the CAS Authentication plugin has been
+#. configured incorrectly.
+#: CasAuthenticationPlugin.php:133
+msgid "Specifying a port is required."
+msgstr ""
+
+#. TRANS: Exception thrown when the CAS Authentication plugin has been
+#. configured incorrectly.
+#: CasAuthenticationPlugin.php:137
+msgid "Specifying a path is required."
+msgstr ""
+
+#. TRANS: Plugin description. CAS is Central Authentication Service.
+#: CasAuthenticationPlugin.php:157
+msgid ""
+"The CAS Authentication plugin allows for StatusNet to handle authentication "
+"through CAS (Central Authentication Service)."
+msgstr ""

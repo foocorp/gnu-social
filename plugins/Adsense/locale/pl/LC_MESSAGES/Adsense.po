@@ -1,102 +1,116 @@
-# Translation of StatusNet - Adsense to Polish (Polski)
-# Expored from translatewiki.net
-#
-# Author: Raven
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Adsense\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-15 00:20+0000\n"
-"PO-Revision-Date: 2011-01-15 00:23:05+0000\n"
-"Language-Team: Polish <http://translatewiki.net/wiki/Portal:pl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Polish (http://www.transifex.com/projects/p/gnu-social/language/pl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-01-14 13:18:25+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r80364); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: pl\n"
-"X-Message-Group: #out-statusnet-plugin-adsense\n"
-"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ( (n%10 >= 2 && n%10 <= 4 && "
-"(n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. TRANS: Menu item title/tooltip
-#: AdsensePlugin.php:194
+#: AdsensePlugin.php:180
 msgid "AdSense configuration"
 msgstr ""
 
 #. TRANS: Menu item for site administration
-#: AdsensePlugin.php:196
+#: AdsensePlugin.php:182
+msgctxt "MENU"
 msgid "AdSense"
-msgstr "AdSense"
+msgstr ""
 
-#: AdsensePlugin.php:209
+#. TRANS: Plugin description.
+#: AdsensePlugin.php:196
 msgid "Plugin to add Google AdSense to StatusNet sites."
 msgstr ""
 
-#: adsenseadminpanel.php:52
+#. TRANS: Title of AdSense administrator panel.
+#: actions/adsenseadminpanel.php:53
 msgctxt "TITLE"
 msgid "AdSense"
 msgstr "AdSense"
 
-#: adsenseadminpanel.php:62
+#. TRANS: Instructions for AdSense administrator panel.
+#: actions/adsenseadminpanel.php:64
 msgid "AdSense settings for this StatusNet site"
 msgstr ""
 
-#: adsenseadminpanel.php:164
+#. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:167
 msgid "Client ID"
 msgstr ""
 
-#: adsenseadminpanel.php:165
-msgid "Google client ID"
+#. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:169
+msgid "Google client ID."
 msgstr ""
 
-#: adsenseadminpanel.php:170
+#. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:175
 msgid "Ad script URL"
 msgstr ""
 
-#: adsenseadminpanel.php:171
-msgid "Script URL (advanced)"
+#. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:177
+msgid "Script URL (advanced)."
 msgstr ""
 
-#: adsenseadminpanel.php:176
+#. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:183
 msgid "Medium rectangle"
 msgstr ""
 
-#: adsenseadminpanel.php:177
-msgid "Medium rectangle slot code"
+#. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:185
+msgid "Medium rectangle slot code."
 msgstr ""
 
-#: adsenseadminpanel.php:182
+#. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:191
 msgid "Rectangle"
 msgstr ""
 
-#: adsenseadminpanel.php:183
-msgid "Rectangle slot code"
+#. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:193
+msgid "Rectangle slot code."
 msgstr ""
 
-#: adsenseadminpanel.php:188
+#. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:199
 msgid "Leaderboard"
 msgstr ""
 
-#: adsenseadminpanel.php:189
-msgid "Leaderboard slot code"
+#. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:201
+msgid "Leaderboard slot code."
 msgstr ""
 
-#: adsenseadminpanel.php:194
+#. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:207
 msgid "Skyscraper"
 msgstr "Skyscraper"
 
-#: adsenseadminpanel.php:195
-msgid "Wide skyscraper slot code"
+#. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:209
+msgid "Wide skyscraper slot code."
 msgstr ""
 
-#: adsenseadminpanel.php:208
+#. TRANS: Button text to save settings in AdSense administration panel.
+#: actions/adsenseadminpanel.php:223
+msgctxt "BUTTON"
 msgid "Save"
-msgstr ""
+msgstr "Zapisz"
 
-#: adsenseadminpanel.php:208
-msgid "Save AdSense settings"
+#. TRANS: Button title to save settings in AdSense administration panel.
+#: actions/adsenseadminpanel.php:225
+msgid "Save AdSense settings."
 msgstr ""

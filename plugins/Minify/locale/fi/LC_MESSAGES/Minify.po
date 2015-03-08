@@ -1,0 +1,42 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 08:50+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/gnu-social/language/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client error displayed when not providing a valid path in parameter
+#. "f".
+#: actions/minify.php:50
+msgid "The parameter \"f\" is not a valid path."
+msgstr ""
+
+#. TRANS: Client error displayed when not providing parameter "f".
+#: actions/minify.php:54
+msgid "The parameter \"f\" is required but missing."
+msgstr ""
+
+#. TRANS: Client error displayed when trying to minify an unsupported file
+#. type.
+#: actions/minify.php:112
+msgid "File type not supported."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: MinifyPlugin.php:168
+msgid ""
+"The Minify plugin minifies StatusNet's CSS and JavaScript, removing "
+"whitespace and comments."
+msgstr ""

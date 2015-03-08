@@ -1,41 +1,36 @@
-# Translation of StatusNet - Linkback to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Armando-Martin
-# Author: Translationista
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Linkback\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:01+0000\n"
-"Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-27 15:30+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:27+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: es\n"
-"X-Message-Group: #out-statusnet-plugin-linkback\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Trackback title.
 #. TRANS: %1$s is a profile nickname, %2$s is a timestamp.
+#: LinkbackPlugin.php:206
 #, php-format
 msgid "%1$s's status on %2$s"
-msgstr "Estado de %1$s en %2$s"
+msgstr "Estado de %1$s, el %2$s"
 
 #. TRANS: Plugin description.
+#: LinkbackPlugin.php:243
 msgid ""
 "Notify blog authors when their posts have been linked in microblog notices "
 "using <a href=\"http://www.hixie.ch/specs/pingback/pingback\">Pingback</a> "
-"or <a href=\"http://www.movabletype.org/docs/mttrackback.html\">Trackback</"
-"a> protocols."
-msgstr ""
-"Notificar a los autores de blogs cunado sus publicaciones hayan sido "
-"vinculadas en mensajes de microblogs mediante protocolos<a href=\"http://www."
-"hixie.ch/specs/pingback/pingback\">Pingback</a> o <a href=\"http://www."
-"movabletype.org/docs/mttrackback.html\">Trackback</a> protocols."
+"or <a "
+"href=\"http://www.movabletype.org/docs/mttrackback.html\">Trackback</a> "
+"protocols."
+msgstr "Notificar a un bloguero cuando se publique un enlace a una publicación suya en un mensaje, utilizando para ello los protocolos <a href=\"http://www.hixie.ch/specs/pingback/pingback\">Pingback</a> o <a href=\"http://www.movabletype.org/docs/mttrackback.html\">Trackback</a>."

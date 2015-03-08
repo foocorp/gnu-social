@@ -1,179 +1,184 @@
-# Translation of StatusNet - Directory to French (français)
-# Exported from translatewiki.net
-#
-# Author: Brunoperel
-# Author: Davidtsm
-# Author: Iketsi
-# Author: JojoBoulix
-# Author: Lucky
-# Author: Od1n
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Directory\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:09+0000\n"
-"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-04 18:12+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/gnu-social/language/fr/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-30 09:57:06+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: fr\n"
-"X-Message-Group: #out-statusnet-plugin-directory\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Page title for user directory. %d is a page number.
+#: actions/userdirectory.php:95
 #, php-format
 msgid "User Directory, page %d"
 msgstr "Annuaire des utilisateurs, page %d"
 
 #. TRANS: Page title for user directory.
+#: actions/userdirectory.php:98
 msgid "User directory"
 msgstr "Annuaire des utilisateurs"
 
 #. TRANS: Page title for user directory. %s is the applied filter.
+#: actions/userdirectory.php:102
 #, php-format
 msgid "User directory - %s"
 msgstr "Annuaire des utilisateurs - %s"
 
 #. TRANS: Page title for user directory.
 #. TRANS: %1$s is the applied filter, %2$d is a page number.
+#: actions/userdirectory.php:109
 #, php-format
 msgid "User directory - %1$s, page %2$d"
 msgstr "Annuaire des utilisateurs - %1$s, page %2$d"
 
 #. TRANS: %%site.name%% is the name of the StatusNet site.
+#: actions/userdirectory.php:124
 #, php-format
 msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
 "Separate the terms by spaces;  they must be 3 characters or more."
-msgstr ""
-"Recherche de personnes sur %%site.name%% par leur nom, leur emplacement ou "
-"leurs intérêts. Séparez les termes par des espaces ; ils doivent être "
-"composés de 3 caractères ou plus."
+msgstr "Recherche de personnes sur %%site.name%% par leur nom, leur emplacement ou leurs intérêts. Séparez les termes par des espaces ; ils doivent être composés de 3 caractères ou plus."
 
 #. TRANS: Fieldset legend.
+#: actions/userdirectory.php:271
 msgid "Search site"
 msgstr "Rechercher sur le site"
 
 #. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
+#: actions/userdirectory.php:276 actions/groupdirectory.php:288
 msgid "Keyword(s)"
 msgstr "Mot(s) clé(s)"
 
 #. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
+#: actions/userdirectory.php:279 actions/groupdirectory.php:291
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "Recherche"
 
 #. TRANS: Empty list message for user directory.
+#: actions/userdirectory.php:385
 #, php-format
 msgid "No users starting with %s"
 msgstr "Aucun utilisateur ne commence par %s"
 
 #. TRANS: Empty list message for user directory.
 #. TRANS: Empty list message for searching group directory.
+#: actions/userdirectory.php:391 actions/groupdirectory.php:414
 msgid "No results."
 msgstr "Aucun résultat."
 
-#. TRANS: Standard search suggestions shown when a search does not give any results.
+#. TRANS: Standard search suggestions shown when a search does not give any
+#. results.
 #. TRANS: Help text for searching group directory.
+#: actions/userdirectory.php:393 actions/groupdirectory.php:416
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
 "* Try more general keywords.\n"
 "* Try fewer keywords."
-msgstr ""
-"* Assurez-vous que tous les mots sont correctement orthographiés.\n"
-"* Essayez d'autres mots-clés.\n"
-"* Utilisez des mots plus généraux.\n"
-"* Essayez avec moins de mots-clés."
+msgstr "* Assurez-vous que tous les mots sont correctement orthographiés.\n* Essayez d'autres mots-clés.\n* Utilisez des mots plus généraux.\n* Essayez avec moins de mots-clés."
 
 #. TRANS: Title for group directory page. %d is a page number.
+#: actions/groupdirectory.php:95
 #, php-format
 msgid "Group Directory, page %d"
 msgstr "Annuaire des groupes, page %d"
 
 #. TRANS: Title for group directory page.
+#: actions/groupdirectory.php:98
 msgid "Group directory"
 msgstr "Annuaire des groupes"
 
 #. TRANS: Title for group directory page when it is filtered.
 #. TRANS: %s is the filter string.
+#: actions/groupdirectory.php:103
 #, php-format
 msgid "Group directory - %s"
 msgstr "Annuaire des groupes - %s"
 
 #. TRANS: Title for group directory page when it is filtered.
 #. TRANS: %1$s is the filter string, %2$d is a page number.
+#: actions/groupdirectory.php:110
 #, php-format
 msgid "Group directory - %1$s, page %2$d"
 msgstr "Annuaire des groupes - %1$s, page %2$d"
 
 #. TRANS: Page instructions.
+#: actions/groupdirectory.php:125
 msgid ""
 "After you join a group you can send messages to all other members\n"
 "using the syntax \"!groupname\".\n"
 "\n"
 "Browse groups, or search for groups by their name, location or topic.\n"
 "Separate the terms by spaces; they must be three characters or more."
-msgstr ""
-"Après avoir rejoint un groupe, vous pouvez envoyer des messages à tous les "
-"autres membres\n"
-"en utilisant la syntaxe \"!NomDeGroupe\".\n"
-"Parcourez les groupes, ou recherchez des groupes par leur nom, leur "
-"emplacement ou leur sujet.\n"
-"Séparez les termes par des espaces ; ils doivent être constitués de trois "
-"caractères ou plus."
+msgstr "Après avoir rejoint un groupe, vous pouvez envoyer des messages à tous les autres membres\nen utilisant la syntaxe \"!NomDeGroupe\".\nParcourez les groupes, ou recherchez des groupes par leur nom, leur emplacement ou leur sujet.\nSéparez les termes par des espaces ; ils doivent être constitués de trois caractères ou plus."
 
 #. TRANS: Link to create a new group on the group list page.
+#: actions/groupdirectory.php:218
 msgid "Create a new group"
 msgstr "Créer un nouveau groupe"
 
 #. TRANS: Fieldset legend.
+#: actions/groupdirectory.php:283
 msgid "Search groups"
 msgstr "Recherche de groupes."
 
 #. TRANS: Empty list message for searching group directory.
 #. TRANS: %s is the search string.
+#: actions/groupdirectory.php:408
 #, php-format
 msgid "No groups starting with %s."
 msgstr "Aucun groupe ne commence par %s."
 
 #. TRANS: Menu item text for user directory.
+#: DirectoryPlugin.php:241
 msgctxt "MENU"
 msgid "Directory"
 msgstr "Répertoire"
 
 #. TRANS: Menu item title for user directory.
+#: DirectoryPlugin.php:243
 msgid "User Directory."
 msgstr "Annuaire des utilisateurs."
 
 #. TRANS: Plugin description.
+#: DirectoryPlugin.php:262
 msgid "Add a user directory."
 msgstr "Ajouter un annuaire utilisateur."
 
 #. TRANS: Column header in table for user nickname.
+#: lib/sortablegrouplist.php:65 lib/sortablesubscriptionlist.php:65
 msgid "Nickname"
 msgstr "Surnom"
 
 #. TRANS: Column header in table for timestamp when user was created.
+#: lib/sortablegrouplist.php:67 lib/sortablesubscriptionlist.php:67
 msgid "Created"
 msgstr "Créé"
 
+#. TRANS: Column header in table for members of a group.
+#: lib/sortablegrouplist.php:113
+msgid "Members"
+msgstr "Membres"
+
 #. TRANS: Column header for number of subscriptions.
+#: lib/sortablesubscriptionlist.php:114
 msgid "Subscriptions"
 msgstr "Abonnements"
 
 #. TRANS: Column header for number of notices.
+#: lib/sortablesubscriptionlist.php:116
 msgid "Notices"
 msgstr "Notifications"
-
-#. TRANS: Column header in table for members of a group.
-msgid "Members"
-msgstr "Membres"

@@ -1,89 +1,85 @@
-# Translation of StatusNet - AnonymousFave to Russian (Русский)
-# Exported from translatewiki.net
-#
-# Author: Lockal
-# Author: MaxSem
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - AnonymousFave\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-09 18:34+0000\n"
-"PO-Revision-Date: 2011-04-09 18:36:31+0000\n"
-"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-05 17:36+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/gnu-social/language/ru/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:05:59+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r85732); Translate extension (2011-03-11)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: ru\n"
-"X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
-"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
-"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. TRANS: Client error.
+#: actions/anonfavor.php:58
+msgid ""
+"Could not favor notice! Please make sure your browser has cookies enabled."
+msgstr "Ошибка добавления записи в число любимых! Пожалуйста, убедитесь, что cookies включены в вашем браузере."
+
+#. TRANS: Client error.
+#: actions/anonfavor.php:67
+msgid "This notice is already a favorite!"
+msgstr ""
+
+#. TRANS: Server error.
+#: actions/anonfavor.php:73
+msgid "Could not create favorite."
+msgstr ""
+
+#. TRANS: Title.
+#: actions/anonfavor.php:82
+msgid "Disfavor favorite"
+msgstr ""
+
+#. TRANS: Client error.
+#: actions/anondisfavor.php:59
+msgid ""
+"Could not disfavor notice! Please make sure your browser has cookies "
+"enabled."
+msgstr ""
+
+#. TRANS: Server error.
+#: actions/anondisfavor.php:80
+msgid "Could not delete favorite."
+msgstr ""
+
+#. TRANS: Title.
+#: actions/anondisfavor.php:89
+msgid "Add to favorites"
+msgstr "Добавить в избранное"
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
+#: classes/Fave_tally.php:96 classes/Fave_tally.php:125
 #, php-format
 msgid "Could not update favorite tally for notice ID %d."
 msgstr ""
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
+#: classes/Fave_tally.php:156
 #, php-format
 msgid "Could not create favorite tally for notice ID %d."
 msgstr ""
 
-#. TRANS: Client error.
-msgid ""
-"Could not disfavor notice! Please make sure your browser has cookies enabled."
-msgstr ""
-
-#. TRANS: Client error.
-msgid "There was a problem with your session token. Try again, please."
-msgstr ""
-
-#. TRANS: Client error.
-msgid "This notice is not a favorite!"
-msgstr ""
-
-#. TRANS: Server error.
-msgid "Could not delete favorite."
-msgstr ""
-
-#. TRANS: Title.
-msgid "Add to favorites"
-msgstr "Добавить в избранное"
-
 #. TRANS: Label for tally for number of times a notice was favored.
+#: AnonymousFavePlugin.php:165
 msgid "Favored"
 msgstr "Понравилось"
 
 #. TRANS: Server exception.
-#, fuzzy
+#: AnonymousFavePlugin.php:198 AnonymousFavePlugin.php:209
 msgid "Could not create anonymous user session."
-msgstr "Не удаётся создать сеанс анонимного пользователя."
+msgstr ""
 
 #. TRANS: Plugin description.
+#: AnonymousFavePlugin.php:284
 msgid "Allow anonymous users to favorite notices."
 msgstr "Позволяет анонимным пользователям добавлять записи в число любимых."
-
-#. TRANS: Client error.
-msgid ""
-"Could not favor notice! Please make sure your browser has cookies enabled."
-msgstr ""
-"Ошибка добавления записи в число любимых! Пожалуйста, убедитесь, что cookies "
-"включены в вашем браузере."
-
-#. TRANS: Client error.
-msgid "This notice is already a favorite!"
-msgstr ""
-
-#. TRANS: Server error.
-msgid "Could not create favorite."
-msgstr ""
-
-#. TRANS: Title.
-msgid "Disfavor favorite"
-msgstr ""

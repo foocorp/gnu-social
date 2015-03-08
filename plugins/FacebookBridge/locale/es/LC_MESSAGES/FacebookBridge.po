@@ -1,318 +1,357 @@
-# Translation of StatusNet - FacebookBridge to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Armando-Martin
-# Author: Johnarupire
-# Author: Od1n
-# Author: Toliño
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - FacebookBridge\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:33+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-27 15:30+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Client error displayed when trying to login while already logged in.
-msgid "Already logged in."
-msgstr "Ya está conectado"
-
-#. TRANS: Form instructions.
-msgid "Login with your Facebook Account"
-msgstr "Inicie sesión con su cuenta de Facebook"
-
-#. TRANS: Page title.
-#. TRANS: Alt text for "Login with Facebook" image.
-msgid "Login with Facebook"
-msgstr "Inicio de sesión con Facebook"
-
-#. TRANS: Title for "Login with Facebook" image.
-msgid "Login with Facebook."
-msgstr "Inicio de sesión con Facebook."
-
 #. TRANS: Title for Facebook administration panel.
+#: actions/facebookadminpanel.php:53
 msgctxt "TITLE"
 msgid "Facebook integration settings"
-msgstr "Configuración de la integración de Facebook"
+msgstr "Configuración de la integración con Facebook"
 
 #. TRANS: Instruction for Facebook administration panel.
+#: actions/facebookadminpanel.php:64
 msgid "Facebook integration settings"
-msgstr "Configuración de la integración de Facebook"
+msgstr "Configuración de la integración con Facebook"
 
-#. TRANS: Client error displayed when providing too long a Facebook application ID.
+#. TRANS: Client error displayed when providing too long a Facebook
+#. application ID.
+#: actions/facebookadminpanel.php:126
 msgid "Invalid Facebook ID. Maximum length is 255 characters."
-msgstr ""
-"El identificador ID de Facebook no es válido. La longitud máxima es de 255 "
-"caracteres."
+msgstr "Identificador de Facebook no válido. No puede superar los 255 caracteres."
 
-#. TRANS: Client error displayed when providing too long a Facebook secret key.
+#. TRANS: Client error displayed when providing too long a Facebook secret
+#. key.
+#: actions/facebookadminpanel.php:133
 msgid "Invalid Facebook secret. Maximum length is 255 characters."
-msgstr ""
-"La frase secreta de Facebook es incorrecta. La extensión máxima es de 255 "
-"caracteres."
+msgstr "Clave secreta de Facebook no válida. No puede superar los 255 caracteres."
 
 #. TRANS: Fieldset legend.
+#: actions/facebookadminpanel.php:183
 msgid "Facebook application settings"
 msgstr "Configuración de la aplicación de Facebook"
 
 #. TRANS: Field label for Facebook application ID.
+#: actions/facebookadminpanel.php:190
 msgid "Application ID"
-msgstr "Identificador ID de aplicación"
+msgstr "Identificador de la aplicación"
 
 #. TRANS: Field title for Facebook application ID.
+#: actions/facebookadminpanel.php:192
 msgid "ID of your Facebook application."
-msgstr "Identificador ID de su aplicación de Facebook."
+msgstr "Identificador de tu aplicación de Facebook."
 
 #. TRANS: Field label for Facebook secret key.
+#: actions/facebookadminpanel.php:201
 msgid "Secret"
-msgstr "Frase secreta"
+msgstr "Clave secreta"
 
 #. TRANS: Field title for Facebook secret key.
+#: actions/facebookadminpanel.php:203
 msgid "Application secret."
-msgstr "Frase secreta de la aplicación."
+msgstr "Clave secreta de la aplicación."
 
 #. TRANS: Button text to save Facebook integration settings.
 #. TRANS: Submit button to save synchronisation settings.
+#: actions/facebookadminpanel.php:220 actions/facebooksettings.php:188
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Guardar"
 
 #. TRANS: Button title to save Facebook integration settings.
+#: actions/facebookadminpanel.php:222
 msgid "Save Facebook settings."
-msgstr "Guardar configuración de Facebook."
+msgstr "Guardar ajustes de Facebook."
 
-#. TRANS: Client error displayed when the session token does not match or is not given.
-msgid "There was a problem with your session token. Try again, please."
-msgstr ""
-"Hubo un problema con su clave (token) de sesión. Inténtelo de nuevo, por "
-"favor."
+#. TRANS: Client error displayed when trying to login while already logged in.
+#: actions/facebooklogin.php:43
+msgid "Already logged in."
+msgstr "Ya estás conectado"
 
-#. TRANS: Page title for Facebook settings.
-msgctxt "TITLE"
-msgid "Facebook settings"
-msgstr "Configuración de Facebook"
+#. TRANS: Form instructions.
+#: actions/facebooklogin.php:52
+msgid "Login with your Facebook Account"
+msgstr "Inicia sesión con tu cuenta de Facebook"
 
-#. TRANS: Instructions for Facebook settings.
-msgid "Facebook settings"
-msgstr "Configuración de Facebook"
+#. TRANS: Page title.
+#. TRANS: Alt text for "Login with Facebook" image.
+#: actions/facebooklogin.php:67 actions/facebooklogin.php:92
+msgid "Login with Facebook"
+msgstr "Inicio de sesión con Facebook"
 
-#. TRANS: Form note. User is connected to facebook.
-msgid "Connected Facebook user"
-msgstr "Usuario de Facebook conectado"
+#. TRANS: Title for "Login with Facebook" image.
+#: actions/facebooklogin.php:94
+msgid "Login with Facebook."
+msgstr "Inicio de sesión con Facebook."
 
-#. TRANS: Checkbox label in Facebook settings.
-msgid "Publish my notices to Facebook."
-msgstr "Publicar mis avisos en Facebook."
-
-#. TRANS: Checkbox label in Facebook settings.
-msgid "Send \"@\" replies to Facebook."
-msgstr "Enviar las respuestas \"@\" a Facebook."
-
-#. TRANS: Fieldset legend for form to disconnect from Facebook.
-msgid "Disconnect my account from Facebook"
-msgstr "Desconectar mi cuenta de Facebook"
-
-#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
-#, php-format
-msgid ""
-"Disconnecting your Faceboook would make it impossible to log in! Please [set "
-"a password](%s) first."
-msgstr ""
-"¡Al desconectar tu Faceboook será imposible iniciar sesión! Por favor "
-"[establezca una contraseña] (%s) primero."
-
-#. TRANS: Message displayed when initiating disconnect of a StatusNet user
-#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
-#, php-format
-msgid ""
-"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
-"password to log in."
-msgstr ""
-"Mantener su cuenta %1$s pero desconectarse de Facebook. Utilizará su "
-"contraseña %1$s para iniciar sesión."
-
-#. TRANS: Submit button.
-msgctxt "BUTTON"
-msgid "Disconnect"
-msgstr "Desconectar"
-
-#. TRANS: Notice in case saving of synchronisation preferences fail.
-msgid "There was a problem saving your sync preferences."
-msgstr "Hubo un problema al guardar sus preferencias de sincronización."
-
-#. TRANS: Confirmation that synchronisation settings have been saved into the system.
-msgid "Sync preferences saved."
-msgstr "Preferencias de sincronización guardadas."
-
-#. TRANS: Server error displayed when deleting the link to a Facebook account fails.
-msgid "Could not delete link to Facebook."
-msgstr "No se pudo eliminar el enlace a Facebook."
-
-#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
-msgid "You have disconnected from Facebook."
-msgstr "Se ha desconectado de Facebook."
-
+#: actions/facebookfinishlogin.php:50
 msgid "Unable to authenticate you with Facebook."
-msgstr "No se ha podido realizar su autenticación con Facebook."
+msgstr "No se te pudo autentificar con Facebook."
 
-#. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
+#. TRANS: Client error displayed when trying to connect to Facebook while not
+#. logged in.
+#: actions/facebookfinishlogin.php:73
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
-msgstr ""
-"Debe iniciar sesión en Facebook para registrar una cuenta local usando "
-"Facebook."
+msgstr "Debes estar identificado en Facebook para poder registrar una cuenta local usando Facebok."
 
-#. TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+#. TRANS: Client error displayed when trying to connect to a Facebook account
+#. that is already linked
 #. TRANS: in the same StatusNet site.
+#: actions/facebookfinishlogin.php:117 actions/facebookfinishlogin.php:131
 msgid "There is already a local account linked with that Facebook account."
 msgstr "Ya existe una cuenta local vinculada con esa cuenta de Facebook."
 
-#. TRANS: Form validation error displayed when user has not agreed to the license.
+#. TRANS: Client error displayed when the session token does not match or is
+#. not given.
+#: actions/facebookfinishlogin.php:144 actions/facebooksettings.php:87
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Hubo un problema con tu identificador de sesión. Inténtalo de nuevo, por favor."
+
+#. TRANS: Form validation error displayed when user has not agreed to the
+#. license.
+#: actions/facebookfinishlogin.php:154
 msgid "You cannot register if you do not agree to the license."
-msgstr "No puede registrarse si no acepta la licencia."
+msgstr "No puedes registrarte si no aceptas la licencia."
 
 #. TRANS: Form validation error displayed when an unhandled error occurs.
+#: actions/facebookfinishlogin.php:172
 msgid "An unknown error has occured."
 msgstr "Ha ocurrido un error desconocido."
 
 #. TRANS: Form instructions for connecting to Facebook.
 #. TRANS: %s is the site name.
+#: actions/facebookfinishlogin.php:191
 #, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "Facebook to a local account. You can either create a new local account, or "
 "connect with an existing local account."
-msgstr ""
-"Esta es la primera vez que ha iniciado sesión en %s por lo que debemos "
-"conectar su Facebook a una cuenta local. Puede crear una nueva cuenta local "
-"o conectarse con una cuenta local existente."
+msgstr "Esta es la primera vez que inicias sesión en %s, así que debemos conectar tu Facebook a una cuenta local. Puedes crear una nueva o conectarte a una ya existente."
 
 #. TRANS: Page title.
+#: actions/facebookfinishlogin.php:201
 msgid "Facebook Setup"
 msgstr "Configuración de Facebook"
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:235
 msgid "Connection options"
 msgstr "Opciones de conexión"
 
-#. TRANS: %s is the name of the license used by the user for their status updates.
+#. TRANS: %s is the name of the license used by the user for their status
+#. updates.
+#: actions/facebookfinishlogin.php:245
 #, php-format
 msgid ""
-"My text and files are available under %s except this private data: password, "
-"email address, IM address, and phone number."
-msgstr ""
-"Mi texto y archivos están disponibles bajo %s con excepción de esta "
-"información privada: contraseña, dirección de correo electrónico, dirección "
-"de mensajería instantánea y número de teléfono."
+"My text and files are available under %s except this private data: password,"
+" email address, IM address, and phone number."
+msgstr "Todos mis textos y archivos están disponibles bajo licencia %s, con excepción de la siguiente información privada: contraseña, dirección de correo electrónico, dirección de mensajería instantánea y número de teléfono."
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:262
 msgid "Create new account"
 msgstr "Crear nueva cuenta"
 
 #. TRANS: Form instructions.
+#: actions/facebookfinishlogin.php:265
 msgid "Create a new user with this nickname."
-msgstr "Crear un nuevo usuario con este alias."
+msgstr "Crear un nuevo usuario con este nombre."
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:273
 msgid "New nickname"
-msgstr "Nuevo alias"
+msgstr "Nuevo nombre de usuario"
 
 #. TRANS: Field title.
+#: actions/facebookfinishlogin.php:276
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
-msgstr ""
-"De 1 a 64 letras en minúscula o números, sin signos de puntuación ni "
-"espacios."
+msgstr "De 1 a 64 letras en minúscula o números, sin signos de puntuación ni espacios."
 
 #. TRANS: Submit button to create a new account.
+#: actions/facebookfinishlogin.php:284
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Crear"
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:290
 msgid "Connect existing account"
-msgstr "Conectar a una cuenta existente"
+msgstr "Conectar a una cuenta ya existente"
 
 #. TRANS: Form instructions.
+#: actions/facebookfinishlogin.php:293
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Facebook."
-msgstr ""
-"Si ya tiene una cuenta, inicie sesión con su nombre de usuario y contraseña "
-"para conectarse a su cuenta de Facebook."
+msgstr "Si ya tienes una cuenta, inicia sesión con tu nombre de usuario y contraseña para conectarla a tu Facebook."
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:297
 msgid "Existing nickname"
-msgstr "Alias existente"
+msgstr "Nombre de usuario ya registrado"
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:301
 msgid "Password"
 msgstr "Contraseña"
 
-#. TRANS: Submit button to connect a Facebook account to an existing StatusNet account.
+#. TRANS: Submit button to connect a Facebook account to an existing StatusNet
+#. account.
+#: actions/facebookfinishlogin.php:305
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Conectar"
 
 #. TRANS: Client error trying to register with registrations not allowed.
 #. TRANS: Client error trying to register with registrations 'invite only'.
+#: actions/facebookfinishlogin.php:326 actions/facebookfinishlogin.php:335
 msgid "Registration not allowed."
 msgstr "Registro no permitido."
 
 #. TRANS: Client error trying to register with an invalid invitation code.
+#: actions/facebookfinishlogin.php:342
 msgid "Not a valid invitation code."
-msgstr "El código de invitación no es válido."
-
-#. TRANS: Form validation error displayed when picking a nickname that is not allowed.
-msgid "Nickname not allowed."
-msgstr "Alias no permitido."
-
-#. TRANS: Form validation error displayed when picking a nickname that is already in use.
-msgid "Nickname already in use. Try another one."
-msgstr "El alias ya existe. Pruebe con otro."
+msgstr "No es un código de invitación válido."
 
 #. TRANS: Server error displayed when connecting to Facebook fails.
+#: actions/facebookfinishlogin.php:378 actions/facebookfinishlogin.php:511
 msgid "Error connecting user to Facebook."
-msgstr "Error al conectar el usuario a Facebook."
+msgstr "Error intentando conectar el usuario a Facebook."
 
-#. TRANS: Form validation error displayed when username/password combination is incorrect.
+#. TRANS: Form validation error displayed when username/password combination
+#. is incorrect.
+#: actions/facebookfinishlogin.php:478
 msgid "Invalid username or password."
-msgstr "Usuario o contraseña inválidos."
+msgstr "Usuario o contraseña no válidos."
+
+#. TRANS: Page title for Facebook settings.
+#: actions/facebooksettings.php:106
+msgctxt "TITLE"
+msgid "Facebook settings"
+msgstr "Configuración de Facebook"
+
+#. TRANS: Instructions for Facebook settings.
+#: actions/facebooksettings.php:116
+msgid "Facebook settings"
+msgstr "Configuración de Facebook"
+
+#. TRANS: Form note. User is connected to facebook.
+#: actions/facebooksettings.php:140
+msgid "Connected Facebook user"
+msgstr "Usuario de Facebook conectado"
+
+#. TRANS: Checkbox label in Facebook settings.
+#: actions/facebooksettings.php:168
+msgid "Publish my notices to Facebook."
+msgstr "Publicar mis mensajes en Facebook."
+
+#. TRANS: Checkbox label in Facebook settings.
+#: actions/facebooksettings.php:179
+msgid "Send \"@\" replies to Facebook."
+msgstr "Enviar mis respuestas a otros a Facebook."
+
+#. TRANS: Fieldset legend for form to disconnect from Facebook.
+#: actions/facebooksettings.php:197
+msgid "Disconnect my account from Facebook"
+msgstr "Desconectar mi cuenta de Facebook"
+
+#. TRANS: Notice in disconnect from Facebook form if user has no local
+#. StatusNet password.
+#: actions/facebooksettings.php:204
+#, php-format
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set"
+" a password](%s) first."
+msgstr "¡Si desconectas tu Faceboook ahora no podrás volver a iniciar sesión! Por favor, [establece una contraseña] (%s) primero."
+
+#. TRANS: Message displayed when initiating disconnect of a StatusNet user
+#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
+#: actions/facebooksettings.php:215
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr "Mantener tu cuenta %1$s pero desconectarla de Facebook. Iniciarás sesión con tu contraseña de %1$s."
+
+#. TRANS: Submit button.
+#: actions/facebooksettings.php:221
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Desconectar"
+
+#. TRANS: Notice in case saving of synchronisation preferences fail.
+#: actions/facebooksettings.php:245
+msgid "There was a problem saving your sync preferences."
+msgstr "Hubo un problema guardando tus preferencias de sincronización."
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the
+#. system.
+#: actions/facebooksettings.php:248
+msgid "Sync preferences saved."
+msgstr "Preferencias de sincronización guardadas."
+
+#. TRANS: Server error displayed when deleting the link to a Facebook account
+#. fails.
+#: actions/facebooksettings.php:263
+msgid "Could not delete link to Facebook."
+msgstr "No se pudo eliminar el enlace a Facebook."
+
+#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
+#: actions/facebooksettings.php:267
+msgid "You have disconnected from Facebook."
+msgstr "Te has desconectado de Facebook."
 
 #. TRANS: Menu item for "Facebook" in administration panel.
 #. TRANS: Menu item for "Facebook" in user settings.
+#: FacebookBridgePlugin.php:202 FacebookBridgePlugin.php:241
+#: FacebookBridgePlugin.php:281
 msgctxt "MENU"
 msgid "Facebook"
 msgstr "Facebook"
 
 #. TRANS: Menu title for "Facebook" login.
+#: FacebookBridgePlugin.php:204
 msgid "Login or register using Facebook."
-msgstr "Inicie sesión o regístrese usando Facebook."
+msgstr "Inicia sesión o regístrate usando Facebook."
 
 #. TRANS: Menu title for "Facebook" in administration panel.
+#: FacebookBridgePlugin.php:243
 msgid "Facebook integration configuration."
-msgstr "Configuración de integración de Facebook."
+msgstr "Configuración de integración con Facebook."
 
 #. TRANS: Menu title for "Facebook" in user settings.
+#: FacebookBridgePlugin.php:283
 msgid "Facebook settings."
 msgstr "Configuración de Facebook."
 
 #. TRANS: Plugin description.
+#: FacebookBridgePlugin.php:624
 msgid "A plugin for integrating StatusNet with Facebook."
-msgstr "Un complemento (plugin) para integrar StatusNet con Facebook."
+msgstr "Un complemento para integrar GNU social con Facebook."
 
 #. TRANS: E-mail subject.
+#: lib/facebookclient.php:790
 msgid "Your Facebook connection has been removed"
-msgstr "Su conexión de Facebook ha sido eliminada"
+msgstr "Tu conexión con Facebook ha sido eliminada"
 
 #. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
+#: lib/facebookclient.php:793
 #, php-format
 msgid ""
 "Hi %1$s,\n"
@@ -329,28 +368,18 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr ""
-"Hola %1$s,\n"
-"\n"
-"Lamentamos informarle que somos incapaces de publicar su nota en Facebook, y "
-"se ha eliminado la conexión entre su   cuenta %2$s y Facebook.\n"
-"\n"
-"Esto puede haber ocurrido porque se ha eliminado el permiso para que %2$s "
-"publique en su nombre, o quizás han desactivado su cuenta de Facebook.  "
-"Puede volver a conectar su cuenta %2$s a Facebook en cualquier momento "
-"iniciando sesión con Facebook nuevamente.\n"
-"\n"
-"Sinceramente,\n"
-"\n"
-"%2$s\n"
+msgstr "Hola %1$s,\n\nSentimos informarte de que no podemos publicar tu mensaje en \nFacebook, habiéndose cancelado además la conexión de tu cuenta \n%2$s con dicha red.\n\nTal vez le retiraste el permiso a %2$s para publicar en tu nombre, o \nbien desactivaste tu cuenta de Facebook.  En cualquier caso, puedes \nvolver a conectar tu cuenta %2$s a la red privativa cuando quieras: \ntan sólo tienes que volver a iniciar sesión con ella.\n\nSinceramente,\n\n%2$s\n"
 
 #. TRANS: E-mail subject. %s is the StatusNet sitename.
+#: lib/facebookclient.php:846
 #, php-format
 msgid "Contact the %s administrator to retrieve your account"
-msgstr "Contacte con el administrador %s para recuperar su cuenta"
+msgstr "Contacta con el administrador de %s para recuperar tu cuenta"
 
 #. TRANS: E-mail body. %1$s is a username,
-#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail address.
+#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail
+#. address.
+#: lib/facebookclient.php:850
 #, php-format
 msgid ""
 "Hi %1$s,\n"
@@ -363,15 +392,4 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr ""
-"Hola %1$s,\n"
-"\n"
-"Hemos notado que ha desautorizado la conexión mediante Facebook para su "
-"cuenta %2$s.  Aun no ha definido una contraseña para su cuenta %2$s, por lo "
-"que no podrá iniciar sesión. Si desea seguir utilizando su cuenta %2$s, "
-"póngase en contacto con el administrador del sitio (%3$s) para definir una "
-"contraseña.\n"
-"\n"
-"Sinceramente\n"
-"\n"
-"%2$s\n"
+msgstr "Hola %1$s,\n\nHemos notado que has cancelado la conexión de tu cuenta %2$s \ncon Facebook. Aún no has definido una contraseña local en %2$s, \npor lo que no podrás iniciar sesión. Si quieres seguir usando tu cuenta \n%2$s, ponte en contacto con el administrador del sitio (%3$s) para \nque te ayude a establecer una.\n\nSinceramente\n\n%2$s\n"

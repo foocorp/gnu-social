@@ -1,133 +1,149 @@
-# Translation of StatusNet - Blacklist to Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
-# Exported from translatewiki.net
-#
-# Author: EugeneZelenko
-# Author: Jim-by
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Blacklist\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:48+0000\n"
-"Language-Team: Belarusian (Taraškievica orthography) <https://translatewiki."
-"net/wiki/Portal:be-tarask>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Belarusian (Tarask) (http://www.transifex.com/projects/p/gnu-social/language/be@tarask/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-03-01 18:55:46+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: be-tarask\n"
-"X-Message-Group: #out-statusnet-plugin-blacklist\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. TRANS: Exception thrown if the Blacklist plugin configuration is incorrect.
-#. TRANS: %1$s is a configuration section, %2$s is a configuration setting.
-#, php-format
-msgid "Unknown data type for config %1$s + %2$s."
-msgstr ""
-
-#. TRANS: Validation failure for URL. %s is the URL.
-#, php-format
-msgid "You may not register with homepage \"%s\"."
-msgstr "Вы ня можаце зарэгістравацца, падаўшы «%s» як хатнюю старонку."
-
-#. TRANS: Validation failure for nickname. %s is the nickname.
-#, php-format
-msgid "You may not register with nickname \"%s\"."
-msgstr "Вы ня можаце зарэгістравацца з мянушкай «%s»."
-
-#. TRANS: Validation failure for URL. %s is the URL.
-#, php-format
-msgid "You may not use homepage \"%s\"."
-msgstr "Вы ня можаце выкарыстоўваць хатнюю старонку «%s»."
-
-#. TRANS: Validation failure for nickname. %s is the nickname.
-#, php-format
-msgid "You may not use nickname \"%s\"."
-msgstr "Вы ня можаце выкарыстоўваць мянушку «%s»."
-
-#. TRANS: Validation failure for URL. %s is the URL.
-#, php-format
-msgid "You may not use URL \"%s\" in notices."
-msgstr "Вы ня можаце выкарыстоўваць URL-адрас «%s» у заўвагах."
-
-#. TRANS: Plugin description.
-msgid "Keeps a blacklist of forbidden nickname and URL patterns."
-msgstr "Захоўвае чорны сьпіс забароненых мянушак і шаблёнаў URL-адрасоў."
-
-#. TRANS: Menu item in admin panel.
-msgctxt "MENU"
-msgid "Blacklist"
-msgstr "Чорны сьпіс"
-
-#. TRANS: Tooltip for menu item in admin panel.
-#, fuzzy
-msgctxt "TOOLTIP"
-msgid "Blacklist configuration."
-msgstr "Устаноўкі чорнага сьпісу"
-
-#. TRANS: Checkbox label in the blacklist user form.
-msgid "Add this nickname pattern to blacklist"
-msgstr "Дадаць гэты шаблён мянушкі да чорнага сьпісу"
-
-#. TRANS: Checkbox label in the blacklist user form.
-msgid "Add this homepage pattern to blacklist"
-msgstr "Дадаць гэты шаблён хатняй старонкі да чорнага сьпісу"
-
-#. TRANS: Exception thrown trying to post a notice while having set a blocked homepage URL. %s is the blocked URL.
-#. TRANS: Client exception thrown trying to subscribe to a person with a blocked homepage or site URL. %s is the blocked URL.
-#, fuzzy, php-format
-msgid "Users from \"%s\" are blocked."
-msgstr "Карыстальнік з «%s» заблякаваны."
-
-#. TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-#, fuzzy, php-format
-msgid "Notices from nickname \"%s\" are disallowed."
-msgstr "Паведамленьні ад карыстальніка «%s» забароненыя."
-
-#. TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.
-#, fuzzy, php-format
-msgid "Cannot subscribe to nickname \"%s\"."
-msgstr "Немагчыма падпісацца на карыстальніка «%s»."
+"Language: be@tarask\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. TRANS: Title of blacklist plugin administration panel.
-#, fuzzy
+#: actions/blacklistadminpanel.php:53
 msgctxt "TITLE"
 msgid "Blacklist"
 msgstr "Чорны сьпіс"
 
 #. TRANS: Instructions for blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:64
 msgid "Blacklisted URLs and nicknames"
 msgstr "Чорны сьпіс URL-адрасоў і мянушак"
 
 #. TRANS: Field label in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:177
 msgid "Nicknames"
 msgstr "Мянушкі"
 
 #. TRANS: Field title in blacklist plugin administration panel.
-#, fuzzy
+#: actions/blacklistadminpanel.php:180
 msgid "Patterns of nicknames to block, one per line."
-msgstr "Шаблёны мянушак для блякаваньня, па аднаму на радок"
+msgstr ""
 
 #. TRANS: Field label in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:187
 msgid "URLs"
 msgstr "URL-адрасы"
 
 #. TRANS: Field title in blacklist plugin administration panel.
-#, fuzzy
+#: actions/blacklistadminpanel.php:190
 msgid "Patterns of URLs to block, one per line."
-msgstr "Шаблёны URL-адрасоў для блякаваньня, па аднаму на радок"
+msgstr ""
 
-#. TRANS: Button text in blacklist plugin administration panel to save settings.
-#, fuzzy
+#. TRANS: Button text in blacklist plugin administration panel to save
+#. settings.
+#: actions/blacklistadminpanel.php:205
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Захаваць"
 
-#. TRANS: Button title in blacklist plugin administration panel to save settings.
-#, fuzzy
+#. TRANS: Button title in blacklist plugin administration panel to save
+#. settings.
+#: actions/blacklistadminpanel.php:209
 msgid "Save site settings."
-msgstr "Захаваць устаноўкі сайта"
+msgstr ""
+
+#. TRANS: Exception thrown if the Blacklist plugin configuration is incorrect.
+#. TRANS: %1$s is a configuration section, %2$s is a configuration setting.
+#: BlacklistPlugin.php:112
+#, php-format
+msgid "Unknown data type for config %1$s + %2$s."
+msgstr ""
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:132
+#, php-format
+msgid "You may not register with homepage \"%s\"."
+msgstr "Вы ня можаце зарэгістравацца, падаўшы «%s» як хатнюю старонку."
+
+#. TRANS: Validation failure for nickname. %s is the nickname.
+#: BlacklistPlugin.php:143
+#, php-format
+msgid "You may not register with nickname \"%s\"."
+msgstr "Вы ня можаце зарэгістравацца з мянушкай «%s»."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:168
+#, php-format
+msgid "You may not use homepage \"%s\"."
+msgstr "Вы ня можаце выкарыстоўваць хатнюю старонку «%s»."
+
+#. TRANS: Validation failure for nickname. %s is the nickname.
+#: BlacklistPlugin.php:179
+#, php-format
+msgid "You may not use nickname \"%s\"."
+msgstr "Вы ня можаце выкарыстоўваць мянушку «%s»."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:222
+#, php-format
+msgid "You may not use URL \"%s\" in notices."
+msgstr "Вы ня можаце выкарыстоўваць URL-адрас «%s» у заўвагах."
+
+#. TRANS: Plugin description.
+#: BlacklistPlugin.php:303
+msgid "Keeps a blacklist of forbidden nickname and URL patterns."
+msgstr "Захоўвае чорны сьпіс забароненых мянушак і шаблёнаў URL-адрасоў."
+
+#. TRANS: Menu item in admin panel.
+#: BlacklistPlugin.php:341
+msgctxt "MENU"
+msgid "Blacklist"
+msgstr "Чорны сьпіс"
+
+#. TRANS: Tooltip for menu item in admin panel.
+#: BlacklistPlugin.php:343
+msgctxt "TOOLTIP"
+msgid "Blacklist configuration."
+msgstr ""
+
+#. TRANS: Checkbox label in the blacklist user form.
+#: BlacklistPlugin.php:370
+msgid "Add this nickname pattern to blacklist"
+msgstr "Дадаць гэты шаблён мянушкі да чорнага сьпісу"
+
+#. TRANS: Checkbox label in the blacklist user form.
+#: BlacklistPlugin.php:380
+msgid "Add this homepage pattern to blacklist"
+msgstr "Дадаць гэты шаблён хатняй старонкі да чорнага сьпісу"
+
+#. TRANS: Exception thrown trying to post a notice while having set a blocked
+#. homepage URL. %s is the blocked URL.
+#. TRANS: Client exception thrown trying to subscribe to a person with a
+#. blocked homepage or site URL. %s is the blocked URL.
+#: BlacklistPlugin.php:459 BlacklistPlugin.php:496
+#, php-format
+msgid "Users from \"%s\" are blocked."
+msgstr ""
+
+#. TRANS: Exception thrown trying to post a notice while having a blocked
+#. nickname. %s is the blocked nickname.
+#: BlacklistPlugin.php:471
+#, php-format
+msgid "Notices from nickname \"%s\" are disallowed."
+msgstr ""
+
+#. TRANS: Client exception thrown trying to subscribe to a person with a
+#. blocked nickname. %s is the blocked nickname.
+#: BlacklistPlugin.php:507
+#, php-format
+msgid "Cannot subscribe to nickname \"%s\"."
+msgstr ""

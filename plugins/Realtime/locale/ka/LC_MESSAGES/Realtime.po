@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:38+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Georgian (http://www.transifex.com/projects/p/gnu-social/language/ka/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Client exception. Do not translate POST.
+#: actions/keepalivechannel.php:65 actions/closechannel.php:65
+msgid "You have to POST it."
+msgstr ""
+
+#. TRANS: Client exception thrown when the channel key argument is missing.
+#: actions/keepalivechannel.php:72 actions/closechannel.php:72
+msgid "No channel key argument."
+msgstr ""
+
+#. TRANS: Client exception thrown when referring to a non-existing channel.
+#: actions/keepalivechannel.php:79 actions/closechannel.php:79
+msgid "No such channel."
+msgstr ""
+
+#. TRANS: Text label for realtime view "play" button, usually replaced by an
+#. icon.
+#: RealtimePlugin.php:387
+msgctxt "BUTTON"
+msgid "Play"
+msgstr ""
+
+#. TRANS: Tooltip for realtime view "play" button.
+#: RealtimePlugin.php:389
+msgctxt "TOOLTIP"
+msgid "Play"
+msgstr ""
+
+#. TRANS: Text label for realtime view "pause" button
+#: RealtimePlugin.php:391
+msgctxt "BUTTON"
+msgid "Pause"
+msgstr ""
+
+#. TRANS: Tooltip for realtime view "pause" button
+#: RealtimePlugin.php:393
+msgctxt "TOOLTIP"
+msgid "Pause"
+msgstr ""
+
+#. TRANS: Text label for realtime view "popup" button, usually replaced by an
+#. icon.
+#: RealtimePlugin.php:395
+msgctxt "BUTTON"
+msgid "Pop up"
+msgstr ""
+
+#. TRANS: Tooltip for realtime view "popup" button.
+#: RealtimePlugin.php:397
+msgctxt "TOOLTIP"
+msgid "Pop up in a window"
+msgstr ""

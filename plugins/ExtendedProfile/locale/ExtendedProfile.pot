@@ -8,13 +8,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#. TRANS: Link title for link on user profile.
+#: actions/profiledetail.php:52
+msgid "Edit extended profile settings"
+msgstr ""
+
+#. TRANS: Link text for link on user profile.
+#: actions/profiledetail.php:54
+msgid "Edit"
+msgstr ""
 
 #. TRANS: Title for extended profile settings.
 #: actions/profiledetailsettings.php:29
@@ -58,41 +69,31 @@ msgstr ""
 
 #. TRANS: Exception thrown when entering an invalid URL.
 #. TRANS: %s is the invalid URL.
-#: actions/profiledetailsettings.php:276
+#: actions/profiledetailsettings.php:273
 #, php-format
 msgid "Invalid URL: %s."
 msgstr ""
 
 #. TRANS: Server error displayed when a field could not be saved in the database.
-#: actions/profiledetailsettings.php:525 actions/profiledetailsettings.php:538
+#: actions/profiledetailsettings.php:522 actions/profiledetailsettings.php:535
 msgid "Could not save profile details."
 msgstr ""
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: %s is an invalid tag.
-#: actions/profiledetailsettings.php:583
+#: actions/profiledetailsettings.php:580
 #, php-format
 msgid "Invalid tag: \"%s\"."
 msgstr ""
 
 #. TRANS: Server error thrown when user profile settings could not be saved.
-#: actions/profiledetailsettings.php:625
+#: actions/profiledetailsettings.php:622
 msgid "Could not save profile."
 msgstr ""
 
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
-#: actions/profiledetailsettings.php:634
+#: actions/profiledetailsettings.php:630
 msgid "Could not save tags."
-msgstr ""
-
-#. TRANS: Link title for link on user profile.
-#: actions/profiledetail.php:52
-msgid "Edit extended profile settings"
-msgstr ""
-
-#. TRANS: Link text for link on user profile.
-#: actions/profiledetail.php:54
-msgid "Edit"
 msgstr ""
 
 #. TRANS: Plugin description.
@@ -101,95 +102,8 @@ msgid "UI extensions for additional profile fields."
 msgstr ""
 
 #. TRANS: Link text on user profile page leading to extended profile page.
-#: ExtendedProfilePlugin.php:123
+#: ExtendedProfilePlugin.php:87
 msgid "More details..."
-msgstr ""
-
-#. TRANS: Title for extended profile entry deletion dialog.
-#: lib/extendedprofilewidget.php:84
-msgid "Confirmation Required"
-msgstr ""
-
-#. TRANS: Confirmation text for extended profile entry deletion dialog.
-#: lib/extendedprofilewidget.php:87
-msgid "Really delete this entry?"
-msgstr ""
-
-#. TRANS: Value between parentheses (phone number, website, or IM address).
-#: lib/extendedprofilewidget.php:169 lib/extendedprofilewidget.php:182
-#: lib/extendedprofilewidget.php:206
-#, php-format
-msgid "(%s)"
-msgstr ""
-
-#. TRANS: Field label in experience area of extended profile.
-#. TRANS: Field label in experience edit area of extended profile (which company does one work for).
-#: lib/extendedprofilewidget.php:326 lib/extendedprofilewidget.php:372
-msgid "Company"
-msgstr ""
-
-#. TRANS: Field label in extended profile (when did one start a position or education).
-#: lib/extendedprofilewidget.php:332 lib/extendedprofilewidget.php:380
-#: lib/extendedprofilewidget.php:426 lib/extendedprofilewidget.php:481
-msgid "Start"
-msgstr ""
-
-#. TRANS: Field label in extended profile (when did one end a position or education).
-#: lib/extendedprofilewidget.php:340 lib/extendedprofilewidget.php:388
-#: lib/extendedprofilewidget.php:434 lib/extendedprofilewidget.php:490
-msgid "End"
-msgstr ""
-
-#. TRANS: Field value in experience area of extended profile (one still holds a position).
-#: lib/extendedprofilewidget.php:353
-msgid "(Current)"
-msgstr ""
-
-#. TRANS: Checkbox label in experience edit area of extended profile (one still works at a company).
-#: lib/extendedprofilewidget.php:403
-msgid "Current"
-msgstr ""
-
-#. TRANS: Field label in education area of extended profile.
-#. TRANS: Field label in education edit area of extended profile.
-#. TRANS: Field label for extended profile properties.
-#: lib/extendedprofilewidget.php:416 lib/extendedprofilewidget.php:456
-#: lib/extendedprofile.php:251 lib/extendedprofile.php:264
-msgid "Institution"
-msgstr ""
-
-#. TRANS: Field label in extended profile for specifying an academic degree.
-#: lib/extendedprofilewidget.php:420 lib/extendedprofilewidget.php:464
-msgid "Degree"
-msgstr ""
-
-#. TRANS: Field label in education area of extended profile.
-#. TRANS: Field label in education edit area of extended profile.
-#: lib/extendedprofilewidget.php:423 lib/extendedprofilewidget.php:472
-msgid "Description"
-msgstr ""
-
-#. TRANS: Link description in extended profile page to add another profile element.
-#: lib/extendedprofilewidget.php:522
-msgid "Add another item"
-msgstr ""
-
-#. TRANS: Field label for undefined field in extended profile.
-#: lib/extendedprofilewidget.php:633
-#, php-format
-msgid "TYPE: %s"
-msgstr ""
-
-#. TRANS: Button text for saving extended profile properties.
-#: lib/extendedprofilewidget.php:647
-msgctxt "BUTTON"
-msgid "Save"
-msgstr ""
-
-#. TRANS: .
-#. TRANS: Button title for saving extended profile properties.
-#: lib/extendedprofilewidget.php:652
-msgid "Save details"
 msgstr ""
 
 #. TRANS: Field label for extended profile properties.
@@ -210,6 +124,14 @@ msgstr ""
 #. TRANS: Field label for extended profile properties.
 #: lib/extendedprofile.php:212 lib/extendedprofile.php:224
 msgid "Employer"
+msgstr ""
+
+#. TRANS: Field label for extended profile properties.
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
+#: lib/extendedprofile.php:251 lib/extendedprofile.php:264
+#: lib/extendedprofilewidget.php:416 lib/extendedprofilewidget.php:456
+msgid "Institution"
 msgstr ""
 
 #. TRANS: Field label for extended profile properties.
@@ -275,4 +197,83 @@ msgstr ""
 #. TRANS: Field label for extended profile properties.
 #: lib/extendedprofile.php:366
 msgid "Education"
+msgstr ""
+
+#. TRANS: Title for extended profile entry deletion dialog.
+#: lib/extendedprofilewidget.php:84
+msgid "Confirmation Required"
+msgstr ""
+
+#. TRANS: Confirmation text for extended profile entry deletion dialog.
+#: lib/extendedprofilewidget.php:87
+msgid "Really delete this entry?"
+msgstr ""
+
+#. TRANS: Value between parentheses (phone number, website, or IM address).
+#: lib/extendedprofilewidget.php:169 lib/extendedprofilewidget.php:182
+#: lib/extendedprofilewidget.php:206
+#, php-format
+msgid "(%s)"
+msgstr ""
+
+#. TRANS: Field label in experience area of extended profile.
+#. TRANS: Field label in experience edit area of extended profile (which company does one work for).
+#: lib/extendedprofilewidget.php:326 lib/extendedprofilewidget.php:372
+msgid "Company"
+msgstr ""
+
+#. TRANS: Field label in extended profile (when did one start a position or education).
+#: lib/extendedprofilewidget.php:332 lib/extendedprofilewidget.php:380
+#: lib/extendedprofilewidget.php:426 lib/extendedprofilewidget.php:481
+msgid "Start"
+msgstr ""
+
+#. TRANS: Field label in extended profile (when did one end a position or education).
+#: lib/extendedprofilewidget.php:340 lib/extendedprofilewidget.php:388
+#: lib/extendedprofilewidget.php:434 lib/extendedprofilewidget.php:490
+msgid "End"
+msgstr ""
+
+#. TRANS: Field value in experience area of extended profile (one still holds a position).
+#: lib/extendedprofilewidget.php:353
+msgid "(Current)"
+msgstr ""
+
+#. TRANS: Checkbox label in experience edit area of extended profile (one still works at a company).
+#: lib/extendedprofilewidget.php:403
+msgid "Current"
+msgstr ""
+
+#. TRANS: Field label in extended profile for specifying an academic degree.
+#: lib/extendedprofilewidget.php:420 lib/extendedprofilewidget.php:464
+msgid "Degree"
+msgstr ""
+
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
+#: lib/extendedprofilewidget.php:423 lib/extendedprofilewidget.php:472
+msgid "Description"
+msgstr ""
+
+#. TRANS: Link description in extended profile page to add another profile element.
+#: lib/extendedprofilewidget.php:522
+msgid "Add another item"
+msgstr ""
+
+#. TRANS: Field label for undefined field in extended profile.
+#: lib/extendedprofilewidget.php:633
+#, php-format
+msgid "TYPE: %s"
+msgstr ""
+
+#. TRANS: Button text for saving extended profile properties.
+#: lib/extendedprofilewidget.php:647
+msgctxt "BUTTON"
+msgid "Save"
+msgstr ""
+
+#. TRANS: .
+#. TRANS: Button title for saving extended profile properties.
+#: lib/extendedprofilewidget.php:652
+msgid "Save details"
 msgstr ""

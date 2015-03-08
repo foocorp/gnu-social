@@ -1,32 +1,31 @@
-# Translation of StatusNet - LilUrl to German (Deutsch)
-# Exported from translatewiki.net
-#
-# Author: The Evil IP address
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - LilUrl\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:59+0000\n"
-"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:52+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/gnu-social/language/de/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:26+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: de\n"
-"X-Message-Group: #out-statusnet-plugin-lilurl\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown when URL shortening plugin was configured incorrectly.
+#. TRANS: Exception thrown when URL shortening plugin was configured
+#. incorrectly.
+#: LilUrlPlugin.php:42
 msgid "A serviceUrl must be specified."
 msgstr "Eine „serviceUrl“ muss angegeben werden."
 
 #. TRANS: Plugin description.
 #. TRANS: %1$s is the service URL.
+#: LilUrlPlugin.php:69
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr "Benutzung des <a href=\"http://%1$s/\">%1$s</a>-URL-Kürzungsdienstes."

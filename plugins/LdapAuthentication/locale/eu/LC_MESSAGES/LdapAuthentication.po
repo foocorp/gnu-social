@@ -1,44 +1,44 @@
-# Translation of StatusNet - LdapAuthentication to Basque (euskara)
-# Exported from translatewiki.net
-#
-# Author: Artsuaga
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - LdapAuthentication\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:56+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:02+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Basque (http://www.transifex.com/projects/p/gnu-social/language/eu/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:24+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthenticationPlugin.php:40
 msgid "You must specify a nickname attribute."
 msgstr "Ezizenaren ezaugarri bat gehitu behar duzu."
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthenticationPlugin.php:44
 msgid ""
 "If password_changeable is set, the password attribute and password_encoding "
 "must also be specified."
-msgstr ""
-"\"password_changeable\" definiturik badago, pasahitzaren (password) eta "
-"\"password_encoding\"-en ezaugarria zehaztu."
+msgstr "\"password_changeable\" definiturik badago, pasahitzaren (password) eta \"password_encoding\"-en ezaugarria zehaztu."
 
 #. TRANS: Instructions for LDAP authentication.
+#: LdapAuthenticationPlugin.php:71 LdapAuthenticationPlugin.php:76
 msgid "Do you have an LDAP account? Use your standard username and password."
-msgstr ""
-"Baduzu LDAP konturik? Erabili zure erabiltzaile eta pasahitz estandarra."
+msgstr "Baduzu LDAP konturik? Erabili zure erabiltzaile eta pasahitz estandarra."
 
 #. TRANS: Plugin description.
+#: LdapAuthenticationPlugin.php:153
 msgid ""
-"The LDAP Authentication plugin allows for StatusNet to handle authentication "
-"through LDAP."
-msgstr ""
-"LDAP autentifikazio pluginak StatusNeti autentikazioa LDAP bidez kudeatzen "
-"uzten dio."
+"The LDAP Authentication plugin allows for StatusNet to handle authentication"
+" through LDAP."
+msgstr "LDAP autentifikazio pluginak StatusNeti autentikazioa LDAP bidez kudeatzen uzten dio."

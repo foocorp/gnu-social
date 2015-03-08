@@ -1,38 +1,35 @@
-# Translation of StatusNet - Meteor to Breton (Brezhoneg)
-# Expored from translatewiki.net
-#
-# Author: Y-M D
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Meteor\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:16+0000\n"
-"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 08:50+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Breton (http://www.transifex.com/projects/p/gnu-social/language/br/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:38+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: br\n"
-"X-Message-Group: #out-statusnet-plugin-meteor\n"
+"Language: br\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Exception. %1$s is the control server, %2$s is the control port.
-#: MeteorPlugin.php:115
+#: MeteorPlugin.php:127
 #, php-format
-msgid "Couldn't connect to %1$s on %2$s."
-msgstr "Dibosupl eo kevreañ ouzh %1$s war %2$s."
-
-#. TRANS: Exception. %s is the Meteor message that could not be added.
-#: MeteorPlugin.php:128
-#, php-format
-msgid "Error adding meteor message \"%s\""
+msgid "Could not connect to %1$s on %2$s."
 msgstr ""
 
-#: MeteorPlugin.php:158
-msgid "Plugin to do \"real time\" updates using Comet/Bayeux."
+#. TRANS: Exception. %s is the Meteor message that could not be added.
+#: MeteorPlugin.php:140
+#, php-format
+msgid "Error adding meteor message \"%s\"."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: MeteorPlugin.php:171
+msgid "Plugin to do \"real time\" updates using Meteor."
 msgstr ""

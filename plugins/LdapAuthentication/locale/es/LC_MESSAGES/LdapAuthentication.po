@@ -1,49 +1,45 @@
-# Translation of StatusNet - LdapAuthentication to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Armando-Martin
-# Author: Translationista
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - LdapAuthentication\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:56+0000\n"
-"Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-27 15:30+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:24+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: es\n"
-"X-Message-Group: #out-statusnet-plugin-ldapauthentication\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthenticationPlugin.php:40
 msgid "You must specify a nickname attribute."
-msgstr "Debe especificar un atributo de pseudónimo (nickname)."
+msgstr "Debes especificar un nombre de usuario."
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthenticationPlugin.php:44
 msgid ""
 "If password_changeable is set, the password attribute and password_encoding "
 "must also be specified."
-msgstr ""
-"Si \"password_changeable\" está definido, debe especificar el atributo de "
-"contraseña (password) y de \"password_encoding\"."
+msgstr "Si se puede cambiar la contraseña (password_changeable está definido), debes especificar los atributos password ('contraseña') y password_encoding ('codificación de contraseña')."
 
 #. TRANS: Instructions for LDAP authentication.
+#: LdapAuthenticationPlugin.php:71 LdapAuthenticationPlugin.php:76
 msgid "Do you have an LDAP account? Use your standard username and password."
-msgstr ""
-"¿Tiene una cuenta LDAP? Utilice su nombre de usuario estándar y su "
-"contraseña."
+msgstr "¿Tienes una cuenta LDAP? Utiliza tu nombre de usuario estándar y tu contraseña."
 
 #. TRANS: Plugin description.
+#: LdapAuthenticationPlugin.php:153
 msgid ""
-"The LDAP Authentication plugin allows for StatusNet to handle authentication "
-"through LDAP."
-msgstr ""
-"La extensión de Autenticación LDAP permite a StatusNet manejar la "
-"autenticación a través de LDAP."
+"The LDAP Authentication plugin allows for StatusNet to handle authentication"
+" through LDAP."
+msgstr "El complemento LDAP Authentication ('Autenticación LDAP') permite a los usuarios de GNU social conectarse vía LDAP."

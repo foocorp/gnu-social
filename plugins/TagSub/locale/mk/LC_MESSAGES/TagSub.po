@@ -1,148 +1,166 @@
-# Translation of StatusNet - TagSub to Macedonian (македонски)
-# Exported from translatewiki.net
-#
-# Author: Bjankuloski06
-# Author: Rancher
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - TagSub\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:16+0000\n"
-"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 12:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Macedonian (http://www.transifex.com/projects/p/gnu-social/language/mk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 13:51:31+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: mk\n"
-"X-Message-Group: #out-statusnet-plugin-tagsub\n"
-"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #. TRANS: Form legend.
+#: forms/tagunsub.php:90
 msgid "Unsubscribe from this tag"
 msgstr "Отпиши се од ознакава"
 
 #. TRANS: Submit button text to unsubscribe from a tag.
+#: forms/tagunsub.php:101
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Откажи претплата"
 
 #. TRANS: Submit button title to unsubscribe from a tag.
+#: forms/tagunsub.php:103
 msgid "Unsubscribe from this tag."
 msgstr "Отпиши се од ознакава."
 
-#. TRANS: Plugin description.
-msgid "Plugin to allow following all messages with a given tag."
-msgstr "Приклучок што овозможува да ги следите сите пораки со извесна ознака."
-
-#. TRANS: SubMirror plugin menu item on user settings page.
-msgctxt "MENU"
-msgid "Tags"
-msgstr "Ознаки"
-
-#. TRANS: SubMirror plugin tooltip for user settings menu item.
-msgid "Configure tag subscriptions"
-msgstr "Нагоди претплата на ознаки"
-
-#. TRANS: Menu item text for tags submenu.
-msgid "Tags"
-msgstr "Ознаки"
-
 #. TRANS: Form legend.
+#: forms/tagsub.php:108
 msgid "Subscribe to this tag"
 msgstr "Претплати се на ознакава"
 
 #. TRANS: Submit button text to subscribe to a tag.
+#: forms/tagsub.php:131
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr "Претплати се"
 
 #. TRANS: Submit button title to subscribe to a tag.
+#: forms/tagsub.php:133
 msgid "Subscribe to this tag."
 msgstr "Претплати се на ознакава."
 
 #. TRANS: Page title when tag unsubscription succeeded.
+#: actions/tagunsub.php:76
 msgid "Unsubscribed"
 msgstr "Претплатено"
 
-#. TRANS: Client error displayed trying to perform any request method other than POST.
-#. TRANS: Do not translate POST.
-msgid "This action only accepts POST requests."
-msgstr "Ова дејство прифаќа само POST-барања"
-
-#. TRANS: Client error displayed when the session token is not okay.
-msgid "There was a problem with your session token. Try again, please."
-msgstr "Се поајви проблем со Вашиот сесиски жетон. Обидете се повторно."
-
-#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-msgid "Not logged in."
-msgstr "Не сте најавени."
-
-#. TRANS: Client error displayed trying to subscribe to a non-existing profile.
-msgid "No such profile."
-msgstr "Нема таков профил."
-
-#. TRANS: Page title when tag subscription succeeded.
-msgid "Subscribed"
-msgstr "Претплатата е откажана"
-
 #. TRANS: Header for subscriptions overview for a user (first page).
 #. TRANS: %s is a user nickname.
+#: actions/tagsubs.php:51
 #, php-format
 msgid "%s's tag subscriptions"
 msgstr "претплатени ознаки на %s"
 
 #. TRANS: Header for subscriptions overview for a user (not first page).
 #. TRANS: %1$s is a user nickname, %2$d is the page number.
+#: actions/tagsubs.php:55
 #, php-format
 msgid "%1$s's tag subscriptions, page %2$d"
 msgstr "Претплатени ознаки на %1$s, страница %2$d"
 
 #. TRANS: Page notice for page with an overview of all tag subscriptions
 #. TRANS: of the logged in user's own profile.
+#: actions/tagsubs.php:68
 msgid ""
 "You have subscribed to receive all notices on this site containing the "
 "following tags:"
-msgstr ""
-"Се претплативте да ги примате сите забелешки на ова мреж. место што ги "
-"содржат слендиве ознаки:"
+msgstr "Се претплативте да ги примате сите забелешки на ова мреж. место што ги содржат слендиве ознаки:"
 
-#. TRANS: Page notice for page with an overview of all subscriptions of a user other
+#. TRANS: Page notice for page with an overview of all subscriptions of a user
+#. other
 #. TRANS: than the logged in user. %s is the user nickname.
+#: actions/tagsubs.php:73
 #, php-format
 msgid ""
 "%s has subscribed to receive all notices on this site containing the "
 "following tags:"
-msgstr ""
-"%s се претплати да ги прима сите забелешки на ова мреж. место што ги содржат "
-"слендиве ознаки:"
+msgstr "%s се претплати да ги прима сите забелешки на ова мреж. место што ги содржат слендиве ознаки:"
 
-#. TRANS: Tag subscription list text when the logged in user has no tag subscriptions.
+#. TRANS: Tag subscription list text when the logged in user has no tag
+#. subscriptions.
+#: actions/tagsubs.php:118
 msgid ""
 "You are not listening to any hash tags right now. You can push the "
-"\"Subscribe\" button on any hashtag page to automatically receive any public "
-"messages on this site that use that tag, even if you are not subscribed to "
+"\"Subscribe\" button on any hashtag page to automatically receive any public"
+" messages on this site that use that tag, even if you are not subscribed to "
 "the poster."
-msgstr ""
-"Моментално не следите никакви тарабни ознаки. Можете да го притиснете "
-"копчето „Претплати се“ на секоја страница со тарабна ознака за автоматски да "
-"добивате јавни пораки од мреж. место што ја имаат таа ознака, дури и ако не "
-"сте претплатени на објавувачот."
+msgstr "Моментално не следите никакви тарабни ознаки. Можете да го притиснете копчето „Претплати се“ на секоја страница со тарабна ознака за автоматски да добивате јавни пораки од мреж. место што ја имаат таа ознака, дури и ако не сте претплатени на објавувачот."
 
-#. TRANS: Tag subscription list text when looking at the subscriptions for a of a user other
-#. TRANS: than the logged in user that has no tag subscriptions. %s is the user nickname.
-#. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
+#. TRANS: Tag subscription list text when looking at the subscriptions for a
+#. of a user other
+#. TRANS: than the logged in user that has no tag subscriptions. %s is the
+#. user nickname.
+#. TRANS: Subscription list text when looking at the subscriptions for a of a
+#. user that has none
 #. TRANS: as an anonymous user. %s is the user nickname.
+#: actions/tagsubs.php:124 actions/tagsubs.php:130
 #, php-format
 msgid "%s is not following any tags."
 msgstr "%s не следи никакви ознаки."
 
 #. TRANS: %1$s is a URL to a tag, %2$s is a tag,
 #. TRANS: %3$s a date string.
+#: actions/tagsubs.php:170
 #, php-format
 msgid "#<a href=\"%1$s\">%2$s</a> since %3$s"
 msgstr "#<a href=\"%1$s\">%2$s</a> од %3$s"
+
+#. TRANS: Client error displayed trying to perform any request method other
+#. than POST.
+#. TRANS: Do not translate POST.
+#: actions/tagsub.php:78
+msgid "This action only accepts POST requests."
+msgstr "Ова дејство прифаќа само POST-барања"
+
+#. TRANS: Client error displayed when the session token is not okay.
+#: actions/tagsub.php:87
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Се поајви проблем со Вашиот сесиски жетон. Обидете се повторно."
+
+#. TRANS: Error message displayed when trying to perform an action that
+#. requires a logged in user.
+#: actions/tagsub.php:97
+msgid "Not logged in."
+msgstr "Не сте најавени."
+
+#. TRANS: Client error displayed trying to subscribe to a non-existing
+#. profile.
+#: actions/tagsub.php:106
+msgid "No such profile."
+msgstr "Нема таков профил."
+
+#. TRANS: Page title when tag subscription succeeded.
+#: actions/tagsub.php:132
+msgid "Subscribed"
+msgstr "Претплатата е откажана"
+
+#. TRANS: Plugin description.
+#: TagSubPlugin.php:100
+msgid "Plugin to allow following all messages with a given tag."
+msgstr "Приклучок што овозможува да ги следите сите пораки со извесна ознака."
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: TagSubPlugin.php:173
+msgctxt "MENU"
+msgid "Tags"
+msgstr "Ознаки"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: TagSubPlugin.php:175
+msgid "Configure tag subscriptions"
+msgstr "Нагоди претплата на ознаки"
+
+#. TRANS: Menu item text for tags submenu.
+#: TagSubPlugin.php:192
+msgid "Tags"
+msgstr "Ознаки"

@@ -1,34 +1,27 @@
-# Translation of StatusNet - InfiniteScroll to Japanese (日本語)
-# Exported from translatewiki.net
-#
-# Author: 青子守歌
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - InfiniteScroll\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:52+0000\n"
-"Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:43+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/gnu-social/language/ja/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:21+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: ja\n"
-"X-Message-Group: #out-statusnet-plugin-infinitescroll\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. TRANS: Plugin dscription.
+#: InfiniteScrollPlugin.php:60
 msgid ""
 "Infinite Scroll adds the following functionality to your StatusNet "
 "installation: When a user scrolls towards the bottom of the page, the next "
 "page of notices is automatically retrieved and appended. This means they "
 "never need to click \"Next Page\", which dramatically increases stickiness."
-msgstr ""
-"無限スクロールは、StatusNetのインストールに次の機能を追加します：ユーザーが"
-"ページの最後までスクロースしたとき、次のページの通知が自動的に取得され追加さ"
-"れます。これはつまり、「次のページ」をクリックする必要がなく、手間を劇的に改"
-"善します。"
+msgstr "無限スクロールは、StatusNetのインストールに次の機能を追加します：ユーザーがページの最後までスクロースしたとき、次のページの通知が自動的に取得され追加されます。これはつまり、「次のページ」をクリックする必要がなく、手間を劇的に改善します。"

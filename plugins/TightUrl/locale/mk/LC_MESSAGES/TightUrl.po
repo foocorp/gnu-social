@@ -1,33 +1,30 @@
-# Translation of StatusNet - TightUrl to Macedonian (македонски)
-# Exported from translatewiki.net
-#
-# Author: Bjankuloski06
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - TightUrl\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:17+0000\n"
-"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:53+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Macedonian (http://www.transifex.com/projects/p/gnu-social/language/mk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:38+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: mk\n"
-"X-Message-Group: #out-statusnet-plugin-tighturl\n"
-"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
-#. TRANS: Exception thrown when the TightUrl plugin has been configured incorrectly.
+#. TRANS: Exception thrown when the TightUrl plugin has been configured
+#. incorrectly.
+#: TightUrlPlugin.php:42
 msgid "You must specify a serviceUrl."
 msgstr "Мора да наведете serviceUrl."
 
 #. TRANS: Plugin description. %s is the shortener name.
+#: TightUrlPlugin.php:68
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
-msgstr ""
-"Користи <a href=\"http://%1$s/\">%1$s</a> - служба за скратување на URL-"
-"адреси."
+msgstr "Користи <a href=\"http://%1$s/\">%1$s</a> - служба за скратување на URL-адреси."

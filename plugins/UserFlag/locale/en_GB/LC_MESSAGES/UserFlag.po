@@ -1,0 +1,123 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 12:17+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/gnu-social/language/en_GB/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Form title for flagging a profile for review.
+#: forms/flagprofile.php:78
+msgid "Flag"
+msgstr ""
+
+#. TRANS: Form description.
+#: forms/flagprofile.php:89
+msgid "Flag profile for review."
+msgstr ""
+
+#. TRANS: Form title for action on a profile.
+#: forms/clearflag.php:76
+msgid "Clear"
+msgstr ""
+
+#. TRANS: Form description for clearing flags from a profile.
+#: forms/clearflag.php:88
+msgid "Clear all flags"
+msgstr ""
+
+#. TRANS: AJAX form title for a flagged profile.
+#: actions/flagprofile.php:123
+msgid "Flagged for review"
+msgstr ""
+
+#. TRANS: Body text for AJAX form when a profile has been flagged for review.
+#. TRANS: Message added to a profile if it has been flagged for review.
+#: actions/flagprofile.php:127 UserFlagPlugin.php:134
+msgid "Flagged"
+msgstr ""
+
+#. TRANS: Error message displayed when trying to perform an action that
+#. requires a logged in user.
+#: actions/adminprofileflag.php:65
+msgid "Not logged in."
+msgstr "Not logged in."
+
+#. TRANS: Error message displayed when trying to review profile flags while
+#. not authorised.
+#: actions/adminprofileflag.php:89
+msgid "You cannot review profile flags."
+msgstr ""
+
+#. TRANS: Title for page with a list of profiles that were flagged for review.
+#: actions/adminprofileflag.php:125
+msgid "Flagged profiles"
+msgstr ""
+
+#. TRANS: Header for moderation menu with action buttons for flagged profiles
+#. (like 'sandbox', 'silence', ...).
+#: actions/adminprofileflag.php:242
+msgid "Moderate"
+msgstr "Moderate"
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %1$s is a comma separated list of at most 5 user nicknames that
+#. flagged.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used
+#. for plural.
+#: actions/adminprofileflag.php:388
+#, php-format
+msgid "Flagged by %1$s and %2$d other"
+msgid_plural "Flagged by %1$s and %2$d others"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %s is a comma separated list of at most 5 user nicknames that
+#. flagged.
+#: actions/adminprofileflag.php:392
+#, php-format
+msgid "Flagged by %s"
+msgstr ""
+
+#. TRANS: Server exception given when flags could not be cleared.
+#. TRANS: %s is a profile nickname.
+#: actions/clearflag.php:105
+#, php-format
+msgid "Could not clear flags for profile \"%s\"."
+msgstr ""
+
+#. TRANS: Title for AJAX form to indicated that flags were removed.
+#: actions/clearflag.php:127
+msgid "Flags cleared"
+msgstr ""
+
+#. TRANS: Body element for "flags cleared" form.
+#: actions/clearflag.php:131
+msgid "Cleared"
+msgstr ""
+
+#. TRANS: Server exception.
+#. TRANS: %d is a profile ID (number).
+#: classes/User_flag_profile.php:115
+#, php-format
+msgid "Could not flag profile \"%d\" for review."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: UserFlagPlugin.php:240
+msgid ""
+"This plugin allows flagging of profiles for review and reviewing flagged "
+"profiles."
+msgstr ""

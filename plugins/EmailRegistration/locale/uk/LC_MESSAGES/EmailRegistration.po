@@ -1,191 +1,206 @@
-# Translation of StatusNet - EmailRegistration to Ukrainian (українська)
-# Exported from translatewiki.net
-#
-# Author: Boogie
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - EmailRegistration\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:25+0000\n"
-"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 12:22+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: uk\n"
-"X-Message-Group: #out-statusnet-plugin-emailregistration\n"
-"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
-"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. TRANS: Form instructions.
+#: forms/confirmregistration.php:65
+msgid "Enter a password to confirm your new account."
+msgstr "Введіть пароль для підтвердження вашого нового облікового запису."
+
+#. TRANS: Field label in e-mail registration form.
+#: forms/confirmregistration.php:74
+msgctxt "LABEL"
+msgid "User name"
+msgstr "Ім’я користувача"
+
+#. TRANS: Field label.
+#: forms/confirmregistration.php:87
+msgid "Email address"
+msgstr "Електронна адреса"
+
+#. TRANS: Field label on account registration page.
+#: forms/confirmregistration.php:99
+msgid "Password"
+msgstr "Пароль"
+
+#. TRANS: Field title on account registration page.
+#: forms/confirmregistration.php:101
+msgid "6 or more characters."
+msgstr "6 або більше знаків."
+
+#. TRANS: Field label on account registration page. In this field the password
+#. has to be entered a second time.
+#: forms/confirmregistration.php:105
+msgctxt "PASSWORD"
+msgid "Confirm"
+msgstr "Підтвердити"
+
+#. TRANS: Field title on account registration page.
+#: forms/confirmregistration.php:107
+msgid "Same as password above."
+msgstr "Такий само, як і пароль вище."
+
+#. TRANS: Checkbox title for terms of service and privacy policy.
+#: forms/confirmregistration.php:123
+#, php-format
+msgid ""
+"I agree to the <a href=\"%1$s\">Terms of service</a> and <a "
+"href=\"%1$s\">Privacy policy</a> of this site."
+msgstr "Я погоджуюсь з <a href=\"%1$s\">умовами надання послуг</a> та <a href=\"%1$s\">політикою конфіденційності</a> на цьому сайті."
+
+#. TRANS: Button text for action to register.
+#. TRANS: Button text for registering an account.
+#: forms/confirmregistration.php:152 forms/emailregistration.php:93
+msgctxt "BUTTON"
+msgid "Register"
+msgstr "Реєстрація"
+
+#. TRANS: Form instructions.
+#: forms/emailregistration.php:61
+msgid "Enter your email address to register for an account."
+msgstr "Введіть адресу електронної пошти, щоб створити обліковий запис."
+
+#. TRANS: Field label on form for registering an account.
+#: forms/emailregistration.php:69
+msgctxt "LABEL"
+msgid "E-mail address"
+msgstr "Адреса електронної пошти"
 
 #. TRANS: Client exception trown when registration by e-mail is not allowed.
+#: actions/emailregister.php:84
 msgid "Registration not allowed."
 msgstr "Реєстрацію не дозволено."
 
-#. TRANS: Client exception trown when trying to register without an invitation.
+#. TRANS: Client exception trown when trying to register without an
+#. invitation.
+#: actions/emailregister.php:96 actions/emailregister.php:138
 msgid "Sorry, only invited people can register."
 msgstr "Вибачте, але реєстрація лише за запрошеннями."
 
 #. TRANS: Client exception thrown when no confirmation code was provided.
+#: actions/emailregister.php:107
 msgid "No confirmation code."
 msgstr "Немає коду підтвердження."
 
 #. TRANS: Client exception trown when using an invitation multiple times.
+#: actions/emailregister.php:115 actions/emailregister.php:146
 msgid "Invitation already used."
 msgstr "Це запрошення вже було використано."
 
 #. TRANS: Client exception thrown when given confirmation code was not issued.
+#: actions/emailregister.php:123 actions/emailregister.php:155
 msgid "No such confirmation code."
 msgstr "Немає такого коду підтвердження."
 
 #. TRANS: Title for registration page.
+#: actions/emailregister.php:170
 msgctxt "TITLE"
 msgid "Register"
 msgstr "Реєстрація"
 
 #. TRANS: Title for page where to register with a confirmation code.
+#: actions/emailregister.php:176
 msgctxt "TITLE"
 msgid "Complete registration"
 msgstr "Завершення реєстрації"
 
 #. TRANS: Confirmation text after initial registration.
 #. TRANS: %s an e-mail address.
+#: actions/emailregister.php:236
 #, php-format
 msgid ""
 "An email was sent to %s to confirm that address. Check your email inbox for "
 "instructions."
-msgstr ""
-"Лист було надіслано %s для підтвердження цієї адреси. Перевірте вашу поштову "
-"скриньку для отримання інструкцій."
+msgstr "Лист було надіслано %s для підтвердження цієї адреси. Перевірте вашу поштову скриньку для отримання інструкцій."
 
-#. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
+#. TRANS: Client exception trown when trying to set password with an invalid
+#. confirmation code.
+#: actions/emailregister.php:270
 msgid "No confirmation thing."
 msgstr "Немає коду підтвердження."
 
 #. TRANS: Error text when trying to register without agreeing to the terms.
+#: actions/emailregister.php:275
 msgid "You must accept the terms of service and privacy policy to register."
-msgstr ""
-"Щоб зареєструватися, ви повинні прийняти умови надання послуг та погодитися "
-"політикою конфіденційності."
+msgstr "Щоб зареєструватися, ви повинні прийняти умови надання послуг та погодитися політикою конфіденційності."
 
 #. TRANS: Error text when trying to register without a password.
+#: actions/emailregister.php:278
 msgid "You must set a password"
 msgstr "Ви повинні встановити пароль"
 
 #. TRANS: Error text when trying to register with too short a password.
+#: actions/emailregister.php:281
 msgid "Password must be 6 or more characters."
 msgstr "Пароль має складатись з 6-ти або більше знаків."
 
-#. TRANS: Error text when trying to register without providing the same password twice.
+#. TRANS: Error text when trying to register without providing the same
+#. password twice.
+#: actions/emailregister.php:284
 msgid "Passwords do not match."
 msgstr "Паролі не збігаються."
 
 #. TRANS: Exception trown when using an invitation multiple times.
+#: actions/emailregister.php:316
 msgid "Failed to register user."
 msgstr "Не вдалося зареєструвати користувача."
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.
+#: actions/emailregister.php:350
 #, php-format
 msgid "Confirm your registration on %s"
 msgstr "Підтвердження вашої реєстрації на %s"
 
 #. TRANS: Body for confirmation e-mail.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
+#: actions/emailregister.php:356
 #, php-format
 msgid ""
-"Someone (probably you) has requested an account on %1$s using this email "
-"address.\n"
-"To confirm the address, click the following URL or copy it into the address "
-"bar of your browser.\n"
+"Someone (probably you) has requested an account on %1$s using this email address.\n"
+"To confirm the address, click the following URL or copy it into the address bar of your browser.\n"
 "%2$s\n"
 "If it was not you, you can safely ignore this message."
-msgstr ""
-"Хтось (ймовірно, ви) надіслав запит на реєстрацію на %1$s, використовуючи цю "
-"електронну адресу. Щоб підтвердити цю адресу, натисніть на відповідне "
-"посилання або скопіюйте URL до адресного рядка вашого браузера.\n"
-"%2$s\n"
-"У випадку, якщо це були не ви, просто ігноруйте це повідомлення."
+msgstr "Хтось (ймовірно, ви) надіслав запит на реєстрацію на %1$s, використовуючи цю електронну адресу. Щоб підтвердити цю адресу, натисніть на відповідне посилання або скопіюйте URL до адресного рядка вашого браузера.\n%2$s\nУ випадку, якщо це були не ви, просто ігноруйте це повідомлення."
 
-#. TRANS: Form instructions.
-msgid "Enter your email address to register for an account."
-msgstr "Введіть адресу електронної пошти, щоб створити обліковий запис."
-
-#. TRANS: Field label on form for registering an account.
-msgctxt "LABEL"
-msgid "E-mail address"
-msgstr "Адреса електронної пошти"
-
-#. TRANS: Button text for registering an account.
-#. TRANS: Button text for action to register.
-msgctxt "BUTTON"
-msgid "Register"
-msgstr "Реєстрація"
-
-#. TRANS: Form instructions.
-msgid "Enter a password to confirm your new account."
-msgstr "Введіть пароль для підтвердження вашого нового облікового запису."
-
-#. TRANS: Field label in e-mail registration form.
-msgctxt "LABEL"
-msgid "User name"
-msgstr "Ім’я користувача"
-
-#. TRANS: Field label.
-msgid "Email address"
-msgstr "Електронна адреса"
-
-#. TRANS: Field label on account registration page.
-msgid "Password"
-msgstr "Пароль"
-
-#. TRANS: Field title on account registration page.
-msgid "6 or more characters."
-msgstr "6 або більше знаків."
-
-#. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
-msgctxt "PASSWORD"
-msgid "Confirm"
-msgstr "Підтвердити"
-
-#. TRANS: Field title on account registration page.
-msgid "Same as password above."
-msgstr "Такий само, як і пароль вище."
-
-#. TRANS: Checkbox title for terms of service and privacy policy.
-#, php-format
-msgid ""
-"I agree to the <a href=\"%1$s\">Terms of service</a> and <a href=\"%1$s"
-"\">Privacy policy</a> of this site."
-msgstr ""
-"Я погоджуюсь з <a href=\"%1$s\">умовами надання послуг</a> та <a href=\"%1$s"
-"\">політикою конфіденційності</a> на цьому сайті."
-
-#. TRANS: Error text when trying to register with an already registered e-mail address.
+#. TRANS: Error text when trying to register with an already registered e-mail
+#. address.
 #. TRANS: %s is the URL to recover password at.
+#: EmailRegistrationPlugin.php:92
 #, php-format
 msgid ""
-"A user with that email address already exists. You can use the <a href=\"%s"
-"\">password recovery</a> tool to recover a missing password."
-msgstr ""
-"Користувач з такою адресою електронної пошти вже зареєстрований. Ви можете "
-"скористатися інструментом <a href=\"%s\">відновлення паролю</a>, щоб "
-"відновити втрачений пароль."
+"A user with that email address already exists. You can use the <a "
+"href=\"%s\">password recovery</a> tool to recover a missing password."
+msgstr "Користувач з такою адресою електронної пошти вже зареєстрований. Ви можете скористатися інструментом <a href=\"%s\">відновлення паролю</a>, щоб відновити втрачений пароль."
 
 #. TRANS: Error text when trying to register with an invalid e-mail address.
+#: EmailRegistrationPlugin.php:106
 msgid "Not a valid email address."
 msgstr "Це не дійсна електронна адреса."
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.
+#: EmailRegistrationPlugin.php:150
 #, php-format
 msgid "Welcome to %s"
 msgstr "Ласкаво просимо до %s"
 
 #. TRANS: Plugin description.
+#: EmailRegistrationPlugin.php:183
 msgid "Use email only for registration."
 msgstr "Використання електронної пошти тільки для реєстрації."

@@ -1,46 +1,45 @@
-# Translation of StatusNet - Aim to German (Deutsch)
-# Exported from translatewiki.net
-#
-# Author: Giftpflanze
-# Author: Marcel083
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Aim\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:34+0000\n"
-"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-05 17:36+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/gnu-social/language/de/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:18:38+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: de\n"
-"X-Message-Group: #out-statusnet-plugin-aim\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: No idea what the use case for this message is.
-msgid "Send me a message to post a notice"
-msgstr "Sende mir eine Nachricht um eine Notiz zu schreiben"
-
 #. TRANS: Display name.
+#: AimPlugin.php:60
 msgid "AIM"
 msgstr "AIM"
 
 #. TRANS: Exception thrown in AIM plugin when user has not been specified.
+#: AimPlugin.php:143
 msgid "Must specify a user."
 msgstr "Du musst einen Benutzer angeben."
 
 #. TRANS: Exception thrown in AIM plugin when password has not been specified.
+#: AimPlugin.php:147
 msgid "Must specify a password."
 msgstr "Du musst ein Passwort angeben."
 
 #. TRANS: Plugin description.
+#: AimPlugin.php:162
 msgid ""
-"The AIM plugin allows users to send and receive notices over the AIM network."
-msgstr ""
-"Das AIM-Plugin ermöglicht es Benutzern, Nachrichten über das AIM-Netzwerk zu "
-"senden und zu empfangen."
+"The AIM plugin allows users to send and receive notices over the AIM "
+"network."
+msgstr "Das AIM-Plugin ermöglicht es Benutzern, Nachrichten über das AIM-Netzwerk zu senden und zu empfangen."
+
+#. TRANS: No idea what the use case for this message is.
+#: lib/aimmanager.php:80
+msgid "Send me a message to post a notice"
+msgstr "Sende mir eine Nachricht um eine Notiz zu schreiben"

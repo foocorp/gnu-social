@@ -1,0 +1,184 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-04 17:39+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/gnu-social/language/en_GB/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Page title for user directory. %d is a page number.
+#: actions/userdirectory.php:95
+#, php-format
+msgid "User Directory, page %d"
+msgstr ""
+
+#. TRANS: Page title for user directory.
+#: actions/userdirectory.php:98
+msgid "User directory"
+msgstr ""
+
+#. TRANS: Page title for user directory. %s is the applied filter.
+#: actions/userdirectory.php:102
+#, php-format
+msgid "User directory - %s"
+msgstr ""
+
+#. TRANS: Page title for user directory.
+#. TRANS: %1$s is the applied filter, %2$d is a page number.
+#: actions/userdirectory.php:109
+#, php-format
+msgid "User directory - %1$s, page %2$d"
+msgstr ""
+
+#. TRANS: %%site.name%% is the name of the StatusNet site.
+#: actions/userdirectory.php:124
+#, php-format
+msgid ""
+"Search for people on %%site.name%% by their name, location, or interests. "
+"Separate the terms by spaces;  they must be 3 characters or more."
+msgstr ""
+
+#. TRANS: Fieldset legend.
+#: actions/userdirectory.php:271
+msgid "Search site"
+msgstr "Search site"
+
+#. TRANS: Field label for user directory filter.
+#. TRANS: Field label for input of one or more keywords.
+#: actions/userdirectory.php:276 actions/groupdirectory.php:288
+msgid "Keyword(s)"
+msgstr ""
+
+#. TRANS: Button text.
+#. TRANS: Button text for searching group directory.
+#: actions/userdirectory.php:279 actions/groupdirectory.php:291
+msgctxt "BUTTON"
+msgid "Search"
+msgstr ""
+
+#. TRANS: Empty list message for user directory.
+#: actions/userdirectory.php:385
+#, php-format
+msgid "No users starting with %s"
+msgstr ""
+
+#. TRANS: Empty list message for user directory.
+#. TRANS: Empty list message for searching group directory.
+#: actions/userdirectory.php:391 actions/groupdirectory.php:414
+msgid "No results."
+msgstr "No results."
+
+#. TRANS: Standard search suggestions shown when a search does not give any
+#. results.
+#. TRANS: Help text for searching group directory.
+#: actions/userdirectory.php:393 actions/groupdirectory.php:416
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+
+#. TRANS: Title for group directory page. %d is a page number.
+#: actions/groupdirectory.php:95
+#, php-format
+msgid "Group Directory, page %d"
+msgstr ""
+
+#. TRANS: Title for group directory page.
+#: actions/groupdirectory.php:98
+msgid "Group directory"
+msgstr ""
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %s is the filter string.
+#: actions/groupdirectory.php:103
+#, php-format
+msgid "Group directory - %s"
+msgstr ""
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %1$s is the filter string, %2$d is a page number.
+#: actions/groupdirectory.php:110
+#, php-format
+msgid "Group directory - %1$s, page %2$d"
+msgstr ""
+
+#. TRANS: Page instructions.
+#: actions/groupdirectory.php:125
+msgid ""
+"After you join a group you can send messages to all other members\n"
+"using the syntax \"!groupname\".\n"
+"\n"
+"Browse groups, or search for groups by their name, location or topic.\n"
+"Separate the terms by spaces; they must be three characters or more."
+msgstr ""
+
+#. TRANS: Link to create a new group on the group list page.
+#: actions/groupdirectory.php:218
+msgid "Create a new group"
+msgstr "Create a new group"
+
+#. TRANS: Fieldset legend.
+#: actions/groupdirectory.php:283
+msgid "Search groups"
+msgstr ""
+
+#. TRANS: Empty list message for searching group directory.
+#. TRANS: %s is the search string.
+#: actions/groupdirectory.php:408
+#, php-format
+msgid "No groups starting with %s."
+msgstr ""
+
+#. TRANS: Menu item text for user directory.
+#: DirectoryPlugin.php:241
+msgctxt "MENU"
+msgid "Directory"
+msgstr "Directory"
+
+#. TRANS: Menu item title for user directory.
+#: DirectoryPlugin.php:243
+msgid "User Directory."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: DirectoryPlugin.php:262
+msgid "Add a user directory."
+msgstr ""
+
+#. TRANS: Column header in table for user nickname.
+#: lib/sortablegrouplist.php:65 lib/sortablesubscriptionlist.php:65
+msgid "Nickname"
+msgstr "Nickname"
+
+#. TRANS: Column header in table for timestamp when user was created.
+#: lib/sortablegrouplist.php:67 lib/sortablesubscriptionlist.php:67
+msgid "Created"
+msgstr ""
+
+#. TRANS: Column header in table for members of a group.
+#: lib/sortablegrouplist.php:113
+msgid "Members"
+msgstr "Members"
+
+#. TRANS: Column header for number of subscriptions.
+#: lib/sortablesubscriptionlist.php:114
+msgid "Subscriptions"
+msgstr ""
+
+#. TRANS: Column header for number of notices.
+#: lib/sortablesubscriptionlist.php:116
+msgid "Notices"
+msgstr "Notices"

@@ -1,69 +1,75 @@
-# Translation of StatusNet - Sample to Simplified Chinese (‪中文（简体）‬)
-# Exported from translatewiki.net
-#
-# Author: ZhengYiFeng
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Sample\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:55+0000\n"
-"Language-Team: Simplified Chinese <https://translatewiki.net/wiki/Portal:zh-"
-"hans>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:32+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/gnu-social/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: zh-hans\n"
-"X-Message-Group: #out-statusnet-plugin-sample\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. TRANS: Page title for sample plugin.
 #. TRANS: Menu item in sample plugin.
+#: actions/hello.php:112 SamplePlugin.php:219
 msgid "Hello"
 msgstr "你好"
 
 #. TRANS: Page title for sample plugin. %s is a user nickname.
+#: actions/hello.php:115
 #, php-format
 msgid "Hello, %s!"
 msgstr "你好，%s！"
 
 #. TRANS: Message in sample plugin.
+#: actions/hello.php:136
 msgid "Hello, stranger!"
 msgstr "你好，陌生人！"
 
 #. TRANS: Message in sample plugin. %s is a user nickname.
+#: actions/hello.php:140
 #, php-format
 msgid "Hello, %s"
 msgstr "你好，%s"
 
 #. TRANS: Message in sample plugin.
 #. TRANS: %d is the number of times a user is greeted.
+#: actions/hello.php:144
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
 msgstr[0] ""
 
-#. TRANS: Menu item title in sample plugin.
-msgid "A warm greeting"
-msgstr "一个热情的问候"
-
-#. TRANS: Plugin description.
-msgid "A sample plugin to show basics of development for new hackers."
-msgstr "一个为新的 hackers 显示基础开发的示例插件。"
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: Exception thrown when the user greeting count could not be saved in
+#. the database.
 #. TRANS: %d is a user ID (number).
+#: classes/User_greeting_count.php:104
 #, php-format
 msgid "Could not save new greeting count for %d."
 msgstr "无法保存%d新的问候计数。"
 
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: Exception thrown when the user greeting count could not be saved in
+#. the database.
 #. TRANS: %d is a user ID (number).
+#: classes/User_greeting_count.php:117
 #, php-format
 msgid "Could not increment greeting count for %d."
 msgstr "无法增加%d的问候计数。"
+
+#. TRANS: Menu item title in sample plugin.
+#: SamplePlugin.php:221
+msgid "A warm greeting"
+msgstr "一个热情的问候"
+
+#. TRANS: Plugin description.
+#: SamplePlugin.php:233
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr "一个为新的 hackers 显示基础开发的示例插件。"

@@ -1,80 +1,82 @@
-# Translation of StatusNet - UserFlag to German (Deutsch)
-# Exported from translatewiki.net
-#
-# Author: ChrisiPK
-# Author: Giftpflanze
-# Author: Habi
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - UserFlag\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:23+0000\n"
-"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 12:34+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/gnu-social/language/de/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 13:51:36+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: de\n"
-"X-Message-Group: #out-statusnet-plugin-userflag\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Form title for flagging a profile for review.
+#: forms/flagprofile.php:78
+msgid "Flag"
+msgstr "Markieren"
+
+#. TRANS: Form description.
+#: forms/flagprofile.php:89
+msgid "Flag profile for review."
+msgstr "Profil zur Überprüfung markieren."
+
+#. TRANS: Form title for action on a profile.
+#: forms/clearflag.php:76
+msgid "Clear"
+msgstr "Löschen"
+
+#. TRANS: Form description for clearing flags from a profile.
+#: forms/clearflag.php:88
+msgid "Clear all flags"
+msgstr "Alle Markierungen löschen"
+
 #. TRANS: AJAX form title for a flagged profile.
+#: actions/flagprofile.php:123
 msgid "Flagged for review"
 msgstr "Zum Überprüfen markiert"
 
 #. TRANS: Body text for AJAX form when a profile has been flagged for review.
 #. TRANS: Message added to a profile if it has been flagged for review.
+#: actions/flagprofile.php:127 UserFlagPlugin.php:134
 msgid "Flagged"
 msgstr "Markiert"
 
-#. TRANS: Plugin description.
-msgid ""
-"This plugin allows flagging of profiles for review and reviewing flagged "
-"profiles."
-msgstr ""
-"Dieser Plugin ermöglicht, Profile zur Überprüfung zu markieren und diese "
-"markierten Profile zu überprüfen."
-
-#. TRANS: Form title for flagging a profile for review.
-msgid "Flag"
-msgstr "Markieren"
-
-#. TRANS: Form description.
-msgid "Flag profile for review."
-msgstr "Profil zur Überprüfung markieren."
-
-#. TRANS: Form title for action on a profile.
-msgid "Clear"
-msgstr "Löschen"
-
-#. TRANS: Form description for clearing flags from a profile.
-msgid "Clear all flags"
-msgstr "Alle Markierungen löschen"
-
-#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+#. TRANS: Error message displayed when trying to perform an action that
+#. requires a logged in user.
+#: actions/adminprofileflag.php:65
 msgid "Not logged in."
 msgstr "Nicht angemeldet."
 
-#. TRANS: Error message displayed when trying to review profile flags while not authorised.
+#. TRANS: Error message displayed when trying to review profile flags while
+#. not authorised.
+#: actions/adminprofileflag.php:89
 msgid "You cannot review profile flags."
 msgstr "Du  kannst die Profilflags nicht überprüfen."
 
 #. TRANS: Title for page with a list of profiles that were flagged for review.
+#: actions/adminprofileflag.php:125
 msgid "Flagged profiles"
 msgstr "Markierte Profile"
 
-#. TRANS: Header for moderation menu with action buttons for flagged profiles (like 'sandbox', 'silence', ...).
+#. TRANS: Header for moderation menu with action buttons for flagged profiles
+#. (like 'sandbox', 'silence', ...).
+#: actions/adminprofileflag.php:242
 msgid "Moderate"
 msgstr "Moderieren"
 
 #. TRANS: Message displayed on a profile if it has been flagged.
-#. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
-#. TRANS: %2$d is a positive integer of additional flagging users. Also used for plural.
+#. TRANS: %1$s is a comma separated list of at most 5 user nicknames that
+#. flagged.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used
+#. for plural.
+#: actions/adminprofileflag.php:388
 #, php-format
 msgid "Flagged by %1$s and %2$d other"
 msgid_plural "Flagged by %1$s and %2$d others"
@@ -82,27 +84,40 @@ msgstr[0] "Markiert durch %1$s und %2$d weitere Konten"
 msgstr[1] "Markiert durch %1$s und %2$d Andere"
 
 #. TRANS: Message displayed on a profile if it has been flagged.
-#. TRANS: %s is a comma separated list of at most 5 user nicknames that flagged.
+#. TRANS: %s is a comma separated list of at most 5 user nicknames that
+#. flagged.
+#: actions/adminprofileflag.php:392
 #, php-format
 msgid "Flagged by %s"
 msgstr "Durch %s markiert"
 
 #. TRANS: Server exception given when flags could not be cleared.
 #. TRANS: %s is a profile nickname.
+#: actions/clearflag.php:105
 #, php-format
 msgid "Could not clear flags for profile \"%s\"."
 msgstr "Konnte Markierungen für Profil „%s“ nicht entfernen."
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
+#: actions/clearflag.php:127
 msgid "Flags cleared"
 msgstr "Flags gelöscht"
 
 #. TRANS: Body element for "flags cleared" form.
+#: actions/clearflag.php:131
 msgid "Cleared"
 msgstr "Gelöscht"
 
 #. TRANS: Server exception.
 #. TRANS: %d is a profile ID (number).
+#: classes/User_flag_profile.php:115
 #, php-format
 msgid "Could not flag profile \"%d\" for review."
 msgstr "Konnte Profil „%d“ nicht zur Überprüfung markieren."
+
+#. TRANS: Plugin description.
+#: UserFlagPlugin.php:240
+msgid ""
+"This plugin allows flagging of profiles for review and reviewing flagged "
+"profiles."
+msgstr "Dieser Plugin ermöglicht, Profile zur Überprüfung zu markieren und diese markierten Profile zu überprüfen."

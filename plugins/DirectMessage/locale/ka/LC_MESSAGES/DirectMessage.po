@@ -1,0 +1,100 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:07+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Georgian (http://www.transifex.com/projects/p/gnu-social/language/ka/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Menu item in personal group navigation menu.
+#: DirectMessagePlugin.php:122
+msgctxt "MENU"
+msgid "Messages"
+msgstr ""
+
+#. TRANS: Link text for link on user profile.
+#: DirectMessagePlugin.php:142
+msgctxt "BUTTON"
+msgid "Message"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: DirectMessagePlugin.php:168
+msgid "Direct Message to other local users (broken out of core)."
+msgstr ""
+
+#. TRANS: Form validation error displayed when message content is too long.
+#. TRANS: %d is the maximum number of characters for a message.
+#: actions/apidirectmessagenew.php:106 actions/newmessage.php:123
+#, php-format
+msgid "That's too long. Maximum message size is %d character."
+msgid_plural "That's too long. Maximum message size is %d characters."
+msgstr[0] ""
+
+#. TRANS: Menu item in mailbox menu. Leads to incoming private messages.
+#: lib/mailboxmenu.php:59
+msgctxt "MENU"
+msgid "Inbox"
+msgstr ""
+
+#. TRANS: Menu item in mailbox menu. Leads to outgoing private messages.
+#: lib/mailboxmenu.php:66
+msgctxt "MENU"
+msgid "Outbox"
+msgstr ""
+
+#. TRANS: Message given if content is too long. %1$sd is used for plural.
+#. TRANS: %1$d is the maximum number of characters, %2$d is the number of
+#. submitted characters.
+#: lib/messagecommand.php:43
+#, php-format
+msgid "Message too long - maximum is %1$d character, you sent %2$d."
+msgid_plural "Message too long - maximum is %1$d characters, you sent %2$d."
+msgstr[0] ""
+
+#. TRANS: Button text for sending a direct notice.
+#: lib/messageform.php:175
+msgctxt "Send button for sending notice"
+msgid "Send"
+msgstr "გაგზავნა"
+
+#. TRANS: A possible notice source (web interface).
+#: lib/messagelistitem.php:137
+msgctxt "SOURCE"
+msgid "web"
+msgstr ""
+
+#. TRANS: A possible notice source (XMPP).
+#: lib/messagelistitem.php:139
+msgctxt "SOURCE"
+msgid "xmpp"
+msgstr ""
+
+#. TRANS: A possible notice source (e-mail).
+#: lib/messagelistitem.php:141
+msgctxt "SOURCE"
+msgid "mail"
+msgstr ""
+
+#. TRANS: A possible notice source (OpenMicroBlogging).
+#: lib/messagelistitem.php:143
+msgctxt "SOURCE"
+msgid "omb"
+msgstr ""
+
+#. TRANS: A possible notice source (Application Programming Interface).
+#: lib/messagelistitem.php:145
+msgctxt "SOURCE"
+msgid "api"
+msgstr ""

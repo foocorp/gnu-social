@@ -1,29 +1,26 @@
-# Translation of StatusNet - UserLimit to Brazilian Portuguese (português do Brasil)
-# Exported from translatewiki.net
-#
-# Author: Giro720
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - UserLimit\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:26+0000\n"
-"Language-Team: Brazilian Portuguese <https://translatewiki.net/wiki/Portal:"
-"pt-br>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 12:34+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/gnu-social/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:51+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: pt-br\n"
-"X-Message-Group: #out-statusnet-plugin-userlimit\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. TRANS: Error message given if creating a new user is not possible because a limit has been reached.
+#. TRANS: Error message given if creating a new user is not possible because a
+#. limit has been reached.
 #. TRANS: %d is the user limit (also available for plural).
+#: UserLimitPlugin.php:74
 #, php-format
 msgid ""
 "Cannot register because the maximum number of users (%d) for this site was "
@@ -35,5 +32,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. TRANS: Plugin description.
+#: UserLimitPlugin.php:92
 msgid "Limit the number of users who can register."
 msgstr "Limitar o número de usuários que podem se registrar."

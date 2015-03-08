@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,56 +20,56 @@ msgstr ""
 
 #. TRANS: Page title for sample plugin.
 #. TRANS: Menu item in sample plugin.
-#: hello.php:112 SamplePlugin.php:270
+#: actions/hello.php:112 SamplePlugin.php:219
 msgid "Hello"
 msgstr ""
 
 #. TRANS: Page title for sample plugin. %s is a user nickname.
-#: hello.php:115
+#: actions/hello.php:115
 #, php-format
 msgid "Hello, %s!"
 msgstr ""
 
 #. TRANS: Message in sample plugin.
-#: hello.php:136
+#: actions/hello.php:136
 msgid "Hello, stranger!"
 msgstr ""
 
 #. TRANS: Message in sample plugin. %s is a user nickname.
-#: hello.php:140
+#: actions/hello.php:140
 #, php-format
 msgid "Hello, %s"
 msgstr ""
 
 #. TRANS: Message in sample plugin.
 #. TRANS: %d is the number of times a user is greeted.
-#: hello.php:144
+#: actions/hello.php:144
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#. TRANS: Menu item title in sample plugin.
-#: SamplePlugin.php:272
-msgid "A warm greeting"
-msgstr ""
-
-#. TRANS: Plugin description.
-#: SamplePlugin.php:284
-msgid "A sample plugin to show basics of development for new hackers."
-msgstr ""
-
 #. TRANS: Exception thrown when the user greeting count could not be saved in the database.
 #. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:161
+#: classes/User_greeting_count.php:104
 #, php-format
 msgid "Could not save new greeting count for %d."
 msgstr ""
 
 #. TRANS: Exception thrown when the user greeting count could not be saved in the database.
 #. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:174
+#: classes/User_greeting_count.php:117
 #, php-format
 msgid "Could not increment greeting count for %d."
+msgstr ""
+
+#. TRANS: Menu item title in sample plugin.
+#: SamplePlugin.php:221
+msgid "A warm greeting"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: SamplePlugin.php:233
+msgid "A sample plugin to show basics of development for new hackers."
 msgstr ""

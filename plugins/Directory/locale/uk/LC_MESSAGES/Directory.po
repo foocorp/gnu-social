@@ -1,176 +1,184 @@
-# Translation of StatusNet - Directory to Ukrainian (українська)
-# Exported from translatewiki.net
-#
-# Author: Boogie
-# Author: Dim Grits
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Directory\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:10+0000\n"
-"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-04 18:01+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-30 09:57:06+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: uk\n"
-"X-Message-Group: #out-statusnet-plugin-directory\n"
-"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
-"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. TRANS: Page title for user directory. %d is a page number.
+#: actions/userdirectory.php:95
 #, php-format
 msgid "User Directory, page %d"
 msgstr "Каталог користувачів, сторінка %d"
 
 #. TRANS: Page title for user directory.
+#: actions/userdirectory.php:98
 msgid "User directory"
 msgstr "Каталог користувачів"
 
 #. TRANS: Page title for user directory. %s is the applied filter.
+#: actions/userdirectory.php:102
 #, php-format
 msgid "User directory - %s"
 msgstr "Каталог користувачів — %s"
 
 #. TRANS: Page title for user directory.
 #. TRANS: %1$s is the applied filter, %2$d is a page number.
+#: actions/userdirectory.php:109
 #, php-format
 msgid "User directory - %1$s, page %2$d"
 msgstr "Каталог користувачів — %1$s, сторінка %2$d"
 
 #. TRANS: %%site.name%% is the name of the StatusNet site.
+#: actions/userdirectory.php:124
 #, php-format
 msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
 "Separate the terms by spaces;  they must be 3 characters or more."
-msgstr ""
-"Пошук людей на %%site.name%% за їхніми іменами, розташуванням або "
-"інтересами. Відокремлюйте пошукові умови інтервалами; вони повинні "
-"складатись з 3 або більше знаків."
+msgstr "Пошук людей на %%site.name%% за їхніми іменами, розташуванням або інтересами. Відокремлюйте пошукові умови інтервалами; вони повинні складатись з 3 або більше знаків."
 
 #. TRANS: Fieldset legend.
+#: actions/userdirectory.php:271
 msgid "Search site"
 msgstr "Пошук на сайті"
 
 #. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
+#: actions/userdirectory.php:276 actions/groupdirectory.php:288
 msgid "Keyword(s)"
 msgstr "Ключові слова"
 
 #. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
+#: actions/userdirectory.php:279 actions/groupdirectory.php:291
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "Пошук"
 
 #. TRANS: Empty list message for user directory.
+#: actions/userdirectory.php:385
 #, php-format
 msgid "No users starting with %s"
 msgstr "Немає користувачів, починаючи з %s"
 
 #. TRANS: Empty list message for user directory.
 #. TRANS: Empty list message for searching group directory.
+#: actions/userdirectory.php:391 actions/groupdirectory.php:414
 msgid "No results."
 msgstr "Немає результатів."
 
-#. TRANS: Standard search suggestions shown when a search does not give any results.
+#. TRANS: Standard search suggestions shown when a search does not give any
+#. results.
 #. TRANS: Help text for searching group directory.
+#: actions/userdirectory.php:393 actions/groupdirectory.php:416
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
 "* Try more general keywords.\n"
 "* Try fewer keywords."
-msgstr ""
-"* Переконайтеся, що всі слова написано правильно.\n"
-"* Спробуйте різні ключові слова.\n"
-"* Спробуйте узагальнити ключові слова.\n"
-"* Спробуйте зменшити кількість ключових слів."
+msgstr "* Переконайтеся, що всі слова написано правильно.\n* Спробуйте різні ключові слова.\n* Спробуйте узагальнити ключові слова.\n* Спробуйте зменшити кількість ключових слів."
 
 #. TRANS: Title for group directory page. %d is a page number.
+#: actions/groupdirectory.php:95
 #, php-format
 msgid "Group Directory, page %d"
 msgstr "Каталог спільноти, сторінка %d"
 
 #. TRANS: Title for group directory page.
+#: actions/groupdirectory.php:98
 msgid "Group directory"
 msgstr "Каталог спільноти"
 
 #. TRANS: Title for group directory page when it is filtered.
 #. TRANS: %s is the filter string.
+#: actions/groupdirectory.php:103
 #, php-format
 msgid "Group directory - %s"
 msgstr "Каталог спільноти — %s"
 
 #. TRANS: Title for group directory page when it is filtered.
 #. TRANS: %1$s is the filter string, %2$d is a page number.
+#: actions/groupdirectory.php:110
 #, php-format
 msgid "Group directory - %1$s, page %2$d"
 msgstr "Каталог спільноти — %1$s, сторінка %2$d"
 
 #. TRANS: Page instructions.
+#: actions/groupdirectory.php:125
 msgid ""
 "After you join a group you can send messages to all other members\n"
 "using the syntax \"!groupname\".\n"
 "\n"
 "Browse groups, or search for groups by their name, location or topic.\n"
 "Separate the terms by spaces; they must be three characters or more."
-msgstr ""
-"Після приєднання до групи ви зможете надсилати повідомлення всім учасникам "
-"даної групи, використовуючи синтаксис \"!groupname\".\n"
-"\n"
-"Оглядайте або шукайте інші групи за їхніми назвами, розташуванням або "
-"тематикою. \n"
-"Відокремлюйте пошукові запити пробілами; пошуковий запит має становити "
-"щонайменше три символи."
+msgstr "Після приєднання до групи ви зможете надсилати повідомлення всім учасникам даної групи, використовуючи синтаксис \"!groupname\".\n\nОглядайте або шукайте інші групи за їхніми назвами, розташуванням або тематикою. \nВідокремлюйте пошукові запити пробілами; пошуковий запит має становити щонайменше три символи."
 
 #. TRANS: Link to create a new group on the group list page.
+#: actions/groupdirectory.php:218
 msgid "Create a new group"
 msgstr "Створити нову спільноту"
 
 #. TRANS: Fieldset legend.
+#: actions/groupdirectory.php:283
 msgid "Search groups"
 msgstr "Пошук спільнот"
 
 #. TRANS: Empty list message for searching group directory.
 #. TRANS: %s is the search string.
+#: actions/groupdirectory.php:408
 #, php-format
 msgid "No groups starting with %s."
 msgstr "Немає спільнот, що починаються з %s."
 
 #. TRANS: Menu item text for user directory.
+#: DirectoryPlugin.php:241
 msgctxt "MENU"
 msgid "Directory"
 msgstr "Каталог"
 
 #. TRANS: Menu item title for user directory.
+#: DirectoryPlugin.php:243
 msgid "User Directory."
 msgstr "Каталог користувача."
 
 #. TRANS: Plugin description.
+#: DirectoryPlugin.php:262
 msgid "Add a user directory."
 msgstr "Додати каталог користувача."
 
 #. TRANS: Column header in table for user nickname.
+#: lib/sortablegrouplist.php:65 lib/sortablesubscriptionlist.php:65
 msgid "Nickname"
 msgstr "Псевдонім"
 
 #. TRANS: Column header in table for timestamp when user was created.
+#: lib/sortablegrouplist.php:67 lib/sortablesubscriptionlist.php:67
 msgid "Created"
 msgstr "Створено"
 
+#. TRANS: Column header in table for members of a group.
+#: lib/sortablegrouplist.php:113
+msgid "Members"
+msgstr "Учасники"
+
 #. TRANS: Column header for number of subscriptions.
+#: lib/sortablesubscriptionlist.php:114
 msgid "Subscriptions"
 msgstr "Підписки"
 
 #. TRANS: Column header for number of notices.
+#: lib/sortablesubscriptionlist.php:116
 msgid "Notices"
 msgstr "Дописи"
-
-#. TRANS: Column header in table for members of a group.
-msgid "Members"
-msgstr "Учасники"

@@ -1,51 +1,52 @@
-# Translation of StatusNet - Geonames to Portuguese (Português)
-# Exported from translatewiki.net
-#
-# Author: Hamilton Abreu
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Geonames\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-09 18:34+0000\n"
-"PO-Revision-Date: 2011-04-09 18:37:14+0000\n"
-"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:34+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Portuguese (http://www.transifex.com/projects/p/gnu-social/language/pt/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-24 15:25:03+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r85732); Translate extension (2011-03-11)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: pt\n"
-"X-Message-Group: #out-statusnet-plugin-geonames\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown when a geo names service is not used because of a recent timeout.
+#. TRANS: Exception thrown when a geo names service is not used because of a
+#. recent timeout.
+#: GeonamesPlugin.php:439
 msgid "Skipping due to recent web service timeout."
 msgstr ""
 
-#. TRANS: Exception thrown when a geo names service does not return an expected response.
+#. TRANS: Exception thrown when a geo names service does not return an
+#. expected response.
 #. TRANS: %s is an HTTP error code.
+#: GeonamesPlugin.php:457
 #, php-format
 msgid "HTTP error code %s."
 msgstr ""
 
 #. TRANS: Exception thrown when a geo names service returns an empty body.
+#: GeonamesPlugin.php:464
 msgid "Empty HTTP body in response."
 msgstr ""
 
-#. TRANS: Exception thrown when a geo names service return a specific error number and error text.
+#. TRANS: Exception thrown when a geo names service return a specific error
+#. number and error text.
 #. TRANS: %1$s is an error code, %2$s is an error message.
+#: GeonamesPlugin.php:482
 #, php-format
 msgid "Error #%1$s (\"%2$s\")."
 msgstr ""
 
 #. TRANS: Plugin description.
+#: GeonamesPlugin.php:498
 msgid ""
 "Uses <a href=\"http://geonames.org/\">Geonames</a> service to get human-"
 "readable names for locations based on user-provided lat/long pairs."
-msgstr ""
-"Usa o serviço <a href=\"http://geonames.org/\">Geonames</a> para apresentar "
-"os nomes de locais com base em dados de latitude/longitude fornecidos pelo "
-"utilizador."
+msgstr "Usa o serviço <a href=\"http://geonames.org/\">Geonames</a> para apresentar os nomes de locais com base em dados de latitude/longitude fornecidos pelo utilizador."

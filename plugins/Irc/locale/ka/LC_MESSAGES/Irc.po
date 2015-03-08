@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:30+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Georgian (http://www.transifex.com/projects/p/gnu-social/language/ka/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Exception thrown when an IRC attempts count could not be updated.
+#. TRANS: %d is the object ID for which the count could not be updated.
+#: classes/Irc_waiting_message.php:86
+#, php-format
+msgid "Could not increment attempts count for %d."
+msgstr ""
+
+#. TRANS: Message given when using an unregistered IRC nickname.
+#: lib/ircmanager.php:234
+msgid "Your nickname is not registered so IRC connectivity cannot be enabled."
+msgstr ""
+
+#. TRANS: Server error thrown on database error when deleting IRC nickname
+#. confirmation.
+#: lib/ircmanager.php:247
+msgid "Could not delete confirmation."
+msgstr ""
+
+#. TRANS: Server exception thrown when an IRC waiting queue item could not be
+#. added to the database.
+#: lib/ircmanager.php:288
+msgid "Database error inserting IRC waiting queue item."
+msgstr ""
+
+#. TRANS: Service name for IRC.
+#: IrcPlugin.php:79
+msgid "IRC"
+msgstr ""
+
+#. TRANS: Body text for e-mail confirmation message for IRC.
+#. TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename,
+#. TRANS: %3$s is the plugin display name ("IRC"), %4$s is the confirm address
+#. URL.
+#: IrcPlugin.php:277
+#, php-format
+msgid ""
+"User \"%1$s\" on %2$s has said that your %3$s screenname belongs to them. If"
+" that's true, you can confirm by clicking on this URL: %4$s . (If you cannot"
+" click it, copy-and-paste it into the address bar of your browser). If that "
+"user is not you, or if you did not request this confirmation, just ignore "
+"this message."
+msgstr ""
+
+#. TRANS: Exception thrown when initialising the IRC plugin fails because of
+#. an incorrect configuration.
+#: IrcPlugin.php:327
+msgid "You must specify a host."
+msgstr ""
+
+#. TRANS: Exception thrown when initialising the IRC plugin fails because of
+#. an incorrect configuration.
+#: IrcPlugin.php:331
+msgid "You must specify a username."
+msgstr ""
+
+#. TRANS: Exception thrown when initialising the IRC plugin fails because of
+#. an incorrect configuration.
+#: IrcPlugin.php:335
+msgid "You must specify a \"real name\"."
+msgstr ""
+
+#. TRANS: Exception thrown when initialising the IRC plugin fails because of
+#. an incorrect configuration.
+#: IrcPlugin.php:339
+msgid "You must specify a nickname."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: IrcPlugin.php:382
+msgid ""
+"The IRC plugin allows users to send and receive notices over an IRC network."
+msgstr ""

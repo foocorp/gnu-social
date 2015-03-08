@@ -1,72 +1,25 @@
-# Translation of StatusNet - Gravatar to Telugu (తెలుగు)
-# Expored from translatewiki.net
-#
-# Author: Veeven
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Gravatar\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-15 00:20+0000\n"
-"PO-Revision-Date: 2011-01-15 00:23:49+0000\n"
-"Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:27+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Telugu (http://www.transifex.com/projects/p/gnu-social/language/te/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-01-10 18:26:02+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r80364); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: te\n"
-"X-Message-Group: #out-statusnet-plugin-gravatar\n"
+"Language: te\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: GravatarPlugin.php:60
-msgid "Set Gravatar"
-msgstr ""
-
-#: GravatarPlugin.php:63
-msgid "If you want to use your Gravatar image, click \"Add\"."
-msgstr ""
-
-#: GravatarPlugin.php:68
-msgid "Add"
-msgstr "చేర్చు"
-
-#: GravatarPlugin.php:78
-msgid "Remove Gravatar"
-msgstr ""
-
-#: GravatarPlugin.php:81
-msgid "If you want to remove your Gravatar image, click \"Remove\"."
-msgstr ""
-
-#: GravatarPlugin.php:86
-msgid "Remove"
-msgstr "తొలగించు"
-
-#: GravatarPlugin.php:91
-msgid "To use a Gravatar first enter in an email address."
-msgstr ""
-
-#: GravatarPlugin.php:140
-msgid "You do not have an email address set in your profile."
-msgstr ""
-
-#: GravatarPlugin.php:158
-msgid "Failed to save Gravatar to the database."
-msgstr ""
-
-#: GravatarPlugin.php:162
-msgid "Gravatar added."
-msgstr ""
-
-#: GravatarPlugin.php:180
-msgid "Gravatar removed."
-msgstr ""
-
-#: GravatarPlugin.php:200
+#. TRANS: Plugin decsription.
+#: GravatarPlugin.php:70
 msgid ""
-"The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
-"com/\">Gravatar</a> with StatusNet."
+"The Gravatar plugin allows users to use their <a "
+"href=\"http://www.gravatar.com/\">Gravatar</a> with StatusNet."
 msgstr ""

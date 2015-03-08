@@ -1,88 +1,40 @@
-# Translation of StatusNet - MobileProfile to Bulgarian (Български)
-# Exported from translatewiki.net
-#
-# Author: DCLXVI
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - MobileProfile\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-03 15:58+0000\n"
-"PO-Revision-Date: 2011-03-03 16:02:16+0000\n"
-"Language-Team: Bulgarian <http://translatewiki.net/wiki/Portal:bg>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 08:50+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Bulgarian (http://www.transifex.com/projects/p/gnu-social/language/bg/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-02-14 17:20:45+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83149); Translate extension (2011-02-01)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: bg\n"
-"X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
+"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: MobileProfilePlugin.php:196
+#. TRANS: Client exception thrown when requesting a not supported media type.
+#: MobileProfilePlugin.php:200
 msgid "This page is not available in a media type you accept."
 msgstr ""
 
-#: MobileProfilePlugin.php:313
-msgid "Home"
-msgstr ""
-
-#: MobileProfilePlugin.php:315
-msgid "Account"
-msgstr ""
-
-#: MobileProfilePlugin.php:317
-msgid "Connect"
-msgstr ""
-
-#: MobileProfilePlugin.php:320
-msgid "Admin"
-msgstr ""
-
-#: MobileProfilePlugin.php:320
-msgid "Change site configuration"
-msgstr ""
-
-#: MobileProfilePlugin.php:324
-msgid "Invite"
-msgstr ""
-
-#: MobileProfilePlugin.php:327
-msgid "Logout"
-msgstr "Излизане"
-
-#: MobileProfilePlugin.php:331
-msgid "Register"
-msgstr ""
-
-#: MobileProfilePlugin.php:334
-msgid "Login"
-msgstr "Влизане"
-
-#: MobileProfilePlugin.php:338
-msgid "Search"
-msgstr "Търсене"
-
-#: MobileProfilePlugin.php:365
-msgid "Attach"
-msgstr "Прикачване"
-
-#: MobileProfilePlugin.php:369
-msgid "Attach a file"
-msgstr "Прикачване на файл"
-
-#. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
-#: MobileProfilePlugin.php:410
+#. TRANS: Link to switch site layout from mobile to desktop mode. Appears at
+#. very bottom of page.
+#: MobileProfilePlugin.php:375
 msgid "Switch to desktop site layout."
 msgstr ""
 
-#. TRANS: Link to switch site layout from desktop to mobile mode. Appears at very bottom of page.
-#: MobileProfilePlugin.php:414
+#. TRANS: Link to switch site layout from desktop to mobile mode. Appears at
+#. very bottom of page.
+#: MobileProfilePlugin.php:379
 msgid "Switch to mobile site layout."
 msgstr ""
 
-#: MobileProfilePlugin.php:451
+#. TRANS: Plugin description.
+#: MobileProfilePlugin.php:417
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr ""

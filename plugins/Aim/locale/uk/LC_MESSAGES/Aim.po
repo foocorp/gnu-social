@@ -1,45 +1,45 @@
-# Translation of StatusNet - Aim to Ukrainian (українська)
-# Exported from translatewiki.net
-#
-# Author: Boogie
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Aim\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:35+0000\n"
-"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-05 17:36+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:18:38+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: uk\n"
-"X-Message-Group: #out-statusnet-plugin-aim\n"
-"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
-"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
-
-#. TRANS: No idea what the use case for this message is.
-msgid "Send me a message to post a notice"
-msgstr "Надішліть мені повідомлення, щоб опублікувати свій допис"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. TRANS: Display name.
+#: AimPlugin.php:60
 msgid "AIM"
 msgstr "AIM"
 
 #. TRANS: Exception thrown in AIM plugin when user has not been specified.
+#: AimPlugin.php:143
 msgid "Must specify a user."
 msgstr "Необхідно зазначити користувача."
 
 #. TRANS: Exception thrown in AIM plugin when password has not been specified.
+#: AimPlugin.php:147
 msgid "Must specify a password."
 msgstr "Необхідно вказати пароль."
 
 #. TRANS: Plugin description.
+#: AimPlugin.php:162
 msgid ""
-"The AIM plugin allows users to send and receive notices over the AIM network."
-msgstr ""
-"Додаток AIM дозволяє користувачам надсилати і отримувати дописи у мережі AIM."
+"The AIM plugin allows users to send and receive notices over the AIM "
+"network."
+msgstr "Додаток AIM дозволяє користувачам надсилати і отримувати дописи у мережі AIM."
+
+#. TRANS: No idea what the use case for this message is.
+#: lib/aimmanager.php:80
+msgid "Send me a message to post a notice"
+msgstr "Надішліть мені повідомлення, щоб опублікувати свій допис"

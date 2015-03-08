@@ -1,96 +1,109 @@
-# Translation of StatusNet - BitlyUrl to Macedonian (македонски)
-# Exported from translatewiki.net
-#
-# Author: Bjankuloski06
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - BitlyUrl\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:47+0000\n"
-"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Macedonian (http://www.transifex.com/projects/p/gnu-social/language/mk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 13:48:51+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: mk\n"
-"X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
-"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #. TRANS: Title of administration panel.
+#: actions/bitlyadminpanel.php:53
 msgid "bit.ly URL shortening"
 msgstr "Скратување на URL со bit.ly"
 
 #. TRANS: Instructions for administration panel.
-#. TRANS: This message contains Markdown links in the form [decsription](link).
+#. TRANS: This message contains Markdown links in the form
+#. [decsription](link).
+#: actions/bitlyadminpanel.php:65
 msgid ""
-"URL shortening with bit.ly requires [a bit.ly account and API key](http://"
-"bit.ly/a/your_api_key). This verifies that this is an authorized account, "
-"and allow you to use bit.ly's tracking features and custom domains."
-msgstr ""
-"Скратувањето на URL-адреси со bit.ly бара [сметка и API-клуч за bit.ly]"
-"(http://bit.ly/a/your_api_key). Со ова се потврдува дека ова е овластена "
-"сметка, и Ви овозможува да ги користите можностите за следење и "
-"прилагодување на домени што ги нуди bit.ly's."
+"URL shortening with bit.ly requires [a bit.ly account and API "
+"key](http://bit.ly/a/your_api_key). This verifies that this is an authorized"
+" account, and allow you to use bit.ly's tracking features and custom "
+"domains."
+msgstr "Скратувањето на URL-адреси со bit.ly бара [сметка и API-клуч за bit.ly](http://bit.ly/a/your_api_key). Со ова се потврдува дека ова е овластена сметка, и Ви овозможува да ги користите можностите за следење и прилагодување на домени што ги нуди bit.ly's."
 
 #. TRANS: Client error displayed when using too long a key.
+#: actions/bitlyadminpanel.php:131
 msgid "Invalid login. Maximum length is 255 characters."
 msgstr "Неважечко корисничко име. Дозволени се највеќе 255 знаци."
 
 #. TRANS: Client error displayed when using too long a key.
+#: actions/bitlyadminpanel.php:138
 msgid "Invalid API key. Maximum length is 255 characters."
 msgstr "Неважечки API-клуч. Дозволени се највеќе 255 знаци."
 
-#. TRANS: Fieldset legend in administration panel for bit.ly username and API key.
+#. TRANS: Fieldset legend in administration panel for bit.ly username and API
+#. key.
+#: actions/bitlyadminpanel.php:188
 msgctxt "LEGEND"
 msgid "Credentials"
 msgstr "Полномоштва"
 
 #. TRANS: Form guide in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:197
 msgid "Leave these empty to use global default credentials."
-msgstr ""
-"Оставете го ова празно за да го користите глобалното уверение по основно."
+msgstr "Оставете го ова празно за да го користите глобалното уверение по основно."
 
 #. TRANS: Form guide in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:201
 msgid "If you leave these empty, bit.ly will be unavailable to users."
 msgstr "Ако ова го оставите празно, bit.ly ќе биде недостапен за корисниците."
 
 #. TRANS: Field label in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:209
 msgid "Login name"
 msgstr "Корисничко име"
 
 #. TRANS: Field label in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:219
 msgid "API key"
 msgstr "API-клуч"
 
-#. TRANS: Button text to save setting in administration panel for bit.ly URL shortening.
+#. TRANS: Button text to save setting in administration panel for bit.ly URL
+#. shortening.
+#: actions/bitlyadminpanel.php:238
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зачувај"
 
-#. TRANS: Button title to save setting in administration panel for bit.ly URL shortening.
+#. TRANS: Button title to save setting in administration panel for bit.ly URL
+#. shortening.
+#: actions/bitlyadminpanel.php:242
 msgid "Save bit.ly settings"
 msgstr "Зачувај нагодувања на bit.ly"
 
-#. TRANS: Exception thrown when bit.ly URL shortening plugin was configured incorrectly.
+#. TRANS: Exception thrown when bit.ly URL shortening plugin was configured
+#. incorrectly.
+#: BitlyUrlPlugin.php:47
 msgid "You must specify a serviceUrl for bit.ly URL shortening."
 msgstr "Мора да наведете serviceUrl за sкратување на URL-адреси со bit.ly."
 
-#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
+#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for
+#. example "bit.ly").
+#: BitlyUrlPlugin.php:156
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
-msgstr ""
-"Користи <a href=\"http://%1$s/\">%1$s</a> - служба за скратување на URL-"
-"адреса."
+msgstr "Користи <a href=\"http://%1$s/\">%1$s</a> - служба за скратување на URL-адреса."
 
-#. TRANS: Menu item in administration menus for bit.ly URL shortening settings.
+#. TRANS: Menu item in administration menus for bit.ly URL shortening
+#. settings.
+#: BitlyUrlPlugin.php:198
 msgid "bit.ly"
 msgstr "bit.ly"
 
-#. TRANS: Title for menu item in administration menus for bit.ly URL shortening settings.
+#. TRANS: Title for menu item in administration menus for bit.ly URL
+#. shortening settings.
+#: BitlyUrlPlugin.php:200
 msgid "bit.ly URL shortening."
 msgstr "Скратување на URL со bit.ly."

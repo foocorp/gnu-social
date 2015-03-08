@@ -1,73 +1,85 @@
-# Translation of StatusNet - Sitemap to Basque (euskara)
-# Exported from translatewiki.net
-#
-# Author: Artsuaga
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Sitemap\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:01+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Basque (http://www.transifex.com/projects/p/gnu-social/language/eu/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:51:35+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Title for sitemap.
+#: actions/sitemapadminpanel.php:53
 msgid "Sitemap"
 msgstr "Gunemapa"
 
 #. TRANS: Instructions for sitemap.
+#: actions/sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
 msgstr "Saio-ezarpenak StatusNet gune honetarako"
 
 #. TRANS: Field label.
+#: actions/sitemapadminpanel.php:167
 msgid "Google key"
 msgstr "Google gakoa"
 
 #. TRANS: Title for field label.
+#: actions/sitemapadminpanel.php:169
 msgid "Google Webmaster Tools verification key."
 msgstr ""
 
 #. TRANS: Field label.
+#: actions/sitemapadminpanel.php:175
 msgid "Yahoo key"
 msgstr "Yahoo gakoa"
 
 #. TRANS: Title for field label.
+#: actions/sitemapadminpanel.php:177
 msgid "Yahoo! Site Explorer verification key."
 msgstr ""
 
 #. TRANS: Field label.
+#: actions/sitemapadminpanel.php:183
 msgid "Bing key"
 msgstr "Bing gakoa"
 
 #. TRANS: Title for field label.
+#: actions/sitemapadminpanel.php:185
 msgid "Bing Webmaster Tools verification key."
 msgstr ""
 
 #. TRANS: Submit button text to save sitemap settings.
+#: actions/sitemapadminpanel.php:200
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Gorde"
 
 #. TRANS: Submit button title to save sitemap settings.
+#: actions/sitemapadminpanel.php:204
 msgid "Save sitemap settings."
 msgstr "Gorde gunemapa aukerak."
 
 #. TRANS: Menu item title/tooltip
+#: SitemapPlugin.php:160
 msgid "Sitemap configuration"
 msgstr "Gunemapa konfigurazioa"
 
 #. TRANS: Menu item for site administration
+#: SitemapPlugin.php:162
 msgctxt "MENU"
 msgid "Sitemap"
 msgstr "Gunemapa"
 
 #. TRANS: Plugin description.
+#: SitemapPlugin.php:187
 msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
 msgstr ""

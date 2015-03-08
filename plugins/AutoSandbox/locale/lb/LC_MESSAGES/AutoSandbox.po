@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 14:18+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Luxembourgish (http://www.transifex.com/projects/p/gnu-social/language/lb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+#: AutoSandboxPlugin.php:67
+msgid "Automatically sandboxes newly registered members."
+msgstr ""
+
+#. TRANS: User instructions after registration.
+#: AutoSandboxPlugin.php:74
+msgid ""
+"Note you will initially be \"sandboxed\" so your posts will not appear in "
+"the public timeline."
+msgstr ""
+
+#. TRANS: User instructions after registration.
+#. TRANS: %s is a clickable OStatus profile URL.
+#: AutoSandboxPlugin.php:84
+#, php-format
+msgid ""
+"Note you will initially be \"sandboxed\" so your posts will not appear in "
+"the public timeline. Send a message to %s to speed up the unsandboxing "
+"process."
+msgstr ""

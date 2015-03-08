@@ -1,46 +1,40 @@
-# Translation of StatusNet - AutoSandbox to Macedonian (македонски)
-# Exported from translatewiki.net
-#
-# Author: Bjankuloski06
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - AutoSandbox\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:44+0000\n"
-"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 14:22+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Macedonian (http://www.transifex.com/projects/p/gnu-social/language/mk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:49:46+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: mk\n"
-"X-Message-Group: #out-statusnet-plugin-autosandbox\n"
-"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #. TRANS: Plugin description.
+#: AutoSandboxPlugin.php:67
 msgid "Automatically sandboxes newly registered members."
 msgstr "Автоматски става новорегистрираните членови во песочник."
 
 #. TRANS: User instructions after registration.
+#: AutoSandboxPlugin.php:74
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline."
-msgstr ""
-"Напомена: во прво време ќе бидете ставени во песочникот, па така Вашите "
-"објави нема да фигурираат во јавната хронологија."
+msgstr "Напомена: во прво време ќе бидете ставени во песочникот, па така Вашите објави нема да фигурираат во јавната хронологија."
 
 #. TRANS: User instructions after registration.
-#. TRANS: %s is a clickable e-mailaddress.
+#. TRANS: %s is a clickable OStatus profile URL.
+#: AutoSandboxPlugin.php:84
 #, php-format
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline. Send a message to %s to speed up the unsandboxing "
 "process."
-msgstr ""
-"Напомена: во прво време ќе бидете ставени во песочникот, па така Вашите "
-"објави нема да фигурираат во јавната хронологија. Испратете порака на %s за "
-"да ја забрзате постапката за излегување од песочникот."
+msgstr "Напомена: во прво време ќе бидете ставени во песочникот, па така Вашите објави нема да фигурираат во јавната хронологија. Испратете порака на %s за да ја забрзате постапката за излегување од песочникот."

@@ -1,55 +1,54 @@
-# Translation of StatusNet - WikiHashtags to Ukrainian (українська)
-# Exported from translatewiki.net
-#
-# Author: Boogie
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - WikiHashtags\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:28+0000\n"
-"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:34+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:53+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: uk\n"
-"X-Message-Group: #out-statusnet-plugin-wikihashtags\n"
-"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
-"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. TRANS: Link title for editing an article on WikiHashTags.
 #. TRANS: %s is the hash tag page to be edited.
+#: WikiHashtagsPlugin.php:83
 #, php-format
 msgid "Edit the article for #%s on WikiHashtags"
 msgstr "Редагувати статтю про #%s на WikiHashtags"
 
 #. TRANS: Link description for editing an article on WikiHashTags.
+#: WikiHashtagsPlugin.php:85
 msgid "Edit"
 msgstr "Змінити"
 
 #. TRANS: Link title for viewing the GFDL.
+#: WikiHashtagsPlugin.php:88
 msgid "Shared under the terms of the GNU Free Documentation License"
 msgstr "Розміщується на умовах GNU Free Documentation License"
 
 #. TRANS: Link description for viewing the GFDL.
+#: WikiHashtagsPlugin.php:91
 msgid "GNU FDL"
 msgstr ""
 
 #. TRANS: Link description for editing an article on WikiHashTags.
 #. TRANS: %s is the hash tag page to be created.
+#: WikiHashtagsPlugin.php:97
 #, php-format
 msgid "Start the article for #%s on WikiHashtags"
 msgstr "Почати нову статтю про #%s на WikiHashtags"
 
 #. TRANS: Plugin description.
+#: WikiHashtagsPlugin.php:115
 msgid ""
-"Gets hashtag descriptions from <a href=\"http://hashtags.wikia.com/"
-"\">WikiHashtags</a>."
-msgstr ""
-"Отримувати описи теґів з <a href=\"http://hashtags.wikia.com/"
-"\">WikiHashtags</a>."
+"Gets hashtag descriptions from <a "
+"href=\"http://hashtags.wikia.com/\">WikiHashtags</a>."
+msgstr "Отримувати описи теґів з <a href=\"http://hashtags.wikia.com/\">WikiHashtags</a>."

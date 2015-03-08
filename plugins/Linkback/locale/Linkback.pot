@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +25,7 @@ msgid "%1$s's status on %2$s"
 msgstr ""
 
 #. TRANS: Plugin description.
-#: LinkbackPlugin.php:244
+#: LinkbackPlugin.php:243
 msgid ""
 "Notify blog authors when their posts have been linked in microblog notices "
 "using <a href=\"http://www.hixie.ch/specs/pingback/pingback\">Pingback</a> "

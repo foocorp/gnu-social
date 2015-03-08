@@ -1,0 +1,35 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 08:43+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Vietnamese (http://www.transifex.com/projects/p/gnu-social/language/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Trackback title.
+#. TRANS: %1$s is a profile nickname, %2$s is a timestamp.
+#: LinkbackPlugin.php:206
+#, php-format
+msgid "%1$s's status on %2$s"
+msgstr "Trạng thái của %1$s vào %2$s"
+
+#. TRANS: Plugin description.
+#: LinkbackPlugin.php:243
+msgid ""
+"Notify blog authors when their posts have been linked in microblog notices "
+"using <a href=\"http://www.hixie.ch/specs/pingback/pingback\">Pingback</a> "
+"or <a "
+"href=\"http://www.movabletype.org/docs/mttrackback.html\">Trackback</a> "
+"protocols."
+msgstr ""

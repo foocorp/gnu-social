@@ -1,128 +1,149 @@
-# Translation of StatusNet - Blacklist to Tagalog (Tagalog)
-# Exported from translatewiki.net
-#
-# Author: AnakngAraw
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Blacklist\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:50+0000\n"
-"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Tagalog (http://www.transifex.com/projects/p/gnu-social/language/tl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-03-01 18:55:46+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: tl\n"
-"X-Message-Group: #out-statusnet-plugin-blacklist\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. TRANS: Exception thrown if the Blacklist plugin configuration is incorrect.
-#. TRANS: %1$s is a configuration section, %2$s is a configuration setting.
-#, php-format
-msgid "Unknown data type for config %1$s + %2$s."
-msgstr "Hindi nalalamang uri ng dato para sa pagkakaayos na %1$s + %2$s."
-
-#. TRANS: Validation failure for URL. %s is the URL.
-#, php-format
-msgid "You may not register with homepage \"%s\"."
-msgstr "Hindi ka maaaring magpatala na may bahay-pahinang \"%s\"."
-
-#. TRANS: Validation failure for nickname. %s is the nickname.
-#, php-format
-msgid "You may not register with nickname \"%s\"."
-msgstr "Hindi ka maaaring magpatala na may palayaw na \"%s\"."
-
-#. TRANS: Validation failure for URL. %s is the URL.
-#, php-format
-msgid "You may not use homepage \"%s\"."
-msgstr "Hindi mo maaaring gamitin ang bahay-pahinang \"%s\"."
-
-#. TRANS: Validation failure for nickname. %s is the nickname.
-#, php-format
-msgid "You may not use nickname \"%s\"."
-msgstr "Hindi mo maaaring gamitin ang palayaw na \"%s\"."
-
-#. TRANS: Validation failure for URL. %s is the URL.
-#, php-format
-msgid "You may not use URL \"%s\" in notices."
-msgstr "Hindi mo maaaring gamitina gn URL na \"%s\" sa loob ng mga pabatid."
-
-#. TRANS: Plugin description.
-msgid "Keeps a blacklist of forbidden nickname and URL patterns."
-msgstr ""
-"Nagkikimkim ng isang talaang-itim ng ipinagbabawal na palayaw at mga parisan "
-"ng URL."
-
-#. TRANS: Menu item in admin panel.
-msgctxt "MENU"
-msgid "Blacklist"
-msgstr "Talaang-itim"
-
-#. TRANS: Tooltip for menu item in admin panel.
-msgctxt "TOOLTIP"
-msgid "Blacklist configuration."
-msgstr "Kaayusan ng talaan ng mga pinagbabawalan."
-
-#. TRANS: Checkbox label in the blacklist user form.
-msgid "Add this nickname pattern to blacklist"
-msgstr "Idagdag ang palayaw na ito sa talaang-itim"
-
-#. TRANS: Checkbox label in the blacklist user form.
-msgid "Add this homepage pattern to blacklist"
-msgstr "Idagdag ang bahay-pahinang ito sa talaang-itim"
-
-#. TRANS: Exception thrown trying to post a notice while having set a blocked homepage URL. %s is the blocked URL.
-#. TRANS: Client exception thrown trying to subscribe to a person with a blocked homepage or site URL. %s is the blocked URL.
-#, php-format
-msgid "Users from \"%s\" are blocked."
-msgstr "Hinahadlangan ang mga tagagamit na mula sa \"%s\"."
-
-#. TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-#, php-format
-msgid "Notices from nickname \"%s\" are disallowed."
-msgstr ""
-"Hindi pinapahintulutan ang mga pabatid na nagmumula sa palayaw na \"%s\"."
-
-#. TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.
-#, php-format
-msgid "Cannot subscribe to nickname \"%s\"."
-msgstr "Hindi makapagpapasipi mula sa palayaw na \"%s\"."
+"Language: tl\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Title of blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:53
 msgctxt "TITLE"
 msgid "Blacklist"
 msgstr "Talaan ng mga pinagbabawalan"
 
 #. TRANS: Instructions for blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:64
 msgid "Blacklisted URLs and nicknames"
 msgstr "Mga URL at mga palayaw na itinala bilang hindi kanais-nais"
 
 #. TRANS: Field label in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:177
 msgid "Nicknames"
 msgstr "Mga palayaw"
 
 #. TRANS: Field title in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:180
 msgid "Patterns of nicknames to block, one per line."
 msgstr "Mga parisan ng mga palayaw na hahadlangan, isa sa bawat guhit."
 
 #. TRANS: Field label in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:187
 msgid "URLs"
 msgstr "Mga URL"
 
 #. TRANS: Field title in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:190
 msgid "Patterns of URLs to block, one per line."
 msgstr "Mga parisan ng mga URL na hahadlangan, isa sa bawat guhit."
 
-#. TRANS: Button text in blacklist plugin administration panel to save settings.
+#. TRANS: Button text in blacklist plugin administration panel to save
+#. settings.
+#: actions/blacklistadminpanel.php:205
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Sagipin"
 
-#. TRANS: Button title in blacklist plugin administration panel to save settings.
+#. TRANS: Button title in blacklist plugin administration panel to save
+#. settings.
+#: actions/blacklistadminpanel.php:209
 msgid "Save site settings."
 msgstr "Sagipin ang mga katakdaan sa sityo."
+
+#. TRANS: Exception thrown if the Blacklist plugin configuration is incorrect.
+#. TRANS: %1$s is a configuration section, %2$s is a configuration setting.
+#: BlacklistPlugin.php:112
+#, php-format
+msgid "Unknown data type for config %1$s + %2$s."
+msgstr "Hindi nalalamang uri ng dato para sa pagkakaayos na %1$s + %2$s."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:132
+#, php-format
+msgid "You may not register with homepage \"%s\"."
+msgstr "Hindi ka maaaring magpatala na may bahay-pahinang \"%s\"."
+
+#. TRANS: Validation failure for nickname. %s is the nickname.
+#: BlacklistPlugin.php:143
+#, php-format
+msgid "You may not register with nickname \"%s\"."
+msgstr "Hindi ka maaaring magpatala na may palayaw na \"%s\"."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:168
+#, php-format
+msgid "You may not use homepage \"%s\"."
+msgstr "Hindi mo maaaring gamitin ang bahay-pahinang \"%s\"."
+
+#. TRANS: Validation failure for nickname. %s is the nickname.
+#: BlacklistPlugin.php:179
+#, php-format
+msgid "You may not use nickname \"%s\"."
+msgstr "Hindi mo maaaring gamitin ang palayaw na \"%s\"."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:222
+#, php-format
+msgid "You may not use URL \"%s\" in notices."
+msgstr "Hindi mo maaaring gamitina gn URL na \"%s\" sa loob ng mga pabatid."
+
+#. TRANS: Plugin description.
+#: BlacklistPlugin.php:303
+msgid "Keeps a blacklist of forbidden nickname and URL patterns."
+msgstr "Nagkikimkim ng isang talaang-itim ng ipinagbabawal na palayaw at mga parisan ng URL."
+
+#. TRANS: Menu item in admin panel.
+#: BlacklistPlugin.php:341
+msgctxt "MENU"
+msgid "Blacklist"
+msgstr "Talaang-itim"
+
+#. TRANS: Tooltip for menu item in admin panel.
+#: BlacklistPlugin.php:343
+msgctxt "TOOLTIP"
+msgid "Blacklist configuration."
+msgstr "Kaayusan ng talaan ng mga pinagbabawalan."
+
+#. TRANS: Checkbox label in the blacklist user form.
+#: BlacklistPlugin.php:370
+msgid "Add this nickname pattern to blacklist"
+msgstr "Idagdag ang palayaw na ito sa talaang-itim"
+
+#. TRANS: Checkbox label in the blacklist user form.
+#: BlacklistPlugin.php:380
+msgid "Add this homepage pattern to blacklist"
+msgstr "Idagdag ang bahay-pahinang ito sa talaang-itim"
+
+#. TRANS: Exception thrown trying to post a notice while having set a blocked
+#. homepage URL. %s is the blocked URL.
+#. TRANS: Client exception thrown trying to subscribe to a person with a
+#. blocked homepage or site URL. %s is the blocked URL.
+#: BlacklistPlugin.php:459 BlacklistPlugin.php:496
+#, php-format
+msgid "Users from \"%s\" are blocked."
+msgstr "Hinahadlangan ang mga tagagamit na mula sa \"%s\"."
+
+#. TRANS: Exception thrown trying to post a notice while having a blocked
+#. nickname. %s is the blocked nickname.
+#: BlacklistPlugin.php:471
+#, php-format
+msgid "Notices from nickname \"%s\" are disallowed."
+msgstr "Hindi pinapahintulutan ang mga pabatid na nagmumula sa palayaw na \"%s\"."
+
+#. TRANS: Client exception thrown trying to subscribe to a person with a
+#. blocked nickname. %s is the blocked nickname.
+#: BlacklistPlugin.php:507
+#, php-format
+msgid "Cannot subscribe to nickname \"%s\"."
+msgstr "Hindi makapagpapasipi mula sa palayaw na \"%s\"."

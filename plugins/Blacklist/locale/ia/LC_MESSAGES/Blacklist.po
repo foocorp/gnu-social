@@ -1,126 +1,149 @@
-# Translation of StatusNet - Blacklist to Interlingua (interlingua)
-# Exported from translatewiki.net
-#
-# Author: McDutchie
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Blacklist\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:49+0000\n"
-"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Interlingua (http://www.transifex.com/projects/p/gnu-social/language/ia/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-03-01 18:55:46+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: ia\n"
-"X-Message-Group: #out-statusnet-plugin-blacklist\n"
+"Language: ia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown if the Blacklist plugin configuration is incorrect.
-#. TRANS: %1$s is a configuration section, %2$s is a configuration setting.
-#, php-format
-msgid "Unknown data type for config %1$s + %2$s."
-msgstr "Typo de datos incognite pro configuration %1$s + %2$s."
-
-#. TRANS: Validation failure for URL. %s is the URL.
-#, php-format
-msgid "You may not register with homepage \"%s\"."
-msgstr "Tu non pote registrar te con le pagina personal \"%s\"."
-
-#. TRANS: Validation failure for nickname. %s is the nickname.
-#, php-format
-msgid "You may not register with nickname \"%s\"."
-msgstr "Tu non pote registrar te con le pseudonymo \"%s\"."
-
-#. TRANS: Validation failure for URL. %s is the URL.
-#, php-format
-msgid "You may not use homepage \"%s\"."
-msgstr "Tu non pote usar le pagina personal \"%s\"."
-
-#. TRANS: Validation failure for nickname. %s is the nickname.
-#, php-format
-msgid "You may not use nickname \"%s\"."
-msgstr "Tu non pote usar le pseudonymo \"%s\"."
-
-#. TRANS: Validation failure for URL. %s is the URL.
-#, php-format
-msgid "You may not use URL \"%s\" in notices."
-msgstr "Tu non pote usar le URL \"%s\" in notas."
-
-#. TRANS: Plugin description.
-msgid "Keeps a blacklist of forbidden nickname and URL patterns."
-msgstr ""
-"Tene un lista nigre de pseudonymos e patronos de adresse URL prohibite."
-
-#. TRANS: Menu item in admin panel.
-msgctxt "MENU"
-msgid "Blacklist"
-msgstr "Lista nigre"
-
-#. TRANS: Tooltip for menu item in admin panel.
-msgctxt "TOOLTIP"
-msgid "Blacklist configuration."
-msgstr "Configuration del lista nigre."
-
-#. TRANS: Checkbox label in the blacklist user form.
-msgid "Add this nickname pattern to blacklist"
-msgstr "Adder iste patrono de pseudonymo al lista nigre"
-
-#. TRANS: Checkbox label in the blacklist user form.
-msgid "Add this homepage pattern to blacklist"
-msgstr "Adder iste patrono de pagina personal al lista nigre"
-
-#. TRANS: Exception thrown trying to post a notice while having set a blocked homepage URL. %s is the blocked URL.
-#. TRANS: Client exception thrown trying to subscribe to a person with a blocked homepage or site URL. %s is the blocked URL.
-#, php-format
-msgid "Users from \"%s\" are blocked."
-msgstr "Le usatores de \"%s\" es blocate."
-
-#. TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-#, php-format
-msgid "Notices from nickname \"%s\" are disallowed."
-msgstr "Le notas del pseudonymo \"%s\" non es permittite."
-
-#. TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.
-#, php-format
-msgid "Cannot subscribe to nickname \"%s\"."
-msgstr "Non pote subscriber al pseudonymo \"%s\"."
-
 #. TRANS: Title of blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:53
 msgctxt "TITLE"
 msgid "Blacklist"
 msgstr "Lista nigre"
 
 #. TRANS: Instructions for blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:64
 msgid "Blacklisted URLs and nicknames"
 msgstr "URLs e pseudonymos in lista nigre"
 
 #. TRANS: Field label in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:177
 msgid "Nicknames"
 msgstr "Pseudonymos"
 
 #. TRANS: Field title in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:180
 msgid "Patterns of nicknames to block, one per line."
 msgstr "Patronos de pseudonymos a blocar, un per linea."
 
 #. TRANS: Field label in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:187
 msgid "URLs"
 msgstr "Adresses URL"
 
 #. TRANS: Field title in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:190
 msgid "Patterns of URLs to block, one per line."
 msgstr "Patronos de adresses URL a blocar, un per linea."
 
-#. TRANS: Button text in blacklist plugin administration panel to save settings.
+#. TRANS: Button text in blacklist plugin administration panel to save
+#. settings.
+#: actions/blacklistadminpanel.php:205
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Salveguardar"
 
-#. TRANS: Button title in blacklist plugin administration panel to save settings.
+#. TRANS: Button title in blacklist plugin administration panel to save
+#. settings.
+#: actions/blacklistadminpanel.php:209
 msgid "Save site settings."
 msgstr "Salveguardar configurationes del sito."
+
+#. TRANS: Exception thrown if the Blacklist plugin configuration is incorrect.
+#. TRANS: %1$s is a configuration section, %2$s is a configuration setting.
+#: BlacklistPlugin.php:112
+#, php-format
+msgid "Unknown data type for config %1$s + %2$s."
+msgstr "Typo de datos incognite pro configuration %1$s + %2$s."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:132
+#, php-format
+msgid "You may not register with homepage \"%s\"."
+msgstr "Tu non pote registrar te con le pagina personal \"%s\"."
+
+#. TRANS: Validation failure for nickname. %s is the nickname.
+#: BlacklistPlugin.php:143
+#, php-format
+msgid "You may not register with nickname \"%s\"."
+msgstr "Tu non pote registrar te con le pseudonymo \"%s\"."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:168
+#, php-format
+msgid "You may not use homepage \"%s\"."
+msgstr "Tu non pote usar le pagina personal \"%s\"."
+
+#. TRANS: Validation failure for nickname. %s is the nickname.
+#: BlacklistPlugin.php:179
+#, php-format
+msgid "You may not use nickname \"%s\"."
+msgstr "Tu non pote usar le pseudonymo \"%s\"."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:222
+#, php-format
+msgid "You may not use URL \"%s\" in notices."
+msgstr "Tu non pote usar le URL \"%s\" in notas."
+
+#. TRANS: Plugin description.
+#: BlacklistPlugin.php:303
+msgid "Keeps a blacklist of forbidden nickname and URL patterns."
+msgstr "Tene un lista nigre de pseudonymos e patronos de adresse URL prohibite."
+
+#. TRANS: Menu item in admin panel.
+#: BlacklistPlugin.php:341
+msgctxt "MENU"
+msgid "Blacklist"
+msgstr "Lista nigre"
+
+#. TRANS: Tooltip for menu item in admin panel.
+#: BlacklistPlugin.php:343
+msgctxt "TOOLTIP"
+msgid "Blacklist configuration."
+msgstr "Configuration del lista nigre."
+
+#. TRANS: Checkbox label in the blacklist user form.
+#: BlacklistPlugin.php:370
+msgid "Add this nickname pattern to blacklist"
+msgstr "Adder iste patrono de pseudonymo al lista nigre"
+
+#. TRANS: Checkbox label in the blacklist user form.
+#: BlacklistPlugin.php:380
+msgid "Add this homepage pattern to blacklist"
+msgstr "Adder iste patrono de pagina personal al lista nigre"
+
+#. TRANS: Exception thrown trying to post a notice while having set a blocked
+#. homepage URL. %s is the blocked URL.
+#. TRANS: Client exception thrown trying to subscribe to a person with a
+#. blocked homepage or site URL. %s is the blocked URL.
+#: BlacklistPlugin.php:459 BlacklistPlugin.php:496
+#, php-format
+msgid "Users from \"%s\" are blocked."
+msgstr "Le usatores de \"%s\" es blocate."
+
+#. TRANS: Exception thrown trying to post a notice while having a blocked
+#. nickname. %s is the blocked nickname.
+#: BlacklistPlugin.php:471
+#, php-format
+msgid "Notices from nickname \"%s\" are disallowed."
+msgstr "Le notas del pseudonymo \"%s\" non es permittite."
+
+#. TRANS: Client exception thrown trying to subscribe to a person with a
+#. blocked nickname. %s is the blocked nickname.
+#: BlacklistPlugin.php:507
+#, php-format
+msgid "Cannot subscribe to nickname \"%s\"."
+msgstr "Non pote subscriber al pseudonymo \"%s\"."

@@ -8,77 +8,78 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: Title for sitemap.
-#: sitemapadminpanel.php:53
+#: actions/sitemapadminpanel.php:53
 msgid "Sitemap"
 msgstr ""
 
 #. TRANS: Instructions for sitemap.
-#: sitemapadminpanel.php:64
+#: actions/sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
 msgstr ""
 
 #. TRANS: Field label.
-#: sitemapadminpanel.php:167
+#: actions/sitemapadminpanel.php:167
 msgid "Google key"
 msgstr ""
 
 #. TRANS: Title for field label.
-#: sitemapadminpanel.php:169
+#: actions/sitemapadminpanel.php:169
 msgid "Google Webmaster Tools verification key."
 msgstr ""
 
 #. TRANS: Field label.
-#: sitemapadminpanel.php:175
+#: actions/sitemapadminpanel.php:175
 msgid "Yahoo key"
 msgstr ""
 
 #. TRANS: Title for field label.
-#: sitemapadminpanel.php:177
+#: actions/sitemapadminpanel.php:177
 msgid "Yahoo! Site Explorer verification key."
 msgstr ""
 
 #. TRANS: Field label.
-#: sitemapadminpanel.php:183
+#: actions/sitemapadminpanel.php:183
 msgid "Bing key"
 msgstr ""
 
 #. TRANS: Title for field label.
-#: sitemapadminpanel.php:185
+#: actions/sitemapadminpanel.php:185
 msgid "Bing Webmaster Tools verification key."
 msgstr ""
 
 #. TRANS: Submit button text to save sitemap settings.
-#: sitemapadminpanel.php:200
+#: actions/sitemapadminpanel.php:200
 msgctxt "BUTTON"
 msgid "Save"
 msgstr ""
 
 #. TRANS: Submit button title to save sitemap settings.
-#: sitemapadminpanel.php:204
+#: actions/sitemapadminpanel.php:204
 msgid "Save sitemap settings."
 msgstr ""
 
 #. TRANS: Menu item title/tooltip
-#: SitemapPlugin.php:205
+#: SitemapPlugin.php:160
 msgid "Sitemap configuration"
 msgstr ""
 
 #. TRANS: Menu item for site administration
-#: SitemapPlugin.php:207
+#: SitemapPlugin.php:162
 msgctxt "MENU"
 msgid "Sitemap"
 msgstr ""
 
 #. TRANS: Plugin description.
-#: SitemapPlugin.php:232
+#: SitemapPlugin.php:187
 msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
 msgstr ""

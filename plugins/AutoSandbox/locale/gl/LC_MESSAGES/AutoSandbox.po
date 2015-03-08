@@ -1,46 +1,40 @@
-# Translation of StatusNet - AutoSandbox to Galician (galego)
-# Exported from translatewiki.net
-#
-# Author: Toliño
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - AutoSandbox\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:43+0000\n"
-"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 14:32+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Galician (http://www.transifex.com/projects/p/gnu-social/language/gl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:49:46+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: gl\n"
-"X-Message-Group: #out-statusnet-plugin-autosandbox\n"
+"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Plugin description.
+#: AutoSandboxPlugin.php:67
 msgid "Automatically sandboxes newly registered members."
 msgstr "Sitúa de xeito automático aos novos usuarios nunha zona de probas."
 
 #. TRANS: User instructions after registration.
+#: AutoSandboxPlugin.php:74
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline."
-msgstr ""
-"Teña en conta que inicialmente será enviado a unha zona de probas, de xeito "
-"que as súas mensaxes non apareceran na liña temporal pública."
+msgstr "Teña en conta que inicialmente será enviado a unha zona de probas, de xeito que as súas mensaxes non apareceran na liña temporal pública."
 
 #. TRANS: User instructions after registration.
-#. TRANS: %s is a clickable e-mailaddress.
+#. TRANS: %s is a clickable OStatus profile URL.
+#: AutoSandboxPlugin.php:84
 #, php-format
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline. Send a message to %s to speed up the unsandboxing "
 "process."
-msgstr ""
-"Teña en conta que inicialmente será enviado a unha zona de probas, de xeito "
-"que as súas mensaxes non apareceran na liña temporal pública. Envíe unha "
-"mensaxe a %s para acelerar o proceso de abandonar a zona de probas."
+msgstr "Teña en conta que inicialmente será enviado a unha zona de probas, de xeito que as súas mensaxes non apareceran na liña temporal pública. Envíe unha mensaxe a %s para acelerar o proceso de abandonar a zona de probas."

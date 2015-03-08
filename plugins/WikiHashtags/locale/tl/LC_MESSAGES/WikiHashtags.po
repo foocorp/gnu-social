@@ -1,56 +1,54 @@
-# Translation of StatusNet - WikiHashtags to Tagalog (Tagalog)
-# Exported from translatewiki.net
-#
-# Author: AnakngAraw
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - WikiHashtags\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:27+0000\n"
-"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:34+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Tagalog (http://www.transifex.com/projects/p/gnu-social/language/tl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:53+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: tl\n"
-"X-Message-Group: #out-statusnet-plugin-wikihashtags\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tl\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Link title for editing an article on WikiHashTags.
 #. TRANS: %s is the hash tag page to be edited.
+#: WikiHashtagsPlugin.php:83
 #, php-format
 msgid "Edit the article for #%s on WikiHashtags"
 msgstr "Baguhin ang artikulo para sa #%s na nasa WikiHashtags"
 
 #. TRANS: Link description for editing an article on WikiHashTags.
+#: WikiHashtagsPlugin.php:85
 msgid "Edit"
 msgstr "Baguhin"
 
 #. TRANS: Link title for viewing the GFDL.
+#: WikiHashtagsPlugin.php:88
 msgid "Shared under the terms of the GNU Free Documentation License"
-msgstr ""
-"Ibinabahagi sa ilalim ng mga pagsasaad ng Lisensiya ng Malayang "
-"Dokumentasyon ng GNU"
+msgstr "Ibinabahagi sa ilalim ng mga pagsasaad ng Lisensiya ng Malayang Dokumentasyon ng GNU"
 
 #. TRANS: Link description for viewing the GFDL.
+#: WikiHashtagsPlugin.php:91
 msgid "GNU FDL"
 msgstr "GNU FDL"
 
 #. TRANS: Link description for editing an article on WikiHashTags.
 #. TRANS: %s is the hash tag page to be created.
+#: WikiHashtagsPlugin.php:97
 #, php-format
 msgid "Start the article for #%s on WikiHashtags"
 msgstr "Simulan ang artikulo para sa #%s na nasa WikiHashtags"
 
 #. TRANS: Plugin description.
+#: WikiHashtagsPlugin.php:115
 msgid ""
-"Gets hashtag descriptions from <a href=\"http://hashtags.wikia.com/"
-"\">WikiHashtags</a>."
-msgstr ""
-"Kumukuha ng mga paglalarawan ng tatak ng giling mula sa <a href=\"http://"
-"hashtags.wikia.com/\">WikiHashtags</a>."
+"Gets hashtag descriptions from <a "
+"href=\"http://hashtags.wikia.com/\">WikiHashtags</a>."
+msgstr "Kumukuha ng mga paglalarawan ng tatak ng giling mula sa <a href=\"http://hashtags.wikia.com/\">WikiHashtags</a>."

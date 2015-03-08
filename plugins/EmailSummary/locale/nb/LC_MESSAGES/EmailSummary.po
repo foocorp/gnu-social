@@ -1,0 +1,55 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:15+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/gnu-social/language/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Subject for e-mail.
+#: lib/useremailsummaryhandler.php:125
+#, php-format
+msgid "Your latest updates from %s"
+msgstr ""
+
+#. TRANS: Text in e-mail summary.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile
+#. name.
+#: lib/useremailsummaryhandler.php:140
+#, php-format
+msgid "Recent updates from %1$s for %2$s:"
+msgstr ""
+
+#. TRANS: Link text for link to conversation view.
+#: lib/useremailsummaryhandler.php:188
+msgid "in context"
+msgstr ""
+
+#. TRANS: Link text for link to e-mail settings.
+#. TRANS: %1$s is a link to the e-mail settings, %2$s is the StatusNet
+#. sitename.
+#: lib/useremailsummaryhandler.php:198
+#, php-format
+msgid "<a href=\"%1$s\">change your email settings for %2$s</a>"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: EmailSummaryPlugin.php:77
+msgid "Send an email summary of the inbox to users."
+msgstr ""
+
+#. TRANS: Checkbox label in e-mail preferences form.
+#: EmailSummaryPlugin.php:108
+msgid "Send me a periodic summary of updates from my network"
+msgstr ""
