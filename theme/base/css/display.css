@@ -475,6 +475,10 @@ address .poweredby {
     font-size: 1em;
 }
 
+.input_form .form_data label {
+    display: none;
+}
+
 .input_form .form_settings .form_data p.form_guide {
     margin-left: 5px;
 }
