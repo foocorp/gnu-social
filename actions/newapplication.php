@@ -61,27 +61,15 @@ class NewApplicationAction extends FormAction
         $this->clientError(_('Unexpected form submission.'));
     }
 
-    function showForm($msg=null)
+    protected function getForm()
     {
-        $this->msg = $msg;
-        $this->showPage();
+        return new ApplicationEditForm($this);
     }
 
-    function showContent()
+    public function getInstructions()
     {
-        $form = new ApplicationEditForm($this);
-        $form->show();
-    }
-
-    function showPageNotice()
-    {
-        if ($this->msg) {
-            $this->element('p', 'error', $this->msg);
-        } else {
-            $this->element('p', 'instructions',
-                           // TRANS: Form instructions for registering a new application.
-                           _('Use this form to register a new application.'));
-        }
+        // TRANS: Form instructions for registering a new application.
+        return _('Use this form to register a new application.');
     }
 
     private function trySave()

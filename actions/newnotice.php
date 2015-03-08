@@ -30,9 +30,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Action for posting new notices
@@ -83,7 +81,7 @@ class NewnoticeAction extends FormAction
     }
 
     /**
-     * This handlePost saves a new notice, based on arguments
+     * This doPost saves a new notice, based on arguments
      *
      * If successful, will show the notice, or return an Ajax-y result.
      * If not, it will show an error message -- possibly Ajax-y.
@@ -93,17 +91,15 @@ class NewnoticeAction extends FormAction
      *
      * @return void
      */
-    protected function handlePost()
+    protected function doPost()
     {
-        parent::handlePost();
-
-        assert($this->scoped); // XXX: maybe an error instead...
+        assert($this->scoped instanceof Profile); // XXX: maybe an error instead...
         $user = $this->scoped->getUser();
         $content = $this->trimmed('status_textarea');
         $options = array();
         Event::handle('StartSaveNewNoticeWeb', array($this, $user, &$content, &$options));
 
-        if (!$content) {
+        if (empty($content)) {
             // TRANS: Client error displayed trying to send a notice without content.
             $this->clientError(_('No content!'));
         }

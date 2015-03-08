@@ -40,15 +40,16 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class RepeatAction extends FormAction
 {
-    protected $needPost = true; // At least for now, until repeat interface is available
-
     protected $notice = null;   // Notice that is being repeated.
     protected $repeat = null;   // The resulting repeat object/notice.
 
-    protected function prepare(array $args=array())
+    function title()
     {
-        parent::prepare($args);
+        return _m('TITLE', 'Repeat notice');
+    }
 
+    protected function doPreparation()
+    {
         $id = $this->trimmed('notice');
 
         if (empty($id)) {

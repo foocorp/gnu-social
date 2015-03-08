@@ -27,9 +27,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Form action extendable class
@@ -125,8 +123,6 @@ class FormAction extends ManagedAction
      */
     protected function handlePost()
     {
-        parent::handlePost();
-
         // check for this before token since all POST and FILES data
         // is losts when size is exceeded
         if (empty($_POST) && $_SERVER['CONTENT_LENGTH']>0) {
@@ -138,6 +134,6 @@ class FormAction extends ManagedAction
             throw new ClientException($msg);
         }
 
-        $this->checkSessionToken();
+        return parent::handlePost();
     }
 }

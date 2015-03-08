@@ -64,9 +64,27 @@ class ManagedAction extends Action
         $this->showPage();
     }
 
+    /**
+     * If this is extended in child classes, they should
+     * end with 'return parent::handlePost();' - and they
+     * should only extend this function if what they do
+     * cannot be handled in ->doPost()
+     */
     protected function handlePost()
     {
         // This will only be run if the Action has the property canPost==true
         assert($this->canPost);
+
+        $this->checkSessionToken();
+        return $this->doPost();
+    }
+
+    /**
+     * Do Post stuff. Return a string if successful,
+     * describing what has been done. Always throw an
+     * exception on failure, with a descriptive message.
+     */
+    protected function doPost() {
+        throw new Exception('Unhandled POST');
     }
 }

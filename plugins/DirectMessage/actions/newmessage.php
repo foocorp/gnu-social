@@ -30,9 +30,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Action for posting new direct messages
@@ -52,7 +50,7 @@ class NewmessageAction extends FormAction
     var $to = null;
     var $other = null;
 
-    protected $form = 'message';    // will become MessageForm later
+    protected $form = 'Message';    // will become MessageForm later
 
     /**
      * Title of the page
@@ -68,18 +66,8 @@ class NewmessageAction extends FormAction
         return _('New message');
     }
 
-    /**
-     * Handle input, produce output
-     *
-     * @param array $args $_REQUEST contents
-     *
-     * @return void
-     */
-
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $this->content = $this->trimmed('content');
         $this->to = $this->trimmed('to');
 
@@ -107,29 +95,27 @@ class NewmessageAction extends FormAction
         return true;
     }
 
-    protected function handlePost()
+    protected function doPost()
     {
-        parent::handlePost();
-
         assert($this->scoped instanceof Profile); // XXX: maybe an error instead...
 
-        if (!$this->content) {
+        if (empty($this->content)) {
             // TRANS: Form validator error displayed trying to send a direct message without content.
             $this->clientError(_('No content!'));
-        } else {
-            $content_shortened = $this->scoped->shortenLinks($this->content);
-
-            if (Message::contentTooLong($content_shortened)) {
-                // TRANS: Form validation error displayed when message content is too long.
-                // TRANS: %d is the maximum number of characters for a message.
-                $this->clientError(sprintf(_m('That\'s too long. Maximum message size is %d character.',
-                                           'That\'s too long. Maximum message size is %d characters.',
-                                           Message::maxContent()),
-                                        Message::maxContent()));
-            }
         }
 
-        if (!$this->other) {
+        $content_shortened = $this->scoped->shortenLinks($this->content);
+
+        if (Message::contentTooLong($content_shortened)) {
+            // TRANS: Form validation error displayed when message content is too long.
+            // TRANS: %d is the maximum number of characters for a message.
+            $this->clientError(sprintf(_m('That\'s too long. Maximum message size is %d character.',
+                                       'That\'s too long. Maximum message size is %d characters.',
+                                       Message::maxContent()),
+                                    Message::maxContent()));
+        }
+
+        if (!$this->other instanceof Profile) {
             // TRANS: Form validation error displayed trying to send a direct message without specifying a recipient.
             $this->clientError(_('No recipient specified.'));
         } else if (!$this->scoped->mutuallySubscribed($this->other)) {
@@ -145,86 +131,18 @@ class NewmessageAction extends FormAction
         $message = Message::saveNew($this->scoped->id, $this->other->id, $this->content, 'web');
         $message->notify();
 
-        if ($this->boolean('ajax')) {
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Page title after sending a direct message.
-            $this->element('title', null, _('Message sent'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-            $this->element('p', array('id' => 'command_result'),
-                // TRANS: Confirmation text after sending a direct message.
-                // TRANS: %s is the direct message recipient.
-                sprintf(_('Direct message to %s sent.'),
-                    $this->other->nickname));
-            $this->elementEnd('body');
-            $this->endHTML();
-        } else {
-            $url = common_local_url('outbox',
-                array('nickname' => $this->scoped->nickname));
-            common_redirect($url, 303);
+        if (GNUsocial::isAjax()) {
+            // TRANS: Confirmation text after sending a direct message.
+            // TRANS: %s is the direct message recipient.
+            return sprintf(_('Direct message to %s sent.'), $this->other->getNickname());
         }
+
+        $url = common_local_url('outbox', array('nickname' => $this->scoped->getNickname()));
+        common_redirect($url, 303);
     }
-
-    /**
-     * Show an Ajax-y error message
-     *
-     * Goes back to the browser, where it's shown in a popup.
-     *
-     * @param string $msg Message to show
-     *
-     * @return void
-     */
-
-    function ajaxErrorMsg($msg)
-    {
-        $this->startHTML('text/xml;charset=utf-8', true);
-        $this->elementStart('head');
-        // TRANS: Page title after an AJAX error occurred on the "send direct message" page.
-        $this->element('title', null, _('Ajax Error'));
-        $this->elementEnd('head');
-        $this->elementStart('body');
-        $this->element('p', array('id' => 'error'), $msg);
-        $this->elementEnd('body');
-        $this->endHTML();
-    }
-
-    function showForm($msg = null)
-    {
-        if ($msg && $this->boolean('ajax')) {
-            $this->ajaxErrorMsg($msg);
-            return;
-        }
-
-        $this->msg = $msg;
-        if ($this->trimmed('ajax')) {
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Page title on page for sending a direct message.
-            $this->element('title', null, _('New message'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-            $this->showNoticeForm();
-            $this->elementEnd('body');
-            $this->endHTML();
-        }
-        else {
-            $this->showPage();
-        }
-    }
-
-    function showPageNotice()
-    {
-        if ($this->msg) {
-            $this->element('p', 'error', $this->msg);
-        }
-    }
-
-    // Do nothing (override)
 
     function showNoticeForm()
     {
-        $message_form = new MessageForm($this, $this->other, $this->content);
-        $message_form->show();
+        // Just don't show a NoticeForm
     }
 }

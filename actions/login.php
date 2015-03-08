@@ -61,10 +61,8 @@ class LoginAction extends FormAction
      *
      * @return void
      */
-    protected function handlePost()
+    protected function doPost()
     {
-        parent::handlePost();
-
         // XXX: login throttle
 
         $nickname = $this->trimmed('nickname');
@@ -102,22 +100,6 @@ class LoginAction extends FormAction
         }
 
         common_redirect($url, 303);
-    }
-
-    /**
-     * Store an error and show the page
-     *
-     * This used to show the whole page; now, it's just a wrapper
-     * that stores the error in an attribute.
-     *
-     * @param string $error error, if any.
-     *
-     * @return void
-     */
-    public function showForm($msg=null, $success=false)
-    {
-        common_ensure_session();
-        return parent::showForm($msg, $success);
     }
 
     function showScripts()
