@@ -659,6 +659,12 @@ var SN = { // StatusNet
             if (list.length == 0) {
                 list = notice.closest('.threaded-replies');
             }
+            if (list.length == 0) {
+                list = $('<ul class="notices threaded-replies xoxo"></ul>');
+                notice.append(list);
+                list = notice.find('.threaded-replies');
+            }
+
             var nextStep = function () {
                 // Override...?
                 replyForm.find('input[name=inreplyto]').val(id);
@@ -701,10 +707,10 @@ var SN = { // StatusNet
                     data: {ajax: 1, inreplyto: id},
                     success: function (data, textStatus, xhr) {
                         var formEl = document._importNode($('form', data)[0], true);
-                        replyItem.append(formEl);
+                        replyForm = $(formEl);
+                        replyItem.append(replyForm);
                         list.append(replyItem);
 
-                        replyForm = $(formEl);
                         SN.Init.NoticeFormSetup(replyForm);
                         nextStep();
                     },
