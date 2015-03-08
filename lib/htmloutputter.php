@@ -198,6 +198,14 @@ class HTMLOutputter extends XMLOutputter
         }
         $attrs['id'] = $id;
         $attrs['name'] = is_null($name) ? $id : $name;
+        if (array_key_exists('placeholder', $attrs) && (is_null($attrs['placeholder']) || $attrs['placeholder'] === '')) {
+            // If placeholder is type-aware equal to '' or null, unset it as we apparently don't want a placeholder value
+            unset($attrs['placeholder']);
+        } else {
+            // If the placeholder is set use it, or use the label as fallback.
+            $attrs['placeholder'] = isset($attrs['placeholder']) ? $attrs['placeholder'] : $label;
+        }
+
         if (!is_null($value)) { // value can be 0 or ''
             $attrs['value'] = $value;
         }
