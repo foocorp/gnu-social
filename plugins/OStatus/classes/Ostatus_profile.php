@@ -2147,7 +2147,6 @@ class Ostatus_profile extends Managed_DataObject
                 throw new ServerException(sprintf(_m('Unrecognized URI protocol for profile: %1$s (%2$s).'),
                                                   $protocol,
                                                   $uri));
-                break;
             }
         } else {
             // TRANS: Server exception. %s is a URI.
