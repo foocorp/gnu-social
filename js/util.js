@@ -590,8 +590,12 @@ var SN = { // StatusNet
             $(document).on('click', '.notice-options > a.popup', function (e) {
                 e.preventDefault();
                 var noticeEl = $(this).closest('.notice');
-                $.get($(this).attr('href'), {ajax: 1}, function (data, textStatus, xhr) {
-                    SN.U.NoticeOptionPopup(data, noticeEl);
+                $.ajax({
+                    url: $(this).attr('href'),
+                    data: {ajax: 1},
+                    success: function (data, textStatus, xhr) {
+                        SN.U.NoticeOptionPopup(data, noticeEl);
+                    },
                 });
                 return false;
             });
@@ -692,14 +696,18 @@ var SN = { // StatusNet
 
                 // Fetch a fresh copy of the notice form over AJAX.
                 var url = $('#input_form_status > form').attr('action');
-                $.get(url, {ajax: 1, inreplyto: id}, function (data, textStatus, xhr) {
-                    var formEl = document._importNode($('form', data)[0], true);
-                    replyItem.append(formEl);
-                    list.append(replyItem);
+                $.ajax({
+                    url: url,
+                    data: {ajax: 1, inreplyto: id},
+                    success: function (data, textStatus, xhr) {
+                        var formEl = document._importNode($('form', data)[0], true);
+                        replyItem.append(formEl);
+                        list.append(replyItem);
 
-                    replyForm = $(formEl);
-                    SN.Init.NoticeFormSetup(replyForm);
-                    nextStep();
+                        replyForm = $(formEl);
+                        SN.Init.NoticeFormSetup(replyForm);
+                        nextStep();
+                    },
                 });
             } else {
                 replyForm = replyItem.children('form');
@@ -718,11 +726,15 @@ var SN = { // StatusNet
             $(document).on('click', 'li.notice-reply-comments a', function () {
                     var url = $(this).attr('href');
                     var area = $(this).closest('.threaded-replies');
-                    $.get(url, {ajax: 1}, function (data, textStatus, xhr) {
-                        var replies = $('.threaded-replies', data);
-                        if (replies.length) {
-                            area.replaceWith(document._importNode(replies[0], true));
-                        }
+                    $.ajax({
+                        url: url,
+                        data: {ajax: 1},
+                        success: function (data, textStatus, xhr) {
+                            var replies = $('.threaded-replies', data);
+                            if (replies.length) {
+                                area.replaceWith(document._importNode(replies[0], true));
+                            }
+                        },
                     });
                     return false;
                 });
