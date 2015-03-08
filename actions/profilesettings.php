@@ -104,7 +104,9 @@ class ProfilesettingsAction extends SettingsAction
                          // TRANS: Tooltip for field label in form for profile settings.
                          _('1-64 lowercase letters or numbers, no punctuation or spaces.'),
                          null, false,   // "name" (will be set to id), then "required"
-                         !common_config('profile', 'changenick') ? array('disabled'=>'disabled') : array());
+                         !common_config('profile', 'changenick')
+                                        ? array('disabled' => 'disabled', 'placeholder' => null)
+                                        : array('placeholder' => null));
             $this->elementEnd('li');
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
