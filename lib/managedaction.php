@@ -75,6 +75,17 @@ class ManagedAction extends Action
         // This will only be run if the Action has the property canPost==true
         assert($this->canPost);
 
+        // check for this before token since all POST and FILES data
+        // is losts when size is exceeded
+        if (empty($_POST) && $_SERVER['CONTENT_LENGTH']>0) {
+            // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
+            // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
+            $msg = _m('The server was unable to handle that much POST data (%s MiB) due to its current configuration.',
+                      'The server was unable to handle that much POST data (%s MiB) due to its current configuration.',
+                      round($_SERVER['CONTENT_LENGTH']/1024/1024,2));
+            throw new ClientException($msg);
+        }
+
         $this->checkSessionToken();
         return $this->doPost();
     }
@@ -85,6 +96,6 @@ class ManagedAction extends Action
      * exception on failure, with a descriptive message.
      */
     protected function doPost() {
-        throw new Exception('Unhandled POST');
+        return false;
     }
 }
