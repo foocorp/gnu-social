@@ -348,7 +348,7 @@ class OpenidsettingsAction extends SettingsAction
             $orig = clone($prefs);
         }
 
-        $prefs->hide_profile_link = $this->boolean('hide_profile_link');
+        $prefs->hide_profile_link = $this->booleanintstring('hide_profile_link');
 
         if (empty($orig)) {
             $prefs->insert();
