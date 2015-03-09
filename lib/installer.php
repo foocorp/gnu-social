@@ -224,7 +224,7 @@ abstract class Installer
         }
         // @fixme hardcoded list; should use Nickname::isValid()
         // if/when it's safe to have loaded the infrastructure here
-        $blacklist = array('main', 'panel', 'twitter', 'settings', 'rsd.xml', 'favorited', 'featured', 'favoritedrss', 'featuredrss', 'rss', 'getfile', 'api', 'groups', 'group', 'peopletag', 'tag', 'user', 'message', 'conversation', 'notice', 'attachment', 'search', 'index.php', 'doc', 'opensearch', 'robots.txt', 'xd_receiver.html', 'facebook');
+        $blacklist = array('main', 'panel', 'twitter', 'settings', 'rsd.xml', 'favorited', 'featured', 'favoritedrss', 'featuredrss', 'rss', 'getfile', 'api', 'groups', 'group', 'peopletag', 'tag', 'user', 'message', 'conversation', 'notice', 'attachment', 'search', 'index.php', 'doc', 'opensearch', 'robots.txt', 'xd_receiver.html', 'facebook', 'activity');
         if (in_array($this->adminNick, $blacklist)) {
             $this->updateStatus('The user nickname "' . htmlspecialchars($this->adminNick) .
                          '" is reserved.', true);
