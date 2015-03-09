@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:29+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Esperanto (http://www.transifex.com/projects/p/gnu-social/language/eo/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: eo\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title for sitemap.
+#: actions/sitemapadminpanel.php:53
+msgid "Sitemap"
+msgstr ""
+
+#. TRANS: Instructions for sitemap.
+#: actions/sitemapadminpanel.php:64
+msgid "Sitemap settings for this StatusNet site"
+msgstr ""
+
+#. TRANS: Field label.
+#: actions/sitemapadminpanel.php:167
+msgid "Google key"
+msgstr ""
+
+#. TRANS: Title for field label.
+#: actions/sitemapadminpanel.php:169
+msgid "Google Webmaster Tools verification key."
+msgstr ""
+
+#. TRANS: Field label.
+#: actions/sitemapadminpanel.php:175
+msgid "Yahoo key"
+msgstr ""
+
+#. TRANS: Title for field label.
+#: actions/sitemapadminpanel.php:177
+msgid "Yahoo! Site Explorer verification key."
+msgstr ""
+
+#. TRANS: Field label.
+#: actions/sitemapadminpanel.php:183
+msgid "Bing key"
+msgstr ""
+
+#. TRANS: Title for field label.
+#: actions/sitemapadminpanel.php:185
+msgid "Bing Webmaster Tools verification key."
+msgstr ""
+
+#. TRANS: Submit button text to save sitemap settings.
+#: actions/sitemapadminpanel.php:200
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Konservi"
+
+#. TRANS: Submit button title to save sitemap settings.
+#: actions/sitemapadminpanel.php:204
+msgid "Save sitemap settings."
+msgstr ""
+
+#. TRANS: Menu item title/tooltip
+#: SitemapPlugin.php:160
+msgid "Sitemap configuration"
+msgstr ""
+
+#. TRANS: Menu item for site administration
+#: SitemapPlugin.php:162
+msgctxt "MENU"
+msgid "Sitemap"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: SitemapPlugin.php:187
+msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
+msgstr ""

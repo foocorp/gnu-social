@@ -1,0 +1,166 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-05 16:43+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/gnu-social/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. TRANS: Form legend.
+#: forms/tagunsub.php:90
+msgid "Unsubscribe from this tag"
+msgstr ""
+
+#. TRANS: Submit button text to unsubscribe from a tag.
+#: forms/tagunsub.php:101
+msgctxt "BUTTON"
+msgid "Unsubscribe"
+msgstr "Отписаться"
+
+#. TRANS: Submit button title to unsubscribe from a tag.
+#: forms/tagunsub.php:103
+msgid "Unsubscribe from this tag."
+msgstr ""
+
+#. TRANS: Form legend.
+#: forms/tagsub.php:108
+msgid "Subscribe to this tag"
+msgstr ""
+
+#. TRANS: Submit button text to subscribe to a tag.
+#: forms/tagsub.php:131
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#. TRANS: Submit button title to subscribe to a tag.
+#: forms/tagsub.php:133
+msgid "Subscribe to this tag."
+msgstr ""
+
+#. TRANS: Page title when tag unsubscription succeeded.
+#: actions/tagunsub.php:76
+msgid "Unsubscribed"
+msgstr "Отписано"
+
+#. TRANS: Header for subscriptions overview for a user (first page).
+#. TRANS: %s is a user nickname.
+#: actions/tagsubs.php:51
+#, php-format
+msgid "%s's tag subscriptions"
+msgstr ""
+
+#. TRANS: Header for subscriptions overview for a user (not first page).
+#. TRANS: %1$s is a user nickname, %2$d is the page number.
+#: actions/tagsubs.php:55
+#, php-format
+msgid "%1$s's tag subscriptions, page %2$d"
+msgstr ""
+
+#. TRANS: Page notice for page with an overview of all tag subscriptions
+#. TRANS: of the logged in user's own profile.
+#: actions/tagsubs.php:68
+msgid ""
+"You have subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+
+#. TRANS: Page notice for page with an overview of all subscriptions of a user
+#. other
+#. TRANS: than the logged in user. %s is the user nickname.
+#: actions/tagsubs.php:73
+#, php-format
+msgid ""
+"%s has subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+
+#. TRANS: Tag subscription list text when the logged in user has no tag
+#. subscriptions.
+#: actions/tagsubs.php:118
+msgid ""
+"You are not listening to any hash tags right now. You can push the "
+"\"Subscribe\" button on any hashtag page to automatically receive any public"
+" messages on this site that use that tag, even if you are not subscribed to "
+"the poster."
+msgstr ""
+
+#. TRANS: Tag subscription list text when looking at the subscriptions for a
+#. of a user other
+#. TRANS: than the logged in user that has no tag subscriptions. %s is the
+#. user nickname.
+#. TRANS: Subscription list text when looking at the subscriptions for a of a
+#. user that has none
+#. TRANS: as an anonymous user. %s is the user nickname.
+#: actions/tagsubs.php:124 actions/tagsubs.php:130
+#, php-format
+msgid "%s is not following any tags."
+msgstr ""
+
+#. TRANS: %1$s is a URL to a tag, %2$s is a tag,
+#. TRANS: %3$s a date string.
+#: actions/tagsubs.php:170
+#, php-format
+msgid "#<a href=\"%1$s\">%2$s</a> since %3$s"
+msgstr ""
+
+#. TRANS: Client error displayed trying to perform any request method other
+#. than POST.
+#. TRANS: Do not translate POST.
+#: actions/tagsub.php:78
+msgid "This action only accepts POST requests."
+msgstr "Это действие принимает только POST-запросы."
+
+#. TRANS: Client error displayed when the session token is not okay.
+#: actions/tagsub.php:87
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Проблема с вашим ключом сессии. Пожалуйста, попробуйте ещё раз."
+
+#. TRANS: Error message displayed when trying to perform an action that
+#. requires a logged in user.
+#: actions/tagsub.php:97
+msgid "Not logged in."
+msgstr "Не авторизован."
+
+#. TRANS: Client error displayed trying to subscribe to a non-existing
+#. profile.
+#: actions/tagsub.php:106
+msgid "No such profile."
+msgstr "Нет такого профиля."
+
+#. TRANS: Page title when tag subscription succeeded.
+#: actions/tagsub.php:132
+msgid "Subscribed"
+msgstr "Подписано"
+
+#. TRANS: Plugin description.
+#: TagSubPlugin.php:100
+msgid "Plugin to allow following all messages with a given tag."
+msgstr ""
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: TagSubPlugin.php:173
+msgctxt "MENU"
+msgid "Tags"
+msgstr "Теги"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: TagSubPlugin.php:175
+msgid "Configure tag subscriptions"
+msgstr ""
+
+#. TRANS: Menu item text for tags submenu.
+#: TagSubPlugin.php:192
+msgid "Tags"
+msgstr "Теги"

@@ -1,306 +1,356 @@
-# Translation of StatusNet - FacebookBridge to Basque (euskara)
-# Exported from translatewiki.net
-#
-# Author: Artsuaga
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - FacebookBridge\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:33+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Basque (http://www.transifex.com/projects/p/gnu-social/language/eu/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Client error displayed when trying to login while already logged in.
-msgid "Already logged in."
-msgstr "Dagoeneko saioa hasita."
-
-#. TRANS: Form instructions.
-msgid "Login with your Facebook Account"
-msgstr "Saioa hasi zure Facebook kontuarekin"
-
-#. TRANS: Page title.
-#. TRANS: Alt text for "Login with Facebook" image.
-msgid "Login with Facebook"
-msgstr "Saioa hasi Facebookekin"
-
-#. TRANS: Title for "Login with Facebook" image.
-msgid "Login with Facebook."
-msgstr "Saioa hasi Facebookekin."
-
 #. TRANS: Title for Facebook administration panel.
+#: actions/facebookadminpanel.php:53
 msgctxt "TITLE"
 msgid "Facebook integration settings"
 msgstr "Integrazio aukerak Facebookekin"
 
 #. TRANS: Instruction for Facebook administration panel.
+#: actions/facebookadminpanel.php:64
 msgid "Facebook integration settings"
 msgstr "Integrazio aukerak Facebookekin"
 
-#. TRANS: Client error displayed when providing too long a Facebook application ID.
+#. TRANS: Client error displayed when providing too long a Facebook
+#. application ID.
+#: actions/facebookadminpanel.php:126
 msgid "Invalid Facebook ID. Maximum length is 255 characters."
 msgstr "Facebook ID baliogabea. Luzera maximoa 255 karakterekoa da."
 
-#. TRANS: Client error displayed when providing too long a Facebook secret key.
+#. TRANS: Client error displayed when providing too long a Facebook secret
+#. key.
+#: actions/facebookadminpanel.php:133
 msgid "Invalid Facebook secret. Maximum length is 255 characters."
 msgstr "Facebook sekretu baliogabea. Luzera maximoa 255 karakterekoa da."
 
 #. TRANS: Fieldset legend.
+#: actions/facebookadminpanel.php:183
 msgid "Facebook application settings"
 msgstr "Aplikazio aukerak Facebookekin"
 
 #. TRANS: Field label for Facebook application ID.
+#: actions/facebookadminpanel.php:190
 msgid "Application ID"
 msgstr "Aplikazio IDa"
 
 #. TRANS: Field title for Facebook application ID.
+#: actions/facebookadminpanel.php:192
 msgid "ID of your Facebook application."
 msgstr "Zure Facebook aplikazioaren IDa."
 
 #. TRANS: Field label for Facebook secret key.
+#: actions/facebookadminpanel.php:201
 msgid "Secret"
 msgstr "Sekretua"
 
 #. TRANS: Field title for Facebook secret key.
+#: actions/facebookadminpanel.php:203
 msgid "Application secret."
 msgstr "Aplikazio sekretua."
 
 #. TRANS: Button text to save Facebook integration settings.
 #. TRANS: Submit button to save synchronisation settings.
+#: actions/facebookadminpanel.php:220 actions/facebooksettings.php:188
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Gorde"
 
 #. TRANS: Button title to save Facebook integration settings.
+#: actions/facebookadminpanel.php:222
 msgid "Save Facebook settings."
 msgstr "Gorde Facebook aukerak."
 
-#. TRANS: Client error displayed when the session token does not match or is not given.
-msgid "There was a problem with your session token. Try again, please."
-msgstr "Zure saio tokenarekin arazo bat egon da. Saiatu berriro, mesedez."
+#. TRANS: Client error displayed when trying to login while already logged in.
+#: actions/facebooklogin.php:43
+msgid "Already logged in."
+msgstr "Dagoeneko saioa hasita."
 
-#. TRANS: Page title for Facebook settings.
-msgctxt "TITLE"
-msgid "Facebook settings"
-msgstr "Facebook aukerak."
+#. TRANS: Form instructions.
+#: actions/facebooklogin.php:52
+msgid "Login with your Facebook Account"
+msgstr "Saioa hasi zure Facebook kontuarekin"
 
-#. TRANS: Instructions for Facebook settings.
-msgid "Facebook settings"
-msgstr "Facebook aukerak."
+#. TRANS: Page title.
+#. TRANS: Alt text for "Login with Facebook" image.
+#: actions/facebooklogin.php:67 actions/facebooklogin.php:92
+msgid "Login with Facebook"
+msgstr "Saioa hasi Facebookekin"
 
-#. TRANS: Form note. User is connected to facebook.
-msgid "Connected Facebook user"
-msgstr "Konektaturiko Facebook erabiltzailea"
+#. TRANS: Title for "Login with Facebook" image.
+#: actions/facebooklogin.php:94
+msgid "Login with Facebook."
+msgstr "Saioa hasi Facebookekin."
 
-#. TRANS: Checkbox label in Facebook settings.
-msgid "Publish my notices to Facebook."
-msgstr "Argitaratu nere oharrak Facebooken."
-
-#. TRANS: Checkbox label in Facebook settings.
-msgid "Send \"@\" replies to Facebook."
-msgstr "Bidali \"@\" erantzunak Facebookera."
-
-#. TRANS: Fieldset legend for form to disconnect from Facebook.
-msgid "Disconnect my account from Facebook"
-msgstr "Deskonektatu nere kontua Facebooketik"
-
-#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
-#, php-format
-msgid ""
-"Disconnecting your Faceboook would make it impossible to log in! Please [set "
-"a password](%s) first."
-msgstr ""
-"Zure Facebooketik deskonektatzen bazara ezinezkoa izango da saioa hastea! "
-"Mesedez aurretik [sartu pasahitza](%s)."
-
-#. TRANS: Message displayed when initiating disconnect of a StatusNet user
-#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
-#, php-format
-msgid ""
-"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
-"password to log in."
-msgstr ""
-"Mantendu zure %1$s kontua baina Facebooketik deskonektatu. Zure %1$s "
-"pasahitza erabiliko duzu saioa hasteko."
-
-#. TRANS: Submit button.
-msgctxt "BUTTON"
-msgid "Disconnect"
-msgstr "Deskonektatu"
-
-#. TRANS: Notice in case saving of synchronisation preferences fail.
-msgid "There was a problem saving your sync preferences."
-msgstr "Arazo bat egon da zure sinkronizazio hobespenak gordetzerakoan."
-
-#. TRANS: Confirmation that synchronisation settings have been saved into the system.
-msgid "Sync preferences saved."
-msgstr "Sinkronizazio hobespenak gordeta."
-
-#. TRANS: Server error displayed when deleting the link to a Facebook account fails.
-msgid "Could not delete link to Facebook."
-msgstr "Ezin izan da Facebookera esteka ezabatu."
-
-#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
-msgid "You have disconnected from Facebook."
-msgstr "Facebooketik deskonektatu zara."
-
+#: actions/facebookfinishlogin.php:50
 msgid "Unable to authenticate you with Facebook."
 msgstr "Ezin izan zara Facebookekin autentikatu."
 
-#. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
+#. TRANS: Client error displayed when trying to connect to Facebook while not
+#. logged in.
+#: actions/facebookfinishlogin.php:73
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
-msgstr ""
-"Facebooken saioa hasi behar duzu kontu lokal bat Facebookeekin erregistratu "
-"nahi baduzu."
+msgstr "Facebooken saioa hasi behar duzu kontu lokal bat Facebookeekin erregistratu nahi baduzu."
 
-#. TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+#. TRANS: Client error displayed when trying to connect to a Facebook account
+#. that is already linked
 #. TRANS: in the same StatusNet site.
+#: actions/facebookfinishlogin.php:117 actions/facebookfinishlogin.php:131
 msgid "There is already a local account linked with that Facebook account."
 msgstr "Dagoeneko kontu lokal bat dago Facebook kontu horrekin loturik."
 
-#. TRANS: Form validation error displayed when user has not agreed to the license.
+#. TRANS: Client error displayed when the session token does not match or is
+#. not given.
+#: actions/facebookfinishlogin.php:144 actions/facebooksettings.php:87
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Zure saio tokenarekin arazo bat egon da. Saiatu berriro, mesedez."
+
+#. TRANS: Form validation error displayed when user has not agreed to the
+#. license.
+#: actions/facebookfinishlogin.php:154
 msgid "You cannot register if you do not agree to the license."
 msgstr "Ezin duzu izenik eman ez bazaude lizentziarekin ados."
 
 #. TRANS: Form validation error displayed when an unhandled error occurs.
+#: actions/facebookfinishlogin.php:172
 msgid "An unknown error has occured."
 msgstr "Akats ezezaguna."
 
 #. TRANS: Form instructions for connecting to Facebook.
 #. TRANS: %s is the site name.
+#: actions/facebookfinishlogin.php:191
 #, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "Facebook to a local account. You can either create a new local account, or "
 "connect with an existing local account."
-msgstr ""
-"Hau da lehenbiziko aldia %s(e)n saioa hasten duzuna, zure Facebook kontua "
-"kontu lokal batekin batuko dugu. Kontu berri bat sor dezakezu baita ere, edo "
-"dagoeneko bat baldin baduzu kontu horrekin konektatu zaitezke."
+msgstr "Hau da lehenbiziko aldia %s(e)n saioa hasten duzuna, zure Facebook kontua kontu lokal batekin batuko dugu. Kontu berri bat sor dezakezu baita ere, edo dagoeneko bat baldin baduzu kontu horrekin konektatu zaitezke."
 
 #. TRANS: Page title.
+#: actions/facebookfinishlogin.php:201
 msgid "Facebook Setup"
 msgstr "Facebook Konfigurazioa"
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:235
 msgid "Connection options"
 msgstr "Koneksio aukerak"
 
-#. TRANS: %s is the name of the license used by the user for their status updates.
+#. TRANS: %s is the name of the license used by the user for their status
+#. updates.
+#: actions/facebookfinishlogin.php:245
 #, php-format
 msgid ""
-"My text and files are available under %s except this private data: password, "
-"email address, IM address, and phone number."
-msgstr ""
-"Nire testu eta fitxategiak %s lizentziapean daude, datu pribatu hauek izan "
-"ezik: pasahitza, helbide elektronikoa, BM helbidea eta telefono zenbakia."
+"My text and files are available under %s except this private data: password,"
+" email address, IM address, and phone number."
+msgstr "Nire testu eta fitxategiak %s lizentziapean daude, datu pribatu hauek izan ezik: pasahitza, helbide elektronikoa, BM helbidea eta telefono zenbakia."
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:262
 msgid "Create new account"
 msgstr "Sortu kontu berria"
 
 #. TRANS: Form instructions.
+#: actions/facebookfinishlogin.php:265
 msgid "Create a new user with this nickname."
 msgstr "Sortu erabiltzaile berri bat goitizen honekin."
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:273
 msgid "New nickname"
 msgstr "Goitizen berria"
 
 #. TRANS: Field title.
+#: actions/facebookfinishlogin.php:276
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
 msgstr "1-64 letra xehe edo zenbaki, puntuazio edo espaziorik gabe."
 
 #. TRANS: Submit button to create a new account.
+#: actions/facebookfinishlogin.php:284
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Sortu"
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:290
 msgid "Connect existing account"
 msgstr "Konektatu sorturiko kontuarekin"
 
 #. TRANS: Form instructions.
+#: actions/facebookfinishlogin.php:293
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Facebook."
-msgstr ""
-"Dagoeneko kontu bat baduzu, hasi saioa zure erabiltzaile eta pasahitzarekin "
-"zure Facebookera konektatzeko."
+msgstr "Dagoeneko kontu bat baduzu, hasi saioa zure erabiltzaile eta pasahitzarekin zure Facebookera konektatzeko."
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:297
 msgid "Existing nickname"
 msgstr "Goitizena existitzen da"
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:301
 msgid "Password"
 msgstr "Pasahitza"
 
-#. TRANS: Submit button to connect a Facebook account to an existing StatusNet account.
+#. TRANS: Submit button to connect a Facebook account to an existing StatusNet
+#. account.
+#: actions/facebookfinishlogin.php:305
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Konektatu"
 
 #. TRANS: Client error trying to register with registrations not allowed.
 #. TRANS: Client error trying to register with registrations 'invite only'.
+#: actions/facebookfinishlogin.php:326 actions/facebookfinishlogin.php:335
 msgid "Registration not allowed."
 msgstr "Ezin da izen eman."
 
 #. TRANS: Client error trying to register with an invalid invitation code.
+#: actions/facebookfinishlogin.php:342
 msgid "Not a valid invitation code."
 msgstr "Gonbidapen kodea ez da baliozkoa."
 
-#. TRANS: Form validation error displayed when picking a nickname that is not allowed.
-msgid "Nickname not allowed."
-msgstr "Goitizen hori ez da onartzen."
-
-#. TRANS: Form validation error displayed when picking a nickname that is already in use.
-msgid "Nickname already in use. Try another one."
-msgstr "Goitizen hori hartua dago. Saiatu beste batekin."
-
 #. TRANS: Server error displayed when connecting to Facebook fails.
+#: actions/facebookfinishlogin.php:378 actions/facebookfinishlogin.php:511
 msgid "Error connecting user to Facebook."
 msgstr "Akatsa erabiltzailea Facebookera konektatzean."
 
-#. TRANS: Form validation error displayed when username/password combination is incorrect.
+#. TRANS: Form validation error displayed when username/password combination
+#. is incorrect.
+#: actions/facebookfinishlogin.php:478
 msgid "Invalid username or password."
 msgstr "Erabiltzaile edo pasahitz baliogabea."
 
+#. TRANS: Page title for Facebook settings.
+#: actions/facebooksettings.php:106
+msgctxt "TITLE"
+msgid "Facebook settings"
+msgstr "Facebook aukerak."
+
+#. TRANS: Instructions for Facebook settings.
+#: actions/facebooksettings.php:116
+msgid "Facebook settings"
+msgstr "Facebook aukerak."
+
+#. TRANS: Form note. User is connected to facebook.
+#: actions/facebooksettings.php:140
+msgid "Connected Facebook user"
+msgstr "Konektaturiko Facebook erabiltzailea"
+
+#. TRANS: Checkbox label in Facebook settings.
+#: actions/facebooksettings.php:168
+msgid "Publish my notices to Facebook."
+msgstr "Argitaratu nere oharrak Facebooken."
+
+#. TRANS: Checkbox label in Facebook settings.
+#: actions/facebooksettings.php:179
+msgid "Send \"@\" replies to Facebook."
+msgstr "Bidali \"@\" erantzunak Facebookera."
+
+#. TRANS: Fieldset legend for form to disconnect from Facebook.
+#: actions/facebooksettings.php:197
+msgid "Disconnect my account from Facebook"
+msgstr "Deskonektatu nere kontua Facebooketik"
+
+#. TRANS: Notice in disconnect from Facebook form if user has no local
+#. StatusNet password.
+#: actions/facebooksettings.php:204
+#, php-format
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set"
+" a password](%s) first."
+msgstr "Zure Facebooketik deskonektatzen bazara ezinezkoa izango da saioa hastea! Mesedez aurretik [sartu pasahitza](%s)."
+
+#. TRANS: Message displayed when initiating disconnect of a StatusNet user
+#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
+#: actions/facebooksettings.php:215
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr "Mantendu zure %1$s kontua baina Facebooketik deskonektatu. Zure %1$s pasahitza erabiliko duzu saioa hasteko."
+
+#. TRANS: Submit button.
+#: actions/facebooksettings.php:221
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Deskonektatu"
+
+#. TRANS: Notice in case saving of synchronisation preferences fail.
+#: actions/facebooksettings.php:245
+msgid "There was a problem saving your sync preferences."
+msgstr "Arazo bat egon da zure sinkronizazio hobespenak gordetzerakoan."
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the
+#. system.
+#: actions/facebooksettings.php:248
+msgid "Sync preferences saved."
+msgstr "Sinkronizazio hobespenak gordeta."
+
+#. TRANS: Server error displayed when deleting the link to a Facebook account
+#. fails.
+#: actions/facebooksettings.php:263
+msgid "Could not delete link to Facebook."
+msgstr "Ezin izan da Facebookera esteka ezabatu."
+
+#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
+#: actions/facebooksettings.php:267
+msgid "You have disconnected from Facebook."
+msgstr "Facebooketik deskonektatu zara."
+
 #. TRANS: Menu item for "Facebook" in administration panel.
 #. TRANS: Menu item for "Facebook" in user settings.
+#: FacebookBridgePlugin.php:202 FacebookBridgePlugin.php:241
+#: FacebookBridgePlugin.php:281
 msgctxt "MENU"
 msgid "Facebook"
 msgstr "Facebook"
 
 #. TRANS: Menu title for "Facebook" login.
+#: FacebookBridgePlugin.php:204
 msgid "Login or register using Facebook."
 msgstr "Saioa hasi edo erregistratu Facebook erabiliz."
 
 #. TRANS: Menu title for "Facebook" in administration panel.
+#: FacebookBridgePlugin.php:243
 msgid "Facebook integration configuration."
 msgstr "Facebook integrazio konfigurazioa."
 
 #. TRANS: Menu title for "Facebook" in user settings.
+#: FacebookBridgePlugin.php:283
 msgid "Facebook settings."
 msgstr "Facebook aukerak."
 
 #. TRANS: Plugin description.
+#: FacebookBridgePlugin.php:624
 msgid "A plugin for integrating StatusNet with Facebook."
 msgstr "StatusNet Facebookekin lotzeko plugina."
 
 #. TRANS: E-mail subject.
+#: lib/facebookclient.php:790
 msgid "Your Facebook connection has been removed"
 msgstr "Zure Facebookera lotura ezabatua izan da"
 
 #. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
+#: lib/facebookclient.php:793
 #, php-format
 msgid ""
 "Hi %1$s,\n"
@@ -317,30 +367,18 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr ""
-"Kaixo %1$s,\n"
-"\n"
-"Sentitzen dugu jakinarazi behar izatea zure oharra Facebooken ezin izan "
-"dugula argitaratu \n"
-"eta zure %2$s(e)ko kontua eta Facebooken arteko koneksioa ezabatu dela.\n"
-"\n"
-"%2$s(e)ri Facebooken argitaratzeko baimenak kendu dizkiozulako izan daiteke, "
-"edo beharbada\n"
-"zure Facebook kontua ezgaitu duzu. %2$s(e)ko kontua Facebookekin lotu "
-"dezakezu berriro \n"
-"Facebookekin saio hasita.\n"
-"\n"
-"Ondo segi,\n"
-"\n"
-"%2$s\n"
+msgstr "Kaixo %1$s,\n\nSentitzen dugu jakinarazi behar izatea zure oharra Facebooken ezin izan dugula argitaratu \neta zure %2$s(e)ko kontua eta Facebooken arteko koneksioa ezabatu dela.\n\n%2$s(e)ri Facebooken argitaratzeko baimenak kendu dizkiozulako izan daiteke, edo beharbada\nzure Facebook kontua ezgaitu duzu. %2$s(e)ko kontua Facebookekin lotu dezakezu berriro \nFacebookekin saio hasita.\n\nOndo segi,\n\n%2$s\n"
 
 #. TRANS: E-mail subject. %s is the StatusNet sitename.
+#: lib/facebookclient.php:846
 #, php-format
 msgid "Contact the %s administrator to retrieve your account"
 msgstr "Kontaktatu %s(e)ko administratzailearekin zure kontua berreskuratzeko"
 
 #. TRANS: E-mail body. %1$s is a username,
-#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail address.
+#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail
+#. address.
+#: lib/facebookclient.php:850
 #, php-format
 msgid ""
 "Hi %1$s,\n"
@@ -353,17 +391,4 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr ""
-"Kaixo%1$s,\n"
-"\n"
-"Konturatu gara Facebookekin konektatzeko %2$s(e)ko kontua baliogabetu "
-"duzula. Oraindik ez duzu \n"
-"zure %2$s(e)ko konturako pasahitzik zehaztu, beraz ezingo duzu saiorik hasi. "
-"%2$s(e)ko kontua\n"
-"erabiltzen jarraitu nahi baduzu jar zaitez guneko administratzailearekin (%3"
-"$s) kontaktuan pasahitz\n"
-"bat lortzeko.\n"
-"\n"
-"Ondo segi,\n"
-"\n"
-"%2$s\n"
+msgstr "Kaixo%1$s,\n\nKonturatu gara Facebookekin konektatzeko %2$s(e)ko kontua baliogabetu duzula. Oraindik ez duzu \nzure %2$s(e)ko konturako pasahitzik zehaztu, beraz ezingo duzu saiorik hasi. %2$s(e)ko kontua\nerabiltzen jarraitu nahi baduzu jar zaitez guneko administratzailearekin (%3$s) kontaktuan pasahitz\nbat lortzeko.\n\nOndo segi,\n\n%2$s\n"

@@ -1,314 +1,356 @@
-# Translation of StatusNet - FacebookBridge to Dutch (Nederlands)
-# Exported from translatewiki.net
-#
-# Author: Siebrand
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - FacebookBridge\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:34+0000\n"
-"Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/gnu-social/language/nl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: nl\n"
-"X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Client error displayed when trying to login while already logged in.
-msgid "Already logged in."
-msgstr "U bent al aangemeld."
-
-#. TRANS: Form instructions.
-msgid "Login with your Facebook Account"
-msgstr "Aanmelden met uw Facebookgebruiker"
-
-#. TRANS: Page title.
-#. TRANS: Alt text for "Login with Facebook" image.
-msgid "Login with Facebook"
-msgstr "Aanmelden met Facebook"
-
-#. TRANS: Title for "Login with Facebook" image.
-msgid "Login with Facebook."
-msgstr "Aanmelden met Facebook."
-
 #. TRANS: Title for Facebook administration panel.
+#: actions/facebookadminpanel.php:53
 msgctxt "TITLE"
 msgid "Facebook integration settings"
 msgstr "nstellingen voor Facebookkoppeling"
 
 #. TRANS: Instruction for Facebook administration panel.
+#: actions/facebookadminpanel.php:64
 msgid "Facebook integration settings"
 msgstr "Instellingen voor Facebookkoppeling"
 
-#. TRANS: Client error displayed when providing too long a Facebook application ID.
+#. TRANS: Client error displayed when providing too long a Facebook
+#. application ID.
+#: actions/facebookadminpanel.php:126
 msgid "Invalid Facebook ID. Maximum length is 255 characters."
 msgstr "Ongeldig Facebook-ID. De maximale lengte is 255 tekens."
 
-#. TRANS: Client error displayed when providing too long a Facebook secret key.
+#. TRANS: Client error displayed when providing too long a Facebook secret
+#. key.
+#: actions/facebookadminpanel.php:133
 msgid "Invalid Facebook secret. Maximum length is 255 characters."
 msgstr "Ongeldig Facebookgeheim. De maximale lengte is 255 tekens."
 
 #. TRANS: Fieldset legend.
+#: actions/facebookadminpanel.php:183
 msgid "Facebook application settings"
 msgstr "Applicatieinstellingen voor Facebook"
 
 #. TRANS: Field label for Facebook application ID.
+#: actions/facebookadminpanel.php:190
 msgid "Application ID"
 msgstr "Applicatie-ID"
 
 #. TRANS: Field title for Facebook application ID.
+#: actions/facebookadminpanel.php:192
 msgid "ID of your Facebook application."
 msgstr "ID van uw Facebookapplicatie."
 
 #. TRANS: Field label for Facebook secret key.
+#: actions/facebookadminpanel.php:201
 msgid "Secret"
 msgstr "Geheim"
 
 #. TRANS: Field title for Facebook secret key.
+#: actions/facebookadminpanel.php:203
 msgid "Application secret."
 msgstr "Applicatiegeheim."
 
 #. TRANS: Button text to save Facebook integration settings.
 #. TRANS: Submit button to save synchronisation settings.
+#: actions/facebookadminpanel.php:220 actions/facebooksettings.php:188
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Opslaan"
 
 #. TRANS: Button title to save Facebook integration settings.
+#: actions/facebookadminpanel.php:222
 msgid "Save Facebook settings."
 msgstr "Facebookinstellingen opslaan."
 
-#. TRANS: Client error displayed when the session token does not match or is not given.
-msgid "There was a problem with your session token. Try again, please."
-msgstr ""
-"Er is een probleem ontstaan met uw sessie. Probeer het nog een keer, "
-"alstublieft."
+#. TRANS: Client error displayed when trying to login while already logged in.
+#: actions/facebooklogin.php:43
+msgid "Already logged in."
+msgstr "U bent al aangemeld."
 
-#. TRANS: Page title for Facebook settings.
-msgctxt "TITLE"
-msgid "Facebook settings"
-msgstr "Facebookinstellingen"
+#. TRANS: Form instructions.
+#: actions/facebooklogin.php:52
+msgid "Login with your Facebook Account"
+msgstr "Aanmelden met uw Facebookgebruiker"
 
-#. TRANS: Instructions for Facebook settings.
-msgid "Facebook settings"
-msgstr "Facebookinstellingen"
+#. TRANS: Page title.
+#. TRANS: Alt text for "Login with Facebook" image.
+#: actions/facebooklogin.php:67 actions/facebooklogin.php:92
+msgid "Login with Facebook"
+msgstr "Aanmelden met Facebook"
 
-#. TRANS: Form note. User is connected to facebook.
-msgid "Connected Facebook user"
-msgstr "Gekoppelde Facebookgebruiker"
+#. TRANS: Title for "Login with Facebook" image.
+#: actions/facebooklogin.php:94
+msgid "Login with Facebook."
+msgstr "Aanmelden met Facebook."
 
-#. TRANS: Checkbox label in Facebook settings.
-msgid "Publish my notices to Facebook."
-msgstr "Mijn mededelingen publiceren op Facebook."
-
-#. TRANS: Checkbox label in Facebook settings.
-msgid "Send \"@\" replies to Facebook."
-msgstr "Antwoorden met \"@\" naar Facebook verzenden."
-
-#. TRANS: Fieldset legend for form to disconnect from Facebook.
-msgid "Disconnect my account from Facebook"
-msgstr "Mijn gebruiker loskoppelen van Facebook"
-
-#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
-#, php-format
-msgid ""
-"Disconnecting your Faceboook would make it impossible to log in! Please [set "
-"a password](%s) first."
-msgstr ""
-"Door los te koppelen van Faceboook zou u niet meer kunnen aanmelden! [Stel "
-"eerst een wachtwoord in](%s)."
-
-#. TRANS: Message displayed when initiating disconnect of a StatusNet user
-#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
-#, php-format
-msgid ""
-"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
-"password to log in."
-msgstr ""
-"Uw gebruiker bij %1$s behouden maar deze loskoppelen van Facebook. U kunt uw "
-"wachtwoord van %1$s gebruiken om aan te melden."
-
-#. TRANS: Submit button.
-msgctxt "BUTTON"
-msgid "Disconnect"
-msgstr "Loskoppelen"
-
-#. TRANS: Notice in case saving of synchronisation preferences fail.
-msgid "There was a problem saving your sync preferences."
-msgstr ""
-"Er is een fout opgetreden tijdens het opslaan van uw "
-"synchronisatievoorkeuren."
-
-#. TRANS: Confirmation that synchronisation settings have been saved into the system.
-msgid "Sync preferences saved."
-msgstr "Uw synchronisatievoorkeuren zijn opgeslagen."
-
-#. TRANS: Server error displayed when deleting the link to a Facebook account fails.
-msgid "Could not delete link to Facebook."
-msgstr "Het was niet mogelijk de verwijzing naar Facebook te verwijderen."
-
-#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
-msgid "You have disconnected from Facebook."
-msgstr "U bent losgekoppeld van Facebook."
-
+#: actions/facebookfinishlogin.php:50
 msgid "Unable to authenticate you with Facebook."
 msgstr "Het was niet mogelijk u via Facebook aan te melden."
 
-#. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
+#. TRANS: Client error displayed when trying to connect to Facebook while not
+#. logged in.
+#: actions/facebookfinishlogin.php:73
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
-msgstr ""
-"U moet aangemeld zijn bij Facebook om een lokale gebruiker via Facebook te "
-"kunnen registreren."
+msgstr "U moet aangemeld zijn bij Facebook om een lokale gebruiker via Facebook te kunnen registreren."
 
-#. TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+#. TRANS: Client error displayed when trying to connect to a Facebook account
+#. that is already linked
 #. TRANS: in the same StatusNet site.
+#: actions/facebookfinishlogin.php:117 actions/facebookfinishlogin.php:131
 msgid "There is already a local account linked with that Facebook account."
 msgstr "Er is al een lokale gebruiker verbonden met deze Facebookgebruiker."
 
-#. TRANS: Form validation error displayed when user has not agreed to the license.
+#. TRANS: Client error displayed when the session token does not match or is
+#. not given.
+#: actions/facebookfinishlogin.php:144 actions/facebooksettings.php:87
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Er is een probleem ontstaan met uw sessie. Probeer het nog een keer, alstublieft."
+
+#. TRANS: Form validation error displayed when user has not agreed to the
+#. license.
+#: actions/facebookfinishlogin.php:154
 msgid "You cannot register if you do not agree to the license."
 msgstr "U kunt zich niet registreren als u niet met de licentie akkoord gaat."
 
 #. TRANS: Form validation error displayed when an unhandled error occurs.
+#: actions/facebookfinishlogin.php:172
 msgid "An unknown error has occured."
 msgstr "Er is een onbekende fout opgetreden."
 
 #. TRANS: Form instructions for connecting to Facebook.
 #. TRANS: %s is the site name.
+#: actions/facebookfinishlogin.php:191
 #, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "Facebook to a local account. You can either create a new local account, or "
 "connect with an existing local account."
-msgstr ""
-"Dit is de eerste keer dat u aanmeldt bij %s en dan moeten we uw "
-"Facebookgebruiker koppelen met uw lokale gebruiker. U kunt een nieuwe lokale "
-"gebruiker aanmaken of koppelen met een bestaande gebruiker als u die al hebt."
+msgstr "Dit is de eerste keer dat u aanmeldt bij %s en dan moeten we uw Facebookgebruiker koppelen met uw lokale gebruiker. U kunt een nieuwe lokale gebruiker aanmaken of koppelen met een bestaande gebruiker als u die al hebt."
 
 #. TRANS: Page title.
+#: actions/facebookfinishlogin.php:201
 msgid "Facebook Setup"
 msgstr "Facebookinstellingen"
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:235
 msgid "Connection options"
 msgstr "Koppelingsinstellingen"
 
-#. TRANS: %s is the name of the license used by the user for their status updates.
+#. TRANS: %s is the name of the license used by the user for their status
+#. updates.
+#: actions/facebookfinishlogin.php:245
 #, php-format
 msgid ""
-"My text and files are available under %s except this private data: password, "
-"email address, IM address, and phone number."
-msgstr ""
-"Mijn teksten en bestanden zijn beschikbaar onder %s, behalve de volgende "
-"privégegevens: wachtwoord, e-mailadres, IM-adres, telefoonnummer."
+"My text and files are available under %s except this private data: password,"
+" email address, IM address, and phone number."
+msgstr "Mijn teksten en bestanden zijn beschikbaar onder %s, behalve de volgende privégegevens: wachtwoord, e-mailadres, IM-adres, telefoonnummer."
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:262
 msgid "Create new account"
 msgstr "Nieuwe gebruiker aanmaken"
 
 #. TRANS: Form instructions.
+#: actions/facebookfinishlogin.php:265
 msgid "Create a new user with this nickname."
 msgstr "Nieuwe gebruiker aanmaken met deze gebruikersnaam."
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:273
 msgid "New nickname"
 msgstr "Nieuwe gebruikersnaam"
 
 #. TRANS: Field title.
+#: actions/facebookfinishlogin.php:276
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
 msgstr "1-64 kleine letters of cijfers, geen leestekens of spaties."
 
 #. TRANS: Submit button to create a new account.
+#: actions/facebookfinishlogin.php:284
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Aanmaken"
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:290
 msgid "Connect existing account"
 msgstr "Verbinden met een bestaande gebruiker"
 
 #. TRANS: Form instructions.
+#: actions/facebookfinishlogin.php:293
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Facebook."
-msgstr ""
-"Als u al een gebruiker hebt, meld dan aan met uw gebruikersnaam en "
-"wachtwoord om deze daarna te koppelen met uw Facebookgebruiker."
+msgstr "Als u al een gebruiker hebt, meld dan aan met uw gebruikersnaam en wachtwoord om deze daarna te koppelen met uw Facebookgebruiker."
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:297
 msgid "Existing nickname"
 msgstr "Bestaande gebruikersnaam"
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:301
 msgid "Password"
 msgstr "Wachtwoord"
 
-#. TRANS: Submit button to connect a Facebook account to an existing StatusNet account.
+#. TRANS: Submit button to connect a Facebook account to an existing StatusNet
+#. account.
+#: actions/facebookfinishlogin.php:305
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Koppelen"
 
 #. TRANS: Client error trying to register with registrations not allowed.
 #. TRANS: Client error trying to register with registrations 'invite only'.
+#: actions/facebookfinishlogin.php:326 actions/facebookfinishlogin.php:335
 msgid "Registration not allowed."
 msgstr "Registratie is niet toegestaan."
 
 #. TRANS: Client error trying to register with an invalid invitation code.
+#: actions/facebookfinishlogin.php:342
 msgid "Not a valid invitation code."
 msgstr "De uitnodigingscode is ongeldig."
 
-#. TRANS: Form validation error displayed when picking a nickname that is not allowed.
-msgid "Nickname not allowed."
-msgstr "Gebruikersnaam niet toegestaan."
-
-#. TRANS: Form validation error displayed when picking a nickname that is already in use.
-msgid "Nickname already in use. Try another one."
-msgstr ""
-"De opgegeven gebruikersnaam is al in gebruik. Kies een andere gebruikersnaam."
-
 #. TRANS: Server error displayed when connecting to Facebook fails.
+#: actions/facebookfinishlogin.php:378 actions/facebookfinishlogin.php:511
 msgid "Error connecting user to Facebook."
 msgstr "Fout bij het verbinden van de gebruiker met Facebook."
 
-#. TRANS: Form validation error displayed when username/password combination is incorrect.
+#. TRANS: Form validation error displayed when username/password combination
+#. is incorrect.
+#: actions/facebookfinishlogin.php:478
 msgid "Invalid username or password."
 msgstr "Ongeldige gebruikersnaam of wachtwoord."
 
+#. TRANS: Page title for Facebook settings.
+#: actions/facebooksettings.php:106
+msgctxt "TITLE"
+msgid "Facebook settings"
+msgstr "Facebookinstellingen"
+
+#. TRANS: Instructions for Facebook settings.
+#: actions/facebooksettings.php:116
+msgid "Facebook settings"
+msgstr "Facebookinstellingen"
+
+#. TRANS: Form note. User is connected to facebook.
+#: actions/facebooksettings.php:140
+msgid "Connected Facebook user"
+msgstr "Gekoppelde Facebookgebruiker"
+
+#. TRANS: Checkbox label in Facebook settings.
+#: actions/facebooksettings.php:168
+msgid "Publish my notices to Facebook."
+msgstr "Mijn mededelingen publiceren op Facebook."
+
+#. TRANS: Checkbox label in Facebook settings.
+#: actions/facebooksettings.php:179
+msgid "Send \"@\" replies to Facebook."
+msgstr "Antwoorden met \"@\" naar Facebook verzenden."
+
+#. TRANS: Fieldset legend for form to disconnect from Facebook.
+#: actions/facebooksettings.php:197
+msgid "Disconnect my account from Facebook"
+msgstr "Mijn gebruiker loskoppelen van Facebook"
+
+#. TRANS: Notice in disconnect from Facebook form if user has no local
+#. StatusNet password.
+#: actions/facebooksettings.php:204
+#, php-format
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set"
+" a password](%s) first."
+msgstr "Door los te koppelen van Faceboook zou u niet meer kunnen aanmelden! [Stel eerst een wachtwoord in](%s)."
+
+#. TRANS: Message displayed when initiating disconnect of a StatusNet user
+#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
+#: actions/facebooksettings.php:215
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr "Uw gebruiker bij %1$s behouden maar deze loskoppelen van Facebook. U kunt uw wachtwoord van %1$s gebruiken om aan te melden."
+
+#. TRANS: Submit button.
+#: actions/facebooksettings.php:221
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Loskoppelen"
+
+#. TRANS: Notice in case saving of synchronisation preferences fail.
+#: actions/facebooksettings.php:245
+msgid "There was a problem saving your sync preferences."
+msgstr "Er is een fout opgetreden tijdens het opslaan van uw synchronisatievoorkeuren."
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the
+#. system.
+#: actions/facebooksettings.php:248
+msgid "Sync preferences saved."
+msgstr "Uw synchronisatievoorkeuren zijn opgeslagen."
+
+#. TRANS: Server error displayed when deleting the link to a Facebook account
+#. fails.
+#: actions/facebooksettings.php:263
+msgid "Could not delete link to Facebook."
+msgstr "Het was niet mogelijk de verwijzing naar Facebook te verwijderen."
+
+#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
+#: actions/facebooksettings.php:267
+msgid "You have disconnected from Facebook."
+msgstr "U bent losgekoppeld van Facebook."
+
 #. TRANS: Menu item for "Facebook" in administration panel.
 #. TRANS: Menu item for "Facebook" in user settings.
+#: FacebookBridgePlugin.php:202 FacebookBridgePlugin.php:241
+#: FacebookBridgePlugin.php:281
 msgctxt "MENU"
 msgid "Facebook"
 msgstr "Facebook"
 
 #. TRANS: Menu title for "Facebook" login.
+#: FacebookBridgePlugin.php:204
 msgid "Login or register using Facebook."
 msgstr "Aanmelden of registreren via Facebook."
 
 #. TRANS: Menu title for "Facebook" in administration panel.
+#: FacebookBridgePlugin.php:243
 msgid "Facebook integration configuration."
 msgstr "Instellingen voor Facebookintegratie."
 
 #. TRANS: Menu title for "Facebook" in user settings.
+#: FacebookBridgePlugin.php:283
 msgid "Facebook settings."
 msgstr "Facebookinstellingen."
 
 #. TRANS: Plugin description.
+#: FacebookBridgePlugin.php:624
 msgid "A plugin for integrating StatusNet with Facebook."
 msgstr "Een plug-in voor het integreren van StatusNet met Facebook."
 
 #. TRANS: E-mail subject.
+#: lib/facebookclient.php:790
 msgid "Your Facebook connection has been removed"
 msgstr "Uw koppeling met Facebook is verwijderd"
 
 #. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
+#: lib/facebookclient.php:793
 #, php-format
 msgid ""
 "Hi %1$s,\n"
@@ -325,33 +367,18 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr ""
-"Hallo %1$s,\n"
-"\n"
-"Het spijt ons dat we u moeten meedelen dat het niet mogelijk is uw "
-"mededelingen\n"
-"bij Facebook te publiceren. De koppeling tussen uw gebruiker op %1$s en\n"
-"Facebook is verbroken.\n"
-"\n"
-"Dit is mogelijk gebeurd doordat u de rechten om namens u berichten te "
-"plaatsen\n"
-"voor %2$s hebt verwijderd of wellicht hebt u uw gebruiker bij Facebook\n"
-"verwijderd. U kunt op ieder moment opnieuw met Facebook koppelen door bij\n"
-"Facebook aan te melden.\n"
-"\n"
-"Met vriendelijke groet,\n"
-"\n"
-"%2$s\n"
+msgstr "Hallo %1$s,\n\nHet spijt ons dat we u moeten meedelen dat het niet mogelijk is uw mededelingen\nbij Facebook te publiceren. De koppeling tussen uw gebruiker op %1$s en\nFacebook is verbroken.\n\nDit is mogelijk gebeurd doordat u de rechten om namens u berichten te plaatsen\nvoor %2$s hebt verwijderd of wellicht hebt u uw gebruiker bij Facebook\nverwijderd. U kunt op ieder moment opnieuw met Facebook koppelen door bij\nFacebook aan te melden.\n\nMet vriendelijke groet,\n\n%2$s\n"
 
 #. TRANS: E-mail subject. %s is the StatusNet sitename.
+#: lib/facebookclient.php:846
 #, php-format
 msgid "Contact the %s administrator to retrieve your account"
-msgstr ""
-"Neem contact op met de beheerder van %s om uw gebruikersgegevens te "
-"verkrijgen"
+msgstr "Neem contact op met de beheerder van %s om uw gebruikersgegevens te verkrijgen"
 
 #. TRANS: E-mail body. %1$s is a username,
-#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail address.
+#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail
+#. address.
+#: lib/facebookclient.php:850
 #, php-format
 msgid ""
 "Hi %1$s,\n"
@@ -364,17 +391,4 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr ""
-"Hallo %1$s,\n"
-"\n"
-"We hebben geconstateerd dat u de koppeling met Facebook voor uw gebruiker "
-"bij\n"
-"%2$s hebt verbroken. U hebt nog geen wachtwoord ingesteld voor uw gebruiker\n"
-"bij %2$s, dus u kunt niet aanmelden. Als u uw gebruiker by %2$s nog langer "
-"wilt\n"
-"gebruiken, neem dan contact op met de sitebeheerder via %3$s\n"
-"om een wachtwoord in te stellen.\n"
-"\n"
-"Met vriendelijke groet,\n"
-"\n"
-"%2$s\n"
+msgstr "Hallo %1$s,\n\nWe hebben geconstateerd dat u de koppeling met Facebook voor uw gebruiker bij\n%2$s hebt verbroken. U hebt nog geen wachtwoord ingesteld voor uw gebruiker\nbij %2$s, dus u kunt niet aanmelden. Als u uw gebruiker by %2$s nog langer wilt\ngebruiken, neem dan contact op met de sitebeheerder via %3$s\nom een wachtwoord in te stellen.\n\nMet vriendelijke groet,\n\n%2$s\n"

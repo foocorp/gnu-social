@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -49,38 +50,38 @@ msgid ""
 msgstr ""
 
 #. TRANS: Fieldset legend.
-#: actions/userdirectory.php:264
+#: actions/userdirectory.php:271
 msgid "Search site"
 msgstr ""
 
 #. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
-#: actions/userdirectory.php:269 actions/groupdirectory.php:288
+#: actions/userdirectory.php:276 actions/groupdirectory.php:288
 msgid "Keyword(s)"
 msgstr ""
 
 #. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
-#: actions/userdirectory.php:272 actions/groupdirectory.php:291
+#: actions/userdirectory.php:279 actions/groupdirectory.php:291
 msgctxt "BUTTON"
 msgid "Search"
 msgstr ""
 
 #. TRANS: Empty list message for user directory.
-#: actions/userdirectory.php:378
+#: actions/userdirectory.php:385
 #, php-format
 msgid "No users starting with %s"
 msgstr ""
 
 #. TRANS: Empty list message for user directory.
 #. TRANS: Empty list message for searching group directory.
-#: actions/userdirectory.php:384 actions/groupdirectory.php:414
+#: actions/userdirectory.php:391 actions/groupdirectory.php:414
 msgid "No results."
 msgstr ""
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
 #. TRANS: Help text for searching group directory.
-#: actions/userdirectory.php:386 actions/groupdirectory.php:416
+#: actions/userdirectory.php:393 actions/groupdirectory.php:416
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
@@ -157,13 +158,18 @@ msgid "Add a user directory."
 msgstr ""
 
 #. TRANS: Column header in table for user nickname.
-#: lib/sortablesubscriptionlist.php:65 lib/sortablegrouplist.php:65
+#: lib/sortablegrouplist.php:65 lib/sortablesubscriptionlist.php:65
 msgid "Nickname"
 msgstr ""
 
 #. TRANS: Column header in table for timestamp when user was created.
-#: lib/sortablesubscriptionlist.php:67 lib/sortablegrouplist.php:67
+#: lib/sortablegrouplist.php:67 lib/sortablesubscriptionlist.php:67
 msgid "Created"
+msgstr ""
+
+#. TRANS: Column header in table for members of a group.
+#: lib/sortablegrouplist.php:113
+msgid "Members"
 msgstr ""
 
 #. TRANS: Column header for number of subscriptions.
@@ -174,9 +180,4 @@ msgstr ""
 #. TRANS: Column header for number of notices.
 #: lib/sortablesubscriptionlist.php:116
 msgid "Notices"
-msgstr ""
-
-#. TRANS: Column header in table for members of a group.
-#: lib/sortablegrouplist.php:113
-msgid "Members"
 msgstr ""

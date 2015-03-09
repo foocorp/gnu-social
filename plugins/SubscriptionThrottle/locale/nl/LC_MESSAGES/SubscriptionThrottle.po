@@ -1,34 +1,33 @@
-# Translation of StatusNet - SubscriptionThrottle to Dutch (Nederlands)
-# Exported from translatewiki.net
-#
-# Author: Siebrand
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - SubscriptionThrottle\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:13+0000\n"
-"Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:47+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/gnu-social/language/nl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:27:35+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: nl\n"
-"X-Message-Group: #out-statusnet-plugin-subscriptionthrottle\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Exception thrown when subscribing too quickly.
+#: SubscriptionThrottlePlugin.php:73
 msgid "Too many subscriptions. Take a break and try again later."
 msgstr "Te veel abonnementen. Wacht even en probeer het later opnieuw."
 
 #. TRANS: Exception thrown when joing groups too quickly.
+#: SubscriptionThrottlePlugin.php:99
 msgid "Too many memberships. Take a break and try again later."
 msgstr "Te veel lidmaatschappen. Wacht even en probeer het later opnieuw."
 
 #. TRANS: Plugin description.
+#: SubscriptionThrottlePlugin.php:168
 msgid "Configurable limits for subscriptions and group memberships."
 msgstr "In te stellen limieten voor abonnementen en groepslidmaatschappen."

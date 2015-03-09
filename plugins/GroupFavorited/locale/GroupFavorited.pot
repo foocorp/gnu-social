@@ -8,41 +8,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: Menu item in the group navigation page.
-#: GroupFavoritedPlugin.php:72
+#: GroupFavoritedPlugin.php:51
 msgctxt "MENU"
 msgid "Popular"
 msgstr ""
 
 #. TRANS: Tooltip for menu item in the group navigation page.
 #. TRANS: %s is the nickname of the group.
-#: GroupFavoritedPlugin.php:75
+#: GroupFavoritedPlugin.php:54
 #, php-format
 msgctxt "TOOLTIP"
 msgid "Popular notices in %s group"
 msgstr ""
 
 #. TRANS: Plugin description.
-#: GroupFavoritedPlugin.php:99
+#: GroupFavoritedPlugin.php:78
 msgid "This plugin adds a menu item for popular notices in groups."
 msgstr ""
 
 #. TRANS: %s is a group name.
-#: groupfavoritedaction.php:48
+#: actions/groupfavorited.php:48
 #, php-format
 msgid "Popular posts in %s group"
 msgstr ""
 
 #. TRANS: %1$s is a group name, %2$s is a group number.
-#: groupfavoritedaction.php:51
+#: actions/groupfavorited.php:51
 #, php-format
 msgid "Popular posts in %1$s group, page %2$d"
 msgstr ""

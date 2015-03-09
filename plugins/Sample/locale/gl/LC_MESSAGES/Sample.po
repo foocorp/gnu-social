@@ -1,71 +1,76 @@
-# Translation of StatusNet - Sample to Galician (galego)
-# Exported from translatewiki.net
-#
-# Author: Toliño
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Sample\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:54+0000\n"
-"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:32+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Galician (http://www.transifex.com/projects/p/gnu-social/language/gl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: gl\n"
-"X-Message-Group: #out-statusnet-plugin-sample\n"
+"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Page title for sample plugin.
 #. TRANS: Menu item in sample plugin.
+#: actions/hello.php:112 SamplePlugin.php:219
 msgid "Hello"
 msgstr "Ola"
 
 #. TRANS: Page title for sample plugin. %s is a user nickname.
+#: actions/hello.php:115
 #, php-format
 msgid "Hello, %s!"
 msgstr "Ola, %s!"
 
 #. TRANS: Message in sample plugin.
+#: actions/hello.php:136
 msgid "Hello, stranger!"
 msgstr "Ola, estraño!"
 
 #. TRANS: Message in sample plugin. %s is a user nickname.
+#: actions/hello.php:140
 #, php-format
 msgid "Hello, %s"
 msgstr "Ola, %s"
 
 #. TRANS: Message in sample plugin.
 #. TRANS: %d is the number of times a user is greeted.
+#: actions/hello.php:144
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
 msgstr[0] "Saudeino %d vez."
 msgstr[1] "Saudeino %d veces."
 
-#. TRANS: Menu item title in sample plugin.
-msgid "A warm greeting"
-msgstr "Un cordial saúdo"
-
-#. TRANS: Plugin description.
-msgid "A sample plugin to show basics of development for new hackers."
-msgstr ""
-"Un complemento de exemplo para mostrar os principios básicos de "
-"desenvolvemento aos novos programadores."
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: Exception thrown when the user greeting count could not be saved in
+#. the database.
 #. TRANS: %d is a user ID (number).
+#: classes/User_greeting_count.php:104
 #, php-format
 msgid "Could not save new greeting count for %d."
 msgstr "Non se puido gardar o número de saúdos enviados a %d."
 
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: Exception thrown when the user greeting count could not be saved in
+#. the database.
 #. TRANS: %d is a user ID (number).
+#: classes/User_greeting_count.php:117
 #, php-format
 msgid "Could not increment greeting count for %d."
 msgstr "Non se puido incrementar o número de saúdos enviados a %d."
+
+#. TRANS: Menu item title in sample plugin.
+#: SamplePlugin.php:221
+msgid "A warm greeting"
+msgstr "Un cordial saúdo"
+
+#. TRANS: Plugin description.
+#: SamplePlugin.php:233
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr "Un complemento de exemplo para mostrar os principios básicos de desenvolvemento aos novos programadores."

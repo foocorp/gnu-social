@@ -1,96 +1,92 @@
-# Translation of StatusNet - RSSCloud to French (français)
-# Exported from translatewiki.net
-#
-# Author: Crochet.david
-# Author: Gomoko
-# Author: Od1n
-# Author: Valeryan 24
-# Author: Verdy p
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - RSSCloud\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:53+0000\n"
-"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:32+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/gnu-social/language/fr/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-16 06:59:35+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: fr\n"
-"X-Message-Group: #out-statusnet-plugin-rsscloud\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#. TRANS: Plugin description.
+#: RSSCloudPlugin.php:209
+msgid ""
+"The RSSCloud plugin enables your StatusNet instance to publish real-time "
+"updates for profile RSS feeds using the <a "
+"href=\"http://rsscloud.org/\">RSSCloud protocol</a>."
+msgstr "L’extension RSSCloud permet à votre instance StatusNet de publier des mises à jour en temps réel sur des flux RSS en utilisant le protocole <a href=\"http://rsscloud.org/\">RSSCloud</a>."
+
 #. TRANS: Form validation error displayed when a URL parameter is missing.
+#: actions/loggingaggregator.php:86
 msgid "A URL parameter is required."
 msgstr "Un paramètre d’URL est requis."
 
 #. TRANS: Form validation error displayed when HTTP GET is not used.
+#: actions/loggingaggregator.php:94
 msgid "This resource requires an HTTP GET."
 msgstr "Cette ressource nécessite une requête HTTP GET."
 
 #. TRANS: Form validation error displayed when HTTP POST is not used.
+#: actions/loggingaggregator.php:104
 msgid "This resource requires an HTTP POST."
 msgstr "Cette ressource nécessite une requête HTTP POST."
 
 #. TRANS: Form validation error displayed when POST is not used.
+#: actions/rsscloudrequestnotify.php:91
 msgid "Request must be POST."
 msgstr "La requête HTTP au nuage RSS doit être de type POST."
 
 #. TRANS: Form validation error displayed when HTTP POST is not used.
+#: actions/rsscloudrequestnotify.php:109
 msgid "Only HTTP POST notifications are supported at this time."
 msgstr "Seuls les notifications HTTP POST sont pris en charge en ce moment."
 
 #. TRANS: List separator.
+#: actions/rsscloudrequestnotify.php:120
 msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
-#. TRANS: Form validation error displayed when a request body is missing expected parameters.
-#. TRANS: %s is a list of parameters separated by a list separator (default: ", ").
+#. TRANS: Form validation error displayed when a request body is missing
+#. expected parameters.
+#. TRANS: %s is a list of parameters separated by a list separator (default:
+#. ", ").
+#: actions/rsscloudrequestnotify.php:123
 #, php-format
 msgid "The following parameters were missing from the request body: %s."
-msgstr ""
-"Les paramètres suivants étaient absents du corps de la requête au nuage "
-"RSS : %s."
+msgstr "Les paramètres suivants étaient absents du corps de la requête au nuage RSS : %s."
 
-#. TRANS: Form validation error displayed when not providing any valid profile feed URLs.
+#. TRANS: Form validation error displayed when not providing any valid profile
+#. feed URLs.
+#: actions/rsscloudrequestnotify.php:130
 msgid ""
 "You must provide at least one valid profile feed URL (url1, url2, url3 ... "
 "urlN)."
-msgstr ""
-"Vous devez fournir au moins une URL de flux de profil valide (url1, url2, "
-"url3 ... urlN)."
+msgstr "Vous devez fournir au moins une URL de flux de profil valide (url1, url2, url3 ... urlN)."
 
 #. TRANS: Form validation error displayed when not providing a valid feed URL.
+#: actions/rsscloudrequestnotify.php:146
 msgid "Feed subscription failed: Not a valid feed."
 msgstr "L’abonnement au flux a échoué : ce n’est pas un flux RSS valide."
 
 #. TRANS: Form validation error displayed when feed subscription failed.
+#: actions/rsscloudrequestnotify.php:153
 msgid ""
 "Feed subscription failed: Notification handler does not respond correctly."
-msgstr ""
-"L’abonnement au flux RSS a échoué : le gestionnaire de notifications ne "
-"répond pas correctement."
+msgstr "L’abonnement au flux RSS a échoué : le gestionnaire de notifications ne répond pas correctement."
 
 #. TRANS: Success message after subscribing to one or more feeds.
+#: actions/rsscloudrequestnotify.php:168
 msgid ""
 "Thanks for the subscription. When the feed(s) update(s), you will be "
 "notified."
-msgstr ""
-"Merci pour l’abonnement. Vous serez informé lors des mises à jour de ce(s) "
-"flux."
-
-#. TRANS: Plugin description.
-msgid ""
-"The RSSCloud plugin enables your StatusNet instance to publish real-time "
-"updates for profile RSS feeds using the <a href=\"http://rsscloud.org/"
-"\">RSSCloud protocol</a>."
-msgstr ""
-"L’extension RSSCloud permet à votre instance StatusNet de publier des mises "
-"à jour en temps réel sur des flux RSS en utilisant le protocole <a href="
-"\"http://rsscloud.org/\">RSSCloud</a>."
+msgstr "Merci pour l’abonnement. Vous serez informé lors des mises à jour de ce(s) flux."

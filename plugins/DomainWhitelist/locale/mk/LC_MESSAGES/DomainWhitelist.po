@@ -1,80 +1,93 @@
-# Translation of StatusNet - DomainWhitelist to Macedonian (македонски)
-# Exported from translatewiki.net
-#
-# Author: Bjankuloski06
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - DomainWhitelist\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:17+0000\n"
-"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:31+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Macedonian (http://www.transifex.com/projects/p/gnu-social/language/mk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-01-02 10:11:33+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: mk\n"
-"X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
-"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
-
-#. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
-#. TRANS: %s is a whitelisted e-mail domain.
-#, php-format
-msgid "Email address must be in this domain: %s."
-msgstr "Е-поштенската адреса мора да биде во следниов домен: %s."
-
-#. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
-#. TRANS: %s are whitelisted e-mail domains separated by comma's (localisable).
-#, php-format
-msgid "Email address must be in one of these domains: %s."
-msgstr "Е-поштенската адреса мора да биде во еден од следниве домени: %s."
-
-#. TRANS: Separator for whitelisted domains.
-msgctxt "SEPARATOR"
-msgid ", "
-msgstr ", "
-
-#. TRANS: Exception thrown when an e-mail address does not match the site's domain whitelist.
-msgid "That email address is not allowed on this site."
-msgstr "Таа е-поштенска адреса не е дозволена на ова мрежно место."
-
-#. TRANS: Title for invitiation deletion dialog.
-msgid "Confirmation Required"
-msgstr "Се бара потврда"
-
-#. TRANS: Confirmation text for invitation deletion dialog.
-msgid "Really delete this invitation?"
-msgstr "Навистина да ја избришам поканава?"
-
-#. TRANS: Plugin description.
-msgid "Restrict domains for email users."
-msgstr "Ограничување на домените за корисници на е-пошта"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #. TRANS: Form legend.
+#: forms/whitelistinvite.php:89
 msgid "Invite collegues"
 msgstr "Покани колеги"
 
 #. TRANS: Field label for a personal message to send to invitees.
+#: forms/whitelistinvite.php:106
 msgid "Personal message"
 msgstr "Лична порака"
 
 #. TRANS: Field title for a personal message to send to invitees.
+#: forms/whitelistinvite.php:109
 msgid "Optionally add a personal message to the invitation."
 msgstr "Можете да додадете и лична порака во поканата."
 
 #. TRANS: Link description to action to add another item to a list.
+#: forms/whitelistinvite.php:158
 msgid "Add another item"
 msgstr "Додај друга ставка"
 
 #. TRANS: Send button for inviting friends.
+#: forms/whitelistinvite.php:172
 msgctxt "BUTTON"
 msgid "Send"
 msgstr "Испрати"
 
 #. TRANS: Submit button title.
+#: forms/whitelistinvite.php:175
 msgid "Send invitations."
 msgstr "Испрати покани."
+
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the
+#. domain whitelist.
+#. TRANS: %s is a whitelisted e-mail domain.
+#: DomainWhitelistPlugin.php:90
+#, php-format
+msgid "Email address must be in this domain: %s."
+msgstr "Е-поштенската адреса мора да биде во следниов домен: %s."
+
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the
+#. domain whitelist.
+#. TRANS: %s are whitelisted e-mail domains separated by comma's
+#. (localisable).
+#: DomainWhitelistPlugin.php:95
+#, php-format
+msgid "Email address must be in one of these domains: %s."
+msgstr "Е-поштенската адреса мора да биде во еден од следниве домени: %s."
+
+#. TRANS: Separator for whitelisted domains.
+#: DomainWhitelistPlugin.php:97
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr ", "
+
+#. TRANS: Exception thrown when an e-mail address does not match the site's
+#. domain whitelist.
+#: DomainWhitelistPlugin.php:109
+msgid "That email address is not allowed on this site."
+msgstr "Таа е-поштенска адреса не е дозволена на ова мрежно место."
+
+#. TRANS: Title for invitiation deletion dialog.
+#: DomainWhitelistPlugin.php:238
+msgid "Confirmation Required"
+msgstr "Се бара потврда"
+
+#. TRANS: Confirmation text for invitation deletion dialog.
+#: DomainWhitelistPlugin.php:241
+msgid "Really delete this invitation?"
+msgstr "Навистина да ја избришам поканава?"
+
+#. TRANS: Plugin description.
+#: DomainWhitelistPlugin.php:278
+msgid "Restrict domains for email users."
+msgstr "Ограничување на домените за корисници на е-пошта"

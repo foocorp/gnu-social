@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:28+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Greek (http://www.transifex.com/projects/p/gnu-social/language/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Menu item in the group navigation page.
+#: GroupFavoritedPlugin.php:51
+msgctxt "MENU"
+msgid "Popular"
+msgstr ""
+
+#. TRANS: Tooltip for menu item in the group navigation page.
+#. TRANS: %s is the nickname of the group.
+#: GroupFavoritedPlugin.php:54
+#, php-format
+msgctxt "TOOLTIP"
+msgid "Popular notices in %s group"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: GroupFavoritedPlugin.php:78
+msgid "This plugin adds a menu item for popular notices in groups."
+msgstr ""
+
+#. TRANS: %s is a group name.
+#: actions/groupfavorited.php:48
+#, php-format
+msgid "Popular posts in %s group"
+msgstr ""
+
+#. TRANS: %1$s is a group name, %2$s is a group number.
+#: actions/groupfavorited.php:51
+#, php-format
+msgid "Popular posts in %1$s group, page %2$d"
+msgstr ""

@@ -1,28 +1,29 @@
-# Translation of StatusNet - FollowEveryone to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Armando-Martin
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - FollowEveryone\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:37+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-27 12:21+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:08+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Checkbox label in form for profile settings.
+#: FollowEveryonePlugin.php:134
 msgid "Follow everyone"
 msgstr "Seguir a todos"
 
 #. TRANS: Plugin description.
+#: FollowEveryonePlugin.php:176
 msgid "New users follow everyone at registration and are followed in return."
-msgstr ""
-"Los nuevos usuarios siguen a todos al registrarse y son seguidos a cambio."
+msgstr "Todos los usuarios se siguen mutuamente al registrarse."

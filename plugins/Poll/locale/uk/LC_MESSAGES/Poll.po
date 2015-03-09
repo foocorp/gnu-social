@@ -1,149 +1,197 @@
-# Translation of StatusNet - Poll to Ukrainian (українська)
-# Exported from translatewiki.net
-#
-# Author: Boogie
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Poll\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:38+0000\n"
-"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:32+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:51:15+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: uk\n"
-"X-Message-Group: #out-statusnet-plugin-poll\n"
-"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
-"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
-
-#. TRANS: Client exception thrown trying to view a non-existing poll.
-msgid "No such poll."
-msgstr "Немає такого опитування."
-
-#. TRANS: Client exception thrown trying to view a non-existing poll notice.
-msgid "No such poll notice."
-msgstr "Немає допису щодо опитування."
-
-#. TRANS: Page title for a poll.
-#. TRANS: %1$s is the nickname of the user that created the poll, %2$s is the poll question.
-#, php-format
-msgid "%1$s's poll: %2$s"
-msgstr "Опитування %1$s: %2$s"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. TRANS: Field label on the page to create a poll.
+#: forms/newpoll.php:107
 msgid "Question"
 msgstr "Питання"
 
 #. TRANS: Field title on the page to create a poll.
+#: forms/newpoll.php:110
 msgid "What question are people answering?"
 msgstr "На яке запитання відповідати людям?"
 
 #. TRANS: Field label for an answer option on the page to create a poll.
 #. TRANS: %d is the option number.
+#: forms/newpoll.php:130
 #, php-format
 msgid "Option %d"
 msgstr "Варіант %d"
 
 #. TRANS: Button text for saving a new poll.
+#: forms/newpoll.php:156
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зберегти"
 
-#. TRANS: Plugin description.
-msgid "Simple extension for supporting basic polls."
-msgstr "Простий додаток для підтримки проведення опитувань."
-
-#. TRANS: Exception thrown trying to respond to a poll without a poll reference.
-msgid "Invalid poll response: No poll reference."
-msgstr "Невірна відповідь: відсутнє посилання на опитування."
-
-#. TRANS: Exception thrown trying to respond to a non-existing poll.
-msgid "Invalid poll response: Poll is unknown."
-msgstr "Неправильна відповідь на опитування: невідоме опитування."
-
-#. TRANS: Exception thrown when performing an unexpected action on a poll.
-#. TRANS: %s is the unexpected object type.
-#, php-format
-msgid "Unexpected type for poll plugin: %s."
-msgstr "Неочікувана дія для додатку опитувань: %s."
-
-#. TRANS: Error text displayed if no poll data could be found.
-msgid "Poll data is missing"
-msgstr "Дані опитування відсутні"
-
-#. TRANS: Application title.
-msgctxt "APPTITLE"
-msgid "Poll"
-msgstr "Опитування"
-
-#. TRANS: Client exception thrown when responding to a poll with an invalid option.
-#. TRANS: Client exception thrown responding to a poll with an invalid answer.
-msgid "Invalid poll selection."
-msgstr "Невірний вибір опитування."
-
-#. TRANS: Notice content voting for a poll.
-#. TRANS: %s is the chosen option in the poll.
-#. TRANS: Rendered version of the notice content voting for a poll.
-#. TRANS: %s a link to the poll with the chosen option as link description.
-#, php-format
-msgid "voted for \"%s\""
-msgstr "проголосувало за «%s»"
-
 #. TRANS: Button text for submitting a poll response.
+#: forms/pollresponse.php:127
 msgctxt "BUTTON"
 msgid "Submit"
 msgstr "Надіслати"
 
+#. TRANS: Page title.
+#: actions/pollsettings.php:44
+msgid "Poll settings"
+msgstr ""
+
+#. TRANS: Page instructions.
+#: actions/pollsettings.php:56
+msgid "Set your poll preferences"
+msgstr ""
+
+#. TRANS: Title for poll page.
+#: actions/newpoll.php:63
+msgid "New poll"
+msgstr "Нове опитування"
+
+#. TRANS: Client exception thrown trying to create a poll while not logged in.
+#: actions/newpoll.php:81
+msgid "You must be logged in to post a poll."
+msgstr "Ви повинні увійти до системи, щоб взяти участь в опитуванні."
+
+#. TRANS: Client exception thrown trying to create a poll without a question.
+#: actions/newpoll.php:133
+msgid "Poll must have a question."
+msgstr "Опитування повинно мати запитання."
+
+#. TRANS: Client exception thrown trying to create a poll with fewer than two
+#. options.
+#: actions/newpoll.php:138
+msgid "Poll must have at least two options."
+msgstr "Опитування повинно мати принаймні два варіанти."
+
+#. TRANS: Page title after sending a notice.
+#: actions/newpoll.php:164
+msgid "Notice posted"
+msgstr "Допис опубліковано"
+
+#. TRANS: Page title for poll response.
+#: actions/respondpoll.php:63
+msgid "Poll response"
+msgstr "Відповіді на опитування"
+
+#. TRANS: Client exception thrown trying to respond to a poll while not logged
+#. in.
+#: actions/respondpoll.php:84
+msgid "You must be logged in to respond to a poll."
+msgstr "Ви повинні увійти до системи, щоб відповісти на опитування."
+
+#. TRANS: Client exception thrown trying to respond to a non-existing poll.
+#: actions/respondpoll.php:96
+msgid "Invalid or missing poll."
+msgstr "Невірне або відсутнє опитування."
+
+#. TRANS: Client exception thrown responding to a poll with an invalid answer.
+#. TRANS: Client exception thrown when responding to a poll with an invalid
+#. option.
+#: actions/respondpoll.php:102 classes/Poll_response.php:134
+msgid "Invalid poll selection."
+msgstr "Невірний вибір опитування."
+
+#. TRANS: Page title after sending a poll response.
+#: actions/respondpoll.php:150
+msgid "Poll results"
+msgstr "Результати опитування"
+
+#. TRANS: Client exception thrown trying to view a non-existing poll.
+#: actions/showpoll.php:59
+msgid "No such poll."
+msgstr "Немає такого опитування."
+
+#. TRANS: Client exception thrown trying to view a non-existing poll notice.
+#: actions/showpoll.php:67
+msgid "No such poll notice."
+msgstr "Немає допису щодо опитування."
+
+#. TRANS: Page title for a poll.
+#. TRANS: %1$s is the nickname of the user that created the poll, %2$s is the
+#. poll question.
+#: actions/showpoll.php:84
+#, php-format
+msgid "%1$s's poll: %2$s"
+msgstr "Опитування %1$s: %2$s"
+
 #. TRANS: Notice content creating a poll.
 #. TRANS: %1$s is the poll question, %2$s is a link to the poll.
+#: classes/Poll.php:201
 #, php-format
 msgid "Poll: %1$s %2$s"
 msgstr "Опитування: %1$s %2$s"
 
 #. TRANS: Rendered version of the notice content creating a poll.
 #. TRANS: %s is a link to the poll with the question as link description.
+#: classes/Poll.php:207
 #, php-format
 msgid "Poll: %s"
 msgstr "Опитування: %s"
 
-#. TRANS: Title for poll page.
-msgid "New poll"
-msgstr "Нове опитування"
+#. TRANS: Notice content voting for a poll.
+#. TRANS: %s is the chosen option in the poll.
+#. TRANS: Rendered version of the notice content voting for a poll.
+#. TRANS: %s a link to the poll with the chosen option as link description.
+#: classes/Poll_response.php:163 classes/Poll_response.php:168
+#, php-format
+msgid "voted for \"%s\""
+msgstr "проголосувало за «%s»"
 
-#. TRANS: Client exception thrown trying to create a poll while not logged in.
-msgid "You must be logged in to post a poll."
-msgstr "Ви повинні увійти до системи, щоб взяти участь в опитуванні."
+#. TRANS: Plugin description.
+#: PollPlugin.php:131
+msgid "Simple extension for supporting basic polls."
+msgstr "Простий додаток для підтримки проведення опитувань."
 
-#. TRANS: Client exception thrown trying to create a poll without a question.
-msgid "Poll must have a question."
-msgstr "Опитування повинно мати запитання."
+#. TRANS: Exception thrown trying to respond to a poll without a poll
+#. reference.
+#: PollPlugin.php:204
+msgid "Invalid poll response: No poll reference."
+msgstr "Невірна відповідь: відсутнє посилання на опитування."
 
-#. TRANS: Client exception thrown trying to create a poll with fewer than two options.
-msgid "Poll must have at least two options."
-msgstr "Опитування повинно мати принаймні два варіанти."
+#. TRANS: Exception thrown trying to respond to a non-existing poll.
+#: PollPlugin.php:209
+msgid "Invalid poll response: Poll is unknown."
+msgstr "Неправильна відповідь на опитування: невідоме опитування."
 
-#. TRANS: Page title after sending a notice.
-msgid "Notice posted"
-msgstr "Допис опубліковано"
+#. TRANS: Exception thrown when performing an unexpected action on a poll.
+#. TRANS: %s is the unexpected object type.
+#: PollPlugin.php:236
+#, php-format
+msgid "Unexpected type for poll plugin: %s."
+msgstr "Неочікувана дія для додатку опитувань: %s."
 
-#. TRANS: Page title for poll response.
-msgid "Poll response"
-msgstr "Відповіді на опитування"
+#. TRANS: Application title.
+#: PollPlugin.php:392
+msgctxt "APPTITLE"
+msgid "Poll"
+msgstr "Опитування"
 
-#. TRANS: Client exception thrown trying to respond to a poll while not logged in.
-msgid "You must be logged in to respond to a poll."
-msgstr "Ви повинні увійти до системи, щоб відповісти на опитування."
+#. TRANS: Poll plugin menu item on user settings page.
+#: PollPlugin.php:436
+msgctxt "MENU"
+msgid "Polls"
+msgstr ""
 
-#. TRANS: Client exception thrown trying to respond to a non-existing poll.
-msgid "Invalid or missing poll."
-msgstr "Невірне або відсутнє опитування."
+#. TRANS: Poll plugin tooltip for user settings menu item.
+#: PollPlugin.php:438
+msgid "Configure poll behavior"
+msgstr ""
 
-#. TRANS: Page title after sending a poll response.
-msgid "Poll results"
-msgstr "Результати опитування"
+#. TRANS: Error text displayed if no poll data could be found.
+#: PollPlugin.php:463
+msgid "Poll data is missing"
+msgstr "Дані опитування відсутні"

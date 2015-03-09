@@ -1,61 +1,53 @@
-# Translation of StatusNet - ModPlus to Macedonian (македонски)
-# Exported from translatewiki.net
-#
-# Author: Bjankuloski06
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - ModPlus\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:16+0000\n"
-"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:31+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Macedonian (http://www.transifex.com/projects/p/gnu-social/language/mk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-01-02 10:11:36+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: mk\n"
-"X-Message-Group: #out-statusnet-plugin-modplus\n"
-"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
-
-#. TRANS: Error message displayed when referring to a user without a profile.
-msgid "User has no profile."
-msgstr "Корисникот нема профил."
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #. TRANS: Remote profile action page title.
 #. TRANS: %1$s is a username, %2$s is a hostname.
+#: actions/remoteprofile.php:15
 #, php-format
 msgid "%1$s on %2$s"
 msgstr "%1$s на %2$s"
 
 #. TRANS: Message on remote profile page.
-#. TRANS: This message contains Markdown links in the form [description](link).
+#. TRANS: This message contains Markdown links in the form
+#. [description](link).
 #. TRANS: %1$s is a profile nickname, %2$s is a hostname, %3$s is a URL.
+#: actions/remoteprofile.php:29
 #, php-format
 msgid ""
 "This remote profile is registered on another site; see [%1$s's original "
 "profile page on %2$s](%3$s)."
-msgstr ""
-"Овој далечински профил е регистриран на друго мреж. место. Погледајте ја "
-"[изворната профилна страница на %1$s на %2$s](%3$s)."
+msgstr "Овој далечински профил е регистриран на друго мреж. место. Погледајте ја [изворната профилна страница на %1$s на %2$s](%3$s)."
 
 #. TRANS: Message on blocked remote profile page.
+#: actions/remoteprofile.php:38
 msgid ""
 "Site moderators have silenced this profile, which prevents delivery of new "
 "messages to any users on this site."
-msgstr ""
-"Администраторите го замолчиле овој профил, што оневозможува праќање нови "
-"пораки на било кој корисник на мрежното место."
+msgstr "Администраторите го замолчиле овој профил, што оневозможува праќање нови пораки на било кој корисник на мрежното место."
 
 #. TRANS: Plugin description.
+#: ModPlusPlugin.php:40
 msgid "UI extension for profile moderation actions."
-msgstr ""
-"Додатоци за кориснички посредник наменети за постапки за модерација на "
-"профили."
+msgstr "Додатоци за кориснички посредник наменети за постапки за модерација на профили."
 
 #. TRANS: Label for access to remote profile options.
+#: ModPlusPlugin.php:115
 msgid "Remote profile options..."
 msgstr "Нагодувања на далечински профил..."

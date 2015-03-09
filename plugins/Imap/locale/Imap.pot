@@ -8,21 +8,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: E-mail subject in case of an error.
-#: imapmailhandler.php:31
+#: lib/imapmailhandler.php:31
 msgid "Error"
 msgstr ""
 
 #. TRANS: Exception thrown when the ImapManager is used incorrectly in the code.
-#: imapmanager.php:52
+#: lib/imapmanager.php:52
 msgid ""
 "ImapManager should be created using its constructor, not using the static "
 "\"get()\" method."
@@ -50,7 +51,7 @@ msgid "A poll_frequency must be specified."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: ImapPlugin.php:109
+#: ImapPlugin.php:87
 msgid ""
 "The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for "
 "incoming mail containing user posts."

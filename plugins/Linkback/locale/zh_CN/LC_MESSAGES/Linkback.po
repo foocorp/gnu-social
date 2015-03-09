@@ -1,40 +1,35 @@
-# Translation of StatusNet - Linkback to Simplified Chinese (‪中文（简体）‬)
-# Exported from translatewiki.net
-#
-# Author: ZhengYiFeng
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Linkback\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:03+0000\n"
-"Language-Team: Simplified Chinese <https://translatewiki.net/wiki/Portal:zh-"
-"hans>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:12+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/gnu-social/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:27+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: zh-hans\n"
-"X-Message-Group: #out-statusnet-plugin-linkback\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. TRANS: Trackback title.
 #. TRANS: %1$s is a profile nickname, %2$s is a timestamp.
+#: LinkbackPlugin.php:206
 #, php-format
 msgid "%1$s's status on %2$s"
-msgstr ""
+msgstr "%1$s在%2$s时发的消息"
 
 #. TRANS: Plugin description.
+#: LinkbackPlugin.php:243
 msgid ""
 "Notify blog authors when their posts have been linked in microblog notices "
 "using <a href=\"http://www.hixie.ch/specs/pingback/pingback\">Pingback</a> "
-"or <a href=\"http://www.movabletype.org/docs/mttrackback.html\">Trackback</"
-"a> protocols."
-msgstr ""
-"当博客的地址在消息中被发布时使用 <a href=\"http://www.hixie.ch/specs/"
-"pingback/pingback\">Pingback</a> 或 <a href=\"http://www.movabletype.org/"
-"docs/mttrackback.html\">Trackback</a> 协议通知博客的作者。"
+"or <a "
+"href=\"http://www.movabletype.org/docs/mttrackback.html\">Trackback</a> "
+"protocols."
+msgstr "当博客的地址在消息中被发布时使用 <a href=\"http://www.hixie.ch/specs/pingback/pingback\">Pingback</a> 或 <a href=\"http://www.movabletype.org/docs/mttrackback.html\">Trackback</a> 协议通知博客的作者。"

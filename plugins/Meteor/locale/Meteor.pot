@@ -8,27 +8,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: Exception. %1$s is the control server, %2$s is the control port.
-#: MeteorPlugin.php:126
+#: MeteorPlugin.php:127
 #, php-format
 msgid "Could not connect to %1$s on %2$s."
 msgstr ""
 
 #. TRANS: Exception. %s is the Meteor message that could not be added.
-#: MeteorPlugin.php:139
+#: MeteorPlugin.php:140
 #, php-format
 msgid "Error adding meteor message \"%s\"."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: MeteorPlugin.php:170
+#: MeteorPlugin.php:171
 msgid "Plugin to do \"real time\" updates using Meteor."
 msgstr ""

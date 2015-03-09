@@ -1,105 +1,116 @@
-# Translation of StatusNet - Adsense to French (français)
-# Exported from translatewiki.net
-#
-# Author: Brunoperel
-# Author: Iketsi
-# Author: Od1n
-# Author: Peter17
-# Author: Verdy p
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Adsense\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:31+0000\n"
-"Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/gnu-social/language/fr/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 10:22:41+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: fr\n"
-"X-Message-Group: #out-statusnet-plugin-adsense\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Menu item title/tooltip
+#: AdsensePlugin.php:180
 msgid "AdSense configuration"
 msgstr "Configuration d’AdSense"
 
 #. TRANS: Menu item for site administration
+#: AdsensePlugin.php:182
 msgctxt "MENU"
 msgid "AdSense"
 msgstr "AdSense"
 
 #. TRANS: Plugin description.
+#: AdsensePlugin.php:196
 msgid "Plugin to add Google AdSense to StatusNet sites."
 msgstr "Greffon pour ajouter Google AdSense aux sites StatusNet."
 
 #. TRANS: Title of AdSense administrator panel.
+#: actions/adsenseadminpanel.php:53
 msgctxt "TITLE"
 msgid "AdSense"
 msgstr "AdSense"
 
 #. TRANS: Instructions for AdSense administrator panel.
+#: actions/adsenseadminpanel.php:64
 msgid "AdSense settings for this StatusNet site"
 msgstr "Paramètres AdSense pour ce site StatusNet"
 
 #. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:167
 msgid "Client ID"
 msgstr "Identifiant du client"
 
 #. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:169
 msgid "Google client ID."
 msgstr "ID client Google."
 
 #. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:175
 msgid "Ad script URL"
 msgstr "Adresse URL du script d’annonce"
 
 #. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:177
 msgid "Script URL (advanced)."
 msgstr "URL du script (avancé)."
 
 #. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:183
 msgid "Medium rectangle"
 msgstr "Rectangle moyen"
 
 #. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:185
 msgid "Medium rectangle slot code."
 msgstr "Code placé dans un rectangle moyen"
 
 #. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:191
 msgid "Rectangle"
 msgstr "Rectangle"
 
 #. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:193
 msgid "Rectangle slot code."
 msgstr "Codé placé dans le rectangle"
 
 #. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:199
 msgid "Leaderboard"
 msgstr "Panneau de commande"
 
 #. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:201
 msgid "Leaderboard slot code."
 msgstr "Code placé dans le panneau de commande"
 
 #. TRANS: Field label in AdSense administration panel.
+#: actions/adsenseadminpanel.php:207
 msgid "Skyscraper"
 msgstr "Bannière verticale"
 
 #. TRANS: Field title in AdSense administration panel.
+#: actions/adsenseadminpanel.php:209
 msgid "Wide skyscraper slot code."
 msgstr "Code placé dans une bannière verticale large"
 
 #. TRANS: Button text to save settings in AdSense administration panel.
+#: actions/adsenseadminpanel.php:223
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Sauvegarder"
 
 #. TRANS: Button title to save settings in AdSense administration panel.
+#: actions/adsenseadminpanel.php:225
 msgid "Save AdSense settings."
 msgstr "Sauvegarder les paramètres AdSense."

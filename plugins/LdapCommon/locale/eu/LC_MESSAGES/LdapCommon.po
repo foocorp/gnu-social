@@ -1,43 +1,52 @@
-# Translation of StatusNet - LdapCommon to Basque (euskara)
-# Exported from translatewiki.net
-#
-# Author: Artsuaga
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - LdapCommon\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:58+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:02+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Basque (http://www.transifex.com/projects/p/gnu-social/language/eu/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:26+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Common plugin fails
+#. because of an incorrect configuration.
+#: LdapCommon.php:64
 msgid "A host must be specified."
 msgstr "Host bat definitu behar duzu."
 
-#. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Common plugin fails
+#. because of an incorrect configuration.
+#: LdapCommon.php:68
 msgid "\"basedn\" must be specified."
 msgstr "\"basedn\" definitu behar duzu."
 
-#. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Common plugin fails
+#. because of an incorrect configuration.
+#: LdapCommon.php:72
 msgid "The username attribute must be set."
 msgstr "Erabiltzaile atributua definitu behar duzu."
 
-#. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
+#. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not
+#. available.
 #. TRANS: %s is the error message.
+#: LdapCommon.php:133
 #, php-format
 msgid "Could not connect to LDAP server: %s"
 msgstr "Ezin izan da LDAP zerbitzarira konektatu: %s"
 
-#. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
+#. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not
+#. available.
 #. TRANS: %s is the error message.
+#: LdapCommon.php:137
 #, php-format
 msgid "Could not connect to LDAP server: %s."
 msgstr "Ezin izan da LDAP zerbitzarira konektatu: %s"

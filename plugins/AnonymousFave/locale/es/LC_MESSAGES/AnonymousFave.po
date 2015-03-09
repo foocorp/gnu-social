@@ -1,91 +1,86 @@
-# Translation of StatusNet - AnonymousFave to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Erchache2000
-# Author: Locos epraix
-# Author: Translationista
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - AnonymousFave\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:36+0000\n"
-"Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-25 19:06+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:49:09+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: es\n"
-"X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Server exception.
-#. TRANS: %d is the notice ID (number).
-#, php-format
-msgid "Could not update favorite tally for notice ID %d."
-msgstr "No se pudo actualizar la cuenta favorita para el mensaje de ID %d."
-
-#. TRANS: Server exception.
-#. TRANS: %d is the notice ID (number).
-#, php-format
-msgid "Could not create favorite tally for notice ID %d."
-msgstr "No se pudo crear una cuenta favorita para el mensaje de ID %d."
-
 #. TRANS: Client error.
+#: actions/anonfavor.php:58
 msgid ""
-"Could not disfavor notice! Please make sure your browser has cookies enabled."
-msgstr ""
-"¡No es posible eliminar el mensaje de entre los favoritos! Por favor, "
-"asegúrate de que las cookies estén habilitadas en tu navegador."
+"Could not favor notice! Please make sure your browser has cookies enabled."
+msgstr "No fue posible marcar el mensaje como favorito. Por favor, asegúrate de que las cookies están habilitadas en tu navegador."
 
 #. TRANS: Client error.
-msgid "There was a problem with your session token. Try again, please."
-msgstr ""
-"Hubo un problema con tu token de sesión. Por favor, inténtalo de nuevo."
-
-#. TRANS: Client error.
-msgid "This notice is not a favorite!"
-msgstr "¡Este mensaje no es un favorito!"
+#: actions/anonfavor.php:67
+msgid "This notice is already a favorite!"
+msgstr "¡Ya has marcado este mensaje como favorito!"
 
 #. TRANS: Server error.
-msgid "Could not delete favorite."
-msgstr "No se pudo borrar el favorito."
+#: actions/anonfavor.php:73
+msgid "Could not create favorite."
+msgstr "No se pudo marcar como favorito."
 
 #. TRANS: Title.
+#: actions/anonfavor.php:82
+msgid "Disfavor favorite"
+msgstr "Desmarcar como favorito."
+
+#. TRANS: Client error.
+#: actions/anondisfavor.php:59
+msgid ""
+"Could not disfavor notice! Please make sure your browser has cookies "
+"enabled."
+msgstr "¡No es posible quitar el favorito! Por favor, asegúrate de que las cookies están habilitadas en tu navegador."
+
+#. TRANS: Server error.
+#: actions/anondisfavor.php:80
+msgid "Could not delete favorite."
+msgstr "No se pudo quitar el favorito."
+
+#. TRANS: Title.
+#: actions/anondisfavor.php:89
 msgid "Add to favorites"
-msgstr "Añadir a favoritos"
+msgstr "Marcar como favorito"
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: classes/Fave_tally.php:96 classes/Fave_tally.php:125
+#, php-format
+msgid "Could not update favorite tally for notice ID %d."
+msgstr "No se pudo actualizar el registro de favoritos para el mensaje %d."
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: classes/Fave_tally.php:156
+#, php-format
+msgid "Could not create favorite tally for notice ID %d."
+msgstr "No se pudo crear un registro de favoritos para el mensaje %d."
 
 #. TRANS: Label for tally for number of times a notice was favored.
+#: AnonymousFavePlugin.php:165
 msgid "Favored"
 msgstr "Favorito"
 
 #. TRANS: Server exception.
+#: AnonymousFavePlugin.php:198 AnonymousFavePlugin.php:209
 msgid "Could not create anonymous user session."
 msgstr "No se pudo crear la sesión de usuario anónimo."
 
 #. TRANS: Plugin description.
+#: AnonymousFavePlugin.php:284
 msgid "Allow anonymous users to favorite notices."
 msgstr "Permitir a usuarios anónimos marcar mensajes como favoritos."
-
-#. TRANS: Client error.
-msgid ""
-"Could not favor notice! Please make sure your browser has cookies enabled."
-msgstr ""
-"No fue posible marcar el mensaje como favorito. Por favor, asegúrate de que "
-"las cookies están habilitadas en tu navegador."
-
-#. TRANS: Client error.
-msgid "This notice is already a favorite!"
-msgstr "¡Este mensaje ya está en favoritos!"
-
-#. TRANS: Server error.
-msgid "Could not create favorite."
-msgstr "No se pudo crear favorito."
-
-#. TRANS: Title.
-msgid "Disfavor favorite"
-msgstr "Eliminar de la lista de favoritos."

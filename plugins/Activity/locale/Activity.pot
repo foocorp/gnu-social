@@ -8,29 +8,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. TRANS: Text for "joined list" item in activity plugin.
-#. TRANS: %1$s is a profile URL, %2$s is a profile name,
-#. TRANS: %3$s is a group home URL, %4$s is a group name.
-#. TRANS: Text for "joined group" item in activity plugin.
-#. TRANS: %1$s is a profile URL, %2$s is a profile name,
-#. TRANS: %3$s is a group URL, %4$s is a group name.
-#: joinlistitem.php:64 ActivityPlugin.php:259
-#, php-format
-msgid "<a href=\"%1$s\">%2$s</a> joined the group <a href=\"%3$s\">%4$s</a>."
-msgstr ""
-
 #. TRANS: Text for "started following" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
 #. TRANS: %3$s is a profile URL, %4$s is a profile name.
-#: ActivityPlugin.php:89
+#: ActivityPlugin.php:75
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> started following <a href=\"%3$s\">%4$s</a>."
 msgstr ""
@@ -38,7 +28,7 @@ msgstr ""
 #. TRANS: Text for "started following" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
 #. TRANS: %3$s is a profile name, %4$s is a profile URL.
-#: ActivityPlugin.php:97
+#: ActivityPlugin.php:83
 #, php-format
 msgid "%1$s (%2$s) started following %3$s (%4$s)."
 msgstr ""
@@ -46,7 +36,7 @@ msgstr ""
 #. TRANS: Text for "stopped following" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
 #. TRANS: %3$s is a profile URL, %4$s is a profile name.
-#: ActivityPlugin.php:125
+#: ActivityPlugin.php:113
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> stopped following <a href=\"%3$s\">%4$s</a>."
 msgstr ""
@@ -54,31 +44,15 @@ msgstr ""
 #. TRANS: Text for "stopped following" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
 #. TRANS: %3$s is a profile name, %4$s is a profile URL.
-#: ActivityPlugin.php:133
+#: ActivityPlugin.php:121
 #, php-format
 msgid "%1$s (%2$s) stopped following %3$s (%4$s)."
-msgstr ""
-
-#. TRANS: Text for "liked" item in activity plugin.
-#. TRANS: %1$s is a profile URL, %2$s is a profile name,
-#. TRANS: %3$s is a notice URL, %4$s is an author name.
-#: ActivityPlugin.php:173
-#, php-format
-msgid "<a href=\"%1$s\">%2$s</a> liked <a href=\"%3$s\">%4$s's update</a>."
-msgstr ""
-
-#. TRANS: Text for "liked" item in activity plugin.
-#. TRANS: %1$s is a profile name, %2$s is a profile URL,
-#. TRANS: %3$s is an author name, %4$s is a notice URL.
-#: ActivityPlugin.php:181
-#, php-format
-msgid "%1$s (%2$s) liked %3$s's status (%4$s)."
 msgstr ""
 
 #. TRANS: Text for "stopped liking" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
 #. TRANS: %3$s is a notice URL, %4$s is an author name.
-#: ActivityPlugin.php:212
+#: ActivityPlugin.php:158
 #, php-format
 msgid ""
 "<a href=\"%1$s\">%2$s</a> stopped liking <a href=\"%3$s\">%4$s's update</a>."
@@ -87,15 +61,26 @@ msgstr ""
 #. TRANS: Text for "stopped liking" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
 #. TRANS: %3$s is an author name, %4$s is a notice URL.
-#: ActivityPlugin.php:220
+#: ActivityPlugin.php:166
 #, php-format
 msgid "%1$s (%2$s) stopped liking %3$s's status (%4$s)."
 msgstr ""
 
 #. TRANS: Text for "joined group" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a group URL, %4$s is a group name.
+#. TRANS: Text for "joined list" item in activity plugin.
+#. TRANS: %1$s is a profile URL, %2$s is a profile name,
+#. TRANS: %3$s is a group home URL, %4$s is a group name.
+#: ActivityPlugin.php:203 lib/joinlistitem.php:64
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> joined the group <a href=\"%3$s\">%4$s</a>."
+msgstr ""
+
+#. TRANS: Text for "joined group" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
 #. TRANS: %3$s is a group name, %4$s is a group URL.
-#: ActivityPlugin.php:267
+#: ActivityPlugin.php:211
 #, php-format
 msgid "%1$s (%2$s) joined the group %3$s (%4$s)."
 msgstr ""
@@ -103,7 +88,7 @@ msgstr ""
 #. TRANS: Text for "left group" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
 #. TRANS: %3$s is a group URL, %4$s is a group name.
-#: ActivityPlugin.php:302
+#: ActivityPlugin.php:244
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> left the group <a href=\"%3$s\">%4$s</a>."
 msgstr ""
@@ -111,12 +96,12 @@ msgstr ""
 #. TRANS: Text for "left group" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
 #. TRANS: %3$s is a group name, %4$s is a group URL.
-#: ActivityPlugin.php:310
+#: ActivityPlugin.php:252
 #, php-format
 msgid "%1$s (%2$s) left the group %3$s (%4$s)."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: ActivityPlugin.php:427
+#: ActivityPlugin.php:350
 msgid "Emits notices when social activities happen."
 msgstr ""

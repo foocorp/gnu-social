@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 15:04+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Norwegian Nynorsk (http://www.transifex.com/projects/p/gnu-social/language/nn/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nn\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Server exception thrown when blogspam.net returns error status.
+#. TRANS: %1$s is the base URL, %2$s is the error (unknown contents; no
+#. period).
+#: BlogspamNetPlugin.php:87
+#, php-format
+msgid "Error from %1$s: %2$s"
+msgstr ""
+
+#. TRANS: Server exception thrown when blogspam.net returns spam status.
+#. TRANS: Does not end with period because of unknown contents for %s (spam
+#. match).
+#: BlogspamNetPlugin.php:91
+#, php-format
+msgid "Spam checker results: %s"
+msgstr ""
+
+#. TRANS: Server exception thrown when blogspam.net returns an unexpected
+#. status.
+#. TRANS: %1$s is the base URL, %2$s is the response (unknown contents; no
+#. period).
+#: BlogspamNetPlugin.php:97
+#, php-format
+msgid "Unexpected response from %1$s: %2$s"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: BlogspamNetPlugin.php:159
+msgid "Plugin to check submitted notices with blogspam.net."
+msgstr ""

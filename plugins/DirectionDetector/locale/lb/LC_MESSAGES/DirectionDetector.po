@@ -1,28 +1,23 @@
-# Translation of StatusNet - DirectionDetector to Luxembourgish (Lëtzebuergesch)
-# Exported from translatewiki.net
-#
-# Author: Robby
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - DirectionDetector\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:07+0000\n"
-"Language-Team: Luxembourgish <https://translatewiki.net/wiki/Portal:lb>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:16+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Luxembourgish (http://www.transifex.com/projects/p/gnu-social/language/lb/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-09-11 15:10:27+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: lb\n"
-"X-Message-Group: #out-statusnet-plugin-directiondetector\n"
+"Language: lb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Plugin description.
+#: DirectionDetectorPlugin.php:256
 msgid "Shows notices with right-to-left content in correct direction."
-msgstr ""
-"Weist Matdeelungen mat Inhalt dee vu riets not lenks geschriwwen ass an där "
-"richteger Richtung."
+msgstr "Weist Matdeelungen mat Inhalt dee vu riets not lenks geschriwwen ass an där richteger Richtung."

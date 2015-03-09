@@ -1,28 +1,26 @@
-# Translation of StatusNet - StrictTransportSecurity to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Armando-Martin
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - StrictTransportSecurity\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:10+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-25 22:11+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:51:41+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Plugin description.
+#: StrictTransportSecurityPlugin.php:60
 msgid ""
 "The Strict Transport Security plugin implements the Strict Transport "
 "Security header, improving the security of HTTPS only sites."
-msgstr ""
-"El complemento (plugin) Strict Transport Security implementa la cabecera "
-"Strict Transport Security, que mejora la seguridad de los sitios disponibles "
-"unicamente en HTTPS."
+msgstr "El complemento Strict Transport Security implementa la cabecera HTTP «Strict-Transport-Security» ('Seguridad de transporte HTTP estricta'), que mejora la seguridad de los sitios sólo disponibles en HTTPS."

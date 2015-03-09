@@ -1,47 +1,40 @@
-# Translation of StatusNet - AutoSandbox to Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
-# Exported from translatewiki.net
-#
-# Author: EugeneZelenko
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - AutoSandbox\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:07:43+0000\n"
-"Language-Team: Belarusian (Taraškievica orthography) <https://translatewiki."
-"net/wiki/Portal:be-tarask>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 14:32+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Belarusian (Tarask) (http://www.transifex.com/projects/p/gnu-social/language/be@tarask/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:49:46+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: be-tarask\n"
-"X-Message-Group: #out-statusnet-plugin-autosandbox\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: be@tarask\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. TRANS: Plugin description.
+#: AutoSandboxPlugin.php:67
 msgid "Automatically sandboxes newly registered members."
 msgstr "Аўтаматычна перасылае ў пясочніцу ўсіх новых карыстальнікаў."
 
 #. TRANS: User instructions after registration.
+#: AutoSandboxPlugin.php:74
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline."
-msgstr ""
-"Памятайце, што спачатку Вы будзеце знаходзіцца ў пясочніцы, таму Вашыя "
-"паведамленьні ня будуць паказвацца ў агульнай стужцы."
+msgstr "Памятайце, што спачатку Вы будзеце знаходзіцца ў пясочніцы, таму Вашыя паведамленьні ня будуць паказвацца ў агульнай стужцы."
 
 #. TRANS: User instructions after registration.
-#. TRANS: %s is a clickable e-mailaddress.
-#, fuzzy, php-format
+#. TRANS: %s is a clickable OStatus profile URL.
+#: AutoSandboxPlugin.php:84
+#, php-format
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline. Send a message to %s to speed up the unsandboxing "
 "process."
 msgstr ""
-"Памятайце, што спачатку Вы будзеце знаходзіцца ў пясочніцы, таму Вашыя "
-"паведамленьні ня будуць паказвацца ў агульнай стужцы. Дашліце паведамленьне "
-"ў $contactlink, каб паскорыць працэс пераводу з пясочніцы."

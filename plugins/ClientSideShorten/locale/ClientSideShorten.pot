@@ -8,22 +8,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. TRANS: Client exception thrown when a text argument is not present.
+#: actions/shorten.php:56
+msgid "\"text\" argument must be specified."
+msgstr ""
+
 #. TRANS: Plugin description.
-#: ClientSideShortenPlugin.php:77
+#: ClientSideShortenPlugin.php:65
 msgid ""
 "ClientSideShorten causes the web interface's notice form to automatically "
 "shorten URLs as they entered, and before the notice is submitted."
-msgstr ""
-
-#. TRANS: Client exception thrown when a text argument is not present.
-#: shorten.php:56
-msgid "\"text\" argument must be specified."
 msgstr ""

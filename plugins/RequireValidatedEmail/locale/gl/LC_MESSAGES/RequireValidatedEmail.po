@@ -1,105 +1,127 @@
-# Translation of StatusNet - RequireValidatedEmail to Galician (galego)
-# Exported from translatewiki.net
-#
-# Author: Toliño
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - RequireValidatedEmail\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:51+0000\n"
-"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Galician (http://www.transifex.com/projects/p/gnu-social/language/gl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:19:28+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: gl\n"
-"X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
+"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
+#. TRANS: Client exception thrown when trying to post notices before
+#. validating an e-mail address.
+#: RequireValidatedEmailPlugin.php:104
 msgid "You must validate your email address before posting."
 msgstr "Debe validar o enderezo de correo electrónico antes de publicar."
 
-#. TRANS: Client exception thrown when trying to register without providing an e-mail address.
+#. TRANS: Client exception thrown when trying to register without providing an
+#. e-mail address.
+#: RequireValidatedEmailPlugin.php:125
 msgid "You must provide an email address to register."
 msgstr "Debe proporcionar un enderezo de correo electrónico para se rexistrar."
 
 #. TRANS: Plugin description.
+#: RequireValidatedEmailPlugin.php:224
 msgid "Disables posting without a validated email address."
-msgstr ""
-"Desactiva a publicación de mensaxes sen un enderezo de correo electrónico "
-"validado."
+msgstr "Desactiva a publicación de mensaxes sen un enderezo de correo electrónico validado."
 
-#. TRANS: Client exception thrown when trying to register while already logged in.
+#: RequireValidatedEmailPlugin.php:243
+msgid "You must validate an email address before posting!"
+msgstr ""
+
+#. TRANS: Client exception thrown when trying to register while already logged
+#. in.
+#: actions/confirmfirstemail.php:68
 msgid "You are already logged in."
 msgstr "Xa está identificado."
 
-#. TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
+#. TRANS: Client exception thrown when trying to register with a non-existing
+#. confirmation code.
+#: actions/confirmfirstemail.php:77
 msgid "Confirmation code not found."
 msgstr "Non se atopou o código de confirmación."
 
-#. TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
+#. TRANS: Client exception thrown when trying to register with a confirmation
+#. code that is not connected with a user.
+#: actions/confirmfirstemail.php:85
 msgid "No user for that confirmation code."
 msgstr "Non hai usuario ningún para ese código de confirmación."
 
-#. TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+#. TRANS: Client exception thrown when trying to register with a invalid
+#. e-mail address.
 #. TRANS: %s is the invalid e-mail address.
+#: actions/confirmfirstemail.php:93
 #, php-format
 msgid "Unrecognized address type %s."
 msgstr "Non se recoñeceu o tipo de enderezo %s."
 
 #. TRANS: Client error for an already confirmed email/jabber/sms address.
+#: actions/confirmfirstemail.php:98
 msgid "That address has already been confirmed."
 msgstr "Ese enderezo xa se confirmou."
 
-#. TRANS: Client exception thrown when trying to register with too short a password.
+#. TRANS: Client exception thrown when trying to register with too short a
+#. password.
+#: actions/confirmfirstemail.php:110
 msgid "Password too short."
 msgstr "O contrasinal é curto de máis."
 
-#. TRANS: Client exception thrown when trying to register without providing the same password twice.
+#. TRANS: Client exception thrown when trying to register without providing
+#. the same password twice.
+#: actions/confirmfirstemail.php:114
 msgid "Passwords do not match."
 msgstr "Os contrasinais non coinciden."
 
 #. TRANS: Form instructions. %s is the nickname of the to be registered user.
+#: actions/confirmfirstemail.php:170
 #, php-format
 msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
 "form below to set your new password."
-msgstr ""
-"Confirmou o enderezo de correo electrónico da nova conta de usuario %s. "
-"Empregue o formulario inferior para definir o seu novo contrasinal."
+msgstr "Confirmou o enderezo de correo electrónico da nova conta de usuario %s. Empregue o formulario inferior para definir o seu novo contrasinal."
 
 #. TRANS: Page title.
+#: actions/confirmfirstemail.php:181
 msgid "Set a password"
 msgstr "Definir un contrasinal"
 
 #. TRANS: Form legend.
+#: actions/confirmfirstemail.php:198
 msgid "Confirm email address"
 msgstr "Confirmar o enderezo de correo electrónico"
 
 #. TRANS: Field label.
+#: actions/confirmfirstemail.php:217
 msgid "New password"
 msgstr "Novo contrasinal"
 
 #. TRANS: Field title for password field.
+#: actions/confirmfirstemail.php:219
 msgid "6 or more characters."
 msgstr "Seis ou máis caracteres."
 
 #. TRANS: Field label for repeat password field.
+#: actions/confirmfirstemail.php:223
 msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Confirmar"
 
 #. TRANS: Field title for repeat password field.
+#: actions/confirmfirstemail.php:225
 msgid "Same as password above."
 msgstr "Igual ao contrasinal anterior."
 
 #. TRANS: Button text for completing registration by e-mail.
+#: actions/confirmfirstemail.php:233
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Gardar"

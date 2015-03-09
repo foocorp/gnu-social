@@ -1,40 +1,39 @@
-# Translation of StatusNet - LdapAuthorization to Indonesian (Bahasa Indonesia)
-# Exported from translatewiki.net
-#
-# Author: Farras
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - LdapAuthorization\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 12:36+0000\n"
-"PO-Revision-Date: 2011-04-27 12:37:28+0000\n"
-"Language-Team: Indonesian <http://translatewiki.net/wiki/Portal:id>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:02+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Indonesian (http://www.transifex.com/projects/p/gnu-social/language/id/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:08:11+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87008); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: id\n"
-"X-Message-Group: #out-statusnet-plugin-ldapauthorization\n"
+"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthorizationPlugin.php:42
 msgid ""
 "provider_name must be set. Use the provider_name from the LDAP "
 "Authentication plugin."
 msgstr ""
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthorizationPlugin.php:46
 msgid "uniqueMember_attribute must be set."
 msgstr ""
 
 #. TRANS: Plugin description.
+#: LdapAuthorizationPlugin.php:129
 msgid ""
 "The LDAP Authorization plugin allows for StatusNet to handle authorization "
 "through LDAP."
-msgstr ""
-"Pengaya LDAP Authorization memungkinkan StatusNet menangani otorisasi "
-"melalui LDAP."
+msgstr "Pengaya LDAP Authorization memungkinkan StatusNet menangani otorisasi melalui LDAP."

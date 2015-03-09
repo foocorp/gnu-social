@@ -1,36 +1,32 @@
-# Translation of StatusNet - ForceGroup to Galician (galego)
-# Exported from translatewiki.net
-#
-# Author: Toliño
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - ForceGroup\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:39+0000\n"
-"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:43+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Galician (http://www.transifex.com/projects/p/gnu-social/language/gl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:09+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: gl\n"
-"X-Message-Group: #out-statusnet-plugin-forcegroup\n"
+"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Server exception.
 #. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#: ForceGroupPlugin.php:92
 #, php-format
 msgid "Could not join user %1$s to group %2$s."
 msgstr "O usuario %1$s non se puido engadir ao grupo %2$s."
 
 #. TRANS: Plugin description.
+#: ForceGroupPlugin.php:118
 msgid ""
 "Allows forced group memberships and forces all notices to appear in groups "
 "that users were forced in."
-msgstr ""
-"Permite forzar a inscripción nun grupo e forza a que todas as notas aparezan "
-"nos grupos onde os usuarios se ven forzados a estar."
+msgstr "Permite forzar a inscripción nun grupo e forza a que todas as notas aparezan nos grupos onde os usuarios se ven forzados a estar."

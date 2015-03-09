@@ -1,108 +1,127 @@
-# Translation of StatusNet - RequireValidatedEmail to Ukrainian (українська)
-# Exported from translatewiki.net
-#
-# Author: Boogie
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - RequireValidatedEmail\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:51+0000\n"
-"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:19:28+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: uk\n"
-"X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
-"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
-"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#. TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
+#. TRANS: Client exception thrown when trying to post notices before
+#. validating an e-mail address.
+#: RequireValidatedEmailPlugin.php:104
 msgid "You must validate your email address before posting."
-msgstr ""
-"Ви повинні підтвердити свою адресу електронної пошти до того, як почнете "
-"надсилати дописи поштою."
+msgstr "Ви повинні підтвердити свою адресу електронної пошти до того, як почнете надсилати дописи поштою."
 
-#. TRANS: Client exception thrown when trying to register without providing an e-mail address.
+#. TRANS: Client exception thrown when trying to register without providing an
+#. e-mail address.
+#: RequireValidatedEmailPlugin.php:125
 msgid "You must provide an email address to register."
 msgstr "Ви повинні зазначити свою адресу електронної пошти для реєстрації."
 
 #. TRANS: Plugin description.
+#: RequireValidatedEmailPlugin.php:224
 msgid "Disables posting without a validated email address."
-msgstr ""
-"Забороняє надсилання дописів, якщо користувач не має підтвердженої "
-"електронної адреси."
+msgstr "Забороняє надсилання дописів, якщо користувач не має підтвердженої електронної адреси."
 
-#. TRANS: Client exception thrown when trying to register while already logged in.
+#: RequireValidatedEmailPlugin.php:243
+msgid "You must validate an email address before posting!"
+msgstr ""
+
+#. TRANS: Client exception thrown when trying to register while already logged
+#. in.
+#: actions/confirmfirstemail.php:68
 msgid "You are already logged in."
 msgstr "Ви вже увійшли."
 
-#. TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
+#. TRANS: Client exception thrown when trying to register with a non-existing
+#. confirmation code.
+#: actions/confirmfirstemail.php:77
 msgid "Confirmation code not found."
 msgstr "Код підтвердження не знайдено."
 
-#. TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
+#. TRANS: Client exception thrown when trying to register with a confirmation
+#. code that is not connected with a user.
+#: actions/confirmfirstemail.php:85
 msgid "No user for that confirmation code."
 msgstr "Немає користувача для цього коду підтвердження."
 
-#. TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+#. TRANS: Client exception thrown when trying to register with a invalid
+#. e-mail address.
 #. TRANS: %s is the invalid e-mail address.
+#: actions/confirmfirstemail.php:93
 #, php-format
 msgid "Unrecognized address type %s."
 msgstr "Невизначений тип адреси %s."
 
 #. TRANS: Client error for an already confirmed email/jabber/sms address.
+#: actions/confirmfirstemail.php:98
 msgid "That address has already been confirmed."
 msgstr "Цю адресу вже було підтверджено."
 
-#. TRANS: Client exception thrown when trying to register with too short a password.
+#. TRANS: Client exception thrown when trying to register with too short a
+#. password.
+#: actions/confirmfirstemail.php:110
 msgid "Password too short."
 msgstr "Пароль занадто короткий."
 
-#. TRANS: Client exception thrown when trying to register without providing the same password twice.
+#. TRANS: Client exception thrown when trying to register without providing
+#. the same password twice.
+#: actions/confirmfirstemail.php:114
 msgid "Passwords do not match."
 msgstr "Паролі не збігаються."
 
 #. TRANS: Form instructions. %s is the nickname of the to be registered user.
+#: actions/confirmfirstemail.php:170
 #, php-format
 msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
 "form below to set your new password."
-msgstr ""
-"Ви підтвердили електронну адресу для свого нового акаунту %s. Скористайтеся "
-"формою нижче, щоб встановити новий пароль."
+msgstr "Ви підтвердили електронну адресу для свого нового акаунту %s. Скористайтеся формою нижче, щоб встановити новий пароль."
 
 #. TRANS: Page title.
+#: actions/confirmfirstemail.php:181
 msgid "Set a password"
 msgstr "Встановити пароль"
 
 #. TRANS: Form legend.
+#: actions/confirmfirstemail.php:198
 msgid "Confirm email address"
 msgstr "Підтвердити адресу електронної пошти"
 
 #. TRANS: Field label.
+#: actions/confirmfirstemail.php:217
 msgid "New password"
 msgstr "Новий пароль"
 
 #. TRANS: Field title for password field.
+#: actions/confirmfirstemail.php:219
 msgid "6 or more characters."
 msgstr "6 або більше знаків."
 
 #. TRANS: Field label for repeat password field.
+#: actions/confirmfirstemail.php:223
 msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Підтвердити"
 
 #. TRANS: Field title for repeat password field.
+#: actions/confirmfirstemail.php:225
 msgid "Same as password above."
 msgstr "Такий само, як і пароль вище."
 
 #. TRANS: Button text for completing registration by e-mail.
+#: actions/confirmfirstemail.php:233
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зберегти"

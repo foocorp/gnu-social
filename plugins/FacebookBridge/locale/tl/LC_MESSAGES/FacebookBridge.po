@@ -1,320 +1,356 @@
-# Translation of StatusNet - FacebookBridge to Tagalog (Tagalog)
-# Exported from translatewiki.net
-#
-# Author: AnakngAraw
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - FacebookBridge\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:35+0000\n"
-"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Tagalog (http://www.transifex.com/projects/p/gnu-social/language/tl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: tl\n"
-"X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. TRANS: Client error displayed when trying to login while already logged in.
-msgid "Already logged in."
-msgstr "Nakalagda na."
-
-#. TRANS: Form instructions.
-msgid "Login with your Facebook Account"
-msgstr "Lumagda sa pamamagitan ng Akawnt mo sa Facebook"
-
-#. TRANS: Page title.
-#. TRANS: Alt text for "Login with Facebook" image.
-msgid "Login with Facebook"
-msgstr "Lumagdang may Facebook"
-
-#. TRANS: Title for "Login with Facebook" image.
-msgid "Login with Facebook."
-msgstr "Lumagda sa pamamagitan ng Facebook."
+"Language: tl\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Title for Facebook administration panel.
+#: actions/facebookadminpanel.php:53
 msgctxt "TITLE"
 msgid "Facebook integration settings"
 msgstr "Mga katakdaan sa pagsasama ng Facebook"
 
 #. TRANS: Instruction for Facebook administration panel.
+#: actions/facebookadminpanel.php:64
 msgid "Facebook integration settings"
 msgstr "Mga katakdaan ng pagsasama ng Facebook"
 
-#. TRANS: Client error displayed when providing too long a Facebook application ID.
+#. TRANS: Client error displayed when providing too long a Facebook
+#. application ID.
+#: actions/facebookadminpanel.php:126
 msgid "Invalid Facebook ID. Maximum length is 255 characters."
-msgstr ""
-"Hindi katanggap-tanggap na ID ng Facebook.  Ang pinakamataas na haba ay 255 "
-"mga panitik."
+msgstr "Hindi katanggap-tanggap na ID ng Facebook.  Ang pinakamataas na haba ay 255 mga panitik."
 
-#. TRANS: Client error displayed when providing too long a Facebook secret key.
+#. TRANS: Client error displayed when providing too long a Facebook secret
+#. key.
+#: actions/facebookadminpanel.php:133
 msgid "Invalid Facebook secret. Maximum length is 255 characters."
-msgstr ""
-"Hindi katanggap-tanggap na lihim ng Facebook.  Ang pinakamataas na haba ay "
-"255 mga panitik."
+msgstr "Hindi katanggap-tanggap na lihim ng Facebook.  Ang pinakamataas na haba ay 255 mga panitik."
 
 #. TRANS: Fieldset legend.
+#: actions/facebookadminpanel.php:183
 msgid "Facebook application settings"
 msgstr "Mga katakdaan ng aplikasyon ng Facebook"
 
 #. TRANS: Field label for Facebook application ID.
+#: actions/facebookadminpanel.php:190
 msgid "Application ID"
 msgstr "ID ng aplikasyon"
 
 #. TRANS: Field title for Facebook application ID.
+#: actions/facebookadminpanel.php:192
 msgid "ID of your Facebook application."
 msgstr "ID ng iyong aplikasyon ng Facebook."
 
 #. TRANS: Field label for Facebook secret key.
+#: actions/facebookadminpanel.php:201
 msgid "Secret"
 msgstr "Lihim"
 
 #. TRANS: Field title for Facebook secret key.
+#: actions/facebookadminpanel.php:203
 msgid "Application secret."
 msgstr "Lihim ng aplikasyon."
 
 #. TRANS: Button text to save Facebook integration settings.
 #. TRANS: Submit button to save synchronisation settings.
+#: actions/facebookadminpanel.php:220 actions/facebooksettings.php:188
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Sagipin"
 
 #. TRANS: Button title to save Facebook integration settings.
+#: actions/facebookadminpanel.php:222
 msgid "Save Facebook settings."
 msgstr "Sagipin ang mga katakdaan ng Facebook."
 
-#. TRANS: Client error displayed when the session token does not match or is not given.
-msgid "There was a problem with your session token. Try again, please."
-msgstr ""
-"Nagkaroon ng isang suliranin sa kahalip ng sesyon mo.  Pakisubukan uli."
+#. TRANS: Client error displayed when trying to login while already logged in.
+#: actions/facebooklogin.php:43
+msgid "Already logged in."
+msgstr "Nakalagda na."
 
-#. TRANS: Page title for Facebook settings.
-msgctxt "TITLE"
-msgid "Facebook settings"
-msgstr "Mga katakdaan sa Facebook"
+#. TRANS: Form instructions.
+#: actions/facebooklogin.php:52
+msgid "Login with your Facebook Account"
+msgstr "Lumagda sa pamamagitan ng Akawnt mo sa Facebook"
 
-#. TRANS: Instructions for Facebook settings.
-msgid "Facebook settings"
-msgstr "Mga katakdaan ng Facebook"
+#. TRANS: Page title.
+#. TRANS: Alt text for "Login with Facebook" image.
+#: actions/facebooklogin.php:67 actions/facebooklogin.php:92
+msgid "Login with Facebook"
+msgstr "Lumagdang may Facebook"
 
-#. TRANS: Form note. User is connected to facebook.
-msgid "Connected Facebook user"
-msgstr "Nakaugnay na tagagamit ng Facebook"
+#. TRANS: Title for "Login with Facebook" image.
+#: actions/facebooklogin.php:94
+msgid "Login with Facebook."
+msgstr "Lumagda sa pamamagitan ng Facebook."
 
-#. TRANS: Checkbox label in Facebook settings.
-msgid "Publish my notices to Facebook."
-msgstr "Ilathala ang mga pabatid ko sa Facebook."
-
-#. TRANS: Checkbox label in Facebook settings.
-msgid "Send \"@\" replies to Facebook."
-msgstr "Ipadala ang mga tugong \"@\" papunta sa Facebook."
-
-#. TRANS: Fieldset legend for form to disconnect from Facebook.
-msgid "Disconnect my account from Facebook"
-msgstr "Huwag iugnay ang akawnt ko mula sa Facebook"
-
-#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
-#, php-format
-msgid ""
-"Disconnecting your Faceboook would make it impossible to log in! Please [set "
-"a password](%s) first."
-msgstr ""
-"Ang pagtanggal ng ugnay ng Facebook mo ay makapagdurulot ng hindi makalagda! "
-"Mangyaring [magtakda muna ng isang hudyat](%s)."
-
-#. TRANS: Message displayed when initiating disconnect of a StatusNet user
-#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
-#, php-format
-msgid ""
-"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
-"password to log in."
-msgstr ""
-"Panatilihin ang akawnt mong %1$s subalit kumalas mula sa Facebook.  Maaari "
-"mong gamitin ang hudyat mo sa %1$s upang lumagdang papasok."
-
-#. TRANS: Submit button.
-msgctxt "BUTTON"
-msgid "Disconnect"
-msgstr "Huwag umugnay"
-
-#. TRANS: Notice in case saving of synchronisation preferences fail.
-msgid "There was a problem saving your sync preferences."
-msgstr "Nagkaroon ng isang suliranin sa pagsagip ng mga nais mo sa pagsasabay."
-
-#. TRANS: Confirmation that synchronisation settings have been saved into the system.
-msgid "Sync preferences saved."
-msgstr "Nasagip ang mga nais sa pagsabay."
-
-#. TRANS: Server error displayed when deleting the link to a Facebook account fails.
-msgid "Could not delete link to Facebook."
-msgstr "Hindi mabura ang kawing sa Facebook."
-
-#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
-msgid "You have disconnected from Facebook."
-msgstr "Kumalas ka na mula sa Facebook."
-
+#: actions/facebookfinishlogin.php:50
 msgid "Unable to authenticate you with Facebook."
 msgstr "Hindi ka napatunayan sa Facebook."
 
-#. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
+#. TRANS: Client error displayed when trying to connect to Facebook while not
+#. logged in.
+#: actions/facebookfinishlogin.php:73
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
-msgstr ""
-"Dapat na nakalagda ka sa Facebook upang makapagpatala ng isang katutubong "
-"akawnt na ginagamit ang Facebook."
+msgstr "Dapat na nakalagda ka sa Facebook upang makapagpatala ng isang katutubong akawnt na ginagamit ang Facebook."
 
-#. TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+#. TRANS: Client error displayed when trying to connect to a Facebook account
+#. that is already linked
 #. TRANS: in the same StatusNet site.
+#: actions/facebookfinishlogin.php:117 actions/facebookfinishlogin.php:131
 msgid "There is already a local account linked with that Facebook account."
-msgstr ""
-"Mayroon nang isang katutubong akawnt na nakakawing sa ganyang akawnt ng "
-"Facebook."
+msgstr "Mayroon nang isang katutubong akawnt na nakakawing sa ganyang akawnt ng Facebook."
 
-#. TRANS: Form validation error displayed when user has not agreed to the license.
+#. TRANS: Client error displayed when the session token does not match or is
+#. not given.
+#: actions/facebookfinishlogin.php:144 actions/facebooksettings.php:87
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Nagkaroon ng isang suliranin sa kahalip ng sesyon mo.  Pakisubukan uli."
+
+#. TRANS: Form validation error displayed when user has not agreed to the
+#. license.
+#: actions/facebookfinishlogin.php:154
 msgid "You cannot register if you do not agree to the license."
 msgstr "Hindi ka makakapagpatala kung hindi ka sumasang-ayon sa lisensiya."
 
 #. TRANS: Form validation error displayed when an unhandled error occurs.
+#: actions/facebookfinishlogin.php:172
 msgid "An unknown error has occured."
 msgstr "Naganap ang isang hindi nalalamang kamalian."
 
 #. TRANS: Form instructions for connecting to Facebook.
 #. TRANS: %s is the site name.
+#: actions/facebookfinishlogin.php:191
 #, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "Facebook to a local account. You can either create a new local account, or "
 "connect with an existing local account."
-msgstr ""
-"Ito ang iyong unang pagkakataon ng paglagda sa %s kaya't kailangan naming "
-"iugnay ang iyong Facebook papunta sa isang katutubong akawnt.  Maaari kang "
-"lumikha ng isang bagong katutubong akawnt, o umugnay sa pamamagitan ng "
-"umiiral na katutubong akawnt."
+msgstr "Ito ang iyong unang pagkakataon ng paglagda sa %s kaya't kailangan naming iugnay ang iyong Facebook papunta sa isang katutubong akawnt.  Maaari kang lumikha ng isang bagong katutubong akawnt, o umugnay sa pamamagitan ng umiiral na katutubong akawnt."
 
 #. TRANS: Page title.
+#: actions/facebookfinishlogin.php:201
 msgid "Facebook Setup"
 msgstr "Pagkakahanda ng Facebook"
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:235
 msgid "Connection options"
 msgstr "Mga mapagpipilian ng ugnay"
 
-#. TRANS: %s is the name of the license used by the user for their status updates.
+#. TRANS: %s is the name of the license used by the user for their status
+#. updates.
+#: actions/facebookfinishlogin.php:245
 #, php-format
 msgid ""
-"My text and files are available under %s except this private data: password, "
-"email address, IM address, and phone number."
-msgstr ""
-"Makukuha ang teksto at mga talaksan ko sa ilalim ng %s maliban na lamang ang "
-"pribadong datong ito: hudyat, tirahan ng e-liham, tirahan ng IM, at numero "
-"ng telepono."
+"My text and files are available under %s except this private data: password,"
+" email address, IM address, and phone number."
+msgstr "Makukuha ang teksto at mga talaksan ko sa ilalim ng %s maliban na lamang ang pribadong datong ito: hudyat, tirahan ng e-liham, tirahan ng IM, at numero ng telepono."
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:262
 msgid "Create new account"
 msgstr "Lumikha ng bagong akawnt"
 
 #. TRANS: Form instructions.
+#: actions/facebookfinishlogin.php:265
 msgid "Create a new user with this nickname."
 msgstr "Lumikha ng isang bagong tagagamit na may ganitong palayaw."
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:273
 msgid "New nickname"
 msgstr "Bagong palayaw"
 
 #. TRANS: Field title.
+#: actions/facebookfinishlogin.php:276
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
-msgstr ""
-"1 hanggang 64 maliliit na mga titik o mga bilang, walang bantas o mga "
-"patlang."
+msgstr "1 hanggang 64 maliliit na mga titik o mga bilang, walang bantas o mga patlang."
 
 #. TRANS: Submit button to create a new account.
+#: actions/facebookfinishlogin.php:284
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Likhain"
 
 #. TRANS: Fieldset legend.
+#: actions/facebookfinishlogin.php:290
 msgid "Connect existing account"
 msgstr "Iugnay ang umiiral na akawnt"
 
 #. TRANS: Form instructions.
+#: actions/facebookfinishlogin.php:293
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Facebook."
-msgstr ""
-"Kung mayroon ka nang akawnt, lumagda sa pamamagitan ng iyong pangalan ng "
-"tagagamit at hudyat upang iugnay ito sa iyong Facebook."
+msgstr "Kung mayroon ka nang akawnt, lumagda sa pamamagitan ng iyong pangalan ng tagagamit at hudyat upang iugnay ito sa iyong Facebook."
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:297
 msgid "Existing nickname"
 msgstr "Umiiral na palayaw"
 
 #. TRANS: Field label.
+#: actions/facebookfinishlogin.php:301
 msgid "Password"
 msgstr "Hudyat"
 
-#. TRANS: Submit button to connect a Facebook account to an existing StatusNet account.
+#. TRANS: Submit button to connect a Facebook account to an existing StatusNet
+#. account.
+#: actions/facebookfinishlogin.php:305
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Umugnay"
 
 #. TRANS: Client error trying to register with registrations not allowed.
 #. TRANS: Client error trying to register with registrations 'invite only'.
+#: actions/facebookfinishlogin.php:326 actions/facebookfinishlogin.php:335
 msgid "Registration not allowed."
 msgstr "Hindi pinayagan ang pagpapatala."
 
 #. TRANS: Client error trying to register with an invalid invitation code.
+#: actions/facebookfinishlogin.php:342
 msgid "Not a valid invitation code."
 msgstr "Hindi isang tanggap na kodigo ng paanyaya."
 
-#. TRANS: Form validation error displayed when picking a nickname that is not allowed.
-msgid "Nickname not allowed."
-msgstr "Hindi pinayagan ang palayaw."
-
-#. TRANS: Form validation error displayed when picking a nickname that is already in use.
-msgid "Nickname already in use. Try another one."
-msgstr "Ginagamit na ang palayaw. Sumubok ng iba."
-
 #. TRANS: Server error displayed when connecting to Facebook fails.
+#: actions/facebookfinishlogin.php:378 actions/facebookfinishlogin.php:511
 msgid "Error connecting user to Facebook."
 msgstr "Kamalian sa pag-uugnay ng tagagamit sa Facebook."
 
-#. TRANS: Form validation error displayed when username/password combination is incorrect.
+#. TRANS: Form validation error displayed when username/password combination
+#. is incorrect.
+#: actions/facebookfinishlogin.php:478
 msgid "Invalid username or password."
 msgstr "Hindi katanggap-tanggap na pangalan ng tagagamit o hudyat."
 
+#. TRANS: Page title for Facebook settings.
+#: actions/facebooksettings.php:106
+msgctxt "TITLE"
+msgid "Facebook settings"
+msgstr "Mga katakdaan sa Facebook"
+
+#. TRANS: Instructions for Facebook settings.
+#: actions/facebooksettings.php:116
+msgid "Facebook settings"
+msgstr "Mga katakdaan ng Facebook"
+
+#. TRANS: Form note. User is connected to facebook.
+#: actions/facebooksettings.php:140
+msgid "Connected Facebook user"
+msgstr "Nakaugnay na tagagamit ng Facebook"
+
+#. TRANS: Checkbox label in Facebook settings.
+#: actions/facebooksettings.php:168
+msgid "Publish my notices to Facebook."
+msgstr "Ilathala ang mga pabatid ko sa Facebook."
+
+#. TRANS: Checkbox label in Facebook settings.
+#: actions/facebooksettings.php:179
+msgid "Send \"@\" replies to Facebook."
+msgstr "Ipadala ang mga tugong \"@\" papunta sa Facebook."
+
+#. TRANS: Fieldset legend for form to disconnect from Facebook.
+#: actions/facebooksettings.php:197
+msgid "Disconnect my account from Facebook"
+msgstr "Huwag iugnay ang akawnt ko mula sa Facebook"
+
+#. TRANS: Notice in disconnect from Facebook form if user has no local
+#. StatusNet password.
+#: actions/facebooksettings.php:204
+#, php-format
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set"
+" a password](%s) first."
+msgstr "Ang pagtanggal ng ugnay ng Facebook mo ay makapagdurulot ng hindi makalagda! Mangyaring [magtakda muna ng isang hudyat](%s)."
+
+#. TRANS: Message displayed when initiating disconnect of a StatusNet user
+#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
+#: actions/facebooksettings.php:215
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr "Panatilihin ang akawnt mong %1$s subalit kumalas mula sa Facebook.  Maaari mong gamitin ang hudyat mo sa %1$s upang lumagdang papasok."
+
+#. TRANS: Submit button.
+#: actions/facebooksettings.php:221
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Huwag umugnay"
+
+#. TRANS: Notice in case saving of synchronisation preferences fail.
+#: actions/facebooksettings.php:245
+msgid "There was a problem saving your sync preferences."
+msgstr "Nagkaroon ng isang suliranin sa pagsagip ng mga nais mo sa pagsasabay."
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the
+#. system.
+#: actions/facebooksettings.php:248
+msgid "Sync preferences saved."
+msgstr "Nasagip ang mga nais sa pagsabay."
+
+#. TRANS: Server error displayed when deleting the link to a Facebook account
+#. fails.
+#: actions/facebooksettings.php:263
+msgid "Could not delete link to Facebook."
+msgstr "Hindi mabura ang kawing sa Facebook."
+
+#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
+#: actions/facebooksettings.php:267
+msgid "You have disconnected from Facebook."
+msgstr "Kumalas ka na mula sa Facebook."
+
 #. TRANS: Menu item for "Facebook" in administration panel.
 #. TRANS: Menu item for "Facebook" in user settings.
+#: FacebookBridgePlugin.php:202 FacebookBridgePlugin.php:241
+#: FacebookBridgePlugin.php:281
 msgctxt "MENU"
 msgid "Facebook"
 msgstr "Facebook"
 
 #. TRANS: Menu title for "Facebook" login.
+#: FacebookBridgePlugin.php:204
 msgid "Login or register using Facebook."
 msgstr "Lumagda o magpatala sa pamamagitan ng Facebook."
 
 #. TRANS: Menu title for "Facebook" in administration panel.
+#: FacebookBridgePlugin.php:243
 msgid "Facebook integration configuration."
 msgstr "Pagsasaayos ng pagsasama sa Facebook."
 
 #. TRANS: Menu title for "Facebook" in user settings.
+#: FacebookBridgePlugin.php:283
 msgid "Facebook settings."
 msgstr "Mga katakdaan sa Facebook."
 
 #. TRANS: Plugin description.
+#: FacebookBridgePlugin.php:624
 msgid "A plugin for integrating StatusNet with Facebook."
 msgstr "Isang pampasak para sa pagsasama ng StatusNet na may Facebook."
 
 #. TRANS: E-mail subject.
+#: lib/facebookclient.php:790
 msgid "Your Facebook connection has been removed"
 msgstr "Natanggal na ang iyong ugnay sa Facebook"
 
 #. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
+#: lib/facebookclient.php:793
 #, php-format
 msgid ""
 "Hi %1$s,\n"
@@ -331,30 +367,18 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr ""
-"Kumusta %1$s,\n"
-"\n"
-"Ikinalulungkot namin na ipabatid sa iyo na hindi namin nagawang mailathala "
-"ang patabid mo sa Facebook, at tinanggal ang ugnayan sa pagitan ng iyong "
-"akawnt sa %2$s at Facebook.\n"
-"\n"
-"Maaaring nangyari ito dahil inalis mo ang pahintulot para sa %2$s na "
-"makapagpaskil para sa iyo, o kaya hindi mo na binubuhay ang akawnt mo sa "
-"Facebook. Maaari kang iugnay na muli ang iyong akawnt na %2$s sa Facebook sa "
-"anumang oras sa pamamagitan ng muling paglagdang papasok sa Facebook.\n"
-"\n"
-"May katapatan,\n"
-"\n"
-"%2$s\n"
+msgstr "Kumusta %1$s,\n\nIkinalulungkot namin na ipabatid sa iyo na hindi namin nagawang mailathala ang patabid mo sa Facebook, at tinanggal ang ugnayan sa pagitan ng iyong akawnt sa %2$s at Facebook.\n\nMaaaring nangyari ito dahil inalis mo ang pahintulot para sa %2$s na makapagpaskil para sa iyo, o kaya hindi mo na binubuhay ang akawnt mo sa Facebook. Maaari kang iugnay na muli ang iyong akawnt na %2$s sa Facebook sa anumang oras sa pamamagitan ng muling paglagdang papasok sa Facebook.\n\nMay katapatan,\n\n%2$s\n"
 
 #. TRANS: E-mail subject. %s is the StatusNet sitename.
+#: lib/facebookclient.php:846
 #, php-format
 msgid "Contact the %s administrator to retrieve your account"
-msgstr ""
-"Makipag-ugnayan sa tagapangasiwa ng %s upang makuhang muli ang akawnt mo"
+msgstr "Makipag-ugnayan sa tagapangasiwa ng %s upang makuhang muli ang akawnt mo"
 
 #. TRANS: E-mail body. %1$s is a username,
-#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail address.
+#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail
+#. address.
+#: lib/facebookclient.php:850
 #, php-format
 msgid ""
 "Hi %1$s,\n"
@@ -367,15 +391,4 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr ""
-"Kumusta %1$s,\n"
-"\n"
-"Napansin naming hindi mo na pinapahintulutan ang pag-ugnay sa Facebook para "
-"sa iyong akawnt sa %2$s.  Hindi ka pa nagtatakda ng isang hudyat para sa "
-"iyong akawnt sa %2$s, kaya’t hindi mo magagawang lumagdang papasok.  Kung "
-"nais mong magpatuloy sa paggamit ng iyong akawnt sa %2$s, mangyaring makipag-"
-"ugnayan sa tagapangasiwa ng sityo (%3$s) upang makapagtaka ng isang hudyat.\n"
-"\n"
-"May kataimtiman,\n"
-"\n"
-"%2$s\n"
+msgstr "Kumusta %1$s,\n\nNapansin naming hindi mo na pinapahintulutan ang pag-ugnay sa Facebook para sa iyong akawnt sa %2$s.  Hindi ka pa nagtatakda ng isang hudyat para sa iyong akawnt sa %2$s, kaya’t hindi mo magagawang lumagdang papasok.  Kung nais mong magpatuloy sa paggamit ng iyong akawnt sa %2$s, mangyaring makipag-ugnayan sa tagapangasiwa ng sityo (%3$s) upang makapagtaka ng isang hudyat.\n\nMay kataimtiman,\n\n%2$s\n"

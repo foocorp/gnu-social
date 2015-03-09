@@ -1,35 +1,28 @@
-# Translation of StatusNet - InfiniteScroll to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Translationista
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - InfiniteScroll\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:51+0000\n"
-"Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-27 14:21+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:21+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: es\n"
-"X-Message-Group: #out-statusnet-plugin-infinitescroll\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Plugin dscription.
+#: InfiniteScrollPlugin.php:60
 msgid ""
 "Infinite Scroll adds the following functionality to your StatusNet "
 "installation: When a user scrolls towards the bottom of the page, the next "
 "page of notices is automatically retrieved and appended. This means they "
 "never need to click \"Next Page\", which dramatically increases stickiness."
-msgstr ""
-"Desplazamiento Infinito añade la siguiente funcionalidad a tu instalación "
-"StatusNet: Cuando un usuario se desplaza hacia el final de la página, la "
-"próxima página de mensajes se recupera y añade automáticamente. Esto "
-"significa que no será necesario hacer clic en \"Próxima página\", con lo que "
-"se aumenta dramáticamente la capacidad de retención."
+msgstr "Infinite Scroll añade la función «Desplazamiento infinito»  a tu instalación GNU social. Con ella activada, cuando un usuario alcanza el final de la página actual, se carga y añade inmediatamente la página siguiente (de existir). Así, no se fuerza al usuario a clicar continuamente en un botón si quiere cargar más contenido, lo que mejora la navegabilidad e incrementa la capacidad del sitio para retener su atención."

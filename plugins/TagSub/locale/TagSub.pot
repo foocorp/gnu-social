@@ -8,115 +8,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: Form legend.
-#: tagunsubform.php:90
+#: forms/tagunsub.php:90
 msgid "Unsubscribe from this tag"
 msgstr ""
 
 #. TRANS: Submit button text to unsubscribe from a tag.
-#: tagunsubform.php:101
+#: forms/tagunsub.php:101
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr ""
 
 #. TRANS: Submit button title to unsubscribe from a tag.
-#: tagunsubform.php:103
+#: forms/tagunsub.php:103
 msgid "Unsubscribe from this tag."
 msgstr ""
 
-#. TRANS: Plugin description.
-#: TagSubPlugin.php:129
-msgid "Plugin to allow following all messages with a given tag."
-msgstr ""
-
-#. TRANS: SubMirror plugin menu item on user settings page.
-#: TagSubPlugin.php:202
-msgctxt "MENU"
-msgid "Tags"
-msgstr ""
-
-#. TRANS: SubMirror plugin tooltip for user settings menu item.
-#: TagSubPlugin.php:204
-msgid "Configure tag subscriptions"
-msgstr ""
-
-#. TRANS: Menu item text for tags submenu.
-#: TagSubPlugin.php:221
-msgid "Tags"
-msgstr ""
-
 #. TRANS: Form legend.
-#: tagsubform.php:108
+#: forms/tagsub.php:108
 msgid "Subscribe to this tag"
 msgstr ""
 
 #. TRANS: Submit button text to subscribe to a tag.
-#: tagsubform.php:131
+#: forms/tagsub.php:131
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr ""
 
 #. TRANS: Submit button title to subscribe to a tag.
-#: tagsubform.php:133
+#: forms/tagsub.php:133
 msgid "Subscribe to this tag."
 msgstr ""
 
 #. TRANS: Page title when tag unsubscription succeeded.
-#: tagunsubaction.php:76
+#: actions/tagunsub.php:76
 msgid "Unsubscribed"
-msgstr ""
-
-#. TRANS: Client error displayed trying to perform any request method other than POST.
-#. TRANS: Do not translate POST.
-#: tagsubaction.php:78
-msgid "This action only accepts POST requests."
-msgstr ""
-
-#. TRANS: Client error displayed when the session token is not okay.
-#: tagsubaction.php:88
-msgid "There was a problem with your session token. Try again, please."
-msgstr ""
-
-#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-#: tagsubaction.php:99
-msgid "Not logged in."
-msgstr ""
-
-#. TRANS: Client error displayed trying to subscribe to a non-existing profile.
-#: tagsubaction.php:109
-msgid "No such profile."
-msgstr ""
-
-#. TRANS: Page title when tag subscription succeeded.
-#: tagsubaction.php:136
-msgid "Subscribed"
 msgstr ""
 
 #. TRANS: Header for subscriptions overview for a user (first page).
 #. TRANS: %s is a user nickname.
-#: tagsubsaction.php:51
+#: actions/tagsubs.php:51
 #, php-format
 msgid "%s's tag subscriptions"
 msgstr ""
 
 #. TRANS: Header for subscriptions overview for a user (not first page).
 #. TRANS: %1$s is a user nickname, %2$d is the page number.
-#: tagsubsaction.php:55
+#: actions/tagsubs.php:55
 #, php-format
 msgid "%1$s's tag subscriptions, page %2$d"
 msgstr ""
 
 #. TRANS: Page notice for page with an overview of all tag subscriptions
 #. TRANS: of the logged in user's own profile.
-#: tagsubsaction.php:68
+#: actions/tagsubs.php:68
 msgid ""
 "You have subscribed to receive all notices on this site containing the "
 "following tags:"
@@ -124,7 +78,7 @@ msgstr ""
 
 #. TRANS: Page notice for page with an overview of all subscriptions of a user other
 #. TRANS: than the logged in user. %s is the user nickname.
-#: tagsubsaction.php:73
+#: actions/tagsubs.php:73
 #, php-format
 msgid ""
 "%s has subscribed to receive all notices on this site containing the "
@@ -132,7 +86,7 @@ msgid ""
 msgstr ""
 
 #. TRANS: Tag subscription list text when the logged in user has no tag subscriptions.
-#: tagsubsaction.php:118
+#: actions/tagsubs.php:118
 msgid ""
 "You are not listening to any hash tags right now. You can push the "
 "\"Subscribe\" button on any hashtag page to automatically receive any public "
@@ -144,14 +98,61 @@ msgstr ""
 #. TRANS: than the logged in user that has no tag subscriptions. %s is the user nickname.
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
 #. TRANS: as an anonymous user. %s is the user nickname.
-#: tagsubsaction.php:124 tagsubsaction.php:130
+#: actions/tagsubs.php:124 actions/tagsubs.php:130
 #, php-format
 msgid "%s is not following any tags."
 msgstr ""
 
 #. TRANS: %1$s is a URL to a tag, %2$s is a tag,
 #. TRANS: %3$s a date string.
-#: tagsubsaction.php:170
+#: actions/tagsubs.php:170
 #, php-format
 msgid "#<a href=\"%1$s\">%2$s</a> since %3$s"
+msgstr ""
+
+#. TRANS: Client error displayed trying to perform any request method other than POST.
+#. TRANS: Do not translate POST.
+#: actions/tagsub.php:78
+msgid "This action only accepts POST requests."
+msgstr ""
+
+#. TRANS: Client error displayed when the session token is not okay.
+#: actions/tagsub.php:87
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+#: actions/tagsub.php:97
+msgid "Not logged in."
+msgstr ""
+
+#. TRANS: Client error displayed trying to subscribe to a non-existing profile.
+#: actions/tagsub.php:106
+msgid "No such profile."
+msgstr ""
+
+#. TRANS: Page title when tag subscription succeeded.
+#: actions/tagsub.php:132
+msgid "Subscribed"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: TagSubPlugin.php:100
+msgid "Plugin to allow following all messages with a given tag."
+msgstr ""
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: TagSubPlugin.php:173
+msgctxt "MENU"
+msgid "Tags"
+msgstr ""
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: TagSubPlugin.php:175
+msgid "Configure tag subscriptions"
+msgstr ""
+
+#. TRANS: Menu item text for tags submenu.
+#: TagSubPlugin.php:192
+msgid "Tags"
 msgstr ""

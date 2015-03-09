@@ -1,92 +1,105 @@
-# Translation of StatusNet - Xmpp to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Armando-Martin
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Xmpp\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:32+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-26 08:53+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:56+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Presence announcement for XMPP.
-#. TRANS: Message for XMPP reconnect.
-msgid "Send me a message to post a notice"
-msgstr "Envíeme un mensaje para publicar una nota"
-
 #. TRANS: Plugin display name.
-msgid "XMPP/Jabber/GTalk"
-msgstr "XMPP/Jabber/GTalk"
+#: XmppPlugin.php:62
+msgid "XMPP/Jabber"
+msgstr "XMPP/Jabber"
 
 #. TRANS: Exception thrown when using too many @ signs in a Jabber ID.
+#: XmppPlugin.php:123
 msgid "Invalid JID: too many @s."
-msgstr "JID no válido: demasiados signos @s."
+msgstr "JID no válido: demasiadas «@»."
 
 #. TRANS: Exception thrown when using @ sign not followed by a Jabber ID.
+#: XmppPlugin.php:132
 msgid "Invalid JID: @ but no node"
-msgstr "JID no válido: Signo @ sin nodo"
+msgstr "JID no válido: «@» sin nodo"
 
 #. TRANS: Exception thrown when using too long a Jabber ID (>1023).
+#: XmppPlugin.php:140
 msgid "Invalid JID: node too long."
 msgstr "JID no válido: nodo demasiado largo."
 
 #. TRANS: Exception thrown when using an invalid Jabber ID.
 #. TRANS: %s is the invalid Jabber ID.
+#: XmppPlugin.php:145
 #, php-format
 msgid "Invalid JID node \"%s\"."
-msgstr "Nodo JID \"%s\" no válido."
+msgstr "Nodo JID «%s» no válido."
 
 #. TRANS: Exception thrown when using too long a Jabber domain (>1023).
+#: XmppPlugin.php:151
 msgid "Invalid JID: domain too long."
 msgstr "JID no válido: dominio demasiado largo."
 
 #. TRANS: Exception thrown when using an invalid Jabber domain name.
 #. TRANS: %s is the invalid domain name.
+#: XmppPlugin.php:156
 #, php-format
 msgid "Invalid JID domain name \"%s\"."
-msgstr "Nombre de dominio JID \"%s\" no válido."
+msgstr "Nombre de dominio JID «%s» no válido."
 
 #. TRANS: Exception thrown when using an invalid Jabber resource.
 #. TRANS: %s is the invalid resource.
+#: XmppPlugin.php:167
 #, php-format
 msgid "Invalid JID resource \"%s\"."
-msgstr "Recurso JID \"%s\" no válido."
+msgstr "Recurso JID «%s» no válido."
 
 #. TRANS: Link description to notice in conversation.
 #. TRANS: %s is a notice ID.
+#: XmppPlugin.php:372
 #, php-format
-msgid "[%s]"
-msgstr "[%s]"
+msgid "[%u]"
+msgstr "[%u]"
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
+#: XmppPlugin.php:410
 msgid "You must specify a server in the configuration."
-msgstr "Debe especificar un servidor en la configuración."
+msgstr "Debes especificar un servidor en la configuración."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
+#: XmppPlugin.php:414
 msgid "You must specify a port in the configuration."
-msgstr "Debe especificar un puerto en la configuración."
+msgstr "Debes especificar un puerto en la configuración."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
+#: XmppPlugin.php:418
 msgid "You must specify a user in the configuration."
-msgstr "Debe especificar un usuario en la configuración."
+msgstr "Debes especificar un usuario en la configuración."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
+#: XmppPlugin.php:422
 msgid "You must specify a password in the configuration."
-msgstr "Debe especificar una contraseña en la configuración."
+msgstr "Debes especificar una contraseña en la configuración."
 
 #. TRANS: Plugin description.
+#: XmppPlugin.php:473
 msgid ""
-"The XMPP plugin allows users to send and receive notices over the XMPP/"
-"Jabber network."
-msgstr ""
-"El complemento (plugin) XMPP permite a los usuarios enviar y recibir "
-"mensajes mediante la red XMPP/Jabber."
+"The XMPP plugin allows users to send and receive notices over the "
+"XMPP/Jabber network."
+msgstr "El complemento XMPP permite a los usuarios enviar y recibir mensajes mediante la red XMPP/Jabber."
+
+#. TRANS: Presence announcement for XMPP.
+#. TRANS: Message for XMPP reconnect.
+#: lib/xmppmanager.php:167 lib/xmppmanager.php:207
+msgid "Send me a message to post a notice"
+msgstr "Envíame un mensaje para publicar"

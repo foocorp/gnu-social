@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:40+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/gnu-social/language/zh_TW/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Server exception thrown when no IP address can be found for a
+#. registation attempt.
+#: RegisterThrottlePlugin.php:100
+msgid "Cannot find IP address."
+msgstr ""
+
+#. TRANS: Exception thrown when too many user have registered from one IP
+#. address within a given time frame.
+#: RegisterThrottlePlugin.php:116
+msgid "Too many registrations. Take a break and try again later."
+msgstr ""
+
+#. TRANS: Exception thrown when attempting to register from an IP address from
+#. which silenced users have registered.
+#: RegisterThrottlePlugin.php:129
+msgid "A banned user has registered from this address."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: RegisterThrottlePlugin.php:186
+msgid "Throttles excessive registration from a single IP address."
+msgstr ""

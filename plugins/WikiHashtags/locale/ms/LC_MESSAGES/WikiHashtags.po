@@ -1,54 +1,54 @@
-# Translation of StatusNet - WikiHashtags to Malay (Bahasa Melayu)
-# Exported from translatewiki.net
-#
-# Author: Anakmalaysia
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - WikiHashtags\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:27+0000\n"
-"Language-Team: Malay <https://translatewiki.net/wiki/Portal:ms>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:41+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Malay (http://www.transifex.com/projects/p/gnu-social/language/ms/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:53+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: ms\n"
-"X-Message-Group: #out-statusnet-plugin-wikihashtags\n"
+"Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. TRANS: Link title for editing an article on WikiHashTags.
 #. TRANS: %s is the hash tag page to be edited.
+#: WikiHashtagsPlugin.php:83
 #, php-format
 msgid "Edit the article for #%s on WikiHashtags"
 msgstr "Sunting rencana untuk #%s di WikiHashtags"
 
 #. TRANS: Link description for editing an article on WikiHashTags.
+#: WikiHashtagsPlugin.php:85
 msgid "Edit"
 msgstr "Sunting"
 
 #. TRANS: Link title for viewing the GFDL.
+#: WikiHashtagsPlugin.php:88
 msgid "Shared under the terms of the GNU Free Documentation License"
 msgstr "Dikongsikan di bawah terma-terma Lesen Dokumentasi Bebas GNU"
 
 #. TRANS: Link description for viewing the GFDL.
+#: WikiHashtagsPlugin.php:91
 msgid "GNU FDL"
 msgstr ""
 
 #. TRANS: Link description for editing an article on WikiHashTags.
 #. TRANS: %s is the hash tag page to be created.
+#: WikiHashtagsPlugin.php:97
 #, php-format
 msgid "Start the article for #%s on WikiHashtags"
 msgstr "Cipta rencana untuk #%s di WikiHashtags"
 
 #. TRANS: Plugin description.
+#: WikiHashtagsPlugin.php:115
 msgid ""
-"Gets hashtag descriptions from <a href=\"http://hashtags.wikia.com/"
-"\">WikiHashtags</a>."
-msgstr ""
-"Mendapatkan keterangan hashtag dari <a href=\"http://hashtags.wikia.com/"
-"\">WikiHashtags</a>."
+"Gets hashtag descriptions from <a "
+"href=\"http://hashtags.wikia.com/\">WikiHashtags</a>."
+msgstr "Mendapatkan keterangan hashtag dari <a href=\"http://hashtags.wikia.com/\">WikiHashtags</a>."

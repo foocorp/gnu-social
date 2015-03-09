@@ -1,48 +1,44 @@
-# Translation of StatusNet - LdapAuthentication to Dutch (Nederlands)
-# Exported from translatewiki.net
-#
-# Author: SPQRobin
-# Author: Siebrand
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - LdapAuthentication\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:56+0000\n"
-"Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:02+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/gnu-social/language/nl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:24+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: nl\n"
-"X-Message-Group: #out-statusnet-plugin-ldapauthentication\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthenticationPlugin.php:40
 msgid "You must specify a nickname attribute."
 msgstr "U moet een nickname-attribuut opgeven."
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthenticationPlugin.php:44
 msgid ""
 "If password_changeable is set, the password attribute and password_encoding "
 "must also be specified."
-msgstr ""
-"Als \"password_changeable\" is ingesteld, moeten de eigenschappen \"password"
-"\" en \"password_encoding\" ook ingesteld worden."
+msgstr "Als \"password_changeable\" is ingesteld, moeten de eigenschappen \"password\" en \"password_encoding\" ook ingesteld worden."
 
 #. TRANS: Instructions for LDAP authentication.
+#: LdapAuthenticationPlugin.php:71 LdapAuthenticationPlugin.php:76
 msgid "Do you have an LDAP account? Use your standard username and password."
-msgstr ""
-"Heeft u een LDAP-account? Gebruik uw standaard gebruikersnaam en wachtwoord."
+msgstr "Heeft u een LDAP-account? Gebruik uw standaard gebruikersnaam en wachtwoord."
 
 #. TRANS: Plugin description.
+#: LdapAuthenticationPlugin.php:153
 msgid ""
-"The LDAP Authentication plugin allows for StatusNet to handle authentication "
-"through LDAP."
-msgstr ""
-"De plug-in LDAP-authenticatie maakt het mogelijk om authenticatie voor "
-"StatusNet via LDAP af te handelen."
+"The LDAP Authentication plugin allows for StatusNet to handle authentication"
+" through LDAP."
+msgstr "De plug-in LDAP-authenticatie maakt het mogelijk om authenticatie voor StatusNet via LDAP af te handelen."

@@ -1,28 +1,23 @@
-# Translation of StatusNet - TinyMCE to Indonesian (Bahasa Indonesia)
-# Exported from translatewiki.net
-#
-# Author: Farras
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - TinyMCE\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:10:19+0000\n"
-"Language-Team: Indonesian <https://translatewiki.net/wiki/Portal:id>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:53+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Indonesian (http://www.transifex.com/projects/p/gnu-social/language/id/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:08+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: id\n"
-"X-Message-Group: #out-statusnet-plugin-tinymce\n"
+"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. TRANS: Plugin description.
+#: TinyMCEPlugin.php:87
 msgid "Use TinyMCE library to allow rich text editing in the browser."
-msgstr ""
-"Gunakan pustaka TinyMCE untuk memungkinkan penyuntingan teks kaya pada "
-"peramban."
+msgstr "Gunakan pustaka TinyMCE untuk memungkinkan penyuntingan teks kaya pada peramban."

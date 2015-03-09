@@ -1,0 +1,206 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:12+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Afrikaans (http://www.transifex.com/projects/p/gnu-social/language/af/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: af\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Form instructions.
+#: forms/confirmregistration.php:65
+msgid "Enter a password to confirm your new account."
+msgstr ""
+
+#. TRANS: Field label in e-mail registration form.
+#: forms/confirmregistration.php:74
+msgctxt "LABEL"
+msgid "User name"
+msgstr ""
+
+#. TRANS: Field label.
+#: forms/confirmregistration.php:87
+msgid "Email address"
+msgstr "E-posadres"
+
+#. TRANS: Field label on account registration page.
+#: forms/confirmregistration.php:99
+msgid "Password"
+msgstr "Wagwoord"
+
+#. TRANS: Field title on account registration page.
+#: forms/confirmregistration.php:101
+msgid "6 or more characters."
+msgstr ""
+
+#. TRANS: Field label on account registration page. In this field the password
+#. has to be entered a second time.
+#: forms/confirmregistration.php:105
+msgctxt "PASSWORD"
+msgid "Confirm"
+msgstr "Bevestig"
+
+#. TRANS: Field title on account registration page.
+#: forms/confirmregistration.php:107
+msgid "Same as password above."
+msgstr ""
+
+#. TRANS: Checkbox title for terms of service and privacy policy.
+#: forms/confirmregistration.php:123
+#, php-format
+msgid ""
+"I agree to the <a href=\"%1$s\">Terms of service</a> and <a "
+"href=\"%1$s\">Privacy policy</a> of this site."
+msgstr ""
+
+#. TRANS: Button text for action to register.
+#. TRANS: Button text for registering an account.
+#: forms/confirmregistration.php:152 forms/emailregistration.php:93
+msgctxt "BUTTON"
+msgid "Register"
+msgstr "Registreer"
+
+#. TRANS: Form instructions.
+#: forms/emailregistration.php:61
+msgid "Enter your email address to register for an account."
+msgstr ""
+
+#. TRANS: Field label on form for registering an account.
+#: forms/emailregistration.php:69
+msgctxt "LABEL"
+msgid "E-mail address"
+msgstr ""
+
+#. TRANS: Client exception trown when registration by e-mail is not allowed.
+#: actions/emailregister.php:84
+msgid "Registration not allowed."
+msgstr "Registrasie nie toegelaat nie."
+
+#. TRANS: Client exception trown when trying to register without an
+#. invitation.
+#: actions/emailregister.php:96 actions/emailregister.php:138
+msgid "Sorry, only invited people can register."
+msgstr ""
+
+#. TRANS: Client exception thrown when no confirmation code was provided.
+#: actions/emailregister.php:107
+msgid "No confirmation code."
+msgstr "Geen bevestigingskode."
+
+#. TRANS: Client exception trown when using an invitation multiple times.
+#: actions/emailregister.php:115 actions/emailregister.php:146
+msgid "Invitation already used."
+msgstr ""
+
+#. TRANS: Client exception thrown when given confirmation code was not issued.
+#: actions/emailregister.php:123 actions/emailregister.php:155
+msgid "No such confirmation code."
+msgstr ""
+
+#. TRANS: Title for registration page.
+#: actions/emailregister.php:170
+msgctxt "TITLE"
+msgid "Register"
+msgstr "Registreer"
+
+#. TRANS: Title for page where to register with a confirmation code.
+#: actions/emailregister.php:176
+msgctxt "TITLE"
+msgid "Complete registration"
+msgstr ""
+
+#. TRANS: Confirmation text after initial registration.
+#. TRANS: %s an e-mail address.
+#: actions/emailregister.php:236
+#, php-format
+msgid ""
+"An email was sent to %s to confirm that address. Check your email inbox for "
+"instructions."
+msgstr ""
+
+#. TRANS: Client exception trown when trying to set password with an invalid
+#. confirmation code.
+#: actions/emailregister.php:270
+msgid "No confirmation thing."
+msgstr ""
+
+#. TRANS: Error text when trying to register without agreeing to the terms.
+#: actions/emailregister.php:275
+msgid "You must accept the terms of service and privacy policy to register."
+msgstr ""
+
+#. TRANS: Error text when trying to register without a password.
+#: actions/emailregister.php:278
+msgid "You must set a password"
+msgstr ""
+
+#. TRANS: Error text when trying to register with too short a password.
+#: actions/emailregister.php:281
+msgid "Password must be 6 or more characters."
+msgstr "Wagwoord moet 6 of meer karakters bevat."
+
+#. TRANS: Error text when trying to register without providing the same
+#. password twice.
+#: actions/emailregister.php:284
+msgid "Passwords do not match."
+msgstr ""
+
+#. TRANS: Exception trown when using an invitation multiple times.
+#: actions/emailregister.php:316
+msgid "Failed to register user."
+msgstr ""
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#: actions/emailregister.php:350
+#, php-format
+msgid "Confirm your registration on %s"
+msgstr ""
+
+#. TRANS: Body for confirmation e-mail.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
+#: actions/emailregister.php:356
+#, php-format
+msgid ""
+"Someone (probably you) has requested an account on %1$s using this email address.\n"
+"To confirm the address, click the following URL or copy it into the address bar of your browser.\n"
+"%2$s\n"
+"If it was not you, you can safely ignore this message."
+msgstr ""
+
+#. TRANS: Error text when trying to register with an already registered e-mail
+#. address.
+#. TRANS: %s is the URL to recover password at.
+#: EmailRegistrationPlugin.php:92
+#, php-format
+msgid ""
+"A user with that email address already exists. You can use the <a "
+"href=\"%s\">password recovery</a> tool to recover a missing password."
+msgstr ""
+
+#. TRANS: Error text when trying to register with an invalid e-mail address.
+#: EmailRegistrationPlugin.php:106
+msgid "Not a valid email address."
+msgstr "Nie 'n geldige e-posadres nie."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#: EmailRegistrationPlugin.php:150
+#, php-format
+msgid "Welcome to %s"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: EmailRegistrationPlugin.php:183
+msgid "Use email only for registration."
+msgstr ""

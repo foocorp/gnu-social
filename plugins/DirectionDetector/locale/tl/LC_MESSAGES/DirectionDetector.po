@@ -1,28 +1,23 @@
-# Translation of StatusNet - DirectionDetector to Tagalog (Tagalog)
-# Exported from translatewiki.net
-#
-# Author: AnakngAraw
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - DirectionDetector\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:08+0000\n"
-"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:16+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Tagalog (http://www.transifex.com/projects/p/gnu-social/language/tl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-09-11 15:10:27+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: tl\n"
-"X-Message-Group: #out-statusnet-plugin-directiondetector\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tl\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Plugin description.
+#: DirectionDetectorPlugin.php:256
 msgid "Shows notices with right-to-left content in correct direction."
-msgstr ""
-"Nagpapakita ng mga pabatid na may nilalamang mula-kanan-pakaliwa sa tamang "
-"daan."
+msgstr "Nagpapakita ng mga pabatid na may nilalamang mula-kanan-pakaliwa sa tamang daan."

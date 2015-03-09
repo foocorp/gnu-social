@@ -8,58 +8,59 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"POT-Creation-Date: 2015-02-27 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. TRANS: Header for Map widget that displays a map with geodata for notices.
-#: MapstractionPlugin.php:188
-msgid "Map"
-msgstr ""
-
-#. TRANS: Clickable item to allow opening the map in full size.
-#: MapstractionPlugin.php:200
-msgid "Full size"
-msgstr ""
-
-#. TRANS: Plugin description.
-#: MapstractionPlugin.php:213
-msgid ""
-"Show maps of users' and friends' notices with <a href=\"http://www."
-"mapstraction.com/\">Mapstraction</a>."
+#. TRANS: Title for map widget.
+#. TRANS: %s is a user name.
+#: actions/usermap.php:66
+#, php-format
+msgid "%s map"
 msgstr ""
 
 #. TRANS: Page title.
 #. TRANS: %s is a user nickname.
-#: allmap.php:69
+#: actions/allmap.php:68
 #, php-format
 msgid "%s friends map"
 msgstr ""
 
 #. TRANS: Page title.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
-#: allmap.php:75
+#: actions/allmap.php:74
 #, php-format
 msgid "%1$s friends map, page %2$d"
 msgstr ""
 
 #. TRANS: Client error displayed when referring to a non-existing user.
-#: map.php:73
+#: actions/map.php:72
 msgid "No such user."
 msgstr ""
 
 #. TRANS: Error message displayed when referring to a user without a profile.
-#: map.php:81
+#: actions/map.php:79
 msgid "User has no profile."
 msgstr ""
 
-#. TRANS: Title for map widget.
-#. TRANS: %s is a user name.
-#: usermap.php:66
-#, php-format
-msgid "%s map"
+#. TRANS: Header for Map widget that displays a map with geodata for notices.
+#: MapstractionPlugin.php:155
+msgid "Map"
+msgstr ""
+
+#. TRANS: Clickable item to allow opening the map in full size.
+#: MapstractionPlugin.php:167
+msgid "Full size"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: MapstractionPlugin.php:180
+msgid ""
+"Show maps of users' and friends' notices with <a href=\"http://www."
+"mapstraction.com/\">Mapstraction</a>."
 msgstr ""

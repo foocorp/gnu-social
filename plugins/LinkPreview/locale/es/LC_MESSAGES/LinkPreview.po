@@ -1,39 +1,41 @@
-# Translation of StatusNet - LinkPreview to Spanish (español)
-# Exported from translatewiki.net
-#
-# Author: Armando-Martin
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - LinkPreview\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:03+0000\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-27 15:30+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:28+0000\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Plugin description.
-msgid "UI extension for previewing thumbnails from links."
-msgstr ""
-"Extensión de interfaz de usuario para la previsualización de miniaturas "
-"desde los enlaces."
-
-#. TRANS: Client error displayed when the session token does not match or is not given.
+#. TRANS: Client error displayed when the session token does not match or is
+#. not given.
+#: actions/oembedproxy.php:58
 msgid "There was a problem with your session token. Try again, please."
-msgstr ""
-"Hubo un problema con su clave (token) de sesión. Inténtelo de nuevo, por "
-"favor."
+msgstr "Hubo un problema con tu identificador de sesión. Por favor, inténtalo de nuevo."
 
-#. TRANS: Client exception thrown when requesting a different format than JSON.
+#. TRANS: Client exception thrown when requesting a different format than
+#. JSON.
+#: actions/oembedproxy.php:65
 msgid "Invalid format; only JSON supported."
-msgstr "Formato no válido; sólo JSON es compatible."
+msgstr "Formato no válido: sólo se admite JSON."
 
 #. TRANS: Client exception thrown when not providing a valid URL.
+#: actions/oembedproxy.php:71
 msgid "Invalid URL."
 msgstr "La dirección URL no es válida"
+
+#. TRANS: Plugin description.
+#: LinkPreviewPlugin.php:40
+msgid "UI extension for previewing thumbnails from links."
+msgstr "Extensión de interfaz de usuario para previsualizar miniaturas del contenido de los enlaces compartidos."

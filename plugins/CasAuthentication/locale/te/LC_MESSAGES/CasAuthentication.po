@@ -1,25 +1,39 @@
-# Translation of StatusNet - CasAuthentication to Telugu (తెలుగు)
-# Expored from translatewiki.net
-#
-# Author: Veeven
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - CasAuthentication\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-14 10:29+0000\n"
-"PO-Revision-Date: 2011-01-14 10:32:51+0000\n"
-"Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 12:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Telugu (http://www.transifex.com/projects/p/gnu-social/language/te/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-01-10 18:25:59+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r80246); Translate extension (2010-09-17)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: te\n"
-"X-Message-Group: #out-statusnet-plugin-casauthentication\n"
+"Language: te\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client error displayed when trying to log in while already logged
+#. on.
+#: actions/caslogin.php:29
+msgid "Already logged in."
+msgstr "ఇప్పటికే లోనికి ప్రవేశించారు."
+
+#. TRANS: Server error displayed when trying to log in with incorrect username
+#. or password.
+#: actions/caslogin.php:41
+msgid "Incorrect username or password."
+msgstr "వాడుకరిపేరు లేదా సంకేతపదం తప్పు."
+
+#. TRANS: Server error displayed when login fails in CAS authentication
+#. plugin.
+#: actions/caslogin.php:47
+msgid "Error setting user. You are probably not authorized."
+msgstr "వాడుకరిని అమర్చడంలో పొరపాటు. బహుశా మీకు అధీకరణ లేకపోవచ్చు."
 
 #. TRANS: Menu item. CAS is Central Authentication Service.
 #: CasAuthenticationPlugin.php:83
@@ -32,40 +46,35 @@ msgid "Login or register with CAS."
 msgstr ""
 
 #. TRANS: Invitation to users with a CAS account to log in using the service.
-#. TRANS: "[CAS login]" is a link description. (%%action.caslogin%%) is the URL.
+#. TRANS: "[CAS login]" is a link description. (%%action.caslogin%%) is the
+#. URL.
 #. TRANS: These two elements may not be separated.
 #: CasAuthenticationPlugin.php:101
 #, php-format
 msgid "(Have an account with CAS? Try our [CAS login](%%action.caslogin%%)!)"
 msgstr ""
 
-#: CasAuthenticationPlugin.php:128
+#. TRANS: Exception thrown when the CAS Authentication plugin has been
+#. configured incorrectly.
+#: CasAuthenticationPlugin.php:129
 msgid "Specifying a server is required."
 msgstr ""
 
-#: CasAuthenticationPlugin.php:131
+#. TRANS: Exception thrown when the CAS Authentication plugin has been
+#. configured incorrectly.
+#: CasAuthenticationPlugin.php:133
 msgid "Specifying a port is required."
 msgstr ""
 
-#: CasAuthenticationPlugin.php:134
+#. TRANS: Exception thrown when the CAS Authentication plugin has been
+#. configured incorrectly.
+#: CasAuthenticationPlugin.php:137
 msgid "Specifying a path is required."
 msgstr ""
 
 #. TRANS: Plugin description. CAS is Central Authentication Service.
-#: CasAuthenticationPlugin.php:154
+#: CasAuthenticationPlugin.php:157
 msgid ""
 "The CAS Authentication plugin allows for StatusNet to handle authentication "
 "through CAS (Central Authentication Service)."
-msgstr ""
-
-#: caslogin.php:28
-msgid "Already logged in."
-msgstr "ఇప్పటికే లోనికి ప్రవేశించారు."
-
-#: caslogin.php:39
-msgid "Incorrect username or password."
-msgstr "వాడుకరిపేరు లేదా సంకేతపదం తప్పు."
-
-#: caslogin.php:45
-msgid "Error setting user. You are probably not authorized."
 msgstr ""

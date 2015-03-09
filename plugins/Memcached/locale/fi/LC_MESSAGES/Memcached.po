@@ -1,29 +1,24 @@
-# Translation of StatusNet - Memcached to Finnish (suomi)
-# Exported from translatewiki.net
-#
-# Author: Nike
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Memcached\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:09+0000\n"
-"Language-Team: Finnish <https://translatewiki.net/wiki/Portal:fi>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:02+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/gnu-social/language/fi/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:33+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: fi\n"
-"X-Message-Group: #out-statusnet-plugin-memcached\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Plugin description.
+#: MemcachedPlugin.php:218
 msgid ""
 "Use <a href=\"http://memcached.org/\">Memcached</a> to cache query results."
-msgstr ""
-"Käytä <a href=\"http://memcached.org/\">memcached</a>-ohjelmaa "
-"kyselytulosten välimuistina."
+msgstr "Käytä <a href=\"http://memcached.org/\">memcached</a>-ohjelmaa kyselytulosten välimuistina."

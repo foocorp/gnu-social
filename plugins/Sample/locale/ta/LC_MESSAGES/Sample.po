@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:25+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Tamil (http://www.transifex.com/projects/p/gnu-social/language/ta/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ta\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Page title for sample plugin.
+#. TRANS: Menu item in sample plugin.
+#: actions/hello.php:112 SamplePlugin.php:219
+msgid "Hello"
+msgstr ""
+
+#. TRANS: Page title for sample plugin. %s is a user nickname.
+#: actions/hello.php:115
+#, php-format
+msgid "Hello, %s!"
+msgstr ""
+
+#. TRANS: Message in sample plugin.
+#: actions/hello.php:136
+msgid "Hello, stranger!"
+msgstr ""
+
+#. TRANS: Message in sample plugin. %s is a user nickname.
+#: actions/hello.php:140
+#, php-format
+msgid "Hello, %s"
+msgstr ""
+
+#. TRANS: Message in sample plugin.
+#. TRANS: %d is the number of times a user is greeted.
+#: actions/hello.php:144
+#, php-format
+msgid "I have greeted you %d time."
+msgid_plural "I have greeted you %d times."
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in
+#. the database.
+#. TRANS: %d is a user ID (number).
+#: classes/User_greeting_count.php:104
+#, php-format
+msgid "Could not save new greeting count for %d."
+msgstr ""
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in
+#. the database.
+#. TRANS: %d is a user ID (number).
+#: classes/User_greeting_count.php:117
+#, php-format
+msgid "Could not increment greeting count for %d."
+msgstr ""
+
+#. TRANS: Menu item title in sample plugin.
+#: SamplePlugin.php:221
+msgid "A warm greeting"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: SamplePlugin.php:233
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr ""

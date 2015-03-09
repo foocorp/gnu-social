@@ -1,44 +1,44 @@
-# Translation of StatusNet - LdapAuthentication to Portuguese (Português)
-# Exported from translatewiki.net
-#
-# Author: Waldir
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - LdapAuthentication\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 12:36+0000\n"
-"PO-Revision-Date: 2011-04-27 12:37:27+0000\n"
-"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:02+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Portuguese (http://www.transifex.com/projects/p/gnu-social/language/pt/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-24 15:25:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87008); Translate extension (2011-04-26)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-Language-Code: pt\n"
-"X-Message-Group: #out-statusnet-plugin-ldapauthentication\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthenticationPlugin.php:40
 msgid "You must specify a nickname attribute."
 msgstr ""
 
-#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
+#. because of an incorrect configuration.
+#: LdapAuthenticationPlugin.php:44
 msgid ""
 "If password_changeable is set, the password attribute and password_encoding "
 "must also be specified."
 msgstr ""
 
 #. TRANS: Instructions for LDAP authentication.
+#: LdapAuthenticationPlugin.php:71 LdapAuthenticationPlugin.php:76
 msgid "Do you have an LDAP account? Use your standard username and password."
 msgstr ""
 
 #. TRANS: Plugin description.
+#: LdapAuthenticationPlugin.php:153
 msgid ""
-"The LDAP Authentication plugin allows for StatusNet to handle authentication "
-"through LDAP."
-msgstr ""
-"O plug-in de autenticação LDAP permite ao StatusNet efectuar autenticações "
-"através de LDAP."
+"The LDAP Authentication plugin allows for StatusNet to handle authentication"
+" through LDAP."
+msgstr "O plug-in de autenticação LDAP permite ao StatusNet efectuar autenticações através de LDAP."

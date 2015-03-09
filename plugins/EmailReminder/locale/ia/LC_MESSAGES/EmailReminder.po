@@ -1,53 +1,57 @@
-# Translation of StatusNet - EmailReminder to Interlingua (interlingua)
-# Exported from translatewiki.net
-#
-# Author: McDutchie
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - EmailReminder\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:08:26+0000\n"
-"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:26+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Interlingua (http://www.transifex.com/projects/p/gnu-social/language/ia/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:04+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: ia\n"
-"X-Message-Group: #out-statusnet-plugin-emailreminder\n"
+"Language: ia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Plugin description.
-msgid "Send email reminders for various things."
-msgstr "Inviar rememorationes in e-mail pro varie cosas."
-
-#. TRANS: Server exception thrown when a reminder record could not be inserted into the database.
+#. TRANS: Server exception thrown when a reminder record could not be inserted
+#. into the database.
+#: classes/Email_reminder.php:88
 msgid "Database error inserting reminder record."
-msgstr ""
-"Error in base de datos durante le insertion de un registro de rememoration."
-
-#. TRANS: Subject for reminder e-mail.
-msgid "Reminder - please confirm your registration!"
-msgstr "Rememoration: per favor confirma tu registration!"
-
-#. TRANS: Subject for reminder e-mail.
-msgid "Second reminder - please confirm your registration!"
-msgstr "Secunde rememoration: per favor confirma tu registration!"
-
-#. TRANS: Subject for reminder e-mail.
-msgid "Final reminder - please confirm your registration!"
-msgstr "Rememoration final: per favor confirma tu registration!"
+msgstr "Error in base de datos durante le insertion de un registro de rememoration."
 
 #. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#: lib/userinvitereminderhandler.php:102
 #, php-format
 msgid "Reminder - You have been invited to join %s!"
 msgstr "Rememoration: Tu ha essite invitate a adherer a %s!"
 
 #. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+#: lib/userinvitereminderhandler.php:116
 #, php-format
 msgid "Final reminder - you have been invited to join %s!"
 msgstr "Rememoration final: tu ha essite invitate a adherer a %s!"
+
+#. TRANS: Subject for reminder e-mail.
+#: lib/userconfirmregreminderhandler.php:86
+#: lib/userconfirmregreminderhandler.php:103
+msgid "Reminder - please confirm your registration!"
+msgstr "Rememoration: per favor confirma tu registration!"
+
+#. TRANS: Subject for reminder e-mail.
+#: lib/userconfirmregreminderhandler.php:118
+msgid "Second reminder - please confirm your registration!"
+msgstr "Secunde rememoration: per favor confirma tu registration!"
+
+#. TRANS: Subject for reminder e-mail.
+#: lib/userconfirmregreminderhandler.php:133
+msgid "Final reminder - please confirm your registration!"
+msgstr "Rememoration final: per favor confirma tu registration!"
+
+#. TRANS: Plugin description.
+#: EmailReminderPlugin.php:190
+msgid "Send email reminders for various things."
+msgstr "Inviar rememorationes in e-mail pro varie cosas."

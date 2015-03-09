@@ -1,64 +1,66 @@
-# Translation of StatusNet - Mapstraction to Norwegian Bokmål (‪norsk (bokmål)‬)
-# Exported from translatewiki.net
-#
-# Author: Nghtwlkr
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Mapstraction\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:06+0000\n"
-"Language-Team: Norwegian Bokmål <https://translatewiki.net/wiki/Portal:nb>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:02+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/gnu-social/language/nb/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:30+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: nb\n"
-"X-Message-Group: #out-statusnet-plugin-mapstraction\n"
+"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Header for Map widget that displays a map with geodata for notices.
-msgid "Map"
-msgstr "Kart"
-
-#. TRANS: Clickable item to allow opening the map in full size.
-msgid "Full size"
-msgstr "Full størrelse"
-
-#. TRANS: Plugin description.
-msgid ""
-"Show maps of users' and friends' notices with <a href=\"http://www."
-"mapstraction.com/\">Mapstraction</a>."
-msgstr ""
-"Vis kart over brukeres og venners notiser med <a href=\"http://www."
-"mapstraction.com/\">Mapstraction</a>."
+#. TRANS: Title for map widget.
+#. TRANS: %s is a user name.
+#: actions/usermap.php:66
+#, php-format
+msgid "%s map"
+msgstr "Kart for %s"
 
 #. TRANS: Page title.
 #. TRANS: %s is a user nickname.
+#: actions/allmap.php:68
 #, php-format
 msgid "%s friends map"
 msgstr "%s vennekart"
 
 #. TRANS: Page title.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
+#: actions/allmap.php:74
 #, php-format
 msgid "%1$s friends map, page %2$d"
 msgstr "%1$s vennekart, side %2$d"
 
 #. TRANS: Client error displayed when referring to a non-existing user.
+#: actions/map.php:72
 msgid "No such user."
 msgstr "Ingen slik bruker."
 
 #. TRANS: Error message displayed when referring to a user without a profile.
+#: actions/map.php:79
 msgid "User has no profile."
 msgstr "Bruker har ingen profil."
 
-#. TRANS: Title for map widget.
-#. TRANS: %s is a user name.
-#, php-format
-msgid "%s map"
-msgstr "Kart for %s"
+#. TRANS: Header for Map widget that displays a map with geodata for notices.
+#: MapstractionPlugin.php:155
+msgid "Map"
+msgstr "Kart"
+
+#. TRANS: Clickable item to allow opening the map in full size.
+#: MapstractionPlugin.php:167
+msgid "Full size"
+msgstr "Full størrelse"
+
+#. TRANS: Plugin description.
+#: MapstractionPlugin.php:180
+msgid ""
+"Show maps of users' and friends' notices with <a "
+"href=\"http://www.mapstraction.com/\">Mapstraction</a>."
+msgstr "Vis kart over brukeres og venners notiser med <a href=\"http://www.mapstraction.com/\">Mapstraction</a>."

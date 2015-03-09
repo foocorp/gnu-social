@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 09:27+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Tamil (http://www.transifex.com/projects/p/gnu-social/language/ta/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ta\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Remote profile action page title.
+#. TRANS: %1$s is a username, %2$s is a hostname.
+#: actions/remoteprofile.php:15
+#, php-format
+msgid "%1$s on %2$s"
+msgstr ""
+
+#. TRANS: Message on remote profile page.
+#. TRANS: This message contains Markdown links in the form
+#. [description](link).
+#. TRANS: %1$s is a profile nickname, %2$s is a hostname, %3$s is a URL.
+#: actions/remoteprofile.php:29
+#, php-format
+msgid ""
+"This remote profile is registered on another site; see [%1$s's original "
+"profile page on %2$s](%3$s)."
+msgstr ""
+
+#. TRANS: Message on blocked remote profile page.
+#: actions/remoteprofile.php:38
+msgid ""
+"Site moderators have silenced this profile, which prevents delivery of new "
+"messages to any users on this site."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: ModPlusPlugin.php:40
+msgid "UI extension for profile moderation actions."
+msgstr ""
+
+#. TRANS: Label for access to remote profile options.
+#: ModPlusPlugin.php:115
+msgid "Remote profile options..."
+msgstr ""

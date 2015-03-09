@@ -1,94 +1,109 @@
-# Translation of StatusNet - OpenX to Tagalog (Tagalog)
-# Exported from translatewiki.net
-#
-# Author: AnakngAraw
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - OpenX\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:29+0000\n"
-"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:33+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Tagalog (http://www.transifex.com/projects/p/gnu-social/language/tl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 13:48:56+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: tl\n"
-"X-Message-Group: #out-statusnet-plugin-openx\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tl\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Menu item title.
+#: OpenXPlugin.php:187
 msgid "OpenX configuration."
 msgstr "Pagkakaayos ng OpenX."
 
 #. TRANS: Menu item for site administration
+#: OpenXPlugin.php:189
 msgid "OpenX"
 msgstr "OpenX"
 
 #. TRANS: Plugin description.
+#: OpenXPlugin.php:210
 msgid "Plugin for <a href=\"http://www.openx.org/\">OpenX Ad Server</a>."
-msgstr ""
-"Pampasaka para sa <a href=\"http://www.openx.org/\">Tagapaghain ng "
-"Patalastas ng OpenX</a>."
+msgstr "Pampasaka para sa <a href=\"http://www.openx.org/\">Tagapaghain ng Patalastas ng OpenX</a>."
 
 #. TRANS: Page title for OpenX admin panel.
+#: actions/openxadminpanel.php:53
 msgctxt "TITLE"
 msgid "OpenX"
 msgstr "OpenX"
 
 #. TRANS: Instructions for OpenX admin panel.
+#: actions/openxadminpanel.php:64
 msgid "OpenX settings for this StatusNet site"
 msgstr "Mga katakdaan ng OpenX para sa sityong ito ng StatusNet"
 
 #. TRANS: Form label in OpenX admin panel.
+#: actions/openxadminpanel.php:167
 msgid "Ad script URL"
 msgstr "URL ng panitik ng patalastas"
 
 #. TRANS: Tooltip for form label in OpenX admin panel.
+#: actions/openxadminpanel.php:169
 msgid "Script URL"
 msgstr "URL ng panitik"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
+#: actions/openxadminpanel.php:175
 msgid "Medium rectangle"
 msgstr "Hindi kalakihang parihaba"
 
-#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
+#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement
+#. format.
+#: actions/openxadminpanel.php:177
 msgid "Medium rectangle zone"
 msgstr "Sona ng hindi kalakihang parihaba"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
+#: actions/openxadminpanel.php:183
 msgid "Rectangle"
 msgstr "Parihaba"
 
-#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
+#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement
+#. format.
+#: actions/openxadminpanel.php:185
 msgid "Rectangle zone"
 msgstr "Sona ng parihaba"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
+#: actions/openxadminpanel.php:191
 msgid "Leaderboard"
 msgstr "Pangunahing-pisara"
 
-#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
+#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement
+#. format.
+#: actions/openxadminpanel.php:193
 msgid "Leaderboard zone"
 msgstr "Sona ng pangunahing-parihaba"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
+#: actions/openxadminpanel.php:199
 msgid "Skyscraper"
 msgstr "Tukud-langit"
 
-#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
+#. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement
+#. format.
+#: actions/openxadminpanel.php:201
 msgid "Wide skyscraper zone"
 msgstr "Malapad na sona ng tukud-langit"
 
 #. TRANS: Submit button text in OpenX admin panel.
+#: actions/openxadminpanel.php:216
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Sagipin"
 
 #. TRANS: Submit button title in OpenX admin panel.
+#: actions/openxadminpanel.php:220
 msgid "Save OpenX settings."
 msgstr "Sagipin ang mga katakdaan ng OpenX."

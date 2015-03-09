@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 16:10+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish (http://www.transifex.com/projects/p/gnu-social/language/da/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Form legend.
+#: forms/whitelistinvite.php:89
+msgid "Invite collegues"
+msgstr ""
+
+#. TRANS: Field label for a personal message to send to invitees.
+#: forms/whitelistinvite.php:106
+msgid "Personal message"
+msgstr "Personlig besked"
+
+#. TRANS: Field title for a personal message to send to invitees.
+#: forms/whitelistinvite.php:109
+msgid "Optionally add a personal message to the invitation."
+msgstr "Hvis du vil, kan du tilføje en personlig besked til invitationen."
+
+#. TRANS: Link description to action to add another item to a list.
+#: forms/whitelistinvite.php:158
+msgid "Add another item"
+msgstr ""
+
+#. TRANS: Send button for inviting friends.
+#: forms/whitelistinvite.php:172
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Send"
+
+#. TRANS: Submit button title.
+#: forms/whitelistinvite.php:175
+msgid "Send invitations."
+msgstr ""
+
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the
+#. domain whitelist.
+#. TRANS: %s is a whitelisted e-mail domain.
+#: DomainWhitelistPlugin.php:90
+#, php-format
+msgid "Email address must be in this domain: %s."
+msgstr ""
+
+#. TRANS: Client exception thrown when a given e-mailaddress is not in the
+#. domain whitelist.
+#. TRANS: %s are whitelisted e-mail domains separated by comma's
+#. (localisable).
+#: DomainWhitelistPlugin.php:95
+#, php-format
+msgid "Email address must be in one of these domains: %s."
+msgstr ""
+
+#. TRANS: Separator for whitelisted domains.
+#: DomainWhitelistPlugin.php:97
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr ""
+
+#. TRANS: Exception thrown when an e-mail address does not match the site's
+#. domain whitelist.
+#: DomainWhitelistPlugin.php:109
+msgid "That email address is not allowed on this site."
+msgstr ""
+
+#. TRANS: Title for invitiation deletion dialog.
+#: DomainWhitelistPlugin.php:238
+msgid "Confirmation Required"
+msgstr ""
+
+#. TRANS: Confirmation text for invitation deletion dialog.
+#: DomainWhitelistPlugin.php:241
+msgid "Really delete this invitation?"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: DomainWhitelistPlugin.php:278
+msgid "Restrict domains for email users."
+msgstr ""

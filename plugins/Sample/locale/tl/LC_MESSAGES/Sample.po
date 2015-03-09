@@ -1,71 +1,76 @@
-# Translation of StatusNet - Sample to Tagalog (Tagalog)
-# Exported from translatewiki.net
-#
-# Author: AnakngAraw
-# --
-# This file is distributed under the same license as the StatusNet package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet - Sample\n"
+"Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 11:07+0000\n"
-"PO-Revision-Date: 2012-06-30 11:09:55+0000\n"
-"Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:32+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Tagalog (http://www.transifex.com/projects/p/gnu-social/language/tl/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
-"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
-"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Language-Code: tl\n"
-"X-Message-Group: #out-statusnet-plugin-sample\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tl\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Page title for sample plugin.
 #. TRANS: Menu item in sample plugin.
+#: actions/hello.php:112 SamplePlugin.php:219
 msgid "Hello"
 msgstr "Kumusta"
 
 #. TRANS: Page title for sample plugin. %s is a user nickname.
+#: actions/hello.php:115
 #, php-format
 msgid "Hello, %s!"
 msgstr "Kumusta, %s!"
 
 #. TRANS: Message in sample plugin.
+#: actions/hello.php:136
 msgid "Hello, stranger!"
 msgstr "Kumusta, dayuhan!"
 
 #. TRANS: Message in sample plugin. %s is a user nickname.
+#: actions/hello.php:140
 #, php-format
 msgid "Hello, %s"
 msgstr "Kumusta, %s"
 
 #. TRANS: Message in sample plugin.
 #. TRANS: %d is the number of times a user is greeted.
+#: actions/hello.php:144
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
 msgstr[0] "Binati kita ng %d ulit."
 msgstr[1] "Binati kita ng %d mga ulit."
 
-#. TRANS: Menu item title in sample plugin.
-msgid "A warm greeting"
-msgstr "Isang mainit-init na pagbati"
-
-#. TRANS: Plugin description.
-msgid "A sample plugin to show basics of development for new hackers."
-msgstr ""
-"Isang halimbawang pampasak upang ipakita ang mga saligan ng kaunlaran para "
-"sa bagong mga mangunguha."
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: Exception thrown when the user greeting count could not be saved in
+#. the database.
 #. TRANS: %d is a user ID (number).
+#: classes/User_greeting_count.php:104
 #, php-format
 msgid "Could not save new greeting count for %d."
 msgstr "Hindi masagip ang bagong bilang ng pagbati para sa %d."
 
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: Exception thrown when the user greeting count could not be saved in
+#. the database.
 #. TRANS: %d is a user ID (number).
+#: classes/User_greeting_count.php:117
 #, php-format
 msgid "Could not increment greeting count for %d."
 msgstr "Hindi masudlungan ang bilang ng pagbati para sa %d."
+
+#. TRANS: Menu item title in sample plugin.
+#: SamplePlugin.php:221
+msgid "A warm greeting"
+msgstr "Isang mainit-init na pagbati"
+
+#. TRANS: Plugin description.
+#: SamplePlugin.php:233
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr "Isang halimbawang pampasak upang ipakita ang mga saligan ng kaunlaran para sa bagong mga mangunguha."
