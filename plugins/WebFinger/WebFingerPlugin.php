@@ -31,6 +31,13 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class WebFingerPlugin extends Plugin
 {
+    public $http_alias = false;
+
+    public function initialize()
+    {
+        common_config_set('webfinger', 'http_alias', $this->http_alias);
+    }
+
     public function onRouterInitialized($m)
     {
         $m->connect('.well-known/host-meta', array('action' => 'hostmeta'));

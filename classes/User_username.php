@@ -11,8 +11,8 @@ class User_username extends Managed_DataObject
 
     public $__table = 'user_username';                     // table name
     public $user_id;                        // int(4)  not_null
-    public $provider_name;                  // varchar(255)  primary_key not_null
-    public $username;                       // varchar(255)  primary_key not_null
+    public $provider_name;                  // varchar(191)  primary_key not_null   not 255 because utf8mb4 takes more space
+    public $username;                       // varchar(191)  primary_key not_null   not 255 because utf8mb4 takes more space
     public $created;                        // datetime()   not_null
     public $modified;                       // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -23,8 +23,8 @@ class User_username extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'provider_name' => array('type' => 'varchar', 'length' => 255, 'description' => 'provider name'),
-                'username' => array('type' => 'varchar', 'length' => 255, 'description' => 'username'),
+                'provider_name' => array('type' => 'varchar', 'length' => 191, 'description' => 'provider name'),
+                'username' => array('type' => 'varchar', 'length' => 191, 'description' => 'username'),
                 'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice id this title relates to'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),

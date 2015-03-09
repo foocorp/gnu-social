@@ -101,7 +101,7 @@ abstract class Installer
             $pass = false;
         }
 
-        $reqs = array('gd', 'curl', 'json',
+        $reqs = array('gd', 'curl', 'intl', 'json',
                       'xmlwriter', 'mbstring', 'xml', 'dom', 'simplexml');
 
         foreach ($reqs as $req) {
@@ -513,9 +513,9 @@ abstract class Installer
         if ($this->adminEmail) {
             $data['email'] = $this->adminEmail;
         }
-        $user = User::register($data);
-
-        if (empty($user)) {
+        try {
+            $user = User::register($data);
+        } catch (Exception $e) {
             return false;
         }
 
@@ -551,7 +551,7 @@ abstract class Installer
         }
 
         require_once INSTALLDIR . '/lib/framework.php';
-        StatusNet::initDefaults($this->server, $this->path);
+        GNUsocial::initDefaults($this->server, $this->path);
 
         if ($this->siteProfile == "singleuser") {
             // Until we use ['site']['profile']==='singleuser' everywhere

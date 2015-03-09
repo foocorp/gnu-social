@@ -35,7 +35,7 @@ class Config extends Managed_DataObject
     public $__table = 'config';                          // table name
     public $section;                         // varchar(32)  primary_key not_null
     public $setting;                         // varchar(32)  primary_key not_null
-    public $value;                           // varchar(255)
+    public $value;                           // varchar(191)   not 255 because utf8mb4 takes more space
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
@@ -46,7 +46,7 @@ class Config extends Managed_DataObject
             'fields' => array(
                 'section' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'default' => '', 'description' => 'configuration section'),
                 'setting' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'default' => '', 'description' => 'configuration setting'),
-                'value' => array('type' => 'varchar', 'length' => 255, 'description' => 'configuration value'),
+                'value' => array('type' => 'varchar', 'length' => 191, 'description' => 'configuration value'),
             ),
             'primary key' => array('section', 'setting'),
         );

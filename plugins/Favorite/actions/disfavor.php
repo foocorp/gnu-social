@@ -44,48 +44,41 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class DisfavorAction extends FormAction
 {
-    public function showForm($msg=null, $success=false)
+    protected $needPost = true;
+
+    protected function doPreparation()
     {
-        if ($success) {
-            common_redirect(common_local_url('showfavorites',
-                array('nickname' => $this->scoped->nickname)), 303);
+        $this->target = Notice::getKV($this->trimmed('notice'));
+        if (!$this->target instanceof Notice) {
+            throw new ServerException(_m('No such notice.'));
         }
-        parent::showForm($msg, $success);
     }
 
-    protected function handlePost()
+    protected function doPost()
     {
-        $id     = $this->trimmed('notice');
-        $notice = Notice::getKV($id);
-        if (!$notice instanceof Notice) {
-            $this->serverError(_('Notice not found'));
-        }
-
         $fave            = new Fave();
-        $fave->user_id   = $this->scoped->id;
-        $fave->notice_id = $notice->id;
+        $fave->user_id   = $this->scoped->getID();
+        $fave->notice_id = $this->target->getID();
         if (!$fave->find(true)) {
-            throw new NoResultException($fave);
+            // TRANS: Client error displayed when trying to remove a 'favor' when there is none in the first place.
+            throw new AlreadyFulfilledException(_('This is already not favorited.'));
         }
         $result = $fave->delete();
-        if (!$result) {
+        if ($result === false) {
             common_log_db_error($fave, 'DELETE', __FILE__);
             // TRANS: Server error displayed when removing a favorite from the database fails.
-            $this->serverError(_('Could not delete favorite.'));
+            throw new ServerException(_('Could not delete favorite.'));
         }
-        Fave::blowCacheForProfileId($this->scoped->id);
-        if (StatusNet::isAjax()) {
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Title for page on which favorites can be added.
-            $this->element('title', null, _('Add to favorites'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-            $favor = new FavorForm($this, $notice);
-            $favor->show();
-            $this->elementEnd('body');
-            $this->endHTML();
-            exit;
-        }
+        Fave::blowCacheForProfileId($this->scoped->getID());
+
+        // TRANS: Message when a disfavor action has been taken for a notice.
+        return _('Disfavored the notice.');
+    }
+
+    protected function showContent()
+    {
+        // We show the 'Favor' form because right now all calls to Disfavor will directly disfavor a notice.
+        $disfavor = new FavorForm($this, $this->target);
+        $disfavor->show();
     }
 }

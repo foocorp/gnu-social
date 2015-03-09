@@ -144,7 +144,7 @@ class ApiAction extends Action
      */
     protected function prepare(array $args=array())
     {
-        StatusNet::setApi(true); // reduce exception reports to aid in debugging
+        GNUsocial::setApi(true); // reduce exception reports to aid in debugging
         parent::prepare($args);
 
         $this->format   = $this->arg('format');
@@ -159,7 +159,7 @@ class ApiAction extends Action
         $this->limit    = $this->count + 1;
 
         if ($this->arg('since')) {
-            header('X-StatusNet-Warning: since parameter is disabled; use since_id');
+            header('X-GNUsocial-Warning: since parameter is disabled; use since_id');
         }
 
         $this->source = $this->trimmed('source');
@@ -264,22 +264,20 @@ class ApiAction extends Action
         $twitter_user['statuses_count'] = $profile->noticeCount();
 
         // Is the requesting user following this user?
+        // These values might actually also mean "unknown". Ambiguity issues?
         $twitter_user['following'] = false;
         $twitter_user['statusnet_blocking'] = false;
         $twitter_user['notifications'] = false;
 
-        if (isset($this->auth_user)) {
-
-            $twitter_user['following'] = $this->auth_user->isSubscribed($profile);
-            $twitter_user['statusnet_blocking']  = $this->auth_user->hasBlocked($profile);
-
-            // Notifications on?
-            $sub = Subscription::pkeyGet(array('subscriber' =>
-                                               $this->auth_user->id,
-                                               'subscribed' => $profile->id));
-
-            if ($sub) {
+        if ($this->scoped instanceof Profile) {
+            try {
+                $sub = Subscription::getSubscription($this->scoped, $profile);
+                // Notifications on?
+                $twitter_user['following'] = true;
+                $twitter_user['statusnet_blocking']  = $this->scoped->hasBlocked($profile);
                 $twitter_user['notifications'] = ($sub->jabber || $sub->sms);
+            } catch (NoResultException $e) {
+                // well, the values are already false...
             }
         }
 
@@ -430,11 +428,11 @@ class ApiAction extends Action
         $twitter_group['nickname'] = $group->nickname;
         $twitter_group['fullname'] = $group->fullname;
 
-        if (isset($this->auth_user)) {
-            $twitter_group['member'] = $this->auth_user->isMember($group);
+        if ($this->scoped instanceof Profile) {
+            $twitter_group['member'] = $this->scoped->isMember($group);
             $twitter_group['blocked'] = Group_block::isBlocked(
                 $group,
-                $this->auth_user->getProfile()
+                $this->scoped
             );
         }
 
@@ -485,8 +483,8 @@ class ApiAction extends Action
         $twitter_list['member_count'] = $list->taggedCount();
         $twitter_list['uri'] = $list->getUri();
 
-        if (isset($this->auth_user)) {
-            $twitter_list['following'] = $list->hasSubscriber($this->auth_user);
+        if ($this->scoped instanceof Profile) {
+            $twitter_list['following'] = $list->hasSubscriber($this->scoped);
         } else {
             $twitter_list['following'] = false;
         }
@@ -575,37 +573,30 @@ class ApiAction extends Action
         $relationship = array();
 
         $relationship['source'] =
-            $this->relationshipDetailsArray($source, $target);
+            $this->relationshipDetailsArray($source->getProfile(), $target->getProfile());
         $relationship['target'] =
-            $this->relationshipDetailsArray($target, $source);
+            $this->relationshipDetailsArray($target->getProfile(), $source->getProfile());
 
         return array('relationship' => $relationship);
     }
 
-    function relationshipDetailsArray($source, $target)
+    function relationshipDetailsArray(Profile $source, Profile $target)
     {
         $details = array();
 
-		$source_profile = $source->getProfile();
-		$target_profile = $target->getProfile();		
+        $details['screen_name'] = $source->getNickname();
+        $details['followed_by'] = $target->isSubscribed($source);
 
-        $details['screen_name'] = $source->nickname;
-        $details['followed_by'] = $target->isSubscribed($source_profile);
-        $details['following'] = $source->isSubscribed($target_profile);
-
-        $notifications = false;
-
-        if ($source->isSubscribed($target_profile)) {
-            $sub = Subscription::pkeyGet(array('subscriber' =>
-                $source->id, 'subscribed' => $target->id));
-
-            if (!empty($sub)) {
-                $notifications = ($sub->jabber || $sub->sms);
-            }
+        try {
+            $sub = Subscription::getSubscription($source, $target);
+            $details['following'] = true;
+            $details['notifications_enabled'] = ($sub->jabber || $sub->sms);
+        } catch (NoResultException $e) {
+            $details['following'] = false;
+            $details['notifications_enabled'] = false;
         }
 
-        $details['notifications_enabled'] = $notifications;
-        $details['blocking'] = $source->hasBlocked($target_profile);
+        $details['blocking'] = $source->hasBlocked($target);
         $details['id'] = intval($source->id);
 
         return $details;
@@ -788,7 +779,7 @@ class ApiAction extends Action
     function showSingleAtomStatus($notice)
     {
         header('Content-Type: application/atom+xml; charset=utf-8');
-        print $notice->asAtomEntry(true, true, true, $this->auth_user->getProfile());
+        print $notice->asAtomEntry(true, true, true, $this->scoped);
     }
 
     function show_single_json_status($notice)
@@ -1352,7 +1343,7 @@ class ApiAction extends Action
                 return User::getKV('nickname', $nickname);
             } else {
                 // Fall back to trying the currently authenticated user
-                return $this->auth_user;
+                return $this->scoped->getUser();
             }
 
         } else if (self::is_decimal($id)) {
@@ -1448,7 +1439,7 @@ class ApiAction extends Action
             }
 
             if (!empty($list) && $list->private) {
-                if ($this->auth_user->id == $list->tagger) {
+                if ($this->scoped->id == $list->tagger) {
                     return $list;
                 }
             } else {
@@ -1514,6 +1505,11 @@ class ApiAction extends Action
         $aargs = array('format' => $this->format);
         if (!empty($id)) {
             $aargs['id'] = $id;
+        }
+
+        $user = $this->arg('user');
+        if (!empty($user)) {
+            $aargs['user'] = $user;
         }
 
         $tag = $this->arg('tag');

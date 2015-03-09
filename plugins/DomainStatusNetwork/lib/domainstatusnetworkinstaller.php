@@ -212,7 +212,7 @@ class DomainStatusNetworkInstaller extends Installer
 
         Status_network::$wildcard = $config['WILDCARD'];
 
-        StatusNet::switchSite($this->nickname);
+        GNUsocial::switchSite($this->nickname);
 
         // We need to initialize the schema_version stuff to make later setup easier
 

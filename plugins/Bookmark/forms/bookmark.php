@@ -131,7 +131,7 @@ class BookmarkForm extends Form
                                                       $this->_thumbnail->height);
 
             $this->out->element('img',
-                                array('src' => $this->_thumbnail->url,
+                                array('src' => $this->_thumbnail->getUrl(),
                                       'class' => 'bookmarkform-thumbnail',
                                       'width' => $width,
                                       'height' => $height));

@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 require_once dirname(__DIR__) . '/twitter.php';
 
@@ -535,11 +533,10 @@ class TwitterauthorizationAction extends Action
             $args['email'] = $email;
         }
 
-        $user = User::register($args);
-
-        if (empty($user)) {
-            // TRANS: Server error displayed when creating a new user has failed.
-            $this->serverError(_m('Error registering user.'));
+        try {
+            $user = User::register($args);
+        } catch (Exception $e) {
+            $this->serverError($e->getMessage());
         }
 
         $result = $this->saveForeignLink($user->id,

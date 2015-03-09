@@ -47,7 +47,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 class Homepage_blacklist extends Managed_DataObject
 {
     public $__table = 'homepage_blacklist'; // table name
-    public $pattern;                        // varchar(255) pattern
+    public $pattern;                        // varchar(191) pattern   not 255 because utf8mb4 takes more space
     public $created;                        // datetime not_null
     public $modified;                       // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -55,7 +55,7 @@ class Homepage_blacklist extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'pattern' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'blacklist pattern'),
+                'pattern' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'blacklist pattern'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),

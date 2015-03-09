@@ -29,9 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Add a new group
@@ -48,6 +46,8 @@ class NewgroupAction extends FormAction
 {
     protected $group;
 
+    protected $form = 'GroupEdit';
+
     function getGroup() {
         return $this->group;
     }
@@ -58,39 +58,23 @@ class NewgroupAction extends FormAction
         return _('New group');
     }
 
-    /**
-     * Prepare to run
-     */
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         // $this->scoped is the current user profile
         if (!$this->scoped->hasRight(Right::CREATEGROUP)) {
             // TRANS: Client exception thrown when a user tries to create a group while banned.
             $this->clientError(_('You are not allowed to create groups on this site.'), 403);
         }
-
-        return true;
     }
 
-    public function showContent()
+    protected function getInstructions()
     {
-        $form = new GroupEditForm($this);
-        $form->show();
+        // TRANS: Form instructions for group create form.
+        return _('Use this form to create a new group.');
     }
 
-    public function showInstructions()
+    protected function doPost()
     {
-        $this->element('p', 'instructions',
-                       // TRANS: Form instructions for group create form.
-                       _('Use this form to create a new group.'));
-    }
-
-    protected function handlePost()
-    {
-        parent::handlePost();
-
         if (Event::handle('StartGroupSaveForm', array($this))) {
             $nickname = Nickname::normalize($this->trimmed('newnickname'), true);
 
@@ -133,7 +117,6 @@ class NewgroupAction extends FormAction
                                            'Too many aliases! Maximum %d allowed.',
                                            common_config('group', 'maxaliases')),
                                         common_config('group', 'maxaliases')));
-                return;
             }
 
             if ($private) {

@@ -34,7 +34,7 @@ class Deleted_notice extends Managed_DataObject
     public $__table = 'deleted_notice';                  // table name
     public $id;                              // int(4)  primary_key not_null
     public $profile_id;                      // int(4)   not_null
-    public $uri;                             // varchar(255)  unique_key
+    public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $created;                         // datetime()   not_null
     public $deleted;                         // datetime()   not_null
 
@@ -47,7 +47,7 @@ class Deleted_notice extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'int', 'not null' => true, 'description' => 'identity of notice'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'author of the notice'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier, usually a tag URI'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the notice record was created'),
                 'deleted' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the notice record was created'),
             ),

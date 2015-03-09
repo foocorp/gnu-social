@@ -48,6 +48,7 @@ function main()
         fixupFileGeometry();
         deleteLocalFileThumbnailsWithoutFilename();
         deleteMissingLocalFileThumbnails();
+        setFilehashOnLocalFiles();
 
         initGroupProfileId();
         initLocalGroup();
@@ -490,8 +491,36 @@ function deleteMissingLocalFileThumbnails()
     // Checking if there were any File_thumbnail entries without filename
     if ($thumbs->find()) {
         while ($thumbs->fetch()) {
-            if (!file_exists(File_thumbnail::path($thumbs->filename))) {
+            try {
+                $thumbs->getPath();
+            } catch (FileNotFoundException $e) {
                 $thumbs->delete();
+            }
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+/*
+ * Files are now stored with their hash, so let's generate for previously uploaded files.
+ */
+function setFilehashOnLocalFiles()
+{
+    printfnq('Ensuring all local files have the filehash field set...');
+
+    $file = new File();
+    $file->whereAdd('filename IS NOT NULL');        // local files
+    $file->whereAdd('filehash IS NULL', 'AND');     // without filehash value
+
+    if ($file->find()) {
+        while ($file->fetch()) {
+            try {
+                $orig = clone($file);
+                $file->filehash = hash_file(File::FILEHASH_ALG, $file->getPath());
+                $file->update($orig);
+            } catch (FileNotFoundException $e) {
+                echo "\n    WARNING: file ID {$file->id} does not exist on path '{$e->path}'. Clean up the file table?";
             }
         }
     }

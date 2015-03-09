@@ -196,7 +196,7 @@ class Plugin
 
     static function staticPath($plugin, $relative)
     {
-        $isHTTPS = StatusNet::isHTTPS();
+        $isHTTPS = GNUsocial::isHTTPS();
 
         if ($isHTTPS) {
             $server = common_config('plugins', 'sslserver');

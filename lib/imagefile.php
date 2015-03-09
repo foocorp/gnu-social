@@ -53,10 +53,24 @@ class ImageFile
     var $width;
     var $rotate=0;  // degrees to rotate for properly oriented image (extrapolated from EXIF etc.)
     var $animated = null;  // Animated image? (has more than 1 frame). null means untested
+    var $mimetype = null;   // The _ImageFile_ mimetype, _not_ the originating File object
 
-    function __construct($id=null, $filepath=null, $type=null, $width=null, $height=null)
+    protected $fileRecord = null;
+
+    function __construct($id, $filepath)
     {
         $this->id = $id;
+        if (!empty($this->id)) {
+            $this->fileRecord = new File();
+            $this->fileRecord->id = $this->id;
+            if (!$this->fileRecord->find(true)) {
+                // If we have set an ID, we need that ID to exist!
+                throw new NoResultException($this->fileRecord);
+            }
+        }
+
+        // These do not have to be the same as fileRecord->filename for example,
+        // since we may have generated an image source file from something else!
         $this->filepath = $filepath;
         $this->filename = basename($filepath);
 
@@ -74,9 +88,10 @@ class ImageFile
             throw new UnsupportedMediaException(_('Unsupported image format.'), $this->filepath);
         }
 
-        $this->type = ($info) ? $info[2]:$type;
-        $this->width = ($info) ? $info[0]:$width;
-        $this->height = ($info) ? $info[1]:$height;
+        $this->width    = $info[0];
+        $this->height   = $info[1];
+        $this->type     = $info[2];
+        $this->mimetype = $info['mime'];
 
         if ($this->type == IMAGETYPE_JPEG && function_exists('exif_read_data')) {
             // Orientation value to rotate thumbnails properly
@@ -113,6 +128,14 @@ class ImageFile
             if (empty($file->filename)) {
                 throw new UnsupportedMediaException(_('File without filename could not get a thumbnail source.'));
             }
+
+            // First some mimetype specific exceptions
+            switch ($file->mimetype) {
+            case 'image/svg+xml':
+                throw new UseFileAsThumbnailException($file->id);
+            }
+
+            // And we'll only consider it an image if it has such a media type
             switch ($media) {
             case 'image':
                 $imgPath = $file->getPath();
@@ -141,7 +164,7 @@ class ImageFile
     public function getPath()
     {
         if (!file_exists($this->filepath)) {
-            throw new ServerException('No file in ImageFile filepath');
+            throw new FileNotFoundException($this->filepath);
         }
 
         return $this->filepath;
@@ -539,6 +562,73 @@ class ImageFile
 
         fclose($fh);
         return $count > 1;
+    }
+
+    public function getFileThumbnail($width, $height, $crop)
+    {
+        if (!$this->fileRecord instanceof File) {
+            throw new ServerException('No File object attached to this ImageFile object.');
+        }
+
+        if ($width === null) {
+            $width = common_config('thumbnail', 'width');
+            $height = common_config('thumbnail', 'height');
+            $crop = common_config('thumbnail', 'crop');
+        }
+
+        if ($height === null) {
+            $height = $width;
+            $crop = true;
+        }
+
+        // Get proper aspect ratio width and height before lookup
+        // We have to do it through an ImageFile object because of orientation etc.
+        // Only other solution would've been to rotate + rewrite uploaded files
+        // which we don't want to do because we like original, untouched data!
+        list($width, $height, $x, $y, $w, $h) = $this->scaleToFit($width, $height, $crop);
+
+        $thumb = File_thumbnail::pkeyGet(array(
+                                            'file_id'=> $this->fileRecord->id,
+                                            'width'  => $width,
+                                            'height' => $height,
+                                        ));
+        if ($thumb instanceof File_thumbnail) {
+            return $thumb;
+        }
+
+        $filename = $this->fileRecord->filehash ?: $this->filename;    // Remote files don't have $this->filehash
+        $extension = File::guessMimeExtension($this->mimetype);
+        $outname = "thumb-{$this->fileRecord->id}-{$width}x{$height}-{$filename}." . $extension;
+        $outpath = File_thumbnail::path($outname);
+
+        // The boundary box for our resizing
+        $box = array('width'=>$width, 'height'=>$height,
+                     'x'=>$x,         'y'=>$y,
+                     'w'=>$w,         'h'=>$h);
+
+        // Doublecheck that parameters are sane and integers.
+        if ($box['width'] < 1 || $box['width'] > common_config('thumbnail', 'maxsize')
+                || $box['height'] < 1 || $box['height'] > common_config('thumbnail', 'maxsize')
+                || $box['w'] < 1 || $box['x'] >= $this->width
+                || $box['h'] < 1 || $box['y'] >= $this->height) {
+            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
+            common_debug("Boundary box parameters for resize of {$this->filepath} : ".var_export($box,true));
+            throw new ServerException('Bad thumbnail size parameters.');
+        }
+
+        common_debug(sprintf('Generating a thumbnail of File id==%u of size %ux%u', $this->fileRecord->id, $width, $height));
+
+        // Perform resize and store into file
+        $this->resizeTo($outpath, $box);
+
+        // Avoid deleting the original
+        if ($this->getPath() != File_thumbnail::path($this->filename)) {
+            $this->unlink();
+        }
+        return File_thumbnail::saveThumbnail($this->fileRecord->id,
+                                      File_thumbnail::url($outname),
+                                      $width, $height,
+                                      $outname);
     }
 }
 

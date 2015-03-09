@@ -118,16 +118,18 @@ class Action extends HTMLOutputter // lawsuit
             common_config_set('db', 'database', $mirror);
         }
 
-        $status = $this->prepare($args);
-        if ($status) {
-            $this->handle($args);
-        } else {
-            common_debug('Prepare failed for Action.');
+        if (Event::handle('StartActionExecute', array($this, &$args))) {
+            $prepared = $this->prepare($args);
+            if ($prepared) {
+                $this->handle($args);
+            } else {
+                common_debug('Prepare failed for Action.');
+            }
         }
 
         $this->flush();
 
-        Event::handle('EndActionExecute', array($status, $this));
+        Event::handle('EndActionExecute', array($this));
     }
 
     /**
@@ -156,8 +158,8 @@ class Action extends HTMLOutputter // lawsuit
         $this->action = strtolower($this->trimmed('action'));
 
         if ($this->ajax || $this->boolean('ajax')) {
-            // check with StatusNet::isAjax()
-            StatusNet::setAjax(true);
+            // check with GNUsocial::isAjax()
+            GNUsocial::setAjax(true);
         }
 
         if ($this->needLogin) {
@@ -206,7 +208,7 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showPage()
     {
-        if (StatusNet::isAjax()) {
+        if (GNUsocial::isAjax()) {
             self::showAjax();
             return;
         }
@@ -326,7 +328,7 @@ class Action extends HTMLOutputter // lawsuit
         } else {
             // favicon.ico should be HTTPS if the rest of the page is
             $this->element('link', array('rel' => 'shortcut icon',
-                                         'href' => common_path('favicon.ico', StatusNet::isHTTPS())));
+                                         'href' => common_path('favicon.ico', GNUsocial::isHTTPS())));
         }
 
         if (common_config('site', 'mobile')) {
@@ -415,8 +417,7 @@ class Action extends HTMLOutputter // lawsuit
                 $this->script('extlib/jquery.form.js');
                 $this->script('extlib/jquery-ui/jquery-ui.js');
                 $this->script('extlib/jquery.cookie.js');
-                $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', StatusNet::isHTTPS()).'"); }');
-                $this->script('extlib/jquery.infieldlabel.js');
+                $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', GNUsocial::isHTTPS()).'"); }');
 
                 Event::handle('EndShowJQueryScripts', array($this));
             }
@@ -459,12 +460,6 @@ class Action extends HTMLOutputter // lawsuit
 
             // TRANS: Localized tooltip for '...' expansion button on overlong remote messages.
             $messages['showmore_tooltip'] = _m('TOOLTIP', 'Show more');
-
-            // TRANS: Inline reply form submit button: submits a reply comment.
-            $messages['reply_submit'] = _m('BUTTON', 'Reply');
-
-            // TRANS: Placeholder text for inline reply form. Clicking in this box will turn it into a mini notice form.
-            $messages['reply_placeholder'] = _m('Write a reply...');
 
             $messages = array_merge($messages, $this->getScriptMessages());
 
@@ -638,7 +633,7 @@ class Action extends HTMLOutputter // lawsuit
             $this->elementStart('a', array('class' => 'home bookmark',
                                            'href' => $url));
 
-            if (StatusNet::isHTTPS()) {
+            if (GNUsocial::isHTTPS()) {
                 $logoUrl = common_config('site', 'ssllogo');
                 if (empty($logoUrl)) {
                     // if logo is an uploaded file, try to fall back to HTTPS file URL
@@ -1144,7 +1139,7 @@ class Action extends HTMLOutputter // lawsuit
                 $image    = common_config('license', 'image');
                 $sslimage = common_config('license', 'sslimage');
 
-                if (StatusNet::isHTTPS()) {
+                if (GNUsocial::isHTTPS()) {
                     if (!empty($sslimage)) {
                         $url = $sslimage;
                     } else if (preg_match('#^http://i.creativecommons.org/#', $image)) {
@@ -1352,6 +1347,19 @@ class Action extends HTMLOutputter // lawsuit
         } else {
             return $def;
         }
+    }
+
+    /**
+     * This is a cheap hack to avoid a bug in DB_DataObject
+     * where '' is non-type-aware compared to 0, which means it
+     * will always be true for values like false and 0 too...
+     *
+     * Upstream bug is::
+     * https://pear.php.net/bugs/bug.php?id=20291
+     */
+    function booleanintstring($key, $def)
+    {
+        return $this->boolean($key, $def) ? '1' : '0';
     }
 
     /**

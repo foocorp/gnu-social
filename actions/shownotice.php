@@ -70,7 +70,7 @@ class ShownoticeAction extends ManagedAction
     {
         parent::prepare($args);
         if ($this->boolean('ajax')) {
-            StatusNet::setApi(true);
+            GNUsocial::setApi(true);
         }
 
         $this->notice = $this->getNotice();

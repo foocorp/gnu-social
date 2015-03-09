@@ -30,11 +30,11 @@ class Profile extends Managed_DataObject
     public $__table = 'profile';                         // table name
     public $id;                              // int(4)  primary_key not_null
     public $nickname;                        // varchar(64)  multiple_key not_null
-    public $fullname;                        // varchar(255)  multiple_key
-    public $profileurl;                      // varchar(255)
-    public $homepage;                        // varchar(255)  multiple_key
+    public $fullname;                        // varchar(191)  multiple_key   not 255 because utf8mb4 takes more space
+    public $profileurl;                      // varchar(191)                 not 255 because utf8mb4 takes more space
+    public $homepage;                        // varchar(191)  multiple_key   not 255 because utf8mb4 takes more space
     public $bio;                             // text()  multiple_key
-    public $location;                        // varchar(255)  multiple_key
+    public $location;                        // varchar(191)  multiple_key   not 255 because utf8mb4 takes more space
     public $lat;                             // decimal(10,7)
     public $lon;                             // decimal(10,7)
     public $location_id;                     // int(4)
@@ -49,11 +49,11 @@ class Profile extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
                 'nickname' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'nickname or username', 'collate' => 'utf8_general_ci'),
-                'fullname' => array('type' => 'varchar', 'length' => 255, 'description' => 'display name', 'collate' => 'utf8_general_ci'),
-                'profileurl' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL, cached so we dont regenerate'),
-                'homepage' => array('type' => 'varchar', 'length' => 255, 'description' => 'identifying URL', 'collate' => 'utf8_general_ci'),
+                'fullname' => array('type' => 'varchar', 'length' => 191, 'description' => 'display name', 'collate' => 'utf8_general_ci'),
+                'profileurl' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL, cached so we dont regenerate'),
+                'homepage' => array('type' => 'varchar', 'length' => 191, 'description' => 'identifying URL', 'collate' => 'utf8_general_ci'),
                 'bio' => array('type' => 'text', 'description' => 'descriptive biography', 'collate' => 'utf8_general_ci'),
-                'location' => array('type' => 'varchar', 'length' => 255, 'description' => 'physical location', 'collate' => 'utf8_general_ci'),
+                'location' => array('type' => 'varchar', 'length' => 191, 'description' => 'physical location', 'collate' => 'utf8_general_ci'),
                 'lat' => array('type' => 'numeric', 'precision' => 10, 'scale' => 7, 'description' => 'latitude'),
                 'lon' => array('type' => 'numeric', 'precision' => 10, 'scale' => 7, 'description' => 'longitude'),
                 'location_id' => array('type' => 'int', 'description' => 'location id if possible'),
@@ -1451,6 +1451,12 @@ class Profile extends Managed_DataObject
         return $feed;
     }
 
+    public function repeatedToMe($offset=0, $limit=20, $since_id=null, $max_id=null)
+    {
+        // TRANS: Exception thrown when trying view "repeated to me".
+        throw new Exception(_('Not implemented since inbox change.'));
+    }
+
     /*
      * Get a Profile object by URI. Will call external plugins for help
      * using the event StartGetProfileFromURI.
@@ -1564,6 +1570,15 @@ class Profile extends Managed_DataObject
     public function shortenLinks($text, $always=false)
     {
         return $this->getUser()->shortenLinks($text, $always);
+    }
+
+    public function isPrivateStream()
+    {
+        // We only know of public remote users as of yet...
+        if (!$this->isLocal()) {
+            return false;
+        }
+        return $this->getUser()->private_stream ? true : false;
     }
 
     public function delPref($namespace, $topic) {

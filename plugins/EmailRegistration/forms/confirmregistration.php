@@ -71,12 +71,11 @@ class ConfirmRegistrationForm extends Form
         $this->elementStart('li');
 
         // TRANS: Field label in e-mail registration form.
-        $this->element('label', array('for' => 'nickname-ignore'), _m('LABEL','User name'));
+        $this->element('label', array('for' => 'nickname'), _m('LABEL','User name'));
 
-        $this->element('input', array('name' => 'nickname-ignore',
+        $this->element('input', array('name' => 'nickname',
                                       'type' => 'text',
-                                      'id' => 'nickname-ignore',
-                                      'disabled' => 'true',
+                                      'id' => 'nickname',
                                       'value' => $this->nickname));
 
         $this->elementEnd('li');

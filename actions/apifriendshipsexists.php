@@ -29,9 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Tests for the existence of friendship between two users. Will return true if
@@ -57,7 +55,7 @@ class ApiFriendshipsExistsAction extends ApiPrivateAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -72,22 +70,18 @@ class ApiFriendshipsExistsAction extends ApiPrivateAuthAction
      *
      * Check the format and show the user info
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if (empty($this->profile_a) || empty($this->profile_b)) {
             $this->clientError(
                 // TRANS: Client error displayed when supplying invalid parameters to an API call checking if a friendship exists.
                 _('Two valid IDs or nick names must be supplied.'),
-                400,
-                $this->format
+                400
             );
-            return;
         }
 
         $result = Subscription::exists($this->profile_a, $this->profile_b);

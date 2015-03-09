@@ -175,7 +175,7 @@ class RSSCloudPlugin extends Plugin
             array(
                 'fields' => array(
                     'subscribed' => array('type' => 'int', 'not null' => true),
-                    'url' => array('type' => 'varchar', 'length' => '255', 'not null' => true),
+                    'url' => array('type' => 'varchar', 'length' => '191', 'not null' => true),
                     'failures' => array('type' => 'int', 'not null' => true, 'default' => 0),
                     'created' => array('type' => 'datetime', 'not null' => true),
                     'modified' => array('type' => 'timestamp', 'not null' => true),

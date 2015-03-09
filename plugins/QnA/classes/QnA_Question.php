@@ -48,7 +48,7 @@ class QnA_Question extends Managed_DataObject
 
     public $__table = 'qna_question'; // table name
     public $id;          // char(36) primary key not null -> UUID
-    public $uri;
+    public $uri;         // varchar(191)   not 255 because utf8mb4 takes more space
     public $profile_id;  // int -> profile.id
     public $title;       // text
     public $description; // text
@@ -71,7 +71,7 @@ class QnA_Question extends Managed_DataObject
                 ),
                 'uri' => array(
                     'type'     => 'varchar',
-                    'length'   => 255,
+                    'length'   => 191,
                     'not null' => true
                 ),
                 'profile_id'  => array('type' => 'int'),

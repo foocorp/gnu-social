@@ -37,24 +37,6 @@ class LoginAction extends FormAction
     protected $needLogin = false;
 
     /**
-     * Prepare page to run
-     *
-     *
-     * @param $args
-     * @return string title
-     */
-    protected function prepare(array $args=array())
-    {
-        // @todo this check should really be in index.php for all sensitive actions
-        $ssl = common_config('site', 'ssl');
-        if (empty($_SERVER['HTTPS']) && ($ssl == 'always' || $ssl == 'sometimes')) {
-            common_redirect(common_local_url('login'));
-        }
-
-        return parent::prepare($args);
-    }
-
-    /**
      * Handle input, produce output
      *
      * Switches on request method; either shows the form or handles its input.
@@ -79,10 +61,8 @@ class LoginAction extends FormAction
      *
      * @return void
      */
-    protected function handlePost()
+    protected function doPost()
     {
-        parent::handlePost();
-
         // XXX: login throttle
 
         $nickname = $this->trimmed('nickname');
@@ -120,22 +100,6 @@ class LoginAction extends FormAction
         }
 
         common_redirect($url, 303);
-    }
-
-    /**
-     * Store an error and show the page
-     *
-     * This used to show the whole page; now, it's just a wrapper
-     * that stores the error in an attribute.
-     *
-     * @param string $error error, if any.
-     *
-     * @return void
-     */
-    public function showForm($msg=null, $success=false)
-    {
-        common_ensure_session();
-        return parent::showForm($msg, $success);
     }
 
     function showScripts()

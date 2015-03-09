@@ -27,13 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/personalgroupnav.php';
-require_once INSTALLDIR.'/lib/noticelist.php';
-require_once INSTALLDIR.'/lib/feedlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * List of replies
@@ -44,72 +38,42 @@ require_once INSTALLDIR.'/lib/feedlist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class RepliesAction extends Action
+class RepliesAction extends ManagedAction
 {
     var $page = null;
     var $notice;
 
-    /**
-     * Prepare the object
-     *
-     * Check the input values and initialize the object.
-     * Shows an error page on bad input.
-     *
-     * @param array $args $_REQUEST data
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $nickname = common_canonical_nickname($this->arg('nickname'));
 
         $this->user = User::getKV('nickname', $nickname);
 
-        if (!$this->user) {
+        if (!$this->user instanceof User) {
             // TRANS: Client error displayed when trying to reply to a non-exsting user.
             $this->clientError(_('No such user.'));
         }
 
-        $profile = $this->user->getProfile();
+        $this->target = $this->user->getProfile();
 
-        if (!$profile) {
+        if (!$this->target instanceof Profile) {
             // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'));
         }
 
-        $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
+        $this->page = $this->int('page') ?: 1;
 
         common_set_returnto($this->selfUrl());
 
-        $stream = new ReplyNoticeStream($this->user->id,
-                                        Profile::current());
+        $stream = new ReplyNoticeStream($this->target->getID(), $this->scoped);
 
         $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE,
                                             NOTICES_PER_PAGE + 1);
 
-        if($this->page > 1 && $this->notice->N == 0){
+        if ($this->page > 1 && $this->notice->N == 0) {
             // TRANS: Client error when page not found (404)
             $this->clientError(_('No such page.'), 404);
         }
-
-        return true;
-    }
-
-    /**
-     * Handle a request
-     *
-     * Just show the page. All args already handled.
-     *
-     * @param array $args $_REQUEST data
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
     }
 
     /**
@@ -124,12 +88,12 @@ class RepliesAction extends Action
         if ($this->page == 1) {
             // TRANS: Title for first page of replies for a user.
             // TRANS: %s is a user nickname.
-            return sprintf(_("Replies to %s"), $this->user->nickname);
+            return sprintf(_("Replies to %s"), $this->target->getNickname());
         } else {
             // TRANS: Title for all but the first page of replies for a user.
             // TRANS: %1$s is a user nickname, %2$d is a page number.
             return sprintf(_('Replies to %1$s, page %2$d'),
-                           $this->user->nickname,
+                           $this->target->getNickname(),
                            $this->page);
         }
     }
@@ -144,7 +108,7 @@ class RepliesAction extends Action
         return array(new Feed(Feed::JSON,
                               common_local_url('ApiTimelineMentions',
                                                array(
-                                                    'id' => $this->user->nickname,
+                                                    'id' => $this->target->getNickname(),
                                                     'format' => 'as')),
                               // TRANS: Link for feed with replies for a user.
                               // TRANS: %s is a user nickname.
@@ -152,38 +116,31 @@ class RepliesAction extends Action
                                       $this->user->nickname)),
                      new Feed(Feed::RSS1,
                               common_local_url('repliesrss',
-                                               array('nickname' => $this->user->nickname)),
+                                               array('nickname' => $this->target->getNickname())),
                               // TRANS: Link for feed with replies for a user.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Replies feed for %s (RSS 1.0)'),
-                                      $this->user->nickname)),
+                                      $this->target->getNickname())),
                      new Feed(Feed::RSS2,
                               common_local_url('ApiTimelineMentions',
                                                array(
-                                                    'id' => $this->user->nickname,
+                                                    'id' => $this->target->getNickname(),
                                                     'format' => 'rss')),
                               // TRANS: Link for feed with replies for a user.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Replies feed for %s (RSS 2.0)'),
-                                      $this->user->nickname)),
+                                      $this->target->getNickname())),
                      new Feed(Feed::ATOM,
                               common_local_url('ApiTimelineMentions',
                                                array(
-                                                    'id' => $this->user->nickname,
+                                                    'id' => $this->target->getNickname(),
                                                     'format' => 'atom')),
                               // TRANS: Link for feed with replies for a user.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Replies feed for %s (Atom)'),
-                                    $this->user->nickname)));
+                                    $this->target->getNickname())));
     }
 
-    /**
-     * Show the content
-     *
-     * A list of notices that are replies to the user, plus pagination.
-     *
-     * @return void
-     */
     function showContent()
     {
         $nl = new PrimaryNoticeList($this->notice, $this, array('show_n'=>NOTICES_PER_PAGE));
@@ -195,33 +152,30 @@ class RepliesAction extends Action
 
         $this->pagination($this->page > 1, $cnt > NOTICES_PER_PAGE,
                           $this->page, 'replies',
-                          array('nickname' => $this->user->nickname));
+                          array('nickname' => $this->target->getNickname()));
     }
 
     function showEmptyListMessage()
     {
         // TRANS: Empty list message for page with replies for a user.
-        // TRANS: %1$s and %s$s are the user nickname.
-        $message = sprintf(_('This is the timeline showing replies to %1$s but %2$s hasn\'t received a notice to them yet.'),
-                           $this->user->nickname,
-                           $this->user->nickname) . ' ';
+        // TRANS: %1$s is the user nickname.
+        $message = sprintf(_('This is the timeline showing replies to %1$s but no notices have arrived yet.'), $this->target->getNickname());
+        $message .= ' ';    // Spacing between this sentence and the next.
 
         if (common_logged_in()) {
-            $current_user = common_current_user();
-            if ($this->user->id === $current_user->id) {
+            if ($this->target->getID() === $this->scoped->getID()) {
                 // TRANS: Empty list message for page with replies for a user for the logged in user.
                 // TRANS: This message contains a Markdown link in the form [link text](link).
                 $message .= _('You can engage other users in a conversation, subscribe to more people or [join groups](%%action.groups%%).');
             } else {
                 // TRANS: Empty list message for page with replies for a user for all logged in users but the user themselves.
-                // TRANS: %1$s, %2$s and %3$s are a user nickname. This message contains a Markdown link in the form [link text](link).
-                $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) or [post something to them](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->user->nickname, $this->user->nickname, '@' . $this->user->nickname);
+                // TRANS: %1$s is a user nickname and %2$s is the same but with a prepended '@' character. This message contains a Markdown link in the form [link text](link).
+                $message .= sprintf(_('You can try to [nudge %1$s](../%1$s) or [post something to them](%%%%action.newnotice%%%%?content=%2$s).'), $this->target->getNickname(), '@' . $this->target->getNickname());
             }
-        }
-        else {
+        } else {
             // TRANS: Empty list message for page with replies for a user for not logged in users.
             // TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
-            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->user->nickname);
+            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->target->getNickname());
         }
 
         $this->elementStart('div', 'guide');
@@ -229,7 +183,7 @@ class RepliesAction extends Action
         $this->elementEnd('div');
     }
 
-    function isReadOnly($args)
+    public function isReadOnly($args)
     {
         return true;
     }

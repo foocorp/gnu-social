@@ -253,14 +253,8 @@ class ThreadedNoticeListItem extends NoticeListItem
                     }
                 }
 
-                if ($threadActive && Profile::current() instanceof Profile) {
-                    // @fixme do a proper can-post check that's consistent
-                    // with the JS side
-                    $item = new ThreadedNoticeListReplyItem($this->notice, $this->out);
-                    $item->show();
-                }
-                $this->out->elementEnd('ul');
                 Event::handle('EndShowThreadedNoticeTail', array($this, $this->notice, $notices));
+                $this->out->elementEnd('ul');
             }
         }
 
@@ -378,45 +372,6 @@ class ThreadedNoticeListMoreItem extends NoticeListItem
         $msg = sprintf(_m('Show reply', 'Show all %d replies', $n), $n);
 
         $this->out->element('a', array('href' => $url), $msg);
-    }
-}
-
-/**
- * Placeholder for reply form...
- * Same as get added at runtime via SN.U.NoticeInlineReplyPlaceholder
- */
-class ThreadedNoticeListReplyItem extends NoticeListItem
-{
-    /**
-     * recipe function for displaying a single notice.
-     *
-     * This uses all the other methods to correctly display a notice. Override
-     * it or one of the others to fine-tune the output.
-     *
-     * @return void
-     */
-    function show()
-    {
-        $this->showStart();
-        $this->showMiniForm();
-        $this->showEnd();
-    }
-
-    /**
-     * start a single notice.
-     *
-     * @return void
-     */
-    function showStart()
-    {
-        $this->out->elementStart('li', array('class' => 'notice-reply-placeholder'));
-    }
-
-    function showMiniForm()
-    {
-        $this->out->element('input', array('class' => 'placeholder',
-                                           // TRANS: Field label for reply mini form.
-                                           'value' => _('Write a reply...')));
     }
 }
 

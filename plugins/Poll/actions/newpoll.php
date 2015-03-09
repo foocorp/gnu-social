@@ -125,7 +125,7 @@ class NewPollAction extends Action
     function newPoll()
     {
         if ($this->boolean('ajax')) {
-            StatusNet::setApi(true);
+            GNUsocial::setApi(true);
         }
         try {
             if (empty($this->question)) {

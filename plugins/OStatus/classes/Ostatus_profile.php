@@ -51,12 +51,12 @@ class Ostatus_profile extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'uri' => array('type' => 'varchar', 'length' => 255, 'not null' => true),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'not null' => true),
                 'profile_id' => array('type' => 'integer'),
                 'group_id' => array('type' => 'integer'),
                 'peopletag_id' => array('type' => 'integer'),
-                'feeduri' => array('type' => 'varchar', 'length' => 255),
-                'salmonuri' => array('type' => 'varchar', 'length' => 255),
+                'feeduri' => array('type' => 'varchar', 'length' => 191),
+                'salmonuri' => array('type' => 'varchar', 'length' => 191),
                 'avatar' => array('type' => 'text'),
                 'created' => array('type' => 'datetime', 'not null' => true),
                 'modified' => array('type' => 'datetime', 'not null' => true),
@@ -621,7 +621,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // Get (safe!) HTML and text versions of the content
 
-        $rendered = $this->purify($sourceContent);
+        $rendered = common_purify($sourceContent);
         $content = common_strip_html($rendered);
 
         $shortened = common_shorten_links($content);
@@ -788,7 +788,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // Get (safe!) HTML and text versions of the content
 
-        $rendered = $this->purify($sourceContent);
+        $rendered = common_purify($sourceContent);
         $content = common_strip_html($rendered);
 
         $shortened = common_shorten_links($content);
@@ -912,17 +912,6 @@ class Ostatus_profile extends Managed_DataObject
         }
         common_log(LOG_INFO, "OStatus saved remote message $sourceUri as notice id $saved->id");
         return $saved;
-    }
-
-    /**
-     * Clean up HTML
-     */
-    protected function purify($html)
-    {
-        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-        $config = array('safe' => 1,
-                        'deny_attribute' => 'id,style,on*');
-        return htmLawed($html, $config);
     }
 
     /**
@@ -1131,6 +1120,11 @@ class Ostatus_profile extends Managed_DataObject
      */
     public static function ensureFeedURL($feed_url, array $hints=array())
     {
+        $oprofile = Ostatus_profile::getKV('feeduri', $feed_url);
+        if ($oprofile instanceof Ostatus_profile) {
+            return $oprofile;
+        }
+
         $discover = new FeedDiscovery();
 
         $feeduri = $discover->discoverFromFeedURL($feed_url);
@@ -1806,8 +1800,8 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         if (!empty($location)) {
-            if (mb_strlen($location) > 255) {
-                $location = mb_substr($note, 0, 255 - 3) . ' … ';
+            if (mb_strlen($location) > 191) {   // not 255 because utf8mb4 takes more space
+                $location = mb_substr($note, 0, 191 - 3) . ' … ';
             }
         }
 
@@ -2098,13 +2092,15 @@ class Ostatus_profile extends Managed_DataObject
                                    'text/html');
 
         $filepath = File::path($filename);
+        $fileurl = File::url($filename);
 
         file_put_contents($filepath, $final);
 
         $file = new File;
 
         $file->filename = $filename;
-        $file->url      = File::url($filename);
+        $file->urlhash  = File::hashurl($fileurl);
+        $file->url      = $fileurl;
         $file->size     = filesize($filepath);
         $file->date     = time();
         $file->mimetype = 'text/html';
@@ -2151,7 +2147,6 @@ class Ostatus_profile extends Managed_DataObject
                 throw new ServerException(sprintf(_m('Unrecognized URI protocol for profile: %1$s (%2$s).'),
                                                   $protocol,
                                                   $uri));
-                break;
             }
         } else {
             // TRANS: Server exception. %s is a URI.

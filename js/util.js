@@ -32,7 +32,6 @@ var SN = { // StatusNet
             MaxLength: 140,
             PatternUsername: /^[0-9a-zA-Z\-_.]*$/,
             HTTP20x30x: [200, 201, 202, 203, 204, 205, 206, 300, 301, 302, 303, 304, 305, 306, 307],
-            NoticeFormMaster: null // to be cloned from the one at top
         },
 
         /**
@@ -94,12 +93,12 @@ var SN = { // StatusNet
          * @access private
          */
         FormNoticeEnhancements: function (form) {
-            if (jQuery.data(form[0], 'ElementData') === undefined) {
+            if ($.data(form[0], 'ElementData') === undefined) {
                 var MaxLength = form.find('.count').text();
                 if (MaxLength === undefined) {
                     MaxLength = SN.C.I.MaxLength;
                 }
-                jQuery.data(form[0], 'ElementData', {MaxLength: MaxLength});
+                $.data(form[0], 'ElementData', {MaxLength: MaxLength});
 
                 SN.U.Counter(form);
 
@@ -122,7 +121,7 @@ var SN = { // StatusNet
                 NDT.on('cut', delayedUpdate)
                     .on('paste', delayedUpdate);
             } else {
-                form.find('.count').text(jQuery.data(form[0], 'ElementData').MaxLength);
+                form.find('.count').text($.data(form[0], 'ElementData').MaxLength);
             }
         },
 
@@ -143,7 +142,7 @@ var SN = { // StatusNet
         Counter: function (form) {
             SN.C.I.FormNoticeCurrent = form;
 
-            var MaxLength = jQuery.data(form[0], 'ElementData').MaxLength;
+            var MaxLength = $.data(form[0], 'ElementData').MaxLength;
 
             if (MaxLength <= 0) {
                 return;
@@ -375,7 +374,7 @@ var SN = { // StatusNet
                         if ($('.' + SN.C.S.Error, response).length > 0) {
                             form.append(document._importNode($('.' + SN.C.S.Error, response)[0], true));
                         } else {
-                            if (parseInt(xhr.status) === 0 || jQuery.inArray(parseInt(xhr.status), SN.C.I.HTTP20x30x) >= 0) {
+                            if (parseInt(xhr.status) === 0 || $.inArray(parseInt(xhr.status), SN.C.I.HTTP20x30x) >= 0) {
                                 form
                                     .resetForm()
                                     .find('.attach-status').remove();
@@ -405,16 +404,14 @@ var SN = { // StatusNet
                             if (replyItem.length > 0) {
                                 // If this is an inline reply, remove the form...
                                 var list = form.closest('.threaded-replies');
-                                var placeholder = list.find('.notice-reply-placeholder');
-                                replyItem.remove();
 
                                 var id = $(notice).attr('id');
                                 if ($('#' + id).length == 0) {
-                                    $(notice).insertBefore(placeholder);
+                                    $(notice).insertBefore(replyItem);
                                 } // else Realtime came through before us...
 
-                                // ...and show the placeholder form.
-                                placeholder.show();
+                                replyItem.remove();
+
                             } else if (notices.length > 0 && SN.U.belongsOnTimeline(notice)) {
                                 // Not a reply. If on our timeline, show it at the top!
 
@@ -581,6 +578,44 @@ var SN = { // StatusNet
         /**
          * Setup function -- DOES NOT trigger actions immediately.
          *
+         * Sets up event handlers on all visible notice's option <a> elements
+         * with the "popup" class so they behave as expected with AJAX.
+         *
+         * (without javascript the link goes to a page that expects you to verify
+         * the action through a form)
+         *
+         * @access private
+         */
+        NoticeOptionsAjax: function () {
+            $(document).on('click', '.notice-options > a.popup', function (e) {
+                e.preventDefault();
+                var noticeEl = $(this).closest('.notice');
+                $.ajax({
+                    url: $(this).attr('href'),
+                    data: {ajax: 1},
+                    success: function (data, textStatus, xhr) {
+                        SN.U.NoticeOptionPopup(data, noticeEl);
+                    },
+                });
+                return false;
+            });
+        },
+
+        NoticeOptionPopup: function (data, noticeEl) {
+            title = $('head > title', data).text();
+            body = $('body', data).html();
+            dialog = $(body).dialog({
+                    height: "auto",
+                    width: "auto",
+                    modal: true,
+                    resizable: true,
+                    title: title,
+                });
+        },
+
+        /**
+         * Setup function -- DOES NOT trigger actions immediately.
+         *
          * Sets up event handlers on all visible notice's reply buttons to
          * tweak the new-notice form with needed variables and focus it
          * when pushed.
@@ -616,41 +651,18 @@ var SN = { // StatusNet
         NoticeInlineReplyTrigger: function (notice, initialText) {
             // Find the notice we're replying to...
             var id = $($('.notice_id', notice)[0]).text();
-            var replyForm, placeholder;
+            var replyForm;
             var parentNotice = notice;
             var stripForm = true; // strip a couple things out of reply forms that are inline
 
-            // Find the threaded replies view we'll be adding to...
-            var list = notice.closest('.notices');
-            if (list.closest('.old-school').length) {
-                // We're replying to an old-school conversation thread;
-                // use the old-style ping into the top form.
-                SN.U.switchInputFormTab("status");
-                replyForm = $('#input_form_status').find('form');
-                stripForm = false;
-            } else if (list.hasClass('threaded-replies')) {
-                // We're replying to a reply; use reply form on the end of this list.
-                // We'll add our form at the end of this; grab the root notice.
-                parentNotice = list.closest('.notice');
-
-                // See if the form's already open...
-                replyForm = $('.notice-reply-form', list);
-            } else {
-                // We're replying to a parent notice; pull its threaded list
-                // and we'll add on the end of it. Will add if needed.
-                list = $('ul.threaded-replies', notice);
-                if (list.length == 0) {
-                    SN.U.NoticeInlineReplyPlaceholder(notice);
-                    list = $('ul.threaded-replies', notice);
-                } else {
-                    placeholder = $('li.notice-reply-placeholder', notice);
-                    if (placeholder.length == 0) {
-                        SN.U.NoticeInlineReplyPlaceholder(notice);
-                    }
-                }
-
-                // See if the form's already open...
-                replyForm = $('.notice-reply-form', list);
+            var list = notice.find('.threaded-replies');
+            if (list.length == 0) {
+                list = notice.closest('.threaded-replies');
+            }
+            if (list.length == 0) {
+                list = $('<ul class="notices threaded-replies xoxo"></ul>');
+                notice.append(list);
+                list = notice.find('.threaded-replies');
             }
 
             var nextStep = function () {
@@ -663,6 +675,7 @@ var SN = { // StatusNet
                     replyForm.find('label[for=notice_to]').hide();
                     replyForm.find('label[for=notice_private]').hide();
                 }
+                replyItem.show();
 
                 // Set focus...
                 var text = replyForm.find('textarea');
@@ -681,82 +694,53 @@ var SN = { // StatusNet
                     text[0].setSelectionRange(len, len);
                 }
             };
-            if (replyForm.length > 0) {
-                // Update the existing form...
-                nextStep();
-            } else {
-                // Hide the placeholder...
-                placeholder = list.find('li.notice-reply-placeholder').hide();
 
-                // Create the reply form entry at the end
-                var replyItem = $('li.notice-reply', list);
-                if (replyItem.length == 0) {
-                    replyItem = $('<li class="notice-reply"></li>');
+            // Create the reply form entry
+            var replyItem = $('li.notice-reply', list);
+            if (replyItem.length == 0) {
+                replyItem = $('<li class="notice-reply"></li>');
 
-                    var intermediateStep = function (formMaster) {
-                        var formEl = document._importNode(formMaster, true);
-                        replyItem.append(formEl);
-                        list.append(replyItem); // *after* the placeholder
+                // Fetch a fresh copy of the notice form over AJAX.
+                var url = $('#input_form_status > form').attr('action');
+                $.ajax({
+                    url: url,
+                    data: {ajax: 1, inreplyto: id},
+                    success: function (data, textStatus, xhr) {
+                        var formEl = document._importNode($('form', data)[0], true);
+                        replyForm = $(formEl);
+                        replyItem.append(replyForm);
+                        list.append(replyItem);
 
-                        var form = $(formEl);
-                        replyForm = form;
-                        SN.Init.NoticeFormSetup(form);
-
+                        SN.Init.NoticeFormSetup(replyForm);
                         nextStep();
-                    };
-                    if (SN.C.I.NoticeFormMaster) {
-                        // We've already saved a master copy of the form.
-                        // Clone it in!
-                        intermediateStep(SN.C.I.NoticeFormMaster);
-                    } else {
-                        // Fetch a fresh copy of the notice form over AJAX.
-                        // Warning: this can have a delay, which looks bad.
-                        // @fixme this fallback may or may not work
-                        var url = $('#form_notice').attr('action');
-                        $.get(url, {ajax: 1}, function (data, textStatus, xhr) {
-                            intermediateStep($('form', data)[0]);
-                        });
-                    }
-                }
+                    },
+                });
+            } else {
+                replyForm = replyItem.children('form');
+                SN.Init.NoticeFormSetup(replyForm);
+                nextStep();
             }
-        },
-
-        NoticeInlineReplyPlaceholder: function (notice) {
-            var list = notice.find('ul.threaded-replies');
-            if (list.length == 0) {
-                list = $('<ul class="notices threaded-replies xoxo"></ul>');
-                notice.append(list);
-                list = notice.find('ul.threaded-replies');
-            }
-            var placeholder = $('<li class="notice-reply-placeholder">' +
-                                    '<input class="placeholder" />' +
-                                '</li>');
-            placeholder.find('input')
-                .val(SN.msg('reply_placeholder'));
-            list.append(placeholder);
         },
 
         /**
          * Setup function -- DOES NOT apply immediately.
          *
-         * Sets up event handlers for inline reply mini-form placeholders.
          * Uses 'on' rather than 'live' or 'bind', so applies to future as well as present items.
          */
         NoticeInlineReplySetup: function () {
-            $('li.notice-reply-placeholder input')
-                .on('focus', function () {
-                    var notice = $(this).closest('li.notice');
-                    SN.U.NoticeInlineReplyTrigger(notice);
-                    return false;
-                });
+            // Expand conversation links
             $(document).on('click', 'li.notice-reply-comments a', function () {
                     var url = $(this).attr('href');
                     var area = $(this).closest('.threaded-replies');
-                    $.get(url, {ajax: 1}, function (data, textStatus, xhr) {
-                        var replies = $('.threaded-replies', data);
-                        if (replies.length) {
-                            area.replaceWith(document._importNode(replies[0], true));
-                        }
+                    $.ajax({
+                        url: url,
+                        data: {ajax: 1},
+                        success: function (data, textStatus, xhr) {
+                            var replies = $('.threaded-replies', data);
+                            if (replies.length) {
+                                area.replaceWith(document._importNode(replies[0], true));
+                            }
+                        },
                     });
                     return false;
                 });
@@ -1043,7 +1027,7 @@ var SN = { // StatusNet
 
             function removeNoticeDataGeo(error) {
                 label
-                    .attr('title', jQuery.trim(label.text()))
+                    .attr('title', $.trim(label.text()))
                     .removeClass('checked');
 
                 form.find('[name=lat]').val('');
@@ -1460,16 +1444,13 @@ var SN = { // StatusNet
                                 // Only close if there's been no edit.
                                 if (cur == '' || cur == textarea.data('initialText')) {
                                     var parentNotice = replyItem.closest('li.notice');
-                                    replyItem.remove();
+                                    replyItem.hide();
                                     parentNotice.find('li.notice-reply-placeholder').show();
                                 }
                             }
                         });
                     }
                 });
-
-                // Infield labels for notice form inputs.
-                $('.input_forms fieldset fieldset label').inFieldLabels({ fadeOpacity:0 });
             }
         },
 
@@ -1481,13 +1462,14 @@ var SN = { // StatusNet
          * @param {jQuery} form
          */
         NoticeFormSetup: function (form) {
-            if (!form.data('NoticeFormSetup')) {
-                SN.U.NoticeLocationAttach(form);
-                SN.U.FormNoticeXHR(form);
-                SN.U.FormNoticeEnhancements(form);
-                SN.U.NoticeDataAttach(form);
-                form.data('NoticeFormSetup', true);
+            if (form.data('NoticeFormSetup')) {
+                return false;
             }
+            SN.U.NoticeLocationAttach(form);
+            SN.U.FormNoticeXHR(form);
+            SN.U.FormNoticeEnhancements(form);
+            SN.U.NoticeDataAttach(form);
+            form.data('NoticeFormSetup', true);
         },
 
         /**
@@ -1498,13 +1480,10 @@ var SN = { // StatusNet
          */
         Notices: function () {
             if ($('body.user_in').length > 0) {
-                var masterForm = $('.form_notice:first');
-                if (masterForm.length > 0) {
-                    SN.C.I.NoticeFormMaster = document._importNode(masterForm[0], true);
-                }
                 SN.U.NoticeRepeat();
                 SN.U.NoticeReply();
                 SN.U.NoticeInlineReplySetup();
+                SN.U.NoticeOptionsAjax();
             }
 
             SN.U.NoticeAttachments();
@@ -1563,60 +1542,6 @@ var SN = { // StatusNet
         },
 
         /**
-         * Called when a people tag edit box is shown in the interface
-         *
-         * - loads the jQuery UI autocomplete plugin
-         * - sets event handlers for tag completion
-         *
-         */
-        PeopletagAutocomplete: function (txtBox) {
-            var split = function (val) {
-                return val.split( /\s+/ );
-            }
-            var extractLast = function (term) {
-                return split(term).pop();
-            }
-
-            // don't navigate away from the field on tab when selecting an item
-            txtBox.on( "keydown", function ( event ) {
-                if ( event.keyCode === $.ui.keyCode.TAB &&
-                        $(this).data( "autocomplete" ).menu.active ) {
-                    event.preventDefault();
-                }
-            }).autocomplete({
-                minLength: 0,
-                source: function (request, response) {
-                    // delegate back to autocomplete, but extract the last term
-                    response($.ui.autocomplete.filter(
-                        SN.C.PtagACData, extractLast(request.term)));
-                },
-                focus: function () {
-                    return false;
-                },
-                select: function (event, ui) {
-                    var terms = split(this.value);
-                    terms.pop();
-                    terms.push(ui.item.value);
-                    terms.push("");
-                    this.value = terms.join(" ");
-                    return false;
-                }
-            }).data('autocomplete')._renderItem = function (ul, item) {
-                    // FIXME: with jQuery UI you cannot have it highlight the match
-                    var _l = '<a class="ptag-ac-line-tag">' + item.tag
-                          + ' <em class="privacy_mode">' + item.mode + '</em>'
-                          + '<span class="freq">' + item.freq + '</span></a>'
-
-                    return $("<li/>")
-                            .addClass('mode-' + item.mode)
-                            .addClass('ptag-ac-line')
-                            .data("item.autocomplete", item)
-                            .append(_l)
-                            .appendTo(ul);
-                }
-        },
-
-        /**
          * Run setup for the ajax people tags editor
          *
          * - show edit button
@@ -1644,7 +1569,6 @@ var SN = { // StatusNet
                         }
 
                         SN.C.PtagACData = data;
-                        SN.Init.PeopletagAutocomplete(form.find('#tags'));
                     }
                 });
 

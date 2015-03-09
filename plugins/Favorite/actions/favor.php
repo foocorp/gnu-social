@@ -46,29 +46,21 @@ class FavorAction extends FormAction
 {
     protected $needPost = true;
 
-    protected $object = null;
-
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $this->target = Notice::getKV($this->trimmed('notice'));
         if (!$this->target instanceof Notice) {
             throw new ServerException(_m('No such notice.'));
         }
         if (!$this->target->inScope($this->scoped)) {
-            // TRANS: Client error displayed when trying to reply to a notice a the target has no access to.
+            // TRANS: Client error displayed when trying to interact with a notice a the target has no access to.
             // TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
-            throw new ClientException(sprintf(_m('%1$s has no right to reply to notice %2$d.'), $this->scoped->getNickname(), $this->target->id), 403);
+            throw new ClientException(sprintf(_m('%1$s has no right to interact with notice %2$d.'), $this->scoped->getNickname(), $this->target->getID()), 403);
         }
-
-        return true;
     }
 
-    protected function handlePost()
+    protected function doPost()
     {
-        parent::handlePost();
-
         if (Fave::existsForProfile($this->target, $this->scoped)) {
             // TRANS: Client error displayed when trying to mark a notice as favorite that already is a favorite.
             throw new AlreadyFulfilledException(_('You have already favorited this!'));
@@ -77,14 +69,13 @@ class FavorAction extends FormAction
         // throws exception on failure
         $stored = Fave::addNew($this->scoped, $this->target);
 
+        // TRANS: Message when a favor action has been taken for a notice.
         return _('Favorited the notice');
     }
 
     protected function showContent()
     {
-        if ($this->target instanceof Notice) {
-            $disfavor = new DisfavorForm($this, $this->target);
-            $disfavor->show();
-        }
+        $disfavor = new DisfavorForm($this, $this->target);
+        $disfavor->show();
     }
 }

@@ -118,7 +118,7 @@ class InviteAction extends Action
                         $this->already[] = $other;
                     } else {
                         try {
-                            Subscription::start($profile, $other);
+                            Subscription::ensureStart($profile, $other);
                             $this->subbed[] = $other;
                         } catch (Exception $e) {
                             // subscription failed, but keep working

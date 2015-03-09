@@ -12,14 +12,14 @@ class Oauth_application extends Managed_DataObject
     public $__table = 'oauth_application';               // table name
     public $id;                              // int(4)  primary_key not_null
     public $owner;                           // int(4)   not_null
-    public $consumer_key;                    // varchar(255)   not_null
-    public $name;                            // varchar(255)   not_null
-    public $description;                     // varchar(255)
-    public $icon;                            // varchar(255)   not_null
-    public $source_url;                      // varchar(255)
-    public $organization;                    // varchar(255)
-    public $homepage;                        // varchar(255)
-    public $callback_url;                    // varchar(255)   not_null
+    public $consumer_key;                    // varchar(191)   not_null   not 255 because utf8mb4 takes more space
+    public $name;                            // varchar(191)   not_null   not 255 because utf8mb4 takes more space
+    public $description;                     // varchar(191)              not 255 because utf8mb4 takes more space
+    public $icon;                            // varchar(191)              not_null   not 255 because utf8mb4 takes more space
+    public $source_url;                      // varchar(191)              not 255 because utf8mb4 takes more space
+    public $organization;                    // varchar(191)              not 255 because utf8mb4 takes more space
+    public $homepage;                        // varchar(191)              not 255 because utf8mb4 takes more space
+    public $callback_url;                    // varchar(191)   not_null   not 255 because utf8mb4 takes more space
     public $type;                            // tinyint(1)
     public $access_type;                     // tinyint(1)
     public $created;                         // datetime   not_null
@@ -43,12 +43,12 @@ class Oauth_application extends Managed_DataObject
     static function maxDesc()
     {
         // This used to default to textlimit or allow unlimited descriptions,
-        // but this isn't part of a notice and the field's limited to 255 chars
-        // in the DB, so those seem silly.
+        // but this isn't part of a notice and the field's limited to 191 chars
+        // in the DB, so those seem silly. (utf8mb4 takes up more space, so can't use 255)
         //
-        // Now just defaulting to 255 max unless a smaller application desclimit
+        // Now just defaulting to 191 max unless a smaller application desclimit
         // is actually set. Setting to 0 will use the maximum.
-        $max = 255;
+        $max = 191;
         $desclimit = intval(common_config('application', 'desclimit'));
         if ($desclimit > 0 && $desclimit < $max) {
             return $desclimit;
@@ -163,14 +163,14 @@ class Oauth_application extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
                 'owner' => array('type' => 'int', 'not null' => true, 'description' => 'owner of the application'),
-                'consumer_key' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'application consumer key'),
-                'name' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'name of the application'),
-                'description' => array('type' => 'varchar', 'length' => 255, 'description' => 'description of the application'),
-                'icon' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'application icon'),
-                'source_url' => array('type' => 'varchar', 'length' => 255, 'description' => 'application homepage - used for source link'),
-                'organization' => array('type' => 'varchar', 'length' => 255, 'description' => 'name of the organization running the application'),
-                'homepage' => array('type' => 'varchar', 'length' => 255, 'description' => 'homepage for the organization'),
-                'callback_url' => array('type' => 'varchar', 'length' => 255, 'description' => 'url to redirect to after authentication'),
+                'consumer_key' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'application consumer key'),
+                'name' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'name of the application'),
+                'description' => array('type' => 'varchar', 'length' => 191, 'description' => 'description of the application'),
+                'icon' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'application icon'),
+                'source_url' => array('type' => 'varchar', 'length' => 191, 'description' => 'application homepage - used for source link'),
+                'organization' => array('type' => 'varchar', 'length' => 191, 'description' => 'name of the organization running the application'),
+                'homepage' => array('type' => 'varchar', 'length' => 191, 'description' => 'homepage for the organization'),
+                'callback_url' => array('type' => 'varchar', 'length' => 191, 'description' => 'url to redirect to after authentication'),
                 'type' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'type of app, 1 = browser, 2 = desktop'),
                 'access_type' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'default access type, bit 1 = read, bit 2 = write'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),

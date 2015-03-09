@@ -72,7 +72,7 @@ class CancelrsvpAction extends Action
     {
         parent::prepare($argarray);
         if ($this->boolean('ajax')) {
-            StatusNet::setApi(true); // short error results!
+            GNUsocial::setApi(true); // short error results!
         }
 
         $rsvpId = $this->trimmed('rsvp');

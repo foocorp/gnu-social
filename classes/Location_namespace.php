@@ -32,7 +32,7 @@ class Location_namespace extends Managed_DataObject
 
     public $__table = 'location_namespace';              // table name
     public $id;                              // int(4)  primary_key not_null
-    public $description;                     // varchar(255)
+    public $description;                     // varchar(191)
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -44,7 +44,7 @@ class Location_namespace extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'int', 'not null' => true, 'description' => 'identity for this namespace'),
-                'description' => array('type' => 'varchar', 'length' => 255, 'description' => 'description of the namespace'),
+                'description' => array('type' => 'varchar', 'length' => 191, 'description' => 'description of the namespace'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),

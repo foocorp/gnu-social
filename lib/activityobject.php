@@ -512,11 +512,11 @@ class ActivityObject
 
             switch (self::canonicalType($object->type)) {
             case 'image':
-                $object->largerImage = $file->url;
+                $object->largerImage = $file->getUrl();
                 break;
             case 'video':
             case 'audio':
-                $object->stream = $file->url;
+                $object->stream = $file->getUrl();
                 break;
             }
 
@@ -861,7 +861,7 @@ class ActivityObject
                 if (is_string($this->thumbnail)) {
                     $object['image'] = array('url' => $this->thumbnail);
                 } else {
-                    $object['image'] = array('url' => $this->thumbnail->url);
+                    $object['image'] = array('url' => $this->thumbnail->getUrl());
                     if ($this->thumbnail->width) {
                         $object['image']['width'] = $this->thumbnail->width;
                     }

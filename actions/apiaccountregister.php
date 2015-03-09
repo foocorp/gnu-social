@@ -1,5 +1,4 @@
 <?php
-        
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
@@ -152,34 +151,29 @@ class ApiAccountRegisterAction extends ApiAction
             // TRANS: Form validation error displayed when trying to register with non-matching passwords.
 	        $this->clientError(_('Passwords do not match.'), 400);
         } else {
-	    
-	    	// annoy spammers
-	    	sleep(7);
-	    
-	    	if ($user = User::register(array('nickname' => $nickname,
-	                                                'password' => $password,
-	                                                'email' => $email,
-	                                                'fullname' => $fullname,
-	                                                'homepage' => $homepage,
-	                                                'bio' => $bio,
-	                                                'location' => $location,
-	                                                'code' => $this->code))) {
-	            if (!$user instanceof User) {
-	                // TRANS: Form validation error displayed when trying to register with an invalid username or password.
-	                $this->clientError(_('Invalid username or password.'), 400);
-	            }
 
-	            Event::handle('EndRegistrationTry', array($this));
+            // annoy spammers
+            sleep(7);
 
-	            $this->initDocument('json');
-	            $this->showJsonObjects($this->twitterUserArray($user->getProfile()));
-	            $this->endDocument('json');
+            try {
+                $user = User::register(array('nickname' => $nickname,
+                                                    'password' => $password,
+                                                    'email' => $email,
+                                                    'fullname' => $fullname,
+                                                    'homepage' => $homepage,
+                                                    'bio' => $bio,
+                                                    'location' => $location,
+                                                    'code' => $this->code));
+                Event::handle('EndRegistrationTry', array($this));
 
-	        } else {
-	            // TRANS: Form validation error displayed when trying to register with an invalid username or password.
-	        	$this->clientError(_('Invalid username or password.'), 400);
-        	}	            
-        } 
+                $this->initDocument('json');
+                $this->showJsonObjects($this->twitterUserArray($user->getProfile()));
+                $this->endDocument('json');
+
+            } catch (Exception $e) {
+                $this->clientError($e->getMessage(), 400);
+            }
+        }
     }
 
     /**

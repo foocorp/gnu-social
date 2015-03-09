@@ -39,7 +39,7 @@
 
 /*! @page authentication Authentication
 
-    StatusNet supports HTTP Basic Authentication and OAuth for API calls.
+    GNU social supports HTTP Basic Authentication and OAuth for API calls.
 
     @warning Currently, users who have created accounts without setting a
     password via OpenID, Facebook Connect, etc., cannot use the API until

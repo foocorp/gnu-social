@@ -95,7 +95,7 @@ if (have_option('u', 'universe')) {
             while ($sn->fetch()) {
                 try {
                     $server = $sn->getServerName();
-                    StatusNet::init($server);
+                    GNUsocial::init($server);
                     // Different queue manager, maybe!
                     $qm = QueueManager::get();
                     foreach ($reminders as $reminder) {
