@@ -284,13 +284,14 @@ class FavoritePlugin extends ActivityHandlerPlugin
         $fave->free();
     }
 
-    public function onUserDeleteRelated(User $user, array &$related)
+    public function onProfileDeleteRelated(Profile $profile, array &$related)
     {
         $fave = new Fave();
-        $fave->user_id = $user->id;
+        $fave->user_id = $profile->id;
         $fave->delete();    // Will perform a DELETE matching "user_id = {$user->id}"
+        $fave->free();
 
-        Fave::blowCacheForProfileId($user->id);
+        Fave::blowCacheForProfileId($profile->id);
         return true;
     }
 
