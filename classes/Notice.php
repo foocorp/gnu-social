@@ -313,6 +313,16 @@ class Notice extends Managed_DataObject
         return $notice;
     }
 
+    public static function getById($id)
+    {
+        $notice = new Notice();
+        $notice->id = $id;
+        if (!$notice->find(true)) {
+            throw new NoResultException($notice);
+        }
+        return $notice;
+    }
+
     /**
      * Extract #hashtags from this notice's content and save them to the database.
      */
