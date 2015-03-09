@@ -138,28 +138,28 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
         // Favorites for API
         $m->connect('api/favorites/create.:format',
-                    array('action' => 'ApiFavoriteCreate',
-                          'format' => '(xml|json)'));
+                    array('action' => 'ApiFavoriteCreate'),
+                    array('format' => '(xml|json)'));
         $m->connect('api/favorites/destroy.:format',
-                    array('action' => 'ApiFavoriteDestroy',
-                          'format' => '(xml|json)'));
+                    array('action' => 'ApiFavoriteDestroy'),
+                    array('format' => '(xml|json)'));
         $m->connect('api/favorites/list.:format',
-                    array('action' => 'ApiTimelineFavorites',
-                          'format' => '(xml|json|rss|atom|as)'));
+                    array('action' => 'ApiTimelineFavorites'),
+                    array('format' => '(xml|json|rss|atom|as)'));
         $m->connect('api/favorites/:id.:format',
-                    array('action' => 'ApiTimelineFavorites',
-                          'id' => Nickname::INPUT_FMT,
+                    array('action' => 'ApiTimelineFavorites'),
+                    array('id' => Nickname::INPUT_FMT,
                           'format' => '(xml|json|rss|atom|as)'));
         $m->connect('api/favorites.:format',
-                    array('action' => 'ApiTimelineFavorites',
-                          'format' => '(xml|json|rss|atom|as)'));
+                    array('action' => 'ApiTimelineFavorites'),
+                    array('format' => '(xml|json|rss|atom|as)'));
         $m->connect('api/favorites/create/:id.:format',
-                    array('action' => 'ApiFavoriteCreate',
-                          'id' => '[0-9]+',
+                    array('action' => 'ApiFavoriteCreate'),
+                    array('id' => '[0-9]+',
                           'format' => '(xml|json)'));
         $m->connect('api/favorites/destroy/:id.:format',
-                    array('action' => 'ApiFavoriteDestroy',
-                          'id' => '[0-9]+',
+                    array('action' => 'ApiFavoriteDestroy'),
+                    array('id' => '[0-9]+',
                           'format' => '(xml|json)'));
 
         // AtomPub API
@@ -174,8 +174,8 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
         // Required for qvitter API
         $m->connect('api/statuses/favs/:id.:format',
-                    array('action' => 'ApiStatusesFavs',
-                          'id' => '[0-9]+',
+                    array('action' => 'ApiStatusesFavs'),
+                    array('id' => '[0-9]+',
                           'format' => '(xml|json)'));
     }
 
