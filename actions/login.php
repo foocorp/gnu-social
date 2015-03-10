@@ -172,7 +172,7 @@ class LoginAction extends FormAction
      *
      * @return void
      */
-    function getInstructions()
+    protected function getInstructions()
     {
         if (common_logged_in() && !common_is_real_login() &&
             common_get_returnto()) {

@@ -66,7 +66,7 @@ class NewApplicationAction extends FormAction
         return new ApplicationEditForm($this);
     }
 
-    public function getInstructions()
+    protected function getInstructions()
     {
         // TRANS: Form instructions for registering a new application.
         return _('Use this form to register a new application.');

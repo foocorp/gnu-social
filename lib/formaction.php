@@ -92,7 +92,7 @@ class FormAction extends ManagedAction
     /**
      * @return string with instructions to pass into common_markup_to_html()
      */
-    public function getInstructions()
+    protected function getInstructions()
     {
         return null;
     }
