@@ -374,7 +374,7 @@ class AvatarsettingsAction extends SettingsAction
         $user = common_current_user();
         $profile = $user->getProfile();
 
-        $imagefile = new ImageFile($user->id, $filedata['filepath']);
+        $imagefile = new ImageFile(null, $filedata['filepath']);
         $filename = $imagefile->resize($size, $dest_x, $dest_y, $dest_w, $dest_h);
 
         if ($profile->setOriginal($filename)) {

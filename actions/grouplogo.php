@@ -393,7 +393,7 @@ class GrouplogoAction extends GroupAction
         $size = min($dest_w, $dest_h);
         $size = ($size > MAX_ORIGINAL) ? MAX_ORIGINAL:$size;
 
-        $imagefile = new ImageFile($this->group->id, $filedata['filepath']);
+        $imagefile = new ImageFile(null, $filedata['filepath']);
         $filename = $imagefile->resize($size, $dest_x, $dest_y, $dest_w, $dest_h);
 
         if ($this->group->setOriginal($filename)) {

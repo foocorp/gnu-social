@@ -436,7 +436,7 @@ class FacebookfinishloginAction extends Action
                 } else {
                     // save it as an avatar
 
-                    $file = new ImageFile($user->id, Avatar::path($tmpname));
+                    $file = new ImageFile(null, Avatar::path($tmpname));
                     $filename = $file->resize(180); // size of the biggest img we get from Facebook
 
                     $profile   = $user->getProfile();

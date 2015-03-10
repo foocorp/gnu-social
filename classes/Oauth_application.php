@@ -80,7 +80,7 @@ class Oauth_application extends Managed_DataObject
 
     function setOriginal($filename)
     {
-        $imagefile = new ImageFile($this->id, Avatar::path($filename));
+        $imagefile = new ImageFile(null, Avatar::path($filename));
 
         // XXX: Do we want to have a bunch of different size icons? homepage, stream, mini?
         // or just one and control size via CSS? --Zach

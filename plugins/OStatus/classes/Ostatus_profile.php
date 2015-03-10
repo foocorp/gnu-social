@@ -1268,8 +1268,7 @@ class Ostatus_profile extends Managed_DataObject
             } else {
                 $id = $this->profile_id;
             }
-            // @todo FIXME: Should we be using different ids?
-            $imagefile = new ImageFile($id, $temp_filename);
+            $imagefile = new ImageFile(null, $temp_filename);
             $filename = Avatar::filename($id,
                                          image_type_to_extension($imagefile->type),
                                          null,

@@ -312,7 +312,7 @@ class User_group extends Managed_DataObject
 
     function setOriginal($filename)
     {
-        $imagefile = new ImageFile($this->id, Avatar::path($filename));
+        $imagefile = new ImageFile(null, Avatar::path($filename));
 
         $orig = clone($this);
         $this->original_logo = Avatar::url($filename);
