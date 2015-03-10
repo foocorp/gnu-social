@@ -23,7 +23,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @package     Activity
  * @maintainer  Mikael Nordfeldth <mmn@hethane.se>
  */
-class FavoritePlugin extends ActivityHandlerPlugin
+class FavoritePlugin extends ActivityVerbHandlerPlugin
 {
     protected $email_notify_fave = 1;
 
@@ -39,9 +39,10 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
     public function verbs()
     {
-        return array(ActivityVerb::FAVORITE);
+        return array(ActivityVerb::FAVORITE, ActivityVerb::LIKE,
+                    ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE);
     }
-    
+
     public function onCheckSchema()
     {
         $schema = Schema::get();
@@ -78,14 +79,14 @@ class FavoritePlugin extends ActivityHandlerPlugin
             printfnq("DONE.\n");
         }
     }
-    
+
     public function onEndUpgrade()
     {
         printfnq("Ensuring all faves have a URI...");
-    
+
         $fave = new Fave();
         $fave->whereAdd('uri IS NULL');
-    
+
         if ($fave->find()) {
             while ($fave->fetch()) {
                 try {
@@ -104,7 +105,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
                 }
             }
         }
-    
+
         printfnq("DONE.\n");
     }
 
@@ -180,7 +181,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
     }
 
     // FIXME: Set this to abstract public in lib/activityhandlerplugin.php ddwhen all plugins have migrated!
-    protected function saveObjectFromActivity(Activity $act, Notice $stored, array $options=array())  
+    protected function saveObjectFromActivity(Activity $act, Notice $stored, array $options=array())
     {
         assert($this->isMyActivity($act));
 
@@ -263,7 +264,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
         }
         return true;
     }
-    
+
     public function onNoticeDeleteRelated(Notice $notice)
     {
         parent::onNoticeDeleteRelated($notice);
@@ -501,6 +502,62 @@ class FavoritePlugin extends ActivityHandlerPlugin
             $section = new PopularNoticeSection($action, $action->getScoped());
             $section->show();
         }
+    }
+
+    protected function getActionTitle(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        return Fave::existsForProfile($target, $scoped)
+                // TRANS: Page/dialog box title when a notice is marked as favorite already
+                ? _m('TITLE', 'Unmark notice as favorite')
+                // TRANS: Page/dialog box title when a notice is not marked as favorite
+                : _m('TITLE', 'Mark notice as favorite');
+    }
+
+    protected function doActionPreparation(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        if ($action->isPost()) {
+            // The below tests are only for presenting to the user. POSTs which inflict
+            // duplicate favorite entries are handled with AlreadyFulfilledException. 
+            return false;
+        }
+
+        $exists = Fave::existsForProfile($target, $scoped);
+        $expected_verb = $exists ? ActivityVerb::UNFAVORITE : ActivityVerb::FAVORITE;
+
+        switch (true) {
+        case $exists && ActivityUtils::compareTypes($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
+        case !$exists && ActivityUtils::compareTypes($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
+            common_redirect(common_local_url('activityverb',
+                                array('id'   => $target->getID(),
+                                      'verb' => ActivityUtils::resolveUri($expected_verb, true))));
+            break;
+        default:
+            // No need to redirect as we are on the correct action already.
+        }
+
+        return false;
+    }
+
+    protected function doActionPost(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        switch (true) {
+        case ActivityUtils::compareTypes($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
+            Fave::addNew($scoped, $target);
+            break;
+        case ActivityUtils::compareTypes($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
+            Fave::removeEntry($scoped, $target);
+            break;
+        default:
+            throw new ServerException('ActivityVerb POST not handled by plugin that was supposed to do it.');
+        }
+        return false;
+    }
+
+    protected function getActivityForm(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        return Fave::existsForProfile($target, $scoped)
+                ? new DisfavorForm($action, $target)
+                : new FavorForm($action, $target);
     }
 
     public function onPluginVersion(array &$versions)

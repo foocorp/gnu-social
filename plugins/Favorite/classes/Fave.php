@@ -79,6 +79,27 @@ class Fave extends Managed_DataObject
         return $stored;
     }
 
+    public function removeEntry(Profile $actor, Notice $target)
+    {
+        $fave            = new Fave();
+        $fave->user_id   = $actor->getID();
+        $fave->notice_id = $target->getID();
+        if (!$fave->find(true)) {
+            // TRANS: Client error displayed when trying to remove a 'favor' when there is none in the first place.
+            throw new AlreadyFulfilledException(_('This is already not favorited.'));
+        }
+
+        $result = $fave->delete();
+        if ($result === false) {
+            common_log_db_error($fave, 'DELETE', __FILE__);
+            // TRANS: Server error displayed when removing a favorite from the database fails.
+            throw new ServerException(_('Could not delete favorite.'));
+        }
+
+        Fave::blowCacheForProfileId($actor->getID());
+        Fave::blowCacheForNoticeId($target->getID());
+    }
+
     // exception throwing takeover!
     public function insert()
     {

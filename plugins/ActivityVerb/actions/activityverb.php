@@ -35,8 +35,15 @@ class ActivityverbAction extends ManagedAction
     protected $canPost   = true;
 
     protected $verb      = null;
-    
-    protected function doPreparation($args)
+
+    public function title()
+    {
+        $title = null;
+        Event::handle('ActivityVerbTitle', array($this, $this->verb, $this->notice, $this->scoped, &$title));
+        return $title;
+    }
+
+    protected function doPreparation()
     {
         $this->verb = $this->trimmed('verb');
         if (empty($this->verb)) {
@@ -50,13 +57,15 @@ class ActivityverbAction extends ManagedAction
             throw new ClientException(sprintf(_('%1$s has no access to notice %2$d.'),
                                         $this->scoped->getNickname(), $this->notice->getID()), 403);
         }
+
+        Event::handle('ActivityVerbDoPreparation', array($this, $this->verb, $this->notice, $this->scoped));
     }
 
     protected function doPost()
     {
         if (Event::handle('ActivityVerbDoPost', array($this, $this->verb, $this->notice, $this->scoped))) {
             // TRANS: Error when a POST method for an activity verb has not been handled by a plugin.
-            throw new ClientException(_('Could not show content for verb "%1$s".'));
+            throw new ClientException(sprintf(_('Could not handle POST for verb "%1$s".'), $this->verb));
         }
     }
 
@@ -64,7 +73,7 @@ class ActivityverbAction extends ManagedAction
     {
         if (Event::handle('ActivityVerbShowContent', array($this, $this->verb, $this->notice, $this->scoped))) {
             // TRANS: Error when a page for an activity verb has not been handled by a plugin.
-            throw new ClientException(_('Could not show content for verb "%1$s".'));
+            $this->element('div', 'error', sprintf(_('Could not show content for verb "%1$s".'), $this->verb));
         }
     }
 }

@@ -31,6 +31,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class ActivityVerbPlugin extends Plugin
 {
+
     public function onRouterInitialized(URLMapper $m)
     {
         $m->connect('notice/:id/:verb',

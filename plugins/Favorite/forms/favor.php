@@ -81,7 +81,9 @@ class FavorForm extends Form
      */
     function action()
     {
-        return common_local_url('favor');
+        return common_local_url('activityverb',
+                                array('id'   => $this->notice->getID(),
+                                      'verb' => ActivityUtils::resolveUri(ActivityVerb::FAVORITE, true)));
     }
 
     /**
