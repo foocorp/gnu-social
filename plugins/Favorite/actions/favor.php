@@ -61,12 +61,7 @@ class FavorAction extends FormAction
 
     protected function doPost()
     {
-        if (Fave::existsForProfile($this->target, $this->scoped)) {
-            // TRANS: Client error displayed when trying to mark a notice as favorite that already is a favorite.
-            throw new AlreadyFulfilledException(_('You have already favorited this!'));
-        }
-
-        // throws exception on failure
+        // throws exception on failure, might be an AlreadyFulfilledException
         $stored = Fave::addNew($this->scoped, $this->target);
 
         // TRANS: Message when a favor action has been taken for a notice.

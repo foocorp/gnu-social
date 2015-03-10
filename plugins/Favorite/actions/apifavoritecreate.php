@@ -89,19 +89,12 @@ class ApiFavoriteCreateAction extends ApiAuthAction
             );
         }
 
-        // Note: Twitter lets you fave things repeatedly via API.
-
-        if (Fave::existsForProfile($this->notice, $this->scoped)) {
-            $this->clientError(
-                // TRANS: Client error displayed when trying to mark a notice favourite that already is a favourite.
-                _('This status is already a favorite.'),
-                403,
-                $this->format
-            );
+        try {
+            $stored = Fave::addNew($this->scoped, $this->notice);
+        } catch (AlreadyFulfilledException $e) {
+            // Note: Twitter lets you fave things repeatedly via API.
+            $this->clientError($e->getMessage(), 403);
         }
-
-        // throws exception on failure
-        $stored = Fave::addNew($this->scoped, $this->notice);
 
         if ($this->format == 'xml') {
             $this->showSingleXmlStatus($this->notice);

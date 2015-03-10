@@ -48,6 +48,11 @@ class Fave extends Managed_DataObject
      * @throws Exception on failure
      */
     static function addNew(Profile $actor, Notice $target) {
+        if (self::existsForProfile($target, $actor)) {
+            // TRANS: Client error displayed when trying to mark a notice as favorite that already is a favorite.
+            throw new AlreadyFulfilledException(_('You have already favorited this!'));
+        }
+
         $act = new Activity();
         $act->type    = ActivityObject::ACTIVITY;
         $act->verb    = ActivityVerb::FAVORITE;
