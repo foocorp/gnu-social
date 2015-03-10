@@ -244,7 +244,7 @@ class Avatar extends Managed_DataObject
 
         $original = Avatar::getUploaded($target);
 
-        $imagefile = new ImageFile($target->id, Avatar::path($original->filename));
+        $imagefile = new ImageFile(null, Avatar::path($original->filename));
         $filename = $imagefile->resize($width);
 
         $scaled = clone($original);
