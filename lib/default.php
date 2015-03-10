@@ -298,6 +298,7 @@ $default =
         array('disabled' => true),
         'plugins' =>
         array('core' => array(
+                            'ActivityVerb' => array(),
                             'AuthCrypt' => array(),
                             'Cronish' => array(),
                             'Favorite' => array(),
