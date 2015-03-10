@@ -31,10 +31,10 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class DefaultLayoutPlugin extends Plugin
 {
-    public $replyforms = false;
+    public $prerender_replyforms = false;
 
     public function onEndShowThreadedNoticeTail(NoticeListItem $nli, Notice $notice, array $notices) {
-        if ($this->replyforms) {
+        if ($this->prerender_replyforms) {
             $nli->out->elementStart('li', array('class'=>'notice-reply', 'style'=>'display: none;'));
             $replyForm = new NoticeForm($nli->out, array('inreplyto' => $notice->getID()));
             $replyForm->show();
