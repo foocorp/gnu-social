@@ -57,6 +57,9 @@ var SN = { // StatusNet
         }
     },
 
+    V: {    // Variables
+    },
+
     /**
      * Map of localized message strings exported to script from the PHP
      * side via Action::getScriptMessages().
@@ -214,6 +217,18 @@ var SN = { // StatusNet
                 return url.replace(/^http:\/\/[^:\/]+/, 'https://' + document.location.host);
             }
             return url;
+        },
+
+        FormNoticeUniqueID: function (form) {
+            var oldId = form.attr('id');
+            var newId = 'form_notice_' + Math.floor(Math.random()*999999999);
+            var attrs = ['name', 'for', 'id'];
+            for (var key in attrs) {
+                form.find("[" + attrs[key] + "~='" + oldId + "']").each(function () {
+                        var newAttr = $(this).attr(attrs[key]).replace(oldId, newId);
+                        $(this).attr(attrs[key], newAttr);
+                    });
+            }
         },
 
         /**
@@ -699,27 +714,38 @@ var SN = { // StatusNet
             var replyItem = $('li.notice-reply', list);
             if (replyItem.length == 0) {
                 replyItem = $('<li class="notice-reply"></li>');
-
-                // Fetch a fresh copy of the notice form over AJAX.
-                var url = $('#input_form_status > form').attr('action');
-                $.ajax({
-                    url: url,
-                    data: {ajax: 1, inreplyto: id},
-                    success: function (data, textStatus, xhr) {
-                        var formEl = document._importNode($('form', data)[0], true);
-                        replyForm = $(formEl);
-                        replyItem.append(replyForm);
-                        list.append(replyItem);
-
-                        SN.Init.NoticeFormSetup(replyForm);
-                        nextStep();
-                    },
-                });
-            } else {
-                replyForm = replyItem.children('form');
-                SN.Init.NoticeFormSetup(replyForm);
-                nextStep();
             }
+            replyForm = replyItem.children('form');
+            if (replyForm.length == 0) {
+                // Let's try another trick to avoid fetching by URL
+                var noticeForm = $('#input_form_status > form');
+                if (noticeForm.length == 0) {
+                    // No notice form found on the page, so let's just
+                    // fetch a fresh copy of the notice form over AJAX.
+                    $.ajax({
+                        url: SN.V.urlNewNotice,
+                        data: {ajax: 1, inreplyto: id},
+                        success: function (data, textStatus, xhr) {
+                            var formEl = document._importNode($('form', data)[0], true);
+                            replyForm = $(formEl);
+                            replyItem.append(replyForm);
+                            list.append(replyItem);
+
+                            SN.Init.NoticeFormSetup(replyForm);
+                            nextStep();
+                        },
+                    });
+                    // We do everything relevant in 'success' above
+                    return;
+                }
+                replyForm = noticeForm.clone();
+                SN.Init.NoticeFormSetup(replyForm);
+                replyItem.append(replyForm);
+                list.append(replyItem);
+            }
+            // replyForm is set, we're not fetching by URL...
+            // Next setp is to configure in-reply-to etc.
+            nextStep();
         },
 
         /**
@@ -1466,6 +1492,7 @@ var SN = { // StatusNet
                 return false;
             }
             SN.U.NoticeLocationAttach(form);
+            SN.U.FormNoticeUniqueID(form);
             SN.U.FormNoticeXHR(form);
             SN.U.FormNoticeEnhancements(form);
             SN.U.NoticeDataAttach(form);

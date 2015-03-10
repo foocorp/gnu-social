@@ -431,6 +431,7 @@ class Action extends HTMLOutputter // lawsuit
                 $this->inlineScript('var _peopletagAC = "' .
                                     common_local_url('peopletagautocomplete') . '";');
                 $this->showScriptMessages();
+                $this->showScriptVariables();
                 // Anti-framing code to avoid clickjacking attacks in older browsers.
                 // This will show a blank page if the page is being framed, which is
                 // consistent with the behavior of the 'X-Frame-Options: SAMEORIGIN'
@@ -471,6 +472,19 @@ class Action extends HTMLOutputter // lawsuit
         }
 
         return $messages;
+    }
+
+    protected function showScriptVariables()
+    {
+        $vars = array();
+
+        if (Event::handle('StartScriptVariables', array($this, &$vars))) {
+            $vars['urlNewNotice'] = common_local_url('newnotice');
+        }
+        if (!empty($vars)) {
+            $this->inlineScript('SN.V = ' . json_encode($vars));
+        }
+        return $vars;
     }
 
     /**
