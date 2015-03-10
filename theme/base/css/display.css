@@ -630,7 +630,7 @@ address .poweredby {
     line-height: 1.36em;
 }
 
-.notice, .profile, .application, #content .peopletag {
+.application, #content .peopletag {
     position:relative;
     clear:both;
     float:left;
