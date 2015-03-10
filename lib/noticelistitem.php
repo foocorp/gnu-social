@@ -63,6 +63,7 @@ class NoticeListItem extends Widget
     protected $id_prefix = null;
     protected $options = true;
     protected $maxchars = 0;   // if <= 0 it means use full posts
+    protected $item_tag = 'li';
 
     /**
      * constructor
@@ -101,7 +102,7 @@ class NoticeListItem extends Widget
             }
         }
         // string preferences
-        foreach(array('id_prefix') as $key) {
+        foreach(array('id_prefix', 'item_tag') as $key) {
             if (array_key_exists($key, $prefs)) {
                 $this->$key = $prefs[$key];
             }
@@ -219,7 +220,7 @@ class NoticeListItem extends Widget
                 $class .= ' notice-source-'.$this->notice->source;
             }
             $id_prefix = (strlen($this->id_prefix) ? $this->id_prefix . '-' : '');
-            $this->out->elementStart('li', array('class' => $class,
+            $this->out->elementStart($this->item_tag, array('class' => $class,
                                                  'id' => "${id_prefix}notice-${id}"));
             Event::handle('EndOpenNoticeListItemElement', array($this));
         }
