@@ -160,7 +160,7 @@ class Profile extends Managed_DataObject
             return $this->getGroup()->setOriginal($filename);
         }
 
-        $imagefile = new ImageFile($this->id, Avatar::path($filename));
+        $imagefile = new ImageFile(null, Avatar::path($filename));
 
         $avatar = new Avatar();
         $avatar->profile_id = $this->id;
