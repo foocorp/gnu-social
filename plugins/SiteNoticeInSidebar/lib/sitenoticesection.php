@@ -60,6 +60,11 @@ class SiteNoticeSection extends Section
         return _('Site notice');
     }
 
+    function divId()
+    {
+        return 'site_notice';
+    }
+
     function showContent()
     {
         $this->out->raw($this->text);
