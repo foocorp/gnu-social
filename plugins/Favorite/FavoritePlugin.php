@@ -361,7 +361,7 @@ class FavoritePlugin extends ActivityVerbHandlerPlugin
         return true;
     }
 
-    public function onStartShowThreadedNoticeTailItems(NoticeListItem $nli, Notice $notice, &$threadActive)
+    public function onEndShowThreadedNoticeTailItems(NoticeListItem $nli, Notice $notice, &$threadActive)
     {
         if ($nli instanceof ThreadedNoticeListSubItem) {
             // The sub-items are replies to a conversation, thus we use different HTML elements etc.

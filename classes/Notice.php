@@ -2901,31 +2901,4 @@ class Notice extends Managed_DataObject
             $notice->_setReplies($ids);
         }
     }
-
-    protected $_repeats = array();
-
-    function getRepeats()
-    {
-        if (isset($this->_repeats[$this->id])) {
-            return $this->_repeats[$this->id];
-        }
-        $repeatMap = Notice::listGet('repeat_of', array($this->id));
-        $this->_repeats[$this->id] = $repeatMap[$this->id];
-        return $this->_repeats[$this->id];
-    }
-
-    function _setRepeats($repeats)
-    {
-        $this->_repeats[$this->id] = $repeats;
-    }
-
-    static function fillRepeats(&$notices)
-    {
-        $ids = self::_idsOf($notices);
-        $repeatMap = Notice::listGet('repeat_of', $ids);
-        foreach ($notices as $notice) {
-        	$repeats = $repeatMap[$notice->id];
-            $notice->_setRepeats($repeats);
-        }
-    }
 }

@@ -174,7 +174,19 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         return true;
     }
 
-    // API stuff
+    // Layout stuff
+
+    public function onEndShowThreadedNoticeTailItems(NoticeListItem $nli, Notice $notice, &$threadActive)
+    {
+        if ($nli instanceof ThreadedNoticeListSubItem) {
+            // The sub-items are replies to a conversation, thus we use different HTML elements etc.
+            $item = new ThreadedNoticeListInlineRepeatsItem($notice, $nli->out);
+        } else {
+            $item = new ThreadedNoticeListRepeatsItem($notice, $nli->out);
+        }
+        $threadActive = $item->show() || $threadActive;
+        return true;
+    }
 
     /**
      * show the "repeat" form in the notice options element

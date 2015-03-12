@@ -155,14 +155,8 @@ class NoticeList extends Widget
 
             // Prefill attachments
             Notice::fillAttachments($notices);
-            // Prefill repeat data
-            Notice::fillRepeats($notices);
             // Prefill the profiles
             $profiles = Notice::fillProfiles($notices);
-
-            if ($scoped instanceof Profile) {
-                Notice::pivotGet('repeat_of', $notice_ids, array('profile_id' => $scoped->id));
-            }
 
             Event::handle('EndNoticeListPrefill', array(&$notices, &$profiles, $notice_ids, $scoped));
         }
