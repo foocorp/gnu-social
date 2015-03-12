@@ -207,31 +207,6 @@ class ImageFile
     }
 
     /**
-     * Compat interface for old code generating avatar thumbnails...
-     * Saves the scaled file directly into the avatar area.
-     *
-     * @param int $size target width & height -- must be square
-     * @param int $x (default 0) upper-left corner to crop from
-     * @param int $y (default 0) upper-left corner to crop from
-     * @param int $w (default full) width of image area to crop
-     * @param int $h (default full) height of image area to crop
-     * @return string filename
-     */
-    function resize($size, $x = 0, $y = 0, $w = null, $h = null)
-    {
-        $targetType = $this->preferredType();
-        $outname = Avatar::filename($this->id,
-                                    image_type_to_extension($targetType),
-                                    $size,
-                                    common_timestamp());
-        $outpath = Avatar::path($outname);
-        $this->resizeTo($outpath, array('width'=>$size, 'height'=>$size,
-                                        'x'=>$x,        'y'=>$y,
-                                        'w'=>$w,        'h'=>$h));
-        return $outname;
-    }
-
-    /**
      * Copy the image file to the given destination.
      *
      * This function may modify the resulting file. Please use the

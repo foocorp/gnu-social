@@ -241,16 +241,21 @@ class Avatar extends Managed_DataObject
             // TRANS: An error message when avatar size is unreasonable
             throw new Exception(_m('Avatar size too large'));
         }
+        // So far we only have square avatars and I don't have time to
+        // rewrite support for non-square ones right now ;)
+        $height = $width;
 
         $original = Avatar::getUploaded($target);
 
         $imagefile = new ImageFile(null, Avatar::path($original->filename));
-        $filename = $imagefile->resize($width);
+        $filename = Avatar::filename($target->getID(), image_type_to_extension($imagefile->preferredType()),
+                                     $width, common_timestamp());
+        $imagefile->resizeTo(Avatar::path($filename), array('width'=>$width, 'height'=>$height));
 
         $scaled = clone($original);
         $scaled->original = false;
         $scaled->width = $width;
-        $scaled->height = $width;
+        $scaled->height = $height;
         $scaled->url = Avatar::url($filename);
         $scaled->filename = $filename;
         $scaled->created = common_sql_now();
