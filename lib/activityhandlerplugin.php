@@ -163,7 +163,8 @@ abstract class ActivityHandlerPlugin extends Plugin
     * @param Notice   $stored       The notice in our database for this certain object
     * @param array $options=array()
     *
-    * @return object    If the verb handling plugin creates an object, it can be returned here.
+    * @return object    If the verb handling plugin creates an object, it can be returned here (otherwise true)
+    * @throws exception On any error.
     */
     protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
     {
@@ -186,7 +187,7 @@ abstract class ActivityHandlerPlugin extends Plugin
             // of objects which are returned from saveObjectFromActivity.
             if ($object instanceof Managed_DataObject) {
                 // If the verb handling plugin figured out some more attention URIs, add them here to the
-                // original activity.
+                // original activity. This is only done if a separate object is actually needed to be saved.
                 $act->context->attention = array_merge($act->context->attention, $object->getAttentionArray());
             }
         } catch (Exception $e) {
