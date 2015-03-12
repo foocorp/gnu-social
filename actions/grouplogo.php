@@ -28,13 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-
-
-define('MAX_ORIGINAL', 480);
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Upload an avatar
@@ -390,13 +384,20 @@ class GrouplogoAction extends GroupAction
         $dest_y = $this->arg('avatar_crop_y') ? $this->arg('avatar_crop_y'):0;
         $dest_w = $this->arg('avatar_crop_w') ? $this->arg('avatar_crop_w'):$filedata['width'];
         $dest_h = $this->arg('avatar_crop_h') ? $this->arg('avatar_crop_h'):$filedata['height'];
-        $size = min($dest_w, $dest_h);
-        $size = ($size > MAX_ORIGINAL) ? MAX_ORIGINAL:$size;
+        $size = min($dest_w, $dest_h, common_config('avatar', 'maxsize'));
+        $box = array('width' => $size, 'height' => $size,
+                     'x' => $dest_x,   'y' => $dest_y,
+                     'w' => $dest_w,   'h' => $dest_h);
+
+        $profile = $this->group->getProfile();
 
         $imagefile = new ImageFile(null, $filedata['filepath']);
-        $filename = $imagefile->resize($size, $dest_x, $dest_y, $dest_w, $dest_h);
+        $filename = Avatar::filename($profile->getID(), image_type_to_extension($imagefile->preferredType()),
+                                     $size, common_timestamp());
 
-        if ($this->group->setOriginal($filename)) {
+        $imagefile->resizeTo(Avatar::path($filename), $box);
+
+        if ($profile->setOriginal($filename)) {
             @unlink($filedata['filepath']);
             unset($_SESSION['FILEDATA']);
             $this->mode = 'upload';

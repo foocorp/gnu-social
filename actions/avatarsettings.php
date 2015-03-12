@@ -28,13 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-
-
-define('MAX_ORIGINAL', 480);
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Upload an avatar
@@ -369,13 +363,27 @@ class AvatarsettingsAction extends SettingsAction
         $dest_y = $this->arg('avatar_crop_y') ? $this->arg('avatar_crop_y'):0;
         $dest_w = $this->arg('avatar_crop_w') ? $this->arg('avatar_crop_w'):$file_d;
         $dest_h = $this->arg('avatar_crop_h') ? $this->arg('avatar_crop_h'):$file_d;
-        $size = intval(min($dest_w, $dest_h, MAX_ORIGINAL));
+        $size = intval(min($dest_w, $dest_h, common_config('avatar', 'maxsize')));
+
+        $box = array('width' => $size, 'height' => $size,
+                     'x' => $dest_x,   'y' => $dest_y,
+                     'w' => $dest_w,   'h' => $dest_h);
 
         $user = common_current_user();
         $profile = $user->getProfile();
 
         $imagefile = new ImageFile(null, $filedata['filepath']);
-        $filename = $imagefile->resize($size, $dest_x, $dest_y, $dest_w, $dest_h);
+        $filename = Avatar::filename($profile->getID(), image_type_to_extension($imagefile->preferredType()),
+                                     $size, common_timestamp());
+        try {
+            $imagefile->resizeTo(Avatar::path($filename), $box);
+        } catch (UseFileAsThumbnailException $e) {
+            common_debug('Using uploaded avatar directly without resizing, copying it to: '.$filename);
+            if (!copy($filedata['filepath'], Avatar::path($filename))) {
+                common_debug('Tried to copy image file '.$filedata['filepath'].' to destination '.Avatar::path($filename));
+                throw new ServerException('Could not copy file to destination.');
+            }
+        }
 
         if ($profile->setOriginal($filename)) {
             @unlink($filedata['filepath']);

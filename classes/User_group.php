@@ -312,13 +312,21 @@ class User_group extends Managed_DataObject
 
     function setOriginal($filename)
     {
+        // This should be handled by the Profile->setOriginal function so user and group avatars are handled the same
         $imagefile = new ImageFile(null, Avatar::path($filename));
+
+        $sizes = array('homepage_logo' => AVATAR_PROFILE_SIZE,
+                       'stream_logo' => AVATAR_STREAM_SIZE,
+                       'mini_logo' => AVATAR_MINI_SIZE);
 
         $orig = clone($this);
         $this->original_logo = Avatar::url($filename);
-        $this->homepage_logo = Avatar::url($imagefile->resize(AVATAR_PROFILE_SIZE));
-        $this->stream_logo = Avatar::url($imagefile->resize(AVATAR_STREAM_SIZE));
-        $this->mini_logo = Avatar::url($imagefile->resize(AVATAR_MINI_SIZE));
+        foreach ($sizes as $name=>$size) {
+            $filename = Avatar::filename($this->profile_id, image_type_to_extension($imagefile->preferredType()),
+                                         $size, common_timestamp());
+            $imagefile->resizeTo(Avatar::path($filename), array('width'=>$size, 'height'=>$size));
+            $this->$name = Avatar::url($filename);
+        }
         common_debug(common_log_objstring($this));
         return $this->update($orig);
     }
