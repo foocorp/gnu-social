@@ -723,10 +723,8 @@ font-style:italic;
 .notice-options {
     margin-bottom: 7px;
     margin-top: 12px;
-}
-
-.notice-options {
     float: right;    
+    position: relative;
 }
 
 .notice-options fieldset {
@@ -1172,6 +1170,7 @@ cursor:pointer;
 
 .dialogbox {
 position:absolute;
+    width: 200px;
     top: 0px;
     right: 0px;
 z-index:9;
@@ -1210,6 +1209,11 @@ padding-left:4px;
 }
 .dialogbox fieldset {
 margin-bottom:0;
+}
+
+.notice-options .form_repeat.dialogbox input.submit_dialogbox {
+    float: right;
+    min-width: 80px;
 }
 
 #pagination {

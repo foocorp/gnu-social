@@ -441,10 +441,6 @@ abbr {border-bottom: none;}
     padding-top: 10px;
 }
 
-.notice-options .form_repeat.dialogbox input.submit_dialogbox {
-    min-width: 80px;
-}
-
 .user_in.realtime-popup .notice div.e-content {
     max-width: 320px;
 }
