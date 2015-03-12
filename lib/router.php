@@ -149,7 +149,6 @@ class Router
                           'sandbox', 'unsandbox',
                           'silence', 'unsilence',
                           'grantrole', 'revokerole',
-                          'repeat',
                           'deleteuser',
                           'geocode',
                           'version',
@@ -393,18 +392,6 @@ class Router
                         array('action' => 'ApiTimelineMentions',
                               'format' => '(xml|json|rss|atom|as)'));
 
-            $m->connect('api/statuses/retweeted_by_me.:format',
-                        array('action' => 'ApiTimelineRetweetedByMe',
-                              'format' => '(xml|json|atom|as)'));
-
-            $m->connect('api/statuses/retweeted_to_me.:format',
-                        array('action' => 'ApiTimelineRetweetedToMe',
-                              'format' => '(xml|json|atom|as)'));
-
-            $m->connect('api/statuses/retweets_of_me.:format',
-                        array('action' => 'ApiTimelineRetweetsOfMe',
-                              'format' => '(xml|json|atom|as)'));
-
             $m->connect('api/statuses/friends/:id.:format',
                         array('action' => 'ApiUserFriends',
                               'id' => Nickname::INPUT_FMT,
@@ -443,16 +430,6 @@ class Router
 
             $m->connect('api/statuses/destroy.:format',
                         array('action' => 'ApiStatusesDestroy',
-                              'format' => '(xml|json)'));
-
-            $m->connect('api/statuses/retweet/:id.:format',
-                        array('action' => 'ApiStatusesRetweet',
-                              'id' => '[0-9]+',
-                              'format' => '(xml|json)'));
-
-            $m->connect('api/statuses/retweets/:id.:format',
-                        array('action' => 'ApiStatusesRetweets',
-                              'id' => '[0-9]+',
                               'format' => '(xml|json)'));
 
             // START qvitter API additions

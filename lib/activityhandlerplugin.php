@@ -160,10 +160,10 @@ abstract class ActivityHandlerPlugin extends Plugin
     * @fixme are there any standard options?
     *
     * @param Activity $activity
-    * @param Profile $actor
+    * @param Notice   $stored       The notice in our database for this certain object
     * @param array $options=array()
     *
-    * @return Notice the resulting notice
+    * @return object    If the verb handling plugin creates an object, it can be returned here.
     */
     protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
     {
@@ -182,7 +182,13 @@ abstract class ActivityHandlerPlugin extends Plugin
         }
         $object = $this->saveObjectFromActivity($act, $stored, $options);
         try {
-            $act->context->attention = array_merge($act->context->attention, $object->getAttentionArray());
+            // In the future we probably want to use something like ActivityVerb_DataObject for the kind
+            // of objects which are returned from saveObjectFromActivity.
+            if ($object instanceof Managed_DataObject) {
+                // If the verb handling plugin figured out some more attention URIs, add them here to the
+                // original activity.
+                $act->context->attention = array_merge($act->context->attention, $object->getAttentionArray());
+            }
         } catch (Exception $e) {
             common_debug('WARNING: Could not get attention list from object '.get_class($object).'!');
         }
