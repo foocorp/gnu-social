@@ -180,7 +180,6 @@ class NoticeListItem extends Widget
             $this->showNoticeSource();
             $this->showNoticeLocation();
             $this->showPermalink();
-            $this->showRepeat();
             Event::handle('EndShowNoticeInfo', array($this));
         }
     }
@@ -524,32 +523,6 @@ class NoticeListItem extends Widget
                         _('permalink'));
         } catch (InvalidUrlException $e) {
             // no permalink available
-        }
-    }
-
-    /**
-     * show a link to the author of repeat
-     *
-     * @return void
-     */
-    function showRepeat()
-    {
-        if (!empty($this->repeat)) {
-
-            $repeater = Profile::getKV('id', $this->repeat->profile_id);
-
-            $attrs = array('href' => $repeater->profileurl,
-                           'class' => 'h-card p-author',
-                           'title' => $repeater->getFancyName());
-
-            $this->out->elementStart('span', 'repeat h-entry');
-
-            // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
-            $this->out->raw(_('Repeated by').' ');
-
-            $this->out->element('a', $attrs, $repeater->getNickname());
-
-            $this->out->elementEnd('span');
         }
     }
 

@@ -340,7 +340,6 @@ class QnAPlugin extends MicroAppPlugin
         $nli->showNoticeSource();
         $nli->showNoticeLocation();
         $nli->showPermalink();
-        $nli->showRepeat();
 
         $nli->showNoticeOptions();
 

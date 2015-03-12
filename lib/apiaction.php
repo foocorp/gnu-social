@@ -303,6 +303,7 @@ class ApiAction extends Action
     {
         $base = $this->twitterSimpleStatusArray($notice, $include_user);
 
+        // FIXME: MOVE TO SHARE PLUGIN
         if (!empty($notice->repeat_of)) {
             $original = Notice::getKV('id', $notice->repeat_of);
             if ($original instanceof Notice) {
@@ -372,12 +373,6 @@ class ApiAction extends Action
                                                                   (float) $notice->lon));
         } else {
             $twitter_status['geo'] = null;
-        }
-
-        if (!is_null($this->scoped)) {
-            $twitter_status['repeated']  = $this->scoped->hasRepeated($notice);
-        } else {
-            $twitter_status['repeated'] = false;
         }
 
         // Enclosures
@@ -646,6 +641,7 @@ class ApiAction extends Action
                 $this->showGeoXML($value);
                 break;
             case 'retweeted_status':
+                // FIXME: MOVE TO SHARE PLUGIN
                 $this->showTwitterXmlStatus($value, 'retweeted_status');
                 break;
             default:

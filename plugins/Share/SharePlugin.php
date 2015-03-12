@@ -190,6 +190,31 @@ class SharePlugin extends ActivityVerbHandlerPlugin
 
     // Layout stuff
 
+    /**
+     * show a link to the author of repeat
+     *
+     * FIXME: Some repeat stuff still in lib/noticelistitem.php! ($nli->repeat etc.)
+     */
+    public function onEndShowNoticeInfo(NoticeListItem $nli)
+    {
+        if (!empty($nli->repeat)) {
+            $repeater = $nli->repeat->getProfile();
+
+            $attrs = array('href' => $repeater->getUrl(),
+                           'class' => 'h-card p-author',
+                           'title' => $repeater->getFancyName());
+
+            $nli->out->elementStart('span', 'repeat h-entry');
+
+            // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
+            $nli->out->raw(_('Repeated by').' ');
+
+            $nli->out->element('a', $attrs, $repeater->getNickname());
+
+            $nli->out->elementEnd('span');
+        }
+    }
+
     public function onEndShowThreadedNoticeTailItems(NoticeListItem $nli, Notice $notice, &$threadActive)
     {
         if ($nli instanceof ThreadedNoticeListSubItem) {
@@ -243,6 +268,29 @@ class SharePlugin extends ActivityVerbHandlerPlugin
     {
         // pass
     }
+
+    // API stuff
+
+    /**
+     * Typically just used to fill out Twitter-compatible API status data.
+     *
+     * FIXME: Make all the calls before this end up with a Notice instead of ArrayWrapper please...
+     */
+    public function onNoticeSimpleStatusArray($notice, array &$status, Profile $scoped=null, array $args=array())
+    {
+        if ($scoped instanceof Profile) {
+            $status['repeated'] = $scoped->hasRepeated($notice);
+        } else {
+            $status['repeated'] = false;
+        }
+    }
+
+    public function onTwitterUserArray(Profile $profile, array &$userdata, Profile $scoped=null, array $args=array())
+    {
+        $userdata['favourites_count'] = Fave::countByProfile($profile);
+    }
+
+    // Command stuff
 
     /**
      * EndInterpretCommand for RepeatPlugin will handle the 'repeat' command
