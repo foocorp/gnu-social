@@ -177,79 +177,6 @@ class SharePlugin extends ActivityVerbHandlerPlugin
     // API stuff
 
     /**
-     * Typically just used to fill out Twitter-compatible API status data.
-     *
-     * FIXME: Make all the calls before this end up with a Notice instead of ArrayWrapper please...
-     */
-    public function onNoticeSimpleStatusArray($notice, array &$status, Profile $scoped=null, array $args=array())
-    {
-        if ($scoped instanceof Profile) {
-            $status['favorited'] = Fave::existsForProfile($notice, $scoped);
-        } else {
-            $status['favorited'] = false;
-        }
-        return true;
-    }
-
-    public function onTwitterUserArray(Profile $profile, array &$userdata, Profile $scoped=null, array $args=array())
-    {
-        $userdata['favourites_count'] = Fave::countByProfile($profile);
-    }
-
-    /**
-     * Typically just used to fill out StatusNet specific data in API calls in the referenced $info array.
-     */
-    public function onStatusNetApiNoticeInfo(Notice $notice, array &$info, Profile $scoped=null, array $args=array())
-    {
-        if ($scoped instanceof Profile) {
-            $info['favorite'] = Fave::existsForProfile($notice, $scoped) ? 'true' : 'false';
-        }
-        return true;
-    }
-
-    public function onNoticeDeleteRelated(Notice $notice)
-    {
-        parent::onNoticeDeleteRelated($notice);
-
-        // The below algorithm is because we want to delete fave
-        // activities on any notice which _has_ faves, and not as
-        // in the parent function only ones that _are_ faves.
-
-        $fave = new Fave();
-        $fave->notice_id = $notice->id;
-
-        if ($fave->find()) {
-            while ($fave->fetch()) {
-                $fave->delete();
-            }
-        }
-
-        $fave->free();
-    }
-
-    public function onProfileDeleteRelated(Profile $profile, array &$related)
-    {
-        $fave = new Fave();
-        $fave->user_id = $profile->id;
-        $fave->delete();    // Will perform a DELETE matching "user_id = {$user->id}"
-        $fave->free();
-
-        Fave::blowCacheForProfileId($profile->id);
-        return true;
-    }
-
-    public function onStartNoticeListPrefill(array &$notices, array $notice_ids, Profile $scoped=null)
-    {
-        // prefill array of objects, before pluginfication it was Notice::fillFaves($notices)
-        Fave::fillFaves($notice_ids);
-
-        // DB caching
-        if ($scoped instanceof Profile) {
-            Fave::pivotGet('notice_id', $notice_ids, array('user_id' => $scoped->id));
-        }
-    }
-
-    /**
      * show the "favorite" form in the notice options element
      * FIXME: Don't let a NoticeListItemAdapter slip in here (or extend that from NoticeListItem)
      *
@@ -289,52 +216,6 @@ class SharePlugin extends ActivityVerbHandlerPlugin
     public function closeNoticeListItemElement(NoticeListItem $nli)
     {
         // pass
-    }
-
-    public function onAppendUserActivityStreamObjects(UserActivityStream $uas, array &$objs)
-    {
-        $fave = new Fave();
-        $fave->user_id = $uas->getUser()->id;
-
-        if (!empty($uas->after)) {
-            $fave->whereAdd("modified > '" . common_sql_date($uas->after) . "'");
-        }
-
-        if ($fave->find()) {
-            while ($fave->fetch()) {
-                $objs[] = clone($fave);
-            }
-        }
-
-        return true;
-    }
-
-    public function onStartShowThreadedNoticeTailItems(NoticeListItem $nli, Notice $notice, &$threadActive)
-    {
-        if ($nli instanceof ThreadedNoticeListSubItem) {
-            // The sub-items are replies to a conversation, thus we use different HTML elements etc.
-            $item = new ThreadedNoticeListInlineFavesItem($notice, $nli->out);
-        } else {
-            $item = new ThreadedNoticeListFavesItem($notice, $nli->out);
-        }
-        $threadActive = $item->show() || $threadActive;
-        return true;
-    }
-
-    public function onEndFavorNotice(Profile $actor, Notice $target)
-    {
-        try {
-            $notice_author = $target->getProfile();
-            // Don't notify ourselves of our own favorite on our own notice,
-            // or if it's a remote user (since we don't know their email addresses etc.)
-            if ($notice_author->id == $actor->id || !$notice_author->isLocal()) {
-                return true;
-            }
-            $local_user = $notice_author->getUser();
-            mail_notify_fave($local_user, $actor, $target);
-        } catch (Exception $e) {
-            // Mm'kay, probably not a local user. Let's skip this favor notification.
-        }
     }
 
     /**
@@ -382,130 +263,24 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         $supported = $supported || $cmd instanceof RepeatCommand;
     }
 
-    // Form stuff (settings etc.)
-
-    public function onEndEmailFormData(Action $action, Profile $scoped)
-    {
-        $emailfave = $scoped->getConfigPref('email', 'notify_fave') ? 1 : 0;
-
-        $action->elementStart('li');
-        $action->checkbox('email-notify_fave',
-                        // TRANS: Checkbox label in e-mail preferences form.
-                        _('Send me email when someone adds my notice as a favorite.'),
-                        $emailfave);
-        $action->elementEnd('li');
-
-        return true;
-    }
-
-    public function onStartEmailSaveForm(Action $action, Profile $scoped)
-    {
-        $emailfave = $action->booleanintstring('email-notify_fave');
-        try {
-            if ($emailfave == $scoped->getPref('email', 'notify_fave')) {
-                // No need to update setting
-                return true;
-            }
-        } catch (NoResultException $e) {
-            // Apparently there's no previously stored setting, then continue to save it as it is now.
-        }
-
-        $scoped->setPref('email', 'notify_fave', $emailfave);
-
-        return true;
-    }
-
-    // Layout stuff
-
-    public function onEndPersonalGroupNav(Menu $menu, Profile $target, Profile $scoped=null)
-    {
-        $menu->out->menuItem(common_local_url('showfavorites', array('nickname' => $target->getNickname())),
-                             // TRANS: Menu item in personal group navigation menu.
-                             _m('MENU','Favorites'),
-                             // @todo i18n FIXME: Need to make this two messages.
-                             // TRANS: Menu item title in personal group navigation menu.
-                             // TRANS: %s is a username.
-                             sprintf(_('%s\'s favorite notices'), $target->getBestName()),
-                             $scoped instanceof Profile && $target->id === $scoped->id && $menu->actionName =='showfavorites',
-                            'nav_timeline_favorites');
-    }
-
-    public function onEndPublicGroupNav(Menu $menu)
-    {
-        if (!common_config('singleuser', 'enabled')) {
-            // TRANS: Menu item in search group navigation panel.
-            $menu->out->menuItem(common_local_url('favorited'), _m('MENU','Popular'),
-                                 // TRANS: Menu item title in search group navigation panel.
-                                 _('Popular notices'), $menu->actionName == 'favorited', 'nav_timeline_favorited');
-        }
-    }
-
-    public function onEndShowSections(Action $action)
-    {
-        if (!$action->isAction(array('all', 'public'))) {
-            return true;
-        }
-
-        if (!common_config('performance', 'high')) {
-            $section = new PopularNoticeSection($action, $action->getScoped());
-            $section->show();
-        }
-    }
-
     protected function getActionTitle(ManagedAction $action, $verb, Notice $target, Profile $scoped)
     {
-        return Fave::existsForProfile($target, $scoped)
-                // TRANS: Page/dialog box title when a notice is marked as favorite already
-                ? _m('TITLE', 'Unmark notice as favorite')
-                // TRANS: Page/dialog box title when a notice is not marked as favorite
-                : _m('TITLE', 'Mark notice as favorite');
+        // return page title
     }
 
     protected function doActionPreparation(ManagedAction $action, $verb, Notice $target, Profile $scoped)
     {
-        if ($action->isPost()) {
-            // The below tests are only for presenting to the user. POSTs which inflict
-            // duplicate favorite entries are handled with AlreadyFulfilledException. 
-            return false;
-        }
-
-        $exists = Fave::existsForProfile($target, $scoped);
-        $expected_verb = $exists ? ActivityVerb::UNFAVORITE : ActivityVerb::FAVORITE;
-
-        switch (true) {
-        case $exists && ActivityUtils::compareTypes($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
-        case !$exists && ActivityUtils::compareTypes($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
-            common_redirect(common_local_url('activityverb',
-                                array('id'   => $target->getID(),
-                                      'verb' => ActivityUtils::resolveUri($expected_verb, true))));
-            break;
-        default:
-            // No need to redirect as we are on the correct action already.
-        }
-
-        return false;
+        // prepare Action?
     }
 
     protected function doActionPost(ManagedAction $action, $verb, Notice $target, Profile $scoped)
     {
-        switch (true) {
-        case ActivityUtils::compareTypes($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
-            Fave::addNew($scoped, $target);
-            break;
-        case ActivityUtils::compareTypes($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
-            Fave::removeEntry($scoped, $target);
-            break;
-        default:
-            throw new ServerException('ActivityVerb POST not handled by plugin that was supposed to do it.');
-        }
-        return false;
+        // handle repeat POST
     }
 
     protected function getActivityForm(ManagedAction $action, $verb, Notice $target, Profile $scoped)
     {
-        return Fave::existsForProfile($target, $scoped)
-                ? new DisfavorForm($action, $target)
-                : new FavorForm($action, $target);
+        return new RepeatForm($action, $target);
     }
 
     public function onPluginVersion(array &$versions)
