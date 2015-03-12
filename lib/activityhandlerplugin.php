@@ -175,7 +175,7 @@ abstract class ActivityHandlerPlugin extends Plugin
      * This usually gets called from Notice::saveActivity after a Notice object has been created,
      * so it contains a proper id and a uri for the object to be saved.
      */
-    public function onStoreActivityObject(Activity $act, Notice $stored, array $options=array(), &$object) {
+    public function onStoreActivityObject(Activity $act, Notice $stored, array $options, &$object) {
         // $this->oldSaveNew is there during a migration period of plugins, to start using
         // Notice::saveActivity instead of Notice::saveNew
         if (!$this->isMyActivity($act) || isset($this->oldSaveNew)) {

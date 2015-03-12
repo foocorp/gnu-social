@@ -913,7 +913,7 @@ class Notice extends Managed_DataObject
                 $object = null;
                 Event::handle('StoreActivityObject', array($act, $stored, $options, &$object));
                 if (empty($object)) {
-                    throw new ServerException('No object from StoreActivityObject '.$stored->uri . ': '.$act->asString());
+                    throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->uri . ': '.$act->asString());
                 }
                 $stored->object_type = ActivityUtils::resolveUri($object->getObjectType(), true);
                 $stored->update($orig);
