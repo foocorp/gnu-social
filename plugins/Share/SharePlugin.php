@@ -122,6 +122,10 @@ class SharePlugin extends ActivityVerbHandlerPlugin
             return false;
         }
 
+        // Setting this here because when the algorithm gets back to
+        // Notice::saveActivity it will update the Notice object.
+        $stored->repeat_of = $sharedNotice->getID();
+
         // We don't have to save a repeat in a separate table, we can
         // find repeats by just looking at the notice.repeat_of field.
 
