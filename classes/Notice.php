@@ -902,6 +902,12 @@ class Notice extends Managed_DataObject
                 $stored->insert();    // throws exception on error
                 $orig = clone($stored); // for updating later in this try clause
 
+                $object = null;
+                Event::handle('StoreActivityObject', array($act, $stored, $options, &$object));
+                if (empty($object)) {
+                    throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->uri . ': '.$act->asString());
+                }
+
                 // If it's not part of a conversation, it's
                 // the beginning of a new conversation.
                 if (empty($stored->conversation)) {
@@ -910,12 +916,6 @@ class Notice extends Managed_DataObject
                     $stored->conversation = $conv->id;
                 }
 
-                $object = null;
-                Event::handle('StoreActivityObject', array($act, $stored, $options, &$object));
-                if (empty($object)) {
-                    throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->uri . ': '.$act->asString());
-                }
-                $stored->object_type = ActivityUtils::resolveUri($object->getObjectType(), true);
                 $stored->update($orig);
             } catch (Exception $e) {
                 if (empty($stored->id)) {

@@ -40,6 +40,14 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         return array(ActivityVerb::SHARE);
     }
 
+    // Share is a bit special and $act->objects[0] should be an Activity
+    // instead of ActivityObject! Therefore also $act->objects[0]->type is not set.
+    public function isMyActivity(Activity $act) {
+        return (count($act->objects) == 1
+            && ($act->objects[0] instanceof Activity)
+            && $this->isMyVerb($act->verb));
+    }
+
     public function onRouterInitialized(URLMapper $m)
     {
         // Web UI actions
@@ -125,6 +133,8 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         // Setting this here because when the algorithm gets back to
         // Notice::saveActivity it will update the Notice object.
         $stored->repeat_of = $sharedNotice->getID();
+        $stored->conversation = $sharedNotice->conversation;
+        $stored->object_type = ActivityUtils::resolveUri(ActivityObject::ACTIVITY, true);
 
         // We don't have to save a repeat in a separate table, we can
         // find repeats by just looking at the notice.repeat_of field.

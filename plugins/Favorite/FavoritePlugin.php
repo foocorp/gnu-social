@@ -194,6 +194,8 @@ class FavoritePlugin extends ActivityVerbHandlerPlugin
         $actobj = $act->objects[0];
 
         $object = Fave::saveActivityObject($actobj, $stored);
+        $stored->object_type = ActivityUtils::resolveUri($object->getObjectType(), true);
+
         return $object;
     }
 
