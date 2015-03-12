@@ -349,7 +349,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
      */
     public function onStartInterpretCommand($cmd, $arg, $user, &$result)
     {
-        if ($result === false && $cmd == 'fav') {
+        if ($result === false && in_array($cmd, array('repeat', 'rp', 'rt', 'rd'))) {
             if (empty($arg)) {
                 $result = null;
             } else {
@@ -357,7 +357,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
                 if (!empty($extra)) {
                     $result = null;
                 } else {
-                    $result = new FavCommand($user, $other);
+                    $result = new RepeatCommand($user, $other);
                 }
             }
             return false;
@@ -378,7 +378,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
      */
     public function onCommandSupportedAPI(Command $cmd, &$supported)
     {
-        $supported = $supported || $cmd instanceof FavCommand;
+        $supported = $supported || $cmd instanceof RepeatCommand;
     }
 
     // Form stuff (settings etc.)
@@ -509,80 +509,14 @@ class SharePlugin extends ActivityVerbHandlerPlugin
 
     public function onPluginVersion(array &$versions)
     {
-        $versions[] = array('name' => 'Favorite',
+        $versions[] = array('name' => 'Share verb',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Mikael Nordfeldth',
-                            'homepage' => 'http://gnu.io/',
+                            'homepage' => 'https://gnu.io/',
                             'rawdescription' =>
                             // TRANS: Plugin description.
-                            _m('Favorites (likes) using ActivityStreams.'));
+                            _m('Shares (repeats) using ActivityStreams.'));
 
         return true;
     }
-}
-
-/**
- * Notify a user that one of their notices has been chosen as a 'fave'
- *
- * @param User    $rcpt   The user whose notice was faved
- * @param Profile $sender The user who faved the notice
- * @param Notice  $notice The notice that was faved
- *
- * @return void
- */
-function mail_notify_fave(User $rcpt, Profile $sender, Notice $notice)
-{
-    if (!$rcpt->receivesEmailNotifications() || !$rcpt->getConfigPref('email', 'notify_fave')) {
-        return;
-    }
-
-    // This test is actually "if the sender is sandboxed"
-    if (!$sender->hasRight(Right::EMAILONFAVE)) {
-        return;
-    }
-
-    if ($rcpt->hasBlocked($sender)) {
-        // If the author has blocked us, don't spam them with a notification.
-        return;
-    }
-
-    // We need the global mail.php for various mail related functions below.
-    require_once INSTALLDIR.'/lib/mail.php';
-
-    $bestname = $sender->getBestName();
-
-    common_switch_locale($rcpt->language);
-
-    // TRANS: Subject for favorite notification e-mail.
-    // TRANS: %1$s is the adding user's long name, %2$s is the adding user's nickname.
-    $subject = sprintf(_('%1$s (@%2$s) added your notice as a favorite'), $bestname, $sender->getNickname());
-
-    // TRANS: Body for favorite notification e-mail.
-    // TRANS: %1$s is the adding user's long name, $2$s is the date the notice was created,
-    // TRANS: %3$s is a URL to the faved notice, %4$s is the faved notice text,
-    // TRANS: %5$s is a URL to all faves of the adding user, %6$s is the StatusNet sitename,
-    // TRANS: %7$s is the adding user's nickname.
-    $body = sprintf(_("%1\$s (@%7\$s) just added your notice from %2\$s".
-                      " as one of their favorites.\n\n" .
-                      "The URL of your notice is:\n\n" .
-                      "%3\$s\n\n" .
-                      "The text of your notice is:\n\n" .
-                      "%4\$s\n\n" .
-                      "You can see the list of %1\$s's favorites here:\n\n" .
-                      "%5\$s"),
-                    $bestname,
-                    common_exact_date($notice->created),
-                    common_local_url('shownotice',
-                                     array('notice' => $notice->id)),
-                    $notice->content,
-                    common_local_url('showfavorites',
-                                     array('nickname' => $sender->getNickname())),
-                    common_config('site', 'name'),
-                    $sender->getNickname()) .
-            mail_footer_block();
-
-    $headers = _mail_prepare_headers('fave', $rcpt->getNickname(), $sender->getNickname());
-
-    common_switch_locale();
-    mail_to_user($rcpt, $subject, $body, $headers);
 }

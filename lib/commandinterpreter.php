@@ -192,21 +192,6 @@ class CommandInterpreter
                     $result = new ReplyCommand($user, $other, $extra);
                 }
                 break;
-            case 'repeat':
-            case 'rp':
-            case 'rt':
-            case 'rd':
-                if (!$arg) {
-                    $result = null;
-                } else {
-                    list($other, $extra) = self::split_arg($arg);
-                    if ($extra) {
-                        $result = null;
-                    } else {
-                        $result = new RepeatCommand($user, $other);
-                    }
-                }
-                break;
             case 'whois':
                 if (!$arg) {
                     $result = null;
