@@ -177,7 +177,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
     // API stuff
 
     /**
-     * show the "favorite" form in the notice options element
+     * show the "repeat" form in the notice options element
      * FIXME: Don't let a NoticeListItemAdapter slip in here (or extend that from NoticeListItem)
      *
      * @return void
@@ -219,8 +219,8 @@ class SharePlugin extends ActivityVerbHandlerPlugin
     }
 
     /**
-     * EndInterpretCommand for FavoritePlugin will handle the 'fav' command
-     * using the class FavCommand.
+     * EndInterpretCommand for RepeatPlugin will handle the 'repeat' command
+     * using the class RepeatCommand.
      *
      * @param string  $cmd     Command being run
      * @param string  $arg     Rest of the message (including address)
@@ -249,10 +249,10 @@ class SharePlugin extends ActivityVerbHandlerPlugin
 
     public function onHelpCommandMessages(HelpCommand $help, array &$commands)
     {
-        // TRANS: Help message for IM/SMS command "fav <nickname>".
-        $commands['fav <nickname>'] = _m('COMMANDHELP', "add user's last notice as a 'fave'");
-        // TRANS: Help message for IM/SMS command "fav #<notice_id>".
-        $commands['fav #<notice_id>'] = _m('COMMANDHELP', "add notice with the given id as a 'fave'");
+        // TRANS: Help message for IM/SMS command "repeat #<notice_id>".
+        $commands['repeat #<notice_id>'] = _m('COMMANDHELP', "repeat a notice with a given id");
+        // TRANS: Help message for IM/SMS command "repeat <nickname>".
+        $commands['repeat <nickname>']   = _m('COMMANDHELP', "repeat the last notice from user");
     }
 
     /**
