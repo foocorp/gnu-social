@@ -161,22 +161,16 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         // ActivityObject is instead turned into an Activity
         $object          = new Activity();
         $object->verb    = ActivityVerb::SHARE;
-        $object->type    = $notice->object_type;
-        $object->title   = sprintf(_('%1$s repeated a notice by %2$s'),
-                              $object->getProfile()->getNickname(),
-                              $target->getProfile()->getNickname());
         $object->content = $notice->rendered;
+        $this->extendActivity($stored, $act);
+
         return $object;
     }
 
     public function deleteRelated(Notice $notice)
     {
-        try {
-            $fave = Fave::fromStored($notice);
-            $fave->delete();
-        } catch (NoResultException $e) {
-            // Cool, no problem. We wanted to get rid of it anyway.
-        }
+        // No action needed as we don't have a separate table for share objects.
+        return true;
     }
 
     // API stuff
@@ -260,20 +254,26 @@ class SharePlugin extends ActivityVerbHandlerPlugin
      *
      * @return void
      */
-    public function onStartShowNoticeOptionItems($nli)
+    public function onEndShowNoticeOptionItems($nli)
     {
-        if (Event::handle('StartShowFaveForm', array($nli))) {
+        // FIXME: Use bitmasks (but be aware that PUBLIC_SCOPE is 0!)
+        if ($nli->notice->scope == Notice::PUBLIC_SCOPE ||
+                $nli->notice->scope == Notice::SITE_SCOPE) {
             $scoped = Profile::current();
-            if ($scoped instanceof Profile) {
-                if (Fave::existsForProfile($nli->notice, $scoped)) {
-                    $disfavor = new DisfavorForm($nli->out, $nli->notice);
-                    $disfavor->show();
+            if ($scoped instanceof Profile &&
+                    $scoped->getID() !== $nli->notice->getProfile()->getID()) {
+
+                if ($scoped->hasRepeated($nli->notice)) {
+                    $nli->out->element('span', array('class' => 'repeated',
+                                                      // TRANS: Title for repeat form status in notice list when a notice has been repeated.
+                                                      'title' => _('Notice repeated.')),
+                                        // TRANS: Repeat form status in notice list when a notice has been repeated.
+                                        _('Repeated'));
                 } else {
-                    $favor = new FavorForm($nli->out, $nli->notice);
-                    $favor->show();
+                    $repeat = new RepeatForm($nli->out, $nli->notice);
+                    $repeat->show();
                 }
             }
-            Event::handle('EndShowFaveForm', array($nli));
         }
     }
 

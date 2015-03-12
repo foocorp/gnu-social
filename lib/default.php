@@ -302,6 +302,7 @@ $default =
                             'AuthCrypt' => array(),
                             'Cronish' => array(),
                             'Favorite' => array(),
+                            'Share' => array(),
                             'LRDD' => array(),
                             'StrictTransportSecurity' => array(),
                         ),

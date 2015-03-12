@@ -193,7 +193,6 @@ class NoticeListItem extends Widget
                 $this->out->elementStart('div', 'notice-options');
                 if (Event::handle('StartShowNoticeOptionItems', array($this))) {
                     $this->showReplyLink();
-                    $this->showRepeatForm();
                     $this->showDeleteLink();
                     Event::handle('EndShowNoticeOptionItems', array($this));
                 }
@@ -602,34 +601,6 @@ class NoticeListItem extends Widget
                                            'title' => _('Delete this notice from the timeline.')),
                                            // TRANS: Link text in notice list item to delete a notice.
                                            _('Delete'));
-        }
-    }
-
-    /**
-     * show the form to repeat a notice
-     *
-     * @return void
-     */
-    function showRepeatForm()
-    {
-        if ($this->notice->scope == Notice::PUBLIC_SCOPE ||
-            $this->notice->scope == Notice::SITE_SCOPE) {
-            $user = common_current_user();
-            if (!empty($user) &&
-                $user->id != $this->notice->profile_id) {
-                $this->out->text(' ');
-                $profile = $user->getProfile();
-                if ($profile->hasRepeated($this->notice)) {
-                    $this->out->element('span', array('class' => 'repeated',
-                                                      // TRANS: Title for repeat form status in notice list when a notice has been repeated.
-                                                      'title' => _('Notice repeated.')),
-                                        // TRANS: Repeat form status in notice list when a notice has been repeated.
-                                        _('Repeated'));
-                } else {
-                    $rf = new RepeatForm($this->out, $this->notice);
-                    $rf->show();
-                }
-            }
         }
     }
 
