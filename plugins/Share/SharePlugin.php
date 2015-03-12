@@ -98,34 +98,35 @@ class SharePlugin extends ActivityVerbHandlerPlugin
             throw new ClientException(_m('Shared activity does not have an id'));
         }
 
-        // First check if we have the shared activity. This has to be done first, because
-        // we can't use these functions to "ensureActivityObjectProfile" of a local user,
-        // who might be the creator of the shared activity in question.
-        $sharedNotice = Notice::getKV('uri', $sharedId);
-        if (!$sharedNotice instanceof Notice) {
+        try {
+            // First check if we have the shared activity. This has to be done first, because
+            // we can't use these functions to "ensureActivityObjectProfile" of a local user,
+            // who might be the creator of the shared activity in question.
+            $sharedNotice = Notice::getByUri($sharedUri);
+        } catch (NoResultException $e) {
             // If no locally stored notice is found, process it!
             // TODO: Remember to check Deleted_notice!
             // TODO: If a post is shared that we can't retrieve - what to do?
-            try {
-                $other = self::ensureActivityObjectProfile($shared->actor);
-                $sharedNotice = $other->processActivity($shared, $method);
-                if (!$sharedNotice instanceof Notice) {
-                    // And if we apparently can't get the shared notice, we'll abort the whole thing.
-                    // TRANS: Client exception thrown when saving an activity share fails.
-                    // TRANS: %s is a share ID.
-                    throw new ClientException(sprintf(_m('Failed to save activity %s.'), $sharedId));
-                }
-            } catch (FeedSubException $e) {
-                // Remote feed could not be found or verified, should we
-                // transform this into an "RT @user Blah, blah, blah..."?
-                common_log(LOG_INFO, __METHOD__ . ' got a ' . get_class($e) . ': ' . $e->getMessage());
-                return null;
+            $other = Ostatus_profile::ensureActivityObjectProfile($shared->actor);
+            $sharedNotice = $other->processActivity($shared, 'push');   // FIXME: push/salmon/what?
+            if (!$sharedNotice instanceof Notice) {
+                // And if we apparently can't get the shared notice, we'll abort the whole thing.
+                // TRANS: Client exception thrown when saving an activity share fails.
+                // TRANS: %s is a share ID.
+                throw new ClientException(sprintf(_m('Failed to save activity %s.'), $sharedUri));
             }
+        } catch (FeedSubException $e) {
+            // Remote feed could not be found or verified, should we
+            // transform this into an "RT @user Blah, blah, blah..."?
+            common_log(LOG_INFO, __METHOD__ . ' got a ' . get_class($e) . ': ' . $e->getMessage());
+            return false;
         }
 
         // We don't have to save a repeat in a separate table, we can
         // find repeats by just looking at the notice.repeat_of field.
 
+        // By returning true here instead of something that evaluates
+        // to false, we show that we have processed everything properly.
         return true;
     }
 
