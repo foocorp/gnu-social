@@ -278,16 +278,15 @@ class SharePlugin extends ActivityVerbHandlerPlugin
      */
     public function onNoticeSimpleStatusArray($notice, array &$status, Profile $scoped=null, array $args=array())
     {
-        if ($scoped instanceof Profile) {
-            $status['repeated'] = $scoped->hasRepeated($notice);
+        $status['repeated'] = $scoped instanceof Profile
+                            ? $scoped->hasRepeated($notice)
+                            : false;
+
+        if ($status['repeated'] === true) {
             // Qvitter API wants the "repeated_id" value set too.
             $repeated = Notice::pkeyGet(array('profile_id' => $scoped->getID(),
                                               'repeat_of' => $notice->getID()));
-            if ($repeated instanceof Notice) {
-                $status['repeated_id'] = $repeated->getID();
-            }
-        } else {
-            $status['repeated'] = false;
+            $status['repeated_id'] = $repeated->getID();
         }
     }
 
