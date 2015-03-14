@@ -1371,7 +1371,7 @@ class Action extends HTMLOutputter // lawsuit
      * Upstream bug is::
      * https://pear.php.net/bugs/bug.php?id=20291
      */
-    function booleanintstring($key, $def)
+    function booleanintstring($key, $def=false)
     {
         return $this->boolean($key, $def) ? '1' : '0';
     }
