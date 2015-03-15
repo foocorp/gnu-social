@@ -630,6 +630,13 @@ address .poweredby {
     line-height: 1.36em;
 }
 
+.profile, .application, #content .peopletag {
+    position:relative;
+    clear:both;
+    float:left;
+    width:100%;
+}
+
 .application, #content .peopletag {
     position:relative;
     clear:both;
