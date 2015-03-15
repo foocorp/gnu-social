@@ -580,8 +580,17 @@ function common_purify($html)
 {
     require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
 
-    $config = array('safe' => 1,
+    $config = array('safe' => 1,    // means that elements=* means elements=*-applet-embed-iframe-object-script or so
+                    'elements' => '*',
                     'deny_attribute' => 'id,style,on*');
+
+    // Remove more elements than what the 'safe' filter gives (elements must be '*' before this)
+    // http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_README.htm#s3.6
+    foreach (common_config('htmlfilter') as $tag=>$filter) {
+        if ($filter === true) {
+            $config['elements'] .= "-{$tag}";
+        }
+    }
 
     $html = common_remove_unicode_formatting($html);
 
@@ -1929,9 +1938,14 @@ function common_negotiate_type($cprefs, $sprefs)
     return $besttype;
 }
 
-function common_config($main, $sub)
+function common_config($main, $sub=null)
 {
     global $config;
+    if (is_null($sub)) {
+        // Return the config category array
+        return array_key_exists($main, $config) ? $config[$main] : array();
+    }
+    // Return the config value
     return (array_key_exists($main, $config) &&
             array_key_exists($sub, $config[$main])) ? $config[$main][$sub] : false;
 }

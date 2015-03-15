@@ -285,6 +285,11 @@ $default =
         array('handle' => false,   // whether to handle sessions ourselves
               'debug' => false,    // debugging output for sessions
               'gc_limit' => 1000), // max sessions to expire at a time
+        'htmlfilter' => array(  // purify HTML through htmLawed
+            'img' => true,
+            'video' => true,
+            'audio' => true,
+        ),
         'notice' =>
         array('contentlimit' => null,
               'defaultscope' => null, // null means 1 if site/private, 0 otherwise
