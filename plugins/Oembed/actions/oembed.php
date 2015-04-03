@@ -46,8 +46,7 @@ class OembedAction extends Action
         $url = $this->trimmed('url');
         if (substr(strtolower($url),0,strlen(common_root_url())) !== strtolower(common_root_url())) {
             // TRANS: Error message displaying attachments. %s is the site's base URL.
-            // FIXME: 404 not found?! (this will automatically become a 500 because it's not a serverError!)
-            $this->serverError(sprintf(_('Only %s URLs over plain HTTP please.'), common_root_url()), 404);
+            $this->clientError(sprintf(_('oEmbed data will only be provided for %s URLs.'), common_root_url()), 400);
         }
 
         $path = substr($url,strlen(common_root_url()));
