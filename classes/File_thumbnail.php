@@ -142,7 +142,11 @@ class File_thumbnail extends Managed_DataObject
                 $this->url = null;
                 $this->update($orig);
             }
-            return self::url($this->filename);
+            $url = common_local_url('attachment_thumbnail', array('attachment'=>$this->file_id));
+            if (strpos($url, '?') === false) {
+                $url .= '?';
+            }
+            return $url . http_build_query(array('w'=>$this->width, 'h'=>$this->height));
         }
 
         // No local filename available, return the URL we have stored
