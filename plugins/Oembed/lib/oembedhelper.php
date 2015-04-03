@@ -120,7 +120,6 @@ class oEmbedHelper
             case 'service':
                 $api = common_config('oembed', 'endpoint');
                 common_log(LOG_INFO, 'Using service API endpoint ' . $api);
-                break 2;
                 break;
             }
         }
