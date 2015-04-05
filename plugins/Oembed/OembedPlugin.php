@@ -159,7 +159,7 @@ class OembedPlugin extends Plugin
         // Never treat generic HTML links as an enclosure type!
         // But if we have oEmbed info, we'll consider it golden.
         $oembed = File_oembed::getKV('file_id', $file->id);
-        if (!$oembed instanceof File_oembed && !in_array($oembed->type, array('photo', 'video'))) {
+        if (!$oembed instanceof File_oembed || !in_array($oembed->type, array('photo', 'video'))) {
             return true;
         }
 
