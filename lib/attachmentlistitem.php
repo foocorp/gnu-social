@@ -108,6 +108,12 @@ class AttachmentListItem extends Widget
         if (Event::handle('StartShowAttachmentRepresentation', array($this->out, $this->attachment))) {
             if (!empty($this->attachment->mimetype)) {
                 $mediatype = common_get_mime_media($this->attachment->mimetype);
+
+                // FIXME: Get proper mime recognition of Ogg files! If system has 'mediainfo', this should do it:
+                // $ mediainfo --inform='General;%InternetMediaType%'
+                if ($this->attachment->mimetype === 'application/ogg') {
+                    $mediatype = 'video';   // because this element can handle Ogg/Vorbis etc. on its own
+                }
                 switch ($mediatype) {
                 // Anything we understand as an image, if we need special treatment, do it in StartShowAttachmentRepresentation
                 case 'image':
@@ -144,18 +150,6 @@ class AttachmentListItem extends Widget
 
                 default:
                     switch ($this->attachment->mimetype) {
-                    // Ogg media that we're not really sure what it is...
-                    case 'application/ogg':
-                        $arr  = array('type' => $this->attachment->mimetype,
-                            'data' => $this->attachment->getUrl(),
-                            'width' => 320,
-                            'height' => 240
-                        );
-                        $this->out->elementStart('object', $arr);
-                        $this->out->element('param', array('name' => 'src', 'value' => $this->attachment->getUrl()));
-                        $this->out->element('param', array('name' => 'autoStart', 'value' => 1));
-                        $this->out->elementEnd('object');
-                        break;
                     case 'text/html':
                         if (!empty($this->attachment->filename)
                                 && (GNUsocial::isAjax() || common_config('attachments', 'show_html'))) {
