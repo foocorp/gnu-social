@@ -1841,9 +1841,9 @@ class Notice extends Managed_DataObject
             $attachments = $this->attachments();
 
             foreach ($attachments as $attachment) {
-                // Save local attachments
+                // Include local attachments in Activity
                 if (!empty($attachment->filename)) {
-                    $act->attachments[] = ActivityObject::fromFile($attachment);
+                    $act->enclosures[] = $attachment->getEnclosure();
                 }
             }
 
