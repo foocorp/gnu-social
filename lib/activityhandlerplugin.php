@@ -160,10 +160,11 @@ abstract class ActivityHandlerPlugin extends Plugin
     * @fixme are there any standard options?
     *
     * @param Activity $activity
-    * @param Profile $actor
+    * @param Notice   $stored       The notice in our database for this certain object
     * @param array $options=array()
     *
-    * @return Notice the resulting notice
+    * @return object    If the verb handling plugin creates an object, it can be returned here (otherwise true)
+    * @throws exception On any error.
     */
     protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
     {
@@ -174,7 +175,7 @@ abstract class ActivityHandlerPlugin extends Plugin
      * This usually gets called from Notice::saveActivity after a Notice object has been created,
      * so it contains a proper id and a uri for the object to be saved.
      */
-    public function onStoreActivityObject(Activity $act, Notice $stored, array $options=array(), &$object) {
+    public function onStoreActivityObject(Activity $act, Notice $stored, array $options, &$object) {
         // $this->oldSaveNew is there during a migration period of plugins, to start using
         // Notice::saveActivity instead of Notice::saveNew
         if (!$this->isMyActivity($act) || isset($this->oldSaveNew)) {
@@ -182,7 +183,13 @@ abstract class ActivityHandlerPlugin extends Plugin
         }
         $object = $this->saveObjectFromActivity($act, $stored, $options);
         try {
-            $act->context->attention = array_merge($act->context->attention, $object->getAttentionArray());
+            // In the future we probably want to use something like ActivityVerb_DataObject for the kind
+            // of objects which are returned from saveObjectFromActivity.
+            if ($object instanceof Managed_DataObject) {
+                // If the verb handling plugin figured out some more attention URIs, add them here to the
+                // original activity. This is only done if a separate object is actually needed to be saved.
+                $act->context->attention = array_merge($act->context->attention, $object->getAttentionArray());
+            }
         } catch (Exception $e) {
             common_debug('WARNING: Could not get attention list from object '.get_class($object).'!');
         }
@@ -595,7 +602,6 @@ abstract class ActivityHandlerPlugin extends Plugin
         $nli->showNoticeSource();
         $nli->showNoticeLocation();
         $nli->showPermalink();
-        $nli->showRepeat();
 
         $nli->showNoticeOptions();
     }

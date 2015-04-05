@@ -24,7 +24,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 require_once INSTALLDIR . '/lib/framework.php';
 
 try {
-    StatusNet::init(@$server, @$path, @$conffile);
+    GNUsocial::init(@$server, @$path, @$conffile);
 } catch (NoConfigException $e) {
     // XXX: Throw a conniption if database not installed
     // XXX: Find a way to use htmlwriter for this instead of handcoded markup

@@ -43,8 +43,8 @@ class Profile_list extends Managed_DataObject
     public $private;                         // tinyint(1)
     public $created;                         // datetime   not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
-    public $uri;                             // varchar(255)  unique_key
-    public $mainpage;                        // varchar(255)
+    public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
+    public $mainpage;                        // varchar(191)   not 255 because utf8mb4 takes more space
     public $tagged_count;                    // smallint
     public $subscriber_count;                // smallint
 
@@ -64,8 +64,8 @@ class Profile_list extends Managed_DataObject
                 'created' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date the tag was added'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date the tag was modified'),
 
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universal identifier'),
-                'mainpage' => array('type' => 'varchar', 'length' => 255, 'description' => 'page to link to'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universal identifier'),
+                'mainpage' => array('type' => 'varchar', 'length' => 191, 'description' => 'page to link to'),
                 'tagged_count' => array('type' => 'int', 'default' => 0, 'description' => 'number of people tagged with this tag by this user'),
                 'subscriber_count' => array('type' => 'int', 'default' => 0, 'description' => 'number of subscribers to this tag'),
             ),

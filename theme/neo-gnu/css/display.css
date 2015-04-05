@@ -8,27 +8,6 @@
  * @link      http://gnu.io/
  */
 
-@font-face {
-    font-family: 'Lato';
-    src: url('../fonts/lato-regular-webfont.eot?') format('eot'), url('../fonts/lato-regular-webfont.woff') format('woff'), url('../fonts/lato-regular-webfont.ttf') format('truetype'), url('../fonts/lato-regular-webfont.svg#webfontCjmEHx3G') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Lato';
-    src: url('../fonts/lato-bold-webfont.eot?') format('eot'), url('../fonts/lato-bold-webfont.woff') format('woff'), url('../fonts/lato-bold-webfont.ttf') format('truetype'), url('../fonts/lato-bold-webfont.svg#webfontCjmEHx3G') format('svg');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Lato';
-    src: url('../fonts/lato-italic-webfont.eot?') format('eot'), url('../fonts/lato-italic-webfont.woff') format('woff'), url('../fonts/lato-italic-webfont.ttf') format('truetype'), url('../fonts/lato-italic-webfont.svg#webfontCjmEHx3G') format('svg');
-    font-weight: normal;
-    font-style: italic;
-}
-
 @media screen, projection, tv {
 
 /* general styles and layout */
@@ -37,12 +16,12 @@ body {
     /* background-color: #C6C8CC;
     background-image: url(../images/bg.png); */
     background-color: #e9eaed;
-    font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
     color: #222;
 }
 
 input, textarea, select, option {
-    font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
 }
 
 a {color: #666;}
@@ -496,10 +475,6 @@ div.entry-content a.response:after {
 
 .notice-options .form_repeat.dialogbox legend {
     padding-top: 10px;
-}
-
-.notice-options .form_repeat.dialogbox input.submit_dialogbox {
-    min-width: 80px;
 }
 
 #content .threaded-replies .notice .author .photo {

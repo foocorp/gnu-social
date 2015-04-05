@@ -52,7 +52,7 @@ class Twitter_synch_status extends Managed_DataObject
 {
     public $__table = 'twitter_synch_status'; // table name
     public $foreign_id;                      // bigint primary_key not_null
-    public $timeline;                        // varchar(255)  primary_key not_null
+    public $timeline;                        // varchar(191)  primary_key not_null   not 255 because utf8mb4 takes more space
     public $last_id;                         // bigint not_null
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -62,7 +62,7 @@ class Twitter_synch_status extends Managed_DataObject
         return array(
             'fields' => array(
                 'foreign_id' => array('type' => 'int', 'size' => 'big', 'not null' => true, 'description' => 'Foreign message ID'),
-                'timeline' => array('type' => 'varchar', 'length' => 255, 'description' => 'timeline name'),
+                'timeline' => array('type' => 'varchar', 'length' => 191, 'description' => 'timeline name'),
                 'last_id' => array('type' => 'int', 'size' => 'big', 'not null' => true, 'description' => 'last id fetched'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),

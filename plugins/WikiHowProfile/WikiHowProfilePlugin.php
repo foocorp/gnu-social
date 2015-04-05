@@ -188,9 +188,7 @@ class WikiHowProfilePlugin extends Plugin
 
             $profile = $user->getProfile();
             $id = $profile->id;
-            // @fixme should we be using different ids?
-
-            $imagefile = new ImageFile($id, $temp_filename);
+            $imagefile = new ImageFile(null, $temp_filename);
             $filename = Avatar::filename($id,
                                          image_type_to_extension($imagefile->type),
                                          null,

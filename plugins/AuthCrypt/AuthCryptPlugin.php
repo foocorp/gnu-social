@@ -44,6 +44,8 @@ class AuthCryptPlugin extends AuthenticationPlugin
 
     function checkPassword($username, $password)
     {
+        $username = Nickname::normalize($username);
+
         $user = User::getKV('nickname', $username);
         if (!($user instanceof User)) {
             return false;
@@ -81,6 +83,8 @@ class AuthCryptPlugin extends AuthenticationPlugin
     // $oldpassword is already verified when calling this function... shouldn't this be private?!
     function changePassword($username, $oldpassword, $newpassword)
     {
+        $username = Nickname::normalize($username);
+
         if (!$this->password_changeable) {
             return false;
         }

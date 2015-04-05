@@ -34,9 +34,9 @@ class User extends Managed_DataObject
     public $__table = 'user';                            // table name
     public $id;                              // int(4)  primary_key not_null
     public $nickname;                        // varchar(64)  unique_key
-    public $password;                        // varchar(255)
-    public $email;                           // varchar(255)  unique_key
-    public $incomingemail;                   // varchar(255)  unique_key
+    public $password;                        // varchar(191)               not 255 because utf8mb4 takes more space
+    public $email;                           // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
+    public $incomingemail;                   // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $emailnotifysub;                  // tinyint(1)   default_1
     public $emailnotifyfav;                  // tinyint(1)   default_1
     public $emailnotifynudge;                // tinyint(1)   default_1
@@ -50,8 +50,8 @@ class User extends Managed_DataObject
     public $carrier;                         // int(4)
     public $smsnotify;                       // tinyint(1)
     public $smsreplies;                      // tinyint(1)
-    public $smsemail;                        // varchar(255)
-    public $uri;                             // varchar(255)  unique_key
+    public $smsemail;                        // varchar(191)               not 255 because utf8mb4 takes more space
+    public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $autosubscribe;                   // tinyint(1)
     public $subscribe_policy;                // tinyint(1)
     public $urlshorteningservice;            // varchar(50)   default_ur1.ca
@@ -69,9 +69,9 @@ class User extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
                 'nickname' => array('type' => 'varchar', 'length' => 64, 'description' => 'nickname or username, duped in profile'),
-                'password' => array('type' => 'varchar', 'length' => 255, 'description' => 'salted password, can be null for OpenID users'),
-                'email' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for password recovery etc.'),
-                'incomingemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for post-by-email'),
+                'password' => array('type' => 'varchar', 'length' => 191, 'description' => 'salted password, can be null for OpenID users'),
+                'email' => array('type' => 'varchar', 'length' => 191, 'description' => 'email address for password recovery etc.'),
+                'incomingemail' => array('type' => 'varchar', 'length' => 191, 'description' => 'email address for post-by-email'),
                 'emailnotifysub' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of subscriptions'),
                 'emailnotifyfav' => array('type' => 'int', 'size' => 'tiny', 'default' => null, 'description' => 'Notify by email of favorites'),
                 'emailnotifynudge' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of nudges'),
@@ -85,8 +85,8 @@ class User extends Managed_DataObject
                 'carrier' => array('type' => 'int', 'description' => 'foreign key to sms_carrier'),
                 'smsnotify' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to send notices to SMS'),
                 'smsreplies' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to send notices to SMS on replies'),
-                'smsemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'built from sms and carrier'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'smsemail' => array('type' => 'varchar', 'length' => 191, 'description' => 'built from sms and carrier'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier, usually a tag URI'),
                 'autosubscribe' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'automatically subscribe to users who subscribe to us'),
                 'subscribe_policy' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => '0 = anybody can subscribe; 1 = require approval'),
                 'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'internal', 'description' => 'service to use for auto-shortening URLs'),
@@ -191,7 +191,8 @@ class User extends Managed_DataObject
      *              string 'password' (may be missing for eg OpenID registrations)
      *              string 'code' invite code
      *              ?string 'uri' permalink to notice; defaults to local notice URL
-     * @return mixed User object or false on failure
+     * @return  User object
+     * @throws  Exception on failure
      */
     static function register(array $fields) {
 
@@ -205,12 +206,8 @@ class User extends Managed_DataObject
             $email = common_canonical_email($email);
         }
 
-        try {
-            $profile->nickname = Nickname::normalize($nickname, true);
-        } catch (NicknameException $e) {
-            common_log(LOG_WARNING, sprintf('Bad nickname during User registration for %s: %s', $nickname, $e->getMessage()), __FILE__);
-            return false;
-        }
+        // Normalize _and_ check whether it is in use. Throw NicknameException on failure.
+        $profile->nickname = Nickname::normalize($nickname, true);
 
         $profile->profileurl = common_profile_url($profile->nickname);
 
@@ -277,7 +274,9 @@ class User extends Managed_DataObject
             $id = $profile->insert();
             if ($id === false) {
                 common_log_db_error($profile, 'INSERT', __FILE__);
-                return false;
+                $profile->query('ROLLBACK');
+                // TRANS: Profile data could not be inserted for some reason.
+                throw new ServerException(_m('Could not insert profile data for new user.'));
             }
 
             $user->id = $id;
@@ -297,7 +296,8 @@ class User extends Managed_DataObject
             if ($result === false) {
                 common_log_db_error($user, 'INSERT', __FILE__);
                 $profile->query('ROLLBACK');
-                return false;
+                // TRANS: User data could not be inserted for some reason.
+                throw new ServerException(_m('Could not insert user data for new user.'));
             }
 
             // Everyone is subscribed to themself
@@ -312,7 +312,8 @@ class User extends Managed_DataObject
             if (!$result) {
                 common_log_db_error($subscription, 'INSERT', __FILE__);
                 $profile->query('ROLLBACK');
-                return false;
+                // TRANS: Subscription data could not be inserted for some reason.
+                throw new ServerException(_m('Could not insert subscription data for new user.'));
             }
 
             // Mark that this invite was converted
@@ -334,7 +335,8 @@ class User extends Managed_DataObject
                 if (!$result) {
                     common_log_db_error($confirm, 'INSERT', __FILE__);
                     $profile->query('ROLLBACK');
-                    return false;
+                    // TRANS: Email confirmation data could not be inserted for some reason.
+                    throw new ServerException(_m('Could not insert email confirmation data for new user.'));
                 }
             }
 
@@ -352,7 +354,7 @@ class User extends Managed_DataObject
                     common_log(LOG_WARNING, sprintf("Default user %s does not exist.", $defnick),
                                __FILE__);
                 } else {
-                    Subscription::start($profile, $defuser->getProfile());
+                    Subscription::ensureStart($profile, $defuser->getProfile());
                 }
             }
 
@@ -383,6 +385,10 @@ class User extends Managed_DataObject
             }
 
             Event::handle('EndUserRegister', array($profile));
+        }
+
+        if (!$user instanceof User) {
+            throw new ServerException('User could not be registered. Probably an event hook that failed.');
         }
 
         return $user;
@@ -687,11 +693,9 @@ class User extends Managed_DataObject
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
-
-    function repeatedToMe($offset=0, $limit=20, $since_id=null, $max_id=null)
+    public function repeatedToMe($offset=0, $limit=20, $since_id=null, $max_id=null)
     {
-        // TRANS: Exception thrown when trying view "repeated to me".
-        throw new Exception(_('Not implemented since inbox change.'));
+        return $this->getProfile()->repeatedToMe($offset, $limit, $since_id, $max_id);
     }
 
     public static function siteOwner()
@@ -992,6 +996,11 @@ class User extends Managed_DataObject
                                 $profile->getBestName(),
                                 $service->title);
         return $act;
+    }
+
+    public function isPrivateStream()
+    {
+        return $this->getProfile()->isPrivateStream();
     }
 
     public function delPref($namespace, $topic)

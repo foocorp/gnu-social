@@ -113,7 +113,7 @@ class DocFile
         $paths = array(INSTALLDIR.'/local/doc-src/',
                        INSTALLDIR.'/doc-src/');
 
-        $site = StatusNet::currentSite();
+        $site = GNUsocial::currentSite();
         
         if (!empty($site)) {
             array_unshift($paths, INSTALLDIR.'/local/doc-src/'.$site.'/');
@@ -127,7 +127,7 @@ class DocFile
         $paths = array(INSTALLDIR.'/local/mail-src/',
                        INSTALLDIR.'/mail-src/');
 
-        $site = StatusNet::currentSite();
+        $site = GNUsocial::currentSite();
         
         if (!empty($site)) {
             array_unshift($paths, INSTALLDIR.'/local/mail-src/'.$site.'/');

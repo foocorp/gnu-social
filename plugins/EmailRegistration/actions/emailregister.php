@@ -124,6 +124,7 @@ class EmailregisterAction extends Action
                     }
                 }
 
+                $this->nickname = Nickname::normalize($this->trimmed('nickname'));
                 $this->password1 = $this->trimmed('password1');
                 $this->password2 = $this->trimmed('password2');
 
@@ -285,16 +286,13 @@ class EmailregisterAction extends Action
             }
 
             if (!empty($this->error)) {
-                $nickname = $this->nicknameFromEmail($email);
-                $this->form = new ConfirmRegistrationForm($this, $nickname, $email, $this->code);
+                $this->form = new ConfirmRegistrationForm($this, $this->nickname, $email, $this->code);
                 $this->showPage();
                 return;
             }
 
-            $nickname = $this->nicknameFromEmail($email);
-
             try {
-                $fields = array('nickname' => $nickname,
+                $fields = array('nickname' => $this->nickname,
                                 'email' => $email,
                                 'password' => $this->password1,
                                 'email_confirmed' => true);
@@ -305,8 +303,7 @@ class EmailregisterAction extends Action
                 $this->user = User::register($fields);
             } catch (ClientException $e) {
                 $this->error = $e->getMessage();
-                $nickname = $this->nicknameFromEmail($email);
-                $this->form = new ConfirmRegistrationForm($this, $nickname, $email, $this->code);
+                $this->form = new ConfirmRegistrationForm($this, $this->nickname, $email, $this->code);
                 $this->showPage();
                 return;
             }

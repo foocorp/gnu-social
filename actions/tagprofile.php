@@ -19,7 +19,6 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-require_once INSTALLDIR . '/lib/settingsaction.php';
 require_once INSTALLDIR . '/lib/peopletags.php';
 
 class TagprofileAction extends FormAction
@@ -29,36 +28,32 @@ class TagprofileAction extends FormAction
     protected $target = null;
     protected $form = 'TagProfile';
 
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $id = $this->trimmed('id');
-        if (!$id) {
-            $this->target = null;
-        } else {
+        $uri = $this->trimmed('uri');
+        if (!empty($id))  {
             $this->target = Profile::getKV('id', $id);
 
             if (!$this->target instanceof Profile) {
                 // TRANS: Client error displayed when referring to non-existing profile ID.
                 $this->clientError(_('No profile with that ID.'));
             }
+        } elseif (!empty($uri)) {
+            $this->target = Profile::fromUri($uri);
+        } else {
+            // TRANS: Client error displayed when trying to tag a user but no ID or profile is provided.
+            $this->clientError(_('No profile identifier provided.'));
         }
 
-        if ($this->target instanceof Profile && !$this->scoped->canTag($this->target)) {
+        if (!$this->scoped->canTag($this->target)) {
             // TRANS: Client error displayed when trying to tag a user that cannot be tagged.
             $this->clientError(_('You cannot tag this user.'));
         }
 
-        return true;
-    }
+        $this->formOpts = $this->target;
 
-    protected function handle()
-    {
-        if (Event::handle('StartTagProfileAction', array($this, $this->target))) {
-            parent::handle();
-            Event::handle('EndTagProfileAction', array($this, $this->target));
-        }
+        return true;
     }
 
     function title()
@@ -115,17 +110,8 @@ class TagprofileAction extends FormAction
         }
     }
 
-    protected function getForm()
+    protected function doPost()
     {
-        $class = $this->form.'Form';
-        $form = new $class($this, $this->target);
-        return $form;
-    }
-
-    protected function handlePost()
-    {
-        parent::handlePost();   // Does nothing for now
-
         $tagstring = $this->trimmed('tags');
         $token = $this->trimmed('token');
 
@@ -144,22 +130,16 @@ class TagprofileAction extends FormAction
                     if (!common_valid_profile_tag($tag)) {
                         // TRANS: Form validation error displayed if a given tag is invalid.
                         // TRANS: %s is the invalid tag.
-                        $this->showForm(sprintf(_('Invalid tag: "%s".'), $tag));
-                        return;
+                        throw new ClientException(sprintf(_('Invalid tag: "%s".'), $tag));
                     }
 
                     $tag_priv[$tag] = $private;
                 }
             }
 
-            try {
-                $result = Profile_tag::setTags($this->scoped->id, $this->target->id, $tags, $tag_priv);
-                if (!$result) {
-                    throw new Exception('The tags could not be saved.');
-                }
-            } catch (Exception $e) {
-                $this->showForm($e->getMessage());
-                return false;
+            $result = Profile_tag::setTags($this->scoped->getID(), $this->target->getID(), $tags, $tag_priv);
+            if (!$result) {
+                throw new ServerException('The tags could not be saved.');
             }
 
             if ($this->boolean('ajax')) {
@@ -186,19 +166,6 @@ class TagprofileAction extends FormAction
             }
 
             Event::handle('EndSavePeopletags', array($this, $tagstring));
-        }
-    }
-
-    function showPageNotice()
-    {
-        if ($this->error) {
-            $this->element('p', 'error', $this->error);
-        } else {
-            $this->elementStart('div', 'instructions');
-            $this->element('p', null,
-                           // TRANS: Page notice.
-                           _('Use this form to add your subscribers or subscriptions to lists.'));
-            $this->elementEnd('div');
         }
     }
 }

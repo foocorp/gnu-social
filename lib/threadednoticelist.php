@@ -27,7 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * widget for displaying a list of notices
@@ -229,13 +229,7 @@ class ThreadedNoticeListItem extends NoticeListItem
                 $this->out->elementStart('ul', 'notices threaded-replies xoxo');
 
                 if (Event::handle('StartShowThreadedNoticeTailItems', array($this, $this->notice, &$threadActive))) {
-
-                    // Show the repeats-button for this notice. If there are repeats,
-                    // the show() function will return true, definitely setting our
-                    // $threadActive flag, which will be used later to show a reply box.
-                    $item = new ThreadedNoticeListRepeatsItem($this->notice, $this->out);
-                    $threadActive = $item->show() || $threadActive;
-
+                    // Repeats and Faves/Likes are handled in plugins.
                     Event::handle('EndShowThreadedNoticeTailItems', array($this, $this->notice, &$threadActive));
                 }
 
@@ -253,14 +247,8 @@ class ThreadedNoticeListItem extends NoticeListItem
                     }
                 }
 
-                if ($threadActive && Profile::current() instanceof Profile) {
-                    // @fixme do a proper can-post check that's consistent
-                    // with the JS side
-                    $item = new ThreadedNoticeListReplyItem($this->notice, $this->out);
-                    $item->show();
-                }
-                $this->out->elementEnd('ul');
                 Event::handle('EndShowThreadedNoticeTail', array($this, $this->notice, $notices));
+                $this->out->elementEnd('ul');
             }
         }
 
@@ -315,8 +303,7 @@ class ThreadedNoticeListSubItem extends NoticeListItem
     {
         $threadActive = null;   // unused here for now, but maybe in the future?
         if (Event::handle('StartShowThreadedNoticeTailItems', array($this, $this->notice, &$threadActive))) {
-            $item = new ThreadedNoticeListInlineRepeatsItem($this->notice, $this->out);
-            $hasRepeats = $item->show();
+            // Repeats and Faves/Likes are handled in plugins.
             Event::handle('EndShowThreadedNoticeTailItems', array($this, $this->notice, &$threadActive));
         }
         parent::showEnd();
@@ -378,121 +365,5 @@ class ThreadedNoticeListMoreItem extends NoticeListItem
         $msg = sprintf(_m('Show reply', 'Show all %d replies', $n), $n);
 
         $this->out->element('a', array('href' => $url), $msg);
-    }
-}
-
-/**
- * Placeholder for reply form...
- * Same as get added at runtime via SN.U.NoticeInlineReplyPlaceholder
- */
-class ThreadedNoticeListReplyItem extends NoticeListItem
-{
-    /**
-     * recipe function for displaying a single notice.
-     *
-     * This uses all the other methods to correctly display a notice. Override
-     * it or one of the others to fine-tune the output.
-     *
-     * @return void
-     */
-    function show()
-    {
-        $this->showStart();
-        $this->showMiniForm();
-        $this->showEnd();
-    }
-
-    /**
-     * start a single notice.
-     *
-     * @return void
-     */
-    function showStart()
-    {
-        $this->out->elementStart('li', array('class' => 'notice-reply-placeholder'));
-    }
-
-    function showMiniForm()
-    {
-        $this->out->element('input', array('class' => 'placeholder',
-                                           // TRANS: Field label for reply mini form.
-                                           'value' => _('Write a reply...')));
-    }
-}
-
-/**
- * Placeholder for showing repeats...
- */
-class ThreadedNoticeListRepeatsItem extends NoticeListActorsItem
-{
-    function getProfiles()
-    {
-        $repeats = $this->notice->getRepeats();
-
-        $profiles = array();
-
-        foreach ($repeats as $rep) {
-            $profiles[] = $rep->profile_id;
-        }
-
-        return $profiles;
-    }
-
-    function magicList($items)
-    {
-        if (count($items) > 4) {
-            return parent::magicList(array_slice($items, 0, 3));
-        } else {
-            return parent::magicList($items);
-        }
-    }
-
-    function getListMessage($count, $you)
-    {
-        if ($count == 1 && $you) {
-            // darn first person being different from third person!
-            // TRANS: List message for notice repeated by logged in user.
-            return _m('REPEATLIST', 'You repeated this.');
-        } else if ($count > 4) {
-            // TRANS: List message for when more than 4 people repeat something.
-            // TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
-            // TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
-            return sprintf(_m('%%s and %d other repeated this.',
-                              '%%s and %d others repeated this.',
-                              $count - 3),
-                           $count - 3);
-        } else {
-            // TRANS: List message for repeated notices.
-            // TRANS: %%s is a list of users who have repeated a notice.
-            // TRANS: Plural is based on the number of of users that have repeated a notice.
-            return sprintf(_m('%%s repeated this.',
-                              '%%s repeated this.',
-                              $count),
-                           $count);
-        }
-    }
-
-    function showStart()
-    {
-        $this->out->elementStart('li', array('class' => 'notice-data notice-repeats'));
-    }
-
-    function showEnd()
-    {
-        $this->out->elementEnd('li');
-    }
-}
-
-// @todo FIXME: needs documentation.
-class ThreadedNoticeListInlineRepeatsItem extends ThreadedNoticeListRepeatsItem
-{
-    function showStart()
-    {
-        $this->out->elementStart('div', array('class' => 'notice-repeats'));
-    }
-
-    function showEnd()
-    {
-        $this->out->elementEnd('div');
     }
 }

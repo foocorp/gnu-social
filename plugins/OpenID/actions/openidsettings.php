@@ -99,26 +99,17 @@ class OpenidsettingsAction extends SettingsAction
             // TRANS: Fieldset legend.
             $this->element('legend', null, _m('LEGEND','Add OpenID'));
             $this->hidden('token', common_session_token());
-            $this->element('p', 'form_guide',
-                           // TRANS: Form guide.
-                           _m('If you want to add an OpenID to your account, ' .
-                             'enter it in the box below and click "Add".'));
             $this->elementStart('ul', 'form_data');
             $this->elementStart('li');
-            $this->element('label', array('for' => 'openid_url'),
-                           // TRANS: Field label.
-                           _m('OpenID URL'));
-            $this->element('input', array('name' => 'openid_url',
-                                          'type' => 'text',
-                                          'id' => 'openid_url'));
+            // TRANS: Field label.
+            $this->input('openid_url', _m('OpenID URL'), null,
+                        // TRANS: Form guide.
+                        _m('An OpenID URL which identifies you.'), null, true,
+                        array('placeholder'=>'https://example.com/you'));
             $this->elementEnd('li');
             $this->elementEnd('ul');
-            $this->element('input', array('type' => 'submit',
-                                          'id' => 'settings_openid_add_action-submit',
-                                          'name' => 'add',
-                                          'class' => 'submit',
-                                          // TRANS: Button text for adding an OpenID URL.
-                                          'value' => _m('BUTTON','Add')));
+            // TRANS: Button text for adding an OpenID URL.
+            $this->submit('settings_openid_add_action-submit', _m('BUTTON','Add'), 'submit', 'add');
             $this->elementEnd('fieldset');
             $this->elementEnd('form');
         }
@@ -167,16 +158,9 @@ class OpenidsettingsAction extends SettingsAction
                     $this->hidden('token', common_session_token());
                     $this->element('a', array('href' => $oid->canonical),
                                    $oid->display);
-                    $this->element('input', array('type' => 'hidden',
-                                                  'id' => 'openid_url'.$idx,
-                                                  'name' => 'openid_url',
-                                                  'value' => $oid->canonical));
-                    $this->element('input', array('type' => 'submit',
-                                                  'id' => 'remove'.$idx,
-                                                  'name' => 'remove',
-                                                  'class' => 'submit remove',
-                                                  // TRANS: Button text to remove an OpenID.
-                                                  'value' => _m('BUTTON','Remove')));
+                    $this->hidden("openid_url{$idx}", $oid->canonical, 'openid_url');
+                    // TRANS: Button text to remove an OpenID.
+                    $this->submit("remove{$idx}", _m('BUTTON','Remove'), 'submit remove', 'remove');
                     $this->elementEnd('fieldset');
                     $this->elementEnd('form');
                     $idx++;
@@ -215,12 +199,8 @@ class OpenidsettingsAction extends SettingsAction
             }
         }
         $this->elementEnd('ul');
-        $this->element('input', array('type' => 'submit',
-                                      'id' => 'settings_openid_trustroots_action-submit',
-                                      'name' => 'remove_trustroots',
-                                      'class' => 'submit',
-                                      // TRANS: Button text to remove an OpenID trustroot.
-                                      'value' => _m('BUTTON','Remove')));
+        // TRANS: Button text to remove an OpenID trustroot.
+        $this->submit('settings_openid_trustroots_action-submit', _m('BUTTON','Remove'), 'submit', 'remove_trustroots');
         $this->elementEnd('fieldset');
         
         $prefs = User_openid_prefs::getKV('user_id', $user->id);
@@ -228,13 +208,9 @@ class OpenidsettingsAction extends SettingsAction
         $this->elementStart('fieldset');
         $this->element('legend', null, _m('LEGEND','Preferences'));
         $this->elementStart('ul', 'form_data');
-        $this->checkBox('hide_profile_link', "Hide OpenID links from my profile", !empty($prefs) && $prefs->hide_profile_link);
-        $this->element('input', array('type' => 'submit',
-                                      'id' => 'settings_openid_prefs_save',
-                                      'name' => 'save_prefs',
-                                      'class' => 'submit',
-                                      // TRANS: Button text to save OpenID prefs
-                                      'value' => _m('BUTTON','Save')));
+        $this->checkbox('hide_profile_link', "Hide OpenID links from my profile", !empty($prefs) && $prefs->hide_profile_link);
+        // TRANS: Button text to save OpenID prefs
+        $this->submit('settings_openid_prefs_save', _m('BUTTON','Save'), 'submit', 'save_prefs');
         $this->elementEnd('ul');
         $this->elementEnd('fieldset');
 
@@ -372,7 +348,7 @@ class OpenidsettingsAction extends SettingsAction
             $orig = clone($prefs);
         }
 
-        $prefs->hide_profile_link = $this->boolean('hide_profile_link');
+        $prefs->hide_profile_link = $this->booleanintstring('hide_profile_link');
 
         if (empty($orig)) {
             $prefs->insert();

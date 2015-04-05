@@ -21,7 +21,7 @@ create table status_network (
     created datetime not null comment 'date this record was created',
     modified timestamp comment 'date this record was modified'
 
-) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 create table status_network_tag (
     site_id integer  comment 'unique id',
@@ -30,5 +30,5 @@ create table status_network_tag (
 
     constraint primary key (site_id, tag),
     index status_network_tag_tag_idx (tag)
-) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 

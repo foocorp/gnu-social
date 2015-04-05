@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once(INSTALLDIR.'/lib/channel.php');
 
@@ -523,32 +523,6 @@ class WhoisCommand extends Command
     }
 }
 
-class RepeatCommand extends Command
-{
-    var $other = null;
-    function __construct($user, $other)
-    {
-        parent::__construct($user);
-        $this->other = $other;
-    }
-
-    function handle($channel)
-    {
-        $notice = $this->getNotice($this->other);
-
-        try {
-            $repeat = $notice->repeat($this->scoped->id, $channel->source());
-            $recipient = $notice->getProfile();
-
-            // TRANS: Message given having repeated a notice from another user.
-            // TRANS: %s is the name of the user for which the notice was repeated.
-            $channel->output($this->user, sprintf(_('Notice from %s repeated.'), $recipient->nickname));
-        } catch (Exception $e) {
-            $channel->error($this->user, $e->getMessage());
-        }
-    }
-}
-
 class ReplyCommand extends Command
 {
     var $other = null;
@@ -912,10 +886,6 @@ class HelpCommand extends Command
                           "whois <nickname>" => _m('COMMANDHELP', "get profile info on user"),
                           // TRANS: Help message for IM/SMS command "lose <nickname>".
                           "lose <nickname>" => _m('COMMANDHELP', "force user to stop following you"),
-                          // TRANS: Help message for IM/SMS command "repeat #<notice_id>".
-                          "repeat #<notice_id>" => _m('COMMANDHELP', "repeat a notice with a given id"),
-                          // TRANS: Help message for IM/SMS command "repeat <nickname>".
-                          "repeat <nickname>" => _m('COMMANDHELP', "repeat the last notice from user"),
                           // TRANS: Help message for IM/SMS command "reply #<notice_id>".
                           "reply #<notice_id>" => _m('COMMANDHELP', "reply to notice with a given id"),
                           // TRANS: Help message for IM/SMS command "reply <nickname>".

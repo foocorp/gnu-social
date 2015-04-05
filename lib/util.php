@@ -576,6 +576,34 @@ function common_canonical_email($email)
     return $email;
 }
 
+function common_purify($html)
+{
+    require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
+
+    $config = array('safe' => 1,    // means that elements=* means elements=*-applet-embed-iframe-object-script or so
+                    'elements' => '*',
+                    'deny_attribute' => 'id,style,on*');
+
+    // Remove more elements than what the 'safe' filter gives (elements must be '*' before this)
+    // http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_README.htm#s3.6
+    foreach (common_config('htmlfilter') as $tag=>$filter) {
+        if ($filter === true) {
+            $config['elements'] .= "-{$tag}";
+        }
+    }
+
+    $html = common_remove_unicode_formatting($html);
+
+    return htmLawed($html, $config);
+}
+
+function common_remove_unicode_formatting($text)
+{
+    // Strip Unicode text formatting/direction codes
+    // this is pretty dangerous for visualisation of text and can be used for mischief
+    return preg_replace('/[\\x{200b}-\\x{200f}\\x{202a}-\\x{202e}]/u', '', $text);
+}
+
 /**
  * Partial notice markup rendering step: build links to !group references.
  *
@@ -585,9 +613,9 @@ function common_canonical_email($email)
  */
 function common_render_content($text, Notice $notice)
 {
-    $r = common_render_text($text);
-    $r = common_linkify_mentions($r, $notice);
-    return $r;
+    $text = common_render_text($text);
+    $text = common_linkify_mentions($text, $notice);
+    return $text;
 }
 
 /**
@@ -829,14 +857,15 @@ function common_find_mentions_raw($text)
 
 function common_render_text($text)
 {
-    $r = nl2br(htmlspecialchars($text));
+    $text = common_remove_unicode_formatting($text);
+    $text = nl2br(htmlspecialchars($text));
 
-    $r = preg_replace('/[\x{0}-\x{8}\x{b}-\x{c}\x{e}-\x{19}]/', '', $r);
-    $r = common_replace_urls_callback($r, 'common_linkify');
-    $r = preg_replace_callback('/(^|\&quot\;|\'|\(|\[|\{|\s+)#([\pL\pN_\-\.]{1,64})/u',
-                function ($m) { return "{$m[1]}#".common_tag_link($m[2]); }, $r);
+    $text = preg_replace('/[\x{0}-\x{8}\x{b}-\x{c}\x{e}-\x{19}]/', '', $text);
+    $text = common_replace_urls_callback($text, 'common_linkify');
+    $text = preg_replace_callback('/(^|\&quot\;|\'|\(|\[|\{|\s+)#([\pL\pN_\-\.]{1,64})/u',
+                function ($m) { return "{$m[1]}#".common_tag_link($m[2]); }, $text);
     // XXX: machine tags
-    return $r;
+    return $text;
 }
 
 /**
@@ -870,12 +899,15 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
             '|(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)'. //IPv4
             '|(?:'. //IPv6
                 '\[?(?:(?:(?:[0-9A-Fa-f]{1,4}:){7}(?:(?:[0-9A-Fa-f]{1,4})|:))|(?:(?:[0-9A-Fa-f]{1,4}:){6}(?::|(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})|(?::[0-9A-Fa-f]{1,4})))|(?:(?:[0-9A-Fa-f]{1,4}:){5}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:[0-9A-Fa-f]{1,4}:){4}(?::[0-9A-Fa-f]{1,4}){0,1}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:[0-9A-Fa-f]{1,4}:){3}(?::[0-9A-Fa-f]{1,4}){0,2}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:[0-9A-Fa-f]{1,4}:){2}(?::[0-9A-Fa-f]{1,4}){0,3}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:[0-9A-Fa-f]{1,4}:)(?::[0-9A-Fa-f]{1,4}){0,4}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?::(?::[0-9A-Fa-f]{1,4}){0,5}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})))\]?(?<!:)'.
-            ')|(?:'. //DNS
-                '(?:[\pN\pL\-\_\+\%\~]+(?:\:[\pN\pL\-\_\+\%\~]+)?\@)?'. //user:pass@
-                '[\pN\pL\-\_]+(?:\.[\pN\pL\-\_]+)*\.'.
-                //tld list from http://data.iana.org/TLD/tlds-alpha-by-domain.txt, also added local, loc, and onion
-                '(?:AC|AD|AE|AERO|AF|AG|AI|AL|AM|AN|AO|AQ|AR|ARPA|AS|ASIA|AT|AU|AW|AX|AZ|BA|BB|BD|BE|BF|BG|BH|BI|BIZ|BJ|BM|BN|BO|BR|BS|BT|BV|BW|BY|BZ|CA|CAT|CC|CD|CF|CG|CH|CI|CK|CL|CM|CN|CO|COM|COOP|CR|CU|CV|CX|CY|CZ|DE|DJ|DK|DM|DO|DZ|EC|EDU|EE|EG|ER|ES|ET|EU|FI|FJ|FK|FM|FO|FR|GA|GB|GD|GE|GF|GG|GH|GI|GL|GM|GN|GOV|GP|GQ|GR|GS|GT|GU|GW|GY|HK|HM|HN|HR|HT|HU|ID|IE|IL|IM|IN|INFO|INT|IO|IQ|IR|IS|IT|JE|JM|JO|JOBS|JP|KE|KG|KH|KI|KM|KN|KP|KR|KW|KY|KZ|LA|LB|LC|LI|LK|LR|LS|LT|LU|LV|LY|MA|MC|MD|ME|MG|MH|MIL|MK|ML|MM|MN|MO|MOBI|MP|MQ|MR|MS|MT|MU|MUSEUM|MV|MW|MX|MY|MZ|NA|NAME|NC|NE|NET|NF|NG|NI|NL|NO|NP|NR|NU|NZ|OM|ORG|PA|PE|PF|PG|PH|PK|PL|PM|PN|PR|PRO|PS|PT|PW|PY|QA|RE|RO|RS|RU|RW|SA|SB|SC|SD|SE|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SR|ST|SU|SV|SY|SZ|TC|TD|TEL|TF|TG|TH|TJ|TK|TL|TM|TN|TO|TP|TR|TRAVEL|TT|TV|TW|TZ|UA|UG|UK|US|UY|UZ|VA|VC|VE|VG|VI|VN|VU|WF|WS|XN--0ZWM56D|测试|XN--11B5BS3A9AJ6G|परीक्षा|XN--80AKHBYKNJ4F|испытание|XN--9T4B11YI5A|테스트|XN--DEBA0AD|טעסט|XN--G6W251D|測試|XN--HGBK6AJ7F53BBA|آزمایشی|XN--HLCJ6AYA9ESC7A|பரிட்சை|XN--JXALPDLP|δοκιμή|XN--KGBECHTV|إختبار|XN--ZCKZAH|テスト|YE|YT|YU|ZA|ZM|ZONE|ZW|local|loc|onion)'.
-            ')(?![\pN\pL\-\_])'.
+            ')'.
+            (common_config('linkify', 'bare_domains')
+                ? '|(?:'. //DNS
+                    '(?:[\pN\pL\-\_\+\%\~]+(?:\:[\pN\pL\-\_\+\%\~]+)?\@)?'. //user:pass@
+                    '[\pN\pL\-\_]+(?:\.[\pN\pL\-\_]+)*\.'.
+                    //tld list from http://data.iana.org/TLD/tlds-alpha-by-domain.txt, also added local, loc, and onion
+                    '(?:AC|AD|AE|AERO|AF|AG|AI|AL|AM|AN|AO|AQ|AR|ARPA|AS|ASIA|AT|AU|AW|AX|AZ|BA|BB|BD|BE|BF|BG|BH|BI|BIZ|BJ|BM|BN|BO|BR|BS|BT|BV|BW|BY|BZ|CA|CAT|CC|CD|CF|CG|CH|CI|CK|CL|CM|CN|CO|COM|COOP|CR|CU|CV|CX|CY|CZ|DE|DJ|DK|DM|DO|DZ|EC|EDU|EE|EG|ER|ES|ET|EU|FI|FJ|FK|FM|FO|FR|GA|GB|GD|GE|GF|GG|GH|GI|GL|GM|GN|GOV|GP|GQ|GR|GS|GT|GU|GW|GY|HK|HM|HN|HR|HT|HU|ID|IE|IL|IM|IN|INFO|INT|IO|IQ|IR|IS|IT|JE|JM|JO|JOBS|JP|KE|KG|KH|KI|KM|KN|KP|KR|KW|KY|KZ|LA|LB|LC|LI|LK|LR|LS|LT|LU|LV|LY|MA|MC|MD|ME|MG|MH|MIL|MK|ML|MM|MN|MO|MOBI|MP|MQ|MR|MS|MT|MU|MUSEUM|MV|MW|MX|MY|MZ|NA|NAME|NC|NE|NET|NF|NG|NI|NL|NO|NP|NR|NU|NZ|OM|ORG|PA|PE|PF|PG|PH|PK|PL|PM|PN|PR|PRO|PS|PT|PW|PY|QA|RE|RO|RS|RU|RW|SA|SB|SC|SD|SE|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SR|ST|SU|SV|SY|SZ|TC|TD|TEL|TF|TG|TH|TJ|TK|TL|TM|TN|TO|TP|TR|TRAVEL|TT|TV|TW|TZ|UA|UG|UK|US|UY|UZ|VA|VC|VE|VG|VI|VN|VU|WF|WS|XN--0ZWM56D|测试|XN--11B5BS3A9AJ6G|परीक्षा|XN--80AKHBYKNJ4F|испытание|XN--9T4B11YI5A|테스트|XN--DEBA0AD|טעסט|XN--G6W251D|測試|XN--HGBK6AJ7F53BBA|آزمایشی|XN--HLCJ6AYA9ESC7A|பரிட்சை|XN--JXALPDLP|δοκιμή|XN--KGBECHTV|إختبار|XN--ZCKZAH|テスト|YE|YT|YU|ZA|ZM|ZONE|ZW|local|loc|onion)'.
+            ')(?![\pN\pL\-\_])'
+                : '') . // if common_config('linkify', 'bare_domains') is false, don't add anything here
         ')'.
         '(?:'.
             '(?:\:\d+)?'. //:port
@@ -1116,6 +1148,27 @@ function common_xml_safe_str($str)
     return preg_replace('/[\p{Cc}\p{Cs}]/u', '*', $str);
 }
 
+function common_slugify($str)
+{
+    // php5-intl is highly recommended...
+    if (!function_exists('transliterator_transliterate')) {
+        $str = preg_replace('/[^\pL\pN]/u', '', $str);
+        $str = mb_convert_case($str, MB_CASE_LOWER, 'UTF-8');
+        $str = substr($str, 0, 64);
+        return $str;
+    }
+    $str = transliterator_transliterate(
+                        'Any-Latin;' .      // any charset to latin compatible
+                            'NFD;' .        // decompose
+                            '[:Nonspacing Mark:] Remove;' . // remove nonspacing marks (accents etc.)
+                            'NFC;' .        // composite again
+                            '[:Punctuation:] Remove;' . // remove punctuation (.,¿? etc.)
+                            'Lower();' .    // turn into lowercase
+                            'Latin-ASCII;',  // get ASCII equivalents (ð to d for example)
+                        $str);
+    return preg_replace('/[^\pL\pN]/', '', $str);
+}
+
 function common_tag_link($tag)
 {
     $canonical = common_canonical_tag($tag);
@@ -1139,11 +1192,9 @@ function common_tag_link($tag)
 
 function common_canonical_tag($tag)
 {
-  // only alphanum
-  $tag = preg_replace('/[^\pL\pN]/u', '', $tag);
-  $tag = mb_convert_case($tag, MB_CASE_LOWER, "UTF-8");
-  $tag = substr($tag, 0, 64);
-  return $tag;
+    $tag = common_slugify($tag);
+    $tag = substr($tag, 0, 64);
+    return $tag;
 }
 
 function common_valid_profile_tag($str)
@@ -1218,7 +1269,7 @@ function common_local_url($action, $args=null, $params=null, $fragment=null, $ad
         $path = $r->build($action, $args, $params, $fragment);
 
         $ssl = common_config('site', 'ssl') === 'always'
-                || StatusNet::isHTTPS()
+                || GNUsocial::isHTTPS()
                 || common_is_sensitive($action);
 
         if (common_config('site','fancy')) {
@@ -1262,7 +1313,7 @@ function common_path($relative, $ssl=false, $addSession=true)
     $pathpart = (common_config('site', 'path')) ? common_config('site', 'path')."/" : '';
 
     if (($ssl && (common_config('site', 'ssl') === 'sometimes'))
-        || StatusNet::isHTTPS()
+        || GNUsocial::isHTTPS()
         || common_config('site', 'ssl') === 'always') {
         $proto = 'https';
         if (is_string(common_config('site', 'sslserver')) &&
@@ -1887,9 +1938,14 @@ function common_negotiate_type($cprefs, $sprefs)
     return $besttype;
 }
 
-function common_config($main, $sub)
+function common_config($main, $sub=null)
 {
     global $config;
+    if (is_null($sub)) {
+        // Return the config category array
+        return array_key_exists($main, $config) ? $config[$main] : array();
+    }
+    // Return the config value
     return (array_key_exists($main, $config) &&
             array_key_exists($sub, $config[$main])) ? $config[$main][$sub] : false;
 }

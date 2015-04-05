@@ -32,9 +32,9 @@ class Subscription extends Managed_DataObject
     public $subscribed;                      // int(4)  primary_key not_null
     public $jabber;                          // tinyint(1)   default_1
     public $sms;                             // tinyint(1)   default_1
-    public $token;                           // varchar(255)
-    public $secret;                          // varchar(255)
-    public $uri;                             // varchar(255)
+    public $token;                           // varchar(191)   not 255 because utf8mb4 takes more space
+    public $secret;                          // varchar(191)   not 255 because utf8mb4 takes more space
+    public $uri;                             // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -46,9 +46,9 @@ class Subscription extends Managed_DataObject
                 'subscribed' => array('type' => 'int', 'not null' => true, 'description' => 'profile being listened to'),
                 'jabber' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'deliver jabber messages'),
                 'sms' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'deliver sms messages'),
-                'token' => array('type' => 'varchar', 'length' => 255, 'description' => 'authorization token'),
-                'secret' => array('type' => 'varchar', 'length' => 255, 'description' => 'token secret'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier'),
+                'token' => array('type' => 'varchar', 'length' => 191, 'description' => 'authorization token'),
+                'secret' => array('type' => 'varchar', 'length' => 191, 'description' => 'token secret'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
@@ -94,8 +94,12 @@ class Subscription extends Managed_DataObject
         if (Event::handle('StartSubscribe', array($subscriber, $other))) {
             $otherUser = User::getKV('id', $other->id);
             if ($otherUser instanceof User && $otherUser->subscribe_policy == User::SUBSCRIBE_POLICY_MODERATE && !$force) {
-                $sub = Subscription_queue::saveNew($subscriber, $other);
-                $sub->notify();
+                try {
+                    $sub = Subscription_queue::saveNew($subscriber, $other);
+                    $sub->notify();
+                } catch (AlreadyFulfilledException $e) {
+                    $sub = Subscription_queue::getSubQueue($subscriber, $other);
+                }
             } else {
                 $sub = self::saveNew($subscriber->id, $other->id);
                 $sub->notify();
@@ -124,11 +128,21 @@ class Subscription extends Managed_DataObject
                 }
             }
 
-            if ($sub instanceof Subscription) { // i.e. not SubscriptionQueue
+            if ($sub instanceof Subscription) { // i.e. not Subscription_queue
                 Event::handle('EndSubscribe', array($subscriber, $other));
             }
         }
 
+        return $sub;
+    }
+
+    static function ensureStart(Profile $subscriber, Profile $other, $force=false)
+    {
+        try {
+            $sub = self::start($subscriber, $other, $force);
+        } catch (AlreadyFulfilledException $e) {
+            return self::getSubscription($subscriber, $other);
+        }
         return $sub;
     }
 
@@ -232,9 +246,25 @@ class Subscription extends Managed_DataObject
 
     static function exists(Profile $subscriber, Profile $other)
     {
-        $sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
-                                           'subscribed' => $other->id));
-        return ($sub instanceof Subscription);
+        try {
+            $sub = self::getSubscription($subscriber, $other);
+        } catch (NoResultException $e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static function getSubscription(Profile $subscriber, Profile $other)
+    {
+        // This is essentially a pkeyGet but we have an object to return in NoResultException
+        $sub = new Subscription();
+        $sub->subscriber = $subscriber->id;
+        $sub->subscribed = $other->id;
+        if (!$sub->find(true)) {
+            throw new NoResultException($sub);
+        }
+        return $sub;
     }
 
     function asActivity()

@@ -27,12 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET'))
-{
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/publicgroupnav.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Group directory
@@ -40,10 +35,11 @@ require_once INSTALLDIR . '/lib/publicgroupnav.php';
  * @category Directory
  * @package  StatusNet
  * @author   Zach Copley <zach@status.net>
+ * @author   Mikael Nordfeldth <mmn@hethane.se>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class GroupdirectoryAction extends Action
+class GroupdirectoryAction extends ManagedAction
 {
     /**
      * The page we're on
@@ -138,17 +134,8 @@ class GroupdirectoryAction extends Action
         return true;
     }
 
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $this->page    = ($this->arg('page')) ? ($this->arg('page') + 0) : 1;
         $this->filter  = $this->arg('filter', 'all');
         $this->reverse = $this->boolean('reverse');
@@ -156,23 +143,6 @@ class GroupdirectoryAction extends Action
         $this->sort    = $this->arg('sort', 'nickname');
 
         common_set_returnto($this->selfUrl());
-
-        return true;
-    }
-
-    /**
-     * Handle request
-     *
-     * Shows the page
-     *
-     * @param array $args $_REQUEST args; handled in prepare()
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
     }
 
     /**
@@ -303,73 +273,60 @@ class GroupdirectoryAction extends Action
     {
         $group = new User_group();
 
-        $offset = ($this->page-1) * PROFILES_PER_PAGE;
-        $limit  = PROFILES_PER_PAGE + 1;
+        // Disable this to get global group searches
+        $group->joinAdd(array('id', 'local_group:group_id'));
 
-        if (isset($this->q)) {
+        $order = false;
 
-             $order = 'user_group.created ASC';
+        if (!empty($this->q)) {
+            $wheres = array('nickname', 'fullname', 'homepage', 'description', 'location');
+            foreach ($wheres as $where) {
+                // Double % because of sprintf
+                $group->whereAdd(sprintf('LOWER(%1$s.%2$s) LIKE LOWER("%%%3$s%%")',
+                                        $group->escapedTableName(), $where,
+                                        $group->escape($this->q)),
+                                    'OR');
+            }
 
-             if ($this->sort == 'nickname') {
-                 if ($this->reverse) {
-                     $order = 'user_group.nickname DESC';
-                 } else {
-                     $order = 'user_group.nickname ASC';
-                 }
-             } else {
-                 if ($this->reverse) {
-                     $order = 'user_group.created DESC';
-                 }
-             }
-
-             $sql = <<< GROUP_QUERY_END
-SELECT user_group.*
-FROM user_group
-JOIN local_group ON user_group.id = local_group.group_id
-ORDER BY %s
-LIMIT %d, %d
-GROUP_QUERY_END;
-
-        $cnt = 0;
-        $group->query(sprintf($sql, $order, $limit, $offset));
-        $group->find();
-
+            $order = sprintf('%1$s.%2$s %3$s',
+                            $group->escapedTableName(),
+                            $this->getSortKey('created'),
+                            $this->reverse ? 'DESC' : 'ASC');
         } else {
             // User is browsing via AlphaNav
-            $sort   = $this->getSortKey();
 
-            $sql = <<< GROUP_QUERY_END
-SELECT user_group.*
-FROM user_group
-JOIN local_group ON user_group.id = local_group.group_id
-GROUP_QUERY_END;
-
-            switch($this->filter)
-            {
+            switch($this->filter) {
             case 'all':
                 // NOOP
                 break;
             case '0-9':
-                $sql .=
-                    '  AND LEFT(user_group.nickname, 1) BETWEEN \'0\' AND \'9\'';
+                $group->whereAdd(sprintf('LEFT(%1$s.%2$s, 1) BETWEEN %3$s AND %4$s',
+                                        $group->escapedTableName(),
+                                        'nickname',
+                                        $group->_quote("0"),
+                                        $group->_quote("9")));
                 break;
             default:
-                $sql .= sprintf(
-                    ' AND LEFT(LOWER(user_group.nickname), 1) = \'%s\'',
-                    $this->filter
-                );
+                $group->whereAdd(sprintf('LEFT(LOWER(%1$s.%2$s), 1) = %3$s',
+                                            $group->escapedTableName(),
+                                            'nickname',
+                                            $group->_quote($this->filter)));
             }
 
-            $sql .= sprintf(
-                ' ORDER BY user_group.%s %s, user_group.nickname ASC LIMIT %d, %d',
-                $sort,
-                $this->reverse ? 'DESC' : 'ASC',
-                $offset,
-                $limit
-            );
-
-            $group->query($sql);
+            $order = sprintf('%1$s.%2$s %3$s, %1$s.%4$s ASC',
+                            $group->escapedTableName(),
+                            $this->getSortKey('nickname'),
+                            $this->reverse ? 'DESC' : 'ASC',
+                            'nickname');
         }
+
+        $offset = ($this->page-1) * PROFILES_PER_PAGE;
+        $limit  = PROFILES_PER_PAGE + 1;
+
+        $group->orderBy($order);
+        $group->limit($offset, $limit);
+
+        $group->find();
 
         return $group;
     }
@@ -379,17 +336,14 @@ GROUP_QUERY_END;
      *
      * @return string   a column name for sorting
      */
-    function getSortKey()
+    function getSortKey($def='created')
     {
         switch ($this->sort) {
         case 'nickname':
-            return $this->sort;
-            break;
         case 'created':
             return $this->sort;
-            break;
         default:
-            return 'nickname';
+            return $def;
         }
     }
 

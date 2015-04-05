@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Superclass for plugins that do authentication
@@ -139,7 +137,7 @@ abstract class AuthenticationPlugin extends Plugin
                 //not much else we can do
             }else{
                 $user = $this->autoRegister($nickname, $suggested_nickname);
-                if($user){
+                if ($user instanceof User) {
                     User_username::register($user,$nickname,$this->provider_name);
                     return false;
                 }

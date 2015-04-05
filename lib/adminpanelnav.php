@@ -59,24 +59,8 @@ class AdminPanelNav extends Menu
         $nickname = $user->nickname;
         $name = $user->getProfile()->getBestName();
 
-        // Stub section w/ home link
-        $this->action->elementStart('ul');
-        $this->action->elementStart('li');
-        // TRANS: Header in administrator navigation panel.
-        $this->action->element('h3', null, _m('HEADER','Home'));
-        $this->action->elementStart('ul', 'nav');
-        $this->out->menuItem(common_local_url('all', array('nickname' =>
-                                                           $nickname)),
-                             // TRANS: Menu item in administrator navigation panel.
-                             _m('MENU','Home'),
-                             // TRANS: Menu item title in administrator navigation panel.
-                             // TRANS: %s is a username.
-                             sprintf(_('%s and friends'), $name),
-                             $this->action == 'all', 'nav_timeline_personal');
-
-        $this->action->elementEnd('ul');
-        $this->action->elementEnd('li');
-        $this->action->elementEnd('ul');
+        $stub = new HomeStubNav($this->action);
+        $this->submenu(_m('MENU','Home'), $stub);
 
         $this->action->elementStart('ul');
         $this->action->elementStart('li');

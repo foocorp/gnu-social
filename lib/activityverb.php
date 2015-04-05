@@ -48,6 +48,7 @@ class ActivityVerb
     const SHARE    = 'http://activitystrea.ms/schema/1.0/share';
     const SAVE     = 'http://activitystrea.ms/schema/1.0/save';
     const FAVORITE = 'http://activitystrea.ms/schema/1.0/favorite';
+    const LIKE     = 'http://activitystrea.ms/schema/1.0/like'; // This is a synonym of favorite
     const PLAY     = 'http://activitystrea.ms/schema/1.0/play';
     const FOLLOW   = 'http://activitystrea.ms/schema/1.0/follow';
     const FRIEND   = 'http://activitystrea.ms/schema/1.0/make-friend';
@@ -56,7 +57,8 @@ class ActivityVerb
 
     // Custom OStatus verbs for the flipside until they're standardized
     const DELETE     = 'http://ostatus.org/schema/1.0/unfollow';
-    const UNFAVORITE = 'http://ostatus.org/schema/1.0/unfavorite';
+    const UNFAVORITE = 'http://activitystrea.ms/schema/1.0/unfavorite';
+    const UNLIKE     = 'http://activitystrea.ms/schema/1.0/unlike'; // This is a synonym of unfavorite
     const UNFOLLOW   = 'http://ostatus.org/schema/1.0/unfollow';
     const LEAVE      = 'http://ostatus.org/schema/1.0/leave';
     const UNTAG      = 'http://ostatus.org/schema/1.0/untag';

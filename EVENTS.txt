@@ -2,6 +2,13 @@ InitializePlugin: a chance to initialize a plugin in a complete environment
 
 CleanupPlugin: a chance to cleanup a plugin at the end of a program
 
+StartActionExecute: Right before the "prepare" call of the current Action
+- $action:  the current Action object
+- &$args:   array of arguments, referenced so you can modify the array
+
+EndActionExecute:   Right after the "handle" call of the current Action
+- $action:      the current Action object
+
 StartPrimaryNav: Showing the primary nav menu
 - $action: the current action
 
@@ -1444,6 +1451,9 @@ StartResizeImageFile: Hook to resize an image and output it to a file. No matchi
 - $outpath:   string with output filepath
 - $box:       array with size ('width', 'height') and boundary box('x', 'y', 'w', 'h').
 
+FillImageFileMetadata: Get more metadata about the ImageFile if it is perhaps not a real local file
+- $imagefile    ImageFile object which we're getting metadata for (such as animated status, width/height etc.)
+
 StartShowAttachmentRepresentation: Attachment representation, full file (or in rare cases thumbnails/previews).
 - $out:     HTMLOutputter class to use for outputting HTML.
 - $file:    'File' object which we're going to show representation for.
@@ -1463,3 +1473,27 @@ StartNotifyMentioned: During notice distribution, we send notifications (email, 
 EndNotifyMentioned: During notice distribution, we send notifications (email, im...) to the profiles who were somehow mentioned.
 - $stored:         Notice object that is being distributed.
 - $mentioned_ids:  Array of profile IDs (not just for local users) who got mentioned by the notice.
+
+StartHomeStubNavItems: Go back Home nav items. Default includes just one item 'home'
+- $out:     HTMLOutputter used to output (usually an Action, but not always!)
+- &$items:  Referenced array of items in the nav (add if desired)
+
+EndHomeStubNavItems:
+- $out:     HTMLOutputter used to output (usually an Action, but not always!)
+- $items:   array of menu items
+
+StartSubMenu: Before outputting a submenu (including enclosing tags) to HTML
+- $out:     HTMLOutputter used to output (usually an Action, but not always!)
+- $menu:    The Menu object outputted as a submenu.
+- $label:   Localized text which represents the menu item.
+
+EndSubMenu: After outputting a submenu (including enclosing tags) to HTML
+- $out:     HTMLOutputter used to output (usually an Action, but not always!)
+- $menu:    The Menu object outputted as a submenu.
+- $label:   Localized text which represents the menu item.
+
+StartDocNav: Before outputting the docs Nav
+- $nav: The DoclNav widget
+
+EndDocNav: After outputting the docs Nav
+- $nav: The DoclNav widget

@@ -26,29 +26,36 @@ class File extends Managed_DataObject
 {
     public $__table = 'file';                            // table name
     public $id;                              // int(4)  primary_key not_null
-    public $url;                             // varchar(255)  unique_key
+    public $urlhash;                         // varchar(64)  unique_key
+    public $url;                             // text
+    public $filehash;                        // varchar(64)     indexed
     public $mimetype;                        // varchar(50)
     public $size;                            // int(4)
-    public $title;                           // varchar(255)
+    public $title;                           // varchar(191)   not 255 because utf8mb4 takes more space
     public $date;                            // int(4)
     public $protected;                       // int(4)
-    public $filename;                        // varchar(255)
+    public $filename;                        // varchar(191)   not 255 because utf8mb4 takes more space
     public $width;                           // int(4)
     public $height;                          // int(4)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
+
+    const URLHASH_ALG = 'sha256';
+    const FILEHASH_ALG = 'sha256';
 
     public static function schemaDef()
     {
         return array(
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true),
-                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'destination URL after following redirections'),
+                'urlhash' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'sha256 of destination URL (url field)'),
+                'url' => array('type' => 'text', 'description' => 'destination URL after following possible redirections'),
+                'filehash' => array('type' => 'varchar', 'length' => 64, 'not null' => false, 'description' => 'sha256 of the file contents, only for locally stored files of course'),
                 'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
                 'size' => array('type' => 'int', 'description' => 'size of resource when available'),
-                'title' => array('type' => 'varchar', 'length' => 255, 'description' => 'title of resource when available'),
+                'title' => array('type' => 'varchar', 'length' => 191, 'description' => 'title of resource when available'),
                 'date' => array('type' => 'int', 'description' => 'date of resource according to http query'),
                 'protected' => array('type' => 'int', 'description' => 'true when URL is private (needs login)'),
-                'filename' => array('type' => 'varchar', 'length' => 255, 'description' => 'if a local file, name of the file'),
+                'filename' => array('type' => 'varchar', 'length' => 191, 'description' => 'if a local file, name of the file'),
                 'width' => array('type' => 'int', 'description' => 'width in pixels, if it can be described as such and data is available'),
                 'height' => array('type' => 'int', 'description' => 'height in pixels, if it can be described as such and data is available'),
 
@@ -56,7 +63,10 @@ class File extends Managed_DataObject
             ),
             'primary key' => array('id'),
             'unique keys' => array(
-                'file_url_key' => array('url'),
+                'file_urlhash_key' => array('urlhash'),
+            ),
+            'indexes' => array(
+                'file_filehash_idx' => array('filehash'),
             ),
         );
     }
@@ -77,10 +87,11 @@ class File extends Managed_DataObject
         // I don't know why we have to keep doing this but I'm adding this last check to avoid
         // uniqueness bugs.
 
-        $file = File::getKV('url', $given_url);
+        $file = File::getKV('urlhash', self::hashurl($given_url));
         
         if (!$file instanceof File) {
             $file = new File;
+            $file->urlhash = self::hashurl($given_url);
             $file->url = $given_url;
             if (!empty($redir_data['protected'])) $file->protected = $redir_data['protected'];
             if (!empty($redir_data['title'])) $file->title = $redir_data['title'];
@@ -122,51 +133,56 @@ class File extends Managed_DataObject
             throw new ServerException('No canonical URL from given URL to process');
         }
 
-        $file = File::getKV('url', $given_url);
-        if (!$file instanceof File) {
+        $file = null;
+
+        try {
+            $file = File::getByUrl($given_url);
+        } catch (NoResultException $e) {
             // First check if we have a lookup trace for this URL already
-            $file_redir = File_redirection::getKV('url', $given_url);
-            if ($file_redir instanceof File_redirection) {
+            try {
+                $file_redir = File_redirection::getByUrl($given_url);
                 $file = File::getKV('id', $file_redir->file_id);
                 if (!$file instanceof File) {
                     // File did not exist, let's clean up the File_redirection entry
                     $file_redir->delete();
                 }
+            } catch (NoResultException $e) {
+                // We just wanted to doublecheck whether a File_thumbnail we might've had
+                // actually referenced an existing File object.
+            }
+        }
+
+        // If we still don't have a File object, let's create one now!
+        if (!$file instanceof File) {
+            // @fixme for new URLs this also looks up non-redirect data
+            // such as target content type, size, etc, which we need
+            // for File::saveNew(); so we call it even if not following
+            // new redirects.
+            $redir_data = File_redirection::where($given_url);
+            if (is_array($redir_data)) {
+                $redir_url = $redir_data['url'];
+            } elseif (is_string($redir_data)) {
+                $redir_url = $redir_data;
+                $redir_data = array();
+            } else {
+                // TRANS: Server exception thrown when a URL cannot be processed.
+                throw new ServerException(sprintf(_("Cannot process URL '%s'"), $given_url));
             }
 
-            // If we still don't have a File object, let's create one now!
-            if (!$file instanceof File) {
-                // @fixme for new URLs this also looks up non-redirect data
-                // such as target content type, size, etc, which we need
-                // for File::saveNew(); so we call it even if not following
-                // new redirects.
-                $redir_data = File_redirection::where($given_url);
-                if (is_array($redir_data)) {
-                    $redir_url = $redir_data['url'];
-                } elseif (is_string($redir_data)) {
-                    $redir_url = $redir_data;
-                    $redir_data = array();
-                } else {
-                    // TRANS: Server exception thrown when a URL cannot be processed.
-                    throw new ServerException(sprintf(_("Cannot process URL '%s'"), $given_url));
-                }
-
-                // TODO: max field length
-                if ($redir_url === $given_url || strlen($redir_url) > 255 || !$followRedirects) {
-                    // Save the File object based on our lookup trace
-                    $file = File::saveNew($redir_data, $given_url);
-                } else {
-                    // This seems kind of messed up... for now skipping this part
-                    // if we're already under a redirect, so we don't go into
-                    // horrible infinite loops if we've been given an unstable
-                    // redirect (where the final destination of the first request
-                    // doesn't match what we get when we ask for it again).
-                    //
-                    // Seen in the wild with clojure.org, which redirects through
-                    // wikispaces for auth and appends session data in the URL params.
-                    $file = self::processNew($redir_url, $notice_id, /*followRedirects*/false);
-                    File_redirection::saveNew($redir_data, $file->id, $given_url);
-                }
+            if ($redir_url === $given_url || !$followRedirects) {
+                // Save the File object based on our lookup trace
+                $file = File::saveNew($redir_data, $given_url);
+            } else {
+                // This seems kind of messed up... for now skipping this part
+                // if we're already under a redirect, so we don't go into
+                // horrible infinite loops if we've been given an unstable
+                // redirect (where the final destination of the first request
+                // doesn't match what we get when we ask for it again).
+                //
+                // Seen in the wild with clojure.org, which redirects through
+                // wikispaces for auth and appends session data in the URL params.
+                $file = self::processNew($redir_url, $notice_id, /*followRedirects*/false);
+                File_redirection::saveNew($redir_data, $file->id, $given_url);
             }
 
             if (!$file instanceof File) {
@@ -237,12 +253,7 @@ class File extends Managed_DataObject
 
     static function filename(Profile $profile, $origname, $mimetype)
     {
-        try {
-            $ext = common_supported_mime_to_ext($mimetype);
-        } catch (Exception $e) {
-            // We don't support this mimetype, but let's guess the extension
-            $ext = substr(strrchr($mimetype, '/'), 1);
-        }
+        $ext = self::guessMimeExtension($mimetype);
 
         // Normalize and make the original filename more URL friendly.
         $origname = basename($origname, ".$ext");
@@ -261,6 +272,17 @@ class File extends Managed_DataObject
             $filename = "$nickname-$datestamp-$origname-$random.$ext";
         } while (file_exists(self::path($filename)));
         return $filename;
+    }
+
+    static function guessMimeExtension($mimetype)
+    {
+        try {
+            $ext = common_supported_mime_to_ext($mimetype);
+        } catch (Exception $e) {
+            // We don't support this mimetype, but let's guess the extension
+            $ext = substr(strrchr($mimetype, '/'), 1);
+        }
+        return strtolower($ext);
     }
 
     /**
@@ -303,7 +325,7 @@ class File extends Managed_DataObject
 
         }
 
-        if (StatusNet::useHTTPS()) {
+        if (GNUsocial::useHTTPS()) {
 
             $sslserver = common_config('attachments', 'sslserver');
 
@@ -381,6 +403,10 @@ class File extends Managed_DataObject
      * @param $crop   bool  Crop to the max-values' aspect ratio
      *
      * @return File_thumbnail
+     *
+     * @throws UseFileAsThumbnailException  if the file is considered an image itself and should be itself as thumbnail
+     * @throws UnsupportedMediaException    if, despite trying, we can't understand how to make a thumbnail for this format
+     * @throws ServerException              on various other errors
      */
     public function getThumbnail($width=null, $height=null, $crop=false, $force_still=true)
     {
@@ -394,67 +420,16 @@ class File extends Managed_DataObject
             }
         }
 
-        if ($width === null) {
-            $width = common_config('thumbnail', 'width');
-            $height = common_config('thumbnail', 'height');
-            $crop = common_config('thumbnail', 'crop');
-        }
-
-        if ($height === null) {
-            $height = $width;
-            $crop = true;
-        }
-
-        // Get proper aspect ratio width and height before lookup
-        // We have to do it through an ImageFile object because of orientation etc.
-        // Only other solution would've been to rotate + rewrite uploaded files.
-        list($width, $height, $x, $y, $w, $h) =
-                                $image->scaleToFit($width, $height, $crop);
-
-        $params = array('file_id'=> $this->id,
-                        'width'  => $width,
-                        'height' => $height);
-        $thumb = File_thumbnail::pkeyGet($params);
-        if ($thumb instanceof File_thumbnail) {
-            return $thumb;
-        }
-
-        // throws exception on failure to generate thumbnail
-        $outname = "thumb-{$width}x{$height}-" . $image->filename;
-        $outpath = self::path($outname);
-
-        // The boundary box for our resizing
-        $box = array('width'=>$width, 'height'=>$height,
-                     'x'=>$x,         'y'=>$y,
-                     'w'=>$w,         'h'=>$h);
-
-        // Doublecheck that parameters are sane and integers.
-        if ($box['width'] < 1 || $box['width'] > common_config('thumbnail', 'maxsize')
-                || $box['height'] < 1 || $box['height'] > common_config('thumbnail', 'maxsize')
-                || $box['w'] < 1 || $box['x'] >= $image->width
-                || $box['h'] < 1 || $box['y'] >= $image->height) {
-            // Fail on bad width parameter. If this occurs, it's due to algorithm in ImageFile->scaleToFit
-            common_debug("Boundary box parameters for resize of {$image->filepath} : ".var_export($box,true));
-            throw new ServerException('Bad thumbnail size parameters.');
-        }
-
-        common_debug(sprintf('Generating a thumbnail of File id==%u of size %ux%u', $this->id, $width, $height));
-        // Perform resize and store into file
-        $image->resizeTo($outpath, $box);
-
-        // Avoid deleting the original
-        if ($image->getPath() != self::path($image->filename)) {
-            $image->unlink();
-        }
-        return File_thumbnail::saveThumbnail($this->id,
-                                      self::url($outname),
-                                      $width, $height,
-                                      $outname);
+        return $image->getFileThumbnail($width, $height, $crop);
     }
 
     public function getPath()
     {
-        return self::path($this->filename);
+        $filepath = self::path($this->filename);
+        if (!file_exists($filepath)) {
+            throw new FileNotFoundException($filepath);
+        }
+        return $filepath;
     }
 
     public function getUrl()
@@ -462,7 +437,7 @@ class File extends Managed_DataObject
         if (!empty($this->filename)) {
             // A locally stored file, so let's generate a URL for our instance.
             $url = self::url($this->filename);
-            if ($url != $this->url) {
+            if (self::hashurl($url) !== $this->urlhash) {
                 // For indexing purposes, in case we do a lookup on the 'url' field.
                 // also we're fixing possible changes from http to https, or paths
                 $this->updateUrl($url);
@@ -474,16 +449,40 @@ class File extends Managed_DataObject
         return $this->url;
     }
 
+    static public function getByUrl($url)
+    {
+        $file = new File();
+        $file->urlhash = self::hashurl($url);
+        if (!$file->find(true)) {
+            throw new NoResultException($file);
+        }
+        return $file;
+    }
+
+    /**
+     * @param   string  $hashstr    String of (preferrably lower case) hexadecimal characters, same as result of 'hash_file(...)'
+     */
+    static public function getByHash($hashstr, $alg=File::FILEHASH_ALG)
+    {
+        $file = new File();
+        $file->filehash = strtolower($hashstr);
+        if (!$file->find(true)) {
+            throw new NoResultException($file);
+        }
+        return $file;
+    }
+
     public function updateUrl($url)
     {
-        $file = File::getKV('url', $url);
+        $file = File::getKV('urlhash', self::hashurl($url));
         if ($file instanceof File) {
             throw new ServerException('URL already exists in DB');
         }
-        $sql = 'UPDATE %1$s SET url=%2$s WHERE url=%3$s;';
+        $sql = 'UPDATE %1$s SET urlhash=%2$s, url=%3$s WHERE urlhash=%4$s;';
         $result = $this->query(sprintf($sql, $this->__table,
+                                             $this->_quote((string)self::hashurl($url)),
                                              $this->_quote((string)$url),
-                                             $this->_quote((string)$this->url)));
+                                             $this->_quote((string)$this->urlhash)));
         if ($result === false) {
             common_log_db_error($this, 'UPDATE', __FILE__);
             throw new ServerException("Could not UPDATE {$this->__table}.url");
@@ -502,9 +501,9 @@ class File extends Managed_DataObject
 
     function blowCache($last=false)
     {
-        self::blow('file:notice-ids:%s', $this->url);
+        self::blow('file:notice-ids:%s', $this->urlhash);
         if ($last) {
-            self::blow('file:notice-ids:%s;last', $this->url);
+            self::blow('file:notice-ids:%s;last', $this->urlhash);
         }
         self::blow('file:notice-count:%d', $this->id);
     }
@@ -581,5 +580,55 @@ class File extends Managed_DataObject
         $title = $this->title ?: $this->filename;
 
         return $title ?: null;
+    }
+
+    static public function hashurl($url)
+    {
+        if (empty($url)) {
+            throw new Exception('No URL provided to hash algorithm.');
+        }
+        return hash(self::URLHASH_ALG, $url);
+    }
+
+    static public function beforeSchemaUpdate()
+    {
+        $table = strtolower(get_called_class());
+        $schema = Schema::get();
+        $schemadef = $schema->getTableDef($table);
+
+        // 2015-02-19 We have to upgrade our table definitions to have the urlhash field populated
+        if (isset($schemadef['fields']['urlhash']) && isset($schemadef['unique keys']['file_urlhash_key'])) {
+            // We already have the urlhash field, so no need to migrate it.
+            return;
+        }
+        echo "\nFound old $table table, upgrading it to contain 'urlhash' field...";
+        // We have to create a urlhash that is _not_ the primary key,
+        // transfer data and THEN run checkSchema
+        $schemadef['fields']['urlhash'] = array (
+                                              'type' => 'varchar',
+                                              'length' => 64,
+                                              'not null' => true,
+                                              'description' => 'sha256 of destination URL (url field)',
+                                            );
+        $schemadef['fields']['url'] = array (
+                                              'type' => 'text',
+                                              'description' => 'destination URL after following possible redirections',
+                                            );
+        unset($schemadef['unique keys']);
+        $schema->ensureTable($table, $schemadef);
+        echo "DONE.\n";
+
+        $classname = ucfirst($table);
+        $tablefix = new $classname;
+        // urlhash is hash('sha256', $url) in the File table
+        echo "Updating urlhash fields in $table table...";
+        // Maybe very MySQL specific :(
+        $tablefix->query(sprintf('UPDATE %1$s SET %2$s=%3$s;',
+                            $schema->quoteIdentifier($table),
+                            'urlhash',
+                            // The line below is "result of sha256 on column `url`"
+                            'SHA2(url, 256)'));
+        echo "DONE.\n";
+        echo "Resuming core schema upgrade...";
     }
 }

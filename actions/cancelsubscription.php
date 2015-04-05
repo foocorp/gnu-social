@@ -43,23 +43,17 @@ class CancelsubscriptionAction extends FormAction
 {
     protected $needPost = true;
 
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $profile_id = $this->int('unsubscribeto');
         $this->target = Profile::getKV('id', $profile_id);
         if (!$this->target instanceof Profile) {
             throw new NoProfileException($profile_id);
         }
-
-        return true;
     }
 
-    protected function handlePost()
+    protected function doPost()
     {
-        parent::handlePost();
-
         try {
             $request = Subscription_queue::pkeyGet(array('subscriber' => $this->scoped->id,
                                                          'subscribed' => $this->target->id));
@@ -70,7 +64,7 @@ class CancelsubscriptionAction extends FormAction
             common_debug('Tried to cancel a non-existing pending subscription');
         }
 
-        if (StatusNet::isAjax()) {
+        if (GNUsocial::isAjax()) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
             // TRANS: Title after unsubscribing from a group.
@@ -82,10 +76,7 @@ class CancelsubscriptionAction extends FormAction
             $this->elementEnd('body');
             $this->endHTML();
             exit();
-        } else {
-            common_redirect(common_local_url('subscriptions',
-                                             array('nickname' => $this->scoped->nickname)),
-                            303);
         }
+        common_redirect(common_local_url('subscriptions', array('nickname' => $this->scoped->getNickname())), 303);
     }
 }

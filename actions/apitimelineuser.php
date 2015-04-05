@@ -79,6 +79,10 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             $this->clientError(_('No such user.'), 404);
         }
 
+        if (!$this->target->isLocal()) {
+            $this->serverError(_('Remote user timelines are not available here yet.'), 501);
+        }
+
         $this->notices = $this->getNotices();
 
         return true;
@@ -405,7 +409,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
         // Get (safe!) HTML and text versions of the content
 
-        $rendered = $this->purify($sourceContent);
+        $rendered = common_purify($sourceContent);
         $content = common_strip_html($rendered);
 
         $shortened = $this->auth_user->shortenLinks($content);
@@ -503,14 +507,5 @@ class ApiTimelineUserAction extends ApiBareAuthAction
                                  $options);
 
         return $saved;
-    }
-
-    function purify($content)
-    {
-        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-
-        $config = array('safe' => 1,
-                        'deny_attribute' => 'id,style,on*');
-        return htmLawed($content, $config);
     }
 }

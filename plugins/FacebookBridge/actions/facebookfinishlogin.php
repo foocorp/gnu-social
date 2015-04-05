@@ -436,8 +436,14 @@ class FacebookfinishloginAction extends Action
                 } else {
                     // save it as an avatar
 
-                    $file = new ImageFile($user->id, Avatar::path($tmpname));
-                    $filename = $file->resize(180); // size of the biggest img we get from Facebook
+                    $imagefile = new ImageFile(null, Avatar::path($tmpname));
+                    $filename = Avatar::filename($user->id, image_type_to_extension($imagefile->preferredType()),
+                                                 180, common_timestamp());
+                    // Previous docs said 180 is the "biggest img we get from Facebook"
+                    $imagefile->resizeTo(Avatar::path($filename, array('width'=>180, 'height'=>180)));
+
+                    // No need to keep the temporary file around...
+                    @unlink(Avatar::path($tmpname));
 
                     $profile   = $user->getProfile();
 
@@ -457,7 +463,6 @@ class FacebookfinishloginAction extends Action
                         );
 
                         // clean up tmp file
-                        @unlink(Avatar::path($tmpname));
                     }
 
                 }

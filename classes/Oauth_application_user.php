@@ -13,7 +13,7 @@ class Oauth_application_user extends Managed_DataObject
     public $profile_id;                      // int(4)  primary_key not_null
     public $application_id;                  // int(4)  primary_key not_null
     public $access_type;                     // tinyint(1)
-    public $token;                           // varchar(255)
+    public $token;                           // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                         // datetime   not_null
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
 
@@ -27,7 +27,7 @@ class Oauth_application_user extends Managed_DataObject
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'user of the application'),
                 'application_id' => array('type' => 'int', 'not null' => true, 'description' => 'id of the application'),
                 'access_type' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'access type, bit 1 = read, bit 2 = write'),
-                'token' => array('type' => 'varchar', 'length' => 255, 'description' => 'request or access token'),
+                'token' => array('type' => 'varchar', 'length' => 191, 'description' => 'request or access token'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),

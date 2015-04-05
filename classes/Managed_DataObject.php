@@ -299,6 +299,11 @@ abstract class Managed_DataObject extends Memcached_DataObject
         return $ckeys;
     }
 
+    public function escapedTableName()
+    {
+        return common_database_tablename($this->tableName());
+    }
+
     /**
      * Returns an ID, checked that it is set and reasonably valid
      *
@@ -390,5 +395,10 @@ abstract class Managed_DataObject extends Memcached_DataObject
         $this->query('COMMIT');
         // @FIXME return true only if something changed (otherwise 0)
         return $result;
+    }
+
+    static public function beforeSchemaUpdate()
+    {
+        // NOOP
     }
 }

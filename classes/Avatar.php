@@ -15,8 +15,8 @@ class Avatar extends Managed_DataObject
     public $width;                           // int(4)  primary_key not_null
     public $height;                          // int(4)  primary_key not_null
     public $mediatype;                       // varchar(32)   not_null
-    public $filename;                        // varchar(255)
-    public $url;                             // varchar(255)  unique_key
+    public $filename;                        // varchar(191)   not 255 because utf8mb4 takes more space
+    public $url;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -32,14 +32,14 @@ class Avatar extends Managed_DataObject
                 'width' => array('type' => 'int', 'not null' => true, 'description' => 'image width'),
                 'height' => array('type' => 'int', 'not null' => true, 'description' => 'image height'),
                 'mediatype' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'description' => 'file type'),
-                'filename' => array('type' => 'varchar', 'length' => 255, 'description' => 'local filename, if local'),
-                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'avatar location'),
+                'filename' => array('type' => 'varchar', 'length' => 191, 'description' => 'local filename, if local'),
+                'url' => array('type' => 'text', 'description' => 'avatar location, not indexed - do not use in WHERE statement'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
             'primary key' => array('profile_id', 'width', 'height'),
             'unique keys' => array(
-                'avatar_url_key' => array('url'),
+//                'avatar_filename_key' => array('filename'),
             ),
             'foreign keys' => array(
                 'avatar_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
@@ -241,16 +241,21 @@ class Avatar extends Managed_DataObject
             // TRANS: An error message when avatar size is unreasonable
             throw new Exception(_m('Avatar size too large'));
         }
+        // So far we only have square avatars and I don't have time to
+        // rewrite support for non-square ones right now ;)
+        $height = $width;
 
         $original = Avatar::getUploaded($target);
 
-        $imagefile = new ImageFile($target->id, Avatar::path($original->filename));
-        $filename = $imagefile->resize($width);
+        $imagefile = new ImageFile(null, Avatar::path($original->filename));
+        $filename = Avatar::filename($target->getID(), image_type_to_extension($imagefile->preferredType()),
+                                     $width, common_timestamp());
+        $imagefile->resizeTo(Avatar::path($filename), array('width'=>$width, 'height'=>$height));
 
         $scaled = clone($original);
         $scaled->original = false;
         $scaled->width = $width;
-        $scaled->height = $width;
+        $scaled->height = $height;
         $scaled->url = Avatar::url($filename);
         $scaled->filename = $filename;
         $scaled->created = common_sql_now();

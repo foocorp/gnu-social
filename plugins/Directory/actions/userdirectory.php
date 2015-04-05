@@ -27,12 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET'))
-{
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/publicgroupnav.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * User directory
@@ -43,7 +38,7 @@ require_once INSTALLDIR . '/lib/publicgroupnav.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class UserdirectoryAction extends Action
+class UserdirectoryAction extends ManagedAction
 {
     /**
      * The page we're on
@@ -137,17 +132,8 @@ class UserdirectoryAction extends Action
         return true;
     }
 
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $this->page    = ($this->arg('page')) ? ($this->arg('page') + 0) : 1;
         $this->filter  = $this->arg('filter', 'all');
         $this->reverse = $this->boolean('reverse');
@@ -155,23 +141,6 @@ class UserdirectoryAction extends Action
         $this->sort    = $this->arg('sort', 'nickname');
 
         common_set_returnto($this->selfUrl());
-
-        return true;
-    }
-
-    /**
-     * Handle request
-     *
-     * Shows the page
-     *
-     * @param array $args $_REQUEST args; handled in prepare()
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
     }
 
     /**
@@ -291,10 +260,13 @@ class UserdirectoryAction extends Action
     {
         $profile = new Profile();
 
+        // Comment this out or disable to get global profile searches
+        $profile->joinAdd(array('id', 'user:id'));
+
         $offset = ($this->page - 1) * PROFILES_PER_PAGE;
         $limit  = PROFILES_PER_PAGE + 1;
 
-        if (isset($this->q)) {
+        if (!empty($this->q)) {
              // User is searching via query
              $search_engine = $profile->getSearchEngine('profile');
 
@@ -319,34 +291,34 @@ class UserdirectoryAction extends Action
              $profile->find();
         } else {
             // User is browsing via AlphaNav
-            $sort   = $this->getSortKey();
-            $sql    = 'SELECT profile.* FROM profile, user WHERE profile.id = user.id';
 
-            switch($this->filter)
-            {
+            switch ($this->filter) {
             case 'all':
                 // NOOP
                 break;
             case '0-9':
-                $sql .=
-                    '  AND LEFT(profile.nickname, 1) BETWEEN \'0\' AND \'9\'';
+                $profile->whereAdd(sprintf('LEFT(%1$s.%2$s, 1) BETWEEN %3$s AND %4$s',
+                                            $profile->escapedTableName(),
+                                            'nickname',
+                                            $profile->_quote("0"),
+                                            $profile->_quote("9")));
                 break;
             default:
-                $sql .= sprintf(
-                    ' AND LEFT(LOWER(profile.nickname), 1) = \'%s\'',
-                    $this->filter
-                );
+                $profile->whereAdd(sprintf('LEFT(LOWER(%1$s.%2$s), 1) = %3$s',
+                                            $profile->escapedTableName(),
+                                            'nickname',
+                                            $profile->_quote($this->filter)));
             }
 
-            $sql .= sprintf(
-                ' ORDER BY profile.%s %s, profile.nickname ASC LIMIT %d, %d',
-                $sort,
-                $this->reverse ? 'DESC' : 'ASC',
-                $offset,
-                $limit
-            );
+            $order = sprintf('%1$s.%2$s %3$s, %1$s.%4$s ASC',
+                            $profile->escapedTableName(),
+                            $this->getSortKey('nickname'),
+                            $this->reverse ? 'DESC' : 'ASC',
+                            'nickname');
+            $profile->orderBy($order);
+            $profile->limit($offset, $limit);
 
-            $profile->query($sql);
+            $profile->find();
         }
 
         return $profile;
@@ -357,15 +329,12 @@ class UserdirectoryAction extends Action
      *
      * @return string   a column name for sorting
      */
-    function getSortKey()
+    function getSortKey($def='nickname')
     {
         switch ($this->sort) {
         case 'nickname':
-            return $this->sort;
-            break;
         case 'created':
             return $this->sort;
-            break;
         default:
             return 'nickname';
         }

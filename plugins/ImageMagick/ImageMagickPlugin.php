@@ -46,12 +46,15 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class ImageMagickPlugin extends Plugin
 {
+    public $preview_imageformat = 'PNG';    // Image format strings: http://www.imagemagick.org/script/formats.php#supported
+    public $rasterize_vectors = false;       // Whether we want to turn SVG into PNG etc.
+
     /**
      * @param ImageFile $file An ImageFile object we're getting metadata for
      * @param array $info The response from getimagesize()
      */
     public function onFillImageFileMetadata(ImageFile $imagefile) {
-        if (is_null($imagefile->animated) && $imagefile->type === IMAGETYPE_GIF) {
+        if (is_null($imagefile->animated) && $imagefile->mimetype === 'image/gif') {
             $magick = new Imagick($imagefile->filepath);
             $magick = $magick->coalesceImages();
             $imagefile->animated = $magick->getNumberImages()>1;
@@ -60,29 +63,73 @@ class ImageMagickPlugin extends Plugin
         return true;
     }
 
-    public function onStartResizeImageFile(ImageFile $imagefile, $outpath, array $box) {
-        // So far we only take over the resize for IMAGETYPE_GIF
-        // (and only animated for gifs! (and only if we really want to resize the animation!))
-        if ($imagefile->type == IMAGETYPE_GIF && $imagefile->animated && common_config('thumbnail', 'animated')) {
-            $magick = new Imagick($imagefile->filepath);
-            $magick = $magick->coalesceImages();
-            $magick->setIteratorIndex(0);
-            do {
-                $magick->cropImage($box['w'], $box['h'], $box['x'], $box['y']);
-                $magick->thumbnailImage($box['width'], $box['height']);
-                $magick->setImagePage($box['width'], $box['height'], 0, 0);
-            } while ($magick->nextImage());
-            $magick = $magick->deconstructImages();
-
-            // $magick->writeImages($outpath, true); did not work, had to use filehandle
-            // There's been bugs for writeImages in php5-imagick before, probably now too
-            $fh = fopen($outpath, 'w+');
-            $success = $magick->writeImagesFile($fh);
-            fclose($fh);
-
-            return !$success;
+    public function onStartResizeImageFile(ImageFile $imagefile, $outpath, array $box)
+    {
+        switch ($imagefile->mimetype) {
+        case 'image/gif':
+            // If GIF, then only for animated gifs! (and only if we really want to resize the animation!)
+            if ($imagefile->animated && common_config('thumbnail', 'animated')) {
+                return $this->resizeImageFileAnimatedGif($imagefile, $outpath, $box);
+            }
+            break;
         }
         return true;
+    }
+
+    protected function resizeImageFileAnimatedGif(ImageFile $imagefile, $outpath, array $box)
+    {
+        $magick = new Imagick($imagefile->filepath);
+        $magick = $magick->coalesceImages();
+        $magick->setIteratorIndex(0);
+        do {
+            $magick->cropImage($box['w'], $box['h'], $box['x'], $box['y']);
+            $magick->thumbnailImage($box['width'], $box['height']);
+            $magick->setImagePage($box['width'], $box['height'], 0, 0);
+        } while ($magick->nextImage());
+        $magick = $magick->deconstructImages();
+
+        // $magick->writeImages($outpath, true); did not work, had to use filehandle
+        // There's been bugs for writeImages in php5-imagick before, probably now too
+        $fh = fopen($outpath, 'w+');
+        $success = $magick->writeImagesFile($fh);
+        fclose($fh);
+        $magick->destroy();
+
+        return !$success;
+    }
+
+    public function onCreateFileImageThumbnailSource(File $file, &$imgPath, $media=null)
+    {
+        switch ($file->mimetype) {
+        case 'image/svg+xml':
+            if (!$this->rasterize_vectors) {
+                // ImageMagick seems to be hard to trick into scaling vector graphics...
+                return true;
+            }
+            break;
+        default:
+            // If we don't know the format, let's try not to mess with anything.
+            return true;
+        }
+
+        $imgPath = tempnam(sys_get_temp_dir(), 'socialthumb-');
+        if (!$this->createImagePreview($file, $imgPath)) {
+            common_debug('Could not create ImageMagick preview of File id=='.$file->id);
+            @unlink($imgPath);
+            $imgPath = null;
+            return true;
+        }
+        return false;
+    }
+
+    protected function createImagePreview(File $file, $outpath)
+    {
+        $magick = new Imagick($file->getPath());
+        $magick->setImageFormat($this->preview_imageformat);
+        $magick->writeImage($outpath);
+        $magick->destroy();
+
+        return getimagesize($outpath);  // Verify that we wrote an understandable image.
     }
 
     public function onPluginVersion(&$versions)

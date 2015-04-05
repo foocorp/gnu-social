@@ -27,9 +27,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Form action extendable class
@@ -94,7 +92,7 @@ class FormAction extends ManagedAction
     /**
      * @return string with instructions to pass into common_markup_to_html()
      */
-    public function getInstructions()
+    protected function getInstructions()
     {
         return null;
     }
@@ -117,27 +115,5 @@ class FormAction extends ManagedAction
         $class = $this->form.'Form';
         $form = new $class($this, $this->formOpts);
         return $form;
-    }
-
-    /**
-     * Gets called from handle() if isPost() is true;
-     * @return void
-     */
-    protected function handlePost()
-    {
-        parent::handlePost();
-
-        // check for this before token since all POST and FILES data
-        // is losts when size is exceeded
-        if (empty($_POST) && $_SERVER['CONTENT_LENGTH']>0) {
-            // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
-            // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-            $msg = _m('The server was unable to handle that much POST data (%s MiB) due to its current configuration.',
-                      'The server was unable to handle that much POST data (%s MiB) due to its current configuration.',
-                      round($_SERVER['CONTENT_LENGTH']/1024/1024,2));
-            throw new ClientException($msg);
-        }
-
-        $this->checkSessionToken();
     }
 }

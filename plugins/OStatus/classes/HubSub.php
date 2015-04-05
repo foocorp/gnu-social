@@ -31,8 +31,8 @@ class HubSub extends Managed_DataObject
     public $__table = 'hubsub';
 
     public $hashkey; // sha1(topic . '|' . $callback); (topic, callback) key is too long for myisam in utf8
-    public $topic;
-    public $callback;
+    public $topic;      // varchar(191)   not 255 because utf8mb4 takes more space
+    public $callback;   // varchar(191)   not 255 because utf8mb4 takes more space
     public $secret;
     public $lease;
     public $sub_start;
@@ -55,8 +55,8 @@ class HubSub extends Managed_DataObject
         return array(
             'fields' => array(
                 'hashkey' => array('type' => 'char', 'not null' => true, 'length' => 40, 'description' => 'HubSub hashkey'),
-                'topic' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'HubSub topic'),
-                'callback' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'HubSub callback'),
+                'topic' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'HubSub topic'),
+                'callback' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'HubSub callback'),
                 'secret' => array('type' => 'text', 'description' => 'HubSub stored secret'),
                 'lease' => array('type' => 'int', 'description' => 'HubSub leasetime'),
                 'sub_start' => array('type' => 'datetime', 'description' => 'subscription start'),

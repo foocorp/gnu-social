@@ -63,6 +63,7 @@ class NoticeListItem extends Widget
     protected $id_prefix = null;
     protected $options = true;
     protected $maxchars = 0;   // if <= 0 it means use full posts
+    protected $item_tag = 'li';
 
     /**
      * constructor
@@ -101,7 +102,7 @@ class NoticeListItem extends Widget
             }
         }
         // string preferences
-        foreach(array('id_prefix') as $key) {
+        foreach(array('id_prefix', 'item_tag') as $key) {
             if (array_key_exists($key, $prefs)) {
                 $this->$key = $prefs[$key];
             }
@@ -157,8 +158,8 @@ class NoticeListItem extends Widget
     {
         $this->elementStart('footer');
         $this->showNoticeInfo();
-        if ($this->attachments) { $this->showNoticeAttachments(); }
         if ($this->options) { $this->showNoticeOptions(); }
+        if ($this->attachments) { $this->showNoticeAttachments(); }
         $this->elementEnd('footer');
     }
 
@@ -179,7 +180,6 @@ class NoticeListItem extends Widget
             $this->showNoticeSource();
             $this->showNoticeLocation();
             $this->showPermalink();
-            $this->showRepeat();
             Event::handle('EndShowNoticeInfo', array($this));
         }
     }
@@ -192,7 +192,6 @@ class NoticeListItem extends Widget
                 $this->out->elementStart('div', 'notice-options');
                 if (Event::handle('StartShowNoticeOptionItems', array($this))) {
                     $this->showReplyLink();
-                    $this->showRepeatForm();
                     $this->showDeleteLink();
                     Event::handle('EndShowNoticeOptionItems', array($this));
                 }
@@ -219,7 +218,7 @@ class NoticeListItem extends Widget
                 $class .= ' notice-source-'.$this->notice->source;
             }
             $id_prefix = (strlen($this->id_prefix) ? $this->id_prefix . '-' : '');
-            $this->out->elementStart('li', array('class' => $class,
+            $this->out->elementStart($this->item_tag, array('class' => $class,
                                                  'id' => "${id_prefix}notice-${id}"));
             Event::handle('EndOpenNoticeListItemElement', array($this));
         }
@@ -528,32 +527,6 @@ class NoticeListItem extends Widget
     }
 
     /**
-     * show a link to the author of repeat
-     *
-     * @return void
-     */
-    function showRepeat()
-    {
-        if (!empty($this->repeat)) {
-
-            $repeater = Profile::getKV('id', $this->repeat->profile_id);
-
-            $attrs = array('href' => $repeater->profileurl,
-                           'class' => 'h-card p-author',
-                           'title' => $repeater->getFancyName());
-
-            $this->out->elementStart('span', 'repeat h-entry');
-
-            // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
-            $this->out->raw(_('Repeated by').' ');
-
-            $this->out->element('a', $attrs, $repeater->getNickname());
-
-            $this->out->elementEnd('span');
-        }
-    }
-
-    /**
      * show a link to reply to the current notice
      *
      * Should either do the reply in the current notice form (if available), or
@@ -596,39 +569,11 @@ class NoticeListItem extends Widget
             $deleteurl = common_local_url('deletenotice',
                                           array('notice' => $todel->id));
             $this->out->element('a', array('href' => $deleteurl,
-                                           'class' => 'notice_delete',
+                                           'class' => 'notice_delete popup',
                                            // TRANS: Link title in notice list item to delete a notice.
                                            'title' => _('Delete this notice from the timeline.')),
                                            // TRANS: Link text in notice list item to delete a notice.
                                            _('Delete'));
-        }
-    }
-
-    /**
-     * show the form to repeat a notice
-     *
-     * @return void
-     */
-    function showRepeatForm()
-    {
-        if ($this->notice->scope == Notice::PUBLIC_SCOPE ||
-            $this->notice->scope == Notice::SITE_SCOPE) {
-            $user = common_current_user();
-            if (!empty($user) &&
-                $user->id != $this->notice->profile_id) {
-                $this->out->text(' ');
-                $profile = $user->getProfile();
-                if ($profile->hasRepeated($this->notice)) {
-                    $this->out->element('span', array('class' => 'repeated',
-                                                      // TRANS: Title for repeat form status in notice list when a notice has been repeated.
-                                                      'title' => _('Notice repeated.')),
-                                        // TRANS: Repeat form status in notice list when a notice has been repeated.
-                                        _('Repeated'));
-                } else {
-                    $rf = new RepeatForm($this->out, $this->notice);
-                    $rf->show();
-                }
-            }
         }
     }
 

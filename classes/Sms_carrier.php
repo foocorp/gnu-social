@@ -12,7 +12,7 @@ class Sms_carrier extends Managed_DataObject
     public $__table = 'sms_carrier';                     // table name
     public $id;                              // int(4)  primary_key not_null
     public $name;                            // varchar(64)  unique_key
-    public $email_pattern;                   // varchar(255)   not_null
+    public $email_pattern;                   // varchar(191)   not_null   not 255 because utf8mb4 takes more space
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -30,7 +30,7 @@ class Sms_carrier extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'int', 'not null' => true, 'description' => 'primary key for SMS carrier'),
                 'name' => array('type' => 'varchar', 'length' => 64, 'description' => 'name of the carrier'),
-                'email_pattern' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'sprintf pattern for making an email address from a phone number'),
+                'email_pattern' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'sprintf pattern for making an email address from a phone number'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),

@@ -109,7 +109,7 @@ class ActivityImporter extends QueueHandler
 
             // XXX: don't do this for untrusted input!
 
-            Subscription::start($otherProfile, $profile);
+            Subscription::ensureStart($otherProfile, $profile);
         } else if (empty($activity->actor)
                    || $activity->actor->id == $author->id) {
 
@@ -123,7 +123,7 @@ class ActivityImporter extends QueueHandler
                 throw new ClientException(_('Unknown profile.'));
             }
 
-            Subscription::start($profile, $otherProfile);
+            Subscription::ensureStart($profile, $otherProfile);
         } else {
             // TRANS: Client exception thrown when trying to import an event not related to the importing user.
             throw new Exception(_('This activity seems unrelated to our user.'));
@@ -213,7 +213,7 @@ class ActivityImporter extends QueueHandler
 
         // Get (safe!) HTML and text versions of the content
 
-        $rendered = $this->purify($sourceContent);
+        $rendered = common_purify($sourceContent);
         $content = common_strip_html($rendered);
 
         $shortened = $user->shortenLinks($content);
@@ -337,16 +337,5 @@ class ActivityImporter extends QueueHandler
         }
 
         return array($groups, $replies);
-    }
-
-
-    function purify($content)
-    {
-        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-
-        $config = array('safe' => 1,
-                        'deny_attribute' => 'id,style,on*');
-
-        return htmLawed($content, $config);
     }
 }

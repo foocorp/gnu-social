@@ -66,7 +66,7 @@ class DomainStatusNetworkPlugin extends Plugin
             }
         }
 
-        $nickname = StatusNet::currentSite();
+        $nickname = GNUsocial::currentSite();
 
         if (empty($nickname)) {
             $this->log(LOG_WARNING, "No current site");
@@ -212,7 +212,7 @@ class DomainStatusNetworkPlugin extends Plugin
             return false;
         }
 
-        StatusNet::switchSite($sn->nickname);
+        GNUsocial::switchSite($sn->nickname);
 
         $user = User::getKV('email', $email);
 
@@ -242,7 +242,7 @@ class DomainStatusNetworkPlugin extends Plugin
             Status_network::$wildcard = $config['WILDCARD'];
         }
 
-        StatusNet::switchSite($sn->nickname);
+        GNUsocial::switchSite($sn->nickname);
 
         $confirm = EmailRegistrationPlugin::registerEmail($email);
 
@@ -259,7 +259,7 @@ class DomainStatusNetworkPlugin extends Plugin
             throw new ClientException(_("No such site."));
         }
 
-        StatusNet::switchSite($sn->nickname);
+        GNUsocial::switchSite($sn->nickname);
 
         $user = common_check_user($email, $password);
 
@@ -294,7 +294,7 @@ class DomainStatusNetworkPlugin extends Plugin
             throw new NoSuchUserException(array('email' => $email));
         }
 
-        StatusNet::switchSite($sn->nickname);
+        GNUsocial::switchSite($sn->nickname);
 
         $user = User::getKV('email', $email);
         

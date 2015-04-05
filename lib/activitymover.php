@@ -146,7 +146,7 @@ class ActivityMover extends QueueHandler
                                "Changing sub to {$act->objects[0]->id}".
                                "by {$act->actor->id} to {$remote->nickname}.");
                     $otherProfile = $otherUser->getProfile();
-                    Subscription::start($otherProfile, $remote);
+                    Subscription::ensureStart($otherProfile, $remote);
                     Subscription::cancel($otherProfile, $user->getProfile());
                 } else {
                     $this->log(LOG_NOTICE,

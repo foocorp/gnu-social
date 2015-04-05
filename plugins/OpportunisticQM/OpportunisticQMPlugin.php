@@ -14,7 +14,7 @@ class OpportunisticQMPlugin extends Plugin {
      * When the page has finished rendering, let's do some cron jobs
      * if we have the time.
      */
-    public function onEndActionExecute($status, Action $action)
+    public function onEndActionExecute(Action $action)
     {
         if ($action instanceof RunqueueAction) {
             return true;

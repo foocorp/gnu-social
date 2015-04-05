@@ -10,8 +10,8 @@ class Consumer extends Managed_DataObject
     /* the code below is auto generated do not remove the above tag */
 
     public $__table = 'consumer';                        // table name
-    public $consumer_key;                    // varchar(255)  primary_key not_null
-    public $consumer_secret;                 // varchar(255)   not_null
+    public $consumer_key;                    // varchar(191)  primary_key not_null   not 255 because utf8mb4 takes more space
+    public $consumer_secret;                 // varchar(191)   not_null   not 255 because utf8mb4 takes more space
     public $seed;                            // char(32)   not_null
     public $created;                         // datetime   not_null
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
@@ -24,8 +24,8 @@ class Consumer extends Managed_DataObject
         return array(
             'description' => 'OAuth consumer record',
             'fields' => array(
-                'consumer_key' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'unique identifier, root URL'),
-                'consumer_secret' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'secret value'),
+                'consumer_key' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'unique identifier, root URL'),
+                'consumer_secret' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'secret value'),
                 'seed' => array('type' => 'char', 'length' => 32, 'not null' => true, 'description' => 'seed for new tokens by this consumer'),
 
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),

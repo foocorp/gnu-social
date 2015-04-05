@@ -233,37 +233,6 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
-    function onStartTagProfileAction($action, $profile)
-    {
-        $err = null;
-        $uri = $action->trimmed('uri');
-
-        if (!$profile && $uri) {
-            try {
-                if (Validate::email($uri)) {
-                    $oprofile = Ostatus_profile::ensureWebfinger($uri);
-                } else if (Validate::uri($uri)) {
-                    $oprofile = Ostatus_profile::ensureProfileURL($uri);
-                } else {
-                    // TRANS: Exception in OStatus when invalid URI was entered.
-                    throw new Exception(_m('Invalid URI.'));
-                }
-
-                // redirect to the new profile.
-                common_redirect(common_local_url('tagprofile', array('id' => $oprofile->profile_id)), 303);
-
-            } catch (Exception $e) {
-                // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
-                // TRANS: and example.net, as these are official standard domain names for use in examples.
-                $err = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
-            }
-
-            $action->showForm($err);
-            return false;
-        }
-        return true;
-    }
-
     /*
      * If the field being looked for is URI look for the profile
      */

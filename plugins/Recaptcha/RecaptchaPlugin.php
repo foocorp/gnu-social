@@ -71,7 +71,7 @@ class RecaptchaPlugin extends Plugin
     {
         if (isset($action->recaptchaPluginNeedsOutput) && $action->recaptchaPluginNeedsOutput) {
             // Load the AJAX API
-            if (StatusNet::isHTTPS()) {
+            if (GNUsocial::isHTTPS()) {
                 $url = "https://www.google.com/recaptcha/api/js/recaptcha_ajax.js";
             } else {
                 $url = "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js";

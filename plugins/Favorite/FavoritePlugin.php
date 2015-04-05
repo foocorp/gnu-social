@@ -23,7 +23,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @package     Activity
  * @maintainer  Mikael Nordfeldth <mmn@hethane.se>
  */
-class FavoritePlugin extends ActivityHandlerPlugin
+class FavoritePlugin extends ActivityVerbHandlerPlugin
 {
     protected $email_notify_fave = 1;
 
@@ -39,9 +39,10 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
     public function verbs()
     {
-        return array(ActivityVerb::FAVORITE);
+        return array(ActivityVerb::FAVORITE, ActivityVerb::LIKE,
+                    ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE);
     }
-    
+
     public function onCheckSchema()
     {
         $schema = Schema::get();
@@ -78,14 +79,14 @@ class FavoritePlugin extends ActivityHandlerPlugin
             printfnq("DONE.\n");
         }
     }
-    
+
     public function onEndUpgrade()
     {
         printfnq("Ensuring all faves have a URI...");
-    
+
         $fave = new Fave();
         $fave->whereAdd('uri IS NULL');
-    
+
         if ($fave->find()) {
             while ($fave->fetch()) {
                 try {
@@ -104,7 +105,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
                 }
             }
         }
-    
+
         printfnq("DONE.\n");
     }
 
@@ -138,28 +139,28 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
         // Favorites for API
         $m->connect('api/favorites/create.:format',
-                    array('action' => 'ApiFavoriteCreate',
-                          'format' => '(xml|json)'));
+                    array('action' => 'ApiFavoriteCreate'),
+                    array('format' => '(xml|json)'));
         $m->connect('api/favorites/destroy.:format',
-                    array('action' => 'ApiFavoriteDestroy',
-                          'format' => '(xml|json)'));
+                    array('action' => 'ApiFavoriteDestroy'),
+                    array('format' => '(xml|json)'));
         $m->connect('api/favorites/list.:format',
-                    array('action' => 'ApiTimelineFavorites',
-                          'format' => '(xml|json|rss|atom|as)'));
+                    array('action' => 'ApiTimelineFavorites'),
+                    array('format' => '(xml|json|rss|atom|as)'));
         $m->connect('api/favorites/:id.:format',
-                    array('action' => 'ApiTimelineFavorites',
-                          'id' => Nickname::INPUT_FMT,
+                    array('action' => 'ApiTimelineFavorites'),
+                    array('id' => Nickname::INPUT_FMT,
                           'format' => '(xml|json|rss|atom|as)'));
         $m->connect('api/favorites.:format',
-                    array('action' => 'ApiTimelineFavorites',
-                          'format' => '(xml|json|rss|atom|as)'));
+                    array('action' => 'ApiTimelineFavorites'),
+                    array('format' => '(xml|json|rss|atom|as)'));
         $m->connect('api/favorites/create/:id.:format',
-                    array('action' => 'ApiFavoriteCreate',
-                          'id' => '[0-9]+',
+                    array('action' => 'ApiFavoriteCreate'),
+                    array('id' => '[0-9]+',
                           'format' => '(xml|json)'));
         $m->connect('api/favorites/destroy/:id.:format',
-                    array('action' => 'ApiFavoriteDestroy',
-                          'id' => '[0-9]+',
+                    array('action' => 'ApiFavoriteDestroy'),
+                    array('id' => '[0-9]+',
                           'format' => '(xml|json)'));
 
         // AtomPub API
@@ -174,13 +175,13 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
         // Required for qvitter API
         $m->connect('api/statuses/favs/:id.:format',
-                    array('action' => 'ApiStatusesFavs',
-                          'id' => '[0-9]+',
+                    array('action' => 'ApiStatusesFavs'),
+                    array('id' => '[0-9]+',
                           'format' => '(xml|json)'));
     }
 
     // FIXME: Set this to abstract public in lib/activityhandlerplugin.php ddwhen all plugins have migrated!
-    protected function saveObjectFromActivity(Activity $act, Notice $stored, array $options=array())  
+    protected function saveObjectFromActivity(Activity $act, Notice $stored, array $options=array())
     {
         assert($this->isMyActivity($act));
 
@@ -193,6 +194,8 @@ class FavoritePlugin extends ActivityHandlerPlugin
         $actobj = $act->objects[0];
 
         $object = Fave::saveActivityObject($actobj, $stored);
+        $stored->object_type = ActivityUtils::resolveUri($object->getObjectType(), true);
+
         return $object;
     }
 
@@ -263,7 +266,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
         }
         return true;
     }
-    
+
     public function onNoticeDeleteRelated(Notice $notice)
     {
         parent::onNoticeDeleteRelated($notice);
@@ -284,13 +287,14 @@ class FavoritePlugin extends ActivityHandlerPlugin
         $fave->free();
     }
 
-    public function onUserDeleteRelated(User $user, array &$related)
+    public function onProfileDeleteRelated(Profile $profile, array &$related)
     {
         $fave = new Fave();
-        $fave->user_id = $user->id;
+        $fave->user_id = $profile->id;
         $fave->delete();    // Will perform a DELETE matching "user_id = {$user->id}"
+        $fave->free();
 
-        Fave::blowCacheForProfileId($user->id);
+        Fave::blowCacheForProfileId($profile->id);
         return true;
     }
 
@@ -359,7 +363,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
         return true;
     }
 
-    public function onStartShowThreadedNoticeTailItems(NoticeListItem $nli, Notice $notice, &$threadActive)
+    public function onEndShowThreadedNoticeTailItems(NoticeListItem $nli, Notice $notice, &$threadActive)
     {
         if ($nli instanceof ThreadedNoticeListSubItem) {
             // The sub-items are replies to a conversation, thus we use different HTML elements etc.
@@ -450,7 +454,7 @@ class FavoritePlugin extends ActivityHandlerPlugin
 
     public function onStartEmailSaveForm(Action $action, Profile $scoped)
     {
-        $emailfave = $action->boolean('email-notify_fave') ? 1 : 0;
+        $emailfave = $action->booleanintstring('email-notify_fave');
         try {
             if ($emailfave == $scoped->getPref('email', 'notify_fave')) {
                 // No need to update setting
@@ -500,6 +504,62 @@ class FavoritePlugin extends ActivityHandlerPlugin
             $section = new PopularNoticeSection($action, $action->getScoped());
             $section->show();
         }
+    }
+
+    protected function getActionTitle(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        return Fave::existsForProfile($target, $scoped)
+                // TRANS: Page/dialog box title when a notice is marked as favorite already
+                ? _m('TITLE', 'Unmark notice as favorite')
+                // TRANS: Page/dialog box title when a notice is not marked as favorite
+                : _m('TITLE', 'Mark notice as favorite');
+    }
+
+    protected function doActionPreparation(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        if ($action->isPost()) {
+            // The below tests are only for presenting to the user. POSTs which inflict
+            // duplicate favorite entries are handled with AlreadyFulfilledException. 
+            return false;
+        }
+
+        $exists = Fave::existsForProfile($target, $scoped);
+        $expected_verb = $exists ? ActivityVerb::UNFAVORITE : ActivityVerb::FAVORITE;
+
+        switch (true) {
+        case $exists && ActivityUtils::compareTypes($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
+        case !$exists && ActivityUtils::compareTypes($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
+            common_redirect(common_local_url('activityverb',
+                                array('id'   => $target->getID(),
+                                      'verb' => ActivityUtils::resolveUri($expected_verb, true))));
+            break;
+        default:
+            // No need to redirect as we are on the correct action already.
+        }
+
+        return false;
+    }
+
+    protected function doActionPost(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        switch (true) {
+        case ActivityUtils::compareTypes($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
+            Fave::addNew($scoped, $target);
+            break;
+        case ActivityUtils::compareTypes($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
+            Fave::removeEntry($scoped, $target);
+            break;
+        default:
+            throw new ServerException('ActivityVerb POST not handled by plugin that was supposed to do it.');
+        }
+        return false;
+    }
+
+    protected function getActivityForm(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        return Fave::existsForProfile($target, $scoped)
+                ? new DisfavorForm($action, $target)
+                : new FavorForm($action, $target);
     }
 
     public function onPluginVersion(array &$versions)

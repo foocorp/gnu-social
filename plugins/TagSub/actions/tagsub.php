@@ -67,7 +67,7 @@ class TagsubAction extends Action
     {
         parent::prepare($args);
         if ($this->boolean('ajax')) {
-            StatusNet::setApi(true);
+            GNUsocial::setApi(true);
         }
 
         // Only allow POST requests

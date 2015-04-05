@@ -265,10 +265,10 @@ class WebInstaller extends Installer
                     <li>
                         <label for="site_profile">Type of site</label>
                         <select id="site_profile" name="site_profile">
-                            <option value="private">Private</option>
                             <option value="community">Community</option>
-                            <option value ="public">Public</option>
-                            <option value ="singleuser">Single User</option>
+                            <option value="public">Public (open registration)</option>
+                            <option value="singleuser">Single User</option>
+                            <option value="private">Private (no federation)</option>
                         </select>
                         <p class="form_guide">Initial access settings for your site</p>
                     </li>

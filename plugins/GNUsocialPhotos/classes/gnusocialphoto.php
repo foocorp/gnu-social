@@ -38,9 +38,9 @@ class GNUsocialPhoto extends Managed_DataObject
     public $id;         // int(11)
     public $notice_id;  // int(11)
     public $album_id;   // int(11)
-    public $uri;        // varchar(255)
-    public $thumb_uri;  // varchar(255)
-	public $title;      // varchar(255)
+    public $uri;        // varchar(191)   not 255 because utf8mb4 takes more space
+    public $thumb_uri;  // varchar(191)   not 255 because utf8mb4 takes more space
+	public $title;      // varchar(191)   not 255 because utf8mb4 takes more space
 	public $photo_description; // text
     public $created;           // datetime()   not_null
     public $modified;          // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -63,9 +63,9 @@ class GNUsocialPhoto extends Managed_DataObject
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'Unique ID for Photo'),
                 'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'Notice ID for the related notice'),
                 'album_id' => array('type' => 'int', 'not null' => true, 'description' => 'The parent album ID'),
-                'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'unique address for this photo'),
-                'thumb_uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'unique address for this photo thumbnail'),
-                'title' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'The Photo title'),
+                'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'unique address for this photo'),
+                'thumb_uri' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'unique address for this photo thumbnail'),
+                'title' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'The Photo title'),
                 'photo_description' => array('type' => 'text', 'not null' => true, 'description' => 'A description for this photo'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),

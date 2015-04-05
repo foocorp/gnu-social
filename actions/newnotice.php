@@ -30,9 +30,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Action for posting new notices
@@ -62,6 +60,9 @@ class NewnoticeAction extends FormAction
             // TRANS: Page title after sending a notice.
             return _('Notice posted');
         }
+        if ($this->int('inreplyto')) {
+            return _m('TITLE', 'New reply');
+        }
         // TRANS: Page title for sending a new notice.
         return _m('TITLE','New notice');
     }
@@ -80,7 +81,7 @@ class NewnoticeAction extends FormAction
     }
 
     /**
-     * This handlePost saves a new notice, based on arguments
+     * This doPost saves a new notice, based on arguments
      *
      * If successful, will show the notice, or return an Ajax-y result.
      * If not, it will show an error message -- possibly Ajax-y.
@@ -90,17 +91,15 @@ class NewnoticeAction extends FormAction
      *
      * @return void
      */
-    protected function handlePost()
+    protected function doPost()
     {
-        parent::handlePost();
-
-        assert($this->scoped); // XXX: maybe an error instead...
+        assert($this->scoped instanceof Profile); // XXX: maybe an error instead...
         $user = $this->scoped->getUser();
         $content = $this->trimmed('status_textarea');
         $options = array();
         Event::handle('StartSaveNewNoticeWeb', array($this, $user, &$content, &$options));
 
-        if (!$content) {
+        if (empty($content)) {
             // TRANS: Client error displayed trying to send a notice without content.
             $this->clientError(_('No content!'));
         }
@@ -110,7 +109,7 @@ class NewnoticeAction extends FormAction
         $cmd = $inter->handle_command($user, $content);
 
         if ($cmd) {
-            if (StatusNet::isAjax()) {
+            if (GNUsocial::isAjax()) {
                 $cmd->execute(new AjaxWebChannel($this));
             } else {
                 $cmd->execute(new WebChannel($this));
@@ -128,7 +127,7 @@ class NewnoticeAction extends FormAction
                                        Notice::maxContent()));
         }
 
-        $replyto = intval($this->trimmed('inreplyto'));
+        $replyto = $this->int('inreplyto');
         if ($replyto) {
             $options['reply_to'] = $replyto;
         }
@@ -195,7 +194,7 @@ class NewnoticeAction extends FormAction
 
         Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content_shortened, &$options));
 
-        if (!StatusNet::isAjax()) {
+        if (!GNUsocial::isAjax()) {
             $url = common_local_url('shownotice', array('notice' => $this->stored->id));
             common_redirect($url, 303);
         }

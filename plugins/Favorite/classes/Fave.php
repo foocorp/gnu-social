@@ -8,7 +8,7 @@ class Fave extends Managed_DataObject
     public $__table = 'fave';                            // table name
     public $notice_id;                       // int(4)  primary_key not_null
     public $user_id;                         // int(4)  primary_key not_null
-    public $uri;                             // varchar(255)
+    public $uri;                             // varchar(191)   not 255 because utf8mb4 takes more space   not 255 because utf8mb4 takes more space
     public $created;                         // datetime  multiple_key not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -18,7 +18,7 @@ class Fave extends Managed_DataObject
             'fields' => array(
                 'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice that is the favorite'),
                 'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user who likes this notice'),
-                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier, usually a tag URI'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
@@ -48,6 +48,11 @@ class Fave extends Managed_DataObject
      * @throws Exception on failure
      */
     static function addNew(Profile $actor, Notice $target) {
+        if (self::existsForProfile($target, $actor)) {
+            // TRANS: Client error displayed when trying to mark a notice as favorite that already is a favorite.
+            throw new AlreadyFulfilledException(_('You have already favorited this!'));
+        }
+
         $act = new Activity();
         $act->type    = ActivityObject::ACTIVITY;
         $act->verb    = ActivityVerb::FAVORITE;
@@ -72,6 +77,27 @@ class Fave extends Managed_DataObject
         $stored = Notice::saveActivity($act, $actor);
 
         return $stored;
+    }
+
+    public function removeEntry(Profile $actor, Notice $target)
+    {
+        $fave            = new Fave();
+        $fave->user_id   = $actor->getID();
+        $fave->notice_id = $target->getID();
+        if (!$fave->find(true)) {
+            // TRANS: Client error displayed when trying to remove a 'favor' when there is none in the first place.
+            throw new AlreadyFulfilledException(_('This is already not favorited.'));
+        }
+
+        $result = $fave->delete();
+        if ($result === false) {
+            common_log_db_error($fave, 'DELETE', __FILE__);
+            // TRANS: Server error displayed when removing a favorite from the database fails.
+            throw new ServerException(_('Could not delete favorite.'));
+        }
+
+        Fave::blowCacheForProfileId($actor->getID());
+        Fave::blowCacheForNoticeId($target->getID());
     }
 
     // exception throwing takeover!

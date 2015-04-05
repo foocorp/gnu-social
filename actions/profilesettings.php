@@ -82,8 +82,8 @@ class ProfilesettingsAction extends SettingsAction
      */
     function showContent()
     {
-        $user = common_current_user();
-        $profile = $user->getProfile();
+        $profile = $this->scoped;
+        $user = $this->scoped->getUser();
 
         $this->elementStart('form', array('method' => 'post',
                                           'id' => 'form_settings_profile',
@@ -104,7 +104,9 @@ class ProfilesettingsAction extends SettingsAction
                          // TRANS: Tooltip for field label in form for profile settings.
                          _('1-64 lowercase letters or numbers, no punctuation or spaces.'),
                          null, false,   // "name" (will be set to id), then "required"
-                         !common_config('profile', 'changenick') ? array('disabled'=>'disabled') : array());
+                         !common_config('profile', 'changenick')
+                                        ? array('disabled' => 'disabled', 'placeholder' => null)
+                                        : array('placeholder' => null));
             $this->elementEnd('li');
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
@@ -260,9 +262,9 @@ class ProfilesettingsAction extends SettingsAction
             $homepage = $this->trimmed('homepage');
             $bio = $this->trimmed('bio');
             $location = $this->trimmed('location');
-            $autosubscribe = $this->boolean('autosubscribe');
+            $autosubscribe = $this->booleanintstring('autosubscribe');
             $subscribe_policy = $this->trimmed('subscribe_policy');
-            $private_stream = $this->boolean('private_stream');
+            $private_stream = $this->booleanintstring('private_stream');
             $language = $this->trimmed('language');
             $timezone = $this->trimmed('timezone');
             $tagstring = $this->trimmed('tags');
@@ -398,7 +400,7 @@ class ProfilesettingsAction extends SettingsAction
                     $orig = clone($prefs);
                 }
 
-                $prefs->share_location = $this->boolean('sharelocation');
+                $prefs->share_location = $this->booleanintstring('sharelocation');
 
                 if ($exists) {
                     $result = $prefs->update($orig);

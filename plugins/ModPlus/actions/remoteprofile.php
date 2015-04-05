@@ -39,10 +39,7 @@ class RemoteProfileAction extends ShowstreamAction
             $this->raw(common_markup_to_html($markdown));
         }else{
 
-            $pnl = null;
-            if (Event::handle('ShowStreamNoticeList', array($this->notice, $this, &$pnl))) {
-                $pnl = new ProfileNoticeList($this->notice, $this);
-            }
+            $pnl = new NoticeList($this->notice, $this);
             $cnt = $pnl->show();
             if (0 == $cnt) {
                 $this->showEmptyListMessage();

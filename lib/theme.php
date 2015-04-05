@@ -130,7 +130,7 @@ class Theme
      */
     protected function relativeThemePath($group, $fallbackSubdir, $name)
     {
-        if (StatusNet::isHTTPS()) {
+        if (GNUsocial::isHTTPS()) {
             $sslserver = common_config($group, 'sslserver');
 
             if (empty($sslserver)) {

@@ -29,9 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Outputs detailed information about the relationship between two users
@@ -56,7 +54,7 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -109,13 +107,11 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
      *
      * Check the format and show the user info
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if (!in_array($this->format, array('xml', 'json'))) {
             // TRANS: Client error displayed when coming across a non-supported API method.

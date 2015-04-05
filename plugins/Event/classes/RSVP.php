@@ -50,7 +50,7 @@ class RSVP extends Managed_DataObject
 
     public $__table = 'rsvp'; // table name
     public $id;                // varchar(36) UUID
-    public $uri;               // varchar(255)
+    public $uri;               // varchar(191)   not 255 because utf8mb4 takes more space
     public $profile_id;        // int
     public $event_id;          // varchar(36) UUID
     public $response;            // tinyint
@@ -83,7 +83,7 @@ class RSVP extends Managed_DataObject
                               'not null' => true,
                               'description' => 'UUID'),
                 'uri' => array('type' => 'varchar',
-                               'length' => 255,
+                               'length' => 191,
                                'not null' => true),
                 'profile_id' => array('type' => 'int'),
                 'event_id' => array('type' => 'char',

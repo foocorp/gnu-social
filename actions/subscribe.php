@@ -122,7 +122,7 @@ class SubscribeAction extends Action
     {
         // Throws exception on error
 
-        $sub = Subscription::start($this->user->getProfile(),
+        $sub = Subscription::ensureStart($this->user->getProfile(),
                                    $this->other);
 
         if ($this->boolean('ajax')) {

@@ -29,9 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Allows the authenticating users to unfollow (unsubscribe) the user specified in
@@ -48,7 +46,9 @@ if (!defined('STATUSNET')) {
  */
 class ApiFriendshipsDestroyAction extends ApiAuthAction
 {
-    var $other  = null;
+    protected $needPost = true;
+
+    protected $other = null;
 
     /**
      * Take arguments for running
@@ -58,12 +58,11 @@ class ApiFriendshipsDestroyAction extends ApiAuthAction
      * @return boolean success flag
      *
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
-        $this->user   = $this->auth_user;
-        $this->other  = $this->getTargetProfile($this->arg('id'));
+        $this->other = $this->getTargetProfile($this->arg('id'));
 
         return true;
     }
@@ -73,58 +72,40 @@ class ApiFriendshipsDestroyAction extends ApiAuthAction
      *
      * Check the format and show the user info
      *
-     * @param array $args $_REQUEST data (unused)
-     *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
-
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(
-                // TRANS: Client error. POST is a HTTP command. It should not be translated.
-                _('This method requires a POST.'),
-                400,
-                $this->format
-            );
-            return;
-        }
+        parent::handle();
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
                 // TRANS: Client error displayed when coming across a non-supported API method.
                 _('API method not found.'),
-                404,
-                $this->format
+                404
             );
-            return;
         }
 
-        if (empty($this->other)) {
+        if (!$this->other instanceof Profile) {
             $this->clientError(
                 // TRANS: Client error displayed when trying to unfollow a user that cannot be found.
                 _('Could not unfollow user: User not found.'),
-                403,
-                $this->format
+                403
             );
-            return;
         }
 
         // Don't allow unsubscribing from yourself!
 
-        if ($this->user->id == $this->other->id) {
+        if ($this->scoped->id == $this->other->id) {
             $this->clientError(
                 // TRANS: Client error displayed when trying to unfollow self.
                 _("You cannot unfollow yourself."),
-                403,
-                $this->format
+                403
             );
-            return;
         }
 
         // throws an exception on error
-        Subscription::cancel($this->user->getProfile(), $this->other);
+        Subscription::cancel($this->scoped, $this->other);
 
         $this->initDocument($this->format);
         $this->showProfile($this->other, $this->format);

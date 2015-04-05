@@ -30,8 +30,8 @@ class Email_reminder extends Managed_DataObject
 {
     public $__table = 'email_reminder';
 
-    public $type;     // type of reminder
-    public $code;     // confirmation code
+    public $type;     // type of reminder varchar(191)    not 255 because utf8mb4 takes more space
+    public $code;     // confirmation code varchar(191)   not 255 because utf8mb4 takes more space
     public $days;     // number of days after code was created
     public $sent;     // timestamp
     public $created;  // timestamp
@@ -102,14 +102,14 @@ class Email_reminder extends Managed_DataObject
             'fields'      => array(
                 'type'     => array(
                     'type'          => 'varchar',
-                    'length'        => 255,
+                    'length'        => 191,
                     'not null'      => true,
                     'description'   => 'type of reminder'
                 ),
                 'code' => array(
                     'type'        => 'varchar',
                     'not null'    => 'true',
-                    'length'      => 255,
+                    'length'      => 191,
                     'description' => 'confirmation code'
                  ),
                 'days' => array(

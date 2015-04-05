@@ -11,7 +11,7 @@ class OembedPlugin extends Plugin
                                     '^i\d*\.vimeocdn\.com$' => 'Vimeo',
                                     );
     public $append_whitelist = array(); // fill this array as domain_whitelist to add more trusted sources
-    public $check_whitelist  = true;    // security/abuse precaution
+    public $check_whitelist  = false;    // security/abuse precaution
 
     protected $imgData = array();
 
@@ -159,7 +159,7 @@ class OembedPlugin extends Plugin
         // Never treat generic HTML links as an enclosure type!
         // But if we have oEmbed info, we'll consider it golden.
         $oembed = File_oembed::getKV('file_id', $file->id);
-        if (!$oembed instanceof File_oembed || !in_array($oembed->type, array('photo', 'video'))) {
+        if (!$oembed instanceof File_oembed && !in_array($oembed->type, array('photo', 'video'))) {
             return true;
         }
 
@@ -182,7 +182,7 @@ class OembedPlugin extends Plugin
         case 'video':
         case 'link':
             if (!empty($oembed->html)
-                    && (StatusNet::isAjax() || common_config('attachments', 'show_html'))) {
+                    && (GNUsocial::isAjax() || common_config('attachments', 'show_html'))) {
                 require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
                 $config = array(
                     'safe'=>1,

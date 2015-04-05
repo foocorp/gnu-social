@@ -48,12 +48,12 @@ class Group_message extends Managed_DataObject
 {
     public $__table = 'group_message'; // table name
     public $id;                        // char(36)  primary_key not_null
-    public $uri;                       // varchar(255)
+    public $uri;                       // varchar(191)   not 255 because utf8mb4 takes more space
     public $from_profile;              // int
     public $to_group;                  // int
     public $content;
     public $rendered;
-    public $url;
+    public $url;                       // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                   // datetime()   not_null
     public $modified;                  // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -62,8 +62,8 @@ class Group_message extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'char', 'not null' => true, 'length' => 36, 'description' => 'message uuid'),
-                'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'message uri'),
-                'url' => array('type' => 'varchar', 'not null' => true, 'length' => 255, 'description' => 'representation url'),
+                'uri' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'message uri'),
+                'url' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'representation url'),
                 'from_profile' => array('type' => 'int', 'not null' => true, 'description' => 'sending profile ID'),
                 'to_group' => array('type' => 'int', 'not null' => true, 'description' => 'receiving group ID'),
                 'content' => array('type' => 'text', 'not null' => true, 'description' => 'message content'),

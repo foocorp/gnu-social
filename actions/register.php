@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
 
 /**
  * An action for registering a new user account
@@ -229,40 +227,38 @@ class RegisterAction extends Action
             } else if ($password != $confirm) {
                 // TRANS: Form validation error displayed when trying to register with non-matching passwords.
                 $this->showForm(_('Passwords do not match.'));
-            } else if ($user = User::register(array('nickname' => $nickname,
+            } else {
+                try {
+                    $user = User::register(array('nickname' => $nickname,
                                                     'password' => $password,
                                                     'email' => $email,
                                                     'fullname' => $fullname,
                                                     'homepage' => $homepage,
                                                     'bio' => $bio,
                                                     'location' => $location,
-                                                    'code' => $code))) {
-                if (!($user instanceof User)) {
+                                                    'code' => $code));
+                    // success!
+                    if (!common_set_user($user)) {
+                        // TRANS: Server error displayed when saving fails during user registration.
+                        $this->serverError(_('Error setting user.'));
+                    }
+                    // this is a real login
+                    common_real_login(true);
+                    if ($this->boolean('rememberme')) {
+                        common_debug('Adding rememberme cookie for ' . $nickname);
+                        common_rememberme($user);
+                    }
+
+                    // Re-init language env in case it changed (not yet, but soon)
+                    common_init_language();
+
+                    Event::handle('EndRegistrationTry', array($this));
+
+                    $this->showSuccess();
+                } catch (Exception $e) {
                     // TRANS: Form validation error displayed when trying to register with an invalid username or password.
-                    $this->showForm(_('Invalid username or password.'));
-                    return;
+                    $this->showForm($e->getMessage());
                 }
-                // success!
-                if (!common_set_user($user)) {
-                    // TRANS: Server error displayed when saving fails during user registration.
-                    $this->serverError(_('Error setting user.'));
-                }
-                // this is a real login
-                common_real_login(true);
-                if ($this->boolean('rememberme')) {
-                    common_debug('Adding rememberme cookie for ' . $nickname);
-                    common_rememberme($user);
-                }
-
-                // Re-init language env in case it changed (not yet, but soon)
-                common_init_language();
-
-                Event::handle('EndRegistrationTry', array($this));
-
-                $this->showSuccess();
-            } else {
-                // TRANS: Form validation error displayed when trying to register with an invalid username or password.
-                $this->showForm(_('Invalid username or password.'));
             }
         }
     }
