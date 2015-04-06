@@ -224,7 +224,16 @@ var SN = { // StatusNet
             var newId = 'form_notice_' + Math.floor(Math.random()*999999999);
             var attrs = ['name', 'for', 'id'];
             for (var key in attrs) {
-                form.find("[" + attrs[key] + "~='" + oldId + "']").each(function () {
+                if (form.attr(attrs[key]) === undefined) {
+                    continue;
+                }
+                form.attr(attrs[key], form.attr(attrs[key]).replace(oldId, newId));
+            }
+            for (var key in attrs) {
+                form.find("[" + attrs[key] + "*='" + oldId + "']").each(function () {
+                        if ($(this).attr(attrs[key]) === undefined) {
+                            return; // since we're inside the each(function () { ... });
+                        }
                         var newAttr = $(this).attr(attrs[key]).replace(oldId, newId);
                         $(this).attr(attrs[key], newAttr);
                     });
