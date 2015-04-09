@@ -29,6 +29,8 @@ if (isset($_SERVER) && array_key_exists('REQUEST_METHOD', $_SERVER)) {
 define('GNUSOCIAL', true);
 define('STATUSNET', true); //compatibility
 
+define('GNUSOCIAL_CLI', true);  // to know we're in a CLI environment
+
 // Set various flags so we don't time out on long-running processes
 
 ini_set("max_execution_time", "0");

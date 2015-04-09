@@ -49,6 +49,8 @@ abstract class ImPlugin extends Plugin
     //list of screennames that should get all public notices
     public $public = array();
 
+    protected $requires_cli = true;
+
     /**
      * normalize a screenname for comparison
      *
@@ -530,9 +532,14 @@ abstract class ImPlugin extends Plugin
      */
     function onEndInitializeQueueManager($manager)
     {
-        $manager->connect($this->transport . '-in', new ImReceiverQueueHandler($this), 'im');
-        $manager->connect($this->transport, new ImQueueHandler($this));
-        $manager->connect($this->transport . '-out', new ImSenderQueueHandler($this), 'im');
+        // If we don't require CLI mode, or if we do and GNUSOCIAL_CLI _is_ set, then connect the transports
+        // This check is made mostly because some IM plugins can't deliver to transports unless they
+        // have continously running daemons (such as XMPP) and we can't have that over HTTP requests.
+        if (!$this->requires_cli || defined('GNUSOCIAL_CLI')) {
+            $manager->connect($this->transport . '-in', new ImReceiverQueueHandler($this), 'im');
+            $manager->connect($this->transport, new ImQueueHandler($this));
+            $manager->connect($this->transport . '-out', new ImSenderQueueHandler($this), 'im');
+        }
         return true;
     }
 
