@@ -82,7 +82,7 @@ class Queue_item extends Managed_DataObject
     /**
      * Release a claimed item.
      */
-    function releaseCLaim()
+    function releaseClaim()
     {
         // DB_DataObject doesn't let us save nulls right now
         $sql = sprintf("UPDATE queue_item SET claimed=NULL WHERE id=%d", $this->id);
