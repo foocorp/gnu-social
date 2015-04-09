@@ -233,8 +233,6 @@ abstract class QueueManager extends IoManager
             } else {
                 $this->_log(LOG_ERR, "Nonexistent handler class '$class' for queue '$queue'");
             }
-        } else {
-            $this->_log(LOG_ERR, "Requested handler for unkown queue '$queue'");
         }
         return null;
     }
