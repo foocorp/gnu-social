@@ -24,7 +24,7 @@ msgstr ""
 #: ActivityPlugin.php:75
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> started following <a href=\"%3$s\">%4$s</a>."
-msgstr "<a href=\"%1$s\">%2$s</a> började följa <a href=\"%3$s\">%4$s</a."
+msgstr "<a href=\"%1$s\">%2$s</a> började följa <a href=\"%3$s\">%4$s</a>."
 
 #. TRANS: Text for "started following" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
