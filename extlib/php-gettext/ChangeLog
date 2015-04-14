@@ -1,3 +1,7 @@
+2009-11-27  Danilo Šegan <danilo@gnome.org>
+
+	* Makefile: discontinue use of ChangeLog with 1.0.8.
+
 2006-02-28  Danilo Šegan  <danilo@gnome.org>
 
 	* gettext.php: Added some comments about these workarounds for
@@ -6,7 +10,7 @@
 2006-02-28  Danilo Šegan  <danilo@gnome.org>
 
 	Fixes bug #15923.
-	
+
 	* gettext.php (gettext_reader): make magic check work on 64-bit
 	platforms as well (by Steffen Pingel).
 
@@ -27,7 +31,7 @@
 2006-02-03  Danilo Šegan  <danilo@gnome.org>
 
 	Added setlocale() emulation as well.
-	
+
 	* examples/pigs_dropin.php: Use T_setlocale() and locale_emulation().
 	* examples/pigs_fallback.php: Use T_setlocale() and locale_emulation().
 
