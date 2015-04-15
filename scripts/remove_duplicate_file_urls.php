@@ -25,7 +25,7 @@ $longoptions = array('yes');
 
 $helptext = <<<END_OF_HELP
 remove_duplicate_file_urls.php [options]
-Remove duplicate URL entries in the file table because they for some reason were not unique.
+Remove duplicate URL entries in the file and file_redirection tables because they for some reason were not unique.
 
   -y --yes      do not wait for confirmation
 
@@ -34,7 +34,7 @@ END_OF_HELP;
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
 if (!have_option('y', 'yes')) {
-    print "About to remove duplicate file URL entries. Are you sure? [y/N] ";
+    print "About to remove duplicate URL entries in file and file_redirection tables. Are you sure? [y/N] ";
     $response = fgets(STDIN);
     if (strtolower(trim($response)) != 'y') {
         print "Aborting.\n";
@@ -44,16 +44,43 @@ if (!have_option('y', 'yes')) {
 
 $file = new File();
 $file->query('SELECT id, url, COUNT(*) AS c FROM file GROUP BY url HAVING c > 1');
+print "\nFound {$file->N} URLs with duplicate entries in file table";
 while ($file->fetch()) {
     // We've got a URL that is duplicated in the file table
     $dupfile = new File();
     $dupfile->url = $file->url;
     if ($dupfile->find(true)) {
+        print "\nDeleting duplicate entries in file table for URL: {$file->url} [";
         // Leave one of the URLs in the database by using ->find(true)
         // and only deleting starting with this fetch.
         while($dupfile->fetch()) {
+            print ".";
             $dupfile->delete();
         }
+        print "]\n";
+    } else {
+        print "\nWarning! URL suddenly disappeared from database: {$file->url}\n";
+    }
+}
+
+$file = new File_redirection();
+$file->query('SELECT file_id, url, COUNT(*) AS c FROM file_redirection GROUP BY url HAVING c > 1');
+print "\nFound {$file->N} URLs with duplicate entries in file_redirection table";
+while ($file->fetch()) {
+    // We've got a URL that is duplicated in the file_redirection table
+    $dupfile = new File_redirection();
+    $dupfile->url = $file->url;
+    if ($dupfile->find(true)) {
+        print "\nDeleting duplicate entries in file table for URL: {$file->url} [";
+        // Leave one of the URLs in the database by using ->find(true)
+        // and only deleting starting with this fetch.
+        while($dupfile->fetch()) {
+            print ".";
+            $dupfile->delete();
+        }
+        print "]\n";
+    } else {
+        print "\nWarning! URL suddenly disappeared from database: {$file->url}\n";
     }
 }
 print "\nDONE.\n";
