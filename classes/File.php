@@ -569,6 +569,14 @@ class File extends Managed_DataObject
                     $thumbs->delete();
                 }
             }
+
+            $f2p = new File_to_post();
+            $f2p->file_id = $this->id;
+            if ($f2p->find()) {
+                while ($f2p->fetch()) {
+                    $f2p->delete();
+                }
+            }
         }
 
         // And finally remove the entry from the database

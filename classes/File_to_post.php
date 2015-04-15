@@ -52,6 +52,7 @@ class File_to_post extends Managed_DataObject
                 'file_to_post_post_id_fkey' => array('notice', array('post_id' => 'id')),
             ),
             'indexes' => array(
+                'file_id_idx' => array('file_id'),
                 'post_id_idx' => array('post_id'),
             ),
         );
@@ -87,7 +88,7 @@ class File_to_post extends Managed_DataObject
     function delete($useWhere=false)
     {
         $f = File::getKV('id', $this->file_id);
-        if (!empty($f)) {
+        if ($f instanceof File) {
             $f->blowCache();
         }
         return parent::delete($useWhere);
