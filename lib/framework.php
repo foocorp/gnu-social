@@ -144,7 +144,7 @@ require_once INSTALLDIR.'/lib/action.php';
 require_once INSTALLDIR.'/lib/mail.php';
 
 //set PEAR error handling to use regular PHP exceptions
-function PEAR_ErrorToPEAR_Exception($err)
+function PEAR_ErrorToPEAR_Exception(PEAR_Error $err)
 {
     //DB_DataObject throws error when an empty set would be returned
     //That behavior is weird, and not how the rest of StatusNet works.
