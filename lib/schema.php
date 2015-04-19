@@ -350,7 +350,7 @@ class Schema
         $res = $this->conn->query("DROP TABLE $name");
 
         if ($_PEAR->isError($res)) {
-            throw new Exception($res->getMessage());
+            PEAR_ErrorToPEAR_Exception($res);
         }
 
         return true;
@@ -389,7 +389,7 @@ class Schema
                                    implode(",", $columnNames).")");
 
         if ($_PEAR->isError($res)) {
-            throw new Exception($res->getMessage());
+            PEAR_ErrorToPEAR_Exception($res);
         }
 
         return true;
@@ -411,7 +411,7 @@ class Schema
         $res = $this->conn->query("ALTER TABLE $table DROP INDEX $name");
 
         if ($_PEAR->isError($res)) {
-            throw new Exception($res->getMessage());
+            PEAR_ErrorToPEAR_Exception($res);
         }
 
         return true;
@@ -436,7 +436,7 @@ class Schema
         $res = $this->conn->query($sql);
 
         if ($_PEAR->isError($res)) {
-            throw new Exception($res->getMessage());
+            PEAR_ErrorToPEAR_Exception($res);
         }
 
         return true;
@@ -463,7 +463,7 @@ class Schema
         $res = $this->conn->query($sql);
 
         if ($_PEAR->isError($res)) {
-            throw new Exception($res->getMessage());
+            PEAR_ErrorToPEAR_Exception($res);
         }
 
         return true;
@@ -489,7 +489,7 @@ class Schema
         $res = $this->conn->query($sql);
 
         if ($_PEAR->isError($res)) {
-            throw new Exception($res->getMessage());
+            PEAR_ErrorToPEAR_Exception($res);
         }
 
         return true;
@@ -535,7 +535,7 @@ class Schema
             $res = $this->conn->query($sql);
 
             if ($_PEAR->isError($res)) {
-                throw new Exception($res->getMessage());
+                PEAR_ErrorToPEAR_Exception($res);
             }
         }
         return $ok;
@@ -1045,7 +1045,7 @@ class Schema
 
         $res = $this->conn->query($sql);
         if ($_PEAR->isError($res)) {
-            throw new Exception($res->getMessage());
+            PEAR_ErrorToPEAR_Exception($res);
         }
 
         $out = array();
