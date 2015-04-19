@@ -932,7 +932,7 @@ class HelpCommand extends Command
         // Give plugins a chance to add or override...
         Event::handle('HelpCommandMessages', array($this, &$commands));
 
-        sort($commands);
+        ksort($commands);
         foreach ($commands as $command => $help) {
             $out[] = "$command - $help";
         }
