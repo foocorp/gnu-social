@@ -20,15 +20,16 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 
-$shortoptions = 'i::n::y';
-$longoptions = array('id=', 'nickname=', 'yes');
+$shortoptions = 'i::n::u::y';
+$longoptions = array('id=', 'nickname=', 'uri=', 'yes');
 
 $helptext = <<<END_OF_DELETEUSER_HELP
-deleteuser.php [options]
-deletes a user from the database
+deleteprofile.php [options]
+deletes a profile from the database
 
-  -i --id       ID of the user
-  -n --nickname nickname of the user
+  -i --id       ID of the profile
+  -n --nickname nickname of a local user
+  -u --uri      OStatus profile URI (only remote users, requires OStatus plugin)
   -y --yes      do not wait for confirmation
 
 END_OF_DELETEUSER_HELP;
@@ -37,25 +38,34 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 if (have_option('i', 'id')) {
     $id = get_option_value('i', 'id');
-    $user = User::getKV('id', $id);
-    if (empty($user)) {
-        print "Can't find user with ID $id\n";
+    $profile = Profile::getKV('id', $id);
+    if (!$profile instanceof Profile) {
+        print "Can't find profile with ID $id\n";
         exit(1);
     }
 } else if (have_option('n', 'nickname')) {
     $nickname = get_option_value('n', 'nickname');
     $user = User::getKV('nickname', $nickname);
-    if (empty($user)) {
+    if (!$user instanceof User) {
         print "Can't find user with nickname '$nickname'\n";
         exit(1);
     }
+    $profile = $user->getProfile();
+} else if (have_option('u', 'uri')) {
+    $uri = get_option_value('u', 'uri');
+    $oprofile = Ostatus_profile::getKV('uri', $uri);
+    if (!$oprofile instanceof Ostatus_profile) {
+        print "Can't find profile with URI '$uri'\n";
+        exit(1);
+    }
+    $profile = $oprofile->localProfile();
 } else {
-    print "You must provide either an ID or a nickname.\n";
+    print "You must provide either an ID, a URI or a nickname.\n";
     exit(1);
 }
 
 if (!have_option('y', 'yes')) {
-    print "About to PERMANENTLY delete user '{$user->nickname}' ({$user->id}). Are you sure? [y/N] ";
+    print "About to PERMANENTLY delete profile '".$profile->getNickname()."' ({$profile->id}). Are you sure? [y/N] ";
     $response = fgets(STDIN);
     if (strtolower(trim($response)) != 'y') {
         print "Aborting.\n";
@@ -64,5 +74,5 @@ if (!have_option('y', 'yes')) {
 }
 
 print "Deleting...";
-$user->delete();
+$profile->delete();
 print "DONE.\n";
