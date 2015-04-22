@@ -1380,6 +1380,11 @@ class Profile extends Managed_DataObject
         return $this->nickname;
     }
 
+    public function getFullname()
+    {
+        return $this->fullname;
+    }
+
     public function getDescription()
     {
         return $this->bio;

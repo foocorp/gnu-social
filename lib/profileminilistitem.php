@@ -30,76 +30,47 @@
 if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Widget to show a list of profiles
+ * Widget to show a list of profiles, good for sidebar
  *
  * @category Public
  * @package  StatusNet
- * @author   Zach Copley <zach@status.net>
  * @author   Evan Prodromou <evan@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ProfileList extends Widget
+
+class ProfileMiniListItem extends ProfileListItem
 {
-    /** Current profile, profile query. */
-    var $profile = null;
-    /** Action object using us. */
-    var $action = null;
-
-    function __construct($profile, $action=null)
-    {
-        parent::__construct($action);
-
-        $this->profile = $profile;
-        $this->action = $action;
-    }
-
     function show()
     {
-        $cnt = 0;
-
-        if (Event::handle('StartProfileList', array($this))) {
-            $this->startList();
-            $cnt = $this->showProfiles();
-            $this->endList();
-            Event::handle('EndProfileList', array($this));
+        $this->out->elementStart('li', 'h-card');
+        if (Event::handle('StartProfileListItemProfileElements', array($this))) {
+            if (Event::handle('StartProfileListItemAvatar', array($this))) {
+                $aAttrs = $this->linkAttributes();
+                $this->out->elementStart('a', $aAttrs);
+                $avatarUrl = $this->profile->avatarUrl(AVATAR_MINI_SIZE);
+                $this->out->element('img', array('src' => $avatarUrl,
+                                                 'width' => AVATAR_MINI_SIZE,
+                                                 'height' => AVATAR_MINI_SIZE,
+                                                 'class' => 'avatar u-photo',
+                                                 'alt' =>  $this->profile->getBestName()));
+                $this->out->elementEnd('a');
+                Event::handle('EndProfileListItemAvatar', array($this));
+            }
+            $this->out->elementEnd('li');
         }
-
-        return $cnt;
     }
 
-    function startList()
+    // default; overridden for nofollow lists
+
+    function linkAttributes()
     {
-        $this->out->elementStart('ul', 'profile_list xoxo');
-    }
+        $aAttrs = parent::linkAttributes();
 
-    function endList()
-    {
-        $this->out->elementEnd('ul');
-    }
+        $aAttrs['title'] = $this->profile->getBestName();
+        $aAttrs['rel']   = 'contact member'; // @todo: member? always?
+        $aAttrs['class'] = 'u-url p-name';
 
-    function showProfiles()
-    {
-        $cnt = $this->profile->N;
-        $profiles = $this->profile->fetchAll();
-
-        $max = min($cnt, $this->maxProfiles());
-
-        for ($i = 0; $i < $max; $i++) {
-            $pli = $this->newListItem($profiles[$i]);
-            $pli->show();
-        }
-
-        return $cnt;
-    }
-
-    function newListItem($profile)
-    {
-        return new ProfileListItem($profile, $this->action);
-    }
-
-    function maxProfiles()
-    {
-        return PROFILES_PER_PAGE;
+        return $aAttrs;
     }
 }

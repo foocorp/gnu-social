@@ -28,13 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/peopletags.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Profile block to show for an account

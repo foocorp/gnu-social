@@ -337,7 +337,6 @@ $default =
               'path' => null,
               'sslpath' => null,
               ),
-        'pluginlist' => array(),
         'admin' =>
         array('panels' => array('site', 'user', 'paths', 'access', 'sessions', 'sitenotice', 'license', 'plugins')),
         'singleuser' =>
