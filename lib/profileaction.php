@@ -28,12 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/profileminilist.php';
-require_once INSTALLDIR.'/lib/groupminilist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Profile action common superclass
@@ -46,17 +41,15 @@ require_once INSTALLDIR.'/lib/groupminilist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ProfileAction extends ManagedAction
+abstract class ProfileAction extends ManagedAction
 {
     var $page    = null;
     var $tag     = null;
 
     protected $target  = null;    // Profile that we're showing
 
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         try {
             $nickname_arg = $this->arg('nickname');
             $nickname     = common_canonical_nickname($nickname_arg);
@@ -106,7 +99,13 @@ class ProfileAction extends ManagedAction
         $this->tag = $this->trimmed('tag');
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
         common_set_returnto($this->selfUrl());
-        return true;
+
+        return $this->profileActionPreparation();
+    }
+
+    protected function profileActionPreparation()
+    {
+        // No-op by default.
     }
 
     function isReadOnly($args)

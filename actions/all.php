@@ -41,13 +41,9 @@ class AllAction extends ProfileAction
 {
     var $notice;
 
-    protected function prepare(array $args=array())
+    protected function profileActionPreparation()
     {
-        parent::prepare($args);
-
-        $user = common_current_user();
-
-        if (!empty($user) && $user->streamModeOnly()) {
+        if ($this->scoped instanceof Profile && $this->scoped->isLocal() && $this->scoped->getUser()->streamModeOnly()) {
             $stream = new InboxNoticeStream($this->target, $this->scoped);
         } else {
             $stream = new ThreadingInboxNoticeStream($this->target, $this->scoped);
@@ -60,8 +56,6 @@ class AllAction extends ProfileAction
             // TRANS: Client error when page not found (404).
             $this->clientError(_('No such page.'), 404);
         }
-
-        return true;
     }
 
     function title()

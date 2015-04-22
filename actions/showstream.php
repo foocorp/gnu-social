@@ -57,14 +57,12 @@ class ShowstreamAction extends ProfileAction
 {
     var $notice;
 
-    protected function prepare(array $args=array())
+    protected function profileActionPreparation()
     {
-        parent::prepare($args);
-
         if (empty($this->tag)) {
-            $stream = new ProfileNoticeStream($this->profile, $this->scoped);
+            $stream = new ProfileNoticeStream($this->target, $this->scoped);
         } else {
-            $stream = new TaggedProfileNoticeStream($this->profile, $this->tag, $this->scoped);
+            $stream = new TaggedProfileNoticeStream($this->target, $this->tag, $this->scoped);
         }
 
         $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
@@ -75,7 +73,7 @@ class ShowstreamAction extends ProfileAction
 
     function title()
     {
-        $base = $this->profile->getFancyName();
+        $base = $this->target->getFancyName();
         if (!empty($this->tag)) {
             if ($this->page == 1) {
                 // TRANS: Page title showing tagged notices in one user's timeline.
@@ -106,7 +104,7 @@ class ShowstreamAction extends ProfileAction
 
     function showProfileBlock()
     {
-        $block = new AccountProfileBlock($this, $this->profile);
+        $block = new AccountProfileBlock($this, $this->target);
         $block->show();
     }
 
@@ -120,12 +118,12 @@ class ShowstreamAction extends ProfileAction
         if (!empty($this->tag)) {
             return array(new Feed(Feed::RSS1,
                                   common_local_url('userrss',
-                                                   array('nickname' => $this->target->nickname,
+                                                   array('nickname' => $this->target->getNickname(),
                                                          'tag' => $this->tag)),
                                   // TRANS: Title for link to notice feed.
                                   // TRANS: %1$s is a user nickname, %2$s is a hashtag.
                                   sprintf(_('Notice feed for %1$s tagged %2$s (RSS 1.0)'),
-                                          $this->target->nickname, $this->tag)));
+                                          $this->target->getNickname(), $this->tag)));
         }
 
         return array(new Feed(Feed::JSON,
@@ -136,14 +134,14 @@ class ShowstreamAction extends ProfileAction
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Notice feed for %s (Activity Streams JSON)'),
-                                      $this->target->nickname)),
+                                      $this->target->getNickname())),
                      new Feed(Feed::RSS1,
                               common_local_url('userrss',
-                                               array('nickname' => $this->target->nickname)),
+                                               array('nickname' => $this->target->getNickname())),
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Notice feed for %s (RSS 1.0)'),
-                                      $this->target->nickname)),
+                                      $this->target->getNickname())),
                      new Feed(Feed::RSS2,
                               common_local_url('ApiTimelineUser',
                                                array(
@@ -152,7 +150,7 @@ class ShowstreamAction extends ProfileAction
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Notice feed for %s (RSS 2.0)'),
-                                      $this->target->nickname)),
+                                      $this->target->getNickname())),
                      new Feed(Feed::ATOM,
                               common_local_url('ApiTimelineUser',
                                                array(
@@ -161,24 +159,24 @@ class ShowstreamAction extends ProfileAction
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Notice feed for %s (Atom)'),
-                                      $this->target->nickname)),
+                                      $this->target->getNickname())),
                      new Feed(Feed::FOAF,
                               common_local_url('foaf', array('nickname' =>
-                                                             $this->target->nickname)),
+                                                             $this->target->getNickname())),
                               // TRANS: Title for link to notice feed. FOAF stands for Friend of a Friend.
                               // TRANS: More information at http://www.foaf-project.org. %s is a user nickname.
-                              sprintf(_('FOAF for %s'), $this->target->nickname)));
+                              sprintf(_('FOAF for %s'), $this->target->getNickname())));
     }
 
     function extraHead()
     {
-        if ($this->profile->bio) {
+        if ($this->target->bio) {
             $this->element('meta', array('name' => 'description',
-                                         'content' => $this->profile->bio));
+                                         'content' => $this->target->getDescription()));
         }
 
-        if ($this->user->emailmicroid && $this->user->email && $this->profile->profileurl) {
-            $id = new Microid('mailto:'.$this->user->email,
+        if ($this->target->isLocal() && $this->target->getUser()->emailmicroid && $this->target->getUser()->email && $this->target->getUrl()) {
+            $id = new Microid('mailto:'.$this->target->getUser()->email,
                               $this->selfUrl());
             $this->element('meta', array('name' => 'microid',
                                          'content' => $id->toString()));
@@ -188,10 +186,10 @@ class ShowstreamAction extends ProfileAction
 
         $this->element('link', array('rel' => 'microsummary',
                                      'href' => common_local_url('microsummary',
-                                                                array('nickname' => $this->profile->nickname))));
+                                                                array('nickname' => $this->target->getNickname()))));
 
         $rsd = common_local_url('rsd',
-                                array('nickname' => $this->profile->nickname));
+                                array('nickname' => $this->target->getNickname()));
 
         // RSD, http://tales.phrasewise.com/rfc/rsd
         $this->element('link', array('rel' => 'EditURI',
@@ -200,7 +198,7 @@ class ShowstreamAction extends ProfileAction
 
         if ($this->page != 1) {
             $this->element('link', array('rel' => 'canonical',
-                                         'href' => $this->profile->profileurl));
+                                         'href' => $this->target->getUrl()));
         }
     }
 
@@ -284,10 +282,9 @@ class ShowstreamAction extends ProfileAction
     function noticeFormOptions()
     {
         $options = parent::noticeFormOptions();
-        $cur = common_current_user();
 
-        if (empty($cur) || $cur->id != $this->profile->id) {
-            $options['to_profile'] =  $this->profile;
+        if (!$this->scoped instanceof Profile || $this->scoped->id != $this->target->id) {
+            $options['to_profile'] =  $this->target;
         }
 
         return $options;
@@ -329,20 +326,23 @@ class ProfileNoticeListItem extends DoFollowListItem
 
             // FIXME: this code is almost identical to default; need to refactor
 
-            $attrs = array('href' => $this->profile->profileurl,
-                           'class' => 'url');
+            $attrs = array();
+            if (!empty($this->target->fullname)) {
+                $attrs['title'] = $this->target->getFullname();
+            }
 
-            if (!empty($this->profile->fullname)) {
-                $attrs['title'] = $this->profile->getFancyName();
+            try {
+                $attrs = array('href' => $this->target->getUrl(),
+                               'class' => 'url');
+                $text_tag = 'a';
+            } catch (InvalidUrlException $e) {
+                $text_tag = 'abbr';
             }
 
             $this->out->elementStart('span', 'repeat');
-
-            $text_link = XMLStringer::estring('a', $attrs, $this->profile->nickname);
-
+            $text_link = XMLStringer::estring($text_tag, $attrs, $this->target->getNickname());
             // TRANS: Link to the author of a repeated notice. %s is a linked nickname.
             $this->out->raw(sprintf(_('Repeat of %s'), $text_link));
-
             $this->out->elementEnd('span');
         }
     }

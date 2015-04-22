@@ -25,11 +25,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/widget.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /*
  * Show a bunch of peopletags
@@ -176,20 +172,5 @@ class PeopletagsWidget extends Widget
     function isEditable()
     {
         return !empty($this->user) && $this->tagger->id == $this->user->id;
-    }
-}
-
-class SelftagsWidget extends PeopletagsWidget
-{
-    function url($tag)
-    {
-        // link to self tag page
-        return common_local_url('selftag', array('tag' => $tag));
-    }
-
-    function label()
-    {
-        // TRANS: Label in self tags widget.
-        return _m('LABEL','Tags');
     }
 }
