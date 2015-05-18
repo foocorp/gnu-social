@@ -144,7 +144,7 @@ to install the development version of GNU social.
 To get it, use the git version control tool
 <http://git-scm.com/> like so:
 
-    git clone git@gitorious.org:social/mainline.git
+    git clone git@git.gnu.io:gnu/gnu-social.git
 
 In the current phase of development it is probably
 recommended to use git as a means to stay up to date
@@ -166,8 +166,8 @@ There are several ways to get more information about GNU social.
 * Following us on GNU social -- <https://quitter.se/gnusocial>
 
 * GNU social has a bug tracker for any defects you may find, or ideas for
-  making things better. <https://bugz.foocorp.net/>
-* Patches are welcome, preferrably to our repository on Gitorious. <https://gitorious.org/social/mainline>
+  making things better. <https://git.gnu.io/gnu/gnu-social/issues/>
+* Patches are welcome, preferrably to our repository on git.gnu.io. <https://git.gnu.io/gnu/gnu-social>
 
 Credits
 =======
