@@ -20,7 +20,11 @@ ol, ul {list-style-position: inside;}
 fieldset {border: none;}
 legend {font-weight: bold; font-size: 1.2em;}
 input, textarea, select, option {padding: 2px;}
-textarea {overflow:auto;}
+
+textarea {
+    overflow:auto;
+    resize: vertical;
+}
 
 body {
     background-color: #f2f2f2;
