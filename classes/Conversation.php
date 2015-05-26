@@ -108,7 +108,13 @@ class Conversation extends Managed_DataObject
 
     static public function getUrlFromNotice(Notice $notice, $anchor=true)
     {
-        $conv = self::getKV('id', $notice->conversation);
+        $conv = new Conversation();
+        $conv->id = $notice->conversation;
+        $conv->find(true);
+        if (!$conv instanceof Conversation) {
+            common_debug('Conversation does not exist for notice ID: '.$notice->id);
+            throw new NoResultException($conv);
+        }
         return $conv->getUrl($anchor ? $notice->id : null);
     }
 

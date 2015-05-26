@@ -27,21 +27,13 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class InfiniteScrollPlugin extends Plugin
 {
-
     public $on_next_only = false;
 
-    function __construct()
-    {
-        parent::__construct();
-    }
-
-    function onEndShowScripts($action)
+    function onEndShowScripts(Action $action)
     {
         $action->inlineScript('var infinite_scroll_on_next_only = ' . ($this->on_next_only?'true':'false') . ';');
         $action->inlineScript('var ajax_loader_url = "' . ($this->path('ajax-loader.gif')) . '";');
@@ -49,7 +41,7 @@ class InfiniteScrollPlugin extends Plugin
         $action->script($this->path('infinitescroll.js'));
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'InfiniteScroll',
                             'version' => GNUSOCIAL_VERSION,

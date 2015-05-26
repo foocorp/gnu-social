@@ -520,7 +520,7 @@ function setFilehashOnLocalFiles()
                 $file->filehash = hash_file(File::FILEHASH_ALG, $file->getPath());
                 $file->update($orig);
             } catch (FileNotFoundException $e) {
-                echo "\n    WARNING: file ID {$file->id} does not exist on path '{$e->path}'. Clean up the file table?";
+                echo "\n    WARNING: file ID {$file->id} does not exist on path '{$e->path}'. If there is no file system error, run: php scripts/clean_file_table.php";
             }
         }
     }

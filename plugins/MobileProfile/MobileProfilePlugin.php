@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 define('PAGE_TYPE_PREFS_MOBILEPROFILE',
        'application/vnd.wap.xhtml+xml, application/xhtml+xml, text/html;q=0.9');
@@ -59,124 +57,120 @@ class MobileProfilePlugin extends WAP20Plugin
         parent::__construct();
     }
 
-    function onStartShowHTML($action)
+    public function onStartShowHTML(Action $action)
     {
-        // XXX: This should probably graduate to WAP20Plugin
+        // TODO: A lot of this should probably graduate to WAP20Plugin
+
+        $httpaccept = isset($_SERVER['HTTP_ACCEPT']) ? $_SERVER['HTTP_ACCEPT'] : null;
+
+        $cp = common_accept_to_prefs($httpaccept);
+        $sp = common_accept_to_prefs(PAGE_TYPE_PREFS_MOBILEPROFILE);
+
+        $type = common_negotiate_type($cp, $sp);
+
+        if (!$type) {
+            // TRANS: Client exception thrown when requesting a not supported media type.
+            throw new ClientException(_m('This page is not available in a '.
+                                        'media type you accept.'), 406);
+        }
 
         // If they are on the mobile site, serve them MP
-        if ((common_config('site', 'mobileserver').'/'.
-             common_config('site', 'path').'/' ==
-            $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])) {
-
+        if ((common_config('site', 'mobileserver').'/'.common_config('site', 'path').'/'
+                == $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])) {
             $this->serveMobile = true;
-        } else if (isset($_COOKIE['MobileOverride'])) {
+        } elseif (isset($_COOKIE['MobileOverride'])) {
             // Cookie override is controlled by link at bottom.
             $this->serveMobile = (bool)$_COOKIE['MobileOverride'];
-        } elseif (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
+        } elseif (strstr('application/vnd.wap.xhtml+xml', $type) !== false) {
             // If they like the WAP 2.0 mimetype, serve them MP
-            // @fixme $type is undefined, making this if case useless and spewing errors.
-            // What's the intent?
-            //if (strstr('application/vnd.wap.xhtml+xml', $type) !== false) {
-            //    $this->serveMobile = true;
-            //} else {
-                // If they are a mobile device that supports WAP 2.0,
-                // serve them MP
+            $this->serveMobile = true;
+        } elseif (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
+            // If they are a mobile device that supports WAP 2.0,
+            // serve them MP
 
-                // XXX: Browser sniffing sucks
+            // XXX: Browser sniffing sucks
 
-                // I really don't like going through this every page,
-                // perhaps use $_SESSION or cookies
+            // I really don't like going through this every page,
+            // perhaps use $_SESSION or cookies
 
-                // May be better to group the devices in terms of
-                // low,mid,high-end
+            // May be better to group the devices in terms of
+            // low,mid,high-end
 
-                // Or, detect the mobile devices based on their support for
-                // MP 1.0, 1.1, or 1.2 may be ideal. Possible?
+            // Or, detect the mobile devices based on their support for
+            // MP 1.0, 1.1, or 1.2 may be ideal. Possible?
 
-                $this->mobiledevices = array(
-                    'alcatel',
-                    'android',
-                    'audiovox',
-                    'au-mic,',
-                    'avantgo',
-                    'blackberry',
-                    'blazer',
-                    'cldc-',
-                    'danger',
-                    'epoc',
-                    'ericsson',
-                    'ericy',
-                    'iphone',
-                    'ipaq',
-                    'ipod',
-                    'j2me',
-                    'lg',
-                    'maemo',
-                    'midp-',
-                    'mobile',
-                    'mot',
-                    'netfront',
-                    'nitro',
-                    'nokia',
-                    'opera mini',
-                    'palm',
-                    'palmsource',
-                    'panasonic',
-                    'philips',
-                    'pocketpc',
-                    'portalmmm',
-                    'rover',
-                    'samsung',
-                    'sanyo',
-                    'series60',
-                    'sharp',
-                    'sie-',
-                    'smartphone',
-                    'sony',
-                    'symbian',
-                    'up.browser',
-                    'up.link',
-                    'up.link',
-                    'vodafone',
-                    'wap1',
-                    'wap2',
-                    'webos',
-                    'windows ce'
-                );
+            $this->mobiledevices = array(
+                'alcatel',
+                'android',
+                'audiovox',
+                'au-mic,',
+                'avantgo',
+                'blackberry',
+                'blazer',
+                'cldc-',
+                'danger',
+                'epoc',
+                'ericsson',
+                'ericy',
+                'iphone',
+                'ipaq',
+                'ipod',
+                'j2me',
+                'lg',
+                'maemo',
+                'midp-',
+                'mobile',
+                'mot',
+                'netfront',
+                'nitro',
+                'nokia',
+                'opera mini',
+                'palm',
+                'palmsource',
+                'panasonic',
+                'philips',
+                'pocketpc',
+                'portalmmm',
+                'rover',
+                'samsung',
+                'sanyo',
+                'series60',
+                'sharp',
+                'sie-',
+                'smartphone',
+                'sony',
+                'symbian',
+                'up.browser',
+                'up.link',
+                'up.link',
+                'vodafone',
+                'wap1',
+                'wap2',
+                'webos',
+                'windows ce'
+            );
 
-                $blacklist = array(
-                    'ipad', // Larger screen handles the full theme fairly well.
-                );
+            $blacklist = array(
+                'ipad', // Larger screen handles the full theme fairly well.
+            );
 
-                $httpuseragent = strtolower($_SERVER['HTTP_USER_AGENT']);
+            $httpuseragent = strtolower($_SERVER['HTTP_USER_AGENT']);
 
-                foreach ($blacklist as $md) {
-                    if (strstr($httpuseragent, $md) !== false) {
-                        $this->serveMobile = false;
-                        return true;
-                    }
+            foreach ($blacklist as $md) {
+                if (strstr($httpuseragent, $md) !== false) {
+                    $this->serveMobile = false;
+                    return true;
                 }
+            }
 
-                foreach ($this->mobiledevices as $md) {
-                    if (strstr($httpuseragent, $md) !== false) {
-                        $this->setMobileFeatures($httpuseragent);
+            foreach ($this->mobiledevices as $md) {
+                if (strstr($httpuseragent, $md) !== false) {
+                    $this->setMobileFeatures($httpuseragent);
 
-                        $this->serveMobile = true;
-                        $this->reallyMobile = true;
-                        break;
-                    }
+                    $this->serveMobile = true;
+                    $this->reallyMobile = true;
+                    break;
                 }
-            //}
-
-            // If they are okay with MP, and the site has a mobile server,
-            // redirect there
-            if ($this->serveMobile &&
-                common_config('site', 'mobileserver') !== false &&
-                (common_config('site', 'mobileserver') !=
-                    common_config('site', 'server'))) {
-
-                // FIXME: Redirect to equivalent page on mobile site instead
-                common_redirect($this->_common_path(''), 302);
             }
         }
 
@@ -184,48 +178,23 @@ class MobileProfilePlugin extends WAP20Plugin
             return true;
         }
 
-        // @fixme $type is undefined, making this if case useless and spewing errors.
-        // What's the intent?
-        //if (!$type) {
-            $httpaccept = isset($_SERVER['HTTP_ACCEPT']) ?
-              $_SERVER['HTTP_ACCEPT'] : null;
+        // If they are okay with MP, and the site has a mobile server,
+        // redirect there
+        if (common_config('site', 'mobileserver') !== false &&
+                common_config('site', 'mobileserver') != common_config('site', 'server')) {
 
-            $cp = common_accept_to_prefs($httpaccept);
-            $sp = common_accept_to_prefs(PAGE_TYPE_PREFS_MOBILEPROFILE);
-
-            $type = common_negotiate_type($cp, $sp);
-
-            if (!$type) {
-                // TRANS: Client exception thrown when requesting a not supported media type.
-                throw new ClientException(_m('This page is not available in a '.
-                                            'media type you accept.'), 406);
-            }
-        //}
+            // FIXME: Redirect to equivalent page on mobile site instead
+            common_redirect($this->_common_path(''), 302);
+        }
 
         header('Content-Type: '.$type);
 
         if ($this->reallyMobile) {
-
-           $action->extraHeaders();
-           if (preg_match("/.*\/.*xml/", $type)) {
-               // Required for XML documents
-               $action->startXML();
-           }
-           $action->xw->writeDTD('html',
-                           '-//WAPFORUM//DTD XHTML Mobile 1.0//EN',
-                           $this->DTD);
-
-            $language = $action->getLanguage();
-
-            $action->elementStart('html', array('xmlns' => 'http://www.w3.org/1999/xhtml',
-                                            'xml:lang' => $language));
-
-            return false;
-
-        } else {
-        return true;
+           $action->setDTD('html', '-//WAPFORUM//DTD XHTML Mobile 1.0//EN', $this->DTD);
         }
 
+        // continue
+        return true;
     }
 
     function setMobileFeatures($useragent)
@@ -268,7 +237,7 @@ class MobileProfilePlugin extends WAP20Plugin
         return false;
     }
 
-    function onStartShowUAStyles($action) {
+    public function onStartShowUAStyles(Action $action) {
         if (!$this->serveMobile) {
             return true;
         }
@@ -276,7 +245,7 @@ class MobileProfilePlugin extends WAP20Plugin
         return false;
     }
 
-    function onStartShowHeader($action)
+    public function onStartShowHeader(Action $action)
     {
         if (!$this->serveMobile) {
             return true;
@@ -290,7 +259,7 @@ class MobileProfilePlugin extends WAP20Plugin
         return false;
     }
 
-    function _showLogo($action)
+    protected function _showLogo(Action $action)
     {
         $action->elementStart('address');
         if (common_config('singleuser', 'enabled')) {
@@ -316,23 +285,22 @@ class MobileProfilePlugin extends WAP20Plugin
         $action->elementEnd('address');
     }
 
-    function onStartShowAside($action)
+    public function onStartShowAside(Action $action)
     {
         if ($this->serveMobile) {
             return false;
         }
     }
 
-    function onStartShowLocalNavBlock($action)
+    public function onStartShowLocalNavBlock(Action $action)
     {
         if ($this->serveMobile) {
             // @todo FIXME: "Show Navigation" / "Hide Navigation" needs i18n
             $action->element('a', array('href' => '#', 'id' => 'navtoggle'), 'Show Navigation');
-        return true;
         }
     }
 
-    function onEndShowScripts($action)
+    public function onEndShowScripts(Action $action)
     {
         // @todo FIXME: "Show Navigation" / "Hide Navigation" needs i18n
         $action->inlineScript('
@@ -357,18 +325,12 @@ class MobileProfilePlugin extends WAP20Plugin
         );
 
         if ($this->serveMobile) {
-            $action->inlineScript('
-                $(function() {
-        	        $(".checkbox-wrapper").unbind("click");
-                });'
-            );
+            $action->inlineScript('$(function() { $(".checkbox-wrapper").unbind("click"); });');
         }
-
-
     }
 
 
-    function onEndShowInsideFooter($action)
+    public function onEndShowInsideFooter(Action $action)
     {
         if ($this->serveMobile) {
             // TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.

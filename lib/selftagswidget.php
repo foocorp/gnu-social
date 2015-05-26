@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Widget to show a list of profiles
+ * Tags for a profile
  *
  * PHP version 5
  *
@@ -19,49 +19,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Public
+ * @category  Action
  * @package   StatusNet
- * @author    Evan Prodromou <evan@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-define('PROFILES_PER_MINILIST', 8);
-
-/**
- * Widget to show a list of profiles, good for sidebar
- *
- * @category Public
- * @package  StatusNet
- * @author   Evan Prodromou <evan@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
- */
-
-class ProfileMiniList extends ProfileList
+class SelftagsWidget extends PeopletagsWidget
 {
-    const MAX_PROFILES = PROFILES_PER_MINILIST; // put it in the class
-
-    function startList()
+    function url($tag)
     {
-        $this->out->elementStart('ul', 'entities users xoxo');
+        // link to self tag page
+        return common_local_url('selftag', array('tag' => $tag));
     }
 
-    function newListItem($profile)
+    function label()
     {
-        return new ProfileMiniListItem($profile, $this->action);
-    }
-
-    function maxProfiles()
-    {
-        return PROFILES_PER_MINILIST;
-    }
-
-    function avatarSize()
-    {
-        return AVATAR_MINI_SIZE;
+        // TRANS: Label in self tags widget.
+        return _m('LABEL','Tags');
     }
 }

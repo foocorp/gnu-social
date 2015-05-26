@@ -322,6 +322,7 @@ class File_redirection extends Managed_DataObject
                 break;
 
             case 'mailto':
+            case 'magnet':
             case 'aim':
             case 'jabber':
             case 'xmpp':

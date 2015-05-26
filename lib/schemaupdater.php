@@ -98,7 +98,6 @@ class SchemaUpdater
     {
         $checksums = array();
 
-        PEAR::pushErrorHandling(PEAR_ERROR_EXCEPTION);
         try {
             $sv = new Schema_version();
             $sv->find();
@@ -111,7 +110,6 @@ class SchemaUpdater
             // no dice!
             common_log(LOG_DEBUG, "Possibly schema_version table doesn't exist yet.");
         }
-        PEAR::popErrorHandling();
 
         return $checksums;
     }
@@ -124,7 +122,6 @@ class SchemaUpdater
      */
     protected function saveChecksum($table, $checksum)
     {
-        PEAR::pushErrorHandling(PEAR_ERROR_EXCEPTION);
         try {
             $sv = new Schema_version();
             $sv->table_name = $table;
@@ -139,7 +136,6 @@ class SchemaUpdater
             // no dice!
             common_log(LOG_DEBUG, "Possibly schema_version table doesn't exist yet.");
         }
-        PEAR::popErrorHandling();
         $this->checksums[$table] = $checksum;
     }
 }

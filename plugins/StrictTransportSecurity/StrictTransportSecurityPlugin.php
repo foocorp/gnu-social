@@ -27,14 +27,13 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class StrictTransportSecurityPlugin extends Plugin
 {
     public $max_age = 15552000;
     public $includeSubDomains = false;
+    public $preloadToken = false;
 
     function __construct()
     {
@@ -45,7 +44,9 @@ class StrictTransportSecurityPlugin extends Plugin
     {
         $path = common_config('site', 'path');
         if(common_config('site', 'ssl') == 'always' && ($path == '/' || ! $path )) {
-            header('Strict-Transport-Security: max-age=' . $this->max_age . + ($this->includeSubDomains?'; includeSubDomains':''));
+            header('Strict-Transport-Security: max-age=' . $this->max_age
+                    . ($this->includeSubDomains ? '; includeSubDomains' : '')
+                    . ($this->preloadToken ? '; preload' : ''));
         }
     }
 

@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/xmloutputter.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 // Can include XHTML options but these are too fragile in practice.
 define('PAGE_TYPE_PREFS', 'text/html');
@@ -58,6 +54,9 @@ define('PAGE_TYPE_PREFS', 'text/html');
 
 class HTMLOutputter extends XMLOutputter
 {
+    protected $DTD = array('doctype' => 'html',
+                           'spec'    => '-//W3C//DTD XHTML 1.0 Strict//EN',
+                           'uri'     => 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd');
     /**
      * Constructor
      *
@@ -120,9 +119,8 @@ class HTMLOutputter extends XMLOutputter
             // Required for XML documents
             $this->startXML();
         }
-        $this->xw->writeDTD('html',
-                            '-//W3C//DTD XHTML 1.0 Strict//EN',
-                            'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd');
+
+        $this->writeDTD();
 
         $language = $this->getLanguage();
 
@@ -136,6 +134,18 @@ class HTMLOutputter extends XMLOutputter
             $this->elementStart('html', $attrs);
             Event::handle('EndHtmlElement', array($this, &$attrs));
         }
+    }
+
+    public function setDTD($doctype, $spec, $uri)
+    {
+        $this->DTD = array('doctype' => $doctype, 'spec' => $spec, 'uri' => $uri);
+    }
+
+    protected function writeDTD()
+    {
+        $this->xw->writeDTD($this->DTD['doctype'],
+                            $this->DTD['spec'],
+                            $this->DTD['uri']);
     }
 
     function getLanguage()

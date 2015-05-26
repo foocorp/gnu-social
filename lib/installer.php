@@ -424,7 +424,11 @@ abstract class Installer
                 // database
                 "\$config['db']['database'] = {$vals['db_database']};\n\n".
                 ($this->db['type'] == 'pgsql' ? "\$config['db']['quote_identifiers'] = true;\n\n":'').
-                "\$config['db']['type'] = {$vals['db_type']};\n\n";
+                "\$config['db']['type'] = {$vals['db_type']};\n\n".
+
+                "// Uncomment below for better performance. Just remember you must run\n".
+                "// php scripts/checkschema.php whenever your enabled plugins change!\n".
+                "//\$config['db']['schemacheck'] = 'script';\n\n";
 
         // Normalize line endings for Windows servers
         $cfg = str_replace("\n", PHP_EOL, $cfg);

@@ -40,16 +40,19 @@ class Local_group extends Managed_DataObject
 
     public function getProfile()
     {
-        $group = $this->getGroup();
-        if (!$group instanceof User_group) {
-            return null;    // TODO: Throw exception when other code is ready
-        }
-        return $group->getProfile();
+        return $this->getGroup()->getProfile();
     }
 
     public function getGroup()
     {
-        return User_group::getKV('id', $this->group_id);
+        $group = new User_group();
+        $group->id = $this->group_id;
+        $group->find(true);
+        if (!$group instanceof User_group) {
+            common_log(LOG_ERR, 'User_group does not exist for Local_group: '.$this->group_id);
+            throw new NoResultException($group);
+        }
+        return $group;
     }
 
     function setNickname($nickname)
