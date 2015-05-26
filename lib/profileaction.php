@@ -66,6 +66,10 @@ abstract class ProfileAction extends ManagedAction
             $this->user = User::getKV('nickname', $nickname);
 
             if (!$this->user) {
+                $group = Local_group::getKV('nickname', $nickname);
+                if ($group instanceof Local_group) {
+                    common_redirect($group->getProfile()->getUrl());
+                }
                 // TRANS: Client error displayed when calling a profile action without specifying a user.
                 $this->clientError(_('No such user.'), 404);
             }

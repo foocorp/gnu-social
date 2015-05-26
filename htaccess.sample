@@ -45,9 +45,11 @@
 </IfModule>
 
 <FilesMatch "\.(ini)">
-  # For mod_access_compat in Apache <2.4
-  #Order allow,deny
-
-  # Use this instead for Apache >2.4 (mod_authz_host)
-  # Require all denied
+    <IfVersion < 2.3>
+        Order allow,deny
+        Deny from all
+    </IfVersion>
+    <IfVersion >= 2.3>
+        Require all denied
+    </IfVersion>
 </FilesMatch>
