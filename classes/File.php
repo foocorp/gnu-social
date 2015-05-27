@@ -648,7 +648,7 @@ class File extends Managed_DataObject
         $schemadef['fields']['urlhash'] = array (
                                               'type' => 'varchar',
                                               'length' => 64,
-                                              'not null' => true,
+                                              'not null' => false,  // this is because when adding column, all entries will _be_ NULL!
                                               'description' => 'sha256 of destination URL (url field)',
                                             );
         $schemadef['fields']['url'] = array (
