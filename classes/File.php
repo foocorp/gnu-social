@@ -639,6 +639,8 @@ class File extends Managed_DataObject
                 print "\nWarning! URL suddenly disappeared from database: {$file->url}\n";
             }
         }
+        echo "...and now all the non-duplicates which are longer than 191 characters...\n";
+        $file->query('UPDATE file SET url=LEFT(url, 191) WHERE LENGTH(url)>191');
 
         echo "\n...now running hacky pre-schemaupdate change for $table:";
         // We have to create a urlhash that is _not_ the primary key,
