@@ -873,16 +873,20 @@ class User extends Managed_DataObject
             }
 
             // No luck finding anyone by that email address.
-            // TODO: Fake sending email (since we don't want to reveal which addresses exist or not)
             if (!$user instanceof User) {
-                // TRANS: Information on password recovery form if no known username or e-mail address was specified.
+                if (common_config('site', 'fakeaddressrecovery')) {
+                    // Return without actually doing anything! We fake address recovery
+                    // to avoid revealing which email addresses are registered with the site.
+                    return;
+                }
+                // TRANS: Information on password recovery form if no known e-mail address was specified.
                 throw new ClientException(_('No user with that email address exists here.'));
             }
         } else {
             // This might throw a NicknameException on bad nicknames
             $user = User::getKV('nickname', common_canonical_nickname($nore));
             if (!$user instanceof User) {
-                // TRANS: Information on password recovery form if no known username or e-mail address was specified.
+                // TRANS: Information on password recovery form if no known username was specified.
                 throw new ClientException(_('No user with that nickname exists here.'));
             }
         }
