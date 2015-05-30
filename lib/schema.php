@@ -535,6 +535,7 @@ class Schema
             $res = $this->conn->query($sql);
 
             if ($_PEAR->isError($res)) {
+                common_debug('PEAR exception on query: '.$sql);
                 PEAR_ErrorToPEAR_Exception($res);
             }
         }

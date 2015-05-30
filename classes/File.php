@@ -249,6 +249,15 @@ class File extends Managed_DataObject
         return true;
     }
 
+    public function getFilename()
+    {
+        if (!self::validFilename($this->filename)) {
+            // TRANS: Client exception thrown if a file upload does not have a valid name.
+            throw new ClientException(_("Invalid filename."));
+        }
+        return $this->filename;
+    }
+
     // where should the file go?
 
     static function filename(Profile $profile, $origname, $mimetype)
@@ -610,12 +619,45 @@ class File extends Managed_DataObject
             return;
         }
         echo "\nFound old $table table, upgrading it to contain 'urlhash' field...";
+
+        $file = new File();
+        $file->query(sprintf('SELECT id, LEFT(url, 191) AS shortenedurl, COUNT(*) AS c FROM %1$s WHERE LENGTH(url)>191 GROUP BY shortenedurl HAVING c > 1', $schema->quoteIdentifier($table)));
+        print "\nFound {$file->N} URLs with too long entries in file table\n";
+        while ($file->fetch()) {
+            // We've got a URL that is too long for our future file table
+            // so we'll cut it. We could save the original URL, but there is
+            // no guarantee it is complete anyway since the previous max was 255 chars.
+            $dupfile = new File();
+            // First we find file entries that would be duplicates of this when shortened
+            // ... and we'll just throw the dupes out the window for now! It's already so borken.
+            $dupfile->query(sprintf('SELECT * FROM file WHERE LEFT(url, 191) = "%1$s"', $file->shortenedurl));
+            // Leave one of the URLs in the database by using ->find(true) (fetches first entry)
+            if ($dupfile->find(true)) {
+                print "\nShortening url entry for $table id: {$file->id} [";
+                $orig = clone($dupfile);
+                $dupfile->url = $file->shortenedurl;    // make sure it's only 191 chars from now on
+                $dupfile->update($orig);
+                print "\nDeleting duplicate entries of too long URL on $table id: {$file->id} [";
+                // only start deleting with this fetch.
+                while($dupfile->fetch()) {
+                    print ".";
+                    $dupfile->delete();
+                }
+                print "]\n";
+            } else {
+                print "\nWarning! URL suddenly disappeared from database: {$file->url}\n";
+            }
+        }
+        echo "...and now all the non-duplicates which are longer than 191 characters...\n";
+        $file->query('UPDATE file SET url=LEFT(url, 191) WHERE LENGTH(url)>191');
+
+        echo "\n...now running hacky pre-schemaupdate change for $table:";
         // We have to create a urlhash that is _not_ the primary key,
         // transfer data and THEN run checkSchema
         $schemadef['fields']['urlhash'] = array (
                                               'type' => 'varchar',
                                               'length' => 64,
-                                              'not null' => true,
+                                              'not null' => false,  // this is because when adding column, all entries will _be_ NULL!
                                               'description' => 'sha256 of destination URL (url field)',
                                             );
         $schemadef['fields']['url'] = array (
