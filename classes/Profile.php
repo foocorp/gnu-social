@@ -880,6 +880,11 @@ class Profile extends Managed_DataObject
             $inst->delete();
         }
 
+        $localuser = User::getKV('id', $this->id);
+        if ($localuser instanceof User) {
+            $localuser->delete();
+        }
+
         return parent::delete($useWhere);
     }
 

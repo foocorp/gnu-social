@@ -113,7 +113,7 @@ function readline_emulation($prompt)
 
 function console_help()
 {
-    print "Welcome to StatusNet's interactive PHP console!\n";
+    print "Welcome to GNU social's interactive PHP console!\n";
     print "Type some PHP code and it'll execute...\n";
     print "\n";
     print "Hint: return a value of any type to output it via var_export():\n";
@@ -128,8 +128,8 @@ function console_help()
 }
 
 if (CONSOLE_INTERACTIVE) {
-    print "StatusNet interactive PHP console... type ctrl+D or enter 'exit' to exit.\n";
-    $prompt = common_config('site', 'name') . '> ';
+    print "GNU social interactive PHP console... type ctrl+D or enter 'exit' to exit.\n";
+    $prompt = common_slugify(common_config('site', 'name')) . '> ';
 } else {
     $prompt = '';
 }
