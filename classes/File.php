@@ -249,6 +249,15 @@ class File extends Managed_DataObject
         return true;
     }
 
+    public function getFilename()
+    {
+        if (!self::validFilename($this->filename)) {
+            // TRANS: Client exception thrown if a file upload does not have a valid name.
+            throw new ClientException(_("Invalid filename."));
+        }
+        return $this->filename;
+    }
+
     // where should the file go?
 
     static function filename(Profile $profile, $origname, $mimetype)

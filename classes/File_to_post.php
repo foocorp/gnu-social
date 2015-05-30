@@ -85,6 +85,24 @@ class File_to_post extends Managed_DataObject
         }
     }
 
+    static function getNoticeIDsByFile(File $file)
+    {
+        $f2p = new File_to_post();
+
+        $f2p->selectAdd();
+        $f2p->selectAdd('post_id');
+
+        $f2p->file_id = $file->id;
+
+        $ids = array();
+
+        if (!$f2p->find()) {
+            throw new NoResultException($f2p);
+        }
+
+        return $f2p->fetchAll('post_id');
+    }
+
     function delete($useWhere=false)
     {
         $f = File::getKV('id', $this->file_id);
