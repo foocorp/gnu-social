@@ -853,57 +853,55 @@ class User extends Managed_DataObject
 
     static function recoverPassword($nore)
     {
-        $user = User::getKV('email', common_canonical_email($nore));
+        // $confirm_email will be used as a fallback if our user doesn't have a confirmed email
+        $confirm_email = null;
 
-        if (!$user) {
-            try {
-                $user = User::getKV('nickname', common_canonical_nickname($nore));
-            } catch (NicknameException $e) {
-                // invalid
+        if (common_is_email($nore)) {
+            $user = User::getKV('email', common_canonical_email($nore));
+
+            // See if it's an unconfirmed email address
+            if (!$user instanceof User) {
+                // Warning: it may actually be legit to have multiple folks
+                // who have claimed, but not yet confirmed, the same address.
+                // We'll only send to the first one that comes up.
+                $confirm_email = new Confirm_address();
+                $confirm_email->address = common_canonical_email($nore);
+                $confirm_email->address_type = 'email';
+                if ($confirm_email->find(true)) {
+                    $user = User::getKV('id', $confirm_email->user_id);
+                }
             }
-        }
 
-        // See if it's an unconfirmed email address
-
-        if (!$user) {
-            // Warning: it may actually be legit to have multiple folks
-            // who have claimed, but not yet confirmed, the same address.
-            // We'll only send to the first one that comes up.
-            $confirm_email = new Confirm_address();
-            $confirm_email->address = common_canonical_email($nore);
-            $confirm_email->address_type = 'email';
-            $confirm_email->find();
-            if ($confirm_email->fetch()) {
-                $user = User::getKV($confirm_email->user_id);
-            } else {
-                $confirm_email = null;
+            // No luck finding anyone by that email address.
+            // TODO: Fake sending email (since we don't want to reveal which addresses exist or not)
+            if (!$user instanceof User) {
+                // TRANS: Information on password recovery form if no known username or e-mail address was specified.
+                throw new ClientException(_('No user with that email address exists here.'));
             }
         } else {
-            $confirm_email = null;
-        }
-
-        if (!$user) {
-            // TRANS: Information on password recovery form if no known username or e-mail address was specified.
-            throw new ClientException(_('No user with that email address or username.'));
-            return;
+            // This might throw a NicknameException on bad nicknames
+            $user = User::getKV('nickname', common_canonical_nickname($nore));
+            if (!$user instanceof User) {
+                // TRANS: Information on password recovery form if no known username or e-mail address was specified.
+                throw new ClientException(_('No user with that nickname exists here.'));
+            }
         }
 
         // Try to get an unconfirmed email address if they used a user name
-
-        if (!$user->email && !$confirm_email) {
+        if (empty($user->email) && $confirm_email === null) {
             $confirm_email = new Confirm_address();
             $confirm_email->user_id = $user->id;
             $confirm_email->address_type = 'email';
             $confirm_email->find();
             if (!$confirm_email->fetch()) {
+                // Nothing found, so let's reset it to null
                 $confirm_email = null;
             }
         }
 
-        if (!$user->email && !$confirm_email) {
+        if (empty($user->email) && !$confirm_email instanceof Confirm_address) {
             // TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
             throw new ClientException(_('No registered email address for that user.'));
-            return;
         }
 
         // Success! We have a valid user and a confirmed or unconfirmed email address
@@ -912,13 +910,12 @@ class User extends Managed_DataObject
         $confirm->code = common_confirmation_code(128);
         $confirm->address_type = 'recover';
         $confirm->user_id = $user->id;
-        $confirm->address = (!empty($user->email)) ? $user->email : $confirm_email->address;
+        $confirm->address = $user->email ?: $confirm_email->address;
 
         if (!$confirm->insert()) {
             common_log_db_error($confirm, 'INSERT', __FILE__);
             // TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
             throw new ServerException(_('Error saving address confirmation.'));
-            return;
         }
 
          // @todo FIXME: needs i18n.
