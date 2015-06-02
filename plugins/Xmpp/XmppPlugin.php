@@ -354,7 +354,7 @@ class XmppPlugin extends ImPlugin
             $xs->text(": ");
         } catch (InvalidUrlException $e) {
             $xs->text(sprintf(' => %s', $orig_profile->nickname));
-        } catch (Exception $e) {
+        } catch (NoParentNoticeException $e) {
             $xs->text(": ");
         }
         if (!empty($notice->rendered)) {

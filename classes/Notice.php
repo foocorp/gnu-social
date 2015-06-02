@@ -1311,7 +1311,7 @@ class Notice extends Managed_DataObject
                     $last = $parent;
                     continue;
                 }
-            } catch (Exception $e) {
+            } catch (NoParentNoticeException $e) {
                 // Latest notice has no parent
             }
             // No parent, or parent out of scope
@@ -1617,7 +1617,7 @@ class Notice extends Managed_DataObject
             $this->saveReply($parentauthor->id);
             $replied[$parentauthor->id] = 1;
             self::blow('reply:stream:%d', $parentauthor->id);
-        } catch (Exception $e) {
+        } catch (NoParentNoticeException $e) {
             // Not a reply, since it has no parent!
         }
 
@@ -1852,7 +1852,7 @@ class Notice extends Managed_DataObject
                 $reply = $this->getParent();
                 $ctx->replyToID  = $reply->getUri();
                 $ctx->replyToUrl = $reply->getUrl();
-            } catch (Exception $e) {
+            } catch (NoParentNoticeException $e) {
                 // This is not a reply to something
             }
 
