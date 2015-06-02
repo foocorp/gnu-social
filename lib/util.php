@@ -697,11 +697,8 @@ function common_linkify_mention(array $mention)
  */
 function common_find_mentions($text, Notice $notice)
 {
-    try {
-        $sender = Profile::getKV('id', $notice->profile_id);
-    } catch (NoProfileException $e) {
-        return array();
-    }
+    // The getProfile call throws NoProfileException on failure
+    $sender = $notice->getProfile();
 
     $mentions = array();
 
