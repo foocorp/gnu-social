@@ -128,7 +128,7 @@ class ConversationAction extends ManagedAction
                                                     'format' => 'atom')),
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
-                              _('Conversation feed (Activity Streams JSON)')));
+                              _('Conversation feed (Atom)')));
     }
 }
 
