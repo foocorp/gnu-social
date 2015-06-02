@@ -1851,7 +1851,7 @@ class Notice extends Managed_DataObject
             try {
                 $reply = $this->getParent();
                 $ctx->replyToID  = $reply->getUri();
-                $ctx->replyToUrl = $reply->getUrl();
+                $ctx->replyToUrl = $reply->getUrl(true);    // true for fallback to local URL, less messy
             } catch (NoParentNoticeException $e) {
                 // This is not a reply to something
             }
