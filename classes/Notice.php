@@ -2762,13 +2762,10 @@ class Notice extends Managed_DataObject
 
     public function getParent()
     {
-        $parent = Notice::getKV('id', $this->reply_to);
-
-        if (!$parent instanceof Notice) {
-            throw new ServerException('Notice has no parent');
+        if (empty($this->reply_to)) {
+            throw new NoParentNoticeException($this);
         }
-
-        return $parent;
+        return self::getById($this->reply_to);
     }
 
     /**
