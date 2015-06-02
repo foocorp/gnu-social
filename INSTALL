@@ -26,7 +26,7 @@ PHP modules
 The following software packages are *required* for this software to
 run correctly.
 
-- PHP 5.4+      For newer versions, some functions that are used may be
+- PHP 5.5+      For newer versions, some functions that are used may be
                 disabled by default, such as the pcntl_* family. See the
                 section on 'Queues and daemons' for more information.
 - MariaDB 5+    GNU Social uses, by default, a MariaDB server for data

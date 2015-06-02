@@ -103,7 +103,7 @@ class GNUsocial_HTTPResponse extends HTTP_Request2_Response
  *
  * This extends the PEAR HTTP_Request2 package:
  * - sends StatusNet-specific User-Agent header
- * - 'follow_redirects' config option, defaulting off
+ * - 'follow_redirects' config option, defaulting on
  * - 'max_redirs' config option, defaulting to 10
  * - extended response class adds getRedirectCount() and getUrl() methods
  * - get() and post() convenience functions return body content directly
@@ -205,12 +205,28 @@ class HTTPClient extends HTTP_Request2
     /**
      * Convenience function to run a HEAD request.
      *
+     * NOTE: Will probably turn into a GET request if you let it follow redirects!
+     *       That option is only there to be flexible and may be removed in the future!
+     *
      * @return GNUsocial_HTTPResponse
      * @throws HTTP_Request2_Exception
      */
-    public function head($url, $headers=array())
+    public function head($url, $headers=array(), $follow_redirects=false)
     {
-        return $this->doRequest($url, self::METHOD_HEAD, $headers);
+        // Save the configured value for follow_redirects
+        $old_follow = $this->config['follow_redirects'];
+        try {
+            // Temporarily (possibly) override the follow_redirects setting
+            $this->config['follow_redirects'] = $follow_redirects;
+            return $this->doRequest($url, self::METHOD_HEAD, $headers);
+        } catch (Exception $e) {
+            // Let the exception go on its merry way.
+            throw $e;
+        } finally {
+            // reset to the old value
+            $this->config['follow_redirects'] = $old_follow;
+        }
+        //we've either returned or thrown exception here
     }
 
     /**
