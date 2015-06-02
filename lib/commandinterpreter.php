@@ -36,6 +36,7 @@ class CommandInterpreter
         // StatusNet
 
         $cmd = strtolower($cmd);
+        $result = false;
 
         if (Event::handle('StartInterpretCommand', array($cmd, $arg, $user, &$result))) {
             switch($cmd) {
