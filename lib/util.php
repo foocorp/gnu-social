@@ -628,7 +628,7 @@ function common_render_content($text, Notice $notice)
  * @param Notice $notice in-progress or complete Notice object for context
  * @return string partially-rendered HTML
  */
-function common_linkify_mentions($text, $notice)
+function common_linkify_mentions($text, Notice $notice)
 {
     $mentions = common_find_mentions($text, $notice);
 
@@ -655,7 +655,7 @@ function common_linkify_mentions($text, $notice)
     return $text;
 }
 
-function common_linkify_mention($mention)
+function common_linkify_mention(array $mention)
 {
     $output = null;
 
@@ -695,7 +695,7 @@ function common_linkify_mention($mention)
  *
  * @access private
  */
-function common_find_mentions($text, $notice)
+function common_find_mentions($text, Notice $notice)
 {
     try {
         $sender = Profile::getKV('id', $notice->profile_id);
