@@ -1634,8 +1634,7 @@ class Notice extends Managed_DataObject
             foreach ($mention['mentioned'] as $mentioned) {
 
                 // skip if they're already covered
-
-                if (!empty($replied[$mentioned->id])) {
+                if (array_key_exists($mentioned->id, $replied)) {
                     continue;
                 }
 
