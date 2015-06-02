@@ -402,9 +402,8 @@ abstract class ImPlugin extends Plugin
             $chan = new IMChannel($this);
             $cmd->execute($chan);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
