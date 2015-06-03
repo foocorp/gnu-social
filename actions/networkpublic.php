@@ -2,7 +2,7 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-class NetworkpublicAction extends PublicAction
+class NetworkpublicAction extends SitestreamAction
 {
     protected function streamPrepare()
     {
@@ -30,9 +30,7 @@ class NetworkpublicAction extends PublicAction
 
     function extraHead()
     {
-        // the PublicAction has some XRDS stuff that might be unique to the non-network public feed
-        // FIXME: Solve this with a call that doesn't rely on parent:: and is unique for each class.
-        ManagedAction::extraHead();
+        parent::extraHead();
     }
 
     function showSections()
