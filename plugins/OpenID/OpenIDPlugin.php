@@ -175,37 +175,6 @@ class OpenIDPlugin extends Plugin
     }
 
     /**
-     * User XRDS output hook
-     *
-     * Puts the bits of code needed to discover OpenID endpoints.
-     *
-     * @param Action       $action         Action being executed
-     * @param XMLOutputter &$xrdsOutputter Output channel
-     *
-     * @return boolean hook return
-     */
-    function onEndUserXRDS(Action $action, &$xrdsOutputter)
-    {
-        $xrdsOutputter->elementStart('XRD', array('xmlns' => 'xri://$xrd*($v*2.0)',
-                                                  'xml:id' => 'openid',
-                                                  'xmlns:simple' => 'http://xrds-simple.net/core/1.0',
-                                                  'version' => '2.0'));
-        $xrdsOutputter->element('Type', null, 'xri://$xrds*simple');
-
-        //consumer
-        $xrdsOutputter->showXrdsService('http://specs.openid.net/auth/2.0/return_to',
-                                        common_local_url('finishopenidlogin'));
-
-        //provider
-        $xrdsOutputter->showXrdsService('http://specs.openid.net/auth/2.0/signon',
-                                        common_local_url('openidserver'),
-                                        null,
-                                        null,
-                                        common_profile_url($action->user->nickname));
-        $xrdsOutputter->elementEnd('XRD');
-    }
-
-    /**
      * If we're in OpenID-only mode, hide all the main menu except OpenID login.
      *
      * @param Action $action Action being run

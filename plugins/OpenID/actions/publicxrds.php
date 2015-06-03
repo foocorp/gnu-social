@@ -45,8 +45,6 @@ require_once __DIR__.'/../openid.php';
  * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
- *
- * @todo factor out similarities with XrdsAction
  */
 class PublicxrdsAction extends Action
 {
