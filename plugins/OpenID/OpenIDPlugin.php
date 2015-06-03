@@ -154,7 +154,7 @@ class OpenIDPlugin extends Plugin
      *
      * @return boolean hook return
      */
-    function onEndPublicXRDS($action, &$xrdsOutputter)
+    function onEndPublicXRDS(Action $action, &$xrdsOutputter)
     {
         $xrdsOutputter->elementStart('XRD', array('xmlns' => 'xri://$xrd*($v*2.0)',
                                                   'xmlns:simple' => 'http://xrds-simple.net/core/1.0',
@@ -184,7 +184,7 @@ class OpenIDPlugin extends Plugin
      *
      * @return boolean hook return
      */
-    function onEndUserXRDS($action, &$xrdsOutputter)
+    function onEndUserXRDS(Action $action, &$xrdsOutputter)
     {
         $xrdsOutputter->elementStart('XRD', array('xmlns' => 'xri://$xrd*($v*2.0)',
                                                   'xml:id' => 'openid',
@@ -415,7 +415,7 @@ class OpenIDPlugin extends Plugin
      *
      * @return void
      */
-    function onEndShowHeadElements($action)
+    function onEndShowHeadElements(Action $action)
     {
         if ($action instanceof ShowstreamAction) {
             $action->element('link', array('rel' => 'openid2.provider',
@@ -426,6 +426,11 @@ class OpenIDPlugin extends Plugin
                                            'href' => common_local_url('openidserver')));
             $action->element('link', array('rel' => 'openid.delegate',
                                            'href' => $action->profile->profileurl));
+        }
+
+        if ($action instanceof SitestreamAction) {
+            $action->element('meta', array('http-equiv' => 'X-XRDS-Location',
+                                         'content' => common_local_url('publicxrds')));
         }
         return true;
     }

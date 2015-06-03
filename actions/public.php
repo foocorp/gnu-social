@@ -39,7 +39,6 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @link     http://status.net/
  *
  * @see      PublicrssAction
- * @see      PublicxrdsAction
  */
 class PublicAction extends SitestreamAction
 {
@@ -67,13 +66,6 @@ class PublicAction extends SitestreamAction
             // TRANS: Title for the first public timeline page.
             return _('Public timeline');
         }
-    }
-
-    function extraHead()
-    {
-        parent::extraHead();
-        $this->element('meta', array('http-equiv' => 'X-XRDS-Location',
-                                           'content' => common_local_url('publicxrds')));
     }
 
     function showSections()

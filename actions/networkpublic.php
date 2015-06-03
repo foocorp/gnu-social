@@ -28,11 +28,6 @@ class NetworkpublicAction extends SitestreamAction
         }
     }
 
-    function extraHead()
-    {
-        parent::extraHead();
-    }
-
     function showSections()
     {
         // Show invite button, as long as site isn't closed, and
