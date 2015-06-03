@@ -84,7 +84,7 @@ class Notice extends Managed_DataObject
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'who made the update'),
                 'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier, usually a tag URI'),
-                'content' => array('type' => 'text', 'description' => 'update content', 'collate' => 'utf8_general_ci'),
+                'content' => array('type' => 'text', 'description' => 'update content', 'collate' => 'utf8mb4_general_ci'),
                 'rendered' => array('type' => 'text', 'description' => 'HTML version of the content'),
                 'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
