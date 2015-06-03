@@ -72,9 +72,6 @@ class SitestreamAction extends ManagedAction
     function extraHead()
     {
         parent::extraHead();
-        $this->element('meta', array('http-equiv' => 'X-XRDS-Location',
-                                           'content' => common_local_url('publicxrds')));
-
         $rsd = common_local_url('rsd');
 
         // RSD, http://tales.phrasewise.com/rfc/rsd
