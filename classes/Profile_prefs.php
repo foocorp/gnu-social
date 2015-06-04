@@ -62,11 +62,11 @@ class Profile_prefs extends Managed_DataObject
     {
         if (empty($topic)) {
             $prefs = new Profile_prefs();
-            $prefs->profile_id = $profile->id;
+            $prefs->profile_id = $profile->getID();
             $prefs->namespace  = $namespace;
             $prefs->find();
         } else {
-            $prefs = self::pivotGet('profile_id', $profile->id, array('namespace'=>$namespace, 'topic'=>$topic));
+            $prefs = self::pivotGet('profile_id', $profile->getID(), array('namespace'=>$namespace, 'topic'=>$topic));
         }
 
         if (empty($prefs->N)) {
@@ -85,7 +85,7 @@ class Profile_prefs extends Managed_DataObject
     static function getAll(Profile $profile)
     {
         try {
-            $prefs = self::listFind('profile_id', $profile->id);
+            $prefs = self::listFind('profile_id', $profile->getID());
         } catch (NoResultException $e) {
             return array();
         }
@@ -101,15 +101,9 @@ class Profile_prefs extends Managed_DataObject
     }
 
     static function getTopic(Profile $profile, $namespace, $topic) {
-        $pref = new Profile_prefs;
-        $pref->profile_id = $profile->id;
-        $pref->namespace  = $namespace;
-        $pref->topic      = $topic;
-
-        if (!$pref->find(true)) {
-            throw new NoResultException($pref);
-        }
-        return $pref;
+        return Profile_prefs::getByPK(array('profile_id' => $profile->getID(),
+                                            'namespace'  => $namespace,
+                                            'topic'      => $topic));
     }
 
     static function getData(Profile $profile, $namespace, $topic, $def=null) {
@@ -164,7 +158,7 @@ class Profile_prefs extends Managed_DataObject
         }
 
         $pref = new Profile_prefs();
-        $pref->profile_id = $profile->id;
+        $pref->profile_id = $profile->getID();
         $pref->namespace  = $namespace;
         $pref->topic      = $topic;
         $pref->data       = $data;
