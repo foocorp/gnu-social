@@ -17,9 +17,7 @@
  * along with this program.     If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for file_to_post
@@ -68,10 +66,10 @@ class File_to_post extends Managed_DataObject
         }
 
         if (empty($seen[$notice_id]) || !in_array($file_id, $seen[$notice_id])) {
-
-            $f2p = File_to_post::pkeyGet(array('post_id' => $notice_id,
-                                               'file_id' => $file_id));
-            if (!$f2p instanceof File_to_post) {
+            try {
+                $f2p = File_to_post::getByPK(array('post_id' => $notice_id,
+                                                   'file_id' => $file_id));
+            } catch (NoResultException $e) {
                 $f2p = new File_to_post;
                 $f2p->file_id = $file_id;
                 $f2p->post_id = $notice_id;
@@ -91,7 +89,7 @@ class File_to_post extends Managed_DataObject
         $f2p->selectAdd();
         $f2p->selectAdd('post_id');
 
-        $f2p->file_id = $file->id;
+        $f2p->file_id = $file->getID();
 
         $ids = array();
 
@@ -104,10 +102,13 @@ class File_to_post extends Managed_DataObject
 
     function delete($useWhere=false)
     {
-        $f = File::getKV('id', $this->file_id);
-        if ($f instanceof File) {
+        try {
+            $f = File::getByID($this->file_id);
             $f->blowCache();
+        } catch (NoResultException $e) {
+            // ...alright, that's weird, but no File to delete anyway.
         }
+
         return parent::delete($useWhere);
     }
 }
