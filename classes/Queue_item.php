@@ -63,7 +63,7 @@ class Queue_item extends Managed_DataObject
             // XXX: potential race condition
             // can we force it to only update if claimed is still null
             // (or old)?
-            common_log(LOG_INFO, 'claiming queue item id = ' . $qi->id .
+            common_log(LOG_INFO, 'claiming queue item id = ' . $qi->getID() .
                 ' for transport ' . $qi->transport);
             $orig = clone($qi);
             $qi->claimed = common_sql_now();
@@ -85,7 +85,7 @@ class Queue_item extends Managed_DataObject
     function releaseClaim()
     {
         // DB_DataObject doesn't let us save nulls right now
-        $sql = sprintf("UPDATE queue_item SET claimed=NULL WHERE id=%d", $this->id);
+        $sql = sprintf("UPDATE queue_item SET claimed=NULL WHERE id=%d", $this->getID());
         $this->query($sql);
 
         $this->claimed = null;
