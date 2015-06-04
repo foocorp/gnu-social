@@ -510,9 +510,9 @@ class File extends Managed_DataObject
 
     function blowCache($last=false)
     {
-        self::blow('file:notice-ids:%s', $this->urlhash);
+        self::blow('file:notice-ids:%s', $this->id);
         if ($last) {
-            self::blow('file:notice-ids:%s;last', $this->urlhash);
+            self::blow('file:notice-ids:%s;last', $this->id);
         }
         self::blow('file:notice-count:%d', $this->id);
     }
