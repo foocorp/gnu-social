@@ -325,7 +325,6 @@ abstract class Managed_DataObject extends Memcached_DataObject
     static function getByPK(array $vals)
     {
         $classname = get_called_class();
-        var_dump($classname);
 
         $pkey = static::pkeyCols();
         if (is_null($pkey)) {
