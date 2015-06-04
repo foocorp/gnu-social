@@ -59,12 +59,7 @@ class File_redirection extends Managed_DataObject
 
     static public function getByUrl($url)
     {
-        $file = new File_redirection();
-        $file->urlhash = File::hashurl($url);
-        if (!$file->find(true)) {
-            throw new NoResultException($file);
-        }
-        return $file;
+        return self::getByPK(array('urlhash' => File::hashurl($url)));
     }
 
     static function _commonHttp($url, $redirs) {
@@ -261,7 +256,7 @@ class File_redirection extends Managed_DataObject
             // store it
             $file = File::getKV('url', $long_url);
             if ($file instanceof File) {
-                $file_id = $file->id;
+                $file_id = $file->getID();
             } else {
                 // Check if the target URL is itself a redirect...
                 $redir_data = File_redirection::where($long_url);
@@ -269,7 +264,7 @@ class File_redirection extends Managed_DataObject
                     // We haven't seen the target URL before.
                     // Save file and embedding data about it!
                     $file = File::saveNew($redir_data, $long_url);
-                    $file_id = $file->id;
+                    $file_id = $file->getID();
                 } else if (is_string($redir_data)) {
                     // The file is a known redirect target.
                     $file = File::getKV('url', $redir_data);
@@ -281,7 +276,7 @@ class File_redirection extends Managed_DataObject
                         // SSL sites with cert issues.
                         return null;
                     }
-                    $file_id = $file->id;
+                    $file_id = $file->getID();
                 }
             }
             $file_redir = File_redirection::getKV('url', $short_url);
