@@ -64,7 +64,7 @@ class PublicGroupNav extends Menu
                                      // TRANS: Menu item title in search group navigation panel.
                                      _('Public timeline'), $this->actionName == 'public', 'nav_timeline_public');
             }
-            if (!$this->scoped instanceof Profile && common_config('public', 'localonly')) {
+            if (!$this->action->getScoped() instanceof Profile && common_config('public', 'localonly')) {
                 // TRANS: Menu item in search group navigation panel.
                 $this->out->menuItem(common_local_url('networkpublic'), _m('MENU','Network'),
                                      // TRANS: Menu item title in search group navigation panel.
