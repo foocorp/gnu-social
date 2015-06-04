@@ -50,7 +50,7 @@ class ActivityverbAction extends ManagedAction
             throw new ServerException('A verb has not been specified.');
         }
 
-        $this->notice = Notice::getById($this->trimmed('id'));
+        $this->notice = Notice::getByID($this->trimmed('id'));
 
         if (!$this->notice->inScope($this->scoped)) {
             // TRANS: %1$s is a user nickname, %2$d is a notice ID (number).

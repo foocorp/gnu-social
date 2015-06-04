@@ -161,7 +161,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
     public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
     {
         // TODO: How to handle repeats of deleted notices?
-        $target = Notice::getById($stored->repeat_of);
+        $target = Notice::getByID($stored->repeat_of);
         // TRANS: A repeat activity's title. %1$s is repeater's nickname
         //        and %2$s is the repeated user's nickname.
         $act->title = sprintf(_('%1$s repeated a notice by %2$s'),

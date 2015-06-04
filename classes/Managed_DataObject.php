@@ -310,6 +310,54 @@ abstract class Managed_DataObject extends Memcached_DataObject
     }
 
     /**
+     * Returns an object by looking at the primary key column(s).
+     *
+     * Will require all primary key columns to be defined in an associative array
+     * and ignore any keys which are not part of the primary key.
+     *
+     * Will NOT accept NULL values as part of primary key.
+     *
+     * @param   array   $vals       Must match all primary key columns for the dataobject.
+     *
+     * @return  Managed_DataObject  of the get_called_class() type
+     * @throws  NoResultException   if no object with that primary key
+     */
+    static function getByPK(array $vals)
+    {
+        $classname = get_called_class();
+        var_dump($classname);
+
+        $pkey = static::pkeyCols();
+        if (is_null($pkey)) {
+            throw new ServerException("Failed to get primary key columns for class '{$classname}'");
+        }
+
+        $object = new $classname();
+        foreach ($pkey as $col) {
+            if (!array_key_exists($col, $vals)) {
+                throw new ServerException("Missing primary key column '{$col}'");
+            } elseif (is_null($vals[$col])) {
+                throw new ServerException("NULL values not allowed in getByPK for column '{$col}'");
+            }
+            $object->$col = $vals[$col];
+        }
+        if (!$object->find(true)) {
+            throw new NoResultException($object);
+        }
+        return $object;
+    }
+
+    static function getByID($id)
+    {
+        if (empty($id)) {
+            throw new ServerException('Empty ID on lookup');
+        }
+        // getByPK throws exception if id is null
+        // or if the class does not have a single 'id' column as primary key
+        return static::getByPK(array('id' => $id));
+    }
+
+    /**
      * Returns an ID, checked that it is set and reasonably valid
      *
      * If this dataobject uses a special id field (not 'id'), just
