@@ -691,8 +691,8 @@ class Ostatus_profile extends Managed_DataObject
                                      $options);
             if ($saved instanceof Notice) {
                 Ostatus_source::saveNew($saved, $this, $method);
-                if (!empty($attachment)) {
-                    File_to_post::processNew($attachment->id, $saved->id);
+                if ($attachment instanceof File) {
+                    File_to_post::processNew($attachment, $saved);
                 }
             }
         } catch (Exception $e) {

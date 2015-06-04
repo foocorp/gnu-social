@@ -58,30 +58,29 @@ class File_to_post extends Managed_DataObject
         );
     }
 
-    function processNew($file_id, $notice_id) {
+    function processNew(File $file, Notice $notice) {
         static $seen = array();
+
+        $file_id = $file->getID();
+        $notice_id = $notice->getID();
+        if (!array_key_exists($notice_id, $seen)) {
+            $seen[$notice_id] = array();
+        }
+
         if (empty($seen[$notice_id]) || !in_array($file_id, $seen[$notice_id])) {
 
             $f2p = File_to_post::pkeyGet(array('post_id' => $notice_id,
                                                'file_id' => $file_id));
-            if (empty($f2p)) {
+            if (!$f2p instanceof File_to_post) {
                 $f2p = new File_to_post;
                 $f2p->file_id = $file_id;
                 $f2p->post_id = $notice_id;
                 $f2p->insert();
                 
-                $f = File::getKV($file_id);
-
-                if (!empty($f)) {
-                    $f->blowCache();
-                }
+                $file->blowCache();
             }
 
-            if (empty($seen[$notice_id])) {
-                $seen[$notice_id] = array($file_id);
-            } else {
-                $seen[$notice_id][] = $file_id;
-            }
+            $seen[$notice_id][] = $file_id;
         }
     }
 

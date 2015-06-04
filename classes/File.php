@@ -116,14 +116,14 @@ class File extends Managed_DataObject
      *
      * @fixme refactor this mess, it's gotten pretty scary.
      * @param string $given_url the URL we're looking at
-     * @param int $notice_id (optional)
+     * @param Notice $notice (optional)
      * @param bool $followRedirects defaults to true
      *
      * @return mixed File on success, -1 on some errors
      *
      * @throws ServerException on failure
      */
-    public static function processNew($given_url, $notice_id=null, $followRedirects=true) {
+    public static function processNew($given_url, Notice $notice=null, $followRedirects=true) {
         if (empty($given_url)) {
             throw new ServerException('No given URL to process');
         }
@@ -181,7 +181,7 @@ class File extends Managed_DataObject
                 //
                 // Seen in the wild with clojure.org, which redirects through
                 // wikispaces for auth and appends session data in the URL params.
-                $file = self::processNew($redir_url, $notice_id, /*followRedirects*/false);
+                $file = self::processNew($redir_url, $notice, /*followRedirects*/false);
                 File_redirection::saveNew($redir_data, $file->id, $given_url);
             }
 
@@ -193,8 +193,8 @@ class File extends Managed_DataObject
             }
         }
 
-        if (!empty($notice_id)) {
-            File_to_post::processNew($file->id, $notice_id);
+        if ($notice instanceof Notice) {
+            File_to_post::processNew($file, $notice);
         }
         return $file;
     }

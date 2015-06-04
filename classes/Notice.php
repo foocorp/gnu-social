@@ -1109,7 +1109,7 @@ class Notice extends Managed_DataObject
      */
     function saveUrls() {
         if (common_config('attachments', 'process_links')) {
-            common_replace_urls_callback($this->content, array($this, 'saveUrl'), $this->id);
+            common_replace_urls_callback($this->content, array($this, 'saveUrl'), $this);
         }
     }
 
@@ -1126,11 +1126,7 @@ class Notice extends Managed_DataObject
         if (common_config('attachments', 'process_links')) {
             // @fixme validation?
             foreach (array_unique($urls) as $url) {
-                try {
-                    File::processNew($url, $this->id);
-                } catch (ServerException $e) {
-                    // Could not save URL. Log it?
-                }
+                $this->saveUrl($url, $this);
             }
         }
     }
@@ -1138,9 +1134,9 @@ class Notice extends Managed_DataObject
     /**
      * @private callback
      */
-    function saveUrl($url, $notice_id) {
+    function saveUrl($url, Notice $notice) {
         try {
-            File::processNew($url, $notice_id);
+            File::processNew($url, $notice);
         } catch (ServerException $e) {
             // Could not save URL. Log it?
         }
