@@ -64,6 +64,11 @@ abstract class Managed_DataObject extends Memcached_DataObject
         return parent::pkeyGetClass(get_called_class(), $kv);
     }
 
+    static function pkeyCols()
+    {
+        return parent::pkeyColsClass(get_called_class());
+    }
+
     /**
      * Get multiple items from the database by key
      *

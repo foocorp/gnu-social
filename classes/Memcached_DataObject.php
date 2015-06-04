@@ -34,7 +34,7 @@ class Memcached_DataObject extends Safe_DataObject
     {
         if (is_null($v)) {
             $v = $k;
-            $keys = self::pkeyCols($cls);
+            $keys = static::pkeyCols();
             if (count($keys) > 1) {
                 // FIXME: maybe call pkeyGetClass() ourselves?
                 throw new Exception('Use pkeyGetClass() for compound primary keys');
@@ -246,7 +246,7 @@ class Memcached_DataObject extends Safe_DataObject
         return $query;
     }
 
-    static function pkeyCols($cls)
+    static function pkeyColsClass($cls)
     {
         $i = new $cls;
         $types = $i->keyTypes();
@@ -279,7 +279,7 @@ class Memcached_DataObject extends Safe_DataObject
         $pkeyMap = array_fill_keys($keyVals, array());
         $result = array_fill_keys($keyVals, array());
 
-        $pkeyCols = self::pkeyCols($cls);
+        $pkeyCols = static::pkeyCols();
 
         $toFetch = array();
         $allPkeys = array();
