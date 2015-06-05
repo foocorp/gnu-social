@@ -82,9 +82,9 @@ class File_thumbnail extends Managed_DataObject
      * Fetch an entry by using a File's id
      */
     static function byFile(File $file) {
-        $file_thumbnail = self::getKV('file_id', $file->id);
+        $file_thumbnail = self::getKV('file_id', $file->getID());
         if (!$file_thumbnail instanceof File_thumbnail) {
-            throw new ServerException(sprintf('No File_thumbnail entry for File id==%u', $file->id));
+            throw new ServerException(sprintf('No File_thumbnail entry for File id==%u', $file->getID()));
         }
         return $file_thumbnail;
     }
@@ -167,11 +167,6 @@ class File_thumbnail extends Managed_DataObject
 
     public function getFile()
     {
-        $file = new File();
-        $file->id = $this->file_id;
-        if (!$file->find(true)) {
-            throw new NoResultException($file);
-        }
-        return $file;
+        return File::getByID($this->file_id);
     }
 }

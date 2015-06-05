@@ -17,9 +17,7 @@
  * along with this program.     If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for file_to_post
@@ -58,39 +56,59 @@ class File_to_post extends Managed_DataObject
         );
     }
 
-    function processNew($file_id, $notice_id) {
+    function processNew(File $file, Notice $notice) {
         static $seen = array();
-        if (empty($seen[$notice_id]) || !in_array($file_id, $seen[$notice_id])) {
 
-            $f2p = File_to_post::pkeyGet(array('post_id' => $notice_id,
-                                               'file_id' => $file_id));
-            if (empty($f2p)) {
+        $file_id = $file->getID();
+        $notice_id = $notice->getID();
+        if (!array_key_exists($notice_id, $seen)) {
+            $seen[$notice_id] = array();
+        }
+
+        if (empty($seen[$notice_id]) || !in_array($file_id, $seen[$notice_id])) {
+            try {
+                $f2p = File_to_post::getByPK(array('post_id' => $notice_id,
+                                                   'file_id' => $file_id));
+            } catch (NoResultException $e) {
                 $f2p = new File_to_post;
                 $f2p->file_id = $file_id;
                 $f2p->post_id = $notice_id;
                 $f2p->insert();
                 
-                $f = File::getKV($file_id);
-
-                if (!empty($f)) {
-                    $f->blowCache();
-                }
+                $file->blowCache();
             }
 
-            if (empty($seen[$notice_id])) {
-                $seen[$notice_id] = array($file_id);
-            } else {
-                $seen[$notice_id][] = $file_id;
-            }
+            $seen[$notice_id][] = $file_id;
         }
+    }
+
+    static function getNoticeIDsByFile(File $file)
+    {
+        $f2p = new File_to_post();
+
+        $f2p->selectAdd();
+        $f2p->selectAdd('post_id');
+
+        $f2p->file_id = $file->getID();
+
+        $ids = array();
+
+        if (!$f2p->find()) {
+            throw new NoResultException($f2p);
+        }
+
+        return $f2p->fetchAll('post_id');
     }
 
     function delete($useWhere=false)
     {
-        $f = File::getKV('id', $this->file_id);
-        if ($f instanceof File) {
+        try {
+            $f = File::getByID($this->file_id);
             $f->blowCache();
+        } catch (NoResultException $e) {
+            // ...alright, that's weird, but no File to delete anyway.
         }
+
         return parent::delete($useWhere);
     }
 }

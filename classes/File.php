@@ -116,14 +116,14 @@ class File extends Managed_DataObject
      *
      * @fixme refactor this mess, it's gotten pretty scary.
      * @param string $given_url the URL we're looking at
-     * @param int $notice_id (optional)
+     * @param Notice $notice (optional)
      * @param bool $followRedirects defaults to true
      *
      * @return mixed File on success, -1 on some errors
      *
      * @throws ServerException on failure
      */
-    public static function processNew($given_url, $notice_id=null, $followRedirects=true) {
+    public static function processNew($given_url, Notice $notice=null, $followRedirects=true) {
         if (empty($given_url)) {
             throw new ServerException('No given URL to process');
         }
@@ -181,7 +181,7 @@ class File extends Managed_DataObject
                 //
                 // Seen in the wild with clojure.org, which redirects through
                 // wikispaces for auth and appends session data in the URL params.
-                $file = self::processNew($redir_url, $notice_id, /*followRedirects*/false);
+                $file = self::processNew($redir_url, $notice, /*followRedirects*/false);
                 File_redirection::saveNew($redir_data, $file->id, $given_url);
             }
 
@@ -193,8 +193,8 @@ class File extends Managed_DataObject
             }
         }
 
-        if (!empty($notice_id)) {
-            File_to_post::processNew($file->id, $notice_id);
+        if ($notice instanceof Notice) {
+            File_to_post::processNew($file, $notice);
         }
         return $file;
     }
@@ -247,6 +247,15 @@ class File extends Managed_DataObject
                     common_config('attachments', 'monthly_quota')));
         }
         return true;
+    }
+
+    public function getFilename()
+    {
+        if (!self::validFilename($this->filename)) {
+            // TRANS: Client exception thrown if a file upload does not have a valid name.
+            throw new ClientException(_("Invalid filename."));
+        }
+        return $this->filename;
     }
 
     // where should the file go?
@@ -501,9 +510,9 @@ class File extends Managed_DataObject
 
     function blowCache($last=false)
     {
-        self::blow('file:notice-ids:%s', $this->urlhash);
+        self::blow('file:notice-ids:%s', $this->id);
         if ($last) {
-            self::blow('file:notice-ids:%s;last', $this->urlhash);
+            self::blow('file:notice-ids:%s;last', $this->id);
         }
         self::blow('file:notice-count:%d', $this->id);
     }
@@ -610,12 +619,45 @@ class File extends Managed_DataObject
             return;
         }
         echo "\nFound old $table table, upgrading it to contain 'urlhash' field...";
+
+        $file = new File();
+        $file->query(sprintf('SELECT id, LEFT(url, 191) AS shortenedurl, COUNT(*) AS c FROM %1$s WHERE LENGTH(url)>191 GROUP BY shortenedurl HAVING c > 1', $schema->quoteIdentifier($table)));
+        print "\nFound {$file->N} URLs with too long entries in file table\n";
+        while ($file->fetch()) {
+            // We've got a URL that is too long for our future file table
+            // so we'll cut it. We could save the original URL, but there is
+            // no guarantee it is complete anyway since the previous max was 255 chars.
+            $dupfile = new File();
+            // First we find file entries that would be duplicates of this when shortened
+            // ... and we'll just throw the dupes out the window for now! It's already so borken.
+            $dupfile->query(sprintf('SELECT * FROM file WHERE LEFT(url, 191) = "%1$s"', $file->shortenedurl));
+            // Leave one of the URLs in the database by using ->find(true) (fetches first entry)
+            if ($dupfile->find(true)) {
+                print "\nShortening url entry for $table id: {$file->id} [";
+                $orig = clone($dupfile);
+                $dupfile->url = $file->shortenedurl;    // make sure it's only 191 chars from now on
+                $dupfile->update($orig);
+                print "\nDeleting duplicate entries of too long URL on $table id: {$file->id} [";
+                // only start deleting with this fetch.
+                while($dupfile->fetch()) {
+                    print ".";
+                    $dupfile->delete();
+                }
+                print "]\n";
+            } else {
+                print "\nWarning! URL suddenly disappeared from database: {$file->url}\n";
+            }
+        }
+        echo "...and now all the non-duplicates which are longer than 191 characters...\n";
+        $file->query('UPDATE file SET url=LEFT(url, 191) WHERE LENGTH(url)>191');
+
+        echo "\n...now running hacky pre-schemaupdate change for $table:";
         // We have to create a urlhash that is _not_ the primary key,
         // transfer data and THEN run checkSchema
         $schemadef['fields']['urlhash'] = array (
                                               'type' => 'varchar',
                                               'length' => 64,
-                                              'not null' => true,
+                                              'not null' => false,  // this is because when adding column, all entries will _be_ NULL!
                                               'description' => 'sha256 of destination URL (url field)',
                                             );
         $schemadef['fields']['url'] = array (

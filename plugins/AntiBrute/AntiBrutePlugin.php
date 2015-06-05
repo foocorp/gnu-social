@@ -9,6 +9,13 @@ class AntiBrutePlugin extends Plugin {
 
     const FAILED_LOGIN_IP_SECTION = 'failed_login_ip';
 
+    public function initialize()
+    {
+        // This probably needs some work. For example with IPv6 you can easily generate new IPs...
+        $client_ip = common_client_ip();
+        $this->client_ip = $client_ip[0] ?: $client_ip[1];   // [0] is proxy, [1] should be the real IP
+    }
+
     public function onStartCheckPassword($nickname, $password, &$authenticatedUser)
     {
         if (common_is_email($nickname)) {
@@ -22,9 +29,6 @@ class AntiBrutePlugin extends Plugin {
             return true;
         }
 
-        // This probably needs some work. For example with IPv6 you can easily generate new IPs...
-        $client_ip = common_client_ip();
-        $this->client_ip = $client_ip[0] ?: $client_ip[1];   // [0] is proxy, [1] should be the real IP
         $this->failed_attempts = (int)$this->unauthed_user->getPref(self::FAILED_LOGIN_IP_SECTION, $this->client_ip);
         switch (true) {
         case $this->failed_attempts >= 5:

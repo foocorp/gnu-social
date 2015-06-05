@@ -36,6 +36,7 @@ class CommandInterpreter
         // StatusNet
 
         $cmd = strtolower($cmd);
+        $result = false;
 
         if (Event::handle('StartInterpretCommand', array($cmd, $arg, $user, &$result))) {
             switch($cmd) {
@@ -297,8 +298,6 @@ class CommandInterpreter
                     $result = new TrackingCommand($user);
                 }
                 break;
-            default:
-                $result = false;
             }
 
             Event::handle('EndInterpretCommand', array($cmd, $arg, $user, &$result));

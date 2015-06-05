@@ -61,7 +61,7 @@ class MediaFile
 
     public function attachToNotice(Notice $notice)
     {
-        File_to_post::processNew($this->fileRecord->id, $notice->id);
+        File_to_post::processNew($this->fileRecord, $notice);
     }
 
     public function getPath()

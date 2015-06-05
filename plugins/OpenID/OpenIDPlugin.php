@@ -154,7 +154,7 @@ class OpenIDPlugin extends Plugin
      *
      * @return boolean hook return
      */
-    function onEndPublicXRDS($action, &$xrdsOutputter)
+    function onEndPublicXRDS(Action $action, &$xrdsOutputter)
     {
         $xrdsOutputter->elementStart('XRD', array('xmlns' => 'xri://$xrd*($v*2.0)',
                                                   'xmlns:simple' => 'http://xrds-simple.net/core/1.0',
@@ -171,37 +171,6 @@ class OpenIDPlugin extends Plugin
                                         null,
                                         null,
                                         'http://specs.openid.net/auth/2.0/identifier_select');
-        $xrdsOutputter->elementEnd('XRD');
-    }
-
-    /**
-     * User XRDS output hook
-     *
-     * Puts the bits of code needed to discover OpenID endpoints.
-     *
-     * @param Action       $action         Action being executed
-     * @param XMLOutputter &$xrdsOutputter Output channel
-     *
-     * @return boolean hook return
-     */
-    function onEndUserXRDS($action, &$xrdsOutputter)
-    {
-        $xrdsOutputter->elementStart('XRD', array('xmlns' => 'xri://$xrd*($v*2.0)',
-                                                  'xml:id' => 'openid',
-                                                  'xmlns:simple' => 'http://xrds-simple.net/core/1.0',
-                                                  'version' => '2.0'));
-        $xrdsOutputter->element('Type', null, 'xri://$xrds*simple');
-
-        //consumer
-        $xrdsOutputter->showXrdsService('http://specs.openid.net/auth/2.0/return_to',
-                                        common_local_url('finishopenidlogin'));
-
-        //provider
-        $xrdsOutputter->showXrdsService('http://specs.openid.net/auth/2.0/signon',
-                                        common_local_url('openidserver'),
-                                        null,
-                                        null,
-                                        common_profile_url($action->user->nickname));
         $xrdsOutputter->elementEnd('XRD');
     }
 
@@ -415,7 +384,7 @@ class OpenIDPlugin extends Plugin
      *
      * @return void
      */
-    function onEndShowHeadElements($action)
+    function onEndShowHeadElements(Action $action)
     {
         if ($action instanceof ShowstreamAction) {
             $action->element('link', array('rel' => 'openid2.provider',
@@ -426,6 +395,11 @@ class OpenIDPlugin extends Plugin
                                            'href' => common_local_url('openidserver')));
             $action->element('link', array('rel' => 'openid.delegate',
                                            'href' => $action->profile->profileurl));
+        }
+
+        if ($action instanceof SitestreamAction) {
+            $action->element('meta', array('http-equiv' => 'X-XRDS-Location',
+                                         'content' => common_local_url('publicxrds')));
         }
         return true;
     }

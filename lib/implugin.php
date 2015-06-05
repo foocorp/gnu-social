@@ -380,7 +380,7 @@ abstract class ImPlugin extends Plugin
             $parent = $notice->getParent();
             $orig_profile = $parent->getProfile();
             $nicknames = sprintf('%1$s => %2$s', $profile->nickname, $orig_profile->nickname);
-        } catch (Exception $e) {
+        } catch (NoParentNoticeException $e) {
             $nicknames = $profile->nickname;
         }
 
@@ -402,9 +402,8 @@ abstract class ImPlugin extends Plugin
             $chan = new IMChannel($this);
             $cmd->execute($chan);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**

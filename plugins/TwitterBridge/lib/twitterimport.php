@@ -564,13 +564,13 @@ class TwitterImport
      * @param Notice $notice
      * @param object $status
      */
-    function saveStatusAttachments($notice, $status)
+    function saveStatusAttachments(Notice $notice, $status)
     {
         if (common_config('attachments', 'process_links')) {
             if (!empty($status->entities) && !empty($status->entities->urls)) {
                 foreach ($status->entities->urls as $url) {
                     try {
-                        File::processNew($url->url, $notice->id);
+                        File::processNew($url->url, $notice);
                     } catch (ServerException $e) {
                         // Could not process attached URL
                     }

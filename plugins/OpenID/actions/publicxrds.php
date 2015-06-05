@@ -30,12 +30,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
-require_once INSTALLDIR.'/plugins/OpenID/openid.php';
-require_once INSTALLDIR.'/lib/xrdsoutputter.php';
+require_once __DIR__.'/../openid.php';
 
 /**
  * Public XRDS
@@ -48,8 +45,6 @@ require_once INSTALLDIR.'/lib/xrdsoutputter.php';
  * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
- *
- * @todo factor out similarities with XrdsAction
  */
 class PublicxrdsAction extends Action
 {
@@ -70,9 +65,9 @@ class PublicxrdsAction extends Action
      *
      * @return nothing
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $xrdsOutputter = new XRDSOutputter();
         $xrdsOutputter->startXRDS();
         Event::handle('StartPublicXRDS', array($this,&$xrdsOutputter));
@@ -80,4 +75,3 @@ class PublicxrdsAction extends Action
         $xrdsOutputter->endXRDS();
     }
 }
-

@@ -272,10 +272,16 @@ class RecoverpasswordAction extends Action
         try {
             User::recoverPassword($nore);
             $this->mode = 'sent';
-            // TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
-            $this->msg = _('Instructions for recovering your password ' .
-                           'have been sent to the email address registered to your ' .
-                           'account.');
+            if (common_is_email($nore) && common_config('site', 'fakeaddressrecovery')) {
+                // TRANS: User notification when recovering password by giving email address,
+                //        regardless if the mail was sent or not (to hide registered email status).
+                $this->msg = _('If the email address you provided was found in the database, a recovery mail with instructions has been sent there.');
+            } else {
+                // TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
+                $this->msg = _('Instructions for recovering your password ' .
+                               'have been sent to the email address registered to your ' .
+                               'account.');
+            }
             $this->success = true;
         } catch (Exception $e) {
             $this->success = false;

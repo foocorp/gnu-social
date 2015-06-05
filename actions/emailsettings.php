@@ -410,6 +410,7 @@ class EmailsettingsAction extends SettingsAction
                 $this->serverError(_('Could not insert confirmation code.'));
             }
 
+            common_debug('Sending confirmation address for user '.$user->id.' to email '.$email);
             mail_confirm_address($user, $confirm->code, $user->nickname, $email);
 
             Event::handle('EndAddEmailAddress', array($user, $email));

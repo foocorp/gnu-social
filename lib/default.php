@@ -48,6 +48,7 @@ $default =
               'languages' => get_all_languages(),
               'email' =>
               array_key_exists('SERVER_ADMIN', $_SERVER) ? $_SERVER['SERVER_ADMIN'] : null,
+              'fakeaddressrecovery' => true,
               'broughtby' => null,
               'timezone' => 'UTC',
               'broughtbyurl' => null,

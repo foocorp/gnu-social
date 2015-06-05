@@ -628,7 +628,7 @@ function common_render_content($text, Notice $notice)
  * @param Notice $notice in-progress or complete Notice object for context
  * @return string partially-rendered HTML
  */
-function common_linkify_mentions($text, $notice)
+function common_linkify_mentions($text, Notice $notice)
 {
     $mentions = common_find_mentions($text, $notice);
 
@@ -655,7 +655,7 @@ function common_linkify_mentions($text, $notice)
     return $text;
 }
 
-function common_linkify_mention($mention)
+function common_linkify_mention(array $mention)
 {
     $output = null;
 
@@ -695,13 +695,10 @@ function common_linkify_mention($mention)
  *
  * @access private
  */
-function common_find_mentions($text, $notice)
+function common_find_mentions($text, Notice $notice)
 {
-    try {
-        $sender = Profile::getKV('id', $notice->profile_id);
-    } catch (NoProfileException $e) {
-        return array();
-    }
+    // The getProfile call throws NoProfileException on failure
+    $sender = $notice->getProfile();
 
     $mentions = array();
 
@@ -728,8 +725,8 @@ function common_find_mentions($text, $notice)
                 }
             } catch (NoProfileException $e) {
                 common_log(LOG_WARNING, sprintf('Notice %d author profile id %d does not exist', $origNotice->id, $origNotice->profile_id));
-            } catch (ServerException $e) {
-                // Probably just no parent. Should get a specific NoParentException
+            } catch (NoParentNoticeException $e) {
+                // This notice is not in reply to anything
             } catch (Exception $e) {
                 common_log(LOG_WARNING, __METHOD__ . ' got exception ' . get_class($e) . ' : ' . $e->getMessage());
             }

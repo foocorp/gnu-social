@@ -328,7 +328,7 @@ class ApiAction extends Action
             // different story for parenting.
             $parent = $notice->getParent();
             $in_reply_to = $parent->id;
-        } catch (Exception $e) {
+        } catch (NoParentNoticeException $e) {
             $in_reply_to = null;
         }
         $twitter_status['in_reply_to_status_id'] = $in_reply_to;

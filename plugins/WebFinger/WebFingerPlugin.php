@@ -31,6 +31,10 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class WebFingerPlugin extends Plugin
 {
+    const OAUTH_ACCESS_TOKEN_REL    = 'http://apinamespace.org/oauth/access_token';
+    const OAUTH_REQUEST_TOKEN_REL   = 'http://apinamespace.org/oauth/request_token';
+    const OAUTH_AUTHORIZE_REL       = 'http://apinamespace.org/oauth/authorize';
+
     public $http_alias = false;
 
     public function initialize()
@@ -127,6 +131,11 @@ class WebFingerPlugin extends Plugin
                             $type,
                             true);    // isTemplate
         }
+
+        // OAuth connections
+        $links[] = new XML_XRD_Element_link(self::OAUTH_ACCESS_TOKEN_REL,  common_local_url('ApiOAuthAccessToken'));
+        $links[] = new XML_XRD_Element_link(self::OAUTH_REQUEST_TOKEN_REL, common_local_url('ApiOAuthRequestToken'));
+        $links[] = new XML_XRD_Element_link(self::OAUTH_AUTHORIZE_REL,     common_local_url('ApiOAuthAuthorize'));
     }
 
     /**

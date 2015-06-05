@@ -84,7 +84,7 @@ class Notice extends Managed_DataObject
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'who made the update'),
                 'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'universally unique identifier, usually a tag URI'),
-                'content' => array('type' => 'text', 'description' => 'update content', 'collate' => 'utf8_general_ci'),
+                'content' => array('type' => 'text', 'description' => 'update content', 'collate' => 'utf8mb4_general_ci'),
                 'rendered' => array('type' => 'text', 'description' => 'HTML version of the content'),
                 'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
@@ -307,16 +307,6 @@ class Notice extends Managed_DataObject
     {
         $notice = new Notice();
         $notice->uri = $uri;
-        if (!$notice->find(true)) {
-            throw new NoResultException($notice);
-        }
-        return $notice;
-    }
-
-    public static function getById($id)
-    {
-        $notice = new Notice();
-        $notice->id = $id;
         if (!$notice->find(true)) {
             throw new NoResultException($notice);
         }
@@ -1109,7 +1099,7 @@ class Notice extends Managed_DataObject
      */
     function saveUrls() {
         if (common_config('attachments', 'process_links')) {
-            common_replace_urls_callback($this->content, array($this, 'saveUrl'), $this->id);
+            common_replace_urls_callback($this->content, array($this, 'saveUrl'), $this);
         }
     }
 
@@ -1126,11 +1116,7 @@ class Notice extends Managed_DataObject
         if (common_config('attachments', 'process_links')) {
             // @fixme validation?
             foreach (array_unique($urls) as $url) {
-                try {
-                    File::processNew($url, $this->id);
-                } catch (ServerException $e) {
-                    // Could not save URL. Log it?
-                }
+                $this->saveUrl($url, $this);
             }
         }
     }
@@ -1138,9 +1124,9 @@ class Notice extends Managed_DataObject
     /**
      * @private callback
      */
-    function saveUrl($url, $notice_id) {
+    function saveUrl($url, Notice $notice) {
         try {
-            File::processNew($url, $notice_id);
+            File::processNew($url, $notice);
         } catch (ServerException $e) {
             // Could not save URL. Log it?
         }
@@ -1311,7 +1297,7 @@ class Notice extends Managed_DataObject
                     $last = $parent;
                     continue;
                 }
-            } catch (Exception $e) {
+            } catch (NoParentNoticeException $e) {
                 // Latest notice has no parent
             }
             // No parent, or parent out of scope
@@ -1617,7 +1603,7 @@ class Notice extends Managed_DataObject
             $this->saveReply($parentauthor->id);
             $replied[$parentauthor->id] = 1;
             self::blow('reply:stream:%d', $parentauthor->id);
-        } catch (Exception $e) {
+        } catch (NoParentNoticeException $e) {
             // Not a reply, since it has no parent!
         }
 
@@ -1634,8 +1620,7 @@ class Notice extends Managed_DataObject
             foreach ($mention['mentioned'] as $mentioned) {
 
                 // skip if they're already covered
-
-                if (!empty($replied[$mentioned->id])) {
+                if (array_key_exists($mentioned->id, $replied)) {
                     continue;
                 }
 
@@ -1852,8 +1837,8 @@ class Notice extends Managed_DataObject
             try {
                 $reply = $this->getParent();
                 $ctx->replyToID  = $reply->getUri();
-                $ctx->replyToUrl = $reply->getUrl();
-            } catch (Exception $e) {
+                $ctx->replyToUrl = $reply->getUrl(true);    // true for fallback to local URL, less messy
+            } catch (NoParentNoticeException $e) {
                 // This is not a reply to something
             }
 
@@ -2763,13 +2748,10 @@ class Notice extends Managed_DataObject
 
     public function getParent()
     {
-        $parent = Notice::getKV('id', $this->reply_to);
-
-        if (!$parent instanceof Notice) {
-            throw new ServerException('Notice has no parent');
+        if (empty($this->reply_to)) {
+            throw new NoParentNoticeException($this);
         }
-
-        return $parent;
+        return self::getByID($this->reply_to);
     }
 
     /**
