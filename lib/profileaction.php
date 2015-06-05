@@ -48,52 +48,13 @@ abstract class ProfileAction extends ManagedAction
 
     protected $target  = null;    // Profile that we're showing
 
-    protected function doPreparation()
+    protected function prepare(array $args=array())
     {
-        try {
-            $nickname_arg = $this->arg('nickname');
-            $nickname     = common_canonical_nickname($nickname_arg);
+        // this will call ->doPreparation() which lower classes can use
+        parent::prepare($args);
 
-            // Permanent redirect on non-canonical nickname
-
-            if ($nickname_arg != $nickname) {
-                $args = array('nickname' => $nickname);
-                if ($this->arg('page') && $this->arg('page') != 1) {
-                    $args['page'] = $this->arg['page'];
-                }
-                common_redirect(common_local_url($this->getActionName(), $args), 301);
-            }
-            $this->user = User::getKV('nickname', $nickname);
-
-            if (!$this->user) {
-                $group = Local_group::getKV('nickname', $nickname);
-                if ($group instanceof Local_group) {
-                    common_redirect($group->getProfile()->getUrl());
-                }
-                // TRANS: Client error displayed when calling a profile action without specifying a user.
-                $this->clientError(_('No such user.'), 404);
-            }
-
-            $this->target = $this->user->getProfile();
-        } catch (NicknameException $e) {
-            $id = (int)$this->arg('id');
-            $this->target = Profile::getKV('id', $id);
-
-            if (!$this->target instanceof Profile) {
-                // TRANS: Error message displayed when referring to a user without a profile.
-                $this->serverError(_m('Profile ID does not exist.'));
-            }
-
-            if ($this->target->isLocal()) {
-                // For local users when accessed by id number, redirect to
-                // the same action but using the nickname as argument.
-                common_redirect(common_local_url($this->getActionName(),
-                                                array('nickname'=>$user->getNickname())));
-            }
-        }
-
-        if ($this->target->hasRole(Profile_role::SILENCED) &&
-            (empty($this->scoped) || !$this->scoped->hasRight(Right::SILENCEUSER))) {
+        if ($this->target->hasRole(Profile_role::SILENCED)
+                && (!$this->scoped instanceof Profile || !$this->scoped->hasRight(Right::SILENCEUSER))) {
             throw new ClientException(_('This profile has been silenced by site moderators'), 403);
         }
 
@@ -104,12 +65,10 @@ abstract class ProfileAction extends ManagedAction
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
         common_set_returnto($this->selfUrl());
 
-        return $this->profileActionPreparation();
-    }
+        // fetch the actual stream stuff
+        $this->profileActionPreparation();
 
-    protected function profileActionPreparation()
-    {
-        // No-op by default.
+        return true;
     }
 
     function isReadOnly($args)

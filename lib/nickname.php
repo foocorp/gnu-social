@@ -49,6 +49,14 @@ class Nickname
     const DISPLAY_FMT = '[0-9a-zA-Z_]{1,64}';
 
     /**
+     * Simplified regex fragment for acceptable full WebFinger ID of a user
+     *
+     * We could probably use an email regex here, but mainly we are interested
+     * in matching it in our URLs, like https://social.example/user@example.com
+     */
+    const WEBFINGER_FMT = '[0-9a-zA-Z_]{1,64}\@[0-9a-zA-Z_-.]{3,255}';
+
+    /**
      * Regex fragment for checking a canonical nickname.
      *
      * Any non-matching string is not a valid canonical/normalized nickname.
