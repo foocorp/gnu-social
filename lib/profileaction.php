@@ -71,6 +71,11 @@ abstract class ProfileAction extends ManagedAction
         return true;
     }
 
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
     function isReadOnly($args)
     {
         return true;

@@ -17,9 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Some UI extras for now...
@@ -60,24 +58,6 @@ class ModPlusPlugin extends Plugin
     }
 
     /**
-     * Add ModPlus-related paths to the router table
-     *
-     * Hook for RouterInitialized event.
-     *
-     * @param URLMapper $m URL mapper
-     *
-     * @return boolean hook return
-     */
-    public function onStartInitializeRouter(URLMapper $m)
-    {
-        $m->connect('user/remote/:id',
-                array('action' => 'remoteprofile'),
-                array('id' => '[\d]+'));
-
-        return true;
-    }
-
-    /**
      * Add per-profile info popup menu for author on notice lists.
      *
      * @param NoticeListItem $item
@@ -110,7 +90,7 @@ class ModPlusPlugin extends Plugin
     protected function showProfileOptions(HTMLOutputter $out, Profile $profile)
     {
         if (!$profile->isGroup() && !$profile->isLocal()) {
-            $target = common_local_url('remoteprofile', array('id' => $profile->id));
+            $target = common_local_url('userbyid', array('id' => $profile->getID()));
             // TRANS: Label for access to remote profile options.
             $label = _m('Remote profile options...');
             $out->elementStart('div', 'remote-profile-options');
