@@ -71,6 +71,11 @@ abstract class ProfileAction extends ManagedAction
         return true;
     }
 
+    protected function profileActionPreparation()
+    {
+        // Nothing to do by default.
+    }
+
     public function getTarget()
     {
         return $this->target;

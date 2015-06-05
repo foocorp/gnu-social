@@ -38,42 +38,14 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class RepliesAction extends ManagedAction
+class RepliesAction extends ShowstreamAction
 {
     var $page = null;
     var $notice;
 
-    protected function doPreparation()
+    protected function getStream()
     {
-        $nickname = common_canonical_nickname($this->arg('nickname'));
-
-        $this->user = User::getKV('nickname', $nickname);
-
-        if (!$this->user instanceof User) {
-            // TRANS: Client error displayed when trying to reply to a non-exsting user.
-            $this->clientError(_('No such user.'));
-        }
-
-        $this->target = $this->user->getProfile();
-
-        if (!$this->target instanceof Profile) {
-            // TRANS: Error message displayed when referring to a user without a profile.
-            $this->serverError(_('User has no profile.'));
-        }
-
-        $this->page = $this->int('page') ?: 1;
-
-        common_set_returnto($this->selfUrl());
-
-        $stream = new ReplyNoticeStream($this->target->getID(), $this->scoped);
-
-        $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE,
-                                            NOTICES_PER_PAGE + 1);
-
-        if ($this->page > 1 && $this->notice->N == 0) {
-            // TRANS: Client error when page not found (404)
-            $this->clientError(_('No such page.'), 404);
-        }
+        return new ReplyNoticeStream($this->target->getID(), $this->scoped);
     }
 
     /**

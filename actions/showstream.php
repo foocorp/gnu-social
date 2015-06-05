@@ -80,13 +80,24 @@ class ShowstreamAction extends ProfileAction
 
     protected function profileActionPreparation()
     {
+        $stream = $this->getStream();
+        $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
+
+        if ($this->page > 1 && $this->notice->N == 0) {
+            // TRANS: Client error when page not found (404).
+            $this->clientError(_('No such page.'), 404);
+        }
+    }
+
+    protected function getStream()
+    {
         if (empty($this->tag)) {
             $stream = new ProfileNoticeStream($this->target, $this->scoped);
         } else {
             $stream = new TaggedProfileNoticeStream($this->target, $this->tag, $this->scoped);
         }
 
-        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
+        return $stream;
     }
 
 

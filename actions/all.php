@@ -35,13 +35,13 @@
  * @link     http://status.net
  */
 
-if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
-class AllAction extends ProfileAction
+class AllAction extends ShowstreamAction
 {
     var $notice;
 
-    protected function profileActionPreparation()
+    protected function getStream()
     {
         if ($this->scoped instanceof Profile && $this->scoped->isLocal() && $this->scoped->getUser()->streamModeOnly()) {
             $stream = new InboxNoticeStream($this->target, $this->scoped);
@@ -49,13 +49,7 @@ class AllAction extends ProfileAction
             $stream = new ThreadingInboxNoticeStream($this->target, $this->scoped);
         }
 
-        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
-                                            NOTICES_PER_PAGE + 1);
-
-        if ($this->page > 1 && $this->notice->N == 0) {
-            // TRANS: Client error when page not found (404).
-            $this->clientError(_('No such page.'), 404);
-        }
+        return $stream;
     }
 
     function title()
