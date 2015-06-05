@@ -38,6 +38,9 @@ define('PROFILES_PER_PAGE', 20);
 define('MESSAGES_PER_PAGE', 20);
 define('GROUPS_PER_PAGE', 20);
 
+define('GROUPS_PER_MINILIST', 8);
+define('PROFILES_PER_MINILIST', 8);
+
 define('FOREIGN_NOTICE_SEND', 1);
 define('FOREIGN_NOTICE_RECV', 2);
 define('FOREIGN_NOTICE_SEND_REPLY', 4);

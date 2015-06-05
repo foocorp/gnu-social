@@ -29,8 +29,6 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-define('PROFILES_PER_MINILIST', 8);
-
 /**
  * Widget to show a list of profiles, good for sidebar
  *
