@@ -687,6 +687,11 @@ ul.profile_list li {
     float: unset;
 }
 
+#conversation .notices .notices {
+    float: unset;
+    margin-left: 55px;
+}
+
 .threaded-replies .placeholder { /* TODO combine all these declarations */
     border-radius: 4px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
