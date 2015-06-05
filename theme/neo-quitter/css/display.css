@@ -56,8 +56,8 @@ input, textarea, select, option {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-a {color: #006c9b;}
-a:hover {color: #006c9b;text-decoration:underline;}
+a {color: #666;}
+a:hover {color: #a22430;text-decoration:underline;}
 
 #aside_primary a {color: rgba(0,0,0,0.8);}
 
@@ -104,7 +104,7 @@ address {
     top: 6px;
     width: 89px;
     z-index: 1001;
-    background-color:#0084B4;
+    background-color:#a22430;
 }
 
 address:hover {
@@ -195,8 +195,8 @@ address a {
 }
 
 #site_nav_global_primary a:hover {
-    color: #ED7EFF;
-    border-bottom:3px solid #ED7EFF;
+    color: #c33541;
+    border-bottom:3px solid #c33541;
     text-decoration: none;
 }
 
@@ -457,28 +457,28 @@ body#doc #content_inner p.faq-credits {
 }
 
 #input_form_nav li.current a {
-    background: -moz-linear-gradient(top,  #33bcef 0%, #019ad2 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#33bcef), color-stop(100%,#019ad2)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #33bcef 0%,#019ad2 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #33bcef 0%,#019ad2 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #33bcef 0%,#019ad2 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #33bcef 0%,#019ad2 100%); /* W3C */
+    background: -moz-linear-gradient(top,  #a22430 0%, #c33541 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a22430), color-stop(100%,#c33541)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #a22430 0%,#c33541 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #a22430 0%,#c33541 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #a22430 0%,#c33541 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #a22430 0%,#c33541 100%); /* W3C */
     background-repeat: repeat-x;
     text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 1px;
-    border-color:#096eb3;
+    border-color:#c33541;
     color:#fff;
 }
 
 #input_form_nav li:hover a {
-    background: -moz-linear-gradient(top,  #2daddc 0%, #0271bf 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2daddc), color-stop(100%,#0271bf)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #2daddc 0%,#0271bf 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #2daddc 0%,#0271bf 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #2daddc 0%,#0271bf 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #2daddc 0%,#0271bf 100%); /* W3C */
+    background: -moz-linear-gradient(top,  #c33541 0%, #d44652 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c33541), color-stop(100%,#d44652)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #c33541 0%,#d44652 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #c33541 0%,#d44652 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #c33541 0%,#d44652 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #c33541 0%,#d44652 100%); /* W3C */
     background-repeat: repeat-x;
     text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 1px;
-    border-color:#096eb3;
+    border-color:#c33541;
     color:#fff;
 }
 
@@ -491,7 +491,7 @@ body#doc #content_inner p.faq-credits {
 }
 
 .form_notice .error, .form_notice .success, .form_notice .notice-status {
-    background-color: #33bcef;
+    background-color: #a22430;
     border: 0 none;
     border-radius: 0;
     color: rgba(255, 255, 255, 0.9);
@@ -682,10 +682,11 @@ ul.profile_list li {
     margin-top: 0;
 }
 
-.form_notice_placeholder .placeholder,
-.form_notice textarea ,
-.input_form .form_settings li input,
-.input_form .form_settings li textarea,
+.threaded-replies {
+    margin-top: 3px;
+    margin-left: 65px;
+}
+
 .threaded-replies .placeholder { /* TODO combine all these declarations */
     border-radius: 4px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
@@ -1314,6 +1315,9 @@ div.entry-content a.response:after {
     right: 10px !important;
 }
 
+#realtime_actions {
+    padding-top: 0px !important;
+}
 
 #realtime_actions button {
     margin-right: 5px;
@@ -1397,6 +1401,10 @@ div.entry-content a.response:after {
 
 #aside_primary a.timestamp {
     color: rgba(0, 0, 0, 0.3);
+}
+
+.notice > footer {
+    margin-bottom: 5px;
 }
 
 /* loading */
@@ -1545,14 +1553,16 @@ div.entry-content a.response:after {
     border: 1px solid #CDD1DD;
 }
 
-.profile_list .form_group_leave input.submit,
-.profile_list .form_user_unsubscribe input.submit {
+.form_user_unsubscribe input.submit {
     background-position: 2px -1250px;
 }
 
-.profile_list .form_group_join input.submit,
-.profile_list .form_user_subscribe input.submit {
+.form_user_subscribe input.submit {
     background-position: 2px -1184px;
+}
+
+.form_user_block input.submit {
+    background-position: 2px -920px;
 }
 
 .profile_list .entity_actions input:hover {
@@ -1615,12 +1625,12 @@ border: 1px solid rgba(0, 0, 0, 0.3);
     font-weight: 700;
     color: #FFFFFF;
     line-height: 16px;
-    background: -moz-linear-gradient(top,  #33bcef 0%, #019ad2 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#33bcef), color-stop(100%,#019ad2)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #33bcef 0%,#019ad2 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #33bcef 0%,#019ad2 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #33bcef 0%,#019ad2 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #33bcef 0%,#019ad2 100%); /* W3C */
+    background: -moz-linear-gradient(top,  #a22430 0%, #c33541 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a22430), color-stop(100%,#c33541)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #a22430 0%,#c33541 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #a22430 0%,#c33541 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #a22430 0%,#c33541 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #a22430 0%,#c33541 100%); /* W3C */
     background-repeat: repeat-x;
     padding-top: 5px;
     padding-right: 10px;
@@ -1630,10 +1640,10 @@ border: 1px solid rgba(0, 0, 0, 0.3);
     border-right-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
-    border-top-color: #057ED0;
-    border-right-color: #057ED0;
-    border-bottom-color: #057ED0;
-    border-left-color: #057ED0;
+    border-top-color: #c33541;
+    border-right-color: #c33541;
+    border-bottom-color: #c33541;
+    border-left-color: #c33541;
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
@@ -1657,14 +1667,14 @@ border: 1px solid rgba(0, 0, 0, 0.3);
 .entity_tag .dialogbox input.submit_dialogbox:hover,
 .form_repeat.dialogbox input.submit_dialogbox:hover
 {
-    background: -moz-linear-gradient(top,  #2daddc 0%, #0271bf 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2daddc), color-stop(100%,#0271bf)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #2daddc 0%,#0271bf 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #2daddc 0%,#0271bf 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #2daddc 0%,#0271bf 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #2daddc 0%,#0271bf 100%); /* W3C */
+    background: -moz-linear-gradient(top,  #c33541 0%, #d44652 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c33541), color-stop(100%,#d44652)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #c33541 0%,#d44652 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #c33541 0%,#d44652 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #c33541 0%,#d44652 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #c33541 0%,#d44652 100%); /* W3C */
     background-repeat: repeat-x;
-    border-color:#096eb3;
+    border-color:#c33541;
     color:#fff;
 }
 
