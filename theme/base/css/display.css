@@ -733,7 +733,6 @@ font-style:italic;
 
 .notice-options {
     margin-bottom: 7px;
-    margin-top: 12px;
     float: right;    
     position: relative;
 }
@@ -863,7 +862,6 @@ content: ":";
 
 .threaded-replies {
     clear: both;
-    float: left;
     width: 458px;
     margin-left: 55px;
     margin-bottom: 10px;
@@ -993,7 +991,6 @@ content: ":";
 /* old school conversation style */
 
 #conversation .notices .notices {
-    float: left;
     background-color:rgba(200, 200, 200, 0.050);
     margin-left: 15px;
     width: auto;
