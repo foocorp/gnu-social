@@ -684,11 +684,11 @@ ul.profile_list li {
 
 .threaded-replies {
     margin-top: 4px;
-    float: unset;
+    float: none;
 }
 
 #conversation .notices .notices {
-    float: unset;
+    float: none;
     margin-left: 55px;
 }
 
