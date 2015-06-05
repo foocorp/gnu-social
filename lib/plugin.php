@@ -144,6 +144,9 @@ class Plugin
                 // @fixme this will fail for things installed in local/plugins
                 // ... but then so will web links so far.
                 $path = INSTALLDIR . "/plugins/$name/locale";
+                if (!file_exists($path)) {
+                    $path = INSTALLDIR . "/local/plugins/$name/locale";
+                }
             }
             if (file_exists($path) && is_dir($path)) {
                 bindtextdomain($name, $path);
