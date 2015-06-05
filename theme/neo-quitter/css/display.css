@@ -683,8 +683,8 @@ ul.profile_list li {
 }
 
 .threaded-replies {
-    margin-top: 3px;
-    margin-left: 65px;
+    margin-top: 4px;
+    float: unset;
 }
 
 .threaded-replies .placeholder { /* TODO combine all these declarations */
