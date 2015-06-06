@@ -1,13 +1,13 @@
 <!-- Copyright 2008-2010 StatusNet Inc. and contributors. -->
 <!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
-<!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
+<!-- https://creativecommons.org/licenses/by/3.0/ for details. -->
 
 %%site.name%% is a
-social network based on the Free Software [GNU social](http://www.gnu.org/software/social/) tool.
+social network based on the Free Software [GNU social](https://git.gnu.io/gnu/gnu-social) tool.
 
 If you [register](%%action.register%%) for an account,
 you can post small (%%site.textlimit%% chars or less) text notices
 about yourself, where you are, what you're doing, or practically
 anything you want. You can also subscribe to the notices of your
 friends, or other people you're interested in, and follow them on the
-Web or in an [RSS](http://en.wikipedia.org/wiki/RSS) feed.
+Web or in an [RSS](https://en.wikipedia.org/wiki/RSS) feed.

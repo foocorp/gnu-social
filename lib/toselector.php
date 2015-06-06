@@ -102,7 +102,16 @@ class ToSelector extends Widget
             $choices[$value] = $groups->getBestName();
         }
 
-        // XXX: add users...?
+        // Add subscribed users to dropdown menu
+        $users = $this->user->getSubscribed();
+        while ($users->fetch()) {
+            $value = 'profile:'.$users->id;
+            if ($this->user->streamNicknames()) {
+                $choices[$value] = $users->getNickname();
+            } else {
+                $choices[$value] = $users->getBestName();
+            }
+        }
 
         if ($this->to instanceof Profile) {
             $value = 'profile:'.$this->to->id;

@@ -1,6 +1,6 @@
 <!-- Copyright 2008-2010 StatusNet Inc. and contributors. -->
 <!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
-<!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
+<!-- https://creativecommons.org/licenses/by/3.0/ for details. -->
 
 This document outlines this service's respect for your personal
 privacy as a user of the service.
@@ -24,10 +24,10 @@ privacy as a user of the service.
   users are registered with Hotmail addresses."
 - Your notices (including files) can be downloaded and re-used by
   other services, either one-by-one or in bulk as
-  [RSS](http://en.wikipedia.org/wiki/RSS) files.
+  [RSS](https://en.wikipedia.org/wiki/RSS) files.
 - Your profile information (including subscriptions and avatars) can be
   downloaded and re-used by other services, either scraped from the HTML
-  interface or in bulk as [FOAF](http://en.wikipedia.org/wiki/FOAF) files.
+  interface or in bulk as [FOAF](https://en.wikipedia.org/wiki/FOAF) files.
 - Your notices will be forwarded to users who subscribe to them,
   including users on another microblogging service.
 - Your profile information will be sent to microblogging services for
