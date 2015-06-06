@@ -36,7 +36,6 @@ require_once 'Crypt/RSA.php';
 class Magicsig extends Managed_DataObject
 {
     const PUBLICKEYREL = 'magic-public-key';
-    const DIASPORA_PUBLICKEYREL = 'diaspora-public-key';
 
     const DEFAULT_KEYLEN = 1024;
     const DEFAULT_SIGALG = 'RSA-SHA256';
