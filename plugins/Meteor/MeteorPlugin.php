@@ -160,7 +160,7 @@ class MeteorPlugin extends RealtimePlugin
         return implode('-', $path);
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Meteor',
                             'version' => GNUSOCIAL_VERSION,

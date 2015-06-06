@@ -88,7 +88,7 @@ class SearchSubPlugin extends Plugin
      *
      * @return value
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'SearchSub',
                             'version' => self::VERSION,

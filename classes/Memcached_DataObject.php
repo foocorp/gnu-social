@@ -461,11 +461,11 @@ class Memcached_DataObject extends Safe_DataObject
         }
 
         global $_DB_DATAOBJECT;
-        if (!isset($_DB_DATAOBJECT['INI'][$this->_database][$this->__table."__keys"])) {
+        if (!isset($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()."__keys"])) {
             $this->databaseStructure();
 
         }
-        return $_DB_DATAOBJECT['INI'][$this->_database][$this->__table."__keys"];
+        return $_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()."__keys"];
     }
 
     function encache()
@@ -824,7 +824,7 @@ class Memcached_DataObject extends Safe_DataObject
         global $_DB_DATAOBJECT;
 
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+            self::_loadConfig();
         }
 
         $options = &$_DB_DATAOBJECT['CONFIG'];
@@ -836,7 +836,7 @@ class Memcached_DataObject extends Safe_DataObject
         if (!$dsn) {
 
             if (!$this->_database) {
-                $this->_database = isset($options["table_{$this->__table}"]) ? $options["table_{$this->__table}"] : null;
+                $this->_database = isset($options["table_{$this->tableName()}"]) ? $options["table_{$this->tableName()}"] : null;
             }
 
             if ($this->_database && !empty($options["database_{$this->_database}"]))  {

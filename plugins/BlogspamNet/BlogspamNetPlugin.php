@@ -148,7 +148,7 @@ class BlogspamNetPlugin extends Plugin
         return BLOGSPAMNETPLUGIN_VERSION;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'BlogspamNet',
                             'version' => BLOGSPAMNETPLUGIN_VERSION,

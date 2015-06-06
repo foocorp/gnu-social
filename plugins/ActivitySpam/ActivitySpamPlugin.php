@@ -215,7 +215,7 @@ class ActivitySpamPlugin extends Plugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'ActivitySpam',
                             'version' => GNUSOCIAL_VERSION,

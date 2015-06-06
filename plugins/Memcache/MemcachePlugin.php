@@ -236,7 +236,7 @@ class MemcachePlugin extends Plugin
         return $out;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Memcache',
                             'version' => GNUSOCIAL_VERSION,

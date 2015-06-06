@@ -117,7 +117,7 @@ class BlankAdPlugin extends UAPPlugin
                          '');
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'BlankAd',
                             'version' => GNUSOCIAL_VERSION,

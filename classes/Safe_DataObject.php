@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Extended DB_DataObject to improve a few things:
@@ -26,7 +26,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  * - don't leak memory when loading already-used .ini files
  *   (eg when using the same schema on thousands of databases)
  */
-class Safe_DataObject extends DB_DataObject
+class Safe_DataObject extends GS_DataObject
 {
     /**
      * Destructor to free global memory resources associated with
@@ -177,7 +177,6 @@ class Safe_DataObject extends DB_DataObject
             }
 
         }
-
         if (!$this->_database) {
             $this->_connect();
         }
@@ -187,7 +186,7 @@ class Safe_DataObject extends DB_DataObject
 
             // database loaded - but this is table is not available..
             if (
-                    empty($_DB_DATAOBJECT['INI'][$this->_database][$this->__table])
+                    empty($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])
                     && !empty($_DB_DATAOBJECT['CONFIG']['proxy'])
                 ) {
                 if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
@@ -198,13 +197,13 @@ class Safe_DataObject extends DB_DataObject
 
 
                 $x = new DB_DataObject_Generator;
-                $x->fillTableSchema($this->_database,$this->__table);
+                $x->fillTableSchema($this->_database,$this->tableName());
             }
             return true;
         }
 
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+            self::_loadConfig();
         }
 
         // if you supply this with arguments, then it will take those
@@ -226,7 +225,7 @@ class Safe_DataObject extends DB_DataObject
 
         // now have we loaded the structure..
 
-        if (!empty($_DB_DATAOBJECT['INI'][$this->_database][$this->__table])) {
+        if (!empty($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])) {
             return true;
         }
         // - if not try building it..
@@ -235,11 +234,11 @@ class Safe_DataObject extends DB_DataObject
                 require_once 'DB/DataObject/Generator.php';
 
             $x = new DB_DataObject_Generator;
-            $x->fillTableSchema($this->_database,$this->__table);
+            $x->fillTableSchema($this->_database,$this->tableName());
             // should this fail!!!???
             return true;
         }
-        $this->debug("Cant find database schema: {$this->_database}/{$this->__table} \n".
+        $this->debug("Cant find database schema: {$this->_database}/{$this->tableName()} \n".
                     "in links file data: " . print_r($_DB_DATAOBJECT['INI'],true),"databaseStructure",5);
         // we have to die here!! - it causes chaos if we don't (including looping forever!)
         // Low level exception. No need for i18n as discussed with Brion.

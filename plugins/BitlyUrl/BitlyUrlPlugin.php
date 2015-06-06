@@ -145,7 +145,7 @@ class BitlyUrlPlugin extends UrlShortenerPlugin
 		return null;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => sprintf('BitlyUrl (%s)', $this->shortenerName),
                             'version' => GNUSOCIAL_VERSION,

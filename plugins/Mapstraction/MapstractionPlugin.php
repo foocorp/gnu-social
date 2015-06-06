@@ -169,7 +169,7 @@ class MapstractionPlugin extends Plugin
         $action->elementEnd('div');
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Mapstraction',
                             'version' => self::VERSION,

@@ -104,7 +104,7 @@ class CometPlugin extends RealtimePlugin
         return '/' . implode('/', $path);
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Comet',
                             'version' => GNUSOCIAL_VERSION,

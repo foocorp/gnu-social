@@ -48,7 +48,7 @@ if (!defined('STATUSNET')) {
 
 class FullThreadedNoticeList extends ThreadedNoticeList
 {
-    function newListItem($notice)
+    function newListItem(Notice $notice)
     {
         return new FullThreadedNoticeListItem($notice, $this->out, $this->userProfile);
     }

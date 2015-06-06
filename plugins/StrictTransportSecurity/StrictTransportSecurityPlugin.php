@@ -50,7 +50,7 @@ class StrictTransportSecurityPlugin extends Plugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'StrictTransportSecurity',
                             'version' => GNUSOCIAL_VERSION,

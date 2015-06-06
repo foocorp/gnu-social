@@ -199,7 +199,7 @@ ENDOFSCRIPT;
      *
      * @return boolean hook value
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'OpenX',
                             'version' => GNUSOCIAL_VERSION,

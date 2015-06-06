@@ -54,7 +54,7 @@ class ClientSideShortenPlugin extends Plugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Shorten',
                             'version' => GNUSOCIAL_VERSION,

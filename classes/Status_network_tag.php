@@ -38,7 +38,7 @@ class Status_network_tag extends Safe_DataObject
         $sn = new Status_network();
         $sn->_connect();
 
-        $config['db']['table_'. $this->__table] = $sn->_database;
+        $config['db']['table_'. $this->tableName()] = $sn->_database;
 
         $this->_connect();
     }

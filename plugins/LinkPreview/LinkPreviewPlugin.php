@@ -29,7 +29,7 @@ if (!defined('STATUSNET')) {
  */
 class LinkPreviewPlugin extends Plugin
 {
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'LinkPreview',
                             'version' => GNUSOCIAL_VERSION,

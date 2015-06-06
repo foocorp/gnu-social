@@ -183,7 +183,7 @@ class ModLogPlugin extends Plugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'ModLog',
                             'version' => GNUSOCIAL_VERSION,

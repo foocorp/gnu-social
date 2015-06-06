@@ -90,7 +90,7 @@ class EventPlugin extends MicroAppPlugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Event',
                             'version' => GNUSOCIAL_VERSION,

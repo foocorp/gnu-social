@@ -97,7 +97,7 @@ class ConversationAction extends ManagedAction
         Event::handle('EndShowConversation', array($this, $this->conv, $this->scoped));
     }
 
-    function isReadOnly()
+    function isReadOnly($args)
     {
         return true;
     }

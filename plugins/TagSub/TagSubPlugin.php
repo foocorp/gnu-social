@@ -89,7 +89,7 @@ class TagSubPlugin extends Plugin
      *
      * @return value
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'TagSub',
                             'version' => self::VERSION,

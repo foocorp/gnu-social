@@ -161,7 +161,7 @@ class DiskCachePlugin extends Plugin
         return false;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'DiskCache',
                             'version' => GNUSOCIAL_VERSION,

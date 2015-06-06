@@ -59,7 +59,7 @@ class GravatarPlugin extends Plugin
             return $url;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Gravatar',
                             'version' => GNUSOCIAL_VERSION,

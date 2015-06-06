@@ -31,7 +31,7 @@ class SQLProfilePlugin extends Plugin
 {
     private $recursionGuard = false;
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'SQLProfile',
                             'version' => GNUSOCIAL_VERSION,

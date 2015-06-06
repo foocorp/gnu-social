@@ -405,7 +405,7 @@ class GroupPrivateMessagePlugin extends Plugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'GroupPrivateMessage',
                             'version' => GNUSOCIAL_VERSION,

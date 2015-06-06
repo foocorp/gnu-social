@@ -1166,7 +1166,7 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'OStatus',
                             'version' => GNUSOCIAL_VERSION,

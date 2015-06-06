@@ -52,7 +52,7 @@ class AutocompletePlugin extends Plugin
         $m->connect('main/autocomplete/suggest', array('action'=>'autocomplete'));
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Autocomplete',
                             'version' => GNUSOCIAL_VERSION,

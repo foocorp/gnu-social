@@ -190,7 +190,7 @@ class DomainStatusNetworkPlugin extends Plugin
         return null;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'DomainStatusNetwork',
                             'version' => GNUSOCIAL_VERSION,

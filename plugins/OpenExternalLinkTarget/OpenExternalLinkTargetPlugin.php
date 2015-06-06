@@ -49,7 +49,7 @@ class OpenExternalLinkTargetPlugin extends Plugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'OpenExternalLinkTarget',
                             'version' => GNUSOCIAL_VERSION,
