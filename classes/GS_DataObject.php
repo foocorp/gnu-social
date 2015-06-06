@@ -59,7 +59,7 @@ class GS_DataObject extends DB_DataObject
         return $res;
     }
 
-    public function debugLevel($v = null)
+    static public function debugLevel($v = null)
     {
         // avoid those annoying PEAR::DB strict standards warnings it causes
         $old = error_reporting();
@@ -72,7 +72,7 @@ class GS_DataObject extends DB_DataObject
         return $res;
     }
 
-    public function factory($table = '')
+    static public function factory($table = '')
     {
         // avoid those annoying PEAR::DB strict standards warnings it causes
         $old = error_reporting();
@@ -164,7 +164,7 @@ class GS_DataObject extends DB_DataObject
         return $res;
     }
 
-    public function staticGet($class, $k, $v = null)
+    static public function staticGet($class, $k, $v = null)
     {
         // avoid those annoying PEAR::DB strict standards warnings it causes
         $old = error_reporting();
