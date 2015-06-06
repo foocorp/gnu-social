@@ -54,10 +54,28 @@ print "\n";
 print "Re-running feed discovery for profile URL $oprofile->uri\n";
 // @fixme will bork where the URI isn't the profile URL for now
 $discover = new FeedDiscovery();
-$feedurl = $discover->discoverFromURL($oprofile->uri);
+try {
+    $feedurl = $discover->discoverFromURL($oprofile->uri);
+    $salmonuri = $discover->getAtomLink(Salmon::REL_SALMON)
+                    ?: $discover->getAtomLink(Salmon::NS_REPLIES);  // NS_REPLIES is deprecated
+} catch (FeedSubException $e) {
+    $acct = $oprofile->localProfile()->getAcctUri();
+    print "Could not discover feeds HTML response, trying reconstructed acct URI: " . $acct;
+    $disco = new Discovery();
+    $xrd = $disco->lookup($acct);
+    $hints = DiscoveryHints::fromXRD($xrd);
+
+    if (!array_key_exists('feedurl', $hints)) {
+        throw new FeedSubNoFeedException($acct);
+    }
+    $feedurl = $hints['feedurl'];
+    $salmonuri = array_key_exists('salmon', $hints) ? $hints['salmon'] : null;
+
+    // get the hub data too and put it in the FeedDiscovery object
+    $discover->discoverFromFeedUrl($feedurl);
+}
+
 $huburi = $discover->getHubLink();
-$salmonuri = $discover->getAtomLink(Salmon::REL_SALMON)
-                ?: $discover->getAtomLink(Salmon::NS_REPLIES);
 
 print "  Feed URL: $feedurl\n";
 print "  Hub URL: $huburi\n";
