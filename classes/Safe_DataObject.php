@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Extended DB_DataObject to improve a few things:
@@ -26,7 +26,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  * - don't leak memory when loading already-used .ini files
  *   (eg when using the same schema on thousands of databases)
  */
-class Safe_DataObject extends DB_DataObject
+class Safe_DataObject extends GS_DataObject
 {
     /**
      * Destructor to free global memory resources associated with
@@ -177,7 +177,6 @@ class Safe_DataObject extends DB_DataObject
             }
 
         }
-
         if (!$this->_database) {
             $this->_connect();
         }
@@ -204,7 +203,7 @@ class Safe_DataObject extends DB_DataObject
         }
 
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+            self::_loadConfig();
         }
 
         // if you supply this with arguments, then it will take those

@@ -824,7 +824,7 @@ class Memcached_DataObject extends Safe_DataObject
         global $_DB_DATAOBJECT;
 
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
-            DB_DataObject::_loadConfig();
+            self::_loadConfig();
         }
 
         $options = &$_DB_DATAOBJECT['CONFIG'];
