@@ -181,7 +181,7 @@ class BookmarkPlugin extends MicroAppPlugin
      *
      * @return value
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Bookmark',
                             'version' => self::VERSION,

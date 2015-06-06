@@ -43,7 +43,7 @@ class DefaultLayoutPlugin extends Plugin
         return true;
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Default Layout',
                             'version' => GNUSOCIAL_VERSION,

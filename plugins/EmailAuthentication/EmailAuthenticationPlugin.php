@@ -49,7 +49,7 @@ class EmailAuthenticationPlugin extends Plugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Email Authentication',
                             'version' => GNUSOCIAL_VERSION,

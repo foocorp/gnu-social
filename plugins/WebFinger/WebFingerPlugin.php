@@ -153,7 +153,7 @@ class WebFingerPlugin extends Plugin
         }
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'WebFinger',
                             'version' => GNUSOCIAL_VERSION,

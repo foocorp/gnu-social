@@ -172,7 +172,7 @@ class EmailRegistrationPlugin extends Plugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'EmailRegistration',
                             'version' => GNUSOCIAL_VERSION,

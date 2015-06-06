@@ -124,7 +124,7 @@ class QnAPlugin extends MicroAppPlugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array(
             'name'        => 'QnA',
@@ -260,7 +260,7 @@ class QnAPlugin extends MicroAppPlugin
      * @return boolean hook value
      */
 
-    function onStartOpenNoticeListItemElement($nli)
+    function onStartOpenNoticeListItemElement(NoticeListItem $nli)
     {
         $type = $nli->notice->object_type;
 
@@ -325,7 +325,7 @@ class QnAPlugin extends MicroAppPlugin
      *
      * @todo FIXME: WARNING WARNING WARNING this closes a 'div' that is implicitly opened in BookmarkPlugin's showNotice implementation
      */
-    function onStartShowNoticeItem($nli)
+    function onStartShowNoticeItem(NoticeListItem $nli)
     {
         if (!$this->isMyNotice($nli->notice)) {
             return true;

@@ -66,7 +66,7 @@ class EmailSummaryPlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'EmailSummary',
                             'version' => GNUSOCIAL_VERSION,

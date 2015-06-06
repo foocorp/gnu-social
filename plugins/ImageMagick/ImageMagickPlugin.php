@@ -132,7 +132,7 @@ class ImageMagickPlugin extends Plugin
         return getimagesize($outpath);  // Verify that we wrote an understandable image.
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'ImageMagick',
                             'version' => GNUSOCIAL_VERSION,

@@ -29,7 +29,7 @@ if (!defined('STATUSNET')) {
  */
 class ExtendedProfilePlugin extends Plugin
 {
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array(
             'name' => 'ExtendedProfile',

@@ -96,7 +96,7 @@ class CacheLogPlugin extends Plugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'CacheLog',
                             'version' => GNUSOCIAL_VERSION,

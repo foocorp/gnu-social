@@ -207,7 +207,7 @@ class MemcachedPlugin extends Plugin
         return $flag;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Memcached',
                             'version' => GNUSOCIAL_VERSION,

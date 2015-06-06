@@ -118,7 +118,7 @@ class LdapAuthorizationPlugin extends AuthorizationPlugin
         return false;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'LDAP Authorization',
                             'version' => GNUSOCIAL_VERSION,

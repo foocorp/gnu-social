@@ -487,7 +487,7 @@ class GeonamesPlugin extends Plugin
         return $document->geoname;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Geonames',
                             'version' => GNUSOCIAL_VERSION,

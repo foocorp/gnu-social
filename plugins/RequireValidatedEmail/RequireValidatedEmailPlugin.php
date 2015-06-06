@@ -209,7 +209,7 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] =
           array('name' => 'Require Validated Email',

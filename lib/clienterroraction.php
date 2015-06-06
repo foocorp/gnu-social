@@ -72,9 +72,9 @@ class ClientErrorAction extends ErrorAction
 
     // XXX: Should these error actions even be invokable via URI?
 
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         $this->code = $this->trimmed('code');
 

@@ -462,7 +462,7 @@ class XmppPlugin extends ImPlugin
     }
 
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'XMPP',
                             'version' => GNUSOCIAL_VERSION,

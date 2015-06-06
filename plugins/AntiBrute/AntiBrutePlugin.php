@@ -68,7 +68,7 @@ class AntiBrutePlugin extends Plugin {
         return true;
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'AntiBrute',
                             'version' => GNUSOCIAL_VERSION,

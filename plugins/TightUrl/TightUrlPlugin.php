@@ -57,7 +57,7 @@ class TightUrlPlugin extends UrlShortenerPlugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => sprintf('TightUrl (%s)', $this->shortenerName),
                             'version' => GNUSOCIAL_VERSION,

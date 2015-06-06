@@ -232,7 +232,7 @@ class LinkbackPlugin extends Plugin
         return LINKBACKPLUGIN_VERSION;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Linkback',
                             'version' => LINKBACKPLUGIN_VERSION,

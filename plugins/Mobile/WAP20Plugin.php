@@ -43,7 +43,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class WAP20Plugin extends Plugin
 {
-    function onStartShowHTML($action)
+    function onStartShowHTML(Action $action)
     {
 
     }

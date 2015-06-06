@@ -76,7 +76,7 @@ class ImapPlugin extends Plugin
         $classes[] = new ImapManager($this);
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'IMAP',
                             'version' => GNUSOCIAL_VERSION,

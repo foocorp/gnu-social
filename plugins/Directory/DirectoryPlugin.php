@@ -251,7 +251,7 @@ class DirectoryPlugin extends Plugin
     /*
      * Version info
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array(
             'name' => 'Directory',

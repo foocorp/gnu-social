@@ -47,7 +47,7 @@ class FeedPollerPlugin extends Plugin {
         return true;
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'FeedPoller',
                             'version' => GNUSOCIAL_VERSION,

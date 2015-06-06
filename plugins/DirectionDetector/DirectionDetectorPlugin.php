@@ -244,7 +244,7 @@ class DirectionDetectorPlugin extends Plugin {
     /**
      * plugin details
      */
-    function onPluginVersion(&$versions){
+    function onPluginVersion(array &$versions){
         $url = 'http://status.net/wiki/Plugin:DirectionDetector';
 
         $versions[] = array(

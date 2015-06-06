@@ -47,7 +47,7 @@ class SimpleUrlPlugin extends UrlShortenerPlugin
         return $this->http_get(sprintf($this->serviceUrl,urlencode($url)));
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => sprintf('SimpleUrl (%s)', $this->shortenerName),
                             'version' => GNUSOCIAL_VERSION,

@@ -32,7 +32,7 @@ class OpportunisticQMPlugin extends Plugin {
         return true;
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'OpportunisticQM',
                             'version' => GNUSOCIAL_VERSION,

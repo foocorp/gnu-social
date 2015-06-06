@@ -271,7 +271,7 @@ class AnonymousFavePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $url = 'http://status.net/wiki/Plugin:AnonymousFave';
 
