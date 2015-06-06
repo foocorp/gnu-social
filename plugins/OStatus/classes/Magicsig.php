@@ -178,16 +178,28 @@ class Magicsig extends Managed_DataObject
      * @param boolean $full_pair set to true to include the private key.
      * @return string
      */
-    public function toString($full_pair=false)
+    public function toString($full_pair=false, $base64url=true)
     {
-        $mod = Magicsig::base64_url_encode($this->publicKey->modulus->toBytes());
-        $exp = Magicsig::base64_url_encode($this->publicKey->exponent->toBytes());
+        $base64_func = $base64url ? 'Magicsig::base64_url_encode' : 'base64_encode';
+        $mod = call_user_func($base64_func, $this->publicKey->modulus->toBytes());
+        $exp = call_user_func($base64_func, $this->publicKey->exponent->toBytes());
+
         $private_exp = '';
         if ($full_pair && $this->privateKey instanceof Crypt_RSA && $this->privateKey->exponent->toBytes()) {
-            $private_exp = '.' . Magicsig::base64_url_encode($this->privateKey->exponent->toBytes());
+            $private_exp = '.' . call_user_func($base64_func, $this->privateKey->exponent->toBytes());
         }
 
         return 'RSA.' . $mod . '.' . $exp . $private_exp;
+    }
+
+    public function toFingerprint()
+    {
+        // This assumes a specific behaviour from toString, to format as such:
+        //    "RSA." + base64(pubkey.modulus_as_bytes) + "." + base64(pubkey.exponent_as_bytes)
+        // We don't want the base64 string to be the "url encoding" version because it is not
+        // as common in programming libraries. And we want it to be base64 encoded since ASCII
+        // representation avoids any problems with NULL etc. in less forgiving languages.
+        return strtolower(hash('sha256', $this->toString(false, false)));
     }
 
     public function exportPublicKey($format=CRYPT_RSA_PUBLIC_FORMAT_PKCS1)
