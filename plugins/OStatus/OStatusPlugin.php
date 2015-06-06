@@ -30,19 +30,6 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/extlib/phpseclib');
 
-class FeedSubException extends Exception
-{
-    function __construct($msg=null)
-    {
-        $type = get_class($this);
-        if ($msg) {
-            parent::__construct("$type: $msg");
-        } else {
-            parent::__construct($type);
-        }
-    }
-}
-
 class OStatusPlugin extends Plugin
 {
     /**
