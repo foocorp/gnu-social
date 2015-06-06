@@ -346,7 +346,7 @@ class DB_DataObject extends DB_DataObject_Overload
                $this->_query['derive_select']
                .' FROM ( SELECT'.
                     $this->_query['data_select'] . " \n" .
-                    " FROM   $tn \n" .
+                    " FROM   $tn  " . $this->_query['useindex'] . " \n" .
                     $this->_join . " \n" .
                     $this->_query['condition'] . " \n" .
                     $this->_query['group_by'] . " \n" .
@@ -362,7 +362,7 @@ class DB_DataObject extends DB_DataObject_Overload
         
         $sql = 'SELECT ' .
             $this->_query['data_select'] . " \n" .
-            " FROM   $tn \n" .
+            " FROM   $tn  " . $this->_query['useindex'] . " \n" .
             $this->_join . " \n" .
             $this->_query['condition'] . " \n" .
             $this->_query['group_by'] . " \n" .
@@ -863,6 +863,43 @@ class DB_DataObject extends DB_DataObject_Overload
     }
 
     /**
+     * Adds a using Index
+     *
+     * $object->useIndex(); //reset the use Index 
+     * $object->useIndex("some_index");
+     *
+     * Note do not put unfiltered user input into theis method.
+     * This is mysql specific at present? - might need altering to support other databases.
+     * 
+     * @param  string|array  $index  index or indexes to use.
+     * @access public
+     * @return none|PEAR::Error - invalid args only
+     */
+    function useIndex($index = false)
+    {
+        if ($this->_query === false) {
+            $this->raiseError(
+                "You cannot do two queries on the same object (copy it before finding)", 
+                DB_DATAOBJECT_ERROR_INVALIDARGS);
+            return false;
+        }
+        if ($index=== false) {
+            $this->_query['useindex'] = '';
+            return;
+        }
+        // check input...= 0 or '    ' == error!
+        if ((is_string($index) && !trim($index)) || (is_array($index) && !count($index)) ) {
+            return $this->raiseError("Having: No Valid Arguments", DB_DATAOBJECT_ERROR_INVALIDARGS);
+        }
+        $index = is_array($index) ? implode(', ', $index) : $index;
+        
+        if (!$this->_query['useindex']) {
+            $this->_query['useindex'] = " USE INDEX ({$index}) ";
+            return;
+        }
+        $this->_query['useindex'] =  substr($this->_query['useindex'],0, -2) . ", {$index}) ";
+    }
+    /**
      * Sets the Limit
      *
      * $boject->limit(); // clear limit
@@ -1090,11 +1127,9 @@ class DB_DataObject extends DB_DataObject_Overload
                 continue;
             }
         
-            
-           
-           
-            // Ignore variables which aren't set to a value
-            if ( (!isset($this->$k) || ($v == 1 && $this->$k == ''))
+             
+            // Ignore INTEGERS which aren't set to a value - or empty string..
+            if ( (!isset($this->$k) || ($v == 1 && $this->$k === ''))
                     && $ignore_null
             ) {
                 continue;
@@ -1342,7 +1377,8 @@ class DB_DataObject extends DB_DataObject_Overload
       
         foreach($items as $k => $v) {
             
-            if ((!isset($this->$k) || ($v == 1 && $this->$k == ''))
+            // I think this is ignoring empty vlalues
+            if ((!isset($this->$k) || ($v == 1 && $this->$k === ''))
                     && $ignore_null
             ) {
                  continue;
@@ -1808,6 +1844,7 @@ class DB_DataObject extends DB_DataObject_Overload
         'group_by'    => '', // the GROUP BY condition
         'order_by'    => '', // the ORDER BY condition
         'having'      => '', // the HAVING condition
+        'useindex'   => '', // the USE INDEX condition
         'limit_start' => '', // the LIMIT condition
         'limit_count' => '', // the LIMIT condition
         'data_select' => '*', // the columns to be SELECTed
@@ -2458,7 +2495,7 @@ class DB_DataObject extends DB_DataObject_Overload
             } else {
                 $_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5] = DB::connect($dsn);
             }
-            
+             
         } else {
             /* assumption is MDB2 */
             require_once 'MDB2.php';
@@ -2774,7 +2811,7 @@ class DB_DataObject extends DB_DataObject_Overload
     
     
 
-    function factory($table = '')
+    static function factory($table = '')
     {
         global $_DB_DATAOBJECT;
         
@@ -2792,13 +2829,14 @@ class DB_DataObject extends DB_DataObject_Overload
         }
         // no configuration available for database
         if (!empty($database) && empty($_DB_DATAOBJECT['CONFIG']['database_'.$database])) {
-                return DB_DataObject::raiseError(
+                $do = new DB_DataObject();
+                $do->raiseError(
                     "unable to find database_{$database} in Configuration, It is required for factory with database"
                     , 0, PEAR_ERROR_DIE );   
        }
         
        
-        
+        /*
         if ($table === '') {
             if (is_a($this,'DB_DataObject') && strlen($this->tableName())) {
                 $table = $this->tableName();
@@ -2809,6 +2847,7 @@ class DB_DataObject extends DB_DataObject_Overload
             }
         }
         
+        */
         // does this need multi db support??
         $cp = isset($_DB_DATAOBJECT['CONFIG']['class_prefix']) ?
             explode(PATH_SEPARATOR, $_DB_DATAOBJECT['CONFIG']['class_prefix']) : '';
@@ -2859,7 +2898,8 @@ class DB_DataObject extends DB_DataObject_Overload
         }
         
         if (!$rclass || !class_exists($rclass)) {
-            return DB_DataObject::raiseError(
+            $dor = new DB_DataObject();
+            return $dor->raiseError(
                 "factory could not find class " . 
                 (is_array($class) ? implode(PATH_SEPARATOR, $class)  : $class  ). 
                 "from $table",
@@ -2944,7 +2984,8 @@ class DB_DataObject extends DB_DataObject_Overload
                 }
             }
             if (!$found) {
-                DB_DataObject::raiseError(
+                $dor = new DB_DataObject();
+                $dor->raiseError(
                     "autoload:Could not find class " . implode(',', $cls) .
                     " using class_location value :" . $search .
                     " using include_path value :" . ini_get('include_path'), 
@@ -2965,7 +3006,8 @@ class DB_DataObject extends DB_DataObject_Overload
             }
         }
         if (!$ce) {
-            DB_DataObject::raiseError(
+            $dor = new DB_DataObject();
+            $dor->raiseError(
                 "autoload:Could not autoload " . implode(',', $cls) , 
                 DB_DATAOBJECT_ERROR_INVALIDCONFIG);
             return false;
@@ -3975,6 +4017,7 @@ class DB_DataObject extends DB_DataObject_Overload
         global $_DB_DATAOBJECT;
         $keys  = $this->keys();
         $items = $this->table();
+        
         if (!$items) {
             $this->raiseError(
                 "setFrom:Could not find table definition for {$this->tableName()}", 
@@ -4592,7 +4635,7 @@ class DB_DataObject extends DB_DataObject_Overload
      * @access  public
      * @return  none
      */
-    function debugLevel($v = null)
+    static function debugLevel($v = null)
     {
         global $_DB_DATAOBJECT;
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
@@ -4646,7 +4689,8 @@ class DB_DataObject extends DB_DataObject_Overload
             $error = $message;
         } else {
             require_once 'DB/DataObject/Error.php';
-            $error = PEAR::raiseError($message, $type, $behaviour,
+            $dor = new PEAR();
+            $error = $dor->raiseError($message, $type, $behaviour,
                             $opts=null, $userinfo=null, 'DB_DataObject_Error'
                         );
         }
@@ -4773,7 +4817,7 @@ class DB_DataObject extends DB_DataObject_Overload
     /**
      * (deprecated - use ::get / and your own caching method)
      */
-    function staticGet($class, $k, $v = null)
+    static function staticGet($class, $k, $v = null)
     {
         $lclass = strtolower($class);
         global $_DB_DATAOBJECT;
@@ -4799,7 +4843,8 @@ class DB_DataObject extends DB_DataObject_Overload
 
         $obj = DB_DataObject::factory(substr($class,strlen($_DB_DATAOBJECT['CONFIG']['class_prefix'])));
         if (PEAR::isError($obj)) {
-            DB_DataObject::raiseError("could not autoload $class", DB_DATAOBJECT_ERROR_NOCLASS);
+            $dor = new DB_DataObject();
+            $dor->raiseError("could not autoload $class", DB_DATAOBJECT_ERROR_NOCLASS);
             $r = false;
             return $r;
         }
@@ -4808,7 +4853,8 @@ class DB_DataObject extends DB_DataObject_Overload
             $_DB_DATAOBJECT['CACHE'][$lclass] = array();
         }
         if (!$obj->get($k,$v)) {
-            DB_DataObject::raiseError("No Data return from get $k $v", DB_DATAOBJECT_ERROR_NODATA);
+            $dor = new DB_DataObject();
+            $dor->raiseError("No Data return from get $k $v", DB_DATAOBJECT_ERROR_NODATA);
             
             $r = false;
             return $r;
