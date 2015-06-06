@@ -49,16 +49,9 @@ class ApiconversationAction extends ApiAuthAction
     protected $conversation = null;
     protected $notices      = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function prepare(array $args=array())
     {
-        parent::prepare($argarray);
+        parent::prepare($args);
 
         $convId = $this->trimmed('id');
 
