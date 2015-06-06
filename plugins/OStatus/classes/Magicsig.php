@@ -198,7 +198,8 @@ class Magicsig extends Managed_DataObject
         //    "RSA." + base64(pubkey.modulus_as_bytes) + "." + base64(pubkey.exponent_as_bytes)
         // We don't want the base64 string to be the "url encoding" version because it is not
         // as common in programming libraries. And we want it to be base64 encoded since ASCII
-        // representation avoids any problems with NULL etc. in less forgiving languages.
+        // representation avoids any problems with NULL etc. in less forgiving languages and also
+        // just easier to debug...
         return strtolower(hash('sha256', $this->toString(false, false)));
     }
 
