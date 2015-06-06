@@ -38,8 +38,11 @@ class DiasporaPlugin extends Plugin
 
     public function onEndAttachPubkeyToUserXRD(Magicsig $magicsig, XML_XRD $xrd, Profile $target)
     {
+        // So far we've only handled RSA keys, but it can change in the future,
+        // so be prepared. And remember to change the statically assigned type attribute below!
+        assert($magicsig->publicKey instanceof Crypt_RSA);
         $xrd->links[] = new XML_XRD_Element_Link(self::REL_PUBLIC_KEY,
-                                    base64_encode($magicsig->exportPublicKey()));
+                                    base64_encode($magicsig->exportPublicKey()), 'RSA');
     }
 
     public function onPluginVersion(array &$versions)
