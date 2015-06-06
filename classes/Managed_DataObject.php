@@ -406,7 +406,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
                 common_log_db_error($this, 'UPDATE', __FILE__);
                 // rollback as something bad occurred
                 $this->query('ROLLBACK');
-                throw new ServerException("Could not UPDATE non-keys for {$this->__table}");
+                throw new ServerException("Could not UPDATE non-keys for {$this->tableName()}");
             }
             $orig->decache();
             $this->encache();
@@ -428,7 +428,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
             common_log_db_error($this, 'UPDATE', __FILE__);
             // rollback as something bad occurred
             $this->query('ROLLBACK');
-            throw new ServerException("Could not UPDATE key fields for {$this->__table}");
+            throw new ServerException("Could not UPDATE key fields for {$this->tableName()}");
         }
 
         // Update non-keys too, if the previous endeavour worked.
@@ -438,7 +438,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
             common_log_db_error($this, 'UPDATE', __FILE__);
             // rollback as something bad occurred
             $this->query('ROLLBACK');
-            throw new ServerException("Could not UPDATE non-keys for {$this->__table}");
+            throw new ServerException("Could not UPDATE non-keys for {$this->tableName()}");
         }
         $orig->decache();
         $this->encache();

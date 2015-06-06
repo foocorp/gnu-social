@@ -186,7 +186,7 @@ class Safe_DataObject extends GS_DataObject
 
             // database loaded - but this is table is not available..
             if (
-                    empty($_DB_DATAOBJECT['INI'][$this->_database][$this->__table])
+                    empty($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])
                     && !empty($_DB_DATAOBJECT['CONFIG']['proxy'])
                 ) {
                 if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
@@ -197,7 +197,7 @@ class Safe_DataObject extends GS_DataObject
 
 
                 $x = new DB_DataObject_Generator;
-                $x->fillTableSchema($this->_database,$this->__table);
+                $x->fillTableSchema($this->_database,$this->tableName());
             }
             return true;
         }
@@ -225,7 +225,7 @@ class Safe_DataObject extends GS_DataObject
 
         // now have we loaded the structure..
 
-        if (!empty($_DB_DATAOBJECT['INI'][$this->_database][$this->__table])) {
+        if (!empty($_DB_DATAOBJECT['INI'][$this->_database][$this->tableName()])) {
             return true;
         }
         // - if not try building it..
@@ -234,11 +234,11 @@ class Safe_DataObject extends GS_DataObject
                 require_once 'DB/DataObject/Generator.php';
 
             $x = new DB_DataObject_Generator;
-            $x->fillTableSchema($this->_database,$this->__table);
+            $x->fillTableSchema($this->_database,$this->tableName());
             // should this fail!!!???
             return true;
         }
-        $this->debug("Cant find database schema: {$this->_database}/{$this->__table} \n".
+        $this->debug("Cant find database schema: {$this->_database}/{$this->tableName()} \n".
                     "in links file data: " . print_r($_DB_DATAOBJECT['INI'],true),"databaseStructure",5);
         // we have to die here!! - it causes chaos if we don't (including looping forever!)
         // Low level exception. No need for i18n as discussed with Brion.

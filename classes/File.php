@@ -488,13 +488,13 @@ class File extends Managed_DataObject
             throw new ServerException('URL already exists in DB');
         }
         $sql = 'UPDATE %1$s SET urlhash=%2$s, url=%3$s WHERE urlhash=%4$s;';
-        $result = $this->query(sprintf($sql, $this->__table,
+        $result = $this->query(sprintf($sql, $this->tableName(),
                                              $this->_quote((string)self::hashurl($url)),
                                              $this->_quote((string)$url),
                                              $this->_quote((string)$this->urlhash)));
         if ($result === false) {
             common_log_db_error($this, 'UPDATE', __FILE__);
-            throw new ServerException("Could not UPDATE {$this->__table}.url");
+            throw new ServerException("Could not UPDATE {$this->tableName()}.url");
         }
 
         return $result;
