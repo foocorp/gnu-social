@@ -1,6 +1,6 @@
 <!-- Copyright 2008-2010 StatusNet Inc. and contributors. -->
 <!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
-<!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
+<!-- https://creativecommons.org/licenses/by/3.0/ for details. -->
 
 There are a number of options for getting in contact with responsible
 people for %%site.name%%.
@@ -9,7 +9,7 @@ Bugs
 ----
 
 If you think you've found a bug in the underlying [GNU social](https://gnu.io/social/) software,
-or if there's a new feature you'd like to see, add it into the [GNU social task list](https://bugz.foocorp.net/).
+or if there's a new feature you'd like to see, add it into the [GNU social task list](https://git.gnu.io/gnu/gnu-social/issues).
 Don't forget to check the list of existing bugs to make sure it hasn't already been reported!
 
 Email

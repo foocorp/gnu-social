@@ -1,6 +1,6 @@
 <!-- Copyright 2008-2010 StatusNet Inc. and contributors. -->
 <!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
-<!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
+<!-- https://creativecommons.org/licenses/by/3.0/ for details. -->
 
 You can post messages to %%site.name%% using a [Jabber](http://jabber.org/) client
 on your computer, mobile phone, or other platform. This can be a convenient way to
@@ -8,7 +8,7 @@ keep up with your friends on %%site.name%%.
 
 If you don't already have a Jabber account, one of the
 [public Jabber services](http://www.jabber.org/im-services). You'll probably also
-need an IM client like [Pidgin](http://www.pidgin.im/).
+need an IM client like [Pidgin](https://www.pidgin.im/).
 
 Managing your IM settings
 -------------------------
