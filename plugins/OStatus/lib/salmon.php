@@ -71,7 +71,19 @@ class Salmon
             common_log(LOG_ERR, "Salmon post to $endpoint_uri failed: " . $e->getMessage());
             return false;
         }
-        if ($response->getStatus() != 200) {
+
+        // Diaspora wants a slightly different formatting on the POST (other Content-type, so body needs "xml=")
+        if ($response->getStatus() === 422) {
+            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. Diaspora? Will try again! Body: %s',
+                                $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
+            $headers = array('Content-Type: application/x-www-form-urlencoded');
+            $client->setBody('xml=' . Magicsig::base64_url_encode($envxml));
+            $response = $client->post($endpoint_uri, $headers);
+        }
+
+        // 200 OK is the best response
+        // 202 Accepted is what we get from Diaspora for example
+        if (!in_array($response->getStatus(), array(200, 202))) {
             common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
                                 $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
             return false;

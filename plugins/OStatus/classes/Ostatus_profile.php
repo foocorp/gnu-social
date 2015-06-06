@@ -17,13 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * @package OStatusPlugin
- * @maintainer Brion Vibber <brion@status.net>
+ * @author Brion Vibber <brion@status.net>
+ * @maintainer Mikael Nordfeldth <mmn@hethane.se>
  */
 class Ostatus_profile extends Managed_DataObject
 {
@@ -1746,11 +1745,8 @@ class Ostatus_profile extends Managed_DataObject
             throw new Exception(_m('Not a valid webfinger address.'));
         }
 
-        $hints = array('webfinger' => $addr);
-
-        $dhints = DiscoveryHints::fromXRD($xrd);
-
-        $hints = array_merge($hints, $dhints);
+        $hints = array_merge(array('webfinger' => $addr),
+                             DiscoveryHints::fromXRD($xrd));
 
         // If there's an Hcard, let's grab its info
         if (array_key_exists('hcard', $hints)) {

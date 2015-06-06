@@ -41,13 +41,27 @@ class SalmonAction extends Action
 
         parent::prepare($args);
 
-        if (!isset($_SERVER['CONTENT_TYPE']) || $_SERVER['CONTENT_TYPE'] != 'application/magic-envelope+xml') {
-            // TRANS: Client error. Do not translate "application/magic-envelope+xml".
-            $this->clientError(_m('Salmon requires "application/magic-envelope+xml".'));
+        if (!isset($_SERVER['CONTENT_TYPE'])) {
+            // TRANS: Client error. Do not translate "Content-type"
+            $this->clientError(_m('Salmon requires a Content-type header.'));
+        }
+        $envxml = null;
+        switch ($_SERVER['CONTENT_TYPE']) {
+        case 'application/magic-envelope+xml':
+            $envxml = file_get_contents('php://input');
+            break;
+        case 'application/x-www-form-urlencoded':
+            $envxml = Magicsig::base64_url_decode($this->trimmed('xml'));
+            break;
+        default:
+            // TRANS: Client error. Do not translate the quoted "application/[type]" strings.
+            $this->clientError(_m('Salmon requires "application/magic-envelope+xml". For Diaspora we also accept "application/x-www-form-urlencoded" with an "xml" parameter.', 415));
         }
 
         try {
-            $envxml = file_get_contents('php://input');
+            if (empty($envxml)) {
+                throw new ClientException('No magic envelope supplied in POST.');
+            }
             $magic_env = new MagicEnvelope($envxml);   // parse incoming XML as a MagicEnvelope
 
             $entry = $magic_env->getPayload();  // Not cryptographically verified yet!

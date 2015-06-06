@@ -1,0 +1,7 @@
+StartAttachPubkeyToUserXRD: Runs only for XRD generation where a Magicsig exists for a Profile which is a "person".
+@param  Magicsig    $magicsig   crypto stuff related to the profile we're representing
+@param  XRD         $xrd        the XRD object which holds all data for the profile we're representing
+
+EndAttachPubkeyToUserXRD: Runs only for XRD generation where a Magicsig exists for a Profile which is a "person". And only if StartAttachPubkeyToUserXRD didn't abort.
+@param  Magicsig    $magicsig   crypto stuff related to the profile we're representing
+@param  XRD         $xrd        the XRD object which holds all data for the profile we're representing
