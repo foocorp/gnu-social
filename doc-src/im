@@ -3,11 +3,10 @@
 <!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
 
 You can post messages to %%site.name%% using a [Jabber](http://jabber.org/) client
-on your computer, mobile phone, or other platform. ([GTalk](http://talk.google.com/),
-Google's Jabber program, will also work.) This can be a convenient way to keep
-up with your friends on %%site.name%%.
+on your computer, mobile phone, or other platform. This can be a convenient way to
+keep up with your friends on %%site.name%%.
 
-If you don't already have a Jabber account, you can use GTalk or one of the other
+If you don't already have a Jabber account, one of the
 [public Jabber services](http://www.jabber.org/im-services). You'll probably also
 need an IM client like [Pidgin](http://www.pidgin.im/).
 
@@ -17,8 +16,7 @@ Managing your IM settings
 Use the [IM settings](%%action.imsettings%%) page to set your IM preferences. You can add or change your Jabber address and set the flags for Jabber update.
 
 When you add or change your address, you'll receive a message from **%%xmpp.user%%@%%xmpp.server%%** asking you to confirm the change. (You may need to
-add %%xmpp.user%%@%%xmpp.server%% to your buddy list *before* changing your IM
-settings; this is definitely true for GTalk.)
+add %%xmpp.user%%@%%xmpp.server%% to your buddy list *before* changing your IM settings.)
 
 Sending updates
 ---------------
