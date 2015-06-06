@@ -979,12 +979,14 @@ class Notice extends Managed_DataObject
 
         // Force the scope for private groups
         foreach ($groups as $group_id) {
-            $group = User_group::staticGet('id', $group_id);
-            if ($group instanceof User_group) {
+            try {
+                $group = User_group::getByID($group_id);
                 if ($group->force_scope) {
                     $scope |= Notice::GROUP_SCOPE;
                     break;
                 }
+            } catch (Exception $e) {
+                common_log(LOG_ERR, 'Notice figureOutScope threw exception: '.$e->getMessage());
             }
         }
 
