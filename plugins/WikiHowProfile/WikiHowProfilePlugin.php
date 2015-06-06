@@ -49,7 +49,7 @@ if (!defined('STATUSNET')) {
  */
 class WikiHowProfilePlugin extends Plugin
 {
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'WikiHow avatar fetcher',
                             'version' => GNUSOCIAL_VERSION,

@@ -27,7 +27,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class ModPlusPlugin extends Plugin
 {
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'ModPlus',
                             'version' => GNUSOCIAL_VERSION,

@@ -57,7 +57,7 @@ class PtitUrlPlugin extends UrlShortenerPlugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => sprintf('PtitUrl (%s)', $this->shortenerName),
                             'version' => GNUSOCIAL_VERSION,

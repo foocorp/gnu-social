@@ -267,7 +267,7 @@ class DomainWhitelistPlugin extends Plugin
        return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'DomainWhitelist',
                             'version' => GNUSOCIAL_VERSION,

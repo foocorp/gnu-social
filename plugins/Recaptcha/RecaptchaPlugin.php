@@ -104,7 +104,7 @@ class RecaptchaPlugin extends Plugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Recaptcha',
                             'version' => GNUSOCIAL_VERSION,

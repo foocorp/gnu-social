@@ -45,7 +45,7 @@ class CronishPlugin extends Plugin {
         return true;
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Cronish',
                             'version' => GNUSOCIAL_VERSION,

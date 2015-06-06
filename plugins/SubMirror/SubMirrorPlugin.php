@@ -57,7 +57,7 @@ class SubMirrorPlugin extends Plugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'SubMirror',
                             'version' => GNUSOCIAL_VERSION,

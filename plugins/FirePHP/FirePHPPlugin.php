@@ -58,7 +58,7 @@ class FirePHPPlugin extends Plugin
         $this->firephp->fb($msg, $fp_priority);
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'FirePHP',
                             'version' => GNUSOCIAL_VERSION,

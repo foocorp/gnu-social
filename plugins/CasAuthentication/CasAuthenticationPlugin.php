@@ -147,7 +147,7 @@ class CasAuthenticationPlugin extends AuthenticationPlugin
         $casSettings['takeOverLogin']=$this->takeOverLogin;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'CAS Authentication',
                             'version' => GNUSOCIAL_VERSION,

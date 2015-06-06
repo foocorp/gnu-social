@@ -44,7 +44,7 @@ class ActivityVerbPlugin extends Plugin
                           'verb'   => '[a-z]+'));
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Activity Verb',
                             'version' => GNUSOCIAL_VERSION,

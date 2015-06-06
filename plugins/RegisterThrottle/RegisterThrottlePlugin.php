@@ -175,7 +175,7 @@ class RegisterThrottlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'RegisterThrottle',
                             'version' => GNUSOCIAL_VERSION,

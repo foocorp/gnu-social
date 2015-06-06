@@ -87,7 +87,7 @@ class AccountManagerPlugin extends Plugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'AccountManager',
                             'version' => GNUSOCIAL_VERSION,

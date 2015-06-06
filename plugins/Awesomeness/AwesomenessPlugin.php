@@ -44,7 +44,7 @@ class AwesomenessPlugin extends Plugin
 {
     const VERSION = '0.0.42';
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array(
             'name' => 'Awesomeness',

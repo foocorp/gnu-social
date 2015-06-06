@@ -114,7 +114,7 @@ class GeoURLPlugin extends Plugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'GeoURL',
                             'version' => GNUSOCIAL_VERSION,

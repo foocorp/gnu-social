@@ -39,7 +39,7 @@ class LogFilterPlugin extends Plugin
     public $priority = array(); // override by priority: array(LOG_ERR => true, LOG_DEBUG => false)
     public $regex = array();    // override by regex match of message: array('/twitter/i' => false)
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'LogFilter',
                             'version' => GNUSOCIAL_VERSION,

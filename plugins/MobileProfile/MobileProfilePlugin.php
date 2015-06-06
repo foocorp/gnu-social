@@ -368,7 +368,7 @@ class MobileProfilePlugin extends WAP20Plugin
         return $proto.'://'.$serverpart.'/'.$pathpart.$relative;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'MobileProfile',
                             'version' => GNUSOCIAL_VERSION,

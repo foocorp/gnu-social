@@ -105,7 +105,7 @@ ENDOFSCRIPT2;
        $action->inlineScript($js);
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'GoogleAnalytics',
                             'version' => self::VERSION,

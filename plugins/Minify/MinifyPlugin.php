@@ -157,7 +157,7 @@ class MinifyPlugin extends Plugin
         return Minify_CSS::minify($code,$options);
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Minify',
                             'version' => GNUSOCIAL_VERSION,

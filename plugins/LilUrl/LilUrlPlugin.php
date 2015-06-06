@@ -57,7 +57,7 @@ class LilUrlPlugin extends UrlShortenerPlugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => sprintf('LilUrl (%s)', $this->shortenerName),
                             'version' => GNUSOCIAL_VERSION,

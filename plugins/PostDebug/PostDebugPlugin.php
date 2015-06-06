@@ -48,7 +48,7 @@ class PostDebugPlugin extends Plugin
         }
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'PostDebug',
                             'version' => GNUSOCIAL_VERSION,

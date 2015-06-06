@@ -181,7 +181,7 @@ class Plugin
                 . ' (' . get_class($this) . ' v' . $this->version() . ')';
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $name = $this->name();
 

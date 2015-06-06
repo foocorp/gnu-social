@@ -612,7 +612,7 @@ ENDOFSCRIPT;
      *
      * @param array &$versions    plugin version descriptions
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array(
             'name' => 'Facebook Bridge',

@@ -103,7 +103,7 @@ ENDOFPIWIK;
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'PiwikAnalytics',
                             'version' => GNUSOCIAL_VERSION,

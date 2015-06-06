@@ -170,7 +170,7 @@ class InProcessCachePlugin extends Plugin
      *
      * @return boolean true
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $url = 'http://status.net/wiki/Plugin:InProcessCache';
 

@@ -69,7 +69,7 @@ class VideoThumbnailsPlugin extends Plugin
         return false;
     }
 
-    public function onPluginVersion(&$versions)
+    public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Video Thumbnails',
                             'version' => GNUSOCIAL_VERSION,

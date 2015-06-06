@@ -44,7 +44,7 @@ class TabFocusPlugin extends Plugin
         $action->script($this->path('tabfocus.js'));
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'TabFocus',
                             'version' => GNUSOCIAL_VERSION,

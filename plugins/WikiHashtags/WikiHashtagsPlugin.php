@@ -104,7 +104,7 @@ class WikiHashtagsPlugin extends Plugin
         return true;
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'WikiHashtags',
                             'version' => self::VERSION,

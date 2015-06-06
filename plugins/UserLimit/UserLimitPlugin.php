@@ -81,7 +81,7 @@ class UserLimitPlugin extends Plugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'UserLimit',
                             'version' => GNUSOCIAL_VERSION,

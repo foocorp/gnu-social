@@ -56,7 +56,7 @@ class AutoSandboxPlugin extends Plugin
         }
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'AutoSandbox',
                             'version' => GNUSOCIAL_VERSION,

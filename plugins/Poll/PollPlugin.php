@@ -120,7 +120,7 @@ class PollPlugin extends MicroAppPlugin
      *
      * @return value
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Poll',
                             'version' => self::VERSION,

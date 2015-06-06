@@ -34,7 +34,7 @@ class SQLStatsPlugin extends Plugin
     protected $queryTimes = array();
     protected $queries    = array();
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'SQLStats',
                             'version' => GNUSOCIAL_VERSION,

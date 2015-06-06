@@ -159,7 +159,7 @@ class OrbitedPlugin extends RealtimePlugin
      *
      * @return boolean hook value
      */
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Orbited',
                             'version' => GNUSOCIAL_VERSION,
