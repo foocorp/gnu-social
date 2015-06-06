@@ -65,6 +65,15 @@ class TagprofileAction extends FormAction
         return sprintf(_m('ADDTOLIST','List %s'), $this->target->getNickname());
     }
 
+    function showPage()
+    {
+        // Only serve page content if we aren't POSTing via ajax
+        // otherwise, we serve XML content from doPost()
+        if (!$this->isPost() || !$this->boolean('ajax')) {
+            parent::showPage();
+        }
+    }
+
     function showContent()
     {
         $this->elementStart('div', 'entity_profile h-card');
