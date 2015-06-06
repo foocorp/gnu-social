@@ -137,6 +137,20 @@ class GS_DataObject extends DB_DataObject
         return $res;
     }
 
+    // insert calls PEAR::isError from DB_DataObject, so let's make that disappear too
+    public function insert()
+    {
+        // avoid those annoying PEAR::DB strict standards warnings it causes
+        $old = error_reporting();
+        error_reporting(error_reporting() & ~E_STRICT);
+
+        $res = parent::insert();
+
+        // reset
+        error_reporting($old);
+        return $res;
+    }
+
     // DB_DataObject's joinAdd calls DB_DataObject::factory explicitly, so our factory-override doesn't work
     public function joinAdd($obj = false, $joinType='INNER', $joinAs=false, $joinCol=false)
     {
