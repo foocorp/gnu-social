@@ -54,25 +54,10 @@ class ApiOAuthAction extends ApiAction
         return false;
     }
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
-        parent::prepare($args);
-        return true;
-    }
-
-    /**
-     * Handle input, produce output
-     *
-     * Switches on request method; either shows the form or handles its input.
-     *
-     * @param array $args $_REQUEST data
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
         self::cleanRequest();
+        return parent::prepare($args);
     }
 
     /*
