@@ -2103,11 +2103,13 @@ width:14.5%;
 
 .mark-top {
     border-top: 1px solid #ccc;
+    padding-top: 5px;
 }
 
 #realtime_actions {
     position: relative !important;
     right: -4px !important;
+    top: -65px !important;
     float: right;
     padding-top: 15px;
     margin-bottom: -8px !important;
