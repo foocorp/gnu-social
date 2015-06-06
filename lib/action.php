@@ -125,11 +125,10 @@ class Action extends HTMLOutputter // lawsuit
             } else {
                 common_debug('Prepare failed for Action.');
             }
+
+            $this->flush();
+            Event::handle('EndActionExecute', array($this));
         }
-
-        $this->flush();
-
-        Event::handle('EndActionExecute', array($this));
     }
 
     /**
