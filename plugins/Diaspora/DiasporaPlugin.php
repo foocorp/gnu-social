@@ -43,6 +43,11 @@ class DiasporaPlugin extends Plugin
         assert($magicsig->publicKey instanceof Crypt_RSA);
         $xrd->links[] = new XML_XRD_Element_Link(self::REL_PUBLIC_KEY,
                                     base64_encode($magicsig->exportPublicKey()), 'RSA');
+
+        // Instead of choosing a random string, we calculate our GUID from the public key
+        // by fingerprint through a sha256 hash.
+        $xrd->links[] = new XML_XRD_Element_Link(self::REL_GUID,
+                                    strtolower($magicsig->toFingerprint()));
     }
 
     public function onPluginVersion(array &$versions)
