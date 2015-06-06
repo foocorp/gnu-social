@@ -1322,6 +1322,7 @@ div.entry-content a.response:after {
 
 #realtime_actions {
     padding-top: 0px !important;
+    top: -25px !important;
 }
 
 #realtime_actions button {
