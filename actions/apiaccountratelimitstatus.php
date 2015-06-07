@@ -31,9 +31,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * We don't have a rate limit, but some clients check this method.
@@ -58,9 +56,9 @@ class ApiAccountRateLimitStatusAction extends ApiBareAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
@@ -69,7 +67,6 @@ class ApiAccountRateLimitStatusAction extends ApiBareAuthAction
                 404,
                 $this->format
             );
-            return;
         }
 
         $reset   = new DateTime();
