@@ -53,7 +53,7 @@ class InviteButtonSection extends Section
         $this->out = $out;
         if (empty($buttonText)) {
             // TRANS: Default button text for inviting more users to the StatusNet instance.
-            $this->buttonText = _m('BUTTON', 'Invite more colleagues');
+            $this->buttonText = _m('BUTTON', 'Invite more people');
         } else {
             $this->buttonText = $buttonText;
         }
