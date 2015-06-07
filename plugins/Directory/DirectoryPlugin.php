@@ -238,9 +238,9 @@ class DirectoryPlugin extends Plugin
         $nav->out->menuItem(
             common_local_url('userdirectory'),
             // TRANS: Menu item text for user directory.
-            _m('MENU','Directory'),
+            _m('MENU','People'),
             // TRANS: Menu item title for user directory.
-            _m('User Directory.'),
+            _m('People.'),
             $actionName == 'userdirectory',
             'nav_directory'
         );
