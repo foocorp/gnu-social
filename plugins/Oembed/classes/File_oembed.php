@@ -67,7 +67,7 @@ class File_oembed extends Managed_DataObject
         );
     }
 
-    function _getOembed($url) {
+    static function _getOembed($url) {
         $parameters = array(
             'maxwidth' => common_config('thumbnail', 'width'),
             'maxheight' => common_config('thumbnail', 'height'),
