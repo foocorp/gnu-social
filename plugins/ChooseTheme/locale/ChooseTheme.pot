@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the GNU social package.
+# FIRST AUTHOR abjectio@kollektivet0x242.no, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Choose Theme\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-10 22:00+0100\n"
+"PO-Revision-Date: 2015-06-10 22:01+0100\n"
+"Last-Translator: Knut Erik Hollund <knut.erik@unlike.no>\n"
+"Language-Team: kollektivet0x242.no <abjectio@kollektivet0x242.no>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-Basepath: ./actions\n"
+"X-Poedit-KeywordsList: _m\n"
+"X-Poedit-SearchPath-0: ./actions\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: actions/choosethemesettings.php:38
+msgid "Choose theme settings"
+msgstr ""
+
+#: actions/choosethemesettings.php:47
+msgid "Choose theme"
+msgstr ""
+
+#: actions/choosethemesettings.php:83
+msgid "Settings saved."
+msgstr ""
+
+#: actions/choosethemesettings.php:87
+msgid "No valid theme chosen."
+msgstr ""
+
+#: actions/choosethemesettings.php:134
+msgid "Themes"
+msgstr ""
+
+#: actions/choosethemesettings.php:134
+msgid "Select a theme"
+msgstr ""
+
+#: actions/choosethemesettings.php:151
+msgid "Save"
+msgstr ""
+
+#: ChooseThemePlugin.php:39
+msgid "Allowing user to select the preferred theme."
+msgstr ""
+
+#: ChooseThemePlugin.php:55
+msgid "MENU"
+msgstr ""
+
+#: ChooseThemePlugin.php:57
+msgid "Choose Theme"
+msgstr ""
