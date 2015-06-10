@@ -80,7 +80,7 @@ class ChooseThemeSettingsAction extends SettingsAction {
 	$chosen_theme = $available_themes[(int)$this->arg('dwct','0')];
 		
         $this->success = true;
-        $this->msg = _('Settings saved.');
+        $this->msg = _m('Settings saved.');
 
 	$this->success = $this->scoped->setPref('chosen_theme', 'theme', $chosen_theme);
         // TRANS: Confirmation shown when user profile settings are saved.        
@@ -131,7 +131,7 @@ class ChooseThemeForm extends Form {
         $this->elementStart('fieldset');
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
-        $this->dropdown('dwct','Themes',$available_themes,'Select a theme',false, $this->prefs);
+        $this->dropdown('dwct',_m('Themes'),$available_themes,_m('Select a theme'),false, $this->prefs);
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->elementEnd('fieldset');
