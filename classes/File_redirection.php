@@ -94,7 +94,7 @@ class File_redirection extends Managed_DataObject
      *                size (optional): byte size from Content-Length header
      *                time (optional): timestamp from Last-Modified header
      */
-    public function lookupWhere($short_url, $redirs = 10, $protected = false) {
+    static function lookupWhere($short_url, $redirs = 10, $protected = false) {
         if ($redirs < 0) return false;
 
         if(strpos($short_url,'://') === false){
@@ -249,7 +249,7 @@ class File_redirection extends Managed_DataObject
         }
     }
 
-    function _userMakeShort($long_url, User $user=null, $force = false) {
+    static function _userMakeShort($long_url, User $user=null, $force = false) {
         $short_url = common_shorten_url($long_url, $user, $force);
         if (!empty($short_url) && $short_url != $long_url) {
             $short_url = (string)$short_url;
@@ -304,7 +304,7 @@ class File_redirection extends Managed_DataObject
      * @param string $default_scheme if given a bare link; defaults to 'http://'
      * @return string
      */
-    function _canonUrl($in_url, $default_scheme = 'http://') {
+    static function _canonUrl($in_url, $default_scheme = 'http://') {
         if (empty($in_url)) return false;
         $out_url = $in_url;
         $p = parse_url($out_url);
@@ -342,7 +342,7 @@ class File_redirection extends Managed_DataObject
         return $out_url;
     }
 
-    function saveNew($data, $file_id, $url) {
+    static function saveNew($data, $file_id, $url) {
         $file_redir = new File_redirection;
         $file_redir->urlhash = File::hashurl($short_url);
         $file_redir->url = $url;

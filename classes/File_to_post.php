@@ -56,7 +56,7 @@ class File_to_post extends Managed_DataObject
         );
     }
 
-    function processNew(File $file, Notice $notice) {
+    static function processNew(File $file, Notice $notice) {
         static $seen = array();
 
         $file_id = $file->getID();
