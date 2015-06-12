@@ -92,7 +92,7 @@ class URLMapper
                 }
             }
 
-            $regex = $this->makeRegex($path, $paramPatterns);
+            $regex = self::makeRegex($path, $paramPatterns);
 
             $this->variables[] = array($args, $regex, $paramNames);
 
@@ -207,7 +207,7 @@ class URLMapper
         return $match['name'];
     }
 
-    protected function makeRegex($path, $paramPatterns)
+    static function makeRegex($path, $paramPatterns)
     {
         $pr = new PatternReplacer($paramPatterns);
 
