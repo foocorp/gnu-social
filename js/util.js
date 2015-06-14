@@ -61,6 +61,13 @@ var SN = { // StatusNet
     },
 
     /**
+     * list of callbacks, categorized into _callbacks['event_name'] = [ callback_function_1, callback_function_2 ]
+     *
+     * @access private
+     */
+    _callbacks: {},
+
+    /**
      * Map of localized message strings exported to script from the PHP
      * side via Action::getScriptMessages().
      *
@@ -1394,6 +1401,23 @@ var SN = { // StatusNet
                     .text(text)
             );
         },
+
+        addCallback: function (ename, callback) {
+            // initialize to array if it's undefined
+            if (typeof SN._callbacks[ename] === 'undefined') {
+                SN._callbacks[ename] = [];
+            }
+            SN._callbacks[ename].push(callback);
+        },
+
+        runCallbacks: function (ename, data) {
+            if (typeof SN._callbacks[ename] === 'undefined') {
+                return;
+            }
+            for (cbname in SN._callbacks[ename]) {
+                SN._callbacks[ename][cbname](data);
+            }
+        }
     },
 
     E: {    /* Events */
@@ -1454,6 +1478,8 @@ var SN = { // StatusNet
             form.find('[name=inreplyto]').val('');
             form.find('.attach-status').remove();
             SN.U.FormNoticeEnhancements(form);
+
+            SN.U.runCallbacks('notice_posted', {"notice": notice});
         }, 
     },
 
