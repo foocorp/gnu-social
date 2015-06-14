@@ -1,8 +1,10 @@
 Several example plugins are included in the plugins/ directory. You
 can enable a plugin with the following line in config.php:
 
+```php
     addPlugin('Example', array('param1' => 'value1',
                                'param2' => 'value2'));
+```
 
 This will look for and load files named 'ExamplePlugin.php' or
 'Example/ExamplePlugin.php' either in the plugins/ directory (for
@@ -12,10 +14,8 @@ local/plugins/.
 
 Plugins are documented in their own directories.
 
-
 Additional information on using and developing plugins can be found
-on the StatusNet wiki:
+at the following locations:
 
-http://status.net/wiki/Plugins
-http://status.net/wiki/Plugin_development
+[Plugin Development](doc/Plugin_development.md)
 
