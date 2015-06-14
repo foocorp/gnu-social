@@ -1454,7 +1454,6 @@ var SN = { // StatusNet
             form.find('[name=inreplyto]').val('');
             form.find('.attach-status').remove();
             SN.U.FormNoticeEnhancements(form);
-            alert('notice posted: ' + $(notice).attr('id'));
         }, 
     },
 
