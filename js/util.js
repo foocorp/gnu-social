@@ -1297,7 +1297,7 @@ var SN = { // StatusNet
              * @fixme what is this?
              */
             Delete: function () {
-                $.cookie(SN.C.S.StatusNetInstance, null);
+                $.removeCookie(SN.C.S.StatusNetInstance);
             }
         },
 
