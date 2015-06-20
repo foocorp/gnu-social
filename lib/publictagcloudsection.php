@@ -50,7 +50,7 @@ class PublicTagCloudSection extends TagCloudSection
     function title()
     {
         // TRANS: Title for inbox tag cloud section.
-        return _m('TITLE', 'Trending topics');
+        return _m('TITLE', 'Trends');
     }
 
     function getTags()
