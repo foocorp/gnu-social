@@ -172,21 +172,12 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      */
     function getNotices()
     {
-        $notices = array();
+        $notice = Notice_tag::getStream($this->tag)->getNotices(($this->page - 1) * $this->count,
+                                                                 $this->count + 1,
+                                                                 $this->since_id,
+                                                                 $this->max_id);
 
-        $notice = Notice_tag::getStream(
-            $this->tag,
-            ($this->page - 1) * $this->count,
-            $this->count + 1,
-            $this->since_id,
-            $this->max_id
-        );
-
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-
-        return $notices;
+        return $notice->fetchAll();
     }
 
     /**

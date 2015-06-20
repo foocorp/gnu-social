@@ -47,12 +47,8 @@ class TagrssAction extends Rss10Action
             return null;
         }
 
-        $notice = Notice_tag::getStream($tag->tag, 0, ($limit == 0) ? NOTICES_PER_PAGE : $limit);
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-
-        return $notices;
+        $notice = Notice_tag::getStream($tag->tag)->getNotices(0, ($limit == 0) ? NOTICES_PER_PAGE : $limit);
+        return $notice->fetchAll();
     }
 
     function getChannel()

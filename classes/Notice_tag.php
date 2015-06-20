@@ -56,8 +56,7 @@ class Notice_tag extends Managed_DataObject
     static function getStream($tag, $offset=0, $limit=20, $sinceId=0, $maxId=0)
     {
         $stream = new TagNoticeStream($tag);
-        
-        return $stream->getNotices($offset, $limit, $sinceId, $maxId);
+        return $stream;
     }
 
     function blowCache($blowLast=false)
