@@ -957,7 +957,7 @@ content: ":";
 }
 
 .threaded-replies .form_notice .count {
-    top: 60px;
+    bottom: 60px;
     right: 50px;
 }
 
