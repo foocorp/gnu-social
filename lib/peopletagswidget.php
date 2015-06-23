@@ -103,8 +103,8 @@ class PeopletagsWidget extends Widget
             $this->out->elementStart('li', 'hashptag mode-' . $mode);
             // Avoid space by using raw output.
             $pt = '<span class="mark_hash">#</span><a rel="tag" href="' .
-              $this->url($this->tag->tag) .
-              '">' . $this->tag->tag . '</a>';
+              htmlspecialchars($this->url()) .
+              '">' . htmlspecialchars($this->tag->tag) . '</a>';
             $this->out->raw($pt);
             $this->out->elementEnd('li');
         }
