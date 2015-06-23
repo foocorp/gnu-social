@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Widget for showing a list of feeds
@@ -50,30 +48,33 @@ class FeedList extends Widget
 {
     var $action = null;
 
-    function __construct($action=null)
+    protected $feeds = null;
+
+    public function __construct(Action $action=null, array $feeds=array())
     {
-	parent::__construct($action);
-	$this->action = $action;
+        parent::__construct($action);
+        $this->action = $action;
+        $this->feeds  = $feeds;
     }
 
-    function show($feeds)
+    public function show()
     {
-        if (Event::handle('StartShowFeedLinkList', array($this->action, &$feeds))) {
-            if (!empty($feeds)) {
+        if (Event::handle('StartShowFeedLinkList', array($this->action, &$this->feeds))) {
+            if (!empty($this->feeds)) {
                 $this->out->elementStart('div', array('id' => 'export_data',
                                                       'class' => 'section'));
                 // TRANS: Header for feed links (h2).
                 $this->out->element('h2', null, _('Feeds'));
                 $this->out->elementStart('ul', array('class' => 'xoxo'));
 
-                foreach ($feeds as $feed) {
+                foreach ($this->feeds as $feed) {
                     $this->feedItem($feed);
                 }
 
                 $this->out->elementEnd('ul');
                 $this->out->elementEnd('div');
             }
-            Event::handle('EndShowFeedLinkList', array($this->action, &$feeds));
+            Event::handle('EndShowFeedLinkList', array($this->action, &$this->feeds));
         }
     }
 
