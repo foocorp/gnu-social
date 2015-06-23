@@ -91,7 +91,7 @@ class GroupsNav extends MoreMenu
                      _('See all groups you belong to.'));
     }
 
-    function item($actionName, $args, $label, $description, $id=null, $cls=null)
+    function item($actionName, array $args, $label, $description, $id=null, $cls=null)
     {
         if ($actionName != 'placeholder') {
             return parent::item($actionName, $args, $label, $description, $id, $cls);
