@@ -85,7 +85,8 @@ class AvatarLink
 
     // yuck!
     static function mediatype($filename) {
-        $ext = strtolower(end(explode('.', $filename)));
+        $parts = explode('.', $filename);
+        $ext = strtolower(end($parts));
         if ($ext == 'jpeg') {
             $ext = 'jpg';
         }

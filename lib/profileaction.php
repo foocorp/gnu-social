@@ -41,7 +41,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-abstract class ProfileAction extends ManagedAction
+abstract class ProfileAction extends ManagedAction implements NoticestreamAction
 {
     var $page    = null;
     var $tag     = null;
@@ -50,7 +50,7 @@ abstract class ProfileAction extends ManagedAction
 
     protected function prepare(array $args=array())
     {
-        // this will call ->doPreparation() which lower classes can use
+        // this will call ->doPreparation() which child classes use to set $this->target
         parent::prepare($args);
 
         if ($this->target->hasRole(Profile_role::SILENCED)
@@ -66,7 +66,14 @@ abstract class ProfileAction extends ManagedAction
         common_set_returnto($this->selfUrl());
 
         // fetch the actual stream stuff
-        $this->profileActionPreparation();
+        $stream = $this->getStream();
+        $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
+
+        if ($this->page > 1 && $this->notice->N == 0) {
+            // TRANS: Client error when page not found (404).
+            $this->clientError(_('No such page.'), 404);
+        }
+
 
         return true;
     }

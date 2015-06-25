@@ -41,7 +41,7 @@ class AllAction extends ShowstreamAction
 {
     var $notice;
 
-    protected function getStream()
+    public function getStream()
     {
         if ($this->scoped instanceof Profile && $this->scoped->isLocal() && $this->scoped->getUser()->streamModeOnly()) {
             $stream = new InboxNoticeStream($this->target, $this->scoped);

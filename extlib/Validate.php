@@ -2,19 +2,19 @@
 /**
  * Validation class
  *
- * Copyright (c) 1997-2006 Pierre-Alain Joye,Tomas V.V.Cox, Amir Saied  
+ * Copyright (c) 1997-2006 Pierre-Alain Joye,Tomas V.V.Cox, Amir Saied
  *
- * This source file is subject to the New BSD license, That is bundled  
- * with this package in the file LICENSE, and is available through      
- * the world-wide-web at                                                
- * http://www.opensource.org/licenses/bsd-license.php                   
- * If you did not receive a copy of the new BSDlicense and are unable   
- * to obtain it through the world-wide-web, please send a note to       
- * pajoye@php.net so we can mail you a copy immediately.                
+ * This source file is subject to the New BSD license, That is bundled
+ * with this package in the file LICENSE, and is available through
+ * the world-wide-web at
+ * http://www.opensource.org/licenses/bsd-license.php
+ * If you did not receive a copy of the new BSDlicense and are unable
+ * to obtain it through the world-wide-web, please send a note to
+ * pajoye@php.net so we can mail you a copy immediately.
  *
- * Author: Tomas V.V.Cox  <cox@idecnet.com>                             
- *         Pierre-Alain Joye <pajoye@php.net>                           
- *         Amir Mohammad Saied <amir@php.net>                           
+ * Author: Tomas V.V.Cox  <cox@idecnet.com>
+ *         Pierre-Alain Joye <pajoye@php.net>
+ *         Amir Mohammad Saied <amir@php.net>
  *
  *
  * Package to validate various datas. It includes :
@@ -32,10 +32,11 @@
  * @author     Amir Mohammad Saied <amir@php.net>
  * @copyright  1997-2006 Pierre-Alain Joye,Tomas V.V.Cox,Amir Mohammad Saied
  * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id: Validate.php,v 1.134 2009/01/28 12:27:33 davidc Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Validate
  */
 
+// {{{ Constants
 /**
  * Methods for common data validations
  */
@@ -44,17 +45,18 @@ define('VALIDATE_SPACE',        '\s');
 define('VALIDATE_ALPHA_LOWER',  'a-z');
 define('VALIDATE_ALPHA_UPPER',  'A-Z');
 define('VALIDATE_ALPHA',        VALIDATE_ALPHA_LOWER . VALIDATE_ALPHA_UPPER);
-define('VALIDATE_EALPHA_LOWER', VALIDATE_ALPHA_LOWER . 'áéíóúýàèìòùäëïöüÿâêîôûãñõ¨åæç½ðøþß');
-define('VALIDATE_EALPHA_UPPER', VALIDATE_ALPHA_UPPER . 'ÁÉÍÓÚÝÀÈÌÒÙÄËÏÖÜ¾ÂÊÎÔÛÃÑÕ¦ÅÆÇ¼ÐØÞ');
+define('VALIDATE_EALPHA_LOWER', VALIDATE_ALPHA_LOWER . 'Ã¡Ã©Ã­Ã³ÃºÃ½Ã Ã¨Ã¬Ã²Ã¹Ã¤Ã«Ã¯Ã¶Ã¼Ã¿Ã¢ÃªÃ®Ã´Ã»Ã£Ã±ÃµÂ¨Ã¥Ã¦Ã§Â½Ã°Ã¸Ã¾ÃŸ');
+define('VALIDATE_EALPHA_UPPER', VALIDATE_ALPHA_UPPER . 'ÃÃ‰ÃÃ“ÃšÃÃ€ÃˆÃŒÃ’Ã™Ã„Ã‹ÃÃ–ÃœÂ¾Ã‚ÃŠÃŽÃ”Ã›ÃƒÃ‘Ã•Â¦Ã…Ã†Ã‡Â¼ÃÃ˜Ãž');
 define('VALIDATE_EALPHA',       VALIDATE_EALPHA_LOWER . VALIDATE_EALPHA_UPPER);
 define('VALIDATE_PUNCTUATION',  VALIDATE_SPACE . '\.,;\:&"\'\?\!\(\)');
-define('VALIDATE_NAME',         VALIDATE_EALPHA . VALIDATE_SPACE . "'" . "-");
-define('VALIDATE_STREET',       VALIDATE_NUM . VALIDATE_NAME . "/\\ºª\.");
+define('VALIDATE_NAME',         VALIDATE_EALPHA . VALIDATE_SPACE . "'" . '\-');
+define('VALIDATE_STREET',       VALIDATE_NUM . VALIDATE_NAME . "/\\ÂºÂª\.");
 
 define('VALIDATE_ITLD_EMAILS',  1);
 define('VALIDATE_GTLD_EMAILS',  2);
 define('VALIDATE_CCTLD_EMAILS', 4);
 define('VALIDATE_ALL_EMAILS',   8);
+// }}}
 
 /**
  * Validation class
@@ -79,6 +81,7 @@ define('VALIDATE_ALL_EMAILS',   8);
  */
 class Validate
 {
+    // {{{ International, Generic and Country code TLDs
     /**
      * International Top-Level Domain
      *
@@ -202,6 +205,7 @@ class Validate
         'ye','yt','yu','za',
         'zm','zw',
     );
+    // }}}
 
     /**
      * Validate a tag URI (RFC4151)
@@ -445,6 +449,10 @@ class Validate
         if(!empty($options["VALIDATE_GTLD_EMAILS"])) array_push($validate, 'gtld');
         if(!empty($options["VALIDATE_CCTLD_EMAILS"])) array_push($validate, 'cctld');
 
+        if (count($validate) === 0) {
+            array_push($validate, 'itld', 'gtld', 'cctld');
+        }
+
         $self = new Validate;
 
         $toValidate = array();
@@ -459,7 +467,7 @@ class Validate
 
         return $e;
     }
-    
+
     /**
      * Execute the validation
      *
@@ -501,7 +509,7 @@ class Validate
      *      'use_rfc822' => 'true',
      *      'VALIDATE_GTLD_EMAILS' => 'true',
      *      'VALIDATE_CCTLD_EMAILS' => 'true',
-     *      'VALIDATE_ITLD_EMAILS' => 'true',           
+     *      'VALIDATE_ITLD_EMAILS' => 'true',
      *      );
      *
      * @return boolean true if valid email, false if not
@@ -524,15 +532,17 @@ class Validate
          */
         $hasIDNA = false;
 
-        if (@include_once('Net/IDNA.php')) {
+        if (Validate::_includePathFileExists('Net/IDNA.php')) {
+            include_once('Net/IDNA.php');
             $hasIDNA = true;
         }
 
         if ($hasIDNA === true) {
             if (strpos($email, '@') !== false) {
-                list($name, $domain) = explode('@', $email, 2);
+                $tmpEmail = explode('@', $email);
+                $domain = array_pop($tmpEmail);
 
-                // Check if the domain contains characters > 127 which means 
+                // Check if the domain contains characters > 127 which means
                 // it's an idn domain name.
                 $chars = count_chars($domain, 1);
                 if (!empty($chars) && max(array_keys($chars)) > 127) {
@@ -540,10 +550,11 @@ class Validate
                     $domain = $idna->encode($domain);
                 }
 
-                $email = "$name@$domain";
+                array_push($tmpEmail, $domain);
+                $email = implode('@', $tmpEmail);
             }
         }
-        
+
         /**
          * @todo Fix bug here.. even if it passes this, it won't be passing
          *       The regular expression below
@@ -565,14 +576,14 @@ class Validate
          (?:(?:(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:[0-1]?[0-9]?[0-9]))\.){3}
                (?:(?:25[0-5])|(?:2[0-4][0-9])|(?:[0-1]?[0-9]?[0-9]))))(?(5)\])|
          ((?:[a-z0-9](?:[-a-z0-9]*[a-z0-9])?\.)*[a-z0-9](?:[-a-z0-9]*[a-z0-9])?)  #6 domain as hostname
-         \.((?:([^- ])[-a-z]*[-a-z]))) #7 TLD 
+         \.((?:([^- ])[-a-z]*[-a-z]))) #7 TLD
          $&xi';
 
         //checks if exists the domain (MX or A)
         if ($use_rfc822? Validate::__emailRFC822($email, $options) :
                 preg_match($regex, $email)) {
             if ($check_domain && function_exists('checkdnsrr')) {
-                list ($account, $domain) = explode('@', $email);
+                $domain = preg_replace('/[^-a-z.0-9]/i', '', array_pop(explode('@', $email)));
                 if (checkdnsrr($domain, 'MX') || checkdnsrr($domain, 'A')) {
                     return true;
                 }
@@ -913,7 +924,7 @@ class Validate
      *
      * @param string &$date Date
      * @param string $num   Length
-     * @param string $opt   Unknown   
+     * @param string $opt   Unknown
      *
      * @access private
      * @return string
@@ -1086,8 +1097,10 @@ class Validate
                 $class        = implode('_', $validateType);
                 $classPath    = str_replace('_', DIRECTORY_SEPARATOR, $class);
                 $class        = 'Validate_' . $class;
-                if (!@include_once "Validate/$classPath.php") {
-                    trigger_error("$class isn't installed or you may have some permissoin issues", E_USER_ERROR);
+                if (Validate::_includePathFileExists("Validate/$classPath.php")) {
+                    include_once "Validate/$classPath.php";
+                } else {
+                    trigger_error("$class isn't installed or you may have some permission issues", E_USER_ERROR);
                 }
 
                 $ce = substr(phpversion(), 0, 1) > 4 ?
@@ -1111,6 +1124,26 @@ class Validate
             }
         }
         return $valid;
+    }
+
+    /**
+     * Determine whether specified file exists along the include path.
+     *
+     * @param string $filename file to search for
+     *
+     * @access private
+     *
+     * @return bool true if file exists
+     */
+    function _includePathFileExists($filename)
+    {
+        $paths = explode(":", ini_get("include_path"));
+        $result = false;
+
+        while ((!($result)) && (list($key,$val) = each($paths))) {
+            $result = file_exists($val . "/" . $filename);
+        }
+        return $result;
     }
 }
 

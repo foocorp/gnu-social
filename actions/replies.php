@@ -43,7 +43,7 @@ class RepliesAction extends ShowstreamAction
     var $page = null;
     var $notice;
 
-    protected function getStream()
+    public function getStream()
     {
         return new ReplyNoticeStream($this->target->getID(), $this->scoped);
     }
