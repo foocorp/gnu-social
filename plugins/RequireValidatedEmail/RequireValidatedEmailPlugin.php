@@ -80,7 +80,7 @@ class RequireValidatedEmailPlugin extends Plugin
      */
     public $disallowLogin = false;
 
-    function onRouterInitialized($m)
+    public function onRouterInitialized(URLMapper $m)
     {
         $m->connect('main/confirmfirst/:code',
                     array('action' => 'confirmfirstemail'));
@@ -95,15 +95,18 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return bool hook result code
      */
-    function onStartNoticeSave($notice)
+    public function onStartNoticeSave(Notice $notice)
     {
-        $user = User::getKV('id', $notice->profile_id);
-        if (!empty($user)) { // it's a remote notice
-            if (!$this->validated($user)) {
-                // TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
-                $msg = _m('You must validate your email address before posting.');
-                throw new ClientException($msg);
-            }
+        $author = $notice->getProfile();
+        if (!$author->isLocal()) {
+            // remote notice
+            return true;
+        }
+        $user = $author->getUser();
+        if (!$this->validated($user)) {
+            // TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
+            $msg = _m('You must validate your email address before posting.');
+            throw new ClientException($msg);
         }
         return true;
     }
@@ -136,7 +139,7 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return bool
      */
-    protected function validated($user)
+    protected function validated(User $user)
     {
         // The email field is only stored after validation...
         // Until then you'll find them in confirm_address.
@@ -162,7 +165,7 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return bool true if user is grandfathered
      */
-    protected function grandfathered($user)
+    protected function grandfathered(User $user)
     {
         if ($this->grandfatherCutoff) {
             $created = strtotime($user->created . " GMT");
@@ -183,7 +186,7 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return bool true if user has a trusted OpenID.
      */
-    function hasTrustedOpenID($user)
+    function hasTrustedOpenID(User $user)
     {
         if ($this->trustedOpenIDs && class_exists('User_openid')) {
             foreach ($this->trustedOpenIDs as $regex) {
