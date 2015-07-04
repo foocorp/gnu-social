@@ -41,7 +41,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-abstract class ProfileAction extends ManagedAction implements NoticestreamAction
+abstract class ProfileAction extends ManagedAction
 {
     var $page    = null;
     var $tag     = null;
@@ -64,16 +64,6 @@ abstract class ProfileAction extends ManagedAction implements NoticestreamAction
         $this->tag = $this->trimmed('tag');
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
         common_set_returnto($this->selfUrl());
-
-        // fetch the actual stream stuff
-        $stream = $this->getStream();
-        $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
-
-        if ($this->page > 1 && $this->notice->N == 0) {
-            // TRANS: Client error when page not found (404).
-            $this->clientError(_('No such page.'), 404);
-        }
-
 
         return true;
     }
