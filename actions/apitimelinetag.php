@@ -51,23 +51,10 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
 {
     var $notices = null;
 
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
-        common_debug("apitimelinetag prepare()");
-
         $this->tag     = $this->arg('tag');
         $this->notices = $this->getNotices();
-
-        return true;
     }
 
     /**
@@ -79,9 +66,9 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $this->showTimeline();
     }
 
