@@ -110,18 +110,9 @@ class ApiDirectMessageAction extends ApiAuthAction
         return true;
     }
 
-    /**
-     * Handle the request
-     *
-     * Show the messages
-     *
-     * @param array $args $_REQUEST data (unused)
-     *
-     * @return void
-     */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $this->showMessages();
     }
 
