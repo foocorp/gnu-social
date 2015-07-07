@@ -206,7 +206,7 @@ class File_redirection extends Managed_DataObject
      * @param User $user whose shortening options to use; defaults to the current web session user
      * @return string
      */
-    function makeShort($long_url, $user=null)
+    static function makeShort($long_url, $user=null)
     {
         $canon = File_redirection::_canonUrl($long_url);
 
@@ -214,11 +214,7 @@ class File_redirection extends Managed_DataObject
 
         // Did we get one? Is it shorter?
 
-        if (!empty($short_url)) {
-            return $short_url;
-        } else {
-            return $long_url;
-        }
+        return !empty($short_url) ? $short_url : $long_url;
     }
 
     /**
@@ -235,18 +231,14 @@ class File_redirection extends Managed_DataObject
      * @return string
      */
 
-    function forceShort($long_url, $user)
+    static function forceShort($long_url, $user)
     {
         $canon = File_redirection::_canonUrl($long_url);
 
         $short_url = File_redirection::_userMakeShort($canon, $user, true);
 
         // Did we get one? Is it shorter?
-        if (!empty($short_url)) {
-            return $short_url;
-        } else {
-            return $long_url;
-        }
+        return !empty($short_url) ? $short_url : $long_url;
     }
 
     static function _userMakeShort($long_url, User $user=null, $force = false) {
