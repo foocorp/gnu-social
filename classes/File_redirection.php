@@ -176,7 +176,7 @@ class File_redirection extends Managed_DataObject
             try {
                 $b = File_redirection::getByUrl($in_url);
                 // this is a redirect to $b->file_id
-                $a = File::getKV('id', $b->file_id);
+                $a = File::getByID($b->file_id);
                 return $a->url;
             } catch (NoResultException $e) {
                 // Oh well, let's keep going
@@ -186,10 +186,10 @@ class File_redirection extends Managed_DataObject
         if ($discover) {
             $ret = File_redirection::lookupWhere($in_url);
             return $ret;
-        } else {
-            // No manual dereferencing; leave the unknown URL as is.
-            return $in_url;
         }
+
+        // No manual dereferencing; leave the unknown URL as is.
+        return $in_url;
     }
 
     /**
