@@ -30,9 +30,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Creates a new direct message from the authenticating user to
@@ -65,7 +63,7 @@ class ApiDirectMessageNewAction extends ApiAuthAction
     {
         parent::prepare($args);
 
-        if (empty($this->user)) {
+        if (!$this->scoped instanceof Profile) {
             // TRANS: Client error when user not found for an API direct message action.
             $this->clientError(_('No such user.'), 404);
         }
@@ -111,10 +109,10 @@ class ApiDirectMessageNewAction extends ApiAuthAction
         if (!$this->other instanceof Profile) {
             // TRANS: Client error displayed if a recipient user could not be found (403).
             $this->clientError(_('Recipient user not found.'), 403);
-        } else if (!$this->user->mutuallySubscribed($this->other)) {
+        } else if (!$this->scoped->mutuallySubscribed($this->other)) {
             // TRANS: Client error displayed trying to direct message another user who's not a friend (403).
             $this->clientError(_('Cannot send direct messages to users who aren\'t your friend.'), 403);
-        } else if ($this->user->id == $this->other->id) {
+        } else if ($this->scoped->getID() === $this->other->getID()) {
 
             // Note: sending msgs to yourself is allowed by Twitter
 
@@ -123,8 +121,8 @@ class ApiDirectMessageNewAction extends ApiAuthAction
         }
 
         $message = Message::saveNew(
-            $this->user->id,
-            $this->other->id,
+            $this->scoped->getID(),
+            $this->other->getID(),
             html_entity_decode($this->content, ENT_NOQUOTES, 'UTF-8'),
             $this->source
         );
