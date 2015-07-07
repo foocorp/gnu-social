@@ -166,7 +166,7 @@ class File_redirection extends Managed_DataObject
      *                size (optional): byte size from Content-Length header
      *                time (optional): timestamp from Last-Modified header
      */
-    public function where($in_url, $discover=true) {
+    static function where($in_url, $discover=true) {
         // let's see if we know this...
         try {
             $a = File::getByUrl($in_url);
