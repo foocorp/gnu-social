@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once(INSTALLDIR.'/lib/rssaction.php');
 
@@ -27,7 +27,7 @@ class UserrssAction extends Rss10Action
 {
     var $tag  = null;
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
         $nickname   = $this->trimmed('nickname');

@@ -75,7 +75,7 @@ class Rss10Action extends Action
      * @return boolean success
      */
 
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
@@ -120,10 +120,10 @@ class Rss10Action extends Action
      * @return void
      */
 
-    function handle($args)
+    protected function handle()
     {
         // Parent handling, including cache check
-        parent::handle($args);
+        parent::handle();
         $this->showRss();
     }
 
