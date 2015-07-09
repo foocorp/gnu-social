@@ -20,67 +20,29 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Top
- * @package   StatusNet
- * @author    Evan Prodromou <evan@status.net>
- * @copyright 2010 StatusNet, Inc.
- * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
- * @link      http://status.net/
- */
-
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
-
-/**
- * An action to redirect to the top of the site
- *
  * @category  Action
- * @package   StatusNet
+ * @package   GNUsocial
  * @author    Evan Prodromou <evan@status.net>
+ * @author    Mikael Nordfeldth <mmn@hethane.se>
  * @copyright 2010 StatusNet, Inc.
- * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
- * @link      http://status.net/
+ * @copyright 2015 Free Software Foundation, Inc.
+ * @license   https://www.gnu.org/licenses/agpl-3.0.html AGPL 3.0
+ * @link      https://gnu.io/social
  */
 
-class TopAction extends Action
+if (!defined('GNUSOCIAL')) { exit(1); }
+
+class TopAction extends ManagedAction
 {
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-
-    function prepare($argarray)
-    {
-        parent::prepare($argarray);
-        return true;
-    }
-
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-
-    function handle($argarray=null)
+    public function showPage()
     {
         if (common_config('singleuser', 'enabled')) {
-            $url = common_local_url('showstream', array('nickname' => User::singleUserNickname()));
+            $user = User::singleUser();
+            common_redirect(common_local_url('showstream', array('nickname' => $user->getNickname())), 303);
+        } elseif (common_config('public', 'localonly')) {
+            common_redirect(common_local_url('public'), 303);
         } else {
-            $url = common_local_url('public');
+            common_redirect(common_local_url('networkpublic'), 303);
         }
-
-        // XXX: Permanent? I think so.
-
-        common_redirect($url, 301);
-
-        return;
     }
 }

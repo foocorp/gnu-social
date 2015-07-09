@@ -108,6 +108,11 @@ class Router
 
         if (Event::handle('StartInitializeRouter', array(&$m))) {
 
+            // top of the menu hierarchy, sometimes "Home"
+            $m->connect('', array('action' => 'top'));
+
+            // public endpoints
+
             $m->connect('robots.txt', array('action' => 'robotstxt'));
 
             $m->connect('opensearch/people', array('action' => 'opensearch',
@@ -156,13 +161,13 @@ class Router
                           'deleteaccount',
                           'restoreaccount',
                           'top',
+                          'public',
             );
 
             foreach ($main as $a) {
                 $m->connect('main/'.$a, array('action' => $a));
             }
 
-            $m->connect('main/public', array('action' => 'public'));
             $m->connect('main/all', array('action' => 'networkpublic'));
 
             $m->connect('main/tagprofile/:id', array('action' => 'tagprofile'),
@@ -875,9 +880,6 @@ class Router
                             array('action' => 'rsd',
                                   'nickname' => $nickname));
 
-                $m->connect('',
-                            array('action' => 'startpage'));
-
                 // peopletags
 
                 $m->connect('peopletags',
@@ -930,9 +932,6 @@ class Router
                 }
             }
 
-            $m->connect('', array('action' => 'startpage'));
-            $m->connect('main/public', array('action' => 'public'));
-            $m->connect('main/all', array('action' => 'networkpublic'));
             $m->connect('rss', array('action' => 'publicrss'));
             $m->connect('featuredrss', array('action' => 'featuredrss'));
             $m->connect('featured/', array('action' => 'featured'));
