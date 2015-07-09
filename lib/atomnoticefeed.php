@@ -113,10 +113,12 @@ class AtomNoticeFeed extends Atom10Feed
             foreach ($notices as $notice) {
                 $this->addEntryFromNotice($notice);
             }
-        } else {
+        } elseif ($notices instanceof Notice) {
             while ($notices->fetch()) {
                 $this->addEntryFromNotice($notices);
             }
+        } else {
+            throw new ServerException('addEntryFromNotices got neither an array nor a Notice object');
         }
     }
 
@@ -125,7 +127,7 @@ class AtomNoticeFeed extends Atom10Feed
      *
      * @param Notice $notice a Notice to add
      */
-    function addEntryFromNotice($notice)
+    function addEntryFromNotice(Notice $notice)
     {
         try {
             $source = $this->showSource();
