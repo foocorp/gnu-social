@@ -28,11 +28,11 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 define('DEFAULT_RSS_LIMIT', 48);
 
-class Rss10Action extends Action
+class Rss10Action extends ManagedAction
 {
     // This will contain the details of each feed item's author and be used to generate SIOC data.
 
@@ -41,45 +41,14 @@ class Rss10Action extends Action
     var $notices = null;
     var $tags_already_output = array();
 
-    /**
-     * Constructor
-     *
-     * Just wraps the Action constructor.
-     *
-     * @param string  $output URI to output to, default = stdout
-     * @param boolean $indent Whether to indent output, default true
-     *
-     * @see Action::__construct
-     */
-
-    function __construct($output='php://output', $indent=null)
-    {
-        parent::__construct($output, $indent);
-    }
-
-    /**
-     * Do we need to write to the database?
-     *
-     * @return boolean true
-     */
-
-    function isReadonly()
+    public function isReadOnly($args)
     {
         return true;
     }
 
-    /**
-     * Read arguments and initialize members
-     *
-     * @param array $args Arguments from $_REQUEST
-     * @return boolean success
-     */
-
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
-        $this->limit = (int) $this->trimmed('limit');
+        $this->limit = $this->int('limit');
 
         if ($this->limit == 0) {
             $this->limit = DEFAULT_RSS_LIMIT;
@@ -93,7 +62,7 @@ class Rss10Action extends Action
 
                 // If the user hits cancel -- bam!
                 $this->show_basic_auth_error();
-                return;
+                // the above calls 'exit'
             } else {
                 $nickname = $_SERVER['PHP_AUTH_USER'];
                 $password = $_SERVER['PHP_AUTH_PW'];
@@ -108,23 +77,6 @@ class Rss10Action extends Action
                 }
             }
         }
-
-        return true;
-    }
-
-    /**
-     * Handle a request
-     *
-     * @param array $args Arguments from $_REQUEST
-     *
-     * @return void
-     */
-
-    protected function handle()
-    {
-        // Parent handling, including cache check
-        parent::handle();
-        $this->showRss();
     }
 
     function show_basic_auth_error()
@@ -137,6 +89,7 @@ class Rss10Action extends Action
         $this->element('request', null, $_SERVER['REQUEST_URI']);
         $this->elementEnd('hash');
         $this->endXML();
+        exit;
     }
 
     /**
@@ -170,7 +123,7 @@ class Rss10Action extends Action
         return null;
     }
 
-    function showRss()
+    function showPage()
     {
         $this->initRss();
         $this->showChannel();
