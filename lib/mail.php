@@ -47,11 +47,13 @@ require_once 'Mail.php';
 function mail_backend()
 {
     static $backend = null;
+    global $_PEAR;
 
     if (!$backend) {
-        $backend = Mail::factory(common_config('mail', 'backend'),
+        $mail = new Mail();
+        $backend = $mail->factory(common_config('mail', 'backend'),
                                  common_config('mail', 'params') ?: array());
-        if (PEAR::isError($backend)) {
+        if ($_PEAR->isError($backend)) {
             common_server_error($backend->getMessage(), 500);
         }
     }
