@@ -949,6 +949,13 @@ class Router
                         array('action' => 'subqueue'),
                         array('nickname' => Nickname::DISPLAY_FMT));
 
+            // some targeted RSS 1.0 actions (extends TargetedRss10Action)
+            foreach (array('all', 'replies') as $a) {
+                $m->connect(':nickname/'.$a.'/rss',
+                            array('action' => $a.'rss'),
+                            array('nickname' => Nickname::DISPLAY_FMT));
+            }
+
             // people tags
 
             $m->connect(':nickname/peopletags',
@@ -1013,12 +1020,6 @@ class Router
             foreach (array('rss', 'groups') as $a) {
                 $m->connect(':nickname/'.$a,
                             array('action' => 'user'.$a),
-                            array('nickname' => Nickname::DISPLAY_FMT));
-            }
-
-            foreach (array('all', 'replies') as $a) {
-                $m->connect(':nickname/'.$a.'/rss',
-                            array('action' => $a.'rss'),
                             array('nickname' => Nickname::DISPLAY_FMT));
             }
 
