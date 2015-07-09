@@ -17,9 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-require_once(INSTALLDIR.'/lib/rssaction.php');
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 // Formatting of RSS handled by Rss10Action
 

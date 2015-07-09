@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/rssaction.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 define('MEMBERS_PER_SECTION', 27);
 
