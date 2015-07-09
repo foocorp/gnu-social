@@ -20,33 +20,25 @@
 if (!defined('GNUSOCIAL')) { exit(1); }
 
 // Formatting of RSS handled by Rss10Action
+
 class TagrssAction extends Rss10Action
 {
-    var $tag;
+    protected $tag;
 
-    function prepare($args) {
-        parent::prepare($args);
+    protected function doStreamPreparation()
+    {
         $tag = common_canonical_tag($this->trimmed('tag'));
         $this->tag = Notice_tag::getKV('tag', $tag);
-        if (!$this->tag) {
+        if (!$this->tag instanceof Notice_tag) {
             // TRANS: Client error when requesting a tag feed for a non-existing tag.
             $this->clientError(_('No such tag.'));
-        } else {
-            $this->notices = $this->getNotices($this->limit);
-            return true;
         }
     }
 
-    function getNotices($limit=0)
+    protected function getNotices()
     {
-        $tag = $this->tag;
-
-        if (is_null($tag)) {
-            return null;
-        }
-
-        $notice = Notice_tag::getStream($tag->tag)->getNotices(0, ($limit == 0) ? NOTICES_PER_PAGE : $limit);
-        return $notice->fetchAll();
+        $stream = Notice_tag::getStream($this->tag->tag)->getNotices(0, $this->limit);
+        return $stream->fetchAll();
     }
 
     function getChannel()

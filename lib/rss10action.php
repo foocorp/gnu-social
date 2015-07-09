@@ -50,7 +50,7 @@ class Rss10Action extends ManagedAction
     {
         $this->limit = $this->int('limit');
 
-        if ($this->limit == 0) {
+        if (empty($this->limit)) {
             $this->limit = DEFAULT_RSS_LIMIT;
         }
 
@@ -73,10 +73,19 @@ class Rss10Action extends ManagedAction
 
                     common_log(LOG_WARNING, "Failed RSS auth attempt, nickname = $nickname, proxy = $proxy, ip = $ip.");
                     $this->show_basic_auth_error();
-                    return;
+                    // the above calls 'exit'
                 }
             }
         }
+
+        $this->doStreamPreparation();
+
+        $this->notices = $this->getNotices($this->limit);
+    }
+
+    protected function doStreamPreparation()
+    {
+        // for example if we need to set $this->target or something
     }
 
     function show_basic_auth_error()
@@ -98,7 +107,7 @@ class Rss10Action extends ManagedAction
      * @return array an array of Notice objects sorted in reverse chron
      */
 
-    function getNotices()
+    protected function getNotices($limit=0)
     {
         return array();
     }

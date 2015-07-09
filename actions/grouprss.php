@@ -41,10 +41,10 @@ define('MEMBERS_PER_SECTION', 27);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class groupRssAction extends Rss10Action
+class GroupRssAction extends TargetedRss10Action
 {
     /** group we're viewing. */
-    var $group = null;
+    protected $group = null;
 
     /**
      * Is this page read-only?
@@ -56,18 +56,8 @@ class groupRssAction extends Rss10Action
         return true;
     }
 
-    /**
-     * Prepare the action
-     *
-     * Reads and validates arguments and instantiates the attributes.
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected function doStreamPreparation()
     {
-        parent::prepare($args);
 
         $nickname_arg = $this->arg('nickname');
         $nickname = common_canonical_nickname($nickname_arg);
@@ -86,52 +76,32 @@ class groupRssAction extends Rss10Action
 
         $local = Local_group::getKV('nickname', $nickname);
 
-        if (!$local) {
+        if (!$local instanceof Local_group) {
             // TRANS: Client error displayed when requesting a group RSS feed for group that does not exist.
             $this->clientError(_('No such group.'), 404);
         }
 
-        $this->group = User_group::getKV('id', $local->group_id);
-
-        if (!$this->group) {
-            // TRANS: Client error displayed when requesting a group RSS feed for an object that is not a group.
-            $this->clientError(_('No such group.'), 404);
-        }
-
-        $this->notices = $this->getNotices($this->limit);
-        return true;
+        $this->group = $local->getGroup();
+        $this->target = $this->group->getProfile();
     }
 
-    function getNotices($limit=0)
+    protected function getNotices()
     {
-        $group = $this->group;
-
-        if (is_null($group)) {
-            return null;
-        }
-
-        $notices = array();
-        $notice = $group->getNotices(0, ($limit == 0) ? NOTICES_PER_PAGE : $limit);
-
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-
-        return $notices;
+        $stream = $this->group->getNotices(0, $this->limit);
+        return $stream->fetchAll();
     }
 
     function getChannel()
     {
-        $group = $this->group;
         $c = array('url' => common_local_url('grouprss',
                                              array('nickname' =>
-                                                   $group->nickname)),
+                                                   $this->target->getNickname())),
                    // TRANS: Message is used as link title. %s is a user nickname.
-                   'title' => sprintf(_('%s timeline'), $group->nickname),
-                   'link' => common_local_url('showgroup', array('nickname' => $group->nickname)),
+                   'title' => sprintf(_('%s timeline'), $this->target->getNickname()),
+                   'link' => common_local_url('showgroup', array('nickname' => $this->target->getNickname())),
                    // TRANS: Message is used as link description. %1$s is a group name, %2$s is a site name.
                    'description' => sprintf(_('Updates from members of %1$s on %2$s!'),
-                                            $group->nickname, common_config('site', 'name')));
+                                            $this->target->getNickname(), common_config('site', 'name')));
         return $c;
     }
 

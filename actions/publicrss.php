@@ -45,44 +45,16 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class PublicrssAction extends Rss10Action
 {
     /**
-     * Read arguments and initialize members
-     *
-     * @param array $args Arguments from $_REQUEST
-     * @return boolean success
-     */
-    function prepare($args)
-    {
-        parent::prepare($args);
-        $this->notices = $this->getNotices($this->limit);
-        return true;
-    }
-
-    /**
-     * Initialization.
-     *
-     * @return boolean true
-     */
-    function init()
-    {
-        return true;
-    }
-
-    /**
      * Get notices
      *
      * @param integer $limit max number of notices to return
      *
      * @return array notices
      */
-    function getNotices($limit=0)
+    protected function getNotices()
     {
-        $notices = array();
-        $notice  = Notice::publicStream(0, ($limit == 0) ? 48 : $limit);
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-
-        return $notices;
+        $stream  = Notice::publicStream(0, $this->limit);
+        return $stream->fetchAll();
     }
 
      /**

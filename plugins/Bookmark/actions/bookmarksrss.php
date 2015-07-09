@@ -44,54 +44,12 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class BookmarksrssAction extends Rss10Action
+class BookmarksrssAction extends TargetedRss10Action
 {
-    /** The user whose bookmarks to display */
-
-    var $user = null;
-
-    /**
-     * Find the user to display by supplied nickname
-     *
-     * @param array $args Arguments from $_REQUEST
-     *
-     * @return boolean success
-     */
-    function prepare($args)
-    {        
-        parent::prepare($args);
-
-        $nickname   = $this->trimmed('nickname');
-        $this->user = User::getKV('nickname', $nickname);
-
-        if (!$this->user) {
-            // TRANS: Client error displayed when trying to get the RSS feed with bookmarks of a user that does not exist.
-            $this->clientError(_('No such user.'));
-        } else {
-            $this->notices = $this->getNotices($this->limit);
-            return true;
-        }
-    }
-
-    /**
-     * Get notices
-     *
-     * @param integer $limit max number of notices to return
-     *
-     * @return array notices
-     */
-    function getNotices($limit=0)
+    protected function getNotices()
     {
-        $user    = $this->user;
-
-        $notice = new BookmarksNoticeStream($this->user->id, true);
-        $notice = $notice->getNotices(0, NOTICES_PER_PAGE);
-
-        $notices = array();
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-        return $notices;
+        $stream = new BookmarksNoticeStream($this->target->getID(), true);
+        return $stream->getNotices(0, $this->limit)->fetchAll();
     }
 
      /**
@@ -101,31 +59,19 @@ class BookmarksrssAction extends Rss10Action
      */
     function getChannel()
     {
-        $user = $this->user;
         $c    = array('url' => common_local_url('bookmarksrss',
                                         array('nickname' =>
-                                        $user->nickname)),
+                                        $this->target->getNickname())),
                    // TRANS: Title of RSS feed with bookmarks of a user.
                    // TRANS: %s is a user's nickname.
-                   'title' => sprintf(_("%s's bookmarks"), $user->nickname),
+                   'title' => sprintf(_("%s's bookmarks"), $this->target->getNickname()),
                    'link' => common_local_url('bookmarks',
                                         array('nickname' =>
-                                        $user->nickname)),
+                                        $this->target->getNickname())),
                    // TRANS: Desciption of RSS feed with bookmarks of a user.
                    // TRANS: %1$s is a user's nickname, %2$s is the name of the StatusNet site.
                    'description' => sprintf(_('Bookmarks posted by %1$s on %2$s!'),
-                                        $user->nickname, common_config('site', 'name')));
+                                        $this->target->getNickname(), common_config('site', 'name')));
         return $c;
     }
-
-    /**
-     * Get image.
-     *
-     * @return void
-    */
-    function getImage()
-    {
-        return null;
-    }
-
 }

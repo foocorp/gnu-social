@@ -43,50 +43,15 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class FavoritesrssAction extends Rss10Action
+class FavoritesrssAction extends TargetedRss10Action
 {
-    /** The user whose favorites to display */
-
-    var $user = null;
-
-    /**
-     * Find the user to display by supplied nickname
-     *
-     * @param array $args Arguments from $_REQUEST
-     *
-     * @return boolean success
-     */
-    function prepare($args)
+    protected function getNotices()
     {
-        parent::prepare($args);
+        // is this our own stream?
+        $own = $this->scoped instanceof Profile ? $this->target->getID() === $this->scoped->getID() : false;
 
-        $nickname   = $this->trimmed('nickname');
-        $this->user = User::getKV('nickname', $nickname);
-
-        if (!$this->user) {
-            // TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.
-            $this->clientError(_('No such user.'));
-        } else {
-            $this->notices = $this->getNotices($this->limit);
-            return true;
-        }
-    }
-
-    /**
-     * Get notices
-     *
-     * @param integer $limit max number of notices to return
-     *
-     * @return array notices
-     */
-    function getNotices($limit=0)
-    {
-        $notice  = Fave::stream($this->user->id, 0, $limit, $false);
-        $notices = array();
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-        return $notices;
+        $stream = Fave::stream($this->target->getID(), 0, $this->limit, $own);
+        return $stream->fetchAll();
     }
 
      /**
@@ -112,15 +77,4 @@ class FavoritesrssAction extends Rss10Action
                                         $user->nickname, common_config('site', 'name')));
         return $c;
     }
-
-    /**
-     * Get image.
-     *
-     * @return void
-    */
-    function getImage()
-    {
-        return null;
-    }
-
 }
