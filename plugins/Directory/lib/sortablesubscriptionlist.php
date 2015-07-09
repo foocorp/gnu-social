@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/subscriptionlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Widget to show a sortable list of subscriptions
@@ -128,32 +124,9 @@ class SortableSubscriptionList extends SubscriptionList
         $this->out->elementEnd('table');
     }
 
-    function showProfiles()
+    function newListItem($profile)
     {
-        // Note: we don't use fetchAll() because it's borked with query()
-
-        $profiles = array();
-
-        while ($this->profile->fetch()) {
-            $profiles[] = clone($this->profile);
-        }
-
-        $cnt = count($profiles);
-
-        $max = min($cnt, $this->maxProfiles());
-
-        for ($i = 0; $i < $max; $i++) {
-            $odd = ($i % 2 == 0); // for zebra striping
-            $pli = $this->newListItem($profiles[$i], $odd);
-            $pli->show();
-        }
-
-        return $cnt;
-    }
-
-    function newListItem($profile, $odd)
-    {
-        return new SortableSubscriptionListItem($profile, $this->owner, $this->action, $odd);
+        return new SortableSubscriptionListItem($profile, $this->owner, $this->action);
     }
 }
 
@@ -162,11 +135,10 @@ class SortableSubscriptionListItem extends SubscriptionListItem
     /** Owner of this list */
     var $owner = null;
 
-    function __construct($profile, $owner, $action, $alt)
+    function __construct($profile, $owner, $action)
     {
         parent::__construct($profile, $owner, $action);
 
-        $this->alt   = $alt; // is this row alternate?
         $this->owner = $owner;
     }
 
@@ -176,10 +148,6 @@ class SortableSubscriptionListItem extends SubscriptionListItem
             'class' => 'profile',
             'id'    => 'profile-' . $this->profile->id
         );
-
-        if ($this->alt) {
-            $attr['class'] .= ' alt';
-        }
 
         $this->out->elementStart('tr', $attr);
     }

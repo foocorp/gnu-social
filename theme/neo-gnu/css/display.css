@@ -1141,11 +1141,6 @@ table.profile_list {
         background: url(../images/bluearrow_up.png) no-repeat top right;
 }
 
-table.profile_list tr.alt {
-    background-color: #fafafa !important;
-    border: none !important;
-}
-
 td.entity_profile {
     width: auto;
     min-width: 250px;
