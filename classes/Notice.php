@@ -1203,17 +1203,15 @@ class Notice extends Managed_DataObject
 	    $this->_attachments[$this->id] = $attachments;
 	}
 
-    function publicStream($offset=0, $limit=20, $since_id=0, $max_id=0)
+    static function publicStream($offset=0, $limit=20, $since_id=null, $max_id=null)
     {
         $stream = new PublicNoticeStream();
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
-
-    function conversationStream($id, $offset=0, $limit=20, $since_id=0, $max_id=0)
+    static function conversationStream($id, $offset=0, $limit=20, $since_id=null, $max_id=null)
     {
         $stream = new ConversationNoticeStream($id);
-
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
@@ -1225,18 +1223,17 @@ class Notice extends Managed_DataObject
      */
     function hasConversation()
     {
-        if (!empty($this->conversation)) {
-            $conversation = Notice::conversationStream(
-                $this->conversation,
-                1,
-                1
-            );
-
-            if ($conversation->N > 0) {
-                return true;
-            }
+        if (empty($this->conversation)) {
+            // this notice is not part of a conversation apparently
+            // FIXME: all notices should have a conversation value, right?
+            return false;
         }
-        return false;
+
+        $stream = new ConversationNoticeStream($this->conversation);
+        $notices = $stream->getNotices(/*offset*/ 1, /*limit*/ 1);
+
+        // if our "offset 1, limit 1" query got a result, return true else false
+        return $notice->N > 0;
     }
 
     /**
@@ -1271,8 +1268,7 @@ class Notice extends Managed_DataObject
             $root = new Notice;
             $root->conversation = $this->conversation;
             $root->orderBy('notice.created ASC');
-            $root->find();
-            $root->fetch();
+            $root->find(true);  // true means "fetch first result"
             $root->free();
             return $root;
         }
@@ -2193,7 +2189,7 @@ class Notice extends Managed_DataObject
         return $notice->fetchAll('id');
     }
 
-    function locationOptions($lat, $lon, $location_id, $location_ns, $profile = null)
+    static function locationOptions($lat, $lon, $location_id, $location_ns, $profile = null)
     {
         $options = array();
 
