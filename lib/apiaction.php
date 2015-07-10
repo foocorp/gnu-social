@@ -248,7 +248,7 @@ class ApiAction extends Action
 
         $twitter_user['friends_count'] = $profile->subscriptionCount();
 
-        $twitter_user['created_at'] = $this->dateTwitter($profile->created);
+        $twitter_user['created_at'] = self::dateTwitter($profile->created);
 
         $timezone = 'UTC';
 
@@ -322,7 +322,7 @@ class ApiAction extends Action
         $twitter_status = array();
         $twitter_status['text'] = $notice->content;
         $twitter_status['truncated'] = false; # Not possible on StatusNet
-        $twitter_status['created_at'] = $this->dateTwitter($notice->created);
+        $twitter_status['created_at'] = self::dateTwitter($notice->created);
         try {
             // We could just do $notice->reply_to but maybe the future holds a
             // different story for parenting.
@@ -440,8 +440,8 @@ class ApiAction extends Action
         $twitter_group['homepage'] = $group->homepage;
         $twitter_group['description'] = $group->description;
         $twitter_group['location'] = $group->location;
-        $twitter_group['created'] = $this->dateTwitter($group->created);
-        $twitter_group['modified'] = $this->dateTwitter($group->modified);
+        $twitter_group['created'] = self::dateTwitter($group->created);
+        $twitter_group['modified'] = self::dateTwitter($group->modified);
 
         return $twitter_group;
     }
@@ -1196,7 +1196,7 @@ class ApiAction extends Action
         $this->endDocument('xml');
     }
 
-    function dateTwitter($dt)
+    static function dateTwitter($dt)
     {
         $dateStr = date('d F Y H:i:s', strtotime($dt));
         $d = new DateTime($dateStr, new DateTimeZone('UTC'));
