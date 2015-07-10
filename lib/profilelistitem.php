@@ -37,7 +37,8 @@ class ProfileListItem extends Widget
     /** Action object using us. */
     var $action = null;
 
-    function __construct(Profile $target, HTMLOutputter $action)
+    // FIXME: Directory plugin sends a User_group here, but should send a Profile and handle User_group specifics itself
+    function __construct($target, HTMLOutputter $action)
     {
         parent::__construct($action);
 

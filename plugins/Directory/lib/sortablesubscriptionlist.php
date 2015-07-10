@@ -40,16 +40,6 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class SortableSubscriptionList extends SubscriptionList
 {
-    /** Owner of this list */
-    var $owner = null;
-
-    function __construct($profile, $owner=null, $action=null)
-    {
-        parent::__construct($profile, $owner, $action);
-
-        $this->owner = $owner;
-    }
-
     function startList()
     {
         $this->out->elementStart('table', array('class' => 'profile_list xoxo'));
@@ -132,16 +122,6 @@ class SortableSubscriptionList extends SubscriptionList
 
 class SortableSubscriptionListItem extends SubscriptionListItem
 {
-    /** Owner of this list */
-    var $owner = null;
-
-    function __construct($profile, $owner, $action)
-    {
-        parent::__construct($profile, $owner, $action);
-
-        $this->owner = $owner;
-    }
-
     function startItem()
     {
         $attr = array(
