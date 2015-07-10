@@ -58,9 +58,6 @@ abstract class ProfileAction extends ManagedAction
             throw new ClientException(_('This profile has been silenced by site moderators'), 403);
         }
 
-        // backwards compatibility until all actions are fixed to use $this->target
-        $this->profile = $this->target;
-
         $this->tag = $this->trimmed('tag');
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
         common_set_returnto($this->selfUrl());
