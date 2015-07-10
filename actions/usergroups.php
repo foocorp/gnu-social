@@ -52,12 +52,12 @@ class UsergroupsAction extends GalleryAction
         if ($this->page == 1) {
             // TRANS: Page title for first page of groups for a user.
             // TRANS: %s is a nickname.
-            return sprintf(_('%s groups'), $this->user->nickname);
+            return sprintf(_('%s groups'), $this->getTarget()->getNickname());
         } else {
             // TRANS: Page title for all but the first page of groups for a user.
             // TRANS: %1$s is a nickname, %2$d is a page number.
             return sprintf(_('%1$s groups, page %2$d'),
-                           $this->user->nickname,
+                           $this->getTarget()->getNickname(),
                            $this->page);
         }
     }
@@ -82,14 +82,14 @@ class UsergroupsAction extends GalleryAction
             $offset = ($this->page-1) * GROUPS_PER_PAGE;
             $limit =  GROUPS_PER_PAGE + 1;
 
-            $groups = $this->user->getGroups($offset, $limit);
+            $groups = $this->getTarget()->getGroups($offset, $limit);
 
             if ($groups instanceof User_group) {
-                $gl = new GroupList($groups, $this->user, $this);
+                $gl = new GroupList($groups, $this->getTarget(), $this);
                 $cnt = $gl->show();
                 $this->pagination($this->page > 1, $cnt > GROUPS_PER_PAGE,
                               $this->page, 'usergroups',
-                              array('nickname' => $this->user->nickname));
+                              array('nickname' => $this->getTarget()->getNickname()));
             } else {
                 $this->showEmptyListMessage();
             }
@@ -102,11 +102,11 @@ class UsergroupsAction extends GalleryAction
     {
         // TRANS: Text on group page for a user that is not a member of any group.
         // TRANS: %s is a user nickname.
-        $message = sprintf(_('%s is not a member of any group.'), $this->user->nickname) . ' ';
+        $message = sprintf(_('%s is not a member of any group.'), $this->getTarget()->getNickname()) . ' ';
 
         if (common_logged_in()) {
             $current_user = common_current_user();
-            if ($this->user->id === $current_user->id) {
+            if ($this->scoped->sameAs($this->getTarget())) {
                 // TRANS: Text on group page for a user that is not a member of any group. This message contains
                 // TRANS: a Markdown link in the form [link text](link) and a variable that should not be changed.
                 $message .= _('Try [searching for groups](%%action.groupsearch%%) and joining them.');
@@ -119,7 +119,7 @@ class UsergroupsAction extends GalleryAction
 
     function showProfileBlock()
     {
-        $block = new AccountProfileBlock($this, $this->profile);
+        $block = new AccountProfileBlock($this, $this->getTarget());
         $block->show();
     }
 }

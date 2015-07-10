@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * A list of the user's subscriptions
@@ -48,20 +46,19 @@ class SearchSubsAction extends GalleryAction
         if ($this->page == 1) {
             // TRANS: Header for subscriptions overview for a user (first page).
             // TRANS: %s is a user nickname.
-            return sprintf(_m('%s\'s search subscriptions'), $this->user->nickname);
+            return sprintf(_m('%s\'s search subscriptions'), $this->getTarget()->getNickname());
         } else {
             // TRANS: Header for subscriptions overview for a user (not first page).
             // TRANS: %1$s is a user nickname, %2$d is the page number.
             return sprintf(_m('%1$s\'s search subscriptions, page %2$d'),
-                           $this->user->nickname,
+                           $this->getTarget()->getNickname(),
                            $this->page);
         }
     }
 
     function showPageNotice()
     {
-        $user = common_current_user();
-        if ($user && ($user->id == $this->profile->id)) {
+        if ($this->scoped instanceof Profile && $this->scoped->sameAs($this->getTarget())) {
             $this->element('p', null,
                            // TRANS: Page notice for page with an overview of all search subscriptions
                            // TRANS: of the logged in user's own profile.
@@ -71,7 +68,7 @@ class SearchSubsAction extends GalleryAction
                            // TRANS: Page notice for page with an overview of all subscriptions of a user other
                            // TRANS: than the logged in user. %s is the user nickname.
                            sprintf(_m('%s has subscribed to receive all notices on this site matching the following searches:'),
-                                   $this->profile->nickname));
+                                   $this->getTarget()->getNickname()));
         }
     }
 
@@ -86,12 +83,12 @@ class SearchSubsAction extends GalleryAction
             $cnt = 0;
 
             $searchsub = new SearchSub();
-            $searchsub->profile_id = $this->user->id;
+            $searchsub->profile_id = $this->getTarget()->getID();
             $searchsub->limit($limit, $offset);
             $searchsub->find();
 
             if ($searchsub->N) {
-                $list = new SearchSubscriptionsList($searchsub, $this->user, $this);
+                $list = new SearchSubscriptionsList($searchsub, $this->getTarget(), $this);
                 $cnt = $list->show();
                 if (0 == $cnt) {
                     $this->showEmptyListMessage();
@@ -102,7 +99,7 @@ class SearchSubsAction extends GalleryAction
 
             $this->pagination($this->page > 1, $cnt > PROFILES_PER_PAGE,
                               $this->page, 'searchsubs',
-                              array('nickname' => $this->user->nickname));
+                              array('nickname' => $this->getTarget()->getNickname()));
 
 
             Event::handle('EndShowTagSubscriptionsContent', array($this));
@@ -112,8 +109,7 @@ class SearchSubsAction extends GalleryAction
     function showEmptyListMessage()
     {
         if (common_logged_in()) {
-            $current_user = common_current_user();
-            if ($this->user->id === $current_user->id) {
+            if ($this->scoped->sameAs($this->getTarget())) {
                 // TRANS: Search subscription list text when the logged in user has no search subscriptions.
                 $message = _m('You are not subscribed to any text searches right now. You can push the "Subscribe" button ' .
                              'on any notice text search to automatically receive any public messages on this site that match that ' .
@@ -121,13 +117,13 @@ class SearchSubsAction extends GalleryAction
             } else {
                 // TRANS: Search subscription list text when looking at the subscriptions for a of a user other
                 // TRANS: than the logged in user that has no search subscriptions. %s is the user nickname.
-                $message = sprintf(_m('%s is not subscribed to any searches.'), $this->user->nickname);
+                $message = sprintf(_m('%s is not subscribed to any searches.'), $this->getTarget()->getNickname());
             }
         }
         else {
             // TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
             // TRANS: as an anonymous user. %s is the user nickname.
-            $message = sprintf(_m('%s is not subscribed to any searches.'), $this->user->nickname);
+            $message = sprintf(_m('%s is not subscribed to any searches.'), $this->getTarget()->getNickname());
         }
 
         $this->elementStart('div', 'guide');
