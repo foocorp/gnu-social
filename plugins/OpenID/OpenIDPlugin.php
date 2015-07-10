@@ -390,11 +390,11 @@ class OpenIDPlugin extends Plugin
             $action->element('link', array('rel' => 'openid2.provider',
                                            'href' => common_local_url('openidserver')));
             $action->element('link', array('rel' => 'openid2.local_id',
-                                           'href' => $action->profile->profileurl));
+                                           'href' => $action->getTarget()->getUrl()));
             $action->element('link', array('rel' => 'openid.server',
                                            'href' => common_local_url('openidserver')));
             $action->element('link', array('rel' => 'openid.delegate',
-                                           'href' => $action->profile->profileurl));
+                                           'href' => $action->getTarget()->getUrl()));
         }
 
         if ($action instanceof SitestreamAction) {

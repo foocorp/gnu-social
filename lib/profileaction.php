@@ -72,6 +72,9 @@ abstract class ProfileAction extends ManagedAction
 
     public function getTarget()
     {
+        if (!$this->target instanceof Profile) {
+            throw new ServerException('No target profile in ProfileAction class');
+        }
         return $this->target;
     }
 
