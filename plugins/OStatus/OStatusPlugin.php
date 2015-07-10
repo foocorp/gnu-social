@@ -1072,7 +1072,7 @@ class OStatusPlugin extends Plugin
             $action->elementStart('div', 'entity_actions');
             $action->elementStart('p', array('id' => 'entity_remote_subscribe',
                                              'class' => 'entity_subscribe'));
-            $action->element('a', array('href' => common_local_url($action->getTarget()),
+            $action->element('a', array('href' => common_local_url($target),
                                         'class' => 'entity_remote_subscribe'),
                                 // TRANS: Link text for link to remote subscribe.
                                 _m('Remote'));
