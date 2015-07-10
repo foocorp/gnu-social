@@ -563,14 +563,12 @@ abstract class ImPlugin extends Plugin
         return true;
     }
 
-    function onEndShowHeadElements($action)
+    function onEndShowHeadElements(Action $action)
     {
-        $aname = $action->trimmed('action');
-
-        if ($aname == 'shownotice') {
+        if ($action instanceof ShownoticeAction) {
 
             $user_im_prefs = new User_im_prefs();
-            $user_im_prefs->user_id = $action->profile->id;
+            $user_im_prefs->user_id = $action->notice->getProfile()->getID();
             $user_im_prefs->transport = $this->transport;
 
             if ($user_im_prefs->find() && $user_im_prefs->fetch() && $user_im_prefs->microid && $action->notice->uri) {
@@ -580,13 +578,13 @@ abstract class ImPlugin extends Plugin
                                              'content' => $id->toString()));
             }
 
-        } else if ($aname == 'showstream') {
+        } elseif ($action instanceof ShowstreamAction) {
 
             $user_im_prefs = new User_im_prefs();
-            $user_im_prefs->user_id = $action->user->id;
+            $user_im_prefs->user_id = $action->getTarget()->getID();
             $user_im_prefs->transport = $this->transport;
 
-            if ($user_im_prefs->find() && $user_im_prefs->fetch() && $user_im_prefs->microid && $action->profile->profileurl) {
+            if ($user_im_prefs->find() && $user_im_prefs->fetch() && $user_im_prefs->microid && $action->getTarget()->getUrl()) {
                 $id = new Microid($this->microiduri($user_im_prefs->screenname),
                                   $action->selfUrl());
                 $action->element('meta', array('name' => 'microid',

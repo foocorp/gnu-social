@@ -47,16 +47,15 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class ShowstreamAction extends NoticestreamAction
 {
-    var $notice;
+    protected $target = null;
 
     protected function doPreparation()
     {
         // showstream requires a nickname
-        $nickname_arg = $this->arg('nickname');
+        $nickname_arg = $this->trimmed('nickname');
         $nickname     = common_canonical_nickname($nickname_arg);
 
         // Permanent redirect on non-canonical nickname
-
         if ($nickname_arg != $nickname) {
             $args = array('nickname' => $nickname);
             if ($this->arg('page') && $this->arg('page') != 1) {
@@ -64,18 +63,20 @@ class ShowstreamAction extends NoticestreamAction
             }
             common_redirect(common_local_url($this->getActionName(), $args), 301);
         }
-        $this->user = User::getKV('nickname', $nickname);
 
-        if (!$this->user) {
+        try {
+            $user = User::getByNickname($nickname);
+        } catch (NoSuchUserException $e) {
             $group = Local_group::getKV('nickname', $nickname);
             if ($group instanceof Local_group) {
                 common_redirect($group->getProfile()->getUrl());
             }
-            // TRANS: Client error displayed when calling a profile action without specifying a user.
-            $this->clientError(_('No such user.'), 404);
+
+            // No user nor group found, throw the NoSuchUserException again
+            throw $e;
         }
 
-        $this->target = $this->user->getProfile();
+        $this->target = $user->getProfile();
     }
 
     public function getStream()
@@ -289,7 +290,7 @@ class ShowstreamAction extends NoticestreamAction
     {
         parent::showSections();
         if (!common_config('performance', 'high')) {
-            $cloud = new PersonalTagCloudSection($this, $this->user);
+            $cloud = new PersonalTagCloudSection($this->target, $this);
             $cloud->show();
         }
     }
@@ -298,7 +299,7 @@ class ShowstreamAction extends NoticestreamAction
     {
         $options = parent::noticeFormOptions();
 
-        if (!$this->scoped instanceof Profile || $this->scoped->id != $this->target->id) {
+        if (!$this->scoped instanceof Profile || !$this->scoped->sameAs($this->target)) {
             $options['to_profile'] =  $this->target;
         }
 

@@ -132,6 +132,11 @@ class User extends Managed_DataObject
         return $this->_profile[$this->id];
     }
 
+    public function sameAs(Profile $other)
+    {
+        return $this->getProfile()->sameAs($other);
+    }
+
     public function getUri()
     {
         return $this->uri;
@@ -142,7 +147,7 @@ class User extends Managed_DataObject
         return $this->getProfile()->getNickname();
     }
 
-    public function getByNickname($nickname)
+    static function getByNickname($nickname)
     {
         $user = User::getKV('nickname', $nickname);
         if (!$user instanceof User) {

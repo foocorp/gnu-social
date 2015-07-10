@@ -32,16 +32,23 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class ProfileListItem extends Widget
 {
     /** Current profile. */
+    protected $target = null;
     var $profile = null;
     /** Action object using us. */
     var $action = null;
 
-    function __construct($profile, $action)
+    function __construct(Profile $target, HTMLOutputter $action)
     {
         parent::__construct($action);
 
-        $this->profile = $profile;
+        $this->target = $target;
+        $this->profile = $this->target;
         $this->action  = $action;
+    }
+
+    function getTarget()
+    {
+        return $this->target;
     }
 
     function show()
