@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Redirect to a given URL
@@ -47,75 +43,27 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 
-class RedirecturlAction extends Action
+class RedirecturlAction extends ManagedAction
 {
-    protected $id   = null;
     protected $file = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function doPreparation()
     {
-        parent::prepare($argarray);
-
-        $this->id = $this->trimmed('id');
-
-        if (empty($this->id)) {
-            // TRANS: Client exception thrown when no ID parameter was provided.
-            throw new ClientException(_('No id parameter.'));
-        }
-
-        $this->file = File::getKV('id', $this->id);
-
-        if (empty($this->file)) {
-            // TRANS: Client exception thrown when an invalid ID parameter was provided for a file.
-            // TRANS: %d is the provided ID for which the file is not present (number).
-            throw new ClientException(sprintf(_('No such file "%d".'),
-                                              $this->id),
-                                      404);
-        }
+        $this->file = File::getByID($this->int('id'));
 
         return true;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
+    public function showPage()
     {
         common_redirect($this->file->url, 307);
     }
 
-    /**
-     * Return true if read only.
-     *
-     * MAY override
-     *
-     * @param array $args other arguments
-     *
-     * @return boolean is read only action?
-     */
     function isReadOnly($args)
     {
         return true;
     }
 
-    /**
-     * Return last modified, if applicable.
-     *
-     * MAY override
-     *
-     * @return string last modified http header
-     */
     function lastModified()
     {
         // For comparison with If-Last-Modified
@@ -133,9 +81,9 @@ class RedirecturlAction extends Action
      */
     function etag()
     {
-        return 'W/"' . implode(':', array($this->arg('action'),
+        return 'W/"' . implode(':', array($this->getActionName(),
                                           common_user_cache_hash(),
                                           common_language(),
-                                          $this->file->id)) . '"';
+                                          $this->file->getID())) . '"';
     }
 }
