@@ -1571,6 +1571,11 @@ class Profile extends Managed_DataObject
         return $this;
     }
 
+    public function sameAs(Profile $other)
+    {
+        return $this->getID() === $other->getID();
+    }
+
     /**
      * This will perform shortenLinks with the connected User object.
      *
