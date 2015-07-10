@@ -1081,12 +1081,12 @@ var SN = { // StatusNet
                 label.attr('title', label.text());
 
                 check.change(function () {
-                    if (check.prop('checked') === true || $.cookie(SN.C.S.NoticeDataGeoCookie) === null) {
+                    if (check.prop('checked') === true || $.cookie(SN.C.S.NoticeDataGeoCookie) === undefined) {
                         label
                             .attr('title', NoticeDataGeo_text.ShareDisable)
                             .addClass('checked');
 
-                        if ($.cookie(SN.C.S.NoticeDataGeoCookie) === null || $.cookie(SN.C.S.NoticeDataGeoCookie) == 'disabled') {
+                        if ($.cookie(SN.C.S.NoticeDataGeoCookie) === undefined || $.cookie(SN.C.S.NoticeDataGeoCookie) == 'disabled') {
                             if (navigator.geolocation) {
                                 SN.U.NoticeGeoStatus(form, 'Requesting location from browser...');
                                 navigator.geolocation.getCurrentPosition(
@@ -1297,7 +1297,7 @@ var SN = { // StatusNet
              * @fixme what is this?
              */
             Delete: function () {
-                $.cookie(SN.C.S.StatusNetInstance, null);
+                $.removeCookie(SN.C.S.StatusNetInstance);
             }
         },
 
