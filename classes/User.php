@@ -147,7 +147,7 @@ class User extends Managed_DataObject
         return $this->getProfile()->getNickname();
     }
 
-    public function getByNickname($nickname)
+    static function getByNickname($nickname)
     {
         $user = User::getKV('nickname', $nickname);
         if (!$user instanceof User) {
