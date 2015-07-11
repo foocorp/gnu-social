@@ -259,12 +259,7 @@ class SalmonAction extends Action
                 // Step 4: Is the newly introduced https://example.com/user/1 URI in the list of aliases
                 //         presented by http://example.com/user/1 (i.e. do they both say they are the same identity?)
                 if (in_array($e->object_uri, $doublecheck_aliases)) {
-                    common_debug('URIFIX These identities both say they are each other: "'.$aliased_uri.'" and "'.$e->object_uri.'"');
-                    $orig = clone($oprofile);
-                    $oprofile->uri = $e->object_uri;
-                    common_debug('URIFIX Updating Ostatus_profile URI for '.$aliased_uri.' to '.$oprofile->uri);
-                    $oprofile->updateWithKeys($orig, 'uri');    // 'uri' is the primary key column
-                    unset($orig);
+                    $oprofile->updateUriKeys($e->object_uri, DiscoveryHints::fromXRD($xrd));
                     $this->oprofile = $oprofile;
                     break;  // don't iterate through aliases anymore
                 }
