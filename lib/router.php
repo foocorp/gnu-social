@@ -244,11 +244,9 @@ class Router
                         array('action' => 'shownotice'),
                         array('notice' => '[0-9]+'));
 
-            $m->connect('notice/delete/:notice',
+            $m->connect('notice/:notice/delete',
                         array('action' => 'deletenotice'),
                         array('notice' => '[0-9]+'));
-
-            $m->connect('notice/delete', array('action' => 'deletenotice'));
 
             // conversation
 
