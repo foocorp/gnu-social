@@ -107,7 +107,7 @@ class Rss10Action extends ManagedAction
      * @return array an array of Notice objects sorted in reverse chron
      */
 
-    protected function getNotices($limit=0)
+    protected function getNotices()
     {
         return array();
     }
