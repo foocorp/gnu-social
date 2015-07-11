@@ -33,15 +33,13 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 // @todo FIXME: documentation needed.
 class DeletenoticeAction extends FormAction
 {
-    protected $form = 'deletenotice';
-
     protected $notice = null;
 
     protected function doPreparation()
     {
-        $this->notice = Notice::getByID($this->int('notice'));
+        $this->notice = Notice::getByID($this->trimmed('notice'));
 
-        if ($this->notice->profile_id != $this->scoped->getID() &&
+        if (!$this->scoped->sameAs($this->notice->getProfile()) &&
                    !$this->scoped->hasRight(Right::DELETEOTHERSNOTICE)) {
             // TRANS: Error message displayed trying to delete a notice that was not made by the current user.
             $this->clientError(_('Cannot delete this notice.'));
