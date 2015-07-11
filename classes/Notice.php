@@ -1230,7 +1230,7 @@ class Notice extends Managed_DataObject
         }
 
         $stream = new ConversationNoticeStream($this->conversation);
-        $notices = $stream->getNotices(/*offset*/ 1, /*limit*/ 1);
+        $notice = $stream->getNotices(/*offset*/ 1, /*limit*/ 1);
 
         // if our "offset 1, limit 1" query got a result, return true else false
         return $notice->N > 0;

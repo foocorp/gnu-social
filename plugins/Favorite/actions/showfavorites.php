@@ -27,13 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/personalgroupnav.php';
-require_once INSTALLDIR.'/lib/noticelist.php';
-require_once INSTALLDIR.'/lib/feedlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * List of replies
@@ -44,119 +38,29 @@ require_once INSTALLDIR.'/lib/feedlist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ShowfavoritesAction extends Action
+class ShowfavoritesAction extends ShowstreamAction
 {
-    /** User we're getting the faves of */
-    var $user = null;
-    /** Page of the faves we're on */
-    var $page = null;
-
-    /**
-     * Is this a read-only page?
-     *
-     * @return boolean true
-     */
-    function isReadOnly($args)
-    {
-        return true;
-    }
-
-    /**
-     * Title of the page
-     *
-     * Includes name of user and page number.
-     *
-     * @return string title of page
-     */
     function title()
     {
         if ($this->page == 1) {
             // TRANS: Title for first page of favourite notices of a user.
             // TRANS: %s is the user for whom the favourite notices are displayed.
-            return sprintf(_('%s\'s favorite notices'), $this->user->nickname);
+            return sprintf(_('%s\'s favorite notices'), $this->getTarget()->getNickname());
         } else {
             // TRANS: Title for all but the first page of favourite notices of a user.
             // TRANS: %1$s is the user for whom the favourite notices are displayed, %2$d is the page number.
             return sprintf(_('%1$s\'s favorite notices, page %2$d'),
-                           $this->user->nickname,
+                           $this->getTarget()->getNickname(),
                            $this->page);
         }
     }
 
-    /**
-     * Prepare the object
-     *
-     * Check the input values and initialize the object.
-     * Shows an error page on bad input.
-     *
-     * @param array $args $_REQUEST data
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    public function getStream()
     {
-        parent::prepare($args);
-
-        $nickname = common_canonical_nickname($this->arg('nickname'));
-
-        $this->user = User::getKV('nickname', $nickname);
-
-        if (!$this->user) {
-            // TRANS: Client error displayed when trying to display favourite notices for a non-existing user.
-            $this->clientError(_('No such user.'));
-        }
-
-        $this->page = $this->trimmed('page');
-
-        if (!$this->page) {
-            $this->page = 1;
-        }
-
-        common_set_returnto($this->selfUrl());
-
-        $cur = common_current_user();
-
-        // Show imported/gateway notices as well as local if
-        // the user is looking at their own favorites, otherwise not.
-        $this->notice = Fave::stream($this->user->id,
-                                     ($this->page-1)*NOTICES_PER_PAGE,  // offset
-                                     NOTICES_PER_PAGE + 1,              // limit
-                                     (!empty($cur) && $cur->id == $this->user->id)  // own feed?
-                                    );
-
-        if (empty($this->notice)) {
-            // TRANS: Server error displayed when favourite notices could not be retrieved from the database.
-            $this->serverError(_('Could not retrieve favorite notices.'));
-        }
-
-        if($this->page > 1 && $this->notice->N == 0){
-            // TRANS: Client error when page not found (404)
-            $this->clientError(_('No such page.'), 404);
-        }
-
-        return true;
+        $own = $this->scoped instanceof Profile ? $this->scoped->sameAs($this->getTarget()) : false;
+        return new FaveNoticeStream($this->getTarget()->getID(), $own);
     }
 
-    /**
-     * Handle a request
-     *
-     * Just show the page. All args already handled.
-     *
-     * @param array $args $_REQUEST data
-     *
-     * @return void
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
-    }
-
-    /**
-     * Feeds for the <head> section
-     *
-     * @return array Feed objects to show
-     */
     function getFeeds()
     {
         return array(new Feed(Feed::JSON,
@@ -223,7 +127,7 @@ class ShowfavoritesAction extends Action
      *
      * @return void
      */
-    function showContent()
+    function showNotices()
     {
         $nl = new FavoritesNoticeList($this->notice, $this);
 
@@ -234,7 +138,7 @@ class ShowfavoritesAction extends Action
 
         $this->pagination($this->page > 1, $cnt > NOTICES_PER_PAGE,
                           $this->page, 'showfavorites',
-                          array('nickname' => $this->user->nickname));
+                          array('nickname' => $this->getTarget()->getNickname()));
     }
 
     function showPageNotice() {
