@@ -1063,8 +1063,12 @@ class OStatusPlugin extends Plugin
 
     function showEntityRemoteSubscribe($action, $target='ostatussub')
     {
-        $user = common_current_user();
-        if ($user && ($user->id == $action->profile->id)) {
+        if (!$action->getScoped() instanceof Profile) {
+            // early return if we're not logged in
+            return true;
+        }
+
+        if ($action->getScoped()->sameAs($action->getTarget())) {
             $action->elementStart('div', 'entity_actions');
             $action->elementStart('p', array('id' => 'entity_remote_subscribe',
                                              'class' => 'entity_subscribe'));
@@ -1127,41 +1131,44 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
-    function onStartProfileListItemActionElements($item, $profile=null)
+    // FIXME: This one can accept both an Action and a Widget. Confusing! Refactor to (HTMLOutputter $out, Profile $target)!
+    function onStartProfileListItemActionElements($item)
     {
-        if (!common_logged_in()) {
-
-            $profileUser = User::getKV('id', $item->profile->id);
-
-            if (!empty($profileUser)) {
-
-                if ($item instanceof Action) {
-                    $output = $item;
-                    $profile = $item->profile;
-                } else {
-                    $output = $item->out;
-                }
-
-                // Add an OStatus subscribe
-                $output->elementStart('li', 'entity_subscribe');
-                $url = common_local_url('ostatusinit',
-                                        array('nickname' => $profileUser->nickname));
-                $output->element('a', array('href' => $url,
-                                            'class' => 'entity_remote_subscribe'),
-                                  // TRANS: Link text for a user to subscribe to an OStatus user.
-                                 _m('Subscribe'));
-                $output->elementEnd('li');
-
-                $output->elementStart('li', 'entity_tag');
-                $url = common_local_url('ostatustag',
-                                        array('nickname' => $profileUser->nickname));
-                $output->element('a', array('href' => $url,
-                                            'class' => 'entity_remote_tag'),
-                                  // TRANS: Link text for a user to list an OStatus user.
-                                 _m('List'));
-                $output->elementEnd('li');
-            }
+        if (common_logged_in()) {
+            // only non-logged in users get to see the "remote subscribe" form
+            return true;
+        } elseif (!$item->getTarget()->isLocal()) {
+            // we can (for now) only provide remote subscribe forms for local users
+            return true;
         }
+
+        if ($item instanceof ProfileAction) {
+            $output = $item;
+        } elseif ($item instanceof Widget) {
+            $output = $item->out;
+        } else {
+            // Bad $item class, don't know how to use this for outputting!
+            throw new ServerException('Bad item type for onStartProfileListItemActionElements');
+        }
+
+        // Add an OStatus subscribe
+        $output->elementStart('li', 'entity_subscribe');
+        $url = common_local_url('ostatusinit',
+                                array('nickname' => $item->getTarget()->getNickname()));
+        $output->element('a', array('href' => $url,
+                                    'class' => 'entity_remote_subscribe'),
+                          // TRANS: Link text for a user to subscribe to an OStatus user.
+                         _m('Subscribe'));
+        $output->elementEnd('li');
+
+        $output->elementStart('li', 'entity_tag');
+        $url = common_local_url('ostatustag',
+                                array('nickname' => $item->getTarget()->getNickname()));
+        $output->element('a', array('href' => $url,
+                                    'class' => 'entity_remote_tag'),
+                          // TRANS: Link text for a user to list an OStatus user.
+                         _m('List'));
+        $output->elementEnd('li');
 
         return true;
     }

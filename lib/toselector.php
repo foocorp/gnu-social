@@ -87,10 +87,9 @@ class ToSelector extends Widget
             $choices['public:everyone'] = _m('SENDTO','Everyone');
             $default = 'public:everyone';
         }
-        // XXX: better name...?
         // TRANS: Option in drop-down of potential addressees.
         // TRANS: %s is a StatusNet sitename.
-        $choices['public:site'] = sprintf(_('My colleagues at %s'), common_config('site', 'name'));
+        $choices['public:site'] = sprintf(_('Everyone at %s'), common_config('site', 'name'));
 
         $groups = $this->user->getGroups();
 

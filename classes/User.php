@@ -132,6 +132,11 @@ class User extends Managed_DataObject
         return $this->_profile[$this->id];
     }
 
+    public function sameAs(Profile $other)
+    {
+        return $this->getProfile()->sameAs($other);
+    }
+
     public function getUri()
     {
         return $this->uri;
@@ -140,6 +145,16 @@ class User extends Managed_DataObject
     public function getNickname()
     {
         return $this->getProfile()->getNickname();
+    }
+
+    static function getByNickname($nickname)
+    {
+        $user = User::getKV('nickname', $nickname);
+        if (!$user instanceof User) {
+            throw new NoSuchUserException(array('nickname' => $nickname));
+        }
+
+        return $user;
     }
 
     function isSubscribed(Profile $other)
@@ -439,7 +454,7 @@ class User extends Managed_DataObject
 
     function getReplies($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
     {
-        return Reply::stream($this->id, $offset, $limit, $since_id, $before_id);
+        return $this->getProfile()->getReplies($offset, $limit, $since_id, $before_id);
     }
 
     function getTaggedNotices($tag, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0) {

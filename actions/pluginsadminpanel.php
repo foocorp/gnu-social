@@ -62,7 +62,7 @@ class PluginsadminpanelAction extends AdminPanelAction
     {
         // TRANS: Instructions at top of plugin admin page.
         return _('Additional plugins can be enabled and configured manually. ' .
-                 'See the <a href="http://status.net/wiki/Plugins">online plugin ' .
+                 'See the <a href="https://git.gnu.io/gnu/gnu-social/blob/master/plugins/README.md">online plugin ' .
                  'documentation</a> for more details.');
     }
 

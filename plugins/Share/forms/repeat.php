@@ -112,7 +112,7 @@ class RepeatForm extends Form
     {
         $this->out->submit('repeat-submit-' . $this->notice->id,
                            // TRANS: Button text to repeat a notice on notice repeat form.
-                           _m('BUTTON','Yes'), 'submit', null,
+                           _m('BUTTON','Confirm repeat'), 'submit', null,
                            // TRANS: Button title to repeat a notice on notice repeat form.
                            _('Repeat this notice.'));
     }

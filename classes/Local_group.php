@@ -50,7 +50,7 @@ class Local_group extends Managed_DataObject
         $group->find(true);
         if (!$group instanceof User_group) {
             common_log(LOG_ERR, 'User_group does not exist for Local_group: '.$this->group_id);
-            throw new NoResultException($group);
+            throw new NoSuchGroupException(array('id' => $this->group_id));
         }
         return $group;
     }

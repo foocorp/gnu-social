@@ -50,7 +50,7 @@ class FormAction extends ManagedAction
     protected function prepare(array $args=array()) {
         parent::prepare($args);
 
-        $this->form = $this->form ?: $this->action;
+        $this->form = $this->form ?: ucfirst($this->action);
         $this->args['form'] = $this->form;
 
         $this->type = !is_null($this->type) ? $this->type : $this->trimmed('type');

@@ -166,7 +166,7 @@ class File_redirection extends Managed_DataObject
      *                size (optional): byte size from Content-Length header
      *                time (optional): timestamp from Last-Modified header
      */
-    public function where($in_url, $discover=true) {
+    static function where($in_url, $discover=true) {
         // let's see if we know this...
         try {
             $a = File::getByUrl($in_url);
@@ -176,7 +176,7 @@ class File_redirection extends Managed_DataObject
             try {
                 $b = File_redirection::getByUrl($in_url);
                 // this is a redirect to $b->file_id
-                $a = File::getKV('id', $b->file_id);
+                $a = File::getByID($b->file_id);
                 return $a->url;
             } catch (NoResultException $e) {
                 // Oh well, let's keep going
@@ -186,10 +186,10 @@ class File_redirection extends Managed_DataObject
         if ($discover) {
             $ret = File_redirection::lookupWhere($in_url);
             return $ret;
-        } else {
-            // No manual dereferencing; leave the unknown URL as is.
-            return $in_url;
         }
+
+        // No manual dereferencing; leave the unknown URL as is.
+        return $in_url;
     }
 
     /**
@@ -206,7 +206,7 @@ class File_redirection extends Managed_DataObject
      * @param User $user whose shortening options to use; defaults to the current web session user
      * @return string
      */
-    function makeShort($long_url, $user=null)
+    static function makeShort($long_url, $user=null)
     {
         $canon = File_redirection::_canonUrl($long_url);
 
@@ -214,11 +214,7 @@ class File_redirection extends Managed_DataObject
 
         // Did we get one? Is it shorter?
 
-        if (!empty($short_url)) {
-            return $short_url;
-        } else {
-            return $long_url;
-        }
+        return !empty($short_url) ? $short_url : $long_url;
     }
 
     /**
@@ -235,18 +231,14 @@ class File_redirection extends Managed_DataObject
      * @return string
      */
 
-    function forceShort($long_url, $user)
+    static function forceShort($long_url, $user)
     {
         $canon = File_redirection::_canonUrl($long_url);
 
         $short_url = File_redirection::_userMakeShort($canon, $user, true);
 
         // Did we get one? Is it shorter?
-        if (!empty($short_url)) {
-            return $short_url;
-        } else {
-            return $long_url;
-        }
+        return !empty($short_url) ? $short_url : $long_url;
     }
 
     static function _userMakeShort($long_url, User $user=null, $force = false) {

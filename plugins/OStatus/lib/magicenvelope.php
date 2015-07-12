@@ -50,8 +50,8 @@ class MagicEnvelope
      */
     public function __construct($xml=null) {
         if (!empty($xml)) {
-            $dom = DOMDocument::loadXML($xml);
-            if (!$dom instanceof DOMDocument) {
+            $dom = new DOMDocument();
+            if (!$dom->loadXML($xml)) {
                 throw new ServerException('Tried to load malformed XML as DOM');
             } elseif (!$this->fromDom($dom)) {
                 throw new ServerException('Could not load MagicEnvelope from DOM');

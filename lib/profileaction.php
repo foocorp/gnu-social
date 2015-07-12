@@ -50,7 +50,7 @@ abstract class ProfileAction extends ManagedAction
 
     protected function prepare(array $args=array())
     {
-        // this will call ->doPreparation() which lower classes can use
+        // this will call ->doPreparation() which child classes use to set $this->target
         parent::prepare($args);
 
         if ($this->target->hasRole(Profile_role::SILENCED)
@@ -58,15 +58,9 @@ abstract class ProfileAction extends ManagedAction
             throw new ClientException(_('This profile has been silenced by site moderators'), 403);
         }
 
-        // backwards compatibility until all actions are fixed to use $this->target
-        $this->profile = $this->target;
-
         $this->tag = $this->trimmed('tag');
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
         common_set_returnto($this->selfUrl());
-
-        // fetch the actual stream stuff
-        $this->profileActionPreparation();
 
         return true;
     }
@@ -78,6 +72,9 @@ abstract class ProfileAction extends ManagedAction
 
     public function getTarget()
     {
+        if (!$this->target instanceof Profile) {
+            throw new ServerException('No target profile in ProfileAction class');
+        }
         return $this->target;
     }
 

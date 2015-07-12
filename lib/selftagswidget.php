@@ -29,10 +29,10 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class SelftagsWidget extends PeopletagsWidget
 {
-    function url($tag)
+    public function url()
     {
         // link to self tag page
-        return common_local_url('selftag', array('tag' => $tag));
+        return common_local_url('selftag', array('tag' => $this->tag->tag));
     }
 
     function label()

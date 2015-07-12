@@ -205,7 +205,7 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return nothing
      */
-    function showPage()
+    public function showPage()
     {
         if (GNUsocial::isAjax()) {
             self::showAjax();
@@ -534,15 +534,11 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showFeeds()
     {
-        $feeds = $this->getFeeds();
-
-        if ($feeds) {
-            foreach ($feeds as $feed) {
-                $this->element('link', array('rel' => $feed->rel(),
-                                             'href' => $feed->url,
-                                             'type' => $feed->mimeType(),
-                                             'title' => $feed->title));
-            }
+        foreach ($this->getFeeds() as $feed) {
+            $this->element('link', array('rel' => $feed->rel(),
+                                         'href' => $feed->url,
+                                         'type' => $feed->mimeType(),
+                                         'title' => $feed->title));
         }
     }
 
@@ -1035,9 +1031,9 @@ class Action extends HTMLOutputter // lawsuit
     function showExportData()
     {
         $feeds = $this->getFeeds();
-        if ($feeds) {
-            $fl = new FeedList($this);
-            $fl->show($feeds);
+        if (!empty($feeds)) {
+            $fl = new FeedList($this, $feeds);
+            $fl->show();
         }
     }
 
@@ -1658,7 +1654,7 @@ class Action extends HTMLOutputter // lawsuit
      */
     function getFeeds()
     {
-        return null;
+        return array();
     }
 
     /**

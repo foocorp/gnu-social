@@ -63,7 +63,7 @@ class LogoutAction extends ManagedAction
         }
         Event::handle('EndLogout', array($this));
 
-        common_redirect(common_local_url('startpage'));
+        common_redirect(common_local_url('top'));
     }
 
     // Accessed through the action on events

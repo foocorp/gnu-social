@@ -1,7 +1,7 @@
 Plugins
 =======
 
-Beginning with the 0.7.x branch, StatusNet has supported a simple but
+GNU social supports a simple but
 powerful plugin architecture. Important events in the code are named,
 like 'StartNoticeSave', and other software can register interest
 in those events. When the events happen, the other software is called
@@ -37,7 +37,7 @@ can enable a plugin with the following line in config.php:
 
 This will look for and load files named 'ExamplePlugin.php' or
 'Example/ExamplePlugin.php' either in the plugins/ directory (for
-plugins that ship with StatusNet) or in the local/ directory (for
+plugins that ship with GNU social) or in the local/ directory (for
 plugins you write yourself or that you get from somewhere else) or
 local/plugins/.
 

@@ -242,6 +242,11 @@ class Profile extends Managed_DataObject
         return null;
     }
 
+    function getReplies($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
+    {
+        return Reply::stream($this->getID(), $offset, $limit, $since_id, $before_id);
+    }
+
     function getTaggedNotices($tag, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
     {
         $stream = new TaggedProfileNoticeStream($this, $tag);
@@ -1564,6 +1569,11 @@ class Profile extends Managed_DataObject
     public function getProfile()
     {
         return $this;
+    }
+
+    public function sameAs(Profile $other)
+    {
+        return $this->getID() === $other->getID();
     }
 
     /**

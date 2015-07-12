@@ -17,100 +17,52 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-require_once(INSTALLDIR.'/lib/rssaction.php');
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 // Formatting of RSS handled by Rss10Action
 
-class UserrssAction extends Rss10Action
+class UserrssAction extends TargetedRss10Action
 {
-    var $tag  = null;
+    protected $tag = null;
 
-    function prepare($args)
+    protected function doStreamPreparation()
     {
-        parent::prepare($args);
-        $nickname   = $this->trimmed('nickname');
-        $this->user = User::getKV('nickname', $nickname);
         $this->tag  = $this->trimmed('tag');
+    }
 
-        if (!$this->user) {
-            // TRANS: Client error displayed when user not found for an action.
-            $this->clientError(_('No such user.'));
-        }
-
+    protected function getNotices()
+    {
         if (!empty($this->tag)) {
-            $this->notices = $this->getTaggedNotices();
-        } else {
-            $this->notices = $this->getNotices();
+            $stream = $this->target->getTaggedNotices($this->tag, 0, $this->limit);
+            return $stream->fetchAll();
         }
+        // otherwise we fetch a normal user stream
 
-        return true;
-    }
-
-    function getTaggedNotices()
-    {
-        $notice = $this->user->getTaggedNotices(
-            $this->tag,
-            0,
-            ($this->limit == 0) ? NOTICES_PER_PAGE : $this->limit,
-            0,
-            0
-        );
-
-        $notices = array();
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-
-        return $notices;
-    }
-
-
-    function getNotices()
-    {
-        $notice = $this->user->getNotices(
-            0,
-            ($this->limit == 0) ? NOTICES_PER_PAGE : $this->limit
-        );
-
-        $notices = array();
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-
-        return $notices;
+        $stream = $this->target->getNotices(0, $this->limit);
+        return $stream->fetchAll();
     }
 
     function getChannel()
     {
-        $user = $this->user;
-        $profile = $user->getProfile();
         $c = array('url' => common_local_url('userrss',
                                              array('nickname' =>
-                                                   $user->nickname)),
+                                                   $this->target->getNickname())),
                    // TRANS: Message is used as link title. %s is a user nickname.
-                   'title' => sprintf(_('%s timeline'), $user->nickname),
-                   'link' => $profile->profileurl,
+                   'title' => sprintf(_('%s timeline'), $this->target->getNickname()),
+                   'link' => $this->target->getUrl(),
                    // TRANS: Message is used as link description. %1$s is a username, %2$s is a site name.
                    'description' => sprintf(_('Updates from %1$s on %2$s!'),
-                                            $user->nickname, common_config('site', 'name')));
+                                            $this->target->getNickname(), common_config('site', 'name')));
         return $c;
-    }
-
-    function getImage()
-    {
-        $profile = $this->user->getProfile();
-        return $profile->avatarUrl(AVATAR_PROFILE_SIZE);
     }
 
     // override parent to add X-SUP-ID URL
 
-    function initRss($limit=0)
+    function initRss()
     {
-        $url = common_local_url('sup', null, null, $this->user->id);
+        $url = common_local_url('sup', null, null, $this->target->getID());
         header('X-SUP-ID: '.$url);
-        parent::initRss($limit);
+        parent::initRss();
     }
 
     function isReadOnly($args)

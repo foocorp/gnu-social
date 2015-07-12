@@ -40,10 +40,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class RepliesAction extends ShowstreamAction
 {
-    var $page = null;
-    var $notice;
-
-    protected function getStream()
+    public function getStream()
     {
         return new ReplyNoticeStream($this->target->getID(), $this->scoped);
     }
@@ -85,7 +82,7 @@ class RepliesAction extends ShowstreamAction
                               // TRANS: Link for feed with replies for a user.
                               // TRANS: %s is a user nickname.
                               sprintf(_('Replies feed for %s (Activity Streams JSON)'),
-                                      $this->user->nickname)),
+                                      $this->target->getNickname())),
                      new Feed(Feed::RSS1,
                               common_local_url('repliesrss',
                                                array('nickname' => $this->target->getNickname())),

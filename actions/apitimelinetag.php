@@ -51,18 +51,9 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
 {
     var $notices = null;
 
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
-
-        common_debug("apitimelinetag prepare()");
 
         $this->tag     = $this->arg('tag');
         $this->notices = $this->getNotices();
@@ -79,9 +70,9 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $this->showTimeline();
     }
 
@@ -172,21 +163,12 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      */
     function getNotices()
     {
-        $notices = array();
+        $notice = Notice_tag::getStream($this->tag)->getNotices(($this->page - 1) * $this->count,
+                                                                 $this->count + 1,
+                                                                 $this->since_id,
+                                                                 $this->max_id);
 
-        $notice = Notice_tag::getStream(
-            $this->tag,
-            ($this->page - 1) * $this->count,
-            $this->count + 1,
-            $this->since_id,
-            $this->max_id
-        );
-
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-
-        return $notices;
+        return $notice->fetchAll();
     }
 
     /**

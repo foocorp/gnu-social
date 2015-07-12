@@ -61,6 +61,13 @@ var SN = { // StatusNet
     },
 
     /**
+     * list of callbacks, categorized into _callbacks['event_name'] = [ callback_function_1, callback_function_2 ]
+     *
+     * @access private
+     */
+    _callbacks: {},
+
+    /**
      * Map of localized message strings exported to script from the PHP
      * side via Action::getScriptMessages().
      *
@@ -344,21 +351,6 @@ var SN = { // StatusNet
             form.attr('action', SN.U.RewriteAjaxAction(form.attr('action')));
 
             /**
-             * Show a response feedback bit under the new-notice dialog.
-             *
-             * @param {String} cls: CSS class name to use ('error' or 'success')
-             * @param {String} text
-             * @access private
-             */
-            var showFeedback = function (cls, text) {
-                form.append(
-                    $('<p class="form_response"></p>')
-                        .addClass(cls)
-                        .text(text)
-                );
-            };
-
-            /**
              * Hide the previous response feedback, if any.
              */
             var removeFeedback = function () {
@@ -392,7 +384,7 @@ var SN = { // StatusNet
                     removeFeedback();
                     if (textStatus == 'timeout') {
                         // @fixme i18n
-                        showFeedback('error', 'Sorry! We had trouble sending your notice. The servers are overloaded. Please try again, and contact the site administrator if this problem persists.');
+                        SN.U.showFeedback(form, 'error', 'Sorry! We had trouble sending your notice. The servers are overloaded. Please try again, and contact the site administrator if this problem persists.');
                     } else {
                         var response = SN.U.GetResponseXML(xhr);
                         if ($('.' + SN.C.S.Error, response).length > 0) {
@@ -405,7 +397,7 @@ var SN = { // StatusNet
                                 SN.U.FormNoticeEnhancements(form);
                             } else {
                                 // @fixme i18n
-                                showFeedback('error', '(Sorry! We had trouble sending your notice (' + xhr.status + ' ' + xhr.statusText + '). Please report the problem to the site administrator if this happens again.');
+                                SN.U.showFeedback(form, 'error', '(Sorry! We had trouble sending your notice (' + xhr.status + ' ' + xhr.statusText + '). Please report the problem to the site administrator if this happens again.');
                             }
                         }
                     }
@@ -414,59 +406,9 @@ var SN = { // StatusNet
                     removeFeedback();
                     var errorResult = $('#' + SN.C.S.Error, data);
                     if (errorResult.length > 0) {
-                        showFeedback('error', errorResult.text());
+                        SN.U.showFeedback(form, 'error', errorResult.text());
                     } else {
-                        var commandResult = $('#' + SN.C.S.CommandResult, data);
-                        if (commandResult.length > 0) {
-                            showFeedback('success', commandResult.text());
-                        } else {
-                            // New notice post was successful. If on our timeline, show it!
-                            var notice = document._importNode($('li', data)[0], true);
-                            var notices = $('#notices_primary .notices:first');
-                            var replyItem = form.closest('li.notice-reply');
-
-                            if (replyItem.length > 0) {
-                                // If this is an inline reply, remove the form...
-                                var list = form.closest('.threaded-replies');
-
-                                var id = $(notice).attr('id');
-                                if ($('#' + id).length == 0) {
-                                    $(notice).insertBefore(replyItem);
-                                } // else Realtime came through before us...
-
-                                replyItem.remove();
-
-                            } else if (notices.length > 0 && SN.U.belongsOnTimeline(notice)) {
-                                // Not a reply. If on our timeline, show it at the top!
-
-                                if ($('#' + notice.id).length === 0) {
-                                    var notice_irt_value = form.find('[name=inreplyto]').val();
-                                    var notice_irt = '#notices_primary #notice-' + notice_irt_value;
-                                    if ($('body')[0].id == 'conversation') {
-                                        if (notice_irt_value.length > 0 && $(notice_irt + ' .notices').length < 1) {
-                                            $(notice_irt).append('<ul class="notices"></ul>');
-                                        }
-                                        $($(notice_irt + ' .notices')[0]).append(notice);
-                                    } else {
-                                        notices.prepend(notice);
-                                    }
-                                    $('#' + notice.id)
-                                        .css({display: 'none'})
-                                        .fadeIn(2500);
-                                    SN.U.NoticeWithAttachment($('#' + notice.id));
-                                    SN.U.switchInputFormTab(null);
-                                }
-                            } else {
-                                // Not on a timeline that this belongs on?
-                                // Just show a success message.
-                                // @fixme inline
-                                showFeedback('success', $('title', data).text());
-                            }
-                        }
-                        form.resetForm();
-                        form.find('[name=inreplyto]').val('');
-                        form.find('.attach-status').remove();
-                        SN.U.FormNoticeEnhancements(form);
+                        SN.E.ajaxNoticePosted(form, data, textStatus);
                     }
                 },
                 complete: function (xhr, textStatus) {
@@ -1139,12 +1081,12 @@ var SN = { // StatusNet
                 label.attr('title', label.text());
 
                 check.change(function () {
-                    if (check.prop('checked') === true || $.cookie(SN.C.S.NoticeDataGeoCookie) === null) {
+                    if (check.prop('checked') === true || $.cookie(SN.C.S.NoticeDataGeoCookie) === undefined) {
                         label
                             .attr('title', NoticeDataGeo_text.ShareDisable)
                             .addClass('checked');
 
-                        if ($.cookie(SN.C.S.NoticeDataGeoCookie) === null || $.cookie(SN.C.S.NoticeDataGeoCookie) == 'disabled') {
+                        if ($.cookie(SN.C.S.NoticeDataGeoCookie) === undefined || $.cookie(SN.C.S.NoticeDataGeoCookie) == 'disabled') {
                             if (navigator.geolocation) {
                                 SN.U.NoticeGeoStatus(form, 'Requesting location from browser...');
                                 navigator.geolocation.getCurrentPosition(
@@ -1355,7 +1297,7 @@ var SN = { // StatusNet
              * @fixme what is this?
              */
             Delete: function () {
-                $.cookie(SN.C.S.StatusNetInstance, null);
+                $.removeCookie(SN.C.S.StatusNetInstance);
             }
         },
 
@@ -1442,8 +1384,105 @@ var SN = { // StatusNet
             var extended = $(selector);
             extended.removeClass('extended_menu');
             return void(0);
+        },
+
+        /**
+         * Show a response feedback bit under a form.
+         *
+         * @param {Element} form: the new-notice form usually
+         * @param {String}  cls: CSS class name to use ('error' or 'success')
+         * @param {String}  text
+         * @access public
+         */
+        showFeedback: function (form, cls, text) {
+            form.append(
+                $('<p class="form_response"></p>')
+                    .addClass(cls)
+                    .text(text)
+            );
+        },
+
+        addCallback: function (ename, callback) {
+            // initialize to array if it's undefined
+            if (typeof SN._callbacks[ename] === 'undefined') {
+                SN._callbacks[ename] = [];
+            }
+            SN._callbacks[ename].push(callback);
+        },
+
+        runCallbacks: function (ename, data) {
+            if (typeof SN._callbacks[ename] === 'undefined') {
+                return;
+            }
+            for (cbname in SN._callbacks[ename]) {
+                SN._callbacks[ename][cbname](data);
+            }
         }
     },
+
+    E: {    /* Events */
+        /* SN.E.ajaxNoticePosted, called when a notice has been posted successfully via an AJAX form
+            @param  form        the originating form element
+            @param  data        data from success() callback
+            @param  textStatus  textStatus from success() callback
+        */
+        ajaxNoticePosted: function (form, data, textStatus) {
+            var commandResult = $('#' + SN.C.S.CommandResult, data);
+            if (commandResult.length > 0) {
+                SN.U.showFeedback(form, 'success', commandResult.text());
+            } else {
+                // New notice post was successful. If on our timeline, show it!
+                var notice = document._importNode($('li', data)[0], true);
+                var notices = $('#notices_primary .notices:first');
+                var replyItem = form.closest('li.notice-reply');
+
+                if (replyItem.length > 0) {
+                    // If this is an inline reply, remove the form...
+                    var list = form.closest('.threaded-replies');
+
+                    var id = $(notice).attr('id');
+                    if ($('#' + id).length == 0) {
+                        $(notice).insertBefore(replyItem);
+                    } // else Realtime came through before us...
+
+                    replyItem.remove();
+
+                } else if (notices.length > 0 && SN.U.belongsOnTimeline(notice)) {
+                    // Not a reply. If on our timeline, show it at the top!
+
+                    if ($('#' + notice.id).length === 0) {
+                        var notice_irt_value = form.find('[name=inreplyto]').val();
+                        var notice_irt = '#notices_primary #notice-' + notice_irt_value;
+                        if ($('body')[0].id == 'conversation') {
+                            if (notice_irt_value.length > 0 && $(notice_irt + ' .notices').length < 1) {
+                                $(notice_irt).append('<ul class="notices"></ul>');
+                            }
+                            $($(notice_irt + ' .notices')[0]).append(notice);
+                        } else {
+                            notices.prepend(notice);
+                        }
+                        $('#' + notice.id)
+                            .css({display: 'none'})
+                            .fadeIn(2500);
+                        SN.U.NoticeWithAttachment($('#' + notice.id));
+                        SN.U.switchInputFormTab(null);
+                    }
+                } else {
+                    // Not on a timeline that this belongs on?
+                    // Just show a success message.
+                    // @fixme inline
+                    SN.U.showFeedback(form, 'success', $('title', data).text());
+                }
+            }
+            form.resetForm();
+            form.find('[name=inreplyto]').val('');
+            form.find('.attach-status').remove();
+            SN.U.FormNoticeEnhancements(form);
+
+            SN.U.runCallbacks('notice_posted', {"notice": notice});
+        }, 
+    },
+
 
     Init: {
         /**

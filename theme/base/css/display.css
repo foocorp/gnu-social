@@ -957,7 +957,7 @@ content: ":";
 }
 
 .threaded-replies .form_notice .count {
-    top: 60px;
+    bottom: 60px;
     right: 50px;
 }
 
@@ -1620,6 +1620,11 @@ ul.profile_list li {
 }
 .profile_list .h-card .p-nickname {
     display: block;
+}
+
+table.profile_list tbody tr:nth-child(2n+1) {
+    background-color: #fafafa !important;
+    border: none !important;
 }
 
 .entity_profile .entity_nickname,
