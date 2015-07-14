@@ -231,12 +231,6 @@ class EmailsettingsAction extends SettingsAction
                             _('Allow friends to nudge me and send me an email.'),
                             $user->emailnotifynudge);
             $this->elementEnd('li');
-            $this->elementStart('li');
-            $this->checkbox('emailmicroid',
-                            // TRANS: Checkbox label in e-mail preferences form.
-                            _('Publish a MicroID for my email address.'),
-                            $user->emailmicroid);
-            $this->elementEnd('li');
             Event::handle('EndEmailFormData', array($this, $this->scoped));
         }
         $this->elementEnd('ul');
@@ -320,7 +314,6 @@ class EmailsettingsAction extends SettingsAction
             $emailnotifymsg   = $this->booleanintstring('emailnotifymsg');
             $emailnotifynudge = $this->booleanintstring('emailnotifynudge');
             $emailnotifyattn  = $this->booleanintstring('emailnotifyattn');
-            $emailmicroid     = $this->booleanintstring('emailmicroid');
             $emailpost        = $this->booleanintstring('emailpost');
 
             $user->query('BEGIN');
@@ -331,7 +324,6 @@ class EmailsettingsAction extends SettingsAction
             $user->emailnotifymsg   = $emailnotifymsg;
             $user->emailnotifynudge = $emailnotifynudge;
             $user->emailnotifyattn  = $emailnotifyattn;
-            $user->emailmicroid     = $emailmicroid;
             $user->emailpost        = $emailpost;
 
             $result = $user->update($original);

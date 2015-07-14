@@ -36,35 +36,6 @@ class GalleryAction extends ProfileAction
         parent::handle();
     }
 
-    protected function doPreparation()
-    {
-        // showstream requires a nickname
-        $nickname_arg = $this->arg('nickname');
-        $nickname     = common_canonical_nickname($nickname_arg);
-
-        // Permanent redirect on non-canonical nickname
-
-        if ($nickname_arg != $nickname) {
-            $args = array('nickname' => $nickname);
-            if ($this->arg('page') && $this->arg('page') != 1) {
-                $args['page'] = $this->arg['page'];
-            }
-            common_redirect(common_local_url($this->getActionName(), $args), 301);
-        }
-        $this->user = User::getKV('nickname', $nickname);
-
-        if (!$this->user) {
-            $group = Local_group::getKV('nickname', $nickname);
-            if ($group instanceof Local_group) {
-                common_redirect($group->getProfile()->getUrl());
-            }
-            // TRANS: Client error displayed when calling a profile action without specifying a user.
-            $this->clientError(_('No such user.'), 404);
-        }
-
-        $this->target = $this->user->getProfile();
-    }
-
     function showContent()
     {
         $this->showTagsDropdown();

@@ -126,17 +126,6 @@ abstract class ImPlugin extends Plugin
      */
     abstract function daemonScreenname();
 
-    /**
-     * get the microid uri of a given screenname
-     *
-     * @param string $screenname screenname
-     *
-     * @return string microid uri
-     */
-    function microiduri($screenname)
-    {
-        return $this->transport . ':' . $screenname;
-    }
     //========================UTILITY FUNCTIONS USEFUL TO IMPLEMENTATIONS - MISC ========================\
 
     /**
@@ -571,25 +560,12 @@ abstract class ImPlugin extends Plugin
             $user_im_prefs->user_id = $action->notice->getProfile()->getID();
             $user_im_prefs->transport = $this->transport;
 
-            if ($user_im_prefs->find() && $user_im_prefs->fetch() && $user_im_prefs->microid && $action->notice->uri) {
-                $id = new Microid($this->microiduri($user_im_prefs->screenname),
-                                  $action->notice->uri);
-                $action->element('meta', array('name' => 'microid',
-                                             'content' => $id->toString()));
-            }
-
         } elseif ($action instanceof ShowstreamAction) {
 
             $user_im_prefs = new User_im_prefs();
             $user_im_prefs->user_id = $action->getTarget()->getID();
             $user_im_prefs->transport = $this->transport;
 
-            if ($user_im_prefs->find() && $user_im_prefs->fetch() && $user_im_prefs->microid && $action->getTarget()->getUrl()) {
-                $id = new Microid($this->microiduri($user_im_prefs->screenname),
-                                  $action->selfUrl());
-                $action->element('meta', array('name' => 'microid',
-                                               'content' => $id->toString()));
-            }
         }
     }
 

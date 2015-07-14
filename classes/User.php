@@ -42,7 +42,6 @@ class User extends Managed_DataObject
     public $emailnotifynudge;                // tinyint(1)   default_1
     public $emailnotifymsg;                  // tinyint(1)   default_1
     public $emailnotifyattn;                 // tinyint(1)   default_1
-    public $emailmicroid;                    // tinyint(1)   default_1
     public $language;                        // varchar(50)
     public $timezone;                        // varchar(50)
     public $emailpost;                       // tinyint(1)   default_1
@@ -77,7 +76,6 @@ class User extends Managed_DataObject
                 'emailnotifynudge' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of nudges'),
                 'emailnotifymsg' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of direct messages'),
                 'emailnotifyattn' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of @-replies'),
-                'emailmicroid' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'whether to publish email microid'),
                 'language' => array('type' => 'varchar', 'length' => 50, 'description' => 'preferred language'),
                 'timezone' => array('type' => 'varchar', 'length' => 50, 'description' => 'timezone'),
                 'emailpost' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Post by email'),
@@ -276,9 +274,7 @@ class User extends Managed_DataObject
         $user->emailnotifynudge = 1;
         $user->emailnotifymsg = 1;
         $user->emailnotifyattn = 1;
-        $user->emailmicroid = 1;
         $user->emailpost = 1;
-        $user->jabbermicroid = 1;
 
         $user->created = common_sql_now();
 

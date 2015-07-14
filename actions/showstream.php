@@ -47,38 +47,6 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class ShowstreamAction extends NoticestreamAction
 {
-    protected $target = null;
-
-    protected function doPreparation()
-    {
-        // showstream requires a nickname
-        $nickname_arg = $this->trimmed('nickname');
-        $nickname     = common_canonical_nickname($nickname_arg);
-
-        // Permanent redirect on non-canonical nickname
-        if ($nickname_arg != $nickname) {
-            $args = array('nickname' => $nickname);
-            if ($this->arg('page') && $this->arg('page') != 1) {
-                $args['page'] = $this->arg['page'];
-            }
-            common_redirect(common_local_url($this->getActionName(), $args), 301);
-        }
-
-        try {
-            $user = User::getByNickname($nickname);
-        } catch (NoSuchUserException $e) {
-            $group = Local_group::getKV('nickname', $nickname);
-            if ($group instanceof Local_group) {
-                common_redirect($group->getProfile()->getUrl());
-            }
-
-            // No user nor group found, throw the NoSuchUserException again
-            throw $e;
-        }
-
-        $this->target = $user->getProfile();
-    }
-
     public function getStream()
     {
         if (empty($this->tag)) {
@@ -193,13 +161,6 @@ class ShowstreamAction extends NoticestreamAction
         if ($this->target->bio) {
             $this->element('meta', array('name' => 'description',
                                          'content' => $this->target->getDescription()));
-        }
-
-        if ($this->target->isLocal() && $this->target->getUser()->emailmicroid && $this->target->getUser()->email && $this->target->getUrl()) {
-            $id = new Microid('mailto:'.$this->target->getUser()->email,
-                              $this->selfUrl());
-            $this->element('meta', array('name' => 'microid',
-                                         'content' => $id->toString()));
         }
 
         // See https://wiki.mozilla.org/Microsummaries

@@ -179,8 +179,6 @@ class ImsettingsAction extends SettingsAction
                 // TRANS: Checkbox label in IM preferences form.
                 array('name'=>'replies', 'description'=>_('Send me replies '.
                               'from people I\'m not subscribed to.')),
-                // TRANS: Checkbox label in IM preferences form.
-                array('name'=>'microid', 'description'=>_('Publish a MicroID'))
             );
             foreach($preferences as $preference)
             {
@@ -277,7 +275,7 @@ class ImsettingsAction extends SettingsAction
         $user_im_prefs->user_id = $user->id;
         if($user_im_prefs->find() && $user_im_prefs->fetch())
         {
-            $preferences = array('notify', 'updatefrompresence', 'replies', 'microid');
+            $preferences = array('notify', 'updatefrompresence', 'replies');
             do
             {
                 $original = clone($user_im_prefs);
