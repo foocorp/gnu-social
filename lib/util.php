@@ -710,25 +710,17 @@ function common_find_mentions($text, Notice $notice)
 
         // Is it a reply?
 
-        if ($notice instanceof Notice) {
+        $origNotice = $notice->getParent();
+        $origAuthor = $origNotice->getProfile();
+
+        $ids = $origNotice->getReplies();
+
+        foreach ($ids as $id) {
             try {
-                $origNotice = $notice->getParent();
-                $origAuthor = $origNotice->getProfile();
-
-                $ids = $origNotice->getReplies();
-
-                foreach ($ids as $id) {
-                    $repliedTo = Profile::getKV('id', $id);
-                    if ($repliedTo instanceof Profile) {
-                        $origMentions[$repliedTo->nickname] = $repliedTo;
-                    }
-                }
-            } catch (NoProfileException $e) {
-                common_log(LOG_WARNING, sprintf('Notice %d author profile id %d does not exist', $origNotice->id, $origNotice->profile_id));
-            } catch (NoParentNoticeException $e) {
-                // This notice is not in reply to anything
-            } catch (Exception $e) {
-                common_log(LOG_WARNING, __METHOD__ . ' got exception ' . get_class($e) . ' : ' . $e->getMessage());
+                $repliedTo = Profile::getByID($id);
+                $origMentions[$repliedTo->nickname] = $repliedTo;
+            } catch (NoResultException $e) {
+                // continue foreach
             }
         }
 

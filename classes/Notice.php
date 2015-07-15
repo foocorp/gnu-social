@@ -1656,32 +1656,22 @@ class Notice extends Managed_DataObject
     protected $_replies = array();
 
     /**
-     * Pull the complete list of @-reply targets for this notice.
+     * Pull the complete list of @-mentioned profile IDs for this notice.
      *
      * @return array of integer profile ids
      */
     function getReplies()
     {
-        if (isset($this->_replies[$this->id])) {
-            return $this->_replies[$this->id];
+        if (!isset($this->_replies[$this->getID()])) {
+            $mentions = Reply::multiGet('notice_id', array($this->getID()));
+            $this->_replies[$this->getID()] = $mentions->fetchAll('profile_id');
         }
-
-        $replyMap = Reply::listGet('notice_id', array($this->id));
-
-        $ids = array();
-
-        foreach ($replyMap[$this->id] as $reply) {
-            $ids[] = $reply->profile_id;
-        }
-
-        $this->_replies[$this->id] = $ids;
-
-        return $ids;
+        return $this->_replies[$this->getID()];
     }
 
     function _setReplies($replies)
     {
-        $this->_replies[$this->id] = $replies;
+        $this->_replies[$this->getID()] = $replies;
     }
 
     /**
