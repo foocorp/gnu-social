@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Old-school settings
@@ -77,35 +73,23 @@ class OldschoolsettingsAction extends SettingsAction
      * @return boolean true
      */
 
-    function prepare($argarray)
+    protected function doPreparation()
     {
         if (!common_config('oldschool', 'enabled')) {
             throw new ClientException("Old-school settings not enabled.");
         }
-        parent::prepare($argarray);
-        return true;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-
-    function handlePost()
+    function doPost()
     {
-        $user = common_current_user();
-
-        $osp = Old_school_prefs::getKV('user_id', $user->id);
+        $osp = Old_school_prefs::getKV('user_id', $this->scoped->getID());
         $orig = null;
 
         if (!empty($osp)) {
             $orig = clone($osp);
         } else {
             $osp = new Old_school_prefs();
-            $osp->user_id = $user->id;
+            $osp->user_id = $this->scoped->getID();
             $osp->created = common_sql_now();
         }
 
@@ -113,34 +97,25 @@ class OldschoolsettingsAction extends SettingsAction
         $osp->stream_nicknames  = $this->boolean('stream_nicknames');
         $osp->modified          = common_sql_now();
 
-        if (!empty($orig)) {
+        if ($orig instanceof Old_school_prefs) {
             $osp->update($orig);
         } else {
             $osp->insert();
         }
 
         // TRANS: Confirmation shown when user profile settings are saved.
-        $this->showForm(_('Settings saved.'), true);
-
-        return;
-    }
-
-    function showContent()
-    {
-        $user = common_current_user();
-        $form = new OldSchoolForm($this, $user);
-        $form->show();
+        return _('Settings saved.');
     }
 }
 
-class OldSchoolForm extends Form
+class OldSchoolSettingsForm extends Form
 {
     var $user;
 
-    function __construct($out, $user)
+    function __construct(Action $out)
     {
         parent::__construct($out);
-        $this->user = $user;
+        $this->user = $out->getScoped()->getUser();
     }
 
     /**
