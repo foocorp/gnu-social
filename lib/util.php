@@ -710,18 +710,22 @@ function common_find_mentions($text, Notice $notice)
 
         // Is it a reply?
 
-        $origNotice = $notice->getParent();
-        $origAuthor = $origNotice->getProfile();
+        try {
+            $origNotice = $notice->getParent();
+            $origAuthor = $origNotice->getProfile();
 
-        $ids = $origNotice->getReplies();
+            $ids = $origNotice->getReplies();
 
-        foreach ($ids as $id) {
-            try {
-                $repliedTo = Profile::getByID($id);
-                $origMentions[$repliedTo->nickname] = $repliedTo;
-            } catch (NoResultException $e) {
-                // continue foreach
+            foreach ($ids as $id) {
+                try {
+                    $repliedTo = Profile::getByID($id);
+                    $origMentions[$repliedTo->getNickname()] = $repliedTo;
+                } catch (NoResultException $e) {
+                    // continue foreach
+                }
             }
+        } catch (NoParentNoticeException $e) {
+            // It wasn't a reply to anything, so we can't harvest nickname-relations.
         }
 
         $matches = common_find_mentions_raw($text);
