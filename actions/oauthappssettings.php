@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/applicationlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Show a user's registered OAuth applications
