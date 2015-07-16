@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Base class for settings group of actions
@@ -43,113 +41,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @see      Widget
  */
 
-class SettingsAction extends Action
+class SettingsAction extends FormAction
 {
-    /**
-     * A message for the user.
-     */
-
-    var $msg = null;
-
-    /**
-     * Whether the message is a good one or a bad one.
-     */
-
-    var $success = false;
-
-    /**
-     * Handle input and output a page
-     *
-     * @param array $args $_REQUEST arguments
-     *
-     * @return void
-     */
-
-    function handle($args)
-    {
-        parent::handle($args);
-        if (!common_logged_in()) {
-            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-            $this->clientError(_('Not logged in.'));
-        } else if (!common_is_real_login()) {
-            // Cookie theft means that automatic logins can't
-            // change important settings or see private info, and
-            // _all_ our settings are important
-            common_set_returnto($this->selfUrl());
-            $user = common_current_user();
-            if (Event::handle('RedirectToLogin', array($this, $user))) {
-                common_redirect(common_local_url('login'), 303);
-            }
-        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->handlePost();
-        } else {
-            $this->showForm();
-        }
-    }
-
-    /**
-     * Handle a POST request
-     *
-     * @return boolean success flag
-     */
-
-    function handlePost()
-    {
-        return false;
-    }
-
-    /**
-     * show the settings form
-     *
-     * @param string $msg     an extra message for the user
-     * @param string $success good message or bad message?
-     *
-     * @return void
-     */
-
-    function showForm($msg=null, $success=false)
-    {
-        $this->msg     = $msg;
-        $this->success = $success;
-
-        $this->showPage();
-    }
-
-    /**
-     * show human-readable instructions for the page
-     *
-     * @return void
-     */
-
-    function showPageNotice()
-    {
-        if ($this->msg) {
-            $this->element('div', ($this->success) ? 'success' : 'error',
-                           $this->msg);
-        } else {
-            $inst   = $this->getInstructions();
-            $output = common_markup_to_html($inst);
-
-            $this->elementStart('div', 'instructions');
-            $this->raw($output);
-            $this->elementEnd('div');
-        }
-    }
-
-    /**
-     * instructions recipe for sub-classes
-     *
-     * Subclasses should override this to return readable instructions. They'll
-     * be processed by common_markup_to_html().
-     *
-     * @return string instructions text
-     */
-
-    function getInstructions()
-    {
-        return '';
-    }
-
     /**
      * Show the local navigation menu
      *
