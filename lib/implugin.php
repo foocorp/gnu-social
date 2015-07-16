@@ -243,11 +243,11 @@ abstract class ImPlugin extends Plugin
      *
      * @param string $screenname screenname sending to
      * @param string $code the confirmation code
-     * @param User $user user sending to
+     * @param Profile $target For whom the code is valid for
      *
      * @return boolean success value
      */
-    function sendConfirmationCode($screenname, $code, $user)
+    function sendConfirmationCode($screenname, $code, Profile $target)
     {
         // TRANS: Body text for confirmation code e-mail.
         // TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename,
@@ -258,7 +258,7 @@ abstract class ImPlugin extends Plugin
           ' . (If you cannot click it, copy-and-paste it into the ' .
           'address bar of your browser). If that user is not you, ' .
           'or if you did not request this confirmation, just ignore this message.'),
-          $user->nickname, common_config('site', 'name'), $this->getDisplayName(), common_local_url('confirmaddress', null, array('code' => $code)));
+          $target->getNickname(), common_config('site', 'name'), $this->getDisplayName(), common_local_url('confirmaddress', null, array('code' => $code)));
 
         return $this->sendMessage($screenname, $body);
     }
@@ -594,11 +594,11 @@ abstract class ImPlugin extends Plugin
             'daemonScreenname' => $this->daemonScreenname());
     }
 
-    function onSendImConfirmationCode($transport, $screenname, $code, $user)
+    function onSendImConfirmationCode($transport, $screenname, $code, Profile $target)
     {
         if($transport == $this->transport)
         {
-            $this->sendConfirmationCode($screenname, $code, $user);
+            $this->sendConfirmationCode($screenname, $code, $target);
             return false;
         }
     }

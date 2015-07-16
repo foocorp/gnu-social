@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Settings for Jabber/XMPP integration
@@ -118,8 +116,8 @@ class ImsettingsAction extends SettingsAction
                 // TRANS: Button label to remove a confirmed IM address.
                 $this->submit('remove', _m('BUTTON','Remove'));
             } else {
-                $confirm = $this->getConfirmation($transport);
-                if ($confirm) {
+                try {
+                    $confirm = $this->getConfirmation($transport);
                     $this->element('p', 'form_unconfirmed', $confirm->address);
                     // TRANS: Form note in IM settings form.
                     $this->element('p', 'form_note',
@@ -134,7 +132,7 @@ class ImsettingsAction extends SettingsAction
                     $this->hidden('screenname', $confirm->address);
                     // TRANS: Button label to cancel an IM address confirmation procedure.
                     $this->submit('cancel', _m('BUTTON','Cancel'));
-                } else {
+                } catch (NoResultException $e) {
                     $this->elementStart('ul', 'form_data');
                     $this->elementStart('li');
                     // TRANS: Field label for IM address.
@@ -209,57 +207,35 @@ class ImsettingsAction extends SettingsAction
      */
     function getConfirmation($transport)
     {
-        $user = common_current_user();
-
         $confirm = new Confirm_address();
 
-        $confirm->user_id      = $user->id;
+        $confirm->user_id      = $this->scoped->getID();
         $confirm->address_type = $transport;
 
         if ($confirm->find(true)) {
             return $confirm;
-        } else {
-            return null;
         }
+
+        throw new NoResultException($confirm);
     }
 
-    /**
-     * Handle posts to this form
-     *
-     * Based on the button that was pressed, muxes out to other functions
-     * to do the actual task requested.
-     *
-     * All sub-functions reload the form with a message -- success or failure.
-     *
-     * @return void
-     */
-    function handlePost()
+    protected function doPost()
     {
-        // CSRF protection
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->showForm(_('There was a problem with your session token. '.
-                              'Try again, please.'));
-            return;
-        }
-
         if ($this->arg('save')) {
-            $this->savePreferences();
+            return $this->savePreferences();
         } else if ($this->arg('add')) {
-            $this->addAddress();
+            return $this->addAddress();
         } else if ($this->arg('cancel')) {
-            $this->cancelConfirmation();
+            return $this->cancelConfirmation();
         } else if ($this->arg('remove')) {
-            $this->removeAddress();
-        } else {
-            // TRANS: Message given submitting a form with an unknown action in Instant Messaging settings.
-            $this->showForm(_('Unexpected form submission.'));
+            return $this->removeAddress();
         }
+        // TRANS: Message given submitting a form with an unknown action in Instant Messaging settings.
+        throw new ClientException(_('Unexpected form submission.'));
     }
 
     /**
-     * Save user's Jabber preferences
+     * Save user's XMPP preferences
      *
      * These are the checkboxes at the bottom of the page. They're used to
      * set different settings
@@ -268,11 +244,9 @@ class ImsettingsAction extends SettingsAction
      */
     function savePreferences()
     {
-        $user = common_current_user();
-
         $user_im_prefs = new User_im_prefs();
         $user_im_prefs->query('BEGIN');
-        $user_im_prefs->user_id = $user->id;
+        $user_im_prefs->user_id = $this->scoped->getID();
         if($user_im_prefs->find() && $user_im_prefs->fetch())
         {
             $preferences = array('notify', 'updatefrompresence', 'replies');
@@ -287,15 +261,15 @@ class ImsettingsAction extends SettingsAction
                 $result = $new->update($original);
 
                 if ($result === false) {
-                    common_log_db_error($user, 'UPDATE', __FILE__);
+                    common_log_db_error($user_im_prefs, 'UPDATE', __FILE__);
                     // TRANS: Server error thrown on database error updating IM preferences.
-                    $this->serverError(_('Could not update IM preferences.'));
+                    throw new ServerException(_('Could not update IM preferences.'));
                 }
             }while($user_im_prefs->fetch());
         }
         $user_im_prefs->query('COMMIT');
         // TRANS: Confirmation message for successful IM preferences save.
-        $this->showForm(_('Preferences saved.'), true);
+        return _('Preferences saved.');
     }
 
     /**
@@ -308,49 +282,42 @@ class ImsettingsAction extends SettingsAction
      */
     function addAddress()
     {
-        $user = common_current_user();
-
         $screenname = $this->trimmed('screenname');
         $transport = $this->trimmed('transport');
 
         // Some validation
 
-        if (!$screenname) {
+        if (empty($screenname)) {
             // TRANS: Message given saving IM address without having provided one.
-            $this->showForm(_('No screenname.'));
-            return;
+            throw new ClientException(_('No screenname.'));
         }
 
-        if (!$transport) {
+        if (empty($transport)) {
             // TRANS: Form validation error when no transport is available setting an IM address.
-            $this->showForm(_('No transport.'));
-            return;
+            throw new ClientException(_('No transport.'));
         }
 
         Event::handle('NormalizeImScreenname', array($transport, &$screenname));
 
-        if (!$screenname) {
+        if (empty($screenname)) {
             // TRANS: Message given saving IM address that cannot be normalised.
-            $this->showForm(_('Cannot normalize that screenname.'));
-            return;
+            throw new ClientException(_('Cannot normalize that screenname.'));
         }
         $valid = false;
         Event::handle('ValidateImScreenname', array($transport, $screenname, &$valid));
         if (!$valid) {
             // TRANS: Message given saving IM address that not valid.
-            $this->showForm(_('Not a valid screenname.'));
-            return;
+            throw new ClientException(_('Not a valid screenname.'));
         } else if ($this->screennameExists($transport, $screenname)) {
             // TRANS: Message given saving IM address that is already set for another user.
-            $this->showForm(_('Screenname already belongs to another user.'));
-            return;
+            throw new ClientException(_('Screenname already belongs to another user.'));
         }
 
         $confirm = new Confirm_address();
 
         $confirm->address      = $screenname;
         $confirm->address_type = $transport;
-        $confirm->user_id      = $user->id;
+        $confirm->user_id      = $this->scoped->getID();
         $confirm->code         = common_confirmation_code(64);
         $confirm->sent         = common_sql_now();
         $confirm->claimed      = common_sql_now();
@@ -363,13 +330,10 @@ class ImsettingsAction extends SettingsAction
             $this->serverError(_('Could not insert confirmation code.'));
         }
 
-        Event::handle('SendImConfirmationCode', array($transport, $screenname, $confirm->code, $user));
+        Event::handle('SendImConfirmationCode', array($transport, $screenname, $confirm->code, $this->scoped));
 
         // TRANS: Message given saving valid IM address that is to be confirmed.
-        $msg = _('A confirmation code was sent '.
-                         'to the IM address you added.');
-
-        $this->showForm($msg, true);
+        return _('A confirmation code was sent to the IM address you added.');
     }
 
     /**
@@ -384,29 +348,27 @@ class ImsettingsAction extends SettingsAction
         $screenname = $this->trimmed('screenname');
         $transport = $this->trimmed('transport');
 
-        $confirm = $this->getConfirmation($transport);
-
-        if (!$confirm) {
+        try {
+            $confirm = $this->getConfirmation($transport);
+            if ($confirm->address != $screenname) {
+                // TRANS: Message given canceling IM address confirmation for the wrong IM address.
+                throw new ClientException(_('That is the wrong IM address.'));
+            }
+        } catch (NoResultException $e) {
             // TRANS: Message given canceling Instant Messaging address confirmation that is not pending.
-            $this->showForm(_('No pending confirmation to cancel.'));
-            return;
-        }
-        if ($confirm->address != $screenname) {
-            // TRANS: Message given canceling IM address confirmation for the wrong IM address.
-            $this->showForm(_('That is the wrong IM address.'));
-            return;
+            throw new AlreadyFulfilledException(_('No pending confirmation to cancel.'));
         }
 
         $result = $confirm->delete();
 
-        if (!$result) {
+        if ($result === false) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error thrown on database error canceling IM address confirmation.
-            $this->serverError(_('Could not delete confirmation.'));
+            throw new ServerException(_('Could not delete confirmation.'));
         }
 
         // TRANS: Message given after successfully canceling IM address confirmation.
-        $this->showForm(_('IM confirmation cancelled.'), true);
+        return _('IM confirmation cancelled.');
     }
 
     /**
@@ -418,34 +380,32 @@ class ImsettingsAction extends SettingsAction
      */
     function removeAddress()
     {
-        $user = common_current_user();
-
         $screenname = $this->trimmed('screenname');
         $transport = $this->trimmed('transport');
 
         // Maybe an old tab open...?
 
         $user_im_prefs = new User_im_prefs();
-        $user_im_prefs->user_id = $user->id;
-        if(! ($user_im_prefs->find() && $user_im_prefs->fetch())) {
+        $user_im_prefs->user_id = $this->scoped->getID();
+        $user_im_prefs->transport = $transport;
+        if (!$user_im_prefs->find(true)) {
             // TRANS: Message given trying to remove an IM address that is not
             // TRANS: registered for the active user.
-            $this->showForm(_('That is not your screenname.'));
-            return;
+            throw new AlreadyFulfilledException(_('There were no preferences stored for this transport.'));
         }
 
         $result = $user_im_prefs->delete();
 
-        if (!$result) {
-            common_log_db_error($user, 'UPDATE', __FILE__);
+        if ($result === false) {
+            common_log_db_error($user_im_prefs, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing a registered IM address.
-            $this->serverError(_('Could not update user IM preferences.'));
+            throw new ServerException(_('Could not update user IM preferences.'));
         }
 
         // XXX: unsubscribe to the old address
 
         // TRANS: Message given after successfully removing a registered Instant Messaging address.
-        $this->showForm(_('The IM address was removed.'), true);
+        return _('The IM address was removed.');
     }
 
     /**
@@ -461,15 +421,9 @@ class ImsettingsAction extends SettingsAction
 
     function screennameExists($transport, $screenname)
     {
-        $user = common_current_user();
-
         $user_im_prefs = new User_im_prefs();
         $user_im_prefs->transport = $transport;
         $user_im_prefs->screenname = $screenname;
-        if($user_im_prefs->find() && $user_im_prefs->fetch()){
-            return true;
-        }else{
-            return false;
-        }
+        return $user_im_prefs->find(true) ? true : false;
     }
 }
