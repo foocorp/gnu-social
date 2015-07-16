@@ -76,11 +76,11 @@ class AvatarsettingsAction extends SettingsAction
     /**
      * Content area of the page
      *
-     * Shows a form for uploading an avatar.
+     * Shows a form for uploading an avatar. Currently overrides FormAction's showContent
+     * since we haven't made classes out of AvatarCropForm and AvatarUploadForm.
      *
      * @return void
      */
-
     function showContent()
     {
         if ($this->mode == 'crop') {
@@ -243,52 +243,19 @@ class AvatarsettingsAction extends SettingsAction
         $this->elementEnd('form');
     }
 
-    /**
-     * Handle a post
-     *
-     * We mux on the button name to figure out what the user actually wanted.
-     *
-     * @return void
-     */
-    function handlePost()
+    protected function doPost()
     {
-        // Workaround for PHP returning empty $_POST and $_FILES when POST
-        // length > post_max_size in php.ini
-
-        if (empty($_FILES)
-            && empty($_POST)
-            && ($_SERVER['CONTENT_LENGTH'] > 0)
-        ) {
-            // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
-            // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-            $msg = _m('The server was unable to handle that much POST data (%s byte) due to its current configuration.',
-                      'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
-                      intval($_SERVER['CONTENT_LENGTH']));
-            $this->showForm(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
-            return;
-        }
-
-        // CSRF protection
-
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->showForm(_('There was a problem with your session token. '.
-                               'Try again, please.'));
-            return;
-        }
-
         if (Event::handle('StartAvatarSaveForm', array($this))) {
-            if ($this->arg('upload')) {
-                $this->uploadAvatar();
-                } else if ($this->arg('crop')) {
-                    $this->cropAvatar();
-                } else if ($this->arg('delete')) {
-                    $this->deleteAvatar();
-                } else {
-                    // TRANS: Unexpected validation error on avatar upload form.
-                    $this->showForm(_('Unexpected form submission.'));
-                }
+            if ($this->trimmed('upload')) {
+                return $this->uploadAvatar();
+            } else if ($this->trimmed('crop')) {
+                return $this->cropAvatar();
+            } else if ($this->trimmed('delete')) {
+                return $this->deleteAvatar();
+            } else {
+                // TRANS: Unexpected validation error on avatar upload form.
+                throw new ClientException(_('Unexpected form submission.'));
+            }
             Event::handle('EndAvatarSaveForm', array($this));
         }
     }
@@ -303,21 +270,12 @@ class AvatarsettingsAction extends SettingsAction
      */
     function uploadAvatar()
     {
-        try {
-            $imagefile = ImageFile::fromUpload('avatarfile');
-        } catch (Exception $e) {
-            $this->showForm($e->getMessage());
-            return;
-        }
-        if ($imagefile === null) {
-            // TRANS: Validation error on avatar upload form when no file was uploaded.
-            $this->showForm(_('No file uploaded.'));
-            return;
-        }
+        // ImageFile throws exception if something goes wrong, which we'll
+        // pick up and show as an error message above the form.
+        $imagefile = ImageFile::fromUpload('avatarfile');
 
-        $cur = common_current_user();
         $type = $imagefile->preferredType();
-        $filename = Avatar::filename($cur->id,
+        $filename = Avatar::filename($this->scoped->getID(),
                                      image_type_to_extension($type),
                                      null,
                                      'tmp'.common_timestamp());
@@ -338,8 +296,7 @@ class AvatarsettingsAction extends SettingsAction
         $this->mode = 'crop';
 
         // TRANS: Avatar upload form instruction after uploading a file.
-        $this->showForm(_('Pick a square area of the image to be your avatar.'),
-                        true);
+        return _('Pick a square area of the image to be your avatar.');
     }
 
     /**
@@ -351,13 +308,12 @@ class AvatarsettingsAction extends SettingsAction
     {
         $filedata = $_SESSION['FILEDATA'];
 
-        if (!$filedata) {
+        if (empty($filedata)) {
             // TRANS: Server error displayed if an avatar upload went wrong somehow server side.
-            $this->serverError(_('Lost our file data.'));
+            throw new ServerException(_('Lost our file data.'));
         }
 
-        $file_d = ($filedata['width'] > $filedata['height'])
-                     ? $filedata['height'] : $filedata['width'];
+        $file_d = min($filedata['width'],  $filedata['height']);
 
         $dest_x = $this->arg('avatar_crop_x') ? $this->arg('avatar_crop_x'):0;
         $dest_y = $this->arg('avatar_crop_y') ? $this->arg('avatar_crop_y'):0;
@@ -369,11 +325,8 @@ class AvatarsettingsAction extends SettingsAction
                      'x' => $dest_x,   'y' => $dest_y,
                      'w' => $dest_w,   'h' => $dest_h);
 
-        $user = common_current_user();
-        $profile = $user->getProfile();
-
         $imagefile = new ImageFile(null, $filedata['filepath']);
-        $filename = Avatar::filename($profile->getID(), image_type_to_extension($imagefile->preferredType()),
+        $filename = Avatar::filename($this->scoped->getID(), image_type_to_extension($imagefile->preferredType()),
                                      $size, common_timestamp());
         try {
             $imagefile->resizeTo(Avatar::path($filename), $box);
@@ -385,16 +338,16 @@ class AvatarsettingsAction extends SettingsAction
             }
         }
 
-        if ($profile->setOriginal($filename)) {
+        if ($this->scoped->setOriginal($filename)) {
             @unlink($filedata['filepath']);
             unset($_SESSION['FILEDATA']);
             $this->mode = 'upload';
             // TRANS: Success message for having updated a user avatar.
-            $this->showForm(_('Avatar updated.'), true);
-        } else {
-            // TRANS: Error displayed on the avatar upload page if the avatar could not be updated for an unknown reason.
-            $this->showForm(_('Failed updating avatar.'));
+            return _('Avatar updated.');
         }
+
+        // TRANS: Error displayed on the avatar upload page if the avatar could not be updated for an unknown reason.
+        throw new ServerException(_('Failed updating avatar.'));
     }
 
     /**
@@ -404,13 +357,10 @@ class AvatarsettingsAction extends SettingsAction
      */
     function deleteAvatar()
     {
-        $user = common_current_user();
-        $profile = $user->getProfile();
-
-        Avatar::deleteFromProfile($profile);
+        Avatar::deleteFromProfile($this->scoped);
 
         // TRANS: Success message for deleting a user avatar.
-        $this->showForm(_('Avatar deleted.'), true);
+        return _('Avatar deleted.');
     }
 
     /**

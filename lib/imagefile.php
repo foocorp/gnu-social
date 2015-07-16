@@ -189,6 +189,8 @@ class ImageFile
 
          case UPLOAD_ERR_NO_FILE:
             // No file; probably just a non-AJAX submission.
+            throw new ClientException(_('No file uploaded.'));
+
          default:
             common_log(LOG_ERR, __METHOD__ . ": Unknown upload error " . $_FILES[$param]['error']);
             // TRANS: Exception thrown when uploading an image fails for an unknown reason.
