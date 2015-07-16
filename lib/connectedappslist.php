@@ -46,18 +46,14 @@ class ConnectedAppsList extends Widget
     /** Owner of this list */
     var $owner = null;
 
-    /** Action object using us. */
-    var $action = null;
-
-    function __construct($connection, $owner=null, $action=null)
+    function __construct($connection, Profile $owner, Action $out=null)
     {
-        parent::__construct($action);
+        parent::__construct($out);
 
         common_debug("ConnectedAppsList constructor");
 
         $this->connection = $connection;
-        $this->owner       = $owner;
-        $this->action      = $action;
+        $this->owner      = $owner;
     }
 
     /* Override this in subclasses. */

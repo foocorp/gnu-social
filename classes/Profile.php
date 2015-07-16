@@ -1623,4 +1623,9 @@ class Profile extends Managed_DataObject
     public function setPref($namespace, $topic, $data) {
         return Profile_prefs::setData($this, $namespace, $topic, $data);
     }
+
+    public function getConnectedApps($offset=0, $limit=null)
+    {
+        return $this->getUser()->getConnectedApps($offset, $limit);
+    }
 }

@@ -46,16 +46,12 @@ class ApplicationList extends Widget
     /** Owner of this list */
     var $owner = null;
 
-    /** Action object using us. */
-    var $action = null;
-
-    function __construct($application, $owner=null, $action=null)
+    function __construct($application, Profile $owner, Action $out=null)
     {
-        parent::__construct($action);
+        parent::__construct($out);
 
         $this->application = $application;
         $this->owner       = $owner;
-        $this->action      = $action;
     }
 
     function show()
@@ -69,7 +65,7 @@ class ApplicationList extends Widget
             if($cnt > APPS_PER_PAGE) {
                 break;
             }
-            $this->showapplication();
+            $this->showApplication();
         }
 
         $this->out->elementEnd('ul');
@@ -79,8 +75,6 @@ class ApplicationList extends Widget
 
     function showApplication()
     {
-        $user = common_current_user();
-
         $this->out->elementStart('li', array('class' => 'application h-entry',
                                              'id'    => 'oauthclient-' . $this->application->id));
 
