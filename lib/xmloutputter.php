@@ -63,12 +63,15 @@ class XMLOutputter
      *
      * Initializes the wrapped XMLWriter.
      *
-     * @param string  $output URL for outputting, defaults to stdout
+     * @param string  $output URL for outputting, if null it defaults to stdout ('php://output')
      * @param boolean $indent Whether to indent output, default true
      */
 
-    function __construct($output='php://output', $indent=null)
+    function __construct($output=null, $indent=null)
     {
+        if (is_null($output)) {
+            $output = 'php://output';
+        }
         $this->xw = new XMLWriter();
         $this->xw->openURI($output);
         if(is_null($indent)) {
