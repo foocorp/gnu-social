@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-
+if (!defined('STATUSNET')) { exit(1); }
 
 /**
  * Change password
@@ -77,18 +73,8 @@ class PasswordsettingsAction extends SettingsAction
         $this->autofocus('oldpassword');
     }
 
-    /**
-     * Content area of the page
-     *
-     * Shows a form for changing the password
-     *
-     * @return void
-     */
-
     function showContent()
     {
-        $user = common_current_user();
-
         $this->elementStart('form', array('method' => 'POST',
                                           'id' => 'form_password',
                                           'class' => 'form_settings',
@@ -102,7 +88,7 @@ class PasswordsettingsAction extends SettingsAction
 
         $this->elementStart('ul', 'form_data');
         // Users who logged in with OpenID won't have a pwd
-        if ($user->password) {
+        if ($this->scoped->hasPassword()) {
             $this->elementStart('li');
             // TRANS: Field label on page where to change password.
             $this->password('oldpassword', _('Old password'));
@@ -129,29 +115,8 @@ class PasswordsettingsAction extends SettingsAction
         $this->elementEnd('form');
     }
 
-    /**
-     * Handle a post
-     *
-     * Validate input and save changes. Reload the form with a success
-     * or error message.
-     *
-     * @return void
-     */
-    function handlePost()
+    protected function doPost()
     {
-        // CSRF protection
-
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->showForm(_('There was a problem with your session token. '.
-                               'Try again, please.'));
-            return;
-        }
-
-        $user = common_current_user();
-        assert(!is_null($user)); // should already be checked
-
         // FIXME: scrub input
 
         $newpassword = $this->arg('newpassword');
@@ -161,49 +126,44 @@ class PasswordsettingsAction extends SettingsAction
 
         if (strlen($newpassword) < 6) {
             // TRANS: Form validation error on page where to change password.
-            $this->showForm(_('Password must be 6 or more characters.'));
-            return;
+            throw new ClientException(_('Password must be 6 or more characters.'));
         } else if (0 != strcmp($newpassword, $confirm)) {
             // TRANS: Form validation error on password change when password confirmation does not match.
-            $this->showForm(_('Passwords do not match.'));
-            return;
+            throw new ClientException(_('Passwords do not match.'));
         }
 
-        if ($user->password) {
+        $oldpassword = null;
+        if ($this->scoped->hasPassword()) {
             $oldpassword = $this->arg('oldpassword');
 
-            if (!common_check_user($user->nickname, $oldpassword)) {
+            if (!common_check_user($this->scoped->getNickname(), $oldpassword)) {
                 // TRANS: Form validation error on page where to change password.
-                $this->showForm(_('Incorrect old password.'));
-                return;
+                throw new ClientException(_('Incorrect old password.'));
             }
-        }else{
-            $oldpassword = null;
         }
 
-        $success = false;
-        if(Event::handle('StartChangePassword', array($user, $oldpassword, $newpassword))){
+        if (Event::handle('StartChangePassword', array($this->scoped, $oldpassword, $newpassword))) {
             //no handler changed the password, so change the password internally
+            $user = $this->scoped->getUser();
             $original = clone($user);
 
-            $user->password = common_munge_password($newpassword, $user->id);
+            $user->password = common_munge_password($newpassword, $this->scoped);
 
             $val = $user->validate();
             if ($val !== true) {
                 // TRANS: Form validation error on page where to change password.
-                $this->showForm(_('Error saving user; invalid.'));
-                return;
+                throw new ServerException(_('Error saving user; invalid.'));
             }
 
             if (!$user->update($original)) {
                 // TRANS: Server error displayed on page where to change password when password change
                 // TRANS: could not be made because of a server error.
-                $this->serverError(_('Cannot save new password.'));
+                throw new ServerException(_('Cannot save new password.'));
             }
-            Event::handle('EndChangePassword', array($user));
+            Event::handle('EndChangePassword', array($this->scoped));
         }
 
         // TRANS: Form validation notice on page where to change password.
-        $this->showForm(_('Password saved.'), true);
+        return _('Password saved.');
     }
 }

@@ -299,7 +299,7 @@ class User extends Managed_DataObject
             }
 
             if (!empty($password)) { // may not have a password for OpenID users
-                $user->password = common_munge_password($password, $id);
+                $user->password = common_munge_password($password);
             }
 
             $result = $user->insert();
@@ -1013,6 +1013,11 @@ class User extends Managed_DataObject
     public function isPrivateStream()
     {
         return $this->getProfile()->isPrivateStream();
+    }
+
+    public function hasPassword()
+    {
+        return !empty($this->password);
     }
 
     public function delPref($namespace, $topic)

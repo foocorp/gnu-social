@@ -210,7 +210,7 @@ function common_language()
 /**
  * Salted, hashed passwords are stored in the DB.
  */
-function common_munge_password($password, $id, Profile $profile=null)
+function common_munge_password($password, Profile $profile=null)
 {
     $hashed = null;
 
@@ -245,8 +245,7 @@ function common_check_user($nickname, $password)
         }
 
         if ($user instanceof User && !empty($password)) {
-            if (0 == strcmp(common_munge_password($password, $user->id),
-                            $user->password)) {
+            if (0 == strcmp(common_munge_password($password, $user->getProfile()), $user->password)) {
                 //internal checking passed
                 $authenticatedUser = $user;
             }

@@ -157,7 +157,7 @@ class ConfirmfirstemailAction extends Action
 
         $orig = clone($this->user);
 
-        $this->user->password = common_munge_password($this->password, $this->user->id);
+        $this->user->password = common_munge_password($this->password, $this->user->getProfile());
 
         $this->user->update($orig);
 

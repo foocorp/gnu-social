@@ -138,6 +138,18 @@ class Profile extends Managed_DataObject
         return true;
     }
 
+    // Returns false if the user has no password (which will always
+    // be the case for remote users). This can be the case for OpenID
+    // logins or other mechanisms which don't store a password hash.
+    public function hasPassword()
+    {
+        try {
+            return !empty($this->getUser()->hasPassword());
+        } catch (NoSuchUserException $e) {
+            return false;
+        }
+    }
+
     public function getObjectType()
     {
         // FIXME: More types... like peopletags and whatever
