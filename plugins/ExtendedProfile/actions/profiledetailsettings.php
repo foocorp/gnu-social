@@ -17,9 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class ProfileDetailSettingsAction extends ProfileSettingsAction
 {
@@ -27,18 +25,6 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
     {
         // TRANS: Title for extended profile settings.
         return _m('Extended profile settings');
-    }
-
-    /**
-     * Instructions for use
-     *
-     * @return instructions for use
-     */
-    function getInstructions()
-    {
-        // TRANS: Usage instructions for profile settings.
-        return _m('You can update your personal profile info here '.
-                 'so people know more about you.');
     }
 
     function showStylesheets() {
@@ -53,36 +39,21 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
         return true;
     }
 
-    function handlePost()
+    protected function doPost()
     {
-        // CSRF protection
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            $this->showForm(
-                // TRANS: Client error displayed when the session token does not match or is not given.
-                _m('There was a problem with your session token. '
-                    .   'Try again, please.'
-                  )
-            );
-            return;
+        if ($this->arg('save')) {
+            return $this->saveDetails();
         }
 
-        if ($this->arg('save')) {
-            $this->saveDetails();
-        } else {
-            // TRANS: Message given submitting a form with an unknown action.
-            $this->showForm(_m('Unexpected form submission.'));
-        }
+        // TRANS: Message given submitting a form with an unknown action.
+        throw new ClientException(_m('Unexpected form submission.'));
     }
 
     function showContent()
     {
-        $cur = common_current_user();
-        $profile = $cur->getProfile();
-
         $widget = new ExtendedProfileWidget(
             $this,
-            $profile,
+            $this->scoped,
             ExtendedProfileWidget::EDITABLE
         );
         $widget->show();
@@ -92,49 +63,38 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
     {
         common_debug(var_export($_POST, true));
 
-        $user = common_current_user();
+        $this->saveStandardProfileDetails();
 
-        try {
-            $this->saveStandardProfileDetails($user);
+        $simpleFieldNames = array('title', 'spouse', 'kids', 'manager');
+        $dateFieldNames   = array('birthday');
 
-            $profile = $user->getProfile();
-
-            $simpleFieldNames = array('title', 'spouse', 'kids', 'manager');
-            $dateFieldNames   = array('birthday');
-
-            foreach ($simpleFieldNames as $name) {
-                $value = $this->trimmed('extprofile-' . $name);
-                if (!empty($value)) {
-                    $this->saveField($user, $name, $value);
-                }
+        foreach ($simpleFieldNames as $name) {
+            $value = $this->trimmed('extprofile-' . $name);
+            if (!empty($value)) {
+                $this->saveField($name, $value);
             }
-
-            foreach ($dateFieldNames as $name) {
-                $value = $this->trimmed('extprofile-' . $name);
-                $dateVal = $this->parseDate($name, $value);
-                $this->saveField(
-                    $user,
-                    $name,
-                    null,
-                    null,
-                    null,
-                    $dateVal
-                );
-            }
-
-            $this->savePhoneNumbers($user);
-            $this->saveIms($user);
-            $this->saveWebsites($user);
-            $this->saveExperiences($user);
-            $this->saveEducations($user);
-
-        } catch (Exception $e) {
-            $this->showForm($e->getMessage(), false);
-            return;
         }
 
+        foreach ($dateFieldNames as $name) {
+            $value = $this->trimmed('extprofile-' . $name);
+            $dateVal = $this->parseDate($name, $value);
+            $this->saveField(
+                $name,
+                null,
+                null,
+                null,
+                $dateVal
+            );
+        }
+
+        $this->savePhoneNumbers();
+        $this->saveIms();
+        $this->saveWebsites();
+        $this->saveExperiences();
+        $this->saveEducations();
+
         // TRANS: Success message after saving extended profile details.
-        $this->showForm(_m('Details saved.'), true);
+        return _m('Details saved.');
 
     }
 
@@ -168,15 +128,14 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
         return null;
     }
 
-    function savePhoneNumbers($user) {
+    function savePhoneNumbers() {
         $phones = $this->findPhoneNumbers();
-        $this->removeAll($user, 'phone');
+        $this->removeAll('phone');
         $i = 0;
         foreach($phones as $phone) {
             if (!empty($phone['value'])) {
                 ++$i;
                 $this->saveField(
-                    $user,
                     'phone',
                     $phone['value'],
                     $phone['rel'],
@@ -226,15 +185,14 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
         return $imArray;
     }
 
-    function saveIms($user) {
+    function saveIms() {
         $ims = $this->findIms();
-        $this->removeAll($user, 'im');
+        $this->removeAll('im');
         $i = 0;
         foreach($ims as $im) {
             if (!empty($im['value'])) {
                 ++$i;
                 $this->saveField(
-                    $user,
                     'im',
                     $im['value'],
                     $im['rel'],
@@ -262,9 +220,9 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
         return $wsArray;
     }
 
-    function saveWebsites($user) {
+    function saveWebsites() {
         $sites = $this->findWebsites();
-        $this->removeAll($user, 'website');
+        $this->removeAll('website');
         $i = 0;
         foreach($sites as $site) {
             if (!empty($site['value']) && !common_valid_http_url($site['value'])) {
@@ -276,7 +234,6 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
             if (!empty($site['value'])) {
                 ++$i;
                 $this->saveField(
-                    $user,
                     'website',
                     $site['value'],
                     $site['rel'],
@@ -317,20 +274,19 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
         return $expArray;
     }
 
-    function saveExperiences($user) {
+    function saveExperiences() {
         common_debug('save experiences');
         $experiences = $this->findExperiences();
 
-        $this->removeAll($user, 'company');
-        $this->removeAll($user, 'start');
-        $this->removeAll($user, 'end'); // also stores 'current'
+        $this->removeAll('company');
+        $this->removeAll('start');
+        $this->removeAll('end'); // also stores 'current'
 
         $i = 0;
         foreach($experiences as $experience) {
             if (!empty($experience['company'])) {
                 ++$i;
                 $this->saveField(
-                    $user,
                     'company',
                     $experience['company'],
                     null,
@@ -338,7 +294,6 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
                 );
 
                 $this->saveField(
-                    $user,
                     'start',
                     null,
                     null,
@@ -349,7 +304,6 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
                 // Save "current" employer indicator in rel
                 if ($experience['current']) {
                     $this->saveField(
-                        $user,
                         'end',
                         null,
                         'current', // rel
@@ -357,7 +311,6 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
                     );
                 } else {
                     $this->saveField(
-                        $user,
                         'end',
                         null,
                         null,
@@ -399,44 +352,40 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
     }
 
 
-    function saveEducations($user) {
+    function saveEducations() {
          common_debug('save education');
          $edus = $this->findEducations();
          common_debug(var_export($edus, true));
 
-         $this->removeAll($user, 'school');
-         $this->removeAll($user, 'degree');
-         $this->removeAll($user, 'degree_descr');
-         $this->removeAll($user, 'school_start');
-         $this->removeAll($user, 'school_end');
+         $this->removeAll('school');
+         $this->removeAll('degree');
+         $this->removeAll('degree_descr');
+         $this->removeAll('school_start');
+         $this->removeAll('school_end');
 
          $i = 0;
          foreach($edus as $edu) {
              if (!empty($edu['school'])) {
                  ++$i;
                  $this->saveField(
-                     $user,
                      'school',
                      $edu['school'],
                      null,
                      $i
                  );
                  $this->saveField(
-                     $user,
                      'degree',
                      $edu['degree'],
                      null,
                      $i
                  );
                  $this->saveField(
-                     $user,
                      'degree_descr',
                      $edu['description'],
                      null,
                      $i
                  );
                  $this->saveField(
-                     $user,
                      'school_start',
                      null,
                      null,
@@ -445,7 +394,6 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
                  );
 
                  $this->saveField(
-                     $user,
                      'school_end',
                      null,
                      null,
@@ -491,35 +439,33 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
     /**
      * Save an extended profile field as a Profile_detail
      *
-     * @param User   $user    the current user
      * @param string $name    field name
      * @param string $value   field value
      * @param string $rel     field rel (type)
      * @param int    $index   index (fields can have multiple values)
      * @param date   $date    related date
      */
-    function saveField($user, $name, $value, $rel = null, $index = null, $date = null)
+    function saveField($name, $value, $rel = null, $index = null, $date = null)
     {
-        $profile = $user->getProfile();
         $detail  = new Profile_detail();
 
-        $detail->profile_id  = $profile->id;
+        $detail->profile_id  = $this->scoped->getID();
         $detail->field_name  = $name;
         $detail->value_index = $index;
 
         $result = $detail->find(true);
 
-        if (empty($result)) {
-            $detial->value_index = $index;
+        if (!$result instanceof Profile_detail) {
+            $detail->value_index = $index;
             $detail->rel         = $rel;
             $detail->field_value = $value;
             $detail->date        = $date;
             $detail->created     = common_sql_now();
             $result = $detail->insert();
-            if (empty($result)) {
+            if ($result === false) {
                 common_log_db_error($detail, 'INSERT', __FILE__);
                 // TRANS: Server error displayed when a field could not be saved in the database.
-                $this->serverError(_m('Could not save profile details.'));
+                throw new ServerException(_m('Could not save profile details.'));
             }
         } else {
             $orig = clone($detail);
@@ -529,21 +475,20 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
             $detail->date        = $date;
 
             $result = $detail->update($orig);
-            if (empty($result)) {
+            if ($result === false) {
                 common_log_db_error($detail, 'UPDATE', __FILE__);
                 // TRANS: Server error displayed when a field could not be saved in the database.
-                $this->serverError(_m('Could not save profile details.'));
+                throw new ServerException(_m('Could not save profile details.'));
             }
         }
 
         $detail->free();
     }
 
-    function removeAll($user, $name)
+    function removeAll($name)
     {
-        $profile = $user->getProfile();
         $detail  = new Profile_detail();
-        $detail->profile_id  = $profile->id;
+        $detail->profile_id  = $this->scoped->getID();
         $detail->field_name  = $name;
         $detail->delete();
         $detail->free();
@@ -554,10 +499,8 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
      *
      * XXX: There's a lot of dupe code here from ProfileSettingsAction.
      *      Do not want.
-     *
-     * @param User $user the current user
      */
-    function saveStandardProfileDetails($user)
+    function saveStandardProfileDetails()
     {
         $fullname  = $this->trimmed('extprofile-fullname');
         $location  = $this->trimmed('extprofile-location');
@@ -581,54 +524,47 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
             }
         }
 
-        $profile = $user->getProfile();
-
-        $oldTags = $user->getSelfTags();
+        $oldTags = Profile_tag::getSelfTagsArray($this->scoped);
         $newTags = array_diff($tags, $oldTags);
 
-        if ($fullname    != $profile->fullname
-            || $location != $profile->location
+        if ($fullname    != $this->scoped->getFullname()
+            || $location != $this->scoped->location
             || !empty($newTags)
-            || $bio      != $profile->bio) {
+            || $bio      != $this->scoped->getDescription()) {
 
-            $orig = clone($profile);
+            $orig = clone($this->scoped);
 
-            $profile->nickname = $user->nickname;
-            $profile->fullname = $fullname;
-            $profile->bio      = $bio;
-            $profile->location = $location;
+            // Skipping nickname change here until we add logic for when the site allows it or not
+            // old Profilesettings will still let us do that.
+
+            $this->scoped->fullname = $fullname;
+            $this->scoped->bio      = $bio;
+            $this->scoped->location = $location;
 
             $loc = Location::fromName($location);
 
             if (empty($loc)) {
-                $profile->lat         = null;
-                $profile->lon         = null;
-                $profile->location_id = null;
-                $profile->location_ns = null;
+                $this->scoped->lat         = null;
+                $this->scoped->lon         = null;
+                $this->scoped->location_id = null;
+                $this->scoped->location_ns = null;
             } else {
-                $profile->lat         = $loc->lat;
-                $profile->lon         = $loc->lon;
-                $profile->location_id = $loc->location_id;
-                $profile->location_ns = $loc->location_ns;
+                $this->scoped->lat         = $loc->lat;
+                $this->scoped->lon         = $loc->lon;
+                $this->scoped->location_id = $loc->location_id;
+                $this->scoped->location_ns = $loc->location_ns;
             }
 
-            $profile->profileurl = common_profile_url($user->nickname);
-
-            $result = $profile->update($orig);
+            $result = $this->scoped->update($orig);
 
             if ($result === false) {
-                common_log_db_error($profile, 'UPDATE', __FILE__);
+                common_log_db_error($this->scoped, 'UPDATE', __FILE__);
                 // TRANS: Server error thrown when user profile settings could not be saved.
-                $this->serverError(_m('Could not save profile.'));
+                throw new ServerException(_m('Could not save profile.'));
             }
 
             // Set the user tags
-            $result = $user->setSelfTags($tags);
-
-            if (!$result) {
-                // TRANS: Server error thrown when user profile settings tags could not be saved.
-                $this->serverError(_m('Could not save tags.'));
-            }
+            $result = Profile_tag::setSelfTags($this->scoped, $tags);
 
             Event::handle('EndProfileSaveForm', array($this));
         }
