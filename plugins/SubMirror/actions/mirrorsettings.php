@@ -25,7 +25,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class MirrorSettingsAction extends SettingsAction
 {
@@ -62,9 +62,8 @@ class MirrorSettingsAction extends SettingsAction
      */
     function showContent()
     {
-        $user = common_current_user();
         $provider = $this->trimmed('provider');
-        if ($provider) {
+        if (!empty($provider) || GNUsocial::isAjax()) {
             $this->showAddFeedForm($provider);
         } else {
             $this->elementStart('div', array('id' => 'add-mirror'));
@@ -72,7 +71,7 @@ class MirrorSettingsAction extends SettingsAction
             $this->elementEnd('div');
 
             $mirror = new SubMirror();
-            $mirror->subscriber = $user->id;
+            $mirror->subscriber = $this->scoped->getID();
             if ($mirror->find()) {
                 while ($mirror->fetch()) {
                     $this->showFeedForm($mirror);
@@ -87,13 +86,11 @@ class MirrorSettingsAction extends SettingsAction
         $form->show();
     }
 
-    function showFeedForm($mirror)
+    function showFeedForm(SubMirror $mirror)
     {
-        $profile = Profile::getKV('id', $mirror->subscribed);
-        if ($profile) {
-            $form = new EditMirrorForm($this, $profile);
-            $form->show();
-        }
+        $profile = Profile::getByID($mirror->subscribed);
+        $form = new EditMirrorForm($this, $profile);
+        $form->show();
     }
 
     function showAddFeedForm()
@@ -110,41 +107,6 @@ class MirrorSettingsAction extends SettingsAction
             $form = new AddMirrorForm($this);
         }
         $form->show();
-    }
-
-    /**
-     *
-     * @param array $args
-     *
-     * @todo move the ajax display handling to common code
-     */
-    function handle($args)
-    {
-        if ($this->boolean('ajax')) {
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Title for page with form to add a mirror feed provider on.
-            $this->element('title', null, _m('Provider add'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-
-            $this->showAddFeedForm();
-
-            $this->elementEnd('body');
-            $this->endHTML();
-        } else {
-            return parent::handle($args);
-        }
-    }
-    /**
-     * Handle a POST request
-     *
-     * Muxes to different sub-functions based on which button was pushed
-     *
-     * @return void
-     */
-    function handlePost()
-    {
     }
 
     /**
