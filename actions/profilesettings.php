@@ -275,9 +275,9 @@ class ProfilesettingsAction extends SettingsAction
                 // TRANS: Validation error in form for profile settings.
                 $this->showForm(_('Homepage is not a valid URL.'));
                 return;
-            } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
+            } else if (!is_null($fullname) && mb_strlen($fullname) > 191) {
                 // TRANS: Validation error in form for profile settings.
-                $this->showForm(_('Full name is too long (maximum 255 characters).'));
+                $this->showForm(_('Full name is too long (maximum 191 characters).'));
                 return;
             } else if (Profile::bioTooLong($bio)) {
                 // TRANS: Validation error in form for profile settings.
@@ -288,9 +288,9 @@ class ProfilesettingsAction extends SettingsAction
                                            Profile::maxBio()),
                                         Profile::maxBio()));
                 return;
-            } else if (!is_null($location) && mb_strlen($location) > 255) {
+            } else if (!is_null($location) && mb_strlen($location) > 191) {
                 // TRANS: Validation error in form for profile settings.
-                $this->showForm(_('Location is too long (maximum 255 characters).'));
+                $this->showForm(_('Location is too long (maximum 191 characters).'));
                 return;
             }  else if (is_null($timezone) || !in_array($timezone, DateTimeZone::listIdentifiers())) {
                 // TRANS: Validation error in form for profile settings.
