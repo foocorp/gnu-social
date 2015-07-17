@@ -216,25 +216,15 @@ class TwittersettingsAction extends ProfileSettingsAction
      *
      * @return void
      */
-    function handlePost()
+    protected function doPost()
     {
-        // CSRF protection
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->showForm(_m('There was a problem with your session token. '.
-                               'Try again, please.'));
-            return;
-        }
-
         if ($this->arg('save')) {
-            $this->savePreferences();
+            return $this->savePreferences();
         } else if ($this->arg('disconnect')) {
-            $this->removeTwitterAccount();
-        } else {
-            // TRANS: Client error displayed when the submitted form contains unexpected data.
-            $this->showForm(_m('Unexpected form submission.'));
+            return $this->removeTwitterAccount();
         }
+        // TRANS: Client error displayed when the submitted form contains unexpected data.
+        throw new ClientException(_m('Unexpected form submission.'));
     }
 
     /**
@@ -242,26 +232,26 @@ class TwittersettingsAction extends ProfileSettingsAction
      *
      * @return void
      */
-    function removeTwitterAccount()
+    protected function removeTwitterAccount()
     {
-        $user = common_current_user();
-        $flink = Foreign_link::getByUserID($user->id, TWITTER_SERVICE);
-
-        if (empty($flink)) {
-            // TRANS: Client error displayed when trying to remove a connected Twitter account when there isn't one connected.
-            $this->clientError(_m('No Twitter connection to remove.'));
+        if (!$this->flink instanceof Foreign_link) {
+            // TRANS: Error message possibly displayed when trying to remove a connected Twitter account when there isn't one connected.
+            throw new AlreadyFulfilledException(_m('No Twitter connection to remove.'));
         }
 
-        $result = $flink->safeDelete();
+        $result = $this->flink->safeDelete();
 
-        if (empty($result)) {
-            common_log_db_error($flink, 'DELETE', __FILE__);
+        if ($result === false) {
+            common_log_db_error($this->flink, 'DELETE', __FILE__);
             // TRANS: Server error displayed when trying to remove a connected Twitter account fails.
-            $this->serverError(_m('Could not remove Twitter user.'));
+            throw new ServerException(_m('Could not remove Twitter user.'));
         }
+
+        $this->flink = null;
+        $this->fuser = null;
 
         // TRANS: Success message displayed after disconnecting a Twitter account.
-        $this->showForm(_m('Twitter account disconnected.'), true);
+        return _m('Twitter account disconnected.');
     }
 
     /**
@@ -269,7 +259,7 @@ class TwittersettingsAction extends ProfileSettingsAction
      *
      * @return void
      */
-    function savePreferences()
+    protected function savePreferences()
     {
         $noticesend = $this->boolean('noticesend');
         $noticerecv = $this->boolean('noticerecv');
@@ -298,7 +288,7 @@ class TwittersettingsAction extends ProfileSettingsAction
         }
 
         // TRANS: Success message after saving Twitter integration preferences.
-        $this->showForm(_m('Twitter preferences saved.'), true);
+        return _m('Twitter preferences saved.');
     }
 
     /**

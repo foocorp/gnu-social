@@ -126,7 +126,7 @@ class TwitterOAuthClient extends OAuthClient
      *
      * @return the link
      */
-    function getAuthorizeLink($request_token, $signin = false)
+    function getTwitterAuthorizeLink($request_token, $signin = false)
     {
         $url = ($signin) ? self::$signinUrl : self::$authorizeURL;
 
