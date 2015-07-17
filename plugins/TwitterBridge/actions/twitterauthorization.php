@@ -28,7 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once dirname(__DIR__) . '/twitter.php';
 
@@ -48,7 +48,7 @@ require_once dirname(__DIR__) . '/twitter.php';
  * @link     http://status.net/
  *
  */
-class TwitterauthorizationAction extends Action
+class TwitterauthorizationAction extends FormAction
 {
     var $twuid        = null;
     var $tw_fields    = null;
@@ -56,112 +56,80 @@ class TwitterauthorizationAction extends Action
     var $signin       = null;
     var $verifier     = null;
 
-    /**
-     * Initialize class members. Looks for 'oauth_token' parameter.
-     *
-     * @param array $args misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($args)
-    {
-        parent::prepare($args);
+    protected $needLogin = false;   // authorization page can also be used to create a new user
 
+    protected function doPreparation()
+    {
         $this->signin      = $this->boolean('signin');
         $this->oauth_token = $this->arg('oauth_token');
         $this->verifier    = $this->arg('oauth_verifier');
 
-        return true;
-    }
-
-    /**
-     * Handler method
-     *
-     * @param array $args is ignored since it's now passed in in prepare()
-     *
-     * @return nothing
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-
-        if (common_logged_in()) {
-            $user  = common_current_user();
-            $flink = Foreign_link::getByUserID($user->id, TWITTER_SERVICE);
+        if ($this->scoped instanceof Profile) {
+            $flink = Foreign_link::getByUserID($this->scoped->getID(), TWITTER_SERVICE);
 
             // If there's already a foreign link record and a foreign user
             // it means the accounts are already linked, and this is unecessary.
             // So go back.
 
-            if (isset($flink)) {
-                $fuser = $flink->getForeignUser();
-                if (!empty($fuser)) {
+            if ($flink instanceof Foreign_link) {
+                try {
+                    $fuser = $flink->getForeignUser();
                     common_redirect(common_local_url('twittersettings'));
+                } catch (NoResultException $e) {
+                    // ok, so no foreign user but there's a foreign link??
+                    // this logic is left since the StatusNet days
                 }
             }
         }
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            // User was not logged in to StatusNet before
-
-            $this->twuid = $this->trimmed('twuid');
-
-            $this->tw_fields = array('screen_name' => $this->trimmed('tw_fields_screen_name'),
-                                     'fullname' => $this->trimmed('tw_fields_fullname'));
-
-            $this->access_token = new OAuthToken($this->trimmed('access_token_key'), $this->trimmed('access_token_secret'));
-
-            $token = $this->trimmed('token');
-
-            if (!$token || $token != common_session_token()) {
-                // TRANS: Client error displayed when the session token does not match or is not given.
-                $this->showForm(_m('There was a problem with your session token. Try again, please.'));
-                return;
-            }
-
-            if ($this->arg('create')) {
-                if (!$this->boolean('license')) {
-                    // TRANS: Form validation error displayed when the checkbox to agree to the license has not been checked.
-                    $this->showForm(_m('You cannot register if you do not agree to the license.'),
-                                    $this->trimmed('newname'));
-                    return;
-                }
-                $this->createNewUser();
-            } else if ($this->arg('connect')) {
-                $this->connectNewUser();
-            } else {
-                common_debug('Twitter bridge - ' . print_r($this->args, true));
-                // TRANS: Form validation error displayed when an unhandled error occurs.
-                $this->showForm(_m('Something weird happened.'),
-                                $this->trimmed('newname'));
-            }
+        // $this->oauth_token is only populated once Twitter authorizes our
+        // request token. If it's empty we're at the beginning of the auth
+        // process
+        if (empty($this->oauth_token)) {
+            // authorizeRequestToken either throws an exception or redirects
+            $this->authorizeRequestToken();
         } else {
-            // $this->oauth_token is only populated once Twitter authorizes our
-            // request token. If it's empty we're at the beginning of the auth
-            // process
-
-            if (empty($this->oauth_token)) {
-                $this->authorizeRequestToken();
-            } else {
-                $this->saveAccessToken();
-            }
+            $this->saveAccessToken();
         }
+    }
+
+    protected function doPost()
+    {
+        // User was not logged in to StatusNet before
+
+        $this->twuid = $this->trimmed('twuid');
+
+        $this->tw_fields = array('screen_name' => $this->trimmed('tw_fields_screen_name'),
+                                 'fullname' => $this->trimmed('tw_fields_fullname'));
+
+        $this->access_token = new OAuthToken($this->trimmed('access_token_key'), $this->trimmed('access_token_secret'));
+
+        if ($this->arg('create')) {
+            if (!$this->boolean('license')) {
+                // TRANS: Form validation error displayed when the checkbox to agree to the license has not been checked.
+                throw new ClientException(_m('You cannot register if you do not agree to the license.'));
+            }
+            return $this->createNewUser();
+        } else if ($this->arg('connect')) {
+            return $this->connectNewUser();
+        }
+
+        common_debug('Twitter bridge - ' . print_r($this->args, true));
+        // TRANS: Form validation error displayed when an unhandled error occurs.
+        throw new ClientException(_m('No known action for POST.'));
     }
 
     /**
      * Asks Twitter for a request token, and then redirects to Twitter
      * to authorize it.
-     *
-     * @return nothing
      */
-    function authorizeRequestToken()
+    protected function authorizeRequestToken()
     {
         try {
             // Get a new request token and authorize it
 
             $client  = new TwitterOAuthClient();
-            $req_tok = $client->getRequestToken();
+            $req_tok = $client->getTwitterRequestToken();
 
             // Sock the request token away in the session temporarily
 
@@ -176,10 +144,8 @@ class TwitterauthorizationAction extends Action
                 $e->getMessage()
             );
             common_log(LOG_INFO, 'Twitter bridge - ' . $msg);
-            $this->serverError(
-                // TRANS: Server error displayed when linking to a Twitter account fails.
-                _m('Could not link your Twitter account.')
-            );
+            // TRANS: Server error displayed when linking to a Twitter account fails.
+            throw new ServerException(_m('Could not link your Twitter account.'));
         }
 
         common_redirect($auth_link);
@@ -197,10 +163,8 @@ class TwitterauthorizationAction extends Action
         // token we sent them
 
         if ($_SESSION['twitter_request_token'] != $this->oauth_token) {
-            $this->serverError(
-                // TRANS: Server error displayed when linking to a Twitter account fails because of an incorrect oauth_token.
-                _m('Could not link your Twitter account: oauth_token mismatch.')
-            );
+            // TRANS: Server error displayed when linking to a Twitter account fails because of an incorrect oauth_token.
+            throw new ServerException(_m('Could not link your Twitter account: oauth_token mismatch.'));
         }
 
         $twitter_user = null;
@@ -212,7 +176,7 @@ class TwitterauthorizationAction extends Action
 
             // Exchange the request token for an access token
 
-            $atok = $client->getAccessToken($this->verifier);
+            $atok = $client->getTwitterAccessToken($this->verifier);
 
             // Test the access token and get the user's Twitter info
 
@@ -235,8 +199,7 @@ class TwitterauthorizationAction extends Action
         if (common_logged_in()) {
             // Save the access token and Twitter user info
 
-            $user = common_current_user();
-            $this->saveForeignLink($user->id, $twitter_user->id, $atok);
+            $this->saveForeignLink($this->scoped->getID(), $twitter_user->id, $atok);
             save_twitter_user($twitter_user->id, $twitter_user->screen_name);
 
         } else {
@@ -297,43 +260,26 @@ class TwitterauthorizationAction extends Action
 
         $flink_id = $flink->insert();
 
+        // We want to make sure we got a numerical >0 value, not just failed the insert (which would be === false)
         if (empty($flink_id)) {
             common_log_db_error($flink, 'INSERT', __FILE__);
             // TRANS: Server error displayed when linking to a Twitter account fails.
-            $this->serverError(_m('Could not link your Twitter account.'));
+            throw new ServerException(_m('Could not link your Twitter account.'));
         }
 
         return $flink_id;
     }
 
-    function showPageNotice()
+    function getInstructions()
     {
-        if ($this->error) {
-            $this->element('div', array('class' => 'error'), $this->error);
-        } else {
-            $this->element('div', 'instructions',
-                           // TRANS: Page instruction. %s is the StatusNet sitename.
-                           sprintf(_m('This is the first time you have logged into %s so we must connect your Twitter account to a local account. You can either create a new account, or connect with your existing account, if you have one.'), common_config('site', 'name')));
-        }
+        // TRANS: Page instruction. %s is the StatusNet sitename.
+        return sprintf(_m('This is the first time you have logged into %s so we must connect your Twitter account to a local account. You can either create a new account, or connect with your existing account, if you have one.'), common_config('site', 'name'));
     }
 
     function title()
     {
         // TRANS: Page title.
         return _m('Twitter Account Setup');
-    }
-
-    function showForm($error=null, $username=null)
-    {
-        $this->error = $error;
-        $this->username = $username;
-
-        $this->showPage();
-    }
-
-    function showPage()
-    {
-        parent::showPage();
     }
 
     /**
@@ -380,7 +326,7 @@ class TwitterauthorizationAction extends Action
             $this->elementStart('li');
             // TRANS: Field label.
             $this->input('newname', _m('New nickname'),
-                         ($this->username) ? $this->username : '',
+                         $this->username ?: '',
                          // TRANS: Field title for nickname field.
                          _m('1-64 lowercase letters or numbers, no punctuation or spaces.'));
             $this->elementEnd('li');
@@ -488,12 +434,13 @@ class TwitterauthorizationAction extends Action
     function createNewUser()
     {
         if (!Event::handle('StartRegistrationTry', array($this))) {
-            return;
+            // TRANS: Client error displayed when trying to create a new user but a plugin aborted the process.
+            throw new ClientException(_m('Registration of new user was aborted, maybe you failed a captcha?'));
         }
 
         if (common_config('site', 'closed')) {
             // TRANS: Client error displayed when trying to create a new user while creating new users is not allowed.
-            $this->clientError(_m('Registration not allowed.'));
+            throw new ClientException(_m('Registration not allowed.'));
         }
 
         $invite = null;
@@ -502,23 +449,19 @@ class TwitterauthorizationAction extends Action
             $code = $_SESSION['invitecode'];
             if (empty($code)) {
                 // TRANS: Client error displayed when trying to create a new user while creating new users is not allowed.
-                $this->clientError(_m('Registration not allowed.'));
+                throw new ClientException(_m('Registration not allowed.'));
             }
 
-            $invite = Invitation::getKV($code);
+            $invite = Invitation::getKV('code', $code);
 
-            if (empty($invite)) {
+            if (!$invite instanceof Invite) {
                 // TRANS: Client error displayed when trying to create a new user with an invalid invitation code.
-                $this->clientError(_m('Not a valid invitation code.'));
+                throw new ClientException(_m('Not a valid invitation code.'));
             }
         }
 
-        try {
-            $nickname = Nickname::normalize($this->trimmed('newname'), true);
-        } catch (NicknameException $e) {
-            $this->showForm($e->getMessage());
-            return;
-        }
+        // Nickname::normalize throws exception if the nickname is taken
+        $nickname = Nickname::normalize($this->trimmed('newname'), true);
 
         $fullname = trim($this->tw_fields['fullname']);
 
@@ -533,22 +476,13 @@ class TwitterauthorizationAction extends Action
             $args['email'] = $email;
         }
 
-        try {
-            $user = User::register($args);
-        } catch (Exception $e) {
-            $this->serverError($e->getMessage());
-        }
+        $user = User::register($args);
 
-        $result = $this->saveForeignLink($user->id,
-                                         $this->twuid,
-                                         $this->access_token);
+        $this->saveForeignLink($user->id,
+                               $this->twuid,
+                               $this->access_token);
 
         save_twitter_user($this->twuid, $this->tw_fields['screen_name']);
-
-        if (!$result) {
-            // TRANS: Server error displayed when connecting a user to a Twitter user has failed.
-            $this->serverError(_m('Error connecting user to Twitter.'));
-        }
 
         common_set_user($user);
         common_real_login(true);
@@ -569,27 +503,22 @@ class TwitterauthorizationAction extends Action
         if (!common_check_user($nickname, $password)) {
             // TRANS: Form validation error displayed when connecting an existing user to a Twitter user fails because
             // TRANS: the provided username and/or password are incorrect.
-            $this->showForm(_m('Invalid username or password.'));
-            return;
+            throw new ClientException(_m('Invalid username or password.'));
         }
 
         $user = User::getKV('nickname', $nickname);
 
-        if (!empty($user)) {
+        if ($user instanceof User) {
             common_debug('TwitterBridge Plugin - ' .
                          "Legit user to connect to Twitter: $nickname");
         }
 
-        $result = $this->saveForeignLink($user->id,
-                                         $this->twuid,
-                                         $this->access_token);
+        // throws exception on failure
+        $this->saveForeignLink($user->id,
+                               $this->twuid,
+                               $this->access_token);
 
         save_twitter_user($this->twuid, $this->tw_fields['screen_name']);
-
-        if (!$result) {
-            // TRANS: Server error displayed connecting a user to a Twitter user has failed.
-            $this->serverError(_m('Error connecting user to Twitter.'));
-        }
 
         common_debug('TwitterBridge Plugin - ' .
                      "Connected Twitter user $this->twuid to local user $user->id");

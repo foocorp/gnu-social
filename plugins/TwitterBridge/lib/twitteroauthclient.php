@@ -111,7 +111,7 @@ class TwitterOAuthClient extends OAuthClient
      *
      * @return OAuthToken $token the request token
      */
-    function getRequestToken()
+    function getTwitterRequestToken()
     {
         return parent::getRequestToken(
             self::$requestTokenURL,
@@ -142,7 +142,7 @@ class TwitterOAuthClient extends OAuthClient
      *
      * @return OAuthToken $token the access token
      */
-    function getAccessToken($verifier = null)
+    function getTwitterAccessToken($verifier = null)
     {
         return parent::getAccessToken(
             self::$accessTokenURL,

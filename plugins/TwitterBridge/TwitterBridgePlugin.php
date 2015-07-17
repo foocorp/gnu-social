@@ -26,9 +26,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once __DIR__ . '/twitter.php';
 
@@ -387,12 +385,11 @@ class TwitterBridgePlugin extends Plugin
     {
         $n2s = Notice_to_status::getKV('notice_id', $notice->id);
 
-        if (!empty($n2s)) {
+        if ($n2s instanceof Notice_to_status) {
 
-            $flink = Foreign_link::getByUserID($notice->profile_id,
-                                               TWITTER_SERVICE); // twitter service
+            $flink = Foreign_link::getByUserID($notice->profile_id, TWITTER_SERVICE); // twitter service
 
-            if (empty($flink)) {
+            if (!$flink instanceof Foreign_link) {
                 return true;
             }
 
@@ -424,15 +421,14 @@ class TwitterBridgePlugin extends Plugin
      */
     function onEndFavorNotice(Profile $profile, Notice $notice)
     {
-        $flink = Foreign_link::getByUserID($profile->id,
-                                           TWITTER_SERVICE); // twitter service
+        $flink = Foreign_link::getByUserID($profile->getID(), TWITTER_SERVICE); // twitter service
 
-        if (empty($flink)) {
+        if (!$flink instanceof Foreign_link) {
             return true;
         }
 
         if (!TwitterOAuthClient::isPackedToken($flink->credentials)) {
-            $this->log(LOG_INFO, "Skipping fave processing for {$profile->id} since link is not OAuth.");
+            $this->log(LOG_INFO, "Skipping fave processing for {$profile->getID()} since link is not OAuth.");
             return true;
         }
 

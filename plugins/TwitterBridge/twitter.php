@@ -28,16 +28,17 @@ function add_twitter_user($twitter_id, $screen_name)
     // Clear out any bad old foreign_users with the new user's legit URL
     // This can happen when users move around or fakester accounts get
     // repoed, and things like that.
-    $luser = Foreign_user::getForeignUser($twitter_id, TWITTER_SERVICE);
-
-    if (!empty($luser)) {
-        $result = $luser->delete();
+    try {
+        $fuser = Foreign_user::getForeignUser($twitter_id, TWITTER_SERVICE);
+        $result = $fuser->delete();
         if ($result != false) {
             common_log(
                 LOG_INFO,
                 "Twitter bridge - removed old Twitter user: $screen_name ($twitter_id)."
             );
         }
+    } catch (NoResultException $e) {
+        // no old foreign users exist for this id
     }
 
     $fuser = new Foreign_user();
@@ -49,9 +50,8 @@ function add_twitter_user($twitter_id, $screen_name)
     $fuser->created = common_sql_now();
     $result = $fuser->insert();
 
-    if (empty($result)) {
-        common_log(LOG_WARNING,
-            "Twitter bridge - failed to add new Twitter user: $twitter_id - $screen_name.");
+    if ($result === false) {
+        common_log(LOG_WARNING, "Twitter bridge - failed to add new Twitter user: $twitter_id - $screen_name.");
         common_log_db_error($fuser, 'INSERT', __FILE__);
     } else {
         common_log(LOG_INFO,
@@ -66,11 +66,10 @@ function save_twitter_user($twitter_id, $screen_name)
 {
     // Check to see whether the Twitter user is already in the system,
     // and update its screen name and uri if so.
-    $fuser = Foreign_user::getForeignUser($twitter_id, TWITTER_SERVICE);
+    try {
+        $fuser = Foreign_user::getForeignUser($twitter_id, TWITTER_SERVICE);
 
-    if (!empty($fuser)) {
         // Delete old record if Twitter user changed screen name
-
         if ($fuser->nickname != $screen_name) {
             $oldname = $fuser->nickname;
             $fuser->delete();
@@ -80,11 +79,13 @@ function save_twitter_user($twitter_id, $screen_name)
                                          $screen_name,
                                          $oldname));
         }
-    } else {
+    } catch (NoResultException $e) {
+        // No old users exist for this id
+    
         // Kill any old, invalid records for this screen name
-        $fuser = Foreign_user::getByNickname($screen_name, TWITTER_SERVICE);
-
-        if (!empty($fuser)) {
+        // XXX: Is this really only supposed to be run if the above getForeignUser fails?
+        try {
+            $fuser = Foreign_user::getByNickname($screen_name, TWITTER_SERVICE);
             $fuser->delete();
             common_log(
                 LOG_INFO,
@@ -95,6 +96,8 @@ function save_twitter_user($twitter_id, $screen_name)
                     $fuser->id
                 )
             );
+        } catch (NoResultException $e) {
+            // No old users exist for this screen_name
         }
     }
 

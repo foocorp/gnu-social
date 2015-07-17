@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once dirname(__DIR__) . '/twitter.php';
 
@@ -46,20 +44,8 @@ require_once dirname(__DIR__) . '/twitter.php';
  *
  * @see      SettingsAction
  */
-class TwitterloginAction extends Action
+class TwitterloginAction extends LoginAction
 {
-    function handle($args)
-    {
-        parent::handle($args);
-
-        if (common_is_real_login()) {
-            // TRANS: Client error displayed when trying to log in using Twitter while already logged in to StatusNet.
-            $this->clientError(_m('Already logged in.'));
-        }
-
-        $this->showPage();
-    }
-
     function title()
     {
         // TRANS: Title for login using Twitter page.
@@ -70,15 +56,6 @@ class TwitterloginAction extends Action
     {
         // TRANS: Instructions for login using Twitter page.
         return _m('Login with your Twitter account');
-    }
-
-    function showPageNotice()
-    {
-        $instr = $this->getInstructions();
-        $output = common_markup_to_html($instr);
-        $this->elementStart('div', 'instructions');
-        $this->raw($output);
-        $this->elementEnd('div');
     }
 
     function showContent()

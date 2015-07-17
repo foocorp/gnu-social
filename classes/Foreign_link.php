@@ -124,11 +124,11 @@ class Foreign_link extends Managed_DataObject
 
         $fuser->limit(1);
 
-        if ($fuser->find(true)) {
-            return $fuser;
+        if (!$fuser->find(true)) {
+            throw new NoResultException($fuser);
         }
 
-        return null;
+        return $fuser;
     }
 
     function getUser()
