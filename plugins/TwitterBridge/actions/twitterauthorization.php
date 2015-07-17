@@ -31,6 +31,7 @@
 if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once dirname(__DIR__) . '/twitter.php';
+require_once INSTALLDIR . '/lib/oauthclient.php';
 
 /**
  * Class for doing OAuth authentication against Twitter
@@ -81,16 +82,6 @@ class TwitterauthorizationAction extends FormAction
                 }
             }
         }
-
-        // $this->oauth_token is only populated once Twitter authorizes our
-        // request token. If it's empty we're at the beginning of the auth
-        // process
-        if (empty($this->oauth_token)) {
-            // authorizeRequestToken either throws an exception or redirects
-            $this->authorizeRequestToken();
-        } else {
-            $this->saveAccessToken();
-        }
     }
 
     protected function doPost()
@@ -127,12 +118,10 @@ class TwitterauthorizationAction extends FormAction
     {
         try {
             // Get a new request token and authorize it
-
             $client  = new TwitterOAuthClient();
             $req_tok = $client->getTwitterRequestToken();
 
             // Sock the request token away in the session temporarily
-
             $_SESSION['twitter_request_token']        = $req_tok->key;
             $_SESSION['twitter_request_token_secret'] = $req_tok->secret;
 
@@ -170,16 +159,12 @@ class TwitterauthorizationAction extends FormAction
         $twitter_user = null;
 
         try {
-
-            $client = new TwitterOAuthClient($_SESSION['twitter_request_token'],
-                $_SESSION['twitter_request_token_secret']);
+            $client = new TwitterOAuthClient($_SESSION['twitter_request_token'], $_SESSION['twitter_request_token_secret']);
 
             // Exchange the request token for an access token
-
             $atok = $client->getTwitterAccessToken($this->verifier);
 
             // Test the access token and get the user's Twitter info
-
             $client       = new TwitterOAuthClient($atok->key, $atok->secret);
             $twitter_user = $client->verifyCredentials();
 
@@ -190,13 +175,11 @@ class TwitterauthorizationAction extends FormAction
                 $e->getMessage()
             );
             common_log(LOG_INFO, 'Twitter bridge - ' . $msg);
-            $this->serverError(
-                // TRANS: Server error displayed when linking to a Twitter account fails.
-                _m('Could not link your Twitter account.')
-            );
+            // TRANS: Server error displayed when linking to a Twitter account fails.
+            throw new ServerException(_m('Could not link your Twitter account.'));
         }
 
-        if (common_logged_in()) {
+        if ($this->scoped instanceof Profile) {
             // Save the access token and Twitter user info
 
             $this->saveForeignLink($this->scoped->getID(), $twitter_user->id, $atok);
@@ -208,7 +191,7 @@ class TwitterauthorizationAction extends FormAction
             $this->tw_fields = array("screen_name" => $twitter_user->screen_name,
                                      "fullname" => $twitter_user->name);
             $this->access_token = $atok;
-            $this->tryLogin();
+            return $this->tryLogin();
         }
 
         // Clean up the the mess we made in the session
@@ -282,6 +265,21 @@ class TwitterauthorizationAction extends FormAction
         return _m('Twitter Account Setup');
     }
 
+    public function showPage()
+    {
+        // $this->oauth_token is only populated once Twitter authorizes our
+        // request token. If it's empty we're at the beginning of the auth
+        // process
+        if (empty($this->oauth_token)) {
+            // authorizeRequestToken either throws an exception or redirects
+            $this->authorizeRequestToken();
+        } else {
+            $this->saveAccessToken();
+        }
+
+        parent::showPage();
+    }
+
     /**
      * @fixme much of this duplicates core code, which is very fragile.
      * Should probably be replaced with an extensible mini version of
@@ -289,11 +287,6 @@ class TwitterauthorizationAction extends FormAction
      */
     function showContent()
     {
-        if (!empty($this->message_text)) {
-            $this->element('p', null, $this->message);
-            return;
-        }
-
         $this->elementStart('form', array('method' => 'post',
                                           'id' => 'form_settings_twitter_connect',
                                           'class' => 'form_settings',
@@ -310,7 +303,7 @@ class TwitterauthorizationAction extends FormAction
         $this->hidden('token', common_session_token());
 
         // Don't allow new account creation if site is flagged as invite only
-	if (common_config('site', 'inviteonly') == false) {
+        if (common_config('site', 'inviteonly') == false) {
             $this->elementStart('fieldset');
             $this->element('legend', null,
                            // TRANS: Fieldset legend.
@@ -423,12 +416,6 @@ class TwitterauthorizationAction extends FormAction
             }
         }
         return '';
-    }
-
-    function message($msg)
-    {
-        $this->message_text = $msg;
-        $this->showPage();
     }
 
     function createNewUser()
@@ -567,14 +554,12 @@ class TwitterauthorizationAction extends FormAction
                 common_real_login(true);
                 $this->goHome($user->nickname);
             }
-
-        } else {
-
-            common_debug('TwitterBridge Plugin - ' .
-                         "No flink found for twuid: $this->twuid - new user");
-
-            $this->showForm(null, $this->bestNewNickname());
         }
+        common_debug('TwitterBridge Plugin - ' .
+                     "No flink found for twuid: $this->twuid - new user");
+
+        return;
+        throw new ServerException(_m('No foreign link found for Twitter user'));
     }
 
     function goHome($nickname)

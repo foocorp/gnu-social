@@ -56,34 +56,37 @@ class Foreign_link extends Managed_DataObject
     static function getByUserID($user_id, $service)
     {
         if (empty($user_id) || empty($service)) {
-            return null;
+            throw new ServerException('Empty user_id or service for Foreign_link::getByUserID');
         }
 
         $flink = new Foreign_link();
-
         $flink->service = $service;
         $flink->user_id = $user_id;
         $flink->limit(1);
 
-        $result = $flink->find(true);
+        if (!$flink->find(true)) {
+            throw new NoResultException($flink);
+        }
 
-        return empty($result) ? null : $flink;
+        return $flink;
     }
 
     static function getByForeignID($foreign_id, $service)
     {
         if (empty($foreign_id) || empty($service)) {
-            return null;
-        } else {
-            $flink = new Foreign_link();
-            $flink->service = $service;
-            $flink->foreign_id = $foreign_id;
-            $flink->limit(1);
-
-            $result = $flink->find(true);
-
-            return empty($result) ? null : $flink;
+            throw new ServerException('Empty foreign_id or service for Foreign_link::getByForeignID');
         }
+
+        $flink = new Foreign_link();
+        $flink->service = $service;
+        $flink->foreign_id = $foreign_id;
+        $flink->limit(1);
+
+        if (!$flink->find(true)) {
+            throw new NoResultException($flink);
+        }
+
+        return $flink;
     }
 
     function set_flags($noticesend, $noticerecv, $replysync, $friendsync)

@@ -41,7 +41,12 @@ class Foreign_user extends Managed_DataObject
         );
     }
 
-    static function getForeignUser($id, $service) {
+    static function getForeignUser($id, $service)
+    {
+        if (empty($id) || empty($service)) {
+            throw new ServerException('Empty foreign user id or service for Foreign_user::getForeignUser');
+        }
+
         $fuser = new Foreign_user();
         $fuser->id      = $id;
         $fuser->service = $service;

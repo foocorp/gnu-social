@@ -512,16 +512,15 @@ class TwitterBridgePlugin extends Plugin
     {
         $fuser = null;
 
-        $flink = Foreign_link::getByUserID($profile->id, TWITTER_SERVICE);
-
-        if (!empty($flink)) {
+        try {
+            $flink = Foreign_link::getByUserID($profile->id, TWITTER_SERVICE);
             $fuser = $flink->getForeignUser();
 
-            if (!empty($fuser)) {
-                $links[] = array("href" => $fuser->uri,
-                                 "text" => sprintf(_("@%s on Twitter"), $fuser->nickname),
-                                 "image" => $this->path("icons/twitter-bird-white-on-blue.png"));
-            }
+            $links[] = array("href" => $fuser->uri,
+                             "text" => sprintf(_("@%s on Twitter"), $fuser->nickname),
+                             "image" => $this->path("icons/twitter-bird-white-on-blue.png"));
+        } catch (NoResultException $e) {
+            // no foreign link for Twitter on this profile ID
         }
 
         return true;

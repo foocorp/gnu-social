@@ -49,9 +49,11 @@ class TwittersettingsAction extends ProfileSettingsAction
 
     protected function doPreparation()
     {
-        $this->flink = Foreign_link::getByUserID($this->scoped->getID(), TWITTER_SERVICE);
-        if ($this->flink instanceof Foreign_link) {
+        try {
+            $this->flink = Foreign_link::getByUserID($this->scoped->getID(), TWITTER_SERVICE);
             $this->fuser = $this->flink->getForeignUser();
+        } catch (NoResultException $e) {
+            // No foreign link found for this user!
         }
     }
     /**
