@@ -40,7 +40,7 @@ class Queue_item extends Managed_DataObject
      * @param mixed $transports name of a single queue or array of queues to pull from
      *                          If not specified, checks all queues in the system.
      */
-    static function top($transports=null) {
+    static function top($transports=null, array $ignored_transports=array()) {
 
         $qi = new Queue_item();
         if ($transports) {
@@ -51,6 +51,11 @@ class Queue_item extends Managed_DataObject
             } else {
                 $qi->transport = $transports;
             }
+        }
+        if (!empty($ignored_transports)) {
+            // @fixme use safer escaping
+            $list = implode("','", array_map(array($qi, 'escape'), $ignored_transports));
+            $qi->whereAdd("transport NOT IN ('$list')");
         }
         $qi->orderBy('created');
         $qi->whereAdd('claimed is null');
