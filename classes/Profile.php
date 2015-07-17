@@ -1407,6 +1407,11 @@ class Profile extends Managed_DataObject
         return $this->fullname;
     }
 
+    public function getHomepage()
+    {
+        return $this->homepage;
+    }
+
     public function getDescription()
     {
         return $this->bio;

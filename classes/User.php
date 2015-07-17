@@ -462,16 +462,6 @@ class User extends Managed_DataObject
         return $this->getProfile()->getNotices($offset, $limit, $since_id, $before_id);
     }
 
-    function getSelfTags()
-    {
-        return Profile_tag::getTagsArray($this->id, $this->id, $this->id);
-    }
-
-    function setSelfTags($newtags, $privacy)
-    {
-        return Profile_tag::setTags($this->id, $this->id, $newtags, $privacy);
-    }
-
     function block(Profile $other)
     {
         // Add a new block record
