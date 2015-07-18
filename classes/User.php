@@ -598,8 +598,10 @@ class User extends Managed_DataObject
         }
 
         try {
-            $profile = $this->getProfile();
-            $profile->delete();
+            if (!$this->hasRole(Profile_role::DELETED)) {
+                $profile = $this->getProfile();
+                $profile->delete();
+            }
         } catch (UserNoProfileException $unp) {
             common_log(LOG_INFO, "User {$this->nickname} has no profile; continuing deletion.");
         }

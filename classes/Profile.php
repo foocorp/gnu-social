@@ -877,6 +877,11 @@ class Profile extends Managed_DataObject
 
     function delete($useWhere=false)
     {
+        // just in case it hadn't been done before... (usually set before adding deluser to queue handling!)
+        if (!$this->hasRole(Profile_role::DELETED)) {
+            $this->grantRole(Profile_role::DELETED);
+        }
+
         $this->_deleteNotices();
         $this->_deleteSubscriptions();
         $this->_deleteTags();

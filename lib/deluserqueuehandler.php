@@ -74,8 +74,13 @@ class DelUserQueueHandler extends QueueHandler
             $qm = QueueManager::get();
             $qm->enqueue($user, 'deluser');
         } else {
-            // Out of notices? Let's finish deleting this guy!
-            $user->delete();
+            // Out of notices? Let's finish deleting this profile!
+            try {
+                $user->getProfile()->delete();
+            } catch (UserNoProfileException $e) {
+                // in case a profile didn't exist for some reason, just delete the User directly
+                $user->delete();
+            }
             common_log(LOG_INFO, "User $user->id $user->nickname deleted.");
             return true;
         }
