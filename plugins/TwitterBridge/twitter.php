@@ -181,11 +181,15 @@ function twitter_id($status, $field='id')
  */
 function broadcast_twitter($notice)
 {
-    $flink = Foreign_link::getByUserID($notice->profile_id,
-                                       TWITTER_SERVICE);
+    try {
+        $flink = Foreign_link::getByUserID($notice->profile_id, TWITTER_SERVICE);
+    } catch (NoResultException $e) {
+        // Alright so don't broadcast it then! (since there's no foreign link)
+        return true;
+    }
 
     // Don't bother with basic auth, since it's no longer allowed
-    if (!empty($flink) && TwitterOAuthClient::isPackedToken($flink->credentials)) {
+    if (TwitterOAuthClient::isPackedToken($flink->credentials)) {
         if (is_twitter_bound($notice, $flink)) {
             if (!empty($notice->repeat_of) && is_twitter_notice($notice->repeat_of)) {
                 $retweet = retweet_notice($flink, Notice::getKV('id', $notice->repeat_of));
@@ -273,8 +277,13 @@ function twitter_update_params($notice)
     return $params;
 }
 
-function broadcast_oauth($notice, $flink) {
-    $user = $flink->getUser();
+function broadcast_oauth($notice, Foreign_link $flink) {
+    try {
+        $user = $flink->getUser();
+    } catch (ServerException $e) {
+        common_log(LOG_WARNING, 'Discarding broadcast_oauth for notice '.$notice->id.' because of exception: '.$e->getMessage());
+        return true;
+    }
     $statustxt = format_status($notice);
     $params = twitter_update_params($notice);
 

@@ -542,17 +542,17 @@ class TwitterImport
         }
 
         foreach ($status->entities->user_mentions as $mention) {
-            $flink = Foreign_link::getByForeignID($mention->id, TWITTER_SERVICE);
-            if (!empty($flink)) {
-                $user = User::getKV('id', $flink->user_id);
-                if (!empty($user)) {
-                    $reply = new Reply();
-                    $reply->notice_id  = $notice->id;
-                    $reply->profile_id = $user->id;
-                    $reply->modified   = $notice->created;
-                    common_log(LOG_INFO, __METHOD__ . ": saving reply: notice {$notice->id} to profile {$user->id}");
-                    $id = $reply->insert();
-                }
+            try {
+                $flink = Foreign_link::getByForeignID($mention->id, TWITTER_SERVICE);
+                $user = $flink->getUser();
+                $reply = new Reply();
+                $reply->notice_id  = $notice->id;
+                $reply->profile_id = $user->id;
+                $reply->modified   = $notice->created;
+                common_log(LOG_INFO, __METHOD__ . ": saving reply: notice {$notice->id} to profile {$user->id}");
+                $id = $reply->insert();
+            } catch (NoResultException $e) {
+                common_log(LOG_WARNING, 'No local user found for Foreign_link with local User id: '.$flink->user_id);
             }
         }
     }

@@ -62,12 +62,7 @@ if (have_option('n')) {
  */
 function twitterAuthForUser(User $user)
 {
-    $flink = Foreign_link::getByUserID($user->id,
-                                       TWITTER_SERVICE);
-    if (!$flink) {
-        throw new ServerException("No Twitter config for this user.");
-    }
-
+    $flink = Foreign_link::getByUserID($user->id, TWITTER_SERVICE);
     $token = TwitterOAuthClient::unpackToken($flink->credentials);
     if (!$token) {
         throw new ServerException("No Twitter OAuth credentials for this user.");

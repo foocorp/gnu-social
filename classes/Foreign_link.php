@@ -136,12 +136,12 @@ class Foreign_link extends Managed_DataObject
 
     function getUser()
     {
-        return User::getKV($this->user_id);
+        return Profile::getByID($this->user_id)->getUser();
     }
 
     function getProfile()
     {
-        return Profile::getKV('id', $this->user_id);
+        return Profile::getByID($this->user_id);
     }
 
     // Make sure we only ever delete one record at a time

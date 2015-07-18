@@ -184,7 +184,7 @@ class TwittersettingsAction extends ProfileSettingsAction
 
             $this->elementEnd('ul');
 
-            if ($this->flink) {
+            if ($this->flink instanceof Foreign_link) {
                 // TRANS: Button text for saving Twitter integration settings.
                 $this->submit('save', _m('BUTTON','Save'));
             } else {

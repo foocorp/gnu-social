@@ -553,20 +553,19 @@ class TwitterauthorizationAction extends FormAction
             $flink = Foreign_link::getByForeignID($this->twuid, TWITTER_SERVICE);
             $user = $flink->getUser();
 
-            if ($user instanceof User) {
-                common_debug('TwitterBridge Plugin - ' .
-                             "Logged in Twitter user $flink->foreign_id as user $user->id ($user->nickname)");
+            common_debug('TwitterBridge Plugin - ' .
+                         "Logged in Twitter user $flink->foreign_id as user $user->id ($user->nickname)");
 
-                common_set_user($user);
-                common_real_login(true);
-                $this->goHome($user->nickname);
-            }
+            common_set_user($user);
+            common_real_login(true);
+            $this->goHome($user->nickname);
         } catch (NoResultException $e) {
             // Either no Foreign_link was found or not the user connected to it.
             // Let's just continue to allow creating or logging in as a new user.
         }
         common_debug("TwitterBridge Plugin - No flink found for twuid: {$this->twuid} - new user");
 
+        // FIXME: what do we want to do here? I forgot
         return;
         throw new ServerException(_m('No foreign link found for Twitter user'));
     }
