@@ -523,18 +523,13 @@ class Notice extends Managed_DataObject
 
         // Handle repeat case
 
-        if (isset($repeat_of)) {
+        if (!empty($options['repeat_of'])) {
 
             // Check for a private one
 
-            $repeat = Notice::getKV('id', $repeat_of);
+            $repeat = Notice::getByID($options['repeat_of']);
 
-            if (!($repeat instanceof Notice)) {
-                // TRANS: Client exception thrown in notice when trying to repeat a missing or deleted notice.
-                throw new ClientException(_('Cannot repeat; original notice is missing or deleted.'));
-            }
-
-            if ($profile->id == $repeat->profile_id) {
+            if ($profile->sameAs($repeat->getProfile())) {
                 // TRANS: Client error displayed when trying to repeat an own notice.
                 throw new ClientException(_('You cannot repeat your own notice.'));
             }
@@ -610,12 +605,13 @@ class Notice extends Managed_DataObject
             if (empty($notice->conversation) and !empty($options['conversation'])) {
                 $conv = Conversation::getKV('uri', $options['conversation']);
                 if ($conv instanceof Conversation) {
-                    common_debug('Conversation stitched together from (probably) reply to unknown remote user. Activity creation time ('.$notice->created.') should maybe be compared to conversation creation time ('.$conv->created.').');
+                    common_debug('Conversation stitched together from (probably) a reply to unknown remote user. Activity creation time ('.$notice->created.') should maybe be compared to conversation creation time ('.$conv->created.').');
                     $notice->conversation = $conv->id;
                 } else {
                     // Conversation URI was not found, so we must create it. But we can't create it
                     // until we have a Notice ID because of the database layout...
-                    $notice->tmp_conv_uri = $options['conversation'];
+                    // $options['conversation'] will be used later after the $notice->insert();
+                    common_debug('Conversation URI not found, so we have to create it after inserting this Notice: '.$options['conversation']);
                 }
             } else {
                 // If we're not using the attached conversation URI let's remove it
@@ -677,6 +673,7 @@ class Notice extends Managed_DataObject
                 if (empty($notice->conversation)) {
                     $orig = clone($notice);
                     // $act->context->conversation will be null if it was not provided
+
                     $conv = Conversation::create($notice, $options['conversation']);
                     $notice->conversation = $conv->id;
                     $notice->update($orig);
@@ -853,6 +850,22 @@ class Notice extends Managed_DataObject
             if (is_null($scope)) {
                 $scope = $reply->scope;
             }
+        } else {
+            // If we don't know the reply, we might know the conversation!
+            // This will happen if a known remote user replies to an
+            // unknown remote user - within a known conversation.
+            if (empty($stored->conversation) and !empty($act->context->conversation)) {
+                $conv = Conversation::getKV('uri', $act->context->conversation);
+                if ($conv instanceof Conversation) {
+                    common_debug('Conversation stitched together from (probably) a reply activity to unknown remote user. Activity creation time ('.$stored->created.') should maybe be compared to conversation creation time ('.$conv->created.').');
+                    $stored->conversation = $conv->id;
+                } else {
+                    // Conversation URI was not found, so we must create it. But we can't create it
+                    // until we have a Notice ID because of the database layout...
+                    // $options['conversation'] will be used later after the $stored->insert();
+                    common_debug('Conversation URI from activity context not found, so we have to create it after inserting this Notice: '.$act->context->conversation);
+                }
+            }
         }
 
         if ($act->context instanceof ActivityContext) {
@@ -898,10 +911,11 @@ class Notice extends Managed_DataObject
                     throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->uri . ': '.$act->asString());
                 }
 
-                // If it's not part of a conversation, it's
-                // the beginning of a new conversation.
+                // If it's not part of a conversation, it's the beginning
+                // of a new one (or belongs to a previously unknown URI).
                 if (empty($stored->conversation)) {
                     // $act->context->conversation will be null if it was not provided
+                    common_debug('Creating a new conversation for stored notice ID='.$stored->getID().' with URI: '.$act->context->conversation);
                     $conv = Conversation::create($stored, $act->context->conversation);
                     $stored->conversation = $conv->id;
                 }
