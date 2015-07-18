@@ -387,9 +387,9 @@ class TwitterBridgePlugin extends Plugin
 
         if ($n2s instanceof Notice_to_status) {
 
-            $flink = Foreign_link::getByUserID($notice->profile_id, TWITTER_SERVICE); // twitter service
-
-            if (!$flink instanceof Foreign_link) {
+            try {
+                $flink = Foreign_link::getByUserID($notice->profile_id, TWITTER_SERVICE); // twitter service
+            } catch (NoResultException $e) {
                 return true;
             }
 
@@ -421,9 +421,9 @@ class TwitterBridgePlugin extends Plugin
      */
     function onEndFavorNotice(Profile $profile, Notice $notice)
     {
-        $flink = Foreign_link::getByUserID($profile->getID(), TWITTER_SERVICE); // twitter service
-
-        if (!$flink instanceof Foreign_link) {
+        try {
+            $flink = Foreign_link::getByUserID($profile->getID(), TWITTER_SERVICE); // twitter service
+        } catch (NoResultException $e) {
             return true;
         }
 
@@ -460,10 +460,9 @@ class TwitterBridgePlugin extends Plugin
      */
     function onEndDisfavorNotice(Profile $profile, Notice $notice)
     {
-        $flink = Foreign_link::getByUserID($profile->id,
-                                           TWITTER_SERVICE); // twitter service
-
-        if (empty($flink)) {
+        try {
+            $flink = Foreign_link::getByUserID($profile->getID(), TWITTER_SERVICE); // twitter service
+        } catch (NoResultException $e) {
             return true;
         }
 
@@ -520,7 +519,7 @@ class TwitterBridgePlugin extends Plugin
                              "text" => sprintf(_("@%s on Twitter"), $fuser->nickname),
                              "image" => $this->path("icons/twitter-bird-white-on-blue.png"));
         } catch (NoResultException $e) {
-            // no foreign link for Twitter on this profile ID
+            // no foreign link and/or user for Twitter on this profile ID
         }
 
         return true;
@@ -564,16 +563,17 @@ class TwitterBridgePlugin extends Plugin
                 if( count($noticeArray) != 1 ) { break; }
                 $post = $noticeArray[0];
 
-                $flink = Foreign_link::getByUserID($post->profile_id, TWITTER_SERVICE);
-                if( $flink ) { // Our local user has registered Twitter Gateway
+                try {
+                    $flink = Foreign_link::getByUserID($post->profile_id, TWITTER_SERVICE);
                     $fuser = Foreign_user::getForeignUser($flink->foreign_id, TWITTER_SERVICE);
-                    if( $fuser ) { // Got nickname for local user's Twitter account
-                        $action->element('meta', array('name'    => 'twitter:creator',
-                                                     'content' => '@'.$fuser->nickname));
-                    }
+                    $action->element('meta', array('name'    => 'twitter:creator',
+                                                   'content' => '@'.$fuser->nickname));
+                } catch (NoResultException $e) {
+                    // no foreign link and/or user for Twitter on this profile ID
                 }
                 break;
-            default: break;
+            default:
+                break;
         }
 
         return true;
