@@ -39,6 +39,11 @@ class TargetedRss10Action extends Rss10Action
         $this->target = User::getByNickname($this->trimmed('nickname'))->getProfile();
     }
 
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
     function getImage()
     {
         return $this->target->avatarUrl(AVATAR_PROFILE_SIZE);
