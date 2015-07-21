@@ -42,53 +42,22 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class GroupbyidAction extends Action
+class GroupbyidAction extends ManagedAction
 {
     /** group we're viewing. */
-    var $group = null;
+    protected $group = null;
 
-    /**
-     * Is this page read-only?
-     *
-     * @return boolean true
-     */
     function isReadOnly($args)
     {
         return true;
     }
 
-    function prepare($args)
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
-        $id = $this->arg('id');
-
-        if (!$id) {
-            // TRANS: Client error displayed referring to a group's permalink without providing a group ID.
-            $this->clientError(_('No ID.'));
-        }
-
-        common_debug("Got ID $id");
-
-        $this->group = User_group::getKV('id', $id);
-
-        if (!$this->group) {
-            // TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
-            $this->clientError(_('No such group.'), 404);
-        }
-
-        return true;
+        $this->group = User_group::getByID($this->arg('id'));
     }
 
-    /**
-     * Handle the request
-     *
-     * Shows a profile for the group, some controls, and a list of
-     * group notices.
-     *
-     * @return void
-     */
-    function handle($args)
+    public function showPage()
     {
         common_redirect($this->group->homeUrl(), 303);
     }
