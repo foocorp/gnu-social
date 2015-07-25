@@ -196,7 +196,9 @@ your server (like lighttpd or nginx).
         file is well commented. 
     * For lighttpd, inspect the lighttpd.conf.example file and apply the
         appropriate changes in your virtualhost configuration for lighttpd.
-    * For nginx and other webservers, we gladly accept contributions of
+    * For nginx, inspect the nginx.conf.sample file and apply the appropriate
+        changes.
+    * For other webservers, we gladly accept contributions of
         server configuration examples.
 
 2. Assuming your webserver is properly configured and have its settings
