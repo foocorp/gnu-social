@@ -693,10 +693,6 @@ address .poweredby {
 font-style:italic;
 }
 
-#showstream h1 { 
-    display:none;
-}
-
 #remoteprofile .notice .h-entry,
 #showstream .notice .h-entry,
 #remoteprofile .notice .entry-title,
