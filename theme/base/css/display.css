@@ -1633,12 +1633,21 @@ margin-left:0;
 }
 
 .entity_profile .p-nickname {
-    font-size:1.4em;
+    font-size: 1.0em;
+    font-weight: bold;
 }
 
 .entity_profile .p-name {
-    font-size: 1.2em;
+    font-size: 1.0em;
     clear: left;
+}
+
+.entity_profile .label {
+    font-size: 1.0em;
+    clear: left;
+}
+.entity_profile .label:before {
+    content: "@";
 }
 
 .entity_profile .p-name:before {
