@@ -129,7 +129,6 @@ class UsergroupsAction extends GalleryAction
         // TRANS: %s is a user nickname.
         $message = sprintf(_('%s is not a member of any group.'), $this->getTarget()->getNickname()) . ' ';
         if (common_logged_in()) {
-            $current_user = common_current_user();
             if ($this->scoped->sameAs($this->getTarget())) {
                 // TRANS: Text on group page for a user that is not a member of any group. This message contains
                 // TRANS: a Markdown link in the form [link text](link) and a variable that should not be changed.
