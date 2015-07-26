@@ -1618,9 +1618,6 @@ ul.profile_list li {
 .profile_list .h-card .u-photo {
     margin-right: 4px;
 }
-.profile_list .h-card .p-nickname {
-    display: block;
-}
 
 table.profile_list tbody tr:nth-child(2n+1) {
     background-color: #fafafa !important;
@@ -1633,21 +1630,11 @@ margin-left:0;
 }
 
 .entity_profile .p-nickname {
-    font-size: 1.0em;
     font-weight: bold;
 }
 
 .entity_profile .p-name {
-    font-size: 1.0em;
     clear: left;
-}
-
-.entity_profile .label {
-    font-size: 1.0em;
-    clear: left;
-}
-.entity_profile .label:before {
-    content: "@";
 }
 
 .entity_profile .p-name:before {
