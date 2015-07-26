@@ -1615,6 +1615,10 @@ ul.profile_list li {
     margin-bottom: 20px;
 }
 
+ul.profiles.groups {
+    list-style-type:none;
+}
+
 .profile_list .h-card .u-photo {
     margin-right: 4px;
 }
