@@ -65,13 +65,13 @@ class UsergroupsAction extends GalleryAction
     function showPageNotice()
     {
         if ($this->scoped instanceof Profile && $this->scoped->sameAs($this->getTarget())) {
-            $this->element('p', null,
+            $this->element('p', 'instructions',
                            // TRANS: Page notice for page with an overview of all subscribed groups
                            // TRANS: of the logged in user's own profile.
                            _('These are the groups whose notices '.
                              'you listen to.'));
         } else {
-            $this->element('p', null,
+            $this->element('p', 'instructions',
                            // TRANS: Page notice for page with an overview of all groups a user other
                            // TRANS: than the logged in user. %s is the user nickname.
                            sprintf(_('These are the groups whose '.
