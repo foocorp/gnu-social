@@ -1637,6 +1637,10 @@ margin-left:0;
     clear: left;
 }
 
+.entity_profile .label {
+    display: block;
+}
+
 .entity_profile .p-name:before {
 content: "(";
 font-weight:normal;
