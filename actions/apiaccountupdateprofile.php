@@ -98,15 +98,21 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
 
         if (!empty($this->name)) {
             $profile->fullname = $this->name;
+        } else {
+        	$profile->fullname = '';
         }
 
         if (!empty($this->url)) {
             $profile->homepage = $this->url;
-        }
+        } else {
+        	$profile->homepage = '';
+        }        
 
         if (!empty($this->description)) {
             $profile->bio = $this->description;
-        }
+        } else {
+        	$profile->bio = '';
+        }      
 
         if (!empty($this->location)) {
             $profile->location = $this->location;
@@ -119,7 +125,9 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
                 $profile->location_id = $loc->location_id;
                 $profile->location_ns = $loc->location_ns;
             }
-        }
+        } else {
+        	$profile->location = '';
+        }  
 
         $result = $profile->update($original);
 
