@@ -27,18 +27,20 @@ class UserrssAction extends TargetedRss10Action
 
     protected function doStreamPreparation()
     {
+        parent::doStreamPreparation();
+
         $this->tag  = $this->trimmed('tag');
     }
 
     protected function getNotices()
     {
         if (!empty($this->tag)) {
-            $stream = $this->target->getTaggedNotices($this->tag, 0, $this->limit);
+            $stream = $this->getTarget()->getTaggedNotices($this->tag, 0, $this->limit);
             return $stream->fetchAll();
         }
         // otherwise we fetch a normal user stream
 
-        $stream = $this->target->getNotices(0, $this->limit);
+        $stream = $this->getTarget()->getNotices(0, $this->limit);
         return $stream->fetchAll();
     }
 

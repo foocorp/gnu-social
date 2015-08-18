@@ -104,6 +104,7 @@ class SyncTwitterFriendsDaemon extends ParallelizingDaemon
         return $flinks;
     }
 
+    // FIXME: make it so we can force a Foreign_link here without colliding with parent
     function childTask($flink) {
         // Each child ps needs its own DB connection
 
@@ -124,7 +125,7 @@ class SyncTwitterFriendsDaemon extends ParallelizingDaemon
         unset($_DB_DATAOBJECT['CONNECTIONS']);
     }
 
-    function fetchTwitterFriends($flink)
+    function fetchTwitterFriends(Foreign_link $flink)
     {
         $friends = array();
 
@@ -192,8 +193,14 @@ class SyncTwitterFriendsDaemon extends ParallelizingDaemon
         return $friends;
     }
 
-    function subscribeTwitterFriends($flink)
+    function subscribeTwitterFriends(Foreign_link $flink)
     {
+        try {
+            $profile = $flink->getProfile();
+        } catch (NoResultException $e) {
+            common_log(LOG_WARNING, 'Foreign_link has no matching local profile for local ID: '.$flink->user_id);
+        }
+
         $friends = $this->fetchTwitterFriends($flink);
 
         if (empty($friends)) {
@@ -202,8 +209,6 @@ class SyncTwitterFriendsDaemon extends ParallelizingDaemon
                          "Twitter user $flink->foreign_id.");
             return false;
         }
-
-        $profile = $flink->getProfile();
 
         foreach ($friends as $friend) {
 
@@ -219,31 +224,24 @@ class SyncTwitterFriendsDaemon extends ParallelizingDaemon
                 continue;
             }
 
-            // Check to see if there's a related local user
-
-            $friend_flink = Foreign_link::getByForeignID($friend_id,
-                                                         TWITTER_SERVICE);
-
-            if (!empty($friend_flink)) {
+            // Check to see if there's a related local user and try to subscribe
+            try {
+                $friend_flink = Foreign_link::getByForeignID($friend_id, TWITTER_SERVICE);
 
                 // Get associated user and subscribe her
+                $friend_profile = $friend_flink->getProfile();
 
-                $friend_profile = Profile::getKV('id', $friend_flink->user_id);
-
-                if ($friend_profile instanceof Profile) {
-                    try {
-                        $other = Profile::getKV('id', $invites->user_id);
-                        Subscription::start($profile, $friend_profile);
-                        common_log(LOG_INFO,
-                                   $this->name() . ' - Subscribed ' .
-                                   "{$friend_profile->nickname} to {$profile->nickname}.");
-                    } catch (Exception $e) {
-                        common_debug($this->name() .
-                                     ' - Tried and failed subscribing ' .
-                                     "{$friend_profile->nickname} to {$profile->nickname} - " .
-                                     $e->getMessage());
-                    }
-                }
+                Subscription::start($profile, $friend_profile);
+                common_log(LOG_INFO,
+                           $this->name() . ' - Subscribed ' .
+                           "{$friend_profile->nickname} to {$profile->nickname}.");
+            } catch (NoResultException $e) {
+                // either no foreign link for this friend's foreign ID or no profile found on local ID.
+            } catch (Exception $e) {
+                common_debug($this->name() .
+                             ' - Tried and failed subscribing ' .
+                             "{$friend_profile->nickname} to {$profile->nickname} - " .
+                             $e->getMessage());
             }
         }
 

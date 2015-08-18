@@ -210,7 +210,7 @@ function common_language()
 /**
  * Salted, hashed passwords are stored in the DB.
  */
-function common_munge_password($password, $id, Profile $profile=null)
+function common_munge_password($password, Profile $profile=null)
 {
     $hashed = null;
 
@@ -245,8 +245,7 @@ function common_check_user($nickname, $password)
         }
 
         if ($user instanceof User && !empty($password)) {
-            if (0 == strcmp(common_munge_password($password, $user->id),
-                            $user->password)) {
+            if (0 == strcmp(common_munge_password($password, $user->getProfile()), $user->password)) {
                 //internal checking passed
                 $authenticatedUser = $user;
             }
@@ -710,26 +709,22 @@ function common_find_mentions($text, Notice $notice)
 
         // Is it a reply?
 
-        if ($notice instanceof Notice) {
-            try {
-                $origNotice = $notice->getParent();
-                $origAuthor = $origNotice->getProfile();
+        try {
+            $origNotice = $notice->getParent();
+            $origAuthor = $origNotice->getProfile();
 
-                $ids = $origNotice->getReplies();
+            $ids = $origNotice->getReplies();
 
-                foreach ($ids as $id) {
-                    $repliedTo = Profile::getKV('id', $id);
-                    if ($repliedTo instanceof Profile) {
-                        $origMentions[$repliedTo->nickname] = $repliedTo;
-                    }
+            foreach ($ids as $id) {
+                try {
+                    $repliedTo = Profile::getByID($id);
+                    $origMentions[$repliedTo->getNickname()] = $repliedTo;
+                } catch (NoResultException $e) {
+                    // continue foreach
                 }
-            } catch (NoProfileException $e) {
-                common_log(LOG_WARNING, sprintf('Notice %d author profile id %d does not exist', $origNotice->id, $origNotice->profile_id));
-            } catch (NoParentNoticeException $e) {
-                // This notice is not in reply to anything
-            } catch (Exception $e) {
-                common_log(LOG_WARNING, __METHOD__ . ' got exception ' . get_class($e) . ' : ' . $e->getMessage());
             }
+        } catch (NoParentNoticeException $e) {
+            // It wasn't a reply to anything, so we can't harvest nickname-relations.
         }
 
         $matches = common_find_mentions_raw($text);

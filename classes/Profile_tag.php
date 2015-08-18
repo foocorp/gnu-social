@@ -2,21 +2,14 @@
 /**
  * Table Definition for profile_tag
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 class Profile_tag extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
     public $__table = 'profile_tag';                     // table name
     public $tagger;                          // int(4)  primary_key not_null
     public $tagged;                          // int(4)  primary_key not_null
     public $tag;                             // varchar(64)  primary_key not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
-
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 
     public static function schemaDef()
     {
@@ -50,6 +43,16 @@ class Profile_tag extends Managed_DataObject
     function getMeta()
     {
         return Profile_list::pkeyGet(array('tagger' => $this->tagger, 'tag' => $this->tag));
+    }
+
+    static function getSelfTagsArray(Profile $target)
+    {
+        return self::getTagsArray($target->getID(), $target->getID(), $target);
+    }
+
+    static function setSelfTags(Profile $target, array $newtags, array $privacy=array())
+    {
+        return self::setTags($target->getID(), $target->getID(), $newtags, $privacy);
     }
 
     static function getTags($tagger, $tagged, $auth_user=null) {
@@ -88,7 +91,7 @@ class Profile_tag extends Managed_DataObject
         return $profile_list;
     }
 
-    static function getTagsArray($tagger, $tagged, $auth_user_id=null)
+    static function getTagsArray($tagger, $tagged, Profile $scoped=null)
     {
         $ptag = new Profile_tag();
 
@@ -100,7 +103,7 @@ class Profile_tag extends Managed_DataObject
                        'and   profile_tag.tagged = %d ',
                        $tagger, $tagged);
 
-        if ($auth_user_id != $tagger) {
+        if (!$scoped instanceof Profile || $scoped->getID() !== $tagger) {
             $qry .= 'and profile_list.private = 0';
         }
 
@@ -115,10 +118,10 @@ class Profile_tag extends Managed_DataObject
         return $tags;
     }
 
-    static function setTags($tagger, $tagged, $newtags, $privacy=array()) {
+    static function setTags($tagger, $tagged, array $newtags, array $privacy=array()) {
 
         $newtags = array_unique($newtags);
-        $oldtags = self::getTagsArray($tagger, $tagged, $tagger);
+        $oldtags = self::getTagsArray($tagger, $tagged, Profile::getByID($tagger));
 
         $ptag = new Profile_tag();
 
@@ -149,19 +152,18 @@ class Profile_tag extends Managed_DataObject
                                            'tag' => $tag));
 
         # if tag already exists, return it
-        if(!empty($ptag)) {
+        if ($ptag instanceof Profile_tag) {
             return $ptag;
         }
 
-        $tagger_profile = Profile::getKV('id', $tagger);
-        $tagged_profile = Profile::getKV('id', $tagged);
+        $tagger_profile = Profile::getByID($tagger);
+        $tagged_profile = Profile::getByID($tagged);
 
         if (Event::handle('StartTagProfile', array($tagger_profile, $tagged_profile, $tag))) {
 
             if (!$tagger_profile->canTag($tagged_profile)) {
                 // TRANS: Client exception thrown trying to set a tag for a user that cannot be tagged.
                 throw new ClientException(_('You cannot tag this user.'));
-                return false;
             }
 
             $tags = new Profile_list();
@@ -174,7 +176,6 @@ class Profile_tag extends Managed_DataObject
                                                     'which is the maximum allowed number of tags. ' .
                                                     'Try using or deleting some existing tags.'),
                                                     common_config('peopletag', 'maxtags')));
-                return false;
             }
 
             $plist = new Profile_list();
@@ -188,7 +189,6 @@ class Profile_tag extends Managed_DataObject
                                                     'which is the maximum allowed number. ' .
                                                     'Try unlisting others first.'),
                                                     common_config('peopletag', 'maxpeople'), $tag));
-                return false;
             }
 
             $newtag = new Profile_tag();
@@ -199,9 +199,9 @@ class Profile_tag extends Managed_DataObject
 
             $result = $newtag->insert();
 
-
             if (!$result) {
                 common_log_db_error($newtag, 'INSERT', __FILE__);
+                $plist->query('ROLLBACK');
                 return false;
             }
 
@@ -212,7 +212,6 @@ class Profile_tag extends Managed_DataObject
                 $newtag->delete();
                 $profile_list->delete();
                 throw $e;
-                return false;
             }
 
             $profile_list->taggedCount(true);
@@ -233,20 +232,17 @@ class Profile_tag extends Managed_DataObject
         if (Event::handle('StartUntagProfile', array($ptag))) {
             $orig = clone($ptag);
             $result = $ptag->delete();
-            if (!$result) {
+            if ($result === false) {
                 common_log_db_error($this, 'DELETE', __FILE__);
                 return false;
             }
             Event::handle('EndUntagProfile', array($orig));
-            if ($result) {
-                $profile_list = Profile_list::pkeyGet(array('tag' => $tag, 'tagger' => $tagger));
-                if (!empty($profile_list)) {
-                    $profile_list->taggedCount(true);
-                }
-                self::blowCaches($tagger, $tagged);
-                return true;
+            $profile_list = Profile_list::pkeyGet(array('tag' => $tag, 'tagger' => $tagger));
+            if (!empty($profile_list)) {
+                $profile_list->taggedCount(true);
             }
-            return false;
+            self::blowCaches($tagger, $tagged);
+            return true;
         }
     }
 

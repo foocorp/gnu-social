@@ -201,13 +201,13 @@ abstract class AuthenticationPlugin extends Plugin
         }
     }
 
-    function onStartChangePassword($user,$oldpassword,$newpassword)
+    function onStartChangePassword(Profile $target ,$oldpassword, $newpassword)
     {
         if($this->password_changeable){
             $user_username = new User_username();
-            $user_username->user_id=$user->id;
+            $user_username->user_id = $target->getID();
             $user_username->provider_name=$this->provider_name;
-            if($user_username->find() && $user_username->fetch()){
+            if ($user_username->find(true)) {
                 $authenticated = $this->checkPassword($user_username->username, $oldpassword);
                 if($authenticated){
                     $result = $this->changePassword($user_username->username,$oldpassword,$newpassword);

@@ -1977,6 +1977,38 @@ class Ostatus_profile extends Managed_DataObject
 
         return $oprofile->localProfile();
     }
+
+    public function updateUriKeys($profile_uri, array $hints=array())
+    {
+        $orig = clone($this);
+
+        common_debug('URIFIX These identities both say they are each other: "'.$orig->uri.'" and "'.$profile_uri.'"');
+        $this->uri = $profile_uri;
+
+        if (array_key_exists('feedurl', $hints)) {
+            if (!empty($this->feeduri)) {
+                common_debug('URIFIX Changing FeedSub ['.$feedsub->id.'] feeduri "'.$feedsub->uri.'" to "'.$hints['feedurl']);
+                $feedsub = FeedSub::getKV('uri', $this->feeduri);
+                $feedorig = clone($feedsub);
+                $feedsub->uri = $hints['feedurl'];
+                $feedsub->updateWithKeys($feedorig);
+            } else {
+                common_debug('URIFIX Old Ostatus_profile did not have feedurl set, ensuring feed: '.$hints['feedurl']);
+                FeedSub::ensureFeed($hints['feedurl']);
+            }
+            $this->feeduri = $hints['feedurl'];
+        }
+        if (array_key_exists('salmon', $hints)) {
+            common_debug('URIFIX Changing Ostatus_profile salmonuri from "'.$this->salmonuri.'" to "'.$hints['salmon'].'"');
+            $this->salmonuri = $hints['salmon'];
+        }
+
+        common_debug('URIFIX Updating Ostatus_profile URI for '.$orig->uri.' to '.$this->uri);
+        $this->updateWithKeys($orig, 'uri');    // 'uri' is the primary key column
+
+        common_debug('URIFIX Subscribing/renewing feedsub for Ostatus_profile '.$this->uri);
+        $this->subscribe();
+    }
 }
 
 /**

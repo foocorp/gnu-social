@@ -615,12 +615,12 @@ EndCheckPassword: After checking a username/password pair
 - $authenticatedUser: User object if credentials match a user, else null.
 
 StartChangePassword: Before changing a password
-- $user: user
+- Profile $target: The profile of the User that is changing password
 - $oldpassword: the user's old password
 - $newpassword: the desired new password
 
 EndChangePassword: After changing a password
-- $user: user
+- Profile $target: The profile of the User that just changed its password
 
 StartHashPassword: Generate a hashed version of the password (like a salted crypt)
 - &$hashed: Hashed version of the password, later put in the database

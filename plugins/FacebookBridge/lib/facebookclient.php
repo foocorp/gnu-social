@@ -66,13 +66,12 @@ class Facebookclient
         $this->notice = $notice;
 
         $profile_id = $profile ? $profile->id : $notice->profile_id;
-        $this->flink = Foreign_link::getByUserID(
-            $profile_id,
-            FACEBOOK_SERVICE
-        );
-
-        if (!empty($this->flink)) {
+        try {
+            $this->flink = Foreign_link::getByUserID($profile_id, FACEBOOK_SERVICE);
             $this->user = $this->flink->getUser();
+        } catch (NoResultException $e) {
+            // at least $this->flink could've gotten set to something,
+            // but the logic that was here before didn't care, so let's not care either
         }
     }
 
@@ -918,12 +917,9 @@ class Facebookclient
     static function addFacebookUser($fbuser)
     {
         // remove any existing, possibly outdated, record
-        $luser = Foreign_user::getForeignUser($fbuser->id, FACEBOOK_SERVICE);
-
-        if (!empty($luser)) {
-
-            $result = $luser->delete();
-
+        try {
+            $fuser = Foreign_user::getForeignUser($fbuser->id, FACEBOOK_SERVICE);
+            $result = $fuser->delete();
             if ($result != false) {
                 common_log(
                     LOG_INFO,
@@ -935,6 +931,8 @@ class Facebookclient
                     __FILE__
                 );
             }
+        } catch (NoResultException $e) {
+            // no old foreign users exist for this id
         }
 
         $fuser = new Foreign_user();

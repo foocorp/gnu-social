@@ -43,6 +43,7 @@ abstract class QueueManager extends IoManager
     protected $handlers = array();
     protected $groups = array();
     protected $activeGroups = array();
+    protected $ignoredTransports = array();
 
     /**
      * Factory function to pull the appropriate QueueManager object
@@ -253,6 +254,17 @@ abstract class QueueManager extends IoManager
         }
 
         return array_keys($queues);
+    }
+
+    function getIgnoredTransports()
+    {
+        return array_keys($this->ignoredTransports);
+    }
+
+    function ignoreTransport($transport)
+    {
+        // key is used for uniqueness, value doesn't mean anything
+        $this->ignoredTransports[$transport] = true;
     }
 
     /**

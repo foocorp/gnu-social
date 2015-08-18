@@ -138,6 +138,18 @@ class Profile extends Managed_DataObject
         return true;
     }
 
+    // Returns false if the user has no password (which will always
+    // be the case for remote users). This can be the case for OpenID
+    // logins or other mechanisms which don't store a password hash.
+    public function hasPassword()
+    {
+        try {
+            return !empty($this->getUser()->hasPassword());
+        } catch (NoSuchUserException $e) {
+            return false;
+        }
+    }
+
     public function getObjectType()
     {
         // FIXME: More types... like peopletags and whatever
@@ -865,6 +877,11 @@ class Profile extends Managed_DataObject
 
     function delete($useWhere=false)
     {
+        // just in case it hadn't been done before... (usually set before adding deluser to queue handling!)
+        if (!$this->hasRole(Profile_role::DELETED)) {
+            $this->grantRole(Profile_role::DELETED);
+        }
+
         $this->_deleteNotices();
         $this->_deleteSubscriptions();
         $this->_deleteTags();
@@ -1395,6 +1412,11 @@ class Profile extends Managed_DataObject
         return $this->fullname;
     }
 
+    public function getHomepage()
+    {
+        return $this->homepage;
+    }
+
     public function getDescription()
     {
         return $this->bio;
@@ -1622,5 +1644,10 @@ class Profile extends Managed_DataObject
 
     public function setPref($namespace, $topic, $data) {
         return Profile_prefs::setData($this, $namespace, $topic, $data);
+    }
+
+    public function getConnectedApps($offset=0, $limit=null)
+    {
+        return $this->getUser()->getConnectedApps($offset, $limit);
     }
 }

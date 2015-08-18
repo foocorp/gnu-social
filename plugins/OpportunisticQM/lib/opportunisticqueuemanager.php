@@ -83,8 +83,15 @@ class OpportunisticQueueManager extends DBQueueManager
     // OpportunisticQM shouldn't discard items it can't handle, we're
     // only here to take care of what we _can_ handle!
     protected function noHandlerFound(Queue_item $qi, $rep=null) {
-        $this->_log(LOG_WARNING, "[{$qi->transport}:item {$qi->id}] Releasing claim for queue item without a handler");
+        $this->_log(LOG_WARNING, "[{$qi->transport}:item {$qi->id}] Releasing claim for queue item without a handler");              
         $this->_fail($qi, true);    // true here means "releaseOnly", so no error statistics since it's not an _error_
+    }
+
+    protected function _fail(Queue_item $qi, $releaseOnly=false)
+    {
+        parent::_fail($qi, $releaseOnly);
+        $this->_log(LOG_DEBUG, "[{$qi->transport}:item {$qi->id}] Ignoring this transport for the rest of this execution");
+        $this->ignoreTransport($qi->transport);
     }
 
     /**

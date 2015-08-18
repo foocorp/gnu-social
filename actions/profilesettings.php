@@ -82,7 +82,6 @@ class ProfilesettingsAction extends SettingsAction
      */
     function showContent()
     {
-        $profile = $this->scoped;
         $user = $this->scoped->getUser();
 
         $this->elementStart('form', array('method' => 'post',
@@ -100,7 +99,7 @@ class ProfilesettingsAction extends SettingsAction
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
             $this->input('nickname', _('Nickname'),
-                         $this->arg('nickname') ?: $profile->nickname,
+                         $this->trimmed('nickname') ?: $this->scoped->getNickname(),
                          // TRANS: Tooltip for field label in form for profile settings.
                          _('1-64 lowercase letters or numbers, no punctuation or spaces.'),
                          null, false,   // "name" (will be set to id), then "required"
@@ -111,12 +110,12 @@ class ProfilesettingsAction extends SettingsAction
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
             $this->input('fullname', _('Full name'),
-                         ($this->arg('fullname')) ? $this->arg('fullname') : $profile->fullname);
+                         $this->trimmed('fullname') ?: $this->scoped->getFullname());
             $this->elementEnd('li');
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
             $this->input('homepage', _('Homepage'),
-                         ($this->arg('homepage')) ? $this->arg('homepage') : $profile->homepage,
+                         $this->trimmed('homepage') ?: $this->scoped->getHomepage(),
                          // TRANS: Tooltip for field label in form for profile settings.
                          _('URL of your homepage, blog, or profile on another site.'));
             $this->elementEnd('li');
@@ -137,13 +136,13 @@ class ProfilesettingsAction extends SettingsAction
             // TRANS: Text area label in form for profile settings where users can provide
             // TRANS: their biography.
             $this->textarea('bio', _('Bio'),
-                            ($this->arg('bio')) ? $this->arg('bio') : $profile->bio,
+                            $this->trimmed('bio') ?: $this->scoped->getDescription(),
                             $bioInstr);
             $this->elementEnd('li');
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
             $this->input('location', _('Location'),
-                         ($this->arg('location')) ? $this->arg('location') : $profile->location,
+                         $this->trimmed('location') ?: $this->scoped->location,
                          // TRANS: Tooltip for field label in form for profile settings.
                          _('Where you are, like "City, State (or Region), Country".'));
             $this->elementEnd('li');
@@ -152,14 +151,14 @@ class ProfilesettingsAction extends SettingsAction
                 // TRANS: Checkbox label in form for profile settings.
                 $this->checkbox('sharelocation', _('Share my current location when posting notices'),
                                 ($this->arg('sharelocation')) ?
-                                $this->arg('sharelocation') : $this->scoped->shareLocation());
+                                $this->boolean('sharelocation') : $this->scoped->shareLocation());
                 $this->elementEnd('li');
             }
             Event::handle('EndProfileFormData', array($this));
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
             $this->input('tags', _('Tags'),
-                         ($this->arg('tags')) ? $this->arg('tags') : implode(' ', $user->getSelfTags()),
+                         $this->trimmed('tags') ?: implode(' ', Profile_tag::getSelfTagsArray($this->scoped)),
                          // TRANS: Tooltip for field label in form for profile settings.
                          _('Tags for yourself (letters, numbers, -, ., and _), comma- or space- separated.'));
             $this->elementEnd('li');
@@ -228,17 +227,8 @@ class ProfilesettingsAction extends SettingsAction
      *
      * @return void
      */
-    function handlePost()
+    protected function doPost()
     {
-        // CSRF protection
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Form validation error.
-            $this->showForm(_('There was a problem with your session token. '.
-                              'Try again, please.'));
-            return;
-        }
-
         if (Event::handle('StartProfileSaveForm', array($this))) {
 
             // $nickname will only be set if this changenick value is true.
@@ -246,15 +236,13 @@ class ProfilesettingsAction extends SettingsAction
                 try {
                     $nickname = Nickname::normalize($this->trimmed('nickname'), true);
                 } catch (NicknameTakenException $e) {
-                    // Abort only if the nickname is occupied by another local profile
-                    if ($e->profile->id != $this->scoped->id) {
-                        $this->showForm($e->getMessage());
-                        return;
+                    // Abort only if the nickname is occupied by _another_ local user profile
+                    if (!$this->scoped->sameAs($e->profile)) {
+                        throw $e;
                     }
-                    $nickname = Nickname::normalize($this->trimmed('nickname')); // without in-use check this time
-                } catch (NicknameException $e) {
-                    $this->showForm($e->getMessage());
-                    return;
+                    // Since the variable wasn't set before the exception was thrown, let's run
+                    // the normalize sequence again, but without in-use check this time.
+                    $nickname = Nickname::normalize($this->trimmed('nickname'));
                 }
             }
 
@@ -273,33 +261,27 @@ class ProfilesettingsAction extends SettingsAction
             if (!is_null($homepage) && (strlen($homepage) > 0) &&
                        !common_valid_http_url($homepage)) {
                 // TRANS: Validation error in form for profile settings.
-                $this->showForm(_('Homepage is not a valid URL.'));
-                return;
-            } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
+                throw new ClientException(_('Homepage is not a valid URL.'));
+            } else if (!is_null($fullname) && mb_strlen($fullname) > 191) {
                 // TRANS: Validation error in form for profile settings.
-                $this->showForm(_('Full name is too long (maximum 255 characters).'));
-                return;
+                throw new ClientException(_('Full name is too long (maximum 191 characters).'));
             } else if (Profile::bioTooLong($bio)) {
                 // TRANS: Validation error in form for profile settings.
                 // TRANS: Plural form is used based on the maximum number of allowed
                 // TRANS: characters for the biography (%d).
-                $this->showForm(sprintf(_m('Bio is too long (maximum %d character).',
+                throw new ClientException(sprintf(_m('Bio is too long (maximum %d character).',
                                            'Bio is too long (maximum %d characters).',
                                            Profile::maxBio()),
                                         Profile::maxBio()));
-                return;
-            } else if (!is_null($location) && mb_strlen($location) > 255) {
+            } else if (!is_null($location) && mb_strlen($location) > 191) {
                 // TRANS: Validation error in form for profile settings.
-                $this->showForm(_('Location is too long (maximum 255 characters).'));
-                return;
+                throw new ClientException(_('Location is too long (maximum 191 characters).'));
             }  else if (is_null($timezone) || !in_array($timezone, DateTimeZone::listIdentifiers())) {
                 // TRANS: Validation error in form for profile settings.
-                $this->showForm(_('Timezone not selected.'));
-                return;
+                throw new ClientException(_('Timezone not selected.'));
             } else if (!is_null($language) && strlen($language) > 50) {
                 // TRANS: Validation error in form for profile settings.
-                $this->showForm(_('Language is too long (maximum 50 characters).'));
-                return;
+                throw new ClientException(_('Language is too long (maximum 50 characters).'));
             }
 
             $tags = array();
@@ -315,15 +297,14 @@ class ProfilesettingsAction extends SettingsAction
                     if (!common_valid_profile_tag($tag)) {
                         // TRANS: Validation error in form for profile settings.
                         // TRANS: %s is an invalid tag.
-                        $this->showForm(sprintf(_('Invalid tag: "%s".'), $tag));
-                        return;
+                        throw new ClientException(sprintf(_('Invalid tag: "%s".'), $tag));
                     }
 
                     $tag_priv[$tag] = $private;
                 }
             }
 
-            $user = common_current_user();
+            $user = $this->scoped->getUser();
             $user->query('BEGIN');
 
             // $user->nickname is updated through Profile->update();
@@ -346,54 +327,53 @@ class ProfilesettingsAction extends SettingsAction
                 $result = $user->update($original);
                 if ($result === false) {
                     common_log_db_error($user, 'UPDATE', __FILE__);
+                    $user->query('ROLLBACK');
                     // TRANS: Server error thrown when user profile settings could not be updated to
                     // TRANS: automatically subscribe to any subscriber.
-                    $this->serverError(_('Could not update user for autosubscribe or subscribe_policy.'));
+                    throw new ServerException(_('Could not update user for autosubscribe or subscribe_policy.'));
                 }
 
                 // Re-initialize language environment if it changed
                 common_init_language();
             }
 
-            $profile = $user->getProfile();
+            $original = clone($this->scoped);
 
-            $orig_profile = clone($profile);
-
-            if (common_config('profile', 'changenick') == true && $profile->nickname !== $nickname) {
+            if (common_config('profile', 'changenick') == true && $this->scoped->getNickname() !== $nickname) {
                 assert(Nickname::normalize($nickname)===$nickname);
-                common_debug("Changing user nickname from '{$profile->nickname}' to '{$nickname}'.");
-                $profile->nickname = $nickname;
-                $profile->profileurl = common_profile_url($profile->nickname);
+                common_debug("Changing user nickname from '{$this->scoped->getNickname()}' to '{$nickname}'.");
+                $this->scoped->nickname = $nickname;
+                $this->scoped->profileurl = common_profile_url($this->scoped->getNickname());
             }
-            $profile->fullname = $fullname;
-            $profile->homepage = $homepage;
-            $profile->bio = $bio;
-            $profile->location = $location;
+            $this->scoped->fullname = $fullname;
+            $this->scoped->homepage = $homepage;
+            $this->scoped->bio = $bio;
+            $this->scoped->location = $location;
 
             $loc = Location::fromName($location);
 
             if (empty($loc)) {
-                $profile->lat         = null;
-                $profile->lon         = null;
-                $profile->location_id = null;
-                $profile->location_ns = null;
+                $this->scoped->lat         = null;
+                $this->scoped->lon         = null;
+                $this->scoped->location_id = null;
+                $this->scoped->location_ns = null;
             } else {
-                $profile->lat         = $loc->lat;
-                $profile->lon         = $loc->lon;
-                $profile->location_id = $loc->location_id;
-                $profile->location_ns = $loc->location_ns;
+                $this->scoped->lat         = $loc->lat;
+                $this->scoped->lon         = $loc->lon;
+                $this->scoped->location_id = $loc->location_id;
+                $this->scoped->location_ns = $loc->location_ns;
             }
 
             if (common_config('location', 'share') == 'user') {
 
                 $exists = false;
 
-                $prefs = User_location_prefs::getKV('user_id', $user->id);
+                $prefs = User_location_prefs::getKV('user_id', $this->scoped->getID());
 
                 if (empty($prefs)) {
                     $prefs = new User_location_prefs();
 
-                    $prefs->user_id = $user->id;
+                    $prefs->user_id = $this->scoped->getID();
                     $prefs->created = common_sql_now();
                 } else {
                     $exists = true;
@@ -410,42 +390,37 @@ class ProfilesettingsAction extends SettingsAction
 
                 if ($result === false) {
                     common_log_db_error($prefs, ($exists) ? 'UPDATE' : 'INSERT', __FILE__);
+                    $user->query('ROLLBACK');
                     // TRANS: Server error thrown when user profile location preference settings could not be updated.
-                    $this->serverError(_('Could not save location prefs.'));
+                    throw new ServerException(_('Could not save location prefs.'));
                 }
             }
 
-            common_debug('Old profile: ' . common_log_objstring($orig_profile), __FILE__);
-            common_debug('New profile: ' . common_log_objstring($profile), __FILE__);
+            common_debug('Old profile: ' . common_log_objstring($original), __FILE__);
+            common_debug('New profile: ' . common_log_objstring($this->scoped), __FILE__);
 
-            $result = $profile->update($orig_profile);
+            $result = $this->scoped->update($original);
 
             if ($result === false) {
-                common_log_db_error($profile, 'UPDATE', __FILE__);
+                common_log_db_error($this->scoped, 'UPDATE', __FILE__);
+                $user->query('ROLLBACK');
                 // TRANS: Server error thrown when user profile settings could not be saved.
-                $this->serverError(_('Could not save profile.'));
+                throw new ServerException(_('Could not save profile.'));
             }
 
             // Set the user tags
-            $result = $user->setSelfTags($tags, $tag_priv);
-
-            if (!$result) {
-                // TRANS: Server error thrown when user profile settings tags could not be saved.
-                $this->serverError(_('Could not save tags.'));
-            }
+            $result = Profile_tag::setSelfTags($this->scoped, $tags, $tag_priv);
 
             $user->query('COMMIT');
             Event::handle('EndProfileSaveForm', array($this));
 
             // TRANS: Confirmation shown when user profile settings are saved.
-            $this->showForm(_('Settings saved.'), true);
+            return _('Settings saved.');
 
         }
     }
 
     function showAside() {
-        $user = common_current_user();
-
         $this->elementStart('div', array('id' => 'aside_primary',
                                          'class' => 'aside'));
 
@@ -453,7 +428,7 @@ class ProfilesettingsAction extends SettingsAction
                                          'class' => 'section'));
         $this->elementStart('ul');
         if (Event::handle('StartProfileSettingsActions', array($this))) {
-            if ($user->hasRight(Right::BACKUPACCOUNT)) {
+            if ($this->scoped->hasRight(Right::BACKUPACCOUNT)) {
                 $this->elementStart('li');
                 $this->element('a',
                                array('href' => common_local_url('backupaccount')),
@@ -461,7 +436,7 @@ class ProfilesettingsAction extends SettingsAction
                                _('Backup account'));
                 $this->elementEnd('li');
             }
-            if ($user->hasRight(Right::DELETEACCOUNT)) {
+            if ($this->scoped->hasRight(Right::DELETEACCOUNT)) {
                 $this->elementStart('li');
                 $this->element('a',
                                array('href' => common_local_url('deleteaccount')),
@@ -469,7 +444,7 @@ class ProfilesettingsAction extends SettingsAction
                                _('Delete account'));
                 $this->elementEnd('li');
             }
-            if ($user->hasRight(Right::RESTOREACCOUNT)) {
+            if ($this->scoped->hasRight(Right::RESTOREACCOUNT)) {
                 $this->elementStart('li');
                 $this->element('a',
                                array('href' => common_local_url('restoreaccount')),

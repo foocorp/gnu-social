@@ -42,7 +42,6 @@ class User extends Managed_DataObject
     public $emailnotifynudge;                // tinyint(1)   default_1
     public $emailnotifymsg;                  // tinyint(1)   default_1
     public $emailnotifyattn;                 // tinyint(1)   default_1
-    public $emailmicroid;                    // tinyint(1)   default_1
     public $language;                        // varchar(50)
     public $timezone;                        // varchar(50)
     public $emailpost;                       // tinyint(1)   default_1
@@ -77,7 +76,6 @@ class User extends Managed_DataObject
                 'emailnotifynudge' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of nudges'),
                 'emailnotifymsg' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of direct messages'),
                 'emailnotifyattn' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of @-replies'),
-                'emailmicroid' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'whether to publish email microid'),
                 'language' => array('type' => 'varchar', 'length' => 50, 'description' => 'preferred language'),
                 'timezone' => array('type' => 'varchar', 'length' => 50, 'description' => 'timezone'),
                 'emailpost' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Post by email'),
@@ -276,9 +274,7 @@ class User extends Managed_DataObject
         $user->emailnotifynudge = 1;
         $user->emailnotifymsg = 1;
         $user->emailnotifyattn = 1;
-        $user->emailmicroid = 1;
         $user->emailpost = 1;
-        $user->jabbermicroid = 1;
 
         $user->created = common_sql_now();
 
@@ -303,7 +299,7 @@ class User extends Managed_DataObject
             }
 
             if (!empty($password)) { // may not have a password for OpenID users
-                $user->password = common_munge_password($password, $id);
+                $user->password = common_munge_password($password);
             }
 
             $result = $user->insert();
@@ -466,16 +462,6 @@ class User extends Managed_DataObject
         return $this->getProfile()->getNotices($offset, $limit, $since_id, $before_id);
     }
 
-    function getSelfTags()
-    {
-        return Profile_tag::getTagsArray($this->id, $this->id, $this->id);
-    }
-
-    function setSelfTags($newtags, $privacy)
-    {
-        return Profile_tag::setTags($this->id, $this->id, $newtags, $privacy);
-    }
-
     function block(Profile $other)
     {
         // Add a new block record
@@ -612,8 +598,10 @@ class User extends Managed_DataObject
         }
 
         try {
-            $profile = $this->getProfile();
-            $profile->delete();
+            if (!$this->hasRole(Profile_role::DELETED)) {
+                $profile = $this->getProfile();
+                $profile->delete();
+            }
         } catch (UserNoProfileException $unp) {
             common_log(LOG_INFO, "User {$this->nickname} has no profile; continuing deletion.");
         }
@@ -1017,6 +1005,11 @@ class User extends Managed_DataObject
     public function isPrivateStream()
     {
         return $this->getProfile()->isPrivateStream();
+    }
+
+    public function hasPassword()
+    {
+        return !empty($this->password);
     }
 
     public function delPref($namespace, $topic)

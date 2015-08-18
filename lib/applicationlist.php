@@ -27,13 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/widget.php';
-
-define('APPS_PER_PAGE', 20);
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Widget to show a list of OAuth applications
@@ -52,16 +46,12 @@ class ApplicationList extends Widget
     /** Owner of this list */
     var $owner = null;
 
-    /** Action object using us. */
-    var $action = null;
-
-    function __construct($application, $owner=null, $action=null)
+    function __construct($application, Profile $owner, Action $out=null)
     {
-        parent::__construct($action);
+        parent::__construct($out);
 
         $this->application = $application;
         $this->owner       = $owner;
-        $this->action      = $action;
     }
 
     function show()
@@ -75,7 +65,7 @@ class ApplicationList extends Widget
             if($cnt > APPS_PER_PAGE) {
                 break;
             }
-            $this->showapplication();
+            $this->showApplication();
         }
 
         $this->out->elementEnd('ul');
@@ -85,8 +75,6 @@ class ApplicationList extends Widget
 
     function showApplication()
     {
-        $user = common_current_user();
-
         $this->out->elementStart('li', array('class' => 'application h-entry',
                                              'id'    => 'oauthclient-' . $this->application->id));
 
@@ -117,142 +105,5 @@ class ApplicationList extends Widget
     function showOwnerControls()
     {
         return;
-    }
-}
-
-/**
- * Widget to show a list of connected OAuth clients
- *
- * @category Application
- * @package  StatusNet
- * @author   Zach Copley <zach@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
- */
-class ConnectedAppsList extends Widget
-{
-    /** Current connected application query */
-    var $connection = null;
-
-    /** Owner of this list */
-    var $owner = null;
-
-    /** Action object using us. */
-    var $action = null;
-
-    function __construct($connection, $owner=null, $action=null)
-    {
-        parent::__construct($action);
-
-        common_debug("ConnectedAppsList constructor");
-
-        $this->connection = $connection;
-        $this->owner       = $owner;
-        $this->action      = $action;
-    }
-
-    /* Override this in subclasses. */
-    function showOwnerControls()
-    {
-        return;
-    }
-
-    function show()
-    {
-        $this->out->elementStart('ul', 'applications');
-
-        $cnt = 0;
-
-        while ($this->connection->fetch()) {
-            $cnt++;
-            if($cnt > APPS_PER_PAGE) {
-                break;
-            }
-            $this->showConnection();
-        }
-
-        $this->out->elementEnd('ul');
-
-        return $cnt;
-    }
-
-    function showConnection()
-    {
-        $app = Oauth_application::getKV('id', $this->connection->application_id);
-
-        $this->out->elementStart('li', array('class' => 'application h-entry',
-                                             'id'    => 'oauthclient-' . $app->id));
-
-        $this->out->elementStart('a', array('href' => $app->source_url,
-                                            'class' => 'h-card p-name'));
-
-        if (!empty($app->icon)) {
-            $this->out->element('img', array('src' => $app->icon,
-                                             'class' => 'avatar u-photo'));
-        }
-        if ($app->name != 'anonymous') {
-            $this->out->text($app->name);
-        } else {
-            // TRANS: Name for an anonymous application in application list.
-            $this->out->element('span', 'p-name', _('Unknown application'));
-        }
-        $this->out->elementEnd('a');
-
-        if ($app->name != 'anonymous') {
-            // @todo FIXME: i18n trouble.
-            // TRANS: Message has a leading space and a trailing space. Used in application list.
-            // TRANS: Before this message the application name is put, behind it the organisation that manages it.
-            $this->out->raw(_(' by '));
-
-            $this->out->element('a', array('href' => $app->homepage,
-                                           'class' => 'h-card'),
-                                $app->organization);
-        }
-
-        // TRANS: Application access type
-        $readWriteText = _('read-write');
-        // TRANS: Application access type
-        $readOnlyText = _('read-only');
-
-        $access = ($this->connection->access_type & Oauth_application::$writeAccess)
-            ? $readWriteText : $readOnlyText;
-        $modifiedDate = common_date_string($this->connection->modified);
-        // TRANS: Used in application list. %1$s is a modified date, %2$s is access type ("read-write" or "read-only")
-        $txt = sprintf(_('Approved %1$s - "%2$s" access.'), $modifiedDate, $access);
-
-        // @todo FIXME: i18n trouble.
-        $this->out->raw(" - $txt");
-        if (!empty($app->description)) {
-            $this->out->element(
-                'p', array('class' => 'application_description'),
-                $app->description
-            );
-        }
-        $this->out->element(
-            'p', array(
-            'class' => 'access_token'),
-            // TRANS: Access token in the application list.
-            // TRANS: %s are the first 7 characters of the access token.
-            sprintf(_('Access token starting with: %s'), substr($this->connection->token, 0, 7))
-        );
-
-        $this->out->elementStart(
-            'form',
-            array(
-                'id' => 'form_revoke_app',
-                'class' => 'form_revoke_app',
-                'method' => 'POST',
-                'action' => common_local_url('oauthconnectionssettings')
-            )
-        );
-        $this->out->elementStart('fieldset');
-        $this->out->hidden('oauth_token', $this->connection->token);
-        $this->out->hidden('token', common_session_token());
-        // TRANS: Button label in application list to revoke access to user data.
-        $this->out->submit('revoke', _m('BUTTON','Revoke'));
-        $this->out->elementEnd('fieldset');
-        $this->out->elementEnd('form');
-
-        $this->out->elementEnd('li');
     }
 }

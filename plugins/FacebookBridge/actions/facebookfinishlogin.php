@@ -519,34 +519,30 @@ class FacebookfinishloginAction extends Action
 
     function tryLogin()
     {
-        $flink = Foreign_link::getByForeignID($this->fbuid, FACEBOOK_SERVICE);
-
-        if (!empty($flink)) {
+        try {
+            $flink = Foreign_link::getByForeignID($this->fbuid, FACEBOOK_SERVICE);
             $user = $flink->getUser();
 
-            if (!empty($user)) {
+            common_log(
+                LOG_INFO,
+                sprintf(
+                    'Logged in Facebook user %s as user %d (%s)',
+                    $this->fbuid,
+                    $user->nickname,
+                    $user->id
+                ),
+                __FILE__
+            );
 
-                common_log(
-                    LOG_INFO,
-                    sprintf(
-                        'Logged in Facebook user %s as user %d (%s)',
-                        $this->fbuid,
-                        $user->nickname,
-                        $user->id
-                    ),
-                    __FILE__
-                );
+            common_set_user($user);
+            common_real_login(true);
 
-                common_set_user($user);
-                common_real_login(true);
+            // clear out the stupid cookie
+            setcookie('fb_access_token', '', time() - 3600); // one hour ago
 
-                // clear out the stupid cookie
-                setcookie('fb_access_token', '', time() - 3600); // one hour ago
+            $this->goHome($user->nickname);
 
-                $this->goHome($user->nickname);
-            }
-
-        } else {
+        } catch (NoResultException $e) {
             $this->showForm(null, $this->bestNewNickname());
         }
     }

@@ -110,17 +110,17 @@ class AuthCryptPlugin extends AuthenticationPlugin
      * EVENTS
      */
 
-    public function onStartChangePassword($user, $oldpassword, $newpassword)
+    public function onStartChangePassword(Profile $target, $oldpassword, $newpassword)
     {
-        if (!$this->checkPassword($user->nickname, $oldpassword)) {
+        if (!$this->checkPassword($target->getNickname(), $oldpassword)) {
             // if we ARE in overwrite mode, test password with common_check_user
-            if (!$this->overwrite || !common_check_user($user->nickname, $oldpassword)) {
+            if (!$this->overwrite || !common_check_user($target->getNickname(), $oldpassword)) {
                 // either we're not in overwrite mode, or the password was incorrect
                 return !$this->authoritative;
             }
             // oldpassword was apparently ok
         }
-        $changed = $this->changePassword($user->nickname, $oldpassword, $newpassword);
+        $changed = $this->changePassword($target->getNickname(), $oldpassword, $newpassword);
 
         return (!$changed && empty($this->authoritative));
     }
