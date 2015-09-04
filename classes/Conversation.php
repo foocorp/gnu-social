@@ -110,8 +110,7 @@ class Conversation extends Managed_DataObject
     {
         $conv = new Conversation();
         $conv->id = $notice->conversation;
-        $conv->find(true);
-        if (!$conv instanceof Conversation) {
+        if (!$conv->find(true)) {
             common_debug('Conversation does not exist for notice ID: '.$notice->id);
             throw new NoResultException($conv);
         }
