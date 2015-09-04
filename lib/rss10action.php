@@ -216,15 +216,19 @@ class Rss10Action extends ManagedAction
         $this->element('dc:creator', null, ($profile->fullname) ? $profile->fullname : $profile->nickname);
         $this->element('foaf:maker', array('rdf:resource' => $creator_uri));
         $this->element('sioc:has_creator', array('rdf:resource' => $creator_uri.'#acct'));
-        $location = $notice->getLocation();
-        if ($location && isset($location->lat) && isset($location->lon)) {
-            $location_uri = $location->getRdfURL();
-            $attrs = array('geo:lat' => $location->lat,
-                'geo:long' => $location->lon);
-            if (strlen($location_uri)) {
-                $attrs['rdf:resource'] = $location_uri;
+        try {
+            $location = Notice_location::locFromStored($notice);
+            if (isset($location->lat) && isset($location->lon)) {
+                $location_uri = $location->getRdfURL();
+                $attrs = array('geo:lat' => $location->lat,
+                               'geo:long' => $location->lon);
+                if (strlen($location_uri)) {
+                    $attrs['rdf:resource'] = $location_uri;
+                }
+                $this->element('statusnet:origin', $attrs);
             }
-            $this->element('statusnet:origin', $attrs);
+        } catch (ServerException $e) {
+            // No result, so no location data
         }
         $this->element('statusnet:postIcon', array('rdf:resource' => $profile->avatarUrl()));
         $this->element('cc:licence', array('rdf:resource' => common_config('license', 'url')));

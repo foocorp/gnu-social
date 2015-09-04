@@ -368,18 +368,19 @@ class NoticeListItem extends Widget
      */
     function showNoticeLocation()
     {
-        $id = $this->notice->id;
-
-        $location = $this->notice->getLocation();
-
-        if (empty($location)) {
+        return;
+        try {
+            $location = Notice_location::locFromStored($this->notice);
+        } catch (NoResultException $e) {
+            return;
+        } catch (ServerException $e) {
             return;
         }
 
         $name = $location->getName();
 
-        $lat = $this->notice->lat;
-        $lon = $this->notice->lon;
+        $lat = $location->lat;
+        $lon = $location->lon;
         $latlon = (!empty($lat) && !empty($lon)) ? $lat.';'.$lon : '';
 
         if (empty($name)) {

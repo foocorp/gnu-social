@@ -366,12 +366,13 @@ class ApiAction extends Action
         $twitter_status['in_reply_to_screen_name'] =
             ($replier_profile) ? $replier_profile->nickname : null;
 
-        if (isset($notice->lat) && isset($notice->lon)) {
+        try {
+            $notloc = Notice_location::locFromStored($notice);
             // This is the format that GeoJSON expects stuff to be in
             $twitter_status['geo'] = array('type' => 'Point',
-                                           'coordinates' => array((float) $notice->lat,
-                                                                  (float) $notice->lon));
-        } else {
+                                           'coordinates' => array((float) $notloc->lat,
+                                                                  (float) $notloc->lon));
+        } catch (ServerException $e) {
             $twitter_status['geo'] = null;
         }
 
@@ -547,13 +548,14 @@ class ApiAction extends Action
             $entry['pubDate'] = common_date_rfc2822($notice->created);
             $entry['guid'] = $entry['link'];
 
-            if (isset($notice->lat) && isset($notice->lon)) {
+            try {
+                $notloc = Notice_location::locFromStored($notice);
                 // This is the format that GeoJSON expects stuff to be in.
                 // showGeoRSS() below uses it for XML output, so we reuse it
                 $entry['geo'] = array('type' => 'Point',
-                                      'coordinates' => array((float) $notice->lat,
-                                                             (float) $notice->lon));
-            } else {
+                                      'coordinates' => array((float) $notloc->lat,
+                                                             (float) $notloc->lon));
+            } catch (ServerException $e) {
                 $entry['geo'] = null;
             }
 
@@ -997,7 +999,13 @@ class ApiAction extends Action
         $statuses = array();
 
         if (is_array($notice)) {
-            $notice = new ArrayWrapper($notice);
+            //FIXME: make everything calling showJsonTimeline use only Notice objects
+            common_debug('ArrayWrapper avoidance in progress! Beep boop, make showJsonTimeline only receive Notice objects!');
+            $ids = array();
+            foreach ($notice as $n) {
+                $ids[] = $n->getID();
+            }
+            $notice = Notice::multiGet('id', $ids);
         }
 
         while ($notice->fetch()) {

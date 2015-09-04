@@ -120,9 +120,11 @@ class MapAction extends Action
         $jsonArray = array();
 
         while ($this->notice->fetch()) {
-            if (!empty($this->notice->lat) && !empty($this->notice->lon)) {
-                $jsonNotice = $this->noticeAsJson($this->notice);
-                $jsonArray[] = $jsonNotice;
+            try {
+                $notloc = Notice_location::locFromStored($this->notice);
+                $jsonArray[] = $this->noticeAsJson($this->notice);
+            } catch (ServerException $e) {
+                // no location data
             }
         }
 
