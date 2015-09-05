@@ -2429,3 +2429,12 @@ function common_strip_html($html, $trim=true, $save_whitespace=false)
     $text = html_entity_decode(strip_tags($html), ENT_QUOTES, 'UTF-8');
     return $trim ? trim($text) : $text;
 }
+
+function html_sprintf()
+{
+    $args = func_get_args();
+    for ($i=1; $i<count($args); $i++) {
+        $args[$i] = htmlspecialchars($args[$i]);
+    }
+    return call_user_func_array('sprintf', $args);
+}
