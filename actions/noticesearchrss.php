@@ -28,11 +28,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/rssaction.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * RSS feed for notice search action class.
@@ -48,19 +44,7 @@ require_once INSTALLDIR.'/lib/rssaction.php';
  */
 class NoticesearchrssAction extends Rss10Action
 {
-    function init()
-    {
-        return true;
-    }
-
-    function prepare($args)
-    {
-        parent::prepare($args);
-        $this->notices = $this->getNotices();
-        return true;
-    }
-
-    function getNotices($limit=0)
+    protected function getNotices()
     {
         $q = $this->trimmed('q');
         $notices = array();
@@ -70,8 +54,7 @@ class NoticesearchrssAction extends Rss10Action
         $search_engine = $notice->getSearchEngine('notice');
         $search_engine->set_sort_mode('chron');
 
-        if (!$limit) $limit = 20;
-        $search_engine->limit(0, $limit, true);
+        $search_engine->limit(0, $this->limit, true);
         if (false === $search_engine->query($q)) {
             $cnt = 0;
         } else {

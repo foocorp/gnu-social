@@ -108,6 +108,11 @@ class Router
 
         if (Event::handle('StartInitializeRouter', array(&$m))) {
 
+            // top of the menu hierarchy, sometimes "Home"
+            $m->connect('', array('action' => 'top'));
+
+            // public endpoints
+
             $m->connect('robots.txt', array('action' => 'robotstxt'));
 
             $m->connect('opensearch/people', array('action' => 'opensearch',
@@ -156,13 +161,13 @@ class Router
                           'deleteaccount',
                           'restoreaccount',
                           'top',
+                          'public',
             );
 
             foreach ($main as $a) {
                 $m->connect('main/'.$a, array('action' => $a));
             }
 
-            $m->connect('main/public', array('action' => 'public'));
             $m->connect('main/all', array('action' => 'networkpublic'));
 
             $m->connect('main/tagprofile/:id', array('action' => 'tagprofile'),
@@ -239,11 +244,9 @@ class Router
                         array('action' => 'shownotice'),
                         array('notice' => '[0-9]+'));
 
-            $m->connect('notice/delete/:notice',
+            $m->connect('notice/:notice/delete',
                         array('action' => 'deletenotice'),
                         array('notice' => '[0-9]+'));
-
-            $m->connect('notice/delete', array('action' => 'deletenotice'));
 
             // conversation
 
@@ -875,9 +878,6 @@ class Router
                             array('action' => 'rsd',
                                   'nickname' => $nickname));
 
-                $m->connect('',
-                            array('action' => 'startpage'));
-
                 // peopletags
 
                 $m->connect('peopletags',
@@ -930,9 +930,6 @@ class Router
                 }
             }
 
-            $m->connect('', array('action' => 'startpage'));
-            $m->connect('main/public', array('action' => 'public'));
-            $m->connect('main/all', array('action' => 'networkpublic'));
             $m->connect('rss', array('action' => 'publicrss'));
             $m->connect('featuredrss', array('action' => 'featuredrss'));
             $m->connect('featured/', array('action' => 'featured'));
@@ -949,6 +946,13 @@ class Router
             $m->connect(':nickname/subscribers/pending',
                         array('action' => 'subqueue'),
                         array('nickname' => Nickname::DISPLAY_FMT));
+
+            // some targeted RSS 1.0 actions (extends TargetedRss10Action)
+            foreach (array('all', 'replies') as $a) {
+                $m->connect(':nickname/'.$a.'/rss',
+                            array('action' => $a.'rss'),
+                            array('nickname' => Nickname::DISPLAY_FMT));
+            }
 
             // people tags
 
@@ -1014,12 +1018,6 @@ class Router
             foreach (array('rss', 'groups') as $a) {
                 $m->connect(':nickname/'.$a,
                             array('action' => 'user'.$a),
-                            array('nickname' => Nickname::DISPLAY_FMT));
-            }
-
-            foreach (array('all', 'replies') as $a) {
-                $m->connect(':nickname/'.$a.'/rss',
-                            array('action' => $a.'rss'),
                             array('nickname' => Nickname::DISPLAY_FMT));
             }
 

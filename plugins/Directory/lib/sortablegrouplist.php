@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/subscriptionlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Widget to show a sortable list of subscriptions
@@ -44,16 +40,6 @@ require_once INSTALLDIR . '/lib/subscriptionlist.php';
  */
 class SortableGroupList extends SortableSubscriptionList
 {
-    /** Owner of this list */
-    var $owner = null;
-
-    function __construct($profile, $owner=null, $action=null)
-    {
-        parent::__construct($profile, $owner, $action);
-
-        $this->owner = $owner;
-    }
-
     function startList()
     {
         $this->out->elementStart('table', array('class' => 'profile_list xoxo'));
@@ -119,25 +105,14 @@ class SortableGroupList extends SortableSubscriptionList
         $this->out->elementStart('tbody');
     }
 
-    function newListItem($profile, $odd)
+    function newListItem($profile)
     {
-        return new SortableGroupListItem($profile, $this->owner, $this->action, $odd);
+        return new SortableGroupListItem($profile, $this->owner, $this->action);
     }
 }
 
 class SortableGroupListItem extends SortableSubscriptionListItem
 {
-    /** Owner of this list */
-    var $owner = null;
-
-    function __construct($profile, $owner, $action, $alt)
-    {
-        parent::__construct($profile, $owner, $action, $alt);
-
-        $this->alt   = $alt; // is this row alternate?
-        $this->owner = $owner;
-    }
-
     function showHomepage()
     {
         if (!empty($this->profile->homepage)) {

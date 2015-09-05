@@ -101,10 +101,10 @@ class ModLogPlugin extends Plugin
 
         $modlog->profile_id = $profile->id;
 
-        $cur = common_current_user();
+        $scoped = Profile::current();
         
-        if (!empty($cur)) {
-            $modlog->moderator_id = $cur->id;
+        if ($scoped instanceof Profile) {
+            $modlog->moderator_id = $scoped->getID();
         }
 
         $modlog->role     = $role;
@@ -118,21 +118,22 @@ class ModLogPlugin extends Plugin
 
     function onEndShowSections(Action $action)
     {
-        if ($action->arg('action') != 'showstream') {
+        if (!$action instanceof ShowstreamAction) {
+            // early return for actions we're not interested in
             return true;
         }
 
-        $cur = common_current_user();
-
-        if (empty($cur) || !$cur->hasRight(self::VIEWMODLOG)) {
+        $scoped = $action->getScoped();
+        if (!$scoped instanceof Profile || !$scoped->hasRight(self::VIEWMODLOG)) {
+            // only continue if we are allowed to VIEWMODLOG
             return true;
         }
 
-        $profile = $action->profile;
+        $profile = $action->getTarget();
 
         $ml = new ModLog();
 
-        $ml->profile_id = $profile->id;
+        $ml->profile_id = $profile->getID();
         $ml->orderBy("created");
 
         $cnt = $ml->find();
@@ -152,13 +153,13 @@ class ModLogPlugin extends Plugin
                 $action->element('td', null, sprintf(($ml->is_grant) ? _('+%s') : _('-%s'), $ml->role));
                 $action->elementStart('td');
                 if ($ml->moderator_id) {
-                    $mod = Profile::getKV('id', $ml->moderator_id);
+                    $mod = Profile::getByID($ml->moderator_id);
                     if (empty($mod)) {
                         $action->text(_('[unknown]'));
                     } else {
-                        $action->element('a', array('href' => $mod->profileurl,
-                                                    'title' => $mod->fullname),
-                                         $mod->nickname);
+                        $action->element('a', array('href' => $mod->getUrl(),
+                                                    'title' => $mod->getFullname()),
+                                         $mod->getNickname());
                     }
                 } else {
                     $action->text(_('[unknown]'));

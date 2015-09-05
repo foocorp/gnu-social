@@ -195,7 +195,7 @@ class ThreadedNoticeListItem extends NoticeListItem
     function showEnd()
     {
         $max = $this->initialItems();
-        if (!$this->repeat) {
+        if (!$this->repeat instanceof Notice) {
             $stream = new ConversationNoticeStream($this->notice->conversation, $this->userProfile);
             $notice = $stream->getNotices(0, $max + 2);
             $notices = array();

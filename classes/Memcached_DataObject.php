@@ -74,7 +74,7 @@ class Memcached_DataObject extends Safe_DataObject
     {
         $obj = new $cls;
 
-        // php-compatible, for settype(), datatype
+        // PHP compatible datatype for settype() below
         $colType = $obj->columnType($keyCol);
 
         if (!in_array($colType, array('integer', 'int'))) {

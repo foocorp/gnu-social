@@ -55,10 +55,9 @@ class Reply extends Managed_DataObject
         return $result;
     }
 
-    function stream($user_id, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
+    static function stream($user_id, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
     {
         $stream = new ReplyNoticeStream($user_id);
-
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 }

@@ -39,8 +39,6 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class AllAction extends ShowstreamAction
 {
-    var $notice;
-
     public function getStream()
     {
         if ($this->scoped instanceof Profile && $this->scoped->isLocal() && $this->scoped->getUser()->streamModeOnly()) {
@@ -54,7 +52,7 @@ class AllAction extends ShowstreamAction
 
     function title()
     {
-        if (!empty($this->scoped) && $this->scoped->id == $this->target->id) {
+        if (!empty($this->scoped) && $this->scoped->sameAs($this->target)) {
             // TRANS: Title of a user's own start page.
             return _('Home timeline');
         } else {
@@ -71,44 +69,44 @@ class AllAction extends ShowstreamAction
                 common_local_url(
                     'ApiTimelineFriends', array(
                         'format' => 'as',
-                        'id' => $this->target->nickname
+                        'id' => $this->target->getNickname()
                     )
                 ),
                 // TRANS: %s is user nickname.
-                sprintf(_('Feed for friends of %s (Activity Streams JSON)'), $this->target->nickname)),
+                sprintf(_('Feed for friends of %s (Activity Streams JSON)'), $this->target->getNickname())),
             new Feed(Feed::RSS1,
                 common_local_url(
                     'allrss', array(
                         'nickname' =>
-                        $this->target->nickname)
+                        $this->target->getNickname())
                 ),
                 // TRANS: %s is user nickname.
-                sprintf(_('Feed for friends of %s (RSS 1.0)'), $this->target->nickname)),
+                sprintf(_('Feed for friends of %s (RSS 1.0)'), $this->target->getNickname())),
             new Feed(Feed::RSS2,
                 common_local_url(
                     'ApiTimelineFriends', array(
                         'format' => 'rss',
-                        'id' => $this->target->nickname
+                        'id' => $this->target->getNickname()
                     )
                 ),
                 // TRANS: %s is user nickname.
-                sprintf(_('Feed for friends of %s (RSS 2.0)'), $this->target->nickname)),
+                sprintf(_('Feed for friends of %s (RSS 2.0)'), $this->target->getNickname())),
             new Feed(Feed::ATOM,
                 common_local_url(
                     'ApiTimelineFriends', array(
                         'format' => 'atom',
-                        'id' => $this->target->nickname
+                        'id' => $this->target->getNickname()
                     )
                 ),
                 // TRANS: %s is user nickname.
-                sprintf(_('Feed for friends of %s (Atom)'), $this->target->nickname))
+                sprintf(_('Feed for friends of %s (Atom)'), $this->target->getNickname()))
         );
     }
 
     function showEmptyListMessage()
     {
         // TRANS: Empty list message. %s is a user nickname.
-        $message = sprintf(_('This is the timeline for %s and friends but no one has posted anything yet.'), $this->target->nickname) . ' ';
+        $message = sprintf(_('This is the timeline for %s and friends but no one has posted anything yet.'), $this->target->getNickname()) . ' ';
 
         if (common_logged_in()) {
             if ($this->target->id === $this->scoped->id) {
@@ -118,12 +116,12 @@ class AllAction extends ShowstreamAction
             } else {
                 // TRANS: %1$s is user nickname, %2$s is user nickname, %2$s is user nickname prefixed with "@".
                 // TRANS: This message contains Markdown links. Keep "](" together.
-                $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) from their profile or [post something to them](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->target->nickname, $this->target->nickname, '@' . $this->target->nickname);
+                $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) from their profile or [post something to them](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->target->getNickname(), $this->target->getNickname(), '@' . $this->target->getNickname());
             }
         } else {
             // TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
             // TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
-            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->target->nickname);
+            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->target->getNickname());
         }
 
         $this->elementStart('div', 'guide');
@@ -134,19 +132,10 @@ class AllAction extends ShowstreamAction
     function showContent()
     {
         if (Event::handle('StartShowAllContent', array($this))) {
-
-            $profile = null;
-
-            $current_user = common_current_user();
-
-            if (!empty($current_user)) {
-                $profile = $current_user->getProfile();
-            }
-
-            if (!empty($current_user) && $current_user->streamModeOnly()) {
+            if ($this->scoped instanceof Profile && $this->scoped->isLocal() && $this->scoped->getUser()->streamModeOnly()) {
                 $nl = new PrimaryNoticeList($this->notice, $this, array('show_n'=>NOTICES_PER_PAGE));
             } else {
-                $nl = new ThreadedNoticeList($this->notice, $this, $profile);
+                $nl = new ThreadedNoticeList($this->notice, $this, $this->scoped);
             }
 
             $cnt = $nl->show();
@@ -157,7 +146,7 @@ class AllAction extends ShowstreamAction
 
             $this->pagination(
                 $this->page > 1, $cnt > NOTICES_PER_PAGE,
-                $this->page, 'all', array('nickname' => $this->target->nickname)
+                $this->page, 'all', array('nickname' => $this->target->getNickname())
             );
 
             Event::handle('EndShowAllContent', array($this));

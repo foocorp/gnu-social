@@ -51,10 +51,14 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
 {
     var $notices = null;
 
-    protected function doPreparation()
+    protected function prepare(array $args=array())
     {
+        parent::prepare($args);
+
         $this->tag     = $this->arg('tag');
         $this->notices = $this->getNotices();
+
+        return true;
     }
 
     /**

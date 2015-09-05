@@ -1622,6 +1622,11 @@ ul.profile_list li {
     display: block;
 }
 
+table.profile_list tbody tr:nth-child(2n+1) {
+    background-color: #fafafa !important;
+    border: none !important;
+}
+
 .entity_profile .entity_nickname,
 .entity_profile .entity_fn {
 margin-left:0;

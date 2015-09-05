@@ -30,9 +30,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Show a list of direct messages from or to the authenticating user
@@ -62,13 +60,11 @@ class ApiDirectMessageAction extends ApiAuthAction
      *
      * @return boolean success flag
      */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
-        $this->user = $this->auth_user;
-
-        if (empty($this->user)) {
+        if (!$this->scoped instanceof Profile) {
             // TRANS: Client error given when a user was not found (404).
             $this->clientError(_('No such user.'), 404);
         }
@@ -83,30 +79,30 @@ class ApiDirectMessageAction extends ApiAuthAction
             $this->title = sprintf(
                 // TRANS: Title. %s is a user nickname.
                 _("Direct messages from %s"),
-                $this->user->nickname
+                $this->scoped->getNickname()
             );
             $this->subtitle = sprintf(
                 // TRANS: Subtitle. %s is a user nickname.
                 _("All the direct messages sent from %s"),
-                $this->user->nickname
+                $this->scoped->getNickname()
             );
-            $this->link = $server . $this->user->nickname . '/outbox';
+            $this->link = $server . $this->scoped->getNickname() . '/outbox';
             $this->selfuri_base = common_root_url() . 'api/direct_messages/sent';
-            $this->id = "tag:$taguribase:SentDirectMessages:" . $this->user->id;
+            $this->id = "tag:$taguribase:SentDirectMessages:" . $this->scoped->getID();
         } else {
             $this->title = sprintf(
                 // TRANS: Title. %s is a user nickname.
                 _("Direct messages to %s"),
-                $this->user->nickname
+                $this->scoped->getNickname()
             );
             $this->subtitle = sprintf(
                 // TRANS: Subtitle. %s is a user nickname.
                 _("All the direct messages sent to %s"),
-                $this->user->nickname
+                $this->scoped->getNickname()
             );
-            $this->link = $server . $this->user->nickname . '/inbox';
+            $this->link = $server . $this->scoped->getNickname() . '/inbox';
             $this->selfuri_base = common_root_url() . 'api/direct_messages';
-            $this->id = "tag:$taguribase:DirectMessages:" . $this->user->id;
+            $this->id = "tag:$taguribase:DirectMessages:" . $this->scoped->getID();
         }
 
         $this->messages = $this->getMessages();
@@ -114,18 +110,9 @@ class ApiDirectMessageAction extends ApiAuthAction
         return true;
     }
 
-    /**
-     * Handle the request
-     *
-     * Show the messages
-     *
-     * @param array $args $_REQUEST data (unused)
-     *
-     * @return void
-     */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
         $this->showMessages();
     }
 
@@ -166,9 +153,9 @@ class ApiDirectMessageAction extends ApiAuthAction
         $message  = new Message();
 
         if ($this->arg('sent')) {
-            $message->from_profile = $this->user->id;
+            $message->from_profile = $this->scoped->getID();
         } else {
-            $message->to_profile = $this->user->id;
+            $message->to_profile = $this->scoped->getID();
         }
 
         if (!empty($this->max_id)) {

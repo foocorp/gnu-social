@@ -325,7 +325,7 @@ class RecoverpasswordAction extends Action
 
         $original = clone($user);
 
-        $user->password = common_munge_password($newpassword, $user->id);
+        $user->password = common_munge_password($newpassword, $user->getProfile());
 
         if (!$user->update($original)) {
             common_log_db_error($user, 'UPDATE', __FILE__);

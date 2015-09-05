@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/applicationlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Show connected OAuth applications
@@ -46,15 +42,14 @@ require_once INSTALLDIR . '/lib/applicationlist.php';
  */
 class OauthconnectionssettingsAction extends SettingsAction
 {
-    var $page        = null;
-    var $oauth_token = null;
+    var $page = null;
 
-    function prepare($args)
+    protected $oauth_token = null;
+
+    protected function doPreparation()
     {
-        parent::prepare($args);
         $this->oauth_token = $this->arg('oauth_token');
-        $this->page = ($this->arg('page')) ? ($this->arg('page') + 0) : 1;
-        return true;
+        $this->page = $this->int('page') ?: 1;
     }
 
     /**
@@ -87,18 +82,15 @@ class OauthconnectionssettingsAction extends SettingsAction
 
     function showContent()
     {
-        $user    = common_current_user();
-        $profile = $user->getProfile();
-
         $offset = ($this->page - 1) * APPS_PER_PAGE;
         $limit  =  APPS_PER_PAGE + 1;
 
-        $connection = $user->getConnectedApps($offset, $limit);
+        $connection = $this->scoped->getConnectedApps($offset, $limit);
 
         $cnt = 0;
 
         if (!empty($connection)) {
-            $cal = new ConnectedAppsList($connection, $user, $this);
+            $cal = new ConnectedAppsList($connection, $this->scoped, $this);
             $cnt = $cal->show();
         }
 
@@ -111,7 +103,7 @@ class OauthconnectionssettingsAction extends SettingsAction
             $cnt > APPS_PER_PAGE,
             $this->page,
             'connectionssettings',
-            array('nickname' => $user->nickname)
+            array('nickname' => $this->scoped->getNickname())
         );
     }
 
@@ -125,24 +117,14 @@ class OauthconnectionssettingsAction extends SettingsAction
      *
      * @return void
      */
-    function handlePost()
+    protected function doPost()
     {
-        // CSRF protection
-
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->showForm(_('There was a problem with your session token. '.
-                              'Try again, please.'));
-            return;
-        }
-
         if ($this->arg('revoke')) {
-            $this->revokeAccess($this->oauth_token);
-        } else {
-            // TRANS: Client error when submitting a form with unexpected information.
-            $this->clientError(_('Unexpected form submission.'), 401);
+            return $this->revokeAccess($this->oauth_token);
         }
+
+        // TRANS: Client error when submitting a form with unexpected information.
+        throw new ClientException(_('Unexpected form submission.'), 401);
     }
 
     /**

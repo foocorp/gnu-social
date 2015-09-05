@@ -72,7 +72,7 @@ class DBQueueManager extends QueueManager
     public function poll()
     {
         //$this->_log(LOG_DEBUG, 'Checking for notices...');
-        $qi = Queue_item::top($this->activeQueues());
+        $qi = Queue_item::top($this->activeQueues(), $this->getIgnoredTransports());
         if (!$qi instanceof Queue_item) {
             //$this->_log(LOG_DEBUG, 'No notices waiting; idling.');
             return false;

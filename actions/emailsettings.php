@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Settings for email
@@ -112,8 +108,8 @@ class EmailsettingsAction extends SettingsAction
             // TRANS: Button label to remove a confirmed e-mail address.
             $this->submit('remove', _m('BUTTON','Remove'));
         } else {
-            $confirm = $this->getConfirmation();
-            if ($confirm) {
+            try {
+                $confirm = $this->getConfirmation();
                 $this->element('p', array('id' => 'form_unconfirmed'), $confirm->address);
                 $this->element('p', array('class' => 'form_note'),
                                         // TRANS: Form note in e-mail settings form.
@@ -123,12 +119,12 @@ class EmailsettingsAction extends SettingsAction
                 $this->hidden('email', $confirm->address);
                 // TRANS: Button label to cancel an e-mail address confirmation procedure.
                 $this->submit('cancel', _m('BUTTON','Cancel'));
-            } else {
+            } catch (NoResultException $e) {
                 $this->elementStart('ul', 'form_data');
                 $this->elementStart('li');
                 // TRANS: Field label for e-mail address input in e-mail settings form.
                 $this->input('email', _('Email address'),
-                             ($this->arg('email')) ? $this->arg('email') : null,
+                             $this->trimmed('email') ?: null,
                              // TRANS: Instructions for e-mail address input form. Do not translate
                              // TRANS: "example.org". It is one of the domain names reserved for
                              // TRANS: use in examples by http://www.rfc-editor.org/rfc/rfc2606.txt.
@@ -231,12 +227,6 @@ class EmailsettingsAction extends SettingsAction
                             _('Allow friends to nudge me and send me an email.'),
                             $user->emailnotifynudge);
             $this->elementEnd('li');
-            $this->elementStart('li');
-            $this->checkbox('emailmicroid',
-                            // TRANS: Checkbox label in e-mail preferences form.
-                            _('Publish a MicroID for my email address.'),
-                            $user->emailmicroid);
-            $this->elementEnd('li');
             Event::handle('EndEmailFormData', array($this, $this->scoped));
         }
         $this->elementEnd('ul');
@@ -254,56 +244,36 @@ class EmailsettingsAction extends SettingsAction
      */
     function getConfirmation()
     {
-        $user = common_current_user();
-
         $confirm = new Confirm_address();
 
-        $confirm->user_id      = $user->id;
+        $confirm->user_id      = $this->scoped->getID();
         $confirm->address_type = 'email';
 
         if ($confirm->find(true)) {
             return $confirm;
-        } else {
-            return null;
         }
+
+        throw new NoResultException($confirm);
     }
 
-    /**
-     * Handle posts
-     *
-     * Since there are a lot of different options on the page, we
-     * figure out what we're supposed to do based on which button was
-     * pushed
-     *
-     * @return void
-     */
-    function handlePost()
+    protected function doPost()
     {
-        // CSRF protection
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->show_form(_('There was a problem with your session token. '.
-                               'Try again, please.'));
-            return;
+        if ($this->arg('save')) {
+            return $this->savePreferences();
+        } else if ($this->arg('add')) {
+            return $this->addAddress();
+        } else if ($this->arg('cancel')) {
+            return $this->cancelConfirmation();
+        } else if ($this->arg('remove')) {
+            return $this->removeAddress();
+        } else if ($this->arg('removeincoming')) {
+            return $this->removeIncoming();
+        } else if ($this->arg('newincoming')) {
+            return $this->newIncoming();
         }
 
-        if ($this->arg('save')) {
-            $this->savePreferences();
-        } else if ($this->arg('add')) {
-            $this->addAddress();
-        } else if ($this->arg('cancel')) {
-            $this->cancelConfirmation();
-        } else if ($this->arg('remove')) {
-            $this->removeAddress();
-        } else if ($this->arg('removeincoming')) {
-            $this->removeIncoming();
-        } else if ($this->arg('newincoming')) {
-            $this->newIncoming();
-        } else {
-            // TRANS: Message given submitting a form with an unknown action in e-mail settings.
-            $this->showForm(_('Unexpected form submission.'));
-        }
+        // TRANS: Message given submitting a form with an unknown action in e-mail settings.
+        throw new ClientException(_('Unexpected form submission.'));
     }
 
     /**
@@ -313,25 +283,21 @@ class EmailsettingsAction extends SettingsAction
      */
     function savePreferences()
     {
-        $user = $this->scoped->getUser();
-
         if (Event::handle('StartEmailSaveForm', array($this, $this->scoped))) {
             $emailnotifysub   = $this->booleanintstring('emailnotifysub');
             $emailnotifymsg   = $this->booleanintstring('emailnotifymsg');
             $emailnotifynudge = $this->booleanintstring('emailnotifynudge');
             $emailnotifyattn  = $this->booleanintstring('emailnotifyattn');
-            $emailmicroid     = $this->booleanintstring('emailmicroid');
             $emailpost        = $this->booleanintstring('emailpost');
 
+            $user = $this->scoped->getUser();
             $user->query('BEGIN');
-
             $original = clone($user);
 
             $user->emailnotifysub   = $emailnotifysub;
             $user->emailnotifymsg   = $emailnotifymsg;
             $user->emailnotifynudge = $emailnotifynudge;
             $user->emailnotifyattn  = $emailnotifyattn;
-            $user->emailmicroid     = $emailmicroid;
             $user->emailpost        = $emailpost;
 
             $result = $user->update($original);
@@ -340,16 +306,15 @@ class EmailsettingsAction extends SettingsAction
                 common_log_db_error($user, 'UPDATE', __FILE__);
                 $user->query('ROLLBACK');
                 // TRANS: Server error thrown on database error updating e-mail preferences.
-                $this->serverError(_('Could not update user.'));
+                throw new ServerException(_('Could not update user.'));
             }
 
             $user->query('COMMIT');
 
             Event::handle('EndEmailSaveForm', array($this, $this->scoped));
-
-            // TRANS: Confirmation message for successful e-mail preferences save.
-            $this->showForm(_('Email preferences saved.'), true);
         }
+        // TRANS: Confirmation message for successful e-mail preferences save.
+        return _('Email preferences saved.');
     }
 
     /**
@@ -359,38 +324,32 @@ class EmailsettingsAction extends SettingsAction
      */
     function addAddress()
     {
-        $user = common_current_user();
+        $user = $this->scoped->getUser();
 
         $email = $this->trimmed('email');
 
         // Some validation
 
-        if (!$email) {
+        if (empty($email)) {
             // TRANS: Message given saving e-mail address without having provided one.
-            $this->showForm(_('No email address.'));
-            return;
+            throw new ClientException(_('No email address.'));
         }
 
         $email = common_canonical_email($email);
 
-        if (!$email) {
+        if (empty($email)) {
             // TRANS: Message given saving e-mail address that cannot be normalised.
-            $this->showForm(_('Cannot normalize that email address.'));
-            return;
+            throw new ClientException(_('Cannot normalize that email address.'));
         }
         if (!Validate::email($email, common_config('email', 'check_domain'))) {
             // TRANS: Message given saving e-mail address that not valid.
-            $this->showForm(_('Not a valid email address.'));
-            return;
+            throw new ClientException(_('Not a valid email address.'));
         } else if ($user->email == $email) {
             // TRANS: Message given saving e-mail address that is already set.
-            $this->showForm(_('That is already your email address.'));
-            return;
+            throw new ClientException(_('That is already your email address.'));
         } else if ($this->emailExists($email)) {
             // TRANS: Message given saving e-mail address that is already set for another user.
-            $this->showForm(_('That email address already belongs '.
-                              'to another user.'));
-            return;
+            throw new ClientException(_('That email address already belongs to another user.'));
         }
 
         if (Event::handle('StartAddEmailAddress', array($user, $email))) {
@@ -399,7 +358,7 @@ class EmailsettingsAction extends SettingsAction
 
             $confirm->address      = $email;
             $confirm->address_type = 'email';
-            $confirm->user_id      = $user->id;
+            $confirm->user_id      = $user->getID();
             $confirm->code         = common_confirmation_code(64);
 
             $result = $confirm->insert();
@@ -407,21 +366,19 @@ class EmailsettingsAction extends SettingsAction
             if ($result === false) {
                 common_log_db_error($confirm, 'INSERT', __FILE__);
                 // TRANS: Server error thrown on database error adding e-mail confirmation code.
-                $this->serverError(_('Could not insert confirmation code.'));
+                throw new ServerException(_('Could not insert confirmation code.'));
             }
 
-            common_debug('Sending confirmation address for user '.$user->id.' to email '.$email);
-            mail_confirm_address($user, $confirm->code, $user->nickname, $email);
+            common_debug('Sending confirmation address for user '.$user->getID().' to email '.$email);
+            mail_confirm_address($user, $confirm->code, $user->getNickname(), $email);
 
             Event::handle('EndAddEmailAddress', array($user, $email));
         }
 
         // TRANS: Message given saving valid e-mail address that is to be confirmed.
-        $msg = _('A confirmation code was sent to the email address you added. '.
+        return _('A confirmation code was sent to the email address you added. '.
                  'Check your inbox (and spam box!) for the code and instructions '.
                  'on how to use it.');
-
-        $this->showForm($msg, true);
     }
 
     /**
@@ -431,31 +388,29 @@ class EmailsettingsAction extends SettingsAction
      */
     function cancelConfirmation()
     {
-        $email = $this->arg('email');
+        $email = $this->trimmed('email');
 
-        $confirm = $this->getConfirmation();
-
-        if (!$confirm) {
+        try {
+            $confirm = $this->getConfirmation();
+            if ($confirm->address !== $email) {
+                // TRANS: Message given canceling e-mail address confirmation for the wrong e-mail address.
+                throw new ClientException(_('That is the wrong email address.'));
+            }
+        } catch (NoResultException $e) {
             // TRANS: Message given canceling e-mail address confirmation that is not pending.
-            $this->showForm(_('No pending confirmation to cancel.'));
-            return;
-        }
-        if ($confirm->address != $email) {
-            // TRANS: Message given canceling e-mail address confirmation for the wrong e-mail address.
-            $this->showForm(_('That is the wrong email address.'));
-            return;
+            throw new AlreadyFulfilledException(_('No pending confirmation to cancel.'));
         }
 
         $result = $confirm->delete();
 
-        if (!$result) {
+        if ($result === false) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error thrown on database error canceling e-mail address confirmation.
-            $this->serverError(_('Could not delete email confirmation.'));
+            throw new ServerException(_('Could not delete email confirmation.'));
         }
 
         // TRANS: Message given after successfully canceling e-mail address confirmation.
-        $this->showForm(_('Email confirmation cancelled.'), true);
+        return _('Email confirmation cancelled.');
     }
 
     /**
@@ -467,26 +422,22 @@ class EmailsettingsAction extends SettingsAction
     {
         $user = common_current_user();
 
-        $email = $this->arg('email');
+        $email = $this->trimmed('email');
 
         // Maybe an old tab open...?
-
-        if ($user->email != $email) {
+        if ($user->email !== $email) {
             // TRANS: Message given trying to remove an e-mail address that is not
             // TRANS: registered for the active user.
-            $this->showForm(_('That is not your email address.'));
-            return;
+            throw new ClientException(_('That is not your email address.'));
         }
 
         $original = clone($user);
-
         $user->email = null;
-
         // Throws exception on failure. Also performs it within a transaction.
         $user->updateWithKeys($original);
 
         // TRANS: Message given after successfully removing a registered e-mail address.
-        $this->showForm(_('The email address was removed.'), true);
+        return _('The email address was removed.');
     }
 
     /**
@@ -498,22 +449,19 @@ class EmailsettingsAction extends SettingsAction
     {
         $user = common_current_user();
 
-        if (!$user->incomingemail) {
+        if (empty($user->incomingemail)) {
             // TRANS: Form validation error displayed when trying to remove an incoming e-mail address while no address has been set.
-            $this->showForm(_('No incoming email address.'));
-            return;
+            throw new AlreadyFulfilledException(_('No incoming email address.'));
         }
 
         $orig = clone($user);
-
         $user->incomingemail = null;
         $user->emailpost = 0;
-
         // Throws exception on failure. Also performs it within a transaction.
         $user->updateWithKeys($orig);
 
         // TRANS: Message given after successfully removing an incoming e-mail address.
-        $this->showForm(_('Incoming email address removed.'), true);
+        return _('Incoming email address removed.');
     }
 
     /**
@@ -524,17 +472,14 @@ class EmailsettingsAction extends SettingsAction
     function newIncoming()
     {
         $user = common_current_user();
-
         $orig = clone($user);
-
         $user->incomingemail = mail_new_incoming_address();
         $user->emailpost = 1;
-
         // Throws exception on failure. Also performs it within a transaction.
         $user->updateWithKeys($orig);
 
         // TRANS: Message given after successfully adding an incoming e-mail address.
-        $this->showForm(_('New incoming email address added.'), true);
+        return _('New incoming email address added.');
     }
 
     /**
@@ -553,10 +498,10 @@ class EmailsettingsAction extends SettingsAction
 
         $other = User::getKV('email', $email);
 
-        if (!$other) {
+        if (!$other instanceof User) {
             return false;
-        } else {
-            return $other->id != $user->id;
         }
+
+        return $other->id != $user->id;
     }
 }

@@ -222,25 +222,12 @@ class ShownoticeAction extends ManagedAction
     /**
      * Extra <head> content
      *
-     * We show the microid(s) for the author, if any.
+     * Facebook OpenGraph metadata.
      *
      * @return void
      */
     function extraHead()
     {
-        $user = User::getKV($this->profile->id);
-
-        if (!$user instanceof User) {
-            return;
-        }
-
-        if ($user->emailmicroid && $user->email && $this->notice->uri) {
-            $id = new Microid('mailto:'. $user->email,
-                              $this->notice->uri);
-            $this->element('meta', array('name' => 'microid',
-                                         'content' => $id->toString()));
-        }
-
         // Extras to aid in sharing notices to Facebook
         $avatarUrl = $this->profile->avatarUrl(AVATAR_PROFILE_SIZE);
         $this->element('meta', array('property' => 'og:image',

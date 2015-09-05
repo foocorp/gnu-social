@@ -205,7 +205,7 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return nothing
      */
-    function showPage()
+    public function showPage()
     {
         if (GNUsocial::isAjax()) {
             self::showAjax();

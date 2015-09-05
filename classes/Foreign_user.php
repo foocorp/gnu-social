@@ -41,33 +41,39 @@ class Foreign_user extends Managed_DataObject
         );
     }
 
-    static function getForeignUser($id, $service) {
+    static function getForeignUser($id, $service)
+    {
+        if (empty($id) || empty($service)) {
+            throw new ServerException('Empty foreign user id or service for Foreign_user::getForeignUser');
+        }
 
         $fuser = new Foreign_user();
-
         $fuser->id      = $id;
         $fuser->service = $service;
-
         $fuser->limit(1);
 
-        $result = $fuser->find(true);
+        if (!$fuser->find(true)) {
+            throw new NoResultException($fuser);
+        }
 
-        return empty($result) ? null : $fuser;
+        return $fuser;
     }
 
     static function getByNickname($nickname, $service)
     {
         if (empty($nickname) || empty($service)) {
-            return null;
-        } else {
-            $fuser = new Foreign_user();
-	    $fuser->service = $service;
-	    $fuser->nickname = $nickname;
-            $fuser->limit(1);
-
-            $result = $fuser->find(true);
-
-            return empty($result) ? null : $fuser;
+            throw new ServerException('Empty nickname or service for Foreign_user::getByNickname');
         }
+
+        $fuser = new Foreign_user();
+        $fuser->service = $service;
+        $fuser->nickname = $nickname;
+        $fuser->limit(1);
+
+        if (!$fuser->find(true)) {
+            throw new NoResultException($fuser);
+        }
+
+        return $fuser;
     }
 }

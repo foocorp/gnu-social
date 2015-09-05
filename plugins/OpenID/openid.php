@@ -131,13 +131,15 @@ function oid_check_immediate($openid_url, $backto=null)
 
 function oid_authenticate($openid_url, $returnto, $immediate=false)
 {
+    if (!common_valid_http_url($openid_url)) {
+        throw new ClientException(_m('No valid URL provided for OpenID.'));
+    }
 
     $consumer = oid_consumer();
 
     if (!$consumer) {
         // TRANS: OpenID plugin server error.
-        common_server_error(_m('Cannot instantiate OpenID consumer object.'));
-        return false;
+        throw new ServerException(_m('Cannot instantiate OpenID consumer object.'));
     }
 
     common_ensure_session();
@@ -148,12 +150,12 @@ function oid_authenticate($openid_url, $returnto, $immediate=false)
     if (!$auth_request) {
         common_log(LOG_ERR, __METHOD__ . ": mystery fail contacting $openid_url");
         // TRANS: OpenID plugin message. Given when an OpenID is not valid.
-        return _m('Not a valid OpenID.');
+        throw new ServerException(_m('Not a valid OpenID.'));
     } else if (Auth_OpenID::isFailure($auth_request)) {
         common_log(LOG_ERR, __METHOD__ . ": OpenID fail to $openid_url: $auth_request->message");
         // TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
         // TRANS: %s is the failure message.
-        return sprintf(_m('OpenID failure: %s.'), $auth_request->message);
+        throw new ServerException(sprintf(_m('OpenID failure: %s.'), $auth_request->message));
     }
 
     $sreg_request = Auth_OpenID_SRegRequest::build(// Required
@@ -199,14 +201,12 @@ function oid_authenticate($openid_url, $returnto, $immediate=false)
         $redirect_url = $auth_request->redirectURL($trust_root,
                                                    $process_url,
                                                    $immediate);
-        if (!$redirect_url) {
-        } else if (Auth_OpenID::isFailure($redirect_url)) {
+        if (Auth_OpenID::isFailure($redirect_url)) {
             // TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
             // TRANS: %s is the failure message.
-            return sprintf(_m('Could not redirect to server: %s.'), $redirect_url->message);
-        } else {
-            common_redirect($redirect_url, 303);
+            throw new ServerException(sprintf(_m('Could not redirect to server: %s.'), $redirect_url->message));
         }
+        common_redirect($redirect_url, 303);
     /*
     } else {
         // Generate form markup and render it.

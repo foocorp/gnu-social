@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * A list of the user's subscriptions
@@ -60,7 +58,7 @@ class SubscriptionsAction extends GalleryAction
 
     function showPageNotice()
     {
-        if ($this->scoped instanceof Profile && $this->scoped->id === $this->target->id) {
+        if ($this->scoped instanceof Profile && $this->scoped->sameAs($this->getTarget())) {
             $this->element('p', null,
                            // TRANS: Page notice for page with an overview of all subscriptions
                            // TRANS: of the logged in user's own profile.

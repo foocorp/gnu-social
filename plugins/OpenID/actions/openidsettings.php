@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once INSTALLDIR.'/plugins/OpenID/openid.php';
 
@@ -86,8 +84,6 @@ class OpenidsettingsAction extends SettingsAction
      */
     function showContent()
     {
-        $user = common_current_user();
-
         if (!common_config('openid', 'trusted_provider')) {
             $this->elementStart('form', array('method' => 'post',
                                               'id' => 'form_settings_openid_add',
@@ -115,7 +111,7 @@ class OpenidsettingsAction extends SettingsAction
         }
         $oid = new User_openid();
 
-        $oid->user_id = $user->id;
+        $oid->user_id = $this->scoped->getID();
 
         $cnt = $oid->find();
 
@@ -123,7 +119,7 @@ class OpenidsettingsAction extends SettingsAction
             // TRANS: Header on OpenID settings page.
             $this->element('h2', null, _m('HEADER','Remove OpenID'));
 
-            if ($cnt == 1 && !$user->password) {
+            if ($cnt == 1 && !$this->scoped->hasPassword()) {
 
                 $this->element('p', 'form_guide',
                                // TRANS: Form guide.
@@ -184,7 +180,7 @@ class OpenidsettingsAction extends SettingsAction
                        'this list to deny it access to your OpenID.'));
         $this->elementStart('ul', 'form_data');
         $user_openid_trustroot = new User_openid_trustroot();
-        $user_openid_trustroot->user_id=$user->id;
+        $user_openid_trustroot->user_id = $this->scoped->getID();
         if($user_openid_trustroot->find()) {
             while($user_openid_trustroot->fetch()) {
                 $this->elementStart('li');
@@ -203,7 +199,7 @@ class OpenidsettingsAction extends SettingsAction
         $this->submit('settings_openid_trustroots_action-submit', _m('BUTTON','Remove'), 'submit', 'remove_trustroots');
         $this->elementEnd('fieldset');
         
-        $prefs = User_openid_prefs::getKV('user_id', $user->id);
+        $prefs = User_openid_prefs::getKV('user_id', $this->scoped->getID());
 
         $this->elementStart('fieldset');
         $this->element('legend', null, _m('LEGEND','Preferences'));
@@ -224,38 +220,29 @@ class OpenidsettingsAction extends SettingsAction
      *
      * @return void
      */
-    function handlePost()
+    protected function doPost()
     {
-        // CSRF protection
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->showForm(_m('There was a problem with your session token. '.
-                              'Try again, please.'));
-            return;
-        }
-
         if ($this->arg('add')) {
             if (common_config('openid', 'trusted_provider')) {
                 // TRANS: Form validation error if no OpenID providers can be added.
-                $this->showForm(_m('Cannot add new providers.'));
+                throw new ServerException(_m('Cannot add new providers.'));
             } else {
-                $result = oid_authenticate($this->trimmed('openid_url'),
-                                           'finishaddopenid');
+                $result = oid_authenticate($this->trimmed('openid_url'), 'finishaddopenid');
                 if (is_string($result)) { // error message
-                    $this->showForm($result);
+                    throw new ServerException($result);
                 }
+                return _('Added new provider.');
             }
         } else if ($this->arg('remove')) {
-            $this->removeOpenid();
+            return $this->removeOpenid();
         } else if($this->arg('remove_trustroots')) {
-            $this->removeTrustroots();
+            return $this->removeTrustroots();
         } else if($this->arg('save_prefs')) {
-            $this->savePrefs();
-        } else {
-            // TRANS: Unexpected form validation error.
-            $this->showForm(_m('Something weird happened.'));
+            return $this->savePrefs();
         }
+
+        // TRANS: Unexpected form validation error.
+        throw new ServerException(_m('No known action for POST.'));
     }
 
     /**
@@ -268,26 +255,20 @@ class OpenidsettingsAction extends SettingsAction
      */
     function removeTrustroots()
     {
-        $user = common_current_user();
-        $trustroots = $this->arg('openid_trustroot');
-        if($trustroots) {
-            foreach($trustroots as $trustroot) {
-                $user_openid_trustroot = User_openid_trustroot::pkeyGet(
-                                                array('user_id'=>$user->id, 'trustroot'=>$trustroot));
-                if($user_openid_trustroot) {
-                    $user_openid_trustroot->delete();
-                } else {
-                    // TRANS: Form validation error when trying to remove a non-existing trustroot.
-                    $this->showForm(_m('No such OpenID trustroot.'));
-                    return;
-                }
+        $trustroots = $this->arg('openid_trustroot', array());
+        foreach($trustroots as $trustroot) {
+            $user_openid_trustroot = User_openid_trustroot::pkeyGet(
+                                            array('user_id'=>$this->scoped->getID(), 'trustroot'=>$trustroot));
+            if($user_openid_trustroot) {
+                $user_openid_trustroot->delete();
+            } else {
+                // TRANS: Form validation error when trying to remove a non-existing trustroot.
+                throw new ClientException(_m('No such OpenID trustroot.'));
             }
-            // TRANS: Success message after removing trustroots.
-            $this->showForm(_m('Trustroots removed.'), true);
-        } else {
-            $this->showForm();
         }
-        return;
+
+        // TRANS: Success message after removing trustroots.
+        return _m('Trustroots removed.');
     }
 
     /**
@@ -300,25 +281,19 @@ class OpenidsettingsAction extends SettingsAction
      */
     function removeOpenid()
     {
-        $openid_url = $this->trimmed('openid_url');
+        $oid = User_openid::getKV('canonical', $this->trimmed('openid_url'));
 
-        $oid = User_openid::getKV('canonical', $openid_url);
-
-        if (!$oid) {
+        if (!$oid instanceof User_openid) {
             // TRANS: Form validation error for a non-existing OpenID.
-            $this->showForm(_m('No such OpenID.'));
-            return;
+            throw new ClientException(_m('No such OpenID.'));
         }
-        $cur = common_current_user();
-        if (!$cur || $oid->user_id != $cur->id) {
+        if ($this->scoped->getID() !== $oid->user_id) {
             // TRANS: Form validation error if OpenID is connected to another user.
-            $this->showForm(_m('That OpenID does not belong to you.'));
-            return;
+            throw new ClientException(_m('That OpenID does not belong to you.'));
         }
         $oid->delete();
         // TRANS: Success message after removing an OpenID.
-        $this->showForm(_m('OpenID removed.'), true);
-        return;
+        return _m('OpenID removed.');
     }
 
     /**
@@ -331,18 +306,12 @@ class OpenidsettingsAction extends SettingsAction
      */
     function savePrefs()
     {
-        $cur = common_current_user();
-
-        if (empty($cur)) {
-            throw new ClientException(_("Not logged in."));
-        }
-
         $orig  = null;
-        $prefs = User_openid_prefs::getKV('user_id', $cur->id);
+        $prefs = User_openid_prefs::getKV('user_id', $this->scoped->getID());
 
-        if (empty($prefs)) {
+        if (!$prefs instanceof User_openid_prefs) {
             $prefs          = new User_openid_prefs();
-            $prefs->user_id = $cur->id;
+            $prefs->user_id = $this->scoped->getID();
             $prefs->created = common_sql_now();
         } else {
             $orig = clone($prefs);
@@ -350,13 +319,12 @@ class OpenidsettingsAction extends SettingsAction
 
         $prefs->hide_profile_link = $this->booleanintstring('hide_profile_link');
 
-        if (empty($orig)) {
-            $prefs->insert();
-        } else {
+        if ($orig instanceof User_openid_prefs) {
             $prefs->update($orig);
+        } else {
+            $prefs->insert();
         }
 
-        $this->showForm(_m('OpenID preferences saved.'), true);
-        return;
+        return _m('OpenID preferences saved.');
     }
 }

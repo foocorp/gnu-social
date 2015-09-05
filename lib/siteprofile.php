@@ -110,7 +110,6 @@ class PublicSite extends SiteProfileSettings
             'plugins' => array(
                 'core'    => self::corePlugins(),
                 'default' => array_merge(self::defaultPlugins(), array(
-                    'ExtendedProfile'         => array(),
                     'RegisterThrottle'        => array(),
                 ))
             ),

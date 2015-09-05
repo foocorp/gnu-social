@@ -4,6 +4,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 abstract class NoticestreamAction extends ProfileAction
 {
+    protected $notice = null;   // holds the stream result
 
     protected function prepare(array $args=array()) {
         parent::prepare($args);
