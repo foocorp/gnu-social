@@ -150,7 +150,7 @@ class Subscription extends Managed_DataObject
      * Low-level subscription save.
      * Outside callers should use Subscription::start()
      */
-    protected function saveNew($subscriber_id, $other_id)
+    protected static function saveNew($subscriber_id, $other_id)
     {
         $sub = new Subscription();
 
