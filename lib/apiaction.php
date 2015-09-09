@@ -796,7 +796,6 @@ class ApiAction extends Action
 
         if (is_array($notice)) {
             //FIXME: make everything calling showJsonTimeline use only Notice objects
-            common_debug('ArrayWrapper avoidance in progress! Beep boop, make showJsonTimeline only receive Notice objects!');
             $ids = array();
             foreach ($notice as $n) {
                 $ids[] = $n->getID();
@@ -858,7 +857,6 @@ class ApiAction extends Action
 
         if (is_array($notice)) {
             //FIXME: make everything calling showJsonTimeline use only Notice objects
-            common_debug('ArrayWrapper avoidance in progress! Beep boop, make showJsonTimeline only receive Notice objects!');
             $ids = array();
             foreach ($notice as $n) {
                 $ids[] = $n->getID();
@@ -908,7 +906,6 @@ class ApiAction extends Action
 
         if (is_array($notice)) {
             //FIXME: make everything calling showJsonTimeline use only Notice objects
-            common_debug('ArrayWrapper avoidance in progress! Beep boop, make showJsonTimeline only receive Notice objects!');
             $ids = array();
             foreach ($notice as $n) {
                 $ids[] = $n->getID();
@@ -1018,7 +1015,6 @@ class ApiAction extends Action
 
         if (is_array($notice)) {
             //FIXME: make everything calling showJsonTimeline use only Notice objects
-            common_debug('ArrayWrapper avoidance in progress! Beep boop, make showJsonTimeline only receive Notice objects!');
             $ids = array();
             foreach ($notice as $n) {
                 $ids[] = $n->getID();
