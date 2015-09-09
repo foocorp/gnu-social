@@ -795,7 +795,13 @@ class ApiAction extends Action
                                               'xmlns:statusnet' => 'http://status.net/schema/api/1/'));
 
         if (is_array($notice)) {
-            $notice = new ArrayWrapper($notice);
+            //FIXME: make everything calling showJsonTimeline use only Notice objects
+            common_debug('ArrayWrapper avoidance in progress! Beep boop, make showJsonTimeline only receive Notice objects!');
+            $ids = array();
+            foreach ($notice as $n) {
+                $ids[] = $n->getID();
+            }
+            $notice = Notice::multiGet('id', $ids);
         }
 
         while ($notice->fetch()) {
@@ -851,7 +857,13 @@ class ApiAction extends Action
         $this->element('ttl', null, '40');
 
         if (is_array($notice)) {
-            $notice = new ArrayWrapper($notice);
+            //FIXME: make everything calling showJsonTimeline use only Notice objects
+            common_debug('ArrayWrapper avoidance in progress! Beep boop, make showJsonTimeline only receive Notice objects!');
+            $ids = array();
+            foreach ($notice as $n) {
+                $ids[] = $n->getID();
+            }
+            $notice = Notice::multiGet('id', $ids);
         }
 
         while ($notice->fetch()) {
@@ -895,7 +907,13 @@ class ApiAction extends Action
         $this->element('subtitle', null, $subtitle);
 
         if (is_array($notice)) {
-            $notice = new ArrayWrapper($notice);
+            //FIXME: make everything calling showJsonTimeline use only Notice objects
+            common_debug('ArrayWrapper avoidance in progress! Beep boop, make showJsonTimeline only receive Notice objects!');
+            $ids = array();
+            foreach ($notice as $n) {
+                $ids[] = $n->getID();
+            }
+            $notice = Notice::multiGet('id', $ids);
         }
 
         while ($notice->fetch()) {
