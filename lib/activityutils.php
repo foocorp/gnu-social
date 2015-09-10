@@ -348,7 +348,7 @@ class ActivityUtils
         return null;
     }
 
-    static function compareTypes($type, $objects)    // this does verbs too!
+    static function compareTypes($type, $objects)
     {
         $type = self::resolveUri($type);
         foreach ((array)$objects as $object) {
@@ -357,6 +357,11 @@ class ActivityUtils
             }
         }
         return false;
+    }
+
+    static function compareVerbs($type, $objects)
+    {
+        return self::compareTypes($type, $objects);
     }
 
     static function resolveUri($uri, $make_relative=false)

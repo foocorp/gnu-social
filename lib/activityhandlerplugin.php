@@ -104,7 +104,7 @@ abstract class ActivityHandlerPlugin extends Plugin
 
     function isMyVerb($verb) {
         $verb = $verb ?: ActivityVerb::POST;    // post is the default verb
-        return ActivityUtils::compareTypes($verb, $this->verbs());
+        return ActivityUtils::compareVerbs($verb, $this->verbs());
     }
 
     function isMyType($type) {
@@ -389,7 +389,7 @@ abstract class ActivityHandlerPlugin extends Plugin
         } elseif ($target instanceof Profile && $target->isLocal()) {
             $original = null;
             // FIXME: Shouldn't favorites show up with a 'target' activityobject?
-            if (!ActivityUtils::compareTypes($activity->verb, array(ActivityVerb::POST)) && isset($activity->objects[0])) {
+            if (!ActivityUtils::compareVerbs($activity->verb, array(ActivityVerb::POST)) && isset($activity->objects[0])) {
                 // If this is not a post, it's a verb targeted at something (such as a Favorite attached to a note)
                 if (!empty($activity->objects[0]->id)) {
                     $activity->context->replyToID = $activity->objects[0]->id;
@@ -413,7 +413,7 @@ abstract class ActivityHandlerPlugin extends Plugin
         $actor = $oactor->localProfile();
 
         // FIXME: will this work in all cases? I made it work for Favorite...
-        if (ActivityUtils::compareTypes($activity->verb, array(ActivityVerb::POST))) {
+        if (ActivityUtils::compareVerbs($activity->verb, array(ActivityVerb::POST))) {
             $object = $activity->objects[0];
         } else {
             $object = $activity;

@@ -527,8 +527,8 @@ class FavoritePlugin extends ActivityVerbHandlerPlugin
         $expected_verb = $exists ? ActivityVerb::UNFAVORITE : ActivityVerb::FAVORITE;
 
         switch (true) {
-        case $exists && ActivityUtils::compareTypes($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
-        case !$exists && ActivityUtils::compareTypes($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
+        case $exists && ActivityUtils::compareVerbs($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
+        case !$exists && ActivityUtils::compareVerbs($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
             common_redirect(common_local_url('activityverb',
                                 array('id'   => $target->getID(),
                                       'verb' => ActivityUtils::resolveUri($expected_verb, true))));
@@ -543,10 +543,10 @@ class FavoritePlugin extends ActivityVerbHandlerPlugin
     protected function doActionPost(ManagedAction $action, $verb, Notice $target, Profile $scoped)
     {
         switch (true) {
-        case ActivityUtils::compareTypes($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
+        case ActivityUtils::compareVerbs($verb, array(ActivityVerb::FAVORITE, ActivityVerb::LIKE)):
             Fave::addNew($scoped, $target);
             break;
-        case ActivityUtils::compareTypes($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
+        case ActivityUtils::compareVerbs($verb, array(ActivityVerb::UNFAVORITE, ActivityVerb::UNLIKE)):
             Fave::removeEntry($scoped, $target);
             break;
         default:
