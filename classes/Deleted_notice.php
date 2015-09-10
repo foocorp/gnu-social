@@ -17,29 +17,20 @@
  * along with this program.     If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Table Definition for notice
+ * Table Definition for deleted_notice
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 class Deleted_notice extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
-    public $__table = 'deleted_notice';                  // table name
+    public $__table = 'deleted_notice';      // table name
     public $id;                              // int(4)  primary_key not_null
     public $profile_id;                      // int(4)   not_null
     public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $created;                         // datetime()   not_null
     public $deleted;                         // datetime()   not_null
-
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 
     public static function schemaDef()
     {

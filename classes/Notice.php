@@ -158,6 +158,14 @@ class Notice extends Managed_DataObject
         $this->_profile[$this->profile_id] = $profile;
     }
 
+    public function deleteAs(Profile $actor)
+    {
+        if ($this->getProfile()->sameAs($actor) || $actor->hasRight(Right::DELETEOTHERSNOTICE)) {
+            return $this->delete();
+        }
+        throw new AuthorizationException('You are not allowed to delete other user\'s notices');
+    }
+
     function delete($useWhere=false)
     {
         // For auditing purposes, save a record that the notice
