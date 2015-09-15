@@ -579,8 +579,8 @@ class Activity
 
             if (!empty($this->link)) {
                 $xs->element('link', array('rel' => 'alternate',
-                                           'type' => 'text/html'),
-                             $this->link);
+                                           'type' => 'text/html',
+                                           'href' => $this->link));
             }
 
         }
