@@ -28,9 +28,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Documentation class.
@@ -42,16 +40,14 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class DocAction extends Action
+class DocAction extends ManagedAction
 {
     var $output   = null;
     var $filename = null;
     var $title    = null;
 
-    function prepare($args)
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $this->title  = $this->trimmed('title');
         if (!preg_match('/^[a-zA-Z0-9_-]*$/', $this->title)) {
             $this->title = 'help';
@@ -59,52 +55,6 @@ class DocAction extends Action
         $this->output = null;
 
         $this->loadDoc();
-        return true;
-    }
-
-    /**
-     * Handle a request
-     *
-     * @param array $args array of arguments
-     *
-     * @return nothing
-     */
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
-    }
-
-    /**
-     * Page title
-     *
-     * Gives the page title of the document. Override default for hAtom entry.
-     *
-     * @return void
-     */
-    function showPageTitle()
-    {
-        $this->element('h1', array('class' => 'entry-title'), $this->title());
-    }
-
-    /**
-     * Block for content.
-     *
-     * Overrides default from Action to wrap everything in an hAtom entry.
-     *
-     * @return void.
-     */
-    function showContentBlock()
-    {
-        $this->elementStart('div', array('id' => 'content', 'class' => 'h-entry'));
-        $this->showPageTitle();
-        $this->showPageNoticeBlock();
-        $this->elementStart('div', array('id' => 'content_inner',
-                                         'class' => 'e-content'));
-        // show the actual content (forms, lists, whatever)
-        $this->showContent();
-        $this->elementEnd('div');
-        $this->elementEnd('div');
     }
 
     /**
@@ -119,16 +69,14 @@ class DocAction extends Action
         $this->raw($this->output);
     }
 
-    /**
-     * Page title.
-     *
-     * Uses the title of the document.
-     *
-     * @return page title
-     */
-    function title()
+    function showNoticeForm()
     {
-        return ucfirst($this->title);
+        // no title
+    }
+
+    function showPageTitle()
+    {
+        // no title
     }
 
     /**
