@@ -57,6 +57,11 @@ class DocAction extends ManagedAction
         $this->loadDoc();
     }
 
+    public function title()
+    {
+        return ucfirst($this->title);
+    }
+
     /**
      * Display content.
      *
@@ -71,12 +76,7 @@ class DocAction extends ManagedAction
 
     function showNoticeForm()
     {
-        // no title
-    }
-
-    function showPageTitle()
-    {
-        // no title
+        // no notice form
     }
 
     /**
