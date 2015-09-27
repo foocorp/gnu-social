@@ -771,7 +771,7 @@ var SN = { // StatusNet
 
             form
                 .addClass('dialogbox')
-                .append('<button class="close">&#215;</button>')
+                .append('<button class="close" title="' + SN.msg('popup_close_button') + '">&#215;</button>')
                 .closest('.notice-options')
                     .addClass('opaque');
 
