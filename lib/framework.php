@@ -38,6 +38,7 @@ define('PROFILES_PER_PAGE', 20);
 define('MESSAGES_PER_PAGE', 20);
 define('GROUPS_PER_PAGE', 20);
 define('APPS_PER_PAGE', 20);
+define('PEOPLETAGS_PER_PAGE', 20);
 
 define('GROUPS_PER_MINILIST', 8);
 define('PROFILES_PER_MINILIST', 8);

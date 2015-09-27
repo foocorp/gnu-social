@@ -22,14 +22,7 @@
  * @link     http://status.net
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/profileminilist.php';
-require_once INSTALLDIR.'/lib/peopletaglist.php';
-require_once INSTALLDIR.'/lib/noticelist.php';
-require_once INSTALLDIR.'/lib/feedlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class ShowprofiletagAction extends Action
 {
@@ -354,22 +347,5 @@ class ShowprofiletagAction extends Action
             Event::handle('EndShowProfileTagSubscribersMiniList', array($this));
         }
         $this->elementEnd('div');
-    }
-}
-
-class Peopletag extends PeopletagListItem
-{
-    protected $avatarSize = AVATAR_PROFILE_SIZE;
-
-    function showStart()
-    {
-        $mode = $this->peopletag->private ? 'private' : 'public';
-        $this->out->elementStart('div', array('class' => 'h-entry peopletag peopletag-profile mode-'.$mode,
-                                             'id' => 'peopletag-' . $this->peopletag->id));
-    }
-
-    function showEnd()
-    {
-        $this->out->elementEnd('div');
     }
 }
