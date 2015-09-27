@@ -82,14 +82,15 @@ class File extends Managed_DataObject
      * @param string $given_url
      * @return File
      */
-    public static function saveNew(array $redir_data, $given_url) {
+    public static function saveNew(array $redir_data, $given_url)
+    {
+        $file = null;
 
-        // I don't know why we have to keep doing this but I'm adding this last check to avoid
-        // uniqueness bugs.
-
-        $file = File::getKV('urlhash', self::hashurl($given_url));
-        
-        if (!$file instanceof File) {
+        try {
+            // I don't know why we have to keep doing this but we run a last check to avoid
+            // uniqueness bugs.
+            $file = File::getByUrl($given_url);
+        } catch (NoResultException $e) {
             $file = new File;
             $file->urlhash = self::hashurl($given_url);
             $file->url = $given_url;
