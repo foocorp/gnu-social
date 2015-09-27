@@ -1593,8 +1593,20 @@ class Profile extends Managed_DataObject
         return $this;
     }
 
-    public function sameAs(Profile $other)
+    /**
+     * Test whether the given profile is the same as the current class,
+     * for testing identities.
+     *
+     * @param Profile $other    The other profile, usually from Action's $this->scoped
+     *
+     * @return boolean
+     */
+    public function sameAs(Profile $other=null)
     {
+        if (is_null($other)) {
+            // In case $this->scoped is null or something, i.e. not a current/legitimate profile.
+            return false;
+        }
         return $this->getID() === $other->getID();
     }
 

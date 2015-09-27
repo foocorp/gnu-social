@@ -76,7 +76,7 @@ class PeopletagGroupNav extends Widget
     {
         $user = null;
 
-	// FIXME: we should probably pass this in
+	// FIXME: we should probably pass this in and check when PeopletagGroupNav is actually loaded etc.
 
         $action = $this->action->trimmed('action');
 
@@ -107,7 +107,7 @@ class PeopletagGroupNav extends Widget
 
         if (Event::handle('StartPeopletagGroupNav', array($this))) {
             // People tag timeline
-            $this->out->menuItem(common_local_url('showprofiletag', array('tagger' => $user_profile->nickname,
+            $this->out->menuItem(common_local_url('showprofiletag', array('nickname' => $user_profile->nickname,
                                                                           'tag'    => $tag->tag)),
                              // TRANS: Menu item in list navigation panel.
                              _m('MENU','List'),

@@ -85,7 +85,7 @@ class ShowstreamAction extends NoticestreamAction
         }
     }
 
-    function showContent()
+    protected function showContent()
     {
         $this->showNotices();
     }

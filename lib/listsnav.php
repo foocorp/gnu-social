@@ -66,7 +66,7 @@ class ListsNav extends MoreMenu
         while ($this->lists->fetch()) {
                 $mode = $this->lists->private ? 'private' : 'public';
                 $items[] = array('showprofiletag',
-                                 array('tagger' => $this->profile->nickname,
+                                 array('nickname' => $this->profile->getNickname(),
                                        'tag'    => $this->lists->tag),
                                  $this->lists->tag,
                                  '');

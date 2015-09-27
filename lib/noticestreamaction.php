@@ -9,6 +9,9 @@ abstract class NoticestreamAction extends ProfileAction
     protected function prepare(array $args=array()) {
         parent::prepare($args);
 
+        // In case we need more info than ProfileAction->doPreparation() gives us
+        $this->doStreamPreparation();
+
         // fetch the actual stream stuff
         $stream = $this->getStream();
         $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
@@ -19,6 +22,11 @@ abstract class NoticestreamAction extends ProfileAction
         }
 
         return true;
+    }
+
+    protected function doStreamPreparation()
+    {
+        // pass by default
     }
 
     // this fetches the NoticeStream

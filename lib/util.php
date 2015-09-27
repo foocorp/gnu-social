@@ -786,7 +786,7 @@ function common_find_mentions($text, Notice $notice)
             $tagged = $sender->getTaggedSubscribers($tag);
 
             $url = common_local_url('showprofiletag',
-                                    array('tagger' => $sender->nickname,
+                                    array('nickname' => $sender->getNickname(),
                                           'tag' => $tag));
 
             $mentions[] = array('mentioned' => $tagged,

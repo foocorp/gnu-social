@@ -24,88 +24,29 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-class ShowprofiletagAction extends Action
+class ShowprofiletagAction extends ShowstreamAction
 {
-    var $notice, $tagger, $peopletag, $userProfile;
+    var $notice, $peopletag;
 
-    function isReadOnly($args)
+    protected function doStreamPreparation()
     {
-        return true;
-    }
-
-    function prepare($args)
-    {
-        parent::prepare($args);
-
-        if (common_config('singleuser', 'enabled')) {
-            $tagger_arg = User::singleUserNickname();
-        } else {
-            $tagger_arg = $this->arg('tagger');
-        }
-        $tag_arg = $this->arg('tag');
-        $tagger = common_canonical_nickname($tagger_arg);
-        $tag = common_canonical_tag($tag_arg);
-
-        // Permanent redirect on non-canonical nickname
-
-        if ($tagger_arg != $tagger || $tag_arg != $tag) {
-            $args = array('tagger' => $nickname, 'tag' => $tag);
-            if ($this->page != 1) {
-                $args['page'] = $this->page;
-            }
-            common_redirect(common_local_url('showprofiletag', $args), 301);
-        }
-
-        if (!$tagger) {
-            // TRANS: Client error displayed when a tagger is expected but not provided.
-            $this->clientError(_('No tagger.'), 404);
-        }
-
-        $user = User::getKV('nickname', $tagger);
-
-        if (!$user) {
-            // TRANS: Client error displayed trying to perform an action related to a non-existing user.
-            $this->clientError(_('No such user.'), 404);
-        }
-
-        $this->tagger = $user->getProfile();
-        $this->peopletag = Profile_list::pkeyGet(array('tagger' => $user->id, 'tag' => $tag));
-
-        $current = common_current_user();
-        $can_see = !empty($this->peopletag) && (!$this->peopletag->private ||
-                   ($this->peopletag->private && $this->peopletag->tagger === $current->id));
-
-        if (!$can_see) {
+        $tag = common_canonical_tag($this->arg('tag'));
+        try {
+            $this->peopletag = Profile_list::getByPK(array('tagger' => $this->target->getID(), 'tag' => $tag));
+        } catch (NoResultException $e) {
             // TRANS: Client error displayed trying to reference a non-existing list.
-            $this->clientError(_('No such list.'), 404);
+            throw new ClientException('No such list.');
         }
 
-        $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
-        $this->userProfile = Profile::current();
-
-        $stream = new PeopletagNoticeStream($this->peopletag, $this->userProfile);
-
-        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
-                                            NOTICES_PER_PAGE + 1);
-
-        if ($this->page > 1 && $this->notice->N == 0) {
-            // TRANS: Client error when page not found (404).
-            $this->clientError(_('No such page.'), 404);
+        if ($this->peopletag->private && !$this->peopletag->getTagger()->sameAs($this->scoped)) {
+            // TRANS: Client error displayed trying to reference a non-existing list.
+            throw new AuthorizationException('You do not have permission to see this list.');
         }
-
-        return true;
     }
 
-    function handle($args)
+    public function getStream()
     {
-        parent::handle($args);
-
-        if (!$this->peopletag) {
-            // TRANS: Client error displayed trying to perform an action related to a non-existing user.
-            $this->clientError(_('No such user.'));
-        }
-
-        $this->showPage();
+        return new PeopletagNoticeStream($this->peopletag, $this->scoped);
     }
 
     function title()
@@ -130,7 +71,7 @@ class ShowprofiletagAction extends Action
             // TRANS: %1$s is a list, %2$s is the tagger's nickname, %3$d is a page number.
             return sprintf(_('Timeline for %1$s list by %2$s, page %3$d'),
                                 $this->peopletag->tag,
-                                $this->tagger->nickname,
+                                $this->target->getNickname(),
                                 $this->page
                           );
         } else {
@@ -153,7 +94,7 @@ class ShowprofiletagAction extends Action
             // TRANS: %1$s is a list, %2$s is the tagger's nickname.
             return sprintf(_('Timeline for %1$s list by %2$s'),
                                 $this->peopletag->tag,
-                                $this->tagger->nickname
+                                $this->target->getNickname()
                           );
         }
     }
@@ -164,29 +105,29 @@ class ShowprofiletagAction extends Action
         return array(new Feed(Feed::JSON,
                 common_local_url(
                     'ApiTimelineList', array(
-                        'user' => $this->tagger->id,
+                        'user' => $this->target->id,
                         'id' => $this->peopletag->id,
                         'format' => 'as'
                     )
                 ),
                 // TRANS: Feed title.
                 // TRANS: %s is tagger's nickname.
-                sprintf(_('Feed for friends of %s (Activity Streams JSON)'), $this->tagger->nickname)),
+                sprintf(_('Feed for friends of %s (Activity Streams JSON)'), $this->target->getNickname())),
                 new Feed(Feed::RSS2,
                 common_local_url(
                     'ApiTimelineList', array(
-                        'user' => $this->tagger->id,
+                        'user' => $this->target->id,
                         'id' => $this->peopletag->id,
                         'format' => 'rss'
                     )
                 ),
                 // TRANS: Feed title.
                 // TRANS: %s is tagger's nickname.
-                sprintf(_('Feed for friends of %s (RSS 2.0)'), $this->tagger->nickname)),
+                sprintf(_('Feed for friends of %s (RSS 2.0)'), $this->target->getNickname())),
             new Feed(Feed::ATOM,
                 common_local_url(
                     'ApiTimelineList', array(
-                        'user' => $this->tagger->id,
+                        'user' => $this->target->id,
                         'id' => $this->peopletag->id,
                         'format' => 'atom'
                     )
@@ -194,7 +135,7 @@ class ShowprofiletagAction extends Action
                 // TRANS: Feed title.
                 // TRANS: %1$s is a list, %2$s is tagger's nickname.
                 sprintf(_('Feed for %1$s list by %2$s (Atom)'),
-                            $this->peopletag->tag, $this->tagger->nickname
+                            $this->peopletag->tag, $this->target->getNickname()
                        )
               )
         );
@@ -212,11 +153,10 @@ class ShowprofiletagAction extends Action
         // TRANS: %1$s is a list, %2$s is a tagger's nickname.
         $message = sprintf(_('This is the timeline for %1$s list by %2$s but no one has posted anything yet.'),
                            $this->peopletag->tag,
-                           $this->tagger->nickname) . ' ';
+                           $this->target->getNickname()) . ' ';
 
         if (common_logged_in()) {
-            $current_user = common_current_user();
-            if ($this->tagger->id == $current_user->id) {
+            if ($this->target->sameAs($this->scoped)) {
                 // TRANS: Additional empty list message for list timeline for currently logged in user tagged tags.
                 $message .= _('Try tagging more people.');
             }
@@ -231,16 +171,15 @@ class ShowprofiletagAction extends Action
         $this->elementEnd('div');
     }
 
-    function showContent()
+    protected function showContent()
     {
         $this->showPeopletag();
-        $this->showNotices();
+        parent::showContent();
     }
 
     function showPeopletag()
     {
-        $cur = common_current_user();
-        $tag = new Peopletag($this->peopletag, $cur, $this);
+        $tag = new Peopletag($this->peopletag, $this->scoped, $this);
         $tag->show();
     }
 
@@ -260,7 +199,7 @@ class ShowprofiletagAction extends Action
                               $this->page,
                               'showprofiletag',
                               array('tag' => $this->peopletag->tag,
-                                    'tagger' => $this->tagger->nickname)
+                                    'nickname' => $this->target->getNickname())
             );
 
             Event::handle('EndShowProfileTagContent', array($this));
@@ -274,11 +213,6 @@ class ShowprofiletagAction extends Action
             $this->showSubscribers();
         }
         # $this->showStatistics();
-    }
-
-    function showPageTitle()
-    {
-        $this->element('h1', null, $this->title());
     }
 
     function showTagged()
@@ -307,7 +241,7 @@ class ShowprofiletagAction extends Action
             if ($cnt > PROFILES_PER_MINILIST) {
                 $this->elementStart('p');
                 $this->element('a', array('href' => common_local_url('taggedprofiles',
-                                                                     array('nickname' => $this->tagger->nickname,
+                                                                     array('nickname' => $this->target->getNickname(),
                                                                            'profiletag' => $this->peopletag->tag)),
                                           'class' => 'more'),
                                // TRANS: Link for more "People in list x by a user"
