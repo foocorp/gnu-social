@@ -99,6 +99,10 @@ class File extends Managed_DataObject
             if (!empty($redir_data['size'])) $file->size = intval($redir_data['size']);
             if (isset($redir_data['time']) && $redir_data['time'] > 0) $file->date = intval($redir_data['time']);
             $file_id = $file->insert();
+
+            if ($file_id === false) {
+                throw new ServerException('File/URL metadata could not be saved to the database.');
+            }
         }
 
         Event::handle('EndFileSaveNew', array($file, $redir_data, $given_url));
