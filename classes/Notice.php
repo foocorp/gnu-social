@@ -1320,6 +1320,10 @@ class Notice extends Managed_DataObject
                 }
             } catch (NoParentNoticeException $e) {
                 // Latest notice has no parent
+            } catch (NoResultException $e) {
+                // Notice was not found, so we can't go further up in the tree.
+                // FIXME: Maybe we should do this in a more stable way where deleted
+                // notices won't break conversation chains?
             }
             // No parent, or parent out of scope
             $root = $last;
