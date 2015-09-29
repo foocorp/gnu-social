@@ -593,17 +593,9 @@ abstract class ActivityHandlerPlugin extends Plugin
 
     protected function showNoticeListItem(NoticeListItem $nli)
     {
-        $nli->showNotice();
-        $nli->showNoticeAttachments();
-        $nli->showNoticeInfo();
-        $nli->showNoticeOptions();
-
-        $nli->showNoticeLink();
-        $nli->showNoticeSource();
-        $nli->showNoticeLocation();
-        $nli->showPermalink();
-
-        $nli->showNoticeOptions();
+        $nli->showNoticeHeaders();
+        $nli->showContent();
+        $nli->showNoticeFooter();
     }
 
     public function onStartShowNoticeItemNotice(NoticeListItem $nli)

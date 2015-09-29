@@ -866,7 +866,7 @@ class Notice extends Managed_DataObject
                 $conv = Conversation::getKV('uri', $act->context->conversation);
                 if ($conv instanceof Conversation) {
                     common_debug('Conversation stitched together from (probably) a reply activity to unknown remote user. Activity creation time ('.$stored->created.') should maybe be compared to conversation creation time ('.$conv->created.').');
-                    $stored->conversation = $conv->id;
+                    $stored->conversation = $conv->getID();
                 } else {
                     // Conversation URI was not found, so we must create it. But we can't create it
                     // until we have a Notice ID because of the database layout...
@@ -926,7 +926,7 @@ class Notice extends Managed_DataObject
                     // $act->context->conversation will be null if it was not provided
                     common_debug('Creating a new conversation for stored notice ID='.$stored->getID().' with URI: '.$act->context->conversation);
                     $conv = Conversation::create($stored, $act->context->conversation);
-                    $stored->conversation = $conv->id;
+                    $stored->conversation = $conv->getID();
                 }
 
                 $stored->update($orig);

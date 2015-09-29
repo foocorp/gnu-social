@@ -166,7 +166,7 @@ class NoticeListItem extends Widget
     function showNoticeTitle()
     {
         if (Event::handle('StartShowNoticeTitle', array($this))) {
-            $this->element('a', array('href' => $this->notice->getUrl(),
+            $this->element('a', array('href' => $this->notice->getUrl(true),
                                       'class' => 'notice-title'),
                            $this->notice->getTitle());
             Event::handle('EndShowNoticeTitle', array($this));
@@ -518,7 +518,7 @@ class NoticeListItem extends Widget
         }
         try {
             $this->out->element('a',
-                        array('href' => $this->notice->getUrl(),
+                        array('href' => $this->notice->getUrl(true),
                               'class' => $class),
                         // TRANS: Addition in notice list item for single-notice view.
                         _('permalink'));

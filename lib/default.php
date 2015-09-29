@@ -305,6 +305,7 @@ $default =
         'plugins' =>
         array('core' => array(
                             'ActivityVerb' => array(),
+                            'ActivityVerbPost' => array(),
                             'AuthCrypt' => array(),
                             'Cronish' => array(),
                             'Favorite' => array(),
