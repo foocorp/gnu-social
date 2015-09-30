@@ -330,6 +330,9 @@ class ApiAction extends Action
             $in_reply_to = $parent->id;
         } catch (NoParentNoticeException $e) {
             $in_reply_to = null;
+        } catch (NoResultException $e) {
+            // the in_reply_to message has probably been deleted
+            $in_reply_to = null;
         }
         $twitter_status['in_reply_to_status_id'] = $in_reply_to;
 

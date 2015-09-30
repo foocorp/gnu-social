@@ -1630,6 +1630,8 @@ class Notice extends Managed_DataObject
             self::blow('reply:stream:%d', $parentauthor->id);
         } catch (NoParentNoticeException $e) {
             // Not a reply, since it has no parent!
+        } catch (NoResultException $e) {
+            // Parent notice was probably deleted
         }
 
         // @todo ideally this parser information would only
@@ -1855,6 +1857,8 @@ class Notice extends Managed_DataObject
                 $ctx->replyToUrl = $reply->getUrl(true);    // true for fallback to local URL, less messy
             } catch (NoParentNoticeException $e) {
                 // This is not a reply to something
+            } catch (NoResultException $e) {
+                // Parent notice was probably deleted
             }
 
             try {

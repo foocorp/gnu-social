@@ -351,6 +351,9 @@ class XmppPlugin extends ImPlugin
             $xs->text(sprintf(' => %s', $orig_profile->nickname));
         } catch (NoParentNoticeException $e) {
             $xs->text(": ");
+        } catch (NoResultException $e) {
+            // Parent notice was probably deleted.
+            $xs->text(": ");
         }
         if (!empty($notice->rendered)) {
             $notice->rendered = str_replace("\t", "", $notice->rendered);

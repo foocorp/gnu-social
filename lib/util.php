@@ -725,6 +725,8 @@ function common_find_mentions($text, Notice $notice)
             }
         } catch (NoParentNoticeException $e) {
             // It wasn't a reply to anything, so we can't harvest nickname-relations.
+        } catch (NoResultException $e) {
+            // The parent notice was deleted.
         }
 
         $matches = common_find_mentions_raw($text);
