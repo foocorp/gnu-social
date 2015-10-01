@@ -85,29 +85,34 @@ class File extends Managed_DataObject
     public static function saveNew(array $redir_data, $given_url)
     {
         $file = null;
-
         try {
             // I don't know why we have to keep doing this but we run a last check to avoid
             // uniqueness bugs.
             $file = File::getByUrl($given_url);
+            return $file;
         } catch (NoResultException $e) {
-            $file = new File;
-            $file->urlhash = self::hashurl($given_url);
-            $file->url = $given_url;
-            if (!empty($redir_data['protected'])) $file->protected = $redir_data['protected'];
-            if (!empty($redir_data['title'])) $file->title = $redir_data['title'];
-            if (!empty($redir_data['type'])) $file->mimetype = $redir_data['type'];
-            if (!empty($redir_data['size'])) $file->size = intval($redir_data['size']);
-            if (isset($redir_data['time']) && $redir_data['time'] > 0) $file->date = intval($redir_data['time']);
-            $file_id = $file->insert();
+            // We don't have the file's URL since before, so let's continue.
+        }
 
-            if ($file_id === false) {
-                throw new ServerException('File/URL metadata could not be saved to the database.');
-            }
+        if (!Event::handle('StartFileSaveNew', array(&$redir_data, $given_url))) {
+            throw new ServerException('File not saved due to an aborted StartFileSaveNew event.');
+        }
+
+        $file = new File;
+        $file->urlhash = self::hashurl($given_url);
+        $file->url = $given_url;
+        if (!empty($redir_data['protected'])) $file->protected = $redir_data['protected'];
+        if (!empty($redir_data['title'])) $file->title = $redir_data['title'];
+        if (!empty($redir_data['type'])) $file->mimetype = $redir_data['type'];
+        if (!empty($redir_data['size'])) $file->size = intval($redir_data['size']);
+        if (isset($redir_data['time']) && $redir_data['time'] > 0) $file->date = intval($redir_data['time']);
+        $file_id = $file->insert();
+
+        if ($file_id === false) {
+            throw new ServerException('File/URL metadata could not be saved to the database.');
         }
 
         Event::handle('EndFileSaveNew', array($file, $redir_data, $given_url));
-        assert ($file instanceof File);
         return $file;
     }
 
@@ -476,7 +481,7 @@ class File extends Managed_DataObject
     /**
      * @param   string  $hashstr    String of (preferrably lower case) hexadecimal characters, same as result of 'hash_file(...)'
      */
-    static public function getByHash($hashstr, $alg=File::FILEHASH_ALG)
+    static public function getByHash($hashstr)
     {
         $file = new File();
         $file->filehash = strtolower($hashstr);

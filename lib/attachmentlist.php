@@ -58,7 +58,7 @@ class AttachmentList extends Widget
      *
      * @param Notice $notice stream of notices from DB_DataObject
      */
-    function __construct($notice, $out=null)
+    function __construct(Notice $notice, $out=null)
     {
         parent::__construct($out);
         $this->notice = $notice;
@@ -75,7 +75,6 @@ class AttachmentList extends Widget
     function show()
     {
     	$attachments = $this->notice->attachments();
-        $representable = false;
         foreach ($attachments as $key=>$att) {
             // Only show attachments representable with a title
             if ($att->getTitle() === null) {

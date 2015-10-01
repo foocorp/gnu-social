@@ -1868,6 +1868,7 @@ function common_get_mime_media($type)
     return strtolower($tmp[0]);
 }
 
+// Get only the mimetype and not additional info (separated from bare mime with semi-colon)
 function common_bare_mime($mimetype)
 {
     $mimetype = mb_strtolower($mimetype);
