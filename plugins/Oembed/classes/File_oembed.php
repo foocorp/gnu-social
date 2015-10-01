@@ -83,12 +83,13 @@ class File_oembed extends Managed_DataObject
     /**
      * Fetch an entry by using a File's id
      */
-    static function byFile(File $file) {
-        $file_oembed = self::getKV('file_id', $file->id);
-        if (!$file_oembed instanceof File_oembed) {
-            throw new ServerException(sprintf('No File_oembed entry for File id==%u', $file->id));
+    static function getByFile(File $file) {
+        $fo = new File_oembed();
+        $fo->file_id = $file->id;
+        if (!$fo->find(true)) {
+            throw new NoResultException($fo);
         }
-        return $file_oembed;
+        return $fo;
     }
 
     public function getUrl()
@@ -137,7 +138,10 @@ class File_oembed extends Managed_DataObject
                 }
             }
         }
-        $file_oembed->insert();
+        $result = $file_oembed->insert();
+        if ($result === false) {
+            throw new ServerException('Failed to insert File_oembed data into database!');
+        }
         if (!empty($data->thumbnail_url) || ($data->type == 'photo')) {
             $ft = File_thumbnail::getKV('file_id', $file_id);
             if ($ft instanceof File_thumbnail) {
