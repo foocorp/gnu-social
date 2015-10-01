@@ -29,23 +29,34 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); }
 
-class InlineAttachmentList extends AttachmentList
+class InlineAttachmentListItem extends AttachmentListItem
 {
-    function showListStart()
-    {
-        $this->out->element('h3', 'attachments-title', _('Attachments'));
-        parent::showListStart();
+    function showLink() {
+        $this->out->element('a', $this->linkAttr(), $this->title());
+        $this->showRepresentation();
     }
 
     /**
-     * returns a new list item for the current attachment
+     * start a single notice.
      *
-     * @param File $notice the current attachment
-     *
-     * @return ListItem a list item for displaying the attachment
+     * @return void
      */
-    function newListItem(File $attachment)
+    function showStart()
     {
-        return new InlineAttachmentListItem($attachment, $this->out);
+        // XXX: RDFa
+        // TODO: add notice_type class e.g., notice_video, notice_image
+        $this->out->elementStart('li', array('class' => 'inline-attachment'));
+    }
+
+    /**
+     * finish the notice
+     *
+     * Close the last elements in the notice list item
+     *
+     * @return void
+     */
+    function showEnd()
+    {
+        $this->out->elementEnd('li');
     }
 }
