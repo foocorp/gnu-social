@@ -423,12 +423,7 @@ class Fave extends Managed_DataObject
 
     public function getActor()
     {
-        $profile = new Profile();
-        $profile->id = $this->user_id;
-        if (!$profile->find(true)) {
-            throw new NoResultException($profile);
-        }
-        return $profile;
+        return Profile::getByID($this->user_id);
     }
 
     public function getActorObject()
