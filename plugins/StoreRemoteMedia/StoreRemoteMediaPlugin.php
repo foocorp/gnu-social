@@ -76,7 +76,7 @@ class StoreRemoteMediaPlugin extends Plugin
             return true;
         }
 
-        $this->checkWhitelist($url);
+        $this->checkWhitelist($file->getUrl());
 
         // First we download the file to memory and test whether it's actually an image file
         $imgData = HTTPClient::quickGet($file->getUrl());
