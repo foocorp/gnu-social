@@ -65,7 +65,7 @@ class DeletenoticeAction extends FormAction
     {
         if ($this->arg('yes')) {
             if (Event::handle('StartDeleteOwnNotice', array($this->scoped->getUser(), $this->notice))) {
-                $this->notice->delete();
+                $this->notice->deleteAs($this->scoped);
                 Event::handle('EndDeleteOwnNotice', array($this->scoped->getUser(), $this->notice));
             }
         } else {

@@ -114,7 +114,7 @@ class ActivityMover extends QueueHandler
             $sink->postActivity($act);
             $notice = Notice::getKV('uri', $act->objects[0]->id);
             if (!empty($notice)) {
-                $notice->delete();
+                $notice->deleteAs($user->getProfile(), false);
             }
             break;
         case ActivityVerb::JOIN:

@@ -54,13 +54,15 @@ class Deleted_notice extends Managed_DataObject
         );
     }
 
-    public static function addNew(Notice $notice)
+    public static function addNew(Notice $notice, Profile $actor=null)
     {
-        $actor = $notice->getProfile();
+        if (is_null($actor)) {
+            $actor = $notice->getProfile();
+        }
 
-        if ($actor->hasRole(Profile_role::DELETED)) {
-            // Don't emit notices if the user is deleted
-            return true;
+        if ($notice->getProfile()->hasRole(Profile_role::DELETED)) {
+            // Don't emit notices if the notice author is (being) deleted
+            return false;
         }
 
         $act = new Activity();
@@ -80,7 +82,7 @@ class Deleted_notice extends Managed_DataObject
                            );
 
         $act->actor = $actor->asActivityObject();
-        $act->target = new ActivityObject();
+        $act->target = new ActivityObject();    // We don't save the notice object, as it's supposed to be removed!
         $act->target->id = $notice->getUri();
         $act->objects = array(clone($act->target));
 

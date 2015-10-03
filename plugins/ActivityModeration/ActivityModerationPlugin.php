@@ -59,13 +59,21 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
 
     public function deleteRelated(Notice $notice)
     {
-        if ($notice->getProfile()->hasRole(Profile_role::DELETED)) {
-            // Don't save a new Deleted_notice entry if the profile is being deleted
+        // pass
+    }
+
+    public function onDeleteNoticeAsProfile(Notice $stored, Profile $actor, &$result) {
+        // By adding a new 'delete' verb we will eventually trigger $this->saveObjectFromActivity
+        if (false === Deleted_notice::addNew($stored, $actor)) {
+            // false is returned if we did not have an error, but did not create the object
+            // (i.e. the author is currently being deleted)
             return true;
         }
 
-        // For auditing purposes, save a record that the notice was deleted.
-        return Deleted_notice::addNew($notice);
+        // We return false (to stop the event) if the deleted_notice entry was 
+        // added, which means we have run $this->saveObjectFromActivity which 
+        // in turn has called the delete function of the notice.
+        return false;
     }
 
     /**
