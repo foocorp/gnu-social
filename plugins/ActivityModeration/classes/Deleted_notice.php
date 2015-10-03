@@ -149,10 +149,11 @@ class Deleted_notice extends Managed_DataObject
     {
         $actobj = new ActivityObject();
         $actobj->id = $this->getUri();
-        $actobj->type = ActivityUtils::resolveUri(self::getObjectType());
+        $actobj->type = ActivityObject::ACTIVITY;
         $actobj->actor = $this->getActorObject();
         $actobj->target = new ActivityObject();
         $actobj->target->id = $this->getTargetUri();
+        $actobj->target->type = ActivityUtils::resolveUri(self::getObjectType());
         $actobj->objects = array(clone($actobj->target));
         $actobj->verb = ActivityVerb::DELETE;
         $actobj->title = ActivityUtils::verbToTitle($actobj->verb);
