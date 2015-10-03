@@ -134,12 +134,12 @@ class Deleted_notice extends Managed_DataObject
 
     public function getTargetUri()
     {
-        return $this->uri;
+        return $this->act_uri;
     }
 
     public function getUri()
     {
-        return $this->act_uri;
+        return $this->uri;
     }
 
     public function asActivityObject(Profile $scoped=null)
