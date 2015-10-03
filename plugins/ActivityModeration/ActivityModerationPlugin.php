@@ -106,7 +106,6 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
             throw new ServerException('Could not insert Deleted_notice entry into database!');
         }
 
-        common_debug('DELETING notice, actually deleting now!');
         $target->delete();
 
         return $deleted;

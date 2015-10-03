@@ -164,7 +164,7 @@ class Deleted_notice extends Managed_DataObject
         $actobj->content = sprintf(_m('<a href="%1$s">%2$s</a> deleted notice {{%3$s}}.'),
                             htmlspecialchars($actor->getUrl()),
                             htmlspecialchars($actor->getBestName()),
-                            htmlspecialchars($actor->getTargetUri())
+                            htmlspecialchars($this->getTargetUri())
                            );
 
         return $actobj;
