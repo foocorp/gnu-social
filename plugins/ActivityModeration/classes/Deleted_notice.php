@@ -166,12 +166,11 @@ class Deleted_notice extends Managed_DataObject
 
     static public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
     {
-        $object = self::fromStored($stored);
-
-        $act->target = $object->asActivityObject();
+        $act->target = new ActivityObject();
+        $act->target->id = $stored->getUri();
         $act->objects = array(clone($act->target));
 
-        $act->context->replyToID = $object->getTargetUri();
+        $act->context->replyToID = $stored->getUri();
         $act->title = ActivityUtils::verbToTitle($act->verb);
     }
 
