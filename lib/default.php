@@ -306,6 +306,7 @@ $default =
         array('core' => array(
                             'ActivityVerb' => array(),
                             'ActivityVerbPost' => array(),
+                            'ActivityModeration' => array(),
                             'AuthCrypt' => array(),
                             'Cronish' => array(),
                             'Favorite' => array(),

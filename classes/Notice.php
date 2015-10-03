@@ -163,34 +163,11 @@ class Notice extends Managed_DataObject
         if ($this->getProfile()->sameAs($actor) || $actor->hasRight(Right::DELETEOTHERSNOTICE)) {
             return $this->delete();
         }
-        throw new AuthorizationException('You are not allowed to delete other user\'s notices');
+        throw new AuthorizationException(_('You are not allowed to delete other user\'s notices'));
     }
 
-    function delete($useWhere=false)
+    public function delete($useWhere=false)
     {
-        // For auditing purposes, save a record that the notice
-        // was deleted.
-
-        // @fixme we have some cases where things get re-run and so the
-        // insert fails.
-        $deleted = Deleted_notice::getKV('id', $this->id);
-
-        if (!$deleted instanceof Deleted_notice) {
-            $deleted = Deleted_notice::getKV('uri', $this->uri);
-        }
-
-        if (!$deleted instanceof Deleted_notice) {
-            $deleted = new Deleted_notice();
-
-            $deleted->id         = $this->id;
-            $deleted->profile_id = $this->profile_id;
-            $deleted->uri        = $this->uri;
-            $deleted->created    = $this->created;
-            $deleted->deleted    = common_sql_now();
-
-            $deleted->insert();
-        }
-
         if (Event::handle('NoticeDeleteRelated', array($this))) {
 
             // Clear related records

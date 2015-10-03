@@ -88,6 +88,7 @@ function updateSchemaPlugins()
 {
     printfnq("Upgrading plugin schema...");
 
+    Event::handle('BeforePluginCheckSchema');
     Event::handle('CheckSchema');
 
     printfnq("DONE.\n");
