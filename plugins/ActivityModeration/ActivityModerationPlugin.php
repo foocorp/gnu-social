@@ -89,8 +89,8 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
             return $deleted;
         }
 
-        common_debug('DELETING notice: ' . $act->objects[0]->id);
         $target = Notice::getByUri($act->objects[0]->id);
+        common_debug('DELETING notice: ' . $act->objects[0]->id . ' on behalf of profile id==' . $target->getProfile()->getID());
 
         $deleted = new Deleted_notice();
 
@@ -101,8 +101,10 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         $deleted->act_created   = $target->created;
         $deleted->created       = common_sql_now();
 
-        common_debug('DELETING notice, storing Deleted_notice entry');
-        $deleted->insert();
+        $result = $deleted->insert();
+        if ($result === false) {
+            throw new ServerException('Could not insert Deleted_notice entry into database!');
+        }
 
         common_debug('DELETING notice, actually deleting now!');
         $target->delete();
