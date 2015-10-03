@@ -69,10 +69,7 @@ class Deleted_notice extends Managed_DataObject
         $act->type = ActivityObject::ACTIVITY;
         $act->verb = ActivityVerb::DELETE;
         $act->time = time();
-        $act->id   = TagURI::mint('deleted_notice:%d:%d:%s',
-                            $actor->getID(),
-                            $notice->getID(),
-                            common_date_iso8601(common_sql_now()));
+        $act->id   = self::newUri($actor, $notice);
 
         $act->content = sprintf(_m('<a href="%1$s">%2$s</a> deleted notice <a href="%3$s">{{%4$s}}</a>.'),
                             htmlspecialchars($actor->getUrl()),
@@ -153,7 +150,6 @@ class Deleted_notice extends Managed_DataObject
         $actobj->actor = $this->getActorObject();
         $actobj->target = new ActivityObject();
         $actobj->target->id = $this->getTargetUri();
-        $actobj->target->type = ActivityUtils::resolveUri(self::getObjectType());
         $actobj->objects = array(clone($actobj->target));
         $actobj->verb = ActivityVerb::DELETE;
         $actobj->title = ActivityUtils::verbToTitle($actobj->verb);
@@ -168,6 +164,17 @@ class Deleted_notice extends Managed_DataObject
         return $actobj;
     }
 
+    static public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        $object = self::fromStored($stored);
+
+        $act->target = $object->asActivityObject();
+        $act->objects = array(clone($act->target));
+
+        $act->context->replyToID = $object->getTargetUri();
+        $act->title = ActivityUtils::verbToTitle($act->verb);
+    }
+
     static function newUri(Profile $actor, Managed_DataObject $object, $created=null)
     {
         if (is_null($created)) {
@@ -175,7 +182,7 @@ class Deleted_notice extends Managed_DataObject
         }
         return TagURI::mint(strtolower(get_called_class()).':%d:%s:%d:%s',
                                         $actor->getID(),
-                                        ActivityUtils::resolveUri(self::getObjectType(), true),
+                                        ActivityUtils::resolveUri($object->getObjectType(), true),
                                         $object->getID(),
                                         common_date_iso8601($created));
     }

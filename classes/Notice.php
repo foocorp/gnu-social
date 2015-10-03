@@ -286,6 +286,12 @@ class Notice extends Managed_DataObject
                 : $this->object_type;
     }
 
+    // activity plugins tend to use this function instead, but it's the same
+    public function getObjectType()
+    {
+        return $this->get_object_type();
+    }
+
     public static function getByUri($uri)
     {
         $notice = new Notice();

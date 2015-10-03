@@ -96,7 +96,7 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
 
         $deleted->id            = $target->getID();
         $deleted->profile_id    = $target->getProfile()->getID();
-        $deleted->uri           = Deleted_notice::newUri($target->getProfile(), $target);
+        $deleted->uri           = $act->id;
         $deleted->act_uri       = $target->getUri();
         $deleted->act_created   = $target->created;
         $deleted->created       = common_sql_now();
@@ -110,6 +110,25 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         $target->delete();
 
         return $deleted;
+    }
+
+    // FIXME: Put this in lib/activityhandlerplugin.php when we're ready
+    //          with the other microapps/activityhandlers as well.
+    //          Also it should be StartNoticeAsActivity (with a prepped Activity, including ->context etc.)
+    public function onEndNoticeAsActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        if (!$this->isMyNotice($stored)) {
+            return true;
+        }
+
+        common_debug('Extending activity '.$stored->id.' with '.get_called_class());
+        $this->extendActivity($stored, $act, $scoped);
+        return false;
+    }
+
+    public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        Deleted_notice::extendActivity($stored, $act, $scoped);
     }
 
     public function activityObjectFromNotice(Notice $notice)
