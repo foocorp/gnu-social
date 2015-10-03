@@ -37,7 +37,7 @@ class Deleted_notice extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'int', 'not null' => true, 'description' => 'identity of notice'),
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'notice ID'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'author of the notice'),
                 'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI of the deleted notice'),
                 'act_uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI of the delete activity, may exist in notice table'),
@@ -46,6 +46,7 @@ class Deleted_notice extends Managed_DataObject
             ),
             'primary key' => array('id'),
             'unique keys' => array(
+                'deleted_notice_uri_key' => array('uri'),
                 'deleted_notice_act_uri_key' => array('act_uri'),
             ),
             'indexes' => array(
@@ -99,7 +100,7 @@ class Deleted_notice extends Managed_DataObject
     {
         $class = get_called_class();
         $object = new $class;
-        $object->act_uri = $stored->getUri();
+        $object->uri = $stored->getUri();   // Lookup by delete activity's URI! (that's what is _stored_ in our db!)
         if (!$object->find(true)) {
             throw new NoResultException($object);
         }
@@ -109,6 +110,11 @@ class Deleted_notice extends Managed_DataObject
     public function getActor()
     {
         return Profile::getByID($this->profile_id);
+    }
+
+    public function getActorObject()
+    {
+        return $this->getActor()->asActivityObject();
     }
 
     static public function getObjectType()
@@ -166,11 +172,14 @@ class Deleted_notice extends Managed_DataObject
 
     static public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
     {
+        // the original notice is deleted, but we have stored some important data
+        $object = self::fromStored($stored);
+
         $act->target = new ActivityObject();
-        $act->target->id = $stored->getUri();
+        $act->target->id = $object->getTargetUri();
         $act->objects = array(clone($act->target));
 
-        $act->context->replyToID = $stored->getUri();
+        $act->context->replyToID = $object->getTargetUri();
         $act->title = ActivityUtils::verbToTitle($act->verb);
     }
 
@@ -201,8 +210,8 @@ class Deleted_notice extends Managed_DataObject
         }
         echo "\nFound old $table table, upgrading it to contain 'act_uri' and 'act_created' field...";
 
-        $schemadef['fields']['act_uri'] = array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'URI of the delete activity, may exist in notice table');
-        $schemadef['fields']['act_created'] = array('type' => 'datetime', 'not null' => true, 'description' => 'date the notice record was created');
+        $schemadef['fields']['act_uri'] = array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'URI of the deleted notice');
+        $schemadef['fields']['act_created'] = array('type' => 'datetime', 'not null' => true, 'description' => 'datetime the notice record was created');
         unset($schemadef['unique keys']);
         $schema->ensureTable($table, $schemadef);
 
@@ -216,12 +225,14 @@ class Deleted_notice extends Managed_DataObject
         while($deleted->fetch()) {
             $orig = clone($deleted);
             $deleted->act_uri = $deleted->uri;
-            // this is a fake URI just to have something to put there to avoid NULL
-            $deleted->uri = TagURI::mint(strtolower(get_called_class()).':%d:%s:%s:%s',
+            // this is a fake URI just to have something to put there to avoid NULL. crc32 of uri is to avoid collisions
+            $deleted->uri = TagURI::mint(strtolower(get_called_class()).':%d:%s:%s:%s:crc32=%x',
                                 $deleted->profile_id,
                                 ActivityUtils::resolveUri(self::getObjectType(), true),
                                 'unknown',
-                                common_date_iso8601($deleted->created));
+                                common_date_iso8601($deleted->created),
+                                crc32($deleted->act_uri)
+                            );
             $deleted->act_created = $deleted->created;  // we don't actually know when the notice was created
             $deleted->updateWithKeys($orig, 'id');
             print ".";
