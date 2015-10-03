@@ -799,7 +799,7 @@ class Notice extends Managed_DataObject
             ($source && $autosource && in_array($source, $autosource))) {
             $stored->is_local = Notice::LOCAL_NONPUBLIC;
         } else {
-            $notice->is_local = $is_local;
+            $stored->is_local = $is_local;
         }
 
         // Maybe a missing act-time should be fatal if the actor is not local?
