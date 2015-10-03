@@ -32,6 +32,8 @@ class MagicEnvelope
 
     const NS = 'http://salmon-protocol.org/ns/magic-env';
 
+    protected $actor = null;    // Profile of user who has signed the envelope
+
     protected $data      = null;    // When stored here it is _always_ base64url encoded
     protected $data_type = null;
     protected $encoding  = null;
@@ -48,7 +50,7 @@ class MagicEnvelope
      * @fixme may give fatal errors if some elements are missing or invalid XML
      * @fixme calling DOMDocument::loadXML statically triggers warnings in strict mode
      */
-    public function __construct($xml=null) {
+    public function __construct($xml=null, Profile $actor=null) {
         if (!empty($xml)) {
             $dom = new DOMDocument();
             if (!$dom->loadXML($xml)) {
@@ -56,6 +58,15 @@ class MagicEnvelope
             } elseif (!$this->fromDom($dom)) {
                 throw new ServerException('Could not load MagicEnvelope from DOM');
             }
+        } elseif ($actor instanceof Profile) {
+            // So far we only allow setting with _either_ $xml _or_ $actor as that's
+            // all our circumstances require. But it may be confusing for new developers.
+            // The idea is that feeding XML must be followed by interpretation and then
+            // running $magic_env->verify($profile), just as in SalmonAction->prepare(...)
+            // and supplying an $actor (which right now has to be a User) will require
+            // defining the $data, $data_type etc. attributes manually afterwards before
+            // signing the envelope..
+            $this->setActor($actor);
         }
     }
 
@@ -162,8 +173,21 @@ class MagicEnvelope
      *
      * @throws Exception of various kinds on signing failure
      */
-    public function signMessage($text, $mimetype, Magicsig $magicsig)
+    public function signMessage($text, $mimetype)
     {
+        if (!$this->actor instanceof Profile) {
+            throw new ServerException('No profile to sign message with is set.');
+        } elseif (!$this->actor->isLocal()) {
+            throw new ServerException('Cannot sign magic envelopes with remote users since we have no private key.');
+        }
+
+        // Find already stored key
+        $magicsig = Magicsig::getKV('user_id', $this->actor->getID());
+        if (!$magicsig instanceof Magicsig) {
+            // and if it doesn't exist, it is time to create one!
+            $magicsig = Magicsig::generate($this->actor->getUser());
+        }
+        assert($magicsig instanceof Magicsig);
         assert($magicsig->privateKey instanceof Crypt_RSA);
 
         // Prepare text and metadata for signing
@@ -290,7 +314,12 @@ class MagicEnvelope
             return false;
         }
 
-        return $magicsig->verify($this->signingText(), $this->getSignature());
+        if (!$magicsig->verify($this->signingText(), $this->getSignature())) {
+            // TRANS: Client error when incoming salmon slap signature does not verify cryptographically.
+            throw new ClientException(_m('Salmon signature verification failed.'));
+        }
+        $this->setActor($profile);
+        return true;
     }
 
     /**
@@ -323,6 +352,22 @@ class MagicEnvelope
         return true;
     }
 
+    public function setActor(Profile $actor)
+    {
+        if ($this->actor instanceof Profile) {
+            throw new ServerException('Cannot set a new actor profile for MagicEnvelope object.');
+        }
+        $this->actor = $actor;
+    }
+
+    public function getActor()
+    {
+        if (!$this->actor instanceof Profile) {
+            throw new ServerException('No actor set for this magic envelope.');
+        }
+        return $this->actor;
+    }
+
     /**
      * Encode the given string as a signed MagicEnvelope XML document,
      * using the keypair for the given local user profile. We can of
@@ -342,16 +387,8 @@ class MagicEnvelope
      */
     public static function signAsUser($text, User $user)
     {
-        // Find already stored key
-        $magicsig = Magicsig::getKV('user_id', $user->id);
-        if (!$magicsig instanceof Magicsig) {
-            $magicsig = Magicsig::generate($user);
-        }
-        assert($magicsig instanceof Magicsig);
-        assert($magicsig->privateKey instanceof Crypt_RSA);
-
-        $magic_env = new MagicEnvelope();
-        $magic_env->signMessage($text, 'application/atom+xml', $magicsig);
+        $magic_env = new MagicEnvelope(null, $user->getProfile());
+        $magic_env->signMessage($text, 'application/atom+xml');
 
         return $magic_env;
     }

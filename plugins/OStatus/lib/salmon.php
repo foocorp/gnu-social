@@ -55,11 +55,12 @@ class Salmon
 
         try {
             $magic_env = MagicEnvelope::signAsUser($xml, $user);
-            $envxml = $magic_env->toXML();
         } catch (Exception $e) {
             common_log(LOG_ERR, "Salmon unable to sign: " . $e->getMessage());
             return false;
         }
+
+        $envxml = $magic_env->toXML();
 
         $headers = array('Content-Type: application/magic-envelope+xml');
 
@@ -73,8 +74,10 @@ class Salmon
         }
 
         // Diaspora wants a slightly different formatting on the POST (other Content-type, so body needs "xml=")
+        // This also gives us the opportunity to send the specially formatted Diaspora salmon slap, which
+        // encrypts the content of me:data
         if ($response->getStatus() === 422) {
-            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. Diaspora? Will try again! Body: %s',
+            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. We assume it is a Diaspora seed, will adapt and try again! Body: %s',
                                 $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
             $headers = array('Content-Type: application/x-www-form-urlencoded');
             $client->setBody('xml=' . Magicsig::base64_url_encode($envxml));

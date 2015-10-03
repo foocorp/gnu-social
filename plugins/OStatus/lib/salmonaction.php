@@ -79,12 +79,8 @@ class SalmonAction extends Action
             $this->clientError($e->getMessage());
         }
 
-        // Cryptographic verification test
-        if (!$magic_env->verify($this->actor)) {
-            common_log(LOG_DEBUG, "Salmon signature verification failed.");
-            // TRANS: Client error.
-            $this->clientError(_m('Salmon signature verification failed.'));
-        }
+        // Cryptographic verification test, throws exception on failure
+        $magic_env->verify($this->actor);
 
         return true;
     }
