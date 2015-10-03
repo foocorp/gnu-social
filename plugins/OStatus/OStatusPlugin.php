@@ -1351,4 +1351,35 @@ class OStatusPlugin extends Plugin
         }
         return true;
     }
+
+    public function onSalmonSlap($endpoint_uri, MagicEnvelope $magic_env)
+    {
+        $envxml = $magic_env->toXML();
+
+        $headers = array('Content-Type: application/magic-envelope+xml');
+
+        try {
+            $client = new HTTPClient();
+            $client->setBody($envxml);
+            $response = $client->post($endpoint_uri, $headers);
+        } catch (HTTP_Request2_Exception $e) {
+            common_log(LOG_ERR, "Salmon post to $endpoint_uri failed: " . $e->getMessage());
+            return false;
+        }
+        if ($response->getStatus() === 422) {
+            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. We assume it is a Diaspora seed, will adapt and try again if that plugin is enabled!'));
+            return true;
+        }
+
+        // 200 OK is the best response
+        // 202 Accepted is what we get from Diaspora for example
+        if (!in_array($response->getStatus(), array(200, 202))) {
+            common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
+                                $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
+            return true;
+        }
+
+        // Since we completed the salmon slap, we discontinue the event
+        return false;
+    }
 }

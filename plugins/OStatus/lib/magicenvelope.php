@@ -205,18 +205,25 @@ class MagicEnvelope
      *
      * @return string representation of XML document
      */
-    public function toXML() {
-        $xs = new XMLStringer();
-        $xs->startXML();
-        $xs->elementStart('me:env', array('xmlns:me' => self::NS));
-        $xs->element('me:data', array('type' => $this->data_type), $this->data);
-        $xs->element('me:encoding', null, $this->encoding);
-        $xs->element('me:alg', null, $this->alg);
-        $xs->element('me:sig', null, $this->getSignature());
-        $xs->elementEnd('me:env');
+    public function toXML($flavour=null) {
+        $xml = null;
+        if (Event::handle('MagicEnvelopeToXML', array($this, $flavour, &$xml))) {
+            // fall back to our default, normal Magic Envelope XML.
+            $xs = new XMLStringer();
+            $xs->startXML();
+            $xs->elementStart('me:env', array('xmlns:me' => self::NS));
+            $xs->element('me:data', array('type' => $this->data_type), $this->data);
+            $xs->element('me:encoding', null, $this->encoding);
+            $xs->element('me:alg', null, $this->alg);
+            $xs->element('me:sig', null, $this->getSignature());
+            $xs->elementEnd('me:env');
 
-        $string =  $xs->getString();
-        return $string;
+            $xml = $xs->getString();
+        }
+        if (is_null($xml)) {
+            throw new ServerException('No Magic Envelope XML string was created.');
+        }
+        return $xml;
     }
 
     /*
@@ -263,6 +270,21 @@ class MagicEnvelope
     public function getSignature()
     {
         return $this->sig;
+    }
+
+    public function getSignatureAlgorithm()
+    {
+        return $this->alg;
+    }
+
+    public function getDataType()
+    {
+        return $this->data_type;
+    }
+
+    public function getEncoding()
+    {
+        return $this->encoding;
     }
 
     /**

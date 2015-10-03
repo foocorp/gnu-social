@@ -60,39 +60,11 @@ class Salmon
             return false;
         }
 
-        $envxml = $magic_env->toXML();
-
-        $headers = array('Content-Type: application/magic-envelope+xml');
-
-        try {
-            $client = new HTTPClient();
-            $client->setBody($envxml);
-            $response = $client->post($endpoint_uri, $headers);
-        } catch (HTTP_Request2_Exception $e) {
-            common_log(LOG_ERR, "Salmon post to $endpoint_uri failed: " . $e->getMessage());
+        if (Event::handle('SalmonSlap', array($magic_env))) {
             return false;
+            //throw new ServerException('Could not distribute salmon slap as no plugin completed the event.');
         }
 
-        // Diaspora wants a slightly different formatting on the POST (other Content-type, so body needs "xml=")
-        // This also gives us the opportunity to send the specially formatted Diaspora salmon slap, which
-        // encrypts the content of me:data
-        if ($response->getStatus() === 422) {
-            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. We assume it is a Diaspora seed, will adapt and try again! Body: %s',
-                                $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
-            $headers = array('Content-Type: application/x-www-form-urlencoded');
-            $client->setBody('xml=' . Magicsig::base64_url_encode($envxml));
-            $response = $client->post($endpoint_uri, $headers);
-        }
-
-        // 200 OK is the best response
-        // 202 Accepted is what we get from Diaspora for example
-        if (!in_array($response->getStatus(), array(200, 202))) {
-            common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
-                                $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
-            return false;
-        }
-
-        // Success!
         return true;
     }
 }
