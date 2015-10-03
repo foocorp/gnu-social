@@ -46,30 +46,4 @@ if (!defined('STATUSNET')) {
  */
 class JoinListItem extends SystemListItem
 {
-    function showContent()
-    {
-        $notice = $this->nli->notice;
-        $out    = $this->nli->out;
-
-        $mem = Group_member::getKV('uri', $notice->uri);
-
-        if (!empty($mem)) {
-            $out->elementStart('div', 'join-activity');
-            $profile = $mem->getMember();
-            $group = $mem->getGroup();
-
-            // TRANS: Text for "joined list" item in activity plugin.
-            // TRANS: %1$s is a profile URL, %2$s is a profile name,
-            // TRANS: %3$s is a group home URL, %4$s is a group name.
-            $out->raw(sprintf(_m('<a href="%1$s">%2$s</a> joined the group <a href="%3$s">%4$s</a>.'),
-                                $profile->profileurl,
-                                $profile->getBestName(),
-                                $group->homeUrl(),
-                                $group->getBestName()));
-
-            $out->elementEnd('div');
-        } else {
-            parent::showContent();
-        }
-    }
 }
