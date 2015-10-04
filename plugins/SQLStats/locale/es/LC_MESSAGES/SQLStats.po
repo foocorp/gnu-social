@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 10:47+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-28 12:50+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,4 +21,4 @@ msgstr ""
 #. TRANS: Plugin decription.
 #: SQLStatsPlugin.php:45
 msgid "Debug tool to watch for poorly indexed DB queries."
-msgstr "Herramienta de depuración de errores para vigilar peticiones a bases de datos mal indexadas."
+msgstr "Herramienta de depuración para detectar peticiones a bases de datos mal indexadas."

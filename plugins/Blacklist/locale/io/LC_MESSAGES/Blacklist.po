@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ciencisto Dementa <maliktunga@users.noreply.github.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-06-15 01:05+0000\n"
+"Last-Translator: Ciencisto Dementa <maliktunga@users.noreply.github.com>\n"
+"Language-Team: Ido (http://www.transifex.com/gnu-social/gnu-social/language/io/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: io\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title of blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:53
+msgctxt "TITLE"
+msgid "Blacklist"
+msgstr "Nigralisto"
+
+#. TRANS: Instructions for blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:64
+msgid "Blacklisted URLs and nicknames"
+msgstr "Nigralistigita URLi e uzantonomi"
+
+#. TRANS: Field label in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:177
+msgid "Nicknames"
+msgstr "Uzantonomi"
+
+#. TRANS: Field title in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:180
+msgid "Patterns of nicknames to block, one per line."
+msgstr "Shabloni dil uzantonomi blokusenda, un po lineo."
+
+#. TRANS: Field label in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:187
+msgid "URLs"
+msgstr "URLi"
+
+#. TRANS: Field title in blacklist plugin administration panel.
+#: actions/blacklistadminpanel.php:190
+msgid "Patterns of URLs to block, one per line."
+msgstr "Shabloni dil URLi blokusenda, un po lineo."
+
+#. TRANS: Button text in blacklist plugin administration panel to save
+#. settings.
+#: actions/blacklistadminpanel.php:205
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Konservar"
+
+#. TRANS: Button title in blacklist plugin administration panel to save
+#. settings.
+#: actions/blacklistadminpanel.php:209
+msgid "Save site settings."
+msgstr "Konservar l'ajusti dil retosituo."
+
+#. TRANS: Exception thrown if the Blacklist plugin configuration is incorrect.
+#. TRANS: %1$s is a configuration section, %2$s is a configuration setting.
+#: BlacklistPlugin.php:112
+#, php-format
+msgid "Unknown data type for config %1$s + %2$s."
+msgstr "Nekonocata datumi-tipo por l'ajusto %1$s + %2$s."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:132
+#, php-format
+msgid "You may not register with homepage \"%s\"."
+msgstr "Vu ne povas registragar vu per la frontispico \"%s\"."
+
+#. TRANS: Validation failure for nickname. %s is the nickname.
+#: BlacklistPlugin.php:143
+#, php-format
+msgid "You may not register with nickname \"%s\"."
+msgstr "Vu ne povas registragar vu per l'uzantonomo \"%s\"."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:168
+#, php-format
+msgid "You may not use homepage \"%s\"."
+msgstr "Vu ne povas uzar la frontispico \"%s\"."
+
+#. TRANS: Validation failure for nickname. %s is the nickname.
+#: BlacklistPlugin.php:179
+#, php-format
+msgid "You may not use nickname \"%s\"."
+msgstr "Vu ne povas uzar l'uzantonomo \"%s\"."
+
+#. TRANS: Validation failure for URL. %s is the URL.
+#: BlacklistPlugin.php:222
+#, php-format
+msgid "You may not use URL \"%s\" in notices."
+msgstr "Vu ne povas uzar l'URL \"%s\" en avizi."
+
+#. TRANS: Plugin description.
+#: BlacklistPlugin.php:303
+msgid "Keeps a blacklist of forbidden nickname and URL patterns."
+msgstr "Lu konservas nigralisto dil interdiktita uzantonomo- ed URL-shabloni."
+
+#. TRANS: Menu item in admin panel.
+#: BlacklistPlugin.php:341
+msgctxt "MENU"
+msgid "Blacklist"
+msgstr "Nigralisto"
+
+#. TRANS: Tooltip for menu item in admin panel.
+#: BlacklistPlugin.php:343
+msgctxt "TOOLTIP"
+msgid "Blacklist configuration."
+msgstr "Nigralisto-ajusto."
+
+#. TRANS: Checkbox label in the blacklist user form.
+#: BlacklistPlugin.php:370
+msgid "Add this nickname pattern to blacklist"
+msgstr "Adjuntar ca pseudonimo-shablono al nigralisto"
+
+#. TRANS: Checkbox label in the blacklist user form.
+#: BlacklistPlugin.php:380
+msgid "Add this homepage pattern to blacklist"
+msgstr "Adjuntar ca frontispico-shablono al nigralisto"
+
+#. TRANS: Exception thrown trying to post a notice while having set a blocked
+#. homepage URL. %s is the blocked URL.
+#. TRANS: Client exception thrown trying to subscribe to a person with a
+#. blocked homepage or site URL. %s is the blocked URL.
+#: BlacklistPlugin.php:459 BlacklistPlugin.php:496
+#, php-format
+msgid "Users from \"%s\" are blocked."
+msgstr "Uzanti de \"%s\" es blockusita."
+
+#. TRANS: Exception thrown trying to post a notice while having a blocked
+#. nickname. %s is the blocked nickname.
+#: BlacklistPlugin.php:471
+#, php-format
+msgid "Notices from nickname \"%s\" are disallowed."
+msgstr "Avizi dal uzantonomo \"%s\" es despermisita."
+
+#. TRANS: Client exception thrown trying to subscribe to a person with a
+#. blocked nickname. %s is the blocked nickname.
+#: BlacklistPlugin.php:507
+#, php-format
+msgid "Cannot subscribe to nickname \"%s\"."
+msgstr "Lu ne povas abonar vu al uzantonomo \"%s\"."

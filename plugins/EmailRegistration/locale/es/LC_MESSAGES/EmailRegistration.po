@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 13:10+0000\n"
+"PO-Revision-Date: 2015-02-28 19:01+0000\n"
 "Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,7 +54,7 @@ msgstr "Confirmar"
 #. TRANS: Field title on account registration page.
 #: forms/confirmregistration.php:107
 msgid "Same as password above."
-msgstr "Repetir la contraseña de arriba."
+msgstr "Repite la contraseña anterior."
 
 #. TRANS: Checkbox title for terms of service and privacy policy.
 #: forms/confirmregistration.php:123

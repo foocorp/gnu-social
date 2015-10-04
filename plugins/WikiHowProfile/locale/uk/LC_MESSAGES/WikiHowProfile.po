@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Петро Романчук <ixer@ixer.org.ua>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:34+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"PO-Revision-Date: 2015-03-31 11:12+0000\n"
+"Last-Translator: Петро Романчук <ixer@ixer.org.ua>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/gnu-social/gnu-social/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,12 +28,12 @@ msgstr "Запитує аватар та іншу супутню інформа�
 #. TRANS: Exception thrown when fetching a WikiHow profile page fails.
 #: WikiHowProfilePlugin.php:126
 msgid "WikiHow profile page fetch failed."
-msgstr ""
+msgstr "Не вдалось отримати інформацію зі сторінки профілю WikiHow."
 
 #. TRANS: Exception thrown when parsing a WikiHow profile page fails.
 #: WikiHowProfilePlugin.php:143
 msgid "HTML parse failure during check for WikiHow avatar."
-msgstr ""
+msgstr "Помилка обробки HTML  під час перевірки аватару з WikiHow."
 
 #. TRANS: Server exception thrown when an avatar URL is invalid.
 #. TRANS: %s is the invalid avatar URL.

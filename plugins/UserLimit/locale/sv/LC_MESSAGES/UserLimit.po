@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 12:17+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-15 22:24+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,10 +29,10 @@ msgid ""
 msgid_plural ""
 "Cannot register because the maximum number of users (%d) for this site was "
 "reached."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kan inte registrera eftersom att gränsen för maximalt antal användare (%d) för den här sidan har nåtts."
+msgstr[1] "Kan inte registrera eftersom att gränsen för maximalt antal användare (%d) för den här sidan har nåtts."
 
 #. TRANS: Plugin description.
 #: UserLimitPlugin.php:92
 msgid "Limit the number of users who can register."
-msgstr ""
+msgstr "Begränsa antalet användare som kan registrera."

@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-06 16:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,7 +41,7 @@ msgstr "Parola"
 #. TRANS: Field title on account registration page.
 #: forms/confirmregistration.php:101
 msgid "6 or more characters."
-msgstr ""
+msgstr "6 ya da daha fazla karakter."
 
 #. TRANS: Field label on account registration page. In this field the password
 #. has to be entered a second time.
@@ -53,7 +53,7 @@ msgstr "Onayla"
 #. TRANS: Field title on account registration page.
 #: forms/confirmregistration.php:107
 msgid "Same as password above."
-msgstr ""
+msgstr "Yukarıdaki şifrenin aynısını giriniz."
 
 #. TRANS: Checkbox title for terms of service and privacy policy.
 #: forms/confirmregistration.php:123
@@ -90,7 +90,7 @@ msgstr "Kayıt yapılmasına izin verilmiyor."
 #. invitation.
 #: actions/emailregister.php:96 actions/emailregister.php:138
 msgid "Sorry, only invited people can register."
-msgstr ""
+msgstr "Üzgünüz, sadece davet edilen kişiler kayıt olabilir."
 
 #. TRANS: Client exception thrown when no confirmation code was provided.
 #: actions/emailregister.php:107
@@ -153,7 +153,7 @@ msgstr "Parola 6 veya daha fazla karakterden oluşmalıdır."
 #. password twice.
 #: actions/emailregister.php:284
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Parolalar uyuşmuyor."
 
 #. TRANS: Exception trown when using an invitation multiple times.
 #: actions/emailregister.php:316

@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-05 17:36+0000\n"
+"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
+"Language-Team: Malay (http://www.transifex.com/gnu-social/gnu-social/language/ms/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ms\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Display name.
+#: AimPlugin.php:60
+msgid "AIM"
+msgstr "AIM"
+
+#. TRANS: Exception thrown in AIM plugin when user has not been specified.
+#: AimPlugin.php:143
+msgid "Must specify a user."
+msgstr "Pengguna mesti ditentukan."
+
+#. TRANS: Exception thrown in AIM plugin when password has not been specified.
+#: AimPlugin.php:147
+msgid "Must specify a password."
+msgstr "Kata laluan mesti ditentukan."
+
+#. TRANS: Plugin description.
+#: AimPlugin.php:162
+msgid ""
+"The AIM plugin allows users to send and receive notices over the AIM "
+"network."
+msgstr "Pemalam AIM membolehkan pengguna menghantar dan menerima notis menerusi rangkaian AIM."
+
+#. TRANS: No idea what the use case for this message is.
+#: lib/aimmanager.php:80
+msgid "Send me a message to post a notice"
+msgstr "Hantarkan pesanan kepada saya untuk mengirim notis"

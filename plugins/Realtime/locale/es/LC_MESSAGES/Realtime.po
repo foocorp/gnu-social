@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 09:42+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-27 20:31+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,17 +21,17 @@ msgstr ""
 #. TRANS: Client exception. Do not translate POST.
 #: actions/keepalivechannel.php:65 actions/closechannel.php:65
 msgid "You have to POST it."
-msgstr "Tienes que PUBLICARLO."
+msgstr "Tienes que mandarlo vía POST."
 
 #. TRANS: Client exception thrown when the channel key argument is missing.
 #: actions/keepalivechannel.php:72 actions/closechannel.php:72
 msgid "No channel key argument."
-msgstr "Sin argumento para la clave de canal."
+msgstr "No se ha proporcionado la clave de canal."
 
 #. TRANS: Client exception thrown when referring to a non-existing channel.
 #: actions/keepalivechannel.php:79 actions/closechannel.php:79
 msgid "No such channel."
-msgstr "No existe tal canal."
+msgstr "No existe ese canal."
 
 #. TRANS: Text label for realtime view "play" button, usually replaced by an
 #. icon.

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Po-Chun Huang <aphroteus@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-06 16:12+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/gnu-social/language/zh_TW/)\n"
+"PO-Revision-Date: 2015-03-26 09:54+0000\n"
+"Last-Translator: Po-Chun Huang <aphroteus@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/gnu-social/gnu-social/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -95,7 +96,7 @@ msgstr ""
 #. TRANS: Client exception thrown when no confirmation code was provided.
 #: actions/emailregister.php:107
 msgid "No confirmation code."
-msgstr "無確認碼"
+msgstr "無確認碼。"
 
 #. TRANS: Client exception trown when using an invitation multiple times.
 #: actions/emailregister.php:115 actions/emailregister.php:146
@@ -191,7 +192,7 @@ msgstr ""
 #. TRANS: Error text when trying to register with an invalid e-mail address.
 #: EmailRegistrationPlugin.php:106
 msgid "Not a valid email address."
-msgstr "此信箱無效"
+msgstr "此電子郵件地址無效。"
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.

@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 13:41+0000\n"
+"PO-Revision-Date: 2015-09-16 02:17+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,7 +44,7 @@ msgstr "Bästa"
 #. TRANS: Title for button text marking an answer as "best".
 #: forms/qnashowanswer.php:154
 msgid "Mark this answer as the best answer."
-msgstr ""
+msgstr "Markera det här svaret som det bästa svaret."
 
 #. TRANS: Field label for a new question.
 #: forms/qnanewquestion.php:110
@@ -55,7 +55,7 @@ msgstr "Titel"
 #. TRANS: Field title for a new question.
 #: forms/qnanewquestion.php:113
 msgid "The title of your question."
-msgstr ""
+msgstr "Titeln för din fråga."
 
 #. TRANS: Field label for question details.
 #: forms/qnanewquestion.php:122
@@ -66,7 +66,7 @@ msgstr "Beskrivning"
 #. TRANS: Field title for question details.
 #: forms/qnanewquestion.php:125
 msgid "Your question in detail."
-msgstr ""
+msgstr "Din fråga i detalj."
 
 #. TRANS: Button text for saving a new question.
 #: forms/qnanewquestion.php:149
@@ -116,7 +116,7 @@ msgstr "Fråga"
 #. TRANS: Exception thrown when there are too many activity objects.
 #: QnAPlugin.php:171
 msgid "Too many activity objects."
-msgstr ""
+msgstr "För många aktiva objekt."
 
 #. TRANS: Exception thrown when an incorrect object type is encountered.
 #: QnAPlugin.php:178
@@ -149,7 +149,7 @@ msgstr ""
 #. TRANS: what will be dispplayed.
 #: QnAPlugin.php:393
 msgid "…"
-msgstr ""
+msgstr "..."
 
 #. TRANS: Title for link that is an ellipsis in English.
 #: QnAPlugin.php:398

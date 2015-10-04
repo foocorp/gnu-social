@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 10:47+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-28 13:51+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,14 +21,14 @@ msgstr ""
 #. TRANS: Exception thrown when subscribing too quickly.
 #: SubscriptionThrottlePlugin.php:73
 msgid "Too many subscriptions. Take a break and try again later."
-msgstr "Demasiadas subscripciones. Haga una pausa e inténtelo más tarde."
+msgstr "Demasiadas subscripciones. Tómate un descanso y prueba de nuevo más tarde."
 
 #. TRANS: Exception thrown when joing groups too quickly.
 #: SubscriptionThrottlePlugin.php:99
 msgid "Too many memberships. Take a break and try again later."
-msgstr "Demasiados miembros. Haga una pausa e inténtelo más tarde."
+msgstr "Demasiadas inscripciones. Tómate un descanso y prueba de nuevo más tarde."
 
 #. TRANS: Plugin description.
 #: SubscriptionThrottlePlugin.php:168
 msgid "Configurable limits for subscriptions and group memberships."
-msgstr "Límites configurables para las suscripciones y adhesiones a los grupos."
+msgstr "Límites configurables para suscripciones e inscripciones a grupos."

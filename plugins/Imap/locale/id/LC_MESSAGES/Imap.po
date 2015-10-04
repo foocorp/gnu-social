@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# zk <zamani.karmana@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-06 16:29+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Indonesian (http://www.transifex.com/projects/p/gnu-social/language/id/)\n"
+"PO-Revision-Date: 2015-05-28 15:50+0000\n"
+"Last-Translator: zk <zamani.karmana@gmail.com>\n"
+"Language-Team: Indonesian (http://www.transifex.com/gnu-social/gnu-social/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. TRANS: E-mail subject in case of an error.
 #: lib/imapmailhandler.php:31
 msgid "Error"
-msgstr ""
+msgstr "Galat"
 
 #. TRANS: Exception thrown when the ImapManager is used incorrectly in the
 #. code.

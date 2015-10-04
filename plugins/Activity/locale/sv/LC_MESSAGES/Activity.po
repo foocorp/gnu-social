@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-04 23:50+0000\n"
+"PO-Revision-Date: 2015-05-12 01:12+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: ActivityPlugin.php:75
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> started following <a href=\"%3$s\">%4$s</a>."
-msgstr "<a href=\"%1$s\">%2$s</a> började följa <a href=\"%3$s\">%4$s</a>."
+msgstr "<a href=\"%1$s\">%2$s</a> började följa <a href=\"%3$s\">%4$s</a."
 
 #. TRANS: Text for "started following" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -32,7 +32,7 @@ msgstr "<a href=\"%1$s\">%2$s</a> började följa <a href=\"%3$s\">%4$s</a>."
 #: ActivityPlugin.php:83
 #, php-format
 msgid "%1$s (%2$s) started following %3$s (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) påbörjade att följa %3$s (%4$s)."
 
 #. TRANS: Text for "stopped following" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
@@ -40,7 +40,7 @@ msgstr ""
 #: ActivityPlugin.php:113
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> stopped following <a href=\"%3$s\">%4$s</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\">%2$s</a> slutade följa <a href=\"%3$s\">%4$s</a>."
 
 #. TRANS: Text for "stopped following" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -48,7 +48,7 @@ msgstr ""
 #: ActivityPlugin.php:121
 #, php-format
 msgid "%1$s (%2$s) stopped following %3$s (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) slutade att följa %3$s (%4$s)."
 
 #. TRANS: Text for "stopped liking" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
@@ -56,7 +56,7 @@ msgstr ""
 #: ActivityPlugin.php:158
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> stopped liking <a href=\"%3$s\">%4$s's update</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\">%2$s</a> slutade gilla <a href=\"%3$s\">%4$s's uppdatering</a>."
 
 #. TRANS: Text for "stopped liking" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -64,7 +64,7 @@ msgstr ""
 #: ActivityPlugin.php:166
 #, php-format
 msgid "%1$s (%2$s) stopped liking %3$s's status (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) slutade gilla %3$s's status (%4$s)."
 
 #. TRANS: Text for "joined group" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
@@ -75,7 +75,7 @@ msgstr ""
 #: ActivityPlugin.php:203 lib/joinlistitem.php:64
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> joined the group <a href=\"%3$s\">%4$s</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\">%2$s</a> anslöt till gruppen <a href=\"%3$s\">%4$s</a>."
 
 #. TRANS: Text for "joined group" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -83,7 +83,7 @@ msgstr ""
 #: ActivityPlugin.php:211
 #, php-format
 msgid "%1$s (%2$s) joined the group %3$s (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) anslöt till gruppen %3$s (%4$s)."
 
 #. TRANS: Text for "left group" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
@@ -91,7 +91,7 @@ msgstr ""
 #: ActivityPlugin.php:244
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> left the group <a href=\"%3$s\">%4$s</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\">%2$s</a> lämnade gruppen <a href=\"%3$s\">%4$s</a>."
 
 #. TRANS: Text for "left group" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -99,9 +99,9 @@ msgstr ""
 #: ActivityPlugin.php:252
 #, php-format
 msgid "%1$s (%2$s) left the group %3$s (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) lämnade gruppen %3$s (%4$s)."
 
 #. TRANS: Plugin description.
 #: ActivityPlugin.php:350
 msgid "Emits notices when social activities happen."
-msgstr ""
+msgstr "Sänder ut meddelanden när sociala aktiviteter sker."

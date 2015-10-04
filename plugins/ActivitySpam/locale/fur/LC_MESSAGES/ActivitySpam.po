@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Adriano <biason.adriano@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-05 17:21+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Friulian (http://www.transifex.com/projects/p/gnu-social/language/fur/)\n"
+"PO-Revision-Date: 2015-03-23 16:59+0000\n"
+"Last-Translator: Adriano <biason.adriano@gmail.com>\n"
+"Language-Team: Friulian (http://www.transifex.com/gnu-social/gnu-social/language/fur/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgstr ""
 #: ActivitySpamPlugin.php:208
 msgctxt "MENU"
 msgid "Spam"
-msgstr ""
+msgstr "Spam"
 
 #: ActivitySpamPlugin.php:225
 msgid "Test notices against the Activity Spam service."

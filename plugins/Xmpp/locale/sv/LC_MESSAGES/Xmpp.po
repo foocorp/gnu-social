@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 12:41+0000\n"
+"PO-Revision-Date: 2015-09-15 22:27+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,70 +26,70 @@ msgstr "XMPP/Jabber"
 #. TRANS: Exception thrown when using too many @ signs in a Jabber ID.
 #: XmppPlugin.php:123
 msgid "Invalid JID: too many @s."
-msgstr ""
+msgstr "Ogiltigt JID: för många @:n."
 
 #. TRANS: Exception thrown when using @ sign not followed by a Jabber ID.
 #: XmppPlugin.php:132
 msgid "Invalid JID: @ but no node"
-msgstr ""
+msgstr "Ogiltigt JID: @, men ingen kod"
 
 #. TRANS: Exception thrown when using too long a Jabber ID (>1023).
 #: XmppPlugin.php:140
 msgid "Invalid JID: node too long."
-msgstr ""
+msgstr "Ogiltigt JID: nod för lång."
 
 #. TRANS: Exception thrown when using an invalid Jabber ID.
 #. TRANS: %s is the invalid Jabber ID.
 #: XmppPlugin.php:145
 #, php-format
 msgid "Invalid JID node \"%s\"."
-msgstr ""
+msgstr "Ogiltig JID-nod \"%s\"."
 
 #. TRANS: Exception thrown when using too long a Jabber domain (>1023).
 #: XmppPlugin.php:151
 msgid "Invalid JID: domain too long."
-msgstr ""
+msgstr "Ogiltigt JID: domänen för lång."
 
 #. TRANS: Exception thrown when using an invalid Jabber domain name.
 #. TRANS: %s is the invalid domain name.
 #: XmppPlugin.php:156
 #, php-format
 msgid "Invalid JID domain name \"%s\"."
-msgstr ""
+msgstr "Ogiltigt JID-domännamn \"%s\"."
 
 #. TRANS: Exception thrown when using an invalid Jabber resource.
 #. TRANS: %s is the invalid resource.
 #: XmppPlugin.php:167
 #, php-format
 msgid "Invalid JID resource \"%s\"."
-msgstr ""
+msgstr "Ogiltig JID-resurs \"%s\"."
 
 #. TRANS: Link description to notice in conversation.
 #. TRANS: %s is a notice ID.
 #: XmppPlugin.php:372
 #, php-format
 msgid "[%u]"
-msgstr ""
+msgstr "[%u]"
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 #: XmppPlugin.php:410
 msgid "You must specify a server in the configuration."
-msgstr ""
+msgstr "Du måste ange en server i konfigurationen."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 #: XmppPlugin.php:414
 msgid "You must specify a port in the configuration."
-msgstr ""
+msgstr "Du måste ange en port i konfigurationen."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 #: XmppPlugin.php:418
 msgid "You must specify a user in the configuration."
-msgstr ""
+msgstr "Du måste ange en användare i konfigurationen."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 #: XmppPlugin.php:422
 msgid "You must specify a password in the configuration."
-msgstr ""
+msgstr "Du måste ange ett lösenord i konfigurationen."
 
 #. TRANS: Plugin description.
 #: XmppPlugin.php:473
@@ -102,4 +102,4 @@ msgstr "XMPP-tillägget tillåter användare skicka och ta emot meddelanden öve
 #. TRANS: Message for XMPP reconnect.
 #: lib/xmppmanager.php:167 lib/xmppmanager.php:207
 msgid "Send me a message to post a notice"
-msgstr ""
+msgstr "Skicka ett meddelande till mig att posta en notis"

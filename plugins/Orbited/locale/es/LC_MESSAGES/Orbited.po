@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 09:42+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-27 19:53+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,9 +22,9 @@ msgstr ""
 #. server.
 #: OrbitedPlugin.php:110
 msgid "Failed to connect to queue server."
-msgstr "Error al conectar con el servidor de la cola de espera."
+msgstr "Error al conectar con el servidor de cola."
 
 #. TRANS: Plugin description.
 #: OrbitedPlugin.php:170
 msgid "Plugin to make updates using Orbited and STOMP."
-msgstr "Complemento (plugin) para hacer actualizaciones mediante Orbited y STOMP."
+msgstr "Complemento para realizar actualizaciones en «tiempo real» usando Orbited y STOMP."

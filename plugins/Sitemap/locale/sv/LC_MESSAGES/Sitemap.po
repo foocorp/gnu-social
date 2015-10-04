@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 13:41+0000\n"
+"PO-Revision-Date: 2015-09-16 01:44+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,7 +31,7 @@ msgstr ""
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:167
 msgid "Google key"
-msgstr ""
+msgstr "Google-nyckel"
 
 #. TRANS: Title for field label.
 #: actions/sitemapadminpanel.php:169
@@ -41,17 +41,17 @@ msgstr ""
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:175
 msgid "Yahoo key"
-msgstr ""
+msgstr "Yahoo-nyckel"
 
 #. TRANS: Title for field label.
 #: actions/sitemapadminpanel.php:177
 msgid "Yahoo! Site Explorer verification key."
-msgstr ""
+msgstr "Yahoo! Site Explorer-verifieringsnyckel."
 
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:183
 msgid "Bing key"
-msgstr ""
+msgstr "Bing-nyckel"
 
 #. TRANS: Title for field label.
 #: actions/sitemapadminpanel.php:185

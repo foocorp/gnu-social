@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Петро Романчук <ixer@ixer.org.ua>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-05 16:48+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"PO-Revision-Date: 2015-03-31 12:01+0000\n"
+"Last-Translator: Петро Романчук <ixer@ixer.org.ua>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/gnu-social/gnu-social/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,60 +21,60 @@ msgstr ""
 #. TRANS: Plugin display name.
 #: XmppPlugin.php:62
 msgid "XMPP/Jabber"
-msgstr ""
+msgstr "XMPP/Jabber"
 
 #. TRANS: Exception thrown when using too many @ signs in a Jabber ID.
 #: XmppPlugin.php:123
 msgid "Invalid JID: too many @s."
-msgstr ""
+msgstr "Не правильний JID: забагато @."
 
 #. TRANS: Exception thrown when using @ sign not followed by a Jabber ID.
 #: XmppPlugin.php:132
 msgid "Invalid JID: @ but no node"
-msgstr ""
+msgstr "Не вірний JID: @ без вузла"
 
 #. TRANS: Exception thrown when using too long a Jabber ID (>1023).
 #: XmppPlugin.php:140
 msgid "Invalid JID: node too long."
-msgstr ""
+msgstr "Неправильний JID: задовге ім'я вузла."
 
 #. TRANS: Exception thrown when using an invalid Jabber ID.
 #. TRANS: %s is the invalid Jabber ID.
 #: XmppPlugin.php:145
 #, php-format
 msgid "Invalid JID node \"%s\"."
-msgstr ""
+msgstr "Неправильний вузол JID \"%s\"."
 
 #. TRANS: Exception thrown when using too long a Jabber domain (>1023).
 #: XmppPlugin.php:151
 msgid "Invalid JID: domain too long."
-msgstr ""
+msgstr "Неправильний JID: домен задовгий."
 
 #. TRANS: Exception thrown when using an invalid Jabber domain name.
 #. TRANS: %s is the invalid domain name.
 #: XmppPlugin.php:156
 #, php-format
 msgid "Invalid JID domain name \"%s\"."
-msgstr ""
+msgstr " \"%s\" є неправильним доменним іменем JID."
 
 #. TRANS: Exception thrown when using an invalid Jabber resource.
 #. TRANS: %s is the invalid resource.
 #: XmppPlugin.php:167
 #, php-format
 msgid "Invalid JID resource \"%s\"."
-msgstr ""
+msgstr "\"%s\" - неправильний ресурс JID."
 
 #. TRANS: Link description to notice in conversation.
 #. TRANS: %s is a notice ID.
 #: XmppPlugin.php:372
 #, php-format
 msgid "[%u]"
-msgstr ""
+msgstr "[%u]"
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 #: XmppPlugin.php:410
 msgid "You must specify a server in the configuration."
-msgstr ""
+msgstr "Ви повинні вказати сервер у конфігурації."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 #: XmppPlugin.php:414

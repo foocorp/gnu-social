@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-04 17:39+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/gnu-social/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/gnu-social/gnu-social/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -88,7 +88,7 @@ msgid ""
 "* Try different keywords.\n"
 "* Try more general keywords.\n"
 "* Try fewer keywords."
-msgstr ""
+msgstr "* Tenha certeza de que todas as palavras estão soletradas corretamente.\n* Tente diferenciar as palavras-chave.\n* Tente globalizar mais as palavras-chave.\n* Tente palavras-chave mais curtas."
 
 #. TRANS: Title for group directory page. %d is a page number.
 #: actions/groupdirectory.php:95
@@ -176,7 +176,7 @@ msgstr "Membros"
 #. TRANS: Column header for number of subscriptions.
 #: lib/sortablesubscriptionlist.php:114
 msgid "Subscriptions"
-msgstr ""
+msgstr "Assinaturas"
 
 #. TRANS: Column header for number of notices.
 #: lib/sortablesubscriptionlist.php:116

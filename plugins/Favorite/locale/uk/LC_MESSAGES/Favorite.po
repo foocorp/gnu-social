@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Петро Романчук <ixer@ixer.org.ua>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-05 16:12+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"PO-Revision-Date: 2015-03-31 12:11+0000\n"
+"Last-Translator: Петро Романчук <ixer@ixer.org.ua>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/gnu-social/gnu-social/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,7 +29,7 @@ msgstr ""
 #: forms/disfavor.php:123
 msgctxt "BUTTON"
 msgid "Disfavor favorite"
-msgstr ""
+msgstr "Видалити з обраного"
 
 #. TRANS: Help message for IM/SMS command "fav <nickname>".
 #: FavoritePlugin.php:415
@@ -46,7 +47,7 @@ msgstr ""
 #: FavoritePlugin.php:469
 msgctxt "MENU"
 msgid "Favorites"
-msgstr ""
+msgstr "Обрані"
 
 #. TRANS: Menu item in search group navigation panel.
 #: FavoritePlugin.php:482
@@ -57,7 +58,7 @@ msgstr "Популярні"
 #. TRANS: Plugin description.
 #: FavoritePlugin.php:508
 msgid "Favorites (likes) using ActivityStreams."
-msgstr ""
+msgstr "Вибране (уподобання) з використанням ActivityStreams."
 
 #: actions/favor.php:57
 msgid "No such notice."
@@ -69,12 +70,12 @@ msgstr "Такого допису немає."
 #: actions/favor.php:62
 #, php-format
 msgid "%1$s has no right to reply to notice %2$d."
-msgstr ""
+msgstr "%1$s немає достатньо прав щоб відповісти на повідомлення %2$d."
 
 #: classes/Fave.php:86
 #, php-format
 msgid "Could not store new object of type %s"
-msgstr ""
+msgstr "Неможливо зберегти новий об'єкт типу %s"
 
 #. TRANS: List message for notice favoured by logged in user.
 #: lib/threadednoticelistfavesitem.php:51

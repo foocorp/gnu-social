@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Uğur KUYU <ukuyu34@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:41+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"PO-Revision-Date: 2015-03-02 10:40+0000\n"
+"Last-Translator: Uğur KUYU <ukuyu34@gmail.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,12 +28,12 @@ msgstr "OpenID aracılığıyla hesap oluşturan WikiHow kullanıcıları için 
 #. TRANS: Exception thrown when fetching a WikiHow profile page fails.
 #: WikiHowProfilePlugin.php:126
 msgid "WikiHow profile page fetch failed."
-msgstr ""
+msgstr "WikiHow profil sayfası alımı başarısız oldu"
 
 #. TRANS: Exception thrown when parsing a WikiHow profile page fails.
 #: WikiHowProfilePlugin.php:143
 msgid "HTML parse failure during check for WikiHow avatar."
-msgstr ""
+msgstr "WikiHow avatarı onayı sırasında HTML ayrıştırma hatası"
 
 #. TRANS: Server exception thrown when an avatar URL is invalid.
 #. TRANS: %s is the invalid avatar URL.

@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 13:31+0000\n"
+"PO-Revision-Date: 2015-09-16 01:28+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,19 +38,19 @@ msgstr "Ogiltig URI."
 msgid ""
 "Sorry, we could not reach that address. Please make sure that the OStatus "
 "address is like nickname@example.com or http://example.net/nickname."
-msgstr ""
+msgstr "Ledsen, men vi kunde inte nå den där adressen. Vänligen se till att OStatus-adressen är som nickname@example.com eller http://example.net/nickname."
 
 #. TRANS: Title. %s is a domain name.
 #: OStatusPlugin.php:519
 #, php-format
 msgid "Sent from %s via OStatus"
-msgstr ""
+msgstr "Skickat från %s via OStatus"
 
 #. TRANS: Title for unfollowing a remote profile.
 #: OStatusPlugin.php:657
 msgctxt "TITLE"
 msgid "Unfollow"
-msgstr ""
+msgstr "Avfölj"
 
 #. TRANS: Success message for unsubscribe from user attempt through OStatus.
 #. TRANS: %1$s is the unsubscriber's name, %2$s is the unsubscribed user's
@@ -828,7 +828,7 @@ msgstr ""
 #: classes/Ostatus_profile.php:1244 scripts/update_ostatus_profiles.php:56
 #, php-format
 msgid "Invalid avatar URL %s."
-msgstr ""
+msgstr "Ogiltig URL för avataren %s."
 
 #. TRANS: Server exception. %s is a URI.
 #: classes/Ostatus_profile.php:1257 scripts/update_ostatus_profiles.php:67
@@ -840,7 +840,7 @@ msgstr ""
 #: classes/Ostatus_profile.php:1267 scripts/update_ostatus_profiles.php:77
 #, php-format
 msgid "Unable to fetch avatar from %s."
-msgstr ""
+msgstr "Kunde inte hämta in avataren från %s."
 
 #. TRANS: Server exception.
 #: classes/Ostatus_profile.php:1460

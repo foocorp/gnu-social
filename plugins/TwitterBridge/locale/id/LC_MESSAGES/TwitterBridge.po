@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-07 12:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Indonesian (http://www.transifex.com/projects/p/gnu-social/language/id/)\n"
+"Language-Team: Indonesian (http://www.transifex.com/gnu-social/gnu-social/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. already logged in to StatusNet.
 #: actions/twitterlogin.php:57
 msgid "Already logged in."
-msgstr ""
+msgstr "Sudah masuk."
 
 #. TRANS: Title for login using Twitter page.
 #: actions/twitterlogin.php:66
@@ -135,7 +135,7 @@ msgstr ""
 #: actions/twitteradminpanel.php:311 actions/twittersettings.php:210
 msgctxt "BUTTON"
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #. TRANS: Button title for saving the administrative Twitter bridge settings.
 #: actions/twitteradminpanel.php:313
@@ -146,7 +146,7 @@ msgstr ""
 #. not given.
 #: actions/twitterauthorization.php:121 actions/twittersettings.php:238
 msgid "There was a problem with your session token. Try again, please."
-msgstr ""
+msgstr "Ada masalah dengan token sesi anda. Mohon coba lagi."
 
 #. TRANS: Form validation error displayed when the checkbox to agree to the
 #. license has not been checked.
@@ -248,7 +248,7 @@ msgstr ""
 #. TRANS: Field label.
 #: actions/twitterauthorization.php:420
 msgid "Password"
-msgstr ""
+msgstr "Sandi"
 
 #. TRANS: Fieldset legend.
 #: actions/twitterauthorization.php:428
@@ -302,7 +302,7 @@ msgstr ""
 #. TRANS: the provided username and/or password are incorrect.
 #: actions/twitterauthorization.php:575
 msgid "Invalid username or password."
-msgstr ""
+msgstr "Nama pengguna atau sandi tidak valid."
 
 #. TRANS: Title for page with Twitter integration settings.
 #: actions/twittersettings.php:58

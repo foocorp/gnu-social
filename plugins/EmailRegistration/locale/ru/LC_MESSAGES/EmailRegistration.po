@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Boris Konstantinovich Lissov <lissovbk@yandex.ru>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 12:33+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/gnu-social/language/ru/)\n"
+"PO-Revision-Date: 2015-07-12 20:10+0000\n"
+"Last-Translator: Boris Konstantinovich Lissov <lissovbk@yandex.ru>\n"
+"Language-Team: Russian (http://www.transifex.com/gnu-social/gnu-social/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. TRANS: Form instructions.
 #: forms/confirmregistration.php:65
@@ -61,7 +62,7 @@ msgstr "Тот же пароль, что и выше."
 msgid ""
 "I agree to the <a href=\"%1$s\">Terms of service</a> and <a "
 "href=\"%1$s\">Privacy policy</a> of this site."
-msgstr ""
+msgstr "Я согласен с <a href=\"%1$s\">Пользовательским соглашением</a> and <a href=\"%1$s\">политикой приватности</a> этого сайта."
 
 #. TRANS: Button text for action to register.
 #. TRANS: Button text for registering an account.
@@ -84,7 +85,7 @@ msgstr "Адрес электронной почты"
 #. TRANS: Client exception trown when registration by e-mail is not allowed.
 #: actions/emailregister.php:84
 msgid "Registration not allowed."
-msgstr "Регистрация недопустима."
+msgstr "Регистрация запрещена."
 
 #. TRANS: Client exception trown when trying to register without an
 #. invitation.
@@ -100,12 +101,12 @@ msgstr "Нет кода подтверждения."
 #. TRANS: Client exception trown when using an invitation multiple times.
 #: actions/emailregister.php:115 actions/emailregister.php:146
 msgid "Invitation already used."
-msgstr ""
+msgstr "Приглашение уже использовано."
 
 #. TRANS: Client exception thrown when given confirmation code was not issued.
 #: actions/emailregister.php:123 actions/emailregister.php:155
 msgid "No such confirmation code."
-msgstr ""
+msgstr "Нет такого кода подтверждения."
 
 #. TRANS: Title for registration page.
 #: actions/emailregister.php:170
@@ -117,7 +118,7 @@ msgstr "Регистрация"
 #: actions/emailregister.php:176
 msgctxt "TITLE"
 msgid "Complete registration"
-msgstr ""
+msgstr "Завершить регистрацию"
 
 #. TRANS: Confirmation text after initial registration.
 #. TRANS: %s an e-mail address.
@@ -126,18 +127,18 @@ msgstr ""
 msgid ""
 "An email was sent to %s to confirm that address. Check your email inbox for "
 "instructions."
-msgstr ""
+msgstr "Электронное письмо было отправлено по адресу %s чтобы подтвердить его. Провертье входящие сообщения в вашем почтовом аккаунте для получения инструкций."
 
 #. TRANS: Client exception trown when trying to set password with an invalid
 #. confirmation code.
 #: actions/emailregister.php:270
 msgid "No confirmation thing."
-msgstr ""
+msgstr "Нет ссылки подтверждения."
 
 #. TRANS: Error text when trying to register without agreeing to the terms.
 #: actions/emailregister.php:275
 msgid "You must accept the terms of service and privacy policy to register."
-msgstr ""
+msgstr "Вы должны принять пользовательское соглашение и политику приватности чтобы зарегистрироваться."
 
 #. TRANS: Error text when trying to register without a password.
 #: actions/emailregister.php:278
@@ -165,7 +166,7 @@ msgstr "Не удалось зарегистрировать пользоват�
 #: actions/emailregister.php:350
 #, php-format
 msgid "Confirm your registration on %s"
-msgstr ""
+msgstr "Подтвердите вашу регистрацию на сайте %s"
 
 #. TRANS: Body for confirmation e-mail.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
@@ -176,7 +177,7 @@ msgid ""
 "To confirm the address, click the following URL or copy it into the address bar of your browser.\n"
 "%2$s\n"
 "If it was not you, you can safely ignore this message."
-msgstr ""
+msgstr "Кто-то (возможно вы) создал аккаунт на сайте %1$s используя этот адрес электронной почты.\nЧтобы подтвердить этот адрес, пройдите по нижеследующей ссылки или скопируйте ее в адресную строку вашего броузера.\n%2$s\nЕсли вы не создавали аккаунта на вышеупомянутом сайте, вы можете спокойно игнорировать это письмо."
 
 #. TRANS: Error text when trying to register with an already registered e-mail
 #. address.
@@ -186,7 +187,7 @@ msgstr ""
 msgid ""
 "A user with that email address already exists. You can use the <a "
 "href=\"%s\">password recovery</a> tool to recover a missing password."
-msgstr ""
+msgstr "Пользователь с таким адресом электронной почты уже существует. Вы можете воспользоваться  <a href=\"%s\">средством восстановления пароля</a>, чтобы получить доступ к вашему аккаунту."
 
 #. TRANS: Error text when trying to register with an invalid e-mail address.
 #: EmailRegistrationPlugin.php:106
@@ -203,4 +204,4 @@ msgstr "Добро пожаловать в %s"
 #. TRANS: Plugin description.
 #: EmailRegistrationPlugin.php:183
 msgid "Use email only for registration."
-msgstr ""
+msgstr "Использовать адрес электронной почты только для регистрации."

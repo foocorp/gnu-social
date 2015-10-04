@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# zk <zamani.karmana@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-06 16:43+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Indonesian (http://www.transifex.com/projects/p/gnu-social/language/id/)\n"
+"PO-Revision-Date: 2015-05-28 15:50+0000\n"
+"Last-Translator: zk <zamani.karmana@gmail.com>\n"
+"Language-Team: Indonesian (http://www.transifex.com/gnu-social/gnu-social/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,4 +25,4 @@ msgid ""
 "installation: When a user scrolls towards the bottom of the page, the next "
 "page of notices is automatically retrieved and appended. This means they "
 "never need to click \"Next Page\", which dramatically increases stickiness."
-msgstr "Infinite Scroll menambahkan fungsi berikut terhadap instalasi StatusNet Anda: Ketika seorang pengguna melakukan skrol ke bawah halaman, halaman pemberitahuan selanjutnya secara otomatis didapat dan ditambahkan. Ini berarti tidak perlu menekan \"Halaman Berikutnya\" yang hanya menambah ketergantungan."
+msgstr "Infinite Scroll menambahkan fungsi berikut ke pemasangan StatusNet anda: Ketika seorang pengguna menggulir ke bawah halaman, halaman pemberitahuan selanjutnya secara otomatis diambil dan ditambahkan. Ini berarti mereka tidak perlu menekan \"Halaman Selanjutnya\", yang akan meningkatkan kelekatan."

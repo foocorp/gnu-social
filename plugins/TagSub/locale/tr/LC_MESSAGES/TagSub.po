@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-05 16:43+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,7 +42,7 @@ msgstr ""
 #: forms/tagsub.php:131
 msgctxt "BUTTON"
 msgid "Subscribe"
-msgstr ""
+msgstr "Takip et"
 
 #. TRANS: Submit button title to subscribe to a tag.
 #: forms/tagsub.php:133
@@ -52,7 +52,7 @@ msgstr ""
 #. TRANS: Page title when tag unsubscription succeeded.
 #: actions/tagunsub.php:76
 msgid "Unsubscribed"
-msgstr ""
+msgstr "Takipten çıkarıldı"
 
 #. TRANS: Header for subscriptions overview for a user (first page).
 #. TRANS: %s is a user nickname.
@@ -137,7 +137,7 @@ msgstr "Giriş yapılmadı."
 #. profile.
 #: actions/tagsub.php:106
 msgid "No such profile."
-msgstr ""
+msgstr "Böyle bir profil yok."
 
 #. TRANS: Page title when tag subscription succeeded.
 #: actions/tagsub.php:132

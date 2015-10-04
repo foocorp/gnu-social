@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ciencisto Dementa <maliktunga@users.noreply.github.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-06-17 15:56+0000\n"
+"Last-Translator: Ciencisto Dementa <maliktunga@users.noreply.github.com>\n"
+"Language-Team: Ido (http://www.transifex.com/gnu-social/gnu-social/language/io/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: io\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title of administration panel.
+#: actions/bitlyadminpanel.php:53
+msgid "bit.ly URL shortening"
+msgstr "URL-plukurtigo per bit.ly"
+
+#. TRANS: Instructions for administration panel.
+#. TRANS: This message contains Markdown links in the form
+#. [decsription](link).
+#: actions/bitlyadminpanel.php:65
+msgid ""
+"URL shortening with bit.ly requires [a bit.ly account and API "
+"key](http://bit.ly/a/your_api_key). This verifies that this is an authorized"
+" account, and allow you to use bit.ly's tracking features and custom "
+"domains."
+msgstr "URL-plukurtigo per bit.ly bezonas [bit.ly-konto ed API-klefo](http://bit.ly/a/your_api_key). Lo verifikas ke la konto es permisita, e lo permisas a vu uzar la trako-funcioni e l'adresi personalizata di bit.ly."
+
+#. TRANS: Client error displayed when using too long a key.
+#: actions/bitlyadminpanel.php:131
+msgid "Invalid login. Maximum length is 255 characters."
+msgstr "Uzantonomo nevalida. La longeso maxima es de 255 signi."
+
+#. TRANS: Client error displayed when using too long a key.
+#: actions/bitlyadminpanel.php:138
+msgid "Invalid API key. Maximum length is 255 characters."
+msgstr "API-klefo nevalida. La longeso maxima es de 255 signi."
+
+#. TRANS: Fieldset legend in administration panel for bit.ly username and API
+#. key.
+#: actions/bitlyadminpanel.php:188
+msgctxt "LEGEND"
+msgid "Credentials"
+msgstr "Akredito"
+
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:197
+msgid "Leave these empty to use global default credentials."
+msgstr "Lasez ci vakua por uzar la blokala kustuma akredito."
+
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:201
+msgid "If you leave these empty, bit.ly will be unavailable to users."
+msgstr "Se vu lasas ici vakua, bit.ly esos nedisponebla al uzanti."
+
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:209
+msgid "Login name"
+msgstr "Identifikanto-nomo"
+
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:219
+msgid "API key"
+msgstr "API-klefo"
+
+#. TRANS: Button text to save setting in administration panel for bit.ly URL
+#. shortening.
+#: actions/bitlyadminpanel.php:238
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Konservar"
+
+#. TRANS: Button title to save setting in administration panel for bit.ly URL
+#. shortening.
+#: actions/bitlyadminpanel.php:242
+msgid "Save bit.ly settings"
+msgstr "Konservar la bit.ly-ajutsi"
+
+#. TRANS: Exception thrown when bit.ly URL shortening plugin was configured
+#. incorrectly.
+#: BitlyUrlPlugin.php:47
+msgid "You must specify a serviceUrl for bit.ly URL shortening."
+msgstr "Vu mustas specigar serviceUrl por l'URL-plukurtigo per bit.ly."
+
+#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for
+#. example "bit.ly").
+#: BitlyUrlPlugin.php:156
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr "Lu uzas <a href=\"http://%1$s/\">%1$s</a> kom URL-plukurtiganta servado."
+
+#. TRANS: Menu item in administration menus for bit.ly URL shortening
+#. settings.
+#: BitlyUrlPlugin.php:198
+msgid "bit.ly"
+msgstr "bit.ly"
+
+#. TRANS: Title for menu item in administration menus for bit.ly URL
+#. shortening settings.
+#: BitlyUrlPlugin.php:200
+msgid "bit.ly URL shortening."
+msgstr "URL-plukurtigo per bit.ly"
