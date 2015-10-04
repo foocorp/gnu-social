@@ -50,6 +50,10 @@ class FeedSubNoFeedException extends FeedSubException
 {
 }
 
+class FeedSubNoSalmonException extends FeedSubException
+{
+}
+
 class FeedSubBadXmlException extends FeedSubException
 {
 }
