@@ -243,8 +243,8 @@ class Magicsig extends Managed_DataObject
      * Fill out $this->privateKey or $this->publicKey with a Crypt_RSA object
      * representing the give key (as mod/exponent pair).
      *
-     * @param string $mod base64-encoded
-     * @param string $exp base64-encoded exponent
+     * @param string $mod base64url-encoded
+     * @param string $exp base64url-encoded exponent
      * @param string $type one of 'public' or 'private'
      */
     public function loadKey($mod, $exp, $type = 'public')
@@ -261,6 +261,15 @@ class Magicsig extends Managed_DataObject
         } else {
             $this->publicKey = $rsa;
         }
+    }
+
+    public function loadPublicKeyPKCS1($key)
+    {
+        $rsa = new Crypt_RSA();
+        if (!$rsa->setPublicKey($key, CRYPT_RSA_PUBLIC_FORMAT_PKCS1)) {
+            throw new ServerException('Could not load PKCS1 public key. We probably got this from a remote Diaspora node as the profile public key.');
+        }
+        $this->publicKey = $rsa;
     }
 
     /**
