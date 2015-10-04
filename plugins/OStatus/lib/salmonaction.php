@@ -277,7 +277,7 @@ class SalmonAction extends Action
     function saveNotice()
     {
         if (!$this->oprofile instanceof Ostatus_profile) {
-            common_debug('Ostatus_profile missing in ' . get_class(). ' profile: '.var_export($this->profile));
+            common_debug('Ostatus_profile missing in ' . get_class(). ' profile: '.var_export($this->profile, true));
         }
         return $this->oprofile->processPost($this->activity, 'salmon');
     }
