@@ -1557,13 +1557,23 @@ function common_root_url($ssl=false)
 }
 
 /**
+ * returns $bytes bytes of raw random data
+ */
+function common_random_rawstr($bytes)
+{
+    $rawstr = @file_exists('/dev/urandom')
+            ? common_urandom($bytes)
+            : common_mtrand($bytes);
+
+    return $rawstr;
+}
+
+/**
  * returns $bytes bytes of random data as a hexadecimal string
  */
 function common_random_hexstr($bytes)
 {
-    $str = @file_exists('/dev/urandom')
-            ? common_urandom($bytes)
-            : common_mtrand($bytes);
+    $str = common_random_rawstr($bytes);
 
     $hexstr = '';
     for ($i = 0; $i < $bytes; $i++) {

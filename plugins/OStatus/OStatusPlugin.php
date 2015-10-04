@@ -1352,9 +1352,9 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
-    public function onSalmonSlap($endpoint_uri, MagicEnvelope $magic_env)
+    public function onSalmonSlap($endpoint_uri, MagicEnvelope $magic_env, Profile $target=null)
     {
-        $envxml = $magic_env->toXML();
+        $envxml = $magic_env->toXML($target);
 
         $headers = array('Content-Type: application/magic-envelope+xml');
 

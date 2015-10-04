@@ -205,10 +205,10 @@ class MagicEnvelope
      *
      * @return string representation of XML document
      */
-    public function toXML($flavour=null) {
+    public function toXML(Profile $target=null, $flavour=null) {
         $xs = new XMLStringer();
         $xs->startXML();    // header, to point out it's not HTML or anything...
-        if (Event::handle('StartMagicEnvelopeToXML', array($this, $xs, $flavour))) {
+        if (Event::handle('StartMagicEnvelopeToXML', array($this, $xs, $flavour, $target))) {
             // fall back to our default, normal Magic Envelope XML.
             // the $xs element _may_ have had elements added, or could get in the end event
             $xs->elementStart('me:env', array('xmlns:me' => self::NS));
@@ -218,7 +218,7 @@ class MagicEnvelope
             $xs->element('me:sig', null, $this->getSignature());
             $xs->elementEnd('me:env');
 
-            Event::handle('EndMagicEnvelopeToXML', array($this, $xs, $flavour));
+            Event::handle('EndMagicEnvelopeToXML', array($this, $xs, $flavour, $target));
         }
         return $xs->getString();
     }
@@ -266,12 +266,20 @@ class MagicEnvelope
 
     public function getSignature()
     {
+        if (empty($this->sig)) {
+            throw new ServerException('You must first call signMessage before getSignature');
+        }
         return $this->sig;
     }
 
     public function getSignatureAlgorithm()
     {
         return $this->alg;
+    }
+
+    public function getData()
+    {
+        return $this->data;
     }
 
     public function getDataType()
