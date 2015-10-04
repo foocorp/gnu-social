@@ -206,11 +206,11 @@ class MagicEnvelope
      * @return string representation of XML document
      */
     public function toXML($flavour=null) {
-        $xml = null;
-        if (Event::handle('MagicEnvelopeToXML', array($this, $flavour, &$xml))) {
+        $xs = new XMLStringer();
+        $xs->startXML();    // header, to point out it's not HTML or anything...
+        if (Event::handle('StartMagicEnvelopeToXML', array($this, $xs, $flavour))) {
             // fall back to our default, normal Magic Envelope XML.
-            $xs = new XMLStringer();
-            $xs->startXML();
+            // the $xs element _may_ have had elements added, or could get in the end event
             $xs->elementStart('me:env', array('xmlns:me' => self::NS));
             $xs->element('me:data', array('type' => $this->data_type), $this->data);
             $xs->element('me:encoding', null, $this->encoding);
@@ -218,12 +218,9 @@ class MagicEnvelope
             $xs->element('me:sig', null, $this->getSignature());
             $xs->elementEnd('me:env');
 
-            $xml = $xs->getString();
+            Event::handle('EndMagicEnvelopeToXML', array($this, $xs, $flavour));
         }
-        if (is_null($xml)) {
-            throw new ServerException('No Magic Envelope XML string was created.');
-        }
-        return $xml;
+        return $xs->getString();
     }
 
     /*
