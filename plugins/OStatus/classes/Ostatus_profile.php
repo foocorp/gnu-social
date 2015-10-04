@@ -345,7 +345,7 @@ class Ostatus_profile extends Managed_DataObject
         $xml = $entry->getString();
         common_log(LOG_INFO, "Posting to Salmon endpoint $this->salmonuri: $xml");
 
-        Salmon::post($this->salmonuri, $xml, $actor->getUser());
+        Salmon::post($this->salmonuri, $xml, $actor);
     }
 
     /**
@@ -359,7 +359,7 @@ class Ostatus_profile extends Managed_DataObject
     public function notifyActivity($entry, Profile $actor)
     {
         if ($this->salmonuri) {
-            return Salmon::post($this->salmonuri, $this->notifyPrepXml($entry), $actor->getUser());
+            return Salmon::post($this->salmonuri, $this->notifyPrepXml($entry), $actor, $this->localProfile());
         }
         common_debug(__CLASS__.' error: No salmonuri for Ostatus_profile uri: '.$this->uri);
 
@@ -378,7 +378,8 @@ class Ostatus_profile extends Managed_DataObject
         if ($this->salmonuri) {
             $data = array('salmonuri' => $this->salmonuri,
                           'entry' => $this->notifyPrepXml($entry),
-                          'actor' => $actor->id);
+                          'actor' => $actor->getID(),
+                          'target' => $this->localProfile()->getID());
 
             $qm = QueueManager::get();
             return $qm->enqueue($data, 'salmon');
