@@ -144,7 +144,7 @@ class Profile extends Managed_DataObject
     public function hasPassword()
     {
         try {
-            return !empty($this->getUser()->hasPassword());
+            return $this->getUser()->hasPassword();
         } catch (NoSuchUserException $e) {
             return false;
         }
