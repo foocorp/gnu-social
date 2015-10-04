@@ -56,6 +56,29 @@ class DiasporaPlugin extends Plugin
                                     strtolower($magicsig->toFingerprint()));
     }
 
+    public function onMagicsigPublicKeyFromXRD(XML_XRD $xrd, &$pubkey)
+    {
+        // See if we have a Diaspora public key in the XRD response
+        $link = $xrd->get(self::REL_PUBLIC_KEY, 'RSA');
+        if (!is_null($link)) {
+            // If we do, decode it so we have the PKCS1 format (starts with -----BEGIN PUBLIC KEY-----)
+            $pkcs1 = base64_decode($link->href);
+            $magicsig = new Magicsig(Magicsig::DEFAULT_SIGALG); // Diaspora uses RSA-SHA256 (we do too)
+            try {
+                // Try to load the public key so we can get it in the standard Magic signature format
+                $magicsig->loadPublicKeyPKCS1($pkcs1);
+                // We found it and will now store it in $pubkey in a proper format!
+                // This is how it would be found in a well implemented XRD according to the standard.
+                $pubkey = 'data:application/magic-public-key,'.$magicsig->toString();
+                common_debug('magic-public-key found in diaspora-public-key: '.$pubkey);
+                return false;
+            } catch (ServerException $e) {
+                common_log(LOG_WARNING, $e->getMessage());
+            }
+        }
+        return true;
+    }
+
     public function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Diaspora',
@@ -144,6 +167,7 @@ class DiasporaPlugin extends Plugin
          * Encrypt the “outer aes key bundle” with Bob’s RSA public key.
          * I shall refer to this as the “encrypted outer aes key bundle”.
          */
+        common_debug('Diaspora creating "outer aes key bundle", will require magic-public-key');
         $key_fetcher = new MagicEnvelope();
         $remote_keys = $key_fetcher->getKeyPair($target, true); // actually just gets the public key
         $enc_outer = $remote_keys->publicKey->encrypt($outer_bundle);
@@ -216,7 +240,7 @@ class DiasporaPlugin extends Plugin
         // 202 Accepted is what we get from Diaspora for example
         if (!in_array($response->getStatus(), array(200, 202))) {
             common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
-                                $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
+                                $magic_env->getActor()->getID(), $endpoint_uri, $response->getStatus(), $response->getBody()));
             return true;
         }
 

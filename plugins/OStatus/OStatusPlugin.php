@@ -1381,7 +1381,7 @@ class OStatusPlugin extends Plugin
             return false;
         }
         if ($response->getStatus() === 422) {
-            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. We assume it is a Diaspora seed, will adapt and try again if that plugin is enabled!'));
+            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. We assume it is a Diaspora seed; will adapt and try again if that plugin is enabled!', $magic_env->getActor()->getID(), $endpoint_uri, $response->getStatus()));
             return true;
         }
 
@@ -1389,7 +1389,7 @@ class OStatusPlugin extends Plugin
         // 202 Accepted is what we get from Diaspora for example
         if (!in_array($response->getStatus(), array(200, 202))) {
             common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
-                                $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
+                                $magic_env->getActor()->getID(), $endpoint_uri, $response->getStatus(), $response->getBody()));
             return true;
         }
 

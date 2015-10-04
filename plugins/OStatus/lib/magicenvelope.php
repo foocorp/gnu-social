@@ -78,14 +78,16 @@ class MagicEnvelope
      * @param boolean $discovery    Network discovery if no local cache?
      */
     public function getKeyPair(Profile $profile, $discovery=false) {
-        $magicsig = Magicsig::getKV('user_id', $profile->id);
+        if (!$profile->isLocal()) common_debug('Getting magic-public-key for non-local profile id=='.$profile->getID());
+        $magicsig = Magicsig::getKV('user_id', $profile->getID());
 
         if ($discovery && !$magicsig instanceof Magicsig) {
+            if (!$profile->isLocal()) common_debug('magic-public-key not found, will do discovery for profile id=='.$profile->getID());
             // Throws exception on failure, but does not try to _load_ the keypair string.
             $keypair = $this->discoverKeyPair($profile);
 
             $magicsig = new Magicsig();
-            $magicsig->user_id = $profile->id;
+            $magicsig->user_id = $profile->getID();
             $magicsig->importKeys($keypair);
             // save the public key for this profile in our database.
             // TODO: If the profile generates a new key remotely, we must be able to replace
@@ -113,28 +115,41 @@ class MagicEnvelope
     {
         $signer_uri = $profile->getUri();
         if (empty($signer_uri)) {
-            throw new ServerException(sprintf('Profile missing URI (id==%d)', $profile->id));
+            throw new ServerException(sprintf('Profile missing URI (id==%d)', $profile->getID()));
         }
 
         $disco = new Discovery();
 
         // Throws exception on lookup problems
-        $xrd = $disco->lookup($signer_uri);
+        try {
+            $xrd = $disco->lookup($signer_uri);
+        } catch (Exception $e) {
+            // Diaspora seems to require us to request the acct: uri
+            $xrd = $disco->lookup($profile->getAcctUri());
+        }
 
-        $link = $xrd->get(Magicsig::PUBLICKEYREL);
-        if (is_null($link)) {
-            // TRANS: Exception.
-            throw new Exception(_m('Unable to locate signer public key.'));
+        common_debug('Will try to find magic-public-key from XRD of profile id=='.$profile->getID());
+        $pubkey = null;
+        if (Event::handle('MagicsigPublicKeyFromXRD', array($xrd, &$pubkey))) {
+            $link = $xrd->get(Magicsig::PUBLICKEYREL);
+            if (is_null($link)) {
+                // TRANS: Exception.
+                throw new Exception(_m('Unable to locate signer public key.'));
+            }
+            $pubkey = $link->href;
+        }
+        if (empty($pubkey)) {
+            throw new ServerException('Empty Magicsig public key. A bug?');
         }
 
         // We have a public key element, let's hope it has proper key data.
         $keypair = false;
-        $parts = explode(',', $link->href);
+        $parts = explode(',', $pubkey);
         if (count($parts) == 2) {
             $keypair = $parts[1];
         } else {
             // Backwards compatibility check for separator bug in 0.9.0
-            $parts = explode(';', $link->href);
+            $parts = explode(';', $pubkey);
             if (count($parts) == 2) {
                 $keypair = $parts[1];
             }
