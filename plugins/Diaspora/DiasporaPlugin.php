@@ -104,12 +104,13 @@ class DiasporaPlugin extends Plugin
 
         /**
          * https://wiki.diasporafoundation.org/Federation_protocol_overview
+         * http://www.rubydoc.info/github/Raven24/diaspora-federation/master/DiasporaFederation/Salmon/EncryptedSlap
          *
          * Constructing the encryption header
          */
 
-        // For some reason it's supposed to be inside an <atom:entry>
-        $xs->elementStart('entry', array('xmlns'=>'http://www.w3.org/2005/Atom'));
+        // For some reason diaspora wants the salmon slap in a <diaspora> header.
+        $xs->elementStart('diaspora', array('xmlns'=>'https://joindiaspora.com/protocol'));
 
         /**
          * Choose an AES key and initialization vector, suitable for the
