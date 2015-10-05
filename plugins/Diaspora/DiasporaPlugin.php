@@ -204,6 +204,9 @@ class DiasporaPlugin extends Plugin
          * 2. Base64-encode the encrypted payload message.
          */
         $payload = $inner_key->encrypt($magic_env->getData());
+        //FIXME: This means we don't actually put an <atom:entry> in the payload,
+        // since Diaspora has its own update method! Silly me. Read up on:
+        // https://wiki.diasporafoundation.org/Federation_Message_Semantics
         $magic_env->signMessage(base64_encode($payload), 'application/xml');
 
 
