@@ -108,6 +108,9 @@ class DiasporaPlugin extends Plugin
          * Constructing the encryption header
          */
 
+        // For some reason it's supposed to be inside an <atom:entry>
+        $xs->elementStart('entry', array('xmlns'=>'http://www.w3.org/2005/Atom'));
+
         /**
          * Choose an AES key and initialization vector, suitable for the
          * aes-256-cbc cipher. I shall refer to this as the “inner key”
@@ -213,6 +216,8 @@ class DiasporaPlugin extends Plugin
         $xs->element('me:alg', null, $magic_env->getSignatureAlgorithm());
         $xs->element('me:sig', null, $magic_env->getSignature());
         $xs->elementEnd('me:env');
+
+        $xs->elementEnd('entry');
 
         return false;
     }
