@@ -30,8 +30,8 @@ class Deleted_notice extends Managed_DataObject
     public $profile_id;                      // int(4)   not_null
     public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $act_uri;                         // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
+    public $act_created;                     // datetime()   not_null
     public $created;                         // datetime()   not_null
-    public $deleted;                         // datetime()   not_null
 
     public static function schemaDef()
     {
