@@ -157,7 +157,7 @@ class EventPlugin extends MicroAppPlugin
             throw new Exception(_m('No end date for event.'));
         }
 
-        // dates are saved as UTC in database
+        // convert RFC3339 dates delivered in Activity Stream to MySQL DATETIME date format
         $start_time = new DateTime($dtstart->item(0)->nodeValue);
         $start_time->setTimezone(new DateTimeZone('UTC'));
         $start_time = $start_time->format('Y-m-d H:i:s');
