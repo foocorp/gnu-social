@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Miscellaneous settings actions
@@ -83,7 +81,7 @@ class UrlsettingsAction extends SettingsAction
      */
     function showContent()
     {
-        $user = common_current_user();
+        $user = $this->scoped->getUser();
 
         $this->elementStart('form', array('method' => 'post',
                                           'id' => 'form_settings_other',
@@ -154,31 +152,13 @@ class UrlsettingsAction extends SettingsAction
         $this->elementEnd('form');
     }
 
-    /**
-     * Handle a post
-     *
-     * Saves the changes to url-shortening prefs and shows a success or failure
-     * message.
-     *
-     * @return void
-     */
-    function handlePost()
+    protected function doPost()
     {
-        // CSRF protection
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            // TRANS: Client error displayed when the session token does not match or is not given.
-            $this->showForm(_('There was a problem with your session token. '.
-                              'Try again, please.'));
-            return;
-        }
-
         $urlshorteningservice = $this->trimmed('urlshorteningservice');
 
         if (!is_null($urlshorteningservice) && strlen($urlshorteningservice) > 50) {
             // TRANS: Form validation error for form "Other settings" in user profile.
-            $this->showForm(_('URL shortening service is too long (maximum 50 characters).'));
-            return;
+            throw new ClientException(_('URL shortening service is too long (maximum 50 characters).'));
         }
 
         $maxurllength = $this->trimmed('maxurllength');
@@ -195,9 +175,7 @@ class UrlsettingsAction extends SettingsAction
             throw new ClientException(_('Invalid number for maximum notice length.'));
         }
 
-        $user = common_current_user();
-
-        assert(!is_null($user)); // should already be checked
+        $user = $this->scoped->getUser();
 
         $user->query('BEGIN');
 
@@ -209,14 +187,15 @@ class UrlsettingsAction extends SettingsAction
 
         if ($result === false) {
             common_log_db_error($user, 'UPDATE', __FILE__);
+            $user->query('ROLLBACK');
             // TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-            $this->serverError(_('Could not update user.'));
+            throw new ServerException(_('Could not update user.'));
         }
 
         $prefs = User_urlshortener_prefs::getPrefs($user);
         $orig  = null;
 
-        if (empty($prefs)) {
+        if (!$prefs instanceof User_urlshortener_prefs) {
             $prefs = new User_urlshortener_prefs();
 
             $prefs->user_id = $user->id;
@@ -229,13 +208,14 @@ class UrlsettingsAction extends SettingsAction
         $prefs->maxurllength         = $maxurllength;
         $prefs->maxnoticelength      = $maxnoticelength;
 
-        if (!empty($orig)) {
+        if ($orig instanceof User_urlshortener_prefs) {
             $result = $prefs->update($orig);
         } else {
             $result = $prefs->insert();
         }
 
-        if (!$result) {
+        if ($result === null) {
+            $user->query('ROLLBACK');
             // TRANS: Server exception thrown in profile URL settings when preferences could not be saved.
             throw new ServerException(_('Error saving user URL shortening preferences.'));
         }
@@ -243,6 +223,6 @@ class UrlsettingsAction extends SettingsAction
         $user->query('COMMIT');
 
         // TRANS: Confirmation message after saving preferences.
-        $this->showForm(_('Preferences saved.'), true);
+        return _('Preferences saved.');
     }
 }

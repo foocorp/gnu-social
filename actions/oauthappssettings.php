@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR . '/lib/applicationlist.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Show a user's registered OAuth applications
@@ -47,19 +43,11 @@ require_once INSTALLDIR . '/lib/applicationlist.php';
 
 class OauthappssettingsAction extends SettingsAction
 {
-    var $page = 0;
+    protected $page = null;
 
-    function prepare($args)
+    protected function doPreparation()
     {
-        parent::prepare($args);
-        $this->page = ($this->arg('page')) ? ($this->arg('page') + 0) : 1;
-
-        if (!common_logged_in()) {
-            // TRANS: Message displayed to an anonymous user trying to view OAuth application list.
-            $this->clientError(_('You must be logged in to list your applications.'));
-        }
-
-        return true;
+        $this->page = $this->int('page') ?: 1;
     }
 
     /**
@@ -86,21 +74,13 @@ class OauthappssettingsAction extends SettingsAction
         return _('Applications you have registered');
     }
 
-    /**
-     * Content area of the page
-     *
-     * @return void
-     */
-
     function showContent()
     {
-        $user = common_current_user();
-
         $offset = ($this->page - 1) * APPS_PER_PAGE;
         $limit  =  APPS_PER_PAGE + 1;
 
         $application = new Oauth_application();
-        $application->owner = $user->id;
+        $application->owner = $this->scoped->getID();
         $application->whereAdd("name != 'anonymous'");
         $application->limit($offset, $limit);
         $application->orderBy('created DESC');
@@ -109,7 +89,7 @@ class OauthappssettingsAction extends SettingsAction
         $cnt = 0;
 
         if ($application) {
-            $al = new ApplicationList($application, $user, $this);
+            $al = new ApplicationList($application, $this->scoped, $this);
             $cnt = $al->show();
             if (0 == $cnt) {
                 $this->showEmptyListMessage();
@@ -135,34 +115,11 @@ class OauthappssettingsAction extends SettingsAction
 
     function showEmptyListMessage()
     {
-        // TRANS: Empty list message on page with OAuth applications.
+        // TRANS: Empty list message on page with OAuth applications. Markup allowed
         $message = sprintf(_('You have not registered any applications yet.'));
 
         $this->elementStart('div', 'guide');
         $this->raw(common_markup_to_html($message));
         $this->elementEnd('div');
-    }
-
-    /**
-     * Handle posts to this form
-     *
-     * Based on the button that was pressed, muxes out to other functions
-     * to do the actual task requested.
-     *
-     * All sub-functions reload the form with a message -- success or failure.
-     *
-     * @return void
-     */
-
-    function handlePost()
-    {
-        // CSRF protection
-
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-            $this->showForm(_('There was a problem with your session token. '.
-                              'Try again, please.'));
-            return;
-        }
     }
 }

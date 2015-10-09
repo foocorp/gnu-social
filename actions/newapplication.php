@@ -41,7 +41,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class NewApplicationAction extends FormAction
+class NewApplicationAction extends SettingsAction
 {
     function title()
     {
@@ -54,6 +54,7 @@ class NewApplicationAction extends FormAction
         if ($this->arg('cancel')) {
             common_redirect(common_local_url('oauthappssettings'), 303);
         } elseif ($this->arg('save')) {
+            //trySave will never return, just throw exception or redirect
             $this->trySave();
         }
 
@@ -72,7 +73,7 @@ class NewApplicationAction extends FormAction
         return _('Use this form to register a new application.');
     }
 
-    private function trySave()
+    protected function trySave()
     {
         $name         = $this->trimmed('name');
         $description  = $this->trimmed('description');
@@ -137,7 +138,7 @@ class NewApplicationAction extends FormAction
         $app->query('BEGIN');
 
         $app->name         = $name;
-        $app->owner        = $this->scoped->id;
+        $app->owner        = $this->scoped->getID();
         $app->description  = $description;
         $app->source_url   = $source_url;
         $app->organization = $organization;

@@ -244,7 +244,7 @@ class Activity
 
         if (!empty($targetEl)) {
             $this->target = new ActivityObject($targetEl);
-        } elseif (ActivityUtils::compareTypes($this->verb, array(ActivityVerb::FAVORITE))) {
+        } elseif (ActivityUtils::compareVerbs($this->verb, array(ActivityVerb::FAVORITE))) {
             // StatusNet didn't send a 'target' for their Favorite atom entries
             $this->target = clone($this->objects[0]);
         }

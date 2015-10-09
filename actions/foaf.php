@@ -17,24 +17,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 define('LISTENER', 1);
 define('LISTENEE', -1);
 define('BOTH', 0);
 
 // @todo XXX: Documentation missing.
-class FoafAction extends Action
+class FoafAction extends ManagedAction
 {
     function isReadOnly($args)
     {
         return true;
     }
 
-    function prepare($args)
+    protected function doPreparation()
     {
-        parent::prepare($args);
-
         $nickname_arg = $this->arg('nickname');
 
         if (empty($nickname_arg)) {
@@ -69,10 +67,8 @@ class FoafAction extends Action
         return true;
     }
 
-    function handle($args)
+    public function showPage()
     {
-        parent::handle($args);
-
         header('Content-Type: application/rdf+xml');
 
         $this->startXML();

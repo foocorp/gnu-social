@@ -83,6 +83,20 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
+    public function onAutoload($cls)
+    {
+        switch ($cls) {
+        case 'Crypt_AES':
+        case 'Crypt_RSA':
+            // Crypt_AES becomes Crypt/AES.php which is found in extlib/phpseclib/
+            // which has been added to our include_path before
+            require_once str_replace('_', '/', $cls) . '.php';
+            return false;
+        }
+
+        return parent::onAutoload($cls);
+    }
+
     /**
      * Set up queue handlers for outgoing hub pushes
      * @param QueueManager $qm
@@ -1063,8 +1077,12 @@ class OStatusPlugin extends Plugin
 
     function showEntityRemoteSubscribe($action, $target='ostatussub')
     {
-        $user = common_current_user();
-        if ($user && ($user->id == $action->profile->id)) {
+        if (!$action->getScoped() instanceof Profile) {
+            // early return if we're not logged in
+            return true;
+        }
+
+        if ($action->getScoped()->sameAs($action->getTarget())) {
             $action->elementStart('div', 'entity_actions');
             $action->elementStart('p', array('id' => 'entity_remote_subscribe',
                                              'class' => 'entity_subscribe'));
@@ -1127,41 +1145,44 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
-    function onStartProfileListItemActionElements($item, $profile=null)
+    // FIXME: This one can accept both an Action and a Widget. Confusing! Refactor to (HTMLOutputter $out, Profile $target)!
+    function onStartProfileListItemActionElements($item)
     {
-        if (!common_logged_in()) {
-
-            $profileUser = User::getKV('id', $item->profile->id);
-
-            if (!empty($profileUser)) {
-
-                if ($item instanceof Action) {
-                    $output = $item;
-                    $profile = $item->profile;
-                } else {
-                    $output = $item->out;
-                }
-
-                // Add an OStatus subscribe
-                $output->elementStart('li', 'entity_subscribe');
-                $url = common_local_url('ostatusinit',
-                                        array('nickname' => $profileUser->nickname));
-                $output->element('a', array('href' => $url,
-                                            'class' => 'entity_remote_subscribe'),
-                                  // TRANS: Link text for a user to subscribe to an OStatus user.
-                                 _m('Subscribe'));
-                $output->elementEnd('li');
-
-                $output->elementStart('li', 'entity_tag');
-                $url = common_local_url('ostatustag',
-                                        array('nickname' => $profileUser->nickname));
-                $output->element('a', array('href' => $url,
-                                            'class' => 'entity_remote_tag'),
-                                  // TRANS: Link text for a user to list an OStatus user.
-                                 _m('List'));
-                $output->elementEnd('li');
-            }
+        if (common_logged_in()) {
+            // only non-logged in users get to see the "remote subscribe" form
+            return true;
+        } elseif (!$item->getTarget()->isLocal()) {
+            // we can (for now) only provide remote subscribe forms for local users
+            return true;
         }
+
+        if ($item instanceof ProfileAction) {
+            $output = $item;
+        } elseif ($item instanceof Widget) {
+            $output = $item->out;
+        } else {
+            // Bad $item class, don't know how to use this for outputting!
+            throw new ServerException('Bad item type for onStartProfileListItemActionElements');
+        }
+
+        // Add an OStatus subscribe
+        $output->elementStart('li', 'entity_subscribe');
+        $url = common_local_url('ostatusinit',
+                                array('nickname' => $item->getTarget()->getNickname()));
+        $output->element('a', array('href' => $url,
+                                    'class' => 'entity_remote_subscribe'),
+                          // TRANS: Link text for a user to subscribe to an OStatus user.
+                         _m('Subscribe'));
+        $output->elementEnd('li');
+
+        $output->elementStart('li', 'entity_tag');
+        $url = common_local_url('ostatustag',
+                                array('nickname' => $item->getTarget()->getNickname()));
+        $output->element('a', array('href' => $url,
+                                    'class' => 'entity_remote_tag'),
+                          // TRANS: Link text for a user to list an OStatus user.
+                         _m('List'));
+        $output->elementEnd('li');
 
         return true;
     }
@@ -1343,5 +1364,36 @@ class OStatusPlugin extends Plugin
             $magicsig->delete();
         }
         return true;
+    }
+
+    public function onSalmonSlap($endpoint_uri, MagicEnvelope $magic_env, Profile $target=null)
+    {
+        $envxml = $magic_env->toXML($target);
+
+        $headers = array('Content-Type: application/magic-envelope+xml');
+
+        try {
+            $client = new HTTPClient();
+            $client->setBody($envxml);
+            $response = $client->post($endpoint_uri, $headers);
+        } catch (HTTP_Request2_Exception $e) {
+            common_log(LOG_ERR, "Salmon post to $endpoint_uri failed: " . $e->getMessage());
+            return false;
+        }
+        if ($response->getStatus() === 422) {
+            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. We assume it is a Diaspora seed; will adapt and try again if that plugin is enabled!', $magic_env->getActor()->getID(), $endpoint_uri, $response->getStatus()));
+            return true;
+        }
+
+        // 200 OK is the best response
+        // 202 Accepted is what we get from Diaspora for example
+        if (!in_array($response->getStatus(), array(200, 202))) {
+            common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
+                                $magic_env->getActor()->getID(), $endpoint_uri, $response->getStatus(), $response->getBody()));
+            return true;
+        }
+
+        // Since we completed the salmon slap, we discontinue the event
+        return false;
     }
 }

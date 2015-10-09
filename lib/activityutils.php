@@ -281,19 +281,20 @@ class ActivityUtils
     static function validateUri($uri)
     {
         // Check mailto: URIs first
+        $validate = new Validate();
 
         if (preg_match('/^mailto:(.*)$/', $uri, $match)) {
-            return Validate::email($match[1], common_config('email', 'check_domain'));
+            return $validate->email($match[1], common_config('email', 'check_domain'));
         }
 
-        if (Validate::uri($uri)) {
+        if ($validate->uri($uri)) {
             return true;
         }
 
         // Possibly an upstream bug; tag: URIs aren't validated properly
         // unless you explicitly ask for them. All other schemes are accepted
         // for basic URI validation without asking.
-        if (Validate::uri($uri, array('allowed_scheme' => array('tag')))) {
+        if ($validate->uri($uri, array('allowed_scheme' => array('tag')))) {
             return true;
         }
 
@@ -347,7 +348,7 @@ class ActivityUtils
         return null;
     }
 
-    static function compareTypes($type, $objects)    // this does verbs too!
+    static function compareTypes($type, $objects)
     {
         $type = self::resolveUri($type);
         foreach ((array)$objects as $object) {
@@ -356,6 +357,11 @@ class ActivityUtils
             }
         }
         return false;
+    }
+
+    static function compareVerbs($type, $objects)
+    {
+        return self::compareTypes($type, $objects);
     }
 
     static function resolveUri($uri, $make_relative=false)

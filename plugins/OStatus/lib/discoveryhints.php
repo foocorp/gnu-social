@@ -24,28 +24,31 @@ class DiscoveryHints {
     {
         $hints = array();
 
-        foreach ($xrd->links as $link) {
-            switch ($link->rel) {
-            case WebFingerResource_Profile::PROFILEPAGE:
-                $hints['profileurl'] = $link->href;
-                break;
-            case Salmon::REL_SALMON:
-            case Salmon::NS_MENTIONS:   // XXX: deprecated, remove in the future
-            case Salmon::NS_REPLIES:    // XXX: deprecated, remove in the future
-                $hints['salmon'] = $link->href;
-                break;
-            case Discovery::UPDATESFROM:
-                if (empty($link->type) || $link->type == 'application/atom+xml') {
-                    $hints['feedurl'] = $link->href;
+        if (Event::handle('StartDiscoveryHintsFromXRD', array($xrd, &$hints))) {
+            foreach ($xrd->links as $link) {
+                switch ($link->rel) {
+                case WebFingerResource_Profile::PROFILEPAGE:
+                    $hints['profileurl'] = $link->href;
+                    break;
+                case Salmon::REL_SALMON:
+                case Salmon::NS_MENTIONS:   // XXX: deprecated, remove in the future
+                case Salmon::NS_REPLIES:    // XXX: deprecated, remove in the future
+                    $hints['salmon'] = $link->href;
+                    break;
+                case Discovery::UPDATESFROM:
+                    if (empty($link->type) || $link->type == 'application/atom+xml') {
+                        $hints['feedurl'] = $link->href;
+                    }
+                    break;
+                case Discovery::HCARD:
+                case Discovery::MF2_HCARD:
+                    $hints['hcard'] = $link->href;
+                    break;
+                default:
+                    break;
                 }
-                break;
-            case Discovery::HCARD:
-            case Discovery::MF2_HCARD:
-                $hints['hcard'] = $link->href;
-                break;
-            default:
-                break;
             }
+            Event::handle('EndDiscoveryHintsFromXRD', array($xrd, &$hints));
         }
 
         return $hints;

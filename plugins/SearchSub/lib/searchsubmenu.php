@@ -86,7 +86,7 @@ class SearchSubMenu extends MoreMenu
         return $items;
     } 
 
-    function item($actionName, $args, $label, $description, $id=null, $cls=null)
+    function item($actionName, array $args, $label, $description, $id=null, $cls=null)
     {
         if (empty($id)) {
             $id = $this->menuItemID($actionName, $args);

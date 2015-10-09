@@ -41,6 +41,7 @@ class LRDDPlugin extends Plugin
 
         return parent::onAutoload($cls);
     }
+
     public function onStartDiscoveryMethodRegistration(Discovery $disco) {
         $disco->registerMethod('LRDDMethod_WebFinger');
     }

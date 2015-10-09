@@ -308,11 +308,6 @@ class XmppPlugin extends ImPlugin
         return true;
     }
 
-    function microiduri($screenname)
-    {
-        return 'xmpp:' . $screenname;
-    }
-
     function sendMessage($screenname, $body)
     {
         $this->queuedConnection()->message($screenname, $body, 'chat');
@@ -355,6 +350,9 @@ class XmppPlugin extends ImPlugin
         } catch (InvalidUrlException $e) {
             $xs->text(sprintf(' => %s', $orig_profile->nickname));
         } catch (NoParentNoticeException $e) {
+            $xs->text(": ");
+        } catch (NoResultException $e) {
+            // Parent notice was probably deleted.
             $xs->text(": ");
         }
         if (!empty($notice->rendered)) {

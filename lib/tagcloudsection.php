@@ -115,11 +115,10 @@ class TagCloudSection extends Section
 
     function tagUrl($tag)
     {
-        if ('showstream' === $this->out->trimmed('action')) {
-            return common_local_url('showstream', array('nickname' => $this->out->profile->nickname, 'tag' => $tag));
-        } else {
-            return common_local_url('tag', array('tag' => $tag));
+        if ($this->out instanceof ShowstreamAction) {
+            return common_local_url('showstream', array('nickname' => $this->out->getTarget()->getNickname(), 'tag' => $tag));
         }
+        return common_local_url('tag', array('tag' => $tag));
     }
 
     function divId()

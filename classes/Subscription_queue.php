@@ -47,10 +47,10 @@ class Subscription_queue extends Managed_DataObject
         return $rq;
     }
 
-    public function exists(Profile $subscriber, Profile $other)
+    static function exists(Profile $subscriber, Profile $other)
     {
-        $sub = Subscription_queue::pkeyGet(array('subscriber' => $subscriber->id,
-                                                 'subscribed' => $other->id));
+        $sub = Subscription_queue::pkeyGet(array('subscriber' => $subscriber->getID(),
+                                                 'subscribed' => $other->getID()));
         return ($sub instanceof Subscription_queue);
     }
 

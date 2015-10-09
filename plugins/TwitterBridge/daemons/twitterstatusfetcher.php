@@ -128,6 +128,7 @@ class TwitterStatusFetcher extends ParallelizingDaemon
         return $flinks;
     }
 
+    // FIXME: make it so we can force a Foreign_link here without colliding with parent
     function childTask($flink) {
         // Each child ps needs its own DB connection
 
@@ -149,14 +150,8 @@ class TwitterStatusFetcher extends ParallelizingDaemon
         unset($_DB_DATAOBJECT['CONNECTIONS']);
     }
 
-    function getTimeline($flink, $timelineUri = 'home_timeline')
+    function getTimeline(Foreign_link $flink, $timelineUri = 'home_timeline')
     {
-        if (empty($flink)) {
-            common_log(LOG_ERR, $this->name() .
-                       " - Can't retrieve Foreign_link for foreign ID $fid");
-            return;
-        }
-
         common_log(LOG_DEBUG, $this->name() . ' - Trying to get ' . $timelineUri .
                    ' timeline for Twitter user ' . $flink->foreign_id);
 

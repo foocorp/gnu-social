@@ -99,8 +99,8 @@ class OembedPlugin extends Plugin
     {
         $fo = File_oembed::getKV('file_id', $file->id);
         if ($fo instanceof File_oembed) {
-            common_log(LOG_WARNING, "Strangely, a File_oembed object exists for new file $file_id", __FILE__);
-             return true;
+            common_log(LOG_WARNING, "Strangely, a File_oembed object exists for new file {$file->id}", __FILE__);
+            return true;
         }
 
         if (isset($redir_data['oembed']['json'])
@@ -173,10 +173,12 @@ class OembedPlugin extends Plugin
     
     public function onStartShowAttachmentRepresentation(HTMLOutputter $out, File $file)
     {
-        $oembed = File_oembed::getKV('file_id', $file->id);
-        if (empty($oembed->type)) {
+        try {
+            $oembed = File_oembed::getByFile($file);
+        } catch (NoResultException $e) {
             return true;
         }
+
         switch ($oembed->type) {
         case 'rich':
         case 'video':
@@ -209,14 +211,14 @@ class OembedPlugin extends Plugin
         }
 
         // All our remote Oembed images lack a local filename property in the File object
-        if ($file->filename !== null) {
+        if (!is_null($file->filename)) {
             return true;
         }
 
         try {
             // If we have proper oEmbed data, there should be an entry in the File_oembed
             // and File_thumbnail tables respectively. If not, we're not going to do anything.
-            $file_oembed = File_oembed::byFile($file);
+            $file_oembed = File_oembed::getByFile($file);
             $thumbnail   = File_thumbnail::byFile($file);
         } catch (Exception $e) {
             // Not Oembed data, or at least nothing we either can or want to use.
@@ -274,8 +276,8 @@ class OembedPlugin extends Plugin
             throw new UnsupportedMediaException(_('Image file had impossible geometry (0 width or height)'));
         }
 
-        // We'll trust sha256 not to have collision issues any time soon :)
-        $filename = hash('sha256', $imgData) . '.' . common_supported_mime_to_ext($info['mime']);
+        // We'll trust sha256 (File::FILEHASH_ALG) not to have collision issues any time soon :)
+        $filename = hash(File::FILEHASH_ALG, $imgData) . '.' . common_supported_mime_to_ext($info['mime']);
         $fullpath = File_thumbnail::path($filename);
         // Write the file to disk. Throw Exception on failure
         if (!file_exists($fullpath) && file_put_contents($fullpath, $imgData) === false) {

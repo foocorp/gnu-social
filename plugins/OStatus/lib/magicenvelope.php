@@ -32,6 +32,8 @@ class MagicEnvelope
 
     const NS = 'http://salmon-protocol.org/ns/magic-env';
 
+    protected $actor = null;    // Profile of user who has signed the envelope
+
     protected $data      = null;    // When stored here it is _always_ base64url encoded
     protected $data_type = null;
     protected $encoding  = null;
@@ -48,14 +50,23 @@ class MagicEnvelope
      * @fixme may give fatal errors if some elements are missing or invalid XML
      * @fixme calling DOMDocument::loadXML statically triggers warnings in strict mode
      */
-    public function __construct($xml=null) {
+    public function __construct($xml=null, Profile $actor=null) {
         if (!empty($xml)) {
-            $dom = DOMDocument::loadXML($xml);
-            if (!$dom instanceof DOMDocument) {
+            $dom = new DOMDocument();
+            if (!$dom->loadXML($xml)) {
                 throw new ServerException('Tried to load malformed XML as DOM');
             } elseif (!$this->fromDom($dom)) {
                 throw new ServerException('Could not load MagicEnvelope from DOM');
             }
+        } elseif ($actor instanceof Profile) {
+            // So far we only allow setting with _either_ $xml _or_ $actor as that's
+            // all our circumstances require. But it may be confusing for new developers.
+            // The idea is that feeding XML must be followed by interpretation and then
+            // running $magic_env->verify($profile), just as in SalmonAction->prepare(...)
+            // and supplying an $actor (which right now has to be a User) will require
+            // defining the $data, $data_type etc. attributes manually afterwards before
+            // signing the envelope..
+            $this->setActor($actor);
         }
     }
 
@@ -67,14 +78,16 @@ class MagicEnvelope
      * @param boolean $discovery    Network discovery if no local cache?
      */
     public function getKeyPair(Profile $profile, $discovery=false) {
-        $magicsig = Magicsig::getKV('user_id', $profile->id);
+        if (!$profile->isLocal()) common_debug('Getting magic-public-key for non-local profile id=='.$profile->getID());
+        $magicsig = Magicsig::getKV('user_id', $profile->getID());
 
         if ($discovery && !$magicsig instanceof Magicsig) {
+            if (!$profile->isLocal()) common_debug('magic-public-key not found, will do discovery for profile id=='.$profile->getID());
             // Throws exception on failure, but does not try to _load_ the keypair string.
             $keypair = $this->discoverKeyPair($profile);
 
             $magicsig = new Magicsig();
-            $magicsig->user_id = $profile->id;
+            $magicsig->user_id = $profile->getID();
             $magicsig->importKeys($keypair);
             // save the public key for this profile in our database.
             // TODO: If the profile generates a new key remotely, we must be able to replace
@@ -102,28 +115,41 @@ class MagicEnvelope
     {
         $signer_uri = $profile->getUri();
         if (empty($signer_uri)) {
-            throw new ServerException(sprintf('Profile missing URI (id==%d)', $profile->id));
+            throw new ServerException(sprintf('Profile missing URI (id==%d)', $profile->getID()));
         }
 
         $disco = new Discovery();
 
         // Throws exception on lookup problems
-        $xrd = $disco->lookup($signer_uri);
+        try {
+            $xrd = $disco->lookup($signer_uri);
+        } catch (Exception $e) {
+            // Diaspora seems to require us to request the acct: uri
+            $xrd = $disco->lookup($profile->getAcctUri());
+        }
 
-        $link = $xrd->get(Magicsig::PUBLICKEYREL);
-        if (is_null($link)) {
-            // TRANS: Exception.
-            throw new Exception(_m('Unable to locate signer public key.'));
+        common_debug('Will try to find magic-public-key from XRD of profile id=='.$profile->getID());
+        $pubkey = null;
+        if (Event::handle('MagicsigPublicKeyFromXRD', array($xrd, &$pubkey))) {
+            $link = $xrd->get(Magicsig::PUBLICKEYREL);
+            if (is_null($link)) {
+                // TRANS: Exception.
+                throw new Exception(_m('Unable to locate signer public key.'));
+            }
+            $pubkey = $link->href;
+        }
+        if (empty($pubkey)) {
+            throw new ServerException('Empty Magicsig public key. A bug?');
         }
 
         // We have a public key element, let's hope it has proper key data.
         $keypair = false;
-        $parts = explode(',', $link->href);
+        $parts = explode(',', $pubkey);
         if (count($parts) == 2) {
             $keypair = $parts[1];
         } else {
             // Backwards compatibility check for separator bug in 0.9.0
-            $parts = explode(';', $link->href);
+            $parts = explode(';', $pubkey);
             if (count($parts) == 2) {
                 $keypair = $parts[1];
             }
@@ -162,8 +188,21 @@ class MagicEnvelope
      *
      * @throws Exception of various kinds on signing failure
      */
-    public function signMessage($text, $mimetype, Magicsig $magicsig)
+    public function signMessage($text, $mimetype)
     {
+        if (!$this->actor instanceof Profile) {
+            throw new ServerException('No profile to sign message with is set.');
+        } elseif (!$this->actor->isLocal()) {
+            throw new ServerException('Cannot sign magic envelopes with remote users since we have no private key.');
+        }
+
+        // Find already stored key
+        $magicsig = Magicsig::getKV('user_id', $this->actor->getID());
+        if (!$magicsig instanceof Magicsig) {
+            // and if it doesn't exist, it is time to create one!
+            $magicsig = Magicsig::generate($this->actor->getUser());
+        }
+        assert($magicsig instanceof Magicsig);
         assert($magicsig->privateKey instanceof Crypt_RSA);
 
         // Prepare text and metadata for signing
@@ -181,18 +220,22 @@ class MagicEnvelope
      *
      * @return string representation of XML document
      */
-    public function toXML() {
+    public function toXML(Profile $target=null, $flavour=null) {
         $xs = new XMLStringer();
-        $xs->startXML();
-        $xs->elementStart('me:env', array('xmlns:me' => self::NS));
-        $xs->element('me:data', array('type' => $this->data_type), $this->data);
-        $xs->element('me:encoding', null, $this->encoding);
-        $xs->element('me:alg', null, $this->alg);
-        $xs->element('me:sig', null, $this->getSignature());
-        $xs->elementEnd('me:env');
+        $xs->startXML();    // header, to point out it's not HTML or anything...
+        if (Event::handle('StartMagicEnvelopeToXML', array($this, $xs, $flavour, $target))) {
+            // fall back to our default, normal Magic Envelope XML.
+            // the $xs element _may_ have had elements added, or could get in the end event
+            $xs->elementStart('me:env', array('xmlns:me' => self::NS));
+            $xs->element('me:data', array('type' => $this->data_type), $this->data);
+            $xs->element('me:encoding', null, $this->encoding);
+            $xs->element('me:alg', null, $this->alg);
+            $xs->element('me:sig', null, $this->getSignature());
+            $xs->elementEnd('me:env');
 
-        $string =  $xs->getString();
-        return $string;
+            Event::handle('EndMagicEnvelopeToXML', array($this, $xs, $flavour, $target));
+        }
+        return $xs->getString();
     }
 
     /*
@@ -238,7 +281,30 @@ class MagicEnvelope
 
     public function getSignature()
     {
+        if (empty($this->sig)) {
+            throw new ServerException('You must first call signMessage before getSignature');
+        }
         return $this->sig;
+    }
+
+    public function getSignatureAlgorithm()
+    {
+        return $this->alg;
+    }
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function getDataType()
+    {
+        return $this->data_type;
+    }
+
+    public function getEncoding()
+    {
+        return $this->encoding;
     }
 
     /**
@@ -290,7 +356,12 @@ class MagicEnvelope
             return false;
         }
 
-        return $magicsig->verify($this->signingText(), $this->getSignature());
+        if (!$magicsig->verify($this->signingText(), $this->getSignature())) {
+            // TRANS: Client error when incoming salmon slap signature does not verify cryptographically.
+            throw new ClientException(_m('Salmon signature verification failed.'));
+        }
+        $this->setActor($profile);
+        return true;
     }
 
     /**
@@ -323,6 +394,22 @@ class MagicEnvelope
         return true;
     }
 
+    public function setActor(Profile $actor)
+    {
+        if ($this->actor instanceof Profile) {
+            throw new ServerException('Cannot set a new actor profile for MagicEnvelope object.');
+        }
+        $this->actor = $actor;
+    }
+
+    public function getActor()
+    {
+        if (!$this->actor instanceof Profile) {
+            throw new ServerException('No actor set for this magic envelope.');
+        }
+        return $this->actor;
+    }
+
     /**
      * Encode the given string as a signed MagicEnvelope XML document,
      * using the keypair for the given local user profile. We can of
@@ -342,16 +429,8 @@ class MagicEnvelope
      */
     public static function signAsUser($text, User $user)
     {
-        // Find already stored key
-        $magicsig = Magicsig::getKV('user_id', $user->id);
-        if (!$magicsig instanceof Magicsig) {
-            $magicsig = Magicsig::generate($user);
-        }
-        assert($magicsig instanceof Magicsig);
-        assert($magicsig->privateKey instanceof Crypt_RSA);
-
-        $magic_env = new MagicEnvelope();
-        $magic_env->signMessage($text, 'application/atom+xml', $magicsig);
+        $magic_env = new MagicEnvelope(null, $user->getProfile());
+        $magic_env->signMessage($text, 'application/atom+xml');
 
         return $magic_env;
     }

@@ -23,7 +23,7 @@ define('GNUSOCIAL_ENGINE', 'GNU social');
 define('GNUSOCIAL_ENGINE_URL', 'https://www.gnu.org/software/social/');
 
 define('GNUSOCIAL_BASE_VERSION', '1.2.0');
-define('GNUSOCIAL_LIFECYCLE', 'alpha1'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
+define('GNUSOCIAL_LIFECYCLE', 'beta1'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
 
 define('GNUSOCIAL_VERSION', GNUSOCIAL_BASE_VERSION . '-' . GNUSOCIAL_LIFECYCLE);
 
@@ -37,6 +37,8 @@ define('NOTICES_PER_PAGE', 20);
 define('PROFILES_PER_PAGE', 20);
 define('MESSAGES_PER_PAGE', 20);
 define('GROUPS_PER_PAGE', 20);
+define('APPS_PER_PAGE', 20);
+define('PEOPLETAGS_PER_PAGE', 20);
 
 define('GROUPS_PER_MINILIST', 8);
 define('PROFILES_PER_MINILIST', 8);
@@ -136,9 +138,18 @@ spl_autoload_register('GNUsocial_class_autoload');
  * and is available here: http://www.php-fig.org/psr/psr-0/
 */
 spl_autoload_register(function($class){
-    $file = INSTALLDIR.'/extlib/'.preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
+    $class_path = preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
+    $file = INSTALLDIR.'/extlib/'.$class_path;
     if (file_exists($file)) {
         require_once $file;
+        return;
+    }
+
+    # Try if the system has this external library
+    $file = '/usr/share/php/'.$class_path;
+    if (file_exists($file)) {
+        require_once $file;
+        return;
     }
 });
 

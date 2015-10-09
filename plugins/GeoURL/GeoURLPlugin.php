@@ -57,25 +57,27 @@ class GeoURLPlugin extends Plugin
      *
      * @return boolean event handler flag
      */
-    function onEndShowHeadElements($action)
+    function onEndShowHeadElements(Action $action)
     {
         $name = $action->trimmed('action');
 
         $location = null;
 
-        if ($name == 'showstream') {
-            $profile = $action->profile;
-            if (!empty($profile) && !empty($profile->lat) && !empty($profile->lon)) {
+        if ($action instanceof ShowstreamAction) {
+            $profile = $action->getTarget();
+            if (!empty($profile->lat) && !empty($profile->lon)) {
                 $location = $profile->lat . ', ' . $profile->lon;
             }
-        } else if ($name == 'shownotice') {
-            $notice = $action->profile;
-            if (!empty($notice) && !empty($notice->lat) && !empty($notice->lon)) {
+        } elseif ($action instanceof ShownoticeAction) {
+            // FIXME: getNotice in ShownoticeAction will do a new lookup, we should fix those classes
+            // so they can reliably just get a pre-stored notice object which was fetched in Shownotice prepare()...
+            $notice = $action->notice;
+            if ($notice instanceof Notice && !empty($notice->lat) && !empty($notice->lon)) {
                 $location = $notice->lat . ', ' . $notice->lon;
             }
         }
 
-        if (!empty($location)) {
+        if (!is_null($location)) {
             $action->element('meta', array('name' => 'ICBM',
                                            'content' => $location));
             $action->element('meta', array('name' => 'DC.title',

@@ -26,20 +26,20 @@ require_once 'OAuth.php';
  */
 class ApiGNUsocialOAuthDataStore extends OAuthDataStore
 {
-    function lookup_consumer($consumerKey)
+    function lookup_consumer($consumer_key)
     {
-        $con = Consumer::getKV('consumer_key', $consumerKey);
+        $con = Consumer::getKV('consumer_key', $consumer_key);
 
         if (!$con instanceof Consumer) {
 
             // Create an anon consumer and anon application if one
             // doesn't exist already
-            if ($consumerKey == 'anonymous') {
+            if ($consumer_key == 'anonymous') {
 
                 common_debug("API OAuth - creating anonymous consumer");
                 $con = new Consumer();
-                $con->consumer_key    = $consumerKey;
-                $con->consumer_secret = $consumerKey;
+                $con->consumer_key    = $consumer_key;
+                $con->consumer_secret = $consumer_key;
                 $con->created         = common_sql_now();
 
                 $result = $con->insert();
@@ -388,7 +388,7 @@ class ApiGNUsocialOAuthDataStore extends OAuthDataStore
      *
      * @return OAuthToken   $token a new unauthorized OAuth request token
      */
-    function new_request_token($consumer, $callback)
+    function new_request_token($consumer, $callback = null)
     {
         $t = new Token();
         $t->consumer_key = $consumer->key;
@@ -473,13 +473,13 @@ class ApiGNUsocialOAuthDataStore extends OAuthDataStore
      * @param type $token_key
      * @return OAuthToken
      */
-    function lookup_token($consumer, $token_type, $token_key)
+    function lookup_token($consumer, $token_type, $token)
     {
         $t = new Token();
         if (!is_null($consumer)) {
             $t->consumer_key = $consumer->key;
         }
-        $t->tok = $token_key;
+        $t->tok = $token;
         $t->type = ($token_type == 'access') ? 1 : 0;
         if ($t->find(true)) {
             return new OAuthToken($t->tok, $t->secret);

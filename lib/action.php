@@ -205,7 +205,7 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return nothing
      */
-    function showPage()
+    public function showPage()
     {
         if (GNUsocial::isAjax()) {
             self::showAjax();
@@ -460,6 +460,7 @@ class Action extends HTMLOutputter // lawsuit
 
             // TRANS: Localized tooltip for '...' expansion button on overlong remote messages.
             $messages['showmore_tooltip'] = _m('TOOLTIP', 'Show more');
+            $messages['popup_close_button'] = _m('TOOLTIP', 'Close popup');
 
             $messages = array_merge($messages, $this->getScriptMessages());
 

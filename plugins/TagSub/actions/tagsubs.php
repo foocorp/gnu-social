@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * A list of the user's subscriptions
@@ -48,20 +46,19 @@ class TagSubsAction extends GalleryAction
         if ($this->page == 1) {
             // TRANS: Header for subscriptions overview for a user (first page).
             // TRANS: %s is a user nickname.
-            return sprintf(_m('%s\'s tag subscriptions'), $this->user->nickname);
+            return sprintf(_m('%s\'s tag subscriptions'), $this->getTarget()->getNickname());
         } else {
             // TRANS: Header for subscriptions overview for a user (not first page).
             // TRANS: %1$s is a user nickname, %2$d is the page number.
             return sprintf(_m('%1$s\'s tag subscriptions, page %2$d'),
-                           $this->user->nickname,
+                           $this->getTarget()->getNickname(),
                            $this->page);
         }
     }
 
     function showPageNotice()
     {
-        $user = common_current_user();
-        if ($user && ($user->id == $this->profile->id)) {
+        if ($this->scoped instanceof Profile && $this->scoped->sameAs($this->getTarget())) {
             $this->element('p', null,
                            // TRANS: Page notice for page with an overview of all tag subscriptions
                            // TRANS: of the logged in user's own profile.
@@ -71,7 +68,7 @@ class TagSubsAction extends GalleryAction
                            // TRANS: Page notice for page with an overview of all subscriptions of a user other
                            // TRANS: than the logged in user. %s is the user nickname.
                            sprintf(_m('%s has subscribed to receive all notices on this site containing the following tags:'),
-                                   $this->profile->nickname));
+                                   $this->getTarget()->getNickname()));
         }
     }
 
@@ -86,12 +83,12 @@ class TagSubsAction extends GalleryAction
             $cnt = 0;
 
             $tagsub = new TagSub();
-            $tagsub->profile_id = $this->user->id;
+            $tagsub->profile_id = $this->getTarget()->getID();
             $tagsub->limit($limit, $offset);
             $tagsub->find();
 
             if ($tagsub->N) {
-                $list = new TagSubscriptionsList($tagsub, $this->user, $this);
+                $list = new TagSubscriptionsList($tagsub, $this->getTarget(), $this);
                 $cnt = $list->show();
                 if (0 == $cnt) {
                     $this->showEmptyListMessage();
@@ -102,7 +99,7 @@ class TagSubsAction extends GalleryAction
 
             $this->pagination($this->page > 1, $cnt > PROFILES_PER_PAGE,
                               $this->page, 'tagsubs',
-                              array('nickname' => $this->user->nickname));
+                              array('nickname' => $this->getTarget()->getNickname()));
 
 
             Event::handle('EndShowTagSubscriptionsContent', array($this));
@@ -112,8 +109,7 @@ class TagSubsAction extends GalleryAction
     function showEmptyListMessage()
     {
         if (common_logged_in()) {
-            $current_user = common_current_user();
-            if ($this->user->id === $current_user->id) {
+            if ($this->scoped->sameAs($this->getTarget())) {
                 // TRANS: Tag subscription list text when the logged in user has no tag subscriptions.
                 $message = _m('You are not listening to any hash tags right now. You can push the "Subscribe" button ' .
                               'on any hashtag page to automatically receive any public messages on this site that use that ' .
@@ -121,13 +117,13 @@ class TagSubsAction extends GalleryAction
             } else {
                 // TRANS: Tag subscription list text when looking at the subscriptions for a of a user other
                 // TRANS: than the logged in user that has no tag subscriptions. %s is the user nickname.
-                $message = sprintf(_m('%s is not following any tags.'), $this->user->nickname);
+                $message = sprintf(_m('%s is not following any tags.'), $this->getTarget()->getNickname());
             }
         }
         else {
             // TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
             // TRANS: as an anonymous user. %s is the user nickname.
-            $message = sprintf(_m('%s is not following any tags.'), $this->user->nickname);
+            $message = sprintf(_m('%s is not following any tags.'), $this->getTarget()->getNickname());
         }
 
         $this->elementStart('div', 'guide');

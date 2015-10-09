@@ -138,7 +138,7 @@ class CancelrsvpAction extends Action
             // NB: this will delete the rsvp, too
             if (!empty($notice)) {
                 common_log(LOG_DEBUG, "Deleting notice...");
-                $notice->delete();
+                $notice->deleteAs($this->scoped);
             } else {
                 common_log(LOG_DEBUG, "Deleting RSVP alone...");
                 $this->rsvp->delete();

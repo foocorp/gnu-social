@@ -32,16 +32,24 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class ProfileListItem extends Widget
 {
     /** Current profile. */
+    protected $target = null;
     var $profile = null;
     /** Action object using us. */
     var $action = null;
 
-    function __construct($profile, $action)
+    // FIXME: Directory plugin sends a User_group here, but should send a Profile and handle User_group specifics itself
+    function __construct($target, HTMLOutputter $action)
     {
         parent::__construct($action);
 
-        $this->profile = $profile;
+        $this->target = $target;
+        $this->profile = $this->target;
         $this->action  = $action;
+    }
+
+    function getTarget()
+    {
+        return $this->target;
     }
 
     function show()

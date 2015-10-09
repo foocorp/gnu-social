@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Personal tag cloud section
@@ -42,12 +40,12 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 class PersonalTagCloudSection extends TagCloudSection
 {
-    var $user = null;
+    protected $profile = null;
 
-    function __construct($out=null, $user=null)
+    function __construct(Profile $profile, HTMLOutputter $out=null)
     {
         parent::__construct($out);
-        $this->user = $user;
+        $this->profile = $profile;
     }
 
     function title()
@@ -80,7 +78,7 @@ class PersonalTagCloudSection extends TagCloudSection
 
         $tag = Memcached_DataObject::cachedQuery('Notice_tag',
                                                  sprintf($qry,
-                                                         $this->user->id),
+                                                         $this->profile->getID()),
                                                  3600);
         return $tag;
     }

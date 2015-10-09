@@ -79,12 +79,8 @@ class SalmonAction extends Action
             $this->clientError($e->getMessage());
         }
 
-        // Cryptographic verification test
-        if (!$magic_env->verify($this->actor)) {
-            common_log(LOG_DEBUG, "Salmon signature verification failed.");
-            // TRANS: Client error.
-            $this->clientError(_m('Salmon signature verification failed.'));
-        }
+        // Cryptographic verification test, throws exception on failure
+        $magic_env->verify($this->actor);
 
         return true;
     }
@@ -259,12 +255,7 @@ class SalmonAction extends Action
                 // Step 4: Is the newly introduced https://example.com/user/1 URI in the list of aliases
                 //         presented by http://example.com/user/1 (i.e. do they both say they are the same identity?)
                 if (in_array($e->object_uri, $doublecheck_aliases)) {
-                    common_debug('URIFIX These identities both say they are each other: "'.$aliased_uri.'" and "'.$e->object_uri.'"');
-                    $orig = clone($oprofile);
-                    $oprofile->uri = $e->object_uri;
-                    common_debug('URIFIX Updating Ostatus_profile URI for '.$aliased_uri.' to '.$oprofile->uri);
-                    $oprofile->updateWithKeys($orig, 'uri');    // 'uri' is the primary key column
-                    unset($orig);
+                    $oprofile->updateUriKeys($e->object_uri, DiscoveryHints::fromXRD($xrd));
                     $this->oprofile = $oprofile;
                     break;  // don't iterate through aliases anymore
                 }
@@ -286,7 +277,7 @@ class SalmonAction extends Action
     function saveNotice()
     {
         if (!$this->oprofile instanceof Ostatus_profile) {
-            common_debug('Ostatus_profile missing in ' . get_class(). ' profile: '.var_export($this->profile));
+            common_debug('Ostatus_profile missing in ' . get_class(). ' profile: '.var_export($this->profile, true));
         }
         return $this->oprofile->processPost($this->activity, 'salmon');
     }

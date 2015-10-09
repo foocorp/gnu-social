@@ -622,7 +622,7 @@ abstract class Installer
 
         $this->updateStatus("GNU social has been installed at $link");
         $this->updateStatus(
-            '<strong>DONE!</strong> You can visit your <a href="'.htmlspecialchars($link).'">new GNU social site</a> (log in as "'.htmlspecialchars($this->adminNick).'"). If this is your first GNU social install, make your experience the best possible by visiting our resource site to join the <a href="https://gnu.io/social/resources/">mailing list or IRC.</a>. <a href="'.htmlspecialchars($link).'/doc/faq/">FAQ is found here</a>.'
+            '<strong>DONE!</strong> You can visit your <a href="'.htmlspecialchars($link).'">new GNU social site</a> (log in as "'.htmlspecialchars($this->adminNick).'"). If this is your first GNU social install, make your experience the best possible by visiting our resource site to join the <a href="https://gnu.io/social/resources/">mailing list or IRC</a>. <a href="'.htmlspecialchars($link).'/doc/faq">FAQ is found here</a>.'
         );
 
         return true;

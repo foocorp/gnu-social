@@ -256,7 +256,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         }
     }
 
-    public function showNoticeListItem(NoticeListItem $nli)
+    protected function showNoticeListItem(NoticeListItem $nli)
     {
         // pass
     }

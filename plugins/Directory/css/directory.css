@@ -41,10 +41,6 @@ table.profile_list tr {
     float: none;
 }
 
-table.profile_list tr.alt {
-    background-color: #def; /* zebra stripe */
-}
-
 table.profie_list td {
     width: 100%;
     padding: 0;

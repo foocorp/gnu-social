@@ -17,68 +17,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-require_once(INSTALLDIR.'/lib/rssaction.php');
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 // Formatting of RSS handled by Rss10Action
 
-class RepliesrssAction extends Rss10Action
+class RepliesrssAction extends TargetedRss10Action
 {
-    var $user = null;
-
-    function prepare($args)
+    protected function getNotices()
     {
-        parent::prepare($args);
-        $nickname = $this->trimmed('nickname');
-        $this->user = User::getKV('nickname', $nickname);
-
-        if (!$this->user) {
-            // TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
-            $this->clientError(_('No such user.'));
-        } else {
-            $this->notices = $this->getNotices($this->limit);
-            return true;
-        }
-    }
-
-    function getNotices($limit=0)
-    {
-        $user = $this->user;
-
-        $notice = $user->getReplies(0, ($limit == 0) ? 48 : $limit);
-
-        $notices = array();
-
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
-
-        return $notices;
+        $stream = $this->target->getReplies(0, $this->limit);
+        return $stream->fetchAll();
     }
 
     function getChannel()
     {
-        $user = $this->user;
         $c = array('url' => common_local_url('repliesrss',
                                              array('nickname' =>
-                                                   $user->nickname)),
+                                                   $this->target->getNickname())),
                    // TRANS: RSS reply feed title. %s is a user nickname.
-                   'title' => sprintf(_("Replies to %s"), $user->nickname),
+                   'title' => sprintf(_("Replies to %s"), $this->target->getNickname()),
                    'link' => common_local_url('replies',
-                                              array('nickname' =>
-                                                    $user->nickname)),
+                                              array('nickname' => $this->target->getNickname())),
                    // TRANS: RSS reply feed description.
                    // TRANS: %1$s is a user nickname, %2$s is the StatusNet site name.
                    'description' => sprintf(_('Replies to %1$s on %2$s.'),
-                                              $user->nickname, common_config('site', 'name')));
+                                              $this->target->getNickname(), common_config('site', 'name')));
         return $c;
-    }
-
-    function getImage()
-    {
-        $profile = $this->user->getProfile();
-        return $profile->avatarUrl(AVATAR_PROFILE_SIZE);
     }
 
     function isReadOnly($args)

@@ -96,27 +96,12 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
 
         $original = clone($profile);
 
-        if (!empty($this->name)) {
-            $profile->fullname = $this->name;
-        } else {
-        	$profile->fullname = '';
-        }
-
-        if (!empty($this->url)) {
-            $profile->homepage = $this->url;
-        } else {
-        	$profile->homepage = '';
-        }        
-
-        if (!empty($this->description)) {
-            $profile->bio = $this->description;
-        } else {
-        	$profile->bio = '';
-        }      
+        $profile->fullname = $this->name;
+        $profile->homepage = $this->url;
+        $profile->bio = $this->description;
+        $profile->location = $this->location;
 
         if (!empty($this->location)) {
-            $profile->location = $this->location;
-
             $loc = Location::fromName($this->location);
 
             if (!empty($loc)) {
@@ -126,8 +111,12 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
                 $profile->location_ns = $loc->location_ns;
             }
         } else {
-        	$profile->location = '';
-        }  
+            // location is empty so reset the extrapolated information too
+            $profile->lat = '';
+            $profile->lon = '';
+            $profile->location_id = '';
+            $profile->location_ns = '';
+        }
 
         $result = $profile->update($original);
 

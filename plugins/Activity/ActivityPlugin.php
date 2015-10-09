@@ -72,7 +72,7 @@ class ActivityPlugin extends Plugin
         // TRANS: Text for "started following" item in activity plugin.
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a profile URL, %4$s is a profile name.
-        $rendered = sprintf(_m('<a href="%1$s">%2$s</a> started following <a href="%3$s">%4$s</a>.'),
+        $rendered = html_sprintf(_m('<a href="%1$s">%2$s</a> started following <a href="%3$s">%4$s</a>.'),
                             $profile->getUrl(),
                             $profile->getBestName(),
                             $other->getUrl(),
@@ -110,7 +110,7 @@ class ActivityPlugin extends Plugin
         // TRANS: Text for "stopped following" item in activity plugin.
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a profile URL, %4$s is a profile name.
-        $rendered = sprintf(_m('<a href="%1$s">%2$s</a> stopped following <a href="%3$s">%4$s</a>.'),
+        $rendered = html_sprintf(_m('<a href="%1$s">%2$s</a> stopped following <a href="%3$s">%4$s</a>.'),
                             $profile->getUrl(),
                             $profile->getBestName(),
                             $other->getUrl(),
@@ -155,7 +155,7 @@ class ActivityPlugin extends Plugin
         // TRANS: Text for "stopped liking" item in activity plugin.
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a notice URL, %4$s is an author name.
-        $rendered = sprintf(_m('<a href="%1$s">%2$s</a> stopped liking <a href="%3$s">%4$s\'s update</a>.'),
+        $rendered = html_sprintf(_m('<a href="%1$s">%2$s</a> stopped liking <a href="%3$s">%4$s\'s update</a>.'),
                             $profile->getUrl(),
                             $profile->getBestName(),
                             $notice->getUrl(),
@@ -200,7 +200,7 @@ class ActivityPlugin extends Plugin
         // TRANS: Text for "joined group" item in activity plugin.
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a group URL, %4$s is a group name.
-        $rendered = sprintf(_m('<a href="%1$s">%2$s</a> joined the group <a href="%3$s">%4$s</a>.'),
+        $rendered = html_sprintf(_m('<a href="%1$s">%2$s</a> joined the group <a href="%3$s">%4$s</a>.'),
                             $profile->getUrl(),
                             $profile->getBestName(),
                             $group->homeUrl(),
@@ -241,7 +241,7 @@ class ActivityPlugin extends Plugin
         // TRANS: Text for "left group" item in activity plugin.
         // TRANS: %1$s is a profile URL, %2$s is a profile name,
         // TRANS: %3$s is a group URL, %4$s is a group name.
-        $rendered = sprintf(_m('<a href="%1$s">%2$s</a> left the group <a href="%3$s">%4$s</a>.'),
+        $rendered = html_sprintf(_m('<a href="%1$s">%2$s</a> left the group <a href="%3$s">%4$s</a>.'),
                             $profile->getUrl(),
                             $profile->getBestName(),
                             $group->homeUrl(),

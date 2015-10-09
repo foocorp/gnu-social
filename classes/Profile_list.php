@@ -21,20 +21,10 @@
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-/**
- * Table Definition for profile_list
- */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class Profile_list extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
     public $__table = 'profile_list';                      // table name
     public $id;                              // int(4)  primary_key not_null
     public $tagger;                          // int(4)
@@ -47,9 +37,6 @@ class Profile_list extends Managed_DataObject
     public $mainpage;                        // varchar(191)   not 255 because utf8mb4 takes more space
     public $tagged_count;                    // smallint
     public $subscriber_count;                // smallint
-
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 
     public static function schemaDef()
     {
@@ -94,7 +81,7 @@ class Profile_list extends Managed_DataObject
 
     function getTagger()
     {
-        return Profile::getKV('id', $this->tagger);
+        return Profile::getByID($this->tagger);
     }
 
     /**
@@ -145,7 +132,7 @@ class Profile_list extends Managed_DataObject
                 $url = $this->mainpage;
             } else {
                 $url = common_local_url('showprofiletag',
-                                        array('tagger' => $this->getTagger()->nickname,
+                                        array('nickname' => $this->getTagger()->nickname,
                                               'tag'    => $this->tag));
             }
         }
@@ -659,7 +646,7 @@ class Profile_list extends Managed_DataObject
             $orig = clone($ptag);
             $user = User::getKV('id', $ptag->tagger);
             if(!empty($user)) {
-                $ptag->mainpage = common_local_url('showprofiletag', array('tag' => $ptag->tag, 'tagger' => $user->nickname));
+                $ptag->mainpage = common_local_url('showprofiletag', array('tag' => $ptag->tag, 'nickname' => $user->getNickname()));
             } else {
                 $ptag->mainpage = $uri; // assume this is a remote peopletag and the uri works
             }

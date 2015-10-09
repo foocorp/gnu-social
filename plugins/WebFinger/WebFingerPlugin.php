@@ -144,7 +144,7 @@ class WebFingerPlugin extends Plugin
     public function onStartShowHTML($action)
     {
         if ($action instanceof ShowstreamAction) {
-            $acct = 'acct:'. $action->profile->nickname .'@'. common_config('site', 'server');
+            $acct = 'acct:'. $action->getTarget()->getNickname() .'@'. common_config('site', 'server');
             $url = common_local_url('webfinger') . '?resource='.$acct;
 
             foreach (array(Discovery::JRD_MIMETYPE, Discovery::XRD_MIMETYPE) as $type) {

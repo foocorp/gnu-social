@@ -248,7 +248,7 @@ class ApiAction extends Action
 
         $twitter_user['friends_count'] = $profile->subscriptionCount();
 
-        $twitter_user['created_at'] = $this->dateTwitter($profile->created);
+        $twitter_user['created_at'] = self::dateTwitter($profile->created);
 
         $timezone = 'UTC';
 
@@ -322,13 +322,16 @@ class ApiAction extends Action
         $twitter_status = array();
         $twitter_status['text'] = $notice->content;
         $twitter_status['truncated'] = false; # Not possible on StatusNet
-        $twitter_status['created_at'] = $this->dateTwitter($notice->created);
+        $twitter_status['created_at'] = self::dateTwitter($notice->created);
         try {
             // We could just do $notice->reply_to but maybe the future holds a
             // different story for parenting.
             $parent = $notice->getParent();
             $in_reply_to = $parent->id;
         } catch (NoParentNoticeException $e) {
+            $in_reply_to = null;
+        } catch (NoResultException $e) {
+            // the in_reply_to message has probably been deleted
             $in_reply_to = null;
         }
         $twitter_status['in_reply_to_status_id'] = $in_reply_to;
@@ -366,12 +369,13 @@ class ApiAction extends Action
         $twitter_status['in_reply_to_screen_name'] =
             ($replier_profile) ? $replier_profile->nickname : null;
 
-        if (isset($notice->lat) && isset($notice->lon)) {
+        try {
+            $notloc = Notice_location::locFromStored($notice);
             // This is the format that GeoJSON expects stuff to be in
             $twitter_status['geo'] = array('type' => 'Point',
-                                           'coordinates' => array((float) $notice->lat,
-                                                                  (float) $notice->lon));
-        } else {
+                                           'coordinates' => array((float) $notloc->lat,
+                                                                  (float) $notloc->lon));
+        } catch (ServerException $e) {
             $twitter_status['geo'] = null;
         }
 
@@ -440,8 +444,8 @@ class ApiAction extends Action
         $twitter_group['homepage'] = $group->homepage;
         $twitter_group['description'] = $group->description;
         $twitter_group['location'] = $group->location;
-        $twitter_group['created'] = $this->dateTwitter($group->created);
-        $twitter_group['modified'] = $this->dateTwitter($group->modified);
+        $twitter_group['created'] = self::dateTwitter($group->created);
+        $twitter_group['modified'] = self::dateTwitter($group->modified);
 
         return $twitter_group;
     }
@@ -547,13 +551,14 @@ class ApiAction extends Action
             $entry['pubDate'] = common_date_rfc2822($notice->created);
             $entry['guid'] = $entry['link'];
 
-            if (isset($notice->lat) && isset($notice->lon)) {
+            try {
+                $notloc = Notice_location::locFromStored($notice);
                 // This is the format that GeoJSON expects stuff to be in.
                 // showGeoRSS() below uses it for XML output, so we reuse it
                 $entry['geo'] = array('type' => 'Point',
-                                      'coordinates' => array((float) $notice->lat,
-                                                             (float) $notice->lon));
-            } else {
+                                      'coordinates' => array((float) $notloc->lat,
+                                                             (float) $notloc->lon));
+            } catch (ServerException $e) {
                 $entry['geo'] = null;
             }
 
@@ -793,7 +798,12 @@ class ApiAction extends Action
                                               'xmlns:statusnet' => 'http://status.net/schema/api/1/'));
 
         if (is_array($notice)) {
-            $notice = new ArrayWrapper($notice);
+            //FIXME: make everything calling showJsonTimeline use only Notice objects
+            $ids = array();
+            foreach ($notice as $n) {
+                $ids[] = $n->getID();
+            }
+            $notice = Notice::multiGet('id', $ids);
         }
 
         while ($notice->fetch()) {
@@ -849,7 +859,12 @@ class ApiAction extends Action
         $this->element('ttl', null, '40');
 
         if (is_array($notice)) {
-            $notice = new ArrayWrapper($notice);
+            //FIXME: make everything calling showJsonTimeline use only Notice objects
+            $ids = array();
+            foreach ($notice as $n) {
+                $ids[] = $n->getID();
+            }
+            $notice = Notice::multiGet('id', $ids);
         }
 
         while ($notice->fetch()) {
@@ -893,7 +908,12 @@ class ApiAction extends Action
         $this->element('subtitle', null, $subtitle);
 
         if (is_array($notice)) {
-            $notice = new ArrayWrapper($notice);
+            //FIXME: make everything calling showJsonTimeline use only Notice objects
+            $ids = array();
+            foreach ($notice as $n) {
+                $ids[] = $n->getID();
+            }
+            $notice = Notice::multiGet('id', $ids);
         }
 
         while ($notice->fetch()) {
@@ -997,7 +1017,12 @@ class ApiAction extends Action
         $statuses = array();
 
         if (is_array($notice)) {
-            $notice = new ArrayWrapper($notice);
+            //FIXME: make everything calling showJsonTimeline use only Notice objects
+            $ids = array();
+            foreach ($notice as $n) {
+                $ids[] = $n->getID();
+            }
+            $notice = Notice::multiGet('id', $ids);
         }
 
         while ($notice->fetch()) {
@@ -1196,7 +1221,7 @@ class ApiAction extends Action
         $this->endDocument('xml');
     }
 
-    function dateTwitter($dt)
+    static function dateTwitter($dt)
     {
         $dateStr = date('d F Y H:i:s', strtotime($dt));
         $d = new DateTime($dateStr, new DateTimeZone('UTC'));

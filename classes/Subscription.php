@@ -101,7 +101,7 @@ class Subscription extends Managed_DataObject
                     $sub = Subscription_queue::getSubQueue($subscriber, $other);
                 }
             } else {
-                $sub = self::saveNew($subscriber->id, $other->id);
+                $sub = self::saveNew($subscriber, $other);
                 $sub->notify();
 
                 self::blow('user:notices_with_friends:%d', $subscriber->id);
@@ -150,12 +150,12 @@ class Subscription extends Managed_DataObject
      * Low-level subscription save.
      * Outside callers should use Subscription::start()
      */
-    protected function saveNew($subscriber_id, $other_id)
+    protected static function saveNew(Profile $subscriber, Profile $other)
     {
         $sub = new Subscription();
 
-        $sub->subscriber = $subscriber_id;
-        $sub->subscribed = $other_id;
+        $sub->subscriber = $subscriber->getID();
+        $sub->subscribed = $other->getID();
         $sub->jabber     = 1;
         $sub->sms        = 1;
         $sub->created    = common_sql_now();

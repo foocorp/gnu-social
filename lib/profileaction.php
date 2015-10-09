@@ -48,6 +48,36 @@ abstract class ProfileAction extends ManagedAction
 
     protected $target  = null;    // Profile that we're showing
 
+    protected function doPreparation()
+    {
+        // showstream requires a nickname
+        $nickname_arg = $this->trimmed('nickname');
+        $nickname     = common_canonical_nickname($nickname_arg);
+
+        // Permanent redirect on non-canonical nickname
+        if ($nickname_arg != $nickname) {
+            $args = array('nickname' => $nickname);
+            if ($this->arg('page') && $this->arg('page') != 1) {
+                $args['page'] = $this->arg['page'];
+            }
+            common_redirect(common_local_url($this->getActionName(), $args), 301);
+        }
+
+        try {
+            $user = User::getByNickname($nickname);
+        } catch (NoSuchUserException $e) {
+            $group = Local_group::getKV('nickname', $nickname);
+            if ($group instanceof Local_group) {
+                common_redirect($group->getProfile()->getUrl());
+            }
+
+            // No user nor group found, throw the NoSuchUserException again
+            throw $e;
+        }
+
+        $this->target = $user->getProfile();
+    }
+
     protected function prepare(array $args=array())
     {
         // this will call ->doPreparation() which child classes use to set $this->target
@@ -58,9 +88,6 @@ abstract class ProfileAction extends ManagedAction
             throw new ClientException(_('This profile has been silenced by site moderators'), 403);
         }
 
-        // backwards compatibility until all actions are fixed to use $this->target
-        $this->profile = $this->target;
-
         $this->tag = $this->trimmed('tag');
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
         common_set_returnto($this->selfUrl());
@@ -68,13 +95,11 @@ abstract class ProfileAction extends ManagedAction
         return true;
     }
 
-    protected function profileActionPreparation()
-    {
-        // Nothing to do by default.
-    }
-
     public function getTarget()
     {
+        if (!$this->target instanceof Profile) {
+            throw new ServerException('No target profile in ProfileAction class');
+        }
         return $this->target;
     }
 
@@ -290,7 +315,7 @@ abstract class ProfileAction extends ManagedAction
                         $url = $lists->mainpage;
                     } else {
                         $url = common_local_url('showprofiletag',
-                                                array('tagger' => $this->target->getNickname(),
+                                                array('nickname' => $this->target->getNickname(),
                                                       'tag'    => $lists->tag));
                     }
                     if (!$first) {

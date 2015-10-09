@@ -357,7 +357,7 @@ class Fave extends Managed_DataObject
         $target = self::getTargetFromStored($stored);
 
         // The following logic was copied from StatusNet's Activity plugin
-        if (ActivityUtils::compareTypes($target->verb, array(ActivityVerb::POST))) {
+        if (ActivityUtils::compareVerbs($target->verb, array(ActivityVerb::POST))) {
             // "I like the thing you posted"
             $act->objects = $target->asActivity()->objects;
         } else {
@@ -423,12 +423,7 @@ class Fave extends Managed_DataObject
 
     public function getActor()
     {
-        $profile = new Profile();
-        $profile->id = $this->user_id;
-        if (!$profile->find(true)) {
-            throw new NoResultException($profile);
-        }
-        return $profile;
+        return Profile::getByID($this->user_id);
     }
 
     public function getActorObject()

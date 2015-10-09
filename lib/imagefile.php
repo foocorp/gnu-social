@@ -125,7 +125,7 @@ class ImageFile
         $imgPath = null;
         $media = common_get_mime_media($file->mimetype);
         if (Event::handle('CreateFileImageThumbnailSource', array($file, &$imgPath, $media))) {
-            if (empty($file->filename)) {
+            if (empty($file->filename) && !file_exists($imgPath)) {
                 throw new UnsupportedMediaException(_('File without filename could not get a thumbnail source.'));
             }
 
@@ -189,6 +189,8 @@ class ImageFile
 
          case UPLOAD_ERR_NO_FILE:
             // No file; probably just a non-AJAX submission.
+            throw new ClientException(_('No file uploaded.'));
+
          default:
             common_log(LOG_ERR, __METHOD__ . ": Unknown upload error " . $_FILES[$param]['error']);
             // TRANS: Exception thrown when uploading an image fails for an unknown reason.

@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class InlineAttachmentList extends AttachmentList
 {
@@ -49,37 +47,5 @@ class InlineAttachmentList extends AttachmentList
     function newListItem(File $attachment)
     {
         return new InlineAttachmentListItem($attachment, $this->out);
-    }
-}
-
-class InlineAttachmentListItem extends AttachmentListItem
-{
-    function showLink() {
-        $this->out->element('a', $this->linkAttr(), $this->title());
-        $this->showRepresentation();
-    }
-
-    /**
-     * start a single notice.
-     *
-     * @return void
-     */
-    function showStart()
-    {
-        // XXX: RDFa
-        // TODO: add notice_type class e.g., notice_video, notice_image
-        $this->out->elementStart('li', array('class' => 'inline-attachment'));
-    }
-
-    /**
-     * finish the notice
-     *
-     * Close the last elements in the notice list item
-     *
-     * @return void
-     */
-    function showEnd()
-    {
-        $this->out->elementEnd('li');
     }
 }

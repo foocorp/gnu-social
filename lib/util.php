@@ -210,7 +210,7 @@ function common_language()
 /**
  * Salted, hashed passwords are stored in the DB.
  */
-function common_munge_password($password, $id, Profile $profile=null)
+function common_munge_password($password, Profile $profile=null)
 {
     $hashed = null;
 
@@ -245,8 +245,7 @@ function common_check_user($nickname, $password)
         }
 
         if ($user instanceof User && !empty($password)) {
-            if (0 == strcmp(common_munge_password($password, $user->id),
-                            $user->password)) {
+            if (0 == strcmp(common_munge_password($password, $user->getProfile()), $user->password)) {
                 //internal checking passed
                 $authenticatedUser = $user;
             }
@@ -710,26 +709,24 @@ function common_find_mentions($text, Notice $notice)
 
         // Is it a reply?
 
-        if ($notice instanceof Notice) {
-            try {
-                $origNotice = $notice->getParent();
-                $origAuthor = $origNotice->getProfile();
+        try {
+            $origNotice = $notice->getParent();
+            $origAuthor = $origNotice->getProfile();
 
-                $ids = $origNotice->getReplies();
+            $ids = $origNotice->getReplies();
 
-                foreach ($ids as $id) {
-                    $repliedTo = Profile::getKV('id', $id);
-                    if ($repliedTo instanceof Profile) {
-                        $origMentions[$repliedTo->nickname] = $repliedTo;
-                    }
+            foreach ($ids as $id) {
+                try {
+                    $repliedTo = Profile::getByID($id);
+                    $origMentions[$repliedTo->getNickname()] = $repliedTo;
+                } catch (NoResultException $e) {
+                    // continue foreach
                 }
-            } catch (NoProfileException $e) {
-                common_log(LOG_WARNING, sprintf('Notice %d author profile id %d does not exist', $origNotice->id, $origNotice->profile_id));
-            } catch (NoParentNoticeException $e) {
-                // This notice is not in reply to anything
-            } catch (Exception $e) {
-                common_log(LOG_WARNING, __METHOD__ . ' got exception ' . get_class($e) . ' : ' . $e->getMessage());
             }
+        } catch (NoParentNoticeException $e) {
+            // It wasn't a reply to anything, so we can't harvest nickname-relations.
+        } catch (NoResultException $e) {
+            // The parent notice was deleted.
         }
 
         $matches = common_find_mentions_raw($text);
@@ -791,7 +788,7 @@ function common_find_mentions($text, Notice $notice)
             $tagged = $sender->getTaggedSubscribers($tag);
 
             $url = common_local_url('showprofiletag',
-                                    array('tagger' => $sender->nickname,
+                                    array('nickname' => $sender->getNickname(),
                                           'tag' => $tag));
 
             $mentions[] = array('mentioned' => $tagged,
@@ -1560,13 +1557,23 @@ function common_root_url($ssl=false)
 }
 
 /**
+ * returns $bytes bytes of raw random data
+ */
+function common_random_rawstr($bytes)
+{
+    $rawstr = @file_exists('/dev/urandom')
+            ? common_urandom($bytes)
+            : common_mtrand($bytes);
+
+    return $rawstr;
+}
+
+/**
  * returns $bytes bytes of random data as a hexadecimal string
  */
 function common_random_hexstr($bytes)
 {
-    $str = @file_exists('/dev/urandom')
-            ? common_urandom($bytes)
-            : common_mtrand($bytes);
+    $str = common_random_rawstr($bytes);
 
     $hexstr = '';
     for ($i = 0; $i < $bytes; $i++) {
@@ -1871,6 +1878,7 @@ function common_get_mime_media($type)
     return strtolower($tmp[0]);
 }
 
+// Get only the mimetype and not additional info (separated from bare mime with semi-colon)
 function common_bare_mime($mimetype)
 {
     $mimetype = mb_strtolower($mimetype);
@@ -2433,4 +2441,13 @@ function common_strip_html($html, $trim=true, $save_whitespace=false)
     }
     $text = html_entity_decode(strip_tags($html), ENT_QUOTES, 'UTF-8');
     return $trim ? trim($text) : $text;
+}
+
+function html_sprintf()
+{
+    $args = func_get_args();
+    for ($i=1; $i<count($args); $i++) {
+        $args[$i] = htmlspecialchars($args[$i]);
+    }
+    return call_user_func_array('sprintf', $args);
 }

@@ -54,9 +54,9 @@ class ActivityVerb
     const FRIEND   = 'http://activitystrea.ms/schema/1.0/make-friend';
     const JOIN     = 'http://activitystrea.ms/schema/1.0/join';
     const TAG      = 'http://activitystrea.ms/schema/1.0/tag';
+    const DELETE   = 'delete';  // the url part is not used anymore, and this feature is new enough to avoid problems with legacy nodes if used without http://...
 
     // Custom OStatus verbs for the flipside until they're standardized
-    const DELETE     = 'http://ostatus.org/schema/1.0/unfollow';
     const UNFAVORITE = 'http://activitystrea.ms/schema/1.0/unfavorite';
     const UNLIKE     = 'http://activitystrea.ms/schema/1.0/unlike'; // This is a synonym of unfavorite
     const UNFOLLOW   = 'http://ostatus.org/schema/1.0/unfollow';

@@ -52,7 +52,7 @@ class ExtendedProfile
     function loadFields()
     {
         $detail = new Profile_detail();
-        $detail->profile_id = $this->profile->id;
+        $detail->profile_id = $this->profile->getID();
         $detail->find();
 
         $fields = array();
@@ -71,7 +71,7 @@ class ExtendedProfile
      */
     function getTags()
     {
-        return implode(' ', $this->user->getSelfTags());
+        return implode(' ', Profile_tag::getSelfTagsArray($this->profile));
     }
 
     /**
