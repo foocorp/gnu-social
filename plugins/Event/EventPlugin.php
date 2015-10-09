@@ -157,6 +157,13 @@ class EventPlugin extends MicroAppPlugin
             throw new Exception(_m('No end date for event.'));
         }
 
+        // location is optional
+        $location = null;
+        $location_object = $happeningObj->element->getElementsByTagName('location');
+        if($location_object->length > 0) {
+            $location = $location_object->item(0)->nodeValue;
+        }
+
         $notice = null;
 
         switch ($activity->verb) {
@@ -166,7 +173,7 @@ class EventPlugin extends MicroAppPlugin
                                          $dtstart->item(0)->nodeValue,
                                          $dtend->item(0)->nodeValue,
                                          $happeningObj->title,
-                                         null,
+                                         $location,
                                          $happeningObj->summary,
                                          null,
                                          $options);
@@ -243,9 +250,9 @@ class EventPlugin extends MicroAppPlugin
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
                               common_date_iso8601($happening->end_time));
 
-		// FIXME: add location
-		// FIXME: add URL
+        $obj->extra[] = array('location', false, $happening->location);
 
+		// FIXME: add URL
         // XXX: probably need other stuff here
 
         return $obj;
