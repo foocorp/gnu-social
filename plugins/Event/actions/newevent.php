@@ -220,8 +220,8 @@ class NeweventAction extends Action
             $profile = $this->user->getProfile();
 
             $saved = Happening::saveNew($profile,
-                                        $this->startTime,
-                                        $this->endTime,
+                                        common_sql_date($this->startTime),
+                                        common_sql_date($this->endTime),
                                         $this->title,
                                         $this->location,
                                         $this->description,

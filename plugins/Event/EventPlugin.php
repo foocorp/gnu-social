@@ -145,14 +145,26 @@ class EventPlugin extends MicroAppPlugin
             throw new Exception(_m('Wrong type for object.'));
         }
 
+        $dtstart = $happeningObj->element->getElementsByTagName('dtstart');
+        if($dtstart->length == 0) {
+            // TRANS: Exception thrown when has no start date
+            throw new Exception(_m('No start date for event.'));
+        }
+
+        $dtend = $happeningObj->element->getElementsByTagName('dtend');
+        if($dtend->length == 0) {
+            // TRANS: Exception thrown when has no end date
+            throw new Exception(_m('No end date for event.'));
+        }
+
         $notice = null;
 
         switch ($activity->verb) {
         case ActivityVerb::POST:
         	// FIXME: get startTime, endTime, location and URL
             $notice = Happening::saveNew($actor,
-                                         $start_time,
-                                         $end_time,
+                                         $dtstart->item(0)->nodeValue,
+                                         $dtend->item(0)->nodeValue,
                                          $happeningObj->title,
                                          null,
                                          $happeningObj->summary,
@@ -233,7 +245,7 @@ class EventPlugin extends MicroAppPlugin
 
 		// FIXME: add location
 		// FIXME: add URL
-		
+
         // XXX: probably need other stuff here
 
         return $obj;
