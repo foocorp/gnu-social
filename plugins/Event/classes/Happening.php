@@ -116,8 +116,8 @@ class Happening extends Managed_DataObject
 
         $ev->id          = UUID::gen();
         $ev->profile_id  = $profile->id;
-        $ev->start_time  = common_sql_date($start_time);
-        $ev->end_time    = common_sql_date($end_time);
+        $ev->start_time  = $start_time;
+        $ev->end_time    = $end_time;
         $ev->title       = $title;
         $ev->location    = $location;
         $ev->description = $description;
