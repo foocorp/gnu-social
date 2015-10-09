@@ -34,9 +34,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Returns the most recent notices (default 20) posted by the authenticating
@@ -115,11 +113,11 @@ class ApiTimelineUserAction extends ApiBareAuthAction
     {
         // We'll use the shared params from the Atom stub
         // for other feed types.
-        $atom = new AtomUserNoticeFeed($this->target->getUser(), $this->auth_user);
+        $atom = new AtomUserNoticeFeed($this->target->getUser(), $this->scoped);
 
         $link = common_local_url(
                                  'showstream',
-                                 array('nickname' => $this->target->nickname)
+                                 array('nickname' => $this->target->getNickname())
                                  );
 
         $self = $this->getSelfUri();
@@ -127,7 +125,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         // FriendFeed's SUP protocol
         // Also added RSS and Atom feeds
 
-        $suplink = common_local_url('sup', null, null, $this->target->id);
+        $suplink = common_local_url('sup', null, null, $this->target->getID());
         header('X-SUP-ID: ' . $suplink);
 
 
@@ -135,7 +133,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         $nextUrl = !empty($this->next_id)
                     ? common_local_url('ApiTimelineUser',
                                     array('format' => $this->format,
-                                          'id' => $this->target->id),
+                                          'id' => $this->target->getID()),
                                     array('max_id' => $this->next_id))
                     : null;
 
@@ -147,11 +145,11 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
         $prevUrl = common_local_url('ApiTimelineUser',
                                     array('format' => $this->format,
-                                          'id' => $this->target->id),
+                                          'id' => $this->target->getID()),
                                     $prevExtra);
         $firstUrl = common_local_url('ApiTimelineUser',
                                     array('format' => $this->format,
-                                          'id' => $this->target->id));
+                                          'id' => $this->target->getID()));
 
         switch($this->format) {
         case 'xml':
@@ -206,7 +204,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             break;
         case 'as':
             header('Content-Type: ' . ActivityStreamJSONDocument::CONTENT_TYPE);
-            $doc = new ActivityStreamJSONDocument($this->auth_user);
+            $doc = new ActivityStreamJSONDocument($this->scoped);
             $doc->setTitle($atom->title);
             $doc->addLink($link, 'alternate', 'text/html');
             $doc->addItemsFromNotices($this->notices);
@@ -307,9 +305,9 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             return '"' . implode(
                                  ':',
                                  array($this->arg('action'),
-                                       common_user_cache_hash($this->auth_user),
+                                       common_user_cache_hash($this->scoped),
                                        common_language(),
-                                       $this->target->id,
+                                       $this->target->getID(),
                                        strtotime($this->notices[0]->created),
                                        strtotime($this->notices[$last]->created))
                                  )
@@ -321,10 +319,10 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
     function handlePost()
     {
-        if (empty($this->auth_user) ||
-            $this->auth_user->id != $this->target->id) {
+        if (empty($this->scoped) ||
+            $this->target->sameAs($this->scoped)) {
             // TRANS: Client error displayed trying to add a notice to another user's timeline.
-            $this->clientError(_('Only the user can add to their own timeline.'));
+            $this->clientError(_('Only the user can add to their own timeline.'), 403);
         }
 
         // Only handle posts for Atom
@@ -412,7 +410,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         $rendered = common_purify($sourceContent);
         $content = common_strip_html($rendered);
 
-        $shortened = $this->auth_user->shortenLinks($content);
+        $shortened = $this->target->shortenLinks($content);
 
         $options = array('is_local' => Notice::LOCAL_PUBLIC,
                          'rendered' => $rendered,
@@ -501,7 +499,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             $options['urls'][] = $href;
         }
 
-        $saved = Notice::saveNew($this->target->id,
+        $saved = Notice::saveNew($this->target->getID(),
                                  $content,
                                  'atompub', // TODO: deal with this
                                  $options);
