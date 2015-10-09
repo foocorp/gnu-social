@@ -452,8 +452,6 @@ abstract class ActivityHandlerPlugin extends Plugin
 
         $notice = $this->saveNoticeFromActivity($activity, $scoped, $options);
 
-        Event::handle('EndAtomPubNewActivity', array($activity, $scoped, $notice));
-
         return false;
     }
 
