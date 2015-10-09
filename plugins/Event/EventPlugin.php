@@ -46,6 +46,9 @@ if (!defined('STATUSNET')) {
  */
 class EventPlugin extends MicroAppPlugin
 {
+
+    var $oldSaveNew = true;
+
     /**
      * Set up our tables (event and rsvp)
      *
