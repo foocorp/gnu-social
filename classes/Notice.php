@@ -280,16 +280,10 @@ class Notice extends Managed_DataObject
         }
     }
 
-    public function get_object_type($canonical=false) {
+    public function getObjectType($canonical=false) {
         return $canonical
                 ? ActivityObject::canonicalType($this->object_type)
                 : $this->object_type;
-    }
-
-    // activity plugins tend to use this function instead, but it's the same
-    public function getObjectType()
-    {
-        return $this->get_object_type();
     }
 
     public static function getByUri($uri)
@@ -2405,7 +2399,7 @@ class Notice extends Managed_DataObject
             $this->uri = sprintf('%s%s=%d:%s=%s',
                                 TagURI::mint(),
                                 'noticeId', $this->id,
-                                'objectType', $this->get_object_type(true));
+                                'objectType', $this->getObjectType(true));
             $changed = true;
         }
 
