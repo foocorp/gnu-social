@@ -885,6 +885,15 @@ class Notice extends Managed_DataObject
             $urls[] = $href;
         }
 
+        if (ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST))) {
+            $stored->object_type = $act->type ?: $act->objects[0]->type;
+            if (empty($stored->object_type)) {
+                // Default type for the post verb is 'note', but we know it's
+                // a 'comment' if it is in reply to something.
+                $stored->object_type = empty($stored->reply_to) ? ActivityObject::NOTE : ActivityObject::COMMENT;
+            }
+        }
+
         if (Event::handle('StartNoticeSave', array(&$stored))) {
             // XXX: some of these functions write to the DB
 
