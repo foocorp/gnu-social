@@ -164,6 +164,13 @@ class EventPlugin extends MicroAppPlugin
             $location = $location_object->item(0)->nodeValue;
         }
 
+        // url is optional
+        $url = null;
+        $url_object = $happeningObj->element->getElementsByTagName('url');
+        if($url_object->length > 0) {
+            $url = $url_object->item(0)->nodeValue;
+        }
+
         $notice = null;
 
         switch ($activity->verb) {
@@ -175,7 +182,7 @@ class EventPlugin extends MicroAppPlugin
                                          $happeningObj->title,
                                          $location,
                                          $happeningObj->summary,
-                                         null,
+                                         $url,
                                          $options);
             break;
         case RSVP::POSITIVE:
@@ -251,8 +258,8 @@ class EventPlugin extends MicroAppPlugin
                               common_date_iso8601($happening->end_time));
 
         $obj->extra[] = array('location', false, $happening->location);
+        $obj->extra[] = array('url', false, $happening->url);
 
-		// FIXME: add URL
         // XXX: probably need other stuff here
 
         return $obj;
