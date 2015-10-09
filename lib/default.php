@@ -312,7 +312,6 @@ $default =
                             'Favorite' => array(),
                             'Share' => array(),
                             'LRDD' => array(),
-                            'StrictTransportSecurity' => array(),
                         ),
               'default' => array(
                             'Activity' => array(),
