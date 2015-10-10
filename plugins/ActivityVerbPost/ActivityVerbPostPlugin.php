@@ -25,6 +25,8 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class ActivityVerbPostPlugin extends ActivityVerbHandlerPlugin
 {
+    // TODO: Implement a "fallback" feature which can handle anything _as_ an activityobject "note"
+
     public function tag()
     {
         return 'post';

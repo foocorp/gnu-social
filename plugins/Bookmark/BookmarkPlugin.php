@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Bookmark plugin main class
@@ -47,8 +45,6 @@ class BookmarkPlugin extends MicroAppPlugin
 {
     const VERSION         = '0.1';
     const IMPORTDELICIOUS = 'BookmarkPlugin:IMPORTDELICIOUS';
-
-    var $oldSaveNew = true;
 
     /**
      * Authorization for importing delicious bookmarks
@@ -299,83 +295,21 @@ class BookmarkPlugin extends MicroAppPlugin
      *
      * @return Notice resulting notice
      */
-    function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
+    protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
     {
-        $bookmark = $activity->objects[0];
+        $actobj = $activity->objects[0];
 
-        $relLinkEls = ActivityUtils::getLinks($bookmark->element, 'related');
+        $relLinkEls = ActivityUtils::getLinks($actobj->element, 'related');
 
-        if (count($relLinkEls) < 1) {
+        if (count($relLinkEls) !== 1) {
             // TRANS: Client exception thrown when a bookmark is formatted incorrectly.
-            throw new ClientException(_m('Expected exactly 1 link '.
-                                        'rel=related in a Bookmark.'));
+            throw new ClientException(sprintf(_m('Expected exactly 1 link rel=related in a Bookmark, got %1$d.'), count($relLinkEls)));
         }
 
-        if (count($relLinkEls) > 1) {
-            common_log(LOG_WARNING,
-                       "Got too many link rel=related in a Bookmark.");
-        }
-
-        $linkEl = $relLinkEls[0];
-
-        $url = $linkEl->getAttribute('href');
-
-        $tags = array();
-
-        foreach ($activity->categories as $category) {
-            $tags[] = common_canonical_tag($category->term);
-        }
-
-        if (!empty($activity->time)) {
-            $options['created'] = common_sql_date($activity->time);
-        }
-
-        // Fill in location if available
-
-        $location = $activity->context->location;
-
-        if ($location) {
-            $options['lat'] = $location->lat;
-            $options['lon'] = $location->lon;
-            if ($location->location_id) {
-                $options['location_ns'] = $location->location_ns;
-                $options['location_id'] = $location->location_id;
-            }
-        }
-
-        $options['groups']  = array();
-        $options['replies'] = array();  // TODO: context->attention
-
-        foreach ($activity->context->attention as $attnUrl=>$type) {
-            try {
-                $other = Profile::fromUri($attnUrl);
-                if ($other->isGroup()) {
-                    $options['groups'][] = $other->id;
-                } else {
-                    $options['replies'][] = $attnUrl;
-                }
-            } catch (UnknownUriException $e) {
-                // We simply don't know this URI, despite lookup attempts.
-            }
-        }
-
-        // Maintain direct reply associations
-        // @fixme what about conversation ID?
-
-        if (!empty($activity->context->replyToID)) {
-            $orig = Notice::getKV('uri',
-                                      $activity->context->replyToID);
-            if (!empty($orig)) {
-                $options['reply_to'] = $orig->id;
-            }
-        }
-
-        return Bookmark::saveNew($actor,
-                                 $bookmark->title,
-                                 $url,
-                                 $tags,
-                                 $bookmark->summary,
-                                 $options);
+        return Bookmark::addNew($stored,
+                                 $actobj->title,
+                                 $relLinkEls[0]->getAttribute('href'),
+                                 $actobj->summary);
     }
 
     function activityObjectFromNotice(Notice $notice)

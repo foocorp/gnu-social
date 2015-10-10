@@ -105,16 +105,71 @@ class Bookmark extends Managed_DataObject
      *
      * @return Bookmark bookmark found or null
      */
-    static function getByURL($profile, $url)
+    static function getByURL(Profile $profile, $url)
     {
         $nb = new Bookmark();
 
-        $nb->profile_id = $profile->id;
+        $nb->profile_id = $profile->getID();
         $nb->url        = $url;
 
         if (!$nb->find(true)) {
             throw new NoResultException($nb);
         }
+
+        return $nb;
+    }
+
+    /**
+     * Store a Bookmark object
+     *
+     * @param Profile $profile     To save the bookmark for
+     * @param string  $title       Title of the bookmark
+     * @param string  $url         URL of the bookmark
+     * @param string  $description Description of the bookmark
+     *
+     * @return Bookmark the Bookmark object
+     */
+    static function addNew(Notice $stored, $title, $url, $description)
+    {
+        if ($title === '' or is_null($title)) {
+            throw new ClientException(_m('You must provide a non-empty title.'));
+        }
+        if (!common_valid_http_url($url)) {
+            throw new ClientException(_m('Only web bookmarks can be posted (HTTP or HTTPS).'));
+        }
+
+        try {
+            $object = self::getByURL($stored->getProfile(), $url);
+            throw new ClientException(_m('You have already bookmarked this URL.'));
+        } catch (NoResultException $e) {
+            // Alright, so then we have to create it.
+        }
+
+        $nb = new Bookmark();
+
+        $nb->id          = UUID::gen();
+        $nb->uri         = $stored->uri;
+        $nb->profile_id  = $stored->getProfile()->getID();
+        $nb->title       = $title;
+        $nb->url         = $url;
+        $nb->description = $description;
+        $nb->created     = $stored->created;
+
+        $result = $nb->insert();
+        if ($result === false) {
+            throw new ServerException('Could not insert Bookmark into database!');
+        }
+
+        /*$hashtags = array();
+        $taglinks = array();
+
+        foreach ($tags as $tag) {
+            $hashtags[] = '#'.$tag;
+            $attrs      = array('href' => Notice_tag::url($tag),
+                                'rel'  => $tag,
+                                'class' => 'tag');
+            $taglinks[] = XMLStringer::estring('a', $attrs, $tag);
+        }*/
 
         return $nb;
     }
