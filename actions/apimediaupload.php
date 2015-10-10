@@ -30,7 +30,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Upload an image via the API.  Returns a shortened URL for the image
- * to the user.
+ * to the user. Apparently modelled after a former Twitpic API.
  *
  * @category API
  * @package  StatusNet
@@ -108,7 +108,7 @@ class ApiMediaUploadAction extends ApiAuthAction
      *
      * @param String $msg an error message
      */
-    function clientError($msg)
+    function clientError($msg, $code=400, $format=null)
     {
         $this->initDocument();
         $this->elementStart('rsp', array('stat' => 'fail'));
