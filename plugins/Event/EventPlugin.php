@@ -157,6 +157,14 @@ class EventPlugin extends MicroAppPlugin
             throw new Exception(_m('No end date for event.'));
         }
 
+        // convert RFC3339 dates delivered in Activity Stream to MySQL DATETIME date format
+        $start_time = new DateTime($dtstart->item(0)->nodeValue);
+        $start_time->setTimezone(new DateTimeZone('UTC'));
+        $start_time = $start_time->format('Y-m-d H:i:s');
+        $end_time = new DateTime($dtend->item(0)->nodeValue);
+        $end_time->setTimezone(new DateTimeZone('UTC'));
+        $end_time = $end_time->format('Y-m-d H:i:s');
+
         // location is optional
         $location = null;
         $location_object = $happeningObj->element->getElementsByTagName('location');
@@ -177,8 +185,8 @@ class EventPlugin extends MicroAppPlugin
         case ActivityVerb::POST:
         	// FIXME: get startTime, endTime, location and URL
             $notice = Happening::saveNew($actor,
-                                         $dtstart->item(0)->nodeValue,
-                                         $dtend->item(0)->nodeValue,
+                                         $start_time,
+                                         $end_time,
                                          $happeningObj->title,
                                          $location,
                                          $happeningObj->summary,
