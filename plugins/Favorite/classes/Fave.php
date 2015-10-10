@@ -440,16 +440,4 @@ class Fave extends Managed_DataObject
         // We (should've in this case) created it ourselves, so we tag it ourselves
         return self::newUri($this->getActor(), $this->getTarget(), $this->created);
     }
-
-    static function newUri(Profile $actor, Managed_DataObject $target, $created=null)
-    {
-        if (is_null($created)) {
-            $created = common_sql_now();
-        }
-        return TagURI::mint(strtolower(get_called_class()).':%d:%s:%d:%s',
-                                        $actor->id,
-                                        ActivityUtils::resolveUri(self::getObjectType(), true),
-                                        $target->id,
-                                        common_date_iso8601($created));
-    }
 }

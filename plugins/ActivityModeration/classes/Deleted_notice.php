@@ -175,18 +175,6 @@ class Deleted_notice extends Managed_DataObject
         $act->title = ActivityUtils::verbToTitle($act->verb);
     }
 
-    static function newUri(Profile $actor, Managed_DataObject $object, $created=null)
-    {
-        if (is_null($created)) {
-            $created = common_sql_now();
-        }
-        return TagURI::mint(strtolower(get_called_class()).':%d:%s:%d:%s',
-                                        $actor->getID(),
-                                        ActivityUtils::resolveUri($object->getObjectType(), true),
-                                        $object->getID(),
-                                        common_date_iso8601($created));
-    }
-
     static public function beforeSchemaUpdate()
     {
         $table = strtolower(get_called_class());
