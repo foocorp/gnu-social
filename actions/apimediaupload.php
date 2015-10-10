@@ -94,6 +94,7 @@ class ApiMediaUploadAction extends ApiAuthAction
         $this->elementStart('rsp', array('stat' => 'ok'));
         $this->element('mediaid', null, $upload->fileRecord->id);
         $this->element('mediaurl', null, $upload->shortUrl());
+        $this->element('mediahref', null, $upload->fileRecord->getUrl());
         $this->elementEnd('rsp');
         $this->endDocument();
     }
