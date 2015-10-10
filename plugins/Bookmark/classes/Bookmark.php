@@ -276,9 +276,7 @@ class Bookmark extends Managed_DataObject
                                      'object_type' => ActivityObject::BOOKMARK),
                                $options);
 
-        if (!array_key_exists('uri', $options)) {
-            $options['uri'] = $nb->uri;
-        }
+        $options['uri'] = $nb->uri;
 
         try {
             $saved = Notice::saveNew($profile->id,
