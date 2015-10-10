@@ -27,9 +27,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * For storing the fact that a notice is a bookmark
@@ -77,6 +75,7 @@ class Bookmark extends Managed_DataObject
             ),
             'foreign keys' => array(
                 'bookmark_profile_id_fkey' => array('profile', array('profile_id' => 'id'))
+                'bookmark_uri_fkey' => array('notice', array('uri' => 'uri'))
             ),
             'indexes' => array('bookmark_created_idx' => array('created'),
                             'bookmark_url_idx' => array('url'),
@@ -88,13 +87,15 @@ class Bookmark extends Managed_DataObject
     /**
      * Get a bookmark based on a notice
      *
-     * @param Notice $notice Notice to check for
+     * @param   Notice              $stored Notice activity which represents the Bookmark
      *
-     * @return Bookmark found bookmark or null
+     * @return  Bookmark            The found bookmark object.
+     * @throws  NoResultException   When you don't find it after all.
      */
-    static function getByNotice($notice)
+    static public function fromStored(Notice $stored)
     {
-        return self::getKV('uri', $notice->uri);
+        $class = get_called_class();
+        return self::getByPK(array('uri', $stored->getUri()));
     }
 
     /**

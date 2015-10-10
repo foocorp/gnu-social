@@ -99,12 +99,7 @@ class Deleted_notice extends Managed_DataObject
     static public function fromStored(Notice $stored)
     {
         $class = get_called_class();
-        $object = new $class;
-        $object->uri = $stored->getUri();   // Lookup by delete activity's URI! (that's what is _stored_ in our db!)
-        if (!$object->find(true)) {
-            throw new NoResultException($object);
-        }
-        return $object;
+        return self::getByPK(array('uri', $stored->getUri()));
     }
 
     // The one who deleted the notice, not the notice's author
