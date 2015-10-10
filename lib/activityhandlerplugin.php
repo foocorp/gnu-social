@@ -281,10 +281,14 @@ abstract class ActivityHandlerPlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onNoticeDeleteRelated(Notice $notice)
+    public function onNoticeDeleteRelated(Notice $notice)
     {
         if ($this->isMyNotice($notice)) {
-            $this->deleteRelated($notice);
+            try {
+                $this->deleteRelated($notice);
+            } catch (AlreadyFulfilledException $e) {
+                // Nothing to see here, it's obviously already gone...
+            }
         }
 
         // Always continue this event in our activity handling plugins.

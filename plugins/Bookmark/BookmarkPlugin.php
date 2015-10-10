@@ -280,14 +280,12 @@ class BookmarkPlugin extends MicroAppPlugin
      */
     function deleteRelated(Notice $notice)
     {
-    	if ($this->isMyNotice($notice)) {
-    		
-        	$nb = Bookmark::getByNotice($notice);
-
-        	if (!empty($nb)) {
-            	$nb->delete();
-        	}
-    	}
+        try {
+            $nb = Bookmark::fromStored($notice);
+        } catch (NoResultException $e) {
+            throw new AlreadyFulfilledException('Bookmark already gone when deleting: '.$e->getMessage());
+        }
+        $nb->delete();
     	
         return true;
     }
@@ -388,12 +386,12 @@ class BookmarkPlugin extends MicroAppPlugin
                    "Formatting notice {$notice->uri} as a bookmark.");
 
         $object = new ActivityObject();
-        $nb = Bookmark::getByNotice($notice);
+        $nb = Bookmark::fromStored($notice);
 
         $object->id      = $notice->uri;
         $object->type    = ActivityObject::BOOKMARK;
-        $object->title   = $nb->title;
-        $object->summary = $nb->description;
+        $object->title   = $nb->getTitle();
+        $object->summary = $nb->getDescription();
         $object->link    = $notice->getUrl();
 
         // Attributes of the URL
@@ -481,14 +479,10 @@ class BookmarkPlugin extends MicroAppPlugin
     {
         assert($obj->type == ActivityObject::BOOKMARK);
 
-        $bm = Bookmark::getKV('uri', $obj->id);
+        $bm = Bookmark::getByPK(array('uri', $obj->id));
 
-        if (empty($bm)) {
-            throw new ServerException("Unknown bookmark: " . $obj->id);
-        }
-
-        $out['displayName'] = $bm->title;
-        $out['targetUrl']   = $bm->url;
+        $out['displayName'] = $bm->getTitle();
+        $out['targetUrl']   = $bm->getUrl();
 
         return true;
     }
@@ -501,24 +495,32 @@ class BookmarkPlugin extends MicroAppPlugin
         $nli->out->elementEnd('div');
     }
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getUrl()
+    {
+        if (empty($this->url)) {
+            throw new InvalidUrlException($this->url);
+        }
+        return $this->url;
+    }
+
     protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
     {
-        $nb = Bookmark::getByNotice($stored);
-
-        if (empty($nb)) {
-            common_log(LOG_ERR, "No bookmark for notice {$stored->id}");
-            parent::showContent();
-            return;
-        } else if (empty($nb->url)) {
-            common_log(LOG_ERR, "No url for bookmark {$nb->id} for notice {$stored->id}");
-            parent::showContent();
-            return;
-        }
+        $nb = Bookmark::fromStored($stored);
 
         $profile = $stored->getProfile();
 
         // Whether to nofollow
-        $attrs = array('href' => $nb->url, 'class' => 'bookmark-title');
+        $attrs = array('href' => $nb->getUrl(), 'class' => 'bookmark-title');
 
         $nf = common_config('nofollow', 'external');
 
