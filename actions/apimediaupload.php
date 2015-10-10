@@ -91,10 +91,14 @@ class ApiMediaUploadAction extends ApiAuthAction
     function showResponse(MediaFile $upload)
     {
         $this->initDocument();
-        $this->elementStart('rsp', array('stat' => 'ok'));
+        $this->elementStart('rsp', array('stat' => 'ok', 'xmlns:atom'=>Activity::ATOM));
         $this->element('mediaid', null, $upload->fileRecord->id);
         $this->element('mediaurl', null, $upload->shortUrl());
-        $this->element('mediahref', null, $upload->fileRecord->getUrl());
+
+        $enclosure = $upload->fileRecord->getEnclosure();
+        $this->element('atom:link', array('rel'  => 'enclosure',
+                                          'href' => $enclosure->url,
+                                          'type' => $enclosure->mimetype));
         $this->elementEnd('rsp');
         $this->endDocument();
     }
