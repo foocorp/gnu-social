@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Manuel Ortega <manuel@elarte.coop>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:32+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Esperanto (http://www.transifex.com/projects/p/gnu-social/language/eo/)\n"
+"PO-Revision-Date: 2015-06-13 14:41+0000\n"
+"Last-Translator: Manuel Ortega <manuel@elarte.coop>\n"
+"Language-Team: Esperanto (http://www.transifex.com/gnu-social/gnu-social/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,7 +31,7 @@ msgstr ""
 #. TRANS: Error message.
 #: index.php:137
 msgid "An error occurred."
-msgstr ""
+msgstr "Eraro okazis."
 
 #. TRANS: Error message displayed when there is no StatusNet configuration
 #. file.
@@ -1029,7 +1030,7 @@ msgstr ""
 #. having the right to do so.
 #: actions/apilistmembers.php:46
 msgid "You are not allowed to add members to this list."
-msgstr ""
+msgstr "Vi ne rajtas aldoni membrojn al tiu ĉi listo."
 
 #. TRANS: Client error displayed when trying to modify list members without
 #. specifying them.

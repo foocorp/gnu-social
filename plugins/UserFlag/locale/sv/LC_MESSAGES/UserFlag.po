@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 13:31+0000\n"
+"PO-Revision-Date: 2015-09-15 22:34+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,28 +26,28 @@ msgstr "Flagga"
 #. TRANS: Form description.
 #: forms/flagprofile.php:89
 msgid "Flag profile for review."
-msgstr ""
+msgstr "Flagga profil för granskning."
 
 #. TRANS: Form title for action on a profile.
 #: forms/clearflag.php:76
 msgid "Clear"
-msgstr ""
+msgstr "Rensa"
 
 #. TRANS: Form description for clearing flags from a profile.
 #: forms/clearflag.php:88
 msgid "Clear all flags"
-msgstr ""
+msgstr "Rensa alla flaggor"
 
 #. TRANS: AJAX form title for a flagged profile.
 #: actions/flagprofile.php:123
 msgid "Flagged for review"
-msgstr ""
+msgstr "Flaggad för granskning"
 
 #. TRANS: Body text for AJAX form when a profile has been flagged for review.
 #. TRANS: Message added to a profile if it has been flagged for review.
 #: actions/flagprofile.php:127 UserFlagPlugin.php:134
 msgid "Flagged"
-msgstr ""
+msgstr "Flaggad"
 
 #. TRANS: Error message displayed when trying to perform an action that
 #. requires a logged in user.
@@ -59,12 +59,12 @@ msgstr "Inte inloggad."
 #. not authorised.
 #: actions/adminprofileflag.php:89
 msgid "You cannot review profile flags."
-msgstr ""
+msgstr "Du kan inte granska profil-flaggor."
 
 #. TRANS: Title for page with a list of profiles that were flagged for review.
 #: actions/adminprofileflag.php:125
 msgid "Flagged profiles"
-msgstr ""
+msgstr "Flaggade profiler"
 
 #. TRANS: Header for moderation menu with action buttons for flagged profiles
 #. (like 'sandbox', 'silence', ...).
@@ -81,8 +81,8 @@ msgstr "Moderera"
 #, php-format
 msgid "Flagged by %1$s and %2$d other"
 msgid_plural "Flagged by %1$s and %2$d others"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Flaggad av %1$s och %2$d annan"
+msgstr[1] "Flaggad av %1$s och %2$d andra"
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %s is a comma separated list of at most 5 user nicknames that
@@ -90,35 +90,35 @@ msgstr[1] ""
 #: actions/adminprofileflag.php:392
 #, php-format
 msgid "Flagged by %s"
-msgstr ""
+msgstr "Flaggad av %s"
 
 #. TRANS: Server exception given when flags could not be cleared.
 #. TRANS: %s is a profile nickname.
 #: actions/clearflag.php:105
 #, php-format
 msgid "Could not clear flags for profile \"%s\"."
-msgstr ""
+msgstr "Kunde inte rensa flaggorna för profilen \"%s\"."
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
 #: actions/clearflag.php:127
 msgid "Flags cleared"
-msgstr ""
+msgstr "Flaggor rensade"
 
 #. TRANS: Body element for "flags cleared" form.
 #: actions/clearflag.php:131
 msgid "Cleared"
-msgstr ""
+msgstr "Rensat"
 
 #. TRANS: Server exception.
 #. TRANS: %d is a profile ID (number).
 #: classes/User_flag_profile.php:115
 #, php-format
 msgid "Could not flag profile \"%d\" for review."
-msgstr ""
+msgstr "Kunde inte flagga profilen \"%d\" för granskning."
 
 #. TRANS: Plugin description.
 #: UserFlagPlugin.php:240
 msgid ""
 "This plugin allows flagging of profiles for review and reviewing flagged "
 "profiles."
-msgstr ""
+msgstr "Det här insticksprogrammet tillåter flaggning av profiler för granskning och granskning av flaggade profiler."

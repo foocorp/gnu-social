@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 13:31+0000\n"
+"PO-Revision-Date: 2015-09-16 01:45+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,18 +33,18 @@ msgstr "Twitter-inloggning"
 #. TRANS: Instructions for login using Twitter page.
 #: actions/twitterlogin.php:72
 msgid "Login with your Twitter account"
-msgstr ""
+msgstr "Logga in med ditt Twitter-konto"
 
 #. TRANS: Alternative text for "sign in with Twitter" image.
 #: actions/twitterlogin.php:91
 msgid "Sign in with Twitter"
-msgstr ""
+msgstr "Logga in med Twitter"
 
 #. TRANS: Page title for Twitter administration panel.
 #: actions/twitteradminpanel.php:53
 msgctxt "TITLE"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Instructions for Twitter bridge administration page.
 #: actions/twitteradminpanel.php:64
@@ -55,7 +55,7 @@ msgstr ""
 #. too long.
 #: actions/twitteradminpanel.php:153
 msgid "Invalid consumer key. Maximum length is 255 characters."
-msgstr ""
+msgstr "Ogiltig konsumentnyckel. Maximal längd är 255 tecken."
 
 #. TRANS: Client error displayed when a consumer secret is invalid because it
 #. is too long.
@@ -426,7 +426,7 @@ msgstr ""
 #: TwitterBridgePlugin.php:154 TwitterBridgePlugin.php:179
 msgctxt "MENU"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Title for menu item in login navigation.
 #: TwitterBridgePlugin.php:156
@@ -442,7 +442,7 @@ msgstr ""
 #. configuration.
 #: TwitterBridgePlugin.php:282
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Menu item title in administrative panel that leads to the Twitter
 #. bridge configuration.

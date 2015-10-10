@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:34+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-28 22:11+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,7 +23,7 @@ msgstr ""
 #: WikiHashtagsPlugin.php:83
 #, php-format
 msgid "Edit the article for #%s on WikiHashtags"
-msgstr "Editar el artículo \"#%s\" en WikiHashtags"
+msgstr "Editar el artículo #%s en WikiHashtags"
 
 #. TRANS: Link description for editing an article on WikiHashTags.
 #: WikiHashtagsPlugin.php:85
@@ -32,7 +33,7 @@ msgstr "Editar"
 #. TRANS: Link title for viewing the GFDL.
 #: WikiHashtagsPlugin.php:88
 msgid "Shared under the terms of the GNU Free Documentation License"
-msgstr "Difundido bajo los términos de la licencia de documentación libre de GNU"
+msgstr "Compartido bajo los términos de la Licencia de Documentación Libre de GNU"
 
 #. TRANS: Link description for viewing the GFDL.
 #: WikiHashtagsPlugin.php:91
@@ -44,7 +45,7 @@ msgstr "GNU FDL"
 #: WikiHashtagsPlugin.php:97
 #, php-format
 msgid "Start the article for #%s on WikiHashtags"
-msgstr "Crear el artículo \"#%s\" en WikiHashtags"
+msgstr "Crear el artículo para la etiqueta #%s en WikiHashtags"
 
 #. TRANS: Plugin description.
 #: WikiHashtagsPlugin.php:115

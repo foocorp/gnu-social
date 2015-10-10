@@ -1,0 +1,92 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 10:23+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Bengali (India) (http://www.transifex.com/gnu-social/gnu-social/language/bn_IN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bn_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+#: RSSCloudPlugin.php:209
+msgid ""
+"The RSSCloud plugin enables your StatusNet instance to publish real-time "
+"updates for profile RSS feeds using the <a "
+"href=\"http://rsscloud.org/\">RSSCloud protocol</a>."
+msgstr ""
+
+#. TRANS: Form validation error displayed when a URL parameter is missing.
+#: actions/loggingaggregator.php:86
+msgid "A URL parameter is required."
+msgstr ""
+
+#. TRANS: Form validation error displayed when HTTP GET is not used.
+#: actions/loggingaggregator.php:94
+msgid "This resource requires an HTTP GET."
+msgstr ""
+
+#. TRANS: Form validation error displayed when HTTP POST is not used.
+#: actions/loggingaggregator.php:104
+msgid "This resource requires an HTTP POST."
+msgstr ""
+
+#. TRANS: Form validation error displayed when POST is not used.
+#: actions/rsscloudrequestnotify.php:91
+msgid "Request must be POST."
+msgstr ""
+
+#. TRANS: Form validation error displayed when HTTP POST is not used.
+#: actions/rsscloudrequestnotify.php:109
+msgid "Only HTTP POST notifications are supported at this time."
+msgstr ""
+
+#. TRANS: List separator.
+#: actions/rsscloudrequestnotify.php:120
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr ""
+
+#. TRANS: Form validation error displayed when a request body is missing
+#. expected parameters.
+#. TRANS: %s is a list of parameters separated by a list separator (default:
+#. ", ").
+#: actions/rsscloudrequestnotify.php:123
+#, php-format
+msgid "The following parameters were missing from the request body: %s."
+msgstr ""
+
+#. TRANS: Form validation error displayed when not providing any valid profile
+#. feed URLs.
+#: actions/rsscloudrequestnotify.php:130
+msgid ""
+"You must provide at least one valid profile feed URL (url1, url2, url3 ... "
+"urlN)."
+msgstr ""
+
+#. TRANS: Form validation error displayed when not providing a valid feed URL.
+#: actions/rsscloudrequestnotify.php:146
+msgid "Feed subscription failed: Not a valid feed."
+msgstr ""
+
+#. TRANS: Form validation error displayed when feed subscription failed.
+#: actions/rsscloudrequestnotify.php:153
+msgid ""
+"Feed subscription failed: Notification handler does not respond correctly."
+msgstr ""
+
+#. TRANS: Success message after subscribing to one or more feeds.
+#: actions/rsscloudrequestnotify.php:168
+msgid ""
+"Thanks for the subscription. When the feed(s) update(s), you will be "
+"notified."
+msgstr ""

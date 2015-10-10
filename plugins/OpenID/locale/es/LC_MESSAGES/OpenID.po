@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-27 15:30+0000\n"
+"PO-Revision-Date: 2015-02-28 20:31+0000\n"
 "Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -263,7 +263,7 @@ msgstr "No se puede agregar a nuevos proveedores."
 #. TRANS: Unexpected form validation error.
 #: actions/openidsettings.php:281
 msgid "Something weird happened."
-msgstr "Ocurrió algo extraño."
+msgstr "Error desconocido."
 
 #. TRANS: Form validation error when trying to remove a non-existing
 #. trustroot.

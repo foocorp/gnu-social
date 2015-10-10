@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Luke Hollins <luke@farcry.ca>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:32+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/gnu-social/language/fr/)\n"
+"PO-Revision-Date: 2015-05-09 18:23+0000\n"
+"Last-Translator: Luke Hollins <luke@farcry.ca>\n"
+"Language-Team: French (http://www.transifex.com/gnu-social/gnu-social/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,13 +83,13 @@ msgstr "Avis faisant référence à %1$s, page %2$d"
 #. TRANS: Page title for sample plugin.
 #: actions/bookmarks.php:128
 msgid "Log in"
-msgstr ""
+msgstr "s'identifier"
 
 #. TRANS: Page title for sample plugin. %s is a user nickname.
 #: actions/bookmarks.php:131
 #, php-format
 msgid "%s's bookmarks"
-msgstr ""
+msgstr "Les signets de %s"
 
 #. TRANS: Title for action to create a new bookmark.
 #: actions/newbookmark.php:64
@@ -257,7 +258,7 @@ msgstr "Signet de %1$s pour \"%2$s\""
 
 #: classes/Bookmark.php:138
 msgid "Only web bookmarks can be posted (HTTP or HTTPS)."
-msgstr ""
+msgstr "Seuls les signets Web peuvent être affichées (HTTP ou HTTPS)."
 
 #. TRANS: Client exception thrown when trying to save a new bookmark that
 #. already exists.
@@ -289,17 +290,17 @@ msgstr "<span class=\"xfolkentry\"><a class=\"taggedlink\" href=\"%1$s\">%2$s</a
 #. TRANS: Plugin description.
 #: BookmarkPlugin.php:192
 msgid "Simple extension for supporting bookmarks. "
-msgstr ""
+msgstr "Simple extension pour supporter signets."
 
 #. TRANS: Menu item in sample plugin.
 #: BookmarkPlugin.php:263
 msgid "Bookmarks"
-msgstr ""
+msgstr "signets"
 
 #. TRANS: Menu item title in sample plugin.
 #: BookmarkPlugin.php:265
 msgid "A list of your bookmarks"
-msgstr ""
+msgstr "Une liste de vos signets"
 
 #. TRANS: Client exception thrown when a bookmark is formatted incorrectly.
 #: BookmarkPlugin.php:312

@@ -1,0 +1,390 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 14:19+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Indonesian (http://www.transifex.com/gnu-social/gnu-social/language/id/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Form legend.
+#. TRANS: Field label for a Yammer import connect step.
+#. TRANS: Form legend.
+#. TRANS: Page title for Yammer administration panel.
+#: forms/yammerauthverify.php:57 forms/yammerprogress.php:72
+#: forms/yammerauthinit.php:49 actions/yammerauth.php:70
+msgid "Connect to Yammer"
+msgstr ""
+
+#. TRANS: Form instructions.
+#: forms/yammerauthverify.php:74
+msgid ""
+"Follow this link to confirm authorization at Yammer; you will be prompted to"
+" log in if necessary:"
+msgstr ""
+
+#. TRANS: Link description for a link in an external Yammer system.
+#: forms/yammerauthverify.php:90
+msgid "Open Yammer authentication window"
+msgstr ""
+
+#. TRANS: Form instructions.
+#: forms/yammerauthverify.php:94
+msgid "Copy the verification code you are given below:"
+msgstr ""
+
+#. TRANS: Field label.
+#: forms/yammerauthverify.php:99
+msgid "Verification code:"
+msgstr ""
+
+#. TRANS: Button text for saving  Yammer authorisation data and starting
+#. Yammer import.
+#: forms/yammerauthverify.php:104
+msgctxt "BUTTON"
+msgid "Continue"
+msgstr ""
+
+#. TRANS: Button title for saving  Yammer authorisation data and starting
+#. Yammer import.
+#: forms/yammerauthverify.php:106
+msgid "Save the verification code and begin import."
+msgstr ""
+
+#. TRANS: Field label for a Yammer import initialise step.
+#: forms/yammerprogress.php:64
+msgid "Initialize"
+msgstr ""
+
+#. TRANS: "In progress" description.
+#: forms/yammerprogress.php:66
+msgid "No import running"
+msgstr ""
+
+#. TRANS: "Complete" description for initialize state.
+#: forms/yammerprogress.php:68
+msgid "Initiated Yammer server connection..."
+msgstr ""
+
+#. TRANS: "In progress" description.
+#: forms/yammerprogress.php:74
+msgid "Awaiting authorization..."
+msgstr ""
+
+#. TRANS: "Complete" description for connect state.
+#: forms/yammerprogress.php:76
+msgid "Connected."
+msgstr ""
+
+#. TRANS: Field label for a Yammer user import users step.
+#: forms/yammerprogress.php:80
+msgid "Import user accounts"
+msgstr ""
+
+#. TRANS: "In progress" description.
+#. TRANS: %d is the number of users to be imported.
+#: forms/yammerprogress.php:83
+#, php-format
+msgid "Importing %d user..."
+msgid_plural "Importing %d users..."
+msgstr[0] ""
+
+#. TRANS: "Complete" description for step.
+#. TRANS: %d is the number of users imported.
+#: forms/yammerprogress.php:89
+#, php-format
+msgid "Imported %d user."
+msgid_plural "Imported %d users."
+msgstr[0] ""
+
+#. TRANS: Field label for a Yammer group import step.
+#: forms/yammerprogress.php:96
+msgid "Import user groups"
+msgstr ""
+
+#. TRANS: "In progress" description.
+#. TRANS: %d is the number of groups to be imported.
+#: forms/yammerprogress.php:99
+#, php-format
+msgid "Importing %d group..."
+msgid_plural "Importing %d groups..."
+msgstr[0] ""
+
+#. TRANS: "Complete" description for step.
+#. TRANS: %d is the number of groups imported.
+#: forms/yammerprogress.php:105
+#, php-format
+msgid "Imported %d group."
+msgid_plural "Imported %d groups."
+msgstr[0] ""
+
+#. TRANS: Field label for a Yammer import prepare notices step.
+#: forms/yammerprogress.php:112
+msgid "Prepare public notices for import"
+msgstr ""
+
+#. TRANS: "In progress" description.
+#. TRANS: %d is the number of notices to be prepared for import.
+#: forms/yammerprogress.php:115
+#, php-format
+msgid "Preparing %d notice..."
+msgid_plural "Preparing %d notices..."
+msgstr[0] ""
+
+#. TRANS: "Complete" description for step.
+#. TRANS: %d is the number of notices prepared for import.
+#: forms/yammerprogress.php:121
+#, php-format
+msgid "Prepared %d notice."
+msgid_plural "Prepared %d notices."
+msgstr[0] ""
+
+#. TRANS: Field label for a Yammer import notices step.
+#: forms/yammerprogress.php:128
+msgid "Import public notices"
+msgstr ""
+
+#. TRANS: "In progress" description.
+#. TRANS: %d is the number of notices to be imported.
+#: forms/yammerprogress.php:131
+#, php-format
+msgid "Importing %d notice..."
+msgid_plural "Importing %d notices..."
+msgstr[0] ""
+
+#. TRANS: "Complete" description for step.
+#. TRANS: %d is the number of notices imported.
+#: forms/yammerprogress.php:137
+#, php-format
+msgid "Imported %d notice."
+msgid_plural "Imported %d notices."
+msgstr[0] ""
+
+#. TRANS: Field label for a Yammer import done step.
+#: forms/yammerprogress.php:144
+msgid "Done"
+msgstr ""
+
+#. TRANS: "In progress" description for done step.
+#. TRANS: "Complete" description for done step.
+#: forms/yammerprogress.php:146 forms/yammerprogress.php:148
+msgid "Import is complete!"
+msgstr ""
+
+#. TRANS: Fieldset legend.
+#: forms/yammerprogress.php:162
+msgid "Import status"
+msgstr ""
+
+#. TRANS: Progress bar status.
+#: forms/yammerprogress.php:187
+msgid "Waiting..."
+msgstr ""
+
+#. TRANS: Button text for resetting the import state.
+#: forms/yammerprogress.php:202
+msgid "Reset import state"
+msgstr ""
+
+#. TRANS: Button text for pausing an import.
+#: forms/yammerprogress.php:208
+msgid "Pause import"
+msgstr ""
+
+#. TRANS: Error message. %s are the error details.
+#: forms/yammerprogress.php:218
+#, php-format
+msgid "Encountered error \"%s\"."
+msgstr ""
+
+#. TRANS: Fieldset legend for a paused import.
+#: forms/yammerprogress.php:221
+msgid "Paused"
+msgstr ""
+
+#. TRANS: Button text for continuing a paused import.
+#: forms/yammerprogress.php:224
+msgid "Continue"
+msgstr ""
+
+#. TRANS: Button text for aborting a paused import.
+#: forms/yammerprogress.php:226
+msgid "Abort import"
+msgstr ""
+
+#. TRANS: Button text for starting Yammer authentication.
+#: forms/yammerauthinit.php:64
+msgctxt "BUTTON"
+msgid "Start authentication"
+msgstr ""
+
+#. TRANS: Button title for starting Yammer authentication.
+#: forms/yammerauthinit.php:66
+msgid "Request authorization to connect to a Yammer account."
+msgstr ""
+
+#. TRANS: Button text for starting changing a Yammer API key.
+#: forms/yammerauthinit.php:68
+msgctxt "BUTTON"
+msgid "Change API key"
+msgstr ""
+
+#. TRANS: Form legend for adding details to connect to a remote Yammer API.
+#: forms/yammerapikey.php:57
+msgid "Yammer API registration"
+msgstr ""
+
+#. TRANS: Explanation of what needs to be done to connect to a Yammer network.
+#: forms/yammerapikey.php:74
+msgid ""
+"Before we can connect to your Yammer network, you will need to register the "
+"importer as an application authorized to pull data on your behalf. This "
+"registration will work only for your own network. Follow this link to "
+"register the app at Yammer; you will be prompted to log in if necessary:"
+msgstr ""
+
+#. TRANS: Link description to a Yammer application registration form.
+#: forms/yammerapikey.php:87
+msgid "Open Yammer application registration form"
+msgstr ""
+
+#. TRANS: Instructions.
+#: forms/yammerapikey.php:91
+msgid "Copy the consumer key and secret you are given into the form below:"
+msgstr ""
+
+#. TRANS: Field label for a Yammer consumer key.
+#: forms/yammerapikey.php:96
+msgid "Consumer key:"
+msgstr ""
+
+#. TRANS: Field label for a Yammer consumer secret.
+#: forms/yammerapikey.php:100
+msgid "Consumer secret:"
+msgstr ""
+
+#. TRANS: Button text for saving a Yammer API registration.
+#: forms/yammerapikey.php:105
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Simpan"
+
+#. TRANS: Button title for saving a Yammer API registration.
+#: forms/yammerapikey.php:107
+msgid "Save the entered consumer key and consumer secret."
+msgstr ""
+
+#. TRANS: Page title for Yammer import administration panel.
+#: actions/yammeradminpanel.php:46
+msgid "Yammer Import"
+msgstr ""
+
+#. TRANS: Instructions for Yammer import administration panel.
+#: actions/yammeradminpanel.php:57
+msgid ""
+"This Yammer import tool is still undergoing testing, and is incomplete in "
+"some areas. Currently user subscriptions and group memberships are not "
+"transferred; in the future this may be supported for imports done by "
+"verified administrators on the Yammer side."
+msgstr ""
+
+#. TRANS: Error message about an import job being paused from the admin panel.
+#: actions/yammeradminpanel.php:105
+msgid "Paused from admin panel."
+msgstr ""
+
+#. TRANS: Client exception thrown when encountering an unhandled sub action.
+#: actions/yammeradminpanel.php:118
+msgid "Invalid POST"
+msgstr ""
+
+#. TRANS: Page title for Yammer import administration panel.
+#: actions/yammeradminpanel.php:140
+msgid "Yammer import"
+msgstr ""
+
+#. TRANS: Server exception thrown if a Yammer authentication request is
+#. already present.
+#: lib/yammerrunner.php:127
+msgid "Cannot request Yammer auth; already there!"
+msgstr ""
+
+#. TRANS: Server exception thrown when requesting a Yammer authentication URL
+#. while in an incorrect state.
+#: lib/yammerrunner.php:154
+msgid "Cannot get Yammer auth URL when not in requesting-auth state!"
+msgstr ""
+
+#. TRANS: Exeption thrown when an external Yammer system gives an error.
+#. TRANS: %1$s is an HTTP error code, %2$s is the error message body.
+#: lib/snyammerclient.php:74
+#, php-format
+msgid "Yammer API returned HTTP code %1$s: %2$s"
+msgstr ""
+
+#. TRANS: Exeption thrown when an external Yammer system an invalid JSON
+#. response.
+#: lib/snyammerclient.php:114
+msgid "Invalid JSON response from Yammer API."
+msgstr ""
+
+#. TRANS: Exeption thrown when a trust relationship has already been
+#. established.
+#: lib/snyammerclient.php:169
+msgid "Requesting a token, but already set up with a token."
+msgstr ""
+
+#. TRANS: Exception thrown when a non-user item type is used, but expected.
+#: lib/yammerimporter.php:186
+msgid "Wrong item type sent to Yammer user import processing."
+msgstr ""
+
+#. TRANS: Used as a prefix for the Yammer expertise field contents.
+#: lib/yammerimporter.php:234
+msgid "Expertise:"
+msgstr ""
+
+#. TRANS: Exception thrown when a non-group item type is used, but expected.
+#: lib/yammerimporter.php:270
+msgid "Wrong item type sent to Yammer group import processing."
+msgstr ""
+
+#. TRANS: Exception thrown when a non-message item type is used, but expected.
+#: lib/yammerimporter.php:311
+msgid "Wrong item type sent to Yammer message import processing."
+msgstr ""
+
+#. TRANS: Server exception thrown when an avatar URL is invalid.
+#. TRANS: %s is the invalid avatar URL.
+#: lib/yammerimporter.php:440
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr ""
+
+#. TRANS: Server exception thrown when an avatar could not be fetched.
+#. TRANS: %s is the failed avatar URL.
+#: lib/yammerimporter.php:450
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr ""
+
+#. TRANS: Menu item for Yammer import.
+#: YammerImportPlugin.php:99
+msgctxt "MENU"
+msgid "Yammer"
+msgstr ""
+
+#. TRANS: Menu item title for Yammer import.
+#: YammerImportPlugin.php:101
+msgid "Yammer import module."
+msgstr ""

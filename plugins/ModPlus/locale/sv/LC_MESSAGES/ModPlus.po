@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 09:27+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-16 01:09+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,7 +23,7 @@ msgstr ""
 #: actions/remoteprofile.php:15
 #, php-format
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s på %2$s"
 
 #. TRANS: Message on remote profile page.
 #. TRANS: This message contains Markdown links in the form
@@ -33,14 +34,14 @@ msgstr ""
 msgid ""
 "This remote profile is registered on another site; see [%1$s's original "
 "profile page on %2$s](%3$s)."
-msgstr ""
+msgstr "Den här fjärrprofilen är registrerad på en annan sida; kolla in [%1$s's originella profilsida på %2$s](%3$s)."
 
 #. TRANS: Message on blocked remote profile page.
 #: actions/remoteprofile.php:38
 msgid ""
 "Site moderators have silenced this profile, which prevents delivery of new "
 "messages to any users on this site."
-msgstr ""
+msgstr "Sidans moderatorer har tystat den här profilen vilket förhindrar leverans av nya meddelanden till någon användare på den här sidan."
 
 #. TRANS: Plugin description.
 #: ModPlusPlugin.php:40

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# no and no <nicolasmaia@tutanota.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 09:32+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/gnu-social/language/pt_BR/)\n"
+"PO-Revision-Date: 2015-04-15 15:04+0000\n"
+"Last-Translator: no and no <nicolasmaia@tutanota.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/gnu-social/gnu-social/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. TRANS: Plugin description.
 #: OfflineBackupPlugin.php:82
 msgid "Backup user data in offline queue and email when ready."
-msgstr ""
+msgstr "Backup de dados de usuário em uma fila offline e enviar por email quando prontos."
 
 #: lib/offlinebackupqueuehandler.php:105
 #, php-format
@@ -30,4 +31,4 @@ msgctxt ""
 "%s\n"
 "Thanks for your time,\n"
 msgid "%s\n"
-msgstr ""
+msgstr "%s\n"

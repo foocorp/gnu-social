@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:41+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-17 18:34+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. TRANS: OpenID plugin server error.
 #: openid.php:139
 msgid "Cannot instantiate OpenID consumer object."
-msgstr ""
+msgstr "Kan inte exemplifiera konsument-objekt för OpenID."
 
 #. TRANS: OpenID plugin message. Given when an OpenID is not valid.
 #: openid.php:151
@@ -33,7 +34,7 @@ msgstr "Inte ett giltigt OpenID."
 #: openid.php:156
 #, php-format
 msgid "OpenID failure: %s."
-msgstr ""
+msgstr "OpenID-misslyckande: %s."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication
 #. request cannot be redirected.
@@ -41,29 +42,29 @@ msgstr ""
 #: openid.php:206
 #, php-format
 msgid "Could not redirect to server: %s."
-msgstr ""
+msgstr "Kunde inte dirigera om till servern: %s"
 
 #. TRANS: OpenID plugin user instructions.
 #: openid.php:245
 msgid ""
 "This form should automatically submit itself. If not, click the submit "
 "button to go to your OpenID provider."
-msgstr ""
+msgstr "Det här formuläret borde automatiskt skicka in sig själv. Om inte så klickar du på Skicka-knappen för att gå till din OpenID-leverantör."
 
 #. TRANS: OpenID plugin server error.
 #: openid.php:281
 msgid "Error saving the profile."
-msgstr ""
+msgstr "Fel vid sparande av profilen."
 
 #. TRANS: OpenID plugin server error.
 #: openid.php:293
 msgid "Error saving the user."
-msgstr ""
+msgstr "Fel vid sparande av användaren."
 
 #. TRANS: OpenID plugin client exception (403).
 #: openid.php:323
 msgid "Unauthorized URL used for OpenID login."
-msgstr ""
+msgstr "Obehörig webbadress som används för inloggning med OpenID."
 
 #. TRANS: Title
 #: openid.php:371
@@ -74,7 +75,7 @@ msgstr ""
 #. OpenID login provider.
 #: openid.php:382
 msgid "Requesting authorization from your login provider..."
-msgstr ""
+msgstr "Skickar en förfrågning om tillstånd från din inloggningsleverantör..."
 
 #. TRANS: OpenID plugin message. User instruction while requesting
 #. authorization user's OpenID login provider.

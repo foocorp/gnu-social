@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-04 17:39+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,20 +52,20 @@ msgstr ""
 #. TRANS: Fieldset legend.
 #: actions/userdirectory.php:271
 msgid "Search site"
-msgstr ""
+msgstr "Sitede ara"
 
 #. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
 #: actions/userdirectory.php:276 actions/groupdirectory.php:288
 msgid "Keyword(s)"
-msgstr ""
+msgstr "Anahtar kelime(ler)"
 
 #. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
 #: actions/userdirectory.php:279 actions/groupdirectory.php:291
 msgctxt "BUTTON"
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #. TRANS: Empty list message for user directory.
 #: actions/userdirectory.php:385
@@ -146,7 +146,7 @@ msgstr ""
 #: DirectoryPlugin.php:241
 msgctxt "MENU"
 msgid "Directory"
-msgstr ""
+msgstr "Dizin"
 
 #. TRANS: Menu item title for user directory.
 #: DirectoryPlugin.php:243
@@ -176,7 +176,7 @@ msgstr "Üyeler"
 #. TRANS: Column header for number of subscriptions.
 #: lib/sortablesubscriptionlist.php:114
 msgid "Subscriptions"
-msgstr ""
+msgstr "Abonelikler"
 
 #. TRANS: Column header for number of notices.
 #: lib/sortablesubscriptionlist.php:116

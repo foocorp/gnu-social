@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# kris <cb16@actocom.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 12:23+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/gnu-social/language/fr/)\n"
+"PO-Revision-Date: 2015-05-03 19:54+0000\n"
+"Last-Translator: kris <cb16@actocom.com>\n"
+"Language-Team: French (http://www.transifex.com/gnu-social/gnu-social/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,4 +21,4 @@ msgstr ""
 #. TRANS: Plugin description.
 #: VideoThumbnailsPlugin.php:86
 msgid "Video thumbnail preview support."
-msgstr ""
+msgstr "prévisualisation des vignettes vidéo"

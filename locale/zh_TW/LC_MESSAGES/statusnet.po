@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Hong Xu <hong@topbug.net>, 2015
+# Po-Chun Huang <aphroteus@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 12:33+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/gnu-social/language/zh_TW/)\n"
+"PO-Revision-Date: 2015-07-11 08:39+0000\n"
+"Last-Translator: Hong Xu <hong@topbug.net>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/gnu-social/gnu-social/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -182,7 +184,7 @@ msgstr ""
 #: lib/action.php:1510 lib/adminpanelaction.php:71
 #: lib/profileformaction.php:63 lib/settingsaction.php:73
 msgid "Not logged in."
-msgstr ""
+msgstr "未登錄。"
 
 #. TRANS: Client error displayed trying to perform an action related to a non-
 #. existing profile.
@@ -239,7 +241,7 @@ msgstr ""
 #: actions/all.php:61 actions/public.php:103 actions/replies.php:94
 #: actions/showprofiletag.php:100 actions/tag.php:53
 msgid "No such page."
-msgstr "無此使用者"
+msgstr "無此頁面。"
 
 #. TRANS: Title of a user's own start page.
 #: actions/all.php:71
@@ -413,7 +415,7 @@ msgstr ""
 #: actions/showprofiletag.php:75 actions/showprofiletag.php:112
 #: actions/userbyid.php:75 actions/userrss.php:39 lib/profileaction.php:77
 msgid "No such user."
-msgstr "無此使用者"
+msgstr "無此使用者。"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -428,7 +430,7 @@ msgstr "無此使用者"
 #: lib/personalgroupnav.php:80
 #, php-format
 msgid "%s and friends"
-msgstr "%s與好友"
+msgstr "%s 與好友"
 
 #. TRANS: Message is used as link description. %1$s is a username, %2$s is a
 #. site name.
@@ -498,7 +500,7 @@ msgstr ""
 #: actions/apiaccountregister.php:127 actions/emailsettings.php:384
 #: actions/register.php:205 actions/siteadminpanel.php:154
 msgid "Not a valid email address."
-msgstr "此信箱無效"
+msgstr "此電子郵件地址無效。"
 
 #. TRANS: Form validation error displayed when trying to register with an
 #. already registered e-mail address.
@@ -761,7 +763,7 @@ msgstr ""
 #: actions/apiconversation.php:101
 msgctxt "TITLE"
 msgid "Conversation"
-msgstr ""
+msgstr "會話"
 
 #. TRANS: Client error displayed when requesting profile information for a
 #. non-existing profile.
@@ -2189,7 +2191,7 @@ msgstr ""
 #. TRANS: Title for page with a conversion (multiple notices in context).
 #: actions/conversation.php:80
 msgid "Conversation"
-msgstr ""
+msgstr "會話"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.

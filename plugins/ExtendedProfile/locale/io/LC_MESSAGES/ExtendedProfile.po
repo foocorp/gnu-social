@@ -1,0 +1,290 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ciencisto Dementa <maliktunga@users.noreply.github.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-06-17 14:49+0000\n"
+"Last-Translator: Ciencisto Dementa <maliktunga@users.noreply.github.com>\n"
+"Language-Team: Ido (http://www.transifex.com/gnu-social/gnu-social/language/io/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: io\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Link title for link on user profile.
+#: actions/profiledetail.php:52
+msgid "Edit extended profile settings"
+msgstr "Modifikar l'extensita profilo-ajusti"
+
+#. TRANS: Link text for link on user profile.
+#: actions/profiledetail.php:54
+msgid "Edit"
+msgstr "Modifikar"
+
+#. TRANS: Title for extended profile settings.
+#: actions/profiledetailsettings.php:29
+msgid "Extended profile settings"
+msgstr "Extensita profilo-ajusti"
+
+#. TRANS: Usage instructions for profile settings.
+#: actions/profiledetailsettings.php:40
+msgid ""
+"You can update your personal profile info here so people know more about "
+"you."
+msgstr "Vu povas aktualigar vua personala profilo-informo hike do l'altra personi savos pluse pri vu."
+
+#. TRANS: Client error displayed when the session token does not match or is
+#. not given.
+#: actions/profiledetailsettings.php:63
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Esis problemo kun vua kunsido-ficho. Voluntez probar itere."
+
+#. TRANS: Message given submitting a form with an unknown action.
+#: actions/profiledetailsettings.php:74
+msgid "Unexpected form submission."
+msgstr "Neexpektita formulario-sendajo."
+
+#. TRANS: Success message after saving extended profile details.
+#: actions/profiledetailsettings.php:137
+msgid "Details saved."
+msgstr "Detali konservata."
+
+#. TRANS: Exception thrown when no date was entered in a required date field.
+#. TRANS: %s is the field name.
+#: actions/profiledetailsettings.php:148
+#, php-format
+msgid "You must supply a date for \"%s\"."
+msgstr "Vu mustas provizar dato por \"%s\"."
+
+#. TRANS: Exception thrown on incorrect data input.
+#. TRANS: %1$s is a field name, %2$s is the incorrect input.
+#: actions/profiledetailsettings.php:160
+#, php-format
+msgid "Invalid date entered for \"%1$s\": %2$s."
+msgstr "Nevalida dato enskribita por \"%1$s\": %2$s."
+
+#. TRANS: Exception thrown when entering an invalid URL.
+#. TRANS: %s is the invalid URL.
+#: actions/profiledetailsettings.php:273
+#, php-format
+msgid "Invalid URL: %s."
+msgstr "Nevalida URL: %s."
+
+#. TRANS: Server error displayed when a field could not be saved in the
+#. database.
+#: actions/profiledetailsettings.php:522 actions/profiledetailsettings.php:535
+msgid "Could not save profile details."
+msgstr "Lu ne povis konservar la profilo-detali."
+
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#: actions/profiledetailsettings.php:580
+#, php-format
+msgid "Invalid tag: \"%s\"."
+msgstr "Nevalida etiketo: \"%s\"."
+
+#. TRANS: Server error thrown when user profile settings could not be saved.
+#: actions/profiledetailsettings.php:622
+msgid "Could not save profile."
+msgstr "Lu ne povis konservar la profilo."
+
+#. TRANS: Server error thrown when user profile settings tags could not be
+#. saved.
+#: actions/profiledetailsettings.php:630
+msgid "Could not save tags."
+msgstr "Lu ne povis konservar l'etiketi."
+
+#. TRANS: Plugin description.
+#: ExtendedProfilePlugin.php:40
+msgid "UI extensions for additional profile fields."
+msgstr "Uzantointerfacio-extensili por plusa profilo-detali."
+
+#. TRANS: Link text on user profile page leading to extended profile page.
+#: ExtendedProfilePlugin.php:87
+msgid "More details..."
+msgstr "Plusa detali…"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:120 lib/extendedprofile.php:131
+msgid "Phone"
+msgstr "Telefonilo"
+
+#. TRANS: Field label for extended profile properties (Instant Messaging).
+#: lib/extendedprofile.php:153 lib/extendedprofile.php:160
+msgid "IM"
+msgstr "Instantala mesajilo"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:181 lib/extendedprofile.php:188
+msgid "Website"
+msgstr "Retosituo"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:212 lib/extendedprofile.php:224
+msgid "Employer"
+msgstr "Employanto"
+
+#. TRANS: Field label for extended profile properties.
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
+#: lib/extendedprofile.php:251 lib/extendedprofile.php:264
+#: lib/extendedprofilewidget.php:416 lib/extendedprofilewidget.php:456
+msgid "Institution"
+msgstr "Institucuro"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:289 lib/extendedprofile.php:338
+msgid "Personal"
+msgstr "Personala"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:293
+msgid "Full name"
+msgstr "Kompleta nomo"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:299
+msgid "Title"
+msgstr "Titulo"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:304
+msgid "Manager"
+msgstr "Jeranto"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:310
+msgid "Location"
+msgstr "Loko"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:315
+msgid "Bio"
+msgstr "Biografio"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:321
+msgid "Tags"
+msgstr "Etiketi"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:329
+msgid "Contact"
+msgstr "Kontakto"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:342
+msgid "Birthday"
+msgstr "Naskodio"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:348
+msgid "Spouse's name"
+msgstr "Nomo dil spozo"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:353
+msgid "Kids' names"
+msgstr "Nomi dil filii"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:359
+msgid "Work experience"
+msgstr "Labor-experienco"
+
+#. TRANS: Field label for extended profile properties.
+#: lib/extendedprofile.php:366
+msgid "Education"
+msgstr "Edukiteso"
+
+#. TRANS: Title for extended profile entry deletion dialog.
+#: lib/extendedprofilewidget.php:84
+msgid "Confirmation Required"
+msgstr "Konfirmo necesa"
+
+#. TRANS: Confirmation text for extended profile entry deletion dialog.
+#: lib/extendedprofilewidget.php:87
+msgid "Really delete this entry?"
+msgstr "Ka vu reale volas efacar ca enskriburo?"
+
+#. TRANS: Value between parentheses (phone number, website, or IM address).
+#: lib/extendedprofilewidget.php:169 lib/extendedprofilewidget.php:182
+#: lib/extendedprofilewidget.php:206
+#, php-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#. TRANS: Field label in experience area of extended profile.
+#. TRANS: Field label in experience edit area of extended profile (which
+#. company does one work for).
+#: lib/extendedprofilewidget.php:326 lib/extendedprofilewidget.php:372
+msgid "Company"
+msgstr "Firmo"
+
+#. TRANS: Field label in extended profile (when did one start a position or
+#. education).
+#: lib/extendedprofilewidget.php:332 lib/extendedprofilewidget.php:380
+#: lib/extendedprofilewidget.php:426 lib/extendedprofilewidget.php:481
+msgid "Start"
+msgstr "Starto"
+
+#. TRANS: Field label in extended profile (when did one end a position or
+#. education).
+#: lib/extendedprofilewidget.php:340 lib/extendedprofilewidget.php:388
+#: lib/extendedprofilewidget.php:434 lib/extendedprofilewidget.php:490
+msgid "End"
+msgstr "Fino"
+
+#. TRANS: Field value in experience area of extended profile (one still holds
+#. a position).
+#: lib/extendedprofilewidget.php:353
+msgid "(Current)"
+msgstr "(Aktuala)"
+
+#. TRANS: Checkbox label in experience edit area of extended profile (one
+#. still works at a company).
+#: lib/extendedprofilewidget.php:403
+msgid "Current"
+msgstr "Aktuala"
+
+#. TRANS: Field label in extended profile for specifying an academic degree.
+#: lib/extendedprofilewidget.php:420 lib/extendedprofilewidget.php:464
+msgid "Degree"
+msgstr "Grado"
+
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
+#: lib/extendedprofilewidget.php:423 lib/extendedprofilewidget.php:472
+msgid "Description"
+msgstr "Deskripto"
+
+#. TRANS: Link description in extended profile page to add another profile
+#. element.
+#: lib/extendedprofilewidget.php:522
+msgid "Add another item"
+msgstr "Adjuntar altra elemento"
+
+#. TRANS: Field label for undefined field in extended profile.
+#: lib/extendedprofilewidget.php:633
+#, php-format
+msgid "TYPE: %s"
+msgstr "TIPO: %s"
+
+#. TRANS: Button text for saving extended profile properties.
+#: lib/extendedprofilewidget.php:647
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Konservar"
+
+#. TRANS: .
+#. TRANS: Button title for saving extended profile properties.
+#: lib/extendedprofilewidget.php:652
+msgid "Save details"
+msgstr "Konservar la detali"

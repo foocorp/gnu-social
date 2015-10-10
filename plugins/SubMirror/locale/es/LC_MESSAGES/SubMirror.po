@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-27 15:30+0000\n"
+"PO-Revision-Date: 2015-02-28 20:31+0000\n"
 "Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: forms/editmirror.php:84
 msgctxt "LABEL"
 msgid "Remote feed:"
-msgstr "Fuente web (feed) remota:"
+msgstr "Fuente web remota:"
 
 #. TRANS: Field label.
 #: forms/editmirror.php:89
@@ -33,18 +33,18 @@ msgstr "Usuario local"
 #. TRANS: Fieldset legend for feed mirror setting.
 #: forms/editmirror.php:96
 msgid "Mirroring style"
-msgstr "Estilo de copia especular (mirror)"
+msgstr "Estilo de republicación"
 
 #. TRANS: Feed mirror style (radio button option).
 #: forms/editmirror.php:99
 msgid ""
 "Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
-msgstr "Repetir: Referenciar la entrada del usuario original (a veces se muestra como \"RT @blah\")"
+msgstr "Repetir: citar el mensaje del autor original (a veces se muestra como «RT @blah»)"
 
 #. TRANS: Feed mirror style (radio button option).
 #: forms/editmirror.php:101
 msgid "Repost the content under my account"
-msgstr "Volver a publicar el contenido bajo mi cuenta"
+msgstr "Republicar el contenido bajo mi nombre de usuario"
 
 #. TRANS: Button text to save feed mirror settings.
 #: forms/editmirror.php:121
@@ -56,39 +56,39 @@ msgstr "Guardar"
 #: forms/editmirror.php:124
 msgctxt "BUTTON"
 msgid "Stop mirroring"
-msgstr "Detener copia especular (mirror)"
+msgstr "Detener republicación"
 
 #. TRANS: Field label.
 #: forms/addmirror.php:61
 msgid "Web page or feed URL:"
-msgstr "Página web o dirección URL de la fuente web (feed):"
+msgstr "Página web o dirección URL de la fuente web:"
 
 #. TRANS: Button text for adding a feed.
 #: forms/addmirror.php:67
 msgctxt "BUTTON"
 msgid "Add feed"
-msgstr "Añadir fuente web (feed)"
+msgstr "Añadir fuente web"
 
 #. TRANS: Plugin description.
 #: SubMirrorPlugin.php:68
 msgid "Pull feeds into your timeline!"
-msgstr "¡Importar fuentes web (feed) en su agenda!"
+msgstr "Republicar el contenido de una fuente web en tu línea de tiempo."
 
 #. TRANS: SubMirror plugin menu item on user settings page.
 #: SubMirrorPlugin.php:88
 msgctxt "MENU"
 msgid "Mirroring"
-msgstr "Copia especular (mirroring)"
+msgstr "Republicación"
 
 #. TRANS: SubMirror plugin tooltip for user settings menu item.
 #: SubMirrorPlugin.php:90
 msgid "Configure mirroring of posts from other feeds"
-msgstr "Configurar la copia especular (mirror) de entradas de otras fuentes web (feed)"
+msgstr "Configurar la republicación de mensajes de otras fuentes web"
 
 #. TRANS: Label in profile statistics section, followed by a count.
 #: SubMirrorPlugin.php:167
 msgid "Mirrored feeds"
-msgstr "Se ha hecho copia especular de las fuentes web"
+msgstr "Fuentes web republicadas"
 
 #. TRANS: Client error displayed when trying to edit an object that is not a
 #. feed mirror.
@@ -106,19 +106,19 @@ msgstr "Datos de formulario incorrectos."
 #. retrieved.
 #: actions/editmirror.php:94
 msgid "The mirror request failed, because no result was retrieved."
-msgstr "Error en la solicitud de copia especular (mirror), porque no se obtuvo ningún resultado."
+msgstr "La solicitud de republicación falló: no se obtuvo ningún resultado."
 
 #. TRANS: Page title.
 #: actions/mirrorsettings.php:40
 msgid "Feed mirror settings"
-msgstr "Configuración de copia especular (mirror) de fuente web (feed)"
+msgstr "Preferencias de republicación de fuente web"
 
 #. TRANS: Page instructions.
 #: actions/mirrorsettings.php:52
 msgid ""
 "You can mirror updates from many RSS and Atom feeds into your GNU social "
 "timeline!"
-msgstr "¡Puede difundir actualizaciones de contenido de fuentes web RSS y Atom en su línea de tiempo de GNU Social!"
+msgstr "¡Puedes republicar las actualizaciones de fuentes web RSS/Atom en tu cuenta de GNU Social!"
 
 #. TRANS: Title for page with form to add a mirror feed provider on.
 #: actions/mirrorsettings.php:127
@@ -130,36 +130,36 @@ msgstr "Agregar proveedor"
 #: actions/basemirror.php:71
 #, php-format
 msgid "Invalid feed URL: %s."
-msgstr "Dirección URL de fuente web (feed) no válida: %s."
+msgstr "URL de fuente web no válido: %s."
 
 #. TRANS: Error message returned to user when setting up feed mirroring,
 #. TRANS: but we were unable to resolve the given URL to a working feed.
 #: actions/basemirror.php:84
 msgid "Invalid profile for mirroring."
-msgstr "Perfil inválido para hacer copia especular (mirroring)."
+msgstr "Perfil para republicación no válido."
 
 #. TRANS: Client error displayed when trying to mirror a GNU social group
 #. feed.
 #: actions/basemirror.php:103
 msgid "Cannot mirror a GNU social group at this time."
-msgstr "Actualmente no es posible difundir las actualizaciones de un grupo de GNU Social."
+msgstr "Actualmente no es posible republicar las actualizaciones de un grupo de GNU Social."
 
 #. TRANS: Client error displayed when trying to use another method than POST.
 #: actions/basemirror.php:118
 msgid "This action only accepts POST requests."
-msgstr "Esta acción sólo acepta solicitudes POST."
+msgstr "Esta acción sólo acepta peticiones POST."
 
 #. TRANS: Client error displayed when the session token does not match or is
 #. not given.
 #: actions/basemirror.php:126
 msgid "There was a problem with your session token. Try again, please."
-msgstr "Hubo un problema con su contraseña de sesión. Inténtelo de nuevo."
+msgstr "Hubo un problema con tu identificador de sesión. Por favor, inténtalo de nuevo."
 
 #. TRANS: Error message displayed when trying to perform an action that
 #. requires a logged in user.
 #: actions/basemirror.php:136
 msgid "Not logged in."
-msgstr "No ha iniciado sesión."
+msgstr "No has iniciado sesión."
 
 #. TRANS: Page title for subscribed feed mirror.
 #: actions/basemirror.php:159
@@ -169,14 +169,14 @@ msgstr "Suscrito"
 #. TRANS: Exception thrown when a feed provider could not be recognised.
 #: actions/addmirror.php:74
 msgid "Internal form error: Unrecognized feed provider."
-msgstr "Error interno en el formulario: Proveedor de fuente web (feed) no reconocido."
+msgstr "Error interno en el formulario: proveedor de fuente web no reconocido."
 
 #. TRANS: Name for possible feed provider.
 #: lib/addmirrorwizard.php:83
 msgid "RSS or Atom feed"
-msgstr "Fuente web (feed) RSS o Atom"
+msgstr "Fuente web RSS o Atom"
 
 #. TRANS: Heading for feed mirroring selection form.
 #: lib/addmirrorwizard.php:94
 msgid "Select a feed provider"
-msgstr "Seleccione un proveedor de fuente web (feed)"
+msgstr "Seleccione un proveedor de fuente web"

@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-27 15:30+0000\n"
+"PO-Revision-Date: 2015-02-28 20:21+0000\n"
 "Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,7 +39,7 @@ msgstr "Identificador de Facebook no válido. No puede superar los 255 caractere
 #. key.
 #: actions/facebookadminpanel.php:133
 msgid "Invalid Facebook secret. Maximum length is 255 characters."
-msgstr "Clave secreta de Facebook no válida. No puede superar los 255 caracteres."
+msgstr "Secreto de Facebook no válido. No puede superar los 255 caracteres."
 
 #. TRANS: Fieldset legend.
 #: actions/facebookadminpanel.php:183
@@ -59,12 +59,12 @@ msgstr "Identificador de tu aplicación de Facebook."
 #. TRANS: Field label for Facebook secret key.
 #: actions/facebookadminpanel.php:201
 msgid "Secret"
-msgstr "Clave secreta"
+msgstr "Secreto"
 
 #. TRANS: Field title for Facebook secret key.
 #: actions/facebookadminpanel.php:203
 msgid "Application secret."
-msgstr "Clave secreta de la aplicación."
+msgstr "Secreto de la aplicación."
 
 #. TRANS: Button text to save Facebook integration settings.
 #. TRANS: Submit button to save synchronisation settings.
@@ -142,7 +142,7 @@ msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "Facebook to a local account. You can either create a new local account, or "
 "connect with an existing local account."
-msgstr "Esta es la primera vez que inicias sesión en %s, así que debemos conectar tu Facebook a una cuenta local. Puedes crear una nueva o conectarte a una ya existente."
+msgstr "Esta es la primera vez que inicias sesión en %s, así que debemos vincular tu Facebook a una cuenta local. Puedes crear una nueva o conectarte a una ya existente."
 
 #. TRANS: Page title.
 #: actions/facebookfinishlogin.php:201
@@ -199,7 +199,7 @@ msgstr "Conectar a una cuenta ya existente"
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Facebook."
-msgstr "Si ya tienes una cuenta, inicia sesión con tu nombre de usuario y contraseña para conectarla a tu Facebook."
+msgstr "Si ya tienes una cuenta, inicia sesión con tu nombre de usuario y contraseña para vincularla a tu Facebook."
 
 #. TRANS: Field label.
 #: actions/facebookfinishlogin.php:297
@@ -216,7 +216,7 @@ msgstr "Contraseña"
 #: actions/facebookfinishlogin.php:305
 msgctxt "BUTTON"
 msgid "Connect"
-msgstr "Conectar"
+msgstr "Vincular"
 
 #. TRANS: Client error trying to register with registrations not allowed.
 #. TRANS: Client error trying to register with registrations 'invite only'.
@@ -232,7 +232,7 @@ msgstr "No es un código de invitación válido."
 #. TRANS: Server error displayed when connecting to Facebook fails.
 #: actions/facebookfinishlogin.php:378 actions/facebookfinishlogin.php:511
 msgid "Error connecting user to Facebook."
-msgstr "Error intentando conectar el usuario a Facebook."
+msgstr "Error vinculando la cuenta de Facebook."
 
 #. TRANS: Form validation error displayed when username/password combination
 #. is incorrect.
@@ -254,7 +254,7 @@ msgstr "Configuración de Facebook"
 #. TRANS: Form note. User is connected to facebook.
 #: actions/facebooksettings.php:140
 msgid "Connected Facebook user"
-msgstr "Usuario de Facebook conectado"
+msgstr "Usuario de Facebook vinculado"
 
 #. TRANS: Checkbox label in Facebook settings.
 #: actions/facebooksettings.php:168
@@ -269,7 +269,7 @@ msgstr "Enviar mis respuestas a otros a Facebook."
 #. TRANS: Fieldset legend for form to disconnect from Facebook.
 #: actions/facebooksettings.php:197
 msgid "Disconnect my account from Facebook"
-msgstr "Desconectar mi cuenta de Facebook"
+msgstr "Desvincular mi cuenta de Facebook"
 
 #. TRANS: Notice in disconnect from Facebook form if user has no local
 #. StatusNet password.
@@ -278,7 +278,7 @@ msgstr "Desconectar mi cuenta de Facebook"
 msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please [set"
 " a password](%s) first."
-msgstr "¡Si desconectas tu Faceboook ahora no podrás volver a iniciar sesión! Por favor, [establece una contraseña] (%s) primero."
+msgstr "¡Si desvinculas tu Faceboook ahora no podrás volver a iniciar sesión! Por favor, [establece una contraseña] (%s) primero."
 
 #. TRANS: Message displayed when initiating disconnect of a StatusNet user
 #. TRANS: from a Facebook account. %1$s is the StatusNet site name.
@@ -287,13 +287,13 @@ msgstr "¡Si desconectas tu Faceboook ahora no podrás volver a iniciar sesión!
 msgid ""
 "Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
 "password to log in."
-msgstr "Mantener tu cuenta %1$s pero desconectarla de Facebook. Iniciarás sesión con tu contraseña de %1$s."
+msgstr "Mantener tu cuenta %1$s pero desvincularla de Facebook. Iniciarás sesión con tu contraseña de %1$s."
 
 #. TRANS: Submit button.
 #: actions/facebooksettings.php:221
 msgctxt "BUTTON"
 msgid "Disconnect"
-msgstr "Desconectar"
+msgstr "Desvincular"
 
 #. TRANS: Notice in case saving of synchronisation preferences fail.
 #: actions/facebooksettings.php:245
@@ -315,7 +315,7 @@ msgstr "No se pudo eliminar el enlace a Facebook."
 #. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
 #: actions/facebooksettings.php:267
 msgid "You have disconnected from Facebook."
-msgstr "Te has desconectado de Facebook."
+msgstr "Has desvinculado tu cuenta de Facebook."
 
 #. TRANS: Menu item for "Facebook" in administration panel.
 #. TRANS: Menu item for "Facebook" in user settings.
@@ -348,7 +348,7 @@ msgstr "Un complemento para integrar GNU social con Facebook."
 #. TRANS: E-mail subject.
 #: lib/facebookclient.php:790
 msgid "Your Facebook connection has been removed"
-msgstr "Tu conexión con Facebook ha sido eliminada"
+msgstr "Tu vínculo con Facebook ha sido eliminado"
 
 #. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
 #: lib/facebookclient.php:793
@@ -368,7 +368,7 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr "Hola %1$s,\n\nSentimos informarte de que no podemos publicar tu mensaje en \nFacebook, habiéndose cancelado además la conexión de tu cuenta \n%2$s con dicha red.\n\nTal vez le retiraste el permiso a %2$s para publicar en tu nombre, o \nbien desactivaste tu cuenta de Facebook.  En cualquier caso, puedes \nvolver a conectar tu cuenta %2$s a la red privativa cuando quieras: \ntan sólo tienes que volver a iniciar sesión con ella.\n\nSinceramente,\n\n%2$s\n"
+msgstr "Hola %1$s,\n\nSentimos informarte de que se ha roto el vínculo de tu cuenta %2$s \ncon Facebook y, por tanto, no podemos publicar tu mensaje allí.\n\nTal vez le retiraste el permiso a %2$s para publicar en tu nombre, o \nbien desactivaste tu Facebook.  En cualquier caso, puedes restaurar el \nvínculo de tu cuenta %2$s con la red privativa cuando quieras: \nsólo tienes que iniciar sesión otra vez con ella.\n\nSinceramente,\n\n%2$s\n"
 
 #. TRANS: E-mail subject. %s is the StatusNet sitename.
 #: lib/facebookclient.php:846
@@ -392,4 +392,4 @@ msgid ""
 "Sincerely,\n"
 "\n"
 "%2$s\n"
-msgstr "Hola %1$s,\n\nHemos notado que has cancelado la conexión de tu cuenta %2$s \ncon Facebook. Aún no has definido una contraseña local en %2$s, \npor lo que no podrás iniciar sesión. Si quieres seguir usando tu cuenta \n%2$s, ponte en contacto con el administrador del sitio (%3$s) para \nque te ayude a establecer una.\n\nSinceramente\n\n%2$s\n"
+msgstr "Hola %1$s,\n\nHemos notado que has desvinculado tu cuenta %2$s de Facebook. \nAún no has definido una contraseña local en %2$s, por lo que no \npodrás iniciar sesión. Si quieres seguir usando tu cuenta %2$s, \nponte en contacto con el administrador del sitio (%3$s) para que te \nayude a establecer una.\n\nSinceramente\n\n%2$s\n"

@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-06 16:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/gnu-social/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/gnu-social/gnu-social/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -118,7 +118,7 @@ msgstr ""
 #. TRANS: Field label for extended profile properties (Instant Messaging).
 #: lib/extendedprofile.php:153 lib/extendedprofile.php:160
 msgid "IM"
-msgstr ""
+msgstr "MI"
 
 #. TRANS: Field label for extended profile properties.
 #: lib/extendedprofile.php:181 lib/extendedprofile.php:188
@@ -151,7 +151,7 @@ msgstr "Nome completo"
 #. TRANS: Field label for extended profile properties.
 #: lib/extendedprofile.php:299
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #. TRANS: Field label for extended profile properties.
 #: lib/extendedprofile.php:304
@@ -176,7 +176,7 @@ msgstr "Etiquetas"
 #. TRANS: Field label for extended profile properties.
 #: lib/extendedprofile.php:329
 msgid "Contact"
-msgstr ""
+msgstr "Contato"
 
 #. TRANS: Field label for extended profile properties.
 #: lib/extendedprofile.php:342
@@ -206,7 +206,7 @@ msgstr ""
 #. TRANS: Title for extended profile entry deletion dialog.
 #: lib/extendedprofilewidget.php:84
 msgid "Confirmation Required"
-msgstr ""
+msgstr "Confirmação Obrigatória"
 
 #. TRANS: Confirmation text for extended profile entry deletion dialog.
 #: lib/extendedprofilewidget.php:87
@@ -268,7 +268,7 @@ msgstr "Descrição"
 #. element.
 #: lib/extendedprofilewidget.php:522
 msgid "Add another item"
-msgstr ""
+msgstr "Adicionar outro item"
 
 #. TRANS: Field label for undefined field in extended profile.
 #: lib/extendedprofilewidget.php:633

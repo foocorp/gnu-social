@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# abjectio, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 12:17+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/gnu-social/language/nb/)\n"
+"PO-Revision-Date: 2015-03-08 00:00+0000\n"
+"Last-Translator: abjectio\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/gnu-social/gnu-social/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,28 +28,28 @@ msgstr "Allerede innlogget."
 #: actions/twitterlogin.php:66
 msgctxt "TITLE"
 msgid "Twitter Login"
-msgstr ""
+msgstr "Twitter Login"
 
 #. TRANS: Instructions for login using Twitter page.
 #: actions/twitterlogin.php:72
 msgid "Login with your Twitter account"
-msgstr ""
+msgstr "Logg inn med din Twitter konto"
 
 #. TRANS: Alternative text for "sign in with Twitter" image.
 #: actions/twitterlogin.php:91
 msgid "Sign in with Twitter"
-msgstr ""
+msgstr "Logg inn med Twitter"
 
 #. TRANS: Page title for Twitter administration panel.
 #: actions/twitteradminpanel.php:53
 msgctxt "TITLE"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Instructions for Twitter bridge administration page.
 #: actions/twitteradminpanel.php:64
 msgid "Twitter bridge settings"
-msgstr ""
+msgstr "Twitter bro innstillinger"
 
 #. TRANS: Client error displayed when a consumer key is invalid because it is
 #. too long.
@@ -106,12 +107,12 @@ msgstr ""
 #. TRANS: Fieldset legend for Twitter integration options.
 #: actions/twitteradminpanel.php:271
 msgid "Options"
-msgstr ""
+msgstr "Innstillinger"
 
 #. TRANS: Checkbox label for global setting.
 #: actions/twitteradminpanel.php:279
 msgid "Enable \"Sign-in with Twitter\""
-msgstr ""
+msgstr "Skru på \"Logg inn med Twitter\""
 
 #. TRANS: Checkbox title.
 #: actions/twitteradminpanel.php:282
@@ -425,7 +426,7 @@ msgstr ""
 #: TwitterBridgePlugin.php:154 TwitterBridgePlugin.php:179
 msgctxt "MENU"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Title for menu item in login navigation.
 #: TwitterBridgePlugin.php:156
@@ -441,7 +442,7 @@ msgstr ""
 #. configuration.
 #: TwitterBridgePlugin.php:282
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Menu item title in administrative panel that leads to the Twitter
 #. bridge configuration.

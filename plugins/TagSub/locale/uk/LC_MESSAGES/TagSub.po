@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Петро Романчук <ixer@ixer.org.ua>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 12:33+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"PO-Revision-Date: 2015-03-31 11:42+0000\n"
+"Last-Translator: Петро Романчук <ixer@ixer.org.ua>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/gnu-social/gnu-social/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,7 +32,7 @@ msgstr "Відписатись"
 #. TRANS: Submit button title to unsubscribe from a tag.
 #: forms/tagunsub.php:103
 msgid "Unsubscribe from this tag."
-msgstr ""
+msgstr "Відписатись від цього теґу."
 
 #. TRANS: Form legend.
 #: forms/tagsub.php:108
@@ -47,7 +48,7 @@ msgstr "Підписатись"
 #. TRANS: Submit button title to subscribe to a tag.
 #: forms/tagsub.php:133
 msgid "Subscribe to this tag."
-msgstr ""
+msgstr "Підписатися на цей теґ"
 
 #. TRANS: Page title when tag unsubscription succeeded.
 #: actions/tagunsub.php:76

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 09:53+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-27 22:30+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,17 +21,17 @@ msgstr ""
 #. TRANS: Field label.
 #: RecaptchaPlugin.php:58
 msgid "Captcha"
-msgstr "Verificador Captcha"
+msgstr "Captcha"
 
 #. TRANS: Error message displayed if a provided captcha response does not
 #. match.
 #: RecaptchaPlugin.php:102
 msgid "Captcha does not match!"
-msgstr "¡El código de verificación Captcha no coincide!"
+msgstr "¡La respuesta no coincide con el texto del captcha!"
 
 #. TRANS: Plugin description.
 #: RecaptchaPlugin.php:115
 msgid ""
 "Uses <a href=\"http://recaptcha.org/\">Recaptcha</a> service to add a  "
 "captcha to the registration page."
-msgstr "Use el servicio <a href=\"http://recaptcha.org/\">Recaptcha</a> para añadir un código de verificación Captcha a la página de registro."
+msgstr "Usa el servicio <a href=\"http://recaptcha.org/\">Recaptcha</a> para añadir una prueba captcha a la página de registro."

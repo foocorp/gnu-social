@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Boris Konstantinovich Lissov <lissovbk@yandex.ru>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 10:32+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/gnu-social/language/ru/)\n"
+"PO-Revision-Date: 2015-07-12 20:00+0000\n"
+"Last-Translator: Boris Konstantinovich Lissov <lissovbk@yandex.ru>\n"
+"Language-Team: Russian (http://www.transifex.com/gnu-social/gnu-social/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. TRANS: Page title for sample plugin.
 #. TRANS: Menu item in sample plugin.
@@ -49,6 +50,7 @@ msgid_plural "I have greeted you %d times."
 msgstr[0] "Я вас попривестствовал %d раз."
 msgstr[1] "Я вас поприветствовал %d раза."
 msgstr[2] "Я вас попривестствовал %d раз."
+msgstr[3] "Я вас попривестствовал %d раз."
 
 #. TRANS: Exception thrown when the user greeting count could not be saved in
 #. the database.
@@ -64,14 +66,14 @@ msgstr "Не удалось сохранить новое приветствие
 #: classes/User_greeting_count.php:117
 #, php-format
 msgid "Could not increment greeting count for %d."
-msgstr ""
+msgstr "Не удалось увеличть счетчик приветствий для %d."
 
 #. TRANS: Menu item title in sample plugin.
 #: SamplePlugin.php:221
 msgid "A warm greeting"
-msgstr ""
+msgstr "Теплое приветствие"
 
 #. TRANS: Plugin description.
 #: SamplePlugin.php:233
 msgid "A sample plugin to show basics of development for new hackers."
-msgstr ""
+msgstr "Плагин для примера, призванный показать основы разработки для новоприбывших хакеров."

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Luke Hollins <luke@farcry.ca>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 10:34+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/gnu-social/language/en_GB/)\n"
+"PO-Revision-Date: 2015-03-07 15:52+0000\n"
+"Last-Translator: Luke Hollins <luke@farcry.ca>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/gnu-social/gnu-social/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,29 +22,29 @@ msgstr ""
 #: forms/editmirror.php:84
 msgctxt "LABEL"
 msgid "Remote feed:"
-msgstr ""
+msgstr "Remote feed:"
 
 #. TRANS: Field label.
 #: forms/editmirror.php:89
 msgctxt "LABEL"
 msgid "Local user"
-msgstr ""
+msgstr "Local user"
 
 #. TRANS: Fieldset legend for feed mirror setting.
 #: forms/editmirror.php:96
 msgid "Mirroring style"
-msgstr ""
+msgstr "Mirroring style"
 
 #. TRANS: Feed mirror style (radio button option).
 #: forms/editmirror.php:99
 msgid ""
 "Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
-msgstr ""
+msgstr "Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 
 #. TRANS: Feed mirror style (radio button option).
 #: forms/editmirror.php:101
 msgid "Repost the content under my account"
-msgstr ""
+msgstr "Repost the content under my account"
 
 #. TRANS: Button text to save feed mirror settings.
 #: forms/editmirror.php:121
@@ -55,98 +56,98 @@ msgstr "Save"
 #: forms/editmirror.php:124
 msgctxt "BUTTON"
 msgid "Stop mirroring"
-msgstr ""
+msgstr "Stop mirroring"
 
 #. TRANS: Field label.
 #: forms/addmirror.php:61
 msgid "Web page or feed URL:"
-msgstr ""
+msgstr "Web page or feed URL:"
 
 #. TRANS: Button text for adding a feed.
 #: forms/addmirror.php:67
 msgctxt "BUTTON"
 msgid "Add feed"
-msgstr ""
+msgstr "Add feed"
 
 #. TRANS: Plugin description.
 #: SubMirrorPlugin.php:68
 msgid "Pull feeds into your timeline!"
-msgstr ""
+msgstr "Pull feeds into your timeline!"
 
 #. TRANS: SubMirror plugin menu item on user settings page.
 #: SubMirrorPlugin.php:88
 msgctxt "MENU"
 msgid "Mirroring"
-msgstr ""
+msgstr "Mirroring"
 
 #. TRANS: SubMirror plugin tooltip for user settings menu item.
 #: SubMirrorPlugin.php:90
 msgid "Configure mirroring of posts from other feeds"
-msgstr ""
+msgstr "Configure mirroring of posts from other feeds"
 
 #. TRANS: Label in profile statistics section, followed by a count.
 #: SubMirrorPlugin.php:167
 msgid "Mirrored feeds"
-msgstr ""
+msgstr "Mirrored feeds"
 
 #. TRANS: Client error displayed when trying to edit an object that is not a
 #. feed mirror.
 #: actions/editmirror.php:66
 msgid "Requested invalid profile to edit."
-msgstr ""
+msgstr "Requested invalid profile to edit."
 
 #. TRANS: Client error displayed when providing invalid input when editing a
 #. mirror.
 #: actions/editmirror.php:85
 msgid "Bad form data."
-msgstr ""
+msgstr "Bad form data."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is
 #. retrieved.
 #: actions/editmirror.php:94
 msgid "The mirror request failed, because no result was retrieved."
-msgstr ""
+msgstr "The mirror request failed, because no result was retrieved."
 
 #. TRANS: Page title.
 #: actions/mirrorsettings.php:40
 msgid "Feed mirror settings"
-msgstr ""
+msgstr "Feed mirror settings"
 
 #. TRANS: Page instructions.
 #: actions/mirrorsettings.php:52
 msgid ""
 "You can mirror updates from many RSS and Atom feeds into your GNU social "
 "timeline!"
-msgstr ""
+msgstr "You can mirror updates from many RSS and Atom feeds into your GNU social timeline!"
 
 #. TRANS: Title for page with form to add a mirror feed provider on.
 #: actions/mirrorsettings.php:127
 msgid "Provider add"
-msgstr ""
+msgstr "Provider add"
 
 #. TRANS: Client error displayed when entering an invalid URL for a feed.
 #. TRANS: %s is the invalid feed URL.
 #: actions/basemirror.php:71
 #, php-format
 msgid "Invalid feed URL: %s."
-msgstr ""
+msgstr "Invalid feed URL: %s."
 
 #. TRANS: Error message returned to user when setting up feed mirroring,
 #. TRANS: but we were unable to resolve the given URL to a working feed.
 #: actions/basemirror.php:84
 msgid "Invalid profile for mirroring."
-msgstr ""
+msgstr "Invalid profile for mirroring."
 
 #. TRANS: Client error displayed when trying to mirror a GNU social group
 #. feed.
 #: actions/basemirror.php:103
 msgid "Cannot mirror a GNU social group at this time."
-msgstr ""
+msgstr "Cannot mirror a GNU social group at this time."
 
 #. TRANS: Client error displayed when trying to use another method than POST.
 #: actions/basemirror.php:118
 msgid "This action only accepts POST requests."
-msgstr ""
+msgstr "This action only accepts POST requests."
 
 #. TRANS: Client error displayed when the session token does not match or is
 #. not given.
@@ -168,14 +169,14 @@ msgstr "Subscribed"
 #. TRANS: Exception thrown when a feed provider could not be recognised.
 #: actions/addmirror.php:74
 msgid "Internal form error: Unrecognized feed provider."
-msgstr ""
+msgstr "Internal form error: Unrecognized feed provider."
 
 #. TRANS: Name for possible feed provider.
 #: lib/addmirrorwizard.php:83
 msgid "RSS or Atom feed"
-msgstr ""
+msgstr "RSS or Atom feed"
 
 #. TRANS: Heading for feed mirroring selection form.
 #: lib/addmirrorwizard.php:94
 msgid "Select a feed provider"
-msgstr ""
+msgstr "Select a feed provider"

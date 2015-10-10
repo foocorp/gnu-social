@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 10:47+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-28 15:01+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,4 +24,4 @@ msgid ""
 "TabFocus changes the notice form behavior so that, while in the text area, "
 "pressing the tab key focuses the \"Send\" button, matching the behavior of "
 "Twitter."
-msgstr "TabFocus Cambia el comportamiento del formulario del aviso de modo que, al estar en el área de texto, pulsar la tecla de tabulación se enfoque en el botón \"Enviar\", al igual que en el comportamiento de Twitter."
+msgstr "TabFocus cambia el comportamiento del formulario de redacción de mensajes, de modo que, como en Twitter, al pulsar el tabulador (tab ↹) se enfoca el botón «Enviar»."

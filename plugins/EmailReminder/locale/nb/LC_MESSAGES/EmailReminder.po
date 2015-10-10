@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# abjectio, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-06 16:14+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/gnu-social/language/nb/)\n"
+"PO-Revision-Date: 2015-03-08 00:11+0000\n"
+"Last-Translator: abjectio\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/gnu-social/gnu-social/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,37 +22,37 @@ msgstr ""
 #. into the database.
 #: classes/Email_reminder.php:88
 msgid "Database error inserting reminder record."
-msgstr ""
+msgstr "Database feil idet man skal legge til en påminnelse."
 
 #. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
 #: lib/userinvitereminderhandler.php:102
 #, php-format
 msgid "Reminder - You have been invited to join %s!"
-msgstr ""
+msgstr "Påminnelse - Du er invitert til å bli med i %s!"
 
 #. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
 #: lib/userinvitereminderhandler.php:116
 #, php-format
 msgid "Final reminder - you have been invited to join %s!"
-msgstr ""
+msgstr "Siste påminnelse - du er invitert til å bli med i instansen %s!"
 
 #. TRANS: Subject for reminder e-mail.
 #: lib/userconfirmregreminderhandler.php:86
 #: lib/userconfirmregreminderhandler.php:103
 msgid "Reminder - please confirm your registration!"
-msgstr ""
+msgstr "Påminnelse - vennligst bekreft din registrering!"
 
 #. TRANS: Subject for reminder e-mail.
 #: lib/userconfirmregreminderhandler.php:118
 msgid "Second reminder - please confirm your registration!"
-msgstr ""
+msgstr "Andre påminnelse - vennligst bekreft din registrering!"
 
 #. TRANS: Subject for reminder e-mail.
 #: lib/userconfirmregreminderhandler.php:133
 msgid "Final reminder - please confirm your registration!"
-msgstr ""
+msgstr "Siste påminnelse - vennligst bekreft din regisrering."
 
 #. TRANS: Plugin description.
 #: EmailReminderPlugin.php:190
 msgid "Send email reminders for various things."
-msgstr ""
+msgstr "Send e-post varslinger for diverse hendelser."

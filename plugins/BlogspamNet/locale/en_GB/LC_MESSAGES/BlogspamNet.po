@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Luke Hollins <luke@farcry.ca>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-06 15:04+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/gnu-social/language/en_GB/)\n"
+"PO-Revision-Date: 2015-03-07 12:44+0000\n"
+"Last-Translator: Luke Hollins <luke@farcry.ca>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/gnu-social/gnu-social/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: BlogspamNetPlugin.php:87
 #, php-format
 msgid "Error from %1$s: %2$s"
-msgstr ""
+msgstr "Error from %1$s: %2$s"
 
 #. TRANS: Server exception thrown when blogspam.net returns spam status.
 #. TRANS: Does not end with period because of unknown contents for %s (spam
@@ -31,7 +32,7 @@ msgstr ""
 #: BlogspamNetPlugin.php:91
 #, php-format
 msgid "Spam checker results: %s"
-msgstr ""
+msgstr "Spam checker results: %s"
 
 #. TRANS: Server exception thrown when blogspam.net returns an unexpected
 #. status.
@@ -40,9 +41,9 @@ msgstr ""
 #: BlogspamNetPlugin.php:97
 #, php-format
 msgid "Unexpected response from %1$s: %2$s"
-msgstr ""
+msgstr "Unexpected response from %1$s: %2$s"
 
 #. TRANS: Plugin description.
 #: BlogspamNetPlugin.php:159
 msgid "Plugin to check submitted notices with blogspam.net."
-msgstr ""
+msgstr "Plugin to check submitted notices with blogspam.net."

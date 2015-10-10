@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 14:55+0000\n"
+"PO-Revision-Date: 2015-09-16 01:09+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,12 +26,12 @@ msgstr "Du måste skicka IN det."
 #. TRANS: Client exception thrown when the channel key argument is missing.
 #: actions/keepalivechannel.php:72 actions/closechannel.php:72
 msgid "No channel key argument."
-msgstr ""
+msgstr "Inget nyckelargument för kanal."
 
 #. TRANS: Client exception thrown when referring to a non-existing channel.
 #: actions/keepalivechannel.php:79 actions/closechannel.php:79
 msgid "No such channel."
-msgstr ""
+msgstr "Ingen sådan kanal."
 
 #. TRANS: Text label for realtime view "play" button, usually replaced by an
 #. icon.

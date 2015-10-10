@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:32+0000\n"
+"PO-Revision-Date: 2015-05-12 01:01+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -306,7 +306,7 @@ msgstr "Prova att prenumerera på fler personer, [gå med i en grupp](%%action.g
 msgid ""
 "You can try to [nudge %1$s](../%2$s) from their profile or [post something "
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
-msgstr ""
+msgstr "Du kan prova att [nudda %1$s](../%2$s) från deras profil eller [skicka något till dem](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
 #. TRANS: Encouragement displayed on empty timeline user pages for anonymous
 #. users.
@@ -324,7 +324,7 @@ msgstr ""
 msgid ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
 "post a notice to them."
-msgstr ""
+msgstr "Varför inte [registrera ett konto](%%%%action.register%%%%) och sen puffa %s eller offentliggöra en notis till dem."
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
@@ -1385,7 +1385,7 @@ msgstr "%1$s / Uppdateringar som nämner %2$s"
 #: actions/apitimelinementions.php:122
 #, php-format
 msgid "%1$s updates that reply to updates from %3$s / %2$s."
-msgstr ""
+msgstr "%1$s uppdateringar som svarar på uppdateringar från %3$s / %2$s."
 
 #. TRANS: Title for site timeline. %s is the StatusNet sitename.
 #. TRANS: Public RSS feed title. %s is the StatusNet site name.
@@ -2549,7 +2549,7 @@ msgstr "API"
 
 #: actions/doc.php:226
 msgid "RESTful API"
-msgstr ""
+msgstr "VILOfullt API"
 
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
@@ -4134,7 +4134,7 @@ msgstr "Inställningar sparade."
 
 #: actions/oldschoolsettings.php:160
 msgid "Only stream mode (no conversations) in timelines"
-msgstr ""
+msgstr "Endast ström-läge (inga konversationer) i tidslinjerna"
 
 #: actions/oldschoolsettings.php:164
 msgid "Show nicknames (not full names) in timelines"
@@ -4676,7 +4676,7 @@ msgstr "Dessa är listor som skapats av **%s**. Listor är hur du sorterar likna
 #: actions/peopletagsbyuser.php:274
 #, php-format
 msgid "%s has not created any [lists](%%%%doc.lists%%%%) yet."
-msgstr ""
+msgstr "%s har inte skapat några [listor](%%%%doc.lists%%%%) ännu."
 
 #. TRANS: Page title. %s is a tagged user's nickname.
 #: actions/peopletagsforuser.php:50
@@ -4713,7 +4713,7 @@ msgstr "Dessa är listor för **%s**. Listor är hur du sorterar liknande person
 #: actions/peopletagsforuser.php:146
 #, php-format
 msgid "%s has not been [listed](%%%%doc.lists%%%%) by anyone yet."
-msgstr ""
+msgstr "%s har ine blivit [listad](%%%%doc.lists%%%%) av någon ännu."
 
 #. TRANS: Page title for list of list subscribers.
 #. TRANS: %1$s is a list, %2$s is a user nickname.
@@ -5513,7 +5513,7 @@ msgstr "Ingen notis kunde hittas."
 #: actions/repeat.php:69
 msgid ""
 "Could not repeat notice for unknown reason. Please contact the webmaster!"
-msgstr ""
+msgstr "Kunde inte repetera notisen av en okänd anledning. Vänligen kontakta administratören för hemsidan!"
 
 #. TRANS: Confirmation text after repeating a notice.
 #: actions/repeat.php:87
@@ -5536,7 +5536,7 @@ msgstr "Svarat till %s"
 #: actions/replies.php:131
 #, php-format
 msgid "Replies to %1$s, page %2$d"
-msgstr ""
+msgstr "Svarar till %1$s, sidan %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
@@ -5594,7 +5594,7 @@ msgstr "Du kan engagera andra användare i en konversation, prenumerera på fler
 msgid ""
 "You can try to [nudge %1$s](../%2$s) or [post something to "
 "them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
-msgstr ""
+msgstr "Du kan prova att [nudda %1$s](../%2$s) eller [skicka något till dem](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
 #. TRANS: RSS reply feed description.
 #. TRANS: %1$s is a user nickname, %2$s is the StatusNet site name.
@@ -6035,7 +6035,7 @@ msgstr "Prova tagga fler personer."
 msgid ""
 "Why not [register an account](%%%%action.register%%%%) and start following "
 "this timeline!"
-msgstr ""
+msgstr "Varför inte [registrera ett konto](%%%%action.register%%%%) och börja följa den här tidslinjen!"
 
 #. TRANS: Header on show list page.
 #. TRANS: Link description for link to list of users tagged with a tag (so
@@ -6162,7 +6162,7 @@ msgstr "Sett något intressant nyligen? Du har inte postat några notiser än. V
 msgid ""
 "You can try to nudge %1$s or [post something to "
 "them](%%%%action.newnotice%%%%?status_textarea=%2$s)."
-msgstr ""
+msgstr "Du kan prova att nudda %1$s eller [skicka något till dem](%%%%action.newnotice%%%%?status_textarea=%2$s)."
 
 #. TRANS: Announcement for anonymous users showing a timeline if site
 #. registrations are open.
@@ -6741,7 +6741,7 @@ msgid ""
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
 "members in groups you're interested in and in our [featured "
 "users](%%action.featured%%)."
-msgstr ""
+msgstr "Du lyssnar inte på någons notiser för tillfället, prova prenumerera på folk som du känner. Prova [sökning efter personer](%%action.peoplesearch%%), titta efter medlemmar i grupper som du är intresserad av och i våra [profilerade användare] (%%action.featured%%)."
 
 #. TRANS: Subscription list text when looking at the subscriptions for a of a
 #. user that has none
@@ -6940,7 +6940,7 @@ msgstr "URL längre än"
 msgid ""
 "URLs longer than this will be shortened, -1 means never shorten because a "
 "URL is long."
-msgstr ""
+msgstr "Webbadresser som är längre än så här kommer att kortas ner, -1 betyder att webbadressen aldrig ska kortas ner för att den är lång."
 
 #. TRANS: Field label in URL settings in profile.
 #: actions/urlsettings.php:144
@@ -7120,7 +7120,7 @@ msgstr "Uppdateringar från %1$s på %2$s!"
 #: actions/version.php:71
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. TRANS: Content part of engine version page.
 #. TRANS: %1$s is the engine name (GNU social) and %2$s is the GNU social
@@ -7150,7 +7150,7 @@ msgid ""
 "terms of the GNU Affero General Public License as published by the Free "
 "Software Foundation, either version 3 of the License, or (at your option) "
 "any later version."
-msgstr ""
+msgstr "%1$s är fri programvara: du får distribuera det och/eller modifiera det under villkoren för GNU's Affero generellt publika licens, publicerad av Föreningen för Fri mjukvara, antingen version 3 av licensen eller (efter ditt tycke) någon senare version."
 
 #. TRANS: Content part of engine software version page.
 #: actions/version.php:176
@@ -7208,15 +7208,15 @@ msgstr "Storleken på avataren är för stor"
 #. TRANS: An error message when unable to insert avatar data into the db
 #: classes/Avatar.php:260
 msgid "Could not insert new avatar data to database"
-msgstr ""
+msgstr "Kunde inte föra in en ny avatars data till databasen"
 
 #: classes/Conversation.php:69
 msgid "Tried to create conversation for not yet inserted notice"
-msgstr ""
+msgstr "Försökte skapa en notis som ännu inte har förts in"
 
 #: classes/Conversation.php:83
 msgid "Failed to create conversation for notice"
-msgstr ""
+msgstr "Misslyckades med att skapa en konversation för notisen"
 
 #. TRANS: Server exception thrown when a URL cannot be processed.
 #: classes/File.php:151
@@ -7242,8 +7242,8 @@ msgid ""
 msgid_plural ""
 "No file may be larger than %1$d bytes and the file you sent was %2$s. Try to"
 " upload a smaller version."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ingen fil får vara större än %1$d byte och filen som du skickade var %2$s. Prova ladda upp en mindre version."
+msgstr[1] "Ingen fil får vara större än %1$d bytes och filen som du skickade var %2$s. Prova ladda upp en mindre version."
 
 #: classes/File.php:215
 #, php-format

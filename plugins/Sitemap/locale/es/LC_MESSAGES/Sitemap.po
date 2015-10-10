@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-25 08:09+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-28 12:21+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +26,7 @@ msgstr "Mapa del sitio"
 #. TRANS: Instructions for sitemap.
 #: actions/sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
-msgstr "Configuración del mapa del sitio para este sitio de StatusNet"
+msgstr "Configuración del mapa del sitio para esta instancia de GNU social"
 
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:167
@@ -82,4 +83,4 @@ msgstr "Mapa del sitio"
 #. TRANS: Plugin description.
 #: SitemapPlugin.php:187
 msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
-msgstr "Este complemento (plugin) permite la creación de mapas de sitios para Bing, Yahoo! y Google."
+msgstr "Este complemento permite la creación de mapas del sitio para Bing, Yahoo! y Google."

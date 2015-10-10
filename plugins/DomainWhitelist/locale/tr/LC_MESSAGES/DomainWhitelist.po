@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-06 16:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. TRANS: Form legend.
 #: forms/whitelistinvite.php:89
 msgid "Invite collegues"
-msgstr ""
+msgstr "Arkadaşlarınızı davet edin"
 
 #. TRANS: Field label for a personal message to send to invitees.
 #: forms/whitelistinvite.php:106
@@ -30,7 +30,7 @@ msgstr "Kişisel mesaj"
 #. TRANS: Field title for a personal message to send to invitees.
 #: forms/whitelistinvite.php:109
 msgid "Optionally add a personal message to the invitation."
-msgstr ""
+msgstr "Seçimli olarak davetiyeye kişisel bir mesaj ekle. "
 
 #. TRANS: Link description to action to add another item to a list.
 #: forms/whitelistinvite.php:158
@@ -46,7 +46,7 @@ msgstr "Gönder"
 #. TRANS: Submit button title.
 #: forms/whitelistinvite.php:175
 msgid "Send invitations."
-msgstr ""
+msgstr "Davetiyeleri yolla."
 
 #. TRANS: Client exception thrown when a given e-mailaddress is not in the
 #. domain whitelist.

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Luke Hollins <luke@farcry.ca>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:19+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/gnu-social/language/en_GB/)\n"
+"PO-Revision-Date: 2015-03-07 13:23+0000\n"
+"Last-Translator: Luke Hollins <luke@farcry.ca>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/gnu-social/gnu-social/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,28 +23,28 @@ msgstr ""
 msgid ""
 "Fetches avatar and other profile information for WikiHow users when setting "
 "up an account via OpenID."
-msgstr ""
+msgstr "Fetches avatar and other profile information for WikiHow users when setting up an account via OpenID."
 
 #. TRANS: Exception thrown when fetching a WikiHow profile page fails.
 #: WikiHowProfilePlugin.php:126
 msgid "WikiHow profile page fetch failed."
-msgstr ""
+msgstr "WikiHow profile page fetch failed."
 
 #. TRANS: Exception thrown when parsing a WikiHow profile page fails.
 #: WikiHowProfilePlugin.php:143
 msgid "HTML parse failure during check for WikiHow avatar."
-msgstr ""
+msgstr "HTML parse failure during check for WikiHow avatar."
 
 #. TRANS: Server exception thrown when an avatar URL is invalid.
 #. TRANS: %s is the invalid avatar URL.
 #: WikiHowProfilePlugin.php:176
 #, php-format
 msgid "Invalid avatar URL %s."
-msgstr ""
+msgstr "Invalid avatar URL %s."
 
 #. TRANS: Exception thrown when fetching an avatar from a URL fails.
 #. TRANS: %s is a URL.
 #: WikiHowProfilePlugin.php:186
 #, php-format
 msgid "Unable to fetch avatar from %s."
-msgstr ""
+msgstr "Unable to fetch avatar from %s."

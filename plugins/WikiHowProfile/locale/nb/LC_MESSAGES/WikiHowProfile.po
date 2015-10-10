@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Knut Erik Hollund, 2015
+# abjectio, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-09 18:58+0000\n"
-"Last-Translator: Knut Erik Hollund\n"
-"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/gnu-social/language/nb/)\n"
+"PO-Revision-Date: 2015-03-08 00:11+0000\n"
+"Last-Translator: abjectio\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/gnu-social/gnu-social/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid ""
 "Fetches avatar and other profile information for WikiHow users when setting "
 "up an account via OpenID."
-msgstr ""
+msgstr "Henter bruker bilde og annet profil informasjon for WikiHow brukere, i det man setter opp en OpenID konto."
 
 #. TRANS: Exception thrown when fetching a WikiHow profile page fails.
 #: WikiHowProfilePlugin.php:126

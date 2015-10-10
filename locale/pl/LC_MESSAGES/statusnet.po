@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Mateusz Zimniak <lonetraveller@wp.pl>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:32+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/gnu-social/language/pl/)\n"
+"PO-Revision-Date: 2015-08-02 18:10+0000\n"
+"Last-Translator: Mateusz Zimniak <lonetraveller@wp.pl>\n"
+"Language-Team: Polish (http://www.transifex.com/gnu-social/gnu-social/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -609,12 +610,12 @@ msgstr "Nieprawidłowa nazwa użytkownika lub hasło."
 #: actions/apiaccountupdatebackgroundcolor.php:72
 #: actions/apiaccountupdatelinkcolor.php:73
 msgid "Not a valid hex color."
-msgstr ""
+msgstr "Nie prawidłowy kolor hex."
 
 #: actions/apiaccountupdatebackgroundcolor.php:79
 #: actions/apiaccountupdatelinkcolor.php:80
 msgid "Error updating user."
-msgstr ""
+msgstr "Błąd przy aktualizacji użytkownika."
 
 #. TRANS: Client error displayed when no valid device parameter is provided
 #. for a user's delivery device setting.
@@ -735,11 +736,11 @@ msgstr "Odblokowanie użytkownika nie powiodło się."
 
 #: actions/apicheckhub.php:57
 msgid "No URL."
-msgstr ""
+msgstr "Brak URL."
 
 #: actions/apicheckhub.php:61 lib/invalidurlexception.php:50
 msgid "Invalid URL."
-msgstr ""
+msgstr "Nie prawidłowy URL."
 
 #: actions/apicheckhub.php:86
 msgid "No feed found"
@@ -771,7 +772,7 @@ msgstr "Rozmowa"
 #. non-existing profile.
 #: actions/apiexternalprofileshow.php:60
 msgid "Profile not found."
-msgstr ""
+msgstr "Profil nie odnaleziony."
 
 #. TRANS: Client error displayed when trying follow who's profile could not be
 #. found.
@@ -1751,7 +1752,7 @@ msgstr "Można obsługiwać tylko działania dołączania."
 #. group
 #: actions/atompubmembershipfeed.php:209
 msgid "Can only join groups."
-msgstr ""
+msgstr "Można wyłącznie dołączać do grup."
 
 #. TRANS: Client exception thrown when trying to subscribe to a non-existing
 #. group.
@@ -4813,7 +4814,7 @@ msgid ""
 "Additional plugins can be enabled and configured manually. See the <a "
 "href=\"http://status.net/wiki/Plugins\">online plugin documentation</a> for "
 "more details."
-msgstr ""
+msgstr "Dodatkowe pluginy mogą zostać aktywowane i skofigurowane ręcznie. Zajrzyj na <a href=\"http://status.net/wiki/Plugins\">online plugin documentation</a> po więcej szczegółów."
 
 #. TRANS: Admin form section header
 #: actions/pluginsadminpanel.php:79
@@ -7470,7 +7471,7 @@ msgstr "%1$s (%2$s)"
 #. TRANS: Server error thrown when user profile settings could not be updated.
 #: classes/Profile.php:845
 msgid "Could not update user nickname."
-msgstr ""
+msgstr "Nie można zaktualizować nazwy użytkownika."
 
 #. TRANS: Exception thrown when trying to revoke an existing role for a user
 #. that does not exist.
@@ -7612,7 +7613,7 @@ msgstr "Nie realizowane od zmiany skrzynki odbiorczej."
 
 #: classes/User.php:734
 msgid "No site owner configured."
-msgstr ""
+msgstr "Nie skonfigurowano właściciela strony."
 
 #. TRANS: Server exception.
 #: classes/User.php:751
@@ -7672,7 +7673,7 @@ msgstr "Nie można zapisać informacji o lokalnej grupie."
 
 #: classes/User_group.php:802
 msgid "Unable to update profile"
-msgstr ""
+msgstr "Nie udało się zaktualizować profilu."
 
 #. TRANS: Exception thrown when an account could not be located when it should
 #. be moved.
@@ -7782,7 +7783,7 @@ msgstr "Status"
 #: lib/action.php:729
 msgctxt "TAB"
 msgid "Share your:"
-msgstr ""
+msgstr "Podziel się:"
 
 #. TRANS: First sentence of the GNU social site license. Used if 'broughtby'
 #. is set.
@@ -7802,7 +7803,7 @@ msgstr ""
 #: lib/action.php:1101
 #, php-format
 msgid "**%%site.name%%** is a social network."
-msgstr ""
+msgstr "**%%site.name%%** jest siecią społecznościową."
 
 #. TRANS: Second sentence of the GNU social site license. Mentions the GNU
 #. social source code license.
@@ -9067,7 +9068,7 @@ msgstr "Kanały"
 
 #: lib/filenotfoundexception.php:39
 msgid "File not found in filesystem."
-msgstr ""
+msgstr "Nie odnaleziono pliku w systemie plików."
 
 #. TRANS: Client error displayed when the number of bytes in a POST request
 #. exceeds a limit.
@@ -9280,11 +9281,11 @@ msgstr "Ta strona jest niedostępna dla akceptowanego typu medium"
 #. format.
 #: lib/imagefile.php:73
 msgid "Unsupported image format."
-msgstr ""
+msgstr "Nie wspierany format obrazu."
 
 #: lib/imagefile.php:115
 msgid "Unsupported media format."
-msgstr ""
+msgstr "Nie wspierany format."
 
 #. TRANS: Exception thrown when too large a file is uploaded.
 #. TRANS: %s is the maximum file size, for example "500b", "10kB" or "2MB".
@@ -10328,7 +10329,7 @@ msgstr "Ustawienia"
 #. TRANS: Menu item title in primary navigation panel.
 #: lib/primarynav.php:60
 msgid "Change your personal settings."
-msgstr ""
+msgstr "Zmień swoje ustawienia osobiste."
 
 #. TRANS: Menu item in primary navigation panel.
 #: lib/primarynav.php:66
@@ -10339,7 +10340,7 @@ msgstr "Administrator"
 #. TRANS: Menu item title in primary navigation panel.
 #: lib/primarynav.php:68
 msgid "Site configuration."
-msgstr ""
+msgstr "Konfiguracja strony."
 
 #. TRANS: Menu item in primary navigation panel.
 #: lib/primarynav.php:74
@@ -10350,12 +10351,12 @@ msgstr "Wyloguj się"
 #. TRANS: Menu item title in primary navigation panel.
 #: lib/primarynav.php:76
 msgid "Logout from the site."
-msgstr ""
+msgstr "Wyloguj ze strony."
 
 #. TRANS: Menu item title in primary navigation panel.
 #: lib/primarynav.php:84
 msgid "Login to the site."
-msgstr ""
+msgstr "Zaloguj się na stronę."
 
 #. TRANS: Error message displayed when referring to a user without a profile.
 #: lib/profileaction.php:87
@@ -10946,12 +10947,12 @@ msgstr ""
 #. TRANS: Dropdown option for searching in profiles.
 #: lib/togglepeopletag.php:105
 msgid "Everything"
-msgstr ""
+msgstr "Wszystko"
 
 #. TRANS: Dropdown option for searching in profiles.
 #: lib/togglepeopletag.php:109
 msgid "Fullname"
-msgstr ""
+msgstr "Nazwisko"
 
 #. TRANS: Dropdown option for searching in profiles.
 #: lib/togglepeopletag.php:115
@@ -10992,7 +10993,7 @@ msgstr "Najczęściej wysyłający wpisy"
 #: lib/toselector.php:87
 msgctxt "SENDTO"
 msgid "Everyone"
-msgstr ""
+msgstr "Wszyscy"
 
 #. TRANS: Option in drop-down of potential addressees.
 #. TRANS: %s is a StatusNet sitename.
@@ -11005,7 +11006,7 @@ msgstr ""
 #: lib/toselector.php:115
 msgctxt "LABEL"
 msgid "To:"
-msgstr ""
+msgstr "Do:"
 
 #. TRANS: Checkbox label in widget for selecting potential addressees to mark
 #. the notice private.
@@ -11074,7 +11075,7 @@ msgstr ""
 #. TRANS: Authorisation exception thrown when a user a not allowed to login.
 #: lib/util.php:330
 msgid "Not allowed to log in."
-msgstr ""
+msgstr "Brak uprawnień do zalogowania."
 
 #. TRANS: Used in notices to indicate when the notice was made compared to
 #. now.

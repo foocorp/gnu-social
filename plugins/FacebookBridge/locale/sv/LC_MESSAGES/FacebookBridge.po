@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-06 16:16+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-16 02:18+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,44 +22,44 @@ msgstr ""
 #: actions/facebookadminpanel.php:53
 msgctxt "TITLE"
 msgid "Facebook integration settings"
-msgstr ""
+msgstr "Integrationsinställningar för Facebook"
 
 #. TRANS: Instruction for Facebook administration panel.
 #: actions/facebookadminpanel.php:64
 msgid "Facebook integration settings"
-msgstr ""
+msgstr "Integrationsinställningar för Facebook"
 
 #. TRANS: Client error displayed when providing too long a Facebook
 #. application ID.
 #: actions/facebookadminpanel.php:126
 msgid "Invalid Facebook ID. Maximum length is 255 characters."
-msgstr ""
+msgstr "Ogiligt Facebook-ID. Maximal längd är 255 tecken."
 
 #. TRANS: Client error displayed when providing too long a Facebook secret
 #. key.
 #: actions/facebookadminpanel.php:133
 msgid "Invalid Facebook secret. Maximum length is 255 characters."
-msgstr ""
+msgstr "Ogiltig Facebook-hemlighet. Maximal längd är 255 tecken."
 
 #. TRANS: Fieldset legend.
 #: actions/facebookadminpanel.php:183
 msgid "Facebook application settings"
-msgstr ""
+msgstr "Inställningar för Facebook-applikationen"
 
 #. TRANS: Field label for Facebook application ID.
 #: actions/facebookadminpanel.php:190
 msgid "Application ID"
-msgstr ""
+msgstr "Applikation-ID"
 
 #. TRANS: Field title for Facebook application ID.
 #: actions/facebookadminpanel.php:192
 msgid "ID of your Facebook application."
-msgstr ""
+msgstr "ID't för din Facebook-applikation."
 
 #. TRANS: Field label for Facebook secret key.
 #: actions/facebookadminpanel.php:201
 msgid "Secret"
-msgstr ""
+msgstr "Hemlighet"
 
 #. TRANS: Field title for Facebook secret key.
 #: actions/facebookadminpanel.php:203

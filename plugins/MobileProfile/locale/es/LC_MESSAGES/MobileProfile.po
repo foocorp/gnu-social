@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 09:02+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-27 16:51+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,21 +21,21 @@ msgstr ""
 #. TRANS: Client exception thrown when requesting a not supported media type.
 #: MobileProfilePlugin.php:200
 msgid "This page is not available in a media type you accept."
-msgstr "Esta página no está disponible en el tipo de medio que aceptas."
+msgstr "Esta página no está disponible en ninguno de los tipos de medio que aceptas."
 
 #. TRANS: Link to switch site layout from mobile to desktop mode. Appears at
 #. very bottom of page.
 #: MobileProfilePlugin.php:375
 msgid "Switch to desktop site layout."
-msgstr "Cambiar al formato de escritorio del sitio."
+msgstr "Cambiar a la versión de escritorio del sitio."
 
 #. TRANS: Link to switch site layout from desktop to mobile mode. Appears at
 #. very bottom of page.
 #: MobileProfilePlugin.php:379
 msgid "Switch to mobile site layout."
-msgstr "Cambiar al formato para móviles del sitio."
+msgstr "Cambiar a la versión móvil del sitio."
 
 #. TRANS: Plugin description.
 #: MobileProfilePlugin.php:417
 msgid "XHTML MobileProfile output for supporting user agents."
-msgstr "Salida XHTML MobileProfile para apoyar a los agentes de usuario."
+msgstr "Salida XHTML MobileProfile para agentes de usuario compatibles."

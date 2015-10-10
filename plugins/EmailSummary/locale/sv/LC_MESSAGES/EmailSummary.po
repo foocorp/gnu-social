@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 14:55+0000\n"
+"PO-Revision-Date: 2015-09-16 01:35+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,7 +30,7 @@ msgstr "Dina senaste uppdateringar från %s"
 #: lib/useremailsummaryhandler.php:140
 #, php-format
 msgid "Recent updates from %1$s for %2$s:"
-msgstr ""
+msgstr "Senaste uppdateringar från %1$s för %2$s:"
 
 #. TRANS: Link text for link to conversation view.
 #: lib/useremailsummaryhandler.php:188
@@ -43,14 +43,14 @@ msgstr "I sammanhanget"
 #: lib/useremailsummaryhandler.php:198
 #, php-format
 msgid "<a href=\"%1$s\">change your email settings for %2$s</a>"
-msgstr ""
+msgstr "<a href=\"%1$s\">ändra dina e-postinställningar för %2$s</a>"
 
 #. TRANS: Plugin description.
 #: EmailSummaryPlugin.php:77
 msgid "Send an email summary of the inbox to users."
-msgstr ""
+msgstr "Skicka en e-postsammanfattning av inkorgen till användare."
 
 #. TRANS: Checkbox label in e-mail preferences form.
 #: EmailSummaryPlugin.php:108
 msgid "Send me a periodic summary of updates from my network"
-msgstr ""
+msgstr "Skicka mig en periodisk sammanfattning av uppdateringar från mitt nätverk"

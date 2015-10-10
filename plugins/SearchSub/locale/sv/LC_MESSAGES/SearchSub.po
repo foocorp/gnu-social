@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-05 16:33+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-16 02:17+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. TRANS: Form legend.
 #: forms/searchunsub.php:90
 msgid "Unsubscribe from this search"
-msgstr ""
+msgstr "Avsluta prenumerationen för den här sökningen"
 
 #. TRANS: Button text for unsubscribing from a text search.
 #: forms/searchunsub.php:102
@@ -31,12 +32,12 @@ msgstr "Avsluta pren."
 #. TRANS: Button title for unsubscribing from a text search.
 #: forms/searchunsub.php:106
 msgid "Unsubscribe from this search."
-msgstr ""
+msgstr "Avprenumerera från den här sökningen."
 
 #. TRANS: Form legend.
 #: forms/searchsub.php:110
 msgid "Subscribe to this search"
-msgstr ""
+msgstr "Prenumerera på den här sökningen"
 
 #. TRANS: Button text for subscribing to a search.
 #: forms/searchsub.php:134
@@ -47,19 +48,19 @@ msgstr "Prenumerera"
 #. TRANS: Button title for subscribing to a search.
 #: forms/searchsub.php:138
 msgid "Subscribe to this search."
-msgstr ""
+msgstr "Prenumerera på den här sökningen."
 
 #. TRANS: Plugin description.
 #: SearchSubPlugin.php:99
 msgid "Plugin to allow following all messages with a given search."
-msgstr ""
+msgstr "Insticksprogram för att tillåta att man följer alla meddelanden med en given sökning."
 
 #. TRANS: SearchSub plugin menu item on user settings page.
 #. TRANS: Sub menu for searches.
 #: SearchSubPlugin.php:202 SearchSubPlugin.php:265
 msgctxt "MENU"
 msgid "Searches"
-msgstr ""
+msgstr "Sökningar"
 
 #. TRANS: SearchSub plugin tooltip for user settings menu item.
 #: SearchSubPlugin.php:204

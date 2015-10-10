@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 11:50+0000\n"
+"PO-Revision-Date: 2015-09-15 23:50+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +32,7 @@ msgid ""
 "key](http://bit.ly/a/your_api_key). This verifies that this is an authorized"
 " account, and allow you to use bit.ly's tracking features and custom "
 "domains."
-msgstr ""
+msgstr "Förkortning av hemsideadressen med bit.ly kräver [ett bit.ly-konto och en API-nyckel](http://bit.ly/a/your_api_key). Det här bekräftar att det här är ett auktoriserat konto och tillåter dig att använda bit.ly's spårningsfunktioner och anpassade domäner."
 
 #. TRANS: Client error displayed when using too long a key.
 #: actions/bitlyadminpanel.php:131
@@ -49,17 +49,17 @@ msgstr "Ogiltig API-nyckel. Maximal längd är 255 tecken."
 #: actions/bitlyadminpanel.php:188
 msgctxt "LEGEND"
 msgid "Credentials"
-msgstr ""
+msgstr "Referenser"
 
 #. TRANS: Form guide in administration panel for bit.ly URL shortening.
 #: actions/bitlyadminpanel.php:197
 msgid "Leave these empty to use global default credentials."
-msgstr ""
+msgstr "Lämna det här tomt för att använda globala standardreferenser."
 
 #. TRANS: Form guide in administration panel for bit.ly URL shortening.
 #: actions/bitlyadminpanel.php:201
 msgid "If you leave these empty, bit.ly will be unavailable to users."
-msgstr ""
+msgstr "Om du lämnar det här tomt så kommer bit.ly att vara otillgängligt för användare."
 
 #. TRANS: Field label in administration panel for bit.ly URL shortening.
 #: actions/bitlyadminpanel.php:209
@@ -95,7 +95,7 @@ msgstr "Du måste ange ett serviceUrl för bit.ly URL-förkortning."
 #: BitlyUrlPlugin.php:156
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
-msgstr ""
+msgstr "Använder<a href=\"http://%1$s/\">%1$s</a>tjänst för förkortning av URL."
 
 #. TRANS: Menu item in administration menus for bit.ly URL shortening
 #. settings.

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# abjectio, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-04 18:01+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/gnu-social/language/nb/)\n"
+"PO-Revision-Date: 2015-03-07 23:50+0000\n"
+"Last-Translator: abjectio\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/gnu-social/gnu-social/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +27,7 @@ msgstr ""
 #. TRANS: Page title for user directory.
 #: actions/userdirectory.php:98
 msgid "User directory"
-msgstr ""
+msgstr "Bruker mappe"
 
 #. TRANS: Page title for user directory. %s is the applied filter.
 #: actions/userdirectory.php:102

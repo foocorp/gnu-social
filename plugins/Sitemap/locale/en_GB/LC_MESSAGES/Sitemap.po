@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Luke Hollins <luke@farcry.ca>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 10:29+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/gnu-social/language/en_GB/)\n"
+"PO-Revision-Date: 2015-03-07 12:01+0000\n"
+"Last-Translator: Luke Hollins <luke@farcry.ca>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/gnu-social/gnu-social/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,42 +21,42 @@ msgstr ""
 #. TRANS: Title for sitemap.
 #: actions/sitemapadminpanel.php:53
 msgid "Sitemap"
-msgstr ""
+msgstr "Sitemap"
 
 #. TRANS: Instructions for sitemap.
 #: actions/sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
-msgstr ""
+msgstr "Sitemap settings for this StatusNet site"
 
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:167
 msgid "Google key"
-msgstr ""
+msgstr "Google key"
 
 #. TRANS: Title for field label.
 #: actions/sitemapadminpanel.php:169
 msgid "Google Webmaster Tools verification key."
-msgstr ""
+msgstr "Google Webmaster Tools verification key."
 
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:175
 msgid "Yahoo key"
-msgstr ""
+msgstr "Yahoo key"
 
 #. TRANS: Title for field label.
 #: actions/sitemapadminpanel.php:177
 msgid "Yahoo! Site Explorer verification key."
-msgstr ""
+msgstr "Yahoo! Site Explorer verification key."
 
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:183
 msgid "Bing key"
-msgstr ""
+msgstr "Bing key"
 
 #. TRANS: Title for field label.
 #: actions/sitemapadminpanel.php:185
 msgid "Bing Webmaster Tools verification key."
-msgstr ""
+msgstr "Bing Webmaster Tools verification key."
 
 #. TRANS: Submit button text to save sitemap settings.
 #: actions/sitemapadminpanel.php:200
@@ -66,20 +67,20 @@ msgstr "Save"
 #. TRANS: Submit button title to save sitemap settings.
 #: actions/sitemapadminpanel.php:204
 msgid "Save sitemap settings."
-msgstr ""
+msgstr "Save sitemap settings."
 
 #. TRANS: Menu item title/tooltip
 #: SitemapPlugin.php:160
 msgid "Sitemap configuration"
-msgstr ""
+msgstr "Sitemap configuration"
 
 #. TRANS: Menu item for site administration
 #: SitemapPlugin.php:162
 msgctxt "MENU"
 msgid "Sitemap"
-msgstr ""
+msgstr "Sitemap"
 
 #. TRANS: Plugin description.
 #: SitemapPlugin.php:187
 msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
-msgstr ""
+msgstr "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."

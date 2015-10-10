@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 10:32+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-28 12:01+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,32 +24,32 @@ msgid ""
 "The RSSCloud plugin enables your StatusNet instance to publish real-time "
 "updates for profile RSS feeds using the <a "
 "href=\"http://rsscloud.org/\">RSSCloud protocol</a>."
-msgstr "El complemento (plugin) RSSCloud permite a su instancia StatusNet publicar actualizaciones en tiempo real para canales RSS de perfil mediante el <a href=\"http://rsscloud.org/\">protocolo RSSCloud</a>."
+msgstr "El complemento RSSCloud permite a tu instancia GNU social publicar actualizaciones en tiempo real de fuentes web RSS de perfiles usando el <a href=\"http://rsscloud.org/\">protocolo RSSCloud</a>."
 
 #. TRANS: Form validation error displayed when a URL parameter is missing.
 #: actions/loggingaggregator.php:86
 msgid "A URL parameter is required."
-msgstr "Se requiere un parámetro de dirección URL."
+msgstr "Se requiere un parámetro URL."
 
 #. TRANS: Form validation error displayed when HTTP GET is not used.
 #: actions/loggingaggregator.php:94
 msgid "This resource requires an HTTP GET."
-msgstr "Este recurso requiere una solicitud HTTP GET."
+msgstr "Este recurso requiere una petición HTTP GET."
 
 #. TRANS: Form validation error displayed when HTTP POST is not used.
 #: actions/loggingaggregator.php:104
 msgid "This resource requires an HTTP POST."
-msgstr "Este recurso necesita una solicitud HTTP POST."
+msgstr "Este recurso necesita una petición HTTP POST."
 
 #. TRANS: Form validation error displayed when POST is not used.
 #: actions/rsscloudrequestnotify.php:91
 msgid "Request must be POST."
-msgstr "La solicitud debe ser POST."
+msgstr "Debe ser una petición POST."
 
 #. TRANS: Form validation error displayed when HTTP POST is not used.
 #: actions/rsscloudrequestnotify.php:109
 msgid "Only HTTP POST notifications are supported at this time."
-msgstr "En este momento son compatibles solamente las notificaciones de HTTP POST."
+msgstr "Por ahora sólo se soportan notificaciones HTTP POST."
 
 #. TRANS: List separator.
 #: actions/rsscloudrequestnotify.php:120
@@ -71,22 +72,22 @@ msgstr "Faltan los siguientes parámetros en el cuerpo de la solicitud:  %s ."
 msgid ""
 "You must provide at least one valid profile feed URL (url1, url2, url3 ... "
 "urlN)."
-msgstr "Debe proporcionar al menos una dirección URL de canal web (feed), de perfil válido, (url1, url2, url3... urlN)."
+msgstr "Debes proporcionar, al menos, un URL válido de la fuente web de un perfil (url1, url2, url3... urlN)."
 
 #. TRANS: Form validation error displayed when not providing a valid feed URL.
 #: actions/rsscloudrequestnotify.php:146
 msgid "Feed subscription failed: Not a valid feed."
-msgstr "Error en la suscripción al canal web (feed): No es un canal web válido."
+msgstr "La suscripción a la fuente web falló: no es una fuente válida."
 
 #. TRANS: Form validation error displayed when feed subscription failed.
 #: actions/rsscloudrequestnotify.php:153
 msgid ""
 "Feed subscription failed: Notification handler does not respond correctly."
-msgstr "Error en la suscripción al canal web (feed): el controlador de notificaciones no responde correctamente."
+msgstr "La suscripción a la fuente web falló: el controlador de notificaciones no responde correctamente."
 
 #. TRANS: Success message after subscribing to one or more feeds.
 #: actions/rsscloudrequestnotify.php:168
 msgid ""
 "Thanks for the subscription. When the feed(s) update(s), you will be "
 "notified."
-msgstr "Gracias por la suscripción. Cuando se actualice el canal web (feed), se le notificará."
+msgstr "Gracias por tu suscripción (o suscripciones). Te avisaremos cuando se actualice la fuente (o fuentes) web."

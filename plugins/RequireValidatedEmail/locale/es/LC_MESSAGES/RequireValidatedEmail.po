@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Ismael Moral <jastertdc@gmail.com>, 2015
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-25 08:09+0000\n"
-"Last-Translator: Ismael Moral <jastertdc@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-28 10:31+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,22 +23,22 @@ msgstr ""
 #. validating an e-mail address.
 #: RequireValidatedEmailPlugin.php:104
 msgid "You must validate your email address before posting."
-msgstr "Debe validar su dirección de correo electrónico antes de publicar."
+msgstr "Debes validar tu correo electrónico para poder publicar."
 
 #. TRANS: Client exception thrown when trying to register without providing an
 #. e-mail address.
 #: RequireValidatedEmailPlugin.php:125
 msgid "You must provide an email address to register."
-msgstr "Debe proporcionar una dirección de correo electrónico para registrarse."
+msgstr "Debes proporcionar un correo electrónico para registrarte."
 
 #. TRANS: Plugin description.
 #: RequireValidatedEmailPlugin.php:224
 msgid "Disables posting without a validated email address."
-msgstr "Desactiva la publicación de mensajes sin una dirección de correo electrónico válida."
+msgstr "No permite la publicación de mensajes mientras no se valide el correo electrónico."
 
 #: RequireValidatedEmailPlugin.php:243
 msgid "You must validate an email address before posting!"
-msgstr "¡ Tu dirección de e-mail tiene que estar autentificada antes de que puedas publicar !"
+msgstr "¡Tienes que validar tu correo electrónico primero!"
 
 #. TRANS: Client exception thrown when trying to register while already logged
 #. in.
@@ -63,18 +64,18 @@ msgstr "Ningún usuario tiene ese código de confirmación."
 #: actions/confirmfirstemail.php:93
 #, php-format
 msgid "Unrecognized address type %s."
-msgstr "No se reconoce el tipo de dirección %s."
+msgstr "No se reconoce el tipo de dirección: %s."
 
 #. TRANS: Client error for an already confirmed email/jabber/sms address.
 #: actions/confirmfirstemail.php:98
 msgid "That address has already been confirmed."
-msgstr "Esta dirección ya ha sido confirmada."
+msgstr "Esa dirección ya ha sido confirmada."
 
 #. TRANS: Client exception thrown when trying to register with too short a
 #. password.
 #: actions/confirmfirstemail.php:110
 msgid "Password too short."
-msgstr "La contraseña es demasiado corta"
+msgstr "La contraseña es demasiado corta."
 
 #. TRANS: Client exception thrown when trying to register without providing
 #. the same password twice.
@@ -88,7 +89,7 @@ msgstr "Las contraseñas no coinciden."
 msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
 "form below to set your new password."
-msgstr "Ha confirmado la dirección de correo electrónico para su nueva cuenta de usuario %s . Utilice el siguiente formulario para establecer su nueva contraseña."
+msgstr "Has confirmado el correo electrónico para tu nueva cuenta de usuario, %s. Utiliza el siguiente formulario para establecer tu nueva contraseña."
 
 #. TRANS: Page title.
 #: actions/confirmfirstemail.php:181
@@ -98,7 +99,7 @@ msgstr "Establecer una contraseña"
 #. TRANS: Form legend.
 #: actions/confirmfirstemail.php:198
 msgid "Confirm email address"
-msgstr "Confirme la dirección de correo electrónico"
+msgstr "Confirma tu correo electrónico"
 
 #. TRANS: Field label.
 #: actions/confirmfirstemail.php:217
@@ -119,7 +120,7 @@ msgstr "Confirmar"
 #. TRANS: Field title for repeat password field.
 #: actions/confirmfirstemail.php:225
 msgid "Same as password above."
-msgstr "Igual a la contraseña anterior"
+msgstr "Repite la contraseña anterior."
 
 #. TRANS: Button text for completing registration by e-mail.
 #: actions/confirmfirstemail.php:233

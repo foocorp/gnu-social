@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 10:23+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-16 01:37+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,27 +29,27 @@ msgstr ""
 #. TRANS: Form validation error displayed when a URL parameter is missing.
 #: actions/loggingaggregator.php:86
 msgid "A URL parameter is required."
-msgstr ""
+msgstr "En hemsideadress-parameter krävs."
 
 #. TRANS: Form validation error displayed when HTTP GET is not used.
 #: actions/loggingaggregator.php:94
 msgid "This resource requires an HTTP GET."
-msgstr ""
+msgstr "Den här resursen kräver en HTTP GET."
 
 #. TRANS: Form validation error displayed when HTTP POST is not used.
 #: actions/loggingaggregator.php:104
 msgid "This resource requires an HTTP POST."
-msgstr ""
+msgstr "Den här resursen kräver en HTTP POST."
 
 #. TRANS: Form validation error displayed when POST is not used.
 #: actions/rsscloudrequestnotify.php:91
 msgid "Request must be POST."
-msgstr ""
+msgstr "Förfrågningen måste vara POST."
 
 #. TRANS: Form validation error displayed when HTTP POST is not used.
 #: actions/rsscloudrequestnotify.php:109
 msgid "Only HTTP POST notifications are supported at this time."
-msgstr ""
+msgstr "Endast HTTP POST-notifikationer stöds för tillfället."
 
 #. TRANS: List separator.
 #: actions/rsscloudrequestnotify.php:120

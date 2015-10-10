@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Giuseppe Pignataro <rogepix@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:32+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/gnu-social/language/it/)\n"
+"PO-Revision-Date: 2015-06-10 00:12+0000\n"
+"Last-Translator: Giuseppe Pignataro <rogepix@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/gnu-social/gnu-social/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,13 +83,13 @@ msgstr "Notizie collegate a %1$s, pagina %2$d"
 #. TRANS: Page title for sample plugin.
 #: actions/bookmarks.php:128
 msgid "Log in"
-msgstr ""
+msgstr "Entra"
 
 #. TRANS: Page title for sample plugin. %s is a user nickname.
 #: actions/bookmarks.php:131
 #, php-format
 msgid "%s's bookmarks"
-msgstr ""
+msgstr "i segnalibro di %s"
 
 #. TRANS: Title for action to create a new bookmark.
 #: actions/newbookmark.php:64
@@ -294,12 +295,12 @@ msgstr ""
 #. TRANS: Menu item in sample plugin.
 #: BookmarkPlugin.php:263
 msgid "Bookmarks"
-msgstr ""
+msgstr "Segnalibri"
 
 #. TRANS: Menu item title in sample plugin.
 #: BookmarkPlugin.php:265
 msgid "A list of your bookmarks"
-msgstr ""
+msgstr "Un elenco dei segnalibri"
 
 #. TRANS: Client exception thrown when a bookmark is formatted incorrectly.
 #: BookmarkPlugin.php:312

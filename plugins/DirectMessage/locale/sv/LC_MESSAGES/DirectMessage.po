@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 14:55+0000\n"
+"PO-Revision-Date: 2015-09-16 01:41+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,8 +41,8 @@ msgstr ""
 #, php-format
 msgid "That's too long. Maximum message size is %d character."
 msgid_plural "That's too long. Maximum message size is %d characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Det där är för långt. Maximal meddelandestorlek är %d tecken."
+msgstr[1] "Det där är för långt. Maximal meddelandestorlek är %d tecken."
 
 #. TRANS: Menu item in mailbox menu. Leads to incoming private messages.
 #: lib/mailboxmenu.php:59
@@ -54,7 +54,7 @@ msgstr "Inkorg"
 #: lib/mailboxmenu.php:66
 msgctxt "MENU"
 msgid "Outbox"
-msgstr ""
+msgstr "Utkorg"
 
 #. TRANS: Message given if content is too long. %1$sd is used for plural.
 #. TRANS: %1$d is the maximum number of characters, %2$d is the number of

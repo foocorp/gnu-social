@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-07 08:43+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Armenian (Armenia) (http://www.transifex.com/gnu-social/gnu-social/language/hy_AM/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hy_AM\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client error displayed when the session token does not match or is
+#. not given.
+#: actions/oembedproxy.php:58
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Client exception thrown when requesting a different format than
+#. JSON.
+#: actions/oembedproxy.php:65
+msgid "Invalid format; only JSON supported."
+msgstr ""
+
+#. TRANS: Client exception thrown when not providing a valid URL.
+#: actions/oembedproxy.php:71
+msgid "Invalid URL."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: LinkPreviewPlugin.php:40
+msgid "UI extension for previewing thumbnails from links."
+msgstr ""

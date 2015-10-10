@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-06 16:43+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-16 02:19+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +33,7 @@ msgstr "Direktmeddelande till %s"
 #. TRANS: Indicator for number of chatacters still available for notice.
 #: forms/groupmessage.php:141
 msgid "Available characters"
-msgstr ""
+msgstr "Tillgängliga tecken"
 
 #. TRANS: Send button text for sending private group notice.
 #: forms/groupmessage.php:162
@@ -64,7 +65,7 @@ msgstr "Endast för medlemmar."
 #. TRANS: Text of group inbox if no private messages were sent to it.
 #: actions/groupinbox.php:128
 msgid "This group has not received any private messages."
-msgstr ""
+msgstr "Den här gruppen har inte tagit emot några privata meddelanden."
 
 #. TRANS: Title of inbox for group %s.
 #: actions/groupinbox.php:174
