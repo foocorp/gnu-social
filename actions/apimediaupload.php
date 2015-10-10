@@ -114,5 +114,6 @@ class ApiMediaUploadAction extends ApiAuthAction
         $this->element('err', $errAttr, null);
         $this->elementEnd('rsp');
         $this->endDocument();
+        exit;
     }
 }
