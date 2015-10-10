@@ -99,7 +99,7 @@ class Deleted_notice extends Managed_DataObject
     static public function fromStored(Notice $stored)
     {
         $class = get_called_class();
-        return self::getByPK(array('uri', $stored->getUri()));
+        return self::getByPK(array('uri' => $stored->getUri()));
     }
 
     // The one who deleted the notice, not the notice's author
@@ -125,7 +125,7 @@ class Deleted_notice extends Managed_DataObject
     {
         $uri = $this->getUri();
         if (!isset($this->_stored[$uri])) {
-            $this->_stored[$uri] = Notice::getByPK('uri', $uri);
+            $this->_stored[$uri] = Notice::getByPK(array('uri' => $uri));
         }
         return $this->_stored[$uri];
     }

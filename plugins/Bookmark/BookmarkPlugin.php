@@ -479,7 +479,7 @@ class BookmarkPlugin extends MicroAppPlugin
     {
         assert($obj->type == ActivityObject::BOOKMARK);
 
-        $bm = Bookmark::getByPK(array('uri', $obj->id));
+        $bm = Bookmark::getByPK(array('uri' => $obj->id));
 
         $out['displayName'] = $bm->getTitle();
         $out['targetUrl']   = $bm->getUrl();

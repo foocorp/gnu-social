@@ -334,7 +334,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
         $object = new $classname();
         foreach ($pkey as $col) {
             if (!array_key_exists($col, $vals)) {
-                throw new ServerException("Missing primary key column '{$col}'");
+                throw new ServerException("Missing primary key column '{$col}' for ".get_called_class()." among provided keys: ".implode(',', array_keys($vals)));
             } elseif (is_null($vals[$col])) {
                 throw new ServerException("NULL values not allowed in getByPK for column '{$col}'");
             }

@@ -69,9 +69,9 @@ class Bookmark extends Managed_DataObject
                 'description' => array('type' => 'text'),
                 'created' => array('type' => 'datetime', 'not null' => true),
             ),
-            'primary key' => array('id'),
+            'primary key' => array('uri'),
             'unique keys' => array(
-                'bookmark_uri_key' => array('uri'),
+                'bookmark_id_key' => array('id'),
             ),
             'foreign keys' => array(
                 'bookmark_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
@@ -94,8 +94,7 @@ class Bookmark extends Managed_DataObject
      */
     static public function fromStored(Notice $stored)
     {
-        $class = get_called_class();
-        return self::getByPK(array('uri', $stored->getUri()));
+        return self::getByPK(array('uri' => $stored->getUri()));
     }
 
     /**
