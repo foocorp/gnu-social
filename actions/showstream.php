@@ -58,7 +58,6 @@ class ShowstreamAction extends NoticestreamAction
         return $stream;
     }
 
-
     function title()
     {
         $base = $this->target->getFancyName();
@@ -74,7 +73,7 @@ class ShowstreamAction extends NoticestreamAction
             }
         } else {
             if ($this->page == 1) {
-                return $base;
+                return sprintf(_('Notices by %s'), $base);
             } else {
                 // TRANS: Extended page title showing tagged notices in one user's timeline.
                 // TRANS: %1$s is the username, %2$d is the page number.
