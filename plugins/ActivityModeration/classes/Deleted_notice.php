@@ -38,7 +38,7 @@ class Deleted_notice extends Managed_DataObject
         return array(
             'fields' => array(
                 'id' => array('type' => 'int', 'not null' => true, 'description' => 'notice ID'),
-                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'author of the notice'),
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'profile that deleted the notice'),
                 'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI of the deleted notice'),
                 'act_uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI of the delete activity, may exist in notice table'),
                 'act_created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the notice record was created'),
@@ -67,10 +67,9 @@ class Deleted_notice extends Managed_DataObject
         }
 
         $act = new Activity();
-        $act->type = ActivityObject::ACTIVITY;
         $act->verb = ActivityVerb::DELETE;
         $act->time = time();
-        $act->id   = self::newUri($actor, $notice);
+        $act->id   = $notice->getUri();
 
         $act->content = sprintf(_m('<a href="%1$s">%2$s</a> deleted notice <a href="%3$s">{{%4$s}}</a>.'),
                             htmlspecialchars($actor->getUrl()),
@@ -82,6 +81,7 @@ class Deleted_notice extends Managed_DataObject
         $act->actor = $actor->asActivityObject();
         $act->target = new ActivityObject();    // We don't save the notice object, as it's supposed to be removed!
         $act->target->id = $notice->getUri();
+        $act->target->type = $notice->getObjectType();
         $act->objects = array(clone($act->target));
 
         $url = $notice->getUrl();
@@ -107,11 +107,13 @@ class Deleted_notice extends Managed_DataObject
         return $object;
     }
 
+    // The one who deleted the notice, not the notice's author
     public function getActor()
     {
         return Profile::getByID($this->profile_id);
     }
 
+    // As above: The one who deleted the notice, not the notice's author
     public function getActorObject()
     {
         return $this->getActor()->asActivityObject();
@@ -126,21 +128,11 @@ class Deleted_notice extends Managed_DataObject
 
     public function getStored()
     {
-        $uri = $this->getTargetUri();
+        $uri = $this->getUri();
         if (!isset($this->_stored[$uri])) {
-            $stored = new Notice();
-            $stored->uri = $uri;
-            if (!$stored->find(true)) {
-                throw new NoResultException($stored);
-            }
-            $this->_stored[$uri] = $stored;
+            $this->_stored[$uri] = Notice::getByPK('uri', $uri);
         }
         return $this->_stored[$uri];
-    }
-
-    public function getTargetUri()
-    {
-        return $this->act_uri;
     }
 
     public function getUri()
@@ -155,7 +147,8 @@ class Deleted_notice extends Managed_DataObject
         $actobj->type = ActivityObject::ACTIVITY;
         $actobj->actor = $this->getActorObject();
         $actobj->target = new ActivityObject();
-        $actobj->target->id = $this->getTargetUri();
+        $actobj->target->id = $this->getUri();
+        // FIXME: actobj->target->type? as in extendActivity, and actobj->target->actor maybe?
         $actobj->objects = array(clone($actobj->target));
         $actobj->verb = ActivityVerb::DELETE;
         $actobj->title = ActivityUtils::verbToTitle($actobj->verb);
@@ -164,7 +157,7 @@ class Deleted_notice extends Managed_DataObject
         $actobj->content = sprintf(_m('<a href="%1$s">%2$s</a> deleted notice {{%3$s}}.'),
                             htmlspecialchars($actor->getUrl()),
                             htmlspecialchars($actor->getBestName()),
-                            htmlspecialchars($this->getTargetUri())
+                            htmlspecialchars($this->getUri())
                            );
 
         return $actobj;
@@ -172,14 +165,13 @@ class Deleted_notice extends Managed_DataObject
 
     static public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
     {
-        // the original notice is deleted, but we have stored some important data
-        $object = self::fromStored($stored);
-
+        // the original notice id and type is still stored in the Notice table
+        // so we use that information to describe the delete activity
         $act->target = new ActivityObject();
-        $act->target->id = $object->getTargetUri();
+        $act->target->id = $stored->getUri();
+        $act->target->type = $stored->getObjectType();
         $act->objects = array(clone($act->target));
 
-        $act->context->replyToID = $object->getTargetUri();
         $act->title = ActivityUtils::verbToTitle($act->verb);
     }
 

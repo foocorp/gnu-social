@@ -281,9 +281,7 @@ class Notice extends Managed_DataObject
     }
 
     public function getObjectType($canonical=false) {
-        return $canonical
-                ? ActivityObject::canonicalType($this->object_type)
-                : $this->object_type;
+        return ActivityUtils::resolveUri($this->object_type, $canonical);
     }
 
     public static function getByUri($uri)
@@ -771,8 +769,9 @@ class Notice extends Managed_DataObject
         }
         extract($options, EXTR_SKIP);
 
+        // dupe check
         $stored = new Notice();
-        if (!empty($uri)) {
+        if (!empty($uri) && !ActivityUtils::compareVerbs($act->verb, array(ActivityVerb::DELETE))) {
             $stored->uri = $uri;
             if ($stored->find()) {
                 common_debug('cannot create duplicate Notice URI: '.$stored->uri);
@@ -886,11 +885,15 @@ class Notice extends Managed_DataObject
         }
 
         if (ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST))) {
-            $stored->object_type = $act->type ?: $act->objects[0]->type;
-            if (empty($stored->object_type)) {
+            if (empty($act->objects[0]->type)) {
                 // Default type for the post verb is 'note', but we know it's
                 // a 'comment' if it is in reply to something.
                 $stored->object_type = empty($stored->reply_to) ? ActivityObject::NOTE : ActivityObject::COMMENT;
+            } else {
+                //TODO: Is it safe to always return a relative URI? The
+                // JSON version of ActivityStreams always use it, so we
+                // should definitely be able to handle it...
+                $stored->object_type = ActivityUtils::resolveUri($act->objects[0]->type, true);
             }
         }
 
@@ -898,7 +901,7 @@ class Notice extends Managed_DataObject
             // XXX: some of these functions write to the DB
 
             try {
-                $stored->insert();    // throws exception on error
+                $result = $stored->insert();    // throws exception on error
 
                 if ($notloc instanceof Notice_location) {
                     $notloc->notice_id = $stored->getID();
@@ -910,7 +913,7 @@ class Notice extends Managed_DataObject
                 $object = null;
                 Event::handle('StoreActivityObject', array($act, $stored, $options, &$object));
                 if (empty($object)) {
-                    throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->uri . ': '.$act->asString());
+                    throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->getUri() . ': '.$act->asString());
                 }
 
                 // If it's not part of a conversation, it's the beginning

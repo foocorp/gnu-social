@@ -83,32 +83,8 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
      */
     protected function saveObjectFromActivity(Activity $act, Notice $stored, array $options=array())
     {
-        // Let's see if this has been deleted already.
-        $deleted = Deleted_notice::getKV('uri', $act->id);
-        if ($deleted instanceof Deleted_notice) {
-            return $deleted;
-        }
-
-        $target = Notice::getByUri($act->objects[0]->id);
-        common_debug('DELETING notice: ' . $act->objects[0]->id . ' on behalf of profile id==' . $target->getProfile()->getID());
-
-        $deleted = new Deleted_notice();
-
-        $deleted->id            = $target->getID();
-        $deleted->profile_id    = $target->getProfile()->getID();
-        $deleted->uri           = $act->id;
-        $deleted->act_uri       = $target->getUri();
-        $deleted->act_created   = $target->created;
-        $deleted->created       = common_sql_now();
-
-        $result = $deleted->insert();
-        if ($result === false) {
-            throw new ServerException('Could not insert Deleted_notice entry into database!');
-        }
-
-        $target->delete();
-
-        return $deleted;
+        // Everything is done in the StartNoticeSave event
+        return true;
     }
 
     // FIXME: Put this in lib/activityhandlerplugin.php when we're ready
@@ -123,6 +99,79 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         common_debug('Extending activity '.$stored->id.' with '.get_called_class());
         $this->extendActivity($stored, $act, $scoped);
         return false;
+    }
+
+    /**
+     * This is run before ->insert, so our task in this function is just to
+     * delete if it is the delete verb.
+     */ 
+    public function onStartNoticeSave(Notice $stored)
+    {
+        // DELETE is a bit special, we have to remove the existing entry and then
+        // add a new one with the same URI in order to trigger the distribution.
+        // (that's why we don't use $this->isMyNotice(...))
+        if (!ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::DELETE))) {
+            return true;
+        }
+
+        try {
+            $target = Notice::getByUri($stored->uri);
+        } catch (NoResultException $e) {
+            throw new AlreadyFulfilledException('Notice URI not found, so we have nothing to delete.');
+        }
+
+        $actor = $stored->getProfile();
+        $owner = $target->getProfile();
+
+        if ($owner->hasRole(Profile_role::DELETED)) {
+            // Don't bother with replacing notices if its author is being deleted.
+            // The later "StoreActivityObject" will pick this up and execute
+            // the deletion then.
+            // (the "delete verb notice" is too new to ever pass through Notice::saveNew
+            // which otherwise wouldn't execute the StoreActivityObject event)
+            return true;
+        }
+
+        // Since the user deleting may not be the same as the notice's owner,
+        // double-check this and also set the "re-stored" notice profile_id.
+        if (!$actor->sameAs($owner) && !$actor->hasRight(Right::DELETEOTHERSNOTICE)) {
+            throw new AuthorizationException(_('You are not allowed to delete another user\'s notice.'));
+        }
+
+        // We copy the identifying fields and replace the sensitive ones.
+        //$stored->id = $target->id;    // We can't copy this since DB_DataObject won't inject it anyway
+        $props = array('uri', 'profile_id', 'conversation', 'reply_to', 'created', 'repeat_of', 'object_type', 'is_local', 'scope');
+        foreach($props as $prop) {
+            $stored->$prop = $target->$prop;
+        }
+        //$stored->content = $stored->content ?: _('Notice deleted.');
+        //$stored->rendered = $stored->rendered ?: $stored->rendered;
+        common_debug('DELETENOTICE: Replacement notice has been prepared: '.var_export($stored, true));
+
+        // Let's see if this has been deleted already.
+        $deleted = Deleted_notice::getKV('uri', $stored->getUri());
+        if ($deleted instanceof Deleted_notice) {
+            return $deleted;
+        }
+
+        $deleted = new Deleted_notice();
+
+        $deleted->id            = $target->getID();
+        $deleted->profile_id    = $actor->getID();
+        $deleted->uri           = $stored->getUri();
+        $deleted->act_uri       = $stored->getUri();
+        $deleted->act_created   = $stored->created;
+        $deleted->created       = common_sql_now();
+
+        $result = $deleted->insert();
+        if ($result === false) {
+            throw new ServerException('Could not insert Deleted_notice entry into database!');
+        }
+
+        // Now we delete the original notice, leaving the id and uri free.
+        $target->delete();
+
+        return true;
     }
 
     public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
