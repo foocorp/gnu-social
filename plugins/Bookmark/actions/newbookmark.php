@@ -93,7 +93,7 @@ class NewbookmarkAction extends Action
 
         $this->title       = $this->trimmed('title');
         $this->url         = $this->trimmed('url');
-        $this->tags        = $this->trimmed('tags');
+        $this->tags        = preg_split('/[\s,]+/', $this->trimmed('tags'), null,  PREG_SPLIT_NO_EMPTY);
         $this->description = $this->trimmed('description');
 
         return true;

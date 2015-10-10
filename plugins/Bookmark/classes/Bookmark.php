@@ -112,11 +112,11 @@ class Bookmark extends Managed_DataObject
         $nb->profile_id = $profile->id;
         $nb->url        = $url;
 
-        if ($nb->find(true)) {
-            return $nb;
-        } else {
-            return null;
+        if (!$nb->find(true)) {
+            throw new NoResultException($nb);
         }
+
+        return $nb;
     }
 
     /**
@@ -125,28 +125,24 @@ class Bookmark extends Managed_DataObject
      * @param Profile $profile     To save the bookmark for
      * @param string  $title       Title of the bookmark
      * @param string  $url         URL of the bookmark
-     * @param mixed   $rawtags     array of tags or string
+     * @param array   $rawtags     array of tags
      * @param string  $description Description of the bookmark
      * @param array   $options     Options for the Notice::saveNew()
      *
      * @return Notice saved notice
      */
-    static function saveNew($profile, $title, $url, $rawtags, $description,
-                            $options=null)
+    static function saveNew(Profile $profile, $title, $url, $rawtags, $description,
+                            array $options=array())
     {
         if (!common_valid_http_url($url)) {
             throw new ClientException(_m('Only web bookmarks can be posted (HTTP or HTTPS).'));
         }
 
-        $nb = self::getByURL($profile, $url);
-
-        if (!empty($nb)) {
-            // TRANS: Client exception thrown when trying to save a new bookmark that already exists.
-            throw new ClientException(_m('Bookmark already exists.'));
-        }
-
-        if (empty($options)) {
-            $options = array();
+        try {
+            $object = self::getByURL($profile, $url);
+            return $object;
+        } catch (NoResultException $e) {
+            // Alright, so then we have to create it.
         }
 
         if (array_key_exists('uri', $options)) {
@@ -154,14 +150,6 @@ class Bookmark extends Managed_DataObject
             if (!empty($other)) {
                 // TRANS: Client exception thrown when trying to save a new bookmark that already exists.
                 throw new ClientException(_m('Bookmark already exists.'));
-            }
-        }
-
-        if (is_string($rawtags)) {
-            if (empty($rawtags)) {
-                $rawtags = array();
-            } else {
-                $rawtags = preg_split('/[\s,]+/', $rawtags);
             }
         }
 
