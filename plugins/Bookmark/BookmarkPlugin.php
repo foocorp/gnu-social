@@ -429,24 +429,6 @@ class BookmarkPlugin extends MicroAppPlugin
         $nli->out->elementEnd('div');
     }
 
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function getUrl()
-    {
-        if (empty($this->url)) {
-            throw new InvalidUrlException($this->url);
-        }
-        return $this->url;
-    }
-
     protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
     {
         $nb = Bookmark::fromStored($stored);

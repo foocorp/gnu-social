@@ -97,6 +97,24 @@ class Bookmark extends Managed_DataObject
         return self::getByPK(array('uri' => $stored->getUri()));
     }
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getUrl()
+    {
+        if (empty($this->url)) {
+            throw new InvalidUrlException($this->url);
+        }
+        return $this->url;
+    }
+
     /**
      * Get the bookmark that a user made for an URL
      *
