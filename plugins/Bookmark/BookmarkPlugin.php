@@ -180,12 +180,12 @@ class BookmarkPlugin extends MicroAppPlugin
     function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Bookmark',
-                            'version' => self::VERSION,
-                            'author' => 'Evan Prodromou, Stephane Berube, Jean Baptiste Favre',
-                            'homepage' => 'http://status.net/wiki/Plugin:Bookmark',
+                            'version' => GNUSOCIAL_VERSION,
+                            'author' => 'Evan Prodromou, Stephane Berube, Jean Baptiste Favre, Mikael Nordfeldth',
+                            'homepage' => 'https://gnu.io/social',
                             'description' =>
                             // TRANS: Plugin description.
-                            _m('Simple extension for supporting bookmarks. ') .
+                            _m('Plugin for posting bookmarks. ') .
                             'BookmarkList feature has been developped by Stephane Berube. ' .
                             'Integration has been done by Jean Baptiste Favre.');
         return true;
