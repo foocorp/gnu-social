@@ -379,19 +379,9 @@ class BookmarkPlugin extends MicroAppPlugin
         return true;
     }
 
-    protected function showNoticeItemNotice(NoticeListItem $nli)
-    {
-        $nli->out->elementStart('div', 'entry-title');
-        $nli->showAuthor();
-        $nli->showContent();
-        $nli->out->elementEnd('div');
-    }
-
     protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
     {
         $nb = Bookmark::fromStored($stored);
-
-        $profile = $stored->getProfile();
 
         // Whether to nofollow
         $attrs = array('href' => $nb->getUrl(), 'class' => 'bookmark-title');
@@ -405,7 +395,7 @@ class BookmarkPlugin extends MicroAppPlugin
         }
 
         $out->elementStart('h3');
-        $out->element('a', $attrs, $nb->title);
+        $out->element('a', $attrs, $nb->getTitle());
         $out->elementEnd('h3');
 
         // Replies look like "for:" tags
@@ -423,16 +413,14 @@ class BookmarkPlugin extends MicroAppPlugin
             $out->elementStart('ul', array('class' => 'bookmark-tags'));
 
             foreach ($replies as $reply) {
-                $other = Profile::getKV('id', $reply);
-                if (!empty($other)) {
-                    $out->elementStart('li');
-                    $out->element('a', array('rel' => 'tag',
-                                             'href' => $other->profileurl,
-                                             'title' => $other->getBestName()),
-                                  sprintf('for:%s', $other->nickname));
-                    $out->elementEnd('li');
-                    $out->text(' ');
-                }
+                $other = Profile::getByPK($reply);
+                $out->elementStart('li');
+                $out->element('a', array('rel' => 'tag',
+                                         'href' => $other->getUrl(),
+                                         'title' => $other->getBestName()),
+                              sprintf('for:%s', $other->getNickname()));
+                $out->elementEnd('li');
+                $out->text(' ');
             }
 
             foreach ($tags as $tag) {

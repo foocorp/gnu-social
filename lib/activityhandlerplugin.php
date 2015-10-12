@@ -625,7 +625,11 @@ abstract class ActivityHandlerPlugin extends Plugin
             return true;
         }
 
-        $this->showNoticeContent($stored, $out, $scoped);
+        try {
+            $this->showNoticeContent($stored, $out, $scoped);
+        } catch (Exception $e) {
+            $out->element('div', 'error', $e->getMessage());
+        }
         return false;
     }
 
