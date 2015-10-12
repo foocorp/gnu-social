@@ -346,6 +346,41 @@ abstract class Managed_DataObject extends Memcached_DataObject
         return $object;
     }
 
+    /**
+     * Returns an object by looking at given unique key columns.
+     *
+     * Will NOT accept NULL values for a unique key column. Ignores non-key values.
+     *
+     * @param   array   $vals       All array keys which are set must be non-null.
+     *
+     * @return  Managed_DataObject  of the get_called_class() type
+     * @throws  NoResultException   if no object with that primary key
+     */
+    static function getByKeys(array $vals)
+    {
+        $classname = get_called_class();
+
+        $object = new $classname();
+
+        $keys = $object->keys();
+        if (is_null($keys)) {
+            throw new ServerException("Failed to get key columns for class '{$classname}'");
+        }
+
+        foreach ($keys as $col) {
+            if (!array_key_exists($col, $vals)) {
+                continue;
+            } elseif (is_null($vals[$col])) {
+                throw new ServerException("NULL values not allowed in getByPK for column '{$col}'");
+            }
+            $object->$col = $vals[$col];
+        }
+        if (!$object->find(true)) {
+            throw new NoResultException($object);
+        }
+        return $object;
+    }
+
     static function getByID($id)
     {
         if (empty($id)) {

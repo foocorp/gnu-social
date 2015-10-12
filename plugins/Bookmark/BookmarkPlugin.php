@@ -297,79 +297,37 @@ class BookmarkPlugin extends MicroAppPlugin
      */
     protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
     {
-        $actobj = $activity->objects[0];
+        return Bookmark::saveActivityObject($activity->objects[0], $stored);
+    }
 
-        $relLinkEls = ActivityUtils::getLinks($actobj->element, 'related');
-
-        if (count($relLinkEls) !== 1) {
-            // TRANS: Client exception thrown when a bookmark is formatted incorrectly.
-            throw new ClientException(sprintf(_m('Expected exactly 1 link rel=related in a Bookmark, got %1$d.'), count($relLinkEls)));
+    public function onEndNoticeAsActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        if (!$this->isMyNotice($stored)) {
+            return true;
         }
 
-        return Bookmark::addNew($stored,
-                                 $actobj->title,
-                                 $relLinkEls[0]->getAttribute('href'),
-                                 $actobj->summary);
+        common_debug('Extending activity '.$stored->id.' with '.get_called_class());
+        $this->extendActivity($stored, $act, $scoped);
+        return false;
+    }
+
+    public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        /*$hashtags = array();
+        $taglinks = array();
+
+        foreach ($tags as $tag) {
+            $hashtags[] = '#'.$tag;
+            $attrs      = array('href' => Notice_tag::url($tag),
+                                'rel'  => $tag,
+                                'class' => 'tag');
+            $taglinks[] = XMLStringer::estring('a', $attrs, $tag);
+        }*/
     }
 
     function activityObjectFromNotice(Notice $notice)
     {
-        assert($this->isMyNotice($notice));
-
-        common_log(LOG_INFO,
-                   "Formatting notice {$notice->uri} as a bookmark.");
-
-        $object = new ActivityObject();
-        $nb = Bookmark::fromStored($notice);
-
-        $object->id      = $notice->uri;
-        $object->type    = ActivityObject::BOOKMARK;
-        $object->title   = $nb->getTitle();
-        $object->summary = $nb->getDescription();
-        $object->link    = $notice->getUrl();
-
-        // Attributes of the URL
-
-        $attachments = $notice->attachments();
-
-        if (count($attachments) != 1) {
-            // TRANS: Server exception thrown when a bookmark has multiple attachments.
-            throw new ServerException(_m('Bookmark notice with the '.
-                                        'wrong number of attachments.'));
-        }
-
-        $target = $attachments[0];
-
-        $attrs = array('rel' => 'related',
-                       'href' => $target->getUrl());
-
-        if (!empty($target->title)) {
-            $attrs['title'] = $target->title;
-        }
-
-        $object->extra[] = array('link', $attrs, null);
-
-        // Attributes of the thumbnail, if any
-
-        try {
-            $thumbnail = $target->getThumbnail();
-            $tattrs = array('rel' => 'preview',
-                            'href' => $thumbnail->getUrl());
-
-            if (!empty($thumbnail->width)) {
-                $tattrs['media:width'] = $thumbnail->width;
-            }
-
-            if (!empty($thumbnail->height)) {
-                $tattrs['media:height'] = $thumbnail->height;
-            }
-
-            $object->extra[] = array('link', $tattrs, null);
-        } catch (UnsupportedMediaException $e) {
-            // No image thumbnail metadata available
-        }
-
-        return $object;
+        return Bookmark::fromStored($notice)->asActivityObject();
     }
 
     function entryForm($out)
