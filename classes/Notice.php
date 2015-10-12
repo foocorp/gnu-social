@@ -257,6 +257,11 @@ class Notice extends Managed_DataObject
         return $this->content;
     }
 
+    public function getRendered()
+    {
+        return $this->rendered;
+    }
+
     /*
      * Get the original representation URL of this notice.
      *
