@@ -170,14 +170,14 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         $act->objects[] = $target->asActivity($scoped);
     }
 
-    public function activityObjectFromNotice(Notice $notice)
+    public function activityObjectFromNotice(Notice $stored)
     {
         // Repeat is a little bit special. As it's an activity, our
         // ActivityObject is instead turned into an Activity
         $object          = new Activity();
         $object->verb    = ActivityVerb::SHARE;
-        $object->content = $notice->rendered;
-        $this->extendActivity($stored, $act);
+        $object->content = $stored->rendered;
+        $this->extendActivity($stored, $object);
 
         return $object;
     }
