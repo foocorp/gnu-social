@@ -997,15 +997,13 @@ class Notice extends Managed_DataObject
     }
 
     static public function figureOutScope(Profile $actor, array $groups, $scope=null) {
-        if (is_null($scope)) {
-            $scope = self::defaultScope();
-        }
+        $scope = is_null($scope) ? self::defaultScope() : intval($scope);
 
         // For private streams
         try {
             $user = $actor->getUser();
             // FIXME: We can't do bit comparison with == (Legacy StatusNet thing. Let's keep it for now.)
-            if ($user->private_stream && ($scope == Notice::PUBLIC_SCOPE || $scope == Notice::SITE_SCOPE)) {
+            if ($user->private_stream && ($scope === Notice::PUBLIC_SCOPE || $scope === Notice::SITE_SCOPE)) {
                 $scope |= Notice::FOLLOWER_SCOPE;
             }
         } catch (NoSuchUserException $e) {
@@ -2489,8 +2487,13 @@ class Notice extends Managed_DataObject
 
     public function isLocal()
     {
-        return ($this->is_local == Notice::LOCAL_PUBLIC ||
-                $this->is_local == Notice::LOCAL_NONPUBLIC);
+        $is_local = intval($this->is_local);
+        return ($is_local === self::LOCAL_PUBLIC || $is_local === self::LOCAL_NONPUBLIC);
+    }
+
+    public function getScope()
+    {
+        return intval($this->scope);
     }
 
     public function isRepeat()
@@ -2683,13 +2686,9 @@ class Notice extends Managed_DataObject
 
     protected function _inScope($profile)
     {
-        if (!is_null($this->scope)) {
-            $scope = $this->scope;
-        } else {
-            $scope = self::defaultScope();
-        }
+        $scope = is_null($this->scope) ? self::defaultScope() : $this->getScope();
 
-        if ($scope == 0 && !$this->getProfile()->isPrivateStream()) { // Not scoping, so it is public.
+        if ($scope === 0 && !$this->getProfile()->isPrivateStream()) { // Not scoping, so it is public.
             return !$this->isHiddenSpam($profile);
         }
 

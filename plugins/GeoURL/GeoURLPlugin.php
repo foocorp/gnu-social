@@ -96,7 +96,7 @@ class GeoURLPlugin extends Plugin
      */
     function onHandleQueuedNotice(&$notice)
     {
-        if ($notice->is_local == 1) {
+        if (intval($notice->is_local) === Notice::LOCAL_PUBLIC) {
 
             $request = HTTPClient::start();
 

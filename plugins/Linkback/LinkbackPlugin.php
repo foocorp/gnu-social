@@ -60,7 +60,7 @@ class LinkbackPlugin extends Plugin
 
     function onHandleQueuedNotice($notice)
     {
-        if ($notice->is_local == 1) {
+        if (intval($notice->is_local) === Notice::LOCAL_PUBLIC) {
             // Try to avoid actually mucking with the
             // notice content
             $c = $notice->content;

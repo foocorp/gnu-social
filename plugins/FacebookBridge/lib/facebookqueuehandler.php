@@ -40,22 +40,9 @@ class FacebookQueueHandler extends QueueHandler
 
     function handle($notice)
     {
-        if ($this->_isLocal($notice)) {
+        if ($notice->isLocal()) {
             return Facebookclient::facebookBroadcastNotice($notice);
         }
         return true;
-    }
-
-    /**
-     * Determine whether the notice was locally created
-     *
-     * @param Notice $notice the notice
-     *
-     * @return boolean locality
-     */
-    function _isLocal($notice)
-    {
-        return ($notice->is_local == Notice::LOCAL_PUBLIC ||
-                $notice->is_local == Notice::LOCAL_NONPUBLIC);
     }
 }

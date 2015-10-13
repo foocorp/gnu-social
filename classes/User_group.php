@@ -818,7 +818,7 @@ class User_group extends Managed_DataObject
     function isPrivate()
     {
         return ($this->join_policy == self::JOIN_POLICY_MODERATE &&
-                $this->force_scope == 1);
+                intval($this->force_scope) === 1);
     }
 
     public function isLocal()

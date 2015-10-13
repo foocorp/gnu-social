@@ -231,8 +231,9 @@ class SharePlugin extends ActivityVerbHandlerPlugin
     public function onEndShowNoticeOptionItems($nli)
     {
         // FIXME: Use bitmasks (but be aware that PUBLIC_SCOPE is 0!)
-        if ($nli->notice->scope == Notice::PUBLIC_SCOPE ||
-                $nli->notice->scope == Notice::SITE_SCOPE) {
+        // Also: AHHH, $scope and $scoped are scarily similar looking.
+        $scope = $nli->notice->getScope();
+        if ($scope === Notice::PUBLIC_SCOPE || $scope === Notice::SITE_SCOPE) {
             $scoped = Profile::current();
             if ($scoped instanceof Profile &&
                     $scoped->getID() !== $nli->notice->getProfile()->getID()) {
