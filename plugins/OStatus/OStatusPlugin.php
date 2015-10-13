@@ -469,7 +469,7 @@ class OStatusPlugin extends Plugin
     function onStartNoticeSourceLink($notice, &$name, &$url, &$title)
     {
         // If we don't handle this, keep the event handler going
-        if ($notice->source != 'ostatus') {
+        if (!in_array($notice->source, array('ostatus', 'share'))) {
             return true;
         }
 
