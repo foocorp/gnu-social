@@ -792,7 +792,7 @@ class Notice extends Managed_DataObject
             // FIXME: ...what about remote nonpublic? Hmmm. That is, if we sandbox remote profiles...
             $stored->is_local = Notice::LOCAL_NONPUBLIC;
         } else {
-            $stored->is_local = $is_local;
+            $stored->is_local = intval($is_local);
         }
 
         if (!$stored->isLocal()) {
