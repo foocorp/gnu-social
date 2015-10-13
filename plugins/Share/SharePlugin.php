@@ -156,7 +156,6 @@ class SharePlugin extends ActivityVerbHandlerPlugin
     {
         // TODO: How to handle repeats of deleted notices?
         $target = Notice::getByID($stored->repeat_of);
-        $act->actor = $target->getProfile()->asActivityObject();
         // TRANS: A repeat activity's title. %1$s is repeater's nickname
         //        and %2$s is the repeated user's nickname.
         $act->title = sprintf(_('%1$s repeated a notice by %2$s'),
@@ -170,6 +169,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         // Repeat is a little bit special. As it's an activity, our
         // ActivityObject is instead turned into an Activity
         $object          = new Activity();
+        $object->actor   = $stored->getProfile()->asActivityObject();
         $object->verb    = ActivityVerb::SHARE;
         $object->content = $stored->rendered;
         $this->extendActivity($stored, $object);
