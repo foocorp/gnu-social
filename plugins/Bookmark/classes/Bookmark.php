@@ -159,11 +159,9 @@ class Bookmark extends Managed_DataObject
      */
     static function saveActivityObject(ActivityObject $actobj, Notice $stored)
     {
-        common_debug('saving bookmark activity object: '.var_export($actobj,true));
         $url = null;
         // each extra element is array('tagname', array('attr'=>'val', ...), 'content')
         foreach ($actobj->extra as $extra) {
-            common_debug('bookmark extra: '.var_export($extra,true));
             if ($extra[1]['rel'] !== 'related') {
                 continue;
             }
