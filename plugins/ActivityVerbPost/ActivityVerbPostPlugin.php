@@ -114,7 +114,7 @@ class ActivityVerbPostPlugin extends ActivityVerbHandlerPlugin
 
     protected function doActionPost(ManagedAction $action, $verb, Notice $target, Profile $scoped)
     {
-        // handle repeat POST
+        // handle POST
     }
 
     protected function getActivityForm(ManagedAction $action, $verb, Notice $target, Profile $scoped)

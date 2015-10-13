@@ -159,14 +159,25 @@ class Bookmark extends Managed_DataObject
      */
     static function saveActivityObject(ActivityObject $actobj, Notice $stored)
     {
-        $relLinkEls = ActivityUtils::getLinks($actobj->element, 'related');
-
-        if (count($relLinkEls) !== 1) {
+        common_debug('saving bookmark activity object: '.var_export($actobj,true));
+        $url = null;
+        // each extra element is array('tagname', array('attr'=>'val', ...), 'content')
+        foreach ($actobj->extra as $extra) {
+            common_debug('bookmark extra: '.var_export($extra,true));
+            if ($extra[1]['rel'] !== 'related') {
+                continue;
+            }
+            if ($url===null && strlen($extra[1]['href'])>0) {
+                $url = $extra[1]['href'];
+            } elseif ($url !== null) {
+                // TRANS: Client exception thrown when a bookmark is formatted incorrectly.
+                throw new ClientException(sprintf(_m('Expected exactly 1 link rel=related in a Bookmark, got %1$d.'), count($relLinkEls)));
+            }
+        }
+        if (is_null($url)) {
             // TRANS: Client exception thrown when a bookmark is formatted incorrectly.
             throw new ClientException(sprintf(_m('Expected exactly 1 link rel=related in a Bookmark, got %1$d.'), count($relLinkEls)));
         }
-
-        $url = $relLinkEls[0]->getAttribute('href');
 
         if (!strlen($actobj->title)) {
             throw new ClientException(_m('You must provide a non-empty title.'));
@@ -279,7 +290,7 @@ class Bookmark extends Managed_DataObject
         $actobj->type = ActivityObject::BOOKMARK;
         $actobj->title = $title;
         $actobj->summary = $description;
-        $actobj->extra[] = array('link', $attrs, null);
+        $actobj->extra[] = array('link', array('rel'=>'related', 'href'=>$url), null);
         $act->objects[] = $actobj;
 
         $act->enclosures[] = $url;
