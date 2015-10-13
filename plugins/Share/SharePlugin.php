@@ -116,13 +116,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
             // TODO: Remember to check Deleted_notice!
             // TODO: If a post is shared that we can't retrieve - what to do?
             $other = Ostatus_profile::ensureActivityObjectProfile($shared->actor);
-            $sharedNotice = $other->processActivity($shared, 'push');   // FIXME: push/salmon/what?
-            if (!$sharedNotice instanceof Notice) {
-                // And if we apparently can't get the shared notice, we'll abort the whole thing.
-                // TRANS: Client exception thrown when saving an activity share fails.
-                // TRANS: %s is a share ID.
-                throw new ClientException(sprintf(_m('Failed to save activity %s.'), $sharedUri));
-            }
+            $sharedNotice = Notice::saveActivity($shared, $other->localProfile(), array('source'=>'share'));
         } catch (FeedSubException $e) {
             // Remote feed could not be found or verified, should we
             // transform this into an "RT @user Blah, blah, blah..."?
