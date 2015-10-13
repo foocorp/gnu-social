@@ -784,6 +784,26 @@ class Notice extends Managed_DataObject
             }
         }
 
+        $autosource = common_config('public', 'autosource');
+
+        // Sandboxed are non-false, but not 1, either
+        if (!$actor->hasRight(Right::PUBLICNOTICE) ||
+            ($source && $autosource && in_array($source, $autosource))) {
+            $stored->is_local = Notice::LOCAL_NONPUBLIC;
+        } else {
+            $stored->is_local = $is_local;
+        }
+
+        if (!$stored->isLocal()) {
+            // Only do these checks for non-local notices. Local notices will generate these values later.
+            if (!common_valid_http_url($url)) {
+                common_debug('Bad notice URL: ['.$url.'], URI: ['.$uri.']. Cannot link back to original! This is normal for shared notices etc.');
+            }
+            if (empty($uri)) {
+                throw new ServerException('No URI for remote notice. Cannot accept that.');
+            }
+        }
+
         $stored->profile_id = $actor->id;
         $stored->source = $source;
         $stored->uri = $uri;
@@ -795,16 +815,6 @@ class Notice extends Managed_DataObject
                                 ? $actor->shortenLinks($act->content)
                                 : $act->content;
         $stored->content = common_strip_html($stored->rendered);
-
-        $autosource = common_config('public', 'autosource');
-
-        // Sandboxed are non-false, but not 1, either
-        if (!$actor->hasRight(Right::PUBLICNOTICE) ||
-            ($source && $autosource && in_array($source, $autosource))) {
-            $stored->is_local = Notice::LOCAL_NONPUBLIC;
-        } else {
-            $stored->is_local = $is_local;
-        }
 
         // Maybe a missing act-time should be fatal if the actor is not local?
         if (!empty($act->time)) {
