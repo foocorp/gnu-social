@@ -754,7 +754,7 @@ class Notice extends Managed_DataObject
 
         $defaults = array(
                           'groups'   => array(),
-                          'is_local' => self::LOCAL_PUBLIC,
+                          'is_local' => $actor->isLocal() ? self::LOCAL_PUBLIC : self::REMOTE,
                           'mentions' => array(),
                           'reply_to' => null,
                           'repeat_of' => null,
@@ -788,7 +788,8 @@ class Notice extends Managed_DataObject
 
         // Sandboxed are non-false, but not 1, either
         if (!$actor->hasRight(Right::PUBLICNOTICE) ||
-            ($source && $autosource && in_array($source, $autosource))) {
+                ($source && $autosource && in_array($source, $autosource))) {
+            // FIXME: ...what about remote nonpublic? Hmmm. That is, if we sandbox remote profiles...
             $stored->is_local = Notice::LOCAL_NONPUBLIC;
         } else {
             $stored->is_local = $is_local;
