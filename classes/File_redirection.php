@@ -336,7 +336,7 @@ class File_redirection extends Managed_DataObject
 
     static function saveNew($data, $file_id, $url) {
         $file_redir = new File_redirection;
-        $file_redir->urlhash = File::hashurl($short_url);
+        $file_redir->urlhash = File::hashurl($url);
         $file_redir->url = $url;
         $file_redir->file_id = $file_id;
         $file_redir->redirections = intval($data['redirects']);
