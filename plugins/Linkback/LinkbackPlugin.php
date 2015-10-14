@@ -106,6 +106,8 @@ class LinkbackPlugin extends Plugin
         $pb = $this->getPingback($result);
         if (!empty($pb)) {
             $this->pingback($result->final_url, $pb);
+        // XXX: Should handle relative-URI resolution in these detections
+
         } else {
             $tb = $this->getTrackback($result);
             if (!empty($tb)) {
