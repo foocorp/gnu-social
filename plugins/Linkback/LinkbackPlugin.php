@@ -103,27 +103,26 @@ class LinkbackPlugin extends Plugin
             return $orig;
         }
 
-        $pb = null;
-        $tb = null;
-
-        if (array_key_exists('X-Pingback', $result->headers)) {
-            $pb = $result->headers['X-Pingback'];
-
-        } else if(preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="[^" ]* ?pingback ?[^" ]*"[ ]*\/?>/i', $result->body, $match)
-                  || preg_match('/<(?:link|a)[ ]+rel="[^" ]* ?pingback ?[^" ]*"[ ]+href="([^"]+)"[ ]*\/?>/i', $result->body, $match)) {
-            $pb = $match[1];
-        }
-
+        $pb = $this->getPingback($result);
         if (!empty($pb)) {
             $this->pingback($result->final_url, $pb);
         } else {
-            $tb = $this->getTrackback($result->body, $result->final_url);
+            $tb = $this->getTrackback($result);
             if (!empty($tb)) {
                 $this->trackback($result->final_url, $tb);
             }
         }
 
         return $orig;
+    }
+
+    function getPingback($result) {
+        if (array_key_exists('X-Pingback', $result->headers)) {
+            return $result->headers['X-Pingback'];
+        } else if(preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="[^" ]* ?pingback ?[^" ]*"[ ]*\/?>/i', $result->body, $match)
+                  || preg_match('/<(?:link|a)[ ]+rel="[^" ]* ?pingback ?[^" ]*"[ ]+href="([^"]+)"[ ]*\/?>/i', $result->body, $match)) {
+            return $match[1];
+        }
     }
 
     function pingback($url, $endpoint)
@@ -161,8 +160,11 @@ class LinkbackPlugin extends Plugin
     // Largely cadged from trackback_cls.php by
     // Ran Aroussi <ran@blogish.org>, GPL2 or any later version
     // http://phptrackback.sourceforge.net/
-    function getTrackback($text, $url)
+    function getTrackback($result)
     {
+        $text = $result->body;
+        $url = $result->final_url;
+
         if (preg_match_all('/(<rdf:RDF.*?<\/rdf:RDF>)/sm', $text, $match, PREG_SET_ORDER)) {
             for ($i = 0; $i < count($match); $i++) {
                 if (preg_match('|dc:identifier="' . preg_quote($url) . '"|ms', $match[$i][1])) {
