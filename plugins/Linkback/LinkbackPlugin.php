@@ -103,19 +103,71 @@ class LinkbackPlugin extends Plugin
             return $orig;
         }
 
-        $pb = $this->getPingback($result);
-        if (!empty($pb)) {
-            $this->pingback($result->final_url, $pb);
         // XXX: Should handle relative-URI resolution in these detections
 
+        $wm = $this->getWebmention($result);
+        if(!empty($wm)) {
+            $this->webmention($result->final_url, $wm);
         } else {
-            $tb = $this->getTrackback($result);
-            if (!empty($tb)) {
-                $this->trackback($result->final_url, $tb);
+            $pb = $this->getPingback($result);
+            if (!empty($pb)) {
+                $this->pingback($result->final_url, $pb);
+            } else {
+                $tb = $this->getTrackback($result);
+                if (!empty($tb)) {
+                    $this->trackback($result->final_url, $tb);
+                }
             }
         }
 
         return $orig;
+    }
+
+    // Based on https://github.com/indieweb/mention-client-php
+    // which is licensed Apache 2.0
+    function getWebmention($result) {
+        // XXX: the fetcher only gives back one of each header, so this may fail on multiple Link headers
+        if(preg_match('~<((?:https?://)?[^>]+)>; rel="webmention"~', $result->headers['Link'], $match)) {
+            return $match[1];
+        } elseif(preg_match('~<((?:https?://)?[^>]+)>; rel="http://webmention.org/?"~', $result->headers['Link'], $match)) {
+            return $match[1];
+        }
+
+        if(preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="[^" ]* ?webmention ?[^" ]*"[ ]*\/?>/i', $result->body, $match)
+           || preg_match('/<(?:link|a)[ ]+rel="[^" ]* ?webmention ?[^" ]*"[ ]+href="([^"]+)"[ ]*\/?>/i', $result->body, $match)) {
+            return $match[1];
+        } elseif(preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="http:\/\/webmention\.org\/?"[ ]*\/?>/i', $result->body, $match)
+                 || preg_match('/<(?:link|a)[ ]+rel="http:\/\/webmention\.org\/?"[ ]+href="([^"]+)"[ ]*\/?>/i', $result->body, $match)) {
+            return $match[1];
+        }
+    }
+
+    function webmention($url, $endpoint) {
+        $source = $this->notice->getUrl();
+
+        $payload = array(
+            'source' => $source,
+            'target' => $url
+        );
+
+        $request = HTTPClient::start();
+        try {
+            $response = $request->post($endpoint,
+                array(
+                    'Content-type: application/x-www-form-urlencoded',
+                    'Accept: application/json'
+                ),
+                $payload
+            );
+
+            if(!in_array($response->getStatus(), array(200,202))) {
+                common_log(LOG_WARNING,
+                           "Webmention request failed for '$url' ($endpoint)");
+            }
+        } catch (HTTP_Request2_Exception $e) {
+            common_log(LOG_WARNING,
+                       "Webmention request failed for '$url' ($endpoint)");
+        }
     }
 
     function getPingback($result) {
