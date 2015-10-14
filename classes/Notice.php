@@ -2775,10 +2775,24 @@ class Notice extends Managed_DataObject
 
     public function getParent()
     {
+	$reply_to_id = NULL;
+
         if (empty($this->reply_to)) {
             throw new NoParentNoticeException($this);
         }
-        return self::getByID($this->reply_to);
+
+	//The reply_to ID in the table Notice could exist with a number
+	//however, the replied to notice might not exist in the database.
+	//Thus we need to catch the exception and throw the NoParentNoticeException else 
+	//the timeline will not display correctly.
+	try {
+		$reply_to_id = self::getByID($this->reply_to);
+	} catch(Exception e$){
+		throw new NoParentNoticeException($this);
+	}
+
+
+        return $reply_to_id;
     }
 
     /**
