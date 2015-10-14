@@ -68,6 +68,14 @@ class LinkbackPlugin extends Plugin
             // Ignoring results
             common_replace_urls_callback($c,
                                          array($this, 'linkbackUrl'));
+
+            if($notice->isRepeat()) {
+                $repeat = Notice::getByID($notice->repeat_of);
+                $this->linkbackUrl($repeat->getUrl());
+            } else if(!empty($notice->reply_to)) {
+                $parent = $notice->getParent();
+                $this->linkbackUrl($parent->getUrl());
+            }
         }
         return true;
     }
