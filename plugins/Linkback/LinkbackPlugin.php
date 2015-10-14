@@ -120,7 +120,7 @@ class LinkbackPlugin extends Plugin
 
     function pingback($url, $endpoint)
     {
-        $args = array($this->notice->uri, $url);
+        $args = array($this->notice->getUrl(), $url);
 
         if (!extension_loaded('xmlrpc')) {
             if (!dl('xmlrpc.so')) {
