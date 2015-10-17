@@ -196,9 +196,10 @@ class LinkbackPlugin extends Plugin
 
         $request = HTTPClient::start();
         try {
+            $request->setBody(xmlrpc_encode_request('pingback.ping', $args));
             $response = $request->post($endpoint,
                 array('Content-Type: text/xml'),
-                xmlrpc_encode_request('pingback.ping', $args));
+                false);
             $response = xmlrpc_decode($response->getBody());
             if (xmlrpc_is_fault($response)) {
                 common_log(LOG_WARNING,
