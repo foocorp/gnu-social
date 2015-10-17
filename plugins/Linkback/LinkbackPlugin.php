@@ -107,11 +107,15 @@ class LinkbackPlugin extends Plugin
 
         $wm = $this->getWebmention($result);
         if(!empty($wm)) {
-            $this->webmention($result->final_url, $wm);
+            // It is the webmention receiver's job to resolve source
+            // Ref: https://github.com/converspace/webmention/issues/43
+            $this->webmention($url, $wm);
         } else {
             $pb = $this->getPingback($result);
             if (!empty($pb)) {
-                $this->pingback($result->final_url, $pb);
+                // Pingback still looks for exact URL in our source, so we
+                // must send what we have
+                $this->pingback($url, $pb);
             } else {
                 $tb = $this->getTrackback($result);
                 if (!empty($tb)) {
