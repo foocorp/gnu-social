@@ -65,9 +65,14 @@ class LinkbackPlugin extends Plugin
             // notice content
             $c = $notice->content;
             $this->notice = $notice;
-            // Ignoring results
-            common_replace_urls_callback($c,
-                                         array($this, 'linkbackUrl'));
+
+            if(!$notice->getProfile()->
+                getPref("linkbackplugin", "disable_linkbacks")
+            ) {
+                // Ignoring results
+                common_replace_urls_callback($c,
+                                             array($this, 'linkbackUrl'));
+            }
 
             if($notice->isRepeat()) {
                 $repeat = Notice::getByID($notice->repeat_of);
@@ -313,6 +318,25 @@ class LinkbackPlugin extends Plugin
                                'microblog notices using '.
                                '<a href="http://www.hixie.ch/specs/pingback/pingback">Pingback</a> '.
                                'or <a href="http://www.movabletype.org/docs/mttrackback.html">Trackback</a> protocols.'));
+        return true;
+    }
+
+    public function onStartInitializeRouter(URLMapper $m)
+    {
+        $m->connect('settings/linkback', array('action' => 'linkbacksettings'));
+        return true;
+    }
+
+    function onEndAccountSettingsNav($action)
+    {
+        $action_name = $action->trimmed('action');
+
+        $action->menuItem(common_local_url('linkbacksettings'),
+                          // TRANS: OpenID plugin menu item on user settings page.
+                          _m('MENU', 'Send Linkbacks'),
+                          // TRANS: OpenID plugin tooltip for user settings menu item.
+                          _m('Opt-out of sending linkbacks.'),
+                          $action_name === 'linkbacksettings');
         return true;
     }
 }
