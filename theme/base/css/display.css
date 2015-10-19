@@ -648,12 +648,12 @@ address .poweredby {
     width:100%;
 }
 
-.notice .p-author {
-    margin-right: 8px;
+.notice .parents {
+    display: inline;
 }
 
-.notice .addressees::before {
-    content: '\25B8';
+.notice .parents::before {
+    content: '\25B8  ';
 }
 .notice .addressees, .notice .addressees li {
     display: inline;

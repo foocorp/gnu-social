@@ -150,7 +150,13 @@ class NoticeListItem extends Widget
         $this->elementStart('section', array('class'=>'notice-headers'));
         $this->showNoticeTitle();
         $this->showAuthor();
-        if ($this->addressees) { $this->showAddressees(); }
+
+        if (!empty($this->notice->reply_to) || $this->addressees) {
+            $this->elementStart('div', array('class' => 'parents'));
+            if (!empty($this->notice->reply_to)) { $this->showParent(); }
+            if ($this->addressees) { $this->showAddressees(); }
+            $this->elementEnd('div');
+        }
         $this->elementEnd('section');
     }
 
@@ -245,6 +251,19 @@ class NoticeListItem extends Widget
             $this->out->elementEnd('a');
             Event::handle('EndShowNoticeItemAuthor', array($this->profile, $this->out));
         }
+    }
+
+    function showParent()
+    {
+        $this->out->element(
+            'a',
+            array(
+                'href' => $this->notice->getParent()->getUrl(),
+                'class' => 'u-in-reply-to',
+                'rel' => 'in-reply-to'
+            ),
+            'in reply to'
+        );
     }
 
     function showAddressees()
