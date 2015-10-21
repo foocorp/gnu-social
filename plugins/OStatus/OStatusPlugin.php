@@ -104,6 +104,9 @@ class OStatusPlugin extends Plugin
 
         // Incoming from a foreign PuSH hub
         $qm->connect('pushin', 'PushInQueueHandler');
+
+        // Re-subscribe feeds that need renewal
+        $qm->connect('pushrenew', 'PushRenewQueueHandler');
         return true;
     }
 
@@ -1361,9 +1364,10 @@ class OStatusPlugin extends Plugin
             return;
         }
 
+        $qm = QueueManager::get();
         while ($sub->fetch()) {
-            common_log(LOG_INFO, "Renewing feed subscription\n\tExp.: {$sub->sub_end}\n\tFeed: {$sub->uri}\n\tHub:  {$sub->huburi}");
-            $sub->renew();
+            $item = array('feedsub_id' => $sub->id);
+            $qm->enqueue($item, 'pushrenew');
         }
     }
 }
