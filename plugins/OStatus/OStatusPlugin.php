@@ -1351,4 +1351,19 @@ class OStatusPlugin extends Plugin
         }
         return true;
     }
+
+    public function onCronDaily()
+    {
+        try {
+            $sub = FeedSub::renewalCheck();
+        } catch (NoResultException $e) {
+            common_log(LOG_INFO, "There were no expiring feeds.");
+            return;
+        }
+
+        while ($sub->fetch()) {
+            common_log(LOG_INFO, "Renewing feed subscription\n\tExp.: {$sub->sub_end}\n\tFeed: {$sub->uri}\n\tHub:  {$sub->huburi}");
+            $sub->renew();
+        }
+    }
 }
