@@ -61,6 +61,41 @@ function linkback_get_target($target) {
     return NULL;
 }
 
+function linkback_is_contained_in($entry, $target) {
+    foreach ((array)$entry['properties'] as $key => $values) {
+        if(count(array_filter($values, function($x) use ($target) { return linkback_lenient_target_match($x, $target); })) > 0) {
+            return $entry['properties'];
+        }
+
+        // check included h-* formats and their links
+        foreach ($values as $obj) {
+            if(isset($obj['type']) && array_intersect(array('h-cite', 'h-entry'), $obj['type']) &&
+               isset($obj['properties']) && isset($obj['properties']['url']) &&
+               count(array_filter($obj['properties']['url'],
+                     function($x) use ($target) { return linkback_lenient_target_match($x, $target); })) > 0
+            ) {
+                return $entry['properties'];
+            }
+        }
+
+        // check content for the link
+        if ($key == "content" && preg_match_all("/<a[^>]+?".preg_quote($target, "/")."[^>]*>([^>]+?)<\/a>/i", htmlspecialchars_decode($values[0]['html']), $context)) {
+            return $entry['properties'];
+        // check summary for the link
+        } elseif ($key == "summary" && preg_match_all("/<a[^>]+?".preg_quote($target, "/")."[^>]*>([^>]+?)<\/a>/i", htmlspecialchars_decode($values[0]), $context)) {
+            return $entry['properties'];
+        }
+    }
+
+    foreach((array)$entry['children'] as $mf2) {
+        if(linkback_is_contained_in($mf2, $target)) {
+            return $entry['properties'];
+        }
+    }
+
+    return null;
+}
+
 // Based on https://github.com/acegiak/Semantic-Linkbacks/blob/master/semantic-linkbacks-microformats-handler.php, GPL-2.0+
 function linkback_find_entry($mf2, $target) {
     if(isset($mf2['items'][0]['type']) && in_array("h-feed", $mf2['items'][0]["type"]) && isset($mf2['items'][0]['children'])) {
@@ -70,29 +105,8 @@ function linkback_find_entry($mf2, $target) {
     $entries = array_filter($mf2['items'], function($x) { return isset($x['type']) && in_array('h-entry', $x['type']); });
 
     foreach ($entries as $entry) {
-        foreach ((array)$entry['properties'] as $key => $values) {
-            if(count(array_filter($values, function($x) use ($target) { return linkback_lenient_target_match($x, $target); })) > 0) {
-                return $entry['properties'];
-            }
-
-            // check included h-* formats and their links
-            foreach ($values as $obj) {
-                if(isset($obj['type']) && array_intersect(array('h-cite', 'h-entry'), $obj['type']) &&
-                   isset($obj['properties']) && isset($obj['properties']['url']) &&
-                   count(array_filter($obj['properties']['url'],
-                         function($x) use ($target) { return linkback_lenient_target_match($x, $target); })) > 0
-                ) {
-                    return $entry['properties'];
-                }
-            }
-
-            // check content for the link
-            if ($key == "content" && preg_match_all("/<a[^>]+?".preg_quote($target, "/")."[^>]*>([^>]+?)<\/a>/i", htmlspecialchars_decode($values[0]['html']), $context)) {
-                return $entry['properties'];
-            // check summary for the link
-            } elseif ($key == "summary" && preg_match_all("/<a[^>]+?".preg_quote($target, "/")."[^>]*>([^>]+?)<\/a>/i", htmlspecialchars_decode($values[0]), $context)) {
-                return $entry['properties'];
-            }
+        if($prop = linkback_is_contained_in($entry, $target)) {
+            return $prop;
         }
     }
 
