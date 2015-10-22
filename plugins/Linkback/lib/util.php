@@ -144,7 +144,6 @@ function linkback_entry_type($entry, $mf2, $target) {
 function linkback_is_dupe($key, $url) {
     $dupe = Notice::getKV('uri', $url);
     if ($dupe instanceof Notice) {
-        common_log(LOG_INFO, "Linkback: ignoring duplicate post: $url");
         return $dupe;
     }
 
@@ -295,10 +294,10 @@ function linkback_profile($entry, $mf2, $response, $target) {
 }
 
 function linkback_save($source, $target, $response, $notice_or_user) {
-    if($dupe = linkback_is_dupe('uri', $response->getEffectiveUrl())) { return $dupe->getLocalUrl(); }
-    if($dupe = linkback_is_dupe('url', $response->getEffectiveUrl())) { return $dupe->getLocalUrl(); }
-    if($dupe = linkback_is_dupe('uri', $source)) { return $dupe->getLocalUrl(); }
-    if($dupe = linkback_is_dupe('url', $source)) { return $dupe->getLocalUrl(); }
+    $dupe = linkback_is_dupe('uri', $response->getEffectiveUrl());
+    if(!$dupe) { $dupe = linkback_is_dupe('url', $response->getEffectiveUrl()); }
+    if(!$dupe) { $dupe = linkback_is_dupe('uri', $source); }
+    if(!$dupe) { $dupe = linkback_is_dupe('url', $source); }
 
     $mf2 = new Mf2\Parser($response->getBody(), $response->getEffectiveUrl());
     $mf2 = $mf2->parse();
@@ -316,14 +315,31 @@ function linkback_save($source, $target, $response, $notice_or_user) {
         $entry['url'] = array($response->getEffectiveUrl());
     }
 
-    if($dupe = linkback_is_dupe('uri', $entry['url'][0])) { return $dupe->getLocalUrl(); }
-    if($dupe = linkback_is_dupe('url', $entry['url'][0])) { return $dupe->getLocalUrl(); }
+    if(!$dupe) { $dupe = linkback_is_dupe('uri', $entry['url'][0]); }
+    if(!$dupe) { $dupe = linkback_is_dupe('url', $entry['url'][0]); }
 
     $entry['type'] = linkback_entry_type($entry, $mf2, $target);
     list($profile, $author) =  linkback_profile($entry, $mf2, $response, $target);
     list($content, $options) = linkback_notice($source, $notice_or_user, $entry, $author, $mf2);
 
-    if($entry['type'] == 'like' || ($entry['type'] == 'reply' && $entry['rsvp'])) {
+    if($dupe) {
+        $orig = clone($dupe);
+
+        try {
+            // Ignore duplicate save error
+            try { $dupe->saveKnownReplies($options['replies']); } catch (ServerException $ex) {}
+            try { $dupe->saveKnownTags($options['tags']); } catch (ServerException $ex) {}
+            try { $dupe->saveKnownUrls($options['urls']); } catch (ServerException $ex) {}
+
+            if($options['reply_to']) { $dupe->reply_to = $options['reply_to']; }
+            if($options['repost_of']) { $dupe->repost_of = $options['repost_of']; }
+            if($dupe->update($orig)) { $saved = $dupe; }
+        } catch (Exception $e) {
+            common_log(LOG_ERR, "Linkback update of remote message $source failed: " . $e->getMessage());
+            return false;
+        }
+        common_log(LOG_INFO, "Linkback updated remote message $source as notice id $saved->id");
+    } else if($entry['type'] == 'like' || ($entry['type'] == 'reply' && $entry['rsvp'])) {
         $act = new Activity();
         $act->type    = ActivityObject::ACTIVITY;
         $act->time    = $options['created'] ? strtotime($options['created']) : time();
