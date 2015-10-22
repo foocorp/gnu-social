@@ -23,7 +23,6 @@ function linkback_get_source($source, $target) {
 }
 
 function linkback_get_target($target) {
-    // TODO: linkback to a user should work for attention
     // Resolve target (https://github.com/converspace/webmention/issues/43)
     $request = HTTPClient::start();
 
@@ -42,6 +41,21 @@ function linkback_get_target($target) {
 
     if($notice instanceof Notice && $notice->isLocal()) {
         return $notice;
+    } else {
+        $user = User::getKV('uri', $response->getEffectiveUrl());
+        if(!$user) {
+            preg_match('/\/user\/(\d+)(?:#.*)?$/', $response->getEffectiveUrl(), $match);
+            $user = User::getKV('id', $match[1]);
+        }
+        if(!$user) {
+            preg_match('/\/([^\/\?#]+)(?:#.*)?$/', $response->getEffectiveUrl(), $match);
+            if(linkback_lenient_target_match(common_profile_url($match[1]), $response->getEffectiveUrl())) {
+                $user = User::getKV('nickname', $match[1]);
+            }
+        }
+        if($user instanceof User) {
+            return $user;
+        }
     }
 
     return NULL;
@@ -166,13 +180,13 @@ function linkback_hcard($mf2, $url) {
     return null;
 }
 
-function linkback_notice($source, $notice, $entry, $author, $mf2) {
+function linkback_notice($source, $notice_or_user, $entry, $author, $mf2) {
     $content = $entry['content'] ? $entry['content'][0]['html'] :
               ($entry['summary'] ? $entry['sumary'][0] : $entry['name'][0]);
 
     $rendered = common_purify($content);
 
-    if($entry['type'] == 'mention') {
+    if($notice_or_user instanceof Notice && $entry['type'] == 'mention') {
         $name = $entry['name'] ? $entry['name'][0] : substr(common_strip_html($content), 0, 20).'…';
         $rendered = _m('linked to this from <a href="'.htmlspecialchars($source).'">'.htmlspecialchars($name).'</a>');
     }
@@ -197,11 +211,14 @@ function linkback_notice($source, $notice, $entry, $author, $mf2) {
                     'tags' => array(),
                     'urls' => array());
 
-    // TODO: when mentioning a user and not a post, neither of these but set replies above
-    if($entry['type'] == 'repost') {
-        $options['repeat_of'] = $notice->id;
+    if($notice_or_user instanceof User) {
+        $options['replies'][] = $notice_or_user->getUri();
     } else {
-        $options['reply_to'] = $notice->id;
+        if($entry['type'] == 'repost') {
+            $options['repeat_of'] = $notice_or_user->id;
+        } else {
+            $options['reply_to'] = $notice_or_user->id;
+        }
     }
 
     if($entry['published'] || $entry['updated']) {
@@ -277,7 +294,7 @@ function linkback_profile($entry, $mf2, $response, $target) {
     return array($profile, $author);
 }
 
-function linkback_save($source, $target, $response, $notice) {
+function linkback_save($source, $target, $response, $notice_or_user) {
     if($dupe = linkback_is_dupe('uri', $response->getEffectiveUrl())) { return $dupe->getLocalUrl(); }
     if($dupe = linkback_is_dupe('url', $response->getEffectiveUrl())) { return $dupe->getLocalUrl(); }
     if($dupe = linkback_is_dupe('uri', $source)) { return $dupe->getLocalUrl(); }
@@ -304,7 +321,7 @@ function linkback_save($source, $target, $response, $notice) {
 
     $entry['type'] = linkback_entry_type($entry, $mf2, $target);
     list($profile, $author) =  linkback_profile($entry, $mf2, $response, $target);
-    list($content, $options) = linkback_notice($source, $notice, $entry, $author, $mf2);
+    list($content, $options) = linkback_notice($source, $notice_or_user, $entry, $author, $mf2);
 
     if($entry['type'] == 'like' || ($entry['type'] == 'reply' && $entry['rsvp'])) {
         $act = new Activity();
@@ -312,14 +329,14 @@ function linkback_save($source, $target, $response, $notice) {
         $act->time    = $options['created'] ? strtotime($options['created']) : time();
         $act->title   = $entry["name"] ? $entry["name"][0] : _m("Favor");
         $act->actor   = $profile->asActivityObject();
-        $act->target  = $notice->asActivityObject();
+        $act->target  = $notice_or_user->asActivityObject();
         $act->objects = array(clone($act->target));
 
         // TRANS: Message that is the "content" of a favorite (%1$s is the actor's nickname, %2$ is the favorited
         //        notice's nickname and %3$s is the content of the favorited notice.)
         $act->content = sprintf(_('%1$s favorited something by %2$s: %3$s'),
-                                $profile->getNickname(), $notice->getProfile()->getNickname(),
-                                $notice->rendered ?: $notice->content);
+                                $profile->getNickname(), $notice_or_user->getProfile()->getNickname(),
+                                $notice_or_user->rendered ?: $notice_or_user->content);
         if($entry['rsvp']) {
             $act->content = $options['rendered'];
         }
