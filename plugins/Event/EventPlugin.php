@@ -118,6 +118,13 @@ class EventPlugin extends MicroAppPlugin
                      RSVP::POSSIBLE);
     }
 
+    function verbs() {
+        return array(ActivityVerb::POST,
+                     RSVP::POSITIVE,
+                     RSVP::NEGATIVE,
+                     RSVP::POSSIBLE);
+    }
+
     /**
      * Given a parsed ActivityStreams activity, save it into a notice
      * and other data structures.
@@ -142,20 +149,34 @@ class EventPlugin extends MicroAppPlugin
             throw new Exception(_m('Wrong type for object.'));
         }
 
-        $notice = null;
-
         switch ($activity->verb) {
         case ActivityVerb::POST:
-        	// FIXME: get startTime, endTime, location and URL
-            $notice = Happening::saveNew($actor,
-                                         $start_time,
-                                         $end_time,
-                                         $happeningObj->title,
-                                         null,
-                                         $happeningObj->summary,
-                                         null,
-                                         $options);
+            // FIXME: get startTime, endTime, location and URL
+            return Happening::saveNew($actor,
+                                      $start_time,
+                                      $end_time,
+                                      $happeningObj->title,
+                                      null,
+                                      $happeningObj->summary,
+                                      null,
+                                      $options);
             break;
+        case RSVP::POSITIVE:
+        case RSVP::NEGATIVE:
+        case RSVP::POSSIBLE:
+            return Notice::saveActivity($activity, $actor, $options);
+            break;
+        default:
+            // TRANS: Exception thrown when event plugin comes across a undefined verb.
+            throw new Exception(_m('Unknown verb for events.'));
+        }
+    }
+
+    protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
+    {
+        $happeningObj = $activity->objects[0];
+
+        switch ($activity->verb) {
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
         case RSVP::POSSIBLE:
@@ -165,14 +186,15 @@ class EventPlugin extends MicroAppPlugin
                 // TRANS: Exception thrown when trying to RSVP for an unknown event.
                 throw new Exception(_m('RSVP for unknown event.'));
             }
-            $notice = RSVP::saveNew($actor, $happening, $activity->verb, $options);
+            $object = RSVP::saveNewFromNotice($stored, $happening, $activity->verb);
+            // Our data model expects this
+            $stored->object_type = $activity->verb;
+            return $object;
             break;
         default:
-            // TRANS: Exception thrown when event plugin comes across a undefined verb.
-            throw new Exception(_m('Unknown verb for events.'));
+            common_log(LOG_ERR, 'Unknown verb for events.');
+            return NULL;
         }
-
-        return $notice;
     }
 
     /**

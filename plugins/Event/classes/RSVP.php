@@ -109,13 +109,36 @@ class RSVP extends Managed_DataObject
 
     function saveNew($profile, $event, $verb, $options=array())
     {
-        if (array_key_exists('uri', $options)) {
-            $other = RSVP::getKV('uri', $options['uri']);
-            if (!empty($other)) {
-                // TRANS: Client exception thrown when trying to save an already existing RSVP ("please respond").
-                throw new ClientException(_m('RSVP already exists.'));
-            }
+        $eventNotice = $event->getNotice();
+        $options = array_merge(array('source' => 'web'), $options);
+
+        $act = new Activity();
+        $act->type    = ActivityObject::ACTIVITY;
+        $act->verb    = $verb;
+        $act->time    = $options['created'] ? strtotime($options['created']) : time();
+        $act->title   = _m("RSVP");
+        $act->actor   = $profile->asActivityObject();
+        $act->target  = $eventNotice->asActivityObject();
+        $act->objects = array(clone($act->target));
+        $act->content = RSVP::toHTML($profile, $event, self::codeFor($verb));
+
+        $act->id = common_local_url('showrsvp', array('id' => UUID::gen()));
+        $act->link = $act->id;
+
+        $saved = Notice::saveActivity($act, $profile, $options);
+
+        return $saved;
+    }
+
+    function saveNewFromNotice($notice, $event, $verb)
+    {
+        $other = RSVP::getKV('uri', $notice->uri);
+        if (!empty($other)) {
+            // TRANS: Client exception thrown when trying to save an already existing RSVP ("please respond").
+            throw new ClientException(_m('RSVP already exists.'));
         }
+
+        $profile = $notice->getProfile();
 
         $other = RSVP::pkeyGet(array('profile_id' => $profile->id,
                                      'event_id' => $event->id));
@@ -127,54 +150,19 @@ class RSVP extends Managed_DataObject
 
         $rsvp = new RSVP();
 
-        $rsvp->id          = UUID::gen();
+        preg_match('/\/([^\/]+)\/*/', $notice->uri, $match);
+        $rsvp->id          = $match[1] ? $match[1] : UUID::gen();
         $rsvp->profile_id  = $profile->id;
         $rsvp->event_id    = $event->id;
-        $rsvp->response      = self::codeFor($verb);
-
-        if (array_key_exists('created', $options)) {
-            $rsvp->created = $options['created'];
-        } else {
-            $rsvp->created = common_sql_now();
-        }
-
-        if (array_key_exists('uri', $options)) {
-            $rsvp->uri = $options['uri'];
-        } else {
-            $rsvp->uri = common_local_url('showrsvp',
-                                        array('id' => $rsvp->id));
-        }
+        $rsvp->response    = self::codeFor($verb);
+        $rsvp->created     = $notice->created;
+        $rsvp->uri         = $notice->uri;
 
         $rsvp->insert();
 
         self::blow('rsvp:for-event:%s', $event->id);
 
-        // XXX: come up with something sexier
-
-        $content = $rsvp->asString();
-
-        $rendered = $rsvp->asHTML();
-
-        $options = array_merge(array('object_type' => $verb),
-                               $options);
-
-        if (!array_key_exists('uri', $options)) {
-            $options['uri'] = $rsvp->uri;
-        }
-
-        $eventNotice = $event->getNotice();
-
-        if (!empty($eventNotice)) {
-            $options['reply_to'] = $eventNotice->id;
-        }
-
-        $saved = Notice::saveNew($profile->id,
-                                 $content,
-                                 array_key_exists('source', $options) ?
-                                 $options['source'] : 'web',
-                                 $options);
-
-        return $saved;
+        return $rsvp;
     }
 
     function codeFor($verb)
