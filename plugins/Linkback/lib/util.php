@@ -24,7 +24,6 @@ function linkback_get_source($source, $target) {
 
 function linkback_get_target($target) {
     // TODO: linkback to a user should work for attention
-    // TODO: ignore remote notices and users
     // Resolve target (https://github.com/converspace/webmention/issues/43)
     $request = HTTPClient::start();
 
@@ -35,10 +34,14 @@ function linkback_get_target($target) {
     }
 
     try {
-        return Notice::fromUri($response->getEffectiveUrl());
+        $notice = Notice::fromUri($response->getEffectiveUrl());
     } catch(UnknownUriException $ex) {
         preg_match('/\/notice\/(\d+)(?:#.*)?$/', $response->getEffectiveUrl(), $match);
-        return Notice::getKV('id', $match[1]);
+        $notice = Notice::getKV('id', $match[1]);
+    }
+
+    if($notice instanceof Notice && $notice->isLocal()) {
+        return $notice;
     }
 
     return NULL;
