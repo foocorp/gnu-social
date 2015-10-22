@@ -276,7 +276,10 @@ function linkback_profile($entry, $mf2, $response, $target) {
         return true;
     }
 
-    $profile = Profile::fromUri($author['url'][0]);
+    try {
+        $profile = Profile::fromUri($author['url'][0]);
+    } catch(UnknownUriException $ex) {}
+
     if(!($profile instanceof Profile)) {
         $profile = Profile::getKV('profileurl', $author['url'][0]);
     }
