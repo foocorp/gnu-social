@@ -142,7 +142,7 @@ function linkback_entry_type($entry, $mf2, $target) {
 }
 
 function linkback_is_dupe($key, $url) {
-    $dupe = Notice::getKV('uri', $url);
+    $dupe = Notice::getKV($key, $url);
     if ($dupe instanceof Notice) {
         return $dupe;
     }
