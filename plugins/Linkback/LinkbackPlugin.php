@@ -32,6 +32,7 @@ if (!defined('STATUSNET')) {
 }
 
 require_once('Auth/Yadis/Yadis.php');
+require_once(__DIR__ . '/lib/util.php');
 
 define('LINKBACKPLUGIN_VERSION', '0.1');
 
@@ -304,6 +305,12 @@ class LinkbackPlugin extends Plugin
                        "Trackback success for '$url' ($endpoint): ".
                        "'$result->body'");
         }
+    }
+
+
+    public function onRouterInitialized(URLMapper $m)
+    {
+        $m->connect('main/linkback/webmention', array('action' => 'webmention'));
     }
 
     public function version()
