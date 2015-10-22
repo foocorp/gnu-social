@@ -311,6 +311,12 @@ class LinkbackPlugin extends Plugin
     public function onRouterInitialized(URLMapper $m)
     {
         $m->connect('main/linkback/webmention', array('action' => 'webmention'));
+        $m->connect('main/linkback/pingback', array('action' => 'pingback'));
+    }
+
+    public function onStartShowHTML($action)
+    {
+        header('X-Pingback: ' . common_local_url('pingback'));
     }
 
     public function version()
