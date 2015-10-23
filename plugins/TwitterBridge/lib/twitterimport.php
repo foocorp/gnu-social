@@ -102,6 +102,17 @@ class TwitterImport
             return Notice::getKV('id', $n2s->notice_id);
         }
 
+        $dupe = Notice::getKV('uri', $statusUri);
+        if($dupe instanceof Notice) {
+            // Add it to our record
+            Notice_to_status::saveNew($dupe->id, $statusId);
+            common_log(
+                LOG_INFO,
+                __METHOD__ . " - Ignoring duplicate import: {$statusId}"
+            );
+            return $dupe;
+        }
+
         // If it's a retweet, save it as a repeat!
         if (!empty($status->retweeted_status)) {
             common_log(LOG_INFO, "Status {$statusId} is a retweet of " . twitter_id($status->retweeted_status) . ".");
