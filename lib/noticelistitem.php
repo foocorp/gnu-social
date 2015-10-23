@@ -64,6 +64,7 @@ class NoticeListItem extends Widget
     protected $options = true;
     protected $maxchars = 0;   // if <= 0 it means use full posts
     protected $item_tag = 'li';
+    protected $pa = null;
 
     /**
      * constructor
@@ -151,7 +152,7 @@ class NoticeListItem extends Widget
         $this->showNoticeTitle();
         $this->showAuthor();
 
-        if (!empty($this->notice->reply_to) || $this->addressees) {
+        if (!empty($this->notice->reply_to) || count($this->getProfileAddressees()) > 0) {
             $this->elementStart('div', array('class' => 'parents'));
             if (!empty($this->notice->reply_to)) { $this->showParent(); }
             if ($this->addressees) { $this->showAddressees(); }
@@ -286,19 +287,20 @@ class NoticeListItem extends Widget
 
     function getProfileAddressees()
     {
-        $pa = array();
+        if($this->pa) { return $this->pa; }
+        $this->pa = array();
 
         $attentions = $this->getReplyProfiles();
 
         foreach ($attentions as $attn) {
             $class = $attn->isGroup() ? 'group' : 'account';
-            $pa[] = array('href' => $attn->profileurl,
-                          'title' => $attn->getNickname(),
-                          'class' => "addressee {$class}",
-                          'text' => $attn->getStreamName());
+            $this->pa[] = array('href' => $attn->profileurl,
+                                'title' => $attn->getNickname(),
+                                'class' => "addressee {$class}",
+                                'text' => $attn->getStreamName());
         }
 
-        return $pa;
+        return $this->pa;
     }
 
     function getReplyProfiles()
