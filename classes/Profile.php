@@ -1520,6 +1520,48 @@ class Profile extends Managed_DataObject
         return $profile;
     }
 
+    /*
+     * Get or create a profile given a possible URL
+     */
+    static function ensureFromUrl($url, $mf2=null) {
+        common_debug('Trying to find a profile for ' . $url);
+
+        $url = preg_replace('#https?://#', 'https://', $url);
+        try {
+            $profile = Profile::fromUri($url);
+        } catch(UnknownUriException $ex) {}
+
+        if(!($profile instanceof Profile)) {
+            $profile = Profile::getKV('profileurl', $url);
+        }
+
+        $url = str_replace('https://', 'http://', $url);
+        if(!($profile instanceof Profile)) {
+            try {
+                $profile = Profile::fromUri($url);
+            } catch(UnknownUriException $ex) {}
+        }
+
+        if(!($profile instanceof Profile)) {
+            $profile = Profile::getKV('profileurl', $url);
+        }
+
+        if(!($profile instanceof Profile)) {
+            $hcard = common_representative_hcard($url, null, $mf2);
+            if(!$hcard) return null;
+
+            $profile = new Profile();
+            $profile->profileurl = $hcard['url'][0];
+            $profile->fullname = $hcard['name'][0];
+            preg_match_all('/'.Nickname::DISPLAY_FMT.'/', $profile->fullname, $altnick);
+            $profile->nickname = $hcard['nickname'] ? $hcard['nickname'][0] : implode($altnick[0]);
+            $profile->created = common_sql_now();
+            $profile->insert();
+        }
+
+        return $profile;
+    }
+
     function canRead(Notice $notice)
     {
         if ($notice->scope & Notice::SITE_SCOPE) {
