@@ -233,7 +233,10 @@ class TwitterImport
         $profile->limit(1);
 
         if (!$profile->find(true)) {
-            throw new NoResultException($profile);
+            $profile->profileurl = str_replace('https://', 'http://', $profileurl);
+            if (!$profile->find(true)) {
+                throw new NoResultException($profile);
+            }
         }
         return $profile;
     }
@@ -242,16 +245,6 @@ class TwitterImport
     {
         // check to see if there's already a profile for this user
         $profileurl = 'https://twitter.com/' . $twuser->screen_name;
-        try {
-            $profile = $this->getProfileByUrl($twuser->screen_name, $profileurl);
-            $this->updateAvatar($twuser, $profile);
-            return $profile;
-        } catch (NoResultException $e) {
-            common_debug(__METHOD__ . ' - Falling back to check for http: ' .
-                         "for Twitter user: $profileurl.");
-        }
-
-        $profileurl = 'http://twitter.com/' . $twuser->screen_name;
         try {
             $profile = $this->getProfileByUrl($twuser->screen_name, $profileurl);
             $this->updateAvatar($twuser, $profile);
