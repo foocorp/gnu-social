@@ -209,7 +209,7 @@ class TwitterImport
      */
     function makeStatusURI($username, $id)
     {
-        return 'http://twitter.com/#!/'
+        return 'https://twitter.com/'
           . $username
           . '/status/'
           . $id;
