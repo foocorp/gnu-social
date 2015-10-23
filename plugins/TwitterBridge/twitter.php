@@ -124,8 +124,7 @@ function is_twitter_bound($notice, $flink) {
         // If it's not a Twitter-style reply, or if the user WANTS to send replies,
         // or if it's in reply to a twitter notice
         if ( (($flink->noticesync & FOREIGN_NOTICE_SEND_REPLY) == FOREIGN_NOTICE_SEND_REPLY) ||
-              ((is_twitter_notice($notice->reply_to) || is_twitter_notice($notice->repeat_of))
-              && (($flink->noticesync & FOREIGN_NOTICE_RECV) == FOREIGN_NOTICE_RECV)) ||
+               is_twitter_notice($notice->reply_to) || is_twitter_notice($notice->repeat_of) ||
              (empty($notice->reply_to) && !preg_match('/^@[a-zA-Z0-9_]{1,15}\b/u', $notice->content)) ){
             return true;
         }
