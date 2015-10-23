@@ -241,6 +241,16 @@ class TwitterImport
     protected function ensureProfile($twuser)
     {
         // check to see if there's already a profile for this user
+        $profileurl = 'https://twitter.com/' . $twuser->screen_name;
+        try {
+            $profile = $this->getProfileByUrl($twuser->screen_name, $profileurl);
+            $this->updateAvatar($twuser, $profile);
+            return $profile;
+        } catch (NoResultException $e) {
+            common_debug(__METHOD__ . ' - Falling back to check for http: ' .
+                         "for Twitter user: $profileurl.");
+        }
+
         $profileurl = 'http://twitter.com/' . $twuser->screen_name;
         try {
             $profile = $this->getProfileByUrl($twuser->screen_name, $profileurl);
@@ -527,9 +537,9 @@ class TwitterImport
     static function atLink($screenName, $fullName, $orig)
     {
         if (!empty($fullName)) {
-            return "<a href='http://twitter.com/#!/{$screenName}' title='{$fullName}'>{$orig}</a>";
+            return "<a href='https://twitter.com/{$screenName}' title='{$fullName}'>{$orig}</a>";
         } else {
-            return "<a href='http://twitter.com/#!/{$screenName}'>{$orig}</a>";
+            return "<a href='https://twitter.com/{$screenName}'>{$orig}</a>";
         }
     }
 
