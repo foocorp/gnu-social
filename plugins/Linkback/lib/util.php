@@ -216,7 +216,7 @@ function linkback_notice($source, $notice_or_user, $entry, $author, $mf2) {
 
     $options = array('is_local' => Notice::REMOTE,
                     'url' => $entry['url'][0],
-                    'uri' => $source,
+                    'uri' => $entry['url'][0],
                     'rendered' => $rendered,
                     'replies' => array(),
                     'groups' => array(),
