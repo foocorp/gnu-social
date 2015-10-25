@@ -5,6 +5,13 @@ function linkback_lenient_target_match($body, $target) {
 }
 
 function linkback_get_source($source, $target) {
+    // Check if we are pinging ourselves and ignore
+    $localprefix = common_config('site', 'server') . '/' . common_config('site', 'path');
+    if(linkback_lenient_target_match($source, $localprefix)) {
+        common_debug('Ignoring self ping from ' . $source . ' to ' . $target);
+        return NULL;
+    }
+
     $request = HTTPClient::start();
 
     try {
