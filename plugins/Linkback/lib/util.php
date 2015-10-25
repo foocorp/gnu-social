@@ -179,10 +179,10 @@ function linkback_hcard($mf2, $url) {
         // We found a match, return it immediately
         if(isset($item['properties']['url']) && in_array($url, $item['properties']['url'])) {
             return $item['properties'];
-      
-            // Let's keep all the hcards for later, to return one of them at least
-            $hcards[] = $item['properties'];
         }
+
+        // Let's keep all the hcards for later, to return one of them at least
+        $hcards[] = $item['properties'];
     }
   
     // No match immediately for the url we expected, but there were h-cards found
