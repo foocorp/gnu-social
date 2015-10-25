@@ -316,6 +316,7 @@ class LinkbackPlugin extends Plugin
 
     public function onStartShowHTML($action)
     {
+        header('Link: <' . common_local_url('webmention') . '>; rel="webmention"', false);
         header('X-Pingback: ' . common_local_url('pingback'));
     }
 
