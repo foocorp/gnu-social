@@ -81,6 +81,11 @@ class LinkbackPlugin extends Plugin
                 $parent = $notice->getParent();
                 $this->linkbackUrl($parent->getUrl());
             }
+
+            $replyProfiles = Profile::multiGet('id', $notice->getReplies());
+            foreach($replyProfiles->fetchAll('profileurl') as $profileurl) {
+                $this->linkbackUrl($profileurl);
+            }
         }
         return true;
     }
