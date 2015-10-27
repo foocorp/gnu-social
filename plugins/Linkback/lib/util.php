@@ -356,8 +356,20 @@ function linkback_save($source, $target, $response, $notice_or_user) {
             try { $dupe->saveKnownUrls($options['urls']); } catch (ServerException $ex) {}
 
             if($options['reply_to']) { $dupe->reply_to = $options['reply_to']; }
-            if($options['repost_of']) { $dupe->repost_of = $options['repost_of']; }
+            if($options['repeat_of']) { $dupe->repeat_of = $options['repeat_of']; }
+            if($dupe->reply_to != $orig->reply_to || $dupe->repeat_of != $orig->repeat_of) {
+                $parent = Notice::getKV('id', $dupe->repost_of ? $dupe->repost_of : $dupe->reply_to);
+                if($parent instanceof Notice) {
+                    // If we changed the reply_to or repeat_of we might live in a new conversation now
+                    $dupe->conversation = $parent->conversation;
+                }
+            }
             if($dupe->update($orig)) { $saved = $dupe; }
+            if($dupe->conversation != $orig->conversation && Conversation::noticeCount($orig->conversation) < 1) {
+                // Delete empty conversation
+                $emptyConversation = Conversation::getKV('id', $orig->conversation);
+                $emptyConversation->delete();
+            }
         } catch (Exception $e) {
             common_log(LOG_ERR, "Linkback update of remote message $source failed: " . $e->getMessage());
             return false;
