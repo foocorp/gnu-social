@@ -355,7 +355,7 @@ class FeedSub extends Managed_DataObject
             $response = $client->post($hub, $headers, $post);
             $status = $response->getStatus();
             // PuSH specificed response status code
-            if ($status == 202) {
+            if ($status == 202  || $status == 204) {
                 common_log(LOG_INFO, __METHOD__ . ': sub req ok, awaiting verification callback');
                 return;
             } else if ($status >= 200 && $status < 300) {
