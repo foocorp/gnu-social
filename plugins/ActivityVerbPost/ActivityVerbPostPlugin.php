@@ -54,6 +54,9 @@ class ActivityVerbPostPlugin extends ActivityVerbHandlerPlugin
         assert($this->isMyActivity($act));
 
         $stored->object_type = ActivityUtils::resolveUri($act->objects[0]->type);
+        if (common_valid_http_url($act->objects[0]->link)) {
+            $stored->url = $act->objects[0]->link;
+        }
 
         // We don't have to do just about anything for a new, remote notice since the fields
         // are handled in the main Notice::saveActivity function. Such as content, attachments,
