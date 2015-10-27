@@ -298,7 +298,7 @@ class ActivityObject
         if (!empty($guidEl)) {
             $this->id = $guidEl->textContent;
 
-            if ($guidEl->hasAttribute('isPermaLink')) {
+            if ($guidEl->hasAttribute('isPermaLink') && $guidEl->getAttribute('isPermaLink') != 'false') {
                 // overwrites <link>
                 $this->link = $this->id;
             }
