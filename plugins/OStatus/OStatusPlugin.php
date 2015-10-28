@@ -278,7 +278,7 @@ class OStatusPlugin extends Plugin
                     $oprofile = Ostatus_profile::ensureWebfinger($target);
                     if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
                         $profile = $oprofile->localProfile();
-                        $text = !empty($profile->nickname) && strlen($profile->nickname) < strlen($target) ?
+                        $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
                                 $profile->nickname : $target;
                         $matches[$pos] = array('mentioned' => array($profile),
                                                'type' => 'mention',
@@ -308,7 +308,7 @@ class OStatusPlugin extends Plugin
                         $oprofile = Ostatus_profile::ensureProfileURL($url);
                         if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
                             $profile = $oprofile->localProfile();
-                            $text = !empty($profile->nickname) && strlen($profile->nickname) < strlen($target) ?
+                            $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
                                     $profile->nickname : $target;
                             $matches[$pos] = array('mentioned' => array($profile),
                                                    'type' => 'mention',
