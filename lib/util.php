@@ -730,33 +730,24 @@ function common_find_mentions($text, Notice $notice)
         $matches = common_find_mentions_raw($text);
 
         foreach ($matches as $match) {
-            // Try to process it as @URL
-            $url = $match[0];
-            if(!common_valid_http_url($url)) { $url = 'http://' . $url; }
-            if(common_valid_http_url($url)) {
-                $mentioned = Profile::ensureFromUrl($url);
-                $text = mb_strlen($mentioned->nickname) <= mb_strlen($match[0]) ? $mentioned->nickname : $match[0];
+            try {
+                $nickname = Nickname::normalize($match[0]);
+            } catch (NicknameException $e) {
+                // Bogus match? Drop it.
+                continue;
+            }
+
+            // Try to get a profile for this nickname.
+            // Start with conversation context, then go to
+            // sender context.
+
+            if ($origAuthor instanceof Profile && $origAuthor->nickname == $nickname) {
+                $mentioned = $origAuthor;
+            } else if (!empty($origMentions) &&
+                       array_key_exists($nickname, $origMentions)) {
+                $mentioned = $origMentions[$nickname];
             } else {
-                try {
-                    $nickname = Nickname::normalize($match[0]);
-                } catch (NicknameException $e) {
-                    // Bogus match? Drop it.
-                    continue;
-                }
-
-                // Try to get a profile for this nickname.
-                // Start with conversation context, then go to
-                // sender context.
-
-                if ($origAuthor instanceof Profile && $origAuthor->nickname == $nickname) {
-                    $mentioned = $origAuthor;
-                } else if (!empty($origMentions) &&
-                           array_key_exists($nickname, $origMentions)) {
-                    $mentioned = $origMentions[$nickname];
-                } else {
-                    $mentioned = common_relative_profile($sender, $nickname);
-                }
-                $text = $match[0];
+                $mentioned = common_relative_profile($sender, $nickname);
             }
 
             if ($mentioned instanceof Profile) {
@@ -770,7 +761,7 @@ function common_find_mentions($text, Notice $notice)
 
                 $mention = array('mentioned' => array($mentioned),
                                  'type' => 'mention',
-                                 'text' => $text,
+                                 'text' => $match[0],
                                  'position' => $match[1],
                                  'length' => mb_strlen($match[0]),
                                  'url' => $url);
@@ -848,7 +839,7 @@ function common_find_mentions_raw($text)
                    PREG_OFFSET_CAPTURE);
 
     $atmatches = array();
-    preg_match_all('/(?:^|\s+)@((?:[A-Za-z0-9_:\-\.\/%]+)|(?:' . Nickname::DISPLAY_FMT . '))\b/',
+    preg_match_all('/(?:^|\s+)@(' . Nickname::DISPLAY_FMT . ')\b/',
                    $text,
                    $atmatches,
                    PREG_OFFSET_CAPTURE);
@@ -2438,62 +2429,6 @@ function common_strip_html($html, $trim=true, $save_whitespace=false)
     }
     $text = html_entity_decode(strip_tags($html), ENT_QUOTES, 'UTF-8');
     return $trim ? trim($text) : $text;
-}
-
-function common_representative_hcard($url, $fn=null, $mf2=null) {
-   if(!$mf2) {
-       $request = HTTPClient::start();
-
-        try {
-            $response = $request->get($url);
-        } catch(Exception $ex) {
-            return null;
-        }
-
-        $url = $response->getEffectiveUrl();
-        $mf2 = new Mf2\Parser($response->getBody(), $url);
-        $mf2 = $mf2->parse();
-    }
-
-    $hcard = null;
-
-    if(!empty($mf2['items'])) {
-        $hcards = array();
-        foreach($mf2['items'] as $item) {
-            if(!in_array('h-card', $item['type'])) {
-                continue;
-            }
-
-            // We found a match, return it immediately
-            if(isset($item['properties']['url']) && in_array($url, $item['properties']['url'])) {
-                $hcard = $item['properties'];
-                break;
-            }
-
-            // Let's keep all the hcards for later, to return one of them at least
-            $hcards[] = $item['properties'];
-        }
-
-        // No match immediately for the url we expected, but there were h-cards found
-        if (count($hcards) > 0) {
-            $hcard = $hcards[0];
-        }
-    }
-
-    if(!$hcard && $fn) {
-        $hcard = array('name' => array($fn));
-    }
-
-    if(!$hcard && $response) {
-        preg_match('/<title>([^<]+)/', $response->getBody(), $match);
-        $hcard = array('name' => array($match[1]));
-    }
-
-    if($hcard && !$hcard['url']) {
-        $hcard['url'] = array($url);
-    }
-
-    return $hcard;
 }
 
 function html_sprintf()
