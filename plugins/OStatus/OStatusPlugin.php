@@ -282,6 +282,7 @@ class OStatusPlugin extends Plugin
                                                'type' => 'mention',
                                                'text' => $target,
                                                'position' => $pos,
+                                               'length' => mb_strlen($target),
                                                'url' => $profile->getUrl());
                     }
                 } catch (Exception $e) {
@@ -309,6 +310,7 @@ class OStatusPlugin extends Plugin
                                                    'type' => 'mention',
                                                    'text' => $target,
                                                    'position' => $pos,
+                                                   'length' => mb_strlen($target),
                                                    'url' => $profile->getUrl());
                             break;
                         }
