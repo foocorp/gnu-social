@@ -280,6 +280,10 @@ class OStatusSubAction extends Action
             // TRANS: Error text.
             $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
             common_debug('Not a recognized feed type.', __FILE__);
+        } catch (FeedSubNoHubException $e) {
+            // TRANS: Error text.
+            $this->error = _m("Sorry, that feed is not Pubsubhubub enabled.");
+            common_debug('No hub found.', __FILE__);
         } catch (Exception $e) {
             // Any new ones we forgot about
                 // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
