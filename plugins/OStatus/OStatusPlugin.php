@@ -292,7 +292,7 @@ class OStatusPlugin extends Plugin
         }
 
         // Profile matches: @example.com/mublog/user
-        if (preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+(?:\w+\-\w+)*\.\w+(?:/\w+)+)!',
+        if (preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+(?:\w+\-\w+)*\.\w+(?:/\w+)*)!',
                        $text,
                        $wmatches,
                        PREG_OFFSET_CAPTURE)) {
