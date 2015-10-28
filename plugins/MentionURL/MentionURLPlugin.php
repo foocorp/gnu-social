@@ -10,8 +10,10 @@ require_once __DIR__ . '/lib/util.php';
  */
 class MentionURLPlugin extends Plugin
 {
-    public function onStartFindMentions($sender, $text, &$mentions)
+    function onEndFindMentions(Profile $sender, $text, &$mentions)
     {
+        $matches = array();
+
         preg_match_all('/(?:^|\s+)@([A-Za-z0-9_:\-\.\/%]+)\b/',
                        $text,
                        $atmatches,
@@ -26,13 +28,25 @@ class MentionURLPlugin extends Plugin
             }
 
             if($mentioned instanceof Profile) {
-                $mentions[] = array('mentioned' => array($mentioned),
-                                   'type' => 'mention',
-                                   'text' => $text,
-                                   'position' => $match[1],
-                                   'length' => mb_strlen($match[0]),
-                                   'url' => $mentioned->profileurl);
+                $matches[$match[1]] = array('mentioned' => array($mentioned),
+                                            'type' => 'mention',
+                                            'text' => $text,
+                                            'position' => $match[1],
+                                            'length' => mb_strlen($match[0]),
+                                            'url' => $mentioned->profileurl);
             }
+        }
+
+        foreach ($mentions as $i => $other) {
+            // If we share a common prefix with a local user, override it!
+            $pos = $other['position'];
+            if (isset($matches[$pos])) {
+                $mentions[$i] = $matches[$pos];
+                unset($matches[$pos]);
+            }
+        }
+        foreach ($matches as $mention) {
+            $mentions[] = $mention;
         }
 
         return true;
