@@ -794,6 +794,7 @@ function common_find_mentions($text, Notice $notice)
                                 'type'      => 'list',
                                 'text' => $hmatch[0],
                                 'position' => $hmatch[1],
+                                'length' => mb_strlen($hmatch[0]),
                                 'url' => $url);
         }
 
@@ -813,6 +814,7 @@ function common_find_mentions($text, Notice $notice)
                                 'type'      => 'group',
                                 'text'      => $hmatch[0],
                                 'position'  => $hmatch[1],
+                                'length'    => mb_strlen($hmatch[0]),
                                 'url'       => $group->permalink(),
                                 'title'     => $group->getFancyName());
         }
