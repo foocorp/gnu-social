@@ -90,12 +90,10 @@ class OembedPlugin extends Plugin
      * Normally this event is called through File::saveNew()
      *
      * @param File   $file       The newly inserted File object.
-     * @param array  $redir_data lookup data eg from File_redirection::where()
-     * @param string $given_url
      *
      * @return boolean success
      */
-    public function onEndFileSaveNew(File $file, array $redir_data, $given_url)
+    public function onEndFileSaveNew(File $file)
     {
         $fo = File_oembed::getKV('file_id', $file->id);
         if ($fo instanceof File_oembed) {
@@ -103,15 +101,12 @@ class OembedPlugin extends Plugin
             return true;
         }
 
-        if (isset($redir_data['oembed']['json'])
-                && !empty($redir_data['oembed']['json'])) {
-            File_oembed::saveNew($redir_data['oembed']['json'], $file->id);
-        } elseif (isset($redir_data['type'])
-                && (('text/html' === substr($redir_data['type'], 0, 9)
-                || 'application/xhtml+xml' === substr($redir_data['type'], 0, 21)))) {
+        if (isset($file->mimetype)
+            && (('text/html' === substr($file->mimetype, 0, 9)
+            || 'application/xhtml+xml' === substr($file->mimetype, 0, 21)))) {
 
             try {
-                $oembed_data = File_oembed::_getOembed($given_url);
+                $oembed_data = File_oembed::_getOembed($file->url);
                 if ($oembed_data === false) {
                     throw new Exception('Did not get oEmbed data from URL');
                 }

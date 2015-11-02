@@ -128,12 +128,12 @@ class File_oembed extends Managed_DataObject
                 if ($file instanceof File) {
                     $file_oembed->mimetype = $file->mimetype;
                 } else {
-                    $file_redir = File_redirection::getKV('url', $given_url);
-                    if (empty($file_redir)) {
-                        $redir_data = File_redirection::where($given_url);
-                        $file_oembed->mimetype = $redir_data['type'];
+                    $redir = File_redirection::where($given_url);
+                    if (empty($redir->file_id)) {
+                        $f = $redir->getFile();
+                        $file_oembed->mimetype = $f->mimetype;
                     } else {
-                        $file_id = $file_redir->file_id;
+                        $file_id = $redir->file_id;
                     }
                 }
             }

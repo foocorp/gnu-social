@@ -94,26 +94,31 @@ class File extends Managed_DataObject
             // We don't have the file's URL since before, so let's continue.
         }
 
-        if (!Event::handle('StartFileSaveNew', array(&$redir_data, $given_url))) {
-            throw new ServerException('File not saved due to an aborted StartFileSaveNew event.');
-        }
-
         $file = new File;
-        $file->urlhash = self::hashurl($given_url);
         $file->url = $given_url;
         if (!empty($redir_data['protected'])) $file->protected = $redir_data['protected'];
         if (!empty($redir_data['title'])) $file->title = $redir_data['title'];
         if (!empty($redir_data['type'])) $file->mimetype = $redir_data['type'];
         if (!empty($redir_data['size'])) $file->size = intval($redir_data['size']);
         if (isset($redir_data['time']) && $redir_data['time'] > 0) $file->date = intval($redir_data['time']);
-        $file_id = $file->insert();
+        $file->saveFile();
+        return $file;
+    }
 
-        if ($file_id === false) {
+    public function saveFile() {
+        $this->urlhash = self::hashurl($this->url);
+
+        if (!Event::handle('StartFileSaveNew', array(&$this))) {
+            throw new ServerException('File not saved due to an aborted StartFileSaveNew event.');
+        }
+
+        $this->id = $this->insert();
+
+        if ($this->id === false) {
             throw new ServerException('File/URL metadata could not be saved to the database.');
         }
 
-        Event::handle('EndFileSaveNew', array($file, $redir_data, $given_url));
-        return $file;
+        Event::handle('EndFileSaveNew', array($this));
     }
 
     /**
@@ -124,7 +129,6 @@ class File extends Managed_DataObject
      * - optionally save a file_to_post record
      * - return the File object with the full reference
      *
-     * @fixme refactor this mess, it's gotten pretty scary.
      * @param string $given_url the URL we're looking at
      * @param Notice $notice (optional)
      * @param bool $followRedirects defaults to true
@@ -143,69 +147,30 @@ class File extends Managed_DataObject
             throw new ServerException('No canonical URL from given URL to process');
         }
 
-        $file = null;
+        $redir = File_redirection::where($given_url);
+        $file = $redir->getFile();
 
-        try {
-            $file = File::getByUrl($given_url);
-        } catch (NoResultException $e) {
-            // First check if we have a lookup trace for this URL already
-            try {
-                $file_redir = File_redirection::getByUrl($given_url);
-                $file = File::getKV('id', $file_redir->file_id);
-                if (!$file instanceof File) {
-                    // File did not exist, let's clean up the File_redirection entry
-                    $file_redir->delete();
-                }
-            } catch (NoResultException $e) {
-                // We just wanted to doublecheck whether a File_thumbnail we might've had
-                // actually referenced an existing File object.
+        // If we still don't have a File object, let's create one now!
+        if (empty($file->id)) {
+            if ($redir->url === $given_url || !$followRedirects) {
+                // Save the File object based on our lookup trace
+                $file->saveFile();
+            } else {
+                $file->saveFile();
+                $redir->file_id = $file->id;
+                $redir->insert();
             }
         }
 
-        // If we still don't have a File object, let's create one now!
-        if (!$file instanceof File) {
-            // @fixme for new URLs this also looks up non-redirect data
-            // such as target content type, size, etc, which we need
-            // for File::saveNew(); so we call it even if not following
-            // new redirects.
-            $redir_data = File_redirection::where($given_url);
-            if (is_array($redir_data)) {
-                $redir_url = $redir_data['url'];
-            } elseif (is_string($redir_data)) {
-                $redir_url = $redir_data;
-                $redir_data = array();
-            } else {
-                // TRANS: Server exception thrown when a URL cannot be processed.
-                throw new ServerException(sprintf(_("Cannot process URL '%s'"), $given_url));
-            }
-
-            if ($redir_url === $given_url || !$followRedirects) {
-                // Save the File object based on our lookup trace
-                $file = File::saveNew($redir_data, $given_url);
-            } else {
-                // This seems kind of messed up... for now skipping this part
-                // if we're already under a redirect, so we don't go into
-                // horrible infinite loops if we've been given an unstable
-                // redirect (where the final destination of the first request
-                // doesn't match what we get when we ask for it again).
-                //
-                // Seen in the wild with clojure.org, which redirects through
-                // wikispaces for auth and appends session data in the URL params.
-                $file = self::processNew($redir_url, $notice, /*followRedirects*/false);
-                File_redirection::saveNew($redir_data, $file->id, $given_url);
-            }
-
-            if (!$file instanceof File) {
-                // This should only happen if File::saveNew somehow did not return a File object,
-                // though we have an assert for that in case the event there might've gone wrong.
-                // If anything else goes wrong, there should've been an exception thrown.
-                throw new ServerException('URL processing failed without new File object');
-            }
+        if (!$file instanceof File || empty($file->id)) {
+            // This should not happen
+            throw new ServerException('URL processing failed without new File object');
         }
 
         if ($notice instanceof Notice) {
             File_to_post::processNew($file, $notice);
         }
+
         return $file;
     }
 
