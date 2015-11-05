@@ -199,7 +199,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
                            'class' => 'h-card p-author',
                            'title' => $repeater->getFancyName());
 
-            $nli->out->elementStart('span', 'repeat h-entry');
+            $nli->out->elementStart('span', 'repeat');
 
             // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
             $nli->out->raw(_('Repeated by').' ');

@@ -235,8 +235,9 @@ class NoticeListItem extends Widget
     function showAuthor()
     {
         $attrs = array('href' => $this->profile->profileurl,
-                       'class' => 'h-card p-author',
+                       'class' => 'h-card',
                        'title' => $this->profile->getNickname());
+        if(empty($this->repeat)) { $attrs['class'] .= ' p-author'; }
 
         if (Event::handle('StartShowNoticeItemAuthor', array($this->profile, $this->out, &$attrs))) {
             $this->out->elementStart('a', $attrs);

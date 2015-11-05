@@ -828,11 +828,13 @@ class Ostatus_profile extends Managed_DataObject
             }
         }
 
+        $obj = ActivityUtils::getFeedAuthor($feedEl);
+
         // @todo FIXME: We should check whether this feed has elements
         // with different <author> or <dc:creator> elements, and... I dunno.
         // Do something about that.
 
-        $obj = ActivityObject::fromRssChannel($feedEl);
+        if(empty($obj)) { $obj = ActivityObject::fromRssChannel($feedEl); }
 
         return self::ensureActivityObjectProfile($obj, $hints);
     }
