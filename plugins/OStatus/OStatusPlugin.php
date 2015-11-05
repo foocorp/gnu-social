@@ -118,6 +118,9 @@ class OStatusPlugin extends Plugin
 
         // Incoming from a foreign PuSH hub
         $qm->connect('pushin', 'PushInQueueHandler');
+
+        // Re-subscribe feeds that need renewal
+        $qm->connect('pushrenew', 'PushRenewQueueHandler');
         return true;
     }
 
@@ -1395,5 +1398,21 @@ class OStatusPlugin extends Plugin
 
         // Since we completed the salmon slap, we discontinue the event
         return false;
+    }
+
+    public function onCronDaily()
+    {
+        try {
+            $sub = FeedSub::renewalCheck();
+        } catch (NoResultException $e) {
+            common_log(LOG_INFO, "There were no expiring feeds.");
+            return;
+        }
+
+        $qm = QueueManager::get();
+        while ($sub->fetch()) {
+            $item = array('feedsub_id' => $sub->id);
+            $qm->enqueue($item, 'pushrenew');
+        }
     }
 }
