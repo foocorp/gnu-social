@@ -33,6 +33,12 @@ class User_group extends Managed_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    public function getObjectType()
+    {
+        return ActivityObject::GROUP;
+    }
+
+
     public static function schemaDef()
     {
         return array(

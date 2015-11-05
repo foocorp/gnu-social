@@ -138,6 +138,7 @@ class TwitterImport
         $notice->profile_id = $profile->id;
         $notice->uri        = $statusUri;
         $notice->url        = $statusUri;
+        $notice->verb       = ActivityVerb::POST;
         $notice->created    = strftime(
             '%Y-%m-%d %H:%M:%S',
             strtotime($status->created_at)
