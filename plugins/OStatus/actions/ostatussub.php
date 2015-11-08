@@ -246,7 +246,7 @@ class OStatusSubAction extends Action
         try {
             if ($validate->email($this->profile_uri)) {
                 $this->oprofile = Ostatus_profile::ensureWebfinger($this->profile_uri);
-            } else if ($validate->uri($url, $params)) {
+            } else if ($validate->uri($this->profile_uri)) {
                 $this->oprofile = Ostatus_profile::ensureProfileURL($this->profile_uri);
             } else {
                 // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
