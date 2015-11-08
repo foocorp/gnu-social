@@ -845,7 +845,6 @@ class Notice extends Managed_DataObject
             // If the original is private to a group, and notice has no group specified,
             // make it to the same group(s)
             if (empty($groups) && ($reply->scope & Notice::GROUP_SCOPE)) {
-                $groups = array();
                 $replyGroups = $reply->getGroups();
                 foreach ($replyGroups as $group) {
                     if ($actor->isMember($group)) {
@@ -958,11 +957,11 @@ class Notice extends Managed_DataObject
 
         // Save per-notice metadata...
         $mentions = array();
-        $groups   = array();
+        $group_ids   = array();
 
         // This event lets plugins filter out non-local recipients (attentions we don't care about)
         // Used primarily for OStatus (and if we don't federate, all attentions would be local anyway)
-        Event::handle('GetLocalAttentions', array($actor, $act->context->attention, &$mentions, &$groups));
+        Event::handle('GetLocalAttentions', array($actor, $act->context->attention, &$mentions, &$group_ids));
 
         if (!empty($mentions)) {
             $stored->saveKnownReplies($mentions);
@@ -980,7 +979,7 @@ class Notice extends Managed_DataObject
         // to avoid errors on duplicates.
         // Note: groups should always be set.
 
-        $stored->saveKnownGroups($groups);
+        $stored->saveKnownGroups($group_ids);
 
         if (!empty($urls)) {
             $stored->saveKnownUrls($urls);
@@ -1505,13 +1504,8 @@ class Notice extends Managed_DataObject
      *        best with generalizations on user_group to support
      *        remote groups better.
      */
-    function saveKnownGroups($group_ids)
+    function saveKnownGroups(array $group_ids)
     {
-        if (!is_array($group_ids)) {
-            // TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
-            throw new ServerException(_('Bad type provided to saveKnownGroups.'));
-        }
-
         $groups = array();
         foreach (array_unique($group_ids) as $id) {
             $group = User_group::getKV('id', $id);
