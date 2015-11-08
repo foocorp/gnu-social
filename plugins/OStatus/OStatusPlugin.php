@@ -246,11 +246,13 @@ class OStatusPlugin extends Plugin
             $profile->whereAdd('uri LIKE "%' . $profile->escape($q) . '%"');
             $profile->query();
 
+            $validate = new Validate();
+
             if ($profile->N == 0) {
                 try {
-                    if (Validate::email($q)) {
+                    if ($validate->email($q)) {
                         $oprofile = Ostatus_profile::ensureWebfinger($q);
-                    } else if (Validate::uri($q)) {
+                    } else if ($validate->uri($q)) {
                         $oprofile = Ostatus_profile::ensureProfileURL($q);
                     } else {
                         // TRANS: Exception in OStatus when invalid URI was entered.

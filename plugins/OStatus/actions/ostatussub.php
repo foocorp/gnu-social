@@ -241,11 +241,12 @@ class OStatusSubAction extends Action
      */
     function pullRemoteProfile()
     {
+        $validate = new Validate();
         $this->profile_uri = $this->trimmed('profile');
         try {
-            if (Validate::email($this->profile_uri)) {
+            if ($validate->email($this->profile_uri)) {
                 $this->oprofile = Ostatus_profile::ensureWebfinger($this->profile_uri);
-            } else if (Validate::uri($this->profile_uri)) {
+            } else if ($validate->uri($url, $params)) {
                 $this->oprofile = Ostatus_profile::ensureProfileURL($this->profile_uri);
             } else {
                 // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com

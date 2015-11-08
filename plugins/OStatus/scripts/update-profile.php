@@ -32,7 +32,9 @@ END_OF_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-if (empty($args[0]) || !Validate::uri($args[0])) {
+$validate = new Validate();
+
+if (empty($args[0]) || !$validate->uri($args[0])) {
     print "$helptext";
     exit(1);
 }

@@ -200,7 +200,7 @@ class PushHubAction extends Action
         $url = $this->arg($arg);
         $params = array('domain_check' => false, // otherwise breaks my local tests :P
                         'allowed_schemes' => array('http', 'https'));
-        $validate = new Validate;
+        $validate = new Validate();
         if ($validate->uri($url, $params)) {
             return $url;
         } else {
