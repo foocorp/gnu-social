@@ -1341,7 +1341,7 @@ class OStatusPlugin extends Plugin
 
     public function onGetLocalAttentions(Profile $actor, array $attention_uris, array &$mentions, array &$groups)
     {
-        list($mentions, $groups) = Ostatus_profile::filterAttention($actor, $attention_uris);
+        list($groups, $mentions) = Ostatus_profile::filterAttention($actor, $attention_uris);
     }
 
     // FIXME: Maybe this shouldn't be so authoritative that it breaks other remote profile lookups?
