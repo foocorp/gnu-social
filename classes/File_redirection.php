@@ -39,6 +39,8 @@ class File_redirection extends Managed_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    protected $file; /* Cache the associated file sometimes */
+
     public static function schemaDef()
     {
         return array(
@@ -155,41 +157,53 @@ class File_redirection extends Managed_DataObject
      *
      * @param string $in_url
      * @param boolean $discover true to attempt dereferencing the redirect if we don't know it already
-     * @return mixed one of:
-     *         string - target URL, if this is a direct link or a known redirect
-     *         array - redirect info if this is an *unknown* redirect:
-     *              associative array with the following elements:
-     *                code: HTTP status code
-     *                redirects: count of redirects followed
-     *                url: URL string of final target
-     *                type (optional): MIME type from Content-Type header
-     *                size (optional): byte size from Content-Length header
-     *                time (optional): timestamp from Last-Modified header
+     * @return File_redirection
      */
     static function where($in_url, $discover=true) {
-        // let's see if we know this...
+        $redir = new File_redirection();
+        $redir->url = $in_url;
+        $redir->urlhash = File::hashurl($redir->url);
+        $redir->redirections = 0;
+
         try {
-            $a = File::getByUrl($in_url);
-            // this is a direct link to $a->url
-            return $a->url;
+            $r = File_redirection::getByUrl($in_url);
+            if($r instanceof File_redirection) {
+                return $r;
+            }
         } catch (NoResultException $e) {
             try {
-                $b = File_redirection::getByUrl($in_url);
-                // this is a redirect to $b->file_id
-                $a = File::getByID($b->file_id);
-                return $a->url;
+                $f = File::getByUrl($in_url);
+                $redir->file_id = $f->id;
+                $redir->file = $f;
+                return $redir;
             } catch (NoResultException $e) {
                 // Oh well, let's keep going
             }
         }
 
         if ($discover) {
-            $ret = File_redirection::lookupWhere($in_url);
-            return $ret;
+            $redir_info = File_redirection::lookupWhere($in_url);
+            if(is_string($redir_info)) {
+                $redir_info = array('url' => $redir_info);
+            }
+
+            // Double check that we don't already have the resolved URL
+            $r = self::where($redir_info['url'], false);
+            if (!empty($r->file_id)) {
+                return $r;
+            }
         }
 
-        // No manual dereferencing; leave the unknown URL as is.
-        return $in_url;
+        $redir->httpcode = $redir_info['code'];
+        $redir->redirections = intval($redir_info['redirects']);
+        $redir->file = new File();
+        $redir->file->url = $redir_info ? $redir_info['url'] : $in_url;
+        $redir->file->mimetype = $redir_info['type'];
+        $redir->file->size = $redir_info['size'];
+        $redir->file->date = $redir_info['time'];
+        if($redir_info['protected']) $redir->file->protected = true;
+
+        return $redir;
     }
 
     /**
@@ -247,28 +261,12 @@ class File_redirection extends Managed_DataObject
             $short_url = (string)$short_url;
             // store it
             $file = File::getKV('url', $long_url);
-            if ($file instanceof File) {
-                $file_id = $file->getID();
-            } else {
+            if (!$file instanceof File) {
                 // Check if the target URL is itself a redirect...
-                $redir_data = File_redirection::where($long_url);
-                if (is_array($redir_data)) {
-                    // We haven't seen the target URL before.
-                    // Save file and embedding data about it!
-                    $file = File::saveNew($redir_data, $long_url);
-                    $file_id = $file->getID();
-                } else if (is_string($redir_data)) {
-                    // The file is a known redirect target.
-                    $file = File::getKV('url', $redir_data);
-                    if (empty($file)) {
-                        // @fixme should we save a new one?
-                        // this case was triggering sometimes for redirects
-                        // with unresolvable targets; found while fixing
-                        // "can't linkify" bugs with shortened links to
-                        // SSL sites with cert issues.
-                        return null;
-                    }
-                    $file_id = $file->getID();
+                $redir = File_redirection::where($long_url);
+                $file = $redir->getFile();
+                if (empty($file->id)) {
+                    $file->saveFile();
                 }
             }
             $file_redir = File_redirection::getKV('url', $short_url);
@@ -276,7 +274,7 @@ class File_redirection extends Managed_DataObject
                 $file_redir = new File_redirection;
                 $file_redir->urlhash = File::hashurl($short_url);
                 $file_redir->url = $short_url;
-                $file_redir->file_id = $file_id;
+                $file_redir->file_id = $file->id;
                 $file_redir->insert();
             }
             return $short_url;
@@ -384,5 +382,13 @@ class File_redirection extends Managed_DataObject
                             'SHA2(url, 256)'));
         echo "DONE.\n";
         echo "Resuming core schema upgrade...";
+    }
+
+    public function getFile() {
+        if(empty($this->file) && $this->file_id) {
+            $this->file = File::getKV('id', $this->file_id);
+        }
+
+        return $this->file;
     }
 }

@@ -987,20 +987,9 @@ function common_linkify($url) {
         $canon = "mailto:$url";
         $longurl = "mailto:$url";
     } else {
-
         $canon = File_redirection::_canonUrl($url);
-
         $longurl_data = File_redirection::where($canon, common_config('attachments', 'process_links'));
-        if (is_array($longurl_data)) {
-            $longurl = $longurl_data['url'];
-        } elseif (is_string($longurl_data)) {
-            $longurl = $longurl_data;
-        } else {
-            // Unable to reach the server to verify contents, etc
-            // Just pass the link on through for now.
-            common_log(LOG_ERR, "Can't linkify url '$url'");
-            $longurl = $url;
-        }
+        $longurl = $longurl_data->url;
     }
 
     $attrs = array('href' => $canon, 'title' => $longurl);
