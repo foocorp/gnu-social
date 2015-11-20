@@ -274,11 +274,11 @@ class ApiAction extends Action
                 $sub = Subscription::getSubscription($this->scoped, $profile);
                 // Notifications on?
                 $twitter_user['following'] = true;
-                $twitter_user['statusnet_blocking']  = $this->scoped->hasBlocked($profile);
                 $twitter_user['notifications'] = ($sub->jabber || $sub->sms);
             } catch (NoResultException $e) {
                 // well, the values are already false...
             }
+            $twitter_user['statusnet_blocking']  = $this->scoped->hasBlocked($profile);            
         }
 
         if ($get_notice) {
