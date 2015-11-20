@@ -30,29 +30,27 @@ class StoreRemoteMediaPlugin extends Plugin
      *
      * Normally this event is called through File::saveNew()
      *
-     * @param File   $file       The newly inserted File object.
-     * @param array  $redir_data lookup data eg from File_redirection::where()
-     * @param string $given_url
+     * @param File   $file       The abount-to-be-inserted File object.
      *
      * @return boolean success
      */
-    public function onStartFileSaveNew(array &$redir_data, $given_url)
+    public function onStartFileSaveNew(File &$file)
     {
         // save given URL as title if it's a media file this plugin understands
         // which will make it shown in the AttachmentList widgets
 
-        if (isset($redir_data['title']) && strlen($redir_data['title']>0)) {
+        if (isset($file->title) && strlen($file->title)>0) {
             // Title is already set
             return true;
         }
-        if (!isset($redir_data['type'])) {
+        if (!isset($file->mimetype)) {
             // Unknown mimetype, it's not our job to figure out what it is.
             return true;
         }
-        switch (common_get_mime_media($redir_data['type'])) {
+        switch (common_get_mime_media($file->mimetype)) {
         case 'image':
             // Just to set something for now at least...
-            $redir_data['title'] = $given_url;
+            $file->title = $file->mimetype;
             break;
         }
         
