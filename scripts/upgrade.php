@@ -333,7 +333,7 @@ function initSubscriptionURI()
                                     'set uri = "%s" '.
                                     'where subscriber = %d '.
                                     'and subscribed = %d',
-                                    Subscription::newURI($sub->subscriber, $sub->subscribed, $sub->created),
+                                    $sub->escape(Subscription::newUri($sub->getSubscriber(), $sub->getSubscribed(), $sub->created)),
                                     $sub->subscriber,
                                     $sub->subscribed));
             } catch (Exception $e) {

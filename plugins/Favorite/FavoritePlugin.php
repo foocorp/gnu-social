@@ -96,7 +96,7 @@ class FavoritePlugin extends ActivityVerbHandlerPlugin
                                          '    modified = "%s" '.
                                          'WHERE user_id = %d '.
                                          'AND notice_id = %d',
-                                         Fave::newUri($fave->user_id, $fave->notice_id, $fave->modified),
+                                         Fave::newUri($fave->getActor(), $fave->getTarget(), $fave->modified),
                                          common_sql_date(strtotime($fave->modified)),
                                          $fave->user_id,
                                          $fave->notice_id));
