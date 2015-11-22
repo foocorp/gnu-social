@@ -1243,7 +1243,8 @@ class Profile extends Managed_DataObject
         // XXX: not really a pkey, but should work
 
         $notice = Notice::pkeyGet(array('profile_id' => $this->id,
-                                        'repeat_of' => $notice->id));
+                                        'repeat_of' => $notice->id,
+                                        'verb' => 'http://activitystrea.ms/schema/1.0/share'));
 
         return !empty($notice);
     }
