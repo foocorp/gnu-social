@@ -1244,7 +1244,7 @@ class Profile extends Managed_DataObject
 
         $notice = Notice::pkeyGet(array('profile_id' => $this->id,
                                         'repeat_of' => $notice->id,
-                                        'verb' => 'http://activitystrea.ms/schema/1.0/share'));
+                                        'verb' => ActivityVerb::SHARE));
 
         return !empty($notice);
     }
