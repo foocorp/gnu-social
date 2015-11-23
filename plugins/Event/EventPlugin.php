@@ -90,6 +90,10 @@ class EventPlugin extends MicroAppPlugin
                     array('id' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'));
         $m->connect('main/event/updatetimes',
                     array('action' => 'timelist'));
+
+        $m->connect(':nickname/events',
+                    array('action' => 'events'),
+                    array('nickname' => Nickname::DISPLAY_FMT));
         return true;
     }
 
@@ -515,5 +519,15 @@ class EventPlugin extends MicroAppPlugin
         $out->elementStart('div', 'rsvp');
         $out->raw($rsvp->asHTML());
         $out->elementEnd('div');
+    }
+
+    function onEndPersonalGroupNav(Menu $menu, Profile $target, Profile $scoped=null)
+    {
+        $menu->menuItem(common_local_url('events', array('nickname' => $target->getNickname())),
+                          // TRANS: Menu item in sample plugin.
+                          _m('Happenings'),
+                          // TRANS: Menu item title in sample plugin.
+                          _m('A list of your events'), false, 'nav_timeline_events');
+        return true;
     }
 }
