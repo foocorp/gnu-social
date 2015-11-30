@@ -17,9 +17,7 @@
  * along with this program.     If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 
 /**
@@ -47,8 +45,6 @@ class oEmbedHelper
         'revision3.com' => 'https://revision3.com/api/oembed/',
         'vimeo.com' => 'https://vimeo.com/api/oembed.json',
     );
-    protected static $functionMap = array(
-    );
 
     /**
      * Perform or fake an oEmbed lookup for the given resource.
@@ -71,88 +67,31 @@ class oEmbedHelper
      */
     public static function getObject($url, $params=array())
     {
-        $host = parse_url($url, PHP_URL_HOST);
-        if (substr($host, 0, 4) == 'www.') {
-            $host = substr($host, 4);
-        }
+        common_log(LOG_INFO, 'Checking for remote URL metadata for ' . $url);
 
-        common_log(LOG_INFO, 'Checking for oEmbed data for ' . $url);
+        // TODO: Make this class something like UrlMetadata, or use a dataobject?
+        $metadata = new stdClass();
 
-        // You can fiddle with the order of discovery -- either skipping
-        // some types or re-ordering them.
+        if (Event::handle('GetRemoteUrlMetadata', array($url, &$metadata))) {
+            // If that event didn't return anything, try downloading the body and parse it
+            $body = HTTPClient::quickGet($url);
 
-        $order = common_config('oembed', 'order');
+            // DOMDocument::loadHTML may throw warnings on unrecognized elements,
+            // and notices on unrecognized namespaces.
+            $old = error_reporting(error_reporting() & ~(E_WARNING | E_NOTICE));
+            $dom = new DOMDocument();
+            $ok = $dom->loadHTML($body);
+            unset($body);   // storing the DOM in memory is enough...
+            error_reporting($old);
 
-        foreach ($order as $method) {
-
-            switch ($method) {
-            case 'built-in':
-                common_log(LOG_INFO, 'Considering built-in oEmbed methods...');
-                // Blacklist: systems with no oEmbed API of their own, which are
-                // either missing from or broken on noembed.com's proxy.
-                // we know how to look data up in another way...
-                if (array_key_exists($host, self::$functionMap)) {
-                    common_log(LOG_INFO, 'We have a built-in method for ' . $host);
-                    $func = self::$functionMap[$host];
-                    return call_user_func($func, $url, $params);
-                }
-                break;
-            case 'well-known':
-                common_log(LOG_INFO, 'Considering well-known oEmbed endpoints...');
-                // Whitelist: known API endpoints for sites that don't provide discovery...
-                if (array_key_exists($host, self::$apiMap)) {
-                    $api = self::$apiMap[$host];
-                    common_log(LOG_INFO, 'Using well-known endpoint "' . $api . '" for "' . $host . '"');
-                    break 2;
-                }
-                break;
-            case 'discovery':
-                try {
-                    common_log(LOG_INFO, 'Trying to discover an oEmbed endpoint using link headers.');
-                    $api = self::discover($url);
-                    common_log(LOG_INFO, 'Found API endpoint ' . $api . ' for URL ' . $url);
-                    break 2;
-                } catch (Exception $e) {
-                    common_log(LOG_INFO, 'Could not find an oEmbed endpoint using link headers.');
-                    // Just ignore it!
-                }
-                break;
-            case 'service':
-                $api = common_config('oembed', 'endpoint');
-                common_log(LOG_INFO, 'Using service API endpoint ' . $api);
-                break;
+            if (!$ok) {
+                throw new oEmbedHelper_BadHtmlException();
             }
+
+            Event::handle('GetRemoteUrlMetadataFromDom', array($url, $dom, &$metadata));
         }
 
-        if (empty($api)) {
-            // TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
-            throw new ServerException(_('No oEmbed API endpoint available.'));
-        }
-
-        return self::getObjectFrom($api, $url, $params);
-    }
-
-    /**
-     * Perform basic discovery.
-     * @return string
-     */
-    static function discover($url)
-    {
-        // @fixme ideally skip this for non-HTML stuff!
-        $body = HTTPClient::quickGet($url);
-
-        // DOMDocument::loadHTML may throw warnings on unrecognized elements,
-        // and notices on unrecognized namespaces.
-        $old = error_reporting(error_reporting() & ~(E_WARNING | E_NOTICE));
-        $dom = new DOMDocument();
-        $ok = $dom->loadHTML($body);
-        error_reporting($old);
-
-        if (!$ok) {
-            throw new oEmbedHelper_BadHtmlException();
-        }
-
-        return self::discoverFromHTML($url, $dom);
+        return self::normalize($metadata);
     }
 
     /**
@@ -162,7 +101,7 @@ class oEmbedHelper
      * @param string $body HTML body text
      * @return mixed string with URL or false if no target found
      */
-    static function discoverFromHTML($url, DOMDocument $dom)
+    static function oEmbedEndpointFromHTML(DOMDocument $dom)
     {
         // Ok... now on to the links!
         $feeds = array(
@@ -207,16 +146,19 @@ class oEmbedHelper
      * @param array $params
      * @return object
      */
-    static function getObjectFrom($api, $url, $params=array())
+    static function getOembedFrom($api, $url, $params=array())
     {
+        if (empty($api)) {
+            // TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
+            throw new ServerException(_('No oEmbed API endpoint available.'));
+        }
         $params['url'] = $url;
         $params['format'] = 'json';
         $key=common_config('oembed','apikey');
         if(isset($key)) {
             $params['key'] = common_config('oembed','apikey');
         }
-        $data = self::json($api, $params);
-        return self::normalize($data);
+        return HTTPClient::quickGetJson($api, $params);
     }
 
     /**
@@ -225,14 +167,11 @@ class oEmbedHelper
      * @param object $orig
      * @return object
      */
-    static function normalize($orig)
+    static function normalize(stdClass $data)
     {
-        $data = clone($orig);
-
         if (empty($data->type)) {
             throw new Exception('Invalid oEmbed data: no type field.');
         }
-
         if ($data->type == 'image') {
             // YFrog does this.
             $data->type = 'photo';
@@ -247,19 +186,6 @@ class oEmbedHelper
         }
 
         return $data;
-    }
-
-    /**
-     * Fetch some URL and return JSON data.
-     *
-     * @param string $url
-     * @param array $params query-string params
-     * @return object
-     */
-    static protected function json($url, $params=array())
-    {
-        $data = HTTPClient::quickGet($url, null, $params);
-        return json_decode($data);
     }
 }
 

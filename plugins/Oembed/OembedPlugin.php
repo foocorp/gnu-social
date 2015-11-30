@@ -35,6 +35,24 @@ class OembedPlugin extends Plugin
         $m->connect('main/oembed', array('action' => 'oembed'));
     }
 
+    public function onGetRemoteUrlMetadataFromDom($url, DOMDocument $dom, stdClass &$metadata)
+    {
+        try {
+            common_log(LOG_INFO, 'Trying to discover an oEmbed endpoint using link headers.');
+            $api = oEmbedHelper::oEmbedEndpointFromHTML($dom);
+            common_log(LOG_INFO, 'Found API endpoint ' . $api . ' for URL ' . $url);
+            $params = array(
+                'maxwidth' => common_config('thumbnail', 'width'),
+                'maxheight' => common_config('thumbnail', 'height'),
+            );
+            $metadata = oEmbedHelper::getOembedFrom($api, $url, $params);
+
+        } catch (Exception $e) {
+            common_log(LOG_INFO, 'Could not find an oEmbed endpoint using link headers.');
+            // Just ignore it!
+        }
+    }
+
     public function onEndShowHeadElements(Action $action)
     {
         switch ($action->getActionName()) {

@@ -68,12 +68,8 @@ class File_oembed extends Managed_DataObject
     }
 
     static function _getOembed($url) {
-        $parameters = array(
-            'maxwidth' => common_config('thumbnail', 'width'),
-            'maxheight' => common_config('thumbnail', 'height'),
-        );
         try {
-            return oEmbedHelper::getObject($url, $parameters);
+            return oEmbedHelper::getObject($url);
         } catch (Exception $e) {
             common_log(LOG_INFO, "Error during oembed lookup for $url - " . $e->getMessage());
             return false;
