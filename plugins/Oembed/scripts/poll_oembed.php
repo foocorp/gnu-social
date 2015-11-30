@@ -23,7 +23,7 @@ if (!have_option('u', 'url')) {
 
 $url = get_option_value('u', 'url');
 
-print "Contacting URL";
+print "Contacting URL\n";
 
 $oEmbed = oEmbedHelper::getObject($url);
 var_dump($oEmbed);

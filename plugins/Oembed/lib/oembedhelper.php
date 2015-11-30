@@ -139,19 +139,8 @@ class oEmbedHelper
     static function discover($url)
     {
         // @fixme ideally skip this for non-HTML stuff!
-        $body = self::http($url);
-        return self::discoverFromHTML($url, $body);
-    }
+        $body = HTTPClient::quickGet($url);
 
-    /**
-     * Partially ripped from OStatus' FeedDiscovery class.
-     *
-     * @param string $url source URL, used to resolve relative links
-     * @param string $body HTML body text
-     * @return mixed string with URL or false if no target found
-     */
-    static function discoverFromHTML($url, $body)
-    {
         // DOMDocument::loadHTML may throw warnings on unrecognized elements,
         // and notices on unrecognized namespaces.
         $old = error_reporting(error_reporting() & ~(E_WARNING | E_NOTICE));
@@ -163,6 +152,18 @@ class oEmbedHelper
             throw new oEmbedHelper_BadHtmlException();
         }
 
+        return self::discoverFromHTML($url, $dom);
+    }
+
+    /**
+     * Partially ripped from OStatus' FeedDiscovery class.
+     *
+     * @param string $url source URL, used to resolve relative links
+     * @param string $body HTML body text
+     * @return mixed string with URL or false if no target found
+     */
+    static function discoverFromHTML($url, DOMDocument $dom)
+    {
         // Ok... now on to the links!
         $feeds = array(
             'application/json+oembed' => false,
@@ -257,33 +258,8 @@ class oEmbedHelper
      */
     static protected function json($url, $params=array())
     {
-        $data = self::http($url, $params);
+        $data = HTTPClient::quickGet($url, null, $params);
         return json_decode($data);
-    }
-
-    /**
-     * Hit some web API and return data on success.
-     * @param string $url
-     * @param array $params
-     * @return string
-     */
-    static protected function http($url, $params=array())
-    {
-        $client = HTTPClient::start();
-        if ($params) {
-            $query = http_build_query($params, null, '&');
-            if (strpos($url, '?') === false) {
-                $url .= '?' . $query;
-            } else {
-                $url .= '&' . $query;
-            }
-        }
-        $response = $client->get($url);
-        if ($response->isOk()) {
-            return $response->getBody();
-        } else {
-            throw new Exception('Bad HTTP response code: ' . $response->getStatus());
-        }
     }
 }
 
