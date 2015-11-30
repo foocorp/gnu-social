@@ -200,6 +200,16 @@ class HTTPClient extends HTTP_Request2
         return $response->getBody();
     }
 
+    public static function quickGetJson($url, $params=array())
+    {
+        $data = json_decode(self::quickGet($url, null, $params));
+        if (is_null($data)) {
+            common_debug('Could not decode JSON data from URL: '.$url);
+            throw new ServerException('Could not decode JSON data from URL');
+        }
+        return $data;
+    }
+
     /**
      * Convenience function to run a GET request.
      *
