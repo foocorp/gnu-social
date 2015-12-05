@@ -141,10 +141,13 @@ class AutocompleteAction extends Action
         $results = array();
         foreach($this->profiles as $profile){
             $avatarUrl = $profile->avatarUrl(AVATAR_MINI_SIZE);
+            $acct = $profile->getAcctUri();
+            $identifier = split(':', $profile->getAcctUri(), 2)[1];
             $results[] = array(
-                'value' => '@'.$profile->nickname,
-                'nickname' => $profile->nickname,
-                'label'=> $profile->getFancyName(),
+                'value' => '@'.$identifier,
+                'nickname' => $profile->getNickname(),
+                'acct_uri' => $acct,
+                'label'=> "${identifier} (".$profile->getFullname().")",
                 'avatar' => $avatarUrl,
                 'type' => 'user'
             );
@@ -156,10 +159,13 @@ class AutocompleteAction extends Action
             } else {
                 $avatarUrl = User_group::defaultLogo(AVATAR_MINI_SIZE);
             }
+            $acct = $profile->getAcctUri();
+            $identifier = split(':', $profile->getAcctUri(), 2)[1];
             $results[] = array(
-                'value' => '!'.$group->nickname,
-                'nickname' => $group->nickname,
-                'label'=> $group->getFancyName(),
+                'value' => '!'.$group->getNickname(),
+                'nickname' => $group->getNickname(),
+                'acct_uri' => $acct,
+                'label'=> "${identifier} (".$group->getFullname().")",
                 'avatar' => $avatarUrl,
                 'type' => 'group');
         }
