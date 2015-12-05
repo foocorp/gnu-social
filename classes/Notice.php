@@ -814,7 +814,7 @@ class Notice extends Managed_DataObject
         // Use the local user's shortening preferences, if applicable.
         $stored->rendered = $actor->isLocal()
                                 ? $actor->shortenLinks($act->content)
-                                : $act->content;
+                                : common_purify($act->content);
         $stored->content = common_strip_html($stored->rendered);
 
         // Maybe a missing act-time should be fatal if the actor is not local?
