@@ -877,7 +877,7 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
         '(?:'.
             '(?:'. //Known protocols
                 '(?:'.
-                    '(?:(?:https?|ftps?|mms|rtsp|gopher|news|nntp|telnet|wais|file|prospero|webcal|irc)://)'.
+                    '(?:(?:https?|ftps?|mms|rtsp|gopher|news|nntp|telnet|wais|file|prospero|webcal|ircs?)://)'.
                     '|'.
                     '(?:(?:mailto|aim|tel|xmpp):)'.
                 ')'.
