@@ -648,7 +648,7 @@ function common_linkify_mentions($text, Notice $notice)
 
         $linkText = common_linkify_mention($mention);
 
-        $text = substr_replace($text, $linkText, $position, mb_strlen($mention['text']));
+        $text = substr_replace($text, $linkText, $position, $mention['length']);
     }
 
     return $text;
@@ -765,6 +765,7 @@ function common_find_mentions($text, Notice $notice)
                                  'type' => 'mention',
                                  'text' => $match[0],
                                  'position' => $match[1],
+                                 'length' => mb_strlen($match[0]),
                                  'url' => $url);
 
                 if (!empty($mentioned->fullname)) {
@@ -795,6 +796,7 @@ function common_find_mentions($text, Notice $notice)
                                 'type'      => 'list',
                                 'text' => $hmatch[0],
                                 'position' => $hmatch[1],
+                                'length' => mb_strlen($hmatch[0]),
                                 'url' => $url);
         }
 
@@ -814,6 +816,7 @@ function common_find_mentions($text, Notice $notice)
                                 'type'      => 'group',
                                 'text'      => $hmatch[0],
                                 'position'  => $hmatch[1],
+                                'length'    => mb_strlen($hmatch[0]),
                                 'url'       => $group->permalink(),
                                 'title'     => $group->getFancyName());
         }
