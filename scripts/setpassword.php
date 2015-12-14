@@ -50,7 +50,7 @@ if (!$user) {
 
 $original = clone($user);
 
-$user->password = common_munge_password($password, $user->id);
+$user->password = common_munge_password($password, $user->getProfile());
 
 if (!$user->update($original)) {
     print "Error updating user '$nickname'.\n";
