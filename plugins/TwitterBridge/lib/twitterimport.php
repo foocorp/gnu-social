@@ -221,7 +221,7 @@ class TwitterImport
      */
     function makeStatusURI($username, $id)
     {
-        return 'http://twitter.com/#!/'
+        return 'https://twitter.com/'
           . $username
           . '/status/'
           . $id;
@@ -245,7 +245,10 @@ class TwitterImport
         $profile->limit(1);
 
         if (!$profile->find(true)) {
-            throw new NoResultException($profile);
+            $profile->profileurl = str_replace('https://', 'http://', $profileurl);
+            if (!$profile->find(true)) {
+                throw new NoResultException($profile);
+            }
         }
         return $profile;
     }
@@ -253,7 +256,7 @@ class TwitterImport
     protected function ensureProfile($twuser)
     {
         // check to see if there's already a profile for this user
-        $profileurl = 'http://twitter.com/' . $twuser->screen_name;
+        $profileurl = 'https://twitter.com/' . $twuser->screen_name;
         try {
             $profile = $this->getProfileByUrl($twuser->screen_name, $profileurl);
             $this->updateAvatar($twuser, $profile);
@@ -539,9 +542,9 @@ class TwitterImport
     static function atLink($screenName, $fullName, $orig)
     {
         if (!empty($fullName)) {
-            return "<a href='http://twitter.com/#!/{$screenName}' title='{$fullName}'>{$orig}</a>";
+            return "<a href='https://twitter.com/{$screenName}' title='{$fullName}'>{$orig}</a>";
         } else {
-            return "<a href='http://twitter.com/#!/{$screenName}'>{$orig}</a>";
+            return "<a href='https://twitter.com/{$screenName}'>{$orig}</a>";
         }
     }
 
