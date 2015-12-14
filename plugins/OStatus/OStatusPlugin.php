@@ -444,6 +444,17 @@ class OStatusPlugin extends Plugin
         return null;
     }
 
+    function onEndProfileSettingsActions($out) {
+        $siteName = common_config('site', 'name');
+        $js = 'navigator.registerContentHandler("application/vnd.mozilla.maybe.feed", "'.addslashes(common_local_url('ostatussub', null, array('profile' => '%s'))).'", "'.addslashes($siteName).'")';
+        $out->elementStart('li');
+        $out->element('a',
+                      array('href' => 'javascript:'.$js),
+                      // TRANS: Option in profile settings to add this instance to Firefox as a feedreader
+                      _('Add to Firefox as feedreader'));
+        $out->elementEnd('li');
+    }
+
     /**
      * Make sure necessary tables are filled out.
      */

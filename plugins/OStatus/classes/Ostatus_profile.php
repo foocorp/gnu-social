@@ -635,14 +635,21 @@ class Ostatus_profile extends Managed_DataObject
             }
         }
 
-        // Try to get some hCard data
+        if (in_array(
+            preg_replace('/\s*;.*$/', '', $response->getHeader('Content-Type')),
+            array('application/rss+xml', 'application/atom+xml', 'application/xml', 'text/xml'))
+        ) {
+            $hints['feedurl'] = $response->getUrl();
+        } else {
+            // Try to get some hCard data
 
-        $body = $response->getBody();
+            $body = $response->getBody();
 
-        $hcardHints = DiscoveryHints::hcardHints($body, $finalUrl);
+            $hcardHints = DiscoveryHints::hcardHints($body, $finalUrl);
 
-        if (!empty($hcardHints)) {
-            $hints = array_merge($hints, $hcardHints);
+            if (!empty($hcardHints)) {
+                $hints = array_merge($hints, $hcardHints);
+            }
         }
 
         // Check if they've got an LRDD header
