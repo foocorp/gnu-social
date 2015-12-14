@@ -220,24 +220,19 @@ class User_group extends Managed_DataObject
      */
     function getRequests($offset=0, $limit=null)
     {
-        $qry =
-          'SELECT profile.* ' .
-          'FROM profile JOIN group_join_queue '.
-          'ON profile.id = group_join_queue.profile_id ' .
-          'WHERE group_join_queue.group_id = %d ' .
-          'ORDER BY group_join_queue.created DESC ';
-
-        if ($limit != null) {
-            if (common_config('db','type') == 'pgsql') {
-                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-            } else {
-                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
-            }
-        }
+        $rq = new Group_join_queue();
+        $rq->group_id = $this->id;
 
         $members = new Profile();
 
-        $members->query(sprintf($qry, $this->id));
+        $members->joinAdd(['id', $rq, 'profile_id']);
+
+        if ($limit != null) {
+            $members->limit($offset, $limit);
+        }
+
+        $members->find();
+
         return $members;
     }
 
