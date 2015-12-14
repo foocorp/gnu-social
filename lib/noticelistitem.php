@@ -537,6 +537,19 @@ class NoticeListItem extends Widget
         if (!$this->notice->isLocal()) {
             $class .= ' external';
         }
+
+        try {
+            if($this->repeat) {
+                $this->out->element('a',
+                            array('href' => $this->repeat->getUrl(),
+                                  'class' => 'u-url'),
+                            '');
+                $class = str_replace('u-url', 'u-repost-of', $class);
+            }
+        } catch (InvalidUrlException $e) {
+            // no permalink available
+        }
+
         try {
             $this->out->element('a',
                         array('href' => $this->notice->getUrl(true),

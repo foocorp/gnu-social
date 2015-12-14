@@ -32,6 +32,7 @@ if (!defined('STATUSNET')) {
 }
 
 require_once('Auth/Yadis/Yadis.php');
+require_once(__DIR__ . '/lib/util.php');
 
 define('LINKBACKPLUGIN_VERSION', '0.1');
 
@@ -306,6 +307,19 @@ class LinkbackPlugin extends Plugin
         }
     }
 
+
+    public function onRouterInitialized(URLMapper $m)
+    {
+        $m->connect('main/linkback/webmention', array('action' => 'webmention'));
+        $m->connect('main/linkback/pingback', array('action' => 'pingback'));
+    }
+
+    public function onStartShowHTML($action)
+    {
+        header('Link: <' . common_local_url('webmention') . '>; rel="webmention"', false);
+        header('X-Pingback: ' . common_local_url('pingback'));
+    }
+
     public function version()
     {
         return LINKBACKPLUGIN_VERSION;
@@ -343,5 +357,35 @@ class LinkbackPlugin extends Plugin
                           _m('Opt-out of sending linkbacks.'),
                           $action_name === 'linkbacksettings');
         return true;
+    }
+
+    function onStartNoticeSourceLink($notice, &$name, &$url, &$title)
+    {
+        // If we don't handle this, keep the event handler going
+        if (!in_array($notice->source, array('linkback'))) {
+            return true;
+        }
+
+        try {
+            $url = $notice->getUrl();
+            // If getUrl() throws exception, $url is never set
+
+            $bits = parse_url($url);
+            $domain = $bits['host'];
+            if (substr($domain, 0, 4) == 'www.') {
+                $name = substr($domain, 4);
+            } else {
+                $name = $domain;
+            }
+
+            // TRANS: Title. %s is a domain name.
+            $title = sprintf(_m('Sent from %s via Linkback'), $domain);
+
+            // Abort event handler, we have a name and URL!
+            return false;
+        } catch (InvalidUrlException $e) {
+            // This just means we don't have the notice source data
+            return true;
+        }
     }
 }
