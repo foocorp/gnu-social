@@ -297,10 +297,13 @@ class OStatusPlugin extends Plugin
                     $oprofile = Ostatus_profile::ensureWebfinger($target);
                     if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
                         $profile = $oprofile->localProfile();
+                        $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
+                                $profile->nickname : $target;
                         $matches[$pos] = array('mentioned' => array($profile),
                                                'type' => 'mention',
-                                               'text' => $target,
+                                               'text' => $text,
                                                'position' => $pos,
+                                               'length' => mb_strlen($target),
                                                'url' => $profile->getUrl());
                     }
                 } catch (Exception $e) {
@@ -310,7 +313,7 @@ class OStatusPlugin extends Plugin
         }
 
         // Profile matches: @example.com/mublog/user
-        if (preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+(?:\w+\-\w+)*\.\w+(?:/\w+)+)!',
+        if (preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+(?:\w+\-\w+)*\.\w+(?:/\w+)*)!',
                        $text,
                        $wmatches,
                        PREG_OFFSET_CAPTURE)) {
@@ -324,10 +327,13 @@ class OStatusPlugin extends Plugin
                         $oprofile = Ostatus_profile::ensureProfileURL($url);
                         if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
                             $profile = $oprofile->localProfile();
+                            $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
+                                    $profile->nickname : $target;
                             $matches[$pos] = array('mentioned' => array($profile),
                                                    'type' => 'mention',
-                                                   'text' => $target,
+                                                   'text' => $text,
                                                    'position' => $pos,
+                                                   'length' => mb_strlen($target),
                                                    'url' => $profile->getUrl());
                             break;
                         }
