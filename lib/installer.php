@@ -96,8 +96,8 @@ abstract class Installer
             }
         }
 
-        if (version_compare(PHP_VERSION, '5.3.2', '<')) {
-            $this->warning('Require PHP version 5.3.2 or greater.');
+        if (version_compare(PHP_VERSION, '5.5.0', '<')) {
+            $this->warning('Require PHP version 5.5.0 or greater.');
             $pass = false;
         }
 
