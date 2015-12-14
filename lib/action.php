@@ -1490,7 +1490,7 @@ class Action extends HTMLOutputter // lawsuit
             }
             $this->initDocument('json');
             $error_array = array('error' => $msg, 'request' => $_SERVER['REQUEST_URI']);
-            $this->text(json_encode($error_array));
+            print(json_encode($error_array));
             $this->endDocument('json');
             break;
         case 'text':
