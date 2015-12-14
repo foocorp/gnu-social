@@ -151,7 +151,7 @@ class RsdAction extends Action
             $this->elementStart('api', $apiAttrs);
             $this->elementStart('settings');
             $this->element('docs', null,
-                           'http://status.net/wiki/TwitterCompatibleAPI');
+                           common_local_url('doc', array('title' => 'api')));
             $this->element('setting', array('name' => 'OAuth'),
                            'true');
             $this->elementEnd('settings');

@@ -2,5 +2,12 @@
 <!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
 <!-- https://creativecommons.org/licenses/by/3.0/ for details. -->
 
-%%site.name%% provides an API that applications can use to interact with it.
-More information about this API can be found on the [StatusNet Wiki](http://status.net/wiki/API).
+%%site.name%% provides APIs that applications can use to interact with it:
+
+* [AtomPub](atompub)
+* [Twitter-compatible API](twitterapi)
+
+## API discovery
+
+The base URLs for the APIs can be obtained using [Really Simple Discovery](https://en.wikipedia.org/wiki/Really_Simple_Discovery).
+
