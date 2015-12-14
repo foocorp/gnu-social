@@ -281,7 +281,8 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         if ($status['repeated'] === true) {
             // Qvitter API wants the "repeated_id" value set too.
             $repeated = Notice::pkeyGet(array('profile_id' => $scoped->getID(),
-                                              'repeat_of' => $notice->getID()));
+                                              'repeat_of' => $notice->getID(),
+                                              'verb' => ActivityVerb::SHARE));
             $status['repeated_id'] = $repeated->getID();
         }
     }
