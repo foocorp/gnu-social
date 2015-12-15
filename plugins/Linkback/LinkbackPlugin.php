@@ -141,13 +141,16 @@ class LinkbackPlugin extends Plugin
     // Based on https://github.com/indieweb/mention-client-php
     // which is licensed Apache 2.0
     function getWebmention($result) {
-        // XXX: the fetcher only gives back one of each header, so this may fail on multiple Link headers
-        if(preg_match('~<((?:https?://)?[^>]+)>; rel="webmention"~', $result->headers['Link'], $match)) {
-            return $match[1];
-        } elseif(preg_match('~<((?:https?://)?[^>]+)>; rel="http://webmention.org/?"~', $result->headers['Link'], $match)) {
-            return $match[1];
+        if (isset($result->headers['Link'])) {
+            // XXX: the fetcher only gives back one of each header, so this may fail on multiple Link headers
+            if(preg_match('~<((?:https?://)?[^>]+)>; rel="webmention"~', $result->headers['Link'], $match)) {
+                return $match[1];
+            } elseif(preg_match('~<((?:https?://)?[^>]+)>; rel="http://webmention.org/?"~', $result->headers['Link'], $match)) {
+                return $match[1];
+            }
         }
 
+        // FIXME: Do proper DOM traversal
         if(preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="[^" ]* ?webmention ?[^" ]*"[ ]*\/?>/i', $result->body, $match)
            || preg_match('/<(?:link|a)[ ]+rel="[^" ]* ?webmention ?[^" ]*"[ ]+href="([^"]+)"[ ]*\/?>/i', $result->body, $match)) {
             return $match[1];
