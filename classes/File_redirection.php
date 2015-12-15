@@ -196,11 +196,11 @@ class File_redirection extends Managed_DataObject
             $redir->httpcode = $redir_info['code'];
             $redir->redirections = intval($redir_info['redirects']);
             $redir->file = new File();
-            $redir->file->url = $redir_info ? $redir_info['url'] : $in_url;
+            $redir->file->url = $redir_info['url'];
             $redir->file->mimetype = $redir_info['type'];
-            $redir->file->size = $redir_info['size'];
-            $redir->file->date = $redir_info['time'];
-            if ($redir_info['protected']) {
+            $redir->file->size = isset($redir_info['size']) ? $redir_info['size'] : null;
+            $redir->file->date = isset($redir_info['time']) ? $redir_info['time'] : null;
+            if (isset($redir_info['protected']) && !empty($redir_info['protected'])) {
                 $redir->file->protected = true;
             }
         }
