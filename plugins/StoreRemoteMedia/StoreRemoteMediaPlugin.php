@@ -78,10 +78,10 @@ class StoreRemoteMediaPlugin extends Plugin
 
         // First we download the file to memory and test whether it's actually an image file
         $imgData = HTTPClient::quickGet($file->getUrl());
-        common_debug(sprintf('Downloading remote file id==%u with URL: %s', $file->id, $file->url));
+        common_debug(sprintf('Downloading remote file id==%u with URL: %s', $file->id, $file->getUrl()));
         $info = @getimagesizefromstring($imgData);
         if ($info === false) {
-            throw new UnsupportedMediaException(_('Remote file format was not identified as an image.'), $url);
+            throw new UnsupportedMediaException(_('Remote file format was not identified as an image.'), $file->getUrl());
         } elseif (!$info[0] || !$info[1]) {
             throw new UnsupportedMediaException(_('Image file had impossible geometry (0 width or height)'));
         }
