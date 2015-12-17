@@ -91,11 +91,11 @@ class Profile_prefs extends Managed_DataObject
         }
 
         $list = array();
-        while ($entry = $prefs->fetch()) {
-            if (!isset($list[$entry->namespace])) {
-                $list[$entry->namespace] = array();
+        while ($prefs->fetch()) {
+            if (!isset($list[$prefs->namespace])) {
+                $list[$prefs->namespace] = array();
             }
-            $list[$entry->namespace][$entry->topic] = $entry->data;
+            $list[$prefs->namespace][$prefs->topic] = $prefs->data;
         }
         return $list;
     }
