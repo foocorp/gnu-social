@@ -153,6 +153,7 @@ class AutocompleteAction extends Action
             );
         }
         foreach($this->groups as $group){
+            $profile = $group->getProfile();
             // sigh.... encapsulate this upstream!
             if ($group->mini_logo) {
                 $avatarUrl = $group->mini_logo;

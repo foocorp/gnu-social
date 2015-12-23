@@ -1439,6 +1439,11 @@ class Profile extends Managed_DataObject
             $user = User::getKV('id', $this->id);
             if ($user instanceof User) {
                 $uri = $user->getUri();
+            } else {
+                $group = User_group::getKV('profile_id', $this->id);
+                if ($group instanceof User_group) {
+                    $uri = $group->getUri();
+                }
             }
 
             Event::handle('EndGetProfileUri', array($this, &$uri));
