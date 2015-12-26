@@ -49,7 +49,7 @@ class HubOutQueueHandler extends QueueHandler
             $msg = "Failed PuSH to $sub->callback for $sub->topic: " .
                    $e->getMessage();
             if ($retries > 0) {
-                common_log(LOG_ERR, "$msg; scheduling for $retries more tries");
+                common_log(LOG_INFO, "$msg; scheduling for $retries more tries");
 
                 // @fixme when we have infrastructure to schedule a retry
                 // after a delay, use it.
