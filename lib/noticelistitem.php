@@ -154,7 +154,11 @@ class NoticeListItem extends Widget
 
         if (!empty($this->notice->reply_to) || count($this->getProfileAddressees()) > 0) {
             $this->elementStart('div', array('class' => 'parents'));
-            if (!empty($this->notice->reply_to)) { $this->showParent(); }
+            try {
+                $this->showParent();
+            } catch (NoParentNoticeException $e) {
+                // no parent notice
+            }
             if ($this->addressees) { $this->showAddressees(); }
             $this->elementEnd('div');
         }
