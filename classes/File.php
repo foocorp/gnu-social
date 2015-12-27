@@ -31,10 +31,10 @@ class File extends Managed_DataObject
     public $filehash;                        // varchar(64)     indexed
     public $mimetype;                        // varchar(50)
     public $size;                            // int(4)
-    public $title;                           // varchar(191)   not 255 because utf8mb4 takes more space
+    public $title;                           // text()
     public $date;                            // int(4)
     public $protected;                       // int(4)
-    public $filename;                        // varchar(191)   not 255 because utf8mb4 takes more space
+    public $filename;                        // text()
     public $width;                           // int(4)
     public $height;                          // int(4)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -52,10 +52,10 @@ class File extends Managed_DataObject
                 'filehash' => array('type' => 'varchar', 'length' => 64, 'not null' => false, 'description' => 'sha256 of the file contents, only for locally stored files of course'),
                 'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
                 'size' => array('type' => 'int', 'description' => 'size of resource when available'),
-                'title' => array('type' => 'varchar', 'length' => 191, 'description' => 'title of resource when available'),
+                'title' => array('type' => 'text', 'description' => 'title of resource when available'),
                 'date' => array('type' => 'int', 'description' => 'date of resource according to http query'),
                 'protected' => array('type' => 'int', 'description' => 'true when URL is private (needs login)'),
-                'filename' => array('type' => 'varchar', 'length' => 191, 'description' => 'if a local file, name of the file'),
+                'filename' => array('type' => 'text', 'description' => 'if a local file, name of the file'),
                 'width' => array('type' => 'int', 'description' => 'width in pixels, if it can be described as such and data is available'),
                 'height' => array('type' => 'int', 'description' => 'height in pixels, if it can be described as such and data is available'),
 
