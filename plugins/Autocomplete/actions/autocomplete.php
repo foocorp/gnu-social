@@ -29,9 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('GNUSOCIAL') && !defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * List users for autocompletion
@@ -142,7 +140,7 @@ class AutocompleteAction extends Action
         foreach($this->profiles as $profile){
             $avatarUrl = $profile->avatarUrl(AVATAR_MINI_SIZE);
             $acct = $profile->getAcctUri();
-            $identifier = split(':', $profile->getAcctUri(), 2)[1];
+            $identifier = explode(':', $profile->getAcctUri(), 2)[1];
             $results[] = array(
                 'value' => '@'.$identifier,
                 'nickname' => $profile->getNickname(),
@@ -161,7 +159,7 @@ class AutocompleteAction extends Action
                 $avatarUrl = User_group::defaultLogo(AVATAR_MINI_SIZE);
             }
             $acct = $profile->getAcctUri();
-            $identifier = split(':', $profile->getAcctUri(), 2)[1];
+            $identifier = explode(':', $profile->getAcctUri(), 2)[1];
             $results[] = array(
                 'value' => '!'.$group->getNickname(),
                 'nickname' => $group->getNickname(),
