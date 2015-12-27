@@ -97,7 +97,7 @@ class UsersalmonAction extends SalmonAction
 
         try {
             $this->saveNotice();
-        } catch AlreadyFulfilledException($e) {
+        } catch (AlreadyFulfilledException $e) {
             return;
         }
     }
