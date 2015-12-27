@@ -133,7 +133,7 @@ abstract class Installer
         }
 
         // Check the subdirs used for file uploads
-        $fileSubdirs = array('avatar', 'background', 'file');
+        $fileSubdirs = array('avatar', 'file');
         foreach ($fileSubdirs as $fileSubdir) {
             $fileFullPath = INSTALLDIR."/$fileSubdir/";
             if (!is_writable($fileFullPath)) {
