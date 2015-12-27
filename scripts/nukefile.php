@@ -54,7 +54,7 @@ if (!have_option('y', 'yes')) {
     } catch (Exception $e) {
         $filename = '(remote file or no filename)';
     }
-    print "About to PERMANENTLY delete file ($filename) ({$file->id}). Are you sure? [y/N] ";
+    print "About to PERMANENTLY delete file ($filename) with id=={$file->id}) AND its related notices. Are you sure? [y/N] ";
     $response = fgets(STDIN);
     if (strtolower(trim($response)) != 'y') {
         print "Aborting.\n";
