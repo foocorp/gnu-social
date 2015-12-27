@@ -359,7 +359,7 @@ function initGroupMemberURI()
                 $mem->query(sprintf('update group_member set uri = "%s" '.
                                     'where profile_id = %d ' . 
                                     'and group_id = %d ',
-                                    Group_member::newURI($mem->profile_id, $mem->group_id, $mem->created),
+                                    Group_member::newUri(Profile::getByID($mem->profile_id), User_group::getByID($mem->group_id), $mem->created),
                                     $mem->profile_id,
                                     $mem->group_id));
             } catch (Exception $e) {
