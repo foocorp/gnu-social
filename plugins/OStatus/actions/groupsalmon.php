@@ -88,7 +88,11 @@ class GroupsalmonAction extends SalmonAction
             }
         }
 
-        $this->saveNotice();
+        try {
+            $this->saveNotice();
+        } catch AlreadyFulfilledException($e) {
+            return;
+        }
     }
 
     /**

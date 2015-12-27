@@ -780,7 +780,9 @@ class Notice extends Managed_DataObject
             $stored->uri = $uri;
             if ($stored->find()) {
                 common_debug('cannot create duplicate Notice URI: '.$stored->uri);
-                throw new Exception('Notice URI already exists');
+                // I _assume_ saving a Notice with a colliding URI means we're really trying to
+                // save the same notice again...
+                throw new AlreadyFulfilledException('Notice URI already exists');
             }
         }
 
