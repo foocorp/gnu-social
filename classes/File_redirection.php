@@ -262,8 +262,9 @@ class File_redirection extends Managed_DataObject
         if (!empty($short_url) && $short_url != $long_url) {
             $short_url = (string)$short_url;
             // store it
-            $file = File::getKV('url', $long_url);
-            if (!$file instanceof File) {
+            try {
+                $file = File::getByUrl($long_url);
+            } catch (NoResultException $e) {
                 // Check if the target URL is itself a redirect...
                 $redir = File_redirection::where($long_url);
                 $file = $redir->getFile();
@@ -271,12 +272,14 @@ class File_redirection extends Managed_DataObject
                     $file->saveFile();
                 }
             }
-            $file_redir = File_redirection::getKV('url', $short_url);
-            if (!$file_redir instanceof File_redirection) {
-                $file_redir = new File_redirection;
+            // Now we definitely have a File object in $file
+            try {
+                $file_redir = File_redirection::getByUrl($short_url);
+            } catch (NoResultException $e) {
+                $file_redir = new File_redirection();
                 $file_redir->urlhash = File::hashurl($short_url);
                 $file_redir->url = $short_url;
-                $file_redir->file_id = $file->id;
+                $file_redir->file_id = $file->getID();
                 $file_redir->insert();
             }
             return $short_url;
