@@ -566,8 +566,10 @@ class TwitterImport
                 $reply->modified   = $notice->created;
                 common_log(LOG_INFO, __METHOD__ . ": saving reply: notice {$notice->id} to profile {$user->id}");
                 $id = $reply->insert();
+            } catch (NoSuchUserException $e) {
+                common_log(LOG_WARNING, 'No local user found for Foreign_link with id: '.$mention->id);
             } catch (NoResultException $e) {
-                common_log(LOG_WARNING, 'No local user found for Foreign_link with local User id: '.$flink->user_id);
+                common_log(LOG_WARNING, 'No foreign link or profile found for Foreign_link with id: '.$mention->id);
             }
         }
     }
