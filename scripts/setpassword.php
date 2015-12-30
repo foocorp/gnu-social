@@ -41,21 +41,12 @@ if (mb_strlen($password) < 6) {
     exit(1);
 }
 
-$user = User::getKV('nickname', $nickname);
-
-if (!$user) {
-    print "No such user '$nickname'.\n";
+try {
+    $user = User::getByNickname($nickname);
+    $user->setPassword($password);
+} catch (NoSuchUserException $e) {
+    print $e->getMessage();
     exit(1);
 }
 
-$original = clone($user);
-
-$user->password = common_munge_password($password, $user->getProfile());
-
-if (!$user->update($original)) {
-    print "Error updating user '$nickname'.\n";
-    exit(1);
-} else {
-    print "Password for user '$nickname' updated.\n";
-    exit(0);
-}
+print "Password for user '$nickname' updated.\n";

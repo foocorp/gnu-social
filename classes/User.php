@@ -1012,6 +1012,16 @@ class User extends Managed_DataObject
         return !empty($this->password);
     }
 
+    public function setPassword($password)
+    {
+        $orig = clone($this);
+        $this->password = common_munge_password($password, $this->getProfile());
+
+        if (!$this->update($orig)) {
+            throw new ServerException("Error updating user '{$nickname}'.");
+        }
+    }
+
     public function delPref($namespace, $topic)
     {
         return $this->getProfile()->delPref($namespace, $topic);
