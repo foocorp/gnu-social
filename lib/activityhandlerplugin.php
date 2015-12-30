@@ -233,6 +233,9 @@ abstract class ActivityHandlerPlugin extends Plugin
     protected function notifyMentioned(Notice $stored, array &$mentioned_ids)
     {
         // pass through silently by default
+
+        // If we want to stop any other plugin from notifying based on this activity, return false instead.
+        return true;
     }
 
     /**
@@ -305,10 +308,7 @@ abstract class ActivityHandlerPlugin extends Plugin
             return true;
         }
 
-        $this->notifyMentioned($stored, $mentioned_ids);
-
-        // If it was _our_ notice, only we should do anything with the mentions.
-        return false;
+        return $this->notifyMentioned($stored, $mentioned_ids);
     }
 
     /**

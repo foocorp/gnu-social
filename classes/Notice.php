@@ -1732,7 +1732,6 @@ class Notice extends Managed_DataObject
     function sendReplyNotifications()
     {
         // Don't send reply notifications for repeats
-
         if ($this->isRepeat()) {
             return array();
         }
@@ -1742,9 +1741,11 @@ class Notice extends Managed_DataObject
             require_once INSTALLDIR.'/lib/mail.php';
 
             foreach ($recipientIds as $recipientId) {
-                $user = User::getKV('id', $recipientId);
-                if ($user instanceof User) {
+                try {
+                    $user = User::getByID($recipientId);
                     mail_notify_attn($user, $this);
+                } catch (NoResultException $e) {
+                    // No such user
                 }
             }
             Event::handle('EndNotifyMentioned', array($this, $recipientIds));
