@@ -424,7 +424,11 @@ class File extends Managed_DataObject
             if (self::hashurl($url) !== $this->urlhash) {
                 // For indexing purposes, in case we do a lookup on the 'url' field.
                 // also we're fixing possible changes from http to https, or paths
-                $this->updateUrl($url);
+                try {
+	                $this->updateUrl($url);
+                } catch (ServerException $e) {
+                	//
+                }      
             }
             return $url;
         }
