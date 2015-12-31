@@ -371,7 +371,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
             if (!array_key_exists($col, $vals)) {
                 continue;
             } elseif (is_null($vals[$col])) {
-                throw new ServerException("NULL values not allowed in getByPK for column '{$col}'");
+                throw new ServerException("NULL values not allowed in getByKeys for column '{$col}'");
             }
             $object->$col = $vals[$col];
         }
