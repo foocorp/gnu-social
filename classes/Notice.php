@@ -1583,7 +1583,7 @@ class Notice extends Managed_DataObject
             return;
         }
 
-        $sender = Profile::getKV($this->profile_id);
+        $sender = $this->getProfile();
 
         foreach (array_unique($uris) as $uri) {
             try {
@@ -1598,11 +1598,9 @@ class Notice extends Managed_DataObject
                 continue;
             }
 
-            $this->saveReply($profile->id);
-            self::blow('reply:stream:%d', $profile->id);
+            $this->saveReply($profile->getID());
+            self::blow('reply:stream:%d', $profile->getID());
         }
-
-        return;
     }
 
     /**
