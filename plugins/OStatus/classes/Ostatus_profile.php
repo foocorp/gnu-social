@@ -444,10 +444,7 @@ class Ostatus_profile extends Managed_DataObject
             return;
         }
 
-        for ($i = 0; $i < $entries->length; $i++) {
-            $entry = $entries->item($i);
-            $this->processEntry($entry, $feed, $source);
-        }
+        $this->processEntries($entries, $feed, $source);
     }
 
     public function processRssFeed(DOMElement $rss, $source)
@@ -465,9 +462,18 @@ class Ostatus_profile extends Managed_DataObject
 
         $items = $channel->getElementsByTagName('item');
 
-        for ($i = 0; $i < $items->length; $i++) {
-            $item = $items->item($i);
-            $this->processEntry($item, $channel, $source);
+        $this->processEntries($items, $channel, $source);
+    }
+
+    public function processEntries(DOMNodeList $entries, DOMElement $feed, $source)
+    {
+        for ($i = 0; $i < $entries->length; $i++) {
+            $entry = $entries->item($i);
+            try {
+                $this->processEntry($entry, $feed, $source);
+            } catch (AlreadyFulfilledException $e) {
+                common_debug('We already had this entry: '.$e->getMessage());
+            }
         }
     }
 
@@ -480,14 +486,14 @@ class Ostatus_profile extends Managed_DataObject
      *
      * @return Notice Notice representing the new (or existing) activity
      */
-    public function processEntry($entry, $feed, $source)
+    public function processEntry(DOMElement $entry, DOMElement $feed, $source)
     {
         $activity = new Activity($entry, $feed);
         return $this->processActivity($activity, $source);
     }
 
     // TODO: Make this throw an exception
-    public function processActivity($activity, $source)
+    public function processActivity(Activity $activity, $source)
     {
         $notice = null;
 
