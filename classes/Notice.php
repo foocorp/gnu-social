@@ -685,7 +685,7 @@ class Notice extends Managed_DataObject
         // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
         // the activityverb is a POST (since stuff like repeat, favorite etc.
         // reasonably handle notifications themselves.
-        if (ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST))) {
+        if (ActivityUtils::compareVerbs($notice->verb, array(ActivityVerb::POST))) {
             if (isset($replies)) {
                 $notice->saveKnownReplies($replies);
             } else {
