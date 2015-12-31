@@ -682,9 +682,6 @@ class Notice extends Managed_DataObject
             }
         }
 
-        // Clear the cache for subscribed users, so they'll update at next request
-        // XXX: someone clever could prepend instead of clearing the cache
-
         // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
         // the activityverb is a POST (since stuff like repeat, favorite etc.
         // reasonably handle notifications themselves.
@@ -1044,8 +1041,10 @@ class Notice extends Managed_DataObject
             $this->blowStream('networkpublic');
         }
 
-        self::blow('notice:list-ids:conversation:%s', $this->conversation);
-        self::blow('conversation:notice_count:%d', $this->conversation);
+        if ($this->conversation) {
+            self::blow('notice:list-ids:conversation:%s', $this->conversation);
+            self::blow('conversation:notice_count:%d', $this->conversation);
+        }
 
         if ($this->isRepeat()) {
             // XXX: we should probably only use one of these
