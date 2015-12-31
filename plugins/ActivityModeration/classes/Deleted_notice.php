@@ -96,7 +96,7 @@ class Deleted_notice extends Managed_DataObject
     static public function fromStored(Notice $stored)
     {
         $class = get_called_class();
-        return self::getByPK(array('uri' => $stored->getUri()));
+        return self::getByKeys( ['uri' => $stored->getUri()] );
     }
 
     // The one who deleted the notice, not the notice's author
@@ -206,4 +206,14 @@ class Deleted_notice extends Managed_DataObject
         print "Resuming core schema upgrade...";
     }
 
+    function insert()
+    {
+        $result = parent::insert();
+
+        if ($result === false) {
+            common_log_db_error($this, 'INSERT', __FILE__);
+            // TRANS: Server exception thrown when a stored object entry cannot be saved.
+            throw new ServerException('Could not save Deleted_notice');
+        }
+    }
 }

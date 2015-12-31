@@ -149,22 +149,20 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         common_debug('DELETENOTICE: Replacement notice has been prepared: '.var_export($stored, true));
 
         // Let's see if this has been deleted already.
-        $deleted = Deleted_notice::getKV('uri', $stored->getUri());
-        if ($deleted instanceof Deleted_notice) {
+        try {
+            $deleted = Deleted_notice::getByKeys( ['uri' => $stored->getUri()] );
             return $deleted;
-        }
+        } catch (NoResultException $e) {
+            $deleted = new Deleted_notice();
 
-        $deleted = new Deleted_notice();
+            $deleted->id            = $target->getID();
+            $deleted->profile_id    = $actor->getID();
+            $deleted->uri           = $stored->getUri();
+            $deleted->act_created   = $stored->created;
+            $deleted->created       = common_sql_now();
 
-        $deleted->id            = $target->getID();
-        $deleted->profile_id    = $actor->getID();
-        $deleted->uri           = $stored->getUri();
-        $deleted->act_created   = $stored->created;
-        $deleted->created       = common_sql_now();
-
-        $result = $deleted->insert();
-        if ($result === false) {
-            throw new ServerException('Could not insert Deleted_notice entry into database!');
+            // throws exception on error
+            $result = $deleted->insert();
         }
 
         // Now we delete the original notice, leaving the id and uri free.
