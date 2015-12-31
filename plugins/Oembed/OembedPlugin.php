@@ -77,6 +77,9 @@ class OembedPlugin extends Plugin
                 'title'=>'oEmbed'),null);
             break;
         case 'shownotice':
+            if (!$action->notice->isLocal()) {
+                break;
+            }
             try {
                 $action->element('link',array('rel'=>'alternate',
                     'type'=>'application/json+oembed',
