@@ -28,7 +28,7 @@ class RawEventsNoticeStream extends NoticeStream
             $qry .= 'AND notice.id <= ' . $max_id . ' ';
         }
 
-        // NOTE: we sort by bookmark time, not by notice time!
+        // NOTE: we sort by event time, not by notice time!
         $qry .= 'ORDER BY created DESC ';
         if (!is_null($offset)) {
             $qry .= "LIMIT $limit OFFSET $offset";
@@ -53,9 +53,9 @@ class EventsNoticeStream extends ScopingNoticeStream
         $stream = new RawEventsNoticeStream($target);
 
         if ($target->sameAs($scoped)) {
-            $key = 'bookmark:ids_by_user_own:'.$target->getID();
+            $key = 'happening:ids_for_user_own:'.$target->getID();
         } else {
-            $key = 'bookmark:ids_by_user:'.$target->getID();
+            $key = 'happening:ids_for_user:'.$target->getID();
         }
 
         parent::__construct(new CachingNoticeStream($stream, $key), $scoped);
