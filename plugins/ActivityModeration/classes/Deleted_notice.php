@@ -29,7 +29,6 @@ class Deleted_notice extends Managed_DataObject
     public $id;                              // int(4)  primary_key not_null
     public $profile_id;                      // int(4)   not_null
     public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
-    public $act_uri;                         // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $act_created;                     // datetime()   not_null
     public $created;                         // datetime()   not_null
 
@@ -40,14 +39,12 @@ class Deleted_notice extends Managed_DataObject
                 'id' => array('type' => 'int', 'not null' => true, 'description' => 'notice ID'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'profile that deleted the notice'),
                 'uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI of the deleted notice'),
-                'act_uri' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI of the delete activity, may exist in notice table'),
                 'act_created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the notice record was created'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the notice record was deleted'),
             ),
             'primary key' => array('id'),
             'unique keys' => array(
                 'deleted_notice_uri_key' => array('uri'),
-                'deleted_notice_act_uri_key' => array('act_uri'),
             ),
             'indexes' => array(
                 'deleted_notice_profile_id_idx' => array('profile_id'),
@@ -176,41 +173,34 @@ class Deleted_notice extends Managed_DataObject
         $schema = Schema::get();
         $schemadef = $schema->getTableDef($table);
 
-        // 2015-10-03 We change the meaning of the 'uri' field and move its 
-        // content to the 'act_uri' for the deleted activity. act_created is
-        // added too.
-        if (isset($schemadef['fields']['act_uri'])) {
-            // We already have the act_uri field, so no need to migrate to it.
+        // 2015-12-31 If we have the act_uri field we want to remove it
+        // since there's no difference in delete verbs and the original URI
+        // but the act_created field stays.
+        if (!isset($schemadef['fields']['act_uri']) && isset($schemadef['fields']['act_created'])) {
+            // We don't have an act_uri field, and we also have act_created, so no need to migrate.
             return;
+        } elseif (isset($schemadef['fields']['act_uri']) && !isset($schemadef['fields']['act_created'])) {
+            throw new ServerException('Something is wrong with your database, you have the act_uri field but NOT act_created in deleted_notice!');
         }
-        echo "\nFound old $table table, upgrading it to contain 'act_uri' and 'act_created' field...";
 
-        $schemadef['fields']['act_uri'] = array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'URI of the deleted notice');
-        $schemadef['fields']['act_created'] = array('type' => 'datetime', 'not null' => true, 'description' => 'datetime the notice record was created');
-        unset($schemadef['unique keys']);
-        $schema->ensureTable($table, $schemadef);
+        if (!isset($schemadef['fields']['act_created'])) {
+            // this is a "normal" upgrade from StatusNet for example
+            echo "\nFound old $table table, upgrading it to add 'act_created' field...";
 
-        $deleted = new Deleted_notice();
-        $result = $deleted->find();
-        if ($result === false) {
-            print "\nFound no deleted_notice entries, continuing...";
-            return true;
-        }
-        print "\nFound $result deleted_notice entries, aligning with new database layout: ";
-        while($deleted->fetch()) {
-            $orig = clone($deleted);
-            $deleted->act_uri = $deleted->uri;
-            // this is a fake URI just to have something to put there to avoid NULL. crc32 of uri is to avoid collisions
-            $deleted->uri = TagURI::mint(strtolower(get_called_class()).':%d:%s:%s:%s:crc32=%x',
-                                $deleted->profile_id,
-                                ActivityUtils::resolveUri(self::getObjectType(), true),
-                                'unknown',
-                                common_date_iso8601($deleted->created),
-                                crc32($deleted->act_uri)
-                            );
-            $deleted->act_created = $deleted->created;  // we don't actually know when the notice was created
-            $deleted->updateWithKeys($orig, 'id');
-            print ".";
+            $schemadef['fields']['act_created'] = array('type' => 'datetime', 'not null' => true, 'description' => 'datetime the notice record was created');
+            $schema->ensureTable($table, $schemadef);
+
+            $deleted = new Deleted_notice();
+            // we don't actually know when the notice was created for the old ones
+            $deleted->query('UPDATE deleted_notice SET act_created=created;');
+        } else {
+            // 2015-10-03 For a while we had act_uri and act_created fields which
+            // apparently wasn't necessary.
+            echo "\nFound old $table table, upgrading it to remove 'act_uri' field...";
+
+            // we stored what should be in 'uri' in the 'act_uri' field for some night-coding reason.
+            $deleted = new Deleted_notice();
+            $deleted->query('UPDATE deleted_notice SET uri=act_uri;');
         }
         print "DONE.\n";
         print "Resuming core schema upgrade...";

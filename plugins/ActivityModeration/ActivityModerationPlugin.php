@@ -159,7 +159,6 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         $deleted->id            = $target->getID();
         $deleted->profile_id    = $actor->getID();
         $deleted->uri           = $stored->getUri();
-        $deleted->act_uri       = $stored->getUri();
         $deleted->act_created   = $stored->created;
         $deleted->created       = common_sql_now();
 
