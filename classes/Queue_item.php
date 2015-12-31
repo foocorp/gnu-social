@@ -76,7 +76,7 @@ class Queue_item extends Managed_DataObject
                 common_log(LOG_DEBUG, 'claim succeeded.');
                 return $qi;
             } else {
-                common_log(LOG_ERROR, 'claim of queue item id= ' . $qi->getID() . ' for transport ' . $qi->transport . ' failed.');
+                common_log(LOG_ERR, 'claim of queue item id= ' . $qi->getID() . ' for transport ' . $qi->transport . ' failed.');
             }
         }
         $qi = null;
