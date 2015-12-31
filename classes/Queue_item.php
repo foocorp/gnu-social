@@ -68,16 +68,15 @@ class Queue_item extends Managed_DataObject
             // XXX: potential race condition
             // can we force it to only update if claimed is still null
             // (or old)?
-            common_log(LOG_INFO, 'claiming queue item id = ' . $qi->getID() .
-                ' for transport ' . $qi->transport);
+            common_log(LOG_INFO, 'claiming queue item id = ' . $qi->getID() . ' for transport ' . $qi->transport);
             $orig = clone($qi);
             $qi->claimed = common_sql_now();
             $result = $qi->update($orig);
             if ($result) {
-                common_log(LOG_INFO, 'claim succeeded.');
+                common_log(LOG_DEBUG, 'claim succeeded.');
                 return $qi;
             } else {
-                common_log(LOG_INFO, 'claim failed.');
+                common_log(LOG_ERROR, 'claim of queue item id= ' . $qi->getID() . ' for transport ' . $qi->transport . ' failed.');
             }
         }
         $qi = null;

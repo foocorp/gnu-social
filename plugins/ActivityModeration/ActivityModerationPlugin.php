@@ -146,7 +146,6 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         }
         //$stored->content = $stored->content ?: _('Notice deleted.');
         //$stored->rendered = $stored->rendered ?: $stored->rendered;
-        common_debug('DELETENOTICE: Replacement notice has been prepared: '.var_export($stored, true));
 
         // Let's see if this has been deleted already.
         try {
