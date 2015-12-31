@@ -223,6 +223,6 @@ class Happening extends Managed_DataObject
     function getRSVP($profile)
     {
         return RSVP::pkeyGet(array('profile_id' => $profile->getID(),
-                                   'event_id' => $this->id));
+                                   'event_uri' => $this->getUri()));
     }
 }

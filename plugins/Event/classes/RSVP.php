@@ -27,9 +27,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Data class for event RSVPs
@@ -52,23 +50,9 @@ class RSVP extends Managed_DataObject
     public $id;                // varchar(36) UUID
     public $uri;               // varchar(191)   not 255 because utf8mb4 takes more space
     public $profile_id;        // int
-    public $event_id;          // varchar(36) UUID
+    public $event_uri;         // varchar(191)   not 255 because utf8mb4 takes more space
     public $response;            // tinyint
     public $created;           // datetime
-
-    /**
-     * Add the compound profile_id/event_id index to our cache keys
-     * since the DB_DataObject stuff doesn't understand compound keys
-     * except for the primary.
-     *
-     * @return array
-     */
-    function _allCacheKeys() {
-        $keys = parent::_allCacheKeys();
-        $keys[] = self::multicacheKey('RSVP', array('profile_id' => $this->profile_id,
-                                                    'event_id' => $this->event_id));
-        return $keys;
-    }
 
     /**
      * The One True Thingy that must be defined and declared.
@@ -86,10 +70,10 @@ class RSVP extends Managed_DataObject
                                'length' => 191,
                                'not null' => true),
                 'profile_id' => array('type' => 'int'),
-                'event_id' => array('type' => 'char',
-                              'length' => 36,
+                'event_uri' => array('type' => 'varchar',
+                              'length' => 191,
                               'not null' => true,
-                              'description' => 'UUID'),
+                              'description' => 'Event URI'),
                 'response' => array('type' => 'char',
                                   'length' => '1',
                                   'description' => 'Y, N, or ? for three-state yes, no, maybe'),
@@ -99,12 +83,45 @@ class RSVP extends Managed_DataObject
             'primary key' => array('id'),
             'unique keys' => array(
                 'rsvp_uri_key' => array('uri'),
-                'rsvp_profile_event_key' => array('profile_id', 'event_id'),
+                'rsvp_profile_event_key' => array('profile_id', 'event_uri'),
             ),
-            'foreign keys' => array('rsvp_event_id_key' => array('event', array('event_id' => 'id')),
+            'foreign keys' => array('rsvp_event_uri_key' => array('happening', array('event_uri' => 'uri')),
                                     'rsvp_profile_id__key' => array('profile', array('profile_id' => 'id'))),
             'indexes' => array('rsvp_created_idx' => array('created')),
         );
+    }
+
+    static public function beforeSchemaUpdate()
+    {
+        $table = strtolower(get_called_class());
+        $schema = Schema::get();
+        $schemadef = $schema->getTableDef($table);
+
+        // 2015-12-31 RSVPs refer to Happening by event_uri now, not event_id. Let's migrate!
+        if (isset($schemadef['fields']['event_uri'])) {
+            // We seem to have already migrated, good!
+            return;
+        }
+
+        // this is a "normal" upgrade from StatusNet for example
+        echo "\nFound old $table table, upgrading it to add 'event_uri' field...";
+
+        $schemadef['fields']['event_uri'] = array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'Event URI');
+        $schema->ensureTable($table, $schemadef);
+
+        $rsvp = new RSVP();
+        $rsvp->find();
+        while ($rsvp->fetch()) {
+            $event = Happening::getKV('id', $rsvp->event_id);
+            if (!$event instanceof Happening) {
+                continue;
+            }
+            $orig = clone($rsvp);
+            $rsvp->event_uri = $event->uri;
+            $rsvp->updateWithKeys($orig);
+        }
+        print "DONE.\n";
+        print "Resuming core schema upgrade...";
     }
 
     function saveNew($profile, $event, $verb, $options=array())
@@ -117,19 +134,21 @@ class RSVP extends Managed_DataObject
             }
         }
 
-        $other = RSVP::pkeyGet(array('profile_id' => $profile->id,
-                                     'event_id' => $event->id));
-
-        if (!empty($other)) {
+        try {
+            $other = RSVP::getByKeys( [ 'profile_id' => $profile->getID(),
+                                        'event_uri' => $event->getUri(),
+                                      ] );
             // TRANS: Client exception thrown when trying to save an already existing RSVP ("please respond").
-            throw new ClientException(_m('RSVP already exists.'));
+            throw new AlreadyFulfilledException(_m('RSVP already exists.'));
+        } catch (NoResultException $e) {
+            // No previous RSVP, so go ahead and add.
         }
 
         $rsvp = new RSVP();
 
         $rsvp->id          = UUID::gen();
-        $rsvp->profile_id  = $profile->id;
-        $rsvp->event_id    = $event->id;
+        $rsvp->profile_id  = $profile->getID();
+        $rsvp->event_uri    = $event->getUri();
         $rsvp->response      = self::codeFor($verb);
 
         if (array_key_exists('created', $options)) {
@@ -147,7 +166,7 @@ class RSVP extends Managed_DataObject
 
         $rsvp->insert();
 
-        self::blow('rsvp:for-event:%s', $event->id);
+        self::blow('rsvp:for-event:%s', $event->getUri());
 
         // XXX: come up with something sexier
 
@@ -165,10 +184,10 @@ class RSVP extends Managed_DataObject
         $eventNotice = $event->getNotice();
 
         if (!empty($eventNotice)) {
-            $options['reply_to'] = $eventNotice->id;
+            $options['reply_to'] = $eventNotice->getID();
         }
 
-        $saved = Notice::saveNew($profile->id,
+        $saved = Notice::saveNew($profile->getID(),
                                  $content,
                                  array_key_exists('source', $options) ?
                                  $options['source'] : 'web',
@@ -236,7 +255,7 @@ class RSVP extends Managed_DataObject
 
     static function forEvent(Happening $event)
     {
-        $keypart = sprintf('rsvp:for-event:%s', $event->id);
+        $keypart = sprintf('rsvp:for-event:%s', $event->getUri());
 
         $idstr = self::cacheGet($keypart);
 
@@ -250,7 +269,7 @@ class RSVP extends Managed_DataObject
             $rsvp->selectAdd();
             $rsvp->selectAdd('id');
 
-            $rsvp->event_id = $event->id;
+            $rsvp->event_uri = $event->getUri();
 
             if ($rsvp->find()) {
                 while ($rsvp->fetch()) {
@@ -288,30 +307,26 @@ class RSVP extends Managed_DataObject
 
     function getEvent()
     {
-        $event = Happening::getKV('id', $this->event_id);
+        $event = Happening::getKV('uri', $this->event_uri);
         if (empty($event)) {
             // TRANS: Exception thrown when requesting a non-existing event.
             // TRANS: %s is the ID of the non-existing event.
-            throw new Exception(sprintf(_m('No event with ID %s.'),$this->event_id));
+            throw new Exception(sprintf(_m('No event with URI %s.'),$this->event_uri));
         }
         return $event;
     }
 
     function asHTML()
     {
-        $event = Happening::getKV('id', $this->event_id);
-
         return self::toHTML($this->getProfile(),
-                            $event,
+                            $this->getEvent(),
                             $this->response);
     }
 
     function asString()
     {
-        $event = Happening::getKV('id', $this->event_id);
-
         return self::toString($this->getProfile(),
-                              $event,
+                              $this->getEvent(),
                               $this->response);
     }
 

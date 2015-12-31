@@ -67,6 +67,12 @@ class EventPlugin extends MicroAppPlugin
         return true;
     }
 
+    public function onBeforePluginCheckSchema()
+    {
+        RSVP::beforeSchemaUpdate();
+        return true;
+    }
+
     /**
      * Map URLs to actions
      *
