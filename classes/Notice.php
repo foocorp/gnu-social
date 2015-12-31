@@ -685,30 +685,33 @@ class Notice extends Managed_DataObject
         // Clear the cache for subscribed users, so they'll update at next request
         // XXX: someone clever could prepend instead of clearing the cache
 
-        // Save per-notice metadata...
+        // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
+        // the activityverb is a POST (since stuff like repeat, favorite etc.
+        // reasonably handle notifications themselves.
+        if (ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST))) {
+            if (isset($replies)) {
+                $notice->saveKnownReplies($replies);
+            } else {
+                $notice->saveReplies();
+            }
 
-        if (isset($replies)) {
-            $notice->saveKnownReplies($replies);
-        } else {
-            $notice->saveReplies();
-        }
+            if (isset($tags)) {
+                $notice->saveKnownTags($tags);
+            } else {
+                $notice->saveTags();
+            }
 
-        if (isset($tags)) {
-            $notice->saveKnownTags($tags);
-        } else {
-            $notice->saveTags();
-        }
+            // Note: groups may save tags, so must be run after tags are saved
+            // to avoid errors on duplicates.
+            // Note: groups should always be set.
 
-        // Note: groups may save tags, so must be run after tags are saved
-        // to avoid errors on duplicates.
-        // Note: groups should always be set.
+            $notice->saveKnownGroups($groups);
 
-        $notice->saveKnownGroups($groups);
-
-        if (isset($urls)) {
-            $notice->saveKnownUrls($urls);
-        } else {
-            $notice->saveUrls();
+            if (isset($urls)) {
+                $notice->saveKnownUrls($urls);
+            } else {
+                $notice->saveUrls();
+            }
         }
 
         if ($distribute) {
@@ -965,28 +968,33 @@ class Notice extends Managed_DataObject
         // Used primarily for OStatus (and if we don't federate, all attentions would be local anyway)
         Event::handle('GetLocalAttentions', array($actor, $act->context->attention, &$mentions, &$group_ids));
 
-        if (!empty($mentions)) {
-            $stored->saveKnownReplies($mentions);
-        } else {
-            $stored->saveReplies();
-        }
+        // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
+        // the activityverb is a POST (since stuff like repeat, favorite etc.
+        // reasonably handle notifications themselves.
+        if (ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST))) {
+            if (!empty($mentions)) {
+                $stored->saveKnownReplies($mentions);
+            } else {
+                $stored->saveReplies();
+            }
 
-        if (!empty($tags)) {
-            $stored->saveKnownTags($tags);
-        } else {
-            $stored->saveTags();
-        }
+            if (!empty($tags)) {
+                $stored->saveKnownTags($tags);
+            } else {
+                $stored->saveTags();
+            }
 
-        // Note: groups may save tags, so must be run after tags are saved
-        // to avoid errors on duplicates.
-        // Note: groups should always be set.
+            // Note: groups may save tags, so must be run after tags are saved
+            // to avoid errors on duplicates.
+            // Note: groups should always be set.
 
-        $stored->saveKnownGroups($group_ids);
+            $stored->saveKnownGroups($group_ids);
 
-        if (!empty($urls)) {
-            $stored->saveKnownUrls($urls);
-        } else {
-            $stored->saveUrls();
+            if (!empty($urls)) {
+                $stored->saveKnownUrls($urls);
+            } else {
+                $stored->saveUrls();
+            }
         }
 
         if ($distribute) {
@@ -1615,12 +1623,6 @@ class Notice extends Managed_DataObject
 
     function saveReplies()
     {
-        // Don't save reply data for repeats
-
-        if ($this->isRepeat()) {
-            return array();
-        }
-
         $sender = $this->getProfile();
 
         $replied = array();
