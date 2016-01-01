@@ -158,6 +158,8 @@ class NoticeListItem extends Widget
                 $this->showParent();
             } catch (NoParentNoticeException $e) {
                 // no parent notice
+            } catch (InvalidUrlException $e) {
+                // parent had an invalid URL so we can't show it
             }
             if ($this->addressees) { $this->showAddressees(); }
             $this->elementEnd('div');
