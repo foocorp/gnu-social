@@ -738,6 +738,7 @@ class Notice extends Managed_DataObject
         }
 
         // Get ActivityObject properties
+        $actobj = null;
         if (!empty($act->id)) {
             // implied object
             $options['uri'] = $act->id;
@@ -815,11 +816,25 @@ class Notice extends Managed_DataObject
         $stored->url = $url;
         $stored->verb = $act->verb;
 
-        // Use the local user's shortening preferences, if applicable.
-        $stored->rendered = $actor->isLocal()
-                                ? $actor->shortenLinks($act->content)
-                                : common_purify($act->content);
+        // Notice content. We trust local users to provide HTML we like, but of course not remote users.
+        // FIXME: What about local users importing feeds? Mirror functions must filter out bad HTML first...
+        $content = $act->content ?: $act->summary;
+        if (is_null($content) && !is_null($actobj)) {
+            $content = $actobj->content ?: $actobj->summary;
+        }
+        $stored->rendered = $actor->isLocal() ? $content : common_purify($content);
         $stored->content = common_strip_html($stored->rendered);
+
+        // Reject notice if it is too long (without the HTML)
+        // FIXME: Reject if too short (empty) too? But we have to pass the 
+        if ($actor->isLocal() && Notice::contentTooLong($stored->content)) {
+            // TRANS: Client error displayed when the parameter "status" is missing.
+            // TRANS: %d is the maximum number of character for a notice.
+            throw new ClientException(sprintf(_m('That\'s too long. Maximum notice size is %d character.',
+                                                 'That\'s too long. Maximum notice size is %d characters.',
+                                                 Notice::maxContent()),
+                                              Notice::maxContent()));
+        }
 
         // Maybe a missing act-time should be fatal if the actor is not local?
         if (!empty($act->time)) {
