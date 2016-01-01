@@ -39,7 +39,9 @@ while ($notice->fetch()) {
     common_log(LOG_INFO, 'Getting tags for notice #' . $notice->id);
     $notice->saveTags();
     $original = clone($notice);
-    $notice->rendered = common_render_content($notice->content, $notice);
+    $notice->rendered = common_render_content($notice->content,
+                                              $notice->getProfile(),
+                                              $notice->hasParent() ? $notice->getParent() : null);
     $result = $notice->update($original);
     if (!$result) {
         common_log_db_error($notice, 'UPDATE', __FILE__);

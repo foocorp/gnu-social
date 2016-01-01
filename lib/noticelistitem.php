@@ -343,13 +343,8 @@ class NoticeListItem extends Widget
         if (Event::handle('StartShowNoticeContent', array($this->notice, $this->out, $this->out->getScoped()))) {
             if ($this->maxchars > 0 && mb_strlen($this->notice->content) > $this->maxchars) {
                 $this->out->text(mb_substr($this->notice->content, 0, $this->maxchars) . '[…]');
-            } elseif ($this->notice->rendered) {
-                $this->out->raw($this->notice->rendered);
             } else {
-                // XXX: may be some uncooked notices in the DB,
-                // we cook them right now. This should probably disappear in future
-                // versions (>> 0.4.x)
-                $this->out->raw(common_render_content($this->notice->content, $this->notice));
+                $this->out->raw($this->notice->getRendered());
             }
             Event::handle('EndShowNoticeContent', array($this->notice, $this->out, $this->out->getScoped()));
         }

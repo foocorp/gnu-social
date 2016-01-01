@@ -621,7 +621,9 @@ class Notice extends Managed_DataObject
         if (!empty($rendered)) {
             $notice->rendered = $rendered;
         } else {
-            $notice->rendered = common_render_content($final, $notice);
+            $notice->rendered = common_render_content($final,
+                                                      $notice->getProfile(),
+                                                      $notice->hasParent() ? $notice->getParent() : null);
         }
 
         if (empty($verb)) {

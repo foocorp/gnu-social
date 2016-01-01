@@ -105,7 +105,9 @@ function fixupNoticeRendered()
 
     while ($notice->fetch()) {
         $original = clone($notice);
-        $notice->rendered = common_render_content($notice->content, $notice);
+        $notice->rendered = common_render_content($notice->content,
+                                                  $notice->getProfile(),
+                                                  $notice->hasParent() ? $notice->getParent() : null);
         $notice->update($original);
     }
 

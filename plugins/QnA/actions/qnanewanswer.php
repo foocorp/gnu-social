@@ -327,14 +327,7 @@ class NoticeAnswerListItem extends NoticeListItem
     function showContent()
     {
         $this->out->elementStart('p', array('class' => 'e-content answer-content'));
-        if ($this->notice->rendered) {
-            $this->out->raw($this->notice->rendered);
-        } else {
-            // XXX: may be some uncooked notices in the DB,
-            // we cook them right now. This should probably disappear in future
-            // versions (>> 0.4.x)
-            $this->out->raw(common_render_content($this->notice->content, $this->notice));
-        }
+        $this->out->raw($this->notice->getRendered());
 
         if (!empty($this->answer)) {
             $form = new QnashowanswerForm($this->out, $this->answer);

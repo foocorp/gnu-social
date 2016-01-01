@@ -606,14 +606,15 @@ function common_remove_unicode_formatting($text)
 /**
  * Partial notice markup rendering step: build links to !group references.
  *
- * @param string $text partially rendered HTML
- * @param Notice $notice in whose context we're working
+ * @param string    $text partially rendered HTML
+ * @param Profile   $author the Profile that is composing the current notice
+ * @param Notice    $parent the Notice this is sent in reply to, if any
  * @return string partially rendered HTML
  */
-function common_render_content($text, Notice $notice)
+function common_render_content($text, Profile $author, Notice $parent=null)
 {
     $text = common_render_text($text);
-    $text = common_linkify_mentions($text, $notice->getProfile(), $notice->hasParent() ? $notice->getParent() : null);
+    $text = common_linkify_mentions($text, $author, $parent);
     return $text;
 }
 
