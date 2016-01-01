@@ -203,14 +203,7 @@ class SearchNoticeListItem extends NoticeListItem {
     {
         // FIXME: URL, image, video, audio
         $this->out->elementStart('p', array('class' => 'e-content'));
-        if ($this->notice->rendered) {
-            $this->out->raw($this->highlight($this->notice->rendered, $this->terms));
-        } else {
-            // XXX: may be some uncooked notices in the DB,
-            // we cook them right now. This should probably disappear in future
-            // versions (>> 0.4.x)
-            $this->out->raw($this->highlight(common_render_content($this->notice->content, $this->notice), $this->terms));
-        }
+        $this->out->raw($this->highlight($this->notice->getRendered(), $this->terms));
         $this->out->elementEnd('p');
 
     }
