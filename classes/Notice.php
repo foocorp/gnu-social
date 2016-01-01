@@ -1635,14 +1635,16 @@ class Notice extends Managed_DataObject
             self::blow('reply:stream:%d', $parentauthor->id);
         } catch (NoParentNoticeException $e) {
             // Not a reply, since it has no parent!
+            $parent = null;
         } catch (NoResultException $e) {
             // Parent notice was probably deleted
+            $parent = null;
         }
 
         // @todo ideally this parser information would only
         // be calculated once.
 
-        $mentions = common_find_mentions($this->content, $this);
+        $mentions = common_find_mentions($this->content, $sender, $parent);
 
         // store replied only for first @ (what user/notice what the reply directed,
         // we assume first @ is it)
@@ -2049,6 +2051,7 @@ class Notice extends Managed_DataObject
         if (Event::handle('StartActivityObjectFromNotice', array($this, &$object))) {
             $object->type    = $this->object_type ?: ActivityObject::NOTE;
             $object->id      = $this->getUri();
+            //FIXME: = $object->title ?: sprintf(... because we might get a title from StartActivityObjectFromNotice
             $object->title   = sprintf('New %1$s by %2$s', ActivityObject::canonicalType($object->type), $this->getProfile()->getNickname());
             $object->content = $this->rendered;
             $object->link    = $this->getUrl();
@@ -2767,6 +2770,16 @@ class Notice extends Managed_DataObject
         }
 
         return false;
+    }
+
+    public function hasParent()
+    {
+        try {
+            $this->getParent();
+        } catch (NoParentNoticeException $e) {
+            return false;
+        }
+        return true;
     }
 
     public function getParent()

@@ -613,7 +613,7 @@ function common_remove_unicode_formatting($text)
 function common_render_content($text, Notice $notice)
 {
     $text = common_render_text($text);
-    $text = common_linkify_mentions($text, $notice);
+    $text = common_linkify_mentions($text, $notice->getProfile(), $notice->hasParent() ? $notice->getParent() : null);
     return $text;
 }
 
@@ -623,13 +623,14 @@ function common_render_content($text, Notice $notice)
  *
  * Should generally not be called except from common_render_content().
  *
- * @param string $text partially-rendered HTML
- * @param Notice $notice in-progress or complete Notice object for context
+ * @param string    $text   partially-rendered HTML
+ * @param Profile   $author the Profile that is composing the current notice
+ * @param Notice    $parent the Notice this is sent in reply to, if any
  * @return string partially-rendered HTML
  */
-function common_linkify_mentions($text, Notice $notice)
+function common_linkify_mentions($text, Profile $author, Notice $parent=null)
 {
-    $mentions = common_find_mentions($text, $notice);
+    $mentions = common_find_mentions($text, $author, $parent);
 
     // We need to go through in reverse order by position,
     // so our positions stay valid despite our fudging with the
@@ -687,33 +688,25 @@ function common_linkify_mention(array $mention)
  * Note the return data format is internal, to be used for building links and
  * such. Should not be used directly; rather, call common_linkify_mentions().
  *
- * @param string $text
- * @param Notice $notice notice in whose context we're building links
+ * @param string    $text
+ * @param Profile   $sender the Profile that is sending the current text
+ * @param Notice    $parent the Notice this text is in reply to, if any
  *
  * @return array
  *
  * @access private
  */
-function common_find_mentions($text, Notice $notice)
+function common_find_mentions($text, Profile $sender, Notice $parent=null)
 {
-    // The getProfile call throws NoProfileException on failure
-    $sender = $notice->getProfile();
-
     $mentions = array();
 
     if (Event::handle('StartFindMentions', array($sender, $text, &$mentions))) {
         // Get the context of the original notice, if any
-        $origAuthor   = null;
-        $origNotice   = null;
         $origMentions = array();
 
-        // Is it a reply?
-
-        try {
-            $origNotice = $notice->getParent();
-            $origAuthor = $origNotice->getProfile();
-
-            $ids = $origNotice->getReplies();
+        // Does it have a parent notice for context?
+        if ($parent instanceof Notice) {
+            $ids = $parent->getReplies();   // replied-to _profile ids_
 
             foreach ($ids as $id) {
                 try {
@@ -723,10 +716,6 @@ function common_find_mentions($text, Notice $notice)
                     // continue foreach
                 }
             }
-        } catch (NoParentNoticeException $e) {
-            // It wasn't a reply to anything, so we can't harvest nickname-relations.
-        } catch (NoResultException $e) {
-            // The parent notice was deleted.
         }
 
         $matches = common_find_mentions_raw($text);
@@ -743,22 +732,23 @@ function common_find_mentions($text, Notice $notice)
             // Start with conversation context, then go to
             // sender context.
 
-            if ($origAuthor instanceof Profile && $origAuthor->nickname == $nickname) {
-                $mentioned = $origAuthor;
+            if ($parent instanceof Notice && $parent->getProfile()->getNickname() === $nickname) {
+                $mentioned = $parent->getProfile();
             } else if (!empty($origMentions) &&
                        array_key_exists($nickname, $origMentions)) {
                 $mentioned = $origMentions[$nickname];
             } else {
+                // sets to null if no match
                 $mentioned = common_relative_profile($sender, $nickname);
             }
 
             if ($mentioned instanceof Profile) {
                 $user = User::getKV('id', $mentioned->id);
 
-                if ($user instanceof User) {
-                    $url = common_local_url('userbyid', array('id' => $user->id));
-                } else {
-                    $url = $mentioned->profileurl;
+                try {
+                    $url = $mentioned->getUrl();
+                } catch (InvalidUrlException $e) {
+                    $url = common_local_url('userbyid', array('id' => $mentioned->getID()));
                 }
 
                 $mention = array('mentioned' => array($mentioned),
@@ -766,11 +756,8 @@ function common_find_mentions($text, Notice $notice)
                                  'text' => $match[0],
                                  'position' => $match[1],
                                  'length' => mb_strlen($match[0]),
+                                 'title' => $mentioned->getFullname(),
                                  'url' => $url);
-
-                if (!empty($mentioned->fullname)) {
-                    $mention['title'] = $mentioned->fullname;
-                }
 
                 $mentions[] = $mention;
             }
@@ -782,7 +769,7 @@ function common_find_mentions($text, Notice $notice)
                        $text, $hmatches, PREG_OFFSET_CAPTURE);
         foreach ($hmatches[1] as $hmatch) {
             $tag = common_canonical_tag($hmatch[0]);
-            $plist = Profile_list::getByTaggerAndTag($sender->id, $tag);
+            $plist = Profile_list::getByTaggerAndTag($sender->getID(), $tag);
             if (!$plist instanceof Profile_list || $plist->private) {
                 continue;
             }
