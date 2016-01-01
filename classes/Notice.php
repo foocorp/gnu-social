@@ -1630,9 +1630,9 @@ class Notice extends Managed_DataObject
         try {
             $parent = $this->getParent();
             $parentauthor = $parent->getProfile();
-            $this->saveReply($parentauthor->id);
-            $replied[$parentauthor->id] = 1;
-            self::blow('reply:stream:%d', $parentauthor->id);
+            $this->saveReply($parentauthor->getID());
+            $replied[$parentauthor->getID()] = 1;
+            self::blow('reply:stream:%d', $parentauthor->getID());
         } catch (NoParentNoticeException $e) {
             // Not a reply, since it has no parent!
             $parent = null;
