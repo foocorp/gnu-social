@@ -153,6 +153,26 @@ class File_thumbnail extends Managed_DataObject
         return $this->url;
     }
 
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    public function getHtmlAttrs(array $orig=array(), $overwrite=true)
+    {
+        $attrs = [
+                'height' => $this->getHeight(),
+                'width'  => $this->getWidth(),
+                'src'    => $this->getUrl(),
+            ];
+        return $overwrite ? array_merge($orig, $attrs) : array_merge($attrs, $orig);
+    }
+
     public function delete($useWhere=false)
     {
         if (!empty($this->filename) && file_exists(File_thumbnail::path($this->filename))) {
