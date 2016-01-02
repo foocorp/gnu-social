@@ -128,7 +128,6 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         // Notice::saveActivity it will update the Notice object.
         $stored->repeat_of = $sharedNotice->getID();
         $stored->conversation = $sharedNotice->conversation;
-        $stored->object_type = ActivityUtils::resolveUri(ActivityObject::ACTIVITY, true);
 
         // We don't have to save a repeat in a separate table, we can
         // find repeats by just looking at the notice.repeat_of field.

@@ -183,7 +183,7 @@ class ActivityPlugin extends Plugin
                                         'uri' => $uri,
                                         'verb' => ActivityVerb::UNFAVORITE,
                                         'object_type' => (($notice->verb == ActivityVerb::POST) ?
-                                                         $notice->object_type : ActivityObject::ACTIVITY)));
+                                                         $notice->object_type : null)));
 
         return true;
     }

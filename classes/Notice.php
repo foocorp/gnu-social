@@ -90,7 +90,7 @@ class Notice extends Managed_DataObject
                 'source' => array('type' => 'varchar', 'length' => 32, 'description' => 'source of comment, like "web", "im", or "clientname"'),
                 'conversation' => array('type' => 'int', 'description' => 'id of root notice in this conversation'),
                 'repeat_of' => array('type' => 'int', 'description' => 'notice this is a repeat of'),
-                'object_type' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI representing activity streams object type', 'default' => 'http://activitystrea.ms/schema/1.0/note'),
+                'object_type' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI representing activity streams object type', 'default' => null),
                 'verb' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI representing activity streams verb', 'default' => 'http://activitystrea.ms/schema/1.0/post'),
                 'scope' => array('type' => 'int',
                                  'description' => 'bit map for distribution scope; 0 = everywhere; 1 = this server only; 2 = addressees; 4 = followers; null = default'),
