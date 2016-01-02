@@ -651,6 +651,11 @@ class ApiAction extends Action
                 break;
             default:
                 if (strncmp($element, 'statusnet_', 10) == 0) {
+                    if ($element === 'statusnet_in_groups' && is_array($value)) {
+                        // QVITTERFIX because it would cause an array to be sent as $value
+                        // THIS IS UNDOCUMENTED AND SHOULD NEVER BE RELIED UPON (qvitter uses json output)
+                        $value = json_encode($value);
+                    }
                     $this->element('statusnet:'.substr($element, 10), null, $value);
                 } else {
                     $this->element($element, null, $value);
