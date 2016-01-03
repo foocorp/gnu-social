@@ -13,8 +13,13 @@ abstract class NoticestreamAction extends ProfileAction
         $this->doStreamPreparation();
 
         // fetch the actual stream stuff
-        $stream = $this->getStream();
-        $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
+        try {
+            $stream = $this->getStream();
+            $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
+        } catch (PrivateStreamException $e) {
+            $this->notice = new Notice();
+            $this->notice->whereAdd('FALSE');
+        }
 
         if ($this->page > 1 && $this->notice->N == 0) {
             // TRANS: Client error when page not found (404).

@@ -74,7 +74,7 @@ class ProfileNoticeStream extends ScopingNoticeStream
     function getNotices($offset, $limit, $since_id=null, $max_id=null)
     {
         if ($this->impossibleStream()) {
-            return new ArrayWrapper(array());
+            throw new PrivateStreamException($this->streamProfile, $this->userProfile);
         } else {
             return parent::getNotices($offset, $limit, $since_id, $max_id);
         }
@@ -82,12 +82,8 @@ class ProfileNoticeStream extends ScopingNoticeStream
 
     function impossibleStream() 
     {
-        $user = User::getKV('id', $this->streamProfile->id);
-
-        // If it's a private stream, and no user or not a subscriber
-
-        if (!empty($user) && $user->private_stream && 
-            (empty($this->userProfile) || !$this->userProfile->isSubscribed($this->streamProfile))) {
+        if (!$this->streamProfile->readableBy($this->userProfile)) {
+            // cannot read because it's a private stream and either noone's logged in or they are not subscribers
             return true;
         }
 

@@ -761,6 +761,17 @@ class Profile extends Managed_DataObject
         return Subscription::exists($this, $other);
     }
 
+    function readableBy(Profile $other=null)
+    {
+        // If it's not a private stream, it's readable by anyone
+        if (!$this->isPrivateStream()) {
+            return true;
+        }
+
+        // If it's a private stream, $other must be a subscriber to $this
+        return is_null($other) ? false : $other->isSubscribed($this);
+    }
+
     /**
      * Check if a pending subscription request is outstanding for this...
      *
