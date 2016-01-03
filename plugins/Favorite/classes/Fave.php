@@ -124,27 +124,30 @@ class Fave extends Managed_DataObject
 
                 $result = parent::delete($useWhere);
 
-                self::blowCacheForProfileId($this->user_id);
-                self::blowCacheForNoticeId($this->notice_id);
-                self::blow('popular');
-
                 if ($result !== false) {
                     Event::handle('EndDisfavorNotice', array($profile, $notice));
                 }
             }
 
         } catch (NoResultException $e) {
+            // In case there's some inconsistency where the profile or notice was deleted without losing the fave db entry
             common_log(LOG_INFO, '"'.get_class($e->obj).'" with id=='.var_export($e->obj->id, true).' object not found when deleting favorite, ignoring...');
-
-            // Delete it without the event, as something is wrong and we don't want it anyway.
-            $result = parent::delete($useWhere);
-
-            self::blowCacheForProfileId($this->user_id);
-            self::blowCacheForNoticeId($this->notice_id);
-            self::blow('popular');
+        } catch (EmptyIdException $e) {
+            // Some buggy instances of GNU social have had favroites with notice id==0 stored in the database
+            common_log(LOG_INFO, '"'.get_class($e->obj).'"object had empty id deleting favorite, ignoring...');
         }
 
+        // If we catch an exception above, then $result===null because parent::delete only returns an int>=0 or boolean false
+        if (is_null($result)) {
+            // Delete it without the event, as something is wrong and we don't want it anyway.
+            $result = parent::delete($useWhere);
+        }
 
+        // Err, apparently we can reference $this->user_id after parent::delete,
+        // I guess it's safe because this is the order it was before!
+        self::blowCacheForProfileId($this->user_id);
+        self::blowCacheForNoticeId($this->notice_id);
+        self::blow('popular');
 
         return $result;
     }
