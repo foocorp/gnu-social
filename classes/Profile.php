@@ -772,6 +772,25 @@ class Profile extends Managed_DataObject
         return is_null($other) ? false : $other->isSubscribed($this);
     }
 
+    function requiresSubscriptionApproval(Profile $other=null)
+    {
+        if (!$this->isLocal()) {
+            // We don't know for remote users, and we'll always be able to send
+            // the request. Whether it'll work immediately or require moderation
+            // can be determined in another function.
+            return false;
+        }
+
+        // Assume that profiles _we_ subscribe to are permitted. Could be made configurable.
+        if (!is_null($other) && $this->isSubscribed($other)) {
+            return false;
+        }
+
+        // If the local user either has a private stream (implies the following)
+        // or  user has a moderation policy for new subscriptions, return true.
+        return $this->getUser()->private_stream || $this->getUser()->subscribe_policy === User::SUBSCRIBE_POLICY_MODERATE;
+    }
+
     /**
      * Check if a pending subscription request is outstanding for this...
      *

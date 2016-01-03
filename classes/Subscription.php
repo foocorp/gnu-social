@@ -92,8 +92,8 @@ class Subscription extends Managed_DataObject
         }
 
         if (Event::handle('StartSubscribe', array($subscriber, $other))) {
-            $otherUser = User::getKV('id', $other->id);
-            if ($otherUser instanceof User && $otherUser->subscribe_policy == User::SUBSCRIBE_POLICY_MODERATE && !$force) {
+            // unless subscription is forced, the user policy for subscription approvals is tested
+            if (!$force && $other->requiresSubscriptionApproval($subscriber)) {
                 try {
                     $sub = Subscription_queue::saveNew($subscriber, $other);
                     $sub->notify();
@@ -101,6 +101,7 @@ class Subscription extends Managed_DataObject
                     $sub = Subscription_queue::getSubQueue($subscriber, $other);
                 }
             } else {
+                $otherUser = User::getKV('id', $other->id);
                 $sub = self::saveNew($subscriber, $other);
                 $sub->notify();
 
