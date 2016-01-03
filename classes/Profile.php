@@ -941,41 +941,48 @@ class Profile extends Managed_DataObject
     function _deleteSubscriptions()
     {
         $sub = new Subscription();
-        $sub->subscriber = $this->id;
-
+        $sub->subscriber = $this->getID();
         $sub->find();
 
         while ($sub->fetch()) {
-            $other = Profile::getKV('id', $sub->subscribed);
-            if (empty($other)) {
-                continue;
+            try {
+                $other = $sub->getSubscribed();
+                if (!$other->sameAs($this)) {
+                    Subscription::cancel($this, $other);
+                }
+            } catch (NoResultException $e) {
+                // Profile not found
+                common_log(LOG_INFO, 'Subscribed profile id=='.$sub->subscribed.' not found when deleting profile id=='.$this->getID().', ignoring...');
+            } catch (ServerException $e) {
+                // Subscription cancel failed
+                common_log(LOG_INFO, 'Subscribed profile id=='.$other->getID().' could not be reached for unsubscription notice when deleting profile id=='.$this->getID().', ignoring...')
             }
-            if ($other->id == $this->id) {
-                continue;
-            }
-            Subscription::cancel($this, $other);
         }
 
-        $subd = new Subscription();
-        $subd->subscribed = $this->id;
-        $subd->find();
+        $sub = new Subscription();
+        $sub->subscribed = $this->getID();
+        $sub->find();
 
-        while ($subd->fetch()) {
-            $other = Profile::getKV('id', $subd->subscriber);
-            if (empty($other)) {
-                continue;
+        while ($sub->fetch()) {
+            try {
+                $other = $sub->getSubscriber();
+                common_log(LOG_INFO, 'Subscriber profile id=='.$sub->subscribed.' not found when deleting profile id=='.$this->getID().', ignoring...');
+                if (!$other->sameAs($this)) {
+                    Subscription::cancel($other, $this);
+                }
+            } catch (NoResultException $e) {
+                // Profile not found
+                common_log(LOG_INFO, 'Subscribed profile id=='.$sub->subscribed.' not found when deleting profile id=='.$this->getID().', ignoring...');
+            } catch (ServerException $e) {
+                // Subscription cancel failed
+                common_log(LOG_INFO, 'Subscriber profile id=='.$other->getID().' could not be reached for unsubscription notice when deleting profile id=='.$this->getID().', ignoring...')
             }
-            if ($other->id == $this->id) {
-                continue;
-            }
-            Subscription::cancel($other, $this);
         }
 
+        // Finally delete self-subscription
         $self = new Subscription();
-
-        $self->subscriber = $this->id;
-        $self->subscribed = $this->id;
-
+        $self->subscriber = $this->getID();
+        $self->subscribed = $this->getID();
         $self->delete();
     }
 
