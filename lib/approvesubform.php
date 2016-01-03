@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Form for leaving a group
+ * Form for approving or reject a pending subscription request
  *
  * PHP version 5
  *
@@ -28,14 +28,10 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/form.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
- * Form for leaving a group
+ * Form for approving or reject a pending subscription request
  *
  * @category Form
  * @package  StatusNet
@@ -107,8 +103,8 @@ class ApproveSubForm extends Form
     function formActions()
     {
         // TRANS: Submit button text to accept a subscription request on approve sub form.
-        $this->out->submit('approve', _m('BUTTON','Accept'));
+        $this->out->submit($this->id().'-approve', _m('BUTTON','Accept'), 'submit approve', 'approve');
         // TRANS: Submit button text to reject a subscription request on approve sub form.
-        $this->out->submit('cancel', _m('BUTTON','Reject'));
+        $this->out->submit($this->id().'-cancel', _m('BUTTON','Reject'), 'submit cancel', 'cancel');
     }
 }

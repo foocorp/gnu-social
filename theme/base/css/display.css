@@ -1711,7 +1711,7 @@ display:block;
     padding: 4px 4px 4px 26px;
 }
 
-.entity_actions a, .entity_actions p, .entity_actions .entity_subscribe input, .entity_actions .entity_block input, .entity_actions .entity_moderation input, .entity_actions .entity_role input, .entity_actions .entity_nudge input, .entity_actions .entity_delete input, .entity_actions input.submit {
+.entity_actions a, .entity_actions p, .entity_actions .entity_approval input, .entity_actions .entity_subscribe input, .entity_actions .entity_block input, .entity_actions .entity_moderation input, .entity_actions .entity_role input, .entity_actions .entity_nudge input, .entity_actions .entity_delete input, .entity_actions input.submit {
     background-color: #ccc !important;
     border: none;
 }
@@ -1720,7 +1720,7 @@ display:block;
     padding: 2px 4px 4px 28px;
 }
 
-.entity_actions a:hover, .entity_actions p:hover, .entity_actions .entity_subscribe input:hover, .entity_actions .entity_block input:hover, .entity_actions .entity_moderation input:hover, .entity_actions .entity_role input:hover, .entity_actions .entity_nudge input:hover, .entity_actions .entity_delete input:hover, .entity_actions input.submit:hover {
+.entity_actions a:hover, .entity_actions p:hover, .entity_actions, .entity_subscribe input:hover, .entity_actions .entity_subscribe input:hover, .entity_actions .entity_block input:hover, .entity_actions .entity_moderation input:hover, .entity_actions .entity_role input:hover, .entity_actions .entity_nudge input:hover, .entity_actions .entity_delete input:hover, .entity_actions input.submit:hover {
     background-color: #f2f2f2 !important;
 }
 
@@ -2256,6 +2256,7 @@ button.minimize,
 .entity_clear input.submit,
 .entity_flag input.submit,
 .entity_flag p,
+.entity_approval input.submit,
 .entity_subscribe input.submit,
 #realtime_play,
 #realtime_pause,
@@ -2377,9 +2378,11 @@ background-position: 5px -2039px;
 .entity_flag p {
 background-position: 5px -2105px;
 }
+.entity_approval input.approve,
 .entity_subscribe input.accept {
 background-position: 5px -2171px;
 }
+.entity_approval input.cancel,
 .entity_subscribe input.reject {
 background-position: 5px -2237px;
 }
