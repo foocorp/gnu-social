@@ -384,7 +384,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
     static function getByID($id)
     {
         if (empty($id)) {
-            throw new ServerException('Empty ID on lookup');
+            throw new EmptyIdException(get_called_class());
         }
         // getByPK throws exception if id is null
         // or if the class does not have a single 'id' column as primary key
