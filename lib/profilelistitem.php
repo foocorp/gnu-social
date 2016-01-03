@@ -72,7 +72,7 @@ class ProfileListItem extends Widget
     function startItem()
     {
         $this->out->elementStart('li', array('class' => 'profile',
-                                             'id' => 'profile-' . $this->profile->id));
+                                             'id' => 'profile-' . $this->getTarget()->getID()));
     }
 
     function showProfile()

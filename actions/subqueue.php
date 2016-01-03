@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once(INSTALLDIR.'/lib/profilelist.php');
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * List of group members
@@ -50,9 +46,9 @@ class SubqueueAction extends GalleryAction
     {
         parent::prepare($args);
 
-        if ($this->scoped->id != $this->target->id) {
+        if (!$this->target->sameAs($this->scoped)) {
             // TRANS: Client error displayed when trying to approve group applicants without being a group administrator.
-            $this->clientError(_('You may only approve your own pending subscriptions.'));
+            throw new ClientException(_('You may only approve your own pending subscriptions.'));
         }
         return true;
     }
@@ -88,47 +84,21 @@ class SubqueueAction extends GalleryAction
 
         $cnt = 0;
 
-        $members = $this->target->getRequests($offset, $limit);
-
-        if ($members) {
-            // @fixme change!
-            $member_list = new SubQueueList($members, $this);
-            $cnt = $member_list->show();
+        try {
+            $subqueue = $this->target->getRequests($offset, $limit);
+        } catch (NoResultException $e) {
+            // TRANS: If no pending subscription requests are found
+            $this->element('div', null, _m('You have no pending subscription requests.'));
+            return;
         }
 
-        $members->free();
+        $list = new SubQueueList($subqueue, $this);
+        $cnt = $list->show();
+
+        $subqueue->free();
 
         $this->pagination($this->page > 1, $cnt > PROFILES_PER_PAGE,
                           $this->page, 'subqueue',
                           array('nickname' => $this->target->getNickname())); // urgh
-    }
-}
-
-class SubQueueList extends ProfileList
-{
-    function newListItem($profile)
-    {
-        return new SubQueueListItem($profile, $this->action);
-    }
-}
-
-class SubQueueListItem extends ProfileListItem
-{
-    function showActions()
-    {
-        $this->startActions();
-        if (Event::handle('StartProfileListItemActionElements', array($this))) {
-            $this->showApproveButtons();
-            Event::handle('EndProfileListItemActionElements', array($this));
-        }
-        $this->endActions();
-    }
-
-    function showApproveButtons()
-    {
-        $this->out->elementStart('li', 'entity_approval');
-        $form = new ApproveSubForm($this->out, $this->profile);
-        $form->show();
-        $this->out->elementEnd('li');
     }
 }

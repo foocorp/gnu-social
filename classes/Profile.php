@@ -682,25 +682,16 @@ class Profile extends Managed_DataObject
      */
     function getRequests($offset=0, $limit=null)
     {
-        $qry =
-          'SELECT profile.* ' .
-          'FROM profile JOIN subscription_queue '.
-          'ON profile.id = subscription_queue.subscriber ' .
-          'WHERE subscription_queue.subscribed = %d ' .
-          'ORDER BY subscription_queue.created DESC ';
-
-        if ($limit != null) {
-            if (common_config('db','type') == 'pgsql') {
-                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-            } else {
-                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
-            }
+        // FIXME: mysql only
+        $subqueue = new Profile();
+        $subqueue->joinAdd(array('id', 'subscription_queue:subscriber'));
+        $subqueue->whereAdd(sprintf('subscription_queue.subscribed = %d', $this->getID()));
+        $subqueue->limit($offset, $limit);
+        $subqueue->orderBy('subscription_queue.created', 'DESC');
+        if (!$subqueue->find()) {
+            throw new NoResultException($subqueue);
         }
-
-        $members = new Profile();
-
-        $members->query(sprintf($qry, $this->id));
-        return $members;
+        return $subqueue;
     }
 
     function subscriptionCount()

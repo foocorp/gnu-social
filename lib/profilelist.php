@@ -46,7 +46,7 @@ class ProfileList extends Widget
     /** Action object using us. */
     var $action = null;
 
-    function __construct($profile, $action=null)
+    function __construct($profile, HTMLOutputter $action=null)
     {
         parent::__construct($action);
 
@@ -93,9 +93,9 @@ class ProfileList extends Widget
         return $cnt;
     }
 
-    function newListItem($profile)
+    function newListItem(Profile $target)
     {
-        return new ProfileListItem($profile, $this->action);
+        return new ProfileListItem($target, $this->action);
     }
 
     function maxProfiles()
