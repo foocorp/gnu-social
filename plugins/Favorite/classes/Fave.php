@@ -114,23 +114,37 @@ class Fave extends Managed_DataObject
 
     public function delete($useWhere=false)
     {
-        $profile = Profile::getKV('id', $this->user_id);
-        $notice  = Notice::getKV('id', $this->notice_id);
-
         $result = null;
 
-        if (Event::handle('StartDisfavorNotice', array($profile, $notice, &$result))) {
+        try {
+            $profile = $this->getActor();
+            $notice  = $this->getTarget();
 
+            if (Event::handle('StartDisfavorNotice', array($profile, $notice, &$result))) {
+
+                $result = parent::delete($useWhere);
+
+                self::blowCacheForProfileId($this->user_id);
+                self::blowCacheForNoticeId($this->notice_id);
+                self::blow('popular');
+
+                if ($result !== false) {
+                    Event::handle('EndDisfavorNotice', array($profile, $notice));
+                }
+            }
+
+        } catch (NoResultException $e) {
+            common_log(LOG_INFO, '"'.get_class($e->obj).'" with id=='.var_export($e->obj->id, true).' object not found when deleting favorite, ignoring...');
+
+            // Delete it without the event, as something is wrong and we don't want it anyway.
             $result = parent::delete($useWhere);
 
             self::blowCacheForProfileId($this->user_id);
             self::blowCacheForNoticeId($this->notice_id);
             self::blow('popular');
-
-            if ($result) {
-                Event::handle('EndDisfavorNotice', array($profile, $notice));
-            }
         }
+
+
 
         return $result;
     }
@@ -391,14 +405,7 @@ class Fave extends Managed_DataObject
 
     public function getTarget()
     {
-        // throws exception on failure
-        $target = new Notice();
-        $target->id = $this->notice_id;
-        if (!$target->find(true)) {
-            throw new NoResultException($target);
-        }
-
-        return $target;
+        return Notice::getByID($this->notice_id);
     }
 
     public function getTargetObject()
