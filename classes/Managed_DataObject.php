@@ -334,9 +334,44 @@ abstract class Managed_DataObject extends Memcached_DataObject
         $object = new $classname();
         foreach ($pkey as $col) {
             if (!array_key_exists($col, $vals)) {
-                throw new ServerException("Missing primary key column '{$col}'");
+                throw new ServerException("Missing primary key column '{$col}' for ".get_called_class()." among provided keys: ".implode(',', array_keys($vals)));
             } elseif (is_null($vals[$col])) {
                 throw new ServerException("NULL values not allowed in getByPK for column '{$col}'");
+            }
+            $object->$col = $vals[$col];
+        }
+        if (!$object->find(true)) {
+            throw new NoResultException($object);
+        }
+        return $object;
+    }
+
+    /**
+     * Returns an object by looking at given unique key columns.
+     *
+     * Will NOT accept NULL values for a unique key column. Ignores non-key values.
+     *
+     * @param   array   $vals       All array keys which are set must be non-null.
+     *
+     * @return  Managed_DataObject  of the get_called_class() type
+     * @throws  NoResultException   if no object with that primary key
+     */
+    static function getByKeys(array $vals)
+    {
+        $classname = get_called_class();
+
+        $object = new $classname();
+
+        $keys = $object->keys();
+        if (is_null($keys)) {
+            throw new ServerException("Failed to get key columns for class '{$classname}'");
+        }
+
+        foreach ($keys as $col) {
+            if (!array_key_exists($col, $vals)) {
+                continue;
+            } elseif (is_null($vals[$col])) {
+                throw new ServerException("NULL values not allowed in getByKeys for column '{$col}'");
             }
             $object->$col = $vals[$col];
         }
@@ -452,5 +487,17 @@ abstract class Managed_DataObject extends Memcached_DataObject
     static public function beforeSchemaUpdate()
     {
         // NOOP
+    }
+
+    static function newUri(Profile $actor, Managed_DataObject $object, $created=null)
+    {
+        if (is_null($created)) {
+            $created = common_sql_now();
+        }
+        return TagURI::mint(strtolower(get_called_class()).':%d:%s:%d:%s',
+                                        $actor->getID(),
+                                        ActivityUtils::resolveUri($object->getObjectType(), true),
+                                        $object->getID(),
+                                        common_date_iso8601($created));
     }
 }

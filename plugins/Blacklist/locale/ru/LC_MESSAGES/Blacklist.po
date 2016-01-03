@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Boris Konstantinovich Lissov <lissovbk@yandex.ru>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:33+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/gnu-social/language/ru/)\n"
+"PO-Revision-Date: 2015-07-12 19:53+0000\n"
+"Last-Translator: Boris Konstantinovich Lissov <lissovbk@yandex.ru>\n"
+"Language-Team: Russian (http://www.transifex.com/gnu-social/gnu-social/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. TRANS: Title of blacklist plugin administration panel.
 #: actions/blacklistadminpanel.php:53
@@ -36,7 +37,7 @@ msgstr "Имена пользователей"
 #. TRANS: Field title in blacklist plugin administration panel.
 #: actions/blacklistadminpanel.php:180
 msgid "Patterns of nicknames to block, one per line."
-msgstr ""
+msgstr "Шаблоны имён пользователей для блокировки, по одному на строку"
 
 #. TRANS: Field label in blacklist plugin administration panel.
 #: actions/blacklistadminpanel.php:187
@@ -46,7 +47,7 @@ msgstr "URL-адреса"
 #. TRANS: Field title in blacklist plugin administration panel.
 #: actions/blacklistadminpanel.php:190
 msgid "Patterns of URLs to block, one per line."
-msgstr ""
+msgstr "Шаблоны URL-адресов для блокировки, по одному на строку"
 
 #. TRANS: Button text in blacklist plugin administration panel to save
 #. settings.
@@ -66,7 +67,7 @@ msgstr "Сохранить настройки сайта."
 #: BlacklistPlugin.php:112
 #, php-format
 msgid "Unknown data type for config %1$s + %2$s."
-msgstr ""
+msgstr "Неизвестный тип данных для конфигурации %1$s + %2$s."
 
 #. TRANS: Validation failure for URL. %s is the URL.
 #: BlacklistPlugin.php:132
@@ -132,7 +133,7 @@ msgstr "Добавить эту домашнюю страницу в чёрны�
 #: BlacklistPlugin.php:459 BlacklistPlugin.php:496
 #, php-format
 msgid "Users from \"%s\" are blocked."
-msgstr ""
+msgstr "Пользователи из списка «%s» заблокированы."
 
 #. TRANS: Exception thrown trying to post a notice while having a blocked
 #. nickname. %s is the blocked nickname.
@@ -146,4 +147,4 @@ msgstr "Сообщения от имени \"%s\" не допускаются."
 #: BlacklistPlugin.php:507
 #, php-format
 msgid "Cannot subscribe to nickname \"%s\"."
-msgstr ""
+msgstr "Нельзя подписаться на пользователя с именем «%s»."

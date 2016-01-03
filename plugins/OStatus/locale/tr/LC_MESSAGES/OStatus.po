@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-05 16:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. TRANS: Link text for a user to subscribe to an OStatus user.
 #: OStatusPlugin.php:206 OStatusPlugin.php:227 OStatusPlugin.php:1196
 msgid "Subscribe"
-msgstr ""
+msgstr "Takip et"
 
 #. TRANS: Exception in OStatus when invalid URI was entered.
 #: OStatusPlugin.php:249 OStatusPlugin.php:284
@@ -63,7 +63,7 @@ msgstr ""
 #: OStatusPlugin.php:707
 msgctxt "TITLE"
 msgid "Join"
-msgstr ""
+msgstr "Katıl"
 
 #. TRANS: Success message for subscribe to group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the subscribed group's name.
@@ -81,7 +81,7 @@ msgstr ""
 #: OStatusPlugin.php:761
 msgctxt "TITLE"
 msgid "Leave"
-msgstr ""
+msgstr "Ayrıl"
 
 #. TRANS: Success message for unsubscribe from group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the unsubscribed group's name.
@@ -126,7 +126,7 @@ msgstr ""
 #: OStatusPlugin.php:938
 msgctxt "TITLE"
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #. TRANS: Success message for remote list addition through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the added list member, %3$s
@@ -183,7 +183,7 @@ msgstr ""
 #. TRANS: Link text for a user to list an OStatus user.
 #: OStatusPlugin.php:1205
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #. TRANS: Plugin description.
 #: OStatusPlugin.php:1220
@@ -361,7 +361,7 @@ msgstr "JabberID yok."
 #. TRANS: Client error.
 #: actions/peopletagsalmon.php:45 actions/ostatusinit.php:240
 msgid "No such list."
-msgstr ""
+msgstr "Böyle bir liste yok."
 
 #. TRANS: Client error displayed when trying to send a message to a remote
 #. list.
@@ -419,7 +419,7 @@ msgstr ""
 #: actions/ostatusinit.php:103
 msgctxt "BUTTON"
 msgid "Join"
-msgstr ""
+msgstr "Katıl"
 
 #. TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
 #: actions/ostatusinit.php:106
@@ -432,7 +432,7 @@ msgstr ""
 #: actions/ostatusinit.php:108 actions/ostatusinit.php:114
 msgctxt "BUTTON"
 msgid "Subscribe"
-msgstr ""
+msgstr "Takip et"
 
 #. TRANS: Form legend. %s is a nickname.
 #: actions/ostatusinit.php:112
@@ -663,7 +663,7 @@ msgstr ""
 #. TRANS: Button text.
 #: actions/ostatussub.php:136
 msgid "Join"
-msgstr ""
+msgstr "Katıl"
 
 #. TRANS: Tooltip for button "Join".
 #: actions/ostatussub.php:138
@@ -1000,4 +1000,4 @@ msgstr ""
 #. TRANS: String in the gettext speed test script. Unimportant.
 #: tests/gettext-speedtest.php:58
 msgid "Feeds"
-msgstr ""
+msgstr "Beslemeler"

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 10:47+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-28 12:31+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,14 +21,14 @@ msgstr ""
 #. TRANS: Server exception.
 #: SphinxSearchPlugin.php:87
 msgid "Sphinx PHP extension must be installed."
-msgstr "La extensión PHP Sphinx debe ser instalada."
+msgstr "Debe estar instalada la extensión PHP Sphinx."
 
 #. TRANS: Plugin description.
 #: SphinxSearchPlugin.php:118
 msgid "Plugin for Sphinx search backend."
-msgstr "Complemento (plugin) para el motor de búsquedas Sphinx."
+msgstr "Complemento para habilitar el motor de búsqueda Sphinx."
 
 #. TRANS: Server exception thrown when a database name cannot be identified.
 #: sphinxsearch.php:129
 msgid "Sphinx search could not identify database name."
-msgstr "La búsqueda Sphinx nn pudo identificar el nombre de la base de datos."
+msgstr "Sphinx no pudo identificar el nombre de la base de datos."

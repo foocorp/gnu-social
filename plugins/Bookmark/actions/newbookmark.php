@@ -43,80 +43,28 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class NewbookmarkAction extends Action
+class NewbookmarkAction extends FormAction
 {
-    protected $user        = null;
-    protected $error       = null;
     protected $complete    = null;
     protected $title       = null;
     protected $url         = null;
     protected $tags        = null;
     protected $description = null;
 
-    /**
-     * Returns the title of the action
-     *
-     * @return string Action title
-     */
     function title()
     {
         // TRANS: Title for action to create a new bookmark.
         return _m('New bookmark');
     }
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function doPreparation()
     {
-        parent::prepare($argarray);
-
-        if ($this->boolean('ajax')) {
-            GNUsocial::setApi(true);
-        }
-
-        $this->user = common_current_user();
-
-        if (empty($this->user)) {
-            // TRANS: Client exception thrown when trying to create a new bookmark while not logged in.
-            throw new ClientException(_m('Must be logged in to post a bookmark.'),
-                                      403);
-        }
-
-        if ($this->isPost()) {
-            $this->checkSessionToken();
-        }
-
         $this->title       = $this->trimmed('title');
         $this->url         = $this->trimmed('url');
-        $this->tags        = $this->trimmed('tags');
+        $this->tags        = preg_split('/[\s,]+/', $this->trimmed('tags'), null,  PREG_SPLIT_NO_EMPTY);
         $this->description = $this->trimmed('description');
 
         return true;
-    }
-
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
-    {
-        parent::handle($argarray);
-
-        if ($this->isPost()) {
-            $this->newBookmark();
-        } else {
-            $this->showPage();
-        }
-
-        return;
     }
 
     /**
@@ -124,62 +72,28 @@ class NewbookmarkAction extends Action
      *
      * @return void
      */
-    function newBookmark()
+    function handlePost()
     {
-        try {
-            if (empty($this->title)) {
-                // TRANS: Client exception thrown when trying to create a new bookmark without a title.
-                throw new ClientException(_m('Bookmark must have a title.'));
-            }
-
-            if (empty($this->url)) {
-                // TRANS: Client exception thrown when trying to create a new bookmark without a URL.
-                throw new ClientException(_m('Bookmark must have an URL.'));
-            }
-
-            $options = array();
-
-            ToSelector::fillOptions($this, $options);
-
-            $saved = Bookmark::saveNew($this->user->getProfile(),
-                                       $this->title,
-                                       $this->url,
-                                       $this->tags,
-                                       $this->description,
-                                       $options);
-
-        } catch (ClientException $ce) {
-            if ($this->boolean('ajax')) {
-                $this->startHTML('text/xml;charset=utf-8');
-                $this->elementStart('head');
-                // TRANS: Page title after an AJAX error occurs
-                $this->element('title', null, _('Ajax Error'));
-                $this->elementEnd('head');
-                $this->elementStart('body');
-                $this->element('p', array('id' => 'error'), $ce->getMessage());
-                $this->elementEnd('body');
-                $this->endHTML();
-                return;
-            } else {
-                $this->error = $ce->getMessage();
-                $this->showPage();
-                return;
-            }
+        if (empty($this->title)) {
+            // TRANS: Client exception thrown when trying to create a new bookmark without a title.
+            throw new ClientException(_m('Bookmark must have a title.'));
         }
 
-        if ($this->boolean('ajax')) {
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Page title after posting a bookmark.
-            $this->element('title', null, _m('Bookmark posted'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-            $this->showNotice($saved);
-            $this->elementEnd('body');
-            $this->endHTML();
-        } else {
-            common_redirect($saved->getUrl(), 303);
+        if (empty($this->url)) {
+            // TRANS: Client exception thrown when trying to create a new bookmark without a URL.
+            throw new ClientException(_m('Bookmark must have an URL.'));
         }
+
+        $options = array();
+
+        ToSelector::fillOptions($this, $options);
+
+        $saved = Bookmark::addNew($this->scoped,
+                                   $this->title,
+                                   $this->url,
+                                   $this->tags,
+                                   $this->description,
+                                   $options);
     }
 
     /**

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:33+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-15 22:21+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,7 +67,7 @@ msgstr "Spara webbplatsinställningar."
 #: BlacklistPlugin.php:112
 #, php-format
 msgid "Unknown data type for config %1$s + %2$s."
-msgstr ""
+msgstr "Okänd datatyp för config %1$s + %2$s."
 
 #. TRANS: Validation failure for URL. %s is the URL.
 #: BlacklistPlugin.php:132
@@ -96,12 +97,12 @@ msgstr "Du får inte använda smeknamnet \"%s\"."
 #: BlacklistPlugin.php:222
 #, php-format
 msgid "You may not use URL \"%s\" in notices."
-msgstr ""
+msgstr "Du får inte använda hemsideadress \"%s\" i notiser."
 
 #. TRANS: Plugin description.
 #: BlacklistPlugin.php:303
 msgid "Keeps a blacklist of forbidden nickname and URL patterns."
-msgstr ""
+msgstr "Behåller en svartlista av förbjudna smeknamn och hemsideadress-mönster."
 
 #. TRANS: Menu item in admin panel.
 #: BlacklistPlugin.php:341
@@ -113,17 +114,17 @@ msgstr "Svartlista"
 #: BlacklistPlugin.php:343
 msgctxt "TOOLTIP"
 msgid "Blacklist configuration."
-msgstr ""
+msgstr "Konfiguration för svartlista."
 
 #. TRANS: Checkbox label in the blacklist user form.
 #: BlacklistPlugin.php:370
 msgid "Add this nickname pattern to blacklist"
-msgstr ""
+msgstr "Lägg till det här smeknamnets mönster i svartlistan"
 
 #. TRANS: Checkbox label in the blacklist user form.
 #: BlacklistPlugin.php:380
 msgid "Add this homepage pattern to blacklist"
-msgstr ""
+msgstr "Lägg till den här hemsidans mönster i svartlistan"
 
 #. TRANS: Exception thrown trying to post a notice while having set a blocked
 #. homepage URL. %s is the blocked URL.
@@ -139,11 +140,11 @@ msgstr "Användare från \"%s\" är blockerade."
 #: BlacklistPlugin.php:471
 #, php-format
 msgid "Notices from nickname \"%s\" are disallowed."
-msgstr ""
+msgstr "Notiser från smeknamnet \"%s\" tillåts inte."
 
 #. TRANS: Client exception thrown trying to subscribe to a person with a
 #. blocked nickname. %s is the blocked nickname.
 #: BlacklistPlugin.php:507
 #, php-format
 msgid "Cannot subscribe to nickname \"%s\"."
-msgstr ""
+msgstr "Kan inte prenumerera på smeknamnet \"%s\"."

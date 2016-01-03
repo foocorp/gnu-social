@@ -1012,6 +1012,24 @@ class User extends Managed_DataObject
         return !empty($this->password);
     }
 
+    public function setPassword($password)
+    {
+        $orig = clone($this);
+        $this->password = common_munge_password($password, $this->getProfile());
+
+        if ($this->validate() !== true) {
+            // TRANS: Form validation error on page where to change password.
+            throw new ServerException(_('Error saving user; invalid.'));
+        }
+
+        if (!$this->update($orig)) {
+            common_log_db_error($this, 'UPDATE', __FILE__);
+            // TRANS: Server error displayed on page where to change password when password change
+            // TRANS: could not be made because of a server error.
+            throw new ServerException(_('Cannot save new password.'));
+        }
+    }
+
     public function delPref($namespace, $topic)
     {
         return $this->getProfile()->delPref($namespace, $topic);

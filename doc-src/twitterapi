@@ -1,0 +1,430 @@
+## Authentication
+
+### HTTP Basic authentication
+
+The API uses [HTTP Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication).
+Note that this means that users with only an OpenID login cannot use the API; they have to add a
+password to their account using the control panel on the site.
+
+### OAuth authentication
+
+OAuth 1.0a authentication for API resources is also supported. Generally, StatusNet's
+UI and API are similar to Twitter's for OAuth applications (if you're new to OAuth
+check out [Beginner’s Guide to OAuth](http://hueniverse.com/oauth/)).
+
+To use OAuth, you'll need to register your client application via the web interface
+and obtain a consumer key and secret. You can find the interface for application
+registration at [http://%%site.server%%/%%site.path%%settings/oauthapps](http://%%site.server%%/%%site.path%%settings/oauthapps).
+
+## JSONP callbacks
+
+For API methods that return [JSON](https://en.wikipedia.org/wiki/JSON), an optional
+JSONP-style callback parameter is supported. If supplied, the response will be in
+JSONP format with a callback of the given name. To make it easier for clients to
+handle error conditions, HTTP error codes are suppressed, and the errors will be
+returned in the response body when using JSONP.
+
+## Rate limiting
+
+There is currently no rate-limiting.
+
+## Gotchas
+
+Some things to remember:
+
+* %%site.name%% supports the
+  [OStatus federation protocol](https://en.wikipedia.org/wiki/OStatus) (as well as
+  [OpenMicroBlogging](https://en.wikipedia.org/wiki/OpenMicroBlogging) for backwards
+  compatibility), so many notices and friends' profiles may come from other servers.
+* User nicknames are unique, but they are not globally unique. Use the ID number
+  instead.
+* Private streams are not implemented yet.
+* GNU social sites can be configured as private. In that case, all API methods
+  require authentication, including the public timeline (see the 'config' method
+  below).
+* If "Fancy URLs" are not enabled, urls from above need to include "index.php" at
+  the root. ( e.g. http://example.org/statusnet/api becomes http://www.example.org/statusnet/index.php/api )
+* The `since_id` parameter does not work as documented by Twitter. Twitter says of
+  `since_id`: "There are limits to the number of Tweets which can be accessed
+  through the API. If the limit of Tweets has occured since the `since_id`, the
+  `since_id` will be forced to the oldest ID available." However, GNU social will
+  return the newest notices (or the newest back from max_id, if present)! Also, a
+  `since_id` <= 0 will be ignored.
+
+## Timeline resources
+
+### statuses/public_timeline
+
+Returns the 20 most recent notices, including repeats if they exist, from
+non-protected users.
+
+### statuses/home_timeline
+
+Returns the 20 most recent notices, including repeats if they exist, posted by the
+authenticating user and the users they follow. This is the same timeline seen by a
+user when they login to their instance. This method is identical to
+statuses/friends_timeline, except that this method always includes repeats.
+
+### statuses/friends_timeline
+
+Alias of statuses/home_timeline
+
+### statuses/friends_timeline/:username
+
+Alias of statuses/home_timeline for the specified username
+
+### statuses/mentions
+
+Returns the 20 most recent mentions (notices containing @username) for the
+authenticating user.
+
+This method will not include repeats in the XML and JSON responses unless the
+include_rts parameter is set. The RSS and Atom responses will always include repeats
+as notices prefixed with RT.
+
+### statuses/replies
+
+Alias of statuses/mentions
+
+### statuses/replies/:username
+
+Alias of statuses/mentions for the specified username
+
+### statuses/user_timeline
+
+Returns the 20 most recent notices posted by the authenticating user. It is also
+possible to request another user's timeline by using the screen\_name or user_id
+parameter. The other users timeline will only be visible if they are not protected,
+or if the authenticating user's follow request was accepted by the protected user.
+
+This method will not include repeats in the XML and JSON responses unless the
+include_rts parameter is set. The RSS and Atom responses will always include
+repeats as notices prefixed with RT, regardless of provided parameters.
+
+### statuses/retweeted\_to_me
+
+Not implemented.
+
+### statuses/retweeted\_by_me
+
+Not implemented.
+
+### statuses/retweets\_of_me
+
+Not implemented.
+
+## Status resources
+
+### statuses/show/:id
+
+Returns a single notice, specified by the id parameter. The notice's author will be
+returned inline.
+
+### statuses/update
+
+Post a new notice as the authenticating user.
+
+Additional 'media' parameter allows binary multimedia uploads (images, etc.). Format
+post data as multipart/form-data when using the 'media' parameter.
+
+### statuses/destroy/:id
+
+Destroys the notice specified by the required ID parameter. The authenticating user
+must be the author of the specified notice. Returns the destroyed notice if successful.
+
+### statuses/retweet/:id
+
+Repeats a notice. Returns the original notice with repeat details embedded.
+
+## User resources
+
+### statuses/friends
+
+Returns the user's subscriptions (friends) as an array of profiles.
+
+### statuses/followers
+
+Returns the user's subscribers (followers) as an array of profiles.
+
+### users/show
+
+Returns extended information of a given user, specified by ID or screen name as per
+the required id parameter.
+
+## Direct message resources
+
+### direct_messages
+
+Returns the 20 most recent direct messages sent to the authenticating user. The XML
+and JSON versions include detailed information about the sender and recipient user.
+
+### direct_messages/sent
+
+Returns the 20 most recent direct messages sent by the authenticating user. The XML
+and JSON versions include detailed information about the sender and recipient user.
+
+### direct_messages/new
+
+Sends a new direct message to the specified user from the authenticating user.
+Requires both the user and text parameters and must be a POST. Returns the sent
+message in the requested format if successful.
+
+### direct_messages/destroy
+
+Not implemented.
+
+## Friendships resources
+
+### friendships/create
+
+Allows the authenticating users to follow the user specified in the ID parameter.
+Returns the befriended user in the requested format when successful. Returns a
+string describing the failure condition when unsuccessful.
+
+If you are already friends with the user a HTTP 403 may be returned, though for
+performance reasons you may get a 200 OK message even if the friendship already
+exists.
+
+Note that users cannot subscribe to remote profiles using this API.
+
+### friendships/destroy
+
+Allows the authenticating users to unfollow the user specified in the ID parameter.
+Returns the unfollowed user in the requested format when successful. Returns a
+string describing the failure condition when unsuccessful.
+
+Users can unsubscribe to a remote profile using this API, but it's preferred to use
+numeric IDs to nicknames.
+
+### friendships/exists
+
+Test for the existence of friendship between two users. Will return true if user\_a
+follows user_b, otherwise will return false. Authentication is required if either
+user A or user B are protected. Additionally the authenticating user must be a
+follower of the protected user.
+
+### friendships/show
+
+Returns detailed information about the relationship between two users.
+
+## Friends and subscribers resources
+
+### friends/ids
+
+Returns an array of numeric IDs for every user the specified user is subscribed to.
+This method is powerful when used in conjunction with users/lookup.
+
+### followers/ids
+
+Returns an array of numeric IDs for every user subscsribed to the specified user.
+This method is powerful when used in conjunction with users/lookup.
+
+## Account resources
+
+### account/verify_credentials
+
+Returns an HTTP 200 OK response code and a representation of the requesting user if
+authentication was successful; returns a 401 status code and an error message if
+not. Use this method to test if supplied user credentials are valid.
+
+### account/end_session
+
+Not implemented.
+
+### account/update\_delivery_device
+
+Not implemented.
+
+### account/rate\_limit_status
+
+Returns the remaining number of API requests available to the requesting user before
+the API limit is reached.
+
+We have no rate limit, so this always returns 150 hits left.
+
+### account/update\_profile\_background_image
+
+Updates the authenticating user's profile background image. This method can also be
+used to enable or disable the profile background image.
+
+### account/update\_profile_image
+
+Updates the authenticating user's profile image. Note that this method expects raw
+multipart data, not a URL to an image.
+
+## Favorite resources
+
+### favorites
+
+Returns the 20 most recent favorite statuses for the authenticating or specified
+user in the requested format.
+
+### favorites/create/:id
+
+Favorites the status specified in the ID parameter as the authenticating user.
+Returns the favorite status when successful.
+
+### favorites/destroy/:id
+
+Un-favorites the status specified in the ID parameter as the authenticating user.
+Returns the un-favorited status in the requested format when successful.
+
+## Notification resources
+
+### notifications/follow
+
+Not implemented.
+
+### notifications/leave
+
+Not implemented.
+
+## Block resources
+
+### blocks/create
+
+Blocks the specified user from following the authenticating user. In addition the
+blocked user will not show in the authenticating users mentions or timeline (unless
+retweeted by another user). If a follow or friend relationship exists it is
+destroyed.
+
+### blocks/destroy
+
+Un-blocks the user specified in the ID parameter for the authenticating user.
+Returns the un-blocked user in the requested format when successful. If
+relationships existed before the block was instated, they will not be restored.
+
+### blocks/exists
+
+Not implemented.
+
+### blocks/blocking
+
+Not implemented.
+
+## Help resources
+
+### help/test
+
+Returns the string "ok" in the requested format with a 200 OK HTTP status code. This
+method is great for sending a HEAD request to determine our servers current time.
+
+## OAuth resources
+
+It is strongly recommended you use HTTPS for all OAuth authorization steps.
+
+### oauth/request_token
+
+Allows a Consumer application to obtain an OAuth Request Token to request user
+authorization. This method fulfills Section 6.1 of the OAuth 1.0 authentication
+flow. It is strongly recommended you use HTTPS for all OAuth authorization steps.
+
+### oauth/authorize
+
+Allows a Consumer application to use an OAuth Request Token to request user
+authorization. This method fulfills Section 6.2 of the OAuth 1.0 authentication
+flow. Desktop applications must use this method (and cannot use GET oauth/authenticate).
+
+### oauth/access_token
+
+Allows a Consumer application to exchange the OAuth Request Token for an OAuth
+Access Token. This method fulfills Section 6.3 of the OAuth 1.0 authentication flow.
+The OAuth access token may also be used for xAuth operations.
+
+## Search
+
+The search method supports the following optional URL parameters:
+
+* **callback**: if supplied when using the JSON format, the response will use the
+  JSONP format with a callback of the given name.
+* **rpp**: the number of notices to return per page, up to a max of 100.
+* **page**: the page number (starting at 1) to return.
+* **since_id:**: returns notices with ids greater than the given id.
+
+Note:
+
+* The search does not support operators, such as "from:", "to:" and booleans.
+* Notice content is HTML-encoded.
+
+### search
+
+Returns relevant notices that match a specified query.
+
+### Atom
+
+To request search results in Atom, append your URL-encoded query as a parameter to
+the search method and specify the Atom format:
+
+`%%site.server%%/%%site.path%%api/search.atom?q=<query>`
+
+### JSON
+
+To request search results in JSON, append your URL-encoded query as a parameter to
+the search method and specify the JSON format:
+
+`%%site.server%%/%%site.path%%api/search.json?q=<query>`
+
+## Additional resources
+
+These are extensions to the Twitter API that expose additional functionality.
+
+### Group resources
+
+#### statusnet/groups/timeline
+
+Shows a group's timeline. Similar to other timeline resources.
+
+#### statusnet/groups/show
+
+Show a groups profile.
+
+#### statusnet/groups/create
+
+Create a new group.
+
+#### statusnet/groups/join
+
+Join a group.
+
+#### statusnet/groups/leave
+
+Leave a group.
+
+#### statusnet/groups/list
+
+Show the groups a given user is a member of.
+
+#### statusnet/groups/list_all
+
+List all local groups.
+
+#### statusnet/groups/membership
+
+List the members of a given group.
+
+#### statusnet/groups/is_member
+
+Determine whether a given user is a member of a given group.
+
+### Tag resources
+
+#### statusnet/tags/timeline
+
+Shows a tag's timeline. Similar to other timeline resources.
+
+### Media resources
+
+#### statusnet/media/upload
+
+Endpoint for uploading an image. Returns a URL that can be used in a status update.
+Format post data as multipart/form-data.
+
+### Configuration
+
+#### statusnet/config
+
+Show an instance's configuration information.
+
+Of special note is the `<private>` element (config/site/private), which indicates
+whether a site is private. When a site is configured as private every other API
+method requires authentication, including the public timeline (`/api/statuses/public_timeline.format`).

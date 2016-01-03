@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 13:31+0000\n"
+"PO-Revision-Date: 2015-09-16 02:17+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,7 +42,7 @@ msgstr "Avbryt"
 #. TRANS: Field label on form to RSVP ("please respond") for an event.
 #: forms/rsvp.php:97
 msgid "RSVP:"
-msgstr ""
+msgstr "RSVP:"
 
 #. TRANS: Button text for RSVP ("please respond") reply to confirm attendence.
 #: forms/rsvp.php:113
@@ -61,7 +61,7 @@ msgstr "Nej"
 #: forms/rsvp.php:117
 msgctxt "BUTTON"
 msgid "Maybe"
-msgstr ""
+msgstr "Kanske"
 
 #. TRANS: Field label on event form.
 #: forms/event.php:103
@@ -438,7 +438,7 @@ msgstr ""
 #. TRANS: Exception thrown when there are too many activity objects.
 #: EventPlugin.php:135
 msgid "Too many activity objects."
-msgstr ""
+msgstr "För många aktiva objekt."
 
 #. TRANS: Exception thrown when event plugin comes across a non-event type
 #. object.

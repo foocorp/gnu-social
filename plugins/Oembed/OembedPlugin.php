@@ -35,6 +35,24 @@ class OembedPlugin extends Plugin
         $m->connect('main/oembed', array('action' => 'oembed'));
     }
 
+    public function onGetRemoteUrlMetadataFromDom($url, DOMDocument $dom, stdClass &$metadata)
+    {
+        try {
+            common_log(LOG_INFO, 'Trying to discover an oEmbed endpoint using link headers.');
+            $api = oEmbedHelper::oEmbedEndpointFromHTML($dom);
+            common_log(LOG_INFO, 'Found API endpoint ' . $api . ' for URL ' . $url);
+            $params = array(
+                'maxwidth' => common_config('thumbnail', 'width'),
+                'maxheight' => common_config('thumbnail', 'height'),
+            );
+            $metadata = oEmbedHelper::getOembedFrom($api, $url, $params);
+
+        } catch (Exception $e) {
+            common_log(LOG_INFO, 'Could not find an oEmbed endpoint using link headers.');
+            // Just ignore it!
+        }
+    }
+
     public function onEndShowHeadElements(Action $action)
     {
         switch ($action->getActionName()) {
@@ -59,6 +77,9 @@ class OembedPlugin extends Plugin
                 'title'=>'oEmbed'),null);
             break;
         case 'shownotice':
+            if (!$action->notice->isLocal()) {
+                break;
+            }
             try {
                 $action->element('link',array('rel'=>'alternate',
                     'type'=>'application/json+oembed',
@@ -90,28 +111,23 @@ class OembedPlugin extends Plugin
      * Normally this event is called through File::saveNew()
      *
      * @param File   $file       The newly inserted File object.
-     * @param array  $redir_data lookup data eg from File_redirection::where()
-     * @param string $given_url
      *
      * @return boolean success
      */
-    public function onEndFileSaveNew(File $file, array $redir_data, $given_url)
+    public function onEndFileSaveNew(File $file)
     {
         $fo = File_oembed::getKV('file_id', $file->id);
         if ($fo instanceof File_oembed) {
-            common_log(LOG_WARNING, "Strangely, a File_oembed object exists for new file $file_id", __FILE__);
-             return true;
+            common_log(LOG_WARNING, "Strangely, a File_oembed object exists for new file {$file->id}", __FILE__);
+            return true;
         }
 
-        if (isset($redir_data['oembed']['json'])
-                && !empty($redir_data['oembed']['json'])) {
-            File_oembed::saveNew($redir_data['oembed']['json'], $file->id);
-        } elseif (isset($redir_data['type'])
-                && (('text/html' === substr($redir_data['type'], 0, 9)
-                || 'application/xhtml+xml' === substr($redir_data['type'], 0, 21)))) {
+        if (isset($file->mimetype)
+            && (('text/html' === substr($file->mimetype, 0, 9)
+            || 'application/xhtml+xml' === substr($file->mimetype, 0, 21)))) {
 
             try {
-                $oembed_data = File_oembed::_getOembed($given_url);
+                $oembed_data = File_oembed::_getOembed($file->url);
                 if ($oembed_data === false) {
                     throw new Exception('Did not get oEmbed data from URL');
                 }
@@ -173,10 +189,12 @@ class OembedPlugin extends Plugin
     
     public function onStartShowAttachmentRepresentation(HTMLOutputter $out, File $file)
     {
-        $oembed = File_oembed::getKV('file_id', $file->id);
-        if (empty($oembed->type)) {
+        try {
+            $oembed = File_oembed::getByFile($file);
+        } catch (NoResultException $e) {
             return true;
         }
+
         switch ($oembed->type) {
         case 'rich':
         case 'video':
@@ -209,14 +227,14 @@ class OembedPlugin extends Plugin
         }
 
         // All our remote Oembed images lack a local filename property in the File object
-        if ($file->filename !== null) {
+        if (!is_null($file->filename)) {
             return true;
         }
 
         try {
             // If we have proper oEmbed data, there should be an entry in the File_oembed
             // and File_thumbnail tables respectively. If not, we're not going to do anything.
-            $file_oembed = File_oembed::byFile($file);
+            $file_oembed = File_oembed::getByFile($file);
             $thumbnail   = File_thumbnail::byFile($file);
         } catch (Exception $e) {
             // Not Oembed data, or at least nothing we either can or want to use.
@@ -274,8 +292,8 @@ class OembedPlugin extends Plugin
             throw new UnsupportedMediaException(_('Image file had impossible geometry (0 width or height)'));
         }
 
-        // We'll trust sha256 not to have collision issues any time soon :)
-        $filename = hash('sha256', $imgData) . '.' . common_supported_mime_to_ext($info['mime']);
+        // We'll trust sha256 (File::FILEHASH_ALG) not to have collision issues any time soon :)
+        $filename = hash(File::FILEHASH_ALG, $imgData) . '.' . common_supported_mime_to_ext($info['mime']);
         $fullpath = File_thumbnail::path($filename);
         // Write the file to disk. Throw Exception on failure
         if (!file_exists($fullpath) && file_put_contents($fullpath, $imgData) === false) {

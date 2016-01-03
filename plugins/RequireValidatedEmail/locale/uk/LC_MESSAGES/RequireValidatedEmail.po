@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Петро Романчук <ixer@ixer.org.ua>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:33+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"PO-Revision-Date: 2015-03-31 11:12+0000\n"
+"Last-Translator: Петро Романчук <ixer@ixer.org.ua>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/gnu-social/gnu-social/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -36,7 +37,7 @@ msgstr "Забороняє надсилання дописів, якщо кор�
 
 #: RequireValidatedEmailPlugin.php:243
 msgid "You must validate an email address before posting!"
-msgstr ""
+msgstr "Ви повинні підтвердити Ваш email щоб мати змогу писати!"
 
 #. TRANS: Client exception thrown when trying to register while already logged
 #. in.

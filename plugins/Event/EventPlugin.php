@@ -46,6 +46,9 @@ if (!defined('STATUSNET')) {
  */
 class EventPlugin extends MicroAppPlugin
 {
+
+    var $oldSaveNew = true;
+
     /**
      * Set up our tables (event and rsvp)
      *
@@ -61,6 +64,12 @@ class EventPlugin extends MicroAppPlugin
         $schema->ensureTable('happening', Happening::schemaDef());
         $schema->ensureTable('rsvp', RSVP::schemaDef());
 
+        return true;
+    }
+
+    public function onBeforePluginCheckSchema()
+    {
+        RSVP::beforeSchemaUpdate();
         return true;
     }
 
@@ -87,6 +96,10 @@ class EventPlugin extends MicroAppPlugin
                     array('id' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'));
         $m->connect('main/event/updatetimes',
                     array('action' => 'timelist'));
+
+        $m->connect(':nickname/events',
+                    array('action' => 'events'),
+                    array('nickname' => Nickname::DISPLAY_FMT));
         return true;
     }
 
@@ -112,10 +125,7 @@ class EventPlugin extends MicroAppPlugin
     }
 
     function types() {
-        return array(Happening::OBJECT_TYPE,
-                     RSVP::POSITIVE,
-                     RSVP::NEGATIVE,
-                     RSVP::POSSIBLE);
+        return array(Happening::OBJECT_TYPE);
     }
 
     function verbs() {
@@ -149,17 +159,51 @@ class EventPlugin extends MicroAppPlugin
             throw new Exception(_m('Wrong type for object.'));
         }
 
+        $dtstart = $happeningObj->element->getElementsByTagName('dtstart');
+        if($dtstart->length == 0) {
+            // TRANS: Exception thrown when has no start date
+            throw new Exception(_m('No start date for event.'));
+        }
+
+        $dtend = $happeningObj->element->getElementsByTagName('dtend');
+        if($dtend->length == 0) {
+            // TRANS: Exception thrown when has no end date
+            throw new Exception(_m('No end date for event.'));
+        }
+
+        // convert RFC3339 dates delivered in Activity Stream to MySQL DATETIME date format
+        $start_time = new DateTime($dtstart->item(0)->nodeValue);
+        $start_time->setTimezone(new DateTimeZone('UTC'));
+        $start_time = $start_time->format('Y-m-d H:i:s');
+        $end_time = new DateTime($dtend->item(0)->nodeValue);
+        $end_time->setTimezone(new DateTimeZone('UTC'));
+        $end_time = $end_time->format('Y-m-d H:i:s');
+
+        // location is optional
+        $location = null;
+        $location_object = $happeningObj->element->getElementsByTagName('location');
+        if($location_object->length > 0) {
+            $location = $location_object->item(0)->nodeValue;
+        }
+
+        // url is optional
+        $url = null;
+        $url_object = $happeningObj->element->getElementsByTagName('url');
+        if($url_object->length > 0) {
+            $url = $url_object->item(0)->nodeValue;
+        }
+
         switch ($activity->verb) {
         case ActivityVerb::POST:
-            // FIXME: get startTime, endTime, location and URL
-            return Happening::saveNew($actor,
-                                      $start_time,
-                                      $end_time,
-                                      $happeningObj->title,
-                                      null,
-                                      $happeningObj->summary,
-                                      null,
-                                      $options);
+        	// FIXME: get startTime, endTime, location and URL
+            $notice = Happening::saveNew($actor,
+                                         $start_time,
+                                         $end_time,
+                                         $happeningObj->title,
+                                         $location,
+                                         $happeningObj->summary,
+                                         $url,
+                                         $options);
             break;
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
@@ -250,9 +294,9 @@ class EventPlugin extends MicroAppPlugin
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
                               common_date_iso8601($happening->end_time));
 
-		// FIXME: add location
-		// FIXME: add URL
-		
+        $obj->extra[] = array('location', false, $happening->location);
+        $obj->extra[] = array('url', false, $happening->url);
+
         // XXX: probably need other stuff here
 
         return $obj;
@@ -500,5 +544,15 @@ class EventPlugin extends MicroAppPlugin
         $out->elementStart('div', 'rsvp');
         $out->raw($rsvp->asHTML());
         $out->elementEnd('div');
+    }
+
+    function onEndPersonalGroupNav(Menu $menu, Profile $target, Profile $scoped=null)
+    {
+        $menu->menuItem(common_local_url('events', array('nickname' => $target->getNickname())),
+                          // TRANS: Menu item in sample plugin.
+                          _m('Happenings'),
+                          // TRANS: Menu item title in sample plugin.
+                          _m('A list of your events'), false, 'nav_timeline_events');
+        return true;
     }
 }

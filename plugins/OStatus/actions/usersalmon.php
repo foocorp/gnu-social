@@ -95,13 +95,11 @@ class UsersalmonAction extends SalmonAction
             throw new ClientException(_m('Not to anyone in reply to anything.'));
         }
 
-        $existing = Notice::getKV('uri', $this->activity->objects[0]->id);
-        if ($existing instanceof Notice) {
-            common_log(LOG_ERR, "Not saving notice with duplicate URI '".$existing->getUri()."' (seems it already exists).");
+        try {
+            $this->saveNotice();
+        } catch (AlreadyFulfilledException $e) {
             return;
         }
-
-        $this->saveNotice();
     }
 
     /**

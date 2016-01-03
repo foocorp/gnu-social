@@ -30,9 +30,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 require_once 'Mail.php';
 
@@ -54,7 +52,7 @@ function mail_backend()
         $backend = $mail->factory(common_config('mail', 'backend'),
                                  common_config('mail', 'params') ?: array());
         if ($_PEAR->isError($backend)) {
-            common_server_error($backend->getMessage(), 500);
+            throw new ServerException($backend->getMessage());
         }
     }
     return $backend;
@@ -71,6 +69,8 @@ function mail_backend()
  */
 function mail_send($recipients, $headers, $body)
 {
+    global $_PEAR;
+
     try {
         // XXX: use Mail_Queue... maybe
         $backend = mail_backend();
@@ -81,6 +81,9 @@ function mail_send($recipients, $headers, $body)
 
         assert($backend); // throws an error if it's bad
         $sent = $backend->send($recipients, $headers, $body);
+        if ($_PEAR->isError($sent)) {
+            throw new ServerException($sent->getMessage());
+        }
         return true;
     } catch (PEAR_Exception $e) {
         common_log(

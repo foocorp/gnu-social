@@ -43,53 +43,29 @@ class Salmon
      *
      * @param string $endpoint_uri
      * @param string $xml string representation of payload
-     * @param User $user local user profile whose keys we sign with
+     * @param Profile $user profile whose keys we sign with (must be a local user)
      * @return boolean success
      */
-    public static function post($endpoint_uri, $xml, User $user)
+    public static function post($endpoint_uri, $xml, Profile $actor, Profile $target=null)
     {
         if (empty($endpoint_uri)) {
-            common_debug('No endpoint URI for Salmon post to '.$user->getUri());
+            common_debug('No endpoint URI for Salmon post to '.$actor->getUri());
             return false;
         }
 
         try {
-            $magic_env = MagicEnvelope::signAsUser($xml, $user);
-            $envxml = $magic_env->toXML();
+            $magic_env = MagicEnvelope::signAsUser($xml, $actor->getUser());
         } catch (Exception $e) {
             common_log(LOG_ERR, "Salmon unable to sign: " . $e->getMessage());
             return false;
         }
 
-        $headers = array('Content-Type: application/magic-envelope+xml');
-
-        try {
-            $client = new HTTPClient();
-            $client->setBody($envxml);
-            $response = $client->post($endpoint_uri, $headers);
-        } catch (HTTP_Request2_Exception $e) {
-            common_log(LOG_ERR, "Salmon post to $endpoint_uri failed: " . $e->getMessage());
+        // $target is so far only used in Diaspora, so it can be null
+        if (Event::handle('SalmonSlap', array($endpoint_uri, $magic_env, $target))) {
             return false;
+            //throw new ServerException('Could not distribute salmon slap as no plugin completed the event.');
         }
 
-        // Diaspora wants a slightly different formatting on the POST (other Content-type, so body needs "xml=")
-        if ($response->getStatus() === 422) {
-            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. Diaspora? Will try again! Body: %s',
-                                $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
-            $headers = array('Content-Type: application/x-www-form-urlencoded');
-            $client->setBody('xml=' . Magicsig::base64_url_encode($envxml));
-            $response = $client->post($endpoint_uri, $headers);
-        }
-
-        // 200 OK is the best response
-        // 202 Accepted is what we get from Diaspora for example
-        if (!in_array($response->getStatus(), array(200, 202))) {
-            common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
-                                $user->id, $endpoint_uri, $response->getStatus(), $response->getBody()));
-            return false;
-        }
-
-        // Success!
         return true;
     }
 }

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Giuseppe Pignataro <rogepix@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 12:17+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/gnu-social/language/it/)\n"
+"PO-Revision-Date: 2015-06-10 00:11+0000\n"
+"Last-Translator: Giuseppe Pignataro <rogepix@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/gnu-social/gnu-social/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -43,7 +44,7 @@ msgstr ""
 #: actions/twitteradminpanel.php:53
 msgctxt "TITLE"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Instructions for Twitter bridge administration page.
 #: actions/twitteradminpanel.php:64
@@ -358,7 +359,7 @@ msgstr "Disconnetti"
 #. TRANS: Fieldset legend.
 #: actions/twittersettings.php:162
 msgid "Preferences"
-msgstr ""
+msgstr "Preferenze"
 
 #. TRANS: Checkbox label.
 #: actions/twittersettings.php:167
@@ -425,7 +426,7 @@ msgstr ""
 #: TwitterBridgePlugin.php:154 TwitterBridgePlugin.php:179
 msgctxt "MENU"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Title for menu item in login navigation.
 #: TwitterBridgePlugin.php:156
@@ -441,7 +442,7 @@ msgstr ""
 #. configuration.
 #: TwitterBridgePlugin.php:282
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Menu item title in administrative panel that leads to the Twitter
 #. bridge configuration.

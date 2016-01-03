@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-05 16:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/gnu-social/language/nb/)\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/gnu-social/gnu-social/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,7 +66,7 @@ msgstr ""
 #: forms/event.php:103
 msgctxt "LABEL"
 msgid "Title"
-msgstr ""
+msgstr "Tittel"
 
 #. TRANS: Field title on event form.
 #: forms/event.php:106
@@ -173,7 +173,7 @@ msgstr ""
 #. providing a title.
 #: actions/newevent.php:98
 msgid "Title required."
-msgstr ""
+msgstr "Tittel kreves."
 
 #. TRANS: Client exception thrown when trying to post an event without
 #. providing a start date.
@@ -437,13 +437,13 @@ msgstr ""
 #. TRANS: Exception thrown when there are too many activity objects.
 #: EventPlugin.php:135
 msgid "Too many activity objects."
-msgstr ""
+msgstr "For mange hendelses objekter."
 
 #. TRANS: Exception thrown when event plugin comes across a non-event type
 #. object.
 #: EventPlugin.php:142
 msgid "Wrong type for object."
-msgstr ""
+msgstr "Feil type av objekt."
 
 #. TRANS: Exception thrown when trying to RSVP for an unknown event.
 #: EventPlugin.php:166

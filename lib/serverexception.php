@@ -45,7 +45,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class ServerException extends Exception
 {
-    public function __construct($message = null, $code = 400) {
+    public function __construct($message = null, $code = 500) {
         parent::__construct($message, $code);
     }
 

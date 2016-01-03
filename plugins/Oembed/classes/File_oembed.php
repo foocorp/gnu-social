@@ -49,15 +49,15 @@ class File_oembed extends Managed_DataObject
                 'version' => array('type' => 'varchar', 'length' => 20, 'description' => 'oEmbed spec. version'),
                 'type' => array('type' => 'varchar', 'length' => 20, 'description' => 'oEmbed type: photo, video, link, rich'),
                 'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
-                'provider' => array('type' => 'varchar', 'length' => 50, 'description' => 'name of this oEmbed provider'),
-                'provider_url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL of this oEmbed provider'),
+                'provider' => array('type' => 'text', 'description' => 'name of this oEmbed provider'),
+                'provider_url' => array('type' => 'text', 'description' => 'URL of this oEmbed provider'),
                 'width' => array('type' => 'int', 'description' => 'width of oEmbed resource when available'),
                 'height' => array('type' => 'int', 'description' => 'height of oEmbed resource when available'),
                 'html' => array('type' => 'text', 'description' => 'html representation of this oEmbed resource when applicable'),
-                'title' => array('type' => 'varchar', 'length' => 191, 'description' => 'title of oEmbed resource when available'),
-                'author_name' => array('type' => 'varchar', 'length' => 50, 'description' => 'author name for this oEmbed resource'),
-                'author_url' => array('type' => 'varchar', 'length' => 191, 'description' => 'author URL for this oEmbed resource'),
-                'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL for this oEmbed resource when applicable (photo, link)'),
+                'title' => array('type' => 'text', 'description' => 'title of oEmbed resource when available'),
+                'author_name' => array('type' => 'text', 'description' => 'author name for this oEmbed resource'),
+                'author_url' => array('type' => 'text', 'description' => 'author URL for this oEmbed resource'),
+                'url' => array('type' => 'text', 'description' => 'URL for this oEmbed resource when applicable (photo, link)'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
             'primary key' => array('file_id'),
@@ -68,12 +68,8 @@ class File_oembed extends Managed_DataObject
     }
 
     static function _getOembed($url) {
-        $parameters = array(
-            'maxwidth' => common_config('thumbnail', 'width'),
-            'maxheight' => common_config('thumbnail', 'height'),
-        );
         try {
-            return oEmbedHelper::getObject($url, $parameters);
+            return oEmbedHelper::getObject($url);
         } catch (Exception $e) {
             common_log(LOG_INFO, "Error during oembed lookup for $url - " . $e->getMessage());
             return false;
@@ -83,12 +79,13 @@ class File_oembed extends Managed_DataObject
     /**
      * Fetch an entry by using a File's id
      */
-    static function byFile(File $file) {
-        $file_oembed = self::getKV('file_id', $file->id);
-        if (!$file_oembed instanceof File_oembed) {
-            throw new ServerException(sprintf('No File_oembed entry for File id==%u', $file->id));
+    static function getByFile(File $file) {
+        $fo = new File_oembed();
+        $fo->file_id = $file->id;
+        if (!$fo->find(true)) {
+            throw new NoResultException($fo);
         }
-        return $file_oembed;
+        return $fo;
     }
 
     public function getUrl()
@@ -127,17 +124,20 @@ class File_oembed extends Managed_DataObject
                 if ($file instanceof File) {
                     $file_oembed->mimetype = $file->mimetype;
                 } else {
-                    $file_redir = File_redirection::getKV('url', $given_url);
-                    if (empty($file_redir)) {
-                        $redir_data = File_redirection::where($given_url);
-                        $file_oembed->mimetype = $redir_data['type'];
+                    $redir = File_redirection::where($given_url);
+                    if (empty($redir->file_id)) {
+                        $f = $redir->getFile();
+                        $file_oembed->mimetype = $f->mimetype;
                     } else {
-                        $file_id = $file_redir->file_id;
+                        $file_id = $redir->file_id;
                     }
                 }
             }
         }
-        $file_oembed->insert();
+        $result = $file_oembed->insert();
+        if ($result === false) {
+            throw new ServerException('Failed to insert File_oembed data into database!');
+        }
         if (!empty($data->thumbnail_url) || ($data->type == 'photo')) {
             $ft = File_thumbnail::getKV('file_id', $file_id);
             if ($ft instanceof File_thumbnail) {

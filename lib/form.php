@@ -190,9 +190,9 @@ class Form extends Widget
         return 'form';
     }
 
-    function li()
+    function li($class=null)
     {
-        $this->out->elementStart('li');
+        $this->out->elementStart('li', $class);
     }
 
     function unli()

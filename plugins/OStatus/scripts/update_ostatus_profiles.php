@@ -207,10 +207,11 @@ class LooseOstatusProfile extends Ostatus_profile
 function pullOstatusProfile($uri) {
 
     $oprofile = null;
+    $validate = new Validate();
 
-    if (Validate::email($uri)) {
+    if ($validate->email($uri)) {
         $oprofile = LooseOstatusProfile::updateWebfinger($uri);
-    } else if (Validate::uri($uri)) {
+    } else if ($validate->uri($uri)) {
         $oprofile = LooseOstatusProfile::updateProfileURL($uri);
     } else {
         print "Sorry, we could not reach the address: $uri\n";

@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:32+0000\n"
+"PO-Revision-Date: 2015-03-31 12:11+0000\n"
 "Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"Language-Team: Ukrainian (http://www.transifex.com/gnu-social/gnu-social/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -7425,7 +7425,7 @@ msgstr "%1$s не має доступу до допису %2$d."
 #: classes/Notice.php:833
 #, php-format
 msgid "%1$s has no right to reply to notice %2$d."
-msgstr ""
+msgstr "%1$s немає достатньо прав щоб відповісти на повідомлення %2$d."
 
 #. TRANS: Server exception thrown when no array is provided to the method
 #. saveKnownGroups().

@@ -77,7 +77,7 @@ abstract class SpawningDaemon extends Daemon
         for ($i = 1; $i <= $this->threads; $i++) {
             $pid = pcntl_fork();
             if ($pid < 0) {
-                $this->log(LOG_ERROR, "Couldn't fork for thread $i; aborting\n");
+                $this->log(LOG_ERR, "Couldn't fork for thread $i; aborting\n");
                 exit(1);
             } else if ($pid == 0) {
                 $this->initAndRunChild($i);
@@ -113,7 +113,7 @@ abstract class SpawningDaemon extends Daemon
 
                     $pid = pcntl_fork();
                     if ($pid < 0) {
-                        $this->log(LOG_ERROR, "Couldn't fork to respawn thread $i; aborting thread.\n");
+                        $this->log(LOG_ERR, "Couldn't fork to respawn thread $i; aborting thread.\n");
                     } else if ($pid == 0) {
                         $this->initAndRunChild($i);
                     } else {
@@ -141,7 +141,7 @@ abstract class SpawningDaemon extends Daemon
             $this->parentWriter = $sockets[0];
             $this->parentReader = $sockets[1];
         } else {
-            $this->log(LOG_ERROR, "Couldn't create inter-process sockets");
+            $this->log(LOG_ERR, "Couldn't create inter-process sockets");
             exit(1);
         }
     }

@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Furkan Kalkan <furkan.kalkan3@gmail.com>, 2015
+# Uğur KUYU <ukuyu34@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:32+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"PO-Revision-Date: 2015-04-28 14:37+0000\n"
+"Last-Translator: Furkan Kalkan <furkan.kalkan3@gmail.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,12 +27,12 @@ msgid ""
 " properly. The site admins probably know about the problem, but you can "
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
-msgstr ""
+msgstr "%1$s için veritabanında problem olduğundan site düzgün çalışmayabilir. Yöneticiler muhtemelen bunun farkındalar fakat emin olmak için  %2$s adresinden onlara ulaşabilirsiniz. \nBunun dışında birkaç dakika sonra yeniden deneyebilirsiniz."
 
 #. TRANS: Error message.
 #: index.php:137
 msgid "An error occurred."
-msgstr ""
+msgstr "Bir hata oluştu."
 
 #. TRANS: Error message displayed when there is no StatusNet configuration
 #. file.
@@ -38,19 +40,19 @@ msgstr ""
 #, php-format
 msgid ""
 "No configuration file found. Try running the installation program first."
-msgstr ""
+msgstr "Yapılandırma dosyası bulunamadı. İlk önce kurulum programını çalıştırmayı deneyin."
 
 #. TRANS: Error message displayed when trying to access a non-existing page.
 #: index.php:260
 msgid "Unknown page"
-msgstr ""
+msgstr "Bilinmeyen sayfa"
 
 #. TRANS: Error message displayed when trying to perform an undefined action.
 #. TRANS: Title for password recovery page when an unknown action has been
 #. specified.
 #: index.php:312 actions/recoverpassword.php:225
 msgid "Unknown action"
-msgstr ""
+msgstr "Bilinmeyen eylem"
 
 #. TRANS: Page title for Access admin panel that allows configuring site
 #. access.
@@ -106,7 +108,7 @@ msgstr "Kapalı"
 #. TRANS: Button title to save access settings in site admin panel.
 #: actions/accessadminpanel.php:191
 msgid "Save access settings."
-msgstr ""
+msgstr "Giriş ayarlarını kaydet."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -196,7 +198,7 @@ msgstr "Giriş yapılmadı."
 #: actions/atompubshowmembership.php:55 actions/removepeopletag.php:100
 #: actions/subscribe.php:106 lib/command.php:386 lib/command.php:445
 msgid "No such profile."
-msgstr ""
+msgstr "Böyle bir profil yok."
 
 #. TRANS: Client error displayed trying to reference a non-existing list.
 #. TRANS: Client error displayed when referring to a non-existing list.
@@ -207,7 +209,7 @@ msgstr ""
 #: actions/removepeopletag.php:108 actions/showprofiletag.php:87
 #: actions/subscribepeopletag.php:91 actions/unsubscribepeopletag.php:92
 msgid "No such list."
-msgstr ""
+msgstr "Böyle bir liste yok."
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a
 #. user to a list.
@@ -215,7 +217,7 @@ msgstr ""
 #: actions/addpeopletag.php:134
 #, php-format
 msgid "There was an unexpected error while listing %s."
-msgstr ""
+msgstr "%s listelenirken beklenmedik bir hata oluştu."
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a
 #. user to a list.
@@ -225,13 +227,13 @@ msgstr ""
 msgid ""
 "There was a problem listing %s. The remote server is probably not responding"
 " correctly. Please try retrying later."
-msgstr ""
+msgstr "%s listelemesinde bir sorun oluştu. Muhtemelen uzak sunucu düzgün vermiyor. Lütfen daha sonra tekrar deneyin."
 
 #. TRANS: Title after adding a user to a list.
 #: actions/addpeopletag.php:148
 msgctxt "TITLE"
 msgid "Listed"
-msgstr ""
+msgstr "Listelenen"
 
 #. TRANS: Server error when page not found (404).
 #. TRANS: Server error when page not found (404)
@@ -244,14 +246,14 @@ msgstr "Böyle bir sayfa yok."
 #. TRANS: Title of a user's own start page.
 #: actions/all.php:71
 msgid "Home timeline"
-msgstr ""
+msgstr "Zaman çizelgesi"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
 #: actions/all.php:75
 #, php-format
 msgid "%s's home timeline"
-msgstr ""
+msgstr "%s kullanıcısının zaman çizelgesi"
 
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
@@ -259,7 +261,7 @@ msgstr ""
 #: actions/all.php:90 actions/showprofiletag.php:181
 #, php-format
 msgid "Feed for friends of %s (Activity Streams JSON)"
-msgstr ""
+msgstr "%s kullanıcısının arkadaşları için besleme (Aktivite Akışı JSON)"
 
 #. TRANS: %s is user nickname.
 #: actions/all.php:98
@@ -330,7 +332,7 @@ msgstr "Neden bir [hesap oluşturup](%%%%action.register%%%%) sonrasında %s kul
 #: actions/all.php:189 actions/public.php:248
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr ""
+msgstr "Davet Gönder"
 
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a
@@ -480,13 +482,13 @@ msgstr "UPA yöntemi bulunamadı."
 #: actions/apiaccountregister.php:101 actions/register.php:81
 #: actions/register.php:187 actions/register.php:386
 msgid "Sorry, only invited people can register."
-msgstr ""
+msgstr "Üzgünüz, sadece davet edilen kişiler kayıt olabilir."
 
 #. TRANS: Client error displayed when trying to register to an invite-only
 #. site without a valid invitation.
 #: actions/apiaccountregister.php:108 actions/register.php:88
 msgid "Sorry, invalid invitation code."
-msgstr ""
+msgstr "Üzgünüz, geçersiz davet şifresi."
 
 #. TRANS: Form validation error displayed when trying to register without a
 #. valid e-mail address.
@@ -557,8 +559,8 @@ msgstr "Tam isim çok uzun (en fazla: 255 karakter)."
 #, php-format
 msgid "Bio is too long (maximum %d character)."
 msgid_plural "Bio is too long (maximum %d characters)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Profil tanımlası çok uzun (en fazla %d karakter)."
+msgstr[1] "Profil tanımlası çok uzun (en fazla %d karakter)."
 
 #. TRANS: Form validation error displayed when trying to register with a too
 #. long location.
@@ -596,7 +598,7 @@ msgstr "Parola 6 veya daha fazla karakterden oluşmalıdır."
 #: actions/apiaccountregister.php:153 actions/passwordsettings.php:168
 #: actions/register.php:231
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Parolalar uyuşmuyor."
 
 #. TRANS: Form validation error displayed when trying to register with an
 #. invalid username or password.
@@ -608,12 +610,12 @@ msgstr "Geçersiz kullanıcı adı veya parola."
 #: actions/apiaccountupdatebackgroundcolor.php:72
 #: actions/apiaccountupdatelinkcolor.php:73
 msgid "Not a valid hex color."
-msgstr ""
+msgstr "Geçerli bir onaltılık renk değil."
 
 #: actions/apiaccountupdatebackgroundcolor.php:79
 #: actions/apiaccountupdatelinkcolor.php:80
 msgid "Error updating user."
-msgstr ""
+msgstr "Kullanıcı güncelleştirme hatası."
 
 #. TRANS: Client error displayed when no valid device parameter is provided
 #. for a user's delivery device setting.
@@ -733,15 +735,15 @@ msgstr "Kullanıcının engellemesini kaldırma başarısız oldu."
 
 #: actions/apicheckhub.php:57
 msgid "No URL."
-msgstr ""
+msgstr "URL yok."
 
 #: actions/apicheckhub.php:61 lib/invalidurlexception.php:50
 msgid "Invalid URL."
-msgstr ""
+msgstr "Geçersiz URL."
 
 #: actions/apicheckhub.php:86
 msgid "No feed found"
-msgstr ""
+msgstr "Besleme bulunamadı"
 
 #: actions/apicheckhub.php:88
 msgid "No hub found"
@@ -769,7 +771,7 @@ msgstr "Konuşma"
 #. non-existing profile.
 #: actions/apiexternalprofileshow.php:60
 msgid "Profile not found."
-msgstr ""
+msgstr "Profil bulunamadı."
 
 #. TRANS: Client error displayed when trying follow who's profile could not be
 #. found.
@@ -866,8 +868,8 @@ msgstr "Onay kodu bulunamadı."
 #, php-format
 msgid "Description is too long (maximum %d character)."
 msgid_plural "Description is too long (maximum %d characters)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tanımlayıcı çok uzun (maksimum %d karakter)."
+msgstr[1] "Tanımlayıcı çok uzun (maksimum %d karakter)."
 
 #. TRANS: Client error shown when providing too many aliases during group
 #. creation.
@@ -995,7 +997,7 @@ msgstr "Kullanıcı güncellenemedi."
 #: actions/apilistsubscriber.php:45 actions/apitimelinelist.php:92
 #: lib/apilistusers.php:65
 msgid "List not found."
-msgstr ""
+msgstr "Liste bulunamadı."
 
 #. TRANS: Client error displayed when trying to update another user's list.
 #: actions/apilist.php:136
@@ -1013,58 +1015,58 @@ msgstr ""
 #: actions/apilistmembers.php:104 actions/apilistsubscribers.php:48
 #: actions/apilistsubscribers.php:79
 msgid "An error occured."
-msgstr ""
+msgstr "Bir hata oluştu. "
 
 #. TRANS: Client error displayed when trying to delete another user's list.
 #: actions/apilist.php:173
 msgid "You cannot delete lists that do not belong to you."
-msgstr ""
+msgstr "Sana ait olmayan bir listeyi silemezsin."
 
 #. TRANS: Client error displayed when referring to a non-list member.
 #: actions/apilistmember.php:94
 msgid "The specified user is not a member of this list."
-msgstr ""
+msgstr "Belirtilen kullanıcı listenin üyesi değil."
 
 #. TRANS: Client error displayed when trying to add members to a list without
 #. having the right to do so.
 #: actions/apilistmembers.php:46
 msgid "You are not allowed to add members to this list."
-msgstr ""
+msgstr "Bu listeye üye atamanıza izin yok."
 
 #. TRANS: Client error displayed when trying to modify list members without
 #. specifying them.
 #: actions/apilistmembers.php:51 actions/apilistmembers.php:89
 msgid "You must specify a member."
-msgstr ""
+msgstr "Bir üye belirtmelisiniz."
 
 #. TRANS: Client error displayed when trying to remove members from a list
 #. without having the right to do so.
 #: actions/apilistmembers.php:84
 msgid "You are not allowed to remove members from this list."
-msgstr ""
+msgstr "Bu listeden üye çıkarmaya yetkiniz yok."
 
 #. TRANS: Client error displayed when trying to remove a list member that is
 #. not part of a list.
 #: actions/apilistmembers.php:99
 msgid "The user you are trying to remove from the list is not a member."
-msgstr ""
+msgstr "Listeden çıkartmaya çalıştığınız kullanıcı zaten üye değil."
 
 #. TRANS: Client error displayed when trying to create a list without a name.
 #: actions/apilists.php:137
 msgid "A list must have a name."
-msgstr ""
+msgstr "Liste bir isme sahip olmalıdır. "
 
 #. TRANS: Client error displayed when a membership check for a user is
 #. nagative.
 #: actions/apilistsubscriber.php:65
 msgid "The specified user is not a subscriber of this list."
-msgstr ""
+msgstr "Belirtilen kullanıcı listenin takipçisi değil."
 
 #. TRANS: Client error displayed when trying to unsubscribe from a non-
 #. subscribed list.
 #: actions/apilistsubscribers.php:72
 msgid "You are not subscribed to this list."
-msgstr ""
+msgstr "Bu listeyi takipleyemezsiniz."
 
 #. TRANS: Client error displayed when uploading a media file has failed.
 #: actions/apimediaupload.php:95
@@ -1397,13 +1399,13 @@ msgstr "%s genel zaman çizelgesi"
 #: actions/apitimelinepublic.php:197
 #, php-format
 msgid "%s updates from everyone!"
-msgstr ""
+msgstr "Tüm kullanıcılardan %s kadar güncelleme!"
 
 #. TRANS: Server error displayed calling unimplemented API method for
 #. 'retweeted by me'.
 #: actions/apitimelineretweetedbyme.php:68
 msgid "Unimplemented."
-msgstr ""
+msgstr "Uygulanmayan."
 
 #. TRANS: Title for Atom feed "repeated to me". %s is the user nickname.
 #: actions/apitimelineretweetedtome.php:94
@@ -1519,7 +1521,7 @@ msgstr "UPA metodu yapım aşamasında."
 #. existing user.
 #: actions/apiuserprofileimage.php:60 actions/apiusershow.php:76
 msgid "User not found."
-msgstr ""
+msgstr "Kullanıcı bulunamadı."
 
 #. TRANS: Client error displayed when trying to leave a group while not logged
 #. in.
@@ -1612,7 +1614,7 @@ msgstr ""
 #: actions/approvegroup.php:97 actions/approvesub.php:60
 #: actions/cancelgroup.php:96
 msgid "Must be logged in."
-msgstr ""
+msgstr "Giriş yapmanız gerek."
 
 #. TRANS: Client error displayed trying to approve group membership while not
 #. a group administrator.
@@ -1621,7 +1623,7 @@ msgstr ""
 #. TRANS: being a group administrator.
 #: actions/approvegroup.php:104 actions/cancelgroup.php:104
 msgid "Only group admin can approve or cancel join requests."
-msgstr ""
+msgstr "Sadece yönetici katılım isteklerini onaylayabilir ya da iptal edebilir."
 
 #. TRANS: Client error displayed trying to approve group membership without
 #. specifying a profile to approve.
@@ -1629,7 +1631,7 @@ msgstr ""
 #. specifying a profile to approve.
 #: actions/approvegroup.php:108 actions/approvesub.php:66
 msgid "Must specify a profile."
-msgstr ""
+msgstr "Profil belirtmelisiniz."
 
 #. TRANS: Client error displayed trying to approve group membership for a non-
 #. existing request.
@@ -1670,17 +1672,17 @@ msgstr ""
 #, php-format
 msgctxt "TITLE"
 msgid "%1$s's request for %2$s"
-msgstr ""
+msgstr "%2$s için %1$s'in isteği"
 
 #. TRANS: Message on page for group admin after approving a join request.
 #: actions/approvegroup.php:173
 msgid "Join request approved."
-msgstr ""
+msgstr "Katılım isteği onaylandı."
 
 #. TRANS: Message on page for group admin after rejecting a join request.
 #: actions/approvegroup.php:176
 msgid "Join request canceled."
-msgstr ""
+msgstr "Katılım isteği iptal edildi. "
 
 #. TRANS: Client error displayed trying to approve subscription for a non-
 #. existing request.
@@ -1705,17 +1707,17 @@ msgstr ""
 #, php-format
 msgctxt "TITLE"
 msgid "%1$s's request"
-msgstr ""
+msgstr "%1$snin isteği"
 
 #. TRANS: Message on page for user after approving a subscription request.
 #: actions/approvesub.php:131
 msgid "Subscription approved."
-msgstr ""
+msgstr "Takip onaylandı."
 
 #. TRANS: Message on page for user after rejecting a subscription request.
 #: actions/approvesub.php:134
 msgid "Subscription canceled."
-msgstr ""
+msgstr "Takip iptal edildi."
 
 #. TRANS: Title for group membership feed.
 #. TRANS: %s is a username.
@@ -1752,25 +1754,25 @@ msgstr ""
 #. group.
 #: actions/atompubmembershipfeed.php:217
 msgid "Unknown group."
-msgstr ""
+msgstr "Bilinmeyen grup."
 
 #. TRANS: Client exception thrown when trying to subscribe to an already
 #. subscribed group.
 #: actions/atompubmembershipfeed.php:225
 msgid "Already a member."
-msgstr ""
+msgstr "Zaten üye."
 
 #. TRANS: Client exception thrown when trying to subscribe to group while
 #. blocked from that group.
 #: actions/atompubmembershipfeed.php:233
 msgid "Blocked by admin."
-msgstr ""
+msgstr "Yönetici tarafından engellenmiş."
 
 #. TRANS: Client exception thrown when trying to show membership of a non-
 #. subscribed group
 #: actions/atompubshowmembership.php:72
 msgid "Not a member."
-msgstr ""
+msgstr "Üyesi değil."
 
 #. TRANS: Client exception thrown when deleting someone else's membership.
 #: actions/atompubshowmembership.php:114
@@ -1975,13 +1977,13 @@ msgstr "Kullanıcı resmi silindi."
 #. currently logged in user.
 #: actions/backupaccount.php:61 actions/profilesettings.php:452
 msgid "Backup account"
-msgstr ""
+msgstr "Hesabı yedekle"
 
 #. TRANS: Client exception thrown when trying to backup an account while not
 #. logged in.
 #: actions/backupaccount.php:79
 msgid "Only logged-in users can backup their account."
-msgstr ""
+msgstr "Sadece kayıtlı kullanıcılar hesabını yedekleyebilir."
 
 #. TRANS: Client exception thrown when trying to backup an account without
 #. having backup rights.
@@ -2003,13 +2005,13 @@ msgstr ""
 #: actions/backupaccount.php:250
 msgctxt "BUTTON"
 msgid "Backup"
-msgstr ""
+msgstr "Yedek"
 
 #. TRANS: Title for submit button to backup an account on the backup account
 #. page.
 #: actions/backupaccount.php:254
 msgid "Backup your account."
-msgstr ""
+msgstr "Hesabını yedekle"
 
 #. TRANS: Client error displayed when blocking a user that has already been
 #. blocked.
@@ -2050,7 +2052,7 @@ msgstr "Hayır"
 #. TRANS: Submit button title for 'No' when blocking a user.
 #: actions/block.php:155
 msgid "Do not block this user."
-msgstr ""
+msgstr "Bu kullanıcıyı engelleme."
 
 #. TRANS: Button label on the user block form.
 #. TRANS: Button label on the delete application form.
@@ -2070,7 +2072,7 @@ msgstr "Evet"
 #. TRANS: Submit button title for 'Yes' when blocking a user.
 #: actions/block.php:162
 msgid "Block this user."
-msgstr ""
+msgstr "Bu kullanıcıyı engelle."
 
 #. TRANS: Server error displayed when blocking a user fails.
 #: actions/block.php:186
@@ -2106,7 +2108,7 @@ msgstr "Kullanıcının gruba üye olma engellemesini kaldır"
 #: actions/blockedfromgroup.php:313
 msgctxt "BUTTON"
 msgid "Unblock"
-msgstr ""
+msgstr "Bloku kaldır"
 
 #. TRANS: Tooltip for button for unblocking a user from a group.
 #. TRANS: Description of the form to unblock a user.
@@ -2127,7 +2129,7 @@ msgstr ""
 #: actions/cancelsubscription.php:77
 msgctxt "TITLE"
 msgid "Unsubscribed"
-msgstr ""
+msgstr "Takipten çıkarıldı"
 
 #. TRANS: Client error displayed when not providing a confirmation code in the
 #. contact address confirmation action.
@@ -2212,19 +2214,19 @@ msgstr ""
 #. logged in.
 #: actions/deleteaccount.php:71
 msgid "Only logged-in users can delete their account."
-msgstr ""
+msgstr "Sadece kayıtlı kullanıcılar hesabını silebilir."
 
 #. TRANS: Client exception displayed trying to delete a user account without
 #. have the rights to do that.
 #: actions/deleteaccount.php:77
 msgid "You cannot delete your account."
-msgstr ""
+msgstr "Hesabınızı silemezsiniz."
 
 #. TRANS: Confirmation text for user deletion. The user has to type this
 #. exactly the same, including punctuation.
 #: actions/deleteaccount.php:160 actions/deleteaccount.php:297
 msgid "I am sure."
-msgstr ""
+msgstr "Eminim."
 
 #. TRANS: Notification for user about the text that must be input to be able
 #. to delete a user account.
@@ -2237,14 +2239,14 @@ msgstr ""
 #. TRANS: Confirmation that a user account has been deleted.
 #: actions/deleteaccount.php:206
 msgid "Account deleted."
-msgstr ""
+msgstr "Hesap silindi."
 
 #. TRANS: Page title for page on which a user account can be deleted.
 #. TRANS: Option in profile settings to delete the account of the currently
 #. logged in user.
 #: actions/deleteaccount.php:228 actions/profilesettings.php:460
 msgid "Delete account"
-msgstr ""
+msgstr "Hesabı sil"
 
 #. TRANS: Form text for user deletion form.
 #: actions/deleteaccount.php:279
@@ -2275,12 +2277,12 @@ msgstr "Onayla"
 #: actions/deleteaccount.php:304
 #, php-format
 msgid "Enter \"%s\" to confirm that you want to delete your account."
-msgstr ""
+msgstr "Hesabınızın silinmesini onaylamak için \"%s\" giriniz."
 
 #. TRANS: Button title for user account deletion.
 #: actions/deleteaccount.php:323
 msgid "Permanently delete your account."
-msgstr ""
+msgstr "Hesabı tamamen sil."
 
 #. TRANS: Client error displayed trying to delete an application while not
 #. logged in.
@@ -2311,7 +2313,7 @@ msgstr "Bu uygulamanın sahibi değilsiniz."
 #: actions/deleteapplication.php:100 actions/editapplication.php:130
 #: actions/showapplication.php:114 lib/action.php:1661
 msgid "There was a problem with your session token."
-msgstr ""
+msgstr "Oturum işaretinizle (session token) ilgili problem var."
 
 #. TRANS: Title for delete application page.
 #. TRANS: Fieldset legend on delete application page.
@@ -2330,43 +2332,43 @@ msgstr "Bu uygulamayı silmek istediğinizden emin misiniz? Bu, veritabanından 
 #. TRANS: Submit button title for 'No' when deleting an application.
 #: actions/deleteapplication.php:158
 msgid "Do not delete this application."
-msgstr ""
+msgstr "Bu uygulamayı silme. "
 
 #. TRANS: Submit button title for 'Yes' when deleting an application.
 #: actions/deleteapplication.php:164
 msgid "Delete this application."
-msgstr ""
+msgstr "Bu uygulamayı sil."
 
 #. TRANS: Client error when trying to delete group while not logged in.
 #: actions/deletegroup.php:64
 msgid "You must be logged in to delete a group."
-msgstr ""
+msgstr "Grubu  silebilmek için oturum açmanız gerek."
 
 #. TRANS: Client error when trying to delete a group without having the rights
 #. to delete it.
 #: actions/deletegroup.php:102
 msgid "You are not allowed to delete this group."
-msgstr ""
+msgstr "Bu grubu silmeye izniniz yok."
 
 #. TRANS: Server error displayed if a group could not be deleted.
 #. TRANS: %s is the name of the group that could not be deleted.
 #: actions/deletegroup.php:144
 #, php-format
 msgid "Could not delete group %s."
-msgstr ""
+msgstr "Grup silinemedi %s."
 
 #. TRANS: Message given after deleting a group.
 #. TRANS: %s is the deleted group's name.
 #: actions/deletegroup.php:153
 #, php-format
 msgid "Deleted group %s"
-msgstr ""
+msgstr "Silinmiş grup %s"
 
 #. TRANS: Title of delete group page.
 #. TRANS: Form legend for deleting a group.
 #: actions/deletegroup.php:169 actions/deletegroup.php:197
 msgid "Delete group"
-msgstr ""
+msgstr "Grubu sil"
 
 #. TRANS: Warning in form for deleleting a group.
 #: actions/deletegroup.php:201
@@ -2374,17 +2376,17 @@ msgid ""
 "Are you sure you want to delete this group? This will clear all data about "
 "the group from the database, without a backup. Public posts to this group "
 "will still appear in individual timelines."
-msgstr ""
+msgstr "Grubu silmekten emin misiniz ? Bu yedek almadan veritabanından grup ile ilgili tüm içeriği silecektir. Bu gruba gönderilen açık  gönderiler hala kişisel zaman çizgileride görülecektir."
 
 #. TRANS: Submit button title for 'No' when deleting a group.
 #: actions/deletegroup.php:219
 msgid "Do not delete this group."
-msgstr ""
+msgstr "Bu grubu silme."
 
 #. TRANS: Submit button title for 'Yes' when deleting a group.
 #: actions/deletegroup.php:226
 msgid "Delete this group."
-msgstr ""
+msgstr "Bu grubu sil."
 
 #. TRANS: Instructions for deleting a notice.
 #: actions/deletenotice.php:110
@@ -2407,12 +2409,12 @@ msgstr "Bu durum mesajını silmek istediğinizden emin misiniz?"
 #. TRANS: Submit button title for 'No' when deleting a notice.
 #: actions/deletenotice.php:159
 msgid "Do not delete this notice."
-msgstr ""
+msgstr "Bildiriyi silme."
 
 #. TRANS: Submit button title for 'Yes' when deleting a notice.
 #: actions/deletenotice.php:166
 msgid "Delete this notice."
-msgstr ""
+msgstr "Bildiriyi sil."
 
 #. TRANS: Client error displayed when trying to delete a user without having
 #. the right to delete users.
@@ -2447,7 +2449,7 @@ msgstr "Bu kullanıcıyı silmek istediğinizden emin misiniz? Bu, veritabanınd
 #. TRANS: Submit button title for 'No' when deleting a user.
 #: actions/deleteuser.php:158
 msgid "Do not delete this user."
-msgstr ""
+msgstr "Bu kullanıcıyı silme."
 
 #. TRANS: Submit button title for 'Yes' when deleting a user.
 #: actions/deleteuser.php:165
@@ -2460,7 +2462,7 @@ msgstr "Bu kullanıcıyı sil."
 #: actions/doc.php:157
 #, php-format
 msgid "No such document \"%s\"."
-msgstr ""
+msgstr "Belge yok \"%s\"."
 
 #. TRANS: Menu item in administrator navigation panel.
 #. TRANS: Menu item in default local navigation panel.
@@ -2469,18 +2471,18 @@ msgstr ""
 #: lib/homestubnav.php:55 lib/personalgroupnav.php:77 lib/settingsnav.php:63
 msgctxt "MENU"
 msgid "Home"
-msgstr ""
+msgstr "Ev"
 
 #: actions/doc.php:181
 msgctxt "MENU"
 msgid "Docs"
-msgstr ""
+msgstr "Belgeler"
 
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 #: actions/doc.php:195 lib/secondarynav.php:56
 msgctxt "MENU"
 msgid "Help"
-msgstr ""
+msgstr "Yardım"
 
 #: actions/doc.php:196
 msgid "Getting started"
@@ -2490,22 +2492,22 @@ msgstr ""
 #: actions/doc.php:200 lib/secondarynav.php:59
 msgctxt "MENU"
 msgid "About"
-msgstr ""
+msgstr "Hakkında"
 
 #: actions/doc.php:201
 msgid "About this site"
-msgstr ""
+msgstr "Bu site hakkında"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked
 #. Questions.
 #: actions/doc.php:205 lib/secondarynav.php:62
 msgctxt "MENU"
 msgid "FAQ"
-msgstr ""
+msgstr "SSS"
 
 #: actions/doc.php:206
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Sık sorulan sorular"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information
 #. on the
@@ -2513,11 +2515,11 @@ msgstr ""
 #: actions/doc.php:210 lib/secondarynav.php:81
 msgctxt "MENU"
 msgid "Contact"
-msgstr ""
+msgstr "İletişim"
 
 #: actions/doc.php:211
 msgid "Contact info"
-msgstr ""
+msgstr "İletişim bilgileri"
 
 #: actions/doc.php:215
 msgctxt "MENU"
@@ -2526,7 +2528,7 @@ msgstr "Etiketler"
 
 #: actions/doc.php:216
 msgid "Using tags"
-msgstr ""
+msgstr "Etiket kullanımı"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
@@ -2539,16 +2541,16 @@ msgstr "Gruplar"
 
 #: actions/doc.php:221
 msgid "Using groups"
-msgstr ""
+msgstr "Grup kullanımı"
 
 #: actions/doc.php:225
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: actions/doc.php:226
 msgid "RESTful API"
-msgstr ""
+msgstr "RESTful API"
 
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
@@ -2589,7 +2591,7 @@ msgstr "İsim gereklidir."
 #. application" form.
 #: actions/editapplication.php:186 actions/newapplication.php:110
 msgid "Name is too long (maximum 255 characters)."
-msgstr ""
+msgstr "İsim çok uzun (maksimum 255 karakter)."
 
 #. TRANS: Validation error shown when providing a name for an application that
 #. already exists in the "Edit application" form.
@@ -2633,7 +2635,7 @@ msgstr "Organizasyon gereklidir."
 #. in the "Edit application" form.
 #: actions/editapplication.php:220 actions/newapplication.php:133
 msgid "Organization is too long (maximum 255 characters)."
-msgstr ""
+msgstr "Organizasyon çok uzun (maksimum 255 karakter)."
 
 #. TRANS: Form validation error show when an organisation name has not been
 #. provided in the edit application form.
@@ -2694,7 +2696,7 @@ msgstr "Seçenekler kaydedildi."
 #: actions/editpeopletag.php:52
 #, php-format
 msgid "Delete %s list"
-msgstr ""
+msgstr "%s liste sil"
 
 #. TRANS: Title for edit list page.
 #. TRANS: %s is a list.
@@ -2703,7 +2705,7 @@ msgstr ""
 #: actions/editpeopletag.php:56 lib/peopletageditform.php:110
 #, php-format
 msgid "Edit list %s"
-msgstr ""
+msgstr "%s liste düzenle"
 
 #. TRANS: Error message displayed when trying to perform an action that
 #. requires a tagging user or ID.
@@ -2714,43 +2716,43 @@ msgstr ""
 #. TRANS: Client error displayed when referring to non-local user.
 #: actions/editpeopletag.php:116
 msgid "Not a local user."
-msgstr ""
+msgstr "Yerel kullanıcı değil."
 
 #. TRANS: Client error displayed when reting to edit a tag that was not self-
 #. created.
 #: actions/editpeopletag.php:121
 msgid "You must be the creator of the tag to edit it."
-msgstr ""
+msgstr "Etiketi düzenlemek için onun yaratıcısı olmalısınız."
 
 #. TRANS: Form instruction for edit list form.
 #: actions/editpeopletag.php:217
 msgid "Use this form to edit the list."
-msgstr ""
+msgstr "Liste düzenlemek için b formu kullanın."
 
 #. TRANS: Form validation error displayed if the form data for deleting a tag
 #. was incorrect.
 #: actions/editpeopletag.php:238
 msgid "Delete aborted."
-msgstr ""
+msgstr "Silme iptal edildi."
 
 #. TRANS: Text in confirmation dialog for deleting a tag.
 #: actions/editpeopletag.php:246
 msgid ""
 "Deleting this tag will permanantly remove all its subscription and "
 "membership records. Do you still want to continue?"
-msgstr ""
+msgstr "Bu etiketi silmek etikete olan tüm abonelikleri ve üyelik kayıtlarını kalıcı olarak kaldıracaktır. Devam etmek istiyor musunuz ?"
 
 #. TRANS: Form validation error displayed if a given tag is invalid.
 #: actions/editpeopletag.php:252
 msgid "Invalid tag."
-msgstr ""
+msgstr "Geçersiz etiket."
 
 #. TRANS: Form validation error displayed if a given tag is already present.
 #. TRANS: %s is the already present tag.
 #: actions/editpeopletag.php:257
 #, php-format
 msgid "You already have a tag named %s."
-msgstr ""
+msgstr "%s isimli bir etikete zaten sahipsiniz."
 
 #. TRANS: Text in confirmation dialog for setting a tag from public to
 #. private.
@@ -3895,23 +3897,23 @@ msgstr ""
 #. providing a status.
 #: actions/microsummary.php:70
 msgid "No current status."
-msgstr ""
+msgstr "Geçerli durum yok."
 
 #. TRANS: This is the title of the form for adding a new application.
 #: actions/newapplication.php:51
 msgid "New application"
-msgstr ""
+msgstr "Yeni uygulama"
 
 #. TRANS: Form instructions for registering a new application.
 #: actions/newapplication.php:87
 msgid "Use this form to register a new application."
-msgstr ""
+msgstr "Bu formdan yeni uygulama kaydedin. "
 
 #. TRANS: Validation error shown when not providing a source URL in the "New
 #. application" form.
 #: actions/newapplication.php:124
 msgid "Source URL is required."
-msgstr ""
+msgstr "Kaynak URL lazım."
 
 #. TRANS: Server error displayed when an application could not be registered
 #. in the database through the "New application" form.
@@ -3923,7 +3925,7 @@ msgstr "Eposta onayı silinemedi."
 #. application logo.
 #: actions/newapplication.php:204
 msgid "Invalid image."
-msgstr ""
+msgstr "Geçersiz resim."
 
 #. TRANS: Title for form to create a group.
 #: actions/newgroup.php:58
@@ -3934,12 +3936,12 @@ msgstr "Yeni grup"
 #. banned.
 #: actions/newgroup.php:71 classes/User_group.php:566
 msgid "You are not allowed to create groups on this site."
-msgstr ""
+msgstr "Bu sitede grup açmaya yetkiniz yok."
 
 #. TRANS: Form instructions for group create form.
 #: actions/newgroup.php:87
 msgid "Use this form to create a new group."
-msgstr ""
+msgstr "Yeni grup açmak için bu formu kullanınız."
 
 #. TRANS: Page title after sending a notice.
 #: actions/newnotice.php:63
@@ -3950,7 +3952,7 @@ msgstr "Durum mesajı gönderildi"
 #: actions/newnotice.php:66
 msgctxt "TITLE"
 msgid "New notice"
-msgstr ""
+msgstr "Yeni bildiri"
 
 #. TRANS: Client error displayed trying to send a notice without content.
 #. TRANS: Command exception text shown when trying to reply to a notice
@@ -4224,7 +4226,7 @@ msgstr "Yeni parola"
 #. TRANS: Field title on account registration page.
 #: actions/passwordsettings.php:115 actions/register.php:414
 msgid "6 or more characters."
-msgstr ""
+msgstr "6 ya da daha fazla karakter."
 
 #. TRANS: Field label on page where to change password. In this field the new
 #. password should be typed a second time.
@@ -4240,18 +4242,18 @@ msgstr "Onayla"
 #: actions/passwordsettings.php:121 actions/recoverpassword.php:257
 #: actions/register.php:420
 msgid "Same as password above."
-msgstr ""
+msgstr "Yukarıdaki şifrenin aynısını giriniz."
 
 #. TRANS: Button text on page where to change password.
 #: actions/passwordsettings.php:126
 msgctxt "BUTTON"
 msgid "Change"
-msgstr ""
+msgstr "Değiştir"
 
 #. TRANS: Form validation error on page where to change password.
 #: actions/passwordsettings.php:177
 msgid "Incorrect old password."
-msgstr ""
+msgstr "Geçersiz eski şifre."
 
 #. TRANS: Form validation error on page where to change password.
 #: actions/passwordsettings.php:194
@@ -4264,7 +4266,7 @@ msgstr "Kullanıcıyı kaydetmede hata oluştu; geçersiz."
 #. TRANS: Reset password form validation error message.
 #: actions/passwordsettings.php:201 actions/recoverpassword.php:331
 msgid "Cannot save new password."
-msgstr ""
+msgstr "Yeni şifre kaydedilemedi."
 
 #. TRANS: Form validation notice on page where to change password.
 #: actions/passwordsettings.php:207
@@ -4286,27 +4288,27 @@ msgstr "Bu StatusNet sitesi için yol ve sunucu ayarları"
 #: actions/pathsadminpanel.php:154
 #, php-format
 msgid "Theme directory not readable: %s."
-msgstr ""
+msgstr "Tema dizini okunabilir değil: %s."
 
 #. TRANS: Client error in Paths admin panel.
 #. TRANS: %s is the avatar directory that could not be written to.
 #: actions/pathsadminpanel.php:162
 #, php-format
 msgid "Avatar directory not writable: %s."
-msgstr ""
+msgstr "Avatar dizini yazılabilir değil: %s."
 
 #. TRANS: Client error in Paths admin panel.
 #. TRANS: %s is the locales directory that could not be read from.
 #: actions/pathsadminpanel.php:172
 #, php-format
 msgid "Locales directory not readable: %s."
-msgstr ""
+msgstr "Yerelleştirme dizini okunabilir değil: %s."
 
 #. TRANS: Client error in Paths admin panel.
 #. TRANS: %s is the SSL server URL that is too long.
 #: actions/pathsadminpanel.php:180
 msgid "Invalid SSL server. The maximum length is 255 characters."
-msgstr ""
+msgstr "Geçersiz SSL sunucusu. Maksimum uzunluk 255 karakterdir."
 
 #. TRANS: Fieldset legend in Paths admin panel.
 #: actions/pathsadminpanel.php:226
@@ -4322,7 +4324,7 @@ msgstr "Sunucu"
 #. TRANS: Field title in Paths admin panel.
 #: actions/pathsadminpanel.php:234
 msgid "Site's server hostname."
-msgstr ""
+msgstr "Sitenin sunucu hostname'i."
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:240 actions/pathsadminpanel.php:284
@@ -4333,27 +4335,27 @@ msgstr "Yol"
 #. TRANS: Field title in Paths admin panel.
 #: actions/pathsadminpanel.php:242
 msgid "Site path."
-msgstr ""
+msgstr "Site yolu."
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:248
 msgid "Locale directory"
-msgstr ""
+msgstr "Yerelleştirme dizini"
 
 #. TRANS: Field title in Paths admin panel.
 #: actions/pathsadminpanel.php:250
 msgid "Directory path to locales."
-msgstr ""
+msgstr "Yerelleştirme dizini için yol."
 
 #. TRANS: Checkbox label in Paths admin panel.
 #: actions/pathsadminpanel.php:257
 msgid "Fancy URLs"
-msgstr ""
+msgstr "Süslü URLler"
 
 #. TRANS: Field title in Paths admin panel.
 #: actions/pathsadminpanel.php:260
 msgid "Use fancy URLs (more readable and memorable)?"
-msgstr ""
+msgstr "Süslü URLler (daha okunaklı ve akılda kalıcı) kullanmak ister misiniz ? "
 
 #. TRANS: Fieldset legend in Paths admin panel.
 #: actions/pathsadminpanel.php:268
@@ -4364,12 +4366,12 @@ msgstr "Tema"
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:277
 msgid "Server for themes."
-msgstr ""
+msgstr "Temalar için sunucu."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:286
 msgid "Web path to themes."
-msgstr ""
+msgstr "Temalar için ağ yolu."
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:293 actions/pathsadminpanel.php:385
@@ -4380,32 +4382,32 @@ msgstr "Sunucu"
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:295
 msgid "SSL server for themes (default: SSL server)."
-msgstr ""
+msgstr "Temalar için SSL sunucusu (öntanımlı: SSL sunucusu),"
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:302 actions/pathsadminpanel.php:394
 msgid "SSL path"
-msgstr ""
+msgstr "SSL yolu"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:304
 msgid "SSL path to themes (default: /theme/)."
-msgstr ""
+msgstr "Temalar için SSL yolu (öntanımlı: /theme/)."
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:311 actions/pathsadminpanel.php:403
 msgid "Directory"
-msgstr ""
+msgstr "Dizin"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:313
 msgid "Directory where themes are located."
-msgstr ""
+msgstr "Temaların saklandığı dizin."
 
 #. TRANS: Fieldset legend in Paths admin panel.
 #: actions/pathsadminpanel.php:322
 msgid "Avatars"
-msgstr ""
+msgstr "Avatarlar"
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:329
@@ -4415,63 +4417,63 @@ msgstr "Avatar"
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:331
 msgid "Server for avatars."
-msgstr ""
+msgstr "Avatarlar için sunucu."
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:338
 msgid "Avatar path"
-msgstr ""
+msgstr "Avatar yolu"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:340
 msgid "Web path to avatars."
-msgstr ""
+msgstr "Avatarlar için ağ yolu."
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:347
 msgid "Avatar directory"
-msgstr ""
+msgstr "Avatar dizini"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:349
 msgid "Directory where avatars are located."
-msgstr ""
+msgstr "Avatarların saklandığı dizin."
 
 #. TRANS: Fieldset legens in Paths admin panel.
 #: actions/pathsadminpanel.php:361 lib/inlineattachmentlist.php:38
 msgid "Attachments"
-msgstr ""
+msgstr "Dosya ekleri"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:369
 msgid "Server for attachments."
-msgstr ""
+msgstr "Ekler için sunucu."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:378
 msgid "Web path to attachments."
-msgstr ""
+msgstr "Ekler için ağ yolu."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:387
 msgid "Server for attachments on SSL pages."
-msgstr ""
+msgstr "SSL sayfalardaki ekler için sunucu."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:396
 msgid "Web path to attachments on SSL pages."
-msgstr ""
+msgstr "SSL sayfalardaki ekler için ağ yolu."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:405
 msgid "Directory where attachments are located."
-msgstr ""
+msgstr "Eklerin saklandığı dizin."
 
 #. TRANS: Fieldset legend in Paths admin panel.
 #: actions/pathsadminpanel.php:414
 msgctxt "LEGEND"
 msgid "SSL"
-msgstr ""
+msgstr "SSL"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use
 #. SSL").
@@ -4483,18 +4485,18 @@ msgstr "Sunucu"
 #. SSL").
 #: actions/pathsadminpanel.php:421
 msgid "Sometimes"
-msgstr ""
+msgstr "Bazen"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use
 #. SSL").
 #: actions/pathsadminpanel.php:423
 msgid "Always"
-msgstr ""
+msgstr "Her zaman"
 
 #. TRANS: Drop down label in Paths admin panel.
 #: actions/pathsadminpanel.php:427
 msgid "Use SSL"
-msgstr ""
+msgstr "SSL kullan"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:429
@@ -4509,7 +4511,7 @@ msgstr ""
 #. TRANS: Button title text to store form data in the Paths admin panel.
 #: actions/pathsadminpanel.php:456
 msgid "Save path settings."
-msgstr ""
+msgstr "Yol ayarlarını kaydet."
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -4530,7 +4532,7 @@ msgstr "Kişi Arama"
 #: actions/peopletag.php:57
 #, php-format
 msgid "Public list %s"
-msgstr ""
+msgstr "Halka açık liste %s"
 
 #. TRANS: Title for list page.
 #. TRANS: %1$s is a list, %2$d is a page number.
@@ -5819,7 +5821,7 @@ msgstr ""
 #: actions/showapplication.php:203
 msgctxt "EDITAPP"
 msgid "Edit"
-msgstr ""
+msgstr "Düzenle"
 
 #. TRANS: Button text on the OAuth application page.
 #. TRANS: Resets the OAuth consumer key and secret.
@@ -6041,7 +6043,7 @@ msgstr ""
 #. part of a list).
 #: actions/showprofiletag.php:301 lib/peopletaglist.php:173
 msgid "Listed"
-msgstr ""
+msgstr "Listelenen"
 
 #. TRANS: Content of "Listed" page if there are no listed users.
 #. TRANS: Content of "People following tag x" if there are no subscribed
@@ -6361,7 +6363,7 @@ msgstr ""
 #. TRANS: Fieldset legend for form to change logo.
 #: actions/siteadminpanel.php:338
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #. TRANS: Field label for StatusNet site logo.
 #: actions/siteadminpanel.php:345
@@ -6761,13 +6763,13 @@ msgstr ""
 #: actions/subscriptions.php:203
 msgctxt "LABEL"
 msgid "IM"
-msgstr ""
+msgstr "Anlık mesajlaşma"
 
 #. TRANS: Checkbox label for enabling SMS messages for a profile in a
 #. subscriptions list.
 #: actions/subscriptions.php:218
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #. TRANS: Title for all but the first page of notices with tags.
 #. TRANS: %1$s is the tag, %2$d is the page number.
@@ -6880,7 +6882,7 @@ msgstr ""
 #. TRANS: Page title for page to unsubscribe.
 #: actions/unsubscribe.php:94
 msgid "Unsubscribed"
-msgstr ""
+msgstr "Takipten çıkarıldı"
 
 #. TRANS: Page title for form that allows unsubscribing from a list.
 #. TRANS: %1$s is a nickname, %2$s is a list, %3$s is a tagger nickname.
@@ -6980,7 +6982,7 @@ msgstr ""
 #: actions/useradminpanel.php:58
 msgctxt "TITLE"
 msgid "User"
-msgstr ""
+msgstr "Kullanıcı"
 
 #. TRANS: Instruction for user admin panel.
 #: actions/useradminpanel.php:69
@@ -7011,7 +7013,7 @@ msgstr ""
 #: actions/useradminpanel.php:217
 msgctxt "LEGEND"
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #. TRANS: Field label in user admin panel for setting the character limit for
 #. the bio field.
@@ -7185,7 +7187,7 @@ msgstr ""
 #: actions/version.php:203
 msgctxt "HEADER"
 msgid "Version"
-msgstr ""
+msgstr "Versiyon"
 
 #. TRANS: Column header for plugins table on version page.
 #: actions/version.php:205
@@ -7296,7 +7298,7 @@ msgstr ""
 #. TRANS: Activity title.
 #: classes/Group_member.php:177
 msgid "Join"
-msgstr ""
+msgstr "Katıl"
 
 #. TRANS: Success message for subscribe to group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the subscribed group's name.
@@ -7703,7 +7705,7 @@ msgstr ""
 #: lib/accountprofileblock.php:153 lib/groupprofileblock.php:132
 msgctxt "BUTTON"
 msgid "Edit"
-msgstr ""
+msgstr "Düzenle"
 
 #. TRANS: Label text on user profile to select a user role.
 #: lib/accountprofileblock.php:213
@@ -7994,7 +7996,7 @@ msgstr "saveSettings() gerçeklenmemiş."
 #: lib/adminpanelnav.php:66
 msgctxt "HEADER"
 msgid "Home"
-msgstr ""
+msgstr "Ev"
 
 #. TRANS: Header in administrator navigation panel.
 #: lib/adminpanelnav.php:84
@@ -8022,7 +8024,7 @@ msgstr "Onay kodu yok."
 #: lib/adminpanelnav.php:101
 msgctxt "MENU"
 msgid "User"
-msgstr ""
+msgstr "Kullanıcı"
 
 #. TRANS: Menu item title in administrator navigation panel.
 #: lib/adminpanelnav.php:107
@@ -8758,7 +8760,7 @@ msgstr[1] ""
 #: lib/command.php:886
 msgctxt "COMMANDHELP"
 msgid "Commands:"
-msgstr ""
+msgstr "Komutlar"
 
 #. TRANS: Help message for IM/SMS command "on".
 #: lib/command.php:888
@@ -8963,12 +8965,12 @@ msgstr ""
 #. TRANS: The text is link text that leads to the installer page.
 #: lib/common.php:42
 msgid "Go to the installer."
-msgstr ""
+msgstr "Kuruluma git"
 
 #. TRANS: Page title for when a database error occurs.
 #: lib/dberroraction.php:60
 msgid "Database error"
-msgstr ""
+msgstr "Veritabanı hatası"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
@@ -8982,7 +8984,7 @@ msgstr ""
 #: lib/defaultlocalnav.php:79 lib/subgroupnav.php:136
 msgctxt "MENU"
 msgid "Lists"
-msgstr ""
+msgstr "Listeler"
 
 #. TRANS: Title of form for deleting a user.
 #. TRANS: Link text in notice list item to delete a notice.
@@ -9041,7 +9043,7 @@ msgstr ""
 #. TRANS: Header for feed links (h2).
 #: lib/feedlist.php:66
 msgid "Feeds"
-msgstr ""
+msgstr "Beslemeler"
 
 #: lib/filenotfoundexception.php:39
 msgid "File not found in filesystem."
@@ -9111,7 +9113,7 @@ msgstr ""
 #: lib/groupaction.php:312
 msgctxt "TITLE"
 msgid "Admins"
-msgstr ""
+msgstr "Yöneticiler"
 
 #. TRANS: Button text for the form that will block a user from a group.
 #: lib/groupblockform.php:124
@@ -9193,7 +9195,7 @@ msgstr ""
 #. TRANS: Group actions header (h2). Text hidden by default.
 #: lib/groupprofileblock.php:103
 msgid "Group actions"
-msgstr ""
+msgstr "Grup eylemleri"
 
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for
 #. group administrators.
@@ -9217,23 +9219,23 @@ msgstr ""
 #: lib/groupprofileblock.php:141
 msgctxt "MENU"
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #. TRANS: Title for groups with the most members section.
 #: lib/groupsbymemberssection.php:71
 msgid "Popular groups"
-msgstr ""
+msgstr "Popüler gruplar"
 
 #. TRANS: Title for groups with the most posts section.
 #: lib/groupsbypostssection.php:71
 msgid "Active groups"
-msgstr ""
+msgstr "Aktif gruplar"
 
 #. TRANS: Link description for seeing all groups.
 #. TRANS: Link description for seeing all lists.
 #: lib/groupsnav.php:89 lib/listsnav.php:88
 msgid "See all"
-msgstr ""
+msgstr "Hepsini gör"
 
 #. TRANS: Link title for seeing all groups.
 #: lib/groupsnav.php:91
@@ -9255,18 +9257,18 @@ msgstr "Bu sayfa kabul ettiğiniz ortam türünde kullanılabilir değil"
 #. format.
 #: lib/imagefile.php:73
 msgid "Unsupported image format."
-msgstr ""
+msgstr "Desteklenmeyen resim formatı."
 
 #: lib/imagefile.php:115
 msgid "Unsupported media format."
-msgstr ""
+msgstr "Desteklenmeyen medya formatı."
 
 #. TRANS: Exception thrown when too large a file is uploaded.
 #. TRANS: %s is the maximum file size, for example "500b", "10kB" or "2MB".
 #: lib/imagefile.php:154
 #, php-format
 msgid "That file is too big. The maximum file size is %s."
-msgstr ""
+msgstr "Bu dosya çok büyük. Maksimum dosya boyutu: %s. "
 
 #. TRANS: Exception thrown when uploading an image and that action could not
 #. be completed.
@@ -9290,31 +9292,31 @@ msgstr ""
 #. TRANS: Exception thrown when trying resize an unknown file type.
 #: lib/imagefile.php:302 lib/imagefile.php:346
 msgid "Unknown file type"
-msgstr ""
+msgstr "Bilinmeyen dosya türü"
 
 #. TRANS: Number of megabytes. %d is the number.
 #: lib/imagefile.php:390
 #, php-format
 msgid "%dMB"
 msgid_plural "%dMB"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%dMB"
+msgstr[1] "%dMB"
 
 #. TRANS: Number of kilobytes. %d is the number.
 #: lib/imagefile.php:394
 #, php-format
 msgid "%dkB"
 msgid_plural "%dkB"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%dkB"
+msgstr[1] "%dkB"
 
 #. TRANS: Number of bytes. %d is the number.
 #: lib/imagefile.php:397
 #, php-format
 msgid "%dB"
 msgid_plural "%dB"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%dB"
+msgstr[1] "%dB"
 
 #. TRANS: Body text for confirmation code e-mail.
 #. TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename,
@@ -9363,29 +9365,29 @@ msgstr ""
 #: lib/inboxtagcloudsection.php:58
 msgctxt "TITLE"
 msgid "Trends"
-msgstr ""
+msgstr "Eğilimler"
 
 #. TRANS: Default button text for inviting more users to the StatusNet
 #. instance.
 #: lib/invitebuttonsection.php:56
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
-msgstr ""
+msgstr "Daha fazla arkadaşınızı davet edin"
 
 #. TRANS: Form legend.
 #: lib/inviteform.php:85
 msgid "Invite collegues"
-msgstr ""
+msgstr "Arkadaşlarınızı davet edin"
 
 #. TRANS: Field label for a list of e-mail addresses.
 #: lib/inviteform.php:100
 msgid "Email addresses"
-msgstr ""
+msgstr "E-posta adresleri"
 
 #. TRANS: Field title for a list of e-mail addresses.
 #: lib/inviteform.php:103
 msgid "Addresses of friends to invite (one per line)."
-msgstr ""
+msgstr "Davet edilecek arkadaşların adresleri (her satıra bir tane)"
 
 #. TRANS: Field label for a personal message to send to invitees.
 #: lib/inviteform.php:109
@@ -9395,7 +9397,7 @@ msgstr "Kişisel mesaj"
 #. TRANS: Field title for a personal message to send to invitees.
 #: lib/inviteform.php:112
 msgid "Optionally add a personal message to the invitation."
-msgstr ""
+msgstr "Seçimli olarak davetiyeye kişisel bir mesaj ekle. "
 
 #. TRANS: Send button for inviting friends
 #. TRANS: Button text for sending notice.
@@ -9407,24 +9409,24 @@ msgstr "Gönder"
 #. TRANS: Submit button title.
 #: lib/inviteform.php:131
 msgid "Send invitations."
-msgstr ""
+msgstr "Davetiyeleri yolla."
 
 #. TRANS: Button text for joining a group.
 #: lib/joinform.php:108
 msgctxt "BUTTON"
 msgid "Join"
-msgstr ""
+msgstr "Katıl"
 
 #. TRANS: Button text on form to leave a group.
 #: lib/leaveform.php:109
 msgctxt "BUTTON"
 msgid "Leave"
-msgstr ""
+msgstr "Ayrıl"
 
 #. TRANS: Link title for seeing all lists.
 #: lib/listsnav.php:90
 msgid "See all lists you have created."
-msgstr ""
+msgstr "Yarattığınız tüm listeleri görüntüle. "
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -9436,7 +9438,7 @@ msgstr "Giriş"
 #. TRANS: Title for menu item for logging in to the StatusNet site.
 #: lib/logingroupnav.php:66
 msgid "Login with a username and password"
-msgstr ""
+msgstr "Kullanıcı adı ve şifreyle giriş yap."
 
 #. TRANS: Menu item for registering with the StatusNet site.
 #: lib/logingroupnav.php:73
@@ -9520,14 +9522,14 @@ msgstr ""
 #: lib/mail.php:340
 #, php-format
 msgid "Profile: %s"
-msgstr ""
+msgstr "Profil: %s"
 
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is biographical information.
 #: lib/mail.php:354
 #, php-format
 msgid "Bio: %s"
-msgstr ""
+msgstr "Bio: %s"
 
 #. TRANS: This is a paragraph in a new-subscriber e-mail.
 #. TRANS: %s is a URL where the subscriber can be reported as abusive.
@@ -9568,7 +9570,7 @@ msgstr "%s durum"
 #. TRANS: Subject line for SMS-by-email address confirmation message.
 #: lib/mail.php:560
 msgid "SMS confirmation"
-msgstr ""
+msgstr "SMS doğrulaması"
 
 #. TRANS: Main body heading for SMS-by-email address confirmation message.
 #. TRANS: %s is the addressed user's nickname.
@@ -9790,13 +9792,13 @@ msgstr "Yönetici Yap"
 #: lib/makeadminform.php:124
 msgctxt "TOOLTIP"
 msgid "Make this user an admin."
-msgstr ""
+msgstr "Bu kullanıcıyı yönetici yap."
 
 #. TRANS: Client exception thrown when a database error was thrown during a
 #. file upload operation.
 #: lib/mediafile.php:99 lib/mediafile.php:145
 msgid "There was a database error while saving your file. Please try again."
-msgstr ""
+msgstr "Dosyalarınızı kaydederken bir veritabanı hatası meydana geldi. Lütfen tekrar deneyiniz."
 
 #. TRANS: Client exception thrown when a file upload operation fails because
 #. the file could
@@ -9865,13 +9867,13 @@ msgstr ""
 #. settings, etc.
 #: lib/nickname.php:291
 msgid "Nickname is identical to system path names."
-msgstr ""
+msgstr "Geçersiz kullanıcı adı: Kullanıcı adı sistem dizinlerinlerinin birinin adı olamaz."
 
 #. TRANS: Validation error in form for registration, profile and group
 #. settings, etc.
 #: lib/nickname.php:313
 msgid "Nickname is already in use on this server."
-msgstr ""
+msgstr "Kullanıcı adı kullanımda."
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %u is a profile ID (number).
@@ -9887,12 +9889,12 @@ msgstr ""
 
 #: lib/nosuchgroupexception.php:65 lib/nosuchuserexception.php:65
 msgid "No such user found."
-msgstr ""
+msgstr "Hiçbir kullanıcı bulunamadı."
 
 #. TRANS: Form legend for notice form.
 #: lib/noticeform.php:194
 msgid "Send a notice"
-msgstr ""
+msgstr "Bildiri gönder"
 
 #. TRANS: Title for notice label. %s is the user's nickname.
 #: lib/noticeform.php:208
@@ -9903,35 +9905,35 @@ msgstr "N'aber %s?"
 #. TRANS: Input label in notice form for adding an attachment.
 #: lib/noticeform.php:229
 msgid "Attach"
-msgstr ""
+msgstr "İliştir"
 
 #. TRANS: Title for input field to attach a file to a notice.
 #: lib/noticeform.php:234
 msgid "Attach a file."
-msgstr ""
+msgstr "Dosya iliştir."
 
 #. TRANS: Field label to add location to a notice.
 #: lib/noticeform.php:272
 msgid "Share my location"
-msgstr ""
+msgstr "Konumumu paylaş"
 
 #. TRANS: Text to not share location for a notice in notice form.
 #: lib/noticeform.php:277
 msgid "Do not share my location"
-msgstr ""
+msgstr "Konumumu paylaşma"
 
 #. TRANS: Timeout error text for location retrieval in notice form.
 #: lib/noticeform.php:279
 msgid ""
 "Sorry, retrieving your geo location is taking longer than expected, please "
 "try again later"
-msgstr ""
+msgstr "Konumunuzu getirmek sandığımızdan uzun sürüyor lütfen tekrar deneyiniz"
 
 #. TRANS: Reference to the logged in user in favourite list.
 #: lib/noticelistactorsitem.php:43
 msgctxt "FAVELIST"
 msgid "You"
-msgstr ""
+msgstr "Siz"
 
 #. TRANS: For building a list such as "Jim, Bob, Mary and 5 others like this".
 #. TRANS: %1$s is a list of users, separated by a separator (default: ", "),
@@ -10051,7 +10053,7 @@ msgstr ""
 #: lib/peopletageditform.php:131
 msgctxt "LABEL"
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #. TRANS: Field title for list.
 #: lib/peopletageditform.php:134
@@ -10075,24 +10077,24 @@ msgstr[1] ""
 #. TRANS: Button title to delete a list.
 #: lib/peopletageditform.php:175
 msgid "Delete this list."
-msgstr ""
+msgstr "Bu listeyi sil."
 
 #. TRANS: Header in list edit form.
 #: lib/peopletageditform.php:182
 msgid "Add or remove people"
-msgstr ""
+msgstr "Kullanıcıları ekle ya da çıkart."
 
 #. TRANS: Header in list edit form.
 #: lib/peopletageditform.php:186
 msgctxt "HEADER"
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #. TRANS: Menu item in list navigation panel.
 #: lib/peopletaggroupnav.php:113
 msgctxt "MENU"
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #. TRANS: Menu item title in list navigation panel.
 #. TRANS: %1$s is a list, %2$s is a nickname.
@@ -10105,7 +10107,7 @@ msgstr ""
 #: lib/peopletaggroupnav.php:124
 msgctxt "MENU"
 msgid "Listed"
-msgstr ""
+msgstr "Listelenen"
 
 #. TRANS: Menu item in list navigation panel.
 #. TRANS: Menu item in local navigation menu.
@@ -10125,7 +10127,7 @@ msgstr ""
 #: lib/peopletaggroupnav.php:148
 msgctxt "MENU"
 msgid "Edit"
-msgstr ""
+msgstr "Düzenle"
 
 #. TRANS: Menu item title in list navigation panel.
 #. TRANS: %s is a list.
@@ -10142,7 +10144,7 @@ msgstr ""
 #. TRANS: Text for link to edit list settings.
 #: lib/peopletaglist.php:198
 msgid "Edit"
-msgstr ""
+msgstr "Düzenle"
 
 #. TRANS: Privacy mode text in list list item for private list.
 #: lib/peopletaglist.php:253
@@ -10200,13 +10202,13 @@ msgstr ""
 #: lib/peopletags.php:87
 msgctxt "LABEL"
 msgid "Your lists"
-msgstr ""
+msgstr "Listeleriniz"
 
 #. TRANS: Fieldset legend in lists widget.
 #: lib/peopletags.php:135
 msgctxt "LEGEND"
 msgid "Edit lists"
-msgstr ""
+msgstr "Listeleri düzenle"
 
 #. TRANS: Label in self tags widget.
 #: lib/peopletags.php:193
@@ -10250,7 +10252,7 @@ msgstr ""
 #: lib/personalgroupnav.php:85 lib/settingsnav.php:74 lib/subgroupnav.php:78
 msgctxt "MENU"
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #. TRANS: Menu item title in personal group navigation menu.
 #: lib/personalgroupnav.php:87
@@ -10261,13 +10263,13 @@ msgstr "Kullanıcının profili yok."
 #: lib/personalgroupnav.php:93
 msgctxt "MENU"
 msgid "Replies"
-msgstr ""
+msgstr "Yanıtlar"
 
 #. TRANS: Displayed as version information for a plugin if no version
 #. information was found.
 #: lib/plugin.php:187
 msgid "Unknown"
-msgstr ""
+msgstr "Bilinmeyen"
 
 #. TRANS: Plugin admin panel controls
 #: lib/plugindisableform.php:90
@@ -10292,12 +10294,12 @@ msgstr ""
 #: lib/primarynav.php:58
 msgctxt "MENU"
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #. TRANS: Menu item title in primary navigation panel.
 #: lib/primarynav.php:60
 msgid "Change your personal settings."
-msgstr ""
+msgstr "Kişisel ayarlarını değiştir."
 
 #. TRANS: Menu item in primary navigation panel.
 #: lib/primarynav.php:66
@@ -10308,23 +10310,23 @@ msgstr "Yönetim"
 #. TRANS: Menu item title in primary navigation panel.
 #: lib/primarynav.php:68
 msgid "Site configuration."
-msgstr ""
+msgstr "Site kofigürasyonları."
 
 #. TRANS: Menu item in primary navigation panel.
 #: lib/primarynav.php:74
 msgctxt "MENU"
 msgid "Logout"
-msgstr ""
+msgstr "Çıkış Yap"
 
 #. TRANS: Menu item title in primary navigation panel.
 #: lib/primarynav.php:76
 msgid "Logout from the site."
-msgstr ""
+msgstr "Siteden çıkış yap."
 
 #. TRANS: Menu item title in primary navigation panel.
 #: lib/primarynav.php:84
 msgid "Login to the site."
-msgstr ""
+msgstr "Siteye giriş yap"
 
 #. TRANS: Error message displayed when referring to a user without a profile.
 #: lib/profileaction.php:87
@@ -10338,12 +10340,12 @@ msgstr ""
 #. TRANS: H2 text for user subscription statistics.
 #: lib/profileaction.php:148
 msgid "Following"
-msgstr ""
+msgstr "Takip edilenler"
 
 #. TRANS: H2 text for user subscriber statistics.
 #: lib/profileaction.php:176
 msgid "Followers"
-msgstr ""
+msgstr "Takipçiler"
 
 #. TRANS: H2 text for user statistics.
 #: lib/profileaction.php:210
@@ -10379,7 +10381,7 @@ msgstr "Gruplar"
 #. TRANS: H2 text for user list membership statistics.
 #: lib/profileaction.php:309
 msgid "Lists"
-msgstr ""
+msgstr "Listeler"
 
 #. TRANS: Server error displayed when using an unimplemented method.
 #: lib/profileformaction.php:119
@@ -10396,7 +10398,7 @@ msgstr ""
 #. TRANS: Menu item title in search group navigation panel.
 #: lib/publicgroupnav.php:71
 msgid "User groups"
-msgstr ""
+msgstr "Kullanıcı grupları"
 
 #. TRANS: Menu item in search group navigation panel.
 #: lib/publicgroupnav.php:75
@@ -10419,7 +10421,7 @@ msgstr ""
 #: lib/publictagcloudsection.php:53
 msgctxt "TITLE"
 msgid "Trending topics"
-msgstr ""
+msgstr "Popüler Başlıklar"
 
 #. TRANS: Client error displayed when return-to was defined without a target.
 #: lib/redirectingaction.php:93
@@ -10445,7 +10447,7 @@ msgstr ""
 #. TRANS: Client error on action trying to visit a non-existing page.
 #: lib/router.php:1119
 msgid "Page not found."
-msgstr ""
+msgstr "Sayfa bulunamadı."
 
 #. TRANS: Title of form to sandbox a user.
 #: lib/sandboxform.php:65
@@ -10461,13 +10463,13 @@ msgstr ""
 #. TRANS: Fieldset legend for the search form.
 #: lib/searchaction.php:102
 msgid "Search site"
-msgstr ""
+msgstr "Sitede ara"
 
 #. TRANS: Used as a field label for the field where one or more keywords
 #. TRANS: for searching can be entered.
 #: lib/searchaction.php:110
 msgid "Keyword(s)"
-msgstr ""
+msgstr "Anahtar kelime(ler)"
 
 #. TRANS: Button text for searching site.
 #. TRANS: Button text for search button on search form.
@@ -10475,7 +10477,7 @@ msgstr ""
 #: lib/searchaction.php:112 lib/searchform.php:76 lib/togglepeopletag.php:134
 msgctxt "BUTTON"
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #. TRANS: Standard search suggestions shown when a search does not give any
 #. results.
@@ -10504,7 +10506,7 @@ msgstr ""
 #: lib/searchgroupnav.php:74
 msgctxt "MENU"
 msgid "People"
-msgstr ""
+msgstr "İnsanlar"
 
 #. TRANS: Menu item title in search group navigation panel.
 #: lib/searchgroupnav.php:76
@@ -10531,43 +10533,43 @@ msgstr ""
 #: lib/secondarynav.php:67
 msgctxt "MENU"
 msgid "TOS"
-msgstr ""
+msgstr "Kullanım Sözleşmesi"
 
 #. TRANS: Secondary navigation menu item leading to privacy policy.
 #: lib/secondarynav.php:71
 msgctxt "MENU"
 msgid "Privacy"
-msgstr ""
+msgstr "Gizlilik"
 
 #. TRANS: Secondary navigation menu item. Leads to information about StatusNet
 #. and its license.
 #: lib/secondarynav.php:74
 msgctxt "MENU"
 msgid "Source"
-msgstr ""
+msgstr "Kaynak"
 
 #. TRANS: Secondary navigation menu item leading to version information on the
 #. StatusNet site.
 #: lib/secondarynav.php:77
 msgctxt "MENU"
 msgid "Version"
-msgstr ""
+msgstr "Versiyon"
 
 #. TRANS: Default title for section/sidebar widget.
 #: lib/section.php:98
 msgid "Untitled section"
-msgstr ""
+msgstr "İsimsiz bölüm"
 
 #. TRANS: Default "More..." title for section/sidebar widget.
 #: lib/section.php:122
 msgid "More..."
-msgstr ""
+msgstr "Daha fazla..."
 
 #. TRANS: Header in settings navigation panel.
 #: lib/settingsnav.php:68
 msgctxt "HEADER"
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #. TRANS: Menu item title in settings navigation panel.
 #: lib/settingsnav.php:76
@@ -10611,18 +10613,18 @@ msgstr ""
 #: lib/settingsnav.php:102
 msgctxt "MENU"
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. TRANS: Menu item title in settings navigation panel.
 #: lib/settingsnav.php:104
 msgid "URL shorteners"
-msgstr ""
+msgstr "Link Kısaltıcılar"
 
 #. TRANS: Menu item in settings navigation panel.
 #: lib/settingsnav.php:116
 msgctxt "MENU"
 msgid "IM"
-msgstr ""
+msgstr "Anlık mesajlaşma"
 
 #. TRANS: Menu item title in settings navigation panel.
 #: lib/settingsnav.php:118
@@ -10633,18 +10635,18 @@ msgstr ""
 #: lib/settingsnav.php:125
 msgctxt "MENU"
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #. TRANS: Menu item title in settings navigation panel.
 #: lib/settingsnav.php:127
 msgid "Updates by SMS"
-msgstr ""
+msgstr "SMS ile güncellemeler"
 
 #. TRANS: Menu item in settings navigation panel.
 #: lib/settingsnav.php:133
 msgctxt "MENU"
 msgid "Connections"
-msgstr ""
+msgstr "Bağlantılar"
 
 #. TRANS: Menu item title in settings navigation panel.
 #: lib/settingsnav.php:135
@@ -10666,7 +10668,7 @@ msgstr ""
 #: lib/silenceform.php:65
 msgctxt "TITLE"
 msgid "Silence"
-msgstr ""
+msgstr "Sessiz"
 
 #. TRANS: Description of form to silence a user.
 #: lib/silenceform.php:76
@@ -10677,7 +10679,7 @@ msgstr ""
 #: lib/subgroupnav.php:86
 msgctxt "MENU"
 msgid "Subscriptions"
-msgstr ""
+msgstr "Abonelikler"
 
 #. TRANS: Menu item title in local navigation menu.
 #. TRANS: %s is a user nickname.
@@ -10699,7 +10701,7 @@ msgstr ""
 #, php-format
 msgctxt "MENU"
 msgid "Pending (%d)"
-msgstr ""
+msgstr "Sürüyor(%d)"
 
 #. TRANS: Menu item title in local navigation menu.
 #: lib/subgroupnav.php:115
@@ -10725,7 +10727,7 @@ msgstr ""
 #: lib/subgroupnav.php:147
 msgctxt "MENU"
 msgid "Invite"
-msgstr ""
+msgstr "Davet et."
 
 #. TRANS: Menu item title in local navigation menu.
 #. TRANS: %s is the StatusNet sitename.
@@ -10744,12 +10746,12 @@ msgstr "Bize o profili yollamadınız"
 #: lib/subscribeform.php:130 lib/subscribepeopletagform.php:106
 msgctxt "BUTTON"
 msgid "Subscribe"
-msgstr ""
+msgstr "Takip et"
 
 #. TRANS: Button title to subscribe to a user.
 #: lib/subscribeform.php:132
 msgid "Subscribe to this user."
-msgstr ""
+msgstr "Bu kullanıcıyı takiple."
 
 #. TRANS: Title of personal tag cloud section.
 #: lib/subscriberspeopleselftagcloudsection.php:48
@@ -10767,13 +10769,13 @@ msgstr ""
 #: lib/tagcloudsection.php:56 lib/tagcloudsection.php:72
 msgctxt "NOTAGS"
 msgid "None"
-msgstr ""
+msgstr "Hiçbiri"
 
 #. TRANS: Field label on list form.
 #: lib/tagprofileform.php:130
 msgctxt "LABEL"
 msgid "Lists"
-msgstr ""
+msgstr "Listeler"
 
 #. TRANS: Field title on list form.
 #: lib/tagprofileform.php:133
@@ -10785,18 +10787,18 @@ msgstr ""
 #. TRANS: Server exception displayed if a theme name was invalid.
 #: lib/theme.php:79
 msgid "Invalid theme name."
-msgstr ""
+msgstr "Geçersiz tema adı."
 
 #. TRANS: Exception thrown when a compressed theme is uploaded while no
 #. support present in PHP configuration.
 #: lib/themeuploader.php:51
 msgid "This server cannot handle theme uploads without ZIP support."
-msgstr ""
+msgstr "Bu sunucu ZIP desteğiyle yükleme haricindeki yöntemleri desteklemiyor"
 
 #. TRANS: Server exception thrown when uploading a theme fails.
 #: lib/themeuploader.php:60 lib/themeuploader.php:64
 msgid "The theme file is missing or the upload failed."
-msgstr ""
+msgstr "Tema dosyası kayıp ya da yükleme başarısız."
 
 #. TRANS: Server exception thrown when saving an uploaded theme after
 #. decompressing it fails.
@@ -10806,13 +10808,13 @@ msgstr ""
 #: lib/themeuploader.php:293 lib/themeuploader.php:298
 #: lib/themeuploader.php:307 lib/themeuploader.php:315
 msgid "Failed saving theme."
-msgstr ""
+msgstr "Tema kaydedilirken hata oluştu."
 
 #. TRANS: Server exception thrown when an uploaded theme has an incorrect
 #. structure.
 #: lib/themeuploader.php:153
 msgid "Invalid theme: Bad directory structure."
-msgstr ""
+msgstr "Geçersiz tema: Kötü dizin hiyarşisi."
 
 #. TRANS: Client exception thrown when an uploaded theme is larger than the
 #. limit.
@@ -10822,13 +10824,13 @@ msgstr ""
 msgid "Uploaded theme is too large; must be less than %d byte uncompressed."
 msgid_plural ""
 "Uploaded theme is too large; must be less than %d bytes uncompressed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Yüklenen tema çok büyük; Sıkıştırılmamış hali %d bayttan küçük olmalıdır. "
+msgstr[1] "Yüklenen tema çok büyük; Sıkıştırılmamış hali %d bayttan küçük olmalıdır. "
 
 #. TRANS: Server exception thrown when an uploaded theme is incomplete.
 #: lib/themeuploader.php:188
 msgid "Invalid theme archive: Missing file css/display.css"
-msgstr ""
+msgstr "Geçersiz tema arşivi: css/display.css dosyası eksik"
 
 #. TRANS: Server exception thrown when an uploaded theme has an incorrect file
 #. or folder name.
@@ -10836,13 +10838,13 @@ msgstr ""
 msgid ""
 "Theme contains invalid file or folder name. Stick with ASCII letters, "
 "digits, underscore, and minus sign."
-msgstr ""
+msgstr "Tema geçersiz dosya ya da dizin adı içeriyor."
 
 #. TRANS: Server exception thrown when an uploaded theme contains files with
 #. unsafe file extensions.
 #: lib/themeuploader.php:236
 msgid "Theme contains unsafe file extension names; may be unsafe."
-msgstr ""
+msgstr "Tema güvensiz uzantıya sahip; tema güvensiz olabilir. "
 
 #. TRANS: Server exception thrown when an uploaded theme contains a file type
 #. that is not allowed.
@@ -10850,13 +10852,13 @@ msgstr ""
 #: lib/themeuploader.php:255
 #, php-format
 msgid "Theme contains file of type \".%s\", which is not allowed."
-msgstr ""
+msgstr "Temada bulunan \".%s\" dosya tipi desteklenmiyor."
 
 #. TRANS: Server exception thrown when an uploaded compressed theme cannot be
 #. opened.
 #: lib/themeuploader.php:273
 msgid "Error opening theme archive."
-msgstr ""
+msgstr "Tema arşivi açılırken hata oluştu."
 
 #. TRANS: Header for Notices section.
 #: lib/threadednoticelist.php:74
@@ -10870,14 +10872,14 @@ msgstr "Durum mesajları"
 #, php-format
 msgid "Show reply"
 msgid_plural "Show all %d replies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "cevabı göster"
+msgstr[1] "%d kadar cevabı göster"
 
 #. TRANS: List message for notice repeated by logged in user.
 #: lib/threadednoticelist.php:455
 msgctxt "REPEATLIST"
 msgid "You repeated this."
-msgstr ""
+msgstr "Bunu tekrarladın."
 
 #. TRANS: List message for when more than 4 people repeat something.
 #. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that
@@ -10888,8 +10890,8 @@ msgstr ""
 #, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%%s ve diğer %d kişi bunu tekrarladı."
+msgstr[1] "%%s ve diğer %d kişi bunu tekrarladı."
 
 #. TRANS: List message for repeated notices.
 #. TRANS: %%s is a list of users who have repeated a notice.
@@ -10899,24 +10901,24 @@ msgstr[1] ""
 #, php-format
 msgid "%%s repeated this."
 msgid_plural "%%s repeated this."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%%s bunu tekrarladı."
+msgstr[1] "%%s  bunu tekrarladı."
 
 #. TRANS: Form legend.
 #: lib/togglepeopletag.php:94
 #, php-format
 msgid "Search and list people"
-msgstr ""
+msgstr "Listeleri ve insanları ara"
 
 #. TRANS: Dropdown option for searching in profiles.
 #: lib/togglepeopletag.php:105
 msgid "Everything"
-msgstr ""
+msgstr "Herşey"
 
 #. TRANS: Dropdown option for searching in profiles.
 #: lib/togglepeopletag.php:109
 msgid "Fullname"
-msgstr ""
+msgstr "Tam adı"
 
 #. TRANS: Dropdown option for searching in profiles.
 #: lib/togglepeopletag.php:115
@@ -10927,12 +10929,12 @@ msgstr ""
 #: lib/togglepeopletag.php:121
 msgctxt "LABEL"
 msgid "Search in"
-msgstr ""
+msgstr "Ara"
 
 #. TRANS: Dropdown field title.
 #: lib/togglepeopletag.php:123
 msgid "Choose a field to search."
-msgstr ""
+msgstr "Aramak için alan seçiniz."
 
 #. TRANS: Form legend.
 #. TRANS: %1$s is a nickname, $2$s is a list.
@@ -10946,50 +10948,50 @@ msgstr ""
 #: lib/togglepeopletag.php:268
 #, php-format
 msgid "Add %1$s to list %2$s"
-msgstr ""
+msgstr "%1$s'i liste %2$s'ye ekle"
 
 #. TRANS: Title for top posters section.
 #: lib/topposterssection.php:74
 msgid "Top posters"
-msgstr ""
+msgstr "Üst afişler"
 
 #. TRANS: Option in drop-down of potential addressees.
 #: lib/toselector.php:87
 msgctxt "SENDTO"
 msgid "Everyone"
-msgstr ""
+msgstr "Herkes"
 
 #. TRANS: Option in drop-down of potential addressees.
 #. TRANS: %s is a StatusNet sitename.
 #: lib/toselector.php:93
 #, php-format
 msgid "My colleagues at %s"
-msgstr ""
+msgstr "%s'deki arkadaşlarım"
 
 #. TRANS: Label for drop-down of potential addressees.
 #: lib/toselector.php:115
 msgctxt "LABEL"
 msgid "To:"
-msgstr ""
+msgstr "Kime:"
 
 #. TRANS: Checkbox label in widget for selecting potential addressees to mark
 #. the notice private.
 #: lib/toselector.php:124
 msgid "Private?"
-msgstr ""
+msgstr "Özel?"
 
 #. TRANS: Client exception thrown in widget for selecting potential addressees
 #. when an invalid fill option was received.
 #: lib/toselector.php:163
 #, php-format
 msgid "Unknown to value: \"%s\"."
-msgstr ""
+msgstr "Bilinmeyen değer: \"%s\"."
 
 #. TRANS: Title for the form to unblock a user.
 #: lib/unblockform.php:67
 msgctxt "TITLE"
 msgid "Unblock"
-msgstr ""
+msgstr "Bloku kaldır"
 
 #. TRANS: Exception text shown when no object found with certain URI
 #. TRANS: %s is the URI.
@@ -11039,7 +11041,7 @@ msgstr ""
 #. TRANS: Authorisation exception thrown when a user a not allowed to login.
 #: lib/util.php:330
 msgid "Not allowed to log in."
-msgstr ""
+msgstr "Girişe izin verilmedi."
 
 #. TRANS: Used in notices to indicate when the notice was made compared to
 #. now.
@@ -11059,8 +11061,8 @@ msgstr "yaklaşık bir dakika önce"
 #, php-format
 msgid "about one minute ago"
 msgid_plural "about %d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "yaklaşık 1 dakika önce"
+msgstr[1] "yaklaşık %d dakika önce"
 
 #. TRANS: Used in notices to indicate when the notice was made compared to
 #. now.
@@ -11074,8 +11076,8 @@ msgstr "yaklaşık bir saat önce"
 #, php-format
 msgid "about one hour ago"
 msgid_plural "about %d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "yaklaşık 1 saat önce "
+msgstr[1] "yaklaşık %d saat önce"
 
 #. TRANS: Used in notices to indicate when the notice was made compared to
 #. now.
@@ -11089,8 +11091,8 @@ msgstr "yaklaşık bir gün önce"
 #, php-format
 msgid "about one day ago"
 msgid_plural "about %d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Yaklaşık 1 gün önce"
+msgstr[1] "yaklaşık %d gün önce"
 
 #. TRANS: Used in notices to indicate when the notice was made compared to
 #. now.
@@ -11104,8 +11106,8 @@ msgstr "yaklaşık bir ay önce"
 #, php-format
 msgid "about one month ago"
 msgid_plural "about %d months ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Yaklaşık 1 ay önce"
+msgstr[1] "yaklaşık %d ay önce"
 
 #. TRANS: Used in notices to indicate when the notice was made compared to
 #. now.
@@ -11125,11 +11127,11 @@ msgstr ""
 #: lib/webcolor.php:81 lib/webcolor.php:121
 #, php-format
 msgid "%s is not a valid color! Use 3 or 6 hex characters."
-msgstr ""
+msgstr "%s geçerli bir renk değil! 3 ya da 6 karakterli hexadecimal kod giriniz."
 
 #. TRANS: Commandline script output. %s is the filename that contains a backup
 #. for a user.
 #: scripts/restoreuser.php:62
 #, php-format
 msgid "Getting backup from file '%s'."
-msgstr ""
+msgstr "'%s' dosyasından yedek alınıyor."

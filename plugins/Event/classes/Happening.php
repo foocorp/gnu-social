@@ -27,9 +27,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Data class for happenings
@@ -116,8 +114,8 @@ class Happening extends Managed_DataObject
 
         $ev->id          = UUID::gen();
         $ev->profile_id  = $profile->id;
-        $ev->start_time  = common_sql_date($start_time);
-        $ev->end_time    = common_sql_date($end_time);
+        $ev->start_time  = $start_time;
+        $ev->end_time    = $end_time;
         $ev->title       = $title;
         $ev->location    = $location;
         $ev->description = $description;
@@ -172,14 +170,14 @@ class Happening extends Managed_DataObject
                                $options);
 
         if (!array_key_exists('uri', $options)) {
-            $options['uri'] = $ev->uri;
+            $options['uri'] = $ev->getUri();
         }
 
         if (!empty($url)) {
             $options['urls'] = array($url);
         }
 
-        $saved = Notice::saveNew($profile->id,
+        $saved = Notice::saveNew($profile->getID(),
                                  $content,
                                  array_key_exists('source', $options) ?
                                  $options['source'] : 'web',
@@ -202,14 +200,19 @@ class Happening extends Managed_DataObject
         return $this->url;
     }
 
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
     function getNotice()
     {
-        return Notice::getKV('uri', $this->uri);
+        return Notice::getKV('uri', $this->getUri());
     }
 
     static function fromNotice($notice)
     {
-        return Happening::getKV('uri', $notice->uri);
+        return Happening::getKV('uri', $notice->getUri());
     }
 
     function getRSVPs()
@@ -219,7 +222,7 @@ class Happening extends Managed_DataObject
 
     function getRSVP($profile)
     {
-        return RSVP::pkeyGet(array('profile_id' => $profile->id,
-                                   'event_id' => $this->id));
+        return RSVP::pkeyGet(array('profile_id' => $profile->getID(),
+                                   'event_uri' => $this->getUri()));
     }
 }

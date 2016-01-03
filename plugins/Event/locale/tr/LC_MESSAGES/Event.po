@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:32+0000\n"
+"PO-Revision-Date: 2015-03-26 11:12+0000\n"
 "Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -133,7 +133,7 @@ msgstr ""
 #: forms/event.php:185
 msgctxt "LABEL"
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. TRANS: Field title on event form.
 #: forms/event.php:188
@@ -437,13 +437,13 @@ msgstr ""
 #. TRANS: Exception thrown when there are too many activity objects.
 #: EventPlugin.php:135
 msgid "Too many activity objects."
-msgstr ""
+msgstr "Çok fazla aktivite nesnesi var."
 
 #. TRANS: Exception thrown when event plugin comes across a non-event type
 #. object.
 #: EventPlugin.php:142
 msgid "Wrong type for object."
-msgstr ""
+msgstr "Yanlış nesne tipi."
 
 #. TRANS: Exception thrown when trying to RSVP for an unknown event.
 #: EventPlugin.php:166

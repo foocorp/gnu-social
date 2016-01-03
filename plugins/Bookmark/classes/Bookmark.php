@@ -27,9 +27,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * For storing the fact that a notice is a bookmark
@@ -71,12 +69,13 @@ class Bookmark extends Managed_DataObject
                 'description' => array('type' => 'text'),
                 'created' => array('type' => 'datetime', 'not null' => true),
             ),
-            'primary key' => array('id'),
+            'primary key' => array('uri'),
             'unique keys' => array(
-                'bookmark_uri_key' => array('uri'),
+                'bookmark_id_key' => array('id'),
             ),
             'foreign keys' => array(
-                'bookmark_profile_id_fkey' => array('profile', array('profile_id' => 'id'))
+                'bookmark_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+                'bookmark_uri_fkey' => array('notice', array('uri' => 'uri')),
             ),
             'indexes' => array('bookmark_created_idx' => array('created'),
                             'bookmark_url_idx' => array('url'),
@@ -88,13 +87,42 @@ class Bookmark extends Managed_DataObject
     /**
      * Get a bookmark based on a notice
      *
-     * @param Notice $notice Notice to check for
+     * @param   Notice              $stored Notice activity which represents the Bookmark
      *
-     * @return Bookmark found bookmark or null
+     * @return  Bookmark            The found bookmark object.
+     * @throws  NoResultException   When you don't find it after all.
      */
-    static function getByNotice($notice)
+    static public function fromStored(Notice $stored)
     {
-        return self::getKV('uri', $notice->uri);
+        return self::getByPK(array('uri' => $stored->getUri()));
+    }
+
+    public function getStored()
+    {
+        return Notice::getByKeys(array('uri' => $this->getUri()));
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    public function getUrl()
+    {
+        if (empty($this->url)) {
+            throw new InvalidUrlException($this->url);
+        }
+        return $this->url;
     }
 
     /**
@@ -105,18 +133,136 @@ class Bookmark extends Managed_DataObject
      *
      * @return Bookmark bookmark found or null
      */
-    static function getByURL($profile, $url)
+    static function getByURL(Profile $profile, $url)
     {
         $nb = new Bookmark();
 
-        $nb->profile_id = $profile->id;
+        $nb->profile_id = $profile->getID();
         $nb->url        = $url;
 
-        if ($nb->find(true)) {
-            return $nb;
-        } else {
-            return null;
+        if (!$nb->find(true)) {
+            throw new NoResultException($nb);
         }
+
+        return $nb;
+    }
+
+    /**
+     * Store a Bookmark object
+     *
+     * @param Profile $profile     To save the bookmark for
+     * @param string  $title       Title of the bookmark
+     * @param string  $url         URL of the bookmark
+     * @param string  $description Description of the bookmark
+     *
+     * @return Bookmark the Bookmark object
+     */
+    static function saveActivityObject(ActivityObject $actobj, Notice $stored)
+    {
+        $url = null;
+        // each extra element is array('tagname', array('attr'=>'val', ...), 'content')
+        foreach ($actobj->extra as $extra) {
+            if ($extra[1]['rel'] !== 'related') {
+                continue;
+            }
+            if ($url===null && strlen($extra[1]['href'])>0) {
+                $url = $extra[1]['href'];
+            } elseif ($url !== null) {
+                // TRANS: Client exception thrown when a bookmark is formatted incorrectly.
+                throw new ClientException(sprintf(_m('Expected exactly 1 link rel=related in a Bookmark, got %1$d.'), count($relLinkEls)));
+            }
+        }
+        if (is_null($url)) {
+            // TRANS: Client exception thrown when a bookmark is formatted incorrectly.
+            throw new ClientException(sprintf(_m('Expected exactly 1 link rel=related in a Bookmark, got %1$d.'), count($relLinkEls)));
+        }
+
+        if (!strlen($actobj->title)) {
+            throw new ClientException(_m('You must provide a non-empty title.'));
+        }
+        if (!common_valid_http_url($url)) {
+            throw new ClientException(_m('Only web bookmarks can be posted (HTTP or HTTPS).'));
+        }
+
+        try {
+            $object = self::getByURL($stored->getProfile(), $url);
+            throw new ClientException(_m('You have already bookmarked this URL.'));
+        } catch (NoResultException $e) {
+            // Alright, so then we have to create it.
+        }
+
+        $nb = new Bookmark();
+
+        $nb->id          = UUID::gen();
+        $nb->uri         = $stored->getUri();
+        $nb->profile_id  = $stored->getProfile()->getID();
+        $nb->title       = $actobj->title;
+        $nb->url         = $url;
+        $nb->description = $actobj->summary;
+        $nb->created     = $stored->created;
+
+        $result = $nb->insert();
+        if ($result === false) {
+            throw new ServerException('Could not insert Bookmark into database!');
+        }
+
+        return $nb;
+    }
+
+    public function asActivityObject()
+    {
+        $stored = $this->getStored();
+
+        $object = new ActivityObject();
+        $object->id      = $this->getUri();
+        $object->type    = ActivityObject::BOOKMARK;
+        $object->title   = $this->getTitle();
+        $object->summary = $this->getDescription();
+        $object->link    = $stored->getUrl();
+        $object->content = $stored->getRendered();
+
+        // Attributes of the URL
+
+        $attachments = $stored->attachments();
+
+        if (count($attachments) != 1) {
+            // TRANS: Server exception thrown when a bookmark has multiple attachments.
+            throw new ServerException(_m('Bookmark notice with the '.
+                                        'wrong number of attachments.'));
+        }
+
+        $bookmarkedurl = $attachments[0];
+
+        $attrs = array('rel' => 'related',
+                       'href' => $bookmarkedurl->getUrl());
+
+        if (!strlen($bookmarkedurl->title)) {
+            $attrs['title'] = $bookmarkedurl->title;
+        }
+
+        $object->extra[] = array('link', $attrs, null);
+
+        // Attributes of the thumbnail, if any
+
+        try {
+            $thumbnail = $bookmarkedurl->getThumbnail();
+            $tattrs = array('rel' => 'preview',
+                            'href' => $thumbnail->getUrl());
+
+            if (!empty($thumbnail->width)) {
+                $tattrs['media:width'] = $thumbnail->width;
+            }
+
+            if (!empty($thumbnail->height)) {
+                $tattrs['media:height'] = $thumbnail->height;
+            }
+
+            $object->extra[] = array('link', $tattrs, null);
+        } catch (UnsupportedMediaException $e) {
+            // No image thumbnail metadata available
+        }
+
+        return $object;
     }
 
     /**
@@ -125,96 +271,38 @@ class Bookmark extends Managed_DataObject
      * @param Profile $profile     To save the bookmark for
      * @param string  $title       Title of the bookmark
      * @param string  $url         URL of the bookmark
-     * @param mixed   $rawtags     array of tags or string
+     * @param array   $rawtags     array of tags
      * @param string  $description Description of the bookmark
      * @param array   $options     Options for the Notice::saveNew()
      *
      * @return Notice saved notice
      */
-    static function saveNew($profile, $title, $url, $rawtags, $description,
-                            $options=null)
+    static function addNew(Profile $actor, $title, $url, array $rawtags, $description, array $options=array())
     {
-        if (!common_valid_http_url($url)) {
-            throw new ClientException(_m('Only web bookmarks can be posted (HTTP or HTTPS).'));
-        }
+        $act        = new Activity();
+        $act->verb  = ActivityVerb::POST;
+        $act->time  = time();
+        $act->actor = $actor->asActivityObject();
 
-        $nb = self::getByURL($profile, $url);
+        $actobj = new ActivityObject();
+        $actobj->type = ActivityObject::BOOKMARK;
+        $actobj->title = $title;
+        $actobj->summary = $description;
+        $actobj->extra[] = array('link', array('rel'=>'related', 'href'=>$url), null);
+        $act->objects[] = $actobj;
 
-        if (!empty($nb)) {
-            // TRANS: Client exception thrown when trying to save a new bookmark that already exists.
-            throw new ClientException(_m('Bookmark already exists.'));
-        }
-
-        if (empty($options)) {
-            $options = array();
-        }
-
-        if (array_key_exists('uri', $options)) {
-            $other = Bookmark::getKV('uri', $options['uri']);
-            if (!empty($other)) {
-                // TRANS: Client exception thrown when trying to save a new bookmark that already exists.
-                throw new ClientException(_m('Bookmark already exists.'));
-            }
-        }
-
-        if (is_string($rawtags)) {
-            if (empty($rawtags)) {
-                $rawtags = array();
-            } else {
-                $rawtags = preg_split('/[\s,]+/', $rawtags);
-            }
-        }
-
-        $nb = new Bookmark();
-
-        $nb->id          = UUID::gen();
-        $nb->profile_id  = $profile->id;
-        $nb->url         = $url;
-        $nb->title       = $title;
-        $nb->description = $description;
-
-        if (array_key_exists('created', $options)) {
-            $nb->created = $options['created'];
-        } else {
-            $nb->created = common_sql_now();
-        }
-
-        if (array_key_exists('uri', $options)) {
-            $nb->uri = $options['uri'];
-        } else {
-            // FIXME: hacks to work around router bugs in
-            // queue daemons
-
-            $r = Router::get();
-
-            $path = $r->build('showbookmark',
-                              array('id' => $nb->id));
-
-            if (empty($path)) {
-                $nb->uri = common_path('bookmark/'.$nb->id, false, false);
-            } else {
-                $nb->uri = common_local_url('showbookmark',
-                                            array('id' => $nb->id),
-                                            null,
-                                            null,
-                                            false);
-            }
-        }
-
-        $nb->insert();
+        $act->enclosures[] = $url;
 
         $tags    = array();
         $replies = array();
 
         // filter "for:nickname" tags
-
         foreach ($rawtags as $tag) {
             if (strtolower(mb_substr($tag, 0, 4)) == 'for:') {
                 // skip if done by caller
                 if (!array_key_exists('replies', $options)) {
                     $nickname = mb_substr($tag, 4);
-                    $other    = common_relative_profile($profile,
-                                                        $nickname);
+                    $other    = common_relative_profile($actor, $nickname);
                     if (!empty($other)) {
                         $replies[] = $other->getUri();
                     }
@@ -236,38 +324,33 @@ class Bookmark extends Managed_DataObject
         }
 
         // Use user's preferences for short URLs, if possible
-
+        // FIXME: Should be possible to with the Profile object...
         try {
-            $user = User::getKV('id', $profile->id);
-
-            $shortUrl = File_redirection::makeShort($url,
-                                                    empty($user) ? null : $user);
+            $user = $actor->getUser();
+            $shortUrl = File_redirection::makeShort($url, empty($user) ? null : $user);
         } catch (Exception $e) {
             // Don't let this stop us.
             $shortUrl = $url;
         }
 
-        // TRANS: Bookmark content.
-        // TRANS: %1$s is a title, %2$s is a short URL, %3$s is the bookmark description,
-	// TRANS: %4$s is space separated list of hash tags.
-        $content = sprintf(_m('"%1$s" %2$s %3$s %4$s'),
-                           $title,
-                           $shortUrl,
-                           $description,
-                           implode(' ', $hashtags));
-
         // TRANS: Rendered bookmark content.
         // TRANS: %1$s is a URL, %2$s the bookmark title, %3$s is the bookmark description,
-	// TRANS: %4$s is space separated list of hash tags.
-        $rendered = sprintf(_m('<span class="xfolkentry">'.
-                              '<a class="taggedlink" href="%1$s">%2$s</a> '.
-                              '<span class="description">%3$s</span> '.
-                              '<span class="meta">%4$s</span>'.
-                              '</span>'),
-                            htmlspecialchars($url),
-                            htmlspecialchars($title),
-                            htmlspecialchars($description),
-                            implode(' ', $taglinks));
+        // TRANS: %4$s is space separated list of hash tags.
+        $actobj->content = sprintf(_m('<span class="xfolkentry">'.
+                                      '<a class="taggedlink" href="%1$s">%2$s</a> '.
+                                      '<span class="description">%3$s</span> '.
+                                      '<span class="meta">%4$s</span>'.
+                                      '</span>'),
+                                    htmlspecialchars($url),
+                                    htmlspecialchars($title),
+                                    htmlspecialchars($description),
+                                    implode(' ', $taglinks));
+
+        foreach ($tags as $term) {
+            $catEl = new AtomCategory();
+            $catEl->term = $term;
+            $activity->categories[] = $catEl;
+        }
 
         $options = array_merge(array('urls' => array($url),
                                      'rendered' => $rendered,
@@ -276,25 +359,6 @@ class Bookmark extends Managed_DataObject
                                      'object_type' => ActivityObject::BOOKMARK),
                                $options);
 
-        if (!array_key_exists('uri', $options)) {
-            $options['uri'] = $nb->uri;
-        }
-
-        try {
-            $saved = Notice::saveNew($profile->id,
-                                     $content,
-                                     array_key_exists('source', $options) ?
-                                     $options['source'] : 'web',
-                                     $options);
-        } catch (Exception $e) {
-            $nb->delete();
-            throw $e;
-        }
-
-        if (empty($saved)) {
-            $nb->delete();
-        }
-
-        return $saved;
+        return Notice::saveActivity($act, $actor, $options);
     }
 }

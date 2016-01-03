@@ -64,6 +64,7 @@ class NoticeListItem extends Widget
     protected $options = true;
     protected $maxchars = 0;   // if <= 0 it means use full posts
     protected $item_tag = 'li';
+    protected $pa = null;
 
     /**
      * constructor
@@ -150,7 +151,19 @@ class NoticeListItem extends Widget
         $this->elementStart('section', array('class'=>'notice-headers'));
         $this->showNoticeTitle();
         $this->showAuthor();
-        if ($this->addressees) { $this->showAddressees(); }
+
+        if (!empty($this->notice->reply_to) || count($this->getProfileAddressees()) > 0) {
+            $this->elementStart('div', array('class' => 'parents'));
+            try {
+                $this->showParent();
+            } catch (NoParentNoticeException $e) {
+                // no parent notice
+            } catch (InvalidUrlException $e) {
+                // parent had an invalid URL so we can't show it
+            }
+            if ($this->addressees) { $this->showAddressees(); }
+            $this->elementEnd('div');
+        }
         $this->elementEnd('section');
     }
 
@@ -166,7 +179,7 @@ class NoticeListItem extends Widget
     function showNoticeTitle()
     {
         if (Event::handle('StartShowNoticeTitle', array($this))) {
-            $this->element('a', array('href' => $this->notice->getUrl(),
+            $this->element('a', array('href' => $this->notice->getUrl(true),
                                       'class' => 'notice-title'),
                            $this->notice->getTitle());
             Event::handle('EndShowNoticeTitle', array($this));
@@ -235,8 +248,9 @@ class NoticeListItem extends Widget
     function showAuthor()
     {
         $attrs = array('href' => $this->profile->profileurl,
-                       'class' => 'h-card p-author',
+                       'class' => 'h-card',
                        'title' => $this->profile->getNickname());
+        if(empty($this->repeat)) { $attrs['class'] .= ' p-author'; }
 
         if (Event::handle('StartShowNoticeItemAuthor', array($this->profile, $this->out, &$attrs))) {
             $this->out->elementStart('a', $attrs);
@@ -245,6 +259,19 @@ class NoticeListItem extends Widget
             $this->out->elementEnd('a');
             Event::handle('EndShowNoticeItemAuthor', array($this->profile, $this->out));
         }
+    }
+
+    function showParent()
+    {
+        $this->out->element(
+            'a',
+            array(
+                'href' => $this->notice->getParent()->getUrl(),
+                'class' => 'u-in-reply-to',
+                'rel' => 'in-reply-to'
+            ),
+            'in reply to'
+        );
     }
 
     function showAddressees()
@@ -267,19 +294,20 @@ class NoticeListItem extends Widget
 
     function getProfileAddressees()
     {
-        $pa = array();
+        if($this->pa) { return $this->pa; }
+        $this->pa = array();
 
         $attentions = $this->getReplyProfiles();
 
         foreach ($attentions as $attn) {
             $class = $attn->isGroup() ? 'group' : 'account';
-            $pa[] = array('href' => $attn->profileurl,
-                          'title' => $attn->getNickname(),
-                          'class' => "addressee {$class}",
-                          'text' => $attn->getStreamName());
+            $this->pa[] = array('href' => $attn->profileurl,
+                                'title' => $attn->getNickname(),
+                                'class' => "addressee {$class}",
+                                'text' => $attn->getStreamName());
         }
 
-        return $pa;
+        return $this->pa;
     }
 
     function getReplyProfiles()
@@ -317,13 +345,8 @@ class NoticeListItem extends Widget
         if (Event::handle('StartShowNoticeContent', array($this->notice, $this->out, $this->out->getScoped()))) {
             if ($this->maxchars > 0 && mb_strlen($this->notice->content) > $this->maxchars) {
                 $this->out->text(mb_substr($this->notice->content, 0, $this->maxchars) . '[…]');
-            } elseif ($this->notice->rendered) {
-                $this->out->raw($this->notice->rendered);
             } else {
-                // XXX: may be some uncooked notices in the DB,
-                // we cook them right now. This should probably disappear in future
-                // versions (>> 0.4.x)
-                $this->out->raw(common_render_content($this->notice->content, $this->notice));
+                $this->out->raw($this->notice->getRendered());
             }
             Event::handle('EndShowNoticeContent', array($this->notice, $this->out, $this->out->getScoped()));
         }
@@ -351,7 +374,6 @@ class NoticeListItem extends Widget
                                             'href' => Conversation::getUrlFromNotice($this->notice)));
         $this->out->element('time', array('class' => 'dt-published',
                                           'datetime' => common_date_iso8601($this->notice->created),
-                                          // TRANS: Timestamp title (tooltip text) for NoticeListItem
                                           'title' => common_exact_date($this->notice->created)),
                             common_date_string($this->notice->created));
         $this->out->elementEnd('a');
@@ -516,9 +538,22 @@ class NoticeListItem extends Widget
         if (!$this->notice->isLocal()) {
             $class .= ' external';
         }
+
+        try {
+            if($this->repeat) {
+                $this->out->element('a',
+                            array('href' => $this->repeat->getUrl(),
+                                  'class' => 'u-url'),
+                            '');
+                $class = str_replace('u-url', 'u-repost-of', $class);
+            }
+        } catch (InvalidUrlException $e) {
+            // no permalink available
+        }
+
         try {
             $this->out->element('a',
-                        array('href' => $this->notice->getUrl(),
+                        array('href' => $this->notice->getUrl(true),
                               'class' => $class),
                         // TRANS: Addition in notice list item for single-notice view.
                         _('permalink'));

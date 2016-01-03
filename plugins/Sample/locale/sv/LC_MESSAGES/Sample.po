@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 14:55+0000\n"
+"PO-Revision-Date: 2015-09-16 01:31+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,13 +33,13 @@ msgstr "Hallå, %s!"
 #. TRANS: Message in sample plugin.
 #: actions/hello.php:136
 msgid "Hello, stranger!"
-msgstr ""
+msgstr "Hallå där, främling!"
 
 #. TRANS: Message in sample plugin. %s is a user nickname.
 #: actions/hello.php:140
 #, php-format
 msgid "Hello, %s"
-msgstr ""
+msgstr "Hallå, %s"
 
 #. TRANS: Message in sample plugin.
 #. TRANS: %d is the number of times a user is greeted.
@@ -47,8 +47,8 @@ msgstr ""
 #, php-format
 msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Jag har hälsat på dig %d gång."
+msgstr[1] "Jag har hälsat på dig %d gånger."
 
 #. TRANS: Exception thrown when the user greeting count could not be saved in
 #. the database.

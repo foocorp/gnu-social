@@ -364,13 +364,16 @@ abstract class ImPlugin extends Plugin
     protected function formatNotice(Notice $notice)
     {
         $profile = $notice->getProfile();
+        $nicknames = $profile->getNickname();
 
         try {
             $parent = $notice->getParent();
             $orig_profile = $parent->getProfile();
-            $nicknames = sprintf('%1$s => %2$s', $profile->nickname, $orig_profile->nickname);
+            $nicknames = sprintf('%1$s => %2$s', $profile->getNickname(), $orig_profile->getNickname());
         } catch (NoParentNoticeException $e) {
-            $nicknames = $profile->nickname;
+            // Not a reply, no parent notice stored
+        } catch (NoResultException $e) {
+            // Parent notice was probably deleted
         }
 
         return sprintf('%1$s: %2$s [%3$u]', $nicknames, $notice->content, $notice->id);

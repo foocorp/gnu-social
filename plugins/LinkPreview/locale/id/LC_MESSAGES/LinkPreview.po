@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
 "PO-Revision-Date: 2015-02-07 08:43+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Indonesian (http://www.transifex.com/projects/p/gnu-social/language/id/)\n"
+"Language-Team: Indonesian (http://www.transifex.com/gnu-social/gnu-social/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. not given.
 #: actions/oembedproxy.php:58
 msgid "There was a problem with your session token. Try again, please."
-msgstr ""
+msgstr "Ada masalah dengan token sesi anda. Mohon coba lagi."
 
 #. TRANS: Client exception thrown when requesting a different format than
 #. JSON.
@@ -32,7 +32,7 @@ msgstr ""
 #. TRANS: Client exception thrown when not providing a valid URL.
 #: actions/oembedproxy.php:71
 msgid "Invalid URL."
-msgstr ""
+msgstr "URL tidak valid."
 
 #. TRANS: Plugin description.
 #: LinkPreviewPlugin.php:40

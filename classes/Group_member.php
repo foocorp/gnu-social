@@ -65,7 +65,9 @@ class Group_member extends Managed_DataObject
         $member->group_id   = $group_id;
         $member->profile_id = $profile_id;
         $member->created    = common_sql_now();
-        $member->uri        = self::newURI($profile_id, $group_id, $member->created);
+        $member->uri        = self::newUri(Profile::getByID($profile_id),
+                                           User_group::getByID($group_id),
+                                           $member->created);
 
         $result = $member->insert();
 
@@ -166,7 +168,7 @@ class Group_member extends Managed_DataObject
 
         $act = new Activity();
 
-        $act->id = $this->getURI();
+        $act->id = $this->getUri();
 
         $act->actor     = $member->asActivityObject();
         $act->verb      = ActivityVerb::JOIN;
@@ -201,20 +203,8 @@ class Group_member extends Managed_DataObject
         mail_notify_group_join($this->getGroup(), $this->getMember());
     }
 
-    function getURI()
+    function getUri()
     {
-        if (!empty($this->uri)) {
-            return $this->uri;
-        } else {
-            return self::newURI($this->profile_id, $this->group_id, $this->created);
-        }
-    }
-
-    static function newURI($profile_id, $group_id, $created)
-    {
-        return TagURI::mint('join:%d:%d:%s',
-                            $profile_id,
-                            $group_id,
-                            common_date_iso8601($created));
+        return $this->uri ?: self::newUri($this->getMember(), $this->getGroup()->getProfile(), $this->created);
     }
 }

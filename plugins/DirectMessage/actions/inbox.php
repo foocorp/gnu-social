@@ -102,24 +102,3 @@ class InboxAction extends MailboxAction
         return _('This is your inbox, which lists your incoming private messages.');
     }
 }
-
-class InboxMessageList extends MessageList
-{
-    function newItem($message)
-    {
-        return new InboxMessageListItem($this->out, $message);
-    }
-}
-
-class InboxMessageListItem extends MessageListItem
-{
-    /**
-     * Returns the profile we want to show with the message
-     *
-     * @return Profile The profile that matches the message
-     */
-    function getMessageProfile()
-    {
-        return $this->message->getFrom();
-    }
-}

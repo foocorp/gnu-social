@@ -295,7 +295,7 @@ class ApiAuthAction extends ApiAction
             // TRANS: Client error thrown when authentication fails because a user clicked "Cancel".
             $this->clientError(_('Could not authenticate you.'), 401);
 
-        } elseif ($required) {
+        } else {
             // $this->auth_user_nickname - i.e. PHP_AUTH_USER - will have a value since it was not empty
 
             $user = common_check_user($this->auth_user_nickname,
@@ -314,10 +314,10 @@ class ApiAuthAction extends ApiAction
                 $this->auth_user = null;
             }
 
-            // By default, basic auth users have rw access
-            $this->access = self::READ_WRITE;
-
-            if (!$this->auth_user instanceof User) {
+            if ($required && $this->auth_user instanceof User) {
+                // By default, basic auth users have rw access
+                $this->access = self::READ_WRITE;
+            } elseif ($required) {
                 $msg = sprintf(
                     "basic auth nickname = %s",
                     $this->auth_user_nickname
@@ -328,10 +328,10 @@ class ApiAuthAction extends ApiAction
                 header('WWW-Authenticate: Basic realm="' . $realm . '"');
                 // TRANS: Client error thrown when authentication fails.
                 $this->clientError(_('Could not authenticate you.'), 401);
+            } else {
+                // all get rw access for actions that don't require auth
+                $this->access = self::READ_WRITE;
             }
-        } else {
-            // all get rw access for actions that don't require auth
-            $this->access = self::READ_WRITE;
         }
     }
 

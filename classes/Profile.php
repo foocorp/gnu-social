@@ -17,24 +17,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Table Definition for profile
  */
 class Profile extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
     public $__table = 'profile';                         // table name
     public $id;                              // int(4)  primary_key not_null
     public $nickname;                        // varchar(64)  multiple_key not_null
-    public $fullname;                        // varchar(191)  multiple_key   not 255 because utf8mb4 takes more space
-    public $profileurl;                      // varchar(191)                 not 255 because utf8mb4 takes more space
-    public $homepage;                        // varchar(191)  multiple_key   not 255 because utf8mb4 takes more space
+    public $fullname;                        // text()
+    public $profileurl;                      // text()
+    public $homepage;                        // text()
     public $bio;                             // text()  multiple_key
-    public $location;                        // varchar(191)  multiple_key   not 255 because utf8mb4 takes more space
+    public $location;                        // text()
     public $lat;                             // decimal(10,7)
     public $lon;                             // decimal(10,7)
     public $location_id;                     // int(4)
@@ -49,11 +46,11 @@ class Profile extends Managed_DataObject
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
                 'nickname' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'nickname or username', 'collate' => 'utf8mb4_general_ci'),
-                'fullname' => array('type' => 'varchar', 'length' => 191, 'description' => 'display name', 'collate' => 'utf8mb4_general_ci'),
-                'profileurl' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL, cached so we dont regenerate'),
-                'homepage' => array('type' => 'varchar', 'length' => 191, 'description' => 'identifying URL', 'collate' => 'utf8mb4_general_ci'),
+                'fullname' => array('type' => 'text', 'description' => 'display name', 'collate' => 'utf8mb4_general_ci'),
+                'profileurl' => array('type' => 'text', 'description' => 'URL, cached so we dont regenerate'),
+                'homepage' => array('type' => 'text', 'description' => 'identifying URL', 'collate' => 'utf8mb4_general_ci'),
                 'bio' => array('type' => 'text', 'description' => 'descriptive biography', 'collate' => 'utf8mb4_general_ci'),
-                'location' => array('type' => 'varchar', 'length' => 191, 'description' => 'physical location', 'collate' => 'utf8mb4_general_ci'),
+                'location' => array('type' => 'text', 'description' => 'physical location', 'collate' => 'utf8mb4_general_ci'),
                 'lat' => array('type' => 'numeric', 'precision' => 10, 'scale' => 7, 'description' => 'latitude'),
                 'lon' => array('type' => 'numeric', 'precision' => 10, 'scale' => 7, 'description' => 'longitude'),
                 'location_id' => array('type' => 'int', 'description' => 'location id if possible'),
@@ -76,9 +73,6 @@ class Profile extends Managed_DataObject
 
         return $def;
     }
-	
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 
     public static function getByEmail($email)
     {
@@ -1242,8 +1236,9 @@ class Profile extends Managed_DataObject
     {
         // XXX: not really a pkey, but should work
 
-        $notice = Notice::pkeyGet(array('profile_id' => $this->id,
-                                        'repeat_of' => $notice->id));
+        $notice = Notice::pkeyGet(array('profile_id' => $this->getID(),
+                                        'repeat_of' => $notice->getID(),
+                                        'verb' => ActivityVerb::SHARE));
 
         return !empty($notice);
     }
@@ -1438,6 +1433,11 @@ class Profile extends Managed_DataObject
             $user = User::getKV('id', $this->id);
             if ($user instanceof User) {
                 $uri = $user->getUri();
+            } else {
+                $group = User_group::getKV('profile_id', $this->id);
+                if ($group instanceof User_group) {
+                    $uri = $group->getUri();
+                }
             }
 
             Event::handle('EndGetProfileUri', array($this, &$uri));
@@ -1593,8 +1593,20 @@ class Profile extends Managed_DataObject
         return $this;
     }
 
-    public function sameAs(Profile $other)
+    /**
+     * Test whether the given profile is the same as the current class,
+     * for testing identities.
+     *
+     * @param Profile $other    The other profile, usually from Action's $this->scoped
+     *
+     * @return boolean
+     */
+    public function sameAs(Profile $other=null)
     {
+        if (is_null($other)) {
+            // In case $this->scoped is null or something, i.e. not a current/legitimate profile.
+            return false;
+        }
         return $this->getID() === $other->getID();
     }
 

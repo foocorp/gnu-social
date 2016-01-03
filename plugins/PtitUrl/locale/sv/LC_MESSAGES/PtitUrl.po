@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 09:37+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-05-03 10:12+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,11 +22,11 @@ msgstr ""
 #. incorrectly.
 #: PtitUrlPlugin.php:42
 msgid "You must specify a serviceUrl for ptit URL shortening."
-msgstr ""
+msgstr "Du måste speficiera en tjänst-URL för URL-förkortning med ptit."
 
 #. TRANS: Plugin description. %1$s is the URL shortening service base URL (for
 #. example "bit.ly").
 #: PtitUrlPlugin.php:68
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
-msgstr ""
+msgstr "Använder<a href=\"http://%1$s/\">%1$s</a>tjänst för förkortning av URL."

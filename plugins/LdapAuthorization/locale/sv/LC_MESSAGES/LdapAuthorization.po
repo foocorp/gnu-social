@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 08:40+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-15 19:34+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,13 +24,13 @@ msgstr ""
 msgid ""
 "provider_name must be set. Use the provider_name from the LDAP "
 "Authentication plugin."
-msgstr ""
+msgstr "provider_name måste anges. Använd provider_name från insticksprogrammet för verifiering till LDAP."
 
 #. TRANS: Exception thrown when initialising the LDAP Auth plugin fails
 #. because of an incorrect configuration.
 #: LdapAuthorizationPlugin.php:46
 msgid "uniqueMember_attribute must be set."
-msgstr ""
+msgstr "uniqueMember_attribute måste anges."
 
 #. TRANS: Plugin description.
 #: LdapAuthorizationPlugin.php:129

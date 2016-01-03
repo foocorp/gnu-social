@@ -23,7 +23,7 @@ define('GNUSOCIAL_ENGINE', 'GNU social');
 define('GNUSOCIAL_ENGINE_URL', 'https://www.gnu.org/software/social/');
 
 define('GNUSOCIAL_BASE_VERSION', '1.2.0');
-define('GNUSOCIAL_LIFECYCLE', 'alpha2'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
+define('GNUSOCIAL_LIFECYCLE', 'beta2'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
 
 define('GNUSOCIAL_VERSION', GNUSOCIAL_BASE_VERSION . '-' . GNUSOCIAL_LIFECYCLE);
 
@@ -38,6 +38,7 @@ define('PROFILES_PER_PAGE', 20);
 define('MESSAGES_PER_PAGE', 20);
 define('GROUPS_PER_PAGE', 20);
 define('APPS_PER_PAGE', 20);
+define('PEOPLETAGS_PER_PAGE', 20);
 
 define('GROUPS_PER_MINILIST', 8);
 define('PROFILES_PER_MINILIST', 8);

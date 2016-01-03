@@ -153,8 +153,9 @@ class OStatusInitAction extends Action
 
     function ostatusConnect()
     {
+        $validate = new Validate();
         $opts = array('allowed_schemes' => array('http', 'https', 'acct'));
-        if (Validate::uri($this->profile, $opts)) {
+        if ($validate->uri($this->profile, $opts)) {
             $bits = parse_url($this->profile);
             if ($bits['scheme'] == 'acct') {
                 $this->connectWebfinger($bits['path']);

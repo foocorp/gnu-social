@@ -606,14 +606,15 @@ function common_remove_unicode_formatting($text)
 /**
  * Partial notice markup rendering step: build links to !group references.
  *
- * @param string $text partially rendered HTML
- * @param Notice $notice in whose context we're working
+ * @param string    $text partially rendered HTML
+ * @param Profile   $author the Profile that is composing the current notice
+ * @param Notice    $parent the Notice this is sent in reply to, if any
  * @return string partially rendered HTML
  */
-function common_render_content($text, Notice $notice)
+function common_render_content($text, Profile $author, Notice $parent=null)
 {
     $text = common_render_text($text);
-    $text = common_linkify_mentions($text, $notice);
+    $text = common_linkify_mentions($text, $author, $parent);
     return $text;
 }
 
@@ -623,13 +624,14 @@ function common_render_content($text, Notice $notice)
  *
  * Should generally not be called except from common_render_content().
  *
- * @param string $text partially-rendered HTML
- * @param Notice $notice in-progress or complete Notice object for context
+ * @param string    $text   partially-rendered HTML
+ * @param Profile   $author the Profile that is composing the current notice
+ * @param Notice    $parent the Notice this is sent in reply to, if any
  * @return string partially-rendered HTML
  */
-function common_linkify_mentions($text, Notice $notice)
+function common_linkify_mentions($text, Profile $author, Notice $parent=null)
 {
-    $mentions = common_find_mentions($text, $notice);
+    $mentions = common_find_mentions($text, $author, $parent);
 
     // We need to go through in reverse order by position,
     // so our positions stay valid despite our fudging with the
@@ -648,7 +650,7 @@ function common_linkify_mentions($text, Notice $notice)
 
         $linkText = common_linkify_mention($mention);
 
-        $text = substr_replace($text, $linkText, $position, mb_strlen($mention['text']));
+        $text = substr_replace($text, $linkText, $position, $mention['length']);
     }
 
     return $text;
@@ -687,33 +689,25 @@ function common_linkify_mention(array $mention)
  * Note the return data format is internal, to be used for building links and
  * such. Should not be used directly; rather, call common_linkify_mentions().
  *
- * @param string $text
- * @param Notice $notice notice in whose context we're building links
+ * @param string    $text
+ * @param Profile   $sender the Profile that is sending the current text
+ * @param Notice    $parent the Notice this text is in reply to, if any
  *
  * @return array
  *
  * @access private
  */
-function common_find_mentions($text, Notice $notice)
+function common_find_mentions($text, Profile $sender, Notice $parent=null)
 {
-    // The getProfile call throws NoProfileException on failure
-    $sender = $notice->getProfile();
-
     $mentions = array();
 
     if (Event::handle('StartFindMentions', array($sender, $text, &$mentions))) {
         // Get the context of the original notice, if any
-        $origAuthor   = null;
-        $origNotice   = null;
         $origMentions = array();
 
-        // Is it a reply?
-
-        try {
-            $origNotice = $notice->getParent();
-            $origAuthor = $origNotice->getProfile();
-
-            $ids = $origNotice->getReplies();
+        // Does it have a parent notice for context?
+        if ($parent instanceof Notice) {
+            $ids = $parent->getReplies();   // replied-to _profile ids_
 
             foreach ($ids as $id) {
                 try {
@@ -723,8 +717,6 @@ function common_find_mentions($text, Notice $notice)
                     // continue foreach
                 }
             }
-        } catch (NoParentNoticeException $e) {
-            // It wasn't a reply to anything, so we can't harvest nickname-relations.
         }
 
         $matches = common_find_mentions_raw($text);
@@ -741,33 +733,32 @@ function common_find_mentions($text, Notice $notice)
             // Start with conversation context, then go to
             // sender context.
 
-            if ($origAuthor instanceof Profile && $origAuthor->nickname == $nickname) {
-                $mentioned = $origAuthor;
+            if ($parent instanceof Notice && $parent->getProfile()->getNickname() === $nickname) {
+                $mentioned = $parent->getProfile();
             } else if (!empty($origMentions) &&
                        array_key_exists($nickname, $origMentions)) {
                 $mentioned = $origMentions[$nickname];
             } else {
+                // sets to null if no match
                 $mentioned = common_relative_profile($sender, $nickname);
             }
 
             if ($mentioned instanceof Profile) {
                 $user = User::getKV('id', $mentioned->id);
 
-                if ($user instanceof User) {
-                    $url = common_local_url('userbyid', array('id' => $user->id));
-                } else {
-                    $url = $mentioned->profileurl;
+                try {
+                    $url = $mentioned->getUrl();
+                } catch (InvalidUrlException $e) {
+                    $url = common_local_url('userbyid', array('id' => $mentioned->getID()));
                 }
 
                 $mention = array('mentioned' => array($mentioned),
                                  'type' => 'mention',
                                  'text' => $match[0],
                                  'position' => $match[1],
+                                 'length' => mb_strlen($match[0]),
+                                 'title' => $mentioned->getFullname(),
                                  'url' => $url);
-
-                if (!empty($mentioned->fullname)) {
-                    $mention['title'] = $mentioned->fullname;
-                }
 
                 $mentions[] = $mention;
             }
@@ -779,20 +770,21 @@ function common_find_mentions($text, Notice $notice)
                        $text, $hmatches, PREG_OFFSET_CAPTURE);
         foreach ($hmatches[1] as $hmatch) {
             $tag = common_canonical_tag($hmatch[0]);
-            $plist = Profile_list::getByTaggerAndTag($sender->id, $tag);
+            $plist = Profile_list::getByTaggerAndTag($sender->getID(), $tag);
             if (!$plist instanceof Profile_list || $plist->private) {
                 continue;
             }
             $tagged = $sender->getTaggedSubscribers($tag);
 
             $url = common_local_url('showprofiletag',
-                                    array('tagger' => $sender->nickname,
+                                    array('nickname' => $sender->getNickname(),
                                           'tag' => $tag));
 
             $mentions[] = array('mentioned' => $tagged,
                                 'type'      => 'list',
                                 'text' => $hmatch[0],
                                 'position' => $hmatch[1],
+                                'length' => mb_strlen($hmatch[0]),
                                 'url' => $url);
         }
 
@@ -812,6 +804,7 @@ function common_find_mentions($text, Notice $notice)
                                 'type'      => 'group',
                                 'text'      => $hmatch[0],
                                 'position'  => $hmatch[1],
+                                'length'    => mb_strlen($hmatch[0]),
                                 'url'       => $group->permalink(),
                                 'title'     => $group->getFancyName());
         }
@@ -875,7 +868,7 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
         '(?:'.
             '(?:'. //Known protocols
                 '(?:'.
-                    '(?:(?:https?|ftps?|mms|rtsp|gopher|news|nntp|telnet|wais|file|prospero|webcal|irc)://)'.
+                    '(?:(?:https?|ftps?|mms|rtsp|gopher|news|nntp|telnet|wais|file|prospero|webcal|ircs?)://)'.
                     '|'.
                     '(?:(?:mailto|aim|tel|xmpp):)'.
                 ')'.
@@ -985,20 +978,9 @@ function common_linkify($url) {
         $canon = "mailto:$url";
         $longurl = "mailto:$url";
     } else {
-
         $canon = File_redirection::_canonUrl($url);
-
         $longurl_data = File_redirection::where($canon, common_config('attachments', 'process_links'));
-        if (is_array($longurl_data)) {
-            $longurl = $longurl_data['url'];
-        } elseif (is_string($longurl_data)) {
-            $longurl = $longurl_data;
-        } else {
-            // Unable to reach the server to verify contents, etc
-            // Just pass the link on through for now.
-            common_log(LOG_ERR, "Can't linkify url '$url'");
-            $longurl = $url;
-        }
+        $longurl = $longurl_data->url;
     }
 
     $attrs = array('href' => $canon, 'title' => $longurl);
@@ -1555,13 +1537,23 @@ function common_root_url($ssl=false)
 }
 
 /**
+ * returns $bytes bytes of raw random data
+ */
+function common_random_rawstr($bytes)
+{
+    $rawstr = @file_exists('/dev/urandom')
+            ? common_urandom($bytes)
+            : common_mtrand($bytes);
+
+    return $rawstr;
+}
+
+/**
  * returns $bytes bytes of random data as a hexadecimal string
  */
 function common_random_hexstr($bytes)
 {
-    $str = @file_exists('/dev/urandom')
-            ? common_urandom($bytes)
-            : common_mtrand($bytes);
+    $str = common_random_rawstr($bytes);
 
     $hexstr = '';
     for ($i = 0; $i < $bytes; $i++) {
@@ -1866,6 +1858,7 @@ function common_get_mime_media($type)
     return strtolower($tmp[0]);
 }
 
+// Get only the mimetype and not additional info (separated from bare mime with semi-colon)
 function common_bare_mime($mimetype)
 {
     $mimetype = mb_strtolower($mimetype);

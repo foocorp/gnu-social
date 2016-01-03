@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Uğur KUYU <ukuyu34@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-05 17:33+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"PO-Revision-Date: 2015-03-02 11:20+0000\n"
+"Last-Translator: Uğur KUYU <ukuyu34@gmail.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,7 +32,7 @@ msgstr ""
 #. TRANS: Server error.
 #: actions/anonfavor.php:73
 msgid "Could not create favorite."
-msgstr ""
+msgstr "Favori oluşturulamadı."
 
 #. TRANS: Title.
 #: actions/anonfavor.php:82

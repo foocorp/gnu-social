@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Juan Riquelme González <soulchainer@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-25 18:23+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/gnu-social/language/es/)\n"
+"PO-Revision-Date: 2015-02-27 19:11+0000\n"
+"Last-Translator: Juan Riquelme González <soulchainer@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/gnu-social/gnu-social/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,7 +31,7 @@ msgstr "OpenX"
 #. TRANS: Plugin description.
 #: OpenXPlugin.php:210
 msgid "Plugin for <a href=\"http://www.openx.org/\">OpenX Ad Server</a>."
-msgstr "Complemento (plugin) para <a href=\"http://www.openx.org/\">el servidor de anuncios de OpenX</a>."
+msgstr "Complemento para <a href=\"http://www.openx.org/\">OpenX Ad Server</a>."
 
 #. TRANS: Page title for OpenX admin panel.
 #: actions/openxadminpanel.php:53
@@ -41,17 +42,17 @@ msgstr "OpenX"
 #. TRANS: Instructions for OpenX admin panel.
 #: actions/openxadminpanel.php:64
 msgid "OpenX settings for this StatusNet site"
-msgstr "Configuración de OpenX para este sitio de StatusNet"
+msgstr "Configuración de OpenX para este sitio de GNU social"
 
 #. TRANS: Form label in OpenX admin panel.
 #: actions/openxadminpanel.php:167
 msgid "Ad script URL"
-msgstr "Dirección URL de secuencia de comandos (script) del anuncio"
+msgstr "URL del script de anuncios"
 
 #. TRANS: Tooltip for form label in OpenX admin panel.
 #: actions/openxadminpanel.php:169
 msgid "Script URL"
-msgstr "Dirección URL de la secuencia de comandos (script)"
+msgstr "URL del script"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
 #: actions/openxadminpanel.php:175
@@ -62,7 +63,7 @@ msgstr "Rectángulo mediano"
 #. format.
 #: actions/openxadminpanel.php:177
 msgid "Medium rectangle zone"
-msgstr "Zona rectangular mediana"
+msgstr "Zona para el rectángulo mediano"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
 #: actions/openxadminpanel.php:183
@@ -73,29 +74,29 @@ msgstr "Rectángulo"
 #. format.
 #: actions/openxadminpanel.php:185
 msgid "Rectangle zone"
-msgstr "Zona rectangular"
+msgstr "Zona para el rectángulo"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
 #: actions/openxadminpanel.php:191
 msgid "Leaderboard"
-msgstr "Clasificación"
+msgstr "Leaderboard"
 
 #. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement
 #. format.
 #: actions/openxadminpanel.php:193
 msgid "Leaderboard zone"
-msgstr "Zona con formato de Clasificación"
+msgstr "Zona para el leaderboard"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
 #: actions/openxadminpanel.php:199
 msgid "Skyscraper"
-msgstr "Anuncio (banner) vertical"
+msgstr "Skyscraper"
 
 #. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement
 #. format.
 #: actions/openxadminpanel.php:201
 msgid "Wide skyscraper zone"
-msgstr "Zona de formato vertical amplio"
+msgstr "Zona para el skyscraper ancho"
 
 #. TRANS: Submit button text in OpenX admin panel.
 #: actions/openxadminpanel.php:216

@@ -116,13 +116,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
             // TODO: Remember to check Deleted_notice!
             // TODO: If a post is shared that we can't retrieve - what to do?
             $other = Ostatus_profile::ensureActivityObjectProfile($shared->actor);
-            $sharedNotice = $other->processActivity($shared, 'push');   // FIXME: push/salmon/what?
-            if (!$sharedNotice instanceof Notice) {
-                // And if we apparently can't get the shared notice, we'll abort the whole thing.
-                // TRANS: Client exception thrown when saving an activity share fails.
-                // TRANS: %s is a share ID.
-                throw new ClientException(sprintf(_m('Failed to save activity %s.'), $sharedUri));
-            }
+            $sharedNotice = Notice::saveActivity($shared, $other->localProfile(), array('source'=>'share'));
         } catch (FeedSubException $e) {
             // Remote feed could not be found or verified, should we
             // transform this into an "RT @user Blah, blah, blah..."?
@@ -134,7 +128,6 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         // Notice::saveActivity it will update the Notice object.
         $stored->repeat_of = $sharedNotice->getID();
         $stored->conversation = $sharedNotice->conversation;
-        $stored->object_type = ActivityUtils::resolveUri(ActivityObject::ACTIVITY, true);
 
         // We don't have to save a repeat in a separate table, we can
         // find repeats by just looking at the notice.repeat_of field.
@@ -170,14 +163,15 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         $act->objects[] = $target->asActivity($scoped);
     }
 
-    public function activityObjectFromNotice(Notice $notice)
+    public function activityObjectFromNotice(Notice $stored)
     {
         // Repeat is a little bit special. As it's an activity, our
         // ActivityObject is instead turned into an Activity
         $object          = new Activity();
+        $object->actor   = $stored->getProfile()->asActivityObject();
         $object->verb    = ActivityVerb::SHARE;
-        $object->content = $notice->rendered;
-        $this->extendActivity($stored, $act);
+        $object->content = $stored->rendered;
+        $this->extendActivity($stored, $object);
 
         return $object;
     }
@@ -204,7 +198,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
                            'class' => 'h-card p-author',
                            'title' => $repeater->getFancyName());
 
-            $nli->out->elementStart('span', 'repeat h-entry');
+            $nli->out->elementStart('span', 'repeat');
 
             // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
             $nli->out->raw(_('Repeated by').' ');
@@ -236,8 +230,9 @@ class SharePlugin extends ActivityVerbHandlerPlugin
     public function onEndShowNoticeOptionItems($nli)
     {
         // FIXME: Use bitmasks (but be aware that PUBLIC_SCOPE is 0!)
-        if ($nli->notice->scope == Notice::PUBLIC_SCOPE ||
-                $nli->notice->scope == Notice::SITE_SCOPE) {
+        // Also: AHHH, $scope and $scoped are scarily similar looking.
+        $scope = $nli->notice->getScope();
+        if ($scope === Notice::PUBLIC_SCOPE || $scope === Notice::SITE_SCOPE) {
             $scoped = Profile::current();
             if ($scoped instanceof Profile &&
                     $scoped->getID() !== $nli->notice->getProfile()->getID()) {
@@ -256,7 +251,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         }
     }
 
-    public function showNoticeListItem(NoticeListItem $nli)
+    protected function showNoticeListItem(NoticeListItem $nli)
     {
         // pass
     }
@@ -285,7 +280,8 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         if ($status['repeated'] === true) {
             // Qvitter API wants the "repeated_id" value set too.
             $repeated = Notice::pkeyGet(array('profile_id' => $scoped->getID(),
-                                              'repeat_of' => $notice->getID()));
+                                              'repeat_of' => $notice->getID(),
+                                              'verb' => ActivityVerb::SHARE));
             $status['repeated_id'] = $repeated->getID();
         }
     }

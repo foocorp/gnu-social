@@ -1,20 +1,28 @@
 server {
-  # Ports
   listen 80;
-  # Uncomment the following line
-  # to enable HTTPS
-  #listen 443 ssl;
+  listen [::]:80;
+
+  # FIXME: change domain name here (and also make sure you do the same in the next 'server' section)
+  server_name social.example.org;
+
+  # redirect all traffic to HTTPS
+  rewrite ^ https://$server_name$request_uri? permanent;
+}
+
+server {
+  # Use HTTPS. Seriously. Set it up with a cert (any cert) before you run the install.
+  listen 443 ssl;
 
   # Server name
-  # Change "example.org" to your domain name
-  server_name example.org;
+  # Change "social.example.org" to your site's domain name
+  server_name social.example.org;
 
   # SSL
   # Uncomment and change the paths to setup
   # your SSL key/cert. See https://cipherli.st/
   # for more information
-  #ssl_certificate       /path/to/ssl.cert;
-  #ssl_certificate_key   /path/to/ssl.key;
+  ssl_certificate       ssl/certs/social.example.org.crt;
+  ssl_certificate_key   ssl/private/social.example.org.key;
 
   # Logs
   # Uncomment and change the paths to setup
@@ -32,12 +40,14 @@ server {
 
   # PHP
   location ~ \.php {
-    fastcgi_pass unix:/run/php-fpm/php-fpm.sock;
+    include snippets/fastcgi-php.conf;
+
+    # This should be the same value as in your (optional) /etc/php5/fpm/pool.d/$server.conf
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
+
     # Remove the "fastcgi_pass" line above and uncomment
     # the one below to use TCP sockets instead of Unix sockets
     #fastcgi_pass 127.0.0.1:9000;
-    fastcgi_index index.php;
-    include fastcgi.conf;
   }
 
   # Location
@@ -48,6 +58,11 @@ server {
   # Fancy URLs
   location @gnusocial {
     rewrite ^(.*)$ /index.php?p=$1 last;
+  }
+
+  # Restrict access that is unnecessary anyway
+  location ~ /\.(ht|git) {
+    deny all;
   }
 }
 

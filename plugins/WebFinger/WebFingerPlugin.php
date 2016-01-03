@@ -148,7 +148,7 @@ class WebFingerPlugin extends Plugin
             $url = common_local_url('webfinger') . '?resource='.$acct;
 
             foreach (array(Discovery::JRD_MIMETYPE, Discovery::XRD_MIMETYPE) as $type) {
-                header('Link: <'.$url.'>; rel="'. Discovery::LRDD_REL.'"; type="'.$type.'"');
+                header('Link: <'.$url.'>; rel="'. Discovery::LRDD_REL.'"; type="'.$type.'"', false);
             }
         }
     }

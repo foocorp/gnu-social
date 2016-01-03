@@ -68,11 +68,7 @@ class DoFollowListItem extends NoticeListItem
         // FIXME: URL, image, video, audio
         $this->out->elementStart('article', array('class' => 'e-content'));
 
-        if (!empty($this->notice->rendered)) {
-            $html = $this->notice->rendered;
-        } else {
-            $html = common_render_content($this->notice->content, $this->notice);
-        }
+        $html = $this->notice->getRendered();
 
         if (common_config('nofollow', 'external') == 'sometimes') {
             // remove the nofollow part

@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-26 13:31+0000\n"
+"PO-Revision-Date: 2015-09-16 01:14+0000\n"
 "Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. TRANS: Exception thrown when subscribing too quickly.
 #: SubscriptionThrottlePlugin.php:73
 msgid "Too many subscriptions. Take a break and try again later."
-msgstr ""
+msgstr "För många prenumerationer. Ta en paus och försök igen senare."
 
 #. TRANS: Exception thrown when joing groups too quickly.
 #: SubscriptionThrottlePlugin.php:99
@@ -31,4 +31,4 @@ msgstr "För många medlemskap. Ta en paus och försök igen senare."
 #. TRANS: Plugin description.
 #: SubscriptionThrottlePlugin.php:168
 msgid "Configurable limits for subscriptions and group memberships."
-msgstr ""
+msgstr "Konfigurerbara gränser för prenumerationer och grupp-medlemskap."

@@ -241,11 +241,12 @@ class OStatusSubAction extends Action
      */
     function pullRemoteProfile()
     {
+        $validate = new Validate();
         $this->profile_uri = $this->trimmed('profile');
         try {
-            if (Validate::email($this->profile_uri)) {
+            if ($validate->email($this->profile_uri)) {
                 $this->oprofile = Ostatus_profile::ensureWebfinger($this->profile_uri);
-            } else if (Validate::uri($this->profile_uri)) {
+            } else if ($validate->uri($this->profile_uri)) {
                 $this->oprofile = Ostatus_profile::ensureProfileURL($this->profile_uri);
             } else {
                 // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
@@ -280,6 +281,10 @@ class OStatusSubAction extends Action
             // TRANS: Error text.
             $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
             common_debug('Not a recognized feed type.', __FILE__);
+        } catch (FeedSubNoHubException $e) {
+            // TRANS: Error text.
+            $this->error = _m("Sorry, that feed is not Pubsubhubub enabled.");
+            common_debug('No hub found.', __FILE__);
         } catch (Exception $e) {
             // Any new ones we forgot about
                 // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com

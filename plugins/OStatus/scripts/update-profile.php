@@ -32,7 +32,9 @@ END_OF_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-if (empty($args[0]) || !Validate::uri($args[0])) {
+$validate = new Validate();
+
+if (empty($args[0]) || !$validate->uri($args[0])) {
     print "$helptext";
     exit(1);
 }
@@ -52,24 +54,31 @@ showProfile($oprofile);
 
 print "\n";
 print "Re-running feed discovery for profile URL $oprofile->uri\n";
+
+$feedurl = null;
+$salmonuri = null;
+
 // @fixme will bork where the URI isn't the profile URL for now
 $discover = new FeedDiscovery();
 try {
     $feedurl = $discover->discoverFromURL($oprofile->uri);
     $salmonuri = $discover->getAtomLink(Salmon::REL_SALMON)
                     ?: $discover->getAtomLink(Salmon::NS_REPLIES);  // NS_REPLIES is deprecated
+    if (empty($salmonuri) ) {
+        throw new FeedSubNoSalmonException('No salmon upstream URI was found');
+    }
 } catch (FeedSubException $e) {
     $acct = $oprofile->localProfile()->getAcctUri();
-    print "Could not discover feeds HTML response, trying reconstructed acct URI: " . $acct;
+    print "Could not discover feeds HTML response, trying reconstructed acct URI: {$acct}\n";
     $disco = new Discovery();
     $xrd = $disco->lookup($acct);
     $hints = DiscoveryHints::fromXRD($xrd);
 
-    if (!array_key_exists('feedurl', $hints)) {
+    if (empty($feedurl) && !array_key_exists('feedurl', $hints)) {
         throw new FeedSubNoFeedException($acct);
     }
-    $feedurl = $hints['feedurl'];
-    $salmonuri = array_key_exists('salmon', $hints) ? $hints['salmon'] : null;
+    $feedurl = $feedurl ?: $hints['feedurl'];
+    $salmonuri = array_key_exists('salmon', $hints) ? $hints['salmon'] : $salmonuri;
 
     // get the hub data too and put it in the FeedDiscovery object
     $discover->discoverFromFeedUrl($feedurl);

@@ -192,7 +192,7 @@ class EditphotoAction extends Action
         $this->photo->delete();
         
         if (Event::handle('StartDeleteOwnNotice', array($this->user, $notice))) {
-            $notice->delete();
+            $notice->deleteAs($this->scoped);
             Event::handle('EndDeleteOwnNotice', array($this->user, $notice));
         }
        $this->showForm(_('Success!'));

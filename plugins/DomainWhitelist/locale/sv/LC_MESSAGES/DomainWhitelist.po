@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-06 16:10+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-16 02:18+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,7 +36,7 @@ msgstr "Om du vill, skriv ett personligt meddelande till inbjudan."
 #. TRANS: Link description to action to add another item to a list.
 #: forms/whitelistinvite.php:158
 msgid "Add another item"
-msgstr ""
+msgstr "Lägg till en annan sak"
 
 #. TRANS: Send button for inviting friends.
 #: forms/whitelistinvite.php:172
@@ -54,7 +55,7 @@ msgstr "Skicka inbjudningar."
 #: DomainWhitelistPlugin.php:90
 #, php-format
 msgid "Email address must be in this domain: %s."
-msgstr ""
+msgstr "E-postadressen måste vara i den här domänen: %s."
 
 #. TRANS: Client exception thrown when a given e-mailaddress is not in the
 #. domain whitelist.
@@ -63,7 +64,7 @@ msgstr ""
 #: DomainWhitelistPlugin.php:95
 #, php-format
 msgid "Email address must be in one of these domains: %s."
-msgstr ""
+msgstr "E-postadressen måste vara i en av dessa domäner: %s."
 
 #. TRANS: Separator for whitelisted domains.
 #: DomainWhitelistPlugin.php:97

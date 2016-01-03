@@ -85,17 +85,17 @@ class Profile_prefs extends Managed_DataObject
     static function getAll(Profile $profile)
     {
         try {
-            $prefs = self::listFind('profile_id', $profile->getID());
+            $prefs = self::listFind('profile_id', array($profile->getID()));
         } catch (NoResultException $e) {
             return array();
         }
 
         $list = array();
-        while ($entry = $prefs->fetch()) {
-            if (!isset($list[$entry->namespace])) {
-                $list[$entry->namespace] = array();
+        while ($prefs->fetch()) {
+            if (!isset($list[$prefs->namespace])) {
+                $list[$prefs->namespace] = array();
             }
-            $list[$entry->namespace][$entry->topic] = $entry->data;
+            $list[$prefs->namespace][$prefs->topic] = $prefs->data;
         }
         return $list;
     }

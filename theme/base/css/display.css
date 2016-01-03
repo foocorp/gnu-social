@@ -648,12 +648,12 @@ address .poweredby {
     width:100%;
 }
 
-.notice .p-author {
-    margin-right: 8px;
+.notice .parents {
+    display: inline;
 }
 
-.notice .addressees::before {
-    content: '\25B8';
+.notice .parents::before {
+    content: '\25B8  ';
 }
 .notice .addressees, .notice .addressees li {
     display: inline;
@@ -691,10 +691,6 @@ address .poweredby {
 
 .notice .automatic { 
 font-style:italic;
-}
-
-#showstream h1 { 
-    display:none;
 }
 
 #remoteprofile .notice .h-entry,
@@ -2246,6 +2242,8 @@ button.close,
 .form_user_add_peopletag input.submit,
 .form_peopletag_subscribe input.submit,
 .form_peopletag_unsubscribe input.submit,
+.form_group_queue #approve,
+.form_group_queue #cancel,
 .notice-options .repeated,
 .form_notice label.notice_data-geo,
 button.minimize,
@@ -2285,6 +2283,14 @@ background-position:0 1px;
 background-image:url(../images/icons/activitystreams.png);
 background-repeat:no-repeat;
 background-color:transparent;
+}
+
+
+.form_group_queue #approve {
+background-position:2px -2174px;
+}
+.form_group_queue #cancel {
+background-position:2px -2240px;
 }
 
 .form_group_leave input.submit,

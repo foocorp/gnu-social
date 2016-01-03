@@ -88,6 +88,7 @@ function updateSchemaPlugins()
 {
     printfnq("Upgrading plugin schema...");
 
+    Event::handle('BeforePluginCheckSchema');
     Event::handle('CheckSchema');
 
     printfnq("DONE.\n");
@@ -104,7 +105,9 @@ function fixupNoticeRendered()
 
     while ($notice->fetch()) {
         $original = clone($notice);
-        $notice->rendered = common_render_content($notice->content, $notice);
+        $notice->rendered = common_render_content($notice->content,
+                                                  $notice->getProfile(),
+                                                  $notice->hasParent() ? $notice->getParent() : null);
         $notice->update($original);
     }
 
@@ -332,7 +335,7 @@ function initSubscriptionURI()
                                     'set uri = "%s" '.
                                     'where subscriber = %d '.
                                     'and subscribed = %d',
-                                    Subscription::newURI($sub->subscriber, $sub->subscribed, $sub->created),
+                                    $sub->escape(Subscription::newUri($sub->getSubscriber(), $sub->getSubscribed(), $sub->created)),
                                     $sub->subscriber,
                                     $sub->subscribed));
             } catch (Exception $e) {
@@ -358,7 +361,7 @@ function initGroupMemberURI()
                 $mem->query(sprintf('update group_member set uri = "%s" '.
                                     'where profile_id = %d ' . 
                                     'and group_id = %d ',
-                                    Group_member::newURI($mem->profile_id, $mem->group_id, $mem->created),
+                                    Group_member::newUri(Profile::getByID($mem->profile_id), User_group::getByID($mem->group_id), $mem->created),
                                     $mem->profile_id,
                                     $mem->group_id));
             } catch (Exception $e) {

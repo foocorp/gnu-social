@@ -140,11 +140,6 @@ $default =
               'path' => $_path . '/avatar/',
               'ssl' => null,
               'maxsize' => 300),
-        'background' =>
-        array('server' => null,
-              'dir' => INSTALLDIR . '/background/',
-              'path' => $_path . '/background/',
-              'ssl' => null),
         'public' =>
         array('localonly' => false,
               'blacklist' => array(),
@@ -276,10 +271,6 @@ $default =
               'maxpeople' => 500, // maximum no. of people with the same tag by the same user
               'allow_tagging' => array('all' => true), // equivalent to array('local' => true, 'remote' => true)
               'desclimit' => null),
-        'oembed' =>
-        array('endpoint' => null,   // 'https://noembed.com/embed/' for proxied oEmbed data
-              'order' => array('built-in', 'well-known', 'service', 'discovery'),
-        ),
         'search' =>
         array('type' => 'like'),
         'sessions' =>
@@ -305,12 +296,13 @@ $default =
         'plugins' =>
         array('core' => array(
                             'ActivityVerb' => array(),
+                            'ActivityVerbPost' => array(),
+                            'ActivityModeration' => array(),
                             'AuthCrypt' => array(),
                             'Cronish' => array(),
                             'Favorite' => array(),
                             'Share' => array(),
                             'LRDD' => array(),
-                            'StrictTransportSecurity' => array(),
                         ),
               'default' => array(
                             'Activity' => array(),

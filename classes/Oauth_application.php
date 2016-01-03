@@ -166,7 +166,7 @@ class Oauth_application extends Managed_DataObject
                 'consumer_key' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'application consumer key'),
                 'name' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'name of the application'),
                 'description' => array('type' => 'varchar', 'length' => 191, 'description' => 'description of the application'),
-                'icon' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'application icon'),
+                'icon' => array('type' => 'varchar', 'length' => 191, 'not null' => true, 'default' => '/theme/base/default-avatar-stream.png', 'description' => 'application icon'),
                 'source_url' => array('type' => 'varchar', 'length' => 191, 'description' => 'application homepage - used for source link'),
                 'organization' => array('type' => 'varchar', 'length' => 191, 'description' => 'name of the organization running the application'),
                 'homepage' => array('type' => 'varchar', 'length' => 191, 'description' => 'homepage for the organization'),

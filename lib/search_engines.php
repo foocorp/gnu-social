@@ -54,7 +54,7 @@ class SearchEngine
                     'nickname_desc sort mode can only be use when searching profile.'
                 );
             } else {
-                return $this->target->orderBy('nickname DESC');
+                return $this->target->orderBy(sprintf('%1$s.nickname DESC', $this->table));
             }
             break;
         case 'nickname_asc':
@@ -63,7 +63,7 @@ class SearchEngine
                     'nickname_desc sort mode can only be use when searching profile.'
                 );
             } else {
-                return $this->target->orderBy('nickname ASC');
+                return $this->target->orderBy(sprintf('%1$s.nickname ASC', $this->table));
             }
             break;
         default:
@@ -112,11 +112,13 @@ class MySQLLikeSearch extends SearchEngine
     function query($q)
     {
         if ('profile' === $this->table) {
-            $qry = sprintf('(nickname LIKE "%%%1$s%%" OR '.
-                           ' fullname LIKE "%%%1$s%%" OR '.
-                           ' location LIKE "%%%1$s%%" OR '.
-                           ' bio      LIKE "%%%1$s%%" OR '.
-                           ' homepage LIKE "%%%1$s%%")', $this->target->escape($q, true));
+            $qry = sprintf('(%2$s.nickname LIKE "%%%1$s%%" OR '.
+                            ' %2$s.fullname LIKE "%%%1$s%%" OR '.
+                            ' %2$s.location LIKE "%%%1$s%%" OR '.
+                            ' %2$s.bio      LIKE "%%%1$s%%" OR '.
+                            ' %2$s.homepage LIKE "%%%1$s%%")',
+                           $this->target->escape($q, true),
+                           $this->table);
         } else if ('notice' === $this->table) {
             $qry = sprintf('content LIKE "%%%1$s%%"', $this->target->escape($q, true));
         } else {

@@ -99,6 +99,7 @@ function fixProfile($uri) {
 }
 
 $ok = true;
+$validate = new Validate();
 if (have_option('all')) {
     $oprofile = new Ostatus_profile();
     $oprofile->find();
@@ -115,7 +116,7 @@ if (have_option('all')) {
     while ($oprofile->fetch()) {
         $ok = fixProfile($oprofile->uri) && $ok;
     }
-} else if (!empty($args[0]) && Validate::uri($args[0])) {
+} else if (!empty($args[0]) && $validate->uri($args[0])) {
     $uri = $args[0];
     $ok = fixProfile($uri);
 } else {

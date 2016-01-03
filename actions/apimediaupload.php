@@ -30,7 +30,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Upload an image via the API.  Returns a shortened URL for the image
- * to the user.
+ * to the user. Apparently modelled after a former Twitpic API.
  *
  * @category API
  * @package  StatusNet
@@ -91,9 +91,14 @@ class ApiMediaUploadAction extends ApiAuthAction
     function showResponse(MediaFile $upload)
     {
         $this->initDocument();
-        $this->elementStart('rsp', array('stat' => 'ok'));
+        $this->elementStart('rsp', array('stat' => 'ok', 'xmlns:atom'=>Activity::ATOM));
         $this->element('mediaid', null, $upload->fileRecord->id);
         $this->element('mediaurl', null, $upload->shortUrl());
+
+        $enclosure = $upload->fileRecord->getEnclosure();
+        $this->element('atom:link', array('rel'  => 'enclosure',
+                                          'href' => $enclosure->url,
+                                          'type' => $enclosure->mimetype));
         $this->elementEnd('rsp');
         $this->endDocument();
     }
@@ -103,7 +108,7 @@ class ApiMediaUploadAction extends ApiAuthAction
      *
      * @param String $msg an error message
      */
-    function clientError($msg)
+    function clientError($msg, $code=400, $format=null)
     {
         $this->initDocument();
         $this->elementStart('rsp', array('stat' => 'fail'));
@@ -114,5 +119,6 @@ class ApiMediaUploadAction extends ApiAuthAction
         $this->element('err', $errAttr, null);
         $this->elementEnd('rsp');
         $this->endDocument();
+        exit;
     }
 }

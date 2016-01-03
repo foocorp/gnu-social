@@ -383,15 +383,11 @@ class GNUsocial
         if (isset($conffile)) {
             $config_files = array($conffile);
         } else {
-            $config_files = array('/etc/statusnet/statusnet.php',
-                                  '/etc/statusnet/laconica.php',
-                                  '/etc/laconica/laconica.php',
-                                  '/etc/statusnet/'.$_server.'.php',
-                                  '/etc/laconica/'.$_server.'.php');
+            $config_files = array('/etc/gnusocial/config.php',
+                                  '/etc/gnusocial/config.d/'.$_server.'.php');
 
             if (strlen($_path) > 0) {
-                $config_files[] = '/etc/statusnet/'.$_server.'_'.$_path.'.php';
-                $config_files[] = '/etc/laconica/'.$_server.'_'.$_path.'.php';
+                $config_files[] = '/etc/gnusocial/config.d/'.$_server.'_'.$_path.'.php';
             }
 
             $config_files[] = INSTALLDIR.'/config.php';

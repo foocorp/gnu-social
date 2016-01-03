@@ -274,11 +274,11 @@ class ApiAction extends Action
                 $sub = Subscription::getSubscription($this->scoped, $profile);
                 // Notifications on?
                 $twitter_user['following'] = true;
-                $twitter_user['statusnet_blocking']  = $this->scoped->hasBlocked($profile);
                 $twitter_user['notifications'] = ($sub->jabber || $sub->sms);
             } catch (NoResultException $e) {
                 // well, the values are already false...
             }
+            $twitter_user['statusnet_blocking']  = $this->scoped->hasBlocked($profile);            
         }
 
         if ($get_notice) {
@@ -329,6 +329,9 @@ class ApiAction extends Action
             $parent = $notice->getParent();
             $in_reply_to = $parent->id;
         } catch (NoParentNoticeException $e) {
+            $in_reply_to = null;
+        } catch (NoResultException $e) {
+            // the in_reply_to message has probably been deleted
             $in_reply_to = null;
         }
         $twitter_status['in_reply_to_status_id'] = $in_reply_to;
@@ -648,6 +651,11 @@ class ApiAction extends Action
                 break;
             default:
                 if (strncmp($element, 'statusnet_', 10) == 0) {
+                    if ($element === 'statusnet_in_groups' && is_array($value)) {
+                        // QVITTERFIX because it would cause an array to be sent as $value
+                        // THIS IS UNDOCUMENTED AND SHOULD NEVER BE RELIED UPON (qvitter uses json output)
+                        $value = json_encode($value);
+                    }
                     $this->element('statusnet:'.substr($element, 10), null, $value);
                 } else {
                     $this->element($element, null, $value);

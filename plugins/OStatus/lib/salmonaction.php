@@ -79,12 +79,8 @@ class SalmonAction extends Action
             $this->clientError($e->getMessage());
         }
 
-        // Cryptographic verification test
-        if (!$magic_env->verify($this->actor)) {
-            common_log(LOG_DEBUG, "Salmon signature verification failed.");
-            // TRANS: Client error.
-            $this->clientError(_m('Salmon signature verification failed.'));
-        }
+        // Cryptographic verification test, throws exception on failure
+        $magic_env->verify($this->actor);
 
         return true;
     }
@@ -281,7 +277,7 @@ class SalmonAction extends Action
     function saveNotice()
     {
         if (!$this->oprofile instanceof Ostatus_profile) {
-            common_debug('Ostatus_profile missing in ' . get_class(). ' profile: '.var_export($this->profile));
+            common_debug('Ostatus_profile missing in ' . get_class(). ' profile: '.var_export($this->profile, true));
         }
         return $this->oprofile->processPost($this->activity, 'salmon');
     }

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# zk <zamani.karmana@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-06 16:42+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Indonesian (http://www.transifex.com/projects/p/gnu-social/language/id/)\n"
+"PO-Revision-Date: 2015-06-05 16:38+0000\n"
+"Last-Translator: zk <zamani.karmana@gmail.com>\n"
+"Language-Team: Indonesian (http://www.transifex.com/gnu-social/gnu-social/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,12 +26,12 @@ msgid ""
 " properly. The site admins probably know about the problem, but you can "
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
-msgstr ""
+msgstr "Basis data untuk %1$s tidak merespon dengan benar, membuat situs tidak bekerja secara baik. Admin situs mungkin tahu tentang masalah ini, tetapi anda bisa menghubungi mereka di %2$s untuk memastikan. Atau, tunggu beberapa menit dan coba lagi."
 
 #. TRANS: Error message.
 #: index.php:137
 msgid "An error occurred."
-msgstr ""
+msgstr "Terjadi sebuah galat."
 
 #. TRANS: Error message displayed when there is no StatusNet configuration
 #. file.
@@ -38,40 +39,40 @@ msgstr ""
 #, php-format
 msgid ""
 "No configuration file found. Try running the installation program first."
-msgstr ""
+msgstr "Berkas konfigurasi tidak ditemukan. Coba jalankan pemasangan program terlebih dahulu."
 
 #. TRANS: Error message displayed when trying to access a non-existing page.
 #: index.php:260
 msgid "Unknown page"
-msgstr ""
+msgstr "Halaman tidak dikenal"
 
 #. TRANS: Error message displayed when trying to perform an undefined action.
 #. TRANS: Title for password recovery page when an unknown action has been
 #. specified.
 #: index.php:312 actions/recoverpassword.php:225
 msgid "Unknown action"
-msgstr ""
+msgstr "Tidak tidak dikenal"
 
 #. TRANS: Page title for Access admin panel that allows configuring site
 #. access.
 #: actions/accessadminpanel.php:53
 msgid "Access"
-msgstr ""
+msgstr "Akses"
 
 #. TRANS: Page notice.
 #: actions/accessadminpanel.php:64
 msgid "Site access settings"
-msgstr ""
+msgstr "Pengaturan akses situs"
 
 #. TRANS: Form legend for registration form.
 #: actions/accessadminpanel.php:151
 msgid "Registration"
-msgstr ""
+msgstr "Pendaftaran"
 
 #. TRANS: Checkbox instructions for admin setting "Private".
 #: actions/accessadminpanel.php:155
 msgid "Prohibit anonymous users (not logged in) from viewing site?"
-msgstr ""
+msgstr "Larang pengguna anonim (tidak masuk ke situs) melihat situs?"
 
 #. TRANS: Checkbox label for prohibiting anonymous users from viewing site.
 #. TRANS: Checkbox label to show private tags.
@@ -80,17 +81,17 @@ msgstr ""
 #: lib/groupeditform.php:206
 msgctxt "LABEL"
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #. TRANS: Checkbox instructions for admin setting "Invite only".
 #: actions/accessadminpanel.php:164
 msgid "Make registration invitation only."
-msgstr ""
+msgstr "Buat pendaftaran hanya untuk undangan."
 
 #. TRANS: Checkbox label for configuring site as invite only.
 #: actions/accessadminpanel.php:166
 msgid "Invite only"
-msgstr ""
+msgstr "Hanya undangan"
 
 #. TRANS: Checkbox instructions for admin setting "Closed" (no new
 #. registrations).
@@ -101,12 +102,12 @@ msgstr ""
 #. TRANS: Checkbox label for disabling new user registrations.
 #: actions/accessadminpanel.php:175
 msgid "Closed"
-msgstr ""
+msgstr "Ditutup."
 
 #. TRANS: Button title to save access settings in site admin panel.
 #: actions/accessadminpanel.php:191
 msgid "Save access settings."
-msgstr ""
+msgstr "Simpan pengaturan akses."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -135,7 +136,7 @@ msgstr ""
 #: lib/groupeditform.php:225 lib/peopletags.php:146 lib/tagprofileform.php:143
 msgctxt "BUTTON"
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #. TRANS: Client error displayed when the session token does not match or is
 #. not given.
@@ -168,7 +169,7 @@ msgstr ""
 #: actions/subscribepeopletag.php:74 actions/unsubscribe.php:66
 #: actions/unsubscribepeopletag.php:75 actions/urlsettings.php:171
 msgid "There was a problem with your session token. Try again, please."
-msgstr ""
+msgstr "Ada masalah dengan token sesi anda. Mohon coba lagi."
 
 #. TRANS: Error message displayed when trying to perform an action that
 #. requires a logged in user.
@@ -182,7 +183,7 @@ msgstr ""
 #: lib/action.php:1510 lib/adminpanelaction.php:71
 #: lib/profileformaction.php:63 lib/settingsaction.php:73
 msgid "Not logged in."
-msgstr ""
+msgstr "Belum masuk."
 
 #. TRANS: Client error displayed trying to perform an action related to a non-
 #. existing profile.
@@ -196,7 +197,7 @@ msgstr ""
 #: actions/atompubshowmembership.php:55 actions/removepeopletag.php:100
 #: actions/subscribe.php:106 lib/command.php:386 lib/command.php:445
 msgid "No such profile."
-msgstr ""
+msgstr "Profil tersebut tidak ada."
 
 #. TRANS: Client error displayed trying to reference a non-existing list.
 #. TRANS: Client error displayed when referring to a non-existing list.
@@ -207,7 +208,7 @@ msgstr ""
 #: actions/removepeopletag.php:108 actions/showprofiletag.php:87
 #: actions/subscribepeopletag.php:91 actions/unsubscribepeopletag.php:92
 msgid "No such list."
-msgstr ""
+msgstr "Daftar tersebut tidak ada."
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a
 #. user to a list.
@@ -231,7 +232,7 @@ msgstr ""
 #: actions/addpeopletag.php:148
 msgctxt "TITLE"
 msgid "Listed"
-msgstr ""
+msgstr "Terdaftar"
 
 #. TRANS: Server error when page not found (404).
 #. TRANS: Server error when page not found (404)
@@ -239,19 +240,19 @@ msgstr ""
 #: actions/all.php:61 actions/public.php:103 actions/replies.php:94
 #: actions/showprofiletag.php:100 actions/tag.php:53
 msgid "No such page."
-msgstr ""
+msgstr "Halaman tersebut tidak ada."
 
 #. TRANS: Title of a user's own start page.
 #: actions/all.php:71
 msgid "Home timeline"
-msgstr ""
+msgstr "Linimasa beranda"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
 #: actions/all.php:75
 #, php-format
 msgid "%s's home timeline"
-msgstr ""
+msgstr "Linimasa beranda %s"
 
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
@@ -259,13 +260,13 @@ msgstr ""
 #: actions/all.php:90 actions/showprofiletag.php:181
 #, php-format
 msgid "Feed for friends of %s (Activity Streams JSON)"
-msgstr ""
+msgstr "Umpan untuk teman dari %s (JSON Strim Aktivitas)"
 
 #. TRANS: %s is user nickname.
 #: actions/all.php:98
 #, php-format
 msgid "Feed for friends of %s (RSS 1.0)"
-msgstr ""
+msgstr "Umpan untuk teman dari %s (RSS 1.0)"
 
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
@@ -273,13 +274,13 @@ msgstr ""
 #: actions/all.php:107 actions/showprofiletag.php:192
 #, php-format
 msgid "Feed for friends of %s (RSS 2.0)"
-msgstr ""
+msgstr "Umpan untuk teman dari %s (RSS 2.0)"
 
 #. TRANS: %s is user nickname.
 #: actions/all.php:116
 #, php-format
 msgid "Feed for friends of %s (Atom)"
-msgstr ""
+msgstr "Umpan untuk teman dari %s (Atom)"
 
 #. TRANS: Empty list message. %s is a user nickname.
 #: actions/all.php:123
@@ -295,7 +296,7 @@ msgstr ""
 msgid ""
 "Try subscribing to more people, [join a group](%%action.groups%%) or post "
 "something yourself."
-msgstr ""
+msgstr "Coba berlangganan lebih banyak orang, [gabung ke grup](%%action.groups%%) atau kirimkan sesuatu."
 
 #. TRANS: %1$s is user nickname, %2$s is user nickname, %2$s is user nickname
 #. prefixed with "@".
@@ -305,7 +306,7 @@ msgstr ""
 msgid ""
 "You can try to [nudge %1$s](../%2$s) from their profile or [post something "
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
-msgstr ""
+msgstr "Anda dapat mencoba untuk [colek %1$s](../%2$s) dari halaman profil mereka atau [kirim sesuatu untuk mereka](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
 #. TRANS: Encouragement displayed on empty timeline user pages for anonymous
 #. users.
@@ -323,14 +324,14 @@ msgstr ""
 msgid ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
 "post a notice to them."
-msgstr ""
+msgstr "Kenapa tidak [mendaftarkan akun baru](%%%%action.register%%%%) dan lalu colek %s atau kirim pemberitahuan kepada mereka."
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
 #: actions/all.php:189 actions/public.php:248
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr ""
+msgstr "Kirim undangan"
 
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a
@@ -413,7 +414,7 @@ msgstr ""
 #: actions/showprofiletag.php:75 actions/showprofiletag.php:112
 #: actions/userbyid.php:75 actions/userrss.php:39 lib/profileaction.php:77
 msgid "No such user."
-msgstr ""
+msgstr "Pengguna tersebut tidak ada."
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -428,7 +429,7 @@ msgstr ""
 #: lib/personalgroupnav.php:80
 #, php-format
 msgid "%s and friends"
-msgstr ""
+msgstr "%s dan teman"
 
 #. TRANS: Message is used as link description. %1$s is a username, %2$s is a
 #. site name.
@@ -438,7 +439,7 @@ msgstr ""
 #: actions/apitimelinehome.php:112
 #, php-format
 msgid "Updates from %1$s and friends on %2$s!"
-msgstr ""
+msgstr "Berita baru dari %1$s dan teman-teman pada %2$s!"
 
 #. TRANS: Client error displayed when coming across a non-supported API
 #. method.
@@ -473,20 +474,20 @@ msgstr ""
 #: actions/apitimelineuser.php:232 actions/apiusershow.php:96
 #: lib/apilistusers.php:146
 msgid "API method not found."
-msgstr ""
+msgstr "Metode API tidak ditemukan."
 
 #. TRANS: Client error displayed when trying to register to an invite-only
 #. site without an invitation.
 #: actions/apiaccountregister.php:101 actions/register.php:81
 #: actions/register.php:187 actions/register.php:386
 msgid "Sorry, only invited people can register."
-msgstr ""
+msgstr "Maaf, hanya undangan yang bisa mendaftar."
 
 #. TRANS: Client error displayed when trying to register to an invite-only
 #. site without a valid invitation.
 #: actions/apiaccountregister.php:108 actions/register.php:88
 msgid "Sorry, invalid invitation code."
-msgstr ""
+msgstr "Maaf, kode undangan tidak valid."
 
 #. TRANS: Form validation error displayed when trying to register without a
 #. valid e-mail address.
@@ -498,13 +499,13 @@ msgstr ""
 #: actions/apiaccountregister.php:127 actions/emailsettings.php:384
 #: actions/register.php:205 actions/siteadminpanel.php:154
 msgid "Not a valid email address."
-msgstr ""
+msgstr "Alamat surel tidak valid."
 
 #. TRANS: Form validation error displayed when trying to register with an
 #. already registered e-mail address.
 #: actions/apiaccountregister.php:130 actions/register.php:208
 msgid "Email address already exists."
-msgstr ""
+msgstr "Alamat surel sudah ada."
 
 #. TRANS: Form validation error displayed when trying to register with an
 #. invalid homepage URL.
@@ -525,7 +526,7 @@ msgstr ""
 #: actions/newgroup.php:107 actions/profilesettings.php:270
 #: actions/register.php:212
 msgid "Homepage is not a valid URL."
-msgstr ""
+msgstr "URL halaman beranda tidak valid."
 
 #. TRANS: Form validation error displayed when trying to register with a too
 #. long full name.
@@ -541,7 +542,7 @@ msgstr ""
 #: actions/newgroup.php:110 actions/profilesettings.php:274
 #: actions/register.php:215
 msgid "Full name is too long (maximum 255 characters)."
-msgstr ""
+msgstr "Nama lengkap terlalu panjang (maksimum 255 karakter)."
 
 #. TRANS: Form validation error on registration page when providing too long a
 #. bio text.
@@ -557,7 +558,7 @@ msgstr ""
 #, php-format
 msgid "Bio is too long (maximum %d character)."
 msgid_plural "Bio is too long (maximum %d characters)."
-msgstr[0] ""
+msgstr[0] "Biografi terlalu panjang (maksimum %d karakter)."
 
 #. TRANS: Form validation error displayed when trying to register with a too
 #. long location.
@@ -574,7 +575,7 @@ msgstr[0] ""
 #: actions/newgroup.php:120 actions/profilesettings.php:287
 #: actions/register.php:225
 msgid "Location is too long (maximum 255 characters)."
-msgstr ""
+msgstr "Lokasi terlalu panjang (maksimum 255 karakter)."
 
 #. TRANS: Form validation error displayed when trying to register with too
 #. short a password.
@@ -584,7 +585,7 @@ msgstr ""
 #: actions/apiaccountregister.php:150 actions/passwordsettings.php:164
 #: actions/register.php:228
 msgid "Password must be 6 or more characters."
-msgstr ""
+msgstr "Sandi harus minimal 6 karakter atau lebih."
 
 #. TRANS: Form validation error displayed when trying to register with non-
 #. matching passwords.
@@ -595,24 +596,24 @@ msgstr ""
 #: actions/apiaccountregister.php:153 actions/passwordsettings.php:168
 #: actions/register.php:231
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Sandi tidak sama."
 
 #. TRANS: Form validation error displayed when trying to register with an
 #. invalid username or password.
 #: actions/apiaccountregister.php:169 actions/apiaccountregister.php:180
 #: actions/register.php:242 actions/register.php:265
 msgid "Invalid username or password."
-msgstr ""
+msgstr "Nama pengguna atau sandi tidak valid."
 
 #: actions/apiaccountupdatebackgroundcolor.php:72
 #: actions/apiaccountupdatelinkcolor.php:73
 msgid "Not a valid hex color."
-msgstr ""
+msgstr "Warna heksadesimal tidak valid."
 
 #: actions/apiaccountupdatebackgroundcolor.php:79
 #: actions/apiaccountupdatelinkcolor.php:80
 msgid "Error updating user."
-msgstr ""
+msgstr "Galat memperbarui pengguna."
 
 #. TRANS: Client error displayed when no valid device parameter is provided
 #. for a user's delivery device setting.
@@ -620,7 +621,7 @@ msgstr ""
 msgid ""
 "You must specify a parameter named 'device' with a value of one of: sms, im,"
 " none."
-msgstr ""
+msgstr "Anda harus menetapkan sebuah parameter bernama 'perangkat' dengan nilai salah satu dari: sms, im, nihil."
 
 #. TRANS: Server error displayed when a user's delivery device cannot be
 #. updated.
@@ -639,7 +640,7 @@ msgstr ""
 #: actions/emailsettings.php:492 actions/smssettings.php:301
 #: actions/smssettings.php:451 actions/urlsettings.php:213
 msgid "Could not update user."
-msgstr ""
+msgstr "Tidak bisa memperbarui pengguna."
 
 #. TRANS: Error message displayed when referring to a user without a profile.
 #: actions/apiaccountupdateprofile.php:94 actions/avatarbynickname.php:71
@@ -648,13 +649,13 @@ msgstr ""
 #: actions/peopletagsbyuser.php:108 actions/peopletagsforuser.php:90
 #: actions/peopletagsubscriptions.php:92 actions/replies.php:79
 msgid "User has no profile."
-msgstr ""
+msgstr "Pengguna tidak memiliki profil."
 
 #. TRANS: Server error displayed if a user profile could not be saved.
 #. TRANS: Server error thrown when user profile settings could not be saved.
 #: actions/apiaccountupdateprofile.php:129 actions/profilesettings.php:417
 msgid "Could not save profile."
-msgstr ""
+msgstr "Tidak bisa menyimpan profil."
 
 #. TRANS: Client error displayed when the number of bytes in a POST request
 #. exceeds a limit.
@@ -669,7 +670,7 @@ msgid ""
 msgid_plural ""
 "The server was unable to handle that much POST data (%s bytes) due to its "
 "current configuration."
-msgstr[0] ""
+msgstr[0] "Server tidak bisa menangani data POST sebanyak itu (%s byte), yang disebabkan oleh konfigurasi bawaan server."
 
 #. TRANS: Title for Atom feed.
 #: actions/apiatomservice.php:86
@@ -686,7 +687,7 @@ msgstr ""
 #: lib/atomusernoticefeed.php:73
 #, php-format
 msgid "%s timeline"
-msgstr ""
+msgstr "Linimasa %s"
 
 #. TRANS: Title for Atom feed with a user's subscriptions. %s is a user
 #. nickname.
@@ -698,82 +699,82 @@ msgstr ""
 #: actions/subscriptions.php:51
 #, php-format
 msgid "%s subscriptions"
-msgstr ""
+msgstr "Langganan %s"
 
 #. TRANS: Title for Atom feed with a user's favorite notices. %s is a user
 #. nickname.
 #: actions/apiatomservice.php:116
 #, php-format
 msgid "%s favorites"
-msgstr ""
+msgstr "Favorit %s"
 
 #. TRANS: Title for Atom feed with a user's memberships. %s is a user
 #. nickname.
 #: actions/apiatomservice.php:127
 #, php-format
 msgid "%s memberships"
-msgstr ""
+msgstr "Keanggotaan %s"
 
 #. TRANS: Client error displayed when users try to block themselves.
 #: actions/apiblockcreate.php:92
 msgid "You cannot block yourself!"
-msgstr ""
+msgstr "Anda tidak bisa memblokir diri anda sendiri!"
 
 #. TRANS: Server error displayed when blocking a user has failed.
 #: actions/apiblockcreate.php:110
 msgid "Block user failed."
-msgstr ""
+msgstr "Gagal memblokir pengguna."
 
 #. TRANS: Server error displayed when unblocking a user has failed.
 #: actions/apiblockdestroy.php:99
 msgid "Unblock user failed."
-msgstr ""
+msgstr "Gagal membuka blokir pengguna."
 
 #: actions/apicheckhub.php:57
 msgid "No URL."
-msgstr ""
+msgstr "Tidak ada URL."
 
 #: actions/apicheckhub.php:61 lib/invalidurlexception.php:50
 msgid "Invalid URL."
-msgstr ""
+msgstr "URL tidak valid."
 
 #: actions/apicheckhub.php:86
 msgid "No feed found"
-msgstr ""
+msgstr "Tidak ada umpan yang ditemukan"
 
 #: actions/apicheckhub.php:88
 msgid "No hub found"
-msgstr ""
+msgstr "Tidak ada hub yang ditemukan"
 
 #. TRANS: Client exception thrown when no conversation ID is given.
 #: actions/apiconversation.php:67
 msgid "No conversation ID."
-msgstr ""
+msgstr "Tidak ada ID percakapan."
 
 #. TRANS: Client exception thrown when referring to a non-existing
 #. conversation ID (%d).
 #: actions/apiconversation.php:74
 #, php-format
 msgid "No conversation with ID %d."
-msgstr ""
+msgstr "Tidak ada ID percakapan %d."
 
 #. TRANS: Title for conversion timeline.
 #: actions/apiconversation.php:101
 msgctxt "TITLE"
 msgid "Conversation"
-msgstr ""
+msgstr "Percakapan"
 
 #. TRANS: Client error displayed when requesting profile information for a
 #. non-existing profile.
 #: actions/apiexternalprofileshow.php:60
 msgid "Profile not found."
-msgstr ""
+msgstr "Profil tidak ditemukan."
 
 #. TRANS: Client error displayed when trying follow who's profile could not be
 #. found.
 #: actions/apifriendshipscreate.php:90
 msgid "Could not follow user: profile not found."
-msgstr ""
+msgstr "Tidak bisa mengikuti pengguna: profil tidak ditemukan."
 
 #. TRANS: Client error displayed when trying to follow a user that's already
 #. being followed.
@@ -781,30 +782,30 @@ msgstr ""
 #: actions/apifriendshipscreate.php:97
 #, php-format
 msgid "Could not follow user: %s is already on your list."
-msgstr ""
+msgstr "Tidak bisa mengikuti pengguna: %s sudah ada di dalam daftar anda."
 
 #. TRANS: Client error. POST is a HTTP command. It should not be translated.
 #: actions/apifriendshipsdestroy.php:87 actions/apimediaupload.php:63
 #: lib/action.php:144
 msgid "This method requires a POST."
-msgstr ""
+msgstr "Metode ini membutuhkan POST."
 
 #. TRANS: Client error displayed when trying to unfollow a user that cannot be
 #. found.
 #: actions/apifriendshipsdestroy.php:107
 msgid "Could not unfollow user: User not found."
-msgstr ""
+msgstr "Tidak bisa membatalkan mengikuti pengguna: Pengguna tidak ditemukan."
 
 #. TRANS: Client error displayed when trying to unfollow self.
 #: actions/apifriendshipsdestroy.php:119
 msgid "You cannot unfollow yourself."
-msgstr ""
+msgstr "Anda tidak bisa batal mengikuti diri anda sendiri."
 
 #. TRANS: Client error displayed when supplying invalid parameters to an API
 #. call checking if a friendship exists.
 #: actions/apifriendshipsexists.php:86
 msgid "Two valid IDs or nick names must be supplied."
-msgstr ""
+msgstr "Dua ID yang valid atau nama panggil harus diberikan."
 
 #. TRANS: Client error displayed when a source user could not be determined
 #. showing friendship.
@@ -839,7 +840,7 @@ msgstr ""
 #: actions/apigroupmembership.php:69 actions/apigroupprofileupdate.php:95
 #: actions/apigroupshow.php:78 actions/apitimelinegroup.php:85
 msgid "Group not found."
-msgstr ""
+msgstr "Grup tidak ditemukan."
 
 #. TRANS: Client error shown when providing too long a description during
 #. group creation.
@@ -864,7 +865,7 @@ msgstr ""
 #, php-format
 msgid "Description is too long (maximum %d character)."
 msgid_plural "Description is too long (maximum %d characters)."
-msgstr[0] ""
+msgstr[0] "Deskripsi terlalu panjang (maksimum %d karakter)"
 
 #. TRANS: Client error shown when providing too many aliases during group
 #. creation.
@@ -880,7 +881,7 @@ msgstr[0] ""
 #, php-format
 msgid "Too many aliases! Maximum %d allowed."
 msgid_plural "Too many aliases! Maximum %d allowed."
-msgstr[0] ""
+msgstr[0] "Terlalu banyak alias! Diperbolehkan maksimum %d."
 
 #. TRANS: Server error displayed when trying to join a group the user is
 #. already a member of.
@@ -890,7 +891,7 @@ msgstr[0] ""
 #. member of.
 #: actions/apigroupjoin.php:95 actions/joingroup.php:94 lib/command.php:296
 msgid "You are already a member of that group."
-msgstr ""
+msgstr "Anda sudah menjadi anggota grup tersebut."
 
 #. TRANS: Server error displayed when trying to join a group the user is
 #. blocked from joining.
@@ -900,7 +901,7 @@ msgstr ""
 #. from joining.
 #: actions/apigroupjoin.php:100 actions/joingroup.php:99 lib/command.php:301
 msgid "You have been blocked from that group by the admin."
-msgstr ""
+msgstr "Anda telah diblokir dari grup tersebut oleh admin."
 
 #. TRANS: Server error displayed when joining a group failed in the database.
 #. TRANS: %1$s is the joining user's nickname, $2$s is the group nickname for
@@ -910,13 +911,13 @@ msgstr ""
 #: actions/apigroupjoin.php:108 actions/joingroup.php:125 lib/command.php:310
 #, php-format
 msgid "Could not join user %1$s to group %2$s."
-msgstr "Tidak dapat menggabungkan pengguna %1$s ke grup %2$s."
+msgstr "Tidak bisa menggabungkan pengguna %1$s ke grup %2$s."
 
 #. TRANS: Server error displayed when trying to leave a group the user is not
 #. a member of.
 #: actions/apigroupleave.php:100
 msgid "You are not a member of this group."
-msgstr ""
+msgstr "Anda bukan anggota grup ini."
 
 #. TRANS: Server error displayed when leaving a group failed in the database.
 #. TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for
@@ -927,20 +928,20 @@ msgstr ""
 #: lib/command.php:355
 #, php-format
 msgid "Could not remove user %1$s from group %2$s."
-msgstr ""
+msgstr "Tidak bisa membuang pengguna %1$s dari grup %2$s."
 
 #. TRANS: Used as title in check for group membership. %s is a user name.
 #: actions/apigrouplist.php:91
 #, php-format
 msgid "%s's groups"
-msgstr ""
+msgstr "Grup %s"
 
 #. TRANS: Used as subtitle in check for group membership. %1$s is the site
 #. name, %2$s is a user name.
 #: actions/apigrouplist.php:101
 #, php-format
 msgid "%1$s groups %2$s is a member of."
-msgstr ""
+msgstr "Grup %1$s, %2$s adalah anggotanya."
 
 #. TRANS: Message is used as a title when listing the lastest 20 groups. %s is
 #. a site name.
@@ -949,14 +950,14 @@ msgstr ""
 #: actions/apigrouplistall.php:86 actions/usergroups.php:55
 #, php-format
 msgid "%s groups"
-msgstr ""
+msgstr "Grup %s"
 
 #. TRANS: Message is used as a subtitle when listing the latest 20 groups. %s
 #. is a site name.
 #: actions/apigrouplistall.php:91
 #, php-format
 msgid "groups on %s"
-msgstr ""
+msgstr "grup pada %s"
 
 #. TRANS: Client error displayed when trying to edit a group without being an
 #. admin.
@@ -967,13 +968,13 @@ msgstr ""
 #: actions/apigroupprofileupdate.php:100 actions/editgroup.php:106
 #: actions/editgroup.php:163 actions/grouplogo.php:107
 msgid "You must be an admin to edit the group."
-msgstr ""
+msgstr "Anda harus menjadi admin untuk menyunting grup."
 
 #. TRANS: Server error displayed when group update fails.
 #. TRANS: Server error displayed when editing a group fails.
 #: actions/apigroupprofileupdate.php:153 actions/editgroup.php:256
 msgid "Could not update group."
-msgstr ""
+msgstr "Tidak bisa memperbarui grup."
 
 #. TRANS: Server error displayed when adding group aliases fails.
 #. TRANS: Server error displayed when group aliases could not be added.
@@ -981,7 +982,7 @@ msgstr ""
 #: actions/apigroupprofileupdate.php:170 actions/editgroup.php:263
 #: classes/User_group.php:664
 msgid "Could not create aliases."
-msgstr ""
+msgstr "Tidak bisa membuat alias."
 
 #. TRANS: Client error displayed when referring to a non-existing list.
 #. TRANS: Client error displayed trying to perform an action related to a non-
@@ -991,12 +992,12 @@ msgstr ""
 #: actions/apilistsubscriber.php:45 actions/apitimelinelist.php:92
 #: lib/apilistusers.php:65
 msgid "List not found."
-msgstr ""
+msgstr "Daftar tidak ditemukan."
 
 #. TRANS: Client error displayed when trying to update another user's list.
 #: actions/apilist.php:136
 msgid "You cannot update lists that do not belong to you."
-msgstr ""
+msgstr "Anda tidak bisa memperbarui daftar milik orang lain."
 
 #. TRANS: Client error displayed when an unknown error occurs updating a list.
 #. TRANS: Client error displayed when an unknown error occurs viewing list
@@ -1009,23 +1010,23 @@ msgstr ""
 #: actions/apilistmembers.php:104 actions/apilistsubscribers.php:48
 #: actions/apilistsubscribers.php:79
 msgid "An error occured."
-msgstr ""
+msgstr "Terjadi sebuah galat."
 
 #. TRANS: Client error displayed when trying to delete another user's list.
 #: actions/apilist.php:173
 msgid "You cannot delete lists that do not belong to you."
-msgstr ""
+msgstr "Anda tidak bisa menghapus daftar milik orang lain."
 
 #. TRANS: Client error displayed when referring to a non-list member.
 #: actions/apilistmember.php:94
 msgid "The specified user is not a member of this list."
-msgstr ""
+msgstr "Pengguna yang disebut bukan anggota dari daftar ini."
 
 #. TRANS: Client error displayed when trying to add members to a list without
 #. having the right to do so.
 #: actions/apilistmembers.php:46
 msgid "You are not allowed to add members to this list."
-msgstr ""
+msgstr "Anda tidak diizinkan untuk menambah anggota ke daftar ini."
 
 #. TRANS: Client error displayed when trying to modify list members without
 #. specifying them.
@@ -1037,24 +1038,24 @@ msgstr ""
 #. without having the right to do so.
 #: actions/apilistmembers.php:84
 msgid "You are not allowed to remove members from this list."
-msgstr ""
+msgstr "Anda tidak diizinkan untuk membuang anggota dari daftar ini."
 
 #. TRANS: Client error displayed when trying to remove a list member that is
 #. not part of a list.
 #: actions/apilistmembers.php:99
 msgid "The user you are trying to remove from the list is not a member."
-msgstr ""
+msgstr "Pengguna yang anda coba untuk buang dari daftar ini adalah bukan anggota."
 
 #. TRANS: Client error displayed when trying to create a list without a name.
 #: actions/apilists.php:137
 msgid "A list must have a name."
-msgstr ""
+msgstr "Sebuah daftar harus memiliki nama."
 
 #. TRANS: Client error displayed when a membership check for a user is
 #. nagative.
 #: actions/apilistsubscriber.php:65
 msgid "The specified user is not a subscriber of this list."
-msgstr ""
+msgstr "Pengguna yang disebut bukan pelanggan dari daftar ini."
 
 #. TRANS: Client error displayed when trying to unsubscribe from a non-
 #. subscribed list.
@@ -1065,7 +1066,7 @@ msgstr ""
 #. TRANS: Client error displayed when uploading a media file has failed.
 #: actions/apimediaupload.php:95
 msgid "Upload failed."
-msgstr ""
+msgstr "Gagal mengunggah."
 
 #. TRANS: Client error given from the OAuth API when the request token or
 #. verifier is invalid.
@@ -1094,7 +1095,7 @@ msgstr ""
 #. was passed to the OAuth API.
 #: actions/apioauthauthorize.php:165
 msgid "Invalid nickname / password!"
-msgstr ""
+msgstr "Nama panggil / sandi tidak valid!"
 
 #. TRANS: Server error displayed when a database action fails.
 #: actions/apioauthauthorize.php:208
@@ -1164,7 +1165,7 @@ msgstr ""
 #: actions/apioauthauthorize.php:422
 msgctxt "LEGEND"
 msgid "Account"
-msgstr ""
+msgstr "Akun"
 
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
@@ -1175,7 +1176,7 @@ msgstr ""
 #: actions/register.php:406 lib/groupeditform.php:147
 #: lib/togglepeopletag.php:107
 msgid "Nickname"
-msgstr ""
+msgstr "Nama Panggil"
 
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label on login page.
@@ -1183,7 +1184,7 @@ msgstr ""
 #: actions/apioauthauthorize.php:430 actions/login.php:181
 #: actions/register.php:412
 msgid "Password"
-msgstr ""
+msgstr "Sandi"
 
 #. TRANS: Button text that when clicked will cancel the process of allowing
 #. access to an account
@@ -1197,32 +1198,32 @@ msgstr ""
 #: lib/applicationeditform.php:351
 msgctxt "BUTTON"
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
 
 #. TRANS: Button text that when clicked will allow access to an account by an
 #. external application.
 #: actions/apioauthauthorize.php:452
 msgctxt "BUTTON"
 msgid "Allow"
-msgstr ""
+msgstr "Izinkan"
 
 #. TRANS: Form instructions.
 #: actions/apioauthauthorize.php:469
 msgid "Authorize access to your account information."
-msgstr ""
+msgstr "Otorisasi akses ke informasi akun anda."
 
 #. TRANS: Header for user notification after revoking OAuth access to an
 #. application.
 #: actions/apioauthauthorize.php:561
 msgid "Authorization canceled."
-msgstr ""
+msgstr "Otorisasi dibatalkan."
 
 #. TRANS: User notification after revoking OAuth access to an application.
 #. TRANS: %s is an OAuth token.
 #: actions/apioauthauthorize.php:565
 #, php-format
 msgid "The request token %s has been revoked."
-msgstr ""
+msgstr "Token permintaan %s telah dicabut."
 
 #. TRANS: Title of the page notifying the user that an anonymous client
 #. application was successfully authorized to access the user's account with
@@ -1357,7 +1358,7 @@ msgstr[0] ""
 #. unsupported format.
 #: actions/apisubscriptions.php:220 actions/apisubscriptions.php:250
 msgid "Unsupported format."
-msgstr ""
+msgstr "Format tidak didukung."
 
 #. TRANS: Server error displayed whe trying to get a timeline fails.
 #. TRANS: %s is the error message.
@@ -1386,19 +1387,19 @@ msgstr ""
 #: actions/apitimelinepublic.php:191 actions/publicrss.php:103
 #, php-format
 msgid "%s public timeline"
-msgstr ""
+msgstr "Linimasa publik %s"
 
 #. TRANS: Subtitle for site timeline. %s is the StatusNet sitename.
 #: actions/apitimelinepublic.php:197
 #, php-format
 msgid "%s updates from everyone!"
-msgstr ""
+msgstr "Berita %s dari semua orang!"
 
 #. TRANS: Server error displayed calling unimplemented API method for
 #. 'retweeted by me'.
 #: actions/apitimelineretweetedbyme.php:68
 msgid "Unimplemented."
-msgstr ""
+msgstr "Tidak diimplementasikan."
 
 #. TRANS: Title for Atom feed "repeated to me". %s is the user nickname.
 #: actions/apitimelineretweetedtome.php:94
@@ -2189,7 +2190,7 @@ msgstr ""
 #. TRANS: Title for page with a conversion (multiple notices in context).
 #: actions/conversation.php:80
 msgid "Conversation"
-msgstr ""
+msgstr "Percakapan"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
@@ -3703,7 +3704,7 @@ msgstr ""
 #. TRANS: Checkbox label to mark a list private.
 #: actions/licenseadminpanel.php:243 lib/peopletageditform.php:155
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #. TRANS: License option in the license admin panel.
 #: actions/licenseadminpanel.php:245
@@ -4133,7 +4134,7 @@ msgstr ""
 #. TRANS: Button text to save a list.
 #: actions/oldschoolsettings.php:182 lib/peopletageditform.php:168
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 #: actions/opensearch.php:64
@@ -4151,7 +4152,7 @@ msgstr ""
 #. in.
 #: actions/otp.php:62 actions/register.php:134
 msgid "Already logged in."
-msgstr ""
+msgstr "Sudah masuk."
 
 #. TRANS: Client error displayed trying to use "one time password login"
 #. without specifying a user.
@@ -6030,7 +6031,7 @@ msgstr ""
 #. part of a list).
 #: actions/showprofiletag.php:301 lib/peopletaglist.php:173
 msgid "Listed"
-msgstr ""
+msgstr "Terdaftar"
 
 #. TRANS: Content of "Listed" page if there are no listed users.
 #. TRANS: Content of "People following tag x" if there are no subscribed
@@ -7313,7 +7314,7 @@ msgstr ""
 #: classes/Notice.php:265
 #, php-format
 msgid "%1$s's status on %2$s"
-msgstr ""
+msgstr "Status %1$s's pada %2$s"
 
 #. TRANS: Server exception. %s are the error details.
 #: classes/Notice.php:363
@@ -8018,7 +8019,7 @@ msgstr ""
 #: lib/adminpanelnav.php:109
 msgctxt "MENU"
 msgid "Access"
-msgstr ""
+msgstr "Akses"
 
 #. TRANS: Menu item title in administrator navigation panel.
 #: lib/adminpanelnav.php:115
@@ -9346,7 +9347,7 @@ msgstr ""
 #. TRANS: Form legend.
 #: lib/inviteform.php:85
 msgid "Invite collegues"
-msgstr ""
+msgstr "Undang kolega"
 
 #. TRANS: Field label for a list of e-mail addresses.
 #: lib/inviteform.php:100
@@ -10074,7 +10075,7 @@ msgstr ""
 #: lib/peopletaggroupnav.php:124
 msgctxt "MENU"
 msgid "Listed"
-msgstr ""
+msgstr "Terdaftar"
 
 #. TRANS: Menu item in list navigation panel.
 #. TRANS: Menu item in local navigation menu.
@@ -10117,7 +10118,7 @@ msgstr ""
 #: lib/peopletaglist.php:253
 msgctxt "MODE"
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #. TRANS: Menu item in the group navigation page.
 #: lib/peopletagnav.php:78
@@ -10558,7 +10559,7 @@ msgstr ""
 #: lib/settingsnav.php:88
 msgctxt "MENU"
 msgid "Password"
-msgstr ""
+msgstr "Sandi"
 
 #. TRANS: Menu item title in settings navigation panel.
 #: lib/settingsnav.php:90
@@ -10580,7 +10581,7 @@ msgstr ""
 #: lib/settingsnav.php:102
 msgctxt "MENU"
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. TRANS: Menu item title in settings navigation panel.
 #: lib/settingsnav.php:104
@@ -10713,7 +10714,7 @@ msgstr ""
 #: lib/subscribeform.php:130 lib/subscribepeopletagform.php:106
 msgctxt "BUTTON"
 msgid "Subscribe"
-msgstr ""
+msgstr "Langganan"
 
 #. TRANS: Button title to subscribe to a user.
 #: lib/subscribeform.php:132

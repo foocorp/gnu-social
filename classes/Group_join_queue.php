@@ -76,18 +76,15 @@ class Group_join_queue extends Managed_DataObject
 
     /**
      * Abort the pending group join...
-     *
-     * @param User_group $group
      */
     function abort()
     {
         $profile = $this->getMember();
         $group = $this->getGroup();
-        if ($request) {
-            if (Event::handle('StartCancelJoinGroup', array($profile, $group))) {
-                $this->delete();
-                Event::handle('EndCancelJoinGroup', array($profile, $group));
-            }
+
+        if (Event::handle('StartCancelJoinGroup', array($profile, $group))) {
+            $this->delete();
+            Event::handle('EndCancelJoinGroup', array($profile, $group));
         }
     }
 

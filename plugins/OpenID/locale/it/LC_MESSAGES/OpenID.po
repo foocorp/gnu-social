@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Giuseppe Pignataro <rogepix@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:41+0000\n"
-"Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/gnu-social/language/it/)\n"
+"PO-Revision-Date: 2015-06-10 00:11+0000\n"
+"Last-Translator: Giuseppe Pignataro <rogepix@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/gnu-social/gnu-social/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -238,7 +239,7 @@ msgstr "I seguenti siti sono autorizzati ad accedere alla tua identità ed effet
 #: actions/openidsettings.php:229
 msgctxt "LEGEND"
 msgid "Preferences"
-msgstr ""
+msgstr "Preferenze"
 
 #. TRANS: Button text to save OpenID prefs
 #. TRANS: Button text to save OpenID settings.
@@ -292,7 +293,7 @@ msgstr "OpenID rimosso."
 
 #: actions/openidsettings.php:383
 msgid "OpenID preferences saved."
-msgstr ""
+msgstr "Preferenze OpenID salvate."
 
 #. TRANS: Client error message trying to log on with OpenID while already
 #. logged on.

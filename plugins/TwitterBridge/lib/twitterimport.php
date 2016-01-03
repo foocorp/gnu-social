@@ -102,6 +102,17 @@ class TwitterImport
             return Notice::getKV('id', $n2s->notice_id);
         }
 
+        $dupe = Notice::getKV('uri', $statusUri);
+        if($dupe instanceof Notice) {
+            // Add it to our record
+            Notice_to_status::saveNew($dupe->id, $statusId);
+            common_log(
+                LOG_INFO,
+                __METHOD__ . " - Ignoring duplicate import: {$statusId}"
+            );
+            return $dupe;
+        }
+
         // If it's a retweet, save it as a repeat!
         if (!empty($status->retweeted_status)) {
             common_log(LOG_INFO, "Status {$statusId} is a retweet of " . twitter_id($status->retweeted_status) . ".");
@@ -138,6 +149,7 @@ class TwitterImport
         $notice->profile_id = $profile->id;
         $notice->uri        = $statusUri;
         $notice->url        = $statusUri;
+        $notice->verb       = ActivityVerb::POST;
         $notice->created    = strftime(
             '%Y-%m-%d %H:%M:%S',
             strtotime($status->created_at)
@@ -209,7 +221,7 @@ class TwitterImport
      */
     function makeStatusURI($username, $id)
     {
-        return 'http://twitter.com/#!/'
+        return 'https://twitter.com/'
           . $username
           . '/status/'
           . $id;
@@ -233,7 +245,10 @@ class TwitterImport
         $profile->limit(1);
 
         if (!$profile->find(true)) {
-            throw new NoResultException($profile);
+            $profile->profileurl = str_replace('https://', 'http://', $profileurl);
+            if (!$profile->find(true)) {
+                throw new NoResultException($profile);
+            }
         }
         return $profile;
     }
@@ -241,7 +256,7 @@ class TwitterImport
     protected function ensureProfile($twuser)
     {
         // check to see if there's already a profile for this user
-        $profileurl = 'http://twitter.com/' . $twuser->screen_name;
+        $profileurl = 'https://twitter.com/' . $twuser->screen_name;
         try {
             $profile = $this->getProfileByUrl($twuser->screen_name, $profileurl);
             $this->updateAvatar($twuser, $profile);
@@ -527,9 +542,9 @@ class TwitterImport
     static function atLink($screenName, $fullName, $orig)
     {
         if (!empty($fullName)) {
-            return "<a href='http://twitter.com/#!/{$screenName}' title='{$fullName}'>{$orig}</a>";
+            return "<a href='https://twitter.com/{$screenName}' title='{$fullName}'>{$orig}</a>";
         } else {
-            return "<a href='http://twitter.com/#!/{$screenName}'>{$orig}</a>";
+            return "<a href='https://twitter.com/{$screenName}'>{$orig}</a>";
         }
     }
 
@@ -551,8 +566,10 @@ class TwitterImport
                 $reply->modified   = $notice->created;
                 common_log(LOG_INFO, __METHOD__ . ": saving reply: notice {$notice->id} to profile {$user->id}");
                 $id = $reply->insert();
+            } catch (NoSuchUserException $e) {
+                common_log(LOG_WARNING, 'No local user found for Foreign_link with id: '.$mention->id);
             } catch (NoResultException $e) {
-                common_log(LOG_WARNING, 'No local user found for Foreign_link with local User id: '.$flink->user_id);
+                common_log(LOG_WARNING, 'No foreign link or profile found for Foreign_link with id: '.$mention->id);
             }
         }
     }

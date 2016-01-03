@@ -96,7 +96,7 @@ class NewnoticeAction extends FormAction
         assert($this->scoped instanceof Profile); // XXX: maybe an error instead...
         $user = $this->scoped->getUser();
         $content = $this->trimmed('status_textarea');
-        $options = array();
+        $options = array('source' => 'web');
         Event::handle('StartSaveNewNoticeWeb', array($this, $user, &$content, &$options));
 
         if (empty($content)) {
@@ -117,31 +117,30 @@ class NewnoticeAction extends FormAction
             return;
         }
 
-        $content_shortened = $user->shortenLinks($content);
-        if (Notice::contentTooLong($content_shortened)) {
-            // TRANS: Client error displayed when the parameter "status" is missing.
-            // TRANS: %d is the maximum number of character for a notice.
-            $this->clientError(sprintf(_m('That\'s too long. Maximum notice size is %d character.',
-                                          'That\'s too long. Maximum notice size is %d characters.',
-                                          Notice::maxContent()),
-                                       Notice::maxContent()));
+        if ($this->int('inreplyto')) {
+            // Throws exception if the inreplyto Notice is given but not found.
+            $parent = Notice::getByID($this->int('inreplyto'));
+        } else {
+            $parent = null;
         }
 
-        $replyto = $this->int('inreplyto');
-        if ($replyto) {
-            $options['reply_to'] = $replyto;
-        }
+        $act = new Activity();
+        $act->verb = ActivityVerb::POST;
+        $act->time = time();
+        $act->actor = $this->scoped->asActivityObject();
+
+        $content = $this->scoped->shortenLinks($content);
 
         $upload = null;
         try {
             // throws exception on failure
             $upload = MediaFile::fromUpload('attach', $this->scoped);
-            if (Event::handle('StartSaveNewNoticeAppendAttachment', array($this, $upload, &$content_shortened, &$options))) {
-                $content_shortened .= ' ' . $upload->shortUrl();
+            if (Event::handle('StartSaveNewNoticeAppendAttachment', array($this, $upload, &$content, &$options))) {
+                $content .= ' ' . $upload->shortUrl();
             }
-            Event::handle('EndSaveNewNoticeAppendAttachment', array($this, $upload, &$content_shortened, &$options));
+            Event::handle('EndSaveNewNoticeAppendAttachment', array($this, $upload, &$content, &$options));
 
-            if (Notice::contentTooLong($content_shortened)) {
+            if (Notice::contentTooLong($content)) {
                 $upload->delete();
                 // TRANS: Client error displayed exceeding the maximum notice length.
                 // TRANS: %d is the maximum length for a notice.
@@ -150,10 +149,25 @@ class NewnoticeAction extends FormAction
                                               Notice::maxContent()),
                                            Notice::maxContent()));
             }
+
+            $act->enclosures[] = $upload->getEnclosure();
         } catch (NoUploadedMediaException $e) {
             // simply no attached media to the new notice
         }
 
+        $actobj = new ActivityObject();
+        $actobj->type = ActivityObject::NOTE;
+        $actobj->content = common_render_content($content, $this->scoped, $parent);
+
+        $act->objects[] = $actobj;
+
+
+        $act->context = new ActivityContext();
+
+        if ($parent instanceof Notice) {
+            $act->context->replyToID = $parent->getUri();
+            $act->context->replyToUrl = $parent->getUrl(true);  // maybe we don't have to send true here to force a URL?
+        }
 
         if ($this->scoped->shareLocation()) {
             // use browser data if checked; otherwise profile data
@@ -171,19 +185,20 @@ class NewnoticeAction extends FormAction
                                                       $this->scoped);
             }
 
-            $options = array_merge($options, $locOptions);
+            $act->context->location = Location::fromOptions($locOptions);
         }
 
         $author_id = $this->scoped->id;
-        $text      = $content_shortened;
+        $text      = $content;
 
         // Does the heavy-lifting for getting "To:" information
 
         ToSelector::fillOptions($this, $options);
 
+        // FIXME: Make sure NoticeTitle plugin gets a change to add the title to our activityobject!
         if (Event::handle('StartNoticeSaveWeb', array($this, &$author_id, &$text, &$options))) {
 
-            $this->stored = Notice::saveNew($this->scoped->id, $content_shortened, 'web', $options);
+            $this->stored = Notice::saveActivity($act, $this->scoped, $options);
 
             if ($upload instanceof MediaFile) {
                 $upload->attachToNotice($this->stored);
@@ -192,7 +207,7 @@ class NewnoticeAction extends FormAction
             Event::handle('EndNoticeSaveWeb', array($this, $this->stored));
         }
 
-        Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content_shortened, &$options));
+        Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content, &$options));
 
         if (!GNUsocial::isAjax()) {
             $url = common_local_url('shownotice', array('notice' => $this->stored->id));

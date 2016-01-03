@@ -233,6 +233,9 @@ abstract class ActivityHandlerPlugin extends Plugin
     protected function notifyMentioned(Notice $stored, array &$mentioned_ids)
     {
         // pass through silently by default
+
+        // If we want to stop any other plugin from notifying based on this activity, return false instead.
+        return true;
     }
 
     /**
@@ -281,10 +284,14 @@ abstract class ActivityHandlerPlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onNoticeDeleteRelated(Notice $notice)
+    public function onNoticeDeleteRelated(Notice $notice)
     {
         if ($this->isMyNotice($notice)) {
-            $this->deleteRelated($notice);
+            try {
+                $this->deleteRelated($notice);
+            } catch (AlreadyFulfilledException $e) {
+                // Nothing to see here, it's obviously already gone...
+            }
         }
 
         // Always continue this event in our activity handling plugins.
@@ -301,10 +308,7 @@ abstract class ActivityHandlerPlugin extends Plugin
             return true;
         }
 
-        $this->notifyMentioned($stored, $mentioned_ids);
-
-        // If it was _our_ notice, only we should do anything with the mentions.
-        return false;
+        return $this->notifyMentioned($stored, $mentioned_ids);
     }
 
     /**
@@ -436,14 +440,13 @@ abstract class ActivityHandlerPlugin extends Plugin
     /**
      * Handle object posted via AtomPub
      *
-     * @param Activity &$activity Activity that was posted
+     * @param Activity  $activity Activity that was posted
      * @param Profile   $scoped   Profile of user posting
      * @param Notice   &$notice   Resulting notice
      *
      * @return boolean hook value
      */
-    // FIXME: Make sure we can really do strong Notice typing with a $notice===null without having =null here
-    public function onStartAtomPubNewActivity(Activity &$activity, Profile $scoped, Notice &$notice)
+    public function onStartAtomPubNewActivity(Activity $activity, Profile $scoped, Notice &$notice=null)
     {
         if (!$this->isMyActivity($activity)) {
             return true;
@@ -452,8 +455,6 @@ abstract class ActivityHandlerPlugin extends Plugin
         $options = array('source' => 'atompub');
 
         $notice = $this->saveNoticeFromActivity($activity, $scoped, $options);
-
-        Event::handle('EndAtomPubNewActivity', array($activity, $scoped, $notice));
 
         return false;
     }
@@ -584,7 +585,8 @@ abstract class ActivityHandlerPlugin extends Plugin
         try {
             $this->showNoticeListItem($nli);
         } catch (Exception $e) {
-            $nli->out->element('p', 'error', 'Error showing notice: '.htmlspecialchars($e->getMessage()));
+            common_log(LOG_ERR, 'Error showing notice: ' . $e->getMessage());
+            $nli->out->element('p', 'error', sprintf(_('Error showing notice: %s'), $e->getMessage()));
         }
 
         Event::handle('EndShowNoticeItem', array($nli));
@@ -593,17 +595,9 @@ abstract class ActivityHandlerPlugin extends Plugin
 
     protected function showNoticeListItem(NoticeListItem $nli)
     {
-        $nli->showNotice();
-        $nli->showNoticeAttachments();
-        $nli->showNoticeInfo();
-        $nli->showNoticeOptions();
-
-        $nli->showNoticeLink();
-        $nli->showNoticeSource();
-        $nli->showNoticeLocation();
-        $nli->showPermalink();
-
-        $nli->showNoticeOptions();
+        $nli->showNoticeHeaders();
+        $nli->showContent();
+        $nli->showNoticeFooter();
     }
 
     public function onStartShowNoticeItemNotice(NoticeListItem $nli)
@@ -632,7 +626,11 @@ abstract class ActivityHandlerPlugin extends Plugin
             return true;
         }
 
-        $this->showNoticeContent($stored, $out, $scoped);
+        try {
+            $this->showNoticeContent($stored, $out, $scoped);
+        } catch (Exception $e) {
+            $out->element('div', 'error', $e->getMessage());
+        }
         return false;
     }
 

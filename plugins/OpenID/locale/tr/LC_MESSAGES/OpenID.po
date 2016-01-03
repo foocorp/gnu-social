@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 14:41+0000\n"
+"PO-Revision-Date: 2015-04-28 14:37+0000\n"
 "Last-Translator: digitaldreamer <digitaldreamer@email.cz>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -644,7 +644,7 @@ msgstr ""
 #: OpenIDPlugin.php:219
 msgctxt "TOOLTIP"
 msgid "Login to the site."
-msgstr ""
+msgstr "Siteye giriş yap"
 
 #. TRANS: Main menu option when not logged in to log in
 #: OpenIDPlugin.php:222
@@ -662,7 +662,7 @@ msgstr ""
 #: OpenIDPlugin.php:230
 msgctxt "MENU"
 msgid "Help"
-msgstr ""
+msgstr "Yardım"
 
 #. TRANS: Tooltip for main menu option "Search"
 #: OpenIDPlugin.php:236
@@ -675,7 +675,7 @@ msgstr ""
 #: OpenIDPlugin.php:239
 msgctxt "MENU"
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #. TRANS: OpenID plugin menu item on site logon page.
 #. TRANS: OpenID plugin menu item on user settings page.

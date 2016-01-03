@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Bookmark plugin main class
@@ -47,8 +45,6 @@ class BookmarkPlugin extends MicroAppPlugin
 {
     const VERSION         = '0.1';
     const IMPORTDELICIOUS = 'BookmarkPlugin:IMPORTDELICIOUS';
-
-    var $oldSaveNew = true;
 
     /**
      * Authorization for importing delicious bookmarks
@@ -184,12 +180,12 @@ class BookmarkPlugin extends MicroAppPlugin
     function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Bookmark',
-                            'version' => self::VERSION,
-                            'author' => 'Evan Prodromou, Stephane Berube, Jean Baptiste Favre',
-                            'homepage' => 'http://status.net/wiki/Plugin:Bookmark',
+                            'version' => GNUSOCIAL_VERSION,
+                            'author' => 'Evan Prodromou, Stephane Berube, Jean Baptiste Favre, Mikael Nordfeldth',
+                            'homepage' => 'https://gnu.io/social',
                             'description' =>
                             // TRANS: Plugin description.
-                            _m('Simple extension for supporting bookmarks. ') .
+                            _m('Plugin for posting bookmarks. ') .
                             'BookmarkList feature has been developped by Stephane Berube. ' .
                             'Integration has been done by Jean Baptiste Favre.');
         return true;
@@ -280,14 +276,12 @@ class BookmarkPlugin extends MicroAppPlugin
      */
     function deleteRelated(Notice $notice)
     {
-    	if ($this->isMyNotice($notice)) {
-    		
-        	$nb = Bookmark::getByNotice($notice);
-
-        	if (!empty($nb)) {
-            	$nb->delete();
-        	}
-    	}
+        try {
+            $nb = Bookmark::fromStored($notice);
+        } catch (NoResultException $e) {
+            throw new AlreadyFulfilledException('Bookmark already gone when deleting: '.$e->getMessage());
+        }
+        $nb->delete();
     	
         return true;
     }
@@ -301,143 +295,39 @@ class BookmarkPlugin extends MicroAppPlugin
      *
      * @return Notice resulting notice
      */
-    function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
+    protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
     {
-        $bookmark = $activity->objects[0];
+        return Bookmark::saveActivityObject($activity->objects[0], $stored);
+    }
 
-        $relLinkEls = ActivityUtils::getLinks($bookmark->element, 'related');
-
-        if (count($relLinkEls) < 1) {
-            // TRANS: Client exception thrown when a bookmark is formatted incorrectly.
-            throw new ClientException(_m('Expected exactly 1 link '.
-                                        'rel=related in a Bookmark.'));
+    public function onEndNoticeAsActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        if (!$this->isMyNotice($stored)) {
+            return true;
         }
 
-        if (count($relLinkEls) > 1) {
-            common_log(LOG_WARNING,
-                       "Got too many link rel=related in a Bookmark.");
-        }
+        common_debug('Extending activity '.$stored->id.' with '.get_called_class());
+        $this->extendActivity($stored, $act, $scoped);
+        return false;
+    }
 
-        $linkEl = $relLinkEls[0];
+    public function extendActivity(Notice $stored, Activity $act, Profile $scoped=null)
+    {
+        /*$hashtags = array();
+        $taglinks = array();
 
-        $url = $linkEl->getAttribute('href');
-
-        $tags = array();
-
-        foreach ($activity->categories as $category) {
-            $tags[] = common_canonical_tag($category->term);
-        }
-
-        if (!empty($activity->time)) {
-            $options['created'] = common_sql_date($activity->time);
-        }
-
-        // Fill in location if available
-
-        $location = $activity->context->location;
-
-        if ($location) {
-            $options['lat'] = $location->lat;
-            $options['lon'] = $location->lon;
-            if ($location->location_id) {
-                $options['location_ns'] = $location->location_ns;
-                $options['location_id'] = $location->location_id;
-            }
-        }
-
-        $options['groups']  = array();
-        $options['replies'] = array();  // TODO: context->attention
-
-        foreach ($activity->context->attention as $attnUrl=>$type) {
-            try {
-                $other = Profile::fromUri($attnUrl);
-                if ($other->isGroup()) {
-                    $options['groups'][] = $other->id;
-                } else {
-                    $options['replies'][] = $attnUrl;
-                }
-            } catch (UnknownUriException $e) {
-                // We simply don't know this URI, despite lookup attempts.
-            }
-        }
-
-        // Maintain direct reply associations
-        // @fixme what about conversation ID?
-
-        if (!empty($activity->context->replyToID)) {
-            $orig = Notice::getKV('uri',
-                                      $activity->context->replyToID);
-            if (!empty($orig)) {
-                $options['reply_to'] = $orig->id;
-            }
-        }
-
-        return Bookmark::saveNew($actor,
-                                 $bookmark->title,
-                                 $url,
-                                 $tags,
-                                 $bookmark->summary,
-                                 $options);
+        foreach ($tags as $tag) {
+            $hashtags[] = '#'.$tag;
+            $attrs      = array('href' => Notice_tag::url($tag),
+                                'rel'  => $tag,
+                                'class' => 'tag');
+            $taglinks[] = XMLStringer::estring('a', $attrs, $tag);
+        }*/
     }
 
     function activityObjectFromNotice(Notice $notice)
     {
-        assert($this->isMyNotice($notice));
-
-        common_log(LOG_INFO,
-                   "Formatting notice {$notice->uri} as a bookmark.");
-
-        $object = new ActivityObject();
-        $nb = Bookmark::getByNotice($notice);
-
-        $object->id      = $notice->uri;
-        $object->type    = ActivityObject::BOOKMARK;
-        $object->title   = $nb->title;
-        $object->summary = $nb->description;
-        $object->link    = $notice->getUrl();
-
-        // Attributes of the URL
-
-        $attachments = $notice->attachments();
-
-        if (count($attachments) != 1) {
-            // TRANS: Server exception thrown when a bookmark has multiple attachments.
-            throw new ServerException(_m('Bookmark notice with the '.
-                                        'wrong number of attachments.'));
-        }
-
-        $target = $attachments[0];
-
-        $attrs = array('rel' => 'related',
-                       'href' => $target->getUrl());
-
-        if (!empty($target->title)) {
-            $attrs['title'] = $target->title;
-        }
-
-        $object->extra[] = array('link', $attrs, null);
-
-        // Attributes of the thumbnail, if any
-
-        try {
-            $thumbnail = $target->getThumbnail();
-            $tattrs = array('rel' => 'preview',
-                            'href' => $thumbnail->getUrl());
-
-            if (!empty($thumbnail->width)) {
-                $tattrs['media:width'] = $thumbnail->width;
-            }
-
-            if (!empty($thumbnail->height)) {
-                $tattrs['media:height'] = $thumbnail->height;
-            }
-
-            $object->extra[] = array('link', $tattrs, null);
-        } catch (UnsupportedMediaException $e) {
-            // No image thumbnail metadata available
-        }
-
-        return $object;
+        return Bookmark::fromStored($notice)->asActivityObject();
     }
 
     function entryForm($out)
@@ -481,44 +371,20 @@ class BookmarkPlugin extends MicroAppPlugin
     {
         assert($obj->type == ActivityObject::BOOKMARK);
 
-        $bm = Bookmark::getKV('uri', $obj->id);
+        $bm = Bookmark::getByPK(array('uri' => $obj->id));
 
-        if (empty($bm)) {
-            throw new ServerException("Unknown bookmark: " . $obj->id);
-        }
-
-        $out['displayName'] = $bm->title;
-        $out['targetUrl']   = $bm->url;
+        $out['displayName'] = $bm->getTitle();
+        $out['targetUrl']   = $bm->getUrl();
 
         return true;
     }
 
-    protected function showNoticeItemNotice(NoticeListItem $nli)
-    {
-        $nli->out->elementStart('div', 'entry-title');
-        $nli->showAuthor();
-        $nli->showContent();
-        $nli->out->elementEnd('div');
-    }
-
     protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
     {
-        $nb = Bookmark::getByNotice($stored);
-
-        if (empty($nb)) {
-            common_log(LOG_ERR, "No bookmark for notice {$stored->id}");
-            parent::showContent();
-            return;
-        } else if (empty($nb->url)) {
-            common_log(LOG_ERR, "No url for bookmark {$nb->id} for notice {$stored->id}");
-            parent::showContent();
-            return;
-        }
-
-        $profile = $stored->getProfile();
+        $nb = Bookmark::fromStored($stored);
 
         // Whether to nofollow
-        $attrs = array('href' => $nb->url, 'class' => 'bookmark-title');
+        $attrs = array('href' => $nb->getUrl(), 'class' => 'bookmark-title');
 
         $nf = common_config('nofollow', 'external');
 
@@ -529,7 +395,7 @@ class BookmarkPlugin extends MicroAppPlugin
         }
 
         $out->elementStart('h3');
-        $out->element('a', $attrs, $nb->title);
+        $out->element('a', $attrs, $nb->getTitle());
         $out->elementEnd('h3');
 
         // Replies look like "for:" tags
@@ -547,16 +413,14 @@ class BookmarkPlugin extends MicroAppPlugin
             $out->elementStart('ul', array('class' => 'bookmark-tags'));
 
             foreach ($replies as $reply) {
-                $other = Profile::getKV('id', $reply);
-                if (!empty($other)) {
-                    $out->elementStart('li');
-                    $out->element('a', array('rel' => 'tag',
-                                             'href' => $other->profileurl,
-                                             'title' => $other->getBestName()),
-                                  sprintf('for:%s', $other->nickname));
-                    $out->elementEnd('li');
-                    $out->text(' ');
-                }
+                $other = Profile::getByPK($reply);
+                $out->elementStart('li');
+                $out->element('a', array('rel' => 'tag',
+                                         'href' => $other->getUrl(),
+                                         'title' => $other->getBestName()),
+                              sprintf('for:%s', $other->getNickname()));
+                $out->elementEnd('li');
+                $out->text(' ');
             }
 
             foreach ($tags as $tag) {

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Петро Романчук <ixer@ixer.org.ua>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-07 09:29+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/gnu-social/language/uk/)\n"
+"PO-Revision-Date: 2015-03-31 10:04+0000\n"
+"Last-Translator: Петро Романчук <ixer@ixer.org.ua>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/gnu-social/gnu-social/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,4 +21,4 @@ msgstr ""
 #. TRANS: Plugin description.
 #: OembedPlugin.php:190
 msgid "Plugin for using and representing Oembed data."
-msgstr ""
+msgstr "Плагін для використання та представлення вбудованих (Oembed) даних."

@@ -57,6 +57,23 @@ class Location
     var $names = array();
 
     /**
+     * Constructor that makes a Location from Notice::locationOptions(...)
+     *
+     * @param array $options    an array for example provided by Notice::locationOptions(...)
+     *
+     * @return Location Location with the given options (lat, lon, id, name)
+     */
+    static function fromOptions(array $options) {
+        $location = new Location();
+        foreach (['lat', 'lon', 'location_id', 'location_ns'] as $opt) {
+            if (isset($options[$opt])) {
+                $location->$opt = $options[$opt];
+            }
+        }
+        return $location;
+    }
+
+    /**
      * Constructor that makes a Location from a string name
      *
      * @param string $name     Human-readable name (any kind)

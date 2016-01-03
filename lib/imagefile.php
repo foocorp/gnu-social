@@ -125,7 +125,7 @@ class ImageFile
         $imgPath = null;
         $media = common_get_mime_media($file->mimetype);
         if (Event::handle('CreateFileImageThumbnailSource', array($file, &$imgPath, $media))) {
-            if (empty($file->filename)) {
+            if (empty($file->filename) && !file_exists($imgPath)) {
                 throw new UnsupportedMediaException(_('File without filename could not get a thumbnail source.'));
             }
 

@@ -351,13 +351,12 @@ class XmppPlugin extends ImPlugin
             $xs->text(sprintf(' => %s', $orig_profile->nickname));
         } catch (NoParentNoticeException $e) {
             $xs->text(": ");
+        } catch (NoResultException $e) {
+            // Parent notice was probably deleted.
+            $xs->text(": ");
         }
-        if (!empty($notice->rendered)) {
-            $notice->rendered = str_replace("\t", "", $notice->rendered);
-            $xs->raw($notice->rendered);
-        } else {
-            $xs->raw(common_render_content($notice->content, $notice));
-        }
+        // FIXME: Why do we replace \t with ''? is it just to make it pretty? shouldn't whitespace be handled well...?
+        $xs->raw(str_replace("\t", "", $notice->getRendered()));
         $xs->text(" ");
         $xs->element('a', array(
             'href'=>common_local_url('conversation',

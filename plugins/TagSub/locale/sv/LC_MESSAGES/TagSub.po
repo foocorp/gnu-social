@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-05 16:43+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/gnu-social/language/sv/)\n"
+"PO-Revision-Date: 2015-09-16 01:33+0000\n"
+"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"Language-Team: Swedish (http://www.transifex.com/gnu-social/gnu-social/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. TRANS: Form legend.
 #: forms/tagunsub.php:90
 msgid "Unsubscribe from this tag"
-msgstr ""
+msgstr "Avsluta prenumerationen för den här taggen"
 
 #. TRANS: Submit button text to unsubscribe from a tag.
 #: forms/tagunsub.php:101
@@ -31,12 +32,12 @@ msgstr "Avsluta pren."
 #. TRANS: Submit button title to unsubscribe from a tag.
 #: forms/tagunsub.php:103
 msgid "Unsubscribe from this tag."
-msgstr ""
+msgstr "Avprenumerera från den här taggen."
 
 #. TRANS: Form legend.
 #: forms/tagsub.php:108
 msgid "Subscribe to this tag"
-msgstr ""
+msgstr "Prenumerera på den här taggen"
 
 #. TRANS: Submit button text to subscribe to a tag.
 #: forms/tagsub.php:131
@@ -47,7 +48,7 @@ msgstr "Prenumerera"
 #. TRANS: Submit button title to subscribe to a tag.
 #: forms/tagsub.php:133
 msgid "Subscribe to this tag."
-msgstr ""
+msgstr "Prenumerera på den här taggen."
 
 #. TRANS: Page title when tag unsubscription succeeded.
 #: actions/tagunsub.php:76

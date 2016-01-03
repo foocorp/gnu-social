@@ -460,6 +460,7 @@ class Action extends HTMLOutputter // lawsuit
 
             // TRANS: Localized tooltip for '...' expansion button on overlong remote messages.
             $messages['showmore_tooltip'] = _m('TOOLTIP', 'Show more');
+            $messages['popup_close_button'] = _m('TOOLTIP', 'Close popup');
 
             $messages = array_merge($messages, $this->getScriptMessages());
 
@@ -1489,7 +1490,7 @@ class Action extends HTMLOutputter // lawsuit
             }
             $this->initDocument('json');
             $error_array = array('error' => $msg, 'request' => $_SERVER['REQUEST_URI']);
-            $this->text(json_encode($error_array));
+            print(json_encode($error_array));
             $this->endDocument('json');
             break;
         case 'text':

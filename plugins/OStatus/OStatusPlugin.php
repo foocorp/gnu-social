@@ -83,6 +83,20 @@ class OStatusPlugin extends Plugin
         return true;
     }
 
+    public function onAutoload($cls)
+    {
+        switch ($cls) {
+        case 'Crypt_AES':
+        case 'Crypt_RSA':
+            // Crypt_AES becomes Crypt/AES.php which is found in extlib/phpseclib/
+            // which has been added to our include_path before
+            require_once str_replace('_', '/', $cls) . '.php';
+            return false;
+        }
+
+        return parent::onAutoload($cls);
+    }
+
     /**
      * Set up queue handlers for outgoing hub pushes
      * @param QueueManager $qm
@@ -104,6 +118,9 @@ class OStatusPlugin extends Plugin
 
         // Incoming from a foreign PuSH hub
         $qm->connect('pushin', 'PushInQueueHandler');
+
+        // Re-subscribe feeds that need renewal
+        $qm->connect('pushrenew', 'PushRenewQueueHandler');
         return true;
     }
 
@@ -229,11 +246,13 @@ class OStatusPlugin extends Plugin
             $profile->whereAdd('uri LIKE "%' . $profile->escape($q) . '%"');
             $profile->query();
 
+            $validate = new Validate();
+
             if ($profile->N == 0) {
                 try {
-                    if (Validate::email($q)) {
+                    if ($validate->email($q)) {
                         $oprofile = Ostatus_profile::ensureWebfinger($q);
-                    } else if (Validate::uri($q)) {
+                    } else if ($validate->uri($q)) {
                         $oprofile = Ostatus_profile::ensureProfileURL($q);
                     } else {
                         // TRANS: Exception in OStatus when invalid URI was entered.
@@ -278,10 +297,13 @@ class OStatusPlugin extends Plugin
                     $oprofile = Ostatus_profile::ensureWebfinger($target);
                     if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
                         $profile = $oprofile->localProfile();
+                        $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
+                                $profile->nickname : $target;
                         $matches[$pos] = array('mentioned' => array($profile),
                                                'type' => 'mention',
-                                               'text' => $target,
+                                               'text' => $text,
                                                'position' => $pos,
+                                               'length' => mb_strlen($target),
                                                'url' => $profile->getUrl());
                     }
                 } catch (Exception $e) {
@@ -291,7 +313,7 @@ class OStatusPlugin extends Plugin
         }
 
         // Profile matches: @example.com/mublog/user
-        if (preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+(?:\w+\-\w+)*\.\w+(?:/\w+)+)!',
+        if (preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+(?:\w+\-\w+)*\.\w+(?:/\w+)*)!',
                        $text,
                        $wmatches,
                        PREG_OFFSET_CAPTURE)) {
@@ -305,10 +327,13 @@ class OStatusPlugin extends Plugin
                         $oprofile = Ostatus_profile::ensureProfileURL($url);
                         if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
                             $profile = $oprofile->localProfile();
+                            $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
+                                    $profile->nickname : $target;
                             $matches[$pos] = array('mentioned' => array($profile),
                                                    'type' => 'mention',
-                                                   'text' => $target,
+                                                   'text' => $text,
                                                    'position' => $pos,
+                                                   'length' => mb_strlen($target),
                                                    'url' => $profile->getUrl());
                             break;
                         }
@@ -419,6 +444,17 @@ class OStatusPlugin extends Plugin
         return null;
     }
 
+    function onEndProfileSettingsActions($out) {
+        $siteName = common_config('site', 'name');
+        $js = 'navigator.registerContentHandler("application/vnd.mozilla.maybe.feed", "'.addslashes(common_local_url('ostatussub', null, array('profile' => '%s'))).'", "'.addslashes($siteName).'")';
+        $out->elementStart('li');
+        $out->element('a',
+                      array('href' => 'javascript:'.$js),
+                      // TRANS: Option in profile settings to add this instance to Firefox as a feedreader
+                      _('Add to Firefox as feedreader'));
+        $out->elementEnd('li');
+    }
+
     /**
      * Make sure necessary tables are filled out.
      */
@@ -455,7 +491,7 @@ class OStatusPlugin extends Plugin
     function onStartNoticeSourceLink($notice, &$name, &$url, &$title)
     {
         // If we don't handle this, keep the event handler going
-        if ($notice->source != 'ostatus') {
+        if (!in_array($notice->source, array('ostatus', 'share'))) {
             return true;
         }
 
@@ -1322,7 +1358,7 @@ class OStatusPlugin extends Plugin
 
     public function onGetLocalAttentions(Profile $actor, array $attention_uris, array &$mentions, array &$groups)
     {
-        list($mentions, $groups) = Ostatus_profile::filterAttention($actor, $attention_uris);
+        list($groups, $mentions) = Ostatus_profile::filterAttention($actor, $attention_uris);
     }
 
     // FIXME: Maybe this shouldn't be so authoritative that it breaks other remote profile lookups?
@@ -1350,5 +1386,52 @@ class OStatusPlugin extends Plugin
             $magicsig->delete();
         }
         return true;
+    }
+
+    public function onSalmonSlap($endpoint_uri, MagicEnvelope $magic_env, Profile $target=null)
+    {
+        $envxml = $magic_env->toXML($target);
+
+        $headers = array('Content-Type: application/magic-envelope+xml');
+
+        try {
+            $client = new HTTPClient();
+            $client->setBody($envxml);
+            $response = $client->post($endpoint_uri, $headers);
+        } catch (HTTP_Request2_Exception $e) {
+            common_log(LOG_ERR, "Salmon post to $endpoint_uri failed: " . $e->getMessage());
+            return false;
+        }
+        if ($response->getStatus() === 422) {
+            common_debug(sprintf('Salmon (from profile %d) endpoint %s returned status %s. We assume it is a Diaspora seed; will adapt and try again if that plugin is enabled!', $magic_env->getActor()->getID(), $endpoint_uri, $response->getStatus()));
+            return true;
+        }
+
+        // 200 OK is the best response
+        // 202 Accepted is what we get from Diaspora for example
+        if (!in_array($response->getStatus(), array(200, 202))) {
+            common_log(LOG_ERR, sprintf('Salmon (from profile %d) endpoint %s returned status %s: %s',
+                                $magic_env->getActor()->getID(), $endpoint_uri, $response->getStatus(), $response->getBody()));
+            return true;
+        }
+
+        // Since we completed the salmon slap, we discontinue the event
+        return false;
+    }
+
+    public function onCronDaily()
+    {
+        try {
+            $sub = FeedSub::renewalCheck();
+        } catch (NoResultException $e) {
+            common_log(LOG_INFO, "There were no expiring feeds.");
+            return;
+        }
+
+        $qm = QueueManager::get();
+        while ($sub->fetch()) {
+            $item = array('feedsub_id' => $sub->id);
+            $qm->enqueue($item, 'pushrenew');
+        }
     }
 }

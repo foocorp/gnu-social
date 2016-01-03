@@ -202,7 +202,7 @@ class DeliciousBackupImporter extends QueueHandler
             'title' => $a->nodeValue,
             'description' => $description,
             'url' => $a->getAttribute('href'),
-            'tags' => $a->getAttribute('tags'),
+            'tags' => preg_split('/[\s,]+/', $a->getAttribute('tags'), null,  PREG_SPLIT_NO_EMPTY),
             'created' => common_sql_date(intval($addDate))
         );
 

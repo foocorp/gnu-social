@@ -90,7 +90,7 @@ class Notice extends Managed_DataObject
                 'source' => array('type' => 'varchar', 'length' => 32, 'description' => 'source of comment, like "web", "im", or "clientname"'),
                 'conversation' => array('type' => 'int', 'description' => 'id of root notice in this conversation'),
                 'repeat_of' => array('type' => 'int', 'description' => 'notice this is a repeat of'),
-                'object_type' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI representing activity streams object type', 'default' => 'http://activitystrea.ms/schema/1.0/note'),
+                'object_type' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI representing activity streams object type', 'default' => null),
                 'verb' => array('type' => 'varchar', 'length' => 191, 'description' => 'URI representing activity streams verb', 'default' => 'http://activitystrea.ms/schema/1.0/post'),
                 'scope' => array('type' => 'int',
                                  'description' => 'bit map for distribution scope; 0 = everywhere; 1 = this server only; 2 = addressees; 4 = followers; null = default'),
@@ -158,43 +158,14 @@ class Notice extends Managed_DataObject
         $this->_profile[$this->profile_id] = $profile;
     }
 
-    public function deleteAs(Profile $actor)
+    public function deleteAs(Profile $actor, $delete_event=true)
     {
-        if ($this->getProfile()->sameAs($actor) || $actor->hasRight(Right::DELETEOTHERSNOTICE)) {
-            return $this->delete();
-        }
-        throw new AuthorizationException('You are not allowed to delete other user\'s notices');
-    }
-
-    function delete($useWhere=false)
-    {
-        // For auditing purposes, save a record that the notice
-        // was deleted.
-
-        // @fixme we have some cases where things get re-run and so the
-        // insert fails.
-        $deleted = Deleted_notice::getKV('id', $this->id);
-
-        if (!$deleted instanceof Deleted_notice) {
-            $deleted = Deleted_notice::getKV('uri', $this->uri);
-        }
-
-        if (!$deleted instanceof Deleted_notice) {
-            $deleted = new Deleted_notice();
-
-            $deleted->id         = $this->id;
-            $deleted->profile_id = $this->profile_id;
-            $deleted->uri        = $this->uri;
-            $deleted->created    = $this->created;
-            $deleted->deleted    = common_sql_now();
-
-            $deleted->insert();
+        if (!$this->getProfile()->sameAs($actor) && !$actor->hasRight(Right::DELETEOTHERSNOTICE)) {
+            throw new AuthorizationException(_('You are not allowed to delete another user\'s notice.'));
         }
 
         if (Event::handle('NoticeDeleteRelated', array($this))) {
-
             // Clear related records
-
             $this->clearReplies();
             $this->clearLocation();
             $this->clearRepeats();
@@ -202,10 +173,21 @@ class Notice extends Managed_DataObject
             $this->clearGroupInboxes();
             $this->clearFiles();
             $this->clearAttentions();
-
             // NOTE: we don't clear queue items
         }
 
+        $result = null;
+        if (!$delete_event || Event::handle('DeleteNoticeAsProfile', array($this, $actor, &$result))) {
+            // If $delete_event is true, we run the event. If the Event then 
+            // returns false it is assumed everything was handled properly 
+            // and the notice was deleted.
+            $result = $this->delete();
+        }
+        return $result;
+    }
+
+    public function delete($useWhere=false)
+    {
         $result = parent::delete($useWhere);
 
         $this->blowOnDelete();
@@ -275,6 +257,11 @@ class Notice extends Managed_DataObject
         return $this->content;
     }
 
+    public function getRendered()
+    {
+        return $this->rendered;
+    }
+
     /*
      * Get the original representation URL of this notice.
      *
@@ -298,10 +285,8 @@ class Notice extends Managed_DataObject
         }
     }
 
-    public function get_object_type($canonical=false) {
-        return $canonical
-                ? ActivityObject::canonicalType($this->object_type)
-                : $this->object_type;
+    public function getObjectType($canonical=false) {
+        return ActivityUtils::resolveUri($this->object_type, $canonical);
     }
 
     public static function getByUri($uri)
@@ -636,7 +621,9 @@ class Notice extends Managed_DataObject
         if (!empty($rendered)) {
             $notice->rendered = $rendered;
         } else {
-            $notice->rendered = common_render_content($final, $notice);
+            $notice->rendered = common_render_content($final,
+                                                      $notice->getProfile(),
+                                                      $notice->hasParent() ? $notice->getParent() : null);
         }
 
         if (empty($verb)) {
@@ -697,33 +684,33 @@ class Notice extends Managed_DataObject
             }
         }
 
-        // Clear the cache for subscribed users, so they'll update at next request
-        // XXX: someone clever could prepend instead of clearing the cache
+        // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
+        // the activityverb is a POST (since stuff like repeat, favorite etc.
+        // reasonably handle notifications themselves.
+        if (ActivityUtils::compareVerbs($notice->verb, array(ActivityVerb::POST))) {
+            if (isset($replies)) {
+                $notice->saveKnownReplies($replies);
+            } else {
+                $notice->saveReplies();
+            }
 
-        // Save per-notice metadata...
+            if (isset($tags)) {
+                $notice->saveKnownTags($tags);
+            } else {
+                $notice->saveTags();
+            }
 
-        if (isset($replies)) {
-            $notice->saveKnownReplies($replies);
-        } else {
-            $notice->saveReplies();
-        }
+            // Note: groups may save tags, so must be run after tags are saved
+            // to avoid errors on duplicates.
+            // Note: groups should always be set.
 
-        if (isset($tags)) {
-            $notice->saveKnownTags($tags);
-        } else {
-            $notice->saveTags();
-        }
+            $notice->saveKnownGroups($groups);
 
-        // Note: groups may save tags, so must be run after tags are saved
-        // to avoid errors on duplicates.
-        // Note: groups should always be set.
-
-        $notice->saveKnownGroups($groups);
-
-        if (isset($urls)) {
-            $notice->saveKnownUrls($urls);
-        } else {
-            $notice->saveUrls();
+            if (isset($urls)) {
+                $notice->saveKnownUrls($urls);
+            } else {
+                $notice->saveUrls();
+            }
         }
 
         if ($distribute) {
@@ -751,6 +738,7 @@ class Notice extends Managed_DataObject
         }
 
         // Get ActivityObject properties
+        $actobj = null;
         if (!empty($act->id)) {
             // implied object
             $options['uri'] = $act->id;
@@ -769,7 +757,7 @@ class Notice extends Managed_DataObject
 
         $defaults = array(
                           'groups'   => array(),
-                          'is_local' => self::LOCAL_PUBLIC,
+                          'is_local' => $actor->isLocal() ? self::LOCAL_PUBLIC : self::REMOTE,
                           'mentions' => array(),
                           'reply_to' => null,
                           'repeat_of' => null,
@@ -789,12 +777,36 @@ class Notice extends Managed_DataObject
         }
         extract($options, EXTR_SKIP);
 
+        // dupe check
         $stored = new Notice();
-        if (!empty($uri)) {
+        if (!empty($uri) && !ActivityUtils::compareVerbs($act->verb, array(ActivityVerb::DELETE))) {
             $stored->uri = $uri;
             if ($stored->find()) {
                 common_debug('cannot create duplicate Notice URI: '.$stored->uri);
-                throw new Exception('Notice URI already exists');
+                // I _assume_ saving a Notice with a colliding URI means we're really trying to
+                // save the same notice again...
+                throw new AlreadyFulfilledException('Notice URI already exists');
+            }
+        }
+
+        $autosource = common_config('public', 'autosource');
+
+        // Sandboxed are non-false, but not 1, either
+        if (!$actor->hasRight(Right::PUBLICNOTICE) ||
+                ($source && $autosource && in_array($source, $autosource))) {
+            // FIXME: ...what about remote nonpublic? Hmmm. That is, if we sandbox remote profiles...
+            $stored->is_local = Notice::LOCAL_NONPUBLIC;
+        } else {
+            $stored->is_local = intval($is_local);
+        }
+
+        if (!$stored->isLocal()) {
+            // Only do these checks for non-local notices. Local notices will generate these values later.
+            if (!common_valid_http_url($url)) {
+                common_debug('Bad notice URL: ['.$url.'], URI: ['.$uri.']. Cannot link back to original! This is normal for shared notices etc.');
+            }
+            if (empty($uri)) {
+                throw new ServerException('No URI for remote notice. Cannot accept that.');
             }
         }
 
@@ -804,18 +816,24 @@ class Notice extends Managed_DataObject
         $stored->url = $url;
         $stored->verb = $act->verb;
 
-        // Use the local user's shortening preferences, if applicable.
-        $stored->rendered = $actor->isLocal()
-                                ? $actor->shortenLinks($act->content)
-                                : $act->content;
+        // Notice content. We trust local users to provide HTML we like, but of course not remote users.
+        // FIXME: What about local users importing feeds? Mirror functions must filter out bad HTML first...
+        $content = $act->content ?: $act->summary;
+        if (is_null($content) && !is_null($actobj)) {
+            $content = $actobj->content ?: $actobj->summary;
+        }
+        $stored->rendered = $actor->isLocal() ? $content : common_purify($content);
         $stored->content = common_strip_html($stored->rendered);
 
-        $autosource = common_config('public', 'autosource');
-
-        // Sandboxed are non-false, but not 1, either
-        if (!$actor->hasRight(Right::PUBLICNOTICE) ||
-            ($source && $autosource && in_array($source, $autosource))) {
-            $stored->is_local = Notice::LOCAL_NONPUBLIC;
+        // Reject notice if it is too long (without the HTML)
+        // FIXME: Reject if too short (empty) too? But we have to pass the 
+        if ($actor->isLocal() && Notice::contentTooLong($stored->content)) {
+            // TRANS: Client error displayed when the parameter "status" is missing.
+            // TRANS: %d is the maximum number of character for a notice.
+            throw new ClientException(sprintf(_m('That\'s too long. Maximum notice size is %d character.',
+                                                 'That\'s too long. Maximum notice size is %d characters.',
+                                                 Notice::maxContent()),
+                                              Notice::maxContent()));
         }
 
         // Maybe a missing act-time should be fatal if the actor is not local?
@@ -846,7 +864,6 @@ class Notice extends Managed_DataObject
             // If the original is private to a group, and notice has no group specified,
             // make it to the same group(s)
             if (empty($groups) && ($reply->scope & Notice::GROUP_SCOPE)) {
-                $groups = array();
                 $replyGroups = $reply->getGroups();
                 foreach ($replyGroups as $group) {
                     if ($actor->isMember($group)) {
@@ -866,7 +883,7 @@ class Notice extends Managed_DataObject
                 $conv = Conversation::getKV('uri', $act->context->conversation);
                 if ($conv instanceof Conversation) {
                     common_debug('Conversation stitched together from (probably) a reply activity to unknown remote user. Activity creation time ('.$stored->created.') should maybe be compared to conversation creation time ('.$conv->created.').');
-                    $stored->conversation = $conv->id;
+                    $stored->conversation = $conv->getID();
                 } else {
                     // Conversation URI was not found, so we must create it. But we can't create it
                     // until we have a Notice ID because of the database layout...
@@ -901,11 +918,24 @@ class Notice extends Managed_DataObject
             $urls[] = $href;
         }
 
+        if (ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST))) {
+            if (empty($act->objects[0]->type)) {
+                // Default type for the post verb is 'note', but we know it's
+                // a 'comment' if it is in reply to something.
+                $stored->object_type = empty($stored->reply_to) ? ActivityObject::NOTE : ActivityObject::COMMENT;
+            } else {
+                //TODO: Is it safe to always return a relative URI? The
+                // JSON version of ActivityStreams always use it, so we
+                // should definitely be able to handle it...
+                $stored->object_type = ActivityUtils::resolveUri($act->objects[0]->type, true);
+            }
+        }
+
         if (Event::handle('StartNoticeSave', array(&$stored))) {
             // XXX: some of these functions write to the DB
 
             try {
-                $stored->insert();    // throws exception on error
+                $result = $stored->insert();    // throws exception on error
 
                 if ($notloc instanceof Notice_location) {
                     $notloc->notice_id = $stored->getID();
@@ -917,7 +947,7 @@ class Notice extends Managed_DataObject
                 $object = null;
                 Event::handle('StoreActivityObject', array($act, $stored, $options, &$object));
                 if (empty($object)) {
-                    throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->uri . ': '.$act->asString());
+                    throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->getUri() . ': '.$act->asString());
                 }
 
                 // If it's not part of a conversation, it's the beginning
@@ -926,7 +956,7 @@ class Notice extends Managed_DataObject
                     // $act->context->conversation will be null if it was not provided
                     common_debug('Creating a new conversation for stored notice ID='.$stored->getID().' with URI: '.$act->context->conversation);
                     $conv = Conversation::create($stored, $act->context->conversation);
-                    $stored->conversation = $conv->id;
+                    $stored->conversation = $conv->getID();
                 }
 
                 $stored->update($orig);
@@ -946,34 +976,39 @@ class Notice extends Managed_DataObject
 
         // Save per-notice metadata...
         $mentions = array();
-        $groups   = array();
+        $group_ids   = array();
 
         // This event lets plugins filter out non-local recipients (attentions we don't care about)
         // Used primarily for OStatus (and if we don't federate, all attentions would be local anyway)
-        Event::handle('GetLocalAttentions', array($actor, $act->context->attention, &$mentions, &$groups));
+        Event::handle('GetLocalAttentions', array($actor, $act->context->attention, &$mentions, &$group_ids));
 
-        if (!empty($mentions)) {
-            $stored->saveKnownReplies($mentions);
-        } else {
-            $stored->saveReplies();
-        }
+        // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
+        // the activityverb is a POST (since stuff like repeat, favorite etc.
+        // reasonably handle notifications themselves.
+        if (ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST))) {
+            if (!empty($mentions)) {
+                $stored->saveKnownReplies($mentions);
+            } else {
+                $stored->saveReplies();
+            }
 
-        if (!empty($tags)) {
-            $stored->saveKnownTags($tags);
-        } else {
-            $stored->saveTags();
-        }
+            if (!empty($tags)) {
+                $stored->saveKnownTags($tags);
+            } else {
+                $stored->saveTags();
+            }
 
-        // Note: groups may save tags, so must be run after tags are saved
-        // to avoid errors on duplicates.
-        // Note: groups should always be set.
+            // Note: groups may save tags, so must be run after tags are saved
+            // to avoid errors on duplicates.
+            // Note: groups should always be set.
 
-        $stored->saveKnownGroups($groups);
+            $stored->saveKnownGroups($group_ids);
 
-        if (!empty($urls)) {
-            $stored->saveKnownUrls($urls);
-        } else {
-            $stored->saveUrls();
+            if (!empty($urls)) {
+                $stored->saveKnownUrls($urls);
+            } else {
+                $stored->saveUrls();
+            }
         }
 
         if ($distribute) {
@@ -985,15 +1020,13 @@ class Notice extends Managed_DataObject
     }
 
     static public function figureOutScope(Profile $actor, array $groups, $scope=null) {
-        if (is_null($scope)) {
-            $scope = self::defaultScope();
-        }
+        $scope = is_null($scope) ? self::defaultScope() : intval($scope);
 
         // For private streams
         try {
             $user = $actor->getUser();
             // FIXME: We can't do bit comparison with == (Legacy StatusNet thing. Let's keep it for now.)
-            if ($user->private_stream && ($scope == Notice::PUBLIC_SCOPE || $scope == Notice::SITE_SCOPE)) {
+            if ($user->private_stream && ($scope === Notice::PUBLIC_SCOPE || $scope === Notice::SITE_SCOPE)) {
                 $scope |= Notice::FOLLOWER_SCOPE;
             }
         } catch (NoSuchUserException $e) {
@@ -1025,8 +1058,10 @@ class Notice extends Managed_DataObject
             $this->blowStream('networkpublic');
         }
 
-        self::blow('notice:list-ids:conversation:%s', $this->conversation);
-        self::blow('conversation:notice_count:%d', $this->conversation);
+        if ($this->conversation) {
+            self::blow('notice:list-ids:conversation:%s', $this->conversation);
+            self::blow('conversation:notice_count:%d', $this->conversation);
+        }
 
         if ($this->isRepeat()) {
             // XXX: we should probably only use one of these
@@ -1320,6 +1355,10 @@ class Notice extends Managed_DataObject
                 }
             } catch (NoParentNoticeException $e) {
                 // Latest notice has no parent
+            } catch (NoResultException $e) {
+                // Notice was not found, so we can't go further up in the tree.
+                // FIXME: Maybe we should do this in a more stable way where deleted
+                // notices won't break conversation chains?
             }
             // No parent, or parent out of scope
             $root = $last;
@@ -1491,13 +1530,8 @@ class Notice extends Managed_DataObject
      *        best with generalizations on user_group to support
      *        remote groups better.
      */
-    function saveKnownGroups($group_ids)
+    function saveKnownGroups(array $group_ids)
     {
-        if (!is_array($group_ids)) {
-            // TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
-            throw new ServerException(_('Bad type provided to saveKnownGroups.'));
-        }
-
         $groups = array();
         foreach (array_unique($group_ids) as $id) {
             $group = User_group::getKV('id', $id);
@@ -1573,7 +1607,7 @@ class Notice extends Managed_DataObject
             return;
         }
 
-        $sender = Profile::getKV($this->profile_id);
+        $sender = $this->getProfile();
 
         foreach (array_unique($uris) as $uri) {
             try {
@@ -1588,11 +1622,9 @@ class Notice extends Managed_DataObject
                 continue;
             }
 
-            $this->saveReply($profile->id);
-            self::blow('reply:stream:%d', $profile->id);
+            $this->saveReply($profile->getID());
+            self::blow('reply:stream:%d', $profile->getID());
         }
-
-        return;
     }
 
     /**
@@ -1607,12 +1639,6 @@ class Notice extends Managed_DataObject
 
     function saveReplies()
     {
-        // Don't save reply data for repeats
-
-        if ($this->isRepeat()) {
-            return array();
-        }
-
         $sender = $this->getProfile();
 
         $replied = array();
@@ -1621,17 +1647,21 @@ class Notice extends Managed_DataObject
         try {
             $parent = $this->getParent();
             $parentauthor = $parent->getProfile();
-            $this->saveReply($parentauthor->id);
-            $replied[$parentauthor->id] = 1;
-            self::blow('reply:stream:%d', $parentauthor->id);
+            $this->saveReply($parentauthor->getID());
+            $replied[$parentauthor->getID()] = 1;
+            self::blow('reply:stream:%d', $parentauthor->getID());
         } catch (NoParentNoticeException $e) {
             // Not a reply, since it has no parent!
+            $parent = null;
+        } catch (NoResultException $e) {
+            // Parent notice was probably deleted
+            $parent = null;
         }
 
         // @todo ideally this parser information would only
         // be calculated once.
 
-        $mentions = common_find_mentions($this->content, $this);
+        $mentions = common_find_mentions($this->content, $sender, $parent);
 
         // store replied only for first @ (what user/notice what the reply directed,
         // we assume first @ is it)
@@ -1720,7 +1750,6 @@ class Notice extends Managed_DataObject
     function sendReplyNotifications()
     {
         // Don't send reply notifications for repeats
-
         if ($this->isRepeat()) {
             return array();
         }
@@ -1730,9 +1759,11 @@ class Notice extends Managed_DataObject
             require_once INSTALLDIR.'/lib/mail.php';
 
             foreach ($recipientIds as $recipientId) {
-                $user = User::getKV('id', $recipientId);
-                if ($user instanceof User) {
+                try {
+                    $user = User::getByID($recipientId);
                     mail_notify_attn($user, $this);
+                } catch (NoResultException $e) {
+                    // No such user
                 }
             }
             Event::handle('EndNotifyMentioned', array($this, $recipientIds));
@@ -1851,6 +1882,8 @@ class Notice extends Managed_DataObject
                 $ctx->replyToUrl = $reply->getUrl(true);    // true for fallback to local URL, less messy
             } catch (NoParentNoticeException $e) {
                 // This is not a reply to something
+            } catch (NoResultException $e) {
+                // Parent notice was probably deleted
             }
 
             try {
@@ -2035,6 +2068,7 @@ class Notice extends Managed_DataObject
         if (Event::handle('StartActivityObjectFromNotice', array($this, &$object))) {
             $object->type    = $this->object_type ?: ActivityObject::NOTE;
             $object->id      = $this->getUri();
+            //FIXME: = $object->title ?: sprintf(... because we might get a title from StartActivityObjectFromNotice
             $object->title   = sprintf('New %1$s by %2$s', ActivityObject::canonicalType($object->type), $this->getProfile()->getNickname());
             $object->content = $this->rendered;
             $object->link    = $this->getUrl();
@@ -2407,7 +2441,7 @@ class Notice extends Managed_DataObject
             $this->uri = sprintf('%s%s=%d:%s=%s',
                                 TagURI::mint(),
                                 'noticeId', $this->id,
-                                'objectType', $this->get_object_type(true));
+                                'objectType', $this->getObjectType(true));
             $changed = true;
         }
 
@@ -2469,8 +2503,13 @@ class Notice extends Managed_DataObject
 
     public function isLocal()
     {
-        return ($this->is_local == Notice::LOCAL_PUBLIC ||
-                $this->is_local == Notice::LOCAL_NONPUBLIC);
+        $is_local = intval($this->is_local);
+        return ($is_local === self::LOCAL_PUBLIC || $is_local === self::LOCAL_NONPUBLIC);
+    }
+
+    public function getScope()
+    {
+        return intval($this->scope);
     }
 
     public function isRepeat()
@@ -2663,13 +2702,9 @@ class Notice extends Managed_DataObject
 
     protected function _inScope($profile)
     {
-        if (!is_null($this->scope)) {
-            $scope = $this->scope;
-        } else {
-            $scope = self::defaultScope();
-        }
+        $scope = is_null($this->scope) ? self::defaultScope() : $this->getScope();
 
-        if ($scope == 0 && !$this->getProfile()->isPrivateStream()) { // Not scoping, so it is public.
+        if ($scope === 0 && !$this->getProfile()->isPrivateStream()) { // Not scoping, so it is public.
             return !$this->isHiddenSpam($profile);
         }
 
@@ -2754,12 +2789,35 @@ class Notice extends Managed_DataObject
         return false;
     }
 
+    public function hasParent()
+    {
+        try {
+            $this->getParent();
+        } catch (NoParentNoticeException $e) {
+            return false;
+        }
+        return true;
+    }
+
     public function getParent()
     {
+        $reply_to_id = null;
+
         if (empty($this->reply_to)) {
             throw new NoParentNoticeException($this);
         }
-        return self::getByID($this->reply_to);
+
+        // The reply_to ID in the table Notice could exist with a number
+        // however, the replied to notice might not exist in the database.
+        // Thus we need to catch the exception and throw the NoParentNoticeException else
+        // the timeline will not display correctly.
+        try {
+            $reply_to_id = self::getByID($this->reply_to);
+        } catch(Exception $e){
+            throw new NoParentNoticeException($this);
+        }
+
+        return $reply_to_id;
     }
 
     /**

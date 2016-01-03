@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU social\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-02 17:47+0100\n"
+"PO-Revision-Date: 2015-02-06 14:57+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Slovenian (http://www.transifex.com/gnu-social/gnu-social/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. TRANS: Title of administration panel.
+#: actions/bitlyadminpanel.php:53
+msgid "bit.ly URL shortening"
+msgstr ""
+
+#. TRANS: Instructions for administration panel.
+#. TRANS: This message contains Markdown links in the form
+#. [decsription](link).
+#: actions/bitlyadminpanel.php:65
+msgid ""
+"URL shortening with bit.ly requires [a bit.ly account and API "
+"key](http://bit.ly/a/your_api_key). This verifies that this is an authorized"
+" account, and allow you to use bit.ly's tracking features and custom "
+"domains."
+msgstr ""
+
+#. TRANS: Client error displayed when using too long a key.
+#: actions/bitlyadminpanel.php:131
+msgid "Invalid login. Maximum length is 255 characters."
+msgstr ""
+
+#. TRANS: Client error displayed when using too long a key.
+#: actions/bitlyadminpanel.php:138
+msgid "Invalid API key. Maximum length is 255 characters."
+msgstr ""
+
+#. TRANS: Fieldset legend in administration panel for bit.ly username and API
+#. key.
+#: actions/bitlyadminpanel.php:188
+msgctxt "LEGEND"
+msgid "Credentials"
+msgstr ""
+
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:197
+msgid "Leave these empty to use global default credentials."
+msgstr ""
+
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:201
+msgid "If you leave these empty, bit.ly will be unavailable to users."
+msgstr ""
+
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:209
+msgid "Login name"
+msgstr ""
+
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
+#: actions/bitlyadminpanel.php:219
+msgid "API key"
+msgstr ""
+
+#. TRANS: Button text to save setting in administration panel for bit.ly URL
+#. shortening.
+#: actions/bitlyadminpanel.php:238
+msgctxt "BUTTON"
+msgid "Save"
+msgstr ""
+
+#. TRANS: Button title to save setting in administration panel for bit.ly URL
+#. shortening.
+#: actions/bitlyadminpanel.php:242
+msgid "Save bit.ly settings"
+msgstr ""
+
+#. TRANS: Exception thrown when bit.ly URL shortening plugin was configured
+#. incorrectly.
+#: BitlyUrlPlugin.php:47
+msgid "You must specify a serviceUrl for bit.ly URL shortening."
+msgstr ""
+
+#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for
+#. example "bit.ly").
+#: BitlyUrlPlugin.php:156
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr ""
+
+#. TRANS: Menu item in administration menus for bit.ly URL shortening
+#. settings.
+#: BitlyUrlPlugin.php:198
+msgid "bit.ly"
+msgstr ""
+
+#. TRANS: Title for menu item in administration menus for bit.ly URL
+#. shortening settings.
+#: BitlyUrlPlugin.php:200
+msgid "bit.ly URL shortening."
+msgstr ""

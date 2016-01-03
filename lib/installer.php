@@ -96,8 +96,8 @@ abstract class Installer
             }
         }
 
-        if (version_compare(PHP_VERSION, '5.3.2', '<')) {
-            $this->warning('Require PHP version 5.3.2 or greater.');
+        if (version_compare(PHP_VERSION, '5.5.0', '<')) {
+            $this->warning('Require PHP version 5.5.0 or greater.');
             $pass = false;
         }
 
@@ -133,10 +133,16 @@ abstract class Installer
         }
 
         // Check the subdirs used for file uploads
-        $fileSubdirs = array('avatar', 'background', 'file');
+        $fileSubdirs = array('avatar', 'file');
         foreach ($fileSubdirs as $fileSubdir) {
-            $fileFullPath = INSTALLDIR."/$fileSubdir/";
-            if (!is_writable($fileFullPath)) {
+            $fileFullPath = INSTALLDIR."/$fileSubdir";
+            if (!file_exists($fileFullPath)) {
+                $pass = $pass && mkdir($fileFullPath);
+            } elseif (!is_dir($fileFullPath)) {
+                $this->warning(sprintf('GNU social expected a directory but found something else on this path: %s', $fileFullPath),
+                               'Either make sure it goes to a directory or remove it and a directory will be created.');
+                $pass = false;
+            } elseif (!is_writable($fileFullPath)) {
                 $this->warning(sprintf('Cannot write to %s directory: <code>%s</code>', $fileSubdir, $fileFullPath),
                                sprintf('On your server, try this command: <code>chmod a+w %s</code>', $fileFullPath));
                 $pass = false;

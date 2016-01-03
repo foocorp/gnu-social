@@ -144,22 +144,8 @@ class PasswordsettingsAction extends SettingsAction
 
         if (Event::handle('StartChangePassword', array($this->scoped, $oldpassword, $newpassword))) {
             //no handler changed the password, so change the password internally
-            $user = $this->scoped->getUser();
-            $original = clone($user);
+            $user->setPassword($newpassword);
 
-            $user->password = common_munge_password($newpassword, $this->scoped);
-
-            $val = $user->validate();
-            if ($val !== true) {
-                // TRANS: Form validation error on page where to change password.
-                throw new ServerException(_('Error saving user; invalid.'));
-            }
-
-            if (!$user->update($original)) {
-                // TRANS: Server error displayed on page where to change password when password change
-                // TRANS: could not be made because of a server error.
-                throw new ServerException(_('Cannot save new password.'));
-            }
             Event::handle('EndChangePassword', array($this->scoped));
         }
 

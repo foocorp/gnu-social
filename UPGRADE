@@ -27,13 +27,13 @@ and follow this procedure:
    The upgrade script will likely take a long time because it will
     upgrade the tables to another character encoding and make other
     automated upgrades. Make sure it ends without errors. If you get
-    errors, create a new task on https://bugz.foocorp.net/
+    errors, create a new task on https://git.gnu.io/gnu/gnu-social/issues
 
 4. Start your queue daemons again (you can run this command even if you
     do not use the queue daemons):
     $ bash scripts/startdaemons.sh
 
-5. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
+5. Report any issues at https://git.gnu.io/gnu/gnu-social/issues
 
 If you are using ssh keys to log in to your server, you can make this
 procedure pretty painless (assuming you have automated backups already).
@@ -69,7 +69,7 @@ variant of this command (you will be prompted for the database password):
 
 2. Unpack your GNU social code to a fresh directory. You can do this
     by cloning our git repository:
-    $ git clone https://gitorious.org/social/mainline.git gnusocial
+    $ git clone https://git.gnu.io/gnu/gnu-social.git gnusocial
 
 3. Synchronize your local files to the GNU social directory. These 
     will be the local files such as avatars, config and files:
@@ -91,8 +91,8 @@ variant of this command (you will be prompted for the database password):
    The upgrade script will likely take a long time because it will
     upgrade the tables to another character encoding and make other
     automated upgrades. Make sure it ends without errors. If you get
-    errors, create a new task on https://bugz.foocorp.net/
+    errors, create a new task on https://git.gnu.io/gnu/gnu-social/issues
 
 6. Start your queue daemons: 'bash scripts/startdaemons.sh'
 
-7. Report any issues at https://bugz.foocorp.net/ (tag GNU social)
+7. Report any issues at https://git.gnu.io/gnu/gnu-social/issues

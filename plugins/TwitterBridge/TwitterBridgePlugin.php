@@ -527,6 +527,23 @@ class TwitterBridgePlugin extends Plugin
 
     public function onEndShowHeadElements(Action $action)
     {
+        if($action instanceof ShowNoticeAction) { // Showing a notice
+            $notice = Notice::getKV('id', $action->arg('notice'));
+
+            try {
+                $flink = Foreign_link::getByUserID($notice->profile_id, TWITTER_SERVICE);
+                $fuser = Foreign_user::getForeignUser($flink->foreign_id, TWITTER_SERVICE);
+            } catch (NoResultException $e) {
+                return true;
+            }
+
+            $statusId = twitter_status_id($notice);
+            if($notice instanceof Notice && $notice->isLocal() && $statusId) {
+                $tweetUrl = 'https://twitter.com/' . $fuser->nickname . '/status/' . $statusId;
+                $action->element('link', array('rel' => 'syndication', 'href' => $tweetUrl));
+            }
+        }
+
         if (!($action instanceof AttachmentAction)) {
             return true;
         }

@@ -295,7 +295,7 @@ class FeedSub extends Managed_DataObject
     {
         $fs = new FeedSub();
         // the "" empty string check is because we historically haven't saved unsubscribed feeds as NULL
-        $fs->whereAdd('sub_end IS NOT NULL AND sub_end!="" AND sub_end < NOW() - INTERVAL 1 day');
+        $fs->whereAdd('sub_end IS NOT NULL AND sub_end!="" AND sub_end < NOW() + INTERVAL 1 day');
         if (!$fs->find()) { // find can be both false and 0, depending on why nothing was found
             throw new NoResultException($fs);
         }
@@ -355,7 +355,7 @@ class FeedSub extends Managed_DataObject
             $response = $client->post($hub, $headers, $post);
             $status = $response->getStatus();
             // PuSH specificed response status code
-            if ($status == 202) {
+            if ($status == 202  || $status == 204) {
                 common_log(LOG_INFO, __METHOD__ . ': sub req ok, awaiting verification callback');
                 return;
             } else if ($status >= 200 && $status < 300) {

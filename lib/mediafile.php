@@ -74,6 +74,11 @@ class MediaFile
         return $this->short_fileurl;
     }
 
+    function getEnclosure()
+    {
+        return $this->getFile()->getEnclosure();
+    }
+
     function delete()
     {
         $filepath = File::path($this->filename);

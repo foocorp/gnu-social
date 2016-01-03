@@ -236,7 +236,7 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
         }
 
         if (Event::handle('StartDeleteOwnNotice', array($this->auth_user, $this->notice))) {
-            $this->notice->delete();
+            $this->notice->deleteAs($this->scoped);
             Event::handle('EndDeleteOwnNotice', array($this->auth_user, $this->notice));
         }
 

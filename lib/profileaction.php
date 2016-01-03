@@ -315,7 +315,7 @@ abstract class ProfileAction extends ManagedAction
                         $url = $lists->mainpage;
                     } else {
                         $url = common_local_url('showprofiletag',
-                                                array('tagger' => $this->target->getNickname(),
+                                                array('nickname' => $this->target->getNickname(),
                                                       'tag'    => $lists->tag));
                     }
                     if (!$first) {

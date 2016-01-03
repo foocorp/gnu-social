@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# SamuelOPH <samueloph@gmail.com>, 2015
+# Thiago Casotti <thiago.casotti@uol.com.br>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-05 17:33+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/gnu-social/language/pt_BR/)\n"
+"PO-Revision-Date: 2015-04-19 20:41+0000\n"
+"Last-Translator: Thiago Casotti <thiago.casotti@uol.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/gnu-social/gnu-social/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,65 +23,65 @@ msgstr ""
 #: actions/anonfavor.php:58
 msgid ""
 "Could not favor notice! Please make sure your browser has cookies enabled."
-msgstr ""
+msgstr "Não pôde auxiliar o comentário! Por favor tenha certeza de que o seu navegador tenha os cookies habilitados."
 
 #. TRANS: Client error.
 #: actions/anonfavor.php:67
 msgid "This notice is already a favorite!"
-msgstr ""
+msgstr "Este comentário já é favorito!"
 
 #. TRANS: Server error.
 #: actions/anonfavor.php:73
 msgid "Could not create favorite."
-msgstr ""
+msgstr "Não foi possível criar favorito"
 
 #. TRANS: Title.
 #: actions/anonfavor.php:82
 msgid "Disfavor favorite"
-msgstr ""
+msgstr "Desfavorecer favorito"
 
 #. TRANS: Client error.
 #: actions/anondisfavor.php:59
 msgid ""
 "Could not disfavor notice! Please make sure your browser has cookies "
 "enabled."
-msgstr ""
+msgstr "Não pôde desfavorecer o comentário! Por favor tenha certeza de que seu navegador tenha cookies habilitados."
 
 #. TRANS: Server error.
 #: actions/anondisfavor.php:80
 msgid "Could not delete favorite."
-msgstr ""
+msgstr "Não pôde deletar favorito."
 
 #. TRANS: Title.
 #: actions/anondisfavor.php:89
 msgid "Add to favorites"
-msgstr ""
+msgstr "Adicionar aos favoritos"
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
 #: classes/Fave_tally.php:96 classes/Fave_tally.php:125
 #, php-format
 msgid "Could not update favorite tally for notice ID %d."
-msgstr ""
+msgstr "Não pôde atualizar marcação de favorito para ID do comentário %d."
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
 #: classes/Fave_tally.php:156
 #, php-format
 msgid "Could not create favorite tally for notice ID %d."
-msgstr ""
+msgstr "Não pôde criar marcação de favorito para ID do comentário %d."
 
 #. TRANS: Label for tally for number of times a notice was favored.
 #: AnonymousFavePlugin.php:165
 msgid "Favored"
-msgstr ""
+msgstr "Favorecido"
 
 #. TRANS: Server exception.
 #: AnonymousFavePlugin.php:198 AnonymousFavePlugin.php:209
 msgid "Could not create anonymous user session."
-msgstr ""
+msgstr "Não pôde criar sessão de usuário anônimo."
 
 #. TRANS: Plugin description.
 #: AnonymousFavePlugin.php:284
 msgid "Allow anonymous users to favorite notices."
-msgstr ""
+msgstr "Permitir usuários anônimos para marcação de favoritos."

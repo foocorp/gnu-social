@@ -34,9 +34,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Returns the most recent notices (default 20) posted by the authenticating
@@ -115,11 +113,11 @@ class ApiTimelineUserAction extends ApiBareAuthAction
     {
         // We'll use the shared params from the Atom stub
         // for other feed types.
-        $atom = new AtomUserNoticeFeed($this->target->getUser(), $this->auth_user);
+        $atom = new AtomUserNoticeFeed($this->target->getUser(), $this->scoped);
 
         $link = common_local_url(
                                  'showstream',
-                                 array('nickname' => $this->target->nickname)
+                                 array('nickname' => $this->target->getNickname())
                                  );
 
         $self = $this->getSelfUri();
@@ -127,7 +125,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         // FriendFeed's SUP protocol
         // Also added RSS and Atom feeds
 
-        $suplink = common_local_url('sup', null, null, $this->target->id);
+        $suplink = common_local_url('sup', null, null, $this->target->getID());
         header('X-SUP-ID: ' . $suplink);
 
 
@@ -135,7 +133,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
         $nextUrl = !empty($this->next_id)
                     ? common_local_url('ApiTimelineUser',
                                     array('format' => $this->format,
-                                          'id' => $this->target->id),
+                                          'id' => $this->target->getID()),
                                     array('max_id' => $this->next_id))
                     : null;
 
@@ -147,11 +145,11 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
         $prevUrl = common_local_url('ApiTimelineUser',
                                     array('format' => $this->format,
-                                          'id' => $this->target->id),
+                                          'id' => $this->target->getID()),
                                     $prevExtra);
         $firstUrl = common_local_url('ApiTimelineUser',
                                     array('format' => $this->format,
-                                          'id' => $this->target->id));
+                                          'id' => $this->target->getID()));
 
         switch($this->format) {
         case 'xml':
@@ -206,7 +204,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             break;
         case 'as':
             header('Content-Type: ' . ActivityStreamJSONDocument::CONTENT_TYPE);
-            $doc = new ActivityStreamJSONDocument($this->auth_user);
+            $doc = new ActivityStreamJSONDocument($this->scoped);
             $doc->setTitle($atom->title);
             $doc->addLink($link, 'alternate', 'text/html');
             $doc->addItemsFromNotices($this->notices);
@@ -307,9 +305,9 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             return '"' . implode(
                                  ':',
                                  array($this->arg('action'),
-                                       common_user_cache_hash($this->auth_user),
+                                       common_user_cache_hash($this->scoped),
                                        common_language(),
-                                       $this->target->id,
+                                       $this->target->getID(),
                                        strtotime($this->notices[0]->created),
                                        strtotime($this->notices[$last]->created))
                                  )
@@ -321,10 +319,10 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
     function handlePost()
     {
-        if (empty($this->auth_user) ||
-            $this->auth_user->id != $this->target->id) {
+        if (!$this->scoped instanceof Profile ||
+                !$this->target->sameAs($this->scoped)) {
             // TRANS: Client error displayed trying to add a notice to another user's timeline.
-            $this->clientError(_('Only the user can add to their own timeline.'));
+            $this->clientError(_('Only the user can add to their own timeline.'), 403);
         }
 
         // Only handle posts for Atom
@@ -356,156 +354,28 @@ class ApiTimelineUserAction extends ApiBareAuthAction
 
         $activity = new Activity($dom->documentElement);
 
-        $saved = null;
+        common_debug('AtomPub: Ignoring right now, but this POST was made to collection: '.$activity->id);
 
-        if (Event::handle('StartAtomPubNewActivity', array(&$activity, $this->target->getUser(), &$saved))) {
-            if ($activity->verb != ActivityVerb::POST) {
-                // TRANS: Client error displayed when not using the POST verb. Do not translate POST.
-                $this->clientError(_('Can only handle POST activities.'));
-            }
+        // Reset activity data so we can handle it in the same functions as with OStatus
+        // because we don't let clients set their own UUIDs... Not sure what AtomPub thinks
+        // about that though.
+        $activity->id = null;
+        $activity->actor = null;    // not used anyway, we use $this->target
+        $activity->objects[0]->id = null;
 
-            $note = $activity->objects[0];
-
-            if (!in_array($note->type, array(ActivityObject::NOTE,
-                                             ActivityObject::BLOGENTRY,
-                                             ActivityObject::STATUS))) {
-                // TRANS: Client error displayed when using an unsupported activity object type.
-                // TRANS: %s is the unsupported activity object type.
-                $this->clientError(sprintf(_('Cannot handle activity object type "%s".'),
-                                             $note->type));
-            }
-
-            $saved = $this->postNote($activity);
-
-            Event::handle('EndAtomPubNewActivity', array($activity, $this->target->getUser(), $saved));
+        $stored = null;
+        if (Event::handle('StartAtomPubNewActivity', array($activity, $this->target, &$stored))) {
+            // TRANS: Client error displayed when not using the POST verb. Do not translate POST.
+            throw new ClientException(_('Could not handle this Atom Activity.'));
         }
-
-        if (!empty($saved)) {
-            header('HTTP/1.1 201 Created');
-            header("Location: " . common_local_url('ApiStatusesShow', array('id' => $saved->id,
-                                                                            'format' => 'atom')));
-            $this->showSingleAtomStatus($saved);
+        if (!$stored instanceof Notice) {
+            throw new ServerException('Server did not create a Notice object from handled AtomPub activity.');
         }
-    }
+        Event::handle('EndAtomPubNewActivity', array($activity, $this->target, $stored));
 
-    function postNote($activity)
-    {
-        $note = $activity->objects[0];
-
-        // Use summary as fallback for content
-
-        if (!empty($note->content)) {
-            $sourceContent = $note->content;
-        } else if (!empty($note->summary)) {
-            $sourceContent = $note->summary;
-        } else if (!empty($note->title)) {
-            $sourceContent = $note->title;
-        } else {
-            // @fixme fetch from $sourceUrl?
-            // TRANS: Client error displayed when posting a notice without content through the API.
-            // TRANS: %d is the notice ID (number).
-            $this->clientError(sprintf(_('No content for notice %d.'), $note->id));
-        }
-
-        // Get (safe!) HTML and text versions of the content
-
-        $rendered = common_purify($sourceContent);
-        $content = common_strip_html($rendered);
-
-        $shortened = $this->auth_user->shortenLinks($content);
-
-        $options = array('is_local' => Notice::LOCAL_PUBLIC,
-                         'rendered' => $rendered,
-                         'replies' => array(),
-                         'groups' => array(),
-                         'tags' => array(),
-                         'urls' => array());
-
-        // accept remote URI (not necessarily a good idea)
-
-        common_debug("Note ID is {$note->id}");
-
-        if (!empty($note->id)) {
-            $notice = Notice::getKV('uri', trim($note->id));
-
-            if (!empty($notice)) {
-                // TRANS: Client error displayed when using another format than AtomPub.
-                // TRANS: %s is the notice URI.
-                $this->clientError(sprintf(_('Notice with URI "%s" already exists.'), $note->id));
-            }
-            common_log(LOG_NOTICE, "Saving client-supplied notice URI '$note->id'");
-            $options['uri'] = $note->id;
-        }
-
-        // accept remote create time (also maybe not such a good idea)
-
-        if (!empty($activity->time)) {
-            common_log(LOG_NOTICE, "Saving client-supplied create time {$activity->time}");
-            $options['created'] = common_sql_date($activity->time);
-        }
-
-        // Check for optional attributes...
-
-        if ($activity->context instanceof ActivityContext) {
-
-            foreach ($activity->context->attention as $uri=>$type) {
-                try {
-                    $profile = Profile::fromUri($uri);
-                    if ($profile->isGroup()) {
-                        $options['groups'][] = $profile->id;
-                    } else {
-                        $options['replies'][] = $uri;
-                    }
-                } catch (UnknownUriException $e) {
-                    common_log(LOG_WARNING, sprintf('AtomPub post with unknown attention URI %s', $uri));
-                }
-            }
-
-            // Maintain direct reply associations
-            // @fixme what about conversation ID?
-
-            if (!empty($activity->context->replyToID)) {
-                $orig = Notice::getKV('uri',
-                                          $activity->context->replyToID);
-                if (!empty($orig)) {
-                    $options['reply_to'] = $orig->id;
-                }
-            }
-
-            $location = $activity->context->location;
-
-            if ($location) {
-                $options['lat'] = $location->lat;
-                $options['lon'] = $location->lon;
-                if ($location->location_id) {
-                    $options['location_ns'] = $location->location_ns;
-                    $options['location_id'] = $location->location_id;
-                }
-            }
-        }
-
-        // Atom categories <-> hashtags
-
-        foreach ($activity->categories as $cat) {
-            if ($cat->term) {
-                $term = common_canonical_tag($cat->term);
-                if ($term) {
-                    $options['tags'][] = $term;
-                }
-            }
-        }
-
-        // Atom enclosures -> attachment URLs
-        foreach ($activity->enclosures as $href) {
-            // @fixme save these locally or....?
-            $options['urls'][] = $href;
-        }
-
-        $saved = Notice::saveNew($this->target->id,
-                                 $content,
-                                 'atompub', // TODO: deal with this
-                                 $options);
-
-        return $saved;
+        header('HTTP/1.1 201 Created');
+        header("Location: " . common_local_url('ApiStatusesShow', array('id' => $stored->getID(),
+                                                                        'format' => 'atom')));
+        $this->showSingleAtomStatus($stored);
     }
 }

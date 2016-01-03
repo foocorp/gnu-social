@@ -159,8 +159,8 @@ class Subscription extends Managed_DataObject
         $sub->jabber     = 1;
         $sub->sms        = 1;
         $sub->created    = common_sql_now();
-        $sub->uri        = self::newURI($sub->subscriber,
-                                        $sub->subscribed,
+        $sub->uri        = self::newUri($subscriber,
+                                        $other,
                                         $sub->created);
 
         $result = $sub->insert();
@@ -267,18 +267,20 @@ class Subscription extends Managed_DataObject
         return $sub;
     }
 
+    public function getSubscriber()
+    {
+        return Profile::getByID($this->subscriber);
+    }
+
+    public function getSubscribed()
+    {
+        return Profile::getByID($this->subscribed);
+    }
+
     function asActivity()
     {
-        $subscriber = Profile::getKV('id', $this->subscriber);
-        $subscribed = Profile::getKV('id', $this->subscribed);
-
-        if (!$subscriber instanceof Profile) {
-            throw new NoProfileException($this->subscriber);
-        }
-
-        if (!$subscribed instanceof Profile) {
-            throw new NoProfileException($this->subscribed);
-        }
+        $subscriber = $this->getSubscriber();
+        $subscribed = $this->getSubscribed();
 
         $act = new Activity();
 
@@ -286,7 +288,7 @@ class Subscription extends Managed_DataObject
 
         // XXX: rationalize this with the URL
 
-        $act->id   = $this->getURI();
+        $act->id   = $this->getUri();
 
         $act->time    = strtotime($this->created);
         // TRANS: Activity title when subscribing to another person.
@@ -431,20 +433,8 @@ class Subscription extends Managed_DataObject
         return parent::update($dataObject);
     }
 
-    function getURI()
+    public function getUri()
     {
-        if (!empty($this->uri)) {
-            return $this->uri;
-        } else {
-            return self::newURI($this->subscriber, $this->subscribed, $this->created);
-        }
-    }
-
-    static function newURI($subscriber_id, $subscribed_id, $created)
-    {
-        return TagURI::mint('follow:%d:%d:%s',
-                            $subscriber_id,
-                            $subscribed_id,
-                            common_date_iso8601($created));
+        return $this->uri ?: self::newUri($this->getSubscriber(), $this->getSubscribed(), $this->created);
     }
 }

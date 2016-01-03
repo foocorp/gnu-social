@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Uğur KUYU <ukuyu34@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GNU social\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-02 17:47+0100\n"
-"PO-Revision-Date: 2015-02-04 17:23+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/gnu-social/language/tr/)\n"
+"PO-Revision-Date: 2015-03-02 11:05+0000\n"
+"Last-Translator: Uğur KUYU <ukuyu34@gmail.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/gnu-social/gnu-social/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: ActivityPlugin.php:75
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> started following <a href=\"%3$s\">%4$s</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\">%2$s</a> takip etmeye başladı <a href=\"%3$s\">%4$s</a>."
 
 #. TRANS: Text for "started following" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -31,7 +32,7 @@ msgstr ""
 #: ActivityPlugin.php:83
 #, php-format
 msgid "%1$s (%2$s) started following %3$s (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) takip etmeye başladı %3$s (%4$s)."
 
 #. TRANS: Text for "stopped following" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
@@ -39,7 +40,7 @@ msgstr ""
 #: ActivityPlugin.php:113
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> stopped following <a href=\"%3$s\">%4$s</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\">%2$s</a> takibi bıraktı <a href=\"%3$s\">%4$s</a>."
 
 #. TRANS: Text for "stopped following" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -47,7 +48,7 @@ msgstr ""
 #: ActivityPlugin.php:121
 #, php-format
 msgid "%1$s (%2$s) stopped following %3$s (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) takibi bıraktı %3$s (%4$s)."
 
 #. TRANS: Text for "stopped liking" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
@@ -55,7 +56,7 @@ msgstr ""
 #: ActivityPlugin.php:158
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> stopped liking <a href=\"%3$s\">%4$s's update</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\">%2$s</a>  <a href=\"%3$s\">%4$s'nin güncellemesini </a> beğenmekten vazgeçti ."
 
 #. TRANS: Text for "stopped liking" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -63,7 +64,7 @@ msgstr ""
 #: ActivityPlugin.php:166
 #, php-format
 msgid "%1$s (%2$s) stopped liking %3$s's status (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) , %3$s'un  durumunu beğenmekten vazgeçti (%4$s)."
 
 #. TRANS: Text for "joined group" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
@@ -74,7 +75,7 @@ msgstr ""
 #: ActivityPlugin.php:203 lib/joinlistitem.php:64
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> joined the group <a href=\"%3$s\">%4$s</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\">%2$s</a> gruba katıldı <a href=\"%3$s\">%4$s</a>."
 
 #. TRANS: Text for "joined group" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -82,7 +83,7 @@ msgstr ""
 #: ActivityPlugin.php:211
 #, php-format
 msgid "%1$s (%2$s) joined the group %3$s (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) gruba katıldı %3$s (%4$s)."
 
 #. TRANS: Text for "left group" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
@@ -90,7 +91,7 @@ msgstr ""
 #: ActivityPlugin.php:244
 #, php-format
 msgid "<a href=\"%1$s\">%2$s</a> left the group <a href=\"%3$s\">%4$s</a>."
-msgstr ""
+msgstr "<a href=\"%1$s\">%2$s</a> gruptan ayrıldı <a href=\"%3$s\">%4$s</a>."
 
 #. TRANS: Text for "left group" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,
@@ -98,9 +99,9 @@ msgstr ""
 #: ActivityPlugin.php:252
 #, php-format
 msgid "%1$s (%2$s) left the group %3$s (%4$s)."
-msgstr ""
+msgstr "%1$s (%2$s) gruptan ayrıldı %3$s (%4$s)."
 
 #. TRANS: Plugin description.
 #: ActivityPlugin.php:350
 msgid "Emits notices when social activities happen."
-msgstr ""
+msgstr "Sosyal etkinlikler gerçekleştiğinde bildirim yapar."
