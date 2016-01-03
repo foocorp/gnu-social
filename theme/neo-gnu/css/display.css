@@ -1158,11 +1158,6 @@ td.entity_profile {
     font-size: 1.4em;
 }
 
-.profile_list .label {
-    display: block;
-    margin-left: 59px !important;
-}
-
 .profile_list .note {
     font-size: 0.88em;
     line-height: 1.36em;

@@ -1611,11 +1611,12 @@ ul.profile_list li {
     margin-bottom: 20px;
 }
 
+ul.profiles.groups {
+    list-style-type:none;
+}
+
 .profile_list .h-card .u-photo {
     margin-right: 4px;
-}
-.profile_list .h-card .p-nickname {
-    display: block;
 }
 
 table.profile_list tbody tr:nth-child(2n+1) {
@@ -1629,12 +1630,15 @@ margin-left:0;
 }
 
 .entity_profile .p-nickname {
-    font-size:1.4em;
+    font-weight: bold;
 }
 
 .entity_profile .p-name {
-    font-size: 1.2em;
     clear: left;
+}
+
+.entity_profile .label {
+    display: block;
 }
 
 .entity_profile .p-name:before {
@@ -1882,7 +1886,7 @@ left:3px;
 }
 
 .profile .entity_profile {
-margin-bottom:0;
+margin-bottom:10px;
 min-height:60px;
 }
 

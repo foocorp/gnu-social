@@ -585,24 +585,39 @@ ul.profile_list li {
     margin-right: 10px;
 }
 
-.profile .entity_profile .p-name,
-.profile .entity_profile .p-locality,
-.profile .entity_profile .role,
-.profile .entity_profile > span,
-.profile .entity_profile .u-url[rel~="contact"] {
+
+/* these apply to both profiles and groups */
+.entity_profile .p-name,
+.entity_profile .p-locality,
+.entity_profile .role,
+.entity_profile > span,
+.entity_profile .u-url[rel~="contact"] {
     display: inline;
-    margin-left: 0;
-    font-size:0.88em;
+    font-size:1.0em;
     color:#9197a3;
 }
 
-.entity_profile .p-name:before,
+.entity_profile .p-nickname {
+    color:#666 !important;
+    display: block !important;
+}
+
+.entity_profile .label {
+    display: inline !important;
+}
+
 .entity_profile .p-name:after {
     content: "";
 }
 
 .profile .entity_profile .u-url {
-    font-size:0.88em;
+    font-size:1.0em;
+}
+
+/* clear parethesis from base theme */
+.entity_profile .p-name:before,
+.entity_profile .p-name:after {
+    content: "";
 }
 
 .entity_profile .role:before {
@@ -613,6 +628,7 @@ ul.profile_list li {
     content: ")";
 }
 
+.entity_profile .label:before,
 .profile .entity_profile .p-locality:before {
     content:" · ";
 }
