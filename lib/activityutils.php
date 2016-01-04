@@ -392,7 +392,8 @@ class ActivityUtils
                 $object = new Notice();
             }
         }
-        foreach (array_unique($uris) as $uri) {
+        $uris = array_unique($uris);
+        foreach ($uris as $uri) {
             try {
                 // the exception thrown will cancel before reaching $object
                 $object = call_user_func(array($object, 'fromUri'), $uri);
@@ -401,11 +402,10 @@ class ActivityUtils
                 common_debug('Could not find local activity object from uri: '.$e->object_uri);
             }
         }
-        if (!empty($object)) {
-            Event::handle('EndFindLocalActivityObject', array($object->getUri(), $type, $object));
-        } else {
-            throw new ServerException('Could not find any activityobject stored locally with given URI');
+        if (!$object instanceof Managed_DataObject) {
+            throw new ServerException('Could not find any activityobject stored locally with given URIs: '.var_export($uris,true));
         }
+        Event::handle('EndFindLocalActivityObject', array($object->getUri(), $object->getObjectType(), $object));
         return $object;
     }
 
