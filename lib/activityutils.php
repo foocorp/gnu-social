@@ -380,23 +380,24 @@ class ActivityUtils
     }
 
     static function findLocalObject(array $uris, $type=ActivityObject::NOTE) {
-        $object = null;
-        // TODO: Extend this in plugins etc.
-        if (Event::handle('StartFindLocalActivityObject', array($uris, $type, &$object))) {
+        $obj_class = null;
+        // TODO: Extend this in plugins etc. and describe in EVENTS.txt
+        if (Event::handle('StartFindLocalActivityObject', array($uris, $type, &$obj_class))) {
             switch (self::resolveUri($type)) {
             case ActivityObject::PERSON:
                 // GROUP will also be here in due time...
-                $object = new Profile();
+                $obj_class = 'Profile';
                 break;
             default:
-                $object = new Notice();
+                $obj_class = 'Notice';
             }
         }
+        $object = null;
         $uris = array_unique($uris);
         foreach ($uris as $uri) {
             try {
                 // the exception thrown will cancel before reaching $object
-                $object = call_user_func(array($object, 'fromUri'), $uri);
+                $object = call_user_func("{$obj_class}::fromUri", $uri);
                 break;
             } catch (UnknownUriException $e) {
                 common_debug('Could not find local activity object from uri: '.$e->object_uri);
