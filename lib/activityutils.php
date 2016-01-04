@@ -397,8 +397,8 @@ class ActivityUtils
                 // the exception thrown will cancel before reaching $object
                 $object = call_user_func(array($object, 'fromUri'), $uri);
                 break;
-            } catch (Exception $e) {
-                common_debug('Could not find local activity object from uri: '.$uri);
+            } catch (UnknownUriException $e) {
+                common_debug('Could not find local activity object from uri: '.$e->object_uri);
             }
         }
         if (!empty($object)) {
