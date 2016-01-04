@@ -48,9 +48,9 @@ class ProfileMiniList extends ProfileList
         $this->out->elementStart('ul', 'entities users xoxo');
     }
 
-    function newListItem($profile)
+    function newListItem(Profile $target)
     {
-        return new ProfileMiniListItem($profile, $this->action);
+        return new ProfileMiniListItem($target, $this->action);
     }
 
     function maxProfiles()
