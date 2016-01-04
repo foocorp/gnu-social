@@ -185,11 +185,6 @@ class FavoritePlugin extends ActivityVerbHandlerPlugin
     {
         assert($this->isMyActivity($act));
 
-        // If empty, we should've created it ourselves on our node.
-        if (!isset($options['created'])) {
-            $options['created'] = !empty($act->time) ? common_sql_date($act->time) : common_sql_now();
-        }
-
         // We must have an objects[0] here because in isMyActivity we require the count to be == 1
         $actobj = $act->objects[0];
 
