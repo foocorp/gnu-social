@@ -235,14 +235,20 @@ class Profile extends Managed_DataObject
      */
     function getCurrentNotice()
     {
-        $notice = $this->getNotices(0, 1);
+        try {
+            $notice = $this->getNotices(0, 1);
 
-        if ($notice->fetch()) {
-            if ($notice instanceof ArrayWrapper) {
-                // hack for things trying to work with single notices
-                return $notice->_items[0];
+            if ($notice->fetch()) {
+                if ($notice instanceof ArrayWrapper) {
+                    // hack for things trying to work with single notices
+                    // ...but this shouldn't happen anymore I think. Keeping it for safety...
+                    return $notice->_items[0];
+                }
+                return $notice;
             }
-            return $notice;
+        } catch (PrivateStreamException $e) {
+            // Maybe we should let this through if it's handled well upstream
+            return null;
         }
         
         return null;
