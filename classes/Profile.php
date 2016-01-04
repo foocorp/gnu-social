@@ -233,10 +233,10 @@ class Profile extends Managed_DataObject
      *
      * @return mixed Notice or null
      */
-    function getCurrentNotice()
+    function getCurrentNotice(Profile $scoped=null)
     {
         try {
-            $notice = $this->getNotices(0, 1);
+            $notice = $this->getNotices(0, 1, 0, 0, $scoped);
 
             if ($notice->fetch()) {
                 if ($notice instanceof ArrayWrapper) {
