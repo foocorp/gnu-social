@@ -115,11 +115,10 @@ class ApiListMembershipsAction extends ApiBareAuthAction
 
     function getLists()
     {
-        $profile = $this->target;
-        $fn = array($profile, 'getOtherTags');
+        $fn = array($this->target, 'getOtherTags');
 
         # 20 lists
         list($this->lists, $this->next_cursor, $this->prev_cursor) =
-                Profile_list::getAtCursor($fn, array($this->auth_user), $this->cursor, 20);
+                Profile_list::getAtCursor($fn, array($this->scoped), $this->cursor, 20);
     }
 }

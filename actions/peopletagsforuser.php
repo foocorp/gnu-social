@@ -126,7 +126,7 @@ class PeopletagsforuserAction extends Action
         $offset = ($this->page-1) * PEOPLETAGS_PER_PAGE;
         $limit  = PEOPLETAGS_PER_PAGE + 1;
 
-        $ptags = $this->tagged->getOtherTags(common_current_user(), $offset, $limit);
+        $ptags = $this->tagged->getOtherTags($this->scoped, $offset, $limit);
 
         $pl = new PeopletagList($ptags, $this);
         $cnt = $pl->show();

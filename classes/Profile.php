@@ -446,7 +446,7 @@ class Profile extends Managed_DataObject
     /**
      * Get tags that other people put on this profile, in reverse-chron order
      *
-     * @param (Profile|User) $auth_user  Authorized user (used for privacy)
+     * @param Profile        $scoped     User we are requesting as
      * @param int            $offset     Offset from latest
      * @param int            $limit      Max number to get
      * @param datetime       $since_id   max date
@@ -455,7 +455,7 @@ class Profile extends Managed_DataObject
      * @return Profile_list resulting lists
      */
 
-    function getOtherTags($auth_user=null, $offset=0, $limit=null, $since_id=0, $max_id=0)
+    function getOtherTags(Profile $scoped=null, $offset=0, $limit=null, $since_id=0, $max_id=0)
     {
         $list = new Profile_list();
 
@@ -467,11 +467,11 @@ class Profile extends Managed_DataObject
                        $this->id);
 
 
-        if ($auth_user instanceof User || $auth_user instanceof Profile) {
+        if (!is_null($scoped)) {
             $qry .= sprintf('AND ( ( profile_list.private = false ) ' .
                             'OR ( profile_list.tagger = %d AND ' .
                             'profile_list.private = true ) )',
-                            $auth_user->id);
+                            $scoped->getID());
         } else {
             $qry .= 'AND profile_list.private = 0 ';
         }

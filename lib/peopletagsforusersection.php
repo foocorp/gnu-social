@@ -54,8 +54,7 @@ class PeopletagsForUserSection extends PeopletagSection
         $limit = PEOPLETAGS_PER_SECTION+1;
         $offset = 0;
 
-        $auth_user = common_current_user();
-        $ptags = $this->profile->getOtherTags($auth_user, $offset, $limit);
+        $ptags = $this->profile->getOtherTags(Profile::current(), $offset, $limit);
 
         return $ptags;
     }
