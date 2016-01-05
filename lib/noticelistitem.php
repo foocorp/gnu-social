@@ -297,7 +297,7 @@ class NoticeListItem extends Widget
         if($this->pa) { return $this->pa; }
         $this->pa = array();
 
-        $attentions = $this->getReplyProfiles();
+        $attentions = $this->getAttentionProfiles();
 
         foreach ($attentions as $attn) {
             $class = $attn->isGroup() ? 'group' : 'account';
@@ -310,9 +310,9 @@ class NoticeListItem extends Widget
         return $this->pa;
     }
 
-    function getReplyProfiles()
+    function getAttentionProfiles()
     {
-        return $this->notice->getReplyProfiles();
+        return $this->notice->getAttentionProfiles();
     }
 
     /**

@@ -282,9 +282,9 @@ class ThreadedNoticeListSubItem extends NoticeListItem
         //
     }
 
-    function getReplyProfiles()
+    function getAttentionProfiles()
     {
-        $all = parent::getReplyProfiles();
+        $all = parent::getAttentionProfiles();
 
         $profiles = array();
 

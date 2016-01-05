@@ -1721,9 +1721,9 @@ class Notice extends Managed_DataObject
      *
      * @return array of Profiles
      */
-    function getReplyProfiles()
+    function getAttentionProfiles()
     {
-        $ids = $this->getReplies();
+        $ids = array_unique(array_merge($this->getReplies(), $this->getGroupProfileIDs()));
 
         $profiles = Profile::multiGet('id', $ids);
 
@@ -1757,6 +1757,23 @@ class Notice extends Managed_DataObject
             }
             Event::handle('EndNotifyMentioned', array($this, $recipientIds));
         }
+    }
+
+    /**
+     * Pull list of Profile IDs of groups this notice addresses.
+     *
+     * @return array of Group _profile_ IDs
+     */
+
+    function getGroupProfileIDs()
+    {
+        $ids = array();
+
+		foreach ($this->getGroups() as $group) {
+		    $ids[] = $group->profile_id;
+		}
+
+        return $ids;
     }
 
     /**
