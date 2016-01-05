@@ -195,6 +195,7 @@ class File_redirection extends Managed_DataObject
 
             $redir->httpcode = $redir_info['code'];
             $redir->redirections = intval($redir_info['redirects']);
+            $redir->redir_url = $redir_info['url'];            
             $redir->file = new File();
             $redir->file->url = $redir_info['url'];
             $redir->file->mimetype = $redir_info['type'];

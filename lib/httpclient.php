@@ -80,7 +80,7 @@ class GNUsocial_HTTPResponse extends HTTP_Request2_Response
      */
     function getUrl()
     {
-        return $this->url;
+        return $this->effectiveUrl;
     }
 
     /**
