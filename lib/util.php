@@ -980,10 +980,16 @@ function common_linkify($url) {
     } else {
         $canon = File_redirection::_canonUrl($url);
         $longurl_data = File_redirection::where($canon, common_config('attachments', 'process_links'));
-        $longurl = $longurl_data->redir_url;
+        
+        if(isset($longurl_data->redir_url)) {
+			$longurl = $longurl_data->redir_url;
+        } else {
+            // e.g. local files
+	        $longurl = $longurl_data->url;
+        }
     }
-
-    $attrs = array('href' => $canon, 'title' => $longurl);
+    
+    $attrs = array('href' => $longurl, 'title' => $longurl);
 
     $is_attachment = false;
     $attachment_id = null;
