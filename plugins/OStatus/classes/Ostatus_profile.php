@@ -473,6 +473,9 @@ class Ostatus_profile extends Managed_DataObject
                 $this->processEntry($entry, $feed, $source);
             } catch (AlreadyFulfilledException $e) {
                 common_debug('We already had this entry: '.$e->getMessage());
+            } catch (ServerException $e) {
+                // FIXME: This should be UnknownUriException and the ActivityUtils:: findLocalObject should only test one URI
+                common_log(LOG_ERR, 'Entry threw exception while processing a feed from '.$source.': '.$e->getMessage());
             }
         }
     }

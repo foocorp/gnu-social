@@ -353,6 +353,8 @@ class Fave extends Managed_DataObject
      */
     static public function parseActivityObject(ActivityObject $actobj, Notice $stored)
     {
+        // throws exception if nothing was found, but it could also be a non-Notice...
+        // FIXME: This should only test _one_ URI (and not the links etc.) though a function like this could be useful in other cases
         $local = ActivityUtils::findLocalObject($actobj->getIdentifiers());
         if (!$local instanceof Notice) {
             // $local always returns something, but this was not what we expected. Something is wrong.
