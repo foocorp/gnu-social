@@ -114,6 +114,7 @@ class RSVP extends Managed_DataObject
         while ($rsvp->fetch()) {
             $event = Happening::getKV('id', $rsvp->event_id);
             if (!$event instanceof Happening) {
+                $rsvp->delete();
                 continue;
             }
             $orig = clone($rsvp);
