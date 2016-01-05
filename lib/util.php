@@ -980,7 +980,7 @@ function common_linkify($url) {
     } else {
         $canon = File_redirection::_canonUrl($url);
         $longurl_data = File_redirection::where($canon, common_config('attachments', 'process_links'));
-        $longurl = $longurl_data->url;
+        $longurl = $longurl_data->redir_url;
     }
 
     $attrs = array('href' => $canon, 'title' => $longurl);
