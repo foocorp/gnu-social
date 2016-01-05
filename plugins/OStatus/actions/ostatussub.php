@@ -193,31 +193,31 @@ class OStatusSubAction extends Action
         $hasFN = ($fullname !== '') ? 'nickname' : 'fn nickname entity_nickname';
         $this->elementStart('a', array('href' => $profile,
                                        'class' => 'url '.$hasFN));
-        $this->raw($nickname);
+        $this->text($nickname);
         $this->elementEnd('a');
 
         if (!is_null($fullname)) {
             $this->elementStart('div', 'fn entity_fn');
-            $this->raw($fullname);
+            $this->text($fullname);
             $this->elementEnd('div');
         }
 
         if (!is_null($location)) {
             $this->elementStart('div', 'label entity_location');
-            $this->raw($location);
+            $this->text($location);
             $this->elementEnd('div');
         }
 
         if (!is_null($homepage)) {
             $this->elementStart('a', array('href' => $homepage,
                                            'class' => 'url entity_url'));
-            $this->raw($homepage);
+            $this->text($homepage);
             $this->elementEnd('a');
         }
 
         if (!is_null($note)) {
             $this->elementStart('div', 'note entity_note');
-            $this->raw($note);
+            $this->text($note);
             $this->elementEnd('div');
         }
         $this->elementEnd('div');
