@@ -131,6 +131,17 @@ class NewnoticeAction extends FormAction
 
         $content = $this->scoped->shortenLinks($content);
 
+        // Reject notice if it is too long (without the HTML)
+        // Should we do this before or after the upload attachment link? I think before...
+        if (Notice::contentTooLong($content)) {
+            // TRANS: Client error displayed when the parameter "status" is missing.
+            // TRANS: %d is the maximum number of character for a notice.
+            throw new ClientException(sprintf(_m('That\'s too long. Maximum notice size is %d character.',
+                                                 'That\'s too long. Maximum notice size is %d characters.',
+                                                 Notice::maxContent()),
+                                              Notice::maxContent()));
+        }
+
         $upload = null;
         try {
             // throws exception on failure
@@ -140,15 +151,7 @@ class NewnoticeAction extends FormAction
             }
             Event::handle('EndSaveNewNoticeAppendAttachment', array($this, $upload, &$content, &$options));
 
-            if (Notice::contentTooLong($content)) {
-                $upload->delete();
-                // TRANS: Client error displayed exceeding the maximum notice length.
-                // TRANS: %d is the maximum length for a notice.
-                $this->clientError(sprintf(_m('Maximum notice size is %d character, including attachment URL.',
-                                              'Maximum notice size is %d characters, including attachment URL.',
-                                              Notice::maxContent()),
-                                           Notice::maxContent()));
-            }
+            // We could check content length here if the URL was added, but I'll just let it slide for now...
 
             $act->enclosures[] = $upload->getEnclosure();
         } catch (NoUploadedMediaException $e) {

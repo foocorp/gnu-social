@@ -825,17 +825,6 @@ class Notice extends Managed_DataObject
         $stored->rendered = $actor->isLocal() ? $content : common_purify($content);
         $stored->content = common_strip_html($stored->rendered);
 
-        // Reject notice if it is too long (without the HTML)
-        // FIXME: Reject if too short (empty) too? But we have to pass the 
-        if ($actor->isLocal() && Notice::contentTooLong($stored->content)) {
-            // TRANS: Client error displayed when the parameter "status" is missing.
-            // TRANS: %d is the maximum number of character for a notice.
-            throw new ClientException(sprintf(_m('That\'s too long. Maximum notice size is %d character.',
-                                                 'That\'s too long. Maximum notice size is %d characters.',
-                                                 Notice::maxContent()),
-                                              Notice::maxContent()));
-        }
-
         // Maybe a missing act-time should be fatal if the actor is not local?
         if (!empty($act->time)) {
             $stored->created = common_sql_date($act->time);
