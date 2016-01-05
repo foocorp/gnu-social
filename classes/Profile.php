@@ -822,6 +822,7 @@ class Profile extends Managed_DataObject
 
         $notices = new Notice();
         $notices->profile_id = $this->id;
+        $notices->verb = ActivityVerb::POST;        
         $cnt = (int) $notices->count('distinct id');
 
         if (!empty($c)) {

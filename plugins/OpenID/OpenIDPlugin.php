@@ -414,7 +414,7 @@ class OpenIDPlugin extends Plugin
      */
     function onRedirectToLogin($action, $user)
     {
-        if (common_config('site', 'openid_only') || (!empty($user) && User_openid::hasOpenID($user->id))) {
+        if (common_config('site', 'openidonly') || (!empty($user) && User_openid::hasOpenID($user->id))) {
             common_redirect(common_local_url('openidlogin'), 303);
         }
         return true;
