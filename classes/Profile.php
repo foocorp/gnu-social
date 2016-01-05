@@ -381,7 +381,7 @@ class Profile extends Managed_DataObject
         return false;
     }
 
-    function getLists($auth_user, $offset=0, $limit=null, $since_id=0, $max_id=0)
+    function getLists(Profile $scoped=null, $offset=0, $limit=null, $since_id=0, $max_id=0)
     {
         $ids = array();
 
@@ -421,9 +421,7 @@ class Profile extends Managed_DataObject
             self::cacheSet($keypart, implode(',', $ids));
         }
 
-        $showPrivate = (($auth_user instanceof User ||
-                            $auth_user instanceof Profile) &&
-                        $auth_user->id === $this->id);
+        $showPrivate = $this->sameAs($scoped);
 
         $lists = array();
 

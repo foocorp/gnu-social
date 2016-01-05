@@ -49,9 +49,7 @@ class ListsNav extends MoreMenu
         parent::__construct($out);
         $this->profile = $profile;
 
-        $user = common_current_user();
-
-        $this->lists = $profile->getLists($user);
+        $this->lists = $profile->getLists(Profile::current());
     }
 
     function tag()

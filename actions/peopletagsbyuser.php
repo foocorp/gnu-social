@@ -116,7 +116,7 @@ class PeopletagsbyuserAction extends Action
 
         $user = common_current_user();
         if ($this->arg('public')) {
-            $this->tags = $this->tagger->getLists(false, $offset, $limit);
+            $this->tags = $this->tagger->getLists(null, $offset, $limit);
         } else if ($this->arg('private')) {
             if (empty($user)) {
                 // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
@@ -130,7 +130,7 @@ class PeopletagsbyuserAction extends Action
                 $this->clientError(_('You cannot view others\' private lists'), 403);
             }
         } else {
-            $this->tags = $this->tagger->getLists(common_current_user(), $offset, $limit);
+            $this->tags = $this->tagger->getLists($this->scoped, $offset, $limit);
         }
         return true;
     }

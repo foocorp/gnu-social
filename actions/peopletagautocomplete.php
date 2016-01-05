@@ -68,7 +68,7 @@ class PeopletagautocompleteAction extends Action
         }
 
         $profile = $this->user->getProfile();
-        $tags = $profile->getLists(common_current_user());
+        $tags = $profile->getLists($this->scoped);
 
         $this->tags = array();
         while ($tags->fetch()) {

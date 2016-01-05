@@ -185,7 +185,7 @@ class ApiListsAction extends ApiBareAuthAction
 
         list($this->lists,
              $this->next_cursor,
-             $this->prev_cursor) = Profile_list::getAtCursor($fn, array($this->auth_user), $cursor, $count);
+             $this->prev_cursor) = Profile_list::getAtCursor($fn, array($this->scoped), $cursor, $count);
     }
 
     function isReadOnly($args)
