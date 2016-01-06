@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Widget to show a list of subscriptions
@@ -46,14 +44,14 @@ class SubscriptionList extends ProfileList
     /** Owner of this list */
     var $owner = null;
 
-    function __construct($profile, $owner=null, $action=null)
+    public function __construct(Profile $profile, $owner=null, $action=null)
     {
         parent::__construct($profile, $action);
 
         $this->owner = $owner;
     }
 
-    function newListItem($profile)
+    public function newListItem(Profile $profile)
     {
         return new SubscriptionListItem($profile, $this->owner, $this->action);
     }
