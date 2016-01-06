@@ -88,7 +88,7 @@ class OembedAction extends Action
             $oembed['author_name']=$authorname;
             $oembed['author_url']=$profile->profileurl;
             $oembed['url']=$notice->getUrl();
-            $oembed['html']=$notice->rendered;
+            $oembed['html']=$notice->getRendered();
             break;
 
         case 'attachment':

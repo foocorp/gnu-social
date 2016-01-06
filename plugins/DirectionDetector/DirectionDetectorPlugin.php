@@ -37,6 +37,7 @@ class DirectionDetectorPlugin extends Plugin {
      * @param object $notice notice is going to be saved
      */
     public function onStartNoticeSave($notice){
+        // don't use getRendered() here since it's not saved yet and thus can't ->update in case that would happen
         if(!preg_match('/<span class="rtl">/', $notice->rendered) && self::isRTL($notice->content))
             $notice->rendered = '<span class="rtl">'.$notice->rendered.'</span>';
         return true;

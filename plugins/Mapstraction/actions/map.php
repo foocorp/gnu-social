@@ -146,7 +146,7 @@ class MapAction extends Action
 
         $arr = $act->twitterStatusArray($notice, true);
         $arr['url'] = $notice->getUrl(true);
-        $arr['html'] = $notice->rendered;
+        $arr['html'] = $notice->getRendered();
         $arr['source'] = $arr['source'];
 
         if (!empty($notice->reply_to)) {

@@ -195,7 +195,7 @@ class SubMirror extends Managed_DataObject
     {
         $options = array('is_local' => Notice::LOCAL_PUBLIC,
                          'url' => $notice->getUrl(), // pass through the foreign link...
-                         'rendered' => $notice->rendered);
+                         'rendered' => $notice->getRendered());
 
         $saved = Notice::saveNew($profile->id,
                                  $notice->content,

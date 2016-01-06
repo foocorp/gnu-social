@@ -327,7 +327,7 @@ class ApiSearchAtomAction extends ApiPrivateAuthAction
                                      'rel'  => 'alternate',
                                      'href' => $nurl));
         $this->element('title', null, common_xml_safe_str(trim($notice->content)));
-        $this->element('content', array('type' => 'html'), $notice->rendered);
+        $this->element('content', array('type' => 'html'), $notice->getRendered());
         $this->element('updated', null, common_date_w3dtf($notice->created));
         $this->element('link', array('type' => 'image/png',
                                      // XXX: Twitter uses rel="image" (not valid)

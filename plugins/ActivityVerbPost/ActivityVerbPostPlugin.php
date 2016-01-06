@@ -74,7 +74,7 @@ class ActivityVerbPostPlugin extends ActivityVerbHandlerPlugin
         $object->type    = $notice->object_type ?: ActivityObject::NOTE;
         $object->id      = $notice->getUri();
         $object->title   = sprintf('New %1$s by %2$s', ActivityObject::canonicalType($object->type), $notice->getProfile()->getNickname());
-        $object->content = $notice->rendered;
+        $object->content = $notice->getRendered();
         $object->link    = $notice->getUrl();
 
         $object->extra[] = array('status_net', array('notice_id' => $notice->getID()));
@@ -102,7 +102,7 @@ class ActivityVerbPostPlugin extends ActivityVerbHandlerPlugin
 
     protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
     {
-        $out->raw($stored->rendered);
+        $out->raw($stored->getRendered());
     }
 
     protected function getActionTitle(ManagedAction $action, $verb, Notice $target, Profile $scoped)

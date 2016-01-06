@@ -68,7 +68,7 @@ class UnfollowListItem extends SystemListItem
 
         $out->elementStart('div', 'unfollow-activity');
 
-        $out->raw($notice->rendered);
+        $out->raw($notice->getRendered());
 
         $out->elementEnd('div');
     }

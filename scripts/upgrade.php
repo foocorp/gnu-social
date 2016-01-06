@@ -41,7 +41,6 @@ function main()
 
         // These replace old "fixup_*" scripts
 
-        fixupNoticeRendered();
         fixupNoticeConversation();
         initConversation();
         fixupGroupURI();
@@ -90,26 +89,6 @@ function updateSchemaPlugins()
 
     Event::handle('BeforePluginCheckSchema');
     Event::handle('CheckSchema');
-
-    printfnq("DONE.\n");
-}
-
-function fixupNoticeRendered()
-{
-    printfnq("Ensuring all notices have rendered HTML...");
-
-    $notice = new Notice();
-
-    $notice->whereAdd('rendered IS NULL');
-    $notice->find();
-
-    while ($notice->fetch()) {
-        $original = clone($notice);
-        $notice->rendered = common_render_content($notice->content,
-                                                  $notice->getProfile(),
-                                                  $notice->hasParent() ? $notice->getParent() : null);
-        $notice->update($original);
-    }
 
     printfnq("DONE.\n");
 }

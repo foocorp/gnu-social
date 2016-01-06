@@ -259,6 +259,14 @@ class Notice extends Managed_DataObject
 
     public function getRendered()
     {
+        if (is_null($this->rendered) || $this->rendered === '') {
+            // update to include rendered content on-the-fly, so we don't have to have a fix-up script in upgrade.php
+            $orig = clone($this);
+            $this->rendered = common_render_content($this->getContent(),
+                                                    $this->getProfile(),
+                                                    $this->hasParent() ? $this->getParent() : null);
+            $this->update($orig);
+        }
         return $this->rendered;
     }
 
@@ -816,6 +824,7 @@ class Notice extends Managed_DataObject
             $content = $actobj->content ?: $actobj->summary;
         }
         $stored->rendered = $actor->isLocal() ? $content : common_purify($content);
+        // yeah, just don't use getRendered() here since it's not inserted yet ;)
         $stored->content = common_strip_html($stored->rendered);
 
         // Maybe a missing act-time should be fatal if the actor is not local?
@@ -1835,7 +1844,7 @@ class Notice extends Managed_DataObject
                 // The notice is probably a share or similar, which don't
                 // have a representational URL of their own.
             }
-            $act->content = common_xml_safe_str($this->rendered);
+            $act->content = common_xml_safe_str($this->getRendered());
 
             $profile = $this->getProfile();
 
@@ -2069,7 +2078,7 @@ class Notice extends Managed_DataObject
             $object->id      = $this->getUri();
             //FIXME: = $object->title ?: sprintf(... because we might get a title from StartActivityObjectFromNotice
             $object->title   = sprintf('New %1$s by %2$s', ActivityObject::canonicalType($object->type), $this->getProfile()->getNickname());
-            $object->content = $this->rendered;
+            $object->content = $this->getRendered();
             $object->link    = $this->getUrl();
 
             $object->extra[] = array('status_net', array('notice_id' => $this->id));

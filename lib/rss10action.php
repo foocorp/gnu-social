@@ -209,8 +209,8 @@ class Rss10Action extends ManagedAction
         $this->element('title', null, $title);
         $this->element('link', null, $nurl);
         $this->element('description', null, $profile->nickname."'s status on ".common_exact_date($notice->created));
-        if ($notice->rendered) {
-            $this->element('content:encoded', null, common_xml_safe_str($notice->rendered));
+        if ($notice->getRendered()) {
+            $this->element('content:encoded', null, common_xml_safe_str($notice->getRendered()));
         }
         $this->element('dc:date', null, common_date_w3dtf($notice->created));
         $this->element('dc:creator', null, ($profile->fullname) ? $profile->fullname : $profile->nickname);

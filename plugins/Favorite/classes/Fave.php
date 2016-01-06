@@ -63,7 +63,7 @@ class Fave extends Managed_DataObject
         //        notice's nickname and %3$s is the content of the favorited notice.)
         $act->content = sprintf(_('%1$s favorited something by %2$s: %3$s'),
                                 $actor->getNickname(), $target->getProfile()->getNickname(),
-                                $target->rendered ?: $target->content);
+                                $target->getRendered());
         $act->actor   = $actor->asActivityObject();
         $act->target  = $target->asActivityObject();
         $act->objects = array(clone($act->target));
@@ -186,7 +186,7 @@ class Fave extends Managed_DataObject
         //        notice's nickname and %3$s is the content of the favorited notice.)
         $act->content = sprintf(_('%1$s favorited something by %2$s: %3$s'),
                                 $actor->getNickname(), $target->getProfile()->getNickname(),
-                                $target->rendered ?: $target->content);
+                                $target->getRendered());
 
         $act->actor     = $actor->asActivityObject();
         $act->target    = $target->asActivityObject();
@@ -343,7 +343,7 @@ class Fave extends Managed_DataObject
         $actobj->objects = array(clone($actobj->target));
         $actobj->verb = ActivityVerb::FAVORITE;
         $actobj->title = ActivityUtils::verbToTitle($actobj->verb);
-        $actobj->content = $this->getTarget()->rendered ?: $this->getTarget()->content;
+        $actobj->content = $this->getTarget()->getRendered();
         return $actobj;
     }
 

@@ -388,7 +388,7 @@ function linkback_save($source, $target, $response, $notice_or_user) {
         //        notice's nickname and %3$s is the content of the favorited notice.)
         $act->content = sprintf(_('%1$s favorited something by %2$s: %3$s'),
                                 $profile->getNickname(), $notice_or_user->getProfile()->getNickname(),
-                                $notice_or_user->rendered ?: $notice_or_user->content);
+                                $notice_or_user->getRendered());
         if($entry['rsvp']) {
             $act->content = $options['rendered'];
         }

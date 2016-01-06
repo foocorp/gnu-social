@@ -170,7 +170,7 @@ class SharePlugin extends ActivityVerbHandlerPlugin
         $object          = new Activity();
         $object->actor   = $stored->getProfile()->asActivityObject();
         $object->verb    = ActivityVerb::SHARE;
-        $object->content = $stored->rendered;
+        $object->content = $stored->getRendered();
         $this->extendActivity($stored, $object);
 
         return $object;

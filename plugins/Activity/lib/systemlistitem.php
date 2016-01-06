@@ -68,7 +68,7 @@ class SystemListItem extends NoticeListItemAdapter
 
         $out->elementStart('div', 'system-activity');
 
-        $out->raw($notice->rendered);
+        $out->raw($notice->getRendered());
 
         $out->elementEnd('div');
     }

@@ -408,7 +408,7 @@ class ApiAction extends Action
 
         // StatusNet-specific
 
-        $twitter_status['statusnet_html'] = $notice->rendered;
+        $twitter_status['statusnet_html'] = $notice->getRendered();
         $twitter_status['statusnet_conversation_id'] = intval($notice->conversation);
 
         // The event call to handle NoticeSimpleStatusArray lets plugins add data to the output array
@@ -503,7 +503,7 @@ class ApiAction extends Action
 
             // We trim() to avoid extraneous whitespace in the output
 
-            $entry['content'] = common_xml_safe_str(trim($notice->rendered));
+            $entry['content'] = common_xml_safe_str(trim($notice->getRendered()));
             $entry['title'] = $profile->nickname . ': ' . common_xml_safe_str(trim($notice->content));
             $entry['link'] = common_local_url('shownotice', array('notice' => $notice->id));
             $entry['published'] = common_date_iso8601($notice->created);

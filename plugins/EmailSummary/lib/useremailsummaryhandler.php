@@ -171,7 +171,7 @@ class UserEmailSummaryHandler extends QueueHandler
             $out->element('a', array('href' => $profile->profileurl),
                           $profile->nickname);
             $out->text(' ');
-            $out->raw($notice->rendered);
+            $out->raw($notice->getRendered());
             $out->elementStart('div', array('style' => 'font-size: 0.8em; padding-top: 4px;'));
             $noticeurl = $notice->getLocalUrl();
             // above should always return an URL

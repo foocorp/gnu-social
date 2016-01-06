@@ -144,8 +144,6 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         foreach($props as $prop) {
             $stored->$prop = $target->$prop;
         }
-        //$stored->content = $stored->content ?: _('Notice deleted.');
-        //$stored->rendered = $stored->rendered ?: $stored->rendered;
 
         // Let's see if this has been deleted already.
         try {
