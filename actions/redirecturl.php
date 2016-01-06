@@ -56,7 +56,7 @@ class RedirecturlAction extends ManagedAction
 
     public function showPage()
     {
-        common_redirect($this->file->url, 307);
+        common_redirect($this->file->getUrl(false), 301);
     }
 
     function isReadOnly($args)
