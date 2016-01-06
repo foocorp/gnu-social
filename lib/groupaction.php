@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 define('MEMBERS_PER_SECTION', 27);
 
@@ -288,89 +286,5 @@ class GroupAction extends Action
     function getGroup()
     {
         return $this->group;
-    }
-}
-
-class GroupAdminSection extends ProfileSection
-{
-    var $group;
-
-    function __construct($out, $group)
-    {
-        parent::__construct($out);
-        $this->group = $group;
-    }
-
-    function getProfiles()
-    {
-        return $this->group->getAdmins();
-    }
-
-    function title()
-    {
-        // TRANS: Title for list of group administrators on a group page.
-        return _m('TITLE','Admins');
-    }
-
-    function divId()
-    {
-        return 'group_admins';
-    }
-
-    function moreUrl()
-    {
-        return null;
-    }
-}
-
-class GroupMembersMiniList extends ProfileMiniList
-{
-    function newListItem($profile)
-    {
-        return new GroupMembersMiniListItem($profile, $this->action);
-    }
-}
-
-class GroupMembersMiniListItem extends ProfileMiniListItem
-{
-    function linkAttributes()
-    {
-        $aAttrs = parent::linkAttributes();
-
-        if (common_config('nofollow', 'members')) {
-            $aAttrs['rel'] .= ' nofollow';
-        }
-
-        return $aAttrs;
-    }
-}
-
-class GroupBlockedMiniList extends ProfileMiniList
-{
-    function newListItem($profile)
-    {
-        return new GroupBlockedMiniListItem($profile, $this->action);
-    }
-}
-
-class GroupBlockedMiniListItem extends ProfileMiniListItem
-{
-    function linkAttributes()
-    {
-        $aAttrs = parent::linkAttributes();
-
-        if (common_config('nofollow', 'members')) {
-            $aAttrs['rel'] .= ' nofollow';
-        }
-
-        return $aAttrs;
-    }
-}
-
-class ThreadingGroupNoticeStream extends ThreadingNoticeStream
-{
-    function __construct($group, $profile)
-    {
-        parent::__construct(new GroupNoticeStream($group, $profile));
     }
 }
