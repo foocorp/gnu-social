@@ -261,6 +261,7 @@ class Notice extends Managed_DataObject
     {
         if (is_null($this->rendered) || $this->rendered === '') {
             // update to include rendered content on-the-fly, so we don't have to have a fix-up script in upgrade.php
+            common_debug('Rendering notice '.$this->getID().' as it had no rendered HTML content.');
             $orig = clone($this);
             $this->rendered = common_render_content($this->getContent(),
                                                     $this->getProfile(),
