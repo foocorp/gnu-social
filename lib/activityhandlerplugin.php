@@ -585,7 +585,7 @@ abstract class ActivityHandlerPlugin extends Plugin
         try {
             $this->showNoticeListItem($nli);
         } catch (Exception $e) {
-            common_log(LOG_ERR, 'Error showing notice: ' . $e->getMessage());
+            common_log(LOG_ERR, 'Error showing notice '.$nli->getNotice()->getID().': ' . $e->getMessage());
             $nli->out->element('p', 'error', sprintf(_('Error showing notice: %s'), $e->getMessage()));
         }
 
