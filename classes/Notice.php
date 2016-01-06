@@ -592,20 +592,24 @@ class Notice extends Managed_DataObject
                 $conv = Conversation::getKV('uri', $options['conversation']);
                 if ($conv instanceof Conversation) {
                     common_debug('Conversation stitched together from (probably) a reply to unknown remote user. Activity creation time ('.$notice->created.') should maybe be compared to conversation creation time ('.$conv->created.').');
-                    $notice->conversation = $conv->id;
                 } else {
-                    // Conversation URI was not found, so we must create it. But we can't create it
-                    // until we have a Notice ID because of the database layout...
-                    // $options['conversation'] will be used later after the $notice->insert();
-                    common_debug('Conversation URI not found, so we have to create it after inserting this Notice: '.$options['conversation']);
+                    // Conversation entry with specified URI was not found, so we must create it.
+                    common_debug('Conversation URI not found, so we will create it with the URI given in the options to Notice::saveNew: '.$options['conversation']);
+                    // The insert in Conversation::create throws exception on failure
+                    $conv = Conversation::create($options['conversation'], $notice->created);
                 }
-            } else {
-                // If we're not using the attached conversation URI let's remove it
-                // so we don't mistake ourselves later, when creating our own Conversation.
-                // This implies that the notice knows which conversation it belongs to.
-                $options['conversation'] = null;
+                $notice->conversation = $conv->getID();
+                unset($conv);
             }
         }
+
+        // If it's not part of a conversation, it's the beginning of a new conversation.
+        if (empty($notice->conversation)) {
+            $conv = Conversation::create();
+            $notice->conversation = $conv->getID();
+            unset($conv);
+        }
+
 
         $notloc = new Notice_location();
         if (!empty($lat) && !empty($lon)) {
@@ -661,17 +665,6 @@ class Notice extends Managed_DataObject
                 if (($notloc->lat && $notloc->lon) || ($notloc->location_id && $notloc->location_ns)) {
                     $notloc->notice_id = $notice->getID();
                     $notloc->insert();  // store the notice location if it had any information
-                }
-
-                // If it's not part of a conversation, it's
-                // the beginning of a new conversation.
-                if (empty($notice->conversation)) {
-                    $orig = clone($notice);
-                    // $act->context->conversation will be null if it was not provided
-
-                    $conv = Conversation::create($notice, $options['conversation']);
-                    $notice->conversation = $conv->id;
-                    $notice->update($orig);
                 }
             } catch (Exception $e) {
                 // Let's test if we managed initial insert, which would imply
@@ -872,14 +865,22 @@ class Notice extends Managed_DataObject
                 $conv = Conversation::getKV('uri', $act->context->conversation);
                 if ($conv instanceof Conversation) {
                     common_debug('Conversation stitched together from (probably) a reply activity to unknown remote user. Activity creation time ('.$stored->created.') should maybe be compared to conversation creation time ('.$conv->created.').');
-                    $stored->conversation = $conv->getID();
                 } else {
-                    // Conversation URI was not found, so we must create it. But we can't create it
-                    // until we have a Notice ID because of the database layout...
-                    // $options['conversation'] will be used later after the $stored->insert();
-                    common_debug('Conversation URI from activity context not found, so we have to create it after inserting this Notice: '.$act->context->conversation);
+                    // Conversation entry with specified URI was not found, so we must create it.
+                    common_debug('Conversation URI not found, so we will create it with the URI given in the context of the activity: '.$act->context->conversation);
+                    // The insert in Conversation::create throws exception on failure
+                    $conv = Conversation::create($act->context->conversation, $stored->created);
                 }
+                $stored->conversation = $conv->getID();
+                unset($conv);
             }
+        }
+
+        // If it's not part of a conversation, it's the beginning of a new conversation.
+        if (empty($stored->conversation)) {
+            $conv = Conversation::create();
+            $stored->conversation = $conv->getID();
+            unset($conv);
         }
 
         $notloc = null;
@@ -939,15 +940,7 @@ class Notice extends Managed_DataObject
                     throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->getUri() . ': '.$act->asString());
                 }
 
-                // If it's not part of a conversation, it's the beginning
-                // of a new one (or belongs to a previously unknown URI).
-                if (empty($stored->conversation)) {
-                    // $act->context->conversation will be null if it was not provided
-                    common_debug('Creating a new conversation for stored notice ID='.$stored->getID().' with URI: '.$act->context->conversation);
-                    $conv = Conversation::create($stored, $act->context->conversation);
-                    $stored->conversation = $conv->getID();
-                }
-
+                // If something changed in the Notice during StoreActivityObject
                 $stored->update($orig);
             } catch (Exception $e) {
                 if (empty($stored->id)) {

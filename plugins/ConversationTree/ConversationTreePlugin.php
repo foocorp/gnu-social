@@ -26,7 +26,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class ConversationTreePlugin extends Plugin
 {
     public function onStartShowConversation(Action $action, Conversation $conv, Profile $scoped=null) {
-        $nl = new ConversationTree($conv->getNotices(), $action);
+        $nl = new ConversationTree($conv->getNotices($action->getScoped()), $action);
         $cnt = $nl->show();
         return false;
     }

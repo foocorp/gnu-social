@@ -43,7 +43,7 @@ class Conversation extends Managed_DataObject
     {
         return array(
             'fields' => array(
-                'id' => array('type' => 'int', 'not null' => true, 'description' => 'should be set from root notice id (since 2014-03-01 commit)'),
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'Unique identifier, (again) unrelated to notice id since 2016-01-06'),
                 'uri' => array('type' => 'varchar', 'not null'=>true, 'length' => 191, 'description' => 'URI of the conversation'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
@@ -63,25 +63,17 @@ class Conversation extends Managed_DataObject
      *
      * @return Conversation the new conversation DO
      */
-    static function create(Notice $notice, $uri=null)
+    static function create($uri=null, $created=null)
     {
-        if (empty($notice->id)) {
-            throw new ServerException(_('Tried to create conversation for not yet inserted notice'));
-        }
+        // Be aware that the Notice does not have an id yet since it's not inserted!
         $conv = new Conversation();
-        $conv->created = common_sql_now();
-        $conv->id = $notice->id;
-        $conv->uri = $uri ?: sprintf('%s%s=%d:%s=%s:%s=%x',
+        $conv->created = $created ?: common_sql_now();
+        $conv->uri = $uri ?: sprintf('%s%s=%s:%s=%s',
                              TagURI::mint(),
-                             'noticeId', $notice->id,
                              'objectType', 'thread',
-                             'crc32', crc32($notice->content));
-        $result = $conv->insert();
-
-        if ($result === false) {
-            common_log_db_error($conv, 'INSERT', __FILE__);
-            throw new ServerException(_('Failed to create conversation for notice'));
-        }
+                             'nonce', common_random_hexstr(8));
+        // This insert throws exceptions on failure
+        $conv->insert();
 
         return $conv;
     }
@@ -108,13 +100,8 @@ class Conversation extends Managed_DataObject
 
     static public function getUrlFromNotice(Notice $notice, $anchor=true)
     {
-        $conv = new Conversation();
-        $conv->id = $notice->conversation;
-        if (!$conv->find(true)) {
-            common_debug('Conversation does not exist for notice ID: '.$notice->id);
-            throw new NoResultException($conv);
-        }
-        return $conv->getUrl($anchor ? $notice->id : null);
+        $conv = Conversation::getByID($notice->conversation);
+        return $conv->getUrl($anchor ? $notice->getID() : null);
     }
 
     public function getUri()
@@ -125,18 +112,25 @@ class Conversation extends Managed_DataObject
     public function getUrl($noticeId=null)
     {
         // FIXME: the URL router should take notice-id as an argument...
-        return common_local_url('conversation', array('id' => $this->id)) .
+        return common_local_url('conversation', array('id' => $this->getID())) .
                 ($noticeId===null ? '' : "#notice-{$noticeId}");
     }
 
     // FIXME: ...will 500 ever be too low? Taken from ConversationAction::MAX_NOTICES
-    public function getNotices($offset=0, $limit=500, Profile $scoped=null)
+    public function getNotices(Profile $scoped=null, $offset=0, $limit=500)
     {
-        if ($scoped === null) {
-            $scoped = Profile::current();
-        }
-        $stream = new ConversationNoticeStream($this->id, $scoped);
+        $stream = new ConversationNoticeStream($this->getID(), $scoped);
         $notices = $stream->getNotices($offset, $limit);
         return $notices;
+    }
+
+    public function insert()
+    {
+        $result = parent::insert();
+        if ($result === false) {
+            common_log_db_error($this, 'INSERT', __FILE__);
+            throw new ServerException(_('Failed to insert Conversation into database'));
+        }
+        return $result;
     }
 }

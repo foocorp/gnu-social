@@ -49,24 +49,9 @@ class ConversationAction extends ManagedAction
     var $page        = null;
     var $notices     = null;
 
-    /**
-     * Initialization.
-     *
-     * @param array $args Web and URL arguments
-     *
-     * @return boolean false if id not passed in
-     */
-    protected function prepare(array $args=array())
+    protected function doPreparation()
     {
-        parent::prepare($args);
-        $convId = $this->int('id');
-
-        $this->conv = Conversation::getKV('id', $convId);
-        if (!$this->conv instanceof Conversation) {
-            throw new ClientException('Could not find specified conversation');
-        }
-
-        return true;
+        $this->conv = Conversation::getByID($this->int('id'));
     }
 
     /**
@@ -90,7 +75,7 @@ class ConversationAction extends ManagedAction
     function showContent()
     {
         if (Event::handle('StartShowConversation', array($this, $this->conv, $this->scoped))) {
-            $notices = $this->conv->getNotices();
+            $notices = $this->conv->getNotices($this->scoped);
             $nl = new FullThreadedNoticeList($notices, $this, $this->scoped);
             $cnt = $nl->show();
         }
@@ -108,7 +93,7 @@ class ConversationAction extends ManagedAction
         return array(new Feed(Feed::JSON,
                               common_local_url('apiconversation',
                                                array(
-                                                    'id' => $this->conv->id,
+                                                    'id' => $this->conv->getID(),
                                                     'format' => 'as')),
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
@@ -116,7 +101,7 @@ class ConversationAction extends ManagedAction
                      new Feed(Feed::RSS2,
                               common_local_url('apiconversation',
                                                array(
-                                                    'id' => $this->conv->id,
+                                                    'id' => $this->conv->getID(),
                                                     'format' => 'rss')),
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.
@@ -124,7 +109,7 @@ class ConversationAction extends ManagedAction
                      new Feed(Feed::ATOM,
                               common_local_url('apiconversation',
                                                array(
-                                                    'id' => $this->conv->id,
+                                                    'id' => $this->conv->getID(),
                                                     'format' => 'atom')),
                               // TRANS: Title for link to notice feed.
                               // TRANS: %s is a user nickname.

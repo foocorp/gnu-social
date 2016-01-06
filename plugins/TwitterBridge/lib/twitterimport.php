@@ -184,19 +184,17 @@ class TwitterImport
 
         if (Event::handle('StartNoticeSave', array(&$notice))) {
 
+            if (empty($notice->conversation)) {
+                $conv = Conversation::create();
+                common_log(LOG_INFO, "No known conversation for status {$statusId} so a new one ({$conv->getID()}) was created.");
+                $notice->conversation = $conv->getID();
+            }
+
             $id = $notice->insert();
 
             if ($id === false) {
                 common_log_db_error($notice, 'INSERT', __FILE__);
                 common_log(LOG_ERR, __METHOD__ . ' - Problem saving notice.');
-            }
-
-            if (empty($notice->conversation)) {
-                $orig = clone($notice);
-                $conv = Conversation::create($notice);
-                common_log(LOG_INFO, "No known conversation for status {$statusId} so a new one ({$conv->id}) was created.");
-                $notice->conversation = $conv->id;
-                $notice->update($orig);
             }
 
             Event::handle('EndNoticeSave', array($notice));

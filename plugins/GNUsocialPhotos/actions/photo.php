@@ -92,7 +92,7 @@ class PhotoAction extends ManagedAction
         $this->element('style', array(), "#notice-{$this->photo->notice_id} div { display: none } #notice-{$this->photo->notice_id} ol li div { display: inline }");
 
         if (Event::handle('StartShowConversation', array($this, $this->conv, $this->scoped))) {
-            $notices = $this->conv->getNotices();
+            $notices = $this->conv->getNotices($this->scoped);
             $nl = new FullThreadedNoticeList($notices, $this, $this->scoped);
             $cnt = $nl->show();
         }
