@@ -120,6 +120,7 @@ function fixupNoticeConversation()
 
     $notice = new Notice();
     $notice->whereAdd('conversation is null');
+    $notice->whereAdd('conversation = 0', 'OR');
     $notice->orderBy('id'); // try to get originals before replies
     $notice->find();
 
@@ -129,29 +130,36 @@ function fixupNoticeConversation()
     
             $orig = clone($notice);
     
-            if (empty($notice->reply_to)) {
-                $notice->conversation = $notice->id;
-            } else {
+            if (!empty($notice->reply_to)) {
                 $reply = Notice::getKV('id', $notice->reply_to);
 
-                if (empty($reply)) {
-                    $notice->conversation = $notice->id;
-                } else if (empty($reply->conversation)) {
-                    $notice->conversation = $notice->id;
-                } else {
+                if ($reply instanceof Notice && !empty($reply->conversation)) {
                     $notice->conversation = $reply->conversation;
                 }
-	
                 unset($reply);
-                $reply = null;
+            }
+
+            // if still empty
+            if (empty($notice->conversation)) {
+                $child = new Notice();
+                $child->reply_to = $notice->getID();
+                $child->limit(1);
+                if ($child->find(true) && !empty($child->conversation)) {
+                    $notice->conversation = $child->conversation;
+                }
+                unset($child);
+            }
+
+            // if _still_ empty we just create our own conversation
+            if (empty($notice->conversation)) {
+                $notice->conversation = $notice->getID();
             }
 
             $result = $notice->update($orig);
 
-            $orig = null;
             unset($orig);
         } catch (Exception $e) {
-            printv("Error setting conversation: " . $e->getMessage());
+            print("Error setting conversation: " . $e->getMessage());
         }
     }
 
