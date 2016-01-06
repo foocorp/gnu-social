@@ -1,14 +1,13 @@
 <?php
+
+if (!defined('GNUSOCIAL')) { exit(1); }
+
 /**
  * Table Definition for avatar
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 class Avatar extends Managed_DataObject
 {
-    ###START_AUTOCODE
-    /* the code below is auto generated do not remove the above tag */
-
     public $__table = 'avatar';                          // table name
     public $profile_id;                      // int(4)  primary_key not_null
     public $original;                        // tinyint(1)
@@ -16,12 +15,8 @@ class Avatar extends Managed_DataObject
     public $height;                          // int(4)  primary_key not_null
     public $mediatype;                       // varchar(32)   not_null
     public $filename;                        // varchar(191)   not 255 because utf8mb4 takes more space
-    public $url;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
-
-    /* the code above is auto generated do not remove the tag below */
-    ###END_AUTOCODE
 	
     public static function schemaDef()
     {
@@ -33,7 +28,6 @@ class Avatar extends Managed_DataObject
                 'height' => array('type' => 'int', 'not null' => true, 'description' => 'image height'),
                 'mediatype' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'description' => 'file type'),
                 'filename' => array('type' => 'varchar', 'length' => 191, 'description' => 'local filename, if local'),
-                'url' => array('type' => 'text', 'description' => 'avatar location, not indexed - do not use in WHERE statement'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
@@ -211,12 +205,7 @@ class Avatar extends Managed_DataObject
 
     function displayUrl()
     {
-        $server = common_config('avatar', 'server');
-        if ($server && !empty($this->filename)) {
-            return Avatar::url($this->filename);
-        } else {
-            return $this->url;
-        }
+        return Avatar::url($this->filename);
     }
 
     static function urlByProfile(Profile $target, $width=null, $height=null) {
@@ -256,7 +245,6 @@ class Avatar extends Managed_DataObject
         $scaled->original = false;
         $scaled->width = $width;
         $scaled->height = $height;
-        $scaled->url = Avatar::url($filename);
         $scaled->filename = $filename;
         $scaled->created = common_sql_now();
 

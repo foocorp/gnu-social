@@ -366,7 +366,6 @@ class TwitterImport
         $avatar->original   = 1; // this is an original/"uploaded" avatar
         $avatar->mediatype  = $mediatype;
         $avatar->filename   = $filename;
-        $avatar->url        = Avatar::url($filename);
         $avatar->width      = $this->avatarsize;
         $avatar->height     = $this->avatarsize;
 

@@ -175,7 +175,6 @@ class Profile extends Managed_DataObject
         $avatar->mediatype = image_type_to_mime_type($imagefile->type);
         $avatar->filename = $filename;
         $avatar->original = true;
-        $avatar->url = Avatar::url($filename);
         $avatar->created = common_sql_now();
 
         // XXX: start a transaction here

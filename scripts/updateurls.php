@@ -51,7 +51,6 @@ function updateUserUrls()
                 $profile = $user->getProfile();
 
                 updateProfileUrl($profile);
-                updateAvatarUrls($profile);
             } catch (Exception $e) {
                 echo "Error updating URLs: " . $e->getMessage();
             }
@@ -65,36 +64,6 @@ function updateProfileUrl($profile)
     $orig = clone($profile);
     $profile->profileurl = common_profile_url($profile->nickname);
     $profile->update($orig);
-}
-
-function updateAvatarUrls($profile)
-{
-    $avatar = new Avatar();
-
-    $avatar->profile_id = $profile->id;
-    if ($avatar->find()) {
-        while ($avatar->fetch()) {
-            $orig_url = $avatar->url;
-            $avatar->url = Avatar::url($avatar->filename);
-            if ($avatar->url != $orig_url) {
-                $sql =
-                  "UPDATE avatar SET url = '" . $avatar->url . "' ".
-                  "WHERE profile_id = " . $avatar->profile_id . " ".
-                  "AND width = " . $avatar->width . " " .
-                  "AND height = " . $avatar->height . " ";
-
-                if ($avatar->original) {
-                    $sql .= "AND original = 1 ";
-                }
-
-                if (!$avatar->query($sql)) {
-                    throw new Exception("Can't update avatar for user " . $profile->nickname . ".");
-                } else {
-                    $touched = true;
-                }
-            }
-        }
-    }
 }
 
 function updateGroupUrls()
