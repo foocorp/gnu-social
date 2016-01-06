@@ -87,7 +87,7 @@ class AttachmentListItem extends Widget
 
     function linkAttr() {
         return array('class' => 'attachment',
-                     'href' => $this->attachment->getUrl(),
+                     'href' => $this->attachment->getUrl(false),
                      'id' => 'attachment-' . $this->attachment->id,
                      'title' => $this->linkTitle());
     }

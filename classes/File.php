@@ -55,7 +55,7 @@ class File extends Managed_DataObject
                 'title' => array('type' => 'text', 'description' => 'title of resource when available'),
                 'date' => array('type' => 'int', 'description' => 'date of resource according to http query'),
                 'protected' => array('type' => 'int', 'description' => 'true when URL is private (needs login)'),
-                'filename' => array('type' => 'text', 'description' => 'if a local file, name of the file'),
+                'filename' => array('type' => 'text', 'description' => 'if file is stored locally (too) this is the filename'),
                 'width' => array('type' => 'int', 'description' => 'width in pixels, if it can be described as such and data is available'),
                 'height' => array('type' => 'int', 'description' => 'height in pixels, if it can be described as such and data is available'),
 
@@ -416,21 +416,11 @@ class File extends Managed_DataObject
         return $filepath;
     }
 
-    public function getUrl()
+    public function getUrl($prefer_local=true)
     {
-        if (!empty($this->filename)) {
+        if ($prefer_local && !empty($this->filename)) {
             // A locally stored file, so let's generate a URL for our instance.
-            $url = self::url($this->filename);
-            if (self::hashurl($url) !== $this->urlhash) {
-                // For indexing purposes, in case we do a lookup on the 'url' field.
-                // also we're fixing possible changes from http to https, or paths
-                try {
-	                $this->updateUrl($url);
-                } catch (ServerException $e) {
-                	//
-                }      
-            }
-            return $url;
+            return self::url($this->filename);
         }
 
         // No local filename available, return the URL we have stored
