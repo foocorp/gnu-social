@@ -34,7 +34,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class Conversation extends Managed_DataObject
 {
     public $__table = 'conversation';        // table name
-    public $id;                              // int(4)  primary_key not_null
+    public $id;                              // int(4)  primary_key not_null auto_increment
     public $uri;                             // varchar(191)  unique_key   not 255 because utf8mb4 takes more space
     public $created;                         // datetime   not_null
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
@@ -53,6 +53,32 @@ class Conversation extends Managed_DataObject
                 'conversation_uri_key' => array('uri'),
             ),
         );
+    }
+
+    static public function beforeSchemaUpdate()
+    {
+        $table = strtolower(get_called_class());
+        $schema = Schema::get();
+        $schemadef = $schema->getTableDef($table);
+
+        // 2016-01-06 We have to make sure there is no conversation with id==0 since it will screw up auto increment resequencing
+        if ($schemadef['fields']['id']['auto_increment']) {
+            // since we already have auto incrementing ('serial') we can continue
+            return;
+        }
+
+        // The conversation will be recreated in upgrade.php, which will
+        // generate a new URI, but that's collateral damage for you.
+        $conv = new Conversation();
+        $conv->id = 0;
+        if ($conv->find()) {
+            while ($conv->fetch()) {
+                // Since we have filtered on 0 this only deletes such entries
+                // which I have been afraid wouldn't work, but apparently does!
+                // (I thought it would act as null or something and find _all_ conversation entries)
+                $conv->delete();
+            }
+        }
     }
 
     /**
