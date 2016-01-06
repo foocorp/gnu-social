@@ -38,7 +38,7 @@ class File_thumbnail extends Managed_DataObject
         return array(
             'fields' => array(
                 'file_id' => array('type' => 'int', 'not null' => true, 'description' => 'thumbnail for what URL/file'),
-                'url' => array('type' => 'text', 'not null' => false, 'description' => 'URL of thumbnail'),
+                'url' => array('type' => 'text', 'description' => 'URL of thumbnail'),
                 'filename' => array('type' => 'text', 'description' => 'if stored locally, filename is put here'),
                 'width' => array('type' => 'int', 'description' => 'width of thumbnail'),
                 'height' => array('type' => 'int', 'description' => 'height of thumbnail'),
@@ -134,12 +134,12 @@ class File_thumbnail extends Managed_DataObject
 
     public function getUrl()
     {
-        if (!empty($this->getFile()->filename)) {
+        if (!empty($this->filename) || $this->getFile()->isLocal()) {
             // A locally stored File, so we can dynamically generate a URL.
             if (!empty($this->url)) {
                 // Let's just clear this field as there is no point in having it for local files.
                 $orig = clone($this);
-                $this->url = null;
+                $this->url = '';
                 $this->update($orig);
             }
             $url = common_local_url('attachment_thumbnail', array('attachment'=>$this->file_id));
@@ -149,7 +149,7 @@ class File_thumbnail extends Managed_DataObject
             return $url . http_build_query(array('w'=>$this->width, 'h'=>$this->height));
         }
 
-        // No local filename available, return the URL we have stored
+        // No local filename available, return the remote URL we have stored
         return $this->url;
     }
 
@@ -163,6 +163,9 @@ class File_thumbnail extends Managed_DataObject
         return $this->width;
     }
 
+    /**
+     * @throws UseFileAsThumbnailException from File_thumbnail->getUrl() for stuff like animated GIFs
+     */
     public function getHtmlAttrs(array $orig=array(), $overwrite=true)
     {
         $attrs = [
