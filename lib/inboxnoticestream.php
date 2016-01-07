@@ -85,6 +85,7 @@ class RawInboxNoticeStream extends NoticeStream
     function __construct(Profile $target)
     {
         $this->target  = $target;
+        $this->unselectVerbs = array(ActivityVerb::DELETE);
     }
 
     /**
@@ -120,6 +121,9 @@ class RawInboxNoticeStream extends NoticeStream
         }
         if (!empty($this->selectVerbs)) {
             $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
+        }
+        if (!empty($this->unselectVerbs)) {
+            $notice->whereAddIn('!verb', $this->unselectVerbs, $notice->columnType('verb'));
         }
         $notice->limit($offset, $limit);
         // notice.id will give us even really old posts, which were
