@@ -110,6 +110,7 @@ class Notice extends Managed_DataObject
                 'notice_profile_id_idx' => array('profile_id', 'created', 'id'),
                 'notice_repeat_of_created_id_idx' => array('repeat_of', 'created', 'id'),
                 'notice_conversation_created_id_idx' => array('conversation', 'created', 'id'),
+                'notice_verb_idx' => array('verb'),
                 'notice_replyto_idx' => array('reply_to')
             )
         );
