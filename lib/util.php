@@ -681,6 +681,18 @@ function common_linkify_mention(array $mention)
     return $output;
 }
 
+function common_find_attentions($text, Profile $sender, Notice $parent=null)
+{
+    $mentions = common_find_mentions($text, $sender, $parent);
+    $atts = array();
+    foreach ($mentions as $mention) {
+        foreach ($mention['mentioned'] as $mentioned) {
+            $atts[$mentioned->getUri()] = $mentioned->isGroup() ? ActivityObject::GROUP : ActivityObject::PERSON;
+        }
+    }
+    return $atts;
+}
+
 /**
  * Find @-mentions in the given text, using the given notice object as context.
  * References will be resolved with common_relative_profile() against the user
