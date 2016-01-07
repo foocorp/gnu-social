@@ -211,7 +211,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             $this->clientError(_('No such user.'), 404);
         }
 
-        /* Do not call shortenlinks until the whole notice has been build */
+        /* Do not call shortenLinks until the whole notice has been build */
 
         // Check for commands
 
@@ -248,13 +248,13 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             try {
                 $upload = MediaFile::fromUpload('media', $this->scoped);
                 $this->status .= ' ' . $upload->shortUrl();
-                /* Do not call shortenlinks until the whole notice has been build */
+                /* Do not call shortenLinks until the whole notice has been build */
             } catch (NoUploadedMediaException $e) {
                 // There was no uploaded media for us today.
             }
 
             /* Do call shortenlinks here & check notice length since notice is about to be saved & sent */
-            $status_shortened = $this->auth_user->shortenlinks($this->status);
+            $status_shortened = $this->auth_user->shortenLinks($this->status);
 
             if (Notice::contentTooLong($status_shortened)) {
                 if ($upload instanceof MediaFile) {
