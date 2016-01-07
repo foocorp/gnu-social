@@ -969,23 +969,12 @@ class Notice extends Managed_DataObject
             throw new ServerException('StartNoticeSave did not give back a Notice');
         }
 
-        // Save per-notice metadata...
-        $mentions = array();
-        $group_ids   = array();
-
-        // This event lets plugins filter out non-local recipients (attentions we don't care about)
-        // Used primarily for OStatus (and if we don't federate, all attentions would be local anyway)
-        Event::handle('GetLocalAttentions', array($actor, $act->context->attention, &$mentions, &$group_ids));
-
         // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
         // the activityverb is a POST (since stuff like repeat, favorite etc.
         // reasonably handle notifications themselves.
         if (ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST))) {
-            if (!empty($mentions)) {
-                $stored->saveKnownReplies($mentions);
-            } else {
-                $stored->saveReplies();
-            }
+
+            $stored->saveAttentions($act->context->attention);
 
             if (!empty($tags)) {
                 $stored->saveKnownTags($tags);
@@ -996,8 +985,6 @@ class Notice extends Managed_DataObject
             // Note: groups may save tags, so must be run after tags are saved
             // to avoid errors on duplicates.
             // Note: groups should always be set.
-
-            $stored->saveKnownGroups($group_ids);
 
             if (!empty($urls)) {
                 $stored->saveKnownUrls($urls);
@@ -1584,6 +1571,43 @@ class Notice extends Managed_DataObject
         return true;
     }
 
+    function saveAttentions(array $uris)
+    {
+        foreach ($uris as $uri=>$type) {
+            try {
+                $target = Profile::fromUri($uri);
+            } catch (UnknownUriException $e) {
+                common_log(LOG_WARNING, "Unable to determine profile for URI '$uri'");
+                continue;
+            }
+
+            $this->saveAttention($target);
+        }
+    }
+
+    function saveAttention(Profile $target, $reason=null)
+    {
+        if ($target->isGroup()) {
+            // FIXME: Make sure we check that users are in the groups they send to!
+        } else {
+            if ($target->hasBlocked($this->getProfile())) {
+                common_log(LOG_INFO, "Not saving reply to profile {$target->id} ($uri) from sender {$sender->id} because of a block.");
+                return false;
+            }
+        }
+
+        try {
+            $att = Attention::saveNew($this, $target, $reason);
+        } catch (AlreadyFulfilledException $e) {
+            common_debug('Could not save Attention: '.$e->getMessage());
+        } catch (Exception $e) {
+            common_log(LOG_ERR, 'Could not save Attention: '.$e->getMessage());
+        }
+
+        self::blow('reply:stream:%d', $target->getID());
+        return true;
+    }
+
     /**
      * Save reply records indicating that this notice needs to be
      * delivered to the local users with the given URIs.
@@ -1658,9 +1682,6 @@ class Notice extends Managed_DataObject
 
         $mentions = common_find_mentions($this->content, $sender, $parent);
 
-        // store replied only for first @ (what user/notice what the reply directed,
-        // we assume first @ is it)
-
         foreach ($mentions as $mention) {
 
             foreach ($mention['mentioned'] as $mentioned) {
@@ -1671,9 +1692,7 @@ class Notice extends Managed_DataObject
                 }
 
                 // Don't save replies from blocked profile to local user
-
-                $mentioned_user = User::getKV('id', $mentioned->id);
-                if ($mentioned_user instanceof User && $mentioned_user->hasBlocked($sender)) {
+                if ($mentioned->hasBlocked($sender)) {
                     continue;
                 }
 
@@ -1699,6 +1718,23 @@ class Notice extends Managed_DataObject
         $reply->insert();
 
         return $reply;
+    }
+
+    protected $_attentionids = array();
+
+    /**
+     * Pull the complete list of known activity context attentions for this notice.
+     *
+     * @return array of integer profile ids (also group profiles)
+     */
+    function getAttentionProfileIDs()
+    {
+        if (!isset($this->_attentionids[$this->getID()])) {
+            $atts = Attention::multiGet('notice_id', array($this->getID()));
+            // (array)null means empty array
+            $this->_attentionids[$this->getID()] = (array)$atts->fetchAll('profile_id');
+        }
+        return $this->_attentionids[$this->getID()];
     }
 
     protected $_replies = array();
@@ -1729,9 +1765,9 @@ class Notice extends Managed_DataObject
      */
     function getAttentionProfiles()
     {
-        $ids = array_unique(array_merge($this->getReplies(), $this->getGroupProfileIDs()));
+        $ids = array_unique(array_merge($this->getReplies(), $this->getGroupProfileIDs(), $this->getAttentionProfileIDs()));
 
-        $profiles = Profile::multiGet('id', $ids);
+        $profiles = Profile::multiGet('id', (array)$ids);
 
         return $profiles->fetchAll();
     }
