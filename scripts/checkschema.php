@@ -61,4 +61,5 @@ if (have_option('x', 'extensions')) {
     }
 }
 
+Event::handle('BeforePluginCheckSchema');
 Event::handle('CheckSchema');
