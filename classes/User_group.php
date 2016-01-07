@@ -14,6 +14,7 @@ class User_group extends Managed_DataObject
 
     public $__table = 'user_group';                      // table name
     public $id;                              // int(4)  primary_key not_null
+    public $profile_id;                      // int(4)  primary_key not_null
     public $nickname;                        // varchar(64)
     public $fullname;                        // varchar(191)   not 255 because utf8mb4 takes more space
     public $homepage;                        // varchar(191)   not 255 because utf8mb4 takes more space
