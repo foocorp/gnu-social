@@ -18,12 +18,13 @@ class OpportunisticQueueManager extends DBQueueManager
 {
     protected $qmkey = false;
     protected $max_execution_time = null;
+    protected $max_execution_margin = null; // margin to execution time, including timeouts etc.
     protected $max_queue_items = null;
 
     protected $started_at = null;
     protected $handled_items = 0;
 
-    const MAXEXECTIME = 30; // typically just used for the /main/cron action
+    const MAXEXECTIME = 10; // typically just used for the /main/cron action, only used if php.ini max_execution_time is 0
 
     public function __construct(array $args=array()) {
         foreach (get_class_vars(get_class($this)) as $key=>$val) {
@@ -39,6 +40,10 @@ class OpportunisticQueueManager extends DBQueueManager
 
         if ($this->max_execution_time === null) {
             $this->max_execution_time = ini_get('max_execution_time') ?: self::MAXEXECTIME;
+        }
+
+        if ($this->max_execution_margin === null) {
+            $this->max_execution_margin = 10;    // should be calculated from our default timeouts for http requests etc.
         }
 
         return parent::__construct();
@@ -60,7 +65,7 @@ class OpportunisticQueueManager extends DBQueueManager
             return false;
         }
         // If too much time has passed, stop
-        if ($time_passed >= $this->max_execution_time) {
+        if ($time_passed >= $this->max_execution_time - $this->max_execution_margin) {
             return false;
         }
         // If we have a max-item-limit, check if it has been passed
