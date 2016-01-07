@@ -129,19 +129,6 @@ class NewnoticeAction extends FormAction
         $act->time = time();
         $act->actor = $this->scoped->asActivityObject();
 
-        $content = $this->scoped->shortenLinks($content);
-
-        // Reject notice if it is too long (without the HTML)
-        // Should we do this before or after the upload attachment link? I think before...
-        if (Notice::contentTooLong($content)) {
-            // TRANS: Client error displayed when the parameter "status" is missing.
-            // TRANS: %d is the maximum number of character for a notice.
-            throw new ClientException(sprintf(_m('That\'s too long. Maximum notice size is %d character.',
-                                                 'That\'s too long. Maximum notice size is %d characters.',
-                                                 Notice::maxContent()),
-                                              Notice::maxContent()));
-        }
-
         $upload = null;
         try {
             // throws exception on failure
@@ -156,6 +143,19 @@ class NewnoticeAction extends FormAction
             $act->enclosures[] = $upload->getEnclosure();
         } catch (NoUploadedMediaException $e) {
             // simply no attached media to the new notice
+        }
+
+        $content = $this->scoped->shortenLinks($content);
+
+        // Reject notice if it is too long (without the HTML)
+        // This is done after MediaFile::fromUpload etc. just to act the same as the ApiStatusesUpdateAction
+        if (Notice::contentTooLong($content)) {
+            // TRANS: Client error displayed when the parameter "status" is missing.
+            // TRANS: %d is the maximum number of character for a notice.
+            throw new ClientException(sprintf(_m('That\'s too long. Maximum notice size is %d character.',
+                                                 'That\'s too long. Maximum notice size is %d characters.',
+                                                 Notice::maxContent()),
+                                              Notice::maxContent()));
         }
 
         $actobj = new ActivityObject();
