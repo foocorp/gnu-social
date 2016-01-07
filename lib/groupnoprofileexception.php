@@ -55,8 +55,8 @@ class GroupNoProfileException extends NoProfileException
 
         // TRANS: Exception text shown when no profile can be found for a group.
         // TRANS: %1$s is a group nickname, $2$d is a group profile_id (number).
-        $message = sprintf(_('User %1$s (%2$d) has no profile record.'),
-                           $group->nickname, $group->id);
+        $message = sprintf(_('Group "%1$s" (%2$d) has no profile record.'),
+                           $group->nickname, $group->getID());
 
         parent::__construct($group->profile_id, $message);
     }
