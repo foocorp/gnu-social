@@ -124,13 +124,13 @@ class NoticeTitlePlugin extends Plugin
      * Validate notice title before saving
      *
      * @param Action  $action    NewNoticeAction being executed
-     * @param integer &$authorId Author ID
+     * @param Profile $author    Profile object for the author of the notice being saved
      * @param string  &$text     Text of the notice
      * @param array   &$options  Options array
      *
      * @return boolean hook value
      */
-    function onStartNoticeSaveWeb($action, &$authorId, &$text, &$options)
+    function onStartNoticeSaveWeb(Action $action, Profile $author, &$content, &$options)
     {
         $title = $action->trimmed('notice_title');
         if (!empty($title) && $this->isAllowedRichEdit()) {

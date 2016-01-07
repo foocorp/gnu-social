@@ -145,8 +145,6 @@ class NewnoticeAction extends FormAction
             // simply no attached media to the new notice
         }
 
-        $content = $this->scoped->shortenLinks($content);
-
         // Reject notice if it is too long (without the HTML)
         // This is done after MediaFile::fromUpload etc. just to act the same as the ApiStatusesUpdateAction
         if (Notice::contentTooLong($content)) {
@@ -157,13 +155,6 @@ class NewnoticeAction extends FormAction
                                                  Notice::maxContent()),
                                               Notice::maxContent()));
         }
-
-        $actobj = new ActivityObject();
-        $actobj->type = ActivityObject::NOTE;
-        $actobj->content = common_render_content($content, $this->scoped, $parent);
-
-        $act->objects[] = $actobj;
-
 
         $act->context = new ActivityContext();
 
@@ -191,15 +182,21 @@ class NewnoticeAction extends FormAction
             $act->context->location = Location::fromOptions($locOptions);
         }
 
-        $author_id = $this->scoped->id;
-        $text      = $content;
-
-        // Does the heavy-lifting for getting "To:" information
-
-        ToSelector::fillOptions($this, $options);
+        $content = $this->scoped->shortenLinks($content);
 
         // FIXME: Make sure NoticeTitle plugin gets a change to add the title to our activityobject!
-        if (Event::handle('StartNoticeSaveWeb', array($this, &$author_id, &$text, &$options))) {
+        if (Event::handle('StartNoticeSaveWeb', array($this, $this->scoped, &$content, &$options))) {
+
+            // FIXME: We should be able to get the attentions from common_render_content!
+            // and maybe even directly save whether they're local or not!
+            $act->context->attention = common_find_attentions($content, $this->scoped, $parent);
+
+            $actobj = new ActivityObject();
+            $actobj->type = ActivityObject::NOTE;
+            $actobj->content = common_render_content($content, $this->scoped, $parent);
+
+            // Finally add the activity object to our activity
+            $act->objects[] = $actobj;
 
             $this->stored = Notice::saveActivity($act, $this->scoped, $options);
 

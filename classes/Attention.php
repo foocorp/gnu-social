@@ -49,18 +49,23 @@ class Attention extends Managed_DataObject
         );
     }
 
-    public static function saveNew(Notice $notice, Profile $profile, $reason=null)
+    public static function saveNew(Notice $notice, Profile $target, $reason=null)
     {
-        $att = new Attention();
+        try {
+            $att = Attention::getByKeys(['notice_id'=>$notice->getID(), 'profile_id'=>$target->getID()]);
+            throw new AlreadyFulfilledException('Attention already exists with reason: '.var_export($att->reason,true));
+        } catch (NoResultException $e) {
+            $att = new Attention();
         
-        $att->notice_id = $notice->getID();
-        $att->profile_id = $profile->getID();
-        $att->reason = $reason;
-        $att->created = common_sql_now();
-        $result = $att->insert();
+            $att->notice_id = $notice->getID();
+            $att->profile_id = $target->getID();
+            $att->reason = $reason;
+            $att->created = common_sql_now();
+            $result = $att->insert();
 
-        if ($result === false) {
-            throw new Exception('Could not saveNew in Attention');
+            if ($result === false) {
+                throw new Exception('Failed Attention::saveNew for notice id=='.$notice->getID().' target id=='.$target->getID().', reason=="'.$reason.'"');
+            }
         }
         return $att;
     }
