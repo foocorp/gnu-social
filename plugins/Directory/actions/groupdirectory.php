@@ -323,12 +323,14 @@ class GroupdirectoryAction extends ManagedAction
         $offset = ($this->page-1) * PROFILES_PER_PAGE;
         $limit  = PROFILES_PER_PAGE + 1;
 
+        $group->selectAdd();
+        $group->selectAdd('profile_id');
         $group->orderBy($order);
         $group->limit($offset, $limit);
 
         $group->find();
 
-        return $group;
+        return Profile::multiGet('id', $group->fetchAll('profile_id'));
     }
 
     /**
