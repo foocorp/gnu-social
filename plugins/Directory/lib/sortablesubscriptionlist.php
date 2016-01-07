@@ -114,7 +114,7 @@ class SortableSubscriptionList extends SubscriptionList
         $this->out->elementEnd('table');
     }
 
-    function newListItem($profile)
+    function newListItem(Profile $profile)
     {
         return new SortableSubscriptionListItem($profile, $this->owner, $this->action);
     }
@@ -197,41 +197,29 @@ class SortableSubscriptionListItem extends SubscriptionListItem
     function showSubscriberCount()
     {
         $this->out->elementStart('td', 'entry_subscriber_count');
-        $this->out->raw($this->profile->subscriberCount());
+        $this->out->text($this->profile->subscriberCount());
         $this->out->elementEnd('td');
     }
 
     function showCreatedDate()
     {
         $this->out->elementStart('td', 'entry_created');
-        $this->out->raw(date('j M Y', strtotime($this->profile->created)));
+        $this->out->text(date('j M Y', strtotime($this->profile->created)));
         $this->out->elementEnd('td');
     }
 
     function showNoticeCount()
     {
         $this->out->elementStart('td', 'entry_notice_count');
-        $this->out->raw($this->profile->noticeCount());
+        $this->out->text($this->profile->noticeCount());
         $this->out->elementEnd('td');
     }
 
-    /**
-     * Overrided to truncate the bio if it's real long, because it
-     * looks better that way in the SortableSubscriptionList's table
-     */
     function showBio()
     {
-        if (!empty($this->profile->bio)) {
-            $cutoff = 140; // XXX Should this be configurable?
-            $bio    = htmlspecialchars($this->profile->bio);
-
-            if (mb_strlen($bio) > $cutoff) {
-                $bio = mb_substr($bio, 0, $cutoff - 1)
-                    .'<a href="' . $this->profile->profileurl .'">…</a>';
-            }
-
+        if ($this->profile->getDescription()) {
             $this->out->elementStart('p', 'note');
-            $this->out->raw($bio);
+            $this->out->text($this->profile->getDescription());
             $this->out->elementEnd('p');
         }
     }

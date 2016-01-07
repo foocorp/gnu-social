@@ -115,18 +115,7 @@ class User_group extends Managed_DataObject
 
     function homeUrl()
     {
-        $url = null;
-        if (Event::handle('StartUserGroupHomeUrl', array($this, &$url))) {
-            // normally stored in mainpage, but older ones may be null
-            if (!empty($this->mainpage)) {
-                $url = $this->mainpage;
-            } elseif ($this->isLocal()) {
-                $url = common_local_url('showgroup',
-                                        array('nickname' => $this->nickname));
-            }
-        }
-        Event::handle('EndUserGroupHomeUrl', array($this, &$url));
-        return $url;
+        $this->getProfile()->getUrl();
     }
 
     function getUri()

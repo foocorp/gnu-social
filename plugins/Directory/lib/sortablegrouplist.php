@@ -105,7 +105,7 @@ class SortableGroupList extends SortableSubscriptionList
         $this->out->elementStart('tbody');
     }
 
-    function newListItem($profile)
+    function newListItem(Profile $profile)
     {
         return new SortableGroupListItem($profile, $this->owner, $this->action);
     }
@@ -115,28 +115,20 @@ class SortableGroupListItem extends SortableSubscriptionListItem
 {
     function showHomepage()
     {
-        if (!empty($this->profile->homepage)) {
+        if ($this->profile->getHomepage()) {
             $this->out->text(' ');
             $aAttrs = $this->homepageAttributes();
             $this->out->elementStart('a', $aAttrs);
-            $this->out->raw($this->highlight($this->profile->homepage));
+            $this->out->text($this->profile->getHomepage());
             $this->out->elementEnd('a');
         }
     }
 
     function showDescription()
     {
-        if (!empty($this->profile->description)) {
-            $cutoff      = 140; // XXX Should this be configurable?
-            $description = htmlspecialchars($this->profile->description);
-
-            if (mb_strlen($description) > $cutoff) {
-                $description = mb_substr($description, 0, $cutoff - 1)
-                    .'<a href="' . $this->profile->homeUrl() .'">…</a>';
-            }
-
+        if ($this->profile->getDescription()) {
             $this->out->elementStart('p', 'note');
-            $this->out->raw($description);
+            $this->out->text($this->profile->getDescription());
             $this->out->elementEnd('p');
         }
 
@@ -181,8 +173,8 @@ class SortableGroupListItem extends SortableSubscriptionListItem
     {
         $this->startProfile();
 
-        $this->showAvatar($this->profile->getProfile());
-        $this->out->element('a', array('href'  => $this->profile->homeUrl(),
+        $this->showAvatar($this->profile);
+        $this->out->element('a', array('href'  => $this->profile->getUrl(),
                                             'class' => 'p-org p-nickname',
                                             'rel'   => 'contact group'),
                                  $this->profile->getNickname());
@@ -231,7 +223,7 @@ class SortableGroupListItem extends SortableSubscriptionListItem
             $this->out->elementStart('li', 'entity_subscribe');
             // XXX: special-case for user looking at own
             // subscriptions page
-            if ($user->isMember($this->profile)) {
+            if ($user->isMember($this->profile->getGroup())) {
                 $lf = new LeaveForm($this->out, $this->profile);
                 $lf->show();
             } else if (!Group_block::isBlocked($this->profile, $user->getProfile())) {
@@ -246,7 +238,7 @@ class SortableGroupListItem extends SortableSubscriptionListItem
     function showMemberCount()
     {
         $this->out->elementStart('td', 'entry_member_count');
-        $this->out->raw($this->profile->getMemberCount());
+        $this->out->text($this->profile->getGroup()->getMemberCount());
         $this->out->elementEnd('td');
     }
 
@@ -254,7 +246,7 @@ class SortableGroupListItem extends SortableSubscriptionListItem
     {
         $this->out->elementStart('td', 'entry_created');
         // @todo FIXME: Should we provide i18n for timestamps in core?
-        $this->out->raw(date('j M Y', strtotime($this->profile->created)));
+        $this->out->text(date('j M Y', strtotime($this->profile->created)));
         $this->out->elementEnd('td');
     }
 
@@ -262,7 +254,7 @@ class SortableGroupListItem extends SortableSubscriptionListItem
     {
         $this->out->elementStart('td', 'entry_admins');
         // @todo
-        $this->out->raw('gargargar');
+        $this->out->text('gargargar');
         $this->out->elementEnd('td');
     }
 
