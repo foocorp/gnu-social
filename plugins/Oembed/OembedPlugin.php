@@ -187,7 +187,7 @@ class OembedPlugin extends Plugin
         return true;
     }
     
-    public function onStartShowAttachmentRepresentation(HTMLOutputter $out, File $file)
+    public function onShowUnsupportedAttachmentRepresentation(HTMLOutputter $out, File $file)
     {
         try {
             $oembed = File_oembed::getByFile($file);
@@ -195,6 +195,7 @@ class OembedPlugin extends Plugin
             return true;
         }
 
+        // the 'photo' type is shown through ordinary means, using StartShowAttachmentRepresentation!
         switch ($oembed->type) {
         case 'rich':
         case 'video':
@@ -207,15 +208,11 @@ class OembedPlugin extends Plugin
                     'elements'=>'*+object+embed');
                 $out->raw(htmLawed($oembed->html,$config));
             }
+            return false;
             break;
-
-        case 'photo':
-            $out->element('img', array('src' => $oembed->url, 'width' => $oembed->width, 'height' => $oembed->height, 'alt' => 'alt'));
-            break;
-
-        default:
-            Event::handle('ShowUnsupportedAttachmentRepresentation', array($out, $file));
         }
+
+        return true;
     }
 
     public function onCreateFileImageThumbnailSource(File $file, &$imgPath, $media=null)

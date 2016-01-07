@@ -105,9 +105,24 @@ class AttachmentListItem extends Widget
     }
 
     function showRepresentation() {
+        $enclosure = $this->attachment->getEnclosure();
+
         if (Event::handle('StartShowAttachmentRepresentation', array($this->out, $this->attachment))) {
-            if (!empty($this->attachment->mimetype)) {
-                $mediatype = common_get_mime_media($this->attachment->mimetype);
+            if (!empty($enclosure->mimetype)) {
+                // First, prepare a thumbnail if it exists.
+                $thumb = null;
+                try {
+                    // Tell getThumbnail that we can show an animated image if it has one (4th arg, "force_still")
+                    $thumb = $this->attachment->getThumbnail(null, null, false, false);
+                } catch (UseFileAsThumbnailException $e) {
+                    $thumb = null;
+                } catch (UnsupportedMediaException $e) {
+                    // FIXME: Show a good representation of unsupported/unshowable images
+                    $thumb = null;
+                }
+
+                // Then get the kind of mediatype we're dealing with
+                $mediatype = common_get_mime_media($enclosure->mimetype);
 
                 // FIXME: Get proper mime recognition of Ogg files! If system has 'mediainfo', this should do it:
                 // $ mediainfo --inform='General;%InternetMediaType%'
@@ -117,27 +132,22 @@ class AttachmentListItem extends Widget
                 switch ($mediatype) {
                 // Anything we understand as an image, if we need special treatment, do it in StartShowAttachmentRepresentation
                 case 'image':
-                    try {
-                        // Tell getThumbnail that we can show an animated image if it has one (4th arg, "force_still")
-                        $thumb = $this->attachment->getThumbnail(null, null, false, false);
+                    if ($thumb instanceof File_thumbnail) {
                         $this->out->element('img', $thumb->getHtmlAttrs(['class'=>'u-photo', 'alt' => '']));
-                    } catch (UseFileAsThumbnailException $e) {
-                        $this->out->element('img', array('class'=>'u-photo', 'src' => $e->file->getUrl(), 'alt' => $e->file->title));
-                    } catch (UnsupportedMediaException $e) {
-                        // FIXME: Show a good representation of unsupported/unshowable images
+                    } else {
+                        $this->out->element('img', array('class'=>'u-photo', 'src' => $this->attachment->getUrl(), 'alt' => $this->attachment->getTitle()));
                     }
+                    unset($thumb);  // there's no need carrying this along after this
                     break;
 
                 // HTML5 media elements
                 case 'audio':
                 case 'video':
-                    try {
-                        $thumb = $this->attachment->getThumbnail();
+                    if ($thumb instanceof File_thumbnail) {
                         $poster = $thumb->getUrl();
-                        unset ($thumb);
-                    } catch (Exception $e) {
-                        $poster = null;
+                        unset($thumb);  // there's no need carrying this along after this
                     }
+
                     $this->out->elementStart($mediatype,
                                         array('class'=>"attachment_player u-{$mediatype}",
                                             'poster'=>$poster,
@@ -149,6 +159,7 @@ class AttachmentListItem extends Widget
                     break;
 
                 default:
+                    unset($thumb);  // there's no need carrying this along
                     switch ($this->attachment->mimetype) {
                     case 'text/html':
                         if (!empty($this->attachment->filename)

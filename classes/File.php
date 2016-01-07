@@ -356,26 +356,45 @@ class File extends Managed_DataObject
         return $protocol.'://'.$server.$path.$filename;
     }
 
+    static $_enclosures = array();
+
     function getEnclosure(){
+        if (isset(self::$_enclosures[$this->getID()])) {
+            common_debug('Found cached enclosure for file id=='.$this->getID());
+            return self::$_enclosures[$this->getID()];
+        }
+
         $enclosure = (object) array();
         foreach (array('title', 'url', 'date', 'modified', 'size', 'mimetype') as $key) {
             $enclosure->$key = $this->$key;
         }
 
-        $needMoreMetadataMimetypes = array(null, 'application/xhtml+xml');
+        $needMoreMetadataMimetypes = array(null, 'application/xhtml+xml', 'text/html');
 
         if (!isset($this->filename) && in_array(common_bare_mime($enclosure->mimetype), $needMoreMetadataMimetypes)) {
             // This fetches enclosure metadata for non-local links with unset/HTML mimetypes,
             // which may be enriched through oEmbed or similar (implemented as plugins)
             Event::handle('FileEnclosureMetadata', array($this, &$enclosure));
         }
-        if (empty($enclosure->mimetype) || in_array(common_bare_mime($enclosure->mimetype), $needMoreMetadataMimetypes)) {
+        if (empty($enclosure->mimetype)) {
             // This means we either don't know what it is, so it can't
             // be shown as an enclosure, or it is an HTML link which
             // does not link to a resource with further metadata.
             throw new ServerException('Unknown enclosure mimetype, not enough metadata');
         }
+
+        self::$_enclosures[$this->getID()] = $enclosure;
         return $enclosure;
+    }
+
+    public function hasThumbnail()
+    {
+        try {
+            $this->getThumbnail();
+        } catch (Exception $e) {
+            return false;
+        }
+        return true;
     }
 
     /**
