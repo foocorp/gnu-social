@@ -997,9 +997,9 @@ function common_linkify($url) {
 
     // Check to see whether this is a known "attachment" URL.
 
-    $f = File::getKV('url', $longurl);
-
-    if (!$f instanceof File) {
+    try {
+        $f = File::getByUrl($longurl);
+    } catch (NoResultException $e) {
         if (common_config('attachments', 'process_links')) {
             // XXX: this writes to the database. :<
             try {
