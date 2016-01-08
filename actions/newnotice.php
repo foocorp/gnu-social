@@ -189,7 +189,7 @@ class NewnoticeAction extends FormAction
 
             // FIXME: We should be able to get the attentions from common_render_content!
             // and maybe even directly save whether they're local or not!
-            $act->context->attention = common_find_attentions($content, $this->scoped, $parent);
+            $act->context->attention = common_get_attentions($content, $this->scoped, $parent);
 
             $actobj = new ActivityObject();
             $actobj->type = ActivityObject::NOTE;

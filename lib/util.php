@@ -681,7 +681,7 @@ function common_linkify_mention(array $mention)
     return $output;
 }
 
-function common_find_attentions($text, Profile $sender, Notice $parent=null)
+function common_get_attentions($text, Profile $sender, Notice $parent=null)
 {
     $mentions = common_find_mentions($text, $sender, $parent);
     $atts = array();
@@ -689,6 +689,11 @@ function common_find_attentions($text, Profile $sender, Notice $parent=null)
         foreach ($mention['mentioned'] as $mentioned) {
             $atts[$mentioned->getUri()] = $mentioned->isGroup() ? ActivityObject::GROUP : ActivityObject::PERSON;
         }
+    }
+    if ($parent instanceof Notice) {
+        $parentAuthor = $parent->getProfile();
+        // afaik groups can't be authors
+        $atts[$parentAuthor->getUri()] = ActivityObject::PERSON;
     }
     return $atts;
 }
