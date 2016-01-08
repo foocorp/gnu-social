@@ -381,7 +381,7 @@ abstract class ActivityHandlerPlugin extends Plugin
             return true;
         }
 
-        $this->log(LOG_INFO, "Checking {$activity->id} as a valid Salmon slap.");
+        $this->log(LOG_INFO, get_called_class()." checking {$activity->id} as a valid Salmon slap.");
 
         if ($target instanceof User_group || $target->isGroup()) {
             $uri = $target->getUri();
