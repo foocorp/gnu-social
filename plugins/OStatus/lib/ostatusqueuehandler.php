@@ -66,40 +66,57 @@ class OStatusQueueHandler extends QueueHandler
             $this->pushUser();
         }
 
-        foreach ($notice->getGroups() as $group) {
-            $oprofile = Ostatus_profile::getKV('group_id', $group->id);
-            if ($oprofile) {
-                // remote group
-                if ($notice->isLocal()) {
+        foreach ($notice->getAttentionProfiles() as $target) {
+            common_debug("OSTATUS [{$this->notice->getID()}]: Attention target profile {$target->getNickname()} ({$target->getID()})");
+            if ($target->isGroup()) {
+                common_debug("OSTATUS [{$this->notice->getID()}]: {$target->getID()} is a group");
+                $oprofile = Ostatus_profile::getKV('group_id', $target->getGroup()->getID());
+                if (!$oprofile instanceof Ostatus_profile) {
+                    // we don't save profiles like this yet, but in the future
+                    $oprofile = Ostatus_profile::getKV('profile_id', $target->getID());
+                }
+                if ($oprofile instanceof Ostatus_profile) {
+                    // remote group
+                    if ($notice->isLocal()) {
+                        common_debug("OSTATUS [{$this->notice->getID()}]: notice is local and remote group with profile ID {$target->getID()} gets a ping");
+                        $this->pingReply($oprofile);
+                    }
+                } else {
+                    common_debug("OSTATUS [{$this->notice->getID()}]: local group with profile id {$target->getID()} gets pushed out");
+                    // local group
+                    $this->pushGroup($target->getGroup());
+                }
+            } elseif ($notice->isLocal()) {
+                // Notices generated on other sites will have already
+                // pinged their reply-targets, so only do these things
+                // if the target is not a group and the notice is locally generated
+
+                $oprofile = Ostatus_profile::getKV('profile_id', $target->getID());
+                if ($oprofile instanceof Ostatus_profile) {
+                    common_debug("OSTATUS [{$this->notice->getID()}]: Notice is local and {$target->getID()} is remote profile, getting pingReply");
                     $this->pingReply($oprofile);
                 }
-            } else {
-                // local group
-                $this->pushGroup($group->id);
             }
         }
 
         if ($notice->isLocal()) {
-            // Notices generated on other sites will have already
-            // pinged their reply-targets.
-
-            foreach ($notice->getReplies() as $profile_id) {
-                $oprofile = Ostatus_profile::getKV('profile_id', $profile_id);
-                if ($oprofile) {
-                    $this->pingReply($oprofile);
-                }
-            }
-
-            if (!empty($this->notice->reply_to)) {
-                $replyTo = Notice::getKV('id', $this->notice->reply_to);
-                if (!empty($replyTo)) {
-                    foreach($replyTo->getReplies() as $profile_id) {
-                        $oprofile = Ostatus_profile::getKV('profile_id', $profile_id);
-                        if ($oprofile) {
-                            $this->pingReply($oprofile);
-                        }
+            try {
+                $parent = $this->notice->getParent();
+                foreach($parent->getAttentionProfiles() as $related) {
+                    if ($related->isGroup()) {
+                        // don't ping groups in parent notices since we might not be a member of them,
+                        // though it could be useful if we study this and use it correctly
+                        continue;
+                    }
+                    common_debug("OSTATUS [{$this->notice->getID()}]: parent notice {$parent->getID()} has related profile id=={$related->getID()}");
+                    // FIXME: don't ping twice in case someone is in both notice attention spans!
+                    $oprofile = Ostatus_profile::getKV('profile_id', $related->getID());
+                    if ($oprofile instanceof Ostatus_profile) {
+                        $this->pingReply($oprofile);
                     }
                 }
+            } catch (NoParentNoticeException $e) {
+                // nothing to do then
             }
 
             foreach ($notice->getProfileTags() as $ptag) {
@@ -116,6 +133,7 @@ class OStatusQueueHandler extends QueueHandler
     function pushUser()
     {
         if ($this->user) {
+            common_debug("OSTATUS [{$this->notice->getID()}]: pushing feed for local user {$this->user->getID()}");
             // For local posts, ping the PuSH hub to update their feed.
             // http://identi.ca/api/statuses/user_timeline/1.atom
             $feed = common_local_url('ApiTimelineUser',
@@ -125,18 +143,20 @@ class OStatusQueueHandler extends QueueHandler
         }
     }
 
-    function pushGroup($group_id)
+    function pushGroup(User_group $group)
     {
+        common_debug("OSTATUS [{$this->notice->getID()}]: pushing group '{$group->getNickname()}' profile_id={$group->profile_id}");
         // For a local group, ping the PuSH hub to update its feed.
         // Updates may come from either a local or a remote user.
         $feed = common_local_url('ApiTimelineGroup',
-                                 array('id' => $group_id,
+                                 array('id' => $group->getID(),
                                        'format' => 'atom'));
-        $this->pushFeed($feed, array($this, 'groupFeedForNotice'), $group_id);
+        $this->pushFeed($feed, array($this, 'groupFeedForNotice'), $group->getID());
     }
 
     function pushPeopletag($ptag)
     {
+        common_debug("OSTATUS [{$this->notice->getID()}]: pushing peopletag '{$ptag->id}'");
         // For a local people tag, ping the PuSH hub to update its feed.
         // Updates may come from either a local or a remote user.
         $feed = common_local_url('ApiTimelineList',
@@ -146,9 +166,10 @@ class OStatusQueueHandler extends QueueHandler
         $this->pushFeed($feed, array($this, 'peopletagFeedForNotice'), $ptag);
     }
 
-    function pingReply($oprofile)
+    function pingReply(Ostatus_profile $oprofile)
     {
         if ($this->user) {
+            common_debug("OSTATUS [{$this->notice->getID()}]: pinging reply to {$oprofile->localProfile()->getNickname()} for local user '{$this->user->getID()}'");
             // For local posts, send a Salmon ping to the mentioned
             // remote user or group.
             // @fixme as an optimization we can skip this if the

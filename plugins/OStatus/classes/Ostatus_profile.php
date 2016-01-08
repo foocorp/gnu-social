@@ -376,6 +376,7 @@ class Ostatus_profile extends Managed_DataObject
     public function notifyDeferred($entry, $actor)
     {
         if ($this->salmonuri) {
+            common_debug("OSTATUS: user {$actor->getNickname()} ({$actor->getID()}) wants to ping {$this->localProfile()->getNickname()} on {$this->salmonuri}");
             $data = array('salmonuri' => $this->salmonuri,
                           'entry' => $this->notifyPrepXml($entry),
                           'actor' => $actor->getID(),
