@@ -1596,6 +1596,11 @@ class Notice extends Managed_DataObject
             }
         }
 
+        if ($target->isLocal()) {
+            // is local user
+            $this->saveReply($target->getID());   // since we still have the Reply table which some apparently use!
+        }
+
         try {
             $att = Attention::saveNew($this, $target, $reason);
         } catch (AlreadyFulfilledException $e) {
