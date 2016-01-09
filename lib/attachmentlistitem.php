@@ -146,6 +146,8 @@ class AttachmentListItem extends Widget
                     if ($thumb instanceof File_thumbnail) {
                         $poster = $thumb->getUrl();
                         unset($thumb);  // there's no need carrying this along after this
+                    } else {
+                        $poster = null;
                     }
 
                     $this->out->elementStart($mediatype,
