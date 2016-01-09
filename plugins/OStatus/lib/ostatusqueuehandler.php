@@ -60,12 +60,6 @@ class OStatusQueueHandler extends QueueHandler
             return true;
         }
 
-        if ($notice->isLocal()) {
-            // Notices generated on remote sites will have already
-            // been pushed to user's subscribers by their origin sites.
-            $this->pushUser();
-        }
-
         foreach ($notice->getAttentionProfiles() as $target) {
             common_debug("OSTATUS [{$this->notice->getID()}]: Attention target profile {$target->getNickname()} ({$target->getID()})");
             if ($target->isGroup()) {
@@ -100,6 +94,10 @@ class OStatusQueueHandler extends QueueHandler
         }
 
         if ($notice->isLocal()) {
+            // Notices generated on remote sites will have already
+            // been pushed to user's subscribers by their origin sites.
+            $this->pushUser();
+
             try {
                 $parent = $this->notice->getParent();
                 foreach($parent->getAttentionProfiles() as $related) {
