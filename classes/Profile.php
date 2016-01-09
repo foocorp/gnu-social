@@ -1431,6 +1431,8 @@ class Profile extends Managed_DataObject
                         : $this->profileurl;
             }
             Event::handle('EndUserGroupHomeUrl', array($this->getGroup(), $url));
+        } elseif ($this->isLocal()) {
+            $url = common_local_url('showstream', array('nickname' => $this->getNickname()));
         } else {
             $url = $this->profileurl;
         }
