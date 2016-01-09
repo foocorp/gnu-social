@@ -196,7 +196,7 @@ class SortableGroupListItem extends SortableSubscriptionListItem
         $r2args['action'] = $action;
         if ($cur instanceof User && $cur->hasRight(Right::DELETEGROUP)) {
             $this->out->elementStart('li', 'entity_delete');
-            $df = new DeleteGroupForm($this->out, $this->profile, $r2args);
+            $df = new DeleteGroupForm($this->out, $this->profile->getGroup(), $r2args);
             $df->show();
             $this->out->elementEnd('li');
         }
@@ -224,10 +224,10 @@ class SortableGroupListItem extends SortableSubscriptionListItem
             // XXX: special-case for user looking at own
             // subscriptions page
             if ($user->isMember($this->profile->getGroup())) {
-                $lf = new LeaveForm($this->out, $this->profile);
+                $lf = new LeaveForm($this->out, $this->profile->getGroup());
                 $lf->show();
-            } else if (!Group_block::isBlocked($this->profile, $user->getProfile())) {
-                $jf = new JoinForm($this->out, $this->profile);
+            } else if (!Group_block::isBlocked($this->profile->getGroup(), $user->getProfile())) {
+                $jf = new JoinForm($this->out, $this->profile->getGroup());
                 $jf->show();
             }
 

@@ -29,9 +29,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Form for deleting a group
@@ -58,9 +56,9 @@ class DeleteGroupForm extends Form
      * Constructor
      *
      * @param HTMLOutputter $out   output channel
-     * @param group         $group group to join
+     * @param User_group    $group group to join
      */
-    function __construct($out=null, $group=null)
+    function __construct(HTMLOutputter $out=null, User_group $group=null)
     {
         parent::__construct($out);
 
@@ -74,7 +72,7 @@ class DeleteGroupForm extends Form
      */
     function id()
     {
-        return 'group-delete-' . $this->group->id;
+        return 'group-delete-' . $this->group->getID();
     }
 
     /**
@@ -94,14 +92,13 @@ class DeleteGroupForm extends Form
      */
     function action()
     {
-        return common_local_url('deletegroup',
-                                array('id' => $this->group->id));
+        return common_local_url('deletegroup', array('id' => $this->group->getID()));
     }
 
     function formData()
     {
         $this->out->hidden($this->id() . '-returnto-action', 'groupbyid', 'returnto-action');
-        $this->out->hidden($this->id() . '-returnto-id', $this->group->id, 'returnto-id');
+        $this->out->hidden($this->id() . '-returnto-id', $this->group->getID(), 'returnto-id');
     }
 
     /**

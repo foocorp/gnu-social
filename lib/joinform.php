@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/form.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Form for joining a group
@@ -57,9 +53,9 @@ class JoinForm extends Form
      * Constructor
      *
      * @param HTMLOutputter $out   output channel
-     * @param group         $group group to join
+     * @param User_group    $group group to join
      */
-    function __construct($out=null, $group=null)
+    function __construct(HTMLOutputter $out=null, User_group $group=null)
     {
         parent::__construct($out);
 
@@ -73,7 +69,7 @@ class JoinForm extends Form
      */
     function id()
     {
-        return 'group-join-' . $this->group->id;
+        return 'group-join-' . $this->group->getID();
     }
 
     /**
@@ -93,8 +89,7 @@ class JoinForm extends Form
      */
     function action()
     {
-        return common_local_url('joingroup',
-                                array('id' => $this->group->id));
+        return common_local_url('joingroup', array('id' => $this->group->getID()));
     }
 
     /**
