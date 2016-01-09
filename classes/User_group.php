@@ -115,7 +115,7 @@ class User_group extends Managed_DataObject
 
     function homeUrl()
     {
-        $this->getProfile()->getUrl();
+        return $this->getProfile()->getUrl();
     }
 
     function getUri()

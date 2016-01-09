@@ -1426,7 +1426,7 @@ class Profile extends Managed_DataObject
         if ($this->isGroup()) {
             // FIXME: Get rid of this event, it fills no real purpose, data should be in Profile->profileurl (replaces User_group->mainpage)
             if (Event::handle('StartUserGroupHomeUrl', array($this->getGroup(), &$url))) {
-                $url = $this->isLocal()
+                $url = $this->getGroup()->isLocal()
                         ? common_local_url('showgroup', array('nickname' => $this->getNickname()))
                         : $this->profileurl;
             }
@@ -1434,11 +1434,11 @@ class Profile extends Managed_DataObject
         } else {
             $url = $this->profileurl;
         }
-        if (empty($this->profileurl) ||
-                !filter_var($this->profileurl, FILTER_VALIDATE_URL)) {
-            throw new InvalidUrlException($this->profileurl);
+        if (empty($url) ||
+                !filter_var($url, FILTER_VALIDATE_URL)) {
+            throw new InvalidUrlException($url);
         }
-        return $this->profileurl;
+        return $url;
     }
 
     public function getNickname()
