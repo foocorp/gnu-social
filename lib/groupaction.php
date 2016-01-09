@@ -85,7 +85,7 @@ class GroupAction extends Action
 
         $this->group = User_group::getKV('id', $local->group_id);
 
-        if (!$this->group) {
+        if (!$this->group instanceof User_group) {
             // TRANS: Client error displayed if no local group with a given name was found requesting group page.
             $this->clientError(_('No such group.'), 404);
         }

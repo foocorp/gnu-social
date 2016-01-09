@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/lib/form.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Form for leaving a group
@@ -58,10 +54,11 @@ class CancelGroupForm extends Form
     /**
      * Constructor
      *
-     * @param HTMLOutputter $out   output channel
-     * @param group         $group group to leave
+     * @param HTMLOutputter $out        output channel
+     * @param User_group    $group      group to leave
+     * @param Profile       $profile    User profile this is meant for
      */
-    function __construct($out=null, $group=null, $profile=null)
+    function __construct(HTMLOutputter $out=null, User_group $group=null, Profile $profile=null)
     {
         parent::__construct($out);
 
@@ -76,7 +73,7 @@ class CancelGroupForm extends Form
      */
     function id()
     {
-        return 'group-cancel-' . $this->group->id;
+        return 'group-cancel-' . $this->group->getID();
     }
 
     /**
@@ -97,11 +94,10 @@ class CancelGroupForm extends Form
     function action()
     {
         $params = array();
-        if ($this->profile) {
-            $params['profile_id'] = $this->profile->id;
+        if ($this->profile instanceof Profile) {
+            $params['profile_id'] = $this->profile->getID();
         }
-        return common_local_url('cancelgroup',
-                                array('id' => $this->group->id), $params);
+        return common_local_url('cancelgroup', array('id' => $this->group->getID()), $params);
     }
 
     /**
