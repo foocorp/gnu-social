@@ -1596,11 +1596,10 @@ class Notice extends Managed_DataObject
     function saveAttention(Profile $target, $reason=null)
     {
         if ($target->isGroup()) {
-            // FIXME: Make sure we check that users are in the groups they send to!
-            if ($target->getGroup()->isLocal()) {
-                // legacy notification method, will still be in use for quite a while I think
-                $this->addToGroupInbox($target->getGroup());
-            }
+            // FIXME: Make sure we check (for both local and remote) users are in the groups they send to!
+
+            // legacy notification method, will still be in use for quite a while I think
+            $this->addToGroupInbox($target->getGroup());
         } else {
             if ($target->hasBlocked($this->getProfile())) {
                 common_log(LOG_INFO, "Not saving reply to profile {$target->id} ($uri) from sender {$sender->id} because of a block.");
