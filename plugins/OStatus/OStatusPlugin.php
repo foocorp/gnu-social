@@ -1265,17 +1265,23 @@ class OStatusPlugin extends Plugin
     function onStartGetProfileFromURI($uri, &$profile)
     {
         // Don't want to do Web-based discovery on our own server,
-        // so we check locally first.
+        // so we check locally first. This duplicates the functionality
+        // in the Profile class, since the plugin always runs before
+        // that local lookup, but since we return false it won't run double.
 
         $user = User::getKV('uri', $uri);
-
-        if (!empty($user)) {
+        if ($user instanceof User) {
             $profile = $user->getProfile();
             return false;
+        } else {
+            $group = User_group::getKV('uri', $uri);
+            if ($group instanceof User_group) {
+                $profile = $group->getProfile();
+                return false;
+            }
         }
 
         // Now, check remotely
-
         try {
             $oprofile = Ostatus_profile::ensureProfileURI($uri);
             $profile = $oprofile->localProfile();

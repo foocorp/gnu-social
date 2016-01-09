@@ -974,8 +974,6 @@ class Notice extends Managed_DataObject
         // reasonably handle notifications themselves.
         if (ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST))) {
 
-            $stored->saveAttentions($act->context->attention);
-
             if (!empty($tags)) {
                 $stored->saveKnownTags($tags);
             } else {
@@ -984,7 +982,7 @@ class Notice extends Managed_DataObject
 
             // Note: groups may save tags, so must be run after tags are saved
             // to avoid errors on duplicates.
-            // Note: groups should always be set.
+            $stored->saveAttentions($act->context->attention);
 
             if (!empty($urls)) {
                 $stored->saveKnownUrls($urls);
