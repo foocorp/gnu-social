@@ -24,7 +24,7 @@ class OpportunisticQueueManager extends DBQueueManager
     protected $started_at = null;
     protected $handled_items = 0;
 
-    const MAXEXECTIME = 10; // typically just used for the /main/cron action, only used if php.ini max_execution_time is 0
+    const MAXEXECTIME = 20; // typically just used for the /main/cron action, only used if php.ini max_execution_time is 0
 
     public function __construct(array $args=array()) {
         foreach (get_class_vars(get_class($this)) as $key=>$val) {
@@ -59,7 +59,7 @@ class OpportunisticQueueManager extends DBQueueManager
     public function canContinue()
     {
         $time_passed = time() - $this->started_at;
-        
+
         // Only continue if limit values are sane
         if ($time_passed <= 0 && (!is_null($this->max_queue_items) && $this->max_queue_items <= 0)) {
             return false;
@@ -88,7 +88,7 @@ class OpportunisticQueueManager extends DBQueueManager
     // OpportunisticQM shouldn't discard items it can't handle, we're
     // only here to take care of what we _can_ handle!
     protected function noHandlerFound(Queue_item $qi, $rep=null) {
-        $this->_log(LOG_WARNING, "[{$qi->transport}:item {$qi->id}] Releasing claim for queue item without a handler");              
+        $this->_log(LOG_WARNING, "[{$qi->transport}:item {$qi->id}] Releasing claim for queue item without a handler");
         $this->_fail($qi, true);    // true here means "releaseOnly", so no error statistics since it's not an _error_
     }
 
@@ -114,7 +114,11 @@ class OpportunisticQueueManager extends DBQueueManager
                 return true;
             }
         }
-        common_debug('Opportunistic queue manager passed execution time/item handling limit without being out of work.');
+        if ($this->handled_items > 0) {
+            common_debug('Opportunistic queue manager passed execution time/item handling limit without being out of work.');
+        } else {
+            common_debug('Opportunistic queue manager did not have time to start on this action (max: '.$this->max_execution_time.' exceeded: '.abs(time()-$this->started_at).').');
+        }
         return false;
     }
 }
