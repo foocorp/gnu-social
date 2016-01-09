@@ -24,6 +24,8 @@ class OpportunisticQueueManager extends DBQueueManager
     protected $started_at = null;
     protected $handled_items = 0;
 
+    protected $verbosity = null;
+
     const MAXEXECTIME = 20; // typically just used for the /main/cron action, only used if php.ini max_execution_time is 0
 
     public function __construct(array $args=array()) {
@@ -116,7 +118,7 @@ class OpportunisticQueueManager extends DBQueueManager
         }
         if ($this->handled_items > 0) {
             common_debug('Opportunistic queue manager passed execution time/item handling limit without being out of work.');
-        } else {
+        } elseif ($this->verbosity > 1) {
             common_debug('Opportunistic queue manager did not have time to start on this action (max: '.$this->max_execution_time.' exceeded: '.abs(time()-$this->started_at).').');
         }
         return false;

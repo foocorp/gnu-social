@@ -4,6 +4,7 @@ class OpportunisticQMPlugin extends Plugin {
     public $qmkey = false;
     public $secs_per_action = 1; // total seconds to run script per action
     public $rel_to_pageload = true;  // relative to pageload or queue start
+    public $verbosity = 1;
 
     public function onRouterInitialized($m)
     {
@@ -26,6 +27,7 @@ class OpportunisticQMPlugin extends Plugin {
                     'qmkey' => common_config('opportunisticqm', 'qmkey'),
                     'max_execution_time' => $this->secs_per_action,
                     'started_at'      => $this->rel_to_pageload ? $_startTime : null,
+                    'verbosity'          => $this->verbosity,
                 );
         $qm = new OpportunisticQueueManager($args); 
         $qm->runQueue();
