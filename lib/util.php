@@ -687,7 +687,7 @@ function common_get_attentions($text, Profile $sender, Notice $parent=null)
     $atts = array();
     foreach ($mentions as $mention) {
         foreach ($mention['mentioned'] as $mentioned) {
-            $atts[$mentioned->getUri()] = $mentioned->isGroup() ? ActivityObject::GROUP : ActivityObject::PERSON;
+            $atts[$mentioned->getUri()] = $mentioned->getObjectType();
         }
     }
     if ($parent instanceof Notice) {

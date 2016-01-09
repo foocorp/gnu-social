@@ -1579,14 +1579,28 @@ class Notice extends Managed_DataObject
                 continue;
             }
 
-            $this->saveAttention($target);
+            try {
+                $this->saveAttention($target);
+            } catch (AlreadyFulfilledException $e) {
+                common_debug('Attention already exists: '.var_export($e->getMessage(),true));
+            } catch (Exception $e) {
+                common_log(LOG_ERR, "Could not save notice id=={$this->getID()} attention for profile id=={$target->getID()}: {$e->getMessage()}");
+            }
         }
     }
 
+    /**
+     * Saves an attention for a profile (user or group) which means
+     * it shows up in their home feed and such.
+     */
     function saveAttention(Profile $target, $reason=null)
     {
         if ($target->isGroup()) {
             // FIXME: Make sure we check that users are in the groups they send to!
+            if ($target->getGroup()->isLocal()) {
+                // legacy notification method, will still be in use for quite a while I think
+                $this->addToGroupInbox($target->getGroup());
+            }
         } else {
             if ($target->hasBlocked($this->getProfile())) {
                 common_log(LOG_INFO, "Not saving reply to profile {$target->id} ($uri) from sender {$sender->id} because of a block.");
@@ -1595,17 +1609,11 @@ class Notice extends Managed_DataObject
         }
 
         if ($target->isLocal()) {
-            // is local user
-            $this->saveReply($target->getID());   // since we still have the Reply table which some apparently use!
+            // legacy notification method, will still be in use for quite a while I think
+            $this->saveReply($target->getID());
         }
 
-        try {
-            $att = Attention::saveNew($this, $target, $reason);
-        } catch (AlreadyFulfilledException $e) {
-            common_debug('Could not save Attention: '.$e->getMessage());
-        } catch (Exception $e) {
-            common_log(LOG_ERR, 'Could not save Attention: '.$e->getMessage());
-        }
+        $att = Attention::saveNew($this, $target, $reason);
 
         self::blow('reply:stream:%d', $target->getID());
         return true;
@@ -1952,19 +1960,11 @@ class Notice extends Managed_DataObject
                 }
             }
 
-            $reply_ids = $this->getReplies();
-
-            foreach ($reply_ids as $id) {
-                $rprofile = Profile::getKV('id', $id);
-                if ($rprofile instanceof Profile) {
-                    $ctx->attention[$rprofile->getUri()] = ActivityObject::PERSON;
-                }
-            }
-
-            $groups = $this->getGroups();
-
-            foreach ($groups as $group) {
-                $ctx->attention[$group->getUri()] = ActivityObject::GROUP;
+            // This covers the legacy getReplies and getGroups too which get their data
+            // from entries stored via Notice::saveNew (which we want to move away from)...
+            foreach ($this->getAttentionProfiles() as $target) {
+                // User and group profiles which get the attention of this notice
+                $ctx->attention[$target->getUri()] = $target->getObjectType();
             }
 
             switch ($this->scope) {
