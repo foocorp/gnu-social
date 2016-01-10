@@ -626,6 +626,10 @@ address .poweredby {
     display: none;
 }
 
+#notices_primary .e-content h2 {
+    display: block;
+}
+
 .notice {
     list-style-type: none;
     margin-bottom: 10px;
