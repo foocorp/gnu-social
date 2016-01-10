@@ -75,14 +75,13 @@ variant of this command (you will be prompted for the database password):
     will be the local files such as avatars, config and files:
 
         avatar/*
-        background/*
         file/*
         local/*
         .htaccess
         config.php
 
     This command will point you in the right direction on how to do it:
-    $ rsync -avP statusnet/{.htaccess,avatar,background,file,local,config.php} gnusocial/
+    $ rsync -avP statusnet/{.htaccess,avatar,file,local,config.php} gnusocial/
 
 4. Replace your old StatusNet directory with the new GNU social
     directory in your webserver root.

@@ -109,11 +109,13 @@ especially if you've previously installed PHP/MariaDB packages.
    will enable "Fancy URL" support, which you can read more about if you
    scroll down a bit in this document.
 
-3. Make your target directory writeable by the Web server.
+3. Make your target directory writeable by the Web server, please note
+   however that 'a+w' will give _all_ users write access and securing the
+   webserver is not within the scope of this document.
 
        chmod a+w /var/www/gnusocial/
 
-   On some systems, this will probably work:
+   On some systems, this will work as a more secure alternative:
 
        chgrp www-data /var/www/gnusocial/
        chmod g+w /var/www/gnusocial/
@@ -122,16 +124,15 @@ especially if you've previously installed PHP/MariaDB packages.
    that user's default group instead. As a last resort, you can create
    a new group like "gnusocial" and add the Web server's user to the group.
 
-4. You should also take this moment to make your avatar, background, and
-   file subdirectories writeable by the Web server. An insecure way to do
+4. You should also take this moment to make your 'avatar' and 'file' sub-
+   directories writeable by the Web server. The _insecure_ way to do
    this is:
 
        chmod a+w /var/www/gnusocial/avatar
-       chmod a+w /var/www/gnusocial/background
        chmod a+w /var/www/gnusocial/file
 
-   You can also make the avatar, background, and file directories
-   writeable by the Web server group, as noted above.
+   You can also make the avatar, and file directories just writable by
+   the Web server group, as noted above.
 
 5. Create a database to hold your site data. Something like this
    should work (you will be prompted for your database password):
@@ -365,12 +366,12 @@ Two mechanisms are available to achieve offline operations:
 ### OpportunisticQM plugin
 
 This plugin is enabled by default. It tries its best to do background
-job during regular HTTP requests, like API or HTML pages calls.
+jobs during regular HTTP requests, like API or HTML pages calls.
 
 Since queueing system is enabled by default, notices to be broadcasted
 will be stored, by default, into DB (table queue_item).
 
-Each time it can, OpportunisticQM will try to handle some of them.
+Whenever it has time, OpportunisticQM will try to handle some of them.
 
 This is a good solution whether you:
 
