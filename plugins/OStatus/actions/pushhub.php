@@ -83,20 +83,24 @@ class PushHubAction extends Action
     {
         $callback = $this->argUrl('hub.callback');
 
+        common_debug('New PuSH hub request ('._ve($mode).') for callback '._ve($callback));
         $topic = $this->argUrl('hub.topic');
         if (!$this->recognizedFeed($topic)) {
+            common_debug('PuSH hub request had unrecognized feed topic=='._ve($topic));
             // TRANS: Client exception. %s is a topic.
             throw new ClientException(sprintf(_m('Unsupported hub.topic %s this hub only serves local user and group Atom feeds.'),$topic));
         }
 
         $lease = $this->arg('hub.lease_seconds', null);
         if ($mode == 'subscribe' && $lease != '' && !preg_match('/^\d+$/', $lease)) {
+            common_debug('PuSH hub request had invalid lease_seconds=='._ve($lease));
             // TRANS: Client exception. %s is the invalid lease value.
             throw new ClientException(sprintf(_m('Invalid hub.lease "%s". It must be empty or positive integer.'),$lease));
         }
 
         $secret = $this->arg('hub.secret', null);
         if ($secret != '' && strlen($secret) >= 200) {
+            common_debug('PuSH hub request had invalid secret=='._ve($secret));
             // TRANS: Client exception. %s is the invalid hub secret.
             throw new ClientException(sprintf(_m('Invalid hub.secret "%s". It must be under 200 bytes.'),$secret));
         }
@@ -104,6 +108,7 @@ class PushHubAction extends Action
         $sub = HubSub::getByHashkey($topic, $callback);
         if (!$sub instanceof HubSub) {
             // Creating a new one!
+            common_debug('PuSH creating new HubSub entry for topic=='._ve($topic).' to remote callback '._ve($callback));
             $sub = new HubSub();
             $sub->topic = $topic;
             $sub->callback = $callback;
@@ -113,9 +118,11 @@ class PushHubAction extends Action
                 $sub->secret = $secret;
             }
             if ($lease) {
+                common_debug('PuSH hub setting dataobject lease to:'._ve(intval($lease)));
                 $sub->setLease(intval($lease));
             }
         }
+        common_debug('PuSH hub request is now:'._ve($sub));
 
         $verify = $this->arg('hub.verify'); // TODO: deprecated
         $token = $this->arg('hub.verify_token', null);  // TODO: deprecated
