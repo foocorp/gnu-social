@@ -89,6 +89,13 @@ class RawTagNoticeStream extends NoticeStream
         Notice::addWhereSinceId($nt, $since_id, 'notice_id');
         Notice::addWhereMaxId($nt, $max_id, 'notice_id');
 
+        if (!empty($this->selectVerbs)) {
+            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
+        }
+        if (!empty($this->unselectVerbs)) {
+            $notice->whereAddIn('!verb', $this->unselectVerbs, $notice->columnType('verb'));
+        }
+
         $nt->orderBy('created DESC, notice_id DESC');
 
         if (!is_null($offset)) {
