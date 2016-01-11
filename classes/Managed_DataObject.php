@@ -420,7 +420,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
      * @param DB_DataObject &$orig  Must be "instanceof" $this
      * @param string         $pid   Primary ID column (no escaping is done on column name!)
      */
-    public function updateWithKeys(&$orig, $pid='id')
+    public function updateWithKeys(Managed_DataObject $orig, $pid='id')
     {
         if (!$orig instanceof $this) {
             throw new ServerException('Tried updating a DataObject with a different class than itself.');
@@ -456,7 +456,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
                             common_database_tablename($this->tableName()),
                             implode(', ', $parts),
                             $pid,
-                            $this->_quote($this->$pid));
+                            $this->_quote($orig->$pid));
 
         $result = $this->query($qry);
         if ($result === false) {
