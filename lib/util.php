@@ -2454,3 +2454,8 @@ function html_sprintf()
     }
     return call_user_func_array('sprintf', $args);
 }
+
+function _ve($var)
+{
+    return var_export($var, true);
+}
