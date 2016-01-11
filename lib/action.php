@@ -1154,7 +1154,7 @@ class Action extends HTMLOutputter // lawsuit
                         $url = $sslimage;
                     } else if (preg_match('#^http://i.creativecommons.org/#', $image)) {
                         // CC support HTTPS on their images
-                        $url = preg_replace('/^http/', 'https', $image);
+                        $url = preg_replace('/^http/', 'https', $image, 1);
                     } else {
                         // Better to show mixed content than no content
                         $url = $image;
