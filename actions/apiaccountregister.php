@@ -154,25 +154,27 @@ class ApiAccountRegisterAction extends ApiAction
 
             // annoy spammers
             sleep(7);
+            
+			if (Event::handle('APIStartRegistrationTry', array($this))) { 
+				try {
+					$user = User::register(array('nickname' => $nickname,
+														'password' => $password,
+														'email' => $email,
+														'fullname' => $fullname,
+														'homepage' => $homepage,
+														'bio' => $bio,
+														'location' => $location,
+														'code' => $this->code));
+					Event::handle('EndRegistrationTry', array($this));
 
-            try {
-                $user = User::register(array('nickname' => $nickname,
-                                                    'password' => $password,
-                                                    'email' => $email,
-                                                    'fullname' => $fullname,
-                                                    'homepage' => $homepage,
-                                                    'bio' => $bio,
-                                                    'location' => $location,
-                                                    'code' => $this->code));
-                Event::handle('EndRegistrationTry', array($this));
+					$this->initDocument('json');
+					$this->showJsonObjects($this->twitterUserArray($user->getProfile()));
+					$this->endDocument('json');
 
-                $this->initDocument('json');
-                $this->showJsonObjects($this->twitterUserArray($user->getProfile()));
-                $this->endDocument('json');
-
-            } catch (Exception $e) {
-                $this->clientError($e->getMessage(), 400);
-            }
+				} catch (Exception $e) {
+					$this->clientError($e->getMessage(), 400);
+				}			
+			}
         }
     }
 
