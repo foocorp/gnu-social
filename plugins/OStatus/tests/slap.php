@@ -75,10 +75,14 @@ if (have_option('--verify')) {
     print "Sending for verification to $url ...\n";
 
     $client = new HTTPClient();
-    $response = $client->post($url, array(), array('magic_env' => $envxml));
+    try {
+        $response = $client->post($url, array(), array('magic_env' => $envxml));
 
-    print $response->getStatus() . "\n\n";
-    print $response->getBody() . "\n\n";
+        print $response->getStatus() . "\n\n";
+        print $response->getBody() . "\n\n";
+    } catch (HTTP_Request2_Exception $e) {
+        print 'Failed POST to URL '.var_export($url, true).': '.$e->getMessage();
+    }
 }
 
 if (have_option('--slap')) {

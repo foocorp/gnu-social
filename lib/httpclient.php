@@ -194,7 +194,7 @@ class HTTPClient extends HTTP_Request2
         }
         $response = $client->get($url);
         if (!$response->isOk()) {
-            // TRANS: Exception. %s is a profile URL.
+            // TRANS: Exception. %s is the URL we tried to GET.
             throw new Exception(sprintf(_m('Could not GET URL %s.'), $url), $response->getStatus());
         }
         return $response->getBody();
@@ -288,6 +288,10 @@ class HTTPClient extends HTTP_Request2
             }
         }
         $response = $this->send();
+        if (is_null($response)) {
+            // TRANS: Failed to retrieve a remote web resource, %s is the target URL.
+            throw new HTTP_Request2_Exception(sprintf(_m('HTTP request failed without response to URL: %s'), var_export($target, true)));
+        }
         return $response;
     }
     

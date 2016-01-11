@@ -58,9 +58,14 @@ class DiscoveryHints {
     {
         $client = new HTTPClient();
         $client->setHeader('Accept', 'text/html,application/xhtml+xml');
-        $response = $client->get($url);
+        try {
+            $response = $client->get($url);
 
-        if (!$response->isOk()) {
+            if (!$response->isOk()) {
+                return null;
+            }
+        } catch (HTTP_Request2_Exception $e) {
+            // Any HTTPClient error that might've been thrown
             return null;
         }
 
