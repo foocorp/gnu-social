@@ -593,7 +593,10 @@ function common_purify($html)
 
     $html = common_remove_unicode_formatting($html);
 
-    return htmLawed($html, $config);
+    $purified = htmLawed($html, $config);
+    Event::handle('EndCommonPurify', array(&$purified, $html));
+    
+    return $purified;
 }
 
 function common_remove_unicode_formatting($text)
