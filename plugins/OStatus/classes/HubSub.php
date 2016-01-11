@@ -307,7 +307,7 @@ class HubSub extends Managed_DataObject
         if (is_null($response)) {
             // This means we got a lower-than-HTTP level error, like domain not found or maybe connection refused
             // This should be using a more distinguishable exception class, but for now this will do.
-            throw new Exception(sprintf(_m('HTTP request failed without response to URL: %s'), var_export($target, true)));
+            throw new Exception(sprintf(_m('HTTP request failed without response to URL: %s'), _ve(isset($httpscallback) ? $httpscallback : $this->callback)));
         }
 
         // TRANS: Exception. %1$s is a response status code, %2$s is the body of the response.
