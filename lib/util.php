@@ -594,7 +594,7 @@ function common_purify($html)
     $html = common_remove_unicode_formatting($html);
 
     $purified = htmLawed($html, $config);
-    Event::handle('EndCommonPurify', array(&$purified));
+    Event::handle('EndCommonPurify', array(&$purified, $html));
     
     return $purified;
 }
