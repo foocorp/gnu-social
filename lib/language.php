@@ -350,7 +350,7 @@ function get_all_languages() {
         'ia'      => array('q' => 0.8, 'lang' => 'ia', 'name' => 'Interlingua', 'direction' => 'ltr'),
         'ga'      => array('q' => 0.5, 'lang' => 'ga', 'name' => 'Irish', 'direction' => 'ltr'),
         'it'      => array('q' => 1, 'lang' => 'it', 'name' => 'Italian', 'direction' => 'ltr'),        
-        'jp'      => array('q' => 0.5, 'lang' => 'ja', 'name' => 'Japanese', 'direction' => 'ltr'),        
+        'ja'      => array('q' => 0.5, 'lang' => 'ja', 'name' => 'Japanese', 'direction' => 'ltr'),        
         'ko'      => array('q' => 0.9, 'lang' => 'ko',    'name' => 'Korean', 'direction' => 'ltr'),        
         'lv'      => array('q' => 1, 'lang' => 'lv', 'name' => 'Latvian', 'direction' => 'ltr'),
         'lt'      => array('q' => 1, 'lang' => 'lt', 'name' => 'Lithuanian', 'direction' => 'ltr'),
