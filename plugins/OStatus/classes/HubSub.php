@@ -263,6 +263,7 @@ class HubSub extends Managed_DataObject
         common_log(LOG_INFO, "About to push feed to $this->callback for {$this->getTopic()}, HMAC $hmac");
 
         $request = new HTTPClient();
+        $request->setConfig(array('follow_redirects' => false));
         $request->setBody($atom);
         try {
             $response = $request->post($this->callback, $headers);
