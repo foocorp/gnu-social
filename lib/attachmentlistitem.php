@@ -129,6 +129,12 @@ class AttachmentListItem extends Widget
                 if ($this->attachment->mimetype === 'application/ogg') {
                     $mediatype = 'video';   // because this element can handle Ogg/Vorbis etc. on its own
                 }
+
+                // Ugly hack to show text/html links which have a thumbnail (such as from oEmbed/OpenGraph image URLs)
+                if (!in_array($mediatype, ['image','audio','video']) && $thumb instanceof File_thumbnail) {
+                    $mediatype = 'image';
+                }
+
                 switch ($mediatype) {
                 // Anything we understand as an image, if we need special treatment, do it in StartShowAttachmentRepresentation
                 case 'image':
