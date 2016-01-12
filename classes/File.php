@@ -264,9 +264,13 @@ class File extends Managed_DataObject
             $ext = common_supported_mime_to_ext($mimetype);
         } catch (Exception $e) {
             // We don't support this mimetype, but let's guess the extension
-            $ext = substr(strrchr($mimetype, '/'), 1);
+            $matches = array();
+            if (!preg_match('/\/([a-z0-9]+)/', mb_strtolower($mimetype), $matches)) {
+                throw new Exception('Malformed mimetype: '.$mimetype);
+            }
+            $ext = $matches[1];
         }
-        return strtolower($ext);
+        return mb_strtolower($ext);
     }
 
     /**
