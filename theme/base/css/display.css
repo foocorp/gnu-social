@@ -808,6 +808,7 @@ position:static;
 }
 
 .notice.h-entry .attachments .inline-attachment * {
+    height: auto;
     max-width: 100%;
 }
 .notice.h-entry .attachments .inline-attachment > a {
