@@ -1871,6 +1871,9 @@ function common_supported_ext_to_mime($fileext)
 function common_supported_mime_to_ext($mimetype)
 {
     $supported = common_config('attachments', 'supported');
+    if ($supported === true) {
+        throw new ServerException('Supported mimetype but unknown extension relation.');
+    }
     foreach($supported as $type => $ext) {
         if ($mimetype === $type) {
             return $ext;
