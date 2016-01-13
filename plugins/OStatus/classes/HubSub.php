@@ -34,7 +34,6 @@ class HubSub extends Managed_DataObject
     public $topic;      // varchar(191)   not 255 because utf8mb4 takes more space
     public $callback;   // varchar(191)   not 255 because utf8mb4 takes more space
     public $secret;
-    public $lease;
     public $sub_start;
     public $sub_end;
     public $created;
@@ -58,7 +57,6 @@ class HubSub extends Managed_DataObject
                 'topic' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'HubSub topic'),
                 'callback' => array('type' => 'varchar', 'not null' => true, 'length' => 191, 'description' => 'HubSub callback'),
                 'secret' => array('type' => 'text', 'description' => 'HubSub stored secret'),
-                'lease' => array('type' => 'int', 'description' => 'HubSub leasetime'),
                 'sub_start' => array('type' => 'datetime', 'description' => 'subscription start'),
                 'sub_end' => array('type' => 'datetime', 'description' => 'subscription end'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
@@ -97,9 +95,26 @@ class HubSub extends Managed_DataObject
         }
 
         common_debug('PuSH hub after sanitation: lease_seconds=='._ve($length));
-        $this->lease = $length;
         $this->sub_start = common_sql_now();
         $this->sub_end = common_sql_date(time() + $length);
+    }
+
+    function getLease()
+    {
+        if (empty($this->sub_start) || empty($this->sub_end)) {
+            return null;
+        }
+        $length = strtotime($this->sub_end) - strtotime($this->sub_start);
+        assert($length > 0);
+        return $length;
+    }
+
+    function getLeaseRemaining()
+    {
+        if (empty($this->sub_end)) {
+            return null;
+        }
+        return strtotime($this->sub_end) - time();
     }
 
     /**
@@ -144,7 +159,7 @@ class HubSub extends Managed_DataObject
                         'hub.topic' => $this->getTopic(),
                         'hub.challenge' => $challenge);
         if ($mode == 'subscribe') {
-            $params['hub.lease_seconds'] = $this->lease;
+            $params['hub.lease_seconds'] = $this->getLease();
         }
         if ($token !== null) {  // TODO: deprecated in PuSH 0.4
             $params['hub.verify_token'] = $token;   // let's put it in there if remote uses PuSH <0.4
