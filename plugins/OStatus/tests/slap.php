@@ -80,7 +80,7 @@ if (have_option('--verify')) {
 
         print $response->getStatus() . "\n\n";
         print $response->getBody() . "\n\n";
-    } catch (HTTP_Request2_Exception $e) {
+    } catch (NoHttpResponseException $e) {
         print 'Failed POST to URL '.var_export($url, true).': '.$e->getMessage();
     }
 }

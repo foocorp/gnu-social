@@ -64,7 +64,7 @@ class DiscoveryHints {
             if (!$response->isOk()) {
                 return null;
             }
-        } catch (HTTP_Request2_Exception $e) {
+        } catch (NoHttpResponseException $e) {
             // Any HTTPClient error that might've been thrown
             return null;
         }

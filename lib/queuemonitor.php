@@ -102,8 +102,8 @@ class QueueMonitor
             if (!$result->isOk()) {
                 common_log(LOG_ERR, __METHOD__ . ' HTTP ' . $result->getStatus() . ': ' . $result->getBody());
             }
-        } catch (HTTP_Request2_Exception $e) {
-                common_log(LOG_ERR, __METHOD__ . ' HTTP request generated PHP level error (check logs, could be DNS failure etc.). URL: '.var_export($target,true));
+        } catch (NoHttpResponseException $e) {
+            common_log(LOG_ERR, __METHOD__ . ':'.$e->getMessage());
         }
     }
 
