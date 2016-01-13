@@ -74,16 +74,21 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
 
         $this->notice_id = (int)$this->trimmed('id');
 
-        $this->notice = Notice::getKV('id', $this->notice_id);
-        if (!$this->notice instanceof Notice) {
-            $deleted = Deleted_notice::getKV('id', $this->notice_id);
-            if ($deleted instanceof Deleted_notice) {
+        $this->notice = null;
+        try {
+            $this->notice = Notice::getByID($this->notice_id);
+        } catch (NoResultException $e) {
+            // No such notice was found, maybe it was deleted?
+            $deleted = null;
+            Event::handle('IsNoticeDeleted', array($this->notice_id, &$deleted));
+            if ($deleted === true) {
                 // TRANS: Client error displayed trying to show a deleted notice.
-                $this->clientError(_('Notice deleted.'), 410);
+                throw new ClientException(_('Notice deleted.'), 410);
             }
             // TRANS: Client error displayed trying to show a non-existing notice.
-            $this->clientError(_('No such notice.'), 404);
+            throw new ClientException(_('No such notice.'), 404);
         }
+
         if (!$this->notice->inScope($this->scoped)) {
             // TRANS: Client exception thrown when trying a view a notice the user has no access to.
             throw new ClientException(_('Access restricted.'), 403);

@@ -113,20 +113,22 @@ class ShownoticeAction extends ManagedAction
     {
         $id = $this->arg('notice');
 
-        $notice = Notice::getKV('id', $id);
-        if ($notice instanceof Notice) {
+        $notice = null;
+        try {
+            $notice = Notice::getByID($id);
             // Alright, got it!
             return $notice;
-        }
-
-        // Did we use to have it, and it got deleted?
-        $deleted = Deleted_notice::getKV('id', $id);
-        if ($deleted instanceof Deleted_notice) {
-            // TRANS: Client error displayed trying to show a deleted notice.
-            $this->clientError(_('Notice deleted.'), 410);
+        } catch (NoResultException $e) {
+            // Hm, not found.
+            $deleted = null;
+            Event::handle('IsNoticeDeleted', array($id, &$deleted));
+            if ($deleted === true) {
+                // TRANS: Client error displayed trying to show a deleted notice.
+                throw new ClientException(_('Notice deleted.'), 410);
+            }
         }
         // TRANS: Client error displayed trying to show a non-existing notice.
-        $this->clientError(_('No such notice.'), 404);
+        throw new ClientException(_('No such notice.'), 404);
     }
 
     /**

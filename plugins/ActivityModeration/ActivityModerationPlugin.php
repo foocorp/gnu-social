@@ -46,6 +46,18 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         return false;
     }
 
+    public function onIsNoticeDeleted($id, &$deleted)
+    {
+        try {
+            $found = Deleted_notice::getByID($id);
+            $deleted = ($found instanceof Deleted_notice);
+        } catch (NoResultException $e) {
+            $deleted = false;
+        }
+        // return true (continue event) if $deleted is false, return false (stop event) if deleted notice was found
+        return !$deleted;
+    }
+
     protected function getActionTitle(ManagedAction $action, $verb, Notice $target, Profile $scoped)
     {
         // FIXME: switch based on action type
