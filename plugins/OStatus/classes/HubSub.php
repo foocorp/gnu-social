@@ -64,6 +64,7 @@ class HubSub extends Managed_DataObject
             ),
             'primary key' => array('hashkey'),
             'indexes' => array(
+                'hubsub_callback_idx' => array('callback'),
                 'hubsub_topic_idx' => array('topic'),
             ),
         );
@@ -314,7 +315,6 @@ class HubSub extends Managed_DataObject
                 $orig = clone($this);
                 $this->callback = $httpscallback;
                 $this->hashkey = self::hashkey($this->getTopic(), $this->callback);
-                common_debug('HubSub DEBUG, from '._ve($orig).' to '._ve($this));
                 $this->updateWithKeys($orig, 'hashkey');
                 return true;
             }
