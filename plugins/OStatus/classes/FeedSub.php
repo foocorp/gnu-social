@@ -335,6 +335,7 @@ class FeedSub extends Managed_DataObject
                           'hub.verify' => 'async',  // TODO: deprecated, remove when noone uses PuSH <0.4 (only 'async' method used there)
                           'hub.verify_token' => 'Deprecated-since-PuSH-0.4', // TODO: rm!
 
+                          'hub.lease_seconds' => 2592000,   // 3600*24*30, request approximately month long lease (may be changed by hub)
                           'hub.secret' => $this->secret,
                           'hub.topic' => $this->getUri());
             $client = new HTTPClient();
