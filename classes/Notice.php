@@ -2615,21 +2615,21 @@ class Notice extends Managed_DataObject
      */
     public static function getAsTimestamp($id)
     {
-        if (!$id) {
-            return false;
+        if (empty($id)) {
+            throw new EmptyIdException('Notice');
         }
 
-        $notice = Notice::getKV('id', $id);
-        if ($notice) {
-            return $notice->created;
+        $timestamp = null;
+        if (Event::handle('GetNoticeSqlTimestamp', array($id, &$timestamp))) {
+            // getByID throws exception if $id isn't found
+            $notice = Notice::getByID($id);
+            $timestamp = $notice->created;
         }
 
-        $deleted = Deleted_notice::getKV('id', $id);
-        if ($deleted) {
-            return $deleted->created;
+        if (empty($timestamp)) {
+            throw new ServerException('No timestamp found for Notice with id=='._ve($id));
         }
-
-        return false;
+        return $timestamp;
     }
 
     /**
@@ -2645,11 +2645,12 @@ class Notice extends Managed_DataObject
      */
     public static function whereSinceId($id, $idField='id', $createdField='created')
     {
-        $since = Notice::getAsTimestamp($id);
-        if ($since) {
-            return sprintf("($createdField = '%s' and $idField > %d) or ($createdField > '%s')", $since, $id, $since);
+        try {
+            $since = Notice::getAsTimestamp($id);
+        } catch (Exception $e) {
+            return false;
         }
-        return false;
+        return sprintf("($createdField = '%s' and $idField > %d) or ($createdField > '%s')", $since, $id, $since);
     }
 
     /**
@@ -2684,11 +2685,12 @@ class Notice extends Managed_DataObject
      */
     public static function whereMaxId($id, $idField='id', $createdField='created')
     {
-        $max = Notice::getAsTimestamp($id);
-        if ($max) {
-            return sprintf("($createdField < '%s') or ($createdField = '%s' and $idField <= %d)", $max, $max, $id);
+        try {
+            $max = Notice::getAsTimestamp($id);
+        } catch (Exception $e) {
+            return false;
         }
-        return false;
+        return sprintf("($createdField < '%s') or ($createdField = '%s' and $idField <= %d)", $max, $max, $id);
     }
 
     /**

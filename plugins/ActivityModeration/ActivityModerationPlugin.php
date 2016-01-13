@@ -34,6 +34,18 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         return true;
     }
 
+    public function onGetNoticeSqlTimestamp($id, &$timestamp)
+    {
+        try {
+            $deleted = Deleted_notice::getByID($id);
+            $timestamp = $deleted->act_created;
+        } catch (NoResultException $e) {
+            return true;
+        }
+        // we're done for the event, so return false to stop it
+        return false;
+    }
+
     protected function getActionTitle(ManagedAction $action, $verb, Notice $target, Profile $scoped)
     {
         // FIXME: switch based on action type
