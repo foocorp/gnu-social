@@ -122,6 +122,12 @@ class Profile extends Managed_DataObject
         }
     }
 
+    public function isPerson()
+    {
+        // Maybe other things than PERSON and GROUP can have Profiles in the future?
+        return !$this->isGroup();
+    }
+
     public function isLocal()
     {
         try {
