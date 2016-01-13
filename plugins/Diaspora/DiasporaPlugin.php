@@ -240,7 +240,7 @@ class DiasporaPlugin extends Plugin
             $client = new HTTPClient();
             $client->setBody('xml=' . Magicsig::base64_url_encode($envxml));
             $response = $client->post($endpoint_uri, $headers);
-        } catch (HTTP_Request2_Exception $e) {
+        } catch (Exception $e) {
             common_log(LOG_ERR, "Diaspora-flavoured Salmon post to $endpoint_uri failed: " . $e->getMessage());
             return false;
         }

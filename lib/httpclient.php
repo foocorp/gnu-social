@@ -27,12 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('GNUSOCIAL')) {
-    exit(1);
-}
-
-require_once 'HTTP/Request2.php';
-require_once 'HTTP/Request2/Response.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Useful structure for HTTP responses
@@ -332,7 +327,7 @@ class HTTPClient extends HTTP_Request2
         do {
             try {
                 $response = parent::send();
-            } catch (HTTP_Request2_Exception $e) {
+            } catch (Exception $e) {
                 $this->log(LOG_ERR, $e->getMessage());
                 throw $e;
             }
@@ -355,6 +350,8 @@ class HTTPClient extends HTTP_Request2
                     continue;
                 } catch (HTTP_Request2_Exception $e) {
                     common_log(LOG_ERR, __CLASS__ . ": Invalid $code redirect from $url to $target");
+                } catch (NoHttpResponseException $e) {
+                    common_log(LOG_ERR, __CLASS__ . ": {$e->getMessage()}");
                 }
             } else {
                 $reason = $response->getReasonPhrase();

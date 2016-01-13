@@ -182,9 +182,8 @@ class LinkbackPlugin extends Plugin
                 common_log(LOG_WARNING,
                            "Webmention request failed for '$url' ($endpoint)");
             }
-        } catch (HTTP_Request2_Exception $e) {
-            common_log(LOG_WARNING,
-                       "Webmention request failed for '$url' ($endpoint)");
+        } catch (Exception $e) {
+            common_log(LOG_WARNING, "Webmention request failed for '{$url}' ({$endpoint}): {$e->getMessage()}");
         }
     }
 
@@ -224,9 +223,8 @@ class LinkbackPlugin extends Plugin
                        "Pingback success for '$url' ($endpoint): ".
                        "'$response'");
             }
-        } catch (HTTP_Request2_Exception $e) {
-            common_log(LOG_WARNING,
-                   "Pingback request failed for '$url' ($endpoint)");
+        } catch (Exception $e) {
+            common_log(LOG_WARNING, "Pingback request failed for '{$url}' ({$endpoint}): {$e->getMessage()}");
         }
     }
 

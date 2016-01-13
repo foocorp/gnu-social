@@ -108,7 +108,7 @@ function getTweetHtml($url)
     try {
         $client = new HTTPClient();
         $response = $client->get($url);
-    } catch (HTTP_Request2_Exception $e) {
+    } catch (Exception $e) {
         print "ERROR: HTTP response " . $e->getMessage() . "\n";
         return false;
     }

@@ -1404,7 +1404,7 @@ class OStatusPlugin extends Plugin
             $client = new HTTPClient();
             $client->setBody($envxml);
             $response = $client->post($endpoint_uri, $headers);
-        } catch (HTTP_Request2_Exception $e) {
+        } catch (Exception $e) {
             common_log(LOG_ERR, "Salmon post to $endpoint_uri failed: " . $e->getMessage());
             return false;
         }

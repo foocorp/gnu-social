@@ -63,7 +63,7 @@ class RSSCloudNotifier
         try {
             $client   = new HTTPClient();
             $response = $client->get($url);
-        } catch (HTTP_Request2_Exception $e) {
+        } catch (Exception $e) {
             common_log(LOG_INFO,
                        'RSSCloud plugin - failure testing notify handler ' .
                        $endpoint . ' - '  . $e->getMessage());
@@ -118,7 +118,7 @@ class RSSCloudNotifier
         try {
             $client   = new HTTPClient();
             $response = $client->post($endpoint, $headers, $postdata);
-        } catch (HTTP_Request2_Exception $e) {
+        } catch (Exception $e) {
             common_log(LOG_INFO, 'RSSCloud plugin - failure notifying ' .
                        $endpoint . ' that feed ' . $feed .
                        ' has changed: ' . $e->getMessage());

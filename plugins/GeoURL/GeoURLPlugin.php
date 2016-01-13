@@ -107,7 +107,7 @@ class GeoURLPlugin extends Plugin
                 $request->post($this->ping,
                                null,
                                array('p' => $url));
-            } catch (HTTP_Request2_Exception $e) {
+            } catch (Exception $e) {
                 common_log(LOG_WARNING,
                            "GeoURL.org ping failed for '$url' ($this->ping)");
             }
