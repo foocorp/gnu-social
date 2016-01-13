@@ -34,7 +34,7 @@ class OpenGraphHelper
             }
             $property = $node->attributes->getNamedItem('property');
             $matches = array();
-            if (!preg_match(self::KEY_REGEX, $property->value, $matches)) {
+            if ($property === null || !preg_match(self::KEY_REGEX, $property->value, $matches)) {
                 // not property="og:something"
                 continue;
             }
