@@ -581,7 +581,8 @@ function common_purify($html)
 
     $config = array('safe' => 1,    // means that elements=* means elements=*-applet-embed-iframe-object-script or so
                     'elements' => '*',
-                    'deny_attribute' => 'id,style,on*');
+                    'deny_attribute' => 'id,style,on*',
+                    'cdata' => 1);
 
     // Remove more elements than what the 'safe' filter gives (elements must be '*' before this)
     // http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_README.htm#s3.6
