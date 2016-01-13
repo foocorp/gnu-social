@@ -75,12 +75,12 @@ class GNUsocial_HTTPResponse extends HTTP_Request2_Response
     }
 
     /**
-     * Gets the final target URL, after any redirects have been followed.
+     * Gets the target URL, before any redirects. Use getEffectiveUrl() for final target.
      * @return string URL
      */
     function getUrl()
     {
-        return $this->effectiveUrl;
+        return $this->url;
     }
 
     /**

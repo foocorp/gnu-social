@@ -127,7 +127,7 @@ class FeedDiscovery
             $type = $response->getHeader('Content-Type');
             $isHtml = preg_match('!^(text/html|application/xhtml\+xml)!i', $type);
             if ($isHtml) {
-                $target = $this->discoverFromHTML($response->getUrl(), $response->getBody());
+                $target = $this->discoverFromHTML($response->getEffectiveUrl(), $response->getBody());
                 if (!$target) {
                     throw new FeedSubNoFeedException($url);
                 }
@@ -149,7 +149,7 @@ class FeedDiscovery
             throw new FeedSubBadResponseException($response->getStatus());
         }
 
-        $sourceurl = $response->getUrl();
+        $sourceurl = $response->getEffectiveUrl();
         $body = $response->getBody();
         if (!$body) {
             throw new FeedSubEmptyException($sourceurl);

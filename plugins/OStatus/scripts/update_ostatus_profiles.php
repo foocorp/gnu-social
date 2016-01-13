@@ -74,7 +74,7 @@ class LooseOstatusProfile extends Ostatus_profile
 
         // Check if we have a non-canonical URL
 
-        $finalUrl = $response->getUrl();
+        $finalUrl = $response->getEffectiveUrl();
 
         if ($finalUrl != $profile_url) {
             $hints['profileurl'] = $finalUrl;

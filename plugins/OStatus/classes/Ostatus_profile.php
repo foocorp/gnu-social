@@ -632,7 +632,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // Check if we have a non-canonical URL
 
-        $finalUrl = $response->getUrl();
+        $finalUrl = $response->getEffectiveUrl();
 
         if ($finalUrl != $profile_url) {
 
@@ -649,7 +649,7 @@ class Ostatus_profile extends Managed_DataObject
             preg_replace('/\s*;.*$/', '', $response->getHeader('Content-Type')),
             array('application/rss+xml', 'application/atom+xml', 'application/xml', 'text/xml'))
         ) {
-            $hints['feedurl'] = $response->getUrl();
+            $hints['feedurl'] = $response->getEffectiveUrl();
         } else {
             // Try to get some hCard data
 

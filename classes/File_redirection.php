@@ -127,14 +127,14 @@ class File_redirection extends Managed_DataObject
             return $short_url;
         }
 
-        if ($response->getRedirectCount() && File::isProtected($response->getUrl())) {
+        if ($response->getRedirectCount() && File::isProtected($response->getEffectiveUrl())) {
             // Bump back up the redirect chain until we find a non-protected URL
             return self::lookupWhere($short_url, $response->getRedirectCount() - 1, true);
         }
 
         $ret = array('code' => $response->getStatus()
                 , 'redirects' => $response->getRedirectCount()
-                , 'url' => $response->getUrl());
+                , 'url' => $response->getEffectiveUrl());
 
         $type = $response->getHeader('Content-Type');
         if ($type) $ret['type'] = $type;

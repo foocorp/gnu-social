@@ -70,7 +70,7 @@ class DiscoveryHints {
         }
 
         return self::hcardHints($response->getBody(),
-                                $response->getUrl());
+                                $response->getEffectiveUrl());
     }
 
     static function hcardHints($body, $url)
