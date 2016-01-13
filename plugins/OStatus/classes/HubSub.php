@@ -99,7 +99,7 @@ class HubSub extends Managed_DataObject
         $this->sub_end = common_sql_date(time() + $length);
     }
 
-    function getLease()
+    function getLeaseTime()
     {
         if (empty($this->sub_start) || empty($this->sub_end)) {
             return null;
@@ -159,7 +159,7 @@ class HubSub extends Managed_DataObject
                         'hub.topic' => $this->getTopic(),
                         'hub.challenge' => $challenge);
         if ($mode == 'subscribe') {
-            $params['hub.lease_seconds'] = $this->getLease();
+            $params['hub.lease_seconds'] = $this->getLeaseTime();
         }
         if ($token !== null) {  // TODO: deprecated in PuSH 0.4
             $params['hub.verify_token'] = $token;   // let's put it in there if remote uses PuSH <0.4
