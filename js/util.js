@@ -53,7 +53,6 @@ var SN = { // StatusNet
             NoticeDataGeo: 'notice_data-geo',
             NoticeDataGeoCookie: 'NoticeDataGeo',
             NoticeDataGeoSelected: 'notice_data-geo_selected',
-            StatusNetInstance: 'StatusNetInstance'
         }
     },
 
@@ -1252,56 +1251,6 @@ var SN = { // StatusNet
         },
 
         /**
-         * Some sort of object interface for storing some structured
-         * information in a cookie.
-         *
-         * Appears to be used to save the last-used login nickname?
-         * That's something that browsers usually take care of for us
-         * these days, do we really need to do it? Does anything else
-         * use this interface?
-         *
-         * @fixme what is this?
-         * @fixme should this use non-cookie local storage when available?
-         */
-        StatusNetInstance: {
-            /**
-             * @fixme what is this?
-             */
-            Set: function (value) {
-                var SNI = SN.U.StatusNetInstance.Get();
-                if (SNI !== null) {
-                    value = $.extend(SNI, value);
-                }
-
-                $.cookie(
-                    SN.C.S.StatusNetInstance,
-                    JSON.stringify(value),
-                    {
-                        path: '/',
-                        expires: SN.U.GetFullYear(2029, 0, 1)
-                    });
-            },
-
-            /**
-             * @fixme what is this?
-             */
-            Get: function () {
-                var cookieValue = $.cookie(SN.C.S.StatusNetInstance);
-                if (cookieValue !== undefined) {
-                    return JSON.parse(cookieValue);
-                }
-                return null;
-            },
-
-            /**
-             * @fixme what is this?
-             */
-            Delete: function () {
-                $.removeCookie(SN.C.S.StatusNetInstance);
-            }
-        },
-
-        /**
          * Check if the current page is a timeline where the current user's
          * posts should be displayed immediately on success.
          *
@@ -1595,28 +1544,6 @@ var SN = { // StatusNet
         },
 
         /**
-         * Run setup code for login form:
-         *
-         * - loads saved last-used-nickname from cookie
-         * - sets event handler to save nickname to cookie on submit
-         *
-         * @fixme is this necessary? Browsers do their own form saving these days.
-         */
-        Login: function () {
-            if (SN.U.StatusNetInstance.Get() !== null) {
-                var nickname = SN.U.StatusNetInstance.Get().Nickname;
-                if (nickname !== null) {
-                    $('#form_login #nickname').val(nickname);
-                }
-            }
-
-            $('#form_login').on('submit', function () {
-                SN.U.StatusNetInstance.Set({Nickname: $('#form_login #nickname').val()});
-                return true;
-            });
-        },
-
-        /**
          * Run setup for the ajax people tags editor
          *
          * - show edit button
@@ -1743,9 +1670,6 @@ $(function () {
     }
     if ($('#content .entity_actions').length > 0) {
         SN.Init.EntityActions();
-    }
-    if ($('#form_login').length > 0) {
-        SN.Init.Login();
     }
     if ($('#profile_search_results').length > 0) {
         SN.Init.ProfileSearch();

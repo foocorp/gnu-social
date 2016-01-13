@@ -24,12 +24,6 @@
  * @note      Everything in here should eventually migrate over to /js/util.js's SN.
  */
 
-SN.Init.OStatusCookie = function () {
-    if (SN.U.StatusNetInstance.Get() === null) {
-        SN.U.StatusNetInstance.Set({RemoteProfile: null});
-    }
-};
-
 SN.U.DialogBox = {
     Subscribe: function (a) {
         var f = a.parent().find('.form_settings');
@@ -72,16 +66,6 @@ SN.U.DialogBox = {
                         });
 
                         form.find('#profile').focus();
-
-                        if (form.attr('id') == 'form_ostatus_connect') {
-                            SN.Init.OStatusCookie();
-                            form.find('#profile').val(SN.U.StatusNetInstance.Get().RemoteProfile);
-
-                            form.find("[type=submit]").bind('click', function () {
-                                SN.U.StatusNetInstance.Set({RemoteProfile: form.find('#profile').val()});
-                                return true;
-                            });
-                        }
                     }
 
                     a.removeClass('processing');
