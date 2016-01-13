@@ -133,43 +133,20 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
      */
     function showNotice()
     {
-        if (!empty($this->notice)) {
-            switch ($this->format) {
-            case 'xml':
-                $this->showSingleXmlStatus($this->notice);
-                break;
-            case 'json':
-                $this->show_single_json_status($this->notice);
-                break;
-            case 'atom':
-                $this->showSingleAtomStatus($this->notice);
-                break;
-            default:
-                // TRANS: Exception thrown requesting an unsupported notice output format.
-                // TRANS: %s is the requested output format.
-                throw new Exception(sprintf(_("Unsupported format: %s."), $this->format));
-            }
-        } else {
-            // XXX: Twitter just sets a 404 header and doens't bother
-            // to return an err msg
-
-            $deleted = Deleted_notice::getKV($this->notice_id);
-
-            if (!empty($deleted)) {
-                $this->clientError(
-                    // TRANS: Client error displayed requesting a deleted status.
-                    _('Status deleted.'),
-                    410,
-                    $this->format
-                );
-            } else {
-                $this->clientError(
-                    // TRANS: Client error displayed requesting a status with an invalid ID.
-                    _('No status with that ID found.'),
-                    404,
-                    $this->format
-                );
-            }
+        switch ($this->format) {
+        case 'xml':
+            $this->showSingleXmlStatus($this->notice);
+            break;
+        case 'json':
+            $this->show_single_json_status($this->notice);
+            break;
+        case 'atom':
+            $this->showSingleAtomStatus($this->notice);
+            break;
+        default:
+            // TRANS: Exception thrown requesting an unsupported notice output format.
+            // TRANS: %s is the requested output format.
+            throw new Exception(sprintf(_("Unsupported format: %s."), $this->format));
         }
     }
 
@@ -193,11 +170,7 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
      */
     function lastModified()
     {
-        if (!empty($this->notice)) {
-            return strtotime($this->notice->created);
-        }
-
-        return null;
+        return strtotime($this->notice->created);
     }
 
     /**
@@ -210,20 +183,15 @@ class ApiStatusesShowAction extends ApiPrivateAuthAction
      */
     function etag()
     {
-        if (!empty($this->notice)) {
-
-            return '"' . implode(
-                ':',
-                array($this->arg('action'),
-                      common_user_cache_hash($this->auth_user),
-                      common_language(),
-                      $this->notice->id,
-                      strtotime($this->notice->created))
-            )
-            . '"';
-        }
-
-        return null;
+        return '"' . implode(
+            ':',
+            array($this->arg('action'),
+                  common_user_cache_hash($this->auth_user),
+                  common_language(),
+                  $this->notice->id,
+                  strtotime($this->notice->created))
+        )
+        . '"';
     }
 
     function deleteNotice()
