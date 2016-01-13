@@ -760,8 +760,6 @@ function common_find_mentions($text, Profile $sender, Notice $parent=null)
             }
 
             if ($mentioned instanceof Profile) {
-                $user = User::getKV('id', $mentioned->id);
-
                 try {
                     $url = $mentioned->getUrl();
                 } catch (InvalidUrlException $e) {
