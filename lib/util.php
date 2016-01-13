@@ -727,15 +727,11 @@ function common_find_mentions($text, Profile $sender, Notice $parent=null)
 
         // Does it have a parent notice for context?
         if ($parent instanceof Notice) {
-            $ids = $parent->getReplies();   // replied-to _profile ids_
-
-            foreach ($ids as $id) {
-                try {
-                    $repliedTo = Profile::getByID($id);
-                    $origMentions[$repliedTo->getNickname()] = $repliedTo;
-                } catch (NoResultException $e) {
-                    // continue foreach
+            foreach ($parent->getAttentionProfiles() as $repliedTo) {
+                if (!$repliedTo->isPerson()) {
+                    continue;
                 }
+                $origMentions[$repliedTo->getNickname()] = $repliedTo;
             }
         }
 
