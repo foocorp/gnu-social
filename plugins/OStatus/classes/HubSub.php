@@ -81,6 +81,7 @@ class HubSub extends Managed_DataObject
      */
     function setLease($length)
     {
+        common_debug('PuSH hub got requested lease_seconds=='._ve($length));
         assert(is_int($length));
 
         $min = 86400;
@@ -95,9 +96,10 @@ class HubSub extends Managed_DataObject
             $length = $max;
         }
 
+        common_debug('PuSH hub after sanitation: lease_seconds=='._ve($length));
         $this->lease = $length;
-        $this->start_sub = common_sql_now();
-        $this->end_sub = common_sql_date(time() + $length);
+        $this->sub_start = common_sql_now();
+        $this->sub_end = common_sql_date(time() + $length);
     }
 
     /**
