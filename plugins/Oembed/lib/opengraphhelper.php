@@ -8,7 +8,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class OpenGraphHelper
 {
-    const KEY_REGEX = '/^og\:(\w+)(?:\:(\w+))?/';
+    const KEY_REGEX = '/^og\:(\w+(?:\:\w+)?)/';
     protected static $property_map = [
                             'site_name'      => 'provider_name',
                             'title'          => 'title',
@@ -16,6 +16,8 @@ class OpenGraphHelper
                             'type'           => 'type',
                             'url'            => 'url',
                             'image'          => 'thumbnail_url',
+                            'image:height'   => 'thumbnail_height',
+                            'image:width'    => 'thumbnail_width',
                             ];
 
     // This regex map has:    /pattern(match)/ => matchindex | string
