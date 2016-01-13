@@ -84,7 +84,7 @@ class HubSub extends Managed_DataObject
         common_debug('PuSH hub got requested lease_seconds=='._ve($length));
         assert(is_int($length));
 
-        $min = 86400;
+        $min = 86400;   // 3600*24 (one day)
         $max = 86400 * 30;
 
         if ($length == 0) {

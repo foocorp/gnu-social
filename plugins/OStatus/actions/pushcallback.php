@@ -82,7 +82,7 @@ class PushCallbackAction extends Action
         $mode = $this->arg('hub_mode');
         $topic = $this->arg('hub_topic');
         $challenge = $this->arg('hub_challenge');
-        $lease_seconds = $this->arg('hub_lease_seconds');   // Must be >0 for PuSH 0.4!
+        $lease_seconds = $this->arg('hub_lease_seconds');   // Must be >0 for PuSH 0.4! And only checked on mode='subscribe' of course
         common_log(LOG_INFO, __METHOD__ . ": sub verification mode: $mode topic: $topic challenge: $challenge lease_seconds: $lease_seconds");
 
         if ($mode != 'subscribe' && $mode != 'unsubscribe') {

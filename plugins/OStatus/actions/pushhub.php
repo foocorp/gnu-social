@@ -118,7 +118,6 @@ class PushHubAction extends Action
                 $sub->secret = $secret;
             }
             if ($lease) {
-                common_debug('PuSH hub setting dataobject lease to:'._ve(intval($lease)));
                 $sub->setLease(intval($lease));
             }
         }
