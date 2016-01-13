@@ -108,6 +108,14 @@ class FeedSub extends Managed_DataObject
         return $this->uri;
     }
 
+    function getLeaseRemaining()
+    {
+        if (empty($this->sub_end)) {
+            return null;
+        }
+        return strtotime($this->sub_end) - time();
+    }
+
     /**
      * Do we have a hub? Then we are a PuSH feed.
      * https://en.wikipedia.org/wiki/PubSubHubbub

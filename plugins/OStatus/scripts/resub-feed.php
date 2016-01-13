@@ -81,6 +81,8 @@ function showSub($sub)
     print "  Verify token: $sub->verify_token\n";
     print "  Signature secret: $sub->secret\n";
     print "  Sub start date: $sub->sub_start\n";
+    print "  Sub end date: $sub->sub_end\n";
+    print "  Sub lease remaining: {$sub->getLeaseRemaining()}\n";
     print "  Record created: $sub->created\n";
     print "  Record modified: $sub->modified\n";
 }
