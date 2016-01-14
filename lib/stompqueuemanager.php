@@ -509,15 +509,13 @@ class StompQueueManager extends QueueManager
                 $frame->headers['created'] . " in queue $queue from $host";
         $this->_log(LOG_DEBUG, "Dequeued $info");
 
-        $handler = $this->getHandler($queue);
-        if (!$handler) {
+        try {
+            $handler = $this->getHandler($queue);
+            $ok = $handler->handle($item);
+        } catch (NoQueueHandlerException $e) {
             $this->_log(LOG_ERR, "Missing handler class; skipping $info");
             $this->stats('badhandler', $queue);
             return false;
-        }
-
-        try {
-            $ok = $handler->handle($item);
         } catch (Exception $e) {
             $this->_log(LOG_ERR, "Exception on queue $queue: " . $e->getMessage());
             $ok = false;

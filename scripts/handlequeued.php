@@ -38,19 +38,21 @@ $queue = trim($args[0]);
 $noticeId = intval($args[1]);
 
 $qm = QueueManager::get();
-$handler = $qm->getHandler($queue);
-if (!$handler) {
+try {
+    $handler = $qm->getHandler($queue);
+    $notice = Notice::getByID($noticeId);
+    $result = $handler->handle($notice);
+} catch (NoQueueHandlerException $e) {
     print "No handler for queue '$queue'.\n";
     exit(1);
-}
-
-$notice = Notice::getKV('id', $noticeId);
-if (empty($notice)) {
-    print "Invalid notice id $noticeId\n";
+} catch (NoResultException $e) {
+    print "{$e->getMessage()}\n";
+    exit(1);
+} catch (Exception $e) {
+    print "Exception thrown while handling: {$e->getMessage()}\n";
     exit(1);
 }
-
-if (!$handler->handle($notice)) {
+if (!$result) {
     print "Failed to handle notice id $noticeId on queue '$queue'.\n";
     exit(1);
 }

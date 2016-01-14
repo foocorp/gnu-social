@@ -38,19 +38,17 @@ class UnQueueManager extends QueueManager
      * that can be processed quickly and don't need polling or long-running
      * connections to another server such as XMPP.
      *
-     * @param Notice $object
+     * @param Notice $object    this specific manager just handles Notice objects anyway
      * @param string $queue
      */
-    function enqueue($object, $queue)
+    function enqueue($object, $transport)
     {
-        $notice = $object;
-        
-        $handler = $this->getHandler($queue);
-        if ($handler) {
-            $handler->handle($notice);
-        } else {
-            if (Event::handle('UnqueueHandleNotice', array(&$notice, $queue))) {
-                throw new ServerException("UnQueueManager: Unknown queue: $queue");
+        try {
+            $handler = $this->getHandler($transport);
+            $handler->handle($object);
+        } catch (NoQueueHandlerException $e) {
+            if (Event::handle('UnqueueHandleNotice', array(&$object, $transport))) {
+                throw new ServerException("UnQueueManager: Unknown queue transport: $transport");
             }
         }
     }

@@ -89,23 +89,24 @@ class DBQueueManager extends QueueManager
         $rep = $this->logrep($item);
         $this->_log(LOG_DEBUG, "Got {$rep} for transport {$qi->transport}");
         
-        $handler = $this->getHandler($qi->transport);
-        if ($handler) {
-            try {
-                $result = $handler->handle($item)
-            } catch (Exception $e) {
-                $result = false;
-                $this->_log(LOG_ERR, "[{$qi->transport}:$rep] Exception thrown: {$e->getMessage()}");
-            }
-            if ($result) {
-                $this->_log(LOG_INFO, "[{$qi->transport}:$rep] Successfully handled item");
-                $this->_done($qi);
-            } else {
-                $this->_log(LOG_INFO, "[{$qi->transport}:$rep] Failed to handle item");
-                $this->_fail($qi);
-            }
-        } else {
+        try {
+            $handler = $this->getHandler($qi->transport);
+            $result = $handler->handle($item)
+        } catch (NoQueueHandlerException $e) {
             $this->noHandlerFound($qi, $rep);
+            return true;
+        } catch (Exception $e) {
+            $this->_log(LOG_ERR, "[{$qi->transport}:$rep] Exception thrown: {$e->getMessage()}");
+            $this->_fail($qi);
+            return true;
+        }
+
+        if ($result) {
+            $this->_log(LOG_INFO, "[{$qi->transport}:$rep] Successfully handled item");
+            $this->_done($qi);
+        } else {
+            $this->_log(LOG_INFO, "[{$qi->transport}:$rep] Failed to handle item");
+            $this->_fail($qi);
         }
         return true;
     }
