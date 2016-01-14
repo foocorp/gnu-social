@@ -1457,6 +1457,8 @@ class Action extends HTMLOutputter // lawsuit
             break;
         default:
             common_log(LOG_ERR, 'Handled serverError ('._ve($code).') but cannot output into desired format ('._ve($this->format).'): '._ve($msg));
+            $action = new ServerErrorAction($msg, $code);
+            $action->execute();
         }
 
         exit((int)$code);
@@ -1513,6 +1515,8 @@ class Action extends HTMLOutputter // lawsuit
             break;
         default:
             common_log(LOG_ERR, 'Handled clientError ('._ve($code).') but cannot output into desired format ('._ve($this->format).'): '._ve($msg));
+            $action = new ClientErrorAction($msg, $code);
+            $action->execute();
         }
         exit((int)$code);
     }
