@@ -306,7 +306,7 @@ class HubSub extends Managed_DataObject
         if ('http' === parse_url($this->callback, PHP_URL_SCHEME)) {
             // Test if the feed callback for this node has migrated to HTTPS
             $httpscallback = preg_replace('/^http/', 'https', $this->callback, 1);
-            $alreadyreplaced = self::getByHashKey(self::hashkey($this->getTopic(), $httpscallback));
+            $alreadyreplaced = self::getByHashKey($this->getTopic(), $httpscallback);
             if ($alreadyreplaced instanceof HubSub) {
                 $this->delete();
                 throw new AlreadyFulfilledException('The remote side has already established an HTTPS callback, deleting the legacy HTTP entry.');
