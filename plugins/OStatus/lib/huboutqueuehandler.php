@@ -44,10 +44,11 @@ class HubOutQueueHandler extends QueueHandler
 
         try {
             $sub->push($atom);
+        } catch (AlreadyFulfilledException $e) {
+            common_log(LOG_INFO, "Failed PuSH to $sub->callback for $sub->topic (".get_class($e)."): " . $e->getMessage());
         } catch (Exception $e) {
             $retries--;
-            $msg = "Failed PuSH to $sub->callback for $sub->topic: " .
-                   $e->getMessage();
+            $msg = "Failed PuSH to $sub->callback for $sub->topic (".get_class($e)."): " . $e->getMessage();
             if ($retries > 0) {
                 common_log(LOG_INFO, "$msg; scheduling for $retries more tries");
 
