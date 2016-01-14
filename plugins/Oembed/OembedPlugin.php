@@ -179,8 +179,8 @@ class OembedPlugin extends Plugin
             return true;
         }
 
-        foreach (array('mimetype', 'url', 'title', 'modified') as $key) {
-            if (!empty($oembed->{$key})) {
+        foreach (array('mimetype', 'url', 'title', 'modified', 'width', 'height') as $key) {
+            if (isset($oembed->{$key}) && !empty($oembed->{$key})) {
                 $enclosure->{$key} = $oembed->{$key};
             }
         }

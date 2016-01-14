@@ -764,6 +764,13 @@ class Router
                 'api/statuses/update_with_media.json',
                 array('action' => 'ApiMediaUpload')
             );
+            // Twitter Media upload API v1.1
+            $m->connect(
+                'api/media/upload.:format',
+                array('action' => 'ApiMediaUpload',
+                      'format' => '(xml|json)',
+                      )
+            );
 
             // search
             $m->connect('api/search.atom', array('action' => 'ApiSearchAtom'));

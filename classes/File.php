@@ -369,8 +369,10 @@ class File extends Managed_DataObject
         }
 
         $enclosure = (object) array();
-        foreach (array('title', 'url', 'date', 'modified', 'size', 'mimetype') as $key) {
-            $enclosure->$key = $this->$key;
+        foreach (array('title', 'url', 'date', 'modified', 'size', 'mimetype', 'width', 'height') as $key) {
+            if ($this->$key !== '') {
+                $enclosure->$key = $this->$key;
+            }
         }
 
         $needMoreMetadataMimetypes = array(null, 'application/xhtml+xml', 'text/html');
