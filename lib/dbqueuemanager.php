@@ -91,7 +91,7 @@ class DBQueueManager extends QueueManager
         
         try {
             $handler = $this->getHandler($qi->transport);
-            $result = $handler->handle($item)
+            $result = $handler->handle($item);
         } catch (NoQueueHandlerException $e) {
             $this->noHandlerFound($qi, $rep);
             return true;
