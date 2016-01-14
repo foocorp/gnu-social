@@ -3,7 +3,7 @@ time for 1 second since starting the Action processing. If you want to
 change this (such as disabling, 0 seconds, or maybe running bigger 
 chunks, for like 4 seconds) you can do this, where 'n' is time in seconds.
 
-addPlugin('OpportunisticQM', array('secs_per_action', n));
+addPlugin('OpportunisticQM', array('secs_per_action' => n));
 
 Add 'rel_to_pageload'=>false to the array if you want to run the queue 
 for a certain amount of seconds _despite_ maybe already having run that 
