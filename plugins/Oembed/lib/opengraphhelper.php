@@ -28,6 +28,8 @@ class OpenGraphHelper
 
     static function ogFromHtml(DOMDocument $dom) {
         $obj = new stdClass();
+        $obj->version = '1.0';  // fake it til u make it
+
         $nodes = $dom->getElementsByTagName('meta');
         for ($i = 0; $i < $nodes->length; $i++) {
             $node = $nodes->item($i);
