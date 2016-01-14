@@ -64,27 +64,13 @@ class ClientErrorAction extends ErrorAction
     {
         parent::__construct($message, $code);
         $this->default = 400;
-    }
 
-    // XXX: Should these error actions even be invokable via URI?
-
-    protected function handle()
-    {
-        parent::handle();
-
-        $this->code = $this->trimmed('code');
-
-        if (!$this->code || $code < 400 || $code > 499) {
+        if (!$this->code || $this->code < 400 || $this->code > 499) {
             $this->code = $this->default;
         }
-
-        $this->message = $this->trimmed('message');
-
         if (!$this->message) {
             $this->message = "Client Error $this->code";
         }
-
-        $this->showPage();
     }
 
     /**

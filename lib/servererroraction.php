@@ -64,31 +64,20 @@ class ServerErrorAction extends ErrorAction
 
         $this->default = 500;
 
+        if (!$this->code || $this->code < 500 || $this->code > 599) {
+            $this->code = $this->default;
+        }
+
+        if (!$this->message) {
+            $this->message = "Server Error $this->code";
+        }
+
         // Server errors must be logged.
         $log = "ServerErrorAction: $code $message";
         if ($ex) {
             $log .= "\n" . $ex->getTraceAsString();
         }
         common_log(LOG_ERR, $log);
-    }
-
-    // XXX: Should these error actions even be invokable via URI?
-
-    protected function handle()
-    {
-        parent::handle();
-
-        $this->code = $this->trimmed('code');
-
-        if (!$this->code || $code < 500 || $code > 599) {
-            $this->code = $this->default;
-        }
-
-        $this->message = $this->trimmed('message');
-
-        if (!$this->message) {
-            $this->message = "Server Error $this->code";
-        }
 
         $this->showPage();
     }

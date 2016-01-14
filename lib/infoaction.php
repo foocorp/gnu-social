@@ -44,7 +44,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @see ErrorAction
  */
 
-class InfoAction extends Action
+class InfoAction extends ManagedAction
 {
     var $message = null;
 
