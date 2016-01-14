@@ -39,8 +39,8 @@ class SalmonQueueHandler extends QueueHandler
         assert(is_string($data['salmonuri']));
         assert(is_string($data['entry']));
 
-        $actor = Profile::getKV($data['actor']);
-        $target = array_key_exists('target', $data) ? Profile::getKV($data['target']) : null;
+        $actor = Profile::getByID($data['actor']);
+        $target = Profile::getByID($data['target']);
 
         Salmon::post($data['salmonuri'], $data['entry'], $actor, $target);
 
