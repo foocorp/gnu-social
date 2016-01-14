@@ -352,7 +352,7 @@ class MagicEnvelope
         try {
             $magicsig = $this->getKeyPair($profile, true);    // Do discovery too if necessary
         } catch (Exception $e) {
-            common_log(LOG_DEBUG, "Salmon error: getKeyPair for profile id=='.$profile->getID().': ".$e->getMessage());
+            common_log(LOG_DEBUG, "Salmon error: getKeyPair for profile id=={$profile->getID()}: "._ve($e->getMessage()));
             return false;
         }
 
