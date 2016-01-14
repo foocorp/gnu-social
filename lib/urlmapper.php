@@ -123,7 +123,7 @@ class URLMapper
             }
         }
 
-        throw new Exception(sprintf('No match for path "%s"', $path));
+        throw new NoRouteMapException($path);
     }
 
     function generate($args, $qstring, $fragment)

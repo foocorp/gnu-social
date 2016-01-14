@@ -1094,14 +1094,12 @@ class Router
     function map($path)
     {
         try {
-            $match = $this->m->match($path);
-        } catch (Exception $e) {
-            common_debug('Problem getting route for '._ve($path).' - '._ve($e->getMessage()));
+            return $this->m->match($path);
+        } catch (NoRouteMapException $e) {
+            common_debug($e->getMessage());
             // TRANS: Client error on action trying to visit a non-existing page.
             throw new ClientException(_('Page not found.'), 404);
         }
-
-        return $match;
     }
 
     function build($action, $args=null, $params=null, $fragment=null)

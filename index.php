@@ -125,16 +125,21 @@ function handleError($error)
                 common_config('site', 'email')
             );
 
-            $dac = new DBErrorAction($msg, 500);
-            $dac->showPage();
+            $erraction = new DBErrorAction($msg, 500);
+        } elseif ($error instanceof ClientException) {
+            $erraction = new ClientErrorAction($error->getMessage(), $error->getCode());
+        } elseif ($error instanceof ServerException) {
+            $erraction = new ServerErrorAction($error->getMessage(), $error->getCode(), $error);
         } else {
-            $sac = new ServerErrorAction($error->getMessage(), 500, $error);
-            $sac->showPage();
+            // If it wasn't specified more closely which kind of exception it was
+            $erraction = new ServerErrorAction($error->getMessage(), 500, $error);
         }
+        $erraction->showPage();
 
     } catch (Exception $e) {
         // TRANS: Error message.
         echo _('An error occurred.');
+        exit(-1);
     }
     exit(-1);
 }
@@ -255,13 +260,6 @@ function main()
 
     $args = $r->map($path);
 
-    if (!$args) {
-        // TRANS: Error message displayed when trying to access a non-existing page.
-        $cac = new ClientErrorAction(_('Unknown page'), 404);
-        $cac->showPage();
-        return;
-    }
-
     $site_ssl = common_config('site', 'ssl');
 
     // If the request is HTTP and it should be HTTPS...
@@ -309,22 +307,10 @@ function main()
 
     if (!class_exists($action_class)) {
         // TRANS: Error message displayed when trying to perform an undefined action.
-        $cac = new ClientErrorAction(_('Unknown action'), 404);
-        $cac->showPage();
-    } else {
-        try {
-            call_user_func("$action_class::run", $args);
-        } catch (ClientException $cex) {
-            $cac = new ClientErrorAction($cex->getMessage(), $cex->getCode());
-            $cac->showPage();
-        } catch (ServerException $sex) { // snort snort guffaw
-            $sac = new ServerErrorAction($sex->getMessage(), $sex->getCode(), $sex);
-            $sac->showPage();
-        } catch (Exception $ex) {
-            $sac = new ServerErrorAction($ex->getMessage(), 500, $ex);
-            $sac->showPage();
-        }
+        throw new ClientException(_('Unknown action'), 404);
     }
+
+    call_user_func("$action_class::run", $args);
 }
 
 main();
