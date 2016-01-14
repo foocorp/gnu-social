@@ -340,26 +340,28 @@ class MagicEnvelope
     public function verify(Profile $profile)
     {
         if ($this->alg != 'RSA-SHA256') {
-            common_log(LOG_DEBUG, "Salmon error: bad algorithm");
+            common_log(LOG_DEBUG, 'Salmon error: bad algorithm: '._ve($this->alg));
             return false;
         }
 
         if ($this->encoding != self::ENCODING) {
-            common_log(LOG_DEBUG, "Salmon error: bad encoding");
+            common_log(LOG_DEBUG, 'Salmon error: bad encoding: '._ve($this->encoding));
             return false;
         }
 
         try {
             $magicsig = $this->getKeyPair($profile, true);    // Do discovery too if necessary
         } catch (Exception $e) {
-            common_log(LOG_DEBUG, "Salmon error: ".$e->getMessage());
+            common_log(LOG_DEBUG, "Salmon error: getKeyPair for profile id=='.$profile->getID().': ".$e->getMessage());
             return false;
         }
 
         if (!$magicsig->verify($this->signingText(), $this->getSignature())) {
+            common_log(LOG_INFO, 'Salmon signature verification failed for profile id=='.$profile->getID());
             // TRANS: Client error when incoming salmon slap signature does not verify cryptographically.
             throw new ClientException(_m('Salmon signature verification failed.'));
         }
+        common_debug('Salmon signature verification successful for profile id=='.$profile->getID());
         $this->setActor($profile);
         return true;
     }
