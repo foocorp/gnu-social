@@ -1456,7 +1456,7 @@ class Action extends HTMLOutputter // lawsuit
             $this->endDocument('json');
             break;
         default:
-            common_log(LOG_ERR, 'Handled '.get_class($e).' but cannot output into desired format: '._ve($e->getMessage()));
+            common_log(LOG_ERR, 'Handled serverError ('._ve($code).') but cannot output into desired format ('._ve($this->format).'): '._ve($msg));
         }
 
         exit((int)$code);
@@ -1512,7 +1512,7 @@ class Action extends HTMLOutputter // lawsuit
             echo $msg;
             break;
         default:
-            common_log(LOG_ERR, 'Handled '.get_class($e).' but cannot output into desired format: '._ve($e->getMessage()));
+            common_log(LOG_ERR, 'Handled clientError ('._ve($code).') but cannot output into desired format ('._ve($this->format).'): '._ve($msg));
         }
         exit((int)$code);
     }
