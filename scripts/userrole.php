@@ -27,6 +27,8 @@ $helptext = <<<END_OF_USERROLE_HELP
 userrole.php [options]
 modifies a role for the given user
 
+Available roles: owner moderator administrator sandboxed silenced deleted
+
   -d --delete   delete the role
   -i --id       ID of the user
   -n --nickname nickname of the user
