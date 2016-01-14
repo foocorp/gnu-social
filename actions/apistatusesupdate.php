@@ -173,10 +173,11 @@ class ApiStatusesUpdateAction extends ApiAuthAction
         if (preg_match_all('/\d+/', $this->trimmed('media_ids'), $matches) !== false) {
             foreach (array_unique($matches[0]) as $match) {
                 try {
-                    $this->media_ids[$match] = true;    // = File::getByID($match);
-                } catch (Exception $e) {
-                    // Either $match was 0 (EmptyIdException) or File was not found (NoResultException)
-                    // Do we abort and report to the client?
+                    $this->media_ids[$match] = File::getByID($match);
+                } catch (EmptyIdException $e) {
+                    // got a zero from the client, at least Twidere does this on occasion
+                } catch (NoResultException $e) {
+                    // File ID was not found. Do we abort and report to the client?
                 }
             }
         }
@@ -261,6 +262,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             foreach(array_keys($this->media_ids) as $media_id) {
                 // FIXME: Validation on this... Worst case is that if someone sends bad media_ids then
                 // we'll fill the notice with non-working links, so no real harm, done, but let's fix.
+                // The File objects are in the array, so we could get URLs from them directly.
                 $this->status .= ' ' . common_local_url('attachment', array('attachment' => $media_id));
             }
 
