@@ -79,11 +79,17 @@ class LinkbackPlugin extends Plugin
                 $repeat = Notice::getByID($notice->repeat_of);
                 $this->linkbackUrl($repeat->getUrl());
             } else if(!empty($notice->reply_to)) {
-                $parent = $notice->getParent();
-                $this->linkbackUrl($parent->getUrl());
+                try {
+                    $parent = $notice->getParent();
+                    $this->linkbackUrl($parent->getUrl());
+                } catch (NoParentNoticeException $e) {
+                    // can't link back to what we don't know (apparently parent notice disappeared from our db)
+                    return true;
+                }
             }
 
-            $replyProfiles = Profile::multiGet('id', $notice->getReplies());
+            // doubling up getReplies and getAttentionProfileIDs because we're not entirely migrated yet
+            $replyProfiles = Profile::multiGet('id', array_unique(array_merge($notice->getReplies(), $notice->getAttentionProfileIDs())));
             foreach($replyProfiles->fetchAll('profileurl') as $profileurl) {
                 $this->linkbackUrl($profileurl);
             }
