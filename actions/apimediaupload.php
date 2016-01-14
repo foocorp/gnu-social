@@ -42,25 +42,23 @@ class ApiMediaUploadAction extends ApiAuthAction
 {
     protected $needPost = true;
 
-    /**
-     * Handle the request
-     *
-     * Grab the file from the 'media' param, then store, and shorten
-     *
-     * @todo Upload throttle!
-     *
-     * @param array $args $_REQUEST data (unused)
-     *
-     * @return void
-     */
-    protected function handle()
+    protected function prepare(array $args=array())
     {
-        parent::handle();
+        parent::prepare($args);
 
         // fallback to xml for older clients etc
         if (empty($this->format)) {
             $this->format = 'xml';
         }
+        if (!in_array($this->format, ['json', 'xml'])) {
+            throw new ClientException('This API call does not support the format '._ve($this->format));
+        }
+        return true;
+    }
+
+    protected function handle()
+    {
+        parent::handle();
 
         // Workaround for PHP returning empty $_POST and $_FILES when POST
         // length > post_max_size in php.ini
@@ -77,14 +75,28 @@ class ApiMediaUploadAction extends ApiAuthAction
             throw new ClientException(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
         }
 
-        // we could catch "NoUploadedMediaException" as "no media uploaded", but here we _always_ want an upload
-        $upload = MediaFile::fromUpload('media', $this->scoped);
-        
-        // Thumbnails will be generated/cached on demand when accessed (such as with /attachment/:id/thumbnail)
-
-        if (!in_array($this->format, ['json', 'xml'])) {
-            throw new ClientException('This API call does not support the format '._ve($this->format));
+        try {
+            $upload = MediaFile::fromUpload('media', $this->scoped);
+        } catch (NoUploadedMediaException $e) {
+            common_debug('No media file was uploaded to the _FILES array');
+            $fh = tmpfile();
+            if ($this->arg('media')) {
+                common_debug('Found media parameter which we hope contains a media file!');
+                fwrite($fh, $this->arg('media'));
+            } elseif ($this->arg('media_data')) {
+                common_debug('Found media_data parameter which we hope contains a base64-encoded media file!');
+                fwrite($fh, base64_decode($this->arg('media_data')));
+            } else {
+                common_debug('No media|media_data POST parameter was supplied');
+                fclose($fh);
+                throw $e;
+            }
+            common_debug('MediaFile importing the uploaded file with fromFilehandle');
+            $upload = MediaFile::fromFilehandle($fh, $this->scoped);
         }
+        
+        common_debug('MediaFile completed and saved us fileRecord with id=='._ve($upload->fileRecord->id));
+        // Thumbnails will be generated/cached on demand when accessed (such as with /attachment/:id/thumbnail)
         $this->showResponse($upload);
     }
 
