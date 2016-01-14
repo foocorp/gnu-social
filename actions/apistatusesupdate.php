@@ -152,6 +152,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
     var $in_reply_to_status_id = null;
     var $lat                   = null;
     var $lon                   = null;
+    var $media_ids             = array();   // file_id in the keys
 
     /**
      * Take arguments for running
@@ -167,6 +168,18 @@ class ApiStatusesUpdateAction extends ApiAuthAction
         $this->status = $this->trimmed('status');
         $this->lat    = $this->trimmed('lat');
         $this->lon    = $this->trimmed('long');
+        $matches = array();
+        common_debug(get_called_class().': media_ids=='._ve($this->trimmed('media_ids')));
+        if (preg_match_all('/\d+/', $this->trimmed('media_ids'), $matches) !== false) {
+            foreach (array_unique($matches[0]) as $match) {
+                try {
+                    $this->media_ids[$match] = true;    // = File::getByID($match);
+                } catch (Exception $e) {
+                    // Either $match was 0 (EmptyIdException) or File was not found (NoResultException)
+                    // Do we abort and report to the client?
+                }
+            }
+        }
 
         $this->in_reply_to_status_id
             = intval($this->trimmed('in_reply_to_status_id'));
@@ -242,6 +255,13 @@ class ApiStatusesUpdateAction extends ApiAuthAction
                     // TRANS: Client error displayed when replying to a non-existing notice.
                     $this->clientError(_('Parent notice not found.'), 404);
                 }
+            }
+
+            common_debug(get_called_class().': parsed media_ids=='._ve($this->media_ids));
+            foreach(array_keys($this->media_ids) as $media_id) {
+                // FIXME: Validation on this... Worst case is that if someone sends bad media_ids then
+                // we'll fill the notice with non-working links, so no real harm, done, but let's fix.
+                $this->status .= ' ' . common_local_url('attachment', array('attachment' => $media_id));
             }
 
             $upload = null;
