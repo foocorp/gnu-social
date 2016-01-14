@@ -95,9 +95,22 @@ class Action extends HTMLOutputter // lawsuit
         return $this->msg;
     }
 
+    public function handleError($e)
+    {
+        if ($e instanceof ClientException) {
+            $this->clientError($e->getMessage(), $e->getCode());
+        } elseif ($e instanceof ServerException) {
+            $this->serverError($e->getMessage(), $e->getCode());
+        } else {
+            // If it wasn't specified more closely which kind of exception it was
+            $this->serverError($e->getMessage(), 500);
+        }
+    }
+
     static public function run(array $args=array(), $output='php://output', $indent=null) {
         $class = get_called_class();
         $action = new $class($output, $indent);
+        set_exception_handler(array($action, 'handleError'));
         $action->execute($args);
         return $action;
     }
@@ -1443,7 +1456,7 @@ class Action extends HTMLOutputter // lawsuit
             $this->endDocument('json');
             break;
         default:
-            throw new ServerException($msg, $code);
+            common_log(LOG_ERR, 'Handled '.get_class($e).' but cannot output into desired format: '._ve($e->getMessage()));
         }
 
         exit((int)$code);
@@ -1471,7 +1484,7 @@ class Action extends HTMLOutputter // lawsuit
         if (!array_key_exists($code, ClientErrorAction::$status)) {
             $code = 400;
         }
-        
+
         $status_string = ClientErrorAction::$status[$code];
 
         switch ($format) {
@@ -1499,7 +1512,7 @@ class Action extends HTMLOutputter // lawsuit
             echo $msg;
             break;
         default:
-            throw new ClientException($msg, $code);
+            common_log(LOG_ERR, 'Handled '.get_class($e).' but cannot output into desired format: '._ve($e->getMessage()));
         }
         exit((int)$code);
     }
