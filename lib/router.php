@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * URL Router
@@ -1098,11 +1096,9 @@ class Router
         try {
             $match = $this->m->match($path);
         } catch (Exception $e) {
-            common_log(LOG_ERR, "Problem getting route for $path - " .
-                       $e->getMessage());
+            common_debug('Problem getting route for '._ve($path).' - '._ve($e->getMessage()));
             // TRANS: Client error on action trying to visit a non-existing page.
-            $cac = new ClientErrorAction(_('Page not found.'), 404);
-            $cac->showPage();
+            throw new ClientException(_('Page not found.'), 404);
         }
 
         return $match;
