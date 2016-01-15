@@ -158,7 +158,15 @@ class oEmbedHelper
         if(isset($key)) {
             $params['key'] = common_config('oembed','apikey');
         }
-        return HTTPClient::quickGetJson($api, $params);
+        
+        $oembed_data = HTTPClient::quickGetJson($api, $params);
+        
+        // purify html
+        if(isset($oembed_data->html)) {
+        	$oembed_data->html = common_purify($oembed_data->html);
+        	}
+        
+        return $oembed_data;
     }
 
     /**
