@@ -2128,6 +2128,11 @@ class Notice extends Managed_DataObject
             Event::handle('EndActivityObjectFromNotice', array($this, &$object));
         }
 
+        if (!$object instanceof ActivityObject) {
+            common_log(LOG_ERR, 'Notice asActivityObject created something else for uri=='._ve($this->getUri()).': '._ve($object));
+            throw new ServerException('Notice asActivityObject created something else.');
+        }
+
         return $object;
     }
 
