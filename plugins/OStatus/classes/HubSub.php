@@ -251,12 +251,17 @@ class HubSub extends Managed_DataObject
      */
     function bulkDistribute($atom, array $pushCallbacks)
     {
+        if (empty($pushCallbacks)) {
+            common_log(LOG_ERR, 'Callback list empty for bulkDistribute.');
+            return false;
+        }
         $data = array('atom' => $atom,
                       'topic' => $this->getTopic(),
                       'pushCallbacks' => $pushCallbacks);
         common_log(LOG_INFO, "Queuing PuSH batch: {$this->getTopic()} to ".count($pushCallbacks)." sites");
         $qm = QueueManager::get();
         $qm->enqueue($data, 'hubprep');
+        return true;
     }
 
     /**
