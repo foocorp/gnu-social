@@ -950,7 +950,7 @@ class Notice extends Managed_DataObject
                 $object = null;
                 Event::handle('StoreActivityObject', array($act, $stored, $options, &$object));
                 if (empty($object)) {
-                    throw new ServerException('Unsuccessful call to StoreActivityObject '.$stored->getUri() . ': '.$act->asString());
+                    throw new NoticeSaveException('Unsuccessful call to StoreActivityObject '._ve($stored->getUri()) . ': '._ve($act->asString()));
                 }
 
                 // If something changed in the Notice during StoreActivityObject
