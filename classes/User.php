@@ -207,7 +207,7 @@ class User extends Managed_DataObject
      * @return  User object
      * @throws  Exception on failure
      */
-    static function register(array $fields) {
+    static function register(array $fields, $accept_email_fail=false) {
 
         // MAGICALLY put fields into current scope
 
@@ -371,8 +371,15 @@ class User extends Managed_DataObject
 
             $profile->query('COMMIT');
 
-            if (!empty($email) && !$user->email) {
-                mail_confirm_address($user, $confirm->code, $profile->nickname, $email);
+            if (!empty($email) && !empty($user->email)) {
+                try {
+                    mail_confirm_address($user, $confirm->code, $profile->nickname, $email);
+                } catch (EmailException $e) {
+                    common_log(LOG_ERR, "Could not send user registration email for user id=={$user->id}: {$e->getMessage()}");
+                    if (!$accept_email_fail) {
+                        throw $e;
+                    }
+                }
             }
 
             // Welcome message

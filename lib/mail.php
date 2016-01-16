@@ -52,7 +52,7 @@ function mail_backend()
         $backend = $mail->factory(common_config('mail', 'backend'),
                                  common_config('mail', 'params') ?: array());
         if ($_PEAR->isError($backend)) {
-            throw new ServerException($backend->getMessage());
+            throw new EmailException($backend->getMessage(), $backend->getCode());
         }
     }
     return $backend;
@@ -82,7 +82,7 @@ function mail_send($recipients, $headers, $body)
         assert($backend); // throws an error if it's bad
         $sent = $backend->send($recipients, $headers, $body);
         if ($_PEAR->isError($sent)) {
-            throw new ServerException($sent->getMessage());
+            throw new EmailException($sent->getMessage(), $sent->getCode());
         }
         return true;
     } catch (PEAR_Exception $e) {

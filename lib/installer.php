@@ -524,7 +524,7 @@ abstract class Installer
             $data['email'] = $this->adminEmail;
         }
         try {
-            $user = User::register($data);
+            $user = User::register($data, true);    // true to skip email sending verification
         } catch (Exception $e) {
             return false;
         }
