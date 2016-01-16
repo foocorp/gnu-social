@@ -109,6 +109,7 @@ class SalmonAction extends Action
             // duplicate? Maybe someone's database is out of sync?
             // Let's just accept it and move on.
             common_log(LOG_INFO, 'Salmon slap carried an event which had already been fulfilled.');
+            return true;
         } catch (NoticeSaveException $e) {
             common_debug('Notice::saveActivity did not save our '._ve($this->activity->verb).' activity, trying old-fashioned salmon saving.');
         }
