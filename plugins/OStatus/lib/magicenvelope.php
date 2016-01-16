@@ -250,7 +250,7 @@ class MagicEnvelope
     {
         $dom = new DOMDocument();
         if (!$dom->loadXML(Magicsig::base64_url_decode($this->data))) {
-            throw new ServerException('Malformed XML in Salmon payload');
+            throw new ClientException('Malformed XML in Salmon payload');
         }
 
         switch ($this->data_type) {
@@ -274,7 +274,7 @@ class MagicEnvelope
             $dom->documentElement->appendChild($prov);
             break;
         default:
-            throw new ServerException('Unknown Salmon payload data type');
+            throw new ClientException('Unknown Salmon payload data type');
         }
         return $dom;
     }

@@ -380,6 +380,11 @@ abstract class ActivityHandlerPlugin extends Plugin
         if (!$this->isMyActivity($activity)) {
             return true;
         }
+        if (!isset($this->oldSaveNew)) {
+            // Handle saveActivity in OStatus class for incoming salmon, remove this event
+            // handler when all plugins have gotten rid of "oldSaveNew".
+            return true;
+        }
 
         $this->log(LOG_INFO, get_called_class()." checking {$activity->id} as a valid Salmon slap.");
 
@@ -428,11 +433,7 @@ abstract class ActivityHandlerPlugin extends Plugin
                          'is_local' => Notice::REMOTE,
                          'source' => 'ostatus');
 
-        if (!isset($this->oldSaveNew)) {
-            $notice = Notice::saveActivity($activity, $actor, $options);
-        } else {
-            $notice = $this->saveNoticeFromActivity($activity, $actor, $options);
-        }
+        $notice = $this->saveNoticeFromActivity($activity, $actor, $options);
 
         return false;
     }

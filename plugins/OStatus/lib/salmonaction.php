@@ -55,13 +55,13 @@ class SalmonAction extends Action
             break;
         default:
             // TRANS: Client error. Do not translate the quoted "application/[type]" strings.
-            $this->clientError(_m('Salmon requires "application/magic-envelope+xml". For Diaspora we also accept "application/x-www-form-urlencoded" with an "xml" parameter.', 415));
+            throw new ClientException(_m('Salmon requires "application/magic-envelope+xml". For Diaspora we also accept "application/x-www-form-urlencoded" with an "xml" parameter.', 415));
         }
 
+        if (empty($envxml)) {
+            throw new ClientException('No magic envelope supplied in POST.');
+        }
         try {
-            if (empty($envxml)) {
-                throw new ClientException('No magic envelope supplied in POST.');
-            }
             $magic_env = new MagicEnvelope($envxml);   // parse incoming XML as a MagicEnvelope
 
             $entry = $magic_env->getPayload();  // Not cryptographically verified yet!
@@ -70,13 +70,14 @@ class SalmonAction extends Action
                 common_log(LOG_ERR, "broken actor: " . var_export($this->activity->actor->id, true));
                 common_log(LOG_ERR, "activity with no actor: " . var_export($this->activity, true));
                 // TRANS: Exception.
-                throw new Exception(_m('Received a salmon slap from unidentified actor.'));
+                throw new ClientException(_m('Activity in salmon slap has no actor id.'));
             }
             // ensureProfiles sets $this->actor and $this->oprofile
             $this->ensureProfiles();
         } catch (Exception $e) {
             common_debug('Salmon envelope parsing failed with: '.$e->getMessage());
-            $this->clientError($e->getMessage());
+            // convert exception to ClientException
+            throw new ClientException($e->getMessage());
         }
 
         // Cryptographic verification test, throws exception on failure
@@ -93,7 +94,23 @@ class SalmonAction extends Action
     {
         parent::handle();
 
+        assert($this->activity instanceof Activity);
+        assert($this->target instanceof Profile);
+
         common_log(LOG_DEBUG, "Got a " . $this->activity->verb);
+        try {
+            $options = [ 'source' => 'ostatus' ];
+            common_debug('Save salmon slap directly with Notice::saveActivity for actor=='.$this->actor->getID());
+            $stored = Notice::saveActivity($this->activity, $this->actor, $options);
+            common_debug('Save salmon slap finished, notice id=='.$stored->getID());
+            return true;
+        } catch (AlreadyFulfilledException $e) {
+            // The action's results are already fulfilled. Maybe it was a
+            // duplicate? Maybe someone's database is out of sync?
+            // Let's just accept it and move on.
+            common_log(LOG_INFO, 'Salmon slap carried an event which had already been fulfilled.');
+        }
+
         try {
             if (Event::handle('StartHandleSalmonTarget', array($this->activity, $this->target)) &&
                     Event::handle('StartHandleSalmon', array($this->activity))) {
