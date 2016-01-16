@@ -325,11 +325,7 @@ abstract class ActivityHandlerPlugin extends Plugin
             return true;
         }
 
-        try {
-            $object = $this->activityObjectFromNotice($notice);
-        } catch (NoResultException $e) {
-            $object = null; // because getKV returns null on failure
-        }
+        $object = $this->activityObjectFromNotice($notice);
         return false;
     }
 
