@@ -364,7 +364,6 @@ class File extends Managed_DataObject
 
     function getEnclosure(){
         if (isset(self::$_enclosures[$this->getID()])) {
-            common_debug('Found cached enclosure for file id=='.$this->getID());
             return self::$_enclosures[$this->getID()];
         }
 
