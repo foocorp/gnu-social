@@ -95,10 +95,12 @@ class DBQueueManager extends QueueManager
         } catch (NoQueueHandlerException $e) {
             $this->noHandlerFound($qi, $rep);
             return true;
+        } catch (AlreadyFulfilledException $e) {
+            $this->_log(LOG_ERR, "[{$qi->transport}:$rep] AlreadyFulfilledException thrown: {$e->getMessage()}");
+            $result = true;
         } catch (Exception $e) {
             $this->_log(LOG_ERR, "[{$qi->transport}:$rep] Exception thrown: {$e->getMessage()}");
-            $this->_fail($qi);
-            return true;
+            $result = false;
         }
 
         if ($result) {
