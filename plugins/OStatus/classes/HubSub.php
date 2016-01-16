@@ -249,7 +249,7 @@ class HubSub extends Managed_DataObject
      * @param string $atom well-formed Atom feed
      * @param array $pushCallbacks list of callback URLs
      */
-    function bulkDistribute($atom, $pushCallbacks)
+    function bulkDistribute($atom, array $pushCallbacks)
     {
         $data = array('atom' => $atom,
                       'topic' => $this->getTopic(),

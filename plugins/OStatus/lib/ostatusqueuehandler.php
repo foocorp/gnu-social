@@ -255,7 +255,7 @@ class OStatusQueueHandler extends QueueHandler
                 }
             }
         }
-        if (count($batch) >= 0) {
+        if (count($batch) > 0) {
             $sub->bulkDistribute($atom, $batch);
         }
     }
