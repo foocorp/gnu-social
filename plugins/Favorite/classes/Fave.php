@@ -133,8 +133,8 @@ class Fave extends Managed_DataObject
             // In case there's some inconsistency where the profile or notice was deleted without losing the fave db entry
             common_log(LOG_INFO, '"'.get_class($e->obj).'" with id=='.var_export($e->obj->id, true).' object not found when deleting favorite, ignoring...');
         } catch (EmptyIdException $e) {
-            // Some buggy instances of GNU social have had favroites with notice id==0 stored in the database
-            common_log(LOG_INFO, '"'.get_class($e->obj).'"object had empty id deleting favorite, ignoring...');
+            // Some buggy instances of GNU social have had favorites with notice id==0 stored in the database
+            common_log(LOG_INFO, _ve($e->getMessage()));
         }
 
         // If we catch an exception above, then $result===null because parent::delete only returns an int>=0 or boolean false
