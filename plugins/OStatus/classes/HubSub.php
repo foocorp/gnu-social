@@ -226,7 +226,7 @@ class HubSub extends Managed_DataObject
      * @param string $atom well-formed Atom feed
      * @param array $pushCallbacks list of callback URLs
      */
-    function bulkDistribute($atom, $pushCallbacks)
+    function bulkDistribute($atom, array $pushCallbacks)
     {
         if (empty($pushCallbacks)) {
             common_log(LOG_ERR, 'Callback list empty for bulkDistribute.');
