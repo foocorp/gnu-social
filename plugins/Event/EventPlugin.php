@@ -131,96 +131,27 @@ class EventPlugin extends MicroAppPlugin
                      RSVP::POSSIBLE);
     }
 
-    /**
-     * Given a parsed ActivityStreams activity, save it into a notice
-     * and other data structures.
-     *
-     * @param Activity $activity
-     * @param Profile $actor
-     * @param array $options=array()
-     *
-     * @return Notice the resulting notice
-     */
-    function saveNoticeFromActivity(Activity $activity, Profile $actor, array $options=array())
+    protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
     {
-        if (count($activity->objects) != 1) {
+        if (count($act->objects) !== 1) {
             // TRANS: Exception thrown when there are too many activity objects.
             throw new Exception(_m('Too many activity objects.'));
         }
-
-        $happeningObj = $activity->objects[0];
-
-        if ($happeningObj->type != Happening::OBJECT_TYPE) {
-            // TRANS: Exception thrown when event plugin comes across a non-event type object.
-            throw new Exception(_m('Wrong type for object.'));
-        }
-
-        $dtstart = $happeningObj->element->getElementsByTagName('dtstart');
-        if($dtstart->length == 0) {
-            // TRANS: Exception thrown when has no start date
-            throw new Exception(_m('No start date for event.'));
-        }
-
-        $dtend = $happeningObj->element->getElementsByTagName('dtend');
-        if($dtend->length == 0) {
-            // TRANS: Exception thrown when has no end date
-            throw new Exception(_m('No end date for event.'));
-        }
-
-        // convert RFC3339 dates delivered in Activity Stream to MySQL DATETIME date format
-        $start_time = new DateTime($dtstart->item(0)->nodeValue);
-        $start_time->setTimezone(new DateTimeZone('UTC'));
-        $start_time = $start_time->format('Y-m-d H:i:s');
-        $end_time = new DateTime($dtend->item(0)->nodeValue);
-        $end_time->setTimezone(new DateTimeZone('UTC'));
-        $end_time = $end_time->format('Y-m-d H:i:s');
-
-        // location is optional
-        $location = null;
-        $location_object = $happeningObj->element->getElementsByTagName('location');
-        if($location_object->length > 0) {
-            $location = $location_object->item(0)->nodeValue;
-        }
-
-        // url is optional
-        $url = null;
-        $url_object = $happeningObj->element->getElementsByTagName('url');
-        if($url_object->length > 0) {
-            $url = $url_object->item(0)->nodeValue;
-        }
+        $actobj = $activity->objects[0];
 
         switch ($activity->verb) {
         case ActivityVerb::POST:
-        	// FIXME: get startTime, endTime, location and URL
-            $notice = Happening::saveNew($actor,
-                                         $start_time,
-                                         $end_time,
-                                         $happeningObj->title,
-                                         $location,
-                                         $happeningObj->summary,
-                                         $url,
-                                         $options);
+            $actobj = $activity->objects[0];
+            if (!ActivityUtils::compareTypes($actobj->type, array(Happening::OBJECT_TYPE))) {
+                // TRANS: Exception thrown when event plugin comes across a non-event type object.
+                throw new Exception(_m('Wrong type for object.'));
+            }
+            return Happening::saveActivityObject($actobj, $stored->getProfile());
             break;
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
         case RSVP::POSSIBLE:
-            return Notice::saveActivity($activity, $actor, $options);
-            break;
-        default:
-            // TRANS: Exception thrown when event plugin comes across a undefined verb.
-            throw new Exception(_m('Unknown verb for events.'));
-        }
-    }
-
-    protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
-    {
-        $happeningObj = $activity->objects[0];
-
-        switch ($activity->verb) {
-        case RSVP::POSITIVE:
-        case RSVP::NEGATIVE:
-        case RSVP::POSSIBLE:
-            $happening = Happening::getKV('uri', $happeningObj->id);
+            $happening = Happening::getKV('uri', $actobj->id);
             if (empty($happening)) {
                 // FIXME: save the event
                 // TRANS: Exception thrown when trying to RSVP for an unknown event.

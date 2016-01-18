@@ -100,11 +100,11 @@ class Happening extends Managed_DataObject
         );
     }
 
-    static function saveNew($profile, $start_time, $end_time, $title, $location, $description, $url, $options=array())
+    static function saveNew(Profile $profile, $start_time, $end_time, $title, $location, $description, $url, $options=array())
     {
         if (array_key_exists('uri', $options)) {
             $other = Happening::getKV('uri', $options['uri']);
-            if (!empty($other)) {
+            if ($other instanceof Happening) {
                 // TRANS: Client exception thrown when trying to create an event that already exists.
                 throw new ClientException(_m('Event already exists.'));
             }
@@ -113,7 +113,7 @@ class Happening extends Managed_DataObject
         $ev = new Happening();
 
         $ev->id          = UUID::gen();
-        $ev->profile_id  = $profile->id;
+        $ev->profile_id  = $profile->getID();
         $ev->start_time  = $start_time;
         $ev->end_time    = $end_time;
         $ev->title       = $title;
@@ -184,6 +184,63 @@ class Happening extends Managed_DataObject
                                  $options);
 
         return $saved;
+    }
+
+    public function saveActivityObject(ActivityObject $actobj, Profile $stored)
+    {
+        $other = Happening::getKV('uri', $actobj->id);
+        if ($other instanceof Happening) {
+            // TRANS: Client exception thrown when trying to create an event that already exists.
+            throw new ClientException(_m('Event already exists.'));
+        }
+
+        $dtstart = $actobj->element->getElementsByTagName('dtstart');
+        if($dtstart->length == 0) {
+            // TRANS: Exception thrown when has no start date
+            throw new Exception(_m('No start date for event.'));
+        }
+        $dtend = $actobj->element->getElementsByTagName('dtend');
+        if($dtend->length == 0) {
+            // TRANS: Exception thrown when has no end date
+            throw new Exception(_m('No end date for event.'));
+        }
+
+        // convert RFC3339 dates delivered in Activity Stream to MySQL DATETIME date format
+        $start_time = new DateTime($dtstart->item(0)->nodeValue);
+        $start_time->setTimezone(new DateTimeZone('UTC'));
+        $start_time = $start_time->format('Y-m-d H:i:s');
+        $end_time = new DateTime($dtend->item(0)->nodeValue);
+        $end_time->setTimezone(new DateTimeZone('UTC'));
+        $end_time = $end_time->format('Y-m-d H:i:s');
+
+        // location is optional
+        $location = null;
+        $location_object = $happeningObj->element->getElementsByTagName('location');
+        if($location_object->length > 0) {
+            $location = $location_object->item(0)->nodeValue;
+        }
+
+        // url is optional
+        $url = null;
+        $url_object = $happeningObj->element->getElementsByTagName('url');
+        if($url_object->length > 0) {
+            $url = $url_object->item(0)->nodeValue;
+        }
+
+        $ev = new Happening();
+
+        $ev->id          = UUID::gen();
+        $ev->uri         = $actobj->uri;
+        $ev->profile_id  = $stored->getProfile()->getID();
+        $ev->start_time  = $start_time;
+        $ev->end_time    = $end_time;
+        $ev->title       = $actobj->title;
+        $ev->location    = $location;
+        $ev->description = $actobj->summary;
+        $ev->url         = $url;
+        $ev->created     = $stored->getCreated();
+
+        $ev->insert();
     }
 
     /**

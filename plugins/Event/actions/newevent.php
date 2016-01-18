@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Add a new event
@@ -44,16 +40,9 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class NeweventAction extends Action
+class NeweventAction extends FormAction
 {
-    protected $user        = null;
-    protected $error       = null;
-    protected $complete    = null;
-    protected $title       = null;
-    protected $location    = null;
-    protected $description = null;
-    protected $startTime   = null;
-    protected $endTime     = null;
+    protected $form = 'Event';
 
     /**
      * Returns the title of the action
@@ -66,263 +55,115 @@ class NeweventAction extends Action
         return _m('TITLE','New event');
     }
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function doPost()
     {
-        parent::prepare($argarray);
+        // HUMAN TEXT DATA
+        $title = $this->trimmed('title');
+        if (empty($title)) {
+            // TRANS: Client exception thrown when trying to post an event without providing a title.
+            throw new ClientException(_m('Event must have a title.'));
+        }
+        $description = $this->trimmed('description');
 
-        $this->user = common_current_user();
 
-        if (empty($this->user)) {
-            // TRANS: Client exception thrown when trying to post an event while not logged in.
-            throw new ClientException(_m('Must be logged in to post a event.'),
-                                      403);
+        // TIME PARSING
+        $tz          = $this->trimmed('tz');
+
+        $startDate = $this->trimmed('startdate');
+        if (empty($startDate)) {
+            // TRANS: Client exception thrown when trying to post an event without providing a start date.
+            throw new ClientException(_m('Start date required.'));
+        }
+        $startTime = $this->trimmed('event-starttime');
+        if (empty($startTime)) {
+            // TRANS: Client exception thrown when trying to post an event without providing a start time.
+            throw new ClientException(_m('Event must have a start time.'));
+        }
+        $start_str = sprintf('%s %s %s', $startDate, $startTime, $tz);
+        $start = strtotime($start_str);
+        if ($start === false) {
+            // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
+            // TRANS: %s is the data that could not be processed.
+            throw new ClientException(sprintf(_m('Could not parse date %s.'), _ve($start_str)));
         }
 
-        if ($this->isPost()) {
-            $this->checkSessionToken();
+        $endDate = $this->trimmed('enddate');
+        if (empty($endDate)) {
+            // TRANS: Client exception thrown when trying to post an event without providing an end date.
+            throw new ClientException(_m('End date required.'));
+        }
+        $endTime = $this->trimmed('event-endtime');
+        if (empty($endTime)) {
+            // TRANS: Client exception thrown when trying to post an event without providing an end time.
+            throw new ClientException(_m('Event must have an end time.'));
+        }
+        $end_str   = sprintf('%s %s %s', $endDate, $endTime, $tz);
+        $end = strtotime($end_str);
+        if ($end === false) {
+            // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
+            // TRANS: %s is the data that could not be processed.
+            throw new ClientException(sprintf(_m('Could not parse date %s.'), _ve($end_str)));
         }
 
-        try {
-
-            $this->title = $this->trimmed('title');
-
-            if (empty($this->title)) {
-                // TRANS: Client exception thrown when trying to post an event without providing a title.
-                throw new ClientException(_m('Title required.'));
-            }
-
-            $this->location    = $this->trimmed('location');
-            $this->url         = $this->trimmed('url');
-            $this->description = $this->trimmed('description');
-            $tz                = $this->trimmed('tz');
-
-            $startDate = $this->trimmed('startdate');
-
-            if (empty($startDate)) {
-                // TRANS: Client exception thrown when trying to post an event without providing a start date.
-                throw new ClientException(_m('Start date required.'));
-            }
-
-            $startTime = $this->trimmed('event-starttime');
-
-            if (empty($startTime)) {
-                $startTime = '00:00';
-            }
-
-            $endDate   = $this->trimmed('enddate');
-
-            if (empty($endDate)) {
-                // TRANS: Client exception thrown when trying to post an event without providing an end date.
-                throw new ClientException(_m('End date required.'));
-            }
-
-            $endTime   = $this->trimmed('event-endtime');
-
-            if (empty($endTime)) {
-                $endTime = '00:00';
-            }
-
-            $start = $startDate . ' ' . $startTime . ' ' . $tz;
-            $end   = $endDate . ' ' . $endTime . ' ' . $tz;
-
-            $this->startTime = strtotime($start);
-            $this->endTime   = strtotime($end);
-
-            if ($this->startTime == 0) {
-                // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
-                // TRANS: %s is the data that could not be processed.
-                throw new ClientException(sprintf(_m('Could not parse date "%s".'),
-                                            $start));
-            }
-
-            if ($this->endTime == 0) {
-                // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
-                // TRANS: %s is the data that could not be processed.
-                throw new ClientException(sprintf(_m('Could not parse date "%s".'),
-                                            $end));
-            }
-        } catch (ClientException $ce) {
-            if ($this->boolean('ajax')) {
-                $this->outputAjaxError($ce->getMessage());
-                return false;
-            } else {
-                $this->error = $ce->getMessage();
-                $this->showPage();
-                return false;
-            }
+        $url         = $this->trimmed('url');
+        if (!empty($url) && !common_valid_http_url($url)) {
+            // TRANS: Client exception thrown when trying to post an event with an invalid (non-empty) URL.
+            throw new ClientException(_m('An event URL must be a valid HTTP/HTTPS link.'));
         }
 
-        return true;
-    }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
-    {
-        parent::handle($argarray);
-
-        if ($this->isPost()) {
-            $this->newEvent();
-        } else {
-            $this->showPage();
-        }
-
-        return;
-    }
-
-    /**
-     * Add a new event
-     *
-     * @return void
-     */
-    function newEvent()
-    {
-        try {
-
-            if (empty($this->title)) {
-                // TRANS: Client exception thrown when trying to post an event without providing a title.
-                throw new ClientException(_m('Event must have a title.'));
-            }
-
-            if (empty($this->startTime)) {
-                // TRANS: Client exception thrown when trying to post an event without providing a start time.
-                throw new ClientException(_m('Event must have a start time.'));
-            }
-
-            if (empty($this->endTime)) {
-                // TRANS: Client exception thrown when trying to post an event without providing an end time.
-                throw new ClientException(_m('Event must have an end time.'));
-            }
-
-            if (!empty($this->url) && Validate::uri($this->url) === false) {
-                // TRANS: Client exception thrown when trying to post an event with an invalid URL.
-                throw new ClientException(_m('URL must be valid.'));
-            }
-
-            $options = array();
-
-            // Does the heavy-lifting for getting "To:" information
-
-            ToSelector::fillOptions($this, $options);
-
-            $profile = $this->user->getProfile();
-
-            $saved = Happening::saveNew($profile,
-                                        common_sql_date($this->startTime),
-                                        common_sql_date($this->endTime),
-                                        $this->title,
-                                        $this->location,
-                                        $this->description,
-                                        $this->url,
-                                        $options);
-
-            $event = Happening::fromNotice($saved);
-
-            RSVP::saveNew($profile, $event, RSVP::POSITIVE);
-
-        } catch (ClientException $ce) {
-            if ($this->boolean('ajax')) {
-                $this->outputAjaxError($ce->getMessage());
-                return;
-            } else {
-                $this->error = $ce->getMessage();
-                $this->showPage();
-                return;
-            }
-        }
-
-        if ($this->boolean('ajax')) {
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Page title after sending a notice.
-            $this->element('title', null, _m('Event saved'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-            $this->showNotice($saved);
-            $this->elementEnd('body');
-            $this->endHTML();
-        } else {
-            common_redirect($saved->getUrl(), 303);
-        }
-    }
-
-    // @todo factor this out into a base class
-    function outputAjaxError($msg)
-    {
-        $this->startHTML('text/xml;charset=utf-8');
-        $this->elementStart('head');
-        // TRANS: Page title after an AJAX error occurs
-        $this->element('title', null, _('Ajax Error'));
-        $this->elementEnd('head');
-        $this->elementStart('body');
-        $this->element('p', array('id' => 'error'), $msg);
-        $this->elementEnd('body');
-        $this->endHTML();
-        return;
-    }
-
-    /**
-     * Show the event form
-     *
-     * @return void
-     */
-    function showContent()
-    {
-        if (!empty($this->error)) {
-            $this->element('p', 'error', $this->error);
-        }
-
-        $form = new EventForm($this);
-
-        $form->show();
-
-        return;
-    }
-
-    /**
-     * Return true if read only.
-     *
-     * MAY override
-     *
-     * @param array $args other arguments
-     *
-     * @return boolean is read only action?
-     */
-    function isReadOnly($args)
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
-            $_SERVER['REQUEST_METHOD'] == 'HEAD') {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        // LOCATION DATA
+        $location    = $this->trimmed('location');
 
 
-    /**
-     * Output a notice
-     *
-     * Used to generate the notice code for Ajax results.
-     *
-     * @param Notice $notice Notice that was saved
-     *
-     * @return void
-     */
-    function showNotice(Notice $notice)
-    {
-        $nli = new NoticeListItem($notice, $this);
-        $nli->show();
+
+        $options = [ 'source' => 'web' ];
+
+        $act = new Activity();
+        $act->verb = ActivityVerb::POST;
+        $act->time = time();
+        $act->actor = $this->scoped->asActivityObject();
+
+        $act->context = new ActivityContext();
+        // FIXME: Add location here? Let's make it possible to include current location with less code...
+
+
+        $actobj = new ActivityObject();
+        $actobj->id = UUID::gen();
+        $actobj->type = Happening::OBJECT_TYPE;
+        $actobj->title = $title;
+        // TRANS: Rendered microformats2 tagged event description.
+        // TRANS: %1$s is a title, %2$s is iso8601 start time, %3$s is start time,
+        // TRANS: %4$s is iso8601 end time, %5$s is end time, %6$s is location, %7$s is description.
+        // TRANS: Class names should not be translated.
+        $actobj->summary = sprintf(_m('<div class="h-event">'.
+                              '<p class="p-name p-summary">%1$s</p> '.
+                              '<time class="dt-start" datetime="%2$s">%3$s</time> - '.
+                              '<time class="dt-end" datetime="%4$s">%5$s</time> '.
+                              '(<span class="p-location">%6$s</span>): '.
+                              '<div class="p-description">%7$s</div> '.
+                              '</div>'),
+                            htmlspecialchars($title),
+                            htmlspecialchars(common_date_iso8601($start_str)),
+                            htmlspecialchars(common_exact_date($start_str)),
+                            htmlspecialchars(common_date_iso8601($end_str)),
+                            htmlspecialchars(common_exact_date($end_str)),
+                            htmlspecialchars($location),
+                            htmlspecialchars($description));
+
+        $actobj->extra[] = array('dtstart',
+                              array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                              common_date_iso8601($start_str));
+        $actobj->extra[] = array('dtend',
+                              array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                              common_date_iso8601($start_str));
+        $actobj->extra[] = array('location', false, $location);
+        $actobj->extra[] = array('url', false, $url);
+
+        $act->objects = array($actobj);
+
+        $stored = Notice::saveActivity($act, $this->scoped);
+
+        return _m('Saved the event.');
     }
 }
