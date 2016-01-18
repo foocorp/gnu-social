@@ -121,6 +121,7 @@ class HTTPClient extends HTTP_Request2
 
     function __construct($url=null, $method=self::METHOD_GET, $config=array())
     {
+        $this->config['connect_timeout'] = common_config('http', 'connect_timeout') ?: $this->config['connect_timeout'];
         $this->config['max_redirs'] = 10;
         $this->config['follow_redirects'] = true;
         
