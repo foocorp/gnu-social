@@ -277,6 +277,11 @@ class Notice extends Managed_DataObject
         return $this->created;
     }
 
+    public function getVerb($make_relative=false)
+    {
+        return ActivityUtils::resolveUri($this->verb, $make_relative);
+    }
+
     /*
      * Get the original representation URL of this notice.
      *
