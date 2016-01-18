@@ -145,7 +145,7 @@ class NeweventAction extends FormAction
 
         $act->objects = array($actobj);
 
-        $stored = Notice::saveActivity($act, $this->scoped);
+        $stored = Notice::saveActivity($act, $this->scoped, $options);
 
         return _m('Saved the event.');
     }
