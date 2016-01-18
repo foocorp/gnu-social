@@ -132,24 +132,7 @@ class NeweventAction extends FormAction
         $actobj->id = UUID::gen();
         $actobj->type = Happening::OBJECT_TYPE;
         $actobj->title = $title;
-        // TRANS: Rendered microformats2 tagged event description.
-        // TRANS: %1$s is a title, %2$s is iso8601 start time, %3$s is start time,
-        // TRANS: %4$s is iso8601 end time, %5$s is end time, %6$s is location, %7$s is description.
-        // TRANS: Class names should not be translated.
-        $actobj->summary = sprintf(_m('<div class="h-event">'.
-                              '<p class="p-name p-summary">%1$s</p> '.
-                              '<time class="dt-start" datetime="%2$s">%3$s</time> - '.
-                              '<time class="dt-end" datetime="%4$s">%5$s</time> '.
-                              '(<span class="p-location">%6$s</span>): '.
-                              '<div class="p-description">%7$s</div> '.
-                              '</div>'),
-                            htmlspecialchars($title),
-                            htmlspecialchars(common_date_iso8601($start_str)),
-                            htmlspecialchars(common_exact_date($start_str)),
-                            htmlspecialchars(common_date_iso8601($end_str)),
-                            htmlspecialchars(common_exact_date($end_str)),
-                            htmlspecialchars($location),
-                            htmlspecialchars($description));
+        $actobj->summary = $description;
 
         $actobj->extra[] = array('dtstart',
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),

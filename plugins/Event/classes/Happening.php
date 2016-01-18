@@ -94,7 +94,8 @@ class Happening extends Managed_DataObject
             'unique keys' => array(
                 'happening_uri_key' => array('uri'),
             ),
-            'foreign keys' => array('happening_profile_id__key' => array('profile', array('profile_id' => 'id'))),
+            'foreign keys' => array('happening_profile_id__key' => array('profile', array('profile_id' => 'id')),
+                                    'happening_uri__key' => array('notice', array('uri' => 'uri'))),
             'indexes' => array('happening_created_idx' => array('created'),
                                'happening_start_end_idx' => array('start_time', 'end_time')),
         );
@@ -192,14 +193,14 @@ class Happening extends Managed_DataObject
         return $this->uri;
     }
 
-    function getNotice()
+    public function getNotice()
     {
-        return Notice::getKV('uri', $this->getUri());
+        return Notice::getByKeys(array('uri'=>$this->getUri()));
     }
 
-    static function fromNotice($notice)
+    static function fromStored(Notice $stored)
     {
-        return Happening::getKV('uri', $notice->getUri());
+        return self::getByKeys(array('uri'=>$stored->getUri()));
     }
 
     function getRSVPs()

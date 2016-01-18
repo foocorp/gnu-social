@@ -168,7 +168,7 @@ class EventPlugin extends ActivityVerbHandlerPlugin
 
     protected function getActivityForm(ManagedAction $action, $verb, Notice $target, Profile $scoped)
     {
-        return new RSVPForm(Happening::fromNotice($target), $action);
+        return new RSVPForm(Happening::fromStored($target), $action);
     }
 
     protected function saveObjectFromActivity(Activity $act, Notice $stored, array $options=array())
@@ -218,33 +218,27 @@ class EventPlugin extends ActivityVerbHandlerPlugin
     {
         $happening = null;
 
-        switch ($notice->object_type) {
-        case Happening::OBJECT_TYPE:
-            $happening = Happening::fromNotice($notice);
+        switch (true) {
+        case ActivityUtils::compareVerbs($notice->verb, array(ActivityVerb::POST)) &&
+                ActivityUtils::compareTypes($notice->object_type, array(Happening::OBJECT_TYPE)):
+            $happening = Happening::fromStored($notice);
             break;
-        case RSVP::POSITIVE:
-        case RSVP::NEGATIVE:
-        case RSVP::POSSIBLE:
+        // FIXME: Why are these object_type??
+        case ActivityUtils::compareTypes($stored->object_type, array(RSVP::POSITIVE, RSVP::NEGATIVE, RSVP::POSSIBLE)):
             $rsvp  = RSVP::fromNotice($notice);
             $happening = $rsvp->getEvent();
             break;
-        }
-
-        if (empty($happening)) {
+        default:
             // TRANS: Exception thrown when event plugin comes across a unknown object type.
             throw new Exception(_m('Unknown object type.'));
         }
 
+        // This is a bit weird, if it's a Notice for a Happening. We should only do this for RSVP.
         $notice = $happening->getNotice();
-
-        if (empty($notice)) {
-            // TRANS: Exception thrown when referring to a notice that is not an event an in event context.
-            throw new Exception(_m('Unknown event notice.'));
-        }
 
         $obj = new ActivityObject();
 
-        $obj->id      = $happening->uri;
+        $obj->id      = $happening->getUri();
         $obj->type    = Happening::OBJECT_TYPE;
         $obj->title   = $happening->title;
         $obj->summary = $happening->description;
@@ -255,16 +249,15 @@ class EventPlugin extends ActivityVerbHandlerPlugin
         $obj->extra[] = array('dtstart',
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
                               common_date_iso8601($happening->start_time));
-
         $obj->extra[] = array('dtend',
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
                               common_date_iso8601($happening->end_time));
-
         $obj->extra[] = array('location', false, $happening->location);
         $obj->extra[] = array('url', false, $happening->url);
 
         // XXX: probably need other stuff here
 
+        common_debug('EVENTDEBUG: activity object from notice: '._ve($obj));
         return $obj;
     }
 
@@ -276,10 +269,9 @@ class EventPlugin extends ActivityVerbHandlerPlugin
      * @return ActivityObject
      */
     protected function extendActivity(Notice $stored, Activity $act, Profile $scoped=null) {
-        switch ($stored->object_type) {
-        case RSVP::POSITIVE:
-        case RSVP::NEGATIVE:
-        case RSVP::POSSIBLE:
+        switch (true) {
+        // FIXME: Why are these object_type??
+        case ActivityUtils::compareTypes($stored->object_type, array(RSVP::POSITIVE, RSVP::NEGATIVE, RSVP::POSSIBLE)):
             $act->verb = $stored->object_type;
             break;
         }
@@ -307,7 +299,7 @@ class EventPlugin extends ActivityVerbHandlerPlugin
         switch ($notice->object_type) {
         case Happening::OBJECT_TYPE:
             common_log(LOG_DEBUG, "Deleting event from notice...");
-            $happening = Happening::fromNotice($notice);
+            $happening = Happening::fromStored($notice);
             $happening->delete();
             break;
         case RSVP::POSITIVE:
@@ -352,28 +344,25 @@ class EventPlugin extends ActivityVerbHandlerPlugin
 
     protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
     {
-        switch ($stored->object_type) {
-        case Happening::OBJECT_TYPE:
+        switch (true) {
+        case ActivityUtils::compareTypes($stored->verb, array(ActivityVerb::POST)) &&
+                ActivityUtils::compareTypes($stored->object_type, array(Happening::OBJECT_TYPE)):
             $this->showEvent($stored, $out, $scoped);
             break;
-        case RSVP::POSITIVE:
-        case RSVP::NEGATIVE:
-        case RSVP::POSSIBLE:
+        case ActivityUtils::compareVerbs($stored->verb, array(RSVP::POSITIVE, RSVP::NEGATIVE, RSVP::POSSIBLE)):
             $this->showRSVP($stored, $out, $scoped);
             break;
+        default:
+            throw new ServerException('This is not an Event notice');
         }
+        return true;
     }
 
     protected function showEvent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
     {
+        common_debug('shownotice'.$stored->getID());
         $profile = $stored->getProfile();
-        $event   = Happening::fromNotice($stored);
-
-        if (!$event instanceof Happening) {
-            // TRANS: Content for a deleted RSVP list item (RSVP stands for "please respond").
-            $out->element('p', null, _m('Deleted.'));
-            return;
-        }
+        $event   = Happening::fromStored($stored);
 
         $out->elementStart('div', 'h-event');
 
