@@ -182,17 +182,6 @@ abstract class ActivityHandlerPlugin extends Plugin
             return true;
         }
         $object = $this->saveObjectFromActivity($act, $stored, $options);
-        try {
-            // In the future we probably want to use something like ActivityVerb_DataObject for the kind
-            // of objects which are returned from saveObjectFromActivity.
-            if ($object instanceof Managed_DataObject) {
-                // If the verb handling plugin figured out some more attention URIs, add them here to the
-                // original activity. This is only done if a separate object is actually needed to be saved.
-                $act->context->attention = array_merge($act->context->attention, $object->getAttentionArray());
-            }
-        } catch (Exception $e) {
-            common_debug('WARNING: Could not get attention list from object '.get_class($object).'!');
-        }
         return false;
     }
 

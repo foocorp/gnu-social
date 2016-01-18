@@ -402,12 +402,6 @@ class Fave extends Managed_DataObject
         return $object;
     }
 
-    public function getAttentionArray() {
-        // not all objects can/should carry attentions, so we don't require extending this
-        // the format should be an array with URIs to mentioned profiles
-        return array();
-    }
-
     public function getTarget()
     {
         return Notice::getByID($this->notice_id);

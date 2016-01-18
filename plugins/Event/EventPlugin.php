@@ -40,11 +40,8 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class EventPlugin extends MicroAppPlugin
+class EventPlugin extends ActivityVerbHandlerPlugin
 {
-
-    var $oldSaveNew = true;
-
     /**
      * Set up our tables (event and rsvp)
      *
@@ -131,22 +128,64 @@ class EventPlugin extends MicroAppPlugin
                      RSVP::POSSIBLE);
     }
 
-    protected function saveObjectFromActivity(Activity $activity, Notice $stored, array $options=array())
+    public function newFormAction() {
+        // such as 'newbookmark' or 'newevent' route
+        return 'new'.$this->tag();
+    }
+
+    function onStartShowEntryForms(&$tabs)
+    {
+        $tabs[$this->tag()] = array('title' => $this->appTitle(),
+                                    'href'  => common_local_url($this->newFormAction()),
+                                   );
+        return true;
+    }
+
+    function onStartMakeEntryForm($tag, $out, &$form)
+    {
+        if ($tag == $this->tag()) {
+            $form = $this->entryForm($out);
+            return false;
+        }
+
+        return true;
+    }
+
+    protected function getActionTitle(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        return $verb;
+    }
+
+    protected function doActionPreparation(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        return true;
+    }
+
+    protected function doActionPost(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        throw new ServerException('Event does not handle doActionPost yet', 501);
+    }
+
+    protected function getActivityForm(ManagedAction $action, $verb, Notice $target, Profile $scoped)
+    {
+        return new RSVPForm(Happening::fromNotice($target), $action);
+    }
+
+    protected function saveObjectFromActivity(Activity $act, Notice $stored, array $options=array())
     {
         if (count($act->objects) !== 1) {
             // TRANS: Exception thrown when there are too many activity objects.
             throw new Exception(_m('Too many activity objects.'));
         }
-        $actobj = $activity->objects[0];
+        $actobj = $act->objects[0];
 
-        switch ($activity->verb) {
+        switch ($act->verb) {
         case ActivityVerb::POST:
-            $actobj = $activity->objects[0];
             if (!ActivityUtils::compareTypes($actobj->type, array(Happening::OBJECT_TYPE))) {
                 // TRANS: Exception thrown when event plugin comes across a non-event type object.
                 throw new Exception(_m('Wrong type for object.'));
             }
-            return Happening::saveActivityObject($actobj, $stored->getProfile());
+            return Happening::saveActivityObject($actobj, $stored);
             break;
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
@@ -157,9 +196,9 @@ class EventPlugin extends MicroAppPlugin
                 // TRANS: Exception thrown when trying to RSVP for an unknown event.
                 throw new Exception(_m('RSVP for unknown event.'));
             }
-            $object = RSVP::saveNewFromNotice($stored, $happening, $activity->verb);
+            $object = RSVP::saveNewFromNotice($stored, $happening, $act->verb);
             // Our data model expects this
-            $stored->object_type = $activity->verb;
+            $stored->object_type = $act->verb;
             return $object;
             break;
         default:

@@ -100,93 +100,7 @@ class Happening extends Managed_DataObject
         );
     }
 
-    static function saveNew(Profile $profile, $start_time, $end_time, $title, $location, $description, $url, $options=array())
-    {
-        if (array_key_exists('uri', $options)) {
-            $other = Happening::getKV('uri', $options['uri']);
-            if ($other instanceof Happening) {
-                // TRANS: Client exception thrown when trying to create an event that already exists.
-                throw new ClientException(_m('Event already exists.'));
-            }
-        }
-
-        $ev = new Happening();
-
-        $ev->id          = UUID::gen();
-        $ev->profile_id  = $profile->getID();
-        $ev->start_time  = $start_time;
-        $ev->end_time    = $end_time;
-        $ev->title       = $title;
-        $ev->location    = $location;
-        $ev->description = $description;
-        $ev->url         = $url;
-
-        if (array_key_exists('created', $options)) {
-            $ev->created = $options['created'];
-        } else {
-            $ev->created = common_sql_now();
-        }
-
-        if (array_key_exists('uri', $options)) {
-            $ev->uri = $options['uri'];
-        } else {
-            $ev->uri = common_local_url('showevent',
-                                        array('id' => $ev->id));
-        }
-
-        $ev->insert();
-
-        // XXX: does this get truncated?
-
-        // TRANS: Event description. %1$s is a title, %2$s is start time, %3$s is end time,
-        // TRANS: %4$s is location, %5$s is a description.
-        $content = sprintf(_m('"%1$s" %2$s - %3$s (%4$s): %5$s'),
-                           $title,
-                           common_exact_date($ev->start_time),
-                           common_exact_date($ev->end_time),
-                           $location,
-                           $description);
-
-        // TRANS: Rendered microformats2 tagged event description.
-        // TRANS: %1$s is a title, %2$s is start time, %3$s is start time,
-        // TRANS: %4$s is end time, %5$s is end time, %6$s is location, %7$s is description.
-        // TRANS: Class names should not be translated.
-        $rendered = sprintf(_m('<div class="h-event">'.
-                              '<p class="p-name p-summary">%1$s</p> '.
-                              '<time class="dt-start" datetime="%2$s">%3$s</time> - '.
-                              '<time class="dt-end" datetime="%4$s">%5$s</time> '.
-                              '(<span class="p-location">%6$s</span>): '.
-                              '<div class="p-description">%7$s</div> '.
-                              '</div>'),
-                            htmlspecialchars($title),
-                            htmlspecialchars(common_date_iso8601($ev->start_time)),
-                            htmlspecialchars(common_exact_date($ev->start_time)),
-                            htmlspecialchars(common_date_iso8601($ev->end_time)),
-                            htmlspecialchars(common_exact_date($ev->end_time)),
-                            htmlspecialchars($location),
-                            htmlspecialchars($description));
-
-        $options = array_merge(array('object_type' => Happening::OBJECT_TYPE),
-                               $options);
-
-        if (!array_key_exists('uri', $options)) {
-            $options['uri'] = $ev->getUri();
-        }
-
-        if (!empty($url)) {
-            $options['urls'] = array($url);
-        }
-
-        $saved = Notice::saveNew($profile->getID(),
-                                 $content,
-                                 array_key_exists('source', $options) ?
-                                 $options['source'] : 'web',
-                                 $options);
-
-        return $saved;
-    }
-
-    public function saveActivityObject(ActivityObject $actobj, Profile $stored)
+    public static function saveActivityObject(ActivityObject $actobj, Notice $stored)
     {
         $other = Happening::getKV('uri', $actobj->id);
         if ($other instanceof Happening) {
@@ -194,53 +108,69 @@ class Happening extends Managed_DataObject
             throw new ClientException(_m('Event already exists.'));
         }
 
-        $dtstart = $actobj->element->getElementsByTagName('dtstart');
-        if($dtstart->length == 0) {
+        $dtstart = null;
+        $dtend = null;
+        $location = null;
+        $url = null;
+
+        foreach ($actobj->extra as $extra) {
+            switch ($extra[0]) {
+            case 'dtstart':
+                $dtstart = $extra[2];
+            case 'dtend':
+                $dtend = $extra[2];
+                break;
+            case 'location':
+                // location is optional
+                $location = $extra[2];
+                break;
+            case 'url':
+                // url is optional
+                $url = $extra[2];
+            }
+        }
+        if(empty($dtstart)) {
             // TRANS: Exception thrown when has no start date
             throw new Exception(_m('No start date for event.'));
         }
-        $dtend = $actobj->element->getElementsByTagName('dtend');
-        if($dtend->length == 0) {
+        if(empty($dtend)) {
             // TRANS: Exception thrown when has no end date
             throw new Exception(_m('No end date for event.'));
         }
 
         // convert RFC3339 dates delivered in Activity Stream to MySQL DATETIME date format
-        $start_time = new DateTime($dtstart->item(0)->nodeValue);
+        $start_time = new DateTime($dtstart);
         $start_time->setTimezone(new DateTimeZone('UTC'));
         $start_time = $start_time->format('Y-m-d H:i:s');
-        $end_time = new DateTime($dtend->item(0)->nodeValue);
+        $end_time = new DateTime($dtend);
         $end_time->setTimezone(new DateTimeZone('UTC'));
         $end_time = $end_time->format('Y-m-d H:i:s');
-
-        // location is optional
-        $location = null;
-        $location_object = $happeningObj->element->getElementsByTagName('location');
-        if($location_object->length > 0) {
-            $location = $location_object->item(0)->nodeValue;
-        }
-
-        // url is optional
-        $url = null;
-        $url_object = $happeningObj->element->getElementsByTagName('url');
-        if($url_object->length > 0) {
-            $url = $url_object->item(0)->nodeValue;
-        }
 
         $ev = new Happening();
 
         $ev->id          = UUID::gen();
-        $ev->uri         = $actobj->uri;
+        $ev->uri         = $actobj->id;
         $ev->profile_id  = $stored->getProfile()->getID();
         $ev->start_time  = $start_time;
         $ev->end_time    = $end_time;
         $ev->title       = $actobj->title;
         $ev->location    = $location;
-        $ev->description = $actobj->summary;
+        $ev->description = $stored->getContent();
         $ev->url         = $url;
         $ev->created     = $stored->getCreated();
 
         $ev->insert();
+        return $ev;
+    }
+
+    public function insert()
+    {
+        $result = parent::insert();
+        if ($result === false) {
+            common_log_db_error($this, 'INSERT', __FILE__);
+            throw new ServerException(_('Failed to insert '._ve(get_called_class()).' into database'));
+        }
+        return $result;
     }
 
     /**
