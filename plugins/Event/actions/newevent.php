@@ -139,7 +139,7 @@ class NeweventAction extends FormAction
                               common_date_iso8601($start_str));
         $actobj->extra[] = array('dtend',
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
-                              common_date_iso8601($start_str));
+                              common_date_iso8601($end_str));
         $actobj->extra[] = array('location', false, $location);
         $actobj->extra[] = array('url', false, $url);
 
