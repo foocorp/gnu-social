@@ -133,6 +133,13 @@ class RawProfileNoticeStream extends NoticeStream
         Notice::addWhereSinceId($notice, $since_id);
         Notice::addWhereMaxId($notice, $max_id);
 
+        if (!empty($this->selectVerbs)) {
+            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
+        }
+        if (!empty($this->unselectVerbs)) {
+            $notice->whereAddIn('!verb', $this->unselectVerbs, $notice->columnType('verb'));
+        }
+
         $notice->orderBy('created DESC, id DESC');
 
         if (!is_null($offset)) {
