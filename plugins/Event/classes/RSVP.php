@@ -127,7 +127,7 @@ class RSVP extends Managed_DataObject
 
     function saveNew($profile, $event, $verb, $options=array())
     {
-        $eventNotice = $event->getNotice();
+        $eventNotice = $event->getStored();
         $options = array_merge(array('source' => 'web'), $options);
 
         $act = new Activity();
@@ -235,7 +235,7 @@ class RSVP extends Managed_DataObject
     static function fromNotice(Notice $notice)
     {
         $rsvp = new RSVP();
-        $rsvp->uri = $notice->uri;
+        $rsvp->uri = $notice->getUri();
         if (!$rsvp->find(true)) {
             throw new NoResultException($rsvp);
         }
@@ -354,8 +354,7 @@ class RSVP extends Managed_DataObject
             // TRANS: Used as: Username [is [not ] attending|might attend] an unknown event.
             $eventTitle = _m('an unknown event');
         } else {
-            $notice = $event->getNotice();
-            $eventUrl = $notice->getUrl();
+            $eventUrl = $event->getStored()->getUrl();
             $eventTitle = $event->title;
         }
 
@@ -398,7 +397,6 @@ class RSVP extends Managed_DataObject
             // TRANS: Used as: Username [is [not ] attending|might attend] an unknown event.
             $eventTitle = _m('an unknown event');
         } else {
-            $notice = $event->getNotice();
             $eventTitle = $event->title;
         }
 

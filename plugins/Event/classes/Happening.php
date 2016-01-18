@@ -193,7 +193,7 @@ class Happening extends Managed_DataObject
         return $this->uri;
     }
 
-    public function getNotice()
+    public function getStored()
     {
         return Notice::getByKeys(array('uri'=>$this->getUri()));
     }

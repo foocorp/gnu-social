@@ -207,25 +207,18 @@ class EventPlugin extends ActivityVerbHandlerPlugin
         }
     }
 
-    /**
-     * Turn a Notice into an activity object
-     *
-     * @param Notice $notice
-     *
-     * @return ActivityObject
-     */
-    function activityObjectFromNotice(Notice $notice)
+    function activityObjectFromNotice(Notice $stored)
     {
         $happening = null;
 
         switch (true) {
-        case ActivityUtils::compareVerbs($notice->verb, array(ActivityVerb::POST)) &&
-                ActivityUtils::compareTypes($notice->object_type, array(Happening::OBJECT_TYPE)):
-            $happening = Happening::fromStored($notice);
+        case ActivityUtils::compareVerbs($stored->verb, array(ActivityVerb::POST)) &&
+                ActivityUtils::compareTypes($stored->object_type, array(Happening::OBJECT_TYPE)):
+            $happening = Happening::fromStored($stored);
             break;
         // FIXME: Why are these object_type??
         case ActivityUtils::compareTypes($stored->object_type, array(RSVP::POSITIVE, RSVP::NEGATIVE, RSVP::POSSIBLE)):
-            $rsvp  = RSVP::fromNotice($notice);
+            $rsvp  = RSVP::fromNotice($stored);
             $happening = $rsvp->getEvent();
             break;
         default:
@@ -233,18 +226,13 @@ class EventPlugin extends ActivityVerbHandlerPlugin
             throw new Exception(_m('Unknown object type.'));
         }
 
-        // This is a bit weird, if it's a Notice for a Happening. We should only do this for RSVP.
-        $notice = $happening->getNotice();
-
         $obj = new ActivityObject();
 
         $obj->id      = $happening->getUri();
         $obj->type    = Happening::OBJECT_TYPE;
         $obj->title   = $happening->title;
         $obj->summary = $happening->description;
-        $obj->link    = $notice->getUrl();
-
-        // XXX: how to get this stuff into JSON?!
+        $obj->link    = $happening->getStored()->getUrl();
 
         $obj->extra[] = array('dtstart',
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
@@ -255,9 +243,6 @@ class EventPlugin extends ActivityVerbHandlerPlugin
         $obj->extra[] = array('location', false, $happening->location);
         $obj->extra[] = array('url', false, $happening->url);
 
-        // XXX: probably need other stuff here
-
-        common_debug('EVENTDEBUG: activity object from notice: '._ve($obj));
         return $obj;
     }
 
@@ -299,8 +284,12 @@ class EventPlugin extends ActivityVerbHandlerPlugin
         switch ($notice->object_type) {
         case Happening::OBJECT_TYPE:
             common_log(LOG_DEBUG, "Deleting event from notice...");
-            $happening = Happening::fromStored($notice);
-            $happening->delete();
+            try {
+                $happening = Happening::fromStored($notice);
+                $happening->delete();
+            } catch (NoResultException $e) {
+                // already gone
+            }
             break;
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
@@ -328,18 +317,11 @@ class EventPlugin extends ActivityVerbHandlerPlugin
 
     function onStartAddNoticeReply($nli, $parent, $child)
     {
-        // Filter out any poll responses
         if (($parent->object_type == Happening::OBJECT_TYPE) &&
             in_array($child->object_type, array(RSVP::POSITIVE, RSVP::NEGATIVE, RSVP::POSSIBLE))) {
             return false;
         }
         return true;
-    }
-
-    protected function showNoticeItemNotice(NoticeListItem $nli)
-    {
-        $nli->showAuthor();
-        $nli->showContent();
     }
 
     protected function showNoticeContent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
