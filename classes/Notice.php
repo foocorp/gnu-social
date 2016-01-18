@@ -754,7 +754,7 @@ class Notice extends Managed_DataObject
             $options['uri'] = $act->id;
             $options['url'] = $act->link;
         } else {
-            $actobj = count($act->objects)==1 ? $act->objects[0] : null;
+            $actobj = count($act->objects)===1 ? $act->objects[0] : null;
             if (!is_null($actobj) && !empty($actobj->id)) {
                 $options['uri'] = $actobj->id;
                 if ($actobj->link) {
@@ -835,6 +835,10 @@ class Notice extends Managed_DataObject
         $stored->rendered = $actor->isLocal() ? $content : common_purify($content);
         // yeah, just don't use getRendered() here since it's not inserted yet ;)
         $stored->content = common_strip_html($stored->rendered);
+        if (trim($stored->content) === '') {
+            // TRANS: Error message when the plain text content of a notice has zero length.
+            throw new ClientException(_('Empty notice content, will not save this.'));
+        }
 
         // Maybe a missing act-time should be fatal if the actor is not local?
         if (!empty($act->time)) {
