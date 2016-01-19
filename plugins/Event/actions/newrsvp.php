@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * RSVP for an event
@@ -44,166 +40,53 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class NewrsvpAction extends Action
+class NewrsvpAction extends FormAction
 {
-    protected $user  = null;
-    protected $event = null;
-    protected $verb  = null;
+    protected $form = 'RSVP';
 
-    /**
-     * Returns the title of the action
-     *
-     * @return string Action title
-     */
+    protected $event;
+
     function title()
     {
         // TRANS: Title for RSVP ("please respond") action.
         return _m('TITLE','New RSVP');
     }
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function doPreparation()
     {
-        parent::prepare($argarray);
-        if ($this->boolean('ajax')) {
-            GNUsocial::setApi(true); // short error results!
-        }
-
         $eventId = $this->trimmed('event');
-
         if (empty($eventId)) {
             // TRANS: Client exception thrown when referring to a non-existing event.
             throw new ClientException(_m('No such event.'));
         }
-
         $this->event = Happening::getKV('id', $eventId);
-
         if (empty($this->event)) {
             // TRANS: Client exception thrown when referring to a non-existing event.
             throw new ClientException(_m('No such event.'));
         }
 
-        $this->user = common_current_user();
-
-        if (empty($this->user)) {
-            // TRANS: Client exception thrown when trying to RSVP ("please respond") while not logged in.
-            throw new ClientException(_m('You must be logged in to RSVP for an event.'));
-        }
-
-        common_debug(print_r($this->args, true));
-
-        switch (strtolower($this->trimmed('submitvalue'))) {
-        case 'yes':
-            $this->verb = RSVP::POSITIVE;
-            break;
-        case 'no':
-            $this->verb = RSVP::NEGATIVE;
-            break;
-        case 'maybe':
-            $this->verb = RSVP::POSSIBLE;
-            break;
-        default:
-            // TRANS: Client exception thrown when using an invalid value for RSVP ("please respond").
-            throw new ClientException(_m('Unknown submit value.'));
-        }
-
-        return true;
+        $this->formOpts['event'] = $this->event;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
+    protected function doPost()
     {
-        parent::handle($argarray);
 
-        if ($this->isPost()) {
-            $this->newRSVP();
-        } else {
-            $this->showPage();
-        }
+        $verb = RSVP::verbFor(strtolower($this->trimmed('submitvalue')));
 
-        return;
-    }
+        $options = array('source' => 'web');
 
-    /**
-     * Add a new event
-     *
-     * @return void
-     */
-    function newRSVP()
-    {
-        try {
-            $saved = RSVP::saveNew($this->user->getProfile(),
-                                   $this->event,
-                                   $this->verb);
-        } catch (ClientException $ce) {
-            $this->error = $ce->getMessage();
-            $this->showPage();
-            return;
-        }
+        $act = new Activity();
+        $act->id = UUID::gen();
+        $act->verb    = $verb;
+        $act->time    = time();
+        $act->title   = _m('RSVP');
+        $act->actor   = $this->scoped->asActivityObject();
+        $act->target  = $this->event->getStored()->asActivityObject();
+        $act->objects = array(clone($act->target));
+        $act->content = RSVP::toHTML($this->scoped, $this->event, RSVP::codeFor($verb));
 
-        if ($this->boolean('ajax')) {
-            $rsvp = RSVP::fromNotice($saved);
-            $this->startHTML('text/xml;charset=utf-8');
-            $this->elementStart('head');
-            // TRANS: Page title after creating an event.
-            $this->element('title', null, _m('Event saved'));
-            $this->elementEnd('head');
-            $this->elementStart('body');
-            $cancel = new CancelRSVPForm($rsvp, $this);
-            $cancel->show();
-            $this->elementEnd('body');
-            $this->endHTML();
-        } else {
-            common_redirect($saved->getUrl(), 303);
-        }
-    }
+        $stored = Notice::saveActivity($act, $this->scoped, $options);
 
-    /**
-     * Show the event form
-     *
-     * @return void
-     */
-    function showContent()
-    {
-        if (!empty($this->error)) {
-            $this->element('p', 'error', $this->error);
-        }
-
-        $form = new RSVPForm($this->event, $this);
-
-        $form->show();
-
-        return;
-    }
-
-    /**
-     * Return true if read only.
-     *
-     * MAY override
-     *
-     * @param array $args other arguments
-     *
-     * @return boolean is read only action?
-     */
-    function isReadOnly($args)
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
-            $_SERVER['REQUEST_METHOD'] == 'HEAD') {
-            return true;
-        } else {
-            return false;
-        }
+        return _m('Saved RSVP');
     }
 }

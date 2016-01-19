@@ -173,38 +173,16 @@ class EventPlugin extends ActivityVerbHandlerPlugin
 
     protected function saveObjectFromActivity(Activity $act, Notice $stored, array $options=array())
     {
-        if (count($act->objects) !== 1) {
-            // TRANS: Exception thrown when there are too many activity objects.
-            throw new Exception(_m('Too many activity objects.'));
-        }
-        $actobj = $act->objects[0];
+        switch (true) {
+        case ActivityUtils::compareVerbs($stored->getVerb(), [ActivityVerb::POST]):
+            return Happening::saveActivityObject($act, $stored);
+            break;
 
-        switch ($act->verb) {
-        case ActivityVerb::POST:
-            if (!ActivityUtils::compareTypes($actobj->type, array(Happening::OBJECT_TYPE))) {
-                // TRANS: Exception thrown when event plugin comes across a non-event type object.
-                throw new Exception(_m('Wrong type for object.'));
-            }
-            return Happening::saveActivityObject($actobj, $stored);
+        case ActivityUtils::compareVerbs($stored->getVerb(), [RSVP::POSITIVE, RSVP::NEGATIVE, RSVP::POSSIBLE]):
+            return RSVP::saveActivityObject($act, $stored);
             break;
-        case RSVP::POSITIVE:
-        case RSVP::NEGATIVE:
-        case RSVP::POSSIBLE:
-            $happening = Happening::getKV('uri', $actobj->id);
-            if (empty($happening)) {
-                // FIXME: save the event
-                // TRANS: Exception thrown when trying to RSVP for an unknown event.
-                throw new Exception(_m('RSVP for unknown event.'));
-            }
-            $object = RSVP::saveNewFromNotice($stored, $happening, $act->verb);
-            // Our data model expects this
-            $stored->object_type = $act->verb;
-            return $object;
-            break;
-        default:
-            common_log(LOG_ERR, 'Unknown verb for events.');
-            return NULL;
         }
+        return null;
     }
 
     function activityObjectFromNotice(Notice $stored)

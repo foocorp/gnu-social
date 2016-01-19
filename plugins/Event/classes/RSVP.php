@@ -125,42 +125,18 @@ class RSVP extends Managed_DataObject
         print "Resuming core schema upgrade...";
     }
 
-    function saveNew($profile, $event, $verb, $options=array())
+    static function saveActivityObject(Activity $act, Notice $stored)
     {
-        $eventNotice = $event->getStored();
-        $options = array_merge(array('source' => 'web'), $options);
-
-        $act = new Activity();
-        $act->type    = ActivityObject::ACTIVITY;
-        $act->verb    = $verb;
-        $act->time    = $options['created'] ? strtotime($options['created']) : time();
-        $act->title   = _m("RSVP");
-        $act->actor   = $profile->asActivityObject();
-        $act->target  = $eventNotice->asActivityObject();
-        $act->objects = array(clone($act->target));
-        $act->content = RSVP::toHTML($profile, $event, self::codeFor($verb));
-
-        $act->id = common_local_url('showrsvp', array('id' => UUID::gen()));
-        $act->link = $act->id;
-
-        $saved = Notice::saveActivity($act, $profile, $options);
-
-        return $saved;
-    }
-
-    function saveNewFromNotice($notice, $event, $verb)
-    {
-        $other = RSVP::getKV('uri', $notice->uri);
-        if (!empty($other)) {
-            // TRANS: Client exception thrown when trying to save an already existing RSVP ("please respond").
-            throw new ClientException(_m('RSVP already exists.'));
+        $target = Notice::getByKeys(array('uri'=>$act->target->id));
+        if (!ActivityUtils::compareTypes($target->getObjectType(), [ Happening::OBJECT_TYPE ])) {
+            throw new ClientException('RSVP not aimed at a Happening');
         }
 
-        $profile = $notice->getProfile();
+        // FIXME: Maybe we need some permission handling here, though I think it's taken care of in saveActivity?
 
         try {
-            $other = RSVP::getByKeys( [ 'profile_id' => $profile->getID(),
-                                        'event_uri' => $event->getUri(),
+            $other = RSVP::getByKeys( [ 'profile_id' => $stored->getProfile()->getID(),
+                                        'event_uri' => $target->getUri(),
                                       ] );
             // TRANS: Client exception thrown when trying to save an already existing RSVP ("please respond").
             throw new AlreadyFulfilledException(_m('RSVP already exists.'));
@@ -169,32 +145,30 @@ class RSVP extends Managed_DataObject
         }
 
         $rsvp = new RSVP();
-
-        preg_match('/\/([^\/]+)\/*/', $notice->uri, $match);
-        $rsvp->id          = $match[1] ? $match[1] : UUID::gen();
-        $rsvp->profile_id  = $profile->id;
-        $rsvp->event_id    = $event->id;
-        $rsvp->response    = self::codeFor($verb);
-        $rsvp->created     = $notice->created;
-        $rsvp->uri         = $notice->uri;
+        $rsvp->id          = UUID::gen();   // remove this
+        $rsvp->uri         = $stored->getUri();
+        $rsvp->profile_id  = $stored->getProfile()->getID();
+        $rsvp->event_uri   = $target->getUri();
+        $rsvp->response    = self::codeFor($stored->getVerb());
+        $rsvp->created     = $stored->getCreated();
 
         $rsvp->insert();
 
-        self::blow('rsvp:for-event:%s', $event->getUri());
+        self::blow('rsvp:for-event:%s', $target->getUri());
 
         return $rsvp;
     }
 
-    function codeFor($verb)
+    static function codeFor($verb)
     {
-        switch ($verb) {
-        case RSVP::POSITIVE:
+        switch (true) {
+        case ActivityUtils::compareVerbs($verb, [RSVP::POSITIVE]):
             return 'Y';
             break;
-        case RSVP::NEGATIVE:
+        case ActivityUtils::compareVerbs($verb, [RSVP::NEGATIVE]):
             return 'N';
             break;
-        case RSVP::POSSIBLE:
+        case ActivityUtils::compareVerbs($verb, [RSVP::POSSIBLE]):
             return '?';
             break;
         default:
@@ -207,39 +181,41 @@ class RSVP extends Managed_DataObject
     {
         switch ($code) {
         case 'Y':
+        case 'yes':
             return RSVP::POSITIVE;
             break;
         case 'N':
+        case 'no':
             return RSVP::NEGATIVE;
             break;
         case '?':
+        case 'maybe':
             return RSVP::POSSIBLE;
             break;
         default:
             // TRANS: Exception thrown when requesting an undefined code for RSVP.
-            throw new Exception(sprintf(_m('Unknown code "%s".'),$code));
+            throw new ClientException(sprintf(_m('Unknown code "%s".'), $code));
         }
     }
 
-    function getNotice()
+    public function getUri()
     {
-        $notice = Notice::getKV('uri', $this->uri);
-        if (empty($notice)) {
-            // TRANS: Server exception thrown when requesting a non-exsting notice for an RSVP ("please respond").
-            // TRANS: %s is the RSVP with the missing notice.
-            throw new ServerException(sprintf(_m('RSVP %s does not correspond to a notice in the database.'),$this->id));
-        }
-        return $notice;
+        return $this->uri;
     }
 
-    static function fromNotice(Notice $notice)
+    public function getEventUri()
     {
-        $rsvp = new RSVP();
-        $rsvp->uri = $notice->getUri();
-        if (!$rsvp->find(true)) {
-            throw new NoResultException($rsvp);
-        }
-        return $rsvp;
+        return $this->event_uri;
+    }
+
+    static function getStored()
+    {
+        return Notice::getByKeys(['uri' => $this->getUri()]);
+    }
+
+    static function fromStored(Notice $stored)
+    {
+        return self::getByKeys(['uri' => $stored->getUri()]);
     }
 
     static function forEvent(Happening $event)
@@ -285,24 +261,12 @@ class RSVP extends Managed_DataObject
 
     function getProfile()
     {
-        $profile = Profile::getKV('id', $this->profile_id);
-        if (empty($profile)) {
-            // TRANS: Exception thrown when requesting a non-existing profile.
-            // TRANS: %s is the ID of the non-existing profile.
-            throw new Exception(sprintf(_m('No profile with ID %s.'),$this->profile_id));
-        }
-        return $profile;
+        return Profile::getByID($this->profile_id);
     }
 
     function getEvent()
     {
-        $event = Happening::getKV('uri', $this->event_uri);
-        if (empty($event)) {
-            // TRANS: Exception thrown when requesting a non-existing event.
-            // TRANS: %s is the ID of the non-existing event.
-            throw new Exception(sprintf(_m('No event with URI %s.'),$this->event_uri));
-        }
-        return $event;
+        return Happening::getByKeys(['uri' => $this->getEventUri()]);
     }
 
     function asHTML()
@@ -319,7 +283,7 @@ class RSVP extends Managed_DataObject
                               $this->response);
     }
 
-    static function toHTML($profile, $event, $response)
+    static function toHTML(Profile $profile, Happening $event, $response)
     {
         $fmt = null;
 
@@ -359,7 +323,7 @@ class RSVP extends Managed_DataObject
         }
 
         return sprintf($fmt,
-                       htmlspecialchars($profile->profileurl),
+                       htmlspecialchars($profile->getUrl()),
                        htmlspecialchars($profile->getBestName()),
                        htmlspecialchars($eventUrl),
                        htmlspecialchars($eventTitle));
@@ -405,9 +369,19 @@ class RSVP extends Managed_DataObject
                        $eventTitle);
     }
 
-    function delete($useWhere=false)
+    public function delete($useWhere=false)
     {
         self::blow('rsvp:for-event:%s', $this->id);
         return parent::delete($useWhere);
+    }
+
+    public function insert()
+    {
+        $result = parent::insert();
+        if ($result === false) {
+            common_log_db_error($this, 'INSERT', __FILE__);
+            throw new ServerException(_('Failed to insert '._ve(get_called_class()).' into database'));
+        }
+        return $result;
     }
 }

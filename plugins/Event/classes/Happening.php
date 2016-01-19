@@ -101,12 +101,23 @@ class Happening extends Managed_DataObject
         );
     }
 
-    public static function saveActivityObject(ActivityObject $actobj, Notice $stored)
+    public static function saveActivityObject(Activity $act, Notice $stored)
     {
-        $other = Happening::getKV('uri', $actobj->id);
-        if ($other instanceof Happening) {
-            // TRANS: Client exception thrown when trying to create an event that already exists.
-            throw new ClientException(_m('Event already exists.'));
+        if (count($act->objects) !== 1) {
+            // TRANS: Exception thrown when there are too many activity objects.
+            throw new Exception(_m('Too many activity objects.'));
+        }
+        $actobj = $act->objects[0];
+        if (!ActivityUtils::compareTypes($actobj->type, [Happening::OBJECT_TYPE])) {
+            // TRANS: Exception thrown when event plugin comes across a non-event type object.
+            throw new Exception(_m('Wrong type for object.'));
+        }
+
+        try {
+            $other = Happening::getByKeys(['uri' => $actobj->id]);
+            throw AlreadyFulfilledException('Happening already exists.');
+        } catch (NoResultException $e) {
+            // alright, let's save this
         }
 
         $dtstart = null;
