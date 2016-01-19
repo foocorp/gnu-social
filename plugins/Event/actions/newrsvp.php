@@ -54,16 +54,7 @@ class NewrsvpAction extends FormAction
 
     protected function doPreparation()
     {
-        $eventId = $this->trimmed('event');
-        if (empty($eventId)) {
-            // TRANS: Client exception thrown when referring to a non-existing event.
-            throw new ClientException(_m('No such event.'));
-        }
-        $this->event = Happening::getKV('id', $eventId);
-        if (empty($this->event)) {
-            // TRANS: Client exception thrown when referring to a non-existing event.
-            throw new ClientException(_m('No such event.'));
-        }
+        $this->event = Happening::getByKeys(['uri'=>$this->trimmed('event')]);
 
         $this->formOpts['event'] = $this->event;
     }

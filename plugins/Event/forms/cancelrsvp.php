@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('STATUSNET')) { exit(1); }
 
 /**
  * A form to RSVP for an event
@@ -48,10 +44,15 @@ class CancelRSVPForm extends Form
 {
     protected $rsvp = null;
 
-    function __construct($rsvp, $out=null)
+    function __construct($out=null, array $formOpts=array())
     {
         parent::__construct($out);
-        $this->rsvp = $rsvp;
+        if (!isset($formOpts['rsvp'])) {
+            throw new ServerException('You must set the "rsvp" form option for RSVPForm.');
+        } elseif (!$formOpts['rsvp'] instanceof Happening) {
+            throw new ServerException('The "rsvp" form option for RSVPForm must be an RSVP object.');
+        }
+        $this->rsvp = $formOpts['rsvp'];
     }
 
     /**
@@ -93,7 +94,7 @@ class CancelRSVPForm extends Form
     {
         $this->out->elementStart('fieldset', array('id' => 'new_rsvp_data'));
 
-        $this->out->hidden('rsvp-id', $this->rsvp->id, 'rsvp');
+        $this->out->hidden('rsvp-id', $this->rsvp->getUri(), 'rsvp');
 
         switch (RSVP::verbFor($this->rsvp->response)) {
         case RSVP::POSITIVE:

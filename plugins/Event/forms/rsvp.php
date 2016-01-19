@@ -44,10 +44,15 @@ class RSVPForm extends Form
 {
     protected $event = null;
 
-    function __construct(Happening $event, $out=null)
+    function __construct($out=null, array $formOpts=array())
     {
         parent::__construct($out);
-        $this->event = $event;
+        if (!isset($formOpts['event'])) {
+            throw new ServerException('You must set the "event" form option for RSVPForm.');
+        } elseif (!$formOpts['event'] instanceof Happening) {
+            throw new ServerException('The "event" form option for RSVPForm must be a Happening object.');
+        }
+        $this->event = $formOpts['event'];
     }
 
     /**
@@ -92,7 +97,7 @@ class RSVPForm extends Form
         // TRANS: Field label on form to RSVP ("please respond") for an event.
         $this->out->text(_m('RSVP:'));
 
-        $this->out->hidden('event-id', $this->event->id, 'event');
+        $this->out->hidden('event-id', $this->event->getUri(), 'event');
         $this->out->hidden('submitvalue', '');
 
         $this->out->elementEnd('fieldset');
