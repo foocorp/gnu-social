@@ -725,14 +725,13 @@ function common_find_mentions($text, Profile $sender, Notice $parent=null)
     if (Event::handle('StartFindMentions', array($sender, $text, &$mentions))) {
         // Get the context of the original notice, if any
         $origMentions = array();
-
         // Does it have a parent notice for context?
         if ($parent instanceof Notice) {
             foreach ($parent->getAttentionProfiles() as $repliedTo) {
                 if (!$repliedTo->isPerson()) {
                     continue;
                 }
-                $origMentions[$repliedTo->getNickname()] = $repliedTo;
+                $origMentions[$repliedTo->id] = $repliedTo;
             }
         }
 
@@ -746,15 +745,24 @@ function common_find_mentions($text, Profile $sender, Notice $parent=null)
                 continue;
             }
 
-            // Try to get a profile for this nickname.
-            // Start with conversation context, then go to
-            // sender context.
+			// primarily mention the profiles mentioned in the parent
+            $mention_found_in_origMentions = false;
+            foreach($origMentions as $origMentionsId=>$origMention) {
+                if($origMention->getNickname() == $nickname) {
+                    $mention_found_in_origMentions = $origMention;
+                    // don't mention same twice! the parent might have mentioned 
+                    // two users with same nickname on different instances
+                    unset($origMentions[$origMentionsId]);
+                    break;
+                }
+            }
 
-            if ($parent instanceof Notice && $parent->getProfile()->getNickname() === $nickname) {
+            // Try to get a profile for this nickname.
+            // Start with parents mentions, then go to parents sender context
+            if ($mention_found_in_origMentions) {
+                $mentioned = $mention_found_in_origMentions;            
+            } else if ($parent instanceof Notice && $parent->getProfile()->getNickname() === $nickname) {
                 $mentioned = $parent->getProfile();
-            } else if (!empty($origMentions) &&
-                       array_key_exists($nickname, $origMentions)) {
-                $mentioned = $origMentions[$nickname];
             } else {
                 // sets to null if no match
                 $mentioned = common_relative_profile($sender, $nickname);
