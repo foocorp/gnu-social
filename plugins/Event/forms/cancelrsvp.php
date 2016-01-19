@@ -49,7 +49,7 @@ class CancelRSVPForm extends Form
         parent::__construct($out);
         if (!isset($formOpts['rsvp'])) {
             throw new ServerException('You must set the "rsvp" form option for RSVPForm.');
-        } elseif (!$formOpts['rsvp'] instanceof Happening) {
+        } elseif (!$formOpts['rsvp'] instanceof RSVP) {
             throw new ServerException('The "rsvp" form option for RSVPForm must be an RSVP object.');
         }
         $this->rsvp = $formOpts['rsvp'];

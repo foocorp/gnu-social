@@ -436,9 +436,9 @@ class EventPlugin extends ActivityVerbHandlerPlugin
             $rsvp = $event->getRSVP($scoped);
 
             if (empty($rsvp)) {
-                $form = new RSVPForm($event, $out);
+                $form = new RSVPForm($out, array('event'=>$event));
             } else {
-                $form = new CancelRSVPForm($rsvp, $out);
+                $form = new CancelRSVPForm($out, array('rsvp'=>$rsvp));
             }
 
             $form->show();
