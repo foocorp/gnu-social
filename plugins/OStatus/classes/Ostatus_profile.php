@@ -376,14 +376,19 @@ class Ostatus_profile extends Managed_DataObject
     public function notifyDeferred($entry, $actor)
     {
         if ($this->salmonuri) {
-            common_debug("OSTATUS: user {$actor->getNickname()} ({$actor->getID()}) wants to ping {$this->localProfile()->getNickname()} on {$this->salmonuri}");
-            $data = array('salmonuri' => $this->salmonuri,
-                          'entry' => $this->notifyPrepXml($entry),
-                          'actor' => $actor->getID(),
-                          'target' => $this->localProfile()->getID());
+            try {
+                common_debug("OSTATUS: user {$actor->getNickname()} ({$actor->getID()}) wants to ping {$this->localProfile()->getNickname()} on {$this->salmonuri}");
+                $data = array('salmonuri' => $this->salmonuri,
+                              'entry' => $this->notifyPrepXml($entry),
+                              'actor' => $actor->getID(),
+                              'target' => $this->localProfile()->getID());
 
-            $qm = QueueManager::get();
-            return $qm->enqueue($data, 'salmon');
+                $qm = QueueManager::get();
+                return $qm->enqueue($data, 'salmon');
+            } catch (Exception $e) {
+                common_log(LOG_ERR, 'OSTATUS: Something went wrong when creating a Salmon slap: '._ve($e->getMessage()));
+                return false;
+            }
         }
 
         return false;
