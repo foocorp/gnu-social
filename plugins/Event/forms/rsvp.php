@@ -82,7 +82,7 @@ class RSVPForm extends Form
      */
     function action()
     {
-        return common_local_url('newrsvp');
+        return common_local_url('rsvp');
     }
 
     /**
@@ -98,7 +98,7 @@ class RSVPForm extends Form
         $this->out->text(_m('RSVP:'));
 
         $this->out->hidden('event-id', $this->event->getUri(), 'event');
-        $this->out->hidden('submitvalue', '');
+        $this->out->hidden('rsvp', '');
 
         $this->out->elementEnd('fieldset');
     }
@@ -110,26 +110,31 @@ class RSVPForm extends Form
      */
     function formActions()
     {
-        // TRANS: Button text for RSVP ("please respond") reply to confirm attendence.
-        $this->submitButton('yes', _m('BUTTON', 'Yes'));
-        // TRANS: Button text for RSVP ("please respond") reply to deny attendence.
-        $this->submitButton('no', _m('BUTTON', 'No'));
-        // TRANS: Button text for RSVP ("please respond") reply to indicate one might attend.
-        $this->submitButton('maybe', _m('BUTTON', 'Maybe'));
+        try {
+            $rsvp = RSVP::byEventAndActor($this->event, $this->scoped);
+            $this->submitButton('cancel', _m('BUTTON', 'Cancel'));
+        } catch (NoResultException $e) {
+            // TRANS: Button text for RSVP ("please respond") reply to confirm attendence.
+            $this->submitButton('yes', _m('BUTTON', 'Yes'));
+            // TRANS: Button text for RSVP ("please respond") reply to deny attendence.
+            $this->submitButton('no', _m('BUTTON', 'No'));
+            // TRANS: Button text for RSVP ("please respond") reply to indicate one might attend.
+            $this->submitButton('maybe', _m('BUTTON', 'Maybe'));
+        }
     }
 
-    function submitButton($id, $label)
+    function submitButton($answer, $label)
     {
         $this->out->element(
             'input',
                 array(
                     'type'    => 'submit',
-                    'id'      => 'rsvp-submit',
-                    'name'    => $id,
+                    'id'      => 'rsvp-submit-'.$answer,
+                    'name'    => $answer,
                     'class'   => 'submit',
-                    'value'   => $label,
+                    'value'   => $answer,
                     'title'   => $label,
-                    'onClick' => 'this.form.submitvalue.value = this.name; return true;'
+                    'onClick' => 'this.form.rsvp.value = this.name; return true;'
             )
         );
     }

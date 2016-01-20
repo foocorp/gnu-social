@@ -3,7 +3,7 @@
  * StatusNet - the distributed open-source microblogging tool
  * Copyright (C) 2011, StatusNet, Inc.
  *
- * Cancel the RSVP for an event
+ * RSVP for an event
  *
  * PHP version 5
  *
@@ -40,50 +40,54 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class CancelrsvpAction extends FormAction
+class RsvpAction extends FormAction
 {
-    protected $form = 'CancelRSVP';
+    protected $form = 'RSVP';
+
+    protected $event = null;
 
     function title()
     {
         // TRANS: Title for RSVP ("please respond") action.
-        return _m('TITLE','Cancel RSVP');
+        return _m('TITLE','New RSVP');
     }
 
-    // FIXME: Merge this action with RSVPAction and add a 'cancel' thing there...
     protected function doPreparation()
     {
-        $rsvpId = $this->trimmed('rsvp');
-        if (empty($rsvpId)) {
-            // TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
-            throw new ClientException(_m('No such RSVP.'));
-        }
+        $this->event = Happening::getByKeys(['uri'=>$this->trimmed('event')]);
 
-        $this->rsvp = RSVP::getKV('id', $rsvpId);
-        if (empty($this->rsvp)) {
-            // TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
-            throw new ClientException(_m('No such RSVP.'));
-        }
-
-        $this->formOpts['rsvp'] = $this->rsvp;
+        $this->formOpts['event'] = $this->event;
     }
 
     protected function doPost()
     {
-        $this->event = Happening::getKV('uri', $this->rsvp->event_uri);
-        if (empty($this->event)) {
-            // TRANS: Client exception thrown when referring to a non-existing event.
-            throw new ClientException(_m('No such event.'));
+        if ($this->trimmed('rsvp') === 'cancel') {
+            $rsvp = RSVP::byEventAndActor($this->event, $this->scoped);
+            try {
+                $notice = $rsvp->getStored();
+                $notice->deleteAs($this->scoped);
+            } catch (NoResultException $e) {
+                // Notice already gone
+                $rsvp->delete();
+            }
+            return _m('Cancelled RSVP');
         }
 
-        $notice = $this->rsvp->getNotice();
-        // NB: this will delete the rsvp, too
-        if (!empty($notice)) {
-            common_log(LOG_DEBUG, "Deleting notice...");
-            $notice->deleteAs($this->scoped);
-        } else {
-            common_log(LOG_DEBUG, "Deleting RSVP alone...");
-            $this->rsvp->delete();
-        }
+        $verb = RSVP::verbFor(strtolower($this->trimmed('rsvp')));
+        $options = array('source' => 'web');
+
+        $act = new Activity();
+        $act->id = UUID::gen();
+        $act->verb    = $verb;
+        $act->time    = time();
+        $act->title   = _m('RSVP');
+        $act->actor   = $this->scoped->asActivityObject();
+        $act->target  = $this->event->getStored()->asActivityObject();
+        $act->objects = array(clone($act->target));
+        $act->content = RSVP::toHTML($this->scoped, $this->event, RSVP::codeFor($verb));
+
+        $stored = Notice::saveActivity($act, $this->scoped, $options);
+
+        return _m('Saved RSVP');
     }
 }

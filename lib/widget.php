@@ -28,9 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Base class for UI widgets
@@ -65,9 +63,13 @@ class Widget
      * @param Action $out output helper, defaults to null
      */
 
-    function __construct(Action $out=null)
+    function __construct(Action $out=null, array $widgetOpts=array())
     {
         $this->out = $out;
+        if (!array_key_exists('scoped', $widgetOpts)) {
+            $this->widgetOpts['scoped'] = Profile::current();
+        }
+        $this->scoped = $this->widgetOpts['scoped'];
     }
 
     /**

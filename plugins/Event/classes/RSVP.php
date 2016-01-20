@@ -208,7 +208,7 @@ class RSVP extends Managed_DataObject
         return $this->event_uri;
     }
 
-    static function getStored()
+    public function getStored()
     {
         return Notice::getByKeys(['uri' => $this->getUri()]);
     }
@@ -216,6 +216,12 @@ class RSVP extends Managed_DataObject
     static function fromStored(Notice $stored)
     {
         return self::getByKeys(['uri' => $stored->getUri()]);
+    }
+
+    static function byEventAndActor(Happening $event, Profile $actor)
+    {
+        return self::getByKeys(['event_uri' => $event->getUri(),
+                                'profile_id' => $actor->getID()]);
     }
 
     static function forEvent(Happening $event)

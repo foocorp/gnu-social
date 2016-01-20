@@ -78,9 +78,10 @@ class EventPlugin extends ActivityVerbHandlerPlugin
         $m->connect('main/event/new',
                     array('action' => 'newevent'));
         $m->connect('main/event/rsvp',
-                    array('action' => 'newrsvp'));
-        $m->connect('main/event/rsvp/cancel',
-                    array('action' => 'cancelrsvp'));
+                    array('action' => 'rsvp'));
+        $m->connect('main/event/rsvp/:rsvp',    // this will probably change to include event notice id
+                    array('action' => 'rsvp'),
+                    array('rsvp'   => '[a-z]+'));
         $m->connect('event/:id',
                     array('action' => 'showevent'),
                     array('id' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'));
@@ -433,14 +434,7 @@ class EventPlugin extends ActivityVerbHandlerPlugin
         $out->elementEnd('div');
 
         if ($scoped instanceof Profile) {
-            $rsvp = $event->getRSVP($scoped);
-
-            if (empty($rsvp)) {
-                $form = new RSVPForm($out, array('event'=>$event));
-            } else {
-                $form = new CancelRSVPForm($out, array('rsvp'=>$rsvp));
-            }
-
+            $form = new RSVPForm($out, array('event'=>$event, 'scoped'=>$scoped));
             $form->show();
         }
         $out->elementEnd('div');
