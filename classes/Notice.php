@@ -308,6 +308,9 @@ class Notice extends Managed_DataObject
     }
 
     public function getObjectType($canonical=false) {
+        if (is_null($this->object_type) || $this->object_type==='') {
+            throw new NoObjectTypeException($this);
+        }
         return ActivityUtils::resolveUri($this->object_type, $canonical);
     }
 
