@@ -133,15 +133,29 @@ class NeweventAction extends FormAction
         $actobj->type = Happening::OBJECT_TYPE;
         $actobj->title = $title;
         $actobj->summary = $description;
-
         $actobj->extra[] = array('dtstart',
-                              array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
-                              common_date_iso8601($start_str));
+                                array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                                common_date_iso8601($start_str));
         $actobj->extra[] = array('dtend',
-                              array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
-                              common_date_iso8601($end_str));
-        $actobj->extra[] = array('location', false, $location);
-        $actobj->extra[] = array('url', false, $url);
+                                array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                                common_date_iso8601($end_str));
+        $actobj->extra[] = array('location',
+                                array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                                $location);
+        $actobj->extra[] = array('url',
+                                array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                                $url);
+
+        /* We don't use these ourselves, but we add them to be nice RSS/XML citizens */
+        $actobj->extra[] = array('startdate',
+                                array('xmlns' => 'http://purl.org/rss/1.0/modules/event/'),
+                                common_date_iso8601($start_str));
+        $actobj->extra[] = array('enddate',
+                                array('xmlns' => 'http://purl.org/rss/1.0/modules/event/'),
+                                common_date_iso8601($end_str));
+        $actobj->extra[] = array('location',
+                                array('xmlns' => 'http://purl.org/rss/1.0/modules/event/'),
+                                $location);
 
         $act->objects = array($actobj);
 
