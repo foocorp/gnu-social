@@ -128,7 +128,7 @@ class RSVP extends Managed_DataObject
     static function saveActivityObject(Activity $act, Notice $stored)
     {
         $target = Notice::getByKeys(array('uri'=>$act->target->id));
-        common_debug(_ve('TARGET: '.$target));
+        common_debug('TARGET:'._ve($target));
         if (!ActivityUtils::compareTypes($target->getObjectType(), [ Happening::OBJECT_TYPE ])) {
             throw new ClientException('RSVP not aimed at a Happening');
         }
@@ -170,7 +170,7 @@ class RSVP extends Managed_DataObject
         $happening = $this->getEvent();
 
         $actobj = new ActivityObject();
-        $actobj->id = $rsvp->getUri();
+        $actobj->id = $this->getUri();
         $actobj->type = self::getObjectType();
         $actobj->title = $this->asString();
         $actobj->content = $this->asString();

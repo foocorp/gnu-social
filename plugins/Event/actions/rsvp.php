@@ -74,6 +74,9 @@ class RsvpAction extends FormAction
             } catch (NoResultException $e) {
                 // Notice already gone
                 $rsvp->delete();
+            } catch (Exception $e) {
+                // emergency cleanup in case database is screwed up
+                $rsvp->delete();
             }
             return _m('Cancelled RSVP');
         }

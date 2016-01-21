@@ -249,9 +249,13 @@ class Happening extends Managed_DataObject
         $actobj->extra[] = array('location',
                                 array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
                                 $this->location);
-        $actobj->extra[] = array('url',
-                                array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
-                                $this->getUrl());
+        try {
+            $actobj->extra[] = array('url',
+                                    array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                                    $this->getUrl());
+        } catch (InvalidUrlException $e) {
+            // oh well, no URL for you!
+        }
 
         /* We don't use these ourselves, but we add them to be nice RSS/XML citizens */
         $actobj->extra[] = array('startdate',
