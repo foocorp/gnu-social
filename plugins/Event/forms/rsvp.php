@@ -133,7 +133,7 @@ class RSVPForm extends Form
                     'id'      => 'rsvp-submit-'.$answer,
                     'name'    => $answer,
                     'class'   => 'submit',
-                    'value'   => $answer,
+                    'value'   => $label,
                     'title'   => $label,
                     'onClick' => 'this.form.rsvp.value = this.name; return true;'
             )
