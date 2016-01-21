@@ -330,7 +330,7 @@ class Fave extends Managed_DataObject
 
     static public function getObjectType()
     {
-        return 'activity';
+        return ActivityObject::ACTIVITY;
     }
 
     public function asActivityObject(Profile $scoped=null)

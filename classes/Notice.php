@@ -282,6 +282,11 @@ class Notice extends Managed_DataObject
         return ActivityUtils::resolveUri($this->verb, $make_relative);
     }
 
+    public function isVerb(array $verbs)
+    {
+        return ActivityUtils::compareVerbs($this->getVerb(), $verbs);
+    }
+
     /*
      * Get the original representation URL of this notice.
      *
@@ -312,6 +317,15 @@ class Notice extends Managed_DataObject
             throw new NoObjectTypeException($this);
         }
         return ActivityUtils::resolveUri($this->object_type, $canonical);
+    }
+
+    public function isObjectType(array $types)
+    {
+        try {
+            return ActivityUtils::compareTypes($this->getObjectType(), $types);
+        } catch (NoObjectTypeException $e) {
+            return false;
+        }
     }
 
     public static function getByUri($uri)

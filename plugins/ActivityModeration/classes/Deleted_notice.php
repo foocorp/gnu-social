@@ -78,7 +78,12 @@ class Deleted_notice extends Managed_DataObject
         $act->actor = $actor->asActivityObject();
         $act->target = new ActivityObject();    // We don't save the notice object, as it's supposed to be removed!
         $act->target->id = $notice->getUri();
-        $act->target->type = $notice->getObjectType();
+        try {
+            $act->target->type = $notice->getObjectType();
+        } catch (NoObjectTypeException $e) {
+            // This could be for example an RSVP which is a verb and carries no object-type
+            $act->target->type = null;
+        }
         $act->objects = array(clone($act->target));
 
         $url = $notice->getUrl();

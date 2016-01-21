@@ -97,7 +97,8 @@ class RSVPForm extends Form
         // TRANS: Field label on form to RSVP ("please respond") for an event.
         $this->out->text(_m('RSVP:'));
 
-        $this->out->hidden('event-id', $this->event->getUri(), 'event');
+        $this->out->hidden('notice', $this->event->getStored()->getID(), 'event');
+        $this->out->hidden('event', $this->event->getUri(), 'event');   // not used
         $this->out->hidden('rsvp', '');
 
         $this->out->elementEnd('fieldset');

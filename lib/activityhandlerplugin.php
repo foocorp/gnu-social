@@ -108,6 +108,7 @@ abstract class ActivityHandlerPlugin extends Plugin
     }
 
     function isMyType($type) {
+        // Third argument to compareTypes is true, to allow for notices with empty object_type for example (verb-only)
         return count($this->types())===0 || ActivityUtils::compareTypes($type, $this->types());
     }
 

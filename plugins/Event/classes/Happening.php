@@ -211,6 +211,9 @@ class Happening extends Managed_DataObject
 
     static function fromStored(Notice $stored)
     {
+        if (!ActivityUtils::compareTypes($stored->getObjectType(), [self::OBJECT_TYPE])) {
+            throw new ServerException('Notice is not of type '.self::OBJECT_TYPE);
+        }
         return self::getByKeys(array('uri'=>$stored->getUri()));
     }
 
@@ -223,5 +226,44 @@ class Happening extends Managed_DataObject
     {
         return RSVP::pkeyGet(array('profile_id' => $profile->getID(),
                                    'event_uri' => $this->getUri()));
+    }
+
+    static public function getObjectType()
+    {
+        return self::OBJECT_TYPE;
+    }
+
+    public function asActivityObject()
+    {
+        $actobj = new ActivityObject();
+        $actobj->id = $this->getUri();
+        $actobj->type = self::getObjectType();
+        $actobj->title = $this->title;
+        $actobj->summary = $this->description;
+        $actobj->extra[] = array('dtstart',
+                                array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                                common_date_iso8601($this->start_time));
+        $actobj->extra[] = array('dtend',
+                                array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                                common_date_iso8601($this->end_time));
+        $actobj->extra[] = array('location',
+                                array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                                $this->location);
+        $actobj->extra[] = array('url',
+                                array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
+                                $this->getUrl());
+
+        /* We don't use these ourselves, but we add them to be nice RSS/XML citizens */
+        $actobj->extra[] = array('startdate',
+                                array('xmlns' => 'http://purl.org/rss/1.0/modules/event/'),
+                                common_date_iso8601($this->start_time));
+        $actobj->extra[] = array('enddate',
+                                array('xmlns' => 'http://purl.org/rss/1.0/modules/event/'),
+                                common_date_iso8601($this->end_time));
+        $actobj->extra[] = array('location',
+                                array('xmlns' => 'http://purl.org/rss/1.0/modules/event/'),
+                                $this->location);
+
+        return $actobj;
     }
 }

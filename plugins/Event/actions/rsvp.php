@@ -54,7 +54,12 @@ class RsvpAction extends FormAction
 
     protected function doPreparation()
     {
-        $this->event = Happening::getByKeys(['uri'=>$this->trimmed('event')]);
+        if ($this->trimmed('notice')) {
+            $stored = Notice::getByID($this->trimmed('notice'));
+            $this->event = Happening::fromStored($stored);
+        } else {
+            $this->event = Happening::getByKeys(['uri'=>$this->trimmed('event')]);
+        }
 
         $this->formOpts['event'] = $this->event;
     }
@@ -85,6 +90,9 @@ class RsvpAction extends FormAction
         $act->target  = $this->event->getStored()->asActivityObject();
         $act->objects = array(clone($act->target));
         $act->content = RSVP::toHTML($this->scoped, $this->event, RSVP::codeFor($verb));
+
+        $act->context = new ActivityContext();
+        $act->context->replyToID = $this->event->getUri();
 
         $stored = Notice::saveActivity($act, $this->scoped, $options);
 
