@@ -46,13 +46,17 @@ if (!defined('STATUSNET')) {
  */
 abstract class NoticeStream
 {
-    protected $selectVerbs = array();
-    protected $unselectVerbs = array();
+    protected $selectVerbs   = null;    // must be set to array
+    protected $unselectVerbs = null;    // must be set to array
 
     public function __construct()
     {
-        $this->selectVerbs = array(ActivityVerb::POST, ActivityUtils::resolveUri(ActivityVerb::POST, true));
-        $this->unselectVerbs = array(ActivityVerb::DELETE);
+        if ($this->selectVerbs === null) {
+            $this->selectVerbs = array(ActivityVerb::POST, ActivityUtils::resolveUri(ActivityVerb::POST, true));
+        }
+        if ($this->unselectVerbs === null) {
+            $this->unselectVerbs = array(ActivityVerb::DELETE);
+        }
     }
 
     abstract function getNoticeIds($offset, $limit, $since_id, $max_id);
