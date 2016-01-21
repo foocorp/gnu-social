@@ -289,7 +289,6 @@ class EventPlugin extends ActivityVerbHandlerPlugin
 
     protected function showEvent(Notice $stored, HTMLOutputter $out, Profile $scoped=null)
     {
-        common_debug('shownotice'.$stored->getID());
         $profile = $stored->getProfile();
         $event   = Happening::fromStored($stored);
 

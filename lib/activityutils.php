@@ -367,7 +367,6 @@ class ActivityUtils
     static function resolveUri($uri, $make_relative=false)
     {
         if (empty($uri)) {
-            common_debug(_ve(debug_backtrace()));
             throw new ServerException('No URI to resolve in ActivityUtils::resolveUri');
         }
 

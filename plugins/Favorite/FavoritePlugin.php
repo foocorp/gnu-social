@@ -202,7 +202,6 @@ class FavoritePlugin extends ActivityVerbHandlerPlugin
             return true;
         }
 
-        common_debug('Extending activity '.$stored->id.' with '.get_called_class());
         $this->extendActivity($stored, $act, $scoped);
         return false;
     }
