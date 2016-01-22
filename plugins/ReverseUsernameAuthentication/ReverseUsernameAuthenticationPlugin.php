@@ -62,7 +62,7 @@ class ReverseUsernameAuthenticationPlugin extends AuthenticationPlugin
         $versions[] = array('name' => 'Reverse Username Authentication',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:ReverseUsernameAuthentication',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/ReverseUsernameAuthentication',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('The Reverse Username Authentication plugin allows for StatusNet to handle authentication by checking if the provided password is the same as the reverse of the username.'));

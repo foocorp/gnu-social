@@ -52,7 +52,7 @@ class SimpleUrlPlugin extends UrlShortenerPlugin
         $versions[] = array('name' => sprintf('SimpleUrl (%s)', $this->shortenerName),
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:SimpleUrl',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/SimpleUrl',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             sprintf(_m('Uses <a href="http://%1$s/">%1$s</a> URL-shortener service.'),

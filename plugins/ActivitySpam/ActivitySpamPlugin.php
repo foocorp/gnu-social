@@ -220,7 +220,7 @@ class ActivitySpamPlugin extends Plugin
         $versions[] = array('name' => 'ActivitySpam',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:ActivitySpam',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/ActivitySpam',
                             'description' =>
                             _m('Test notices against the Activity Spam service.'));
         return true;

@@ -71,7 +71,7 @@ class EmailSummaryPlugin extends Plugin
         $versions[] = array('name' => 'EmailSummary',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:EmailSummary',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/EmailSummary',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Send an email summary of the inbox to users.'));

@@ -301,7 +301,7 @@ class TwitterBridgePlugin extends Plugin
             'name' => 'TwitterBridge',
             'version' => self::VERSION,
             'author' => 'Zach Copley, Julien C, Jean Baptiste Favre',
-            'homepage' => 'http://status.net/wiki/Plugin:TwitterBridge',
+            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/TwitterBridge',
             // TRANS: Plugin description.
             'rawdescription' => _m('The Twitter "bridge" plugin allows integration ' .
                 'of a StatusNet instance with ' .

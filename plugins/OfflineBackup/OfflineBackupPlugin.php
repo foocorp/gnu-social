@@ -76,7 +76,7 @@ class OfflineBackupPlugin extends Plugin
         $versions[] = array('name' => 'OfflineBackup',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:OfflineBackup',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/OfflineBackup',
                             'rawdescription' =>
                           // TRANS: Plugin description.
                             _m('Backup user data in offline queue and email when ready.'));

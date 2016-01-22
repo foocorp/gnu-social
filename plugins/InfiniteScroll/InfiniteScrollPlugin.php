@@ -46,7 +46,7 @@ class InfiniteScrollPlugin extends Plugin
         $versions[] = array('name' => 'InfiniteScroll',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:InfiniteScroll',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/InfiniteScroll',
                             'rawdescription' =>
                             // TRANS: Plugin dscription.
                             _m('Infinite Scroll adds the following functionality to your StatusNet installation: When a user scrolls towards the bottom of the page, the next page of notices is automatically retrieved and appended. This means they never need to click "Next Page", which dramatically increases stickiness.'));

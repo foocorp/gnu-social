@@ -67,7 +67,7 @@ class GroupFavoritedPlugin extends Plugin
      */
     function onPluginVersion(array &$versions)
     {
-        $url = 'http://status.net/wiki/Plugin:GroupFavorited';
+        $url = 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/GroupFavorited';
 
         $versions[] = array('name' => 'GroupFavorited',
             'version' => GNUSOCIAL_VERSION,

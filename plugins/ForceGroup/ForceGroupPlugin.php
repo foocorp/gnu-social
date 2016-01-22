@@ -107,7 +107,7 @@ class ForceGroupPlugin extends Plugin
      */
     function onPluginVersion(array &$versions)
     {
-        $url = 'http://status.net/wiki/Plugin:ForceGroup';
+        $url = 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/ForceGroup';
 
         $versions[] = array('name' => 'ForceGroup',
             'version' => GNUSOCIAL_VERSION,

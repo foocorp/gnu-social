@@ -203,7 +203,7 @@ class RSSCloudPlugin extends Plugin
         $versions[] = array('name' => 'RSSCloud',
                             'version' => RSSCLOUDPLUGIN_VERSION,
                             'author' => 'Zach Copley',
-                            'homepage' => 'http://status.net/wiki/Plugin:RSSCloud',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/RSSCloud',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('The RSSCloud plugin enables your StatusNet instance to publish ' .

@@ -204,7 +204,7 @@ ENDOFSCRIPT;
         $versions[] = array('name' => 'OpenX',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:OpenX',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/OpenX',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Plugin for <a href="http://www.openx.org/">OpenX Ad Server</a>.'));

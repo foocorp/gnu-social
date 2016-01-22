@@ -55,7 +55,7 @@ class StrictTransportSecurityPlugin extends Plugin
         $versions[] = array('name' => 'StrictTransportSecurity',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:StrictTransportSecurity',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/StrictTransportSecurity',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('The Strict Transport Security plugin implements the Strict Transport Security header, improving the security of HTTPS only sites.'));

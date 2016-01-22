@@ -180,7 +180,7 @@ class RegisterThrottlePlugin extends Plugin
         $versions[] = array('name' => 'RegisterThrottle',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:RegisterThrottle',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/RegisterThrottle',
                             'description' =>
                             // TRANS: Plugin description.
                             _m('Throttles excessive registration from a single IP address.'));

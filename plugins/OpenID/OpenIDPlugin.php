@@ -620,7 +620,7 @@ class OpenIDPlugin extends Plugin
         $versions[] = array('name' => 'OpenID',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou, Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:OpenID',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/OpenID',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Use <a href="http://openid.net/">OpenID</a> to login to the site.'));

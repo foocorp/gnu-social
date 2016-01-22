@@ -492,7 +492,7 @@ class GeonamesPlugin extends Plugin
         $versions[] = array('name' => 'Geonames',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:Geonames',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Geonames',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Uses <a href="http://geonames.org/">Geonames</a> service to get human-readable '.

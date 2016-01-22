@@ -1229,7 +1229,7 @@ class OStatusPlugin extends Plugin
         $versions[] = array('name' => 'OStatus',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou, James Walker, Brion Vibber, Zach Copley',
-                            'homepage' => 'http://status.net/wiki/Plugin:OStatus',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/OStatus',
                             // TRANS: Plugin description.
                             'rawdescription' => _m('Follow people across social networks that implement '.
                                '<a href="http://ostatus.org/">OStatus</a>.'));

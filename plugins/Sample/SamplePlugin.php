@@ -227,7 +227,7 @@ class SamplePlugin extends Plugin
         $versions[] = array('name' => 'Sample',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Brion Vibber, Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:Sample',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Sample',
                             'rawdescription' =>
                           // TRANS: Plugin description.
                             _m('A sample plugin to show basics of development for new hackers.'));
