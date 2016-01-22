@@ -1,0 +1,23 @@
+The InProcessCache plugin adds an extra level of in-process caching to any
+regular cache system like APC, XCache, or Memcache.
+
+Installation
+============
+add "addPlugin('InProcessCache');"
+to the bottom of your config.php
+
+Settings
+========
+stats: Whether to dump statistics (cache size, etc) in the log file.
+
+Note: entries are logged at the LOG_INFO level.
+
+Example
+=======
+Note: since most caching plugins return false for StartCache* methods, you
+should add this plugin before them, i.e.
+
+    $config['inprocess']['stats'] = true;
+    addPlugin('InProcessCache');
+    addPlugin('XCache');
+

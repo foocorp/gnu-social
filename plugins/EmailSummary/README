@@ -1,0 +1,22 @@
+The EmailSummary plugin sends an email summary of the inbox to users in the
+network.
+
+After enabling the plugin, users will have an option to enable/disable the
+feature in their "Email Settings" section.
+
+You can run ./script/sendemailsummary.php to send emails (options are
+documented in the file). You can run this script automatically via your OS's
+cron mechanism to send emails regularly.
+
+Installation
+============
+add "addPlugin('EmailSummary');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('EmailSummary');

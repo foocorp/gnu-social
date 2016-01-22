@@ -1,0 +1,16 @@
+The OfflineBackup plugin backups user data in offline queue and email when
+ready.
+
+Installation
+============
+add "addPlugin('OfflineBackup');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('OfflineBackup');
+

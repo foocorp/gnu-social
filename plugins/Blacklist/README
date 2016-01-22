@@ -1,0 +1,17 @@
+Plugin to prevent use of nicknames or URLs on a blacklist
+
+Installation
+============
+add "addPlugin('Blacklist');"
+to the bottom of your config.php
+
+Settings
+========
+nicknames: Array of nicknames to blacklist
+urls: Array of URLs to blacklist
+
+Example
+=======
+$config['blacklist']['nicknames'] = array('bad_nickname', 'worse_nickname');
+$config['blacklist']['urls'] = array('http://example.org', 'http://example.net');
+addPlugin('Blacklist');

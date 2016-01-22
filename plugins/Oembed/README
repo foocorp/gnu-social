@@ -1,1 +1,29 @@
-It's really called oEmbed.
+The Oembed plugin for using and representing oEmbed data.
+
+See: http://www.oembed.com/
+
+Installation
+============
+This plugin is enabled by default
+
+Settings
+========
+width: Maximum width of the thumbnail in pixels.
+height: Maximum height of the thumbnail in pixels.
+show_html: Whether to show HTML oEmbed data.
+domain_whitelist: Array of regular expressions. Always escape your dots and end your strings.
+check_whitelist: Whether to check the domain_whitelist.
+
+Example
+=======
+$config['thumbnail']['width'] = 42;
+$config['thumbnail']['height'] = 42;
+$config['attachments']['show_html'] = true;
+addPlugin('Oembed', array(
+    'domain_whitelist' => array(
+        '^i\d*\.ytimg\.com$' => 'YouTube',
+        '^i\d*\.vimeocdn\.com$' => 'Vimeo'
+    ),
+    'check_whitelist' => true
+));
+

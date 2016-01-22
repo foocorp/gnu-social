@@ -1,0 +1,15 @@
+The ModLog plugin shows the moderation history for a profile in the sidebar.
+
+Installation
+============
+add "addPlugin('ModLog');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('ModLog');
+

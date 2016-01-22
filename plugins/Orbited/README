@@ -1,0 +1,37 @@
+The Orbited plugin enables "real time" updates using Orbited + STOMP
+
+See:
+* https://pypi.python.org/pypi/orbited
+* https://en.wikipedia.org/wiki/Streaming_Text_Oriented_Messaging_Protocol
+
+Installation
+============
+add "addPlugin('Orbited');"
+to the bottom of your config.php
+
+Settings
+========
+webserver:
+webport:
+channelbase:
+stompserver:
+stompport:
+username:
+password:
+webuser:
+webpass:
+
+Example
+=======
+addPlugin('Orbited', array(
+    'webserver' => '',
+    'webport' => '',
+    'channelbase' => '',
+    'stompserver' => '',
+    'stompport' => '',
+    'username' => '',
+    'password' => '',
+    'webuser' => '',
+    'webpass' => ''
+));
+

@@ -1,0 +1,15 @@
+The ConversationTree plugin displays conversation replies in a hierarchical
+manner like StatusNet pre-v1.0 used to.
+
+Installation
+============
+add "addPlugin('ConversationTree');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('ConversationTree');

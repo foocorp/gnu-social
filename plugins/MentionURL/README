@@ -1,0 +1,15 @@
+The MentionURL plugin allows mentioning arbitrary URLs.
+
+Installation
+============
+add "addPlugin('MentionURL');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('MentionURL');
+

@@ -1,0 +1,10 @@
+The WebFinger plugin adds WebFinger lookup to GNU Social
+
+Installation
+============
+This plugin is enabled by default except on private instances
+
+Settings
+========
+none
+

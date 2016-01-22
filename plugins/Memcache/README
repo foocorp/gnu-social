@@ -1,0 +1,28 @@
+The Memcache plugin implements cache interface for memcache.
+
+See: http://memcached.org/
+
+Installation
+============
+add "addPlugin('Memcache');"
+to the bottom of your config.php
+
+Settings
+========
+servers: Array of memcache servers addresses
+defaultExpiry: How long before cache expires (in seconds)
+compressThreshold: Items over this size threshold are eligible for compression (in bytes)
+compressMinSaving: If the compression would save more than this ratio, items are eligible for compression
+
+Note: To be compressed, an item must be both over the size threshold AND save
+more than the minimum ratio.
+
+Example
+=======
+addPlugin('Memcache', array(
+    'servers' => array('127.0.0.1;11211'),
+    'compressThreshold' => 20480,
+    'compressMinSaving' => 0.2,
+    'defaultExpiry' => 86400 // 24h
+));
+

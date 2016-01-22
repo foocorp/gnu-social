@@ -1,0 +1,14 @@
+The LRDD plugin implements Link-based Resource Descriptor Discovery
+based on RFC6415, Web Host Metadata, i.e. the predecessor to WebFinger resource
+discovery.
+
+See: http://tools.ietf.org/html/rfc6415
+
+Installation
+============
+This plugin is enabled by default
+
+Settings
+========
+none
+

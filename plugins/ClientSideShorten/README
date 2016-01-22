@@ -3,5 +3,5 @@ shorten URLs as they entered, and before the notice is submitted.
 
 Installation
 ============
-Add "addPlugin('ClientSideShorten');" to the bottom of your config.php
-That's it!
+This plugin is enabled by default
+

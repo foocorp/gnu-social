@@ -1,0 +1,26 @@
+The SubscriptionThrottle plugin limits how fast users can subscribe to groups
+and other users.
+
+Installation
+============
+add "addPlugin('SubscriptionThrottle');"
+to the bottom of your config.php
+
+Settings
+========
+subLimits: Array of time spans in seconds to limit subscriptions to users.
+groupLimits: Array of time spans in seconds to limit subscriptions to groups.
+
+Example
+=======
+addPlugin('SubscriptionThrottle', array(
+    'subLimits' => array(
+        86400 => 100,   // 100 subs per day
+        3600 => 50;     // 50 subs per hour
+    ),
+    'groupLimits' => array(
+        86400 => 50,    // 50 subs per day
+        3600 => 25;     // 25 subs per hour
+    )
+));
+

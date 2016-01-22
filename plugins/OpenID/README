@@ -1,0 +1,21 @@
+The OpenID plugin allows users to use OpenID to login.
+
+See: http://openid.net/
+
+Installation
+============
+This plugin is enabled by default
+
+Settings
+========
+openidonly: Whether we only allow logins through OpenID.
+trusted_provider: URL to the OpenID provider.
+append_username: Whether to append the username at the end of the OpenID URL
+
+Example
+=======
+$config['site']['openidonly'] = true;
+$config['openid']['trusted_provider'] = "http://example.org";
+$config['openid']['append_username'] = true;
+addPlugin('OpenID');
+

@@ -1,0 +1,16 @@
+The ModHelperPlugin plugin lets users who have been manually marked as
+"modhelper"s silence accounts.
+
+Installation
+============
+add "addPlugin('ModHelperPlugin');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('ModHelperPlugin');
+

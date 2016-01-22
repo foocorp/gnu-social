@@ -1,0 +1,19 @@
+The GeoURL plugin add extra <meta> headers for certain pages that geourl.org
+understands and pings geourl.org when those pages are created.
+
+Note: The third-party service that this plugin depends on (geourl.org) seems to
+be dead.
+
+Installation
+============
+add "addPlugin('GeoURL');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('GeoURL');
+

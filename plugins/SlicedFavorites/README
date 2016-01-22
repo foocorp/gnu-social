@@ -1,0 +1,30 @@
+The SlicedFavorites plugin shows timelines of popular notices for defined
+subsets of users.
+
+Installation
+============
+add "addPlugin('SlicedFavorites');"
+to the bottom of your config.php
+
+Settings
+========
+slices: Array of subsets
+
+Example
+=======
+addPlugin('SlicedFavorites', array(
+    'slices' => array(
+        // show only pop's notices on /favorited
+        'default' => array('include' => array('pop')),
+
+        // show only son's notices on /favorited/blog
+        'blog' => array('include' => array('son')),
+
+        // show all favorited notices except pop's and son's on /favorited/submitted
+        'submitted' => array('exclude' => array('pop', 'son')),
+
+        // show all favorited notices on /favorited/everybody
+        'everybody' => array(),
+    )
+));
+

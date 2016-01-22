@@ -1,0 +1,17 @@
+The DiskCache plugin implements cache interface with disk files.
+
+Installation
+============
+add "addPlugin('DiskCache');"
+to the bottom of your config.php
+
+Settings
+========
+root: Directory where to save cache data. Default /tmp
+
+Example
+=======
+addPlugin('DiskCache', array(
+    'root' => '/tmp'
+));
+
