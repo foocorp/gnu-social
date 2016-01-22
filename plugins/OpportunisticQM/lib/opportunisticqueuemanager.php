@@ -45,7 +45,7 @@ class OpportunisticQueueManager extends DBQueueManager
         }
 
         if ($this->max_execution_margin === null) {
-            $this->max_execution_margin = 10;   // think PHP's max exec time, minus this value to have time for timeouts etc.
+            $this->max_execution_margin = common_config('http', 'connect_timeout') + 1;   // think PHP's max exec time, minus this value to have time for timeouts etc.
         }
 
         return parent::__construct();
