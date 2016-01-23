@@ -771,8 +771,14 @@ class ApiAction extends Action
 
     function showJsonObjects($objects)
     {
-        print(json_encode($objects));
+        $json_objects = json_encode($objects);
+        if($json_objects === false) {
+            $this->clientError(_('JSON encoding failed. Error: ').json_last_error_msg());     		   
+        } else {
+        	print $json_objects;
+        }
     }
+
 
     function showSingleXmlStatus($notice)
     {
