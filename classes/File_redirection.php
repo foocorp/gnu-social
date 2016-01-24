@@ -312,6 +312,7 @@ class File_redirection extends Managed_DataObject
                 $out_url = str_replace('.-()', '', $out_url);
                 break;
 
+            case 'bitcoin':
             case 'mailto':
             case 'magnet':
             case 'aim':

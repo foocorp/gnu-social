@@ -885,7 +885,7 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
                 '(?:'.
                     '(?:(?:https?|ftps?|mms|rtsp|gopher|news|nntp|telnet|wais|file|prospero|webcal|ircs?)://)'.
                     '|'.
-                    '(?:(?:mailto|aim|tel|xmpp):)'.
+                    '(?:(?:bitcoin|mailto|aim|tel|xmpp):)'.
                 ')'.
                 '(?:[\pN\pL\-\_\+\%\~]+(?::[\pN\pL\-\_\+\%\~]+)?\@)?'. //user:pass@
                 '(?:'.
