@@ -1503,6 +1503,13 @@ font-size:150%;
     font-style: normal;
 }
 
+div.e-content.plaintext {
+    border: dashed 1px gray;
+    font-family: monospace;
+    padding: 1em;
+    white-space: pre-line;
+}
+
 span.rtl {
     display: block;
     direction: rtl;

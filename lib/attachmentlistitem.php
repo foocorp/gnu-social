@@ -169,6 +169,8 @@ class AttachmentListItem extends Widget
                 default:
                     unset($thumb);  // there's no need carrying this along
                     switch ($this->attachment->mimetype) {
+                    case 'text/plain':
+                        $this->element('div', ['class'=>'e-content plaintext'], file_get_contents($this->attachment->getPath()));
                     case 'text/html':
                         if (!empty($this->attachment->filename)
                                 && (GNUsocial::isAjax() || common_config('attachments', 'show_html'))) {
