@@ -150,18 +150,6 @@ class File extends Managed_DataObject
         $redir = File_redirection::where($given_url);
         $file = $redir->getFile();
 
-        // If we still don't have a File object, let's create one now!
-        if (empty($file->id)) {
-            if ($redir->url === $given_url || !$followRedirects) {
-                // Save the File object based on our lookup trace
-                $file->saveFile();
-            } else {
-                $file->saveFile();
-                $redir->file_id = $file->id;
-                $redir->insert();
-            }
-        }
-
         if (!$file instanceof File || empty($file->id)) {
             // This should not happen
             throw new ServerException('URL processing failed without new File object');
