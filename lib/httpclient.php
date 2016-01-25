@@ -321,10 +321,11 @@ class HTTPClient extends HTTP_Request2
     public function send()
     {
         $maxRedirs = intval($this->config['max_redirs']);
-        if (empty($this->config['follow_redirects'])) {
+        if (empty($this->config['max_redirs'])) {
             $maxRedirs = 0;
         }
         $redirs = 0;
+        $redirUrls = array();
         do {
             try {
                 $response = parent::send();
@@ -333,9 +334,12 @@ class HTTPClient extends HTTP_Request2
                 throw $e;
             }
             $code = $response->getStatus();
+            $effectiveUrl = $response->getEffectiveUrl();            
+            $redirUrls[] = $effectiveUrl;       
+            $response->redirUrls = $redirUrls;
             if ($code >= 200 && $code < 300) {
                 $reason = $response->getReasonPhrase();
-                $this->log(LOG_INFO, "$code $reason");
+                $this->log(LOG_INFO, "$code $reason - Effective URL: ".$response->getEffectiveUrl().' – redirect: '.json_encode($response->isRedirect()));
             } elseif ($code >= 300 && $code < 400) {
                 $url = $this->getUrl();
                 $target = $response->getHeader('Location');
