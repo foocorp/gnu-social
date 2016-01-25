@@ -69,7 +69,7 @@ class File_redirection extends Managed_DataObject
         $request->setConfig(array(
             'connect_timeout' => 10, // # seconds to wait
             'max_redirs' => $redirs, // # max number of http redirections to follow
-            'follow_redirects' => true, // Follow redirects
+            'follow_redirects' => false, // We follow redirects ourselves in lib/httpclient.php
             'store_body' => false, // We won't need body content here.
         ));
         return $request;
@@ -126,15 +126,18 @@ class File_redirection extends Managed_DataObject
             common_log(LOG_ERR, "Error while following redirects for $short_url: " . $e->getMessage());
             return $short_url;
         }
-
+        
+		// if last url after all redirections is protected, 
+		// use the url before it in the redirection chain
         if ($response->getRedirectCount() && File::isProtected($response->getEffectiveUrl())) {
-            // Bump back up the redirect chain until we find a non-protected URL
-            return self::lookupWhere($short_url, $response->getRedirectCount() - 1, true);
+			$return_url = $response->redirUrls[$response->getRedirectCount()-1];
+        } else {
+			$return_url = $response->getEffectiveUrl();
         }
 
         $ret = array('code' => $response->getStatus()
                 , 'redirects' => $response->getRedirectCount()
-                , 'url' => $response->getEffectiveUrl());
+                , 'url' => $return_url);
 
         $type = $response->getHeader('Content-Type');
         if ($type) $ret['type'] = $type;
@@ -168,6 +171,16 @@ class File_redirection extends Managed_DataObject
         try {
             $r = File_redirection::getByUrl($in_url);
             if($r instanceof File_redirection) {
+				try {
+					$f = File::getKV('id',$r->file_id);
+					$r->file = $f;
+					$r->redir_url = $f->url;
+				} catch (NoResultException $e) {
+					// Invalid entry, delete and run again
+					common_log(LOG_ERR, "Could not find File with id=".$r->file_id." referenced in File_redirection, deleting File redirection entry and creating new File and File_redirection entries.");					
+					$r->delete();
+					return self::where($in_url);
+				}
                 return $r;
             }
         } catch (NoResultException $e) {
@@ -176,34 +189,38 @@ class File_redirection extends Managed_DataObject
                 $redir->file_id = $f->id;
                 $redir->file = $f;
                 return $redir;
-            } catch (NoResultException $e) {
+            } catch (NoResultException $e) {                    
                 // Oh well, let's keep going
             }
         }
 
-        if ($discover) {
+        if ($discover) {    
             $redir_info = File_redirection::lookupWhere($in_url);
             if(is_string($redir_info)) {
                 $redir_info = array('url' => $redir_info);
             }
+			
+			// Save the file if we don't have it already
+			$redir->file = File::saveNew($redir_info,$redir_info['url']);
+			 
+			// If this is a redirection, save it
+			// (if it hasn't been saved yet by some other process while we we
+			// were running lookupWhere())			
+            if($redir_info['url'] != $in_url) {
+				try {
+					$file_redir = File_redirection::getByUrl($in_url);
+				} catch (NoResultException $e) {
+					$file_redir = new File_redirection();
+					$file_redir->urlhash = File::hashurl($in_url);
+					$file_redir->url = $in_url;
+					$file_redir->file_id = $redir->file->getID();
+					$file_redir->insert();
+					$file_redir->redir_url = $redir->file->url;					
+				}		
 
-            // Double check that we don't already have the resolved URL
-            $r = self::where($redir_info['url'], false);
-            if (!empty($r->file_id)) {
-                return $r;
-            }
-
-            $redir->httpcode = $redir_info['code'];
-            $redir->redirections = intval($redir_info['redirects']);
-            $redir->redir_url = $redir_info['url'];            
-            $redir->file = new File();
-            $redir->file->url = $redir_info['url'];
-            $redir->file->mimetype = $redir_info['type'];
-            $redir->file->size = isset($redir_info['size']) ? $redir_info['size'] : null;
-            $redir->file->date = isset($redir_info['time']) ? $redir_info['time'] : null;
-            if (isset($redir_info['protected']) && !empty($redir_info['protected'])) {
-                $redir->file->protected = true;
-            }
+				$file_redir->file = $redir->file;		
+				return $file_redir; 
+            } 
         }
 
         return $redir;
@@ -267,11 +284,9 @@ class File_redirection extends Managed_DataObject
                 $file = File::getByUrl($long_url);
             } catch (NoResultException $e) {
                 // Check if the target URL is itself a redirect...
+                // This should already have happened in processNew in common_shorten_url()
                 $redir = File_redirection::where($long_url);
-                $file = $redir->getFile();
-                if (empty($file->id)) {
-                    $file->saveFile();
-                }
+                $file = $redir->file;
             }
             // Now we definitely have a File object in $file
             try {
