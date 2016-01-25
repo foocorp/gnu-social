@@ -339,7 +339,7 @@ class HTTPClient extends HTTP_Request2
             $response->redirUrls = $redirUrls;
             if ($code >= 200 && $code < 300) {
                 $reason = $response->getReasonPhrase();
-                $this->log(LOG_INFO, "$code $reason - Effective URL: ".$response->getEffectiveUrl().' – redirect: '.json_encode($response->isRedirect()));
+                $this->log(LOG_INFO, "$code $reason");
             } elseif ($code >= 300 && $code < 400) {
                 $url = $this->getUrl();
                 $target = $response->getHeader('Location');
