@@ -72,7 +72,19 @@ class File extends Managed_DataObject
     }
 
     function isProtected($url) {
-        return 'http://www.facebook.com/login.php' === $url;
+
+		$protected_urls_exps = array(
+			'https://www.facebook.com/login.php',
+        	common_path('main/login')
+        	);
+
+		foreach ($protected_urls_exps as $protected_url_exp) {
+			if (preg_match('!^'.preg_quote($protected_url_exp).'(.*)$!i', $url) === 1) {
+				return true;
+			}
+		}
+
+		return false;
     }
 
     /**
@@ -149,18 +161,6 @@ class File extends Managed_DataObject
 
         $redir = File_redirection::where($given_url);
         $file = $redir->getFile();
-
-        // If we still don't have a File object, let's create one now!
-        if (empty($file->id)) {
-            if ($redir->url === $given_url || !$followRedirects) {
-                // Save the File object based on our lookup trace
-                $file->saveFile();
-            } else {
-                $file->saveFile();
-                $redir->file_id = $file->id;
-                $redir->insert();
-            }
-        }
 
         if (!$file instanceof File || empty($file->id)) {
             // This should not happen
