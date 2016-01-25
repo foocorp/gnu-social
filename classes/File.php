@@ -72,7 +72,19 @@ class File extends Managed_DataObject
     }
 
     function isProtected($url) {
-        return 'http://www.facebook.com/login.php' === $url;
+
+		$protected_urls_exps = array(
+			'https://www.facebook.com/login.php',
+        	common_path('main/login')
+        	);
+
+		foreach ($protected_urls_exps as $protected_url_exp) {
+			if (preg_match('!^'.preg_quote($protected_url_exp).'(.*)$!i', $url) === 1) {
+				return true;
+			}
+		}
+
+		return false;
     }
 
     /**
