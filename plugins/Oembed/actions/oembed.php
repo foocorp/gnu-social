@@ -89,6 +89,28 @@ class OembedAction extends Action
             $oembed['author_url']=$profile->profileurl;
             $oembed['url']=$notice->getUrl();
             $oembed['html']=$notice->getRendered();
+
+			// maybe add thumbnail
+			$attachments = $notice->attachments();
+			if (!empty($attachments)) {
+				foreach ($attachments as $attachment) {
+					if(is_object($attachment)) {
+						try {
+							$thumb = $attachment->getThumbnail();
+						} catch (ServerException $e) {
+							//
+						}
+						try {
+							$thumb_url = File_thumbnail::url($thumb->filename);
+							$oembed['thumbnail_url'] = $thumb_url;
+							break; // only first one
+						} catch (ClientException $e) {
+							//
+						}
+					}
+				}
+			}   
+			      
             break;
 
         case 'attachment':
