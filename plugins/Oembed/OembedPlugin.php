@@ -46,6 +46,27 @@ class OembedPlugin extends Plugin
                 'maxheight' => common_config('thumbnail', 'height'),
             );
             $metadata = oEmbedHelper::getOembedFrom($api, $url, $params);
+            
+			// Facebook just gives us javascript in its oembed html, 
+			// so use the content of the title element instead
+            if(strpos($url,'https://www.facebook.com/') === 0) {
+  	          $metadata->html = $dom->getElementsByTagName('title')->item(0)->nodeValue;
+            }
+        
+        	// Wordpress sometimes also just gives us javascript, use og:description if it is available
+        	$xpath = new DomXpath($dom);
+			$generatorNode = $xpath->query('//meta[@name="generator"][1]')->item(0);
+			if ($generatorNode instanceof DomElement) {
+				// when wordpress only gives us javascript, the html stripped from tags
+				// is the same as the title, so this helps us to identify this (common) case
+				if(strpos($generatorNode->getAttribute('content'),'WordPress') === 0
+				&& trim(strip_tags($metadata->html)) == trim($metadata->title)) {
+					$propertyNode = $xpath->query('//meta[@property="og:description"][1]')->item(0);
+					if ($propertyNode instanceof DomElement) {
+						$metadata->html = $propertyNode->getAttribute('content');
+					}
+				}
+			}
         } catch (Exception $e) {
             common_log(LOG_INFO, 'Could not find an oEmbed endpoint using link headers, trying OpenGraph from HTML.');
             // Just ignore it!
