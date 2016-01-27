@@ -95,13 +95,28 @@ class NewnoticeAction extends FormAction
     {
         assert($this->scoped instanceof Profile); // XXX: maybe an error instead...
         $user = $this->scoped->getUser();
-        $content = $this->trimmed('status_textarea');
+        $content = $this->formOpts['content'];
         $options = array('source' => 'web');
         Event::handle('StartSaveNewNoticeWeb', array($this, $user, &$content, &$options));
 
-        if (empty($content)) {
-            // TRANS: Client error displayed trying to send a notice without content.
-            $this->clientError(_('No content!'));
+        $upload = null;
+        try {
+            // throws exception on failure
+            $upload = MediaFile::fromUpload('attach', $this->scoped);
+            if (Event::handle('StartSaveNewNoticeAppendAttachment', array($this, $upload, &$content, &$options))) {
+                $content .= ' ' . $upload->shortUrl();
+            }
+            Event::handle('EndSaveNewNoticeAppendAttachment', array($this, $upload, &$content, &$options));
+
+            // We could check content length here if the URL was added, but I'll just let it slide for now...
+
+            $act->enclosures[] = $upload->getEnclosure();
+        } catch (NoUploadedMediaException $e) {
+            // simply no attached media to the new notice
+            if (empty($content)) {
+                // TRANS: Client error displayed trying to send a notice without content.
+                $this->clientError(_('No content!'));
+            }
         }
 
         $inter = new CommandInterpreter();
@@ -128,22 +143,6 @@ class NewnoticeAction extends FormAction
         $act->verb = ActivityVerb::POST;
         $act->time = time();
         $act->actor = $this->scoped->asActivityObject();
-
-        $upload = null;
-        try {
-            // throws exception on failure
-            $upload = MediaFile::fromUpload('attach', $this->scoped);
-            if (Event::handle('StartSaveNewNoticeAppendAttachment', array($this, $upload, &$content, &$options))) {
-                $content .= ' ' . $upload->shortUrl();
-            }
-            Event::handle('EndSaveNewNoticeAppendAttachment', array($this, $upload, &$content, &$options));
-
-            // We could check content length here if the URL was added, but I'll just let it slide for now...
-
-            $act->enclosures[] = $upload->getEnclosure();
-        } catch (NoUploadedMediaException $e) {
-            // simply no attached media to the new notice
-        }
 
         // Reject notice if it is too long (without the HTML)
         // This is done after MediaFile::fromUpload etc. just to act the same as the ApiStatusesUpdateAction
