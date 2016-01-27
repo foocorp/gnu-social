@@ -104,7 +104,7 @@ class NewnoticeAction extends FormAction
             // throws exception on failure
             $upload = MediaFile::fromUpload('attach', $this->scoped);
             if (Event::handle('StartSaveNewNoticeAppendAttachment', array($this, $upload, &$content, &$options))) {
-                $content .= ' ' . $upload->shortUrl();
+                $content = ($content==='' ? '' : ' ') . $upload->shortUrl();
             }
             Event::handle('EndSaveNewNoticeAppendAttachment', array($this, $upload, &$content, &$options));
 
