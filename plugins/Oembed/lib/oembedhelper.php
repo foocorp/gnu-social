@@ -198,6 +198,9 @@ class oEmbedHelper
         }
         
         $oembed_data = HTTPClient::quickGetJson($api, $params);
+        if (isset($oembed_data->html)) {
+            $oembed_data->html = common_purify($oembed_data->html);
+        }
         
         return $oembed_data;
     }
