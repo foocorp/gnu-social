@@ -113,7 +113,8 @@ class oEmbedHelper
                 $utf8_evidence = true;              
             }
            
-            // add utf-8 encoding prolog if we have reason to believe this is utf-8 content        
+            // add utf-8 encoding prolog if we have reason to believe this is utf-8 content   
+            // DOMDocument('1.0', 'UTF-8') does not work!            
             $utf8_tag = $utf8_evidence ? '<?xml encoding="utf-8" ?>' : '';          
             
             $dom = new DOMDocument();
