@@ -208,9 +208,6 @@ class RegisterAction extends Action
                        !common_valid_http_url($homepage)) {
                 // TRANS: Form validation error displayed when trying to register with an invalid homepage URL.
                 $this->showForm(_('Homepage is not a valid URL.'));
-            } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
-                // TRANS: Form validation error displayed when trying to register with a too long full name.
-                $this->showForm(_('Full name is too long (maximum 255 characters).'));
             } else if (Profile::bioTooLong($bio)) {
                 // TRANS: Form validation error on registration page when providing too long a bio text.
                 // TRANS: %d is the maximum number of characters for bio; used for plural.
@@ -218,9 +215,6 @@ class RegisterAction extends Action
                                            'Bio is too long (maximum %d characters).',
                                            Profile::maxBio()),
                                         Profile::maxBio()));
-            } else if (!is_null($location) && mb_strlen($location) > 255) {
-                // TRANS: Form validation error displayed when trying to register with a too long location.
-                $this->showForm(_('Location is too long (maximum 255 characters).'));
             } else if (strlen($password) < 6) {
                 // TRANS: Form validation error displayed when trying to register with too short a password.
                 $this->showForm(_('Password must be 6 or more characters.'));

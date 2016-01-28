@@ -131,9 +131,6 @@ class ApiAccountRegisterAction extends ApiAction
                    !common_valid_http_url($homepage)) {
             // TRANS: Form validation error displayed when trying to register with an invalid homepage URL.
 	        $this->clientError(_('Homepage is not a valid URL.'), 400);
-        } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
-            // TRANS: Form validation error displayed when trying to register with a too long full name.
-	        $this->clientError(_('Full name is too long (maximum 255 characters).'), 400);
         } else if (Profile::bioTooLong($bio)) {
             // TRANS: Form validation error on registration page when providing too long a bio text.
             // TRANS: %d is the maximum number of characters for bio; used for plural.
@@ -141,9 +138,6 @@ class ApiAccountRegisterAction extends ApiAction
                                        'Bio is too long (maximum %d characters).',
                                        Profile::maxBio()),
                                        Profile::maxBio()), 400);
-        } else if (!is_null($location) && mb_strlen($location) > 255) {
-            // TRANS: Form validation error displayed when trying to register with a too long location.
-	        $this->clientError(_('Location is too long (maximum 255 characters).'), 400);
         } else if (strlen($password) < 6) {
             // TRANS: Form validation error displayed when trying to register with too short a password.
 	        $this->clientError(_('Password must be 6 or more characters.'), 400);
