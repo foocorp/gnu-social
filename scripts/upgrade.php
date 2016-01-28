@@ -58,6 +58,8 @@ function main()
 
         initProfileLists();
 
+        migrateProfilePrefs();
+
         Event::handle('EndUpgrade');
     }
 }
@@ -512,6 +514,32 @@ function setFilehashOnLocalFiles()
             } catch (FileNotFoundException $e) {
                 echo "\n    WARNING: file ID {$file->id} does not exist on path '{$e->path}'. If there is no file system error, run: php scripts/clean_file_table.php";
             }
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function migrateProfilePrefs()
+{
+    printfnq("Finding and possibly migrating Profile_prefs entries: ");
+
+    $prefs = array();   // ['qvitter' => ['cover_photo'=>'profile_banner_url', ...], ...]
+    Event::handle('GetProfilePrefsMigrations', array(&$prefs));
+
+    foreach($prefs as $namespace=>$mods) {
+        echo "$namespace... ";
+        assert(is_array($mods));
+        $p = new Profile_prefs();
+        $p->namespace = $namespace;
+        // find all entries in all modified topics given in this namespace
+        $p->whereAddIn('topic', array_keys($mods), $p->columnType('topic'));
+        $p->find();
+        while ($p->fetch()) {
+            // for each entry, update 'topic' to the new key value
+            $orig = clone($p);
+            $p->topic = $mods[$p->topic];
+            $p->updateWithKeys($orig);
         }
     }
 
