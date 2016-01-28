@@ -74,20 +74,58 @@ class oEmbedHelper
 
         if (Event::handle('GetRemoteUrlMetadata', array($url, &$metadata))) {
             // If that event didn't return anything, try downloading the body and parse it
-            $body = HTTPClient::quickGet($url);
+
+            // don't use quickGet since we want to check Content-Type header for utf-8
+            $client = new HTTPClient();
+            $response = $client->get($url);
+            if (!$response->isOk()) {
+                // TRANS: Exception. %s is the URL we tried to GET.
+                throw new Exception(sprintf(_m('Could not GET URL %s.'), $url), $response->getStatus());
+            }
+            $body = $response->getBody();
 
             // DOMDocument::loadHTML may throw warnings on unrecognized elements,
             // and notices on unrecognized namespaces.
             $old = error_reporting(error_reporting() & ~(E_WARNING | E_NOTICE));
+            
+            // DOMDocument assumes ISO-8859-1 per HTML spec
+            // use UTF-8 if we find any evidence of that encoding
+            $utf8_evidence = false;
+            $unicode_check_dom = new DOMDocument();
+            $ok = $unicode_check_dom->loadHTML($body);
+            if (!$ok) throw new oEmbedHelper_BadHtmlException();
+            $metaNodes = $unicode_check_dom->getElementsByTagName('meta');
+            foreach($metaNodes as $metaNode) {
+                // case in-sensitive since Content-type and utf-8 can be written in many ways
+                if(stristr($metaNode->getAttribute('http-equiv'),'content-type')
+                && stristr($metaNode->getAttribute('content'),'utf-8')) {
+                    $utf8_evidence = true;        
+                    break;                  
+                } elseif(stristr($metaNode->getAttribute('charset'),'utf-8')) {
+                    $utf8_evidence = true;        
+                    break;
+                }
+            }
+            unset($unicode_check_dom);
+            
+            // The Content-Type HTTP response header overrides encoding metatags in DOM
+            if(stristr($response->getHeader('Content-Type'),'utf-8')) {
+                $utf8_evidence = true;              
+            }
+           
+            // add utf-8 encoding prolog if we have reason to believe this is utf-8 content   
+            // DOMDocument('1.0', 'UTF-8') does not work!            
+            $utf8_tag = $utf8_evidence ? '<?xml encoding="utf-8" ?>' : '';          
+            
             $dom = new DOMDocument();
-            $ok = $dom->loadHTML($body);
+            $ok = $dom->loadHTML($utf8_tag.$body);
             unset($body);   // storing the DOM in memory is enough...
             error_reporting($old);
 
             if (!$ok) {
                 throw new oEmbedHelper_BadHtmlException();
             }
-
+            
             Event::handle('GetRemoteUrlMetadataFromDom', array($url, $dom, &$metadata));
         }
 
@@ -160,11 +198,6 @@ class oEmbedHelper
         }
         
         $oembed_data = HTTPClient::quickGetJson($api, $params);
-        
-        // purify html
-        if(isset($oembed_data->html)) {
-        	$oembed_data->html = common_purify($oembed_data->html);
-        	}
         
         return $oembed_data;
     }
