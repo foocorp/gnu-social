@@ -40,6 +40,12 @@
 $_startTime = microtime(true);
 $_perfCounters = array();
 
+// We provide all our dependencies through our own autoload.
+// This will probably be configurable for distributing with
+// system packages (like with Debian apt etc. where included
+// libraries are maintained through repositories)
+set_include_path('.');  // mainly fixes an issue where /usr/share/{pear,php*}/DB/DataObject.php is _old_ on various systems...
+
 define('INSTALLDIR', dirname(__FILE__));
 define('GNUSOCIAL', true);
 define('STATUSNET', true);  // compatibility
