@@ -233,16 +233,14 @@ class OembedPlugin extends Plugin
 
         // the 'photo' type is shown through ordinary means, using StartShowAttachmentRepresentation!
         switch ($oembed->type) {
-        case 'rich':
         case 'video':
         case 'link':
             if (!empty($oembed->html)
                     && (GNUsocial::isAjax() || common_config('attachments', 'show_html'))) {
-                require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-                $config = array(
-                    'safe'=>1,
-                    'elements'=>'*+object+embed');
-                $out->raw(htmLawed($oembed->html,$config));
+                require_once INSTALLDIR.'/extlib/HTMLPurifier/HTMLPurifier.auto.php';
+                $purifier = new HTMLPurifier();
+                // FIXME: do we allow <object> and <embed> here? we did that when we used htmLawed, but I'm not sure anymore...
+                $out->raw($purifier->purify($oembed->html));
             }
             return false;
             break;

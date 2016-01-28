@@ -234,13 +234,9 @@ class AttachmentListItem extends Widget
         $body = preg_replace('/^.*<body[^>]*>/is', '', $body);
         $body = preg_replace('/<\/body[^>]*>.*$/is', '', $body);
 
-        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
-        $config = array('safe' => 1,
-                        'deny_attribute' => 'id,style,on*',
-                        'comment' => 1); // remove comments
-        $scrubbed = htmLawed($body, $config);
-
-        return $scrubbed;
+        require_once INSTALLDIR.'/extlib/HTMLPurifier/HTMLPurifier.auto.php';
+        $purifier = new HTMLPurifier();
+        return $purifier->purify($body);
     }
 
     /**

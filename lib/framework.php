@@ -138,15 +138,15 @@ spl_autoload_register('GNUsocial_class_autoload');
  * and is available here: http://www.php-fig.org/psr/psr-0/
 */
 spl_autoload_register(function($class){
-    $class_path = preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
-    $file = INSTALLDIR.'/extlib/'.$class_path;
+    $class_base = preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\'));
+    $file = INSTALLDIR."/extlib/{$class_base}.php";
     if (file_exists($file)) {
         require_once $file;
         return;
     }
 
     # Try if the system has this external library
-    $file = '/usr/share/php/'.$class_path;
+    $file = "/usr/share/php/{$class_base}.php";
     if (file_exists($file)) {
         require_once $file;
         return;

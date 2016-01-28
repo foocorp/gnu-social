@@ -577,24 +577,25 @@ function common_canonical_email($email)
 
 function common_purify($html)
 {
-    require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
+    require_once INSTALLDIR.'/extlib/HTMLPurifier/HTMLPurifier.auto.php';
 
-    $config = array('safe' => 1,    // means that elements=* means elements=*-applet-embed-iframe-object-script or so
-                    'elements' => '*',
-                    'deny_attribute' => 'id,style,on*',
-                    'cdata' => 1);
+    $cfg = HTMLPurifier_Config::createDefault();
+    $cfg->set('HTML.ForbiddenAttributes', array('style'));  // id, on* etc. are already filtered by default
 
-    // Remove more elements than what the 'safe' filter gives (elements must be '*' before this)
-    // http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_README.htm#s3.6
+    // Remove more elements than what the default filter removes, default in GNU social are remotely
+    // linked resources such as img, video, audio
+    $forbiddenElements = array();
     foreach (common_config('htmlfilter') as $tag=>$filter) {
         if ($filter === true) {
-            $config['elements'] .= "-{$tag}";
+            $forbiddenElements[] = $tag;
         }
     }
+    $cfg->set('HTML.ForbiddenElements', $forbiddenElements);
 
     $html = common_remove_unicode_formatting($html);
 
-    $purified = htmLawed($html, $config);
+    $purifier = new HTMLPurifier($cfg);
+    $purified = $purifier->purify($html);
     Event::handle('EndCommonPurify', array(&$purified, $html));
     
     return $purified;

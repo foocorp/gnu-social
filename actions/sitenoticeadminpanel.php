@@ -27,11 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
-
-require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Update the site-wide notice text
@@ -114,13 +110,9 @@ class SitenoticeadminpanelAction extends AdminPanelAction
         }
 
         // scrub HTML input
-
-        $config = array(
-            'safe' => 1,
-            'deny_attribute' => 'id,style,on*'
-        );
-
-        $siteNotice = htmLawed($siteNotice, $config);
+        require_once INSTALLDIR.'/extlib/HTMLPurifier/HTMLPurifier.auto.php';
+        $purifier = new HTMLPurifier();
+        $siteNotice = $purifier->purify($siteNotice);
     }
 }
 
