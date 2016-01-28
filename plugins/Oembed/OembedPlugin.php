@@ -46,11 +46,47 @@ class OembedPlugin extends Plugin
                 'maxheight' => common_config('thumbnail', 'height'),
             );
             $metadata = oEmbedHelper::getOembedFrom($api, $url, $params);
+            
+            // Facebook just gives us javascript in its oembed html, 
+            // so use the content of the title element instead
+            if(strpos($url,'https://www.facebook.com/') === 0) {
+              $metadata->html = @$dom->getElementsByTagName('title')->item(0)->nodeValue;
+            }
+        
+            // Wordpress sometimes also just gives us javascript, use og:description if it is available
+            $xpath = new DomXpath($dom);
+            $generatorNode = @$xpath->query('//meta[@name="generator"][1]')->item(0);
+            if ($generatorNode instanceof DomElement) {
+                // when wordpress only gives us javascript, the html stripped from tags
+                // is the same as the title, so this helps us to identify this (common) case
+                if(strpos($generatorNode->getAttribute('content'),'WordPress') === 0
+                && trim(strip_tags($metadata->html)) == trim($metadata->title)) {
+                    $propertyNode = @$xpath->query('//meta[@property="og:description"][1]')->item(0);
+                    if ($propertyNode instanceof DomElement) {
+                        $metadata->html = $propertyNode->getAttribute('content');
+                    }
+                }
+            }
         } catch (Exception $e) {
             common_log(LOG_INFO, 'Could not find an oEmbed endpoint using link headers, trying OpenGraph from HTML.');
             // Just ignore it!
             $metadata = OpenGraphHelper::ogFromHtml($dom);
         }
+
+        // sometimes sites serve the path, not the full URL, for images
+        // let's "be liberal in what you accept from others"!
+        // add protocol and host if the thumbnail_url starts with /
+        if(substr($metadata->thumbnail_url,0,1) == '/') {
+            $thumbnail_url_parsed = parse_url($metadata->url);
+            $metadata->thumbnail_url = $thumbnail_url_parsed['scheme']."://".$thumbnail_url_parsed['host'].$metadata->thumbnail_url;
+        } 
+        
+        // some wordpress opengraph implementations sometimes return a white blank image
+        // no need for us to save that!
+        if($metadata->thumbnail_url == 'https://s0.wp.com/i/blank.jpg') {
+            unset($metadata->thumbnail_url);
+        }
+
     }
 
     public function onEndShowHeadElements(Action $action)
