@@ -12,7 +12,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2009 Tarjej Huse, Jan Wagner, Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: Entry.php 332301 2013-12-09 08:17:14Z beni $
+* @version   SVN: $Id$
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -140,26 +140,26 @@ class Net_LDAP2_Entry extends PEAR
     * You should not call this method manually! Use {@link Net_LDAP2_Entry::createFresh()}
     * or {@link Net_LDAP2_Entry::createConnected()} instead!
     *
-    * @param Net_LDAP2|ressource|array &$ldap Net_LDAP2 object, ldap-link ressource or array of attributes
+    * @param Net_LDAP2|ressource|array $ldap Net_LDAP2 object, ldap-link ressource or array of attributes
     * @param string|ressource          $entry Either a DN or a LDAP-Entry ressource
     *
     * @access protected
     * @return none
     */
-    protected function __construct(&$ldap, $entry = null)
+    public function __construct($ldap, $entry = null)
     {
-        $this->PEAR('Net_LDAP2_Error');
+        parent::__construct('Net_LDAP2_Error');
 
         // set up entry resource or DN
         if (is_resource($entry)) {
-            $this->_entry = &$entry;
+            $this->_entry = $entry;
         } else {
             $this->_dn = $entry;
         }
 
         // set up LDAP link
         if ($ldap instanceof Net_LDAP2) {
-            $this->_ldap = &$ldap;
+            $this->_ldap = $ldap;
             $this->_link = $ldap->getLink();
         } elseif (is_resource($ldap)) {
             $this->_link = $ldap;
@@ -357,7 +357,7 @@ class Net_LDAP2_Entry extends PEAR
         if (is_null($attributes) && is_resource($this->_entry) && is_resource($this->_link)) {
             // fetch schema
             if ($this->_ldap instanceof Net_LDAP2) {
-                $schema =& $this->_ldap->schema();
+                $schema = $this->_ldap->schema();
             }
             // fetch attributes
             $attributes = array();
@@ -505,7 +505,7 @@ class Net_LDAP2_Entry extends PEAR
     public function get_value()
     {
         $args = func_get_args();
-        return call_user_func_array(array( &$this, 'getValue' ), $args);
+        return call_user_func_array(array( $this, 'getValue' ), $args);
     }
 
     /**
@@ -761,7 +761,7 @@ class Net_LDAP2_Entry extends PEAR
         }
 
         // ensure we have a valid LDAP object
-        $ldap =& $this->getLDAP();
+        $ldap = $this->getLDAP();
         if (!$ldap instanceof Net_LDAP2) {
             return PEAR::raiseError("The entries LDAP object is not valid");
         }
@@ -914,7 +914,7 @@ class Net_LDAP2_Entry extends PEAR
     * @access public
     * @return Net_LDAP2|Net_LDAP2_Error   Reference to the Net_LDAP2 Object (the connection) or Net_LDAP2_Error
     */
-    public function &getLDAP()
+    public function getLDAP()
     {
         if (!$this->_ldap instanceof Net_LDAP2) {
             $err = new PEAR_Error('LDAP is not a valid Net_LDAP2 object');
@@ -930,17 +930,17 @@ class Net_LDAP2_Entry extends PEAR
     * After setting a Net_LDAP2 object, calling update() will use that object for
     * updating directory contents. Use this to dynamicly switch directorys.
     *
-    * @param Net_LDAP2 &$ldap Net_LDAP2 object that this entry should be connected to
+    * @param Net_LDAP2 $ldap Net_LDAP2 object that this entry should be connected to
     *
     * @access public
     * @return true|Net_LDAP2_Error
     */
-    public function setLDAP(&$ldap)
+    public function setLDAP($ldap)
     {
         if (!$ldap instanceof Net_LDAP2) {
             return PEAR::raiseError("LDAP is not a valid Net_LDAP2 object");
         } else {
-            $this->_ldap =& $ldap;
+            $this->_ldap = $ldap;
             return true;
         }
     }
@@ -981,7 +981,7 @@ class Net_LDAP2_Entry extends PEAR
     *
     * Usage example:
     * <code>
-    * $result = $entry->preg_match('/089(\d+)/', 'telephoneNumber', &$matches);
+    * $result = $entry->preg_match('/089(\d+)/', 'telephoneNumber', $matches);
     * if ( $result === true ){
     *     echo "First match: ".$matches[0][1];   // Match of value 1, content of first bracket
     * } else {
@@ -1032,7 +1032,7 @@ class Net_LDAP2_Entry extends PEAR
     public function preg_match()
     {
         $args = func_get_args();
-        return call_user_func_array(array( &$this, 'pregMatch' ), $args);
+        return call_user_func_array(array( $this, 'pregMatch' ), $args);
     }
 
     /**

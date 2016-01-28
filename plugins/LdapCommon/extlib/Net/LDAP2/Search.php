@@ -11,7 +11,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2009 Tarjej Huse, Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: Search.php 328961 2013-01-03 09:04:30Z beni $
+* @version   SVN: $Id$
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -125,20 +125,20 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     /**
     * Constructor
     *
-    * @param resource           &$search    Search result identifier
-    * @param Net_LDAP2|resource &$ldap      Net_LDAP2 object or just a LDAP-Link resource
+    * @param resource           $search    Search result identifier
+    * @param Net_LDAP2|resource $ldap      Net_LDAP2 object or just a LDAP-Link resource
     * @param array              $attributes (optional) Array with searched attribute names. (see {@link $_searchedAttrs})
     *
     * @access public
     */
-    public function __construct(&$search, &$ldap, $attributes = array())
+    public function __construct($search, $ldap, $attributes = array())
     {
-        $this->PEAR('Net_LDAP2_Error');
+        parent::__construct('Net_LDAP2_Error');
 
         $this->setSearch($search);
 
         if ($ldap instanceof Net_LDAP2) {
-            $this->_ldap =& $ldap;
+            $this->_ldap = $ldap;
             $this->setLink($this->_ldap->getLink());
         } else {
             $this->setLink($ldap);
@@ -180,7 +180,7 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     *
     * @return Net_LDAP2_Entry|false  Reference to Net_LDAP2_Entry object or false
     */
-    public function &shiftEntry()
+    public function shiftEntry()
     {
         if (is_null($this->_entry)) {
             if(!$this->_entry = @ldap_first_entry($this->_link, $this->_search)) {
@@ -209,7 +209,7 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     public function shift_entry()
     {
         $args = func_get_args();
-        return call_user_func_array(array( &$this, 'shiftEntry' ), $args);
+        return call_user_func_array(array( $this, 'shiftEntry' ), $args);
     }
 
     /**
@@ -240,7 +240,7 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     public function pop_entry()
     {
         $args = func_get_args();
-        return call_user_func_array(array( &$this, 'popEntry' ), $args);
+        return call_user_func_array(array( $this, 'popEntry' ), $args);
     }
 
     /**
@@ -438,12 +438,12 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     /**
     * Set the search objects resource link
     *
-    * @param resource &$search Search result identifier
+    * @param resource $search Search result identifier
     *
     * @access public
     * @return void
     */
-    public function setSearch(&$search)
+    public function setSearch($search)
     {
         $this->_search = $search;
     }
@@ -451,12 +451,12 @@ class Net_LDAP2_Search extends PEAR implements Iterator
     /**
     * Set the ldap ressource link
     *
-    * @param resource &$link Link identifier
+    * @param resource $link Link identifier
     *
     * @access public
     * @return void
     */
-    public function setLink(&$link)
+    public function setLink($link)
     {
         $this->_link = $link;
     }

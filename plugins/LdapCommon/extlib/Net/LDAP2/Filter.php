@@ -10,7 +10,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2009 Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: Filter.php 332305 2013-12-09 08:51:41Z beni $
+* @version   SVN: $Id$
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -161,7 +161,7 @@ class Net_LDAP2_Filter extends PEAR
     *
     * @return Net_LDAP2_Filter|Net_LDAP2_Error
     */
-    public static function &create($attr_name, $match, $value = '', $escape = true)
+    public static function create($attr_name, $match, $value = '', $escape = true)
     {
         $leaf_filter = new Net_LDAP2_Filter();
         if ($escape) {

@@ -10,7 +10,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2009 Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: LDIF.php 324918 2012-04-06 12:31:04Z clockwerx $
+* @version   SVN: $Id$
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -218,7 +218,7 @@ class Net_LDAP2_LDIF extends PEAR
     */
     public function __construct($file, $mode = 'r', $options = array())
     {
-        $this->PEAR('Net_LDAP2_Error'); // default error class
+        parent::__construct('Net_LDAP2_Error'); // default error class
 
         // First, parse options
         // todo: maybe implement further checks on possible values

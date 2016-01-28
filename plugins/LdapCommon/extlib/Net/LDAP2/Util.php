@@ -10,7 +10,7 @@
 * @author    Benedikt Hallinger <beni@php.net>
 * @copyright 2009 Benedikt Hallinger
 * @license   http://www.gnu.org/licenses/lgpl-3.0.txt LGPLv3
-* @version   SVN: $Id: Util.php 332278 2013-12-05 11:01:15Z beni $
+* @version   SVN: $Id$
 * @link      http://pear.php.net/package/Net_LDAP2/
 */
 
@@ -113,8 +113,23 @@ class Net_LDAP2_Util extends PEAR
                 // MV RDN!
                 foreach ($rdns as $subrdn_k => $subrdn_v) {
                     // Casefolding
-                    if ($options['casefold'] == 'upper') $subrdn_v = preg_replace("/^(\w+=)/e", "''.strtoupper('\\1').''", $subrdn_v);
-                    if ($options['casefold'] == 'lower') $subrdn_v = preg_replace("/^(\w+=)/e", "''.strtolower('\\1').''", $subrdn_v);
+                    if ($options['casefold'] == 'upper') {
+                        $subrdn_v = preg_replace_callback(
+                            "/^\w+=/",
+                            function ($matches) {
+                                return strtoupper($matches[0]);
+                            },
+                            $subrdn_v
+                        );
+                    } else if ($options['casefold'] == 'lower') {
+                        $subrdn_v = preg_replace_callback(
+                            "/^\w+=/",
+                            function ($matches) {
+                                return strtolower($matches[0]);
+                            },
+                            $subrdn_v
+                        );
+                    }
 
                     if ($options['onlyvalues']) {
                         preg_match('/(.+?)(?<!\\\\)=(.+)/', $subrdn_v, $matches);
@@ -133,8 +148,23 @@ class Net_LDAP2_Util extends PEAR
                 // normal RDN
 
                 // Casefolding
-                if ($options['casefold'] == 'upper') $value = preg_replace("/^(\w+=)/e", "''.strtoupper('\\1').''", $value);
-                if ($options['casefold'] == 'lower') $value = preg_replace("/^(\w+=)/e", "''.strtolower('\\1').''", $value);
+                if ($options['casefold'] == 'upper') {
+                    $value = preg_replace_callback(
+                        "/^\w+=/",
+                        function ($matches) {
+                            return strtoupper($matches[0]);
+                        },
+                        $value
+                    );
+                } else if ($options['casefold'] == 'lower') {
+                    $value = preg_replace_callback(
+                        "/^\w+=/",
+                        function ($matches) {
+                            return strtolower($matches[0]);
+                        },
+                        $value
+                    );
+                }
 
                 if ($options['onlyvalues']) {
                     preg_match('/(.+?)(?<!\\\\)=(.+)/', $value, $matches);
@@ -484,7 +514,13 @@ class Net_LDAP2_Util extends PEAR
     */
     public static function hex2asc($string)
     {
-        $string = preg_replace("/\\\([0-9A-Fa-f]{2})/e", "''.chr(hexdec('\\1')).''", $string);
+        $string = preg_replace_callback(
+            "/\\\[0-9A-Fa-f]{2}/",
+            function ($matches) {
+                return chr(hexdec($matches[0]));
+            },
+            $string
+        );
         return $string;
     }
 
