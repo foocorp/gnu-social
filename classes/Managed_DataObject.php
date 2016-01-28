@@ -420,10 +420,14 @@ abstract class Managed_DataObject extends Memcached_DataObject
      * @param DB_DataObject &$orig  Must be "instanceof" $this
      * @param string         $pid   Primary ID column (no escaping is done on column name!)
      */
-    public function updateWithKeys(Managed_DataObject $orig, $pid='id')
+    public function updateWithKeys(Managed_DataObject $orig, $pid=null)
     {
         if (!$orig instanceof $this) {
             throw new ServerException('Tried updating a DataObject with a different class than itself.');
+        }
+
+        if ($this->N <1) {
+            throw new ServerException('DataObject must be the result of a query (N>=1) before updateWithKeys()');
         }
 
         // do it in a transaction
@@ -452,11 +456,23 @@ abstract class Managed_DataObject extends Memcached_DataObject
             return true;
         }
 
-        $qry = sprintf('UPDATE %1$s SET %2$s WHERE %3$s = %4$s',
+        if ($pid === null) {
+            $schema = static::schemaDef();
+            $pid = $schema['primary key'];
+            unset($schema);
+        }
+        $pidWhere = array();
+        foreach((array)$pid as $pidCol) { 
+            $pidWhere[] = sprintf('%1$s = %2$s', $pidCol, $this->_quote($orig->$pidCol));
+        }
+        if (empty($pidWhere)) {
+            throw new ServerException('No primary ID column(s) set for updateWithKeys');
+        }
+
+        $qry = sprintf('UPDATE %1$s SET %2$s WHERE %3$s',
                             common_database_tablename($this->tableName()),
                             implode(', ', $parts),
-                            $pid,
-                            $this->_quote($orig->$pid));
+                            implode(' AND ', $pidWhere));
 
         $result = $this->query($qry);
         if ($result === false) {

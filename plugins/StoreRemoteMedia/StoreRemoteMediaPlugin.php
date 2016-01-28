@@ -108,7 +108,7 @@ class StoreRemoteMediaPlugin extends Plugin
             $file->width = $info[0];    // array indexes documented on php.net:
             $file->height = $info[1];   // https://php.net/manual/en/function.getimagesize.php
             // Throws exception on failure.
-            $file->updateWithKeys($orig, 'id');
+            $file->updateWithKeys($orig);
         }
         // Get rid of the file from memory
         unset($imgData);

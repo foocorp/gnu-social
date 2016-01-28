@@ -323,7 +323,7 @@ class HubSub extends Managed_DataObject
                 $orig = clone($this);
                 $this->callback = $httpscallback;
                 $this->hashkey = self::hashkey($this->getTopic(), $this->callback);
-                $this->updateWithKeys($orig, 'hashkey');
+                $this->updateWithKeys($orig);
                 return true;
             }
         }

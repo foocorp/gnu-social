@@ -1853,7 +1853,7 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         common_debug('URIFIX Updating Ostatus_profile URI for '.$orig->uri.' to '.$this->uri);
-        $this->updateWithKeys($orig, 'uri');    // 'uri' is the primary key column
+        $this->updateWithKeys($orig);    // Will use the PID column(s) in the 'UPDATE ... WHERE [unique selector]'
 
         common_debug('URIFIX Subscribing/renewing feedsub for Ostatus_profile '.$this->uri);
         $this->subscribe();

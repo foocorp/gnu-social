@@ -305,7 +305,7 @@ class OembedPlugin extends Plugin
         $thumbnail->width = $info[0];    // array indexes documented on php.net:
         $thumbnail->height = $info[1];   // https://php.net/manual/en/function.getimagesize.php
         // Throws exception on failure.
-        $thumbnail->updateWithKeys($orig, 'file_id');
+        $thumbnail->updateWithKeys($orig);
     }
 
     public function onPluginVersion(array &$versions)
