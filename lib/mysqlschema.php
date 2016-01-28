@@ -58,10 +58,10 @@ class MysqlSchema extends Schema
      * @return Schema the (single) Schema object
      */
 
-    static function get()
+    static function get($conn = null)
     {
         if (empty(self::$_single)) {
-            self::$_single = new Schema();
+            self::$_single = new Schema($conn);
         }
         return self::$_single;
     }
