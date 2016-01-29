@@ -170,56 +170,78 @@ class File_redirection extends Managed_DataObject
 
         try {
             $r = File_redirection::getByUrl($in_url);
-            if($r instanceof File_redirection) {
-				try {
-					$f = File::getKV('id',$r->file_id);
-					$r->file = $f;
-					$r->redir_url = $f->url;
-				} catch (NoResultException $e) {
-					// Invalid entry, delete and run again
-					common_log(LOG_ERR, "Could not find File with id=".$r->file_id." referenced in File_redirection, deleting File redirection entry and creating new File and File_redirection entries.");					
-					$r->delete();
-					return self::where($in_url);
-				}
-                return $r;
+            try {
+                $f = File::getKV('id',$r->file_id);
+                $r->file = $f;
+                $r->redir_url = $f->url;
+            } catch (NoResultException $e) {
+                // Invalid entry, delete and run again
+                common_log(LOG_ERR, "Could not find File with id=".$r->file_id." referenced in File_redirection, deleting File redirection entry and and trying again...");                 
+                $r->delete();
+                return self::where($in_url);
             }
+            // File_redirecion and File record found, return both
+            return $r;
+
         } catch (NoResultException $e) {
+            // File_redirecion record not found, but this might be a direct link to a file
             try {
                 $f = File::getByUrl($in_url);
                 $redir->file_id = $f->id;
                 $redir->file = $f;
                 return $redir;
             } catch (NoResultException $e) {                    
-                // Oh well, let's keep going
+                // nope, this was not a direct link to a file either, let's keep going
             }
         }
 
         if ($discover) {    
+            // try to follow redirects and get the final url        
             $redir_info = File_redirection::lookupWhere($in_url);
             if(is_string($redir_info)) {
                 $redir_info = array('url' => $redir_info);
             }
-			
-			// Save the file if we don't have it already
-			$redir->file = File::saveNew($redir_info,$redir_info['url']);
-			 
-			// If this is a redirection, save it
-			// (if it hasn't been saved yet by some other process while we we
-			// were running lookupWhere())			
-            if($redir_info['url'] != $in_url) {
-				try {
-					$file_redir = File_redirection::getByUrl($in_url);
-				} catch (NoResultException $e) {
-					$file_redir = new File_redirection();
-					$file_redir->urlhash = File::hashurl($in_url);
-					$file_redir->url = $in_url;
-					$file_redir->file_id = $redir->file->getID();
-					$file_redir->insert();
-					$file_redir->redir_url = $redir->file->url;					
-				}		
+            
+            // the last url in the redirection chain can actually be a redirect!
+            // this is the case with local /attachment/{file_id} links
+            // in that case we have the file id already
+            try {
+                $r = File_redirection::getByUrl($redir_info['url']);
+                try {
+                    $f = File::getKV('id',$r->file_id);
+                    $redir->file = $f;
+                    $redir->redir_url = $f->url;
+                } catch (NoResultException $e) {
+                    // Invalid entry in File_redirection, delete and run again
+                    common_log(LOG_ERR, "Could not find File with id=".$r->file_id." referenced in File_redirection, deleting File_redirection entry and trying again...");                 
+                    $r->delete();
+                    return self::where($in_url);
+                }
+            } catch (NoResultException $e) {
+                // save the file now when we know that we don't have it in File_redirection
+                try {
+                    $redir->file = File::saveNew($redir_info,$redir_info['url']);
+                } catch (ServerException $e) {
+                    common_log(LOG_ERR, $e);
+                }   
+            }
+             
+            // If this is a redirection and we have a file to redirect to, save it
+            // (if it doesn't exist in File_redirection already)            
+            if($redir->file instanceof File && $redir_info['url'] != $in_url) {
+                try {
+                    $file_redir = File_redirection::getByUrl($in_url);
+                } catch (NoResultException $e) {
+                    $file_redir = new File_redirection();
+                    $file_redir->urlhash = File::hashurl($in_url);
+                    $file_redir->url = $in_url;
+                    $file_redir->file_id = $redir->file->getID();
+                    $file_redir->insert();
+                    $file_redir->redir_url = $redir->file->url;                 
+                }       
 
-				$file_redir->file = $redir->file;		
-				return $file_redir; 
+                $file_redir->file = $redir->file;       
+                return $file_redir; 
             } 
         }
 
