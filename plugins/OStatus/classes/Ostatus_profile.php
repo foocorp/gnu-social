@@ -193,6 +193,11 @@ class Ostatus_profile extends Managed_DataObject
         }
     }
 
+    public function isPerson()
+    {
+        return $this->localProfile()->isPerson();
+    }
+
     /**
      * @return boolean true if this is a remote peopletag
      */
