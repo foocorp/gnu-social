@@ -771,7 +771,10 @@ function common_find_mentions($text, Profile $sender, Notice $parent=null)
 
             if ($mentioned instanceof Profile) {
                 try {
-                    $url = $mentioned->getUrl();
+                    $url = $mentioned->getUri();    // prefer the URI as URL, if it is one.
+                    if (!common_valid_http_url($url)) {
+                        $url = $mentioned->getUrl();
+                    }
                 } catch (InvalidUrlException $e) {
                     $url = common_local_url('userbyid', array('id' => $mentioned->getID()));
                 }
