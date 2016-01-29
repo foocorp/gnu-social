@@ -848,13 +848,12 @@ class Notice extends Managed_DataObject
         $stored->url = $url;
         $stored->verb = $act->verb;
 
-        // Notice content. We trust local users to provide HTML we like, but of course not remote users.
-        // FIXME: What about local users importing feeds? Mirror functions must filter out bad HTML first...
         $content = $act->content ?: $act->summary;
         if (is_null($content) && !is_null($actobj)) {
             $content = $actobj->content ?: $actobj->summary;
         }
-        $stored->rendered = $actor->isLocal() ? $content : common_purify($content);
+        // Strip out any bad HTML
+        $stored->rendered = common_purify($content);
         // yeah, just don't use getRendered() here since it's not inserted yet ;)
         $stored->content = common_strip_html($stored->rendered);
         if (trim($stored->content) === '') {
