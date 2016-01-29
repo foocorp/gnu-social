@@ -285,8 +285,8 @@ class OStatusPlugin extends Plugin
     {
         $matches = array();
 
-        // Webfinger matches: @user@example.com
-        if (preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+@(?:\w+\-?\w+\.)*\w+(?:\w+\-\w+)*\.\w+)!',
+        // Webfinger matches: @user@example.com or even @user--one.george_orwell@1984.biz
+        if (preg_match_all('!(?:^|\s+)@((?:\w+[\w\-\_\.]?)*(?:[\w\-\_\.]*\w+)@(?:\w+\-?\w+\.)*\w+(?:\w+\-\w+)*\.\w+)!',
                        $text,
                        $wmatches,
                        PREG_OFFSET_CAPTURE)) {
@@ -299,12 +299,16 @@ class OStatusPlugin extends Plugin
                         $profile = $oprofile->localProfile();
                         $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
                                 $profile->nickname : $target;
+                        $url = $profile->getUri();
+                        if (!common_valid_http_url($url)) {
+                            $url = $profile->getUrl();
+                        }
                         $matches[$pos] = array('mentioned' => array($profile),
                                                'type' => 'mention',
                                                'text' => $text,
                                                'position' => $pos,
                                                'length' => mb_strlen($target),
-                                               'url' => $profile->getUrl());
+                                               'url' => $url);
                     }
                 } catch (Exception $e) {
                     $this->log(LOG_ERR, "Webfinger check failed: " . $e->getMessage());

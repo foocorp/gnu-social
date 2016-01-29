@@ -858,7 +858,8 @@ function common_find_mentions_raw($text)
                    PREG_OFFSET_CAPTURE);
 
     $atmatches = array();
-    preg_match_all('/(?:^|\s+)@(' . Nickname::DISPLAY_FMT . ')\b/',
+    // the regexp's "(?!\@)" makes sure it doesn't matches the single "@remote" in "@remote@server.com"
+    preg_match_all('/(?:^|\s+)@(' . Nickname::DISPLAY_FMT . ')\b(?!\@)/',
                    $text,
                    $atmatches,
                    PREG_OFFSET_CAPTURE);
