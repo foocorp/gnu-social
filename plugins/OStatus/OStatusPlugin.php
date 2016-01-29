@@ -293,26 +293,36 @@ class OStatusPlugin extends Plugin
             foreach ($wmatches[1] as $wmatch) {
                 list($target, $pos) = $wmatch;
                 $this->log(LOG_INFO, "Checking webfinger '$target'");
+                $profile = null;
                 try {
                     $oprofile = Ostatus_profile::ensureWebfinger($target);
-                    if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
-                        $profile = $oprofile->localProfile();
-                        $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
-                                $profile->nickname : $target;
-                        $url = $profile->getUri();
-                        if (!common_valid_http_url($url)) {
-                            $url = $profile->getUrl();
-                        }
-                        $matches[$pos] = array('mentioned' => array($profile),
-                                               'type' => 'mention',
-                                               'text' => $text,
-                                               'position' => $pos,
-                                               'length' => mb_strlen($target),
-                                               'url' => $url);
+                    if (!$oprofile instanceof Ostatus_profile || !$oprofile->isPerson()) {
+                        continue;
                     }
+                    $profile = $oprofile->localProfile();
+                } catch (OStatusShadowException $e) {
+                    // This means we got a local user in the webfinger lookup
+                    $profile = $e->profile;
                 } catch (Exception $e) {
                     $this->log(LOG_ERR, "Webfinger check failed: " . $e->getMessage());
+                    continue;
                 }
+
+                assert($profile instanceof Profile);
+
+                $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target)
+                        ? $profile->getNickname()   // TODO: we could do getFancyName() or getFullname() here
+                        : $target;
+                $url = $profile->getUri();
+                if (!common_valid_http_url($url)) {
+                    $url = $profile->getUrl();
+                }
+                $matches[$pos] = array('mentioned' => array($profile),
+                                       'type' => 'mention',
+                                       'text' => $text,
+                                       'position' => $pos,
+                                       'length' => mb_strlen($target),
+                                       'url' => $url);
             }
         }
 

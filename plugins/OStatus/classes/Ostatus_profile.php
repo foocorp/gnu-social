@@ -1859,23 +1859,3 @@ class Ostatus_profile extends Managed_DataObject
         $this->subscribe();
     }
 }
-
-/**
- * Exception indicating we've got a remote reference to a local user,
- * not a remote user!
- *
- * If we can ue a local profile after all, it's available as $e->profile.
- */
-class OStatusShadowException extends Exception
-{
-    public $profile;
-
-    /**
-     * @param Profile $profile
-     * @param string $message
-     */
-    function __construct($profile, $message) {
-        $this->profile = $profile;
-        parent::__construct($message);
-    }
-}
