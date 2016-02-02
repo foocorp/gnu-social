@@ -71,7 +71,7 @@ class File extends Managed_DataObject
         );
     }
 
-    function isProtected($url) {
+    public static function isProtected($url) {
 
 		$protected_urls_exps = array(
 			'https://www.facebook.com/login.php',
