@@ -120,6 +120,8 @@ class File_redirection extends Managed_DataObject
                 // no content it'll be cheap. :)
                 $request = self::_commonHttp($short_url, $redirs);
                 $response = $request->send();
+            } elseif (400 == $response->getStatus()) {
+                throw new Exception('Got error 400 on HEAD request, will not go further.');
             }
         } catch (Exception $e) {
             // Invalid URL or failure to reach server
