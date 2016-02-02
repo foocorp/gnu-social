@@ -881,6 +881,48 @@ function common_render_text($text)
     return $text;
 }
 
+define('_URL_SCHEME_COLON_DOUBLE_SLASH', 1);
+define('_URL_SCHEME_SINGLE_COLON', 2);
+define('_URL_SCHEME_NO_DOMAIN', 4);
+
+function common_url_schemes($filter=null)
+{
+    // TODO: move these to $config
+    $schemes = [
+                'http'      => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'https'     => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'ftp'       => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'ftps'      => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'mms'       => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'rtsp'      => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'gopher'    => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'news'      => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'nntp'      => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'telnet'    => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'wais'      => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'file'      => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'prospero'  => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'webcal'    => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'irc'       => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'ircs'      => _URL_SCHEME_COLON_DOUBLE_SLASH,
+                'aim'       => _URL_SCHEME_SINGLE_COLON,
+                'bitcoin'   => _URL_SCHEME_SINGLE_COLON,
+                'fax'       => _URL_SCHEME_SINGLE_COLON,
+                'jabber'    => _URL_SCHEME_SINGLE_COLON,
+                'mailto'    => _URL_SCHEME_SINGLE_COLON,
+                'tel'       => _URL_SCHEME_SINGLE_COLON,
+                'xmpp'      => _URL_SCHEME_SINGLE_COLON,
+                'magnet'    => _URL_SCHEME_NO_DOMAIN,
+                ];
+
+    return array_keys(
+            array_filter($schemes,
+                function ($scheme) use ($filter) {
+                    return is_null($filter) || ($scheme & $filter);
+                })
+            );
+}
+
 /**
  * Find links in the given text and pass them to the given callback function.
  *
@@ -896,9 +938,9 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
         '(?:'.
             '(?:'. //Known protocols
                 '(?:'.
-                    '(?:(?:https?|ftps?|mms|rtsp|gopher|news|nntp|telnet|wais|file|prospero|webcal|ircs?)://)'.
+                    '(?:(?:' . implode('|', common_url_schemes(_URL_SCHEME_COLON_DOUBLE_SLASH)) . ')://)'.
                     '|'.
-                    '(?:(?:aim|bitcoin|fax|jabber|mailto|tel|xmpp):)'.
+                    '(?:(?:' . implode('|', common_url_schemes(_URL_SCHEME_SINGLE_COLON)) . '):)'.
                 ')'.
                 '(?:[\pN\pL\-\_\+\%\~]+(?::[\pN\pL\-\_\+\%\~]+)?\@)?'. //user:pass@
                 '(?:'.
@@ -909,7 +951,8 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
                     ')'.
                 ')'.
             ')'.
-            '|(?:(?:magnet):)'. // URLs without domain name
+            // URLs without domain name, like magnet:?xt=...
+            '|(?:(?:' . implode('|', common_url_schemes(_URL_SCHEME_NO_DOMAIN)) . '):)'.
             '|(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)'. //IPv4
             '|(?:'. //IPv6
                 '\[?(?:(?:(?:[0-9A-Fa-f]{1,4}:){7}(?:(?:[0-9A-Fa-f]{1,4})|:))|(?:(?:[0-9A-Fa-f]{1,4}:){6}(?::|(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})|(?::[0-9A-Fa-f]{1,4})))|(?:(?:[0-9A-Fa-f]{1,4}:){5}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:[0-9A-Fa-f]{1,4}:){4}(?::[0-9A-Fa-f]{1,4}){0,1}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:[0-9A-Fa-f]{1,4}:){3}(?::[0-9A-Fa-f]{1,4}){0,2}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:[0-9A-Fa-f]{1,4}:){2}(?::[0-9A-Fa-f]{1,4}){0,3}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:[0-9A-Fa-f]{1,4}:)(?::[0-9A-Fa-f]{1,4}){0,4}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?::(?::[0-9A-Fa-f]{1,4}){0,5}(?:(?::(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|(?:(?::[0-9A-Fa-f]{1,4}){1,2})))|(?:(?:(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})))\]?(?<!:)'.
