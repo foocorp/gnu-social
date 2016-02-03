@@ -171,6 +171,7 @@ class AttachmentListItem extends Widget
                     switch ($this->attachment->mimetype) {
                     case 'text/plain':
                         $this->element('div', ['class'=>'e-content plaintext'], file_get_contents($this->attachment->getPath()));
+                        break;
                     case 'text/html':
                         if (!empty($this->attachment->filename)
                                 && (GNUsocial::isAjax() || common_config('attachments', 'show_html'))) {
