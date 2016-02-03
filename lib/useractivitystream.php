@@ -108,6 +108,8 @@ class UserActivityStream extends AtomUserNoticeFeed
 
         $end = time() + 1;
         foreach ($this->objs as $obj) {
+            set_time_limit(10);
+
             try {
                 $act = $obj->asActivity();
             } catch (Exception $e) {

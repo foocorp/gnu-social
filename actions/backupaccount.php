@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Download a backup of your own account to the browser
@@ -48,38 +44,19 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class BackupaccountAction extends Action
+class BackupaccountAction extends FormAction
 {
-    /**
-     * Returns the title of the page
-     *
-     * @return string page title
-     */
+    protected $form = 'BackupAccount';
+
     function title()
     {
         // TRANS: Title for backup account page.
         return _('Backup account');
     }
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    protected function doPreparation()
     {
-        parent::prepare($argarray);
-
-        $cur = common_current_user();
-
-        if (empty($cur)) {
-            // TRANS: Client exception thrown when trying to backup an account while not logged in.
-            throw new ClientException(_('Only logged-in users can backup their account.'), 403);
-        }
-
-        if (!$cur->hasRight(Right::BACKUPACCOUNT)) {
+        if (!$this->scoped->hasRight(Right::BACKUPACCOUNT)) {
             // TRANS: Client exception thrown when trying to backup an account without having backup rights.
             throw new ClientException(_('You may not backup your account.'), 403);
         }
@@ -87,40 +64,11 @@ class BackupaccountAction extends Action
         return true;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return void
-     */
-    function handle($argarray=null)
+    protected function doPost()
     {
-        parent::handle($argarray);
+        $stream = new UserActivityStream($this->scoped->getUser(), true, UserActivityStream::OUTPUT_RAW);
 
-        if ($this->isPost()) {
-            $this->sendFeed();
-        } else {
-            $this->showPage();
-        }
-        return;
-    }
-
-    /**
-     * Send a feed of the user's activities to the browser
-     *
-     * Uses the UserActivityStream class; may take a long time!
-     *
-     * @return void
-     */
-
-    function sendFeed()
-    {
-        $cur = common_current_user();
-
-        $stream = new UserActivityStream($cur, true, UserActivityStream::OUTPUT_RAW);
-
-        header('Content-Disposition: attachment; filename='.$cur->nickname.'.atom');
+        header('Content-Disposition: attachment; filename='.urlencode($this->scoped->getNickname()).'.atom');
         header('Content-Type: application/atom+xml; charset=utf-8');
 
         // @fixme atom feed logic is in getString...
@@ -128,39 +76,6 @@ class BackupaccountAction extends Action
         $this->raw($stream->getString());
     }
 
-    /**
-     * Show a little form so that the person can request a backup.
-     *
-     * @return void
-     */
-
-    function showContent()
-    {
-        $form = new BackupAccountForm($this);
-        $form->show();
-    }
-
-    /**
-     * Return true if read only.
-     *
-     * MAY override
-     *
-     * @param array $args other arguments
-     *
-     * @return boolean is read only action?
-     */
-    function isReadOnly($args)
-    {
-        return true;
-    }
-
-    /**
-     * Return last modified, if applicable.
-     *
-     * MAY override
-     *
-     * @return string last modified http header
-     */
     function lastModified()
     {
         // For comparison with If-Last-Modified
@@ -168,89 +83,8 @@ class BackupaccountAction extends Action
         return null;
     }
 
-    /**
-     * Return etag, if applicable.
-     *
-     * MAY override
-     *
-     * @return string etag http header
-     */
     function etag()
     {
         return null;
-    }
-}
-
-/**
- * A form for backing up the account.
- *
- * @category  Account
- * @package   StatusNet
- * @author    Evan Prodromou <evan@status.net>
- * @copyright 2010 StatusNet, Inc.
- * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
- * @link      http://status.net/
- */
-class BackupAccountForm extends Form
-{
-    /**
-     * Class of the form.
-     *
-     * @return string the form's class
-     */
-    function formClass()
-    {
-        return 'form_profile_backup';
-    }
-
-    /**
-     * URL the form posts to
-     *
-     * @return string the form's action URL
-     */
-    function action()
-    {
-        return common_local_url('backupaccount');
-    }
-
-    /**
-     * Output form data
-     *
-     * Really, just instructions for doing a backup.
-     *
-     * @return void
-     */
-    function formData()
-    {
-        $msg =
-            // TRANS: Information displayed on the backup account page.
-            _('You can backup your account data in '.
-              '<a href="http://activitystrea.ms/">Activity Streams</a> '.
-              'format. This is an experimental feature and provides an '.
-              'incomplete backup; private account '.
-              'information like email and IM addresses is not backed up. '.
-              'Additionally, uploaded files and direct messages are not '.
-              'backed up.');
-        $this->out->elementStart('p');
-        $this->out->raw($msg);
-        $this->out->elementEnd('p');
-    }
-
-    /**
-     * Buttons for the form
-     *
-     * In this case, a single submit button
-     *
-     * @return void
-     */
-    function formActions()
-    {
-        $this->out->submit('submit',
-                           // TRANS: Submit button to backup an account on the backup account page.
-                           _m('BUTTON', 'Backup'),
-                           'submit',
-                           null,
-                           // TRANS: Title for submit button to backup an account on the backup account page.
-                           _('Backup your account.'));
     }
 }
