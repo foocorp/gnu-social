@@ -304,6 +304,7 @@ $default =
                             'AuthCrypt' => array(),
                             'Cronish' => array(),
                             'Favorite' => array(),
+                            'HTMLPurifierSchemes' => array(),
                             'Share' => array(),
                             'LRDD' => array(),
                         ),
