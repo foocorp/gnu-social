@@ -884,6 +884,7 @@ function common_render_text($text)
 define('_URL_SCHEME_COLON_DOUBLE_SLASH', 1);
 define('_URL_SCHEME_SINGLE_COLON', 2);
 define('_URL_SCHEME_NO_DOMAIN', 4);
+define('_URL_SCHEME_COLON_COORDINATES', 8);
 
 function common_url_schemes($filter=null)
 {
@@ -913,6 +914,7 @@ function common_url_schemes($filter=null)
                 'tel'       => _URL_SCHEME_SINGLE_COLON,
                 'xmpp'      => _URL_SCHEME_SINGLE_COLON,
                 'magnet'    => _URL_SCHEME_NO_DOMAIN,
+                'geo'       => _URL_SCHEME_COLON_COORDINATES,
                 ];
 
     return array_keys(
@@ -931,6 +933,13 @@ function common_url_schemes($filter=null)
  * @param mixed $arg: optional argument will be passed on to the callback
  */
 function common_replace_urls_callback($text, $callback, $arg = null) {
+    $geouri_labeltext_regex = '\pN\pL\-';
+    $geouri_mark_regex = '\-\_\.\!\~\*\\\'\(\)';    // the \\\' is really pretty
+    $geouri_unreserved_regex = '\pN\pL' . $geouri_mark_regex;
+    $geouri_punreserved_regex = '\[\]\:\&\+\$';
+    $geouri_pctencoded_regex = '(?:\%[0-9a-fA-F][0-9a-fA-F])';
+    $geouri_paramchar_regex = $geouri_unreserved_regex . $geouri_punreserved_regex; //FIXME: add $geouri_pctencoded_regex here so it works
+
     // Start off with a regex
     $regex = '#'.
     '(?:^|[\s\<\>\(\)\[\]\{\}\\\'\\\";]+)(?![\@\!\#])'.
@@ -949,6 +958,16 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
                     ')|(?:'.
                         '[\pN\pL\-\_\:\.]+(?<![\.\:])'. //dns
                     ')'.
+                ')'.
+            ')'.
+            '|(?:'.
+                '(?:' . implode('|', common_url_schemes(_URL_SCHEME_COLON_COORDINATES)) . '):'.
+                // There's an order that must be followed here too, if ;crs= is used, it must precede ;u=
+                // Also 'crsp' (;crs=$crsp) must match $geouri_labeltext_regex
+                // Also 'uval' (;u=$uval) must be a pnum: \-?[0-9]+
+                '(?:'.
+                    '(?:[0-9]+(?:\.[0-9]+)?(?:\,[0-9]+(?:\.[0-9]+)?){1,2})'.    // 1(.23)?(,4(.56)){1,2}
+                    '(?:\;(?:['.$geouri_labeltext_regex.']+)(?:\=['.$geouri_paramchar_regex.']+)*)*'.
                 ')'.
             ')'.
             // URLs without domain name, like magnet:?xt=...

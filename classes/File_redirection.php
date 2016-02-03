@@ -343,6 +343,11 @@ class File_redirection extends Managed_DataObject
                 // don't touch anything
                 break;
 
+            // URLs with coordinates, not browsable domain names
+            case 'geo':
+                // don't touch anything
+                break;
+
             default:
                 $out_url = $default_scheme . ltrim($out_url, '/');
                 $p = parse_url($out_url);
