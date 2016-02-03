@@ -972,7 +972,7 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
                 ')'.
             ')'.
             // URLs without domain name, like magnet:?xt=...
-            '|(?:(?:' . implode('|', common_url_schemes(_URL_SCHEME_NO_DOMAIN)) . '):)'.
+            '|(?:(?:' . implode('|', common_url_schemes(_URL_SCHEME_NO_DOMAIN)) . '):(?=\?))'.  // zero-length lookahead requires ? after :
             (common_config('linkify', 'bare_ipv4')   // Convert IPv4 addresses to hyperlinks
                 ? '|(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)'
                 : '').
