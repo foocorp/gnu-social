@@ -76,6 +76,10 @@ class BackupaccountAction extends FormAction
         $this->raw($stream->getString());
     }
 
+    public function isReadOnly($args) {
+        return true;
+    }
+
     function lastModified()
     {
         // For comparison with If-Last-Modified
