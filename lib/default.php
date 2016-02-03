@@ -204,7 +204,10 @@ $default =
         array('default' => null,
               'welcome' => null),
         'linkify' => array(
+            // "bare" below means "without schema", like domain.com vs. https://domain.com
             'bare_domains' => false,  // convert domain.com to <a href="http://domain.com/" ...>domain.com</a> ?
+            'bare_ipv4' => false,   // convert IPv4 addresses to hyperlinks?
+            'bare_ipv6' => false,   // convert IPv6 addresses to hyperlinks?
         ),
         'attachments' =>
         array('server' => null,
