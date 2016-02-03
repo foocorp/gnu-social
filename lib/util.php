@@ -581,6 +581,7 @@ function common_purify($html)
 
     $cfg = HTMLPurifier_Config::createDefault();
     $cfg->set('HTML.ForbiddenAttributes', array('style'));  // id, on* etc. are already filtered by default
+    $cfg->set('URI.AllowedSchemes', array_fill_keys(common_url_schemes(), true));
 
     // Remove more elements than what the default filter removes, default in GNU social are remotely
     // linked resources such as img, video, audio
