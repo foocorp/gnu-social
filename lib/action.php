@@ -429,7 +429,6 @@ class Action extends HTMLOutputter // lawsuit
                 $this->script('extlib/jquery.form.js');
                 $this->script('extlib/jquery-ui/jquery-ui.js');
                 $this->script('extlib/jquery.cookie.js');
-                $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/extlib/json2.js', GNUsocial::isHTTPS()).'"); }');
 
                 Event::handle('EndShowJQueryScripts', array($this));
             }
