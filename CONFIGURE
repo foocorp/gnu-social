@@ -116,8 +116,9 @@ db
 --
 
 This section is a reference to the configuration options for
-DB_DataObject (see <http://ur1.ca/7xp>). The ones that you may want to
-set are listed below for clarity.
+DB_DataObject (see
+<http://pear.php.net/manual/en/package.database.db-dataobject.intro-configuration.php>).
+The ones that you may want to set are listed below for clarity.
 
 database: a DSN (Data Source Name) for your StatusNet database. This is
     in the format 'protocol://username:password@hostname/databasename',
@@ -318,8 +319,8 @@ server: If set, defines another server where avatars are stored in the
     the client to speed up page loading, either with another
     virtual server or with an NFS or SAMBA share. Clients
     typically only make 2 connections to a single server at a
-    time <http://ur1.ca/6ih>, so this can parallelize the job.
-    Defaults to null.
+    time <https://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html#sec8.1.4>,
+    so this can parallelize the job. Defaults to null.
 ssl: Whether to access avatars using HTTPS. Defaults to null, meaning
     to guess based on site-wide SSL settings.
 
@@ -686,7 +687,7 @@ Web crawlers. See http://www.robotstxt.org/ for more information
 on the format of this file.
 
 crawldelay: if non-empty, this value is provided as the Crawl-Delay:
-    for the robots.txt file. see http://ur1.ca/l5a0
+    for the robots.txt file. see https://help.yahoo.com/kb/search
     for more information. Default is zero, no explicit delay.
 disallow: Array of (virtual) directories to disallow. Default is 'main',
     'search', 'message', 'settings', 'admin'. Ignored when site
