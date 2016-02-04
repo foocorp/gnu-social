@@ -105,7 +105,12 @@ if (have_option('all')) {
     $oprofile->find();
     echo "Found $oprofile->N profiles:\n\n";
     while ($oprofile->fetch()) {
-        $ok = fixProfile($oprofile->uri) && $ok;
+        try {
+            $ok = fixProfile($oprofile->uri) && $ok;
+        } catch (Exception $e) {
+            $ok = false;
+            echo "Failed on URI=="._ve($oprofile->uri).": {$e->getMessage()}\n";
+        }
     }
 } else if (have_option('suspicious')) {
     $oprofile = new Ostatus_profile();
@@ -114,11 +119,21 @@ if (have_option('all')) {
     $oprofile->find();
     echo "Found $oprofile->N matching profiles:\n\n";
     while ($oprofile->fetch()) {
-        $ok = fixProfile($oprofile->uri) && $ok;
+        try {
+            $ok = fixProfile($oprofile->uri) && $ok;
+        } catch (Exception $e) {
+            $ok = false;
+            echo "Failed on URI=="._ve($oprofile->uri).": {$e->getMessage()}\n";
+        }
     }
 } else if (!empty($args[0]) && $validate->uri($args[0])) {
     $uri = $args[0];
-    $ok = fixProfile($uri);
+    try {
+        $ok = fixProfile($oprofile->uri) && $ok;
+    } catch (Exception $e) {
+        $ok = false;
+        echo "Failed on URI=="._ve($oprofile->uri).": {$e->getMessage()}\n";
+    }
 } else {
     print "$helptext";
     $ok = false;
