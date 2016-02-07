@@ -355,8 +355,6 @@ class HTTPClient extends HTTP_Request2
                     continue;
                 } catch (HTTP_Request2_Exception $e) {
                     common_log(LOG_ERR, __CLASS__ . ": Invalid $code redirect from $url to $target");
-                } catch (NoHttpResponseException $e) {
-                    common_log(LOG_ERR, __CLASS__ . ": {$e->getMessage()}");
                 }
             } else {
                 $reason = $response->getReasonPhrase();

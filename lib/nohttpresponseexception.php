@@ -30,7 +30,7 @@
 if (!defined('GNUSOCIAL')) { exit(1); }
 
 // Can't extend HTTP_Request2_Exception since it requires an HTTP status code which we didn't get
-class NoHttpResponseException extends Exception
+class NoHttpResponseException extends HTTP_Request2_ConnectionException
 {
     public $url;    // target URL
 
@@ -38,6 +38,6 @@ class NoHttpResponseException extends Exception
     {
         $this->url = $url;
         // We could log an entry here with the search parameters
-        parent::__construct(sprintf(_('No HTTP response from URL %s.'), _ve($url)));
+        parent::__construct(sprintf(_('No HTTP response from URL %s.'), _ve($url)), self::READ_ERROR);
     }
 }

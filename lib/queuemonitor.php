@@ -104,6 +104,8 @@ class QueueMonitor
             }
         } catch (NoHttpResponseException $e) {
             common_log(LOG_ERR, __METHOD__ . ':'.$e->getMessage());
+        } catch (HTTP_Request2_Exception $e) {
+            common_log(LOG_ERR, __CLASS__ . ": Invalid $code redirect from $url to $target");
         }
     }
 
