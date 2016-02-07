@@ -580,6 +580,7 @@ function common_purify($html)
     require_once INSTALLDIR.'/extlib/HTMLPurifier/HTMLPurifier.auto.php';
 
     $cfg = HTMLPurifier_Config::createDefault();
+    $cfg->set('Attr.AllowedRel', ['bookmark', 'directory', 'enclosure', 'home', 'license', 'nofollow', 'payment', 'tag']);  // http://microformats.org/wiki/rel
     $cfg->set('HTML.ForbiddenAttributes', array('style'));  // id, on* etc. are already filtered by default
     $cfg->set('URI.AllowedSchemes', array_fill_keys(common_url_schemes(), true));
 
