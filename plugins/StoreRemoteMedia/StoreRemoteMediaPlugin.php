@@ -77,8 +77,13 @@ class StoreRemoteMediaPlugin extends Plugin
         $this->checkWhitelist($file->getUrl());
 
         // First we download the file to memory and test whether it's actually an image file
-        $imgData = HTTPClient::quickGet($file->getUrl());
-        common_debug(sprintf('Downloading remote file id==%u with URL: %s', $file->id, $file->getUrl()));
+        common_debug(sprintf('Downloading remote file id==%u with URL: %s', $file->getID(), _ve($file->getUrl())));
+        try {
+            $imgData = HTTPClient::quickGet($file->getUrl());
+        } catch (HTTP_Request2_ConnectionException $e) {
+            common_log(LOG_ERR, __CLASS__.': quickGet on URL: '._ve($file->getUrl()).' threw exception: '.$e->getMessage());
+            return true;
+        }
         $info = @getimagesizefromstring($imgData);
         if ($info === false) {
             throw new UnsupportedMediaException(_('Remote file format was not identified as an image.'), $file->getUrl());
