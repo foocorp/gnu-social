@@ -2,7 +2,7 @@
 /**
  * GNU social - a federating social network
  *
- * Plugin to make thumbnails of video files with avconv
+ * Plugin to make thumbnails of video files with ffmpeg/avconv
  *
  * PHP version 5
  *
@@ -31,13 +31,13 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 /*
  * Dependencies:
- *  avconv (external program call)
+ *  ffmpeg/avconv (external program call)
  *  php5-gd
  *
  * Todo:
  *  Make sure we support ffmpeg too, so we're not super Debian oriented.
  *
- * Video support will depend on your avconv.
+ * Video support will depend on your ffmpeg/avconv.
  */
 
 class VideoThumbnailsPlugin extends Plugin
@@ -56,16 +56,25 @@ class VideoThumbnailsPlugin extends Plugin
         }
 
         // Let's save our frame to a temporary file. If we fail, remove it.
-        $imgPath = tempnam(sys_get_temp_dir(), 'socialthumb-');
+        $tmp_imgPath = tempnam(sys_get_temp_dir(), 'socialthumb-');
 
-        $result = exec('avconv -i '.escapeshellarg($file->getPath()).' -vcodec mjpeg -vframes 1 -f image2 -an '.escapeshellarg($imgPath));
-
-        if (!getimagesize($imgPath)) {
-            common_debug('exec of "avconv" produced a bad/nonexisting image it seems');
-            @unlink($imgPath);
-            $imgPath = null;    // pretend we didn't touch it
+        $cmd = null;
+        if (shell_exec('which ffmpeg')) {
+            $cmd = 'ffmpeg';
+        } elseif (shell_exec('which avconv')) {
+            $cmd = 'avconv';
+        } else {
+            common_log(LOG_ERR, 'Neither ffmpeg nor avconv was found in your PATH. Cannot create video thumbnail.');
             return true;
         }
+        $result = exec($cmd.' -i '.escapeshellarg($file->getPath()).' -vcodec mjpeg -vframes 1 -f image2 -an '.escapeshellarg($imgPath));
+
+        if (!getimagesize($tmp_imgPath)) {
+            common_debug('exec of "avconv" produced a bad/nonexisting image it seems');
+            @unlink($tmp_imgPath);
+            return true;
+        }
+        $imgPath = $tmp_imgPath;
         return false;
     }
 
