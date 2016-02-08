@@ -74,11 +74,8 @@ class ApiBareAuthAction extends ApiAuthAction
         }
 
         // check whether a user has been specified somehow
-        $id           = $this->arg('id');
-        $user_id      = $this->arg('user_id');
-        $screen_name  = $this->arg('screen_name');
-
-        if (empty($id) && empty($user_id) && empty($screen_name)) {
+        if (!$this->arg('id') && !$this->arg('user_id')
+                && mb_strlen($this->arg('screen_name'))===0) {
             return true;
         }
 
