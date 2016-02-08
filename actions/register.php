@@ -483,6 +483,7 @@ class RegisterAction extends Action
                            'id' => 'license',
                            'class' => 'checkbox',
                            'name' => 'license',
+                           'required' => 'true',
                            'value' => 'true');
             if ($this->boolean('license')) {
                 $attrs['checked'] = 'checked';
