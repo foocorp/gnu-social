@@ -131,7 +131,11 @@ class RegisterAction extends Action
             // TRANS: Client error displayed when trying to register while already logged in.
             $this->clientError(_('Already logged in.'));
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->tryRegister();
+            try {
+                $this->tryRegister();
+            } catch (ClientException $e) {
+                $this->showForm($e->getMessage());
+            }
         } else {
             $this->showForm();
         }
