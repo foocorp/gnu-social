@@ -1404,20 +1404,21 @@ class ApiAction extends Action
                 if (self::is_decimal($this->arg('user_id'))) {
                     return Profile::getKV('id', $this->arg('user_id'));
                 }
-            } else if ($this->arg('screen_name')) {
+            } elseif (mb_strlen($this->arg('screen_name')) > 0) {
                 $nickname = common_canonical_nickname($this->arg('screen_name'));
-                $user = User::getKV('nickname', $nickname);
-                return $user instanceof User ? $user->getProfile() : null;
+                $user = User::getByNickname($nickname);
+                return $user->getProfile();
             } else {
                 // Fall back to trying the currently authenticated user
                 return $this->scoped;
             }
-        } else if (self::is_decimal($id)) {
-            return Profile::getKV($id);
+        } else if (self::is_decimal($id) && intval($id) > 0) {
+            return Profile::getByID($id);
         } else {
+            // FIXME: check if isAcct to identify remote profiles and not just local nicknames
             $nickname = common_canonical_nickname($id);
-            $user = User::getKV('nickname', $nickname);
-            return $user ? $user->getProfile() : null;
+            $user = User::getByNickname($nickname);
+            return $user->getProfile();
         }
     }
 
