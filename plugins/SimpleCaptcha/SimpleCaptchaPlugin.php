@@ -25,6 +25,13 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  */
 class SimpleCaptchaPlugin extends Plugin
 {
+    public function initialize()
+    {
+        // This probably needs some work. For example with IPv6 you can easily generate new IPs...
+        $client_ip = common_client_ip();
+        $this->client_ip = $client_ip[0] ?: $client_ip[1];   // [0] is proxy, [1] should be the real IP
+    }
+
     public function onEndRegistrationFormData(Action $action)
     {
         $action->elementStart('li');
@@ -46,6 +53,7 @@ class SimpleCaptchaPlugin extends Plugin
     public function onStartRegistrationTry(Action $action)
     {
         if ($action->arg('simplecaptcha') !== $this->getCaptchaText()) {
+            common_log(LOG_INFO, 'Stopped non-sentient registration of nickname '._ve($action->trimmed('nickname')).' from IP: '._ve($this->client_ip));
             throw new ClientException(_m('Captcha does not match!'));
         }
         return true;
