@@ -68,10 +68,8 @@ class DeletenoticeAction extends FormAction
                 $this->notice->deleteAs($this->scoped);
                 Event::handle('EndDeleteOwnNotice', array($this->scoped->getUser(), $this->notice));
             }
-        } else {
-            common_redirect(common_get_returnto(), 303);
         }
 
-        common_redirect(common_local_url('top'), 303);
+        common_redirect(common_get_returnto(), 303);
     }
 }
