@@ -214,11 +214,11 @@ class ApiAction extends Action
             $user = null;
         }
 
-        $twitter_user['id'] = intval($profile->id);
+        $twitter_user['id'] = $profile->getID();
         $twitter_user['name'] = $profile->getBestName();
-        $twitter_user['screen_name'] = $profile->nickname;
-        $twitter_user['location'] = ($profile->location) ? $profile->location : null;
-        $twitter_user['description'] = ($profile->bio) ? $profile->bio : null;
+        $twitter_user['screen_name'] = $profile->getNickname();
+        $twitter_user['location'] = $profile->location;
+        $twitter_user['description'] = $profile->getDescription();
 
         // TODO: avatar url template (example.com/user/avatar?size={x}x{y})
         $twitter_user['profile_image_url'] = Avatar::urlByProfile($profile, AVATAR_STREAM_SIZE);
