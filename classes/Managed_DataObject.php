@@ -409,8 +409,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
             throw new Exception('Empty ID for object! (not inserted yet?).');
         }
 
-        // FIXME: How about forcing to return an int? Or will that overflow eventually?
-        return $this->id;
+        return intval($this->id);
     }
 
     // 'update' won't write key columns, so we have to do it ourselves.
