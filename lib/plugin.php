@@ -199,16 +199,14 @@ class Plugin
 
     static function staticPath($plugin, $relative)
     {
-        $isHTTPS = GNUsocial::isHTTPS();
-
-        if ($isHTTPS) {
+        if (GNUsocial::useHTTPS()) {
             $server = common_config('plugins', 'sslserver');
         } else {
             $server = common_config('plugins', 'server');
         }
 
         if (empty($server)) {
-            if ($isHTTPS) {
+            if (GNUsocial::useHTTPS()) {
                 $server = common_config('site', 'sslserver');
             }
             if (empty($server)) {
@@ -216,7 +214,7 @@ class Plugin
             }
         }
 
-        if ($isHTTPS) {
+        if (GNUsocial::useHTTPS()) {
             $path = common_config('plugins', 'sslpath');
         } else {
             $path = common_config('plugins', 'path');
@@ -239,7 +237,7 @@ class Plugin
             $path = '/'.$path;
         }
 
-        $protocol = ($isHTTPS) ? 'https' : 'http';
+        $protocol = GNUsocial::useHTTPS() ? 'https' : 'http';
 
         return $protocol.'://'.$server.$path.$plugin.'/'.$relative;
     }
