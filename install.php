@@ -350,7 +350,7 @@ STR;
             $fail = true;
         }
 
-        if (!in_array($this->ssl, array('never', 'sometimes', 'always'))) {
+        if (!in_array($this->ssl, array('never', 'always'))) {
             $this->updateStatus("Bad value for server SSL enabling.");
             $fail = true;
         }

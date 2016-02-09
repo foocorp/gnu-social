@@ -7,7 +7,7 @@ add "addPlugin('strictTransportSecurity');"
 to the bottom of your config.php
 
 The plugin will not do anything unless:
-$config['site']['ssl'] is set to 'always'
+$config['site']['ssl'] is set to something other than 'never'
 $config['site']['path'] is either not set, empty, or '/'
 
 Settings

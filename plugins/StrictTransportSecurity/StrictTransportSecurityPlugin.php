@@ -43,7 +43,7 @@ class StrictTransportSecurityPlugin extends Plugin
     function onArgsInitialize($args)
     {
         $path = common_config('site', 'path');
-        if(common_config('site', 'ssl') == 'always' && ($path == '/' || ! $path )) {
+        if (GNUsocial::useHTTPS() && ($path == '/' || mb_strlen($path)==0 )) {
             header('Strict-Transport-Security: max-age=' . $this->max_age
                     . ($this->includeSubDomains ? '; includeSubDomains' : '')
                     . ($this->preloadToken ? '; preload' : ''));

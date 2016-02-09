@@ -405,7 +405,7 @@ abstract class Installer
             'sitename' => $this->sitename,
             'server' => $this->server,
             'path' => $this->path,
-            'ssl' => in_array($this->ssl, array('never', 'sometimes', 'always'))
+            'ssl' => in_array($this->ssl, array('never', 'always'))
                      ? $this->ssl
                      : 'never',
             'db_database' => $this->db['database'],

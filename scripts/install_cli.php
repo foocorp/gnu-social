@@ -161,7 +161,7 @@ install_cli.php - StatusNet command-line installer
        --sitename        User-friendly site name (required)
        --fancy           Whether to use fancy URLs (default no)
        --ssl             Server SSL enabled (default never), 
-                         [never | sometimes | always]
+                         [never | always]
 
        --dbtype          'mysql' (default) or 'pgsql'
        --host            Database hostname (required)

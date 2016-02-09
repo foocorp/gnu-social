@@ -354,7 +354,7 @@ function common_set_cookie($key, $value, $expiration=0)
                      $expiration,
                      $cookiepath,
                      $server,
-                     common_config('site', 'ssl')=='always');
+                     GNUsocial::useHTTPS());
 }
 
 define('REMEMBERME', 'rememberme');
@@ -1345,9 +1345,7 @@ function common_local_url($action, $args=null, $params=null, $fragment=null, $ad
         $r = Router::get();
         $path = $r->build($action, $args, $params, $fragment);
 
-        $ssl = common_config('site', 'ssl') === 'always'
-                || GNUsocial::isHTTPS()
-                || common_is_sensitive($action);
+        $ssl = GNUsocial::useHTTPS();
 
         if (common_config('site','fancy')) {
             $url = common_path($path, $ssl, $addSession);
@@ -1363,35 +1361,11 @@ function common_local_url($action, $args=null, $params=null, $fragment=null, $ad
     return $url;
 }
 
-function common_is_sensitive($action)
-{
-    static $sensitive = array(
-        'login',
-        'register',
-        'passwordsettings',
-        'api',
-        'ApiOAuthRequestToken',
-        'ApiOAuthAccessToken',
-        'ApiOAuthAuthorize',
-        'ApiOAuthPin',
-        'showapplication'
-    );
-    $ssl = null;
-
-    if (Event::handle('SensitiveAction', array($action, &$ssl))) {
-        $ssl = in_array($action, $sensitive);
-    }
-
-    return $ssl;
-}
-
 function common_path($relative, $ssl=false, $addSession=true)
 {
     $pathpart = (common_config('site', 'path')) ? common_config('site', 'path')."/" : '';
 
-    if (($ssl && (common_config('site', 'ssl') === 'sometimes'))
-        || GNUsocial::isHTTPS()
-        || common_config('site', 'ssl') === 'always') {
+    if ($ssl && GNUsocial::useHTTPS()) {
         $proto = 'https';
         if (is_string(common_config('site', 'sslserver')) &&
             mb_strlen(common_config('site', 'sslserver')) > 0) {

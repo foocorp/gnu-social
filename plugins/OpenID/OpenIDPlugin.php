@@ -330,29 +330,6 @@ class OpenIDPlugin extends Plugin
     }
 
     /**
-     * Sensitive actions
-     *
-     * These actions should use https when SSL support is 'sometimes'
-     *
-     * @param Action  $action Action to form an URL for
-     * @param boolean &$ssl   Whether to mark it for SSL
-     *
-     * @return boolean hook return
-     */
-    function onSensitiveAction($action, &$ssl)
-    {
-        switch ($action)
-        {
-        case 'finishopenidlogin':
-        case 'finishaddopenid':
-            $ssl = true;
-            return false;
-        default:
-            return true;
-        }
-    }
-
-    /**
      * Login actions
      *
      * These actions should be visible even when the site is marked private

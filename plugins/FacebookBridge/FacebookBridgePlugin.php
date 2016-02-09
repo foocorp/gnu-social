@@ -472,30 +472,6 @@ ENDOFSCRIPT;
         return true;
     }
 
-    /*
-     * Use SSL for Facebook stuff
-     *
-     * @param string $action name
-     * @param boolean $ssl outval to force SSL
-     * @return mixed hook return value
-     */
-    function onSensitiveAction($action, &$ssl)
-    {
-        $sensitive = array(
-            'facebookadminpanel',
-            'facebooksettings',
-            'facebooklogin',
-            'facebookfinishlogin'
-        );
-
-        if (in_array($action, $sensitive)) {
-            $ssl = true;
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     /**
      * If a notice gets deleted, remove the Notice_to_item mapping and
      * delete the item on Facebook
