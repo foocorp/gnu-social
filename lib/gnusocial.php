@@ -426,6 +426,10 @@ class GNUsocial
 
     static function isHTTPS()
     {
+        if (common_config('site', 'sslproxy')) {
+            return true;
+        }
+
         // There are some exceptions to this; add them here!
         if (empty($_SERVER['HTTPS'])) {
             return false;

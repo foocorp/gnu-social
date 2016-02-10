@@ -266,10 +266,8 @@ function main()
 
     $args = $r->map($path);
 
-    $site_ssl = common_config('site', 'ssl');
-
     // If the request is HTTP and it should be HTTPS...
-    if ($site_ssl != 'never' && !GNUsocial::isHTTPS() && common_is_sensitive($args['action'])) {
+    if (GNUsocial::useHTTPS() && !GNUsocial::isHTTPS()) {
         common_redirect(common_local_url($args['action'], $args));
     }
 

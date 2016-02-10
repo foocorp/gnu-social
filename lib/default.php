@@ -56,6 +56,7 @@ $default =
               'inviteonly' => true,
               'private' => false,
               'ssl' => 'never',
+              'sslproxy' => false,   // set to true to force GNU social to think it is HTTPS (i.e. using reverse proxy to enable it)
               'sslserver' => null,
               'dupelimit' => 60, // default for same person saying the same thing
               'textlimit' => 1000, // in chars; 0 == no limit
