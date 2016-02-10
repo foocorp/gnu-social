@@ -233,6 +233,7 @@ $default =
                                 'application/vnd.oasis.opendocument.text-web'               => 'oth',
                                 'application/pdf'   => 'pdf',
                                 'application/zip'   => 'zip',
+                                'application/xml'   => 'xml',
                                 'image/png'         => 'png',
                                 'image/jpeg'        => 'jpg',
                                 'image/gif'         => 'gif',
