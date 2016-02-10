@@ -610,23 +610,6 @@ handle: boolean. Whether we should register our own PHP session-handling
 debug: whether to output debugging info for session storage. Can help
     with weird session bugs, sometimes. Default false.
 
-background
-----------
-
-Users can upload backgrounds for their pages; this section defines
-their use.
-
-server: the server to use for background. Using a separate (even
-    virtual) server for this can speed up load times. Default is
-    null; same as site server.
-dir: directory to write backgrounds too. Default is '/background/'
-    subdir of install dir.
-path: path to backgrounds. Default is sub-path of install path; note
-    that you may need to change this if you change site-path too.
-sslserver: SSL server to use when page is HTTPS-encrypted. If
-    unspecified, site ssl server and so on will be used.
-sslpath: If sslserver if defined, path to use when page is HTTPS-encrypted.
-
 ping
 ----
 
