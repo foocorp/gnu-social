@@ -47,6 +47,7 @@ function main()
         fixupFileGeometry();
         deleteLocalFileThumbnailsWithoutFilename();
         deleteMissingLocalFileThumbnails();
+        fixupFileThumbnailUrlhash();
         setFilehashOnLocalFiles();
 
         initGroupProfileId();
@@ -516,6 +517,19 @@ function setFilehashOnLocalFiles()
             }
         }
     }
+
+    printfnq("DONE.\n");
+}
+
+function fixupFileThumbnailUrlhash()
+{
+    printfnq("Setting urlhash for File_thumbnail entries: ");
+
+    $thumb = new File_thumbnail();
+    $thumb->query('UPDATE '.$thumb->escapedTableName().' SET urlhash=SHA2(url, 256) WHERE'.
+                    ' url IS NOT NULL AND'. // find all entries with a url value
+                    ' url != "" AND'.       // precaution against non-null empty strings
+                    ' urlhash IS NULL');    // but don't touch those we've already calculated
 
     printfnq("DONE.\n");
 }

@@ -27,17 +27,21 @@ class File_thumbnail extends Managed_DataObject
 {
     public $__table = 'file_thumbnail';                  // table name
     public $file_id;                         // int(4)  primary_key not_null
+    public $urlhash;                         // varchar(64) indexed
     public $url;                             // text
     public $filename;                        // text
     public $width;                           // int(4)  primary_key
     public $height;                          // int(4)  primary_key
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
+    const URLHASH_ALG = 'sha256';
+
     public static function schemaDef()
     {
         return array(
             'fields' => array(
                 'file_id' => array('type' => 'int', 'not null' => true, 'description' => 'thumbnail for what URL/file'),
+                'urlhash' => array('type' => 'varchar', 'length' => 64, 'description' => 'sha256 of url field if non-empty'),
                 'url' => array('type' => 'text', 'description' => 'URL of thumbnail'),
                 'filename' => array('type' => 'text', 'description' => 'if stored locally, filename is put here'),
                 'width' => array('type' => 'int', 'description' => 'width of thumbnail'),
@@ -47,6 +51,7 @@ class File_thumbnail extends Managed_DataObject
             'primary key' => array('file_id', 'width', 'height'),
             'indexes' => array(
                 'file_thumbnail_file_id_idx' => array('file_id'),
+                'file_thumbnail_urlhash_idx' => array('urlhash'),
             ),
             'foreign keys' => array(
                 'file_thumbnail_file_id_fkey' => array('file', array('file_id' => 'id')),
@@ -136,12 +141,6 @@ class File_thumbnail extends Managed_DataObject
     {
         if (!empty($this->filename) || $this->getFile()->isLocal()) {
             // A locally stored File, so we can dynamically generate a URL.
-            if (!empty($this->url)) {
-                // Let's just clear this field as there is no point in having it for local files.
-                $orig = clone($this);
-                $this->url = '';
-                $this->update($orig);
-            }
             $url = common_local_url('attachment_thumbnail', array('attachment'=>$this->file_id));
             if (strpos($url, '?') === false) {
                 $url .= '?';
@@ -191,5 +190,32 @@ class File_thumbnail extends Managed_DataObject
     public function getFile()
     {
         return File::getByID($this->file_id);
+    }
+
+
+    static public function hashurl($url)
+    {
+        if (!mb_strlen($url)) {
+            throw new Exception('No URL provided to hash algorithm.');
+        }
+        return hash(self::URLHASH_ALG, $url);
+    }
+
+    public function onInsert()
+    {
+        $this->setUrlhash();
+    }
+
+    public function onUpdate($dataObject=false)
+    {
+        // if we have nothing to compare with OR it has changed from previous entry
+        if (!$dataObject instanceof Managed_DataObject || $this->url !== $dataObject->url) {
+            $this->setUrlhash();
+        }
+    }
+
+    public function setUrlhash()
+    {
+        $this->urlhash = mb_strlen($this->url)>0 ? self::hashurl($this->url) : null;
     }
 }
