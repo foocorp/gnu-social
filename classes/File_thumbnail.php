@@ -85,13 +85,24 @@ class File_thumbnail extends Managed_DataObject
 
     /**
      * Fetch an entry by using a File's id
+     *
+     * @param   File    $file       The File object we're getting a thumbnail for.
+     * @param   boolean $notNullUrl Originally remote thumbnails have a URL stored, we use this to find the "original"
+     *
+     * @return  File_thumbnail
+     * @throws  NoResultException if no File_thumbnail matched the criteria
      */
-    static function byFile(File $file) {
-        $file_thumbnail = self::getKV('file_id', $file->getID());
-        if (!$file_thumbnail instanceof File_thumbnail) {
-            throw new ServerException(sprintf('No File_thumbnail entry for File id==%u', $file->getID()));
+    static function byFile(File $file, $notNullUrl=true) {
+        $thumb = new File_thumbnail();
+        $thumb->file_id = $file->getID();
+        if ($notNullUrl) {
+            $thumb->whereAdd('url IS NOT NULL');
         }
-        return $file_thumbnail;
+        $thumb->limit(1);
+        if (!$thumb->find(true)) {
+            throw new NoResultException($thumb);
+        }
+        return $thumb;
     }
 
     /**
