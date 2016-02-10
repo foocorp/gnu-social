@@ -267,7 +267,7 @@ class OembedPlugin extends Plugin
             // and File_thumbnail tables respectively. If not, we're not going to do anything.
             $file_oembed = File_oembed::getByFile($file);
             $thumbnail   = File_thumbnail::byFile($file);
-        } catch (Exception $e) {
+        } catch (NoResultException $e) {
             // Not Oembed data, or at least nothing we either can or want to use.
             return true;
         }
