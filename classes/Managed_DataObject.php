@@ -515,4 +515,26 @@ abstract class Managed_DataObject extends Memcached_DataObject
                                         $object->getID(),
                                         common_date_iso8601($created));
     }
+
+    protected function onInsert()
+    {
+        // NOOP by default
+    }
+
+    protected function onUpdate($dataObject=false)
+    {
+        // NOOP by default
+    }
+
+    public function insert()
+    {
+        $this->onInsert();
+        return parent::insert();
+    }
+
+    public function update($dataObject=false)
+    {
+        $this->onUpdate($dataObject);
+        return parent::update($dataObject);
+    }
 }
