@@ -416,7 +416,7 @@ class File extends Managed_DataObject
      * @throws UnsupportedMediaException    if, despite trying, we can't understand how to make a thumbnail for this format
      * @throws ServerException              on various other errors
      */
-    public function getThumbnail($width=null, $height=null, $crop=false, $force_still=true)
+    public function getThumbnail($width=null, $height=null, $crop=false, $force_still=true, $upscale=null)
     {
         // Get some more information about this file through our ImageFile class
         $image = ImageFile::fromFileObject($this);
@@ -428,7 +428,8 @@ class File extends Managed_DataObject
             }
         }
 
-        return $image->getFileThumbnail($width, $height, $crop);
+        return $image->getFileThumbnail($width, $height, $crop,
+                                        !is_null($upscale) ? $upscale : common_config('thumbnail', 'upscale'));
     }
 
     public function getPath()
