@@ -150,7 +150,7 @@ class ImageFile
         }
 
         try {
-            $image = new ImageFile($file->id, $imgPath);
+            $image = new ImageFile($file->getID(), $imgPath);
         } catch (UnsupportedMediaException $e) {
             // Avoid deleting the original
             if ($imgPath != $file->getPath()) {
@@ -541,7 +541,7 @@ class ImageFile
         return $count > 1;
     }
 
-    public function getFileThumbnail($width, $height, $crop)
+    public function getFileThumbnail($width, $height, $crop, $upscale=false)
     {
         if (!$this->fileRecord instanceof File) {
             throw new ServerException('No File object attached to this ImageFile object.');
@@ -551,6 +551,15 @@ class ImageFile
             $width = common_config('thumbnail', 'width');
             $height = common_config('thumbnail', 'height');
             $crop = common_config('thumbnail', 'crop');
+        }
+
+        if (!$upscale) {
+            if ($width > $this->width) {
+                $width = $this->width;
+            }
+            if (!is_null($height) && $height > $this->height) {
+                $height = $this->height;
+            }
         }
 
         if ($height === null) {
@@ -602,8 +611,8 @@ class ImageFile
         if ($this->getPath() != File_thumbnail::path($this->filename)) {
             $this->unlink();
         }
-        return File_thumbnail::saveThumbnail($this->fileRecord->id,
-                                      File_thumbnail::url($outname),
+        return File_thumbnail::saveThumbnail($this->fileRecord->getID(),
+                                      null, // no url since we generated it ourselves and can dynamically generate the url
                                       $width, $height,
                                       $outname);
     }
