@@ -100,6 +100,10 @@ ssl: Whether to use SSL and https:// URLs for some or all pages.
     (don't use it for any pages), or 'sometimes' (use it for
     sensitive pages that include passwords like login and registration,
     but not for regular pages). Default to 'never'.
+sslproxy: Whether to force GNUsocial to think it is HTTPS when the
+    server gives no such information. I.e. when you're using a reverse
+    proxy that adds the encryption layer but the webserver that runs PHP
+    isn't configured with a key and certificate.
 sslserver: use an alternate server name for SSL URLs, like
     'secure.example.org'. You should be careful to set cookie
     parameters correctly so that both the SSL server and the
