@@ -37,20 +37,28 @@ END_OF_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
+print "Finding File entries that are not related to a Notice (or the notice has been deleted)...";
+$file = new File();
+$sql = 'SELECT id FROM file'.
+        ' JOIN file_to_post ON file_to_post.file_id=file.id'.
+        ' WHERE'.
+            ' NOT EXISTS (SELECT file_to_post.file_id FROM file_to_post WHERE file.id=file_id)'.
+            ' OR NOT EXISTS (SELECT notice.id FROM notice WHERE notice.id=post_id);';
+
+print " {$file->N} found.\n";
+if ($file->N == 0) {
+    exit(0);
+}
 if (!have_option('y', 'yes')) {
-    print "About to delete local files that are not related to a Notice. Are you sure? [y/N] ";
+    print "About to delete the entries along with locally stored files. Are you sure? [y/N] ";
     $response = fgets(STDIN);
     if (strtolower(trim($response)) != 'y') {
         print "Aborting.\n";
         exit(0);
     }
 }
-
-print "Finding File entries...";
-$file = new File();
-$sql = 'SELECT * FROM file WHERE NOT EXISTS (SELECT id FROM file_to_post WHERE file.id=file_id);';
 if ($file->query($sql) !== false) {
-    print " Deleting {$file->N} entries: ";
+    print "\nDeleting: ";
     while ($file->fetch()) {
         try {
             $file->getPath();
