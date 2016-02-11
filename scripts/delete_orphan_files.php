@@ -39,16 +39,22 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 print "Finding File entries that are not related to a Notice (or the notice has been deleted)...";
 $file = new File();
-$sql = 'SELECT id FROM file'.
+$sql = 'SELECT file.id FROM file'.
         ' JOIN file_to_post ON file_to_post.file_id=file.id'.
         ' WHERE'.
-            ' NOT EXISTS (SELECT file_to_post.file_id FROM file_to_post WHERE file.id=file_id)'.
-            ' OR NOT EXISTS (SELECT notice.id FROM notice WHERE notice.id=post_id);';
+            ' NOT EXISTS (SELECT file_to_post.file_id FROM file_to_post WHERE file.id=file_to_post.file_id)'.
+            ' OR NOT EXISTS (SELECT notice.id FROM notice WHERE notice.id=file_to_post.post_id);';
 
-print " {$file->N} found.\n";
-if ($file->N == 0) {
-    exit(0);
+if ($file->query($sql) !== false) {
+    print " {$file->N} found.\n";
+    if ($file->N == 0) {
+        exit(0);
+    }
+} else {
+    print "FAILED";
+    exit(1);
 }
+
 if (!have_option('y', 'yes')) {
     print "About to delete the entries along with locally stored files. Are you sure? [y/N] ";
     $response = fgets(STDIN);
@@ -57,18 +63,17 @@ if (!have_option('y', 'yes')) {
         exit(0);
     }
 }
-if ($file->query($sql) !== false) {
-    print "\nDeleting: ";
-    while ($file->fetch()) {
-        try {
-            $file->getPath();
-            $file->delete();
-            print 'x';
-        } catch (Exception $e) {
-            // either FileNotFound exception or ClientException
-            $file->delete();
-            print '.';
-        }
+
+print "\nDeleting: ";
+while ($file->fetch()) {
+    try {
+        $file->getPath();
+        $file->delete();
+        print 'x';
+    } catch (Exception $e) {
+        // either FileNotFound exception or ClientException
+        $file->delete();
+        print '.';
     }
 }
 print "\nDONE.\n";
