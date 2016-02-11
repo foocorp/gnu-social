@@ -43,7 +43,8 @@ $sql = 'SELECT file.* FROM file'.
         ' JOIN file_to_post ON file_to_post.file_id=file.id'.
         ' WHERE'.
             ' NOT EXISTS (SELECT file_to_post.file_id FROM file_to_post WHERE file.id=file_to_post.file_id)'.
-            ' OR NOT EXISTS (SELECT notice.id FROM notice WHERE notice.id=file_to_post.post_id);';
+            ' OR NOT EXISTS (SELECT notice.id FROM notice WHERE notice.id=file_to_post.post_id)'.
+            ' GROUP BY file.id;';
 
 if ($file->query($sql) !== false) {
     print " {$file->N} found.\n";
