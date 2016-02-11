@@ -39,7 +39,7 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 print "Finding File entries that are not related to a Notice (or the notice has been deleted)...";
 $file = new File();
-$sql = 'SELECT file.id FROM file'.
+$sql = 'SELECT file.* FROM file'.
         ' JOIN file_to_post ON file_to_post.file_id=file.id'.
         ' WHERE'.
             ' NOT EXISTS (SELECT file_to_post.file_id FROM file_to_post WHERE file.id=file_to_post.file_id)'.
