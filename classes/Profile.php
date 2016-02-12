@@ -1174,12 +1174,41 @@ class Profile extends Managed_DataObject
         }
     }
 
+    function silenceAs(Profile $actor)
+    {
+        if (!$actor->hasRight(Right::SILENCEUSER)) {
+            throw new AuthorizationException(_('You cannot silence users on this site.'));
+        }
+        // Only administrators can silence other priviliged users (those who have the right to silence as well).
+        if ($this->hasRight(Right::SILENCEUSER) && !$actor->hasRole(Profile_role::ADMINISTRATOR)) {
+            throw new AuthorizationException(_('You cannot silence other priviliged users.'));
+        }
+        if ($this->isSilenced()) {
+            // TRANS: Client error displayed trying to silence an already silenced user.
+            throw new AlreadyFulfilledException(_('User is already silenced.'));
+        }
+        return $this->silence();
+    }
+
     function unsilence()
     {
         $this->revokeRole(Profile_role::SILENCED);
         if (common_config('notice', 'hidespam')) {
             $this->flushVisibility();
         }
+    }
+
+    function unsilenceAs(Profile $actor)
+    {
+        if (!$actor->hasRight(Right::SILENCEUSER)) {
+            // TRANS: Client error displayed trying to unsilence a user when the user does not have the right.
+            throw new AuthorizationException(_('You cannot unsilence users on this site.'));
+        }
+        if (!$this->isSilenced()) {
+            // TRANS: Client error displayed trying to unsilence a user when the target user has not been silenced.
+            throw new AlreadyFulfilledException(_('User is not silenced.'));
+        }
+        return $this->unsilence();
     }
 
     function flushVisibility()

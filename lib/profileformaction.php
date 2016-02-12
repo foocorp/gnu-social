@@ -101,7 +101,11 @@ class ProfileFormAction extends RedirectingAction
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->handlePost();
+            try {
+                $this->handlePost();
+            } catch (AlreadyFulfilledException $e) {
+                // 'tis alright
+            }
             $this->returnToPrevious();
         }
     }

@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Silence a user.
@@ -42,45 +40,11 @@ if (!defined('STATUSNET')) {
  */
 class SilenceAction extends ProfileFormAction
 {
-    /**
-     * Check parameters
-     *
-     * @param array $args action arguments (URL, GET, POST)
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
-    {
-        if (!parent::prepare($args)) {
-            return false;
-        }
-
-        $cur = common_current_user();
-
-        assert(!empty($cur)); // checked by parent
-
-        if (!$cur->hasRight(Right::SILENCEUSER)) {
-            // TRANS: Client error displayed trying to silence a user on a site where the feature is not enabled.
-            $this->clientError(_('You cannot silence users on this site.'));
-        }
-
-        assert(!empty($this->profile)); // checked by parent
-
-        if ($this->profile->isSilenced()) {
-            // TRANS: Client error displayed trying to silence an already silenced user.
-            $this->clientError(_('User is already silenced.'));
-        }
-
-        return true;
-    }
-
-    /**
-     * Silence a user.
-     *
-     * @return void
-     */
     function handlePost()
     {
-        $this->profile->silence();
+        assert($this->scoped instanceof Profile);
+        assert($this->profile instanceof Profile);
+
+        $this->profile->silenceAs($this->scoped);
     }
 }
