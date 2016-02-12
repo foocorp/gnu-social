@@ -17,9 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * @package ModHelperPlugin
@@ -45,7 +43,9 @@ class ModHelperPlugin extends Plugin
     function onUserRightsCheck($profile, $right, &$result)
     {
         if (in_array($right, self::$rights)) {
-            // Hrm.... really we should confirm that the *other* user isn't privleged. :)
+            // To silence a profile without accidentally silencing other
+            // privileged users, always call Profile->silenceAs($actor)
+            // since it checks target's privileges too.
             if ($profile->hasRole('modhelper')) {
                 $result = true;
                 return false;
