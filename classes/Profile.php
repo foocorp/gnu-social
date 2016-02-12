@@ -1179,9 +1179,9 @@ class Profile extends Managed_DataObject
         if (!$actor->hasRight(Right::SILENCEUSER)) {
             throw new AuthorizationException(_('You cannot silence users on this site.'));
         }
-        // Only administrators can silence other priviliged users (those who have the right to silence as well).
-        if ($this->hasRight(Right::SILENCEUSER) && !$actor->hasRole(Profile_role::ADMINISTRATOR)) {
-            throw new AuthorizationException(_('You cannot silence other priviliged users.'));
+        // Only administrators can silence other privileged users (such as others who have the right to silence).
+        if ($this->isPrivileged() && !$actor->hasRole(Profile_role::ADMINISTRATOR)) {
+            throw new AuthorizationException(_('You cannot silence other privileged users.'));
         }
         if ($this->isSilenced()) {
             // TRANS: Client error displayed trying to silence an already silenced user.
@@ -1219,6 +1219,22 @@ class Profile extends Managed_DataObject
         foreach ($ids as $id) {
             self::blow('notice:in-scope-for:%d:null', $id);
         }
+    }
+
+    public function isPrivileged()
+    {
+        // TODO: An Event::handle so plugins can report if users are privileged.
+        // The ModHelper is the only one I care about when coding this, and that
+        // can be tested with Right::SILENCEUSER which I do below:
+        switch (true) {
+        case $this->hasRight(Right::SILENCEUSER):
+        case $this->hasRole(Profile_role::MODERATOR):
+        case $this->hasRole(Profile_role::ADMINISTRATOR):
+        case $this->hasRole(Profile_role::OWNER):
+            return true;
+        }
+
+        return false;
     }
 
     /**
