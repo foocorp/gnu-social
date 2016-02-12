@@ -1628,6 +1628,15 @@ class Profile extends Managed_DataObject
         return $profile;
     }
 
+    static function ensureCurrent()
+    {
+        $profile = self::current();
+        if (!$profile instanceof Profile) {
+            throw new AuthorizationException('A currently scoped profile is required.');
+        }
+        return $profile;
+    }
+
     /**
      * Magic function called at serialize() time.
      *
