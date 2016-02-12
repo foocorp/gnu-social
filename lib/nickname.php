@@ -180,18 +180,18 @@ class Nickname
         // All directory and file names in site root should be blacklisted
         $d = dir(INSTALLDIR);
         while (false !== ($entry = $d->read())) {
-            $paths[] = $entry;
+            $paths[$entry] = true;
         }
         $d->close();
 
         // All top level names in the router should be blacklisted
         $router = Router::get();
-        foreach (array_keys($router->m->getPaths()) as $path) {
-            if (preg_match('/^\/(.*?)[\/\?]/',$path,$matches)) {
-                $paths[] = $matches[1];
+        foreach ($router->m->getPaths() as $path) {
+            if (preg_match('/^([^\/\?]+)[\/\?]/',$path,$matches) && isset($matches[1])) {
+                $paths[$matches[1]] = true;
             }
         }
-        return in_array($str, $paths);
+        return in_array($str, array_keys($paths));
     }
 
     /**
