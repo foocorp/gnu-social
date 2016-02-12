@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Delete a user
@@ -44,33 +42,30 @@ class DeleteuserAction extends ProfileFormAction
 {
     var $user = null;
 
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    function prepare(array $args=array())
     {
         if (!parent::prepare($args)) {
             return false;
         }
 
-        $cur = common_current_user();
+        assert($this->scoped instanceof Profile);
 
-        assert(!empty($cur)); // checked by parent
-
-        if (!$cur->hasRight(Right::DELETEUSER)) {
+        if (!$this->scoped->hasRight(Right::DELETEUSER)) {
             // TRANS: Client error displayed when trying to delete a user without having the right to delete users.
-            $this->clientError(_('You cannot delete users.'));
+            throw new AuthorizationException(_('You cannot delete users.'));
         }
 
-        $this->user = User::getKV('id', $this->profile->id);
-
-        if (empty($this->user)) {
+        try {
+            $this->user = $this->profile->getUser();
+        } catch (NoSuchUserException $e) {
             // TRANS: Client error displayed when trying to delete a non-local user.
-            $this->clientError(_('You can only delete local users.'));
+            throw new ClientException(_('You can only delete local users.'));
+        }
+
+        // Only administrators can delete other privileged users (such as others who have the right to silence).
+        if ($this->profile->isPrivileged() && !$this->scoped->hasRole(Profile_role::ADMINISTRATOR)) {
+            // TRANS: Client error displayed when trying to delete a user that has been granted moderation privileges
+            throw new AuthorizationException(_('You cannot delete other privileged users.'));
         }
 
         return true;
