@@ -191,6 +191,12 @@ class Nickname
                 $paths[$matches[1]] = true;
             }
         }
+
+        // FIXME: this assumes the 'path' is in the first-level directory, though common it's not certain
+        foreach (['avatar', 'attachments'] as $cat) {
+            $paths[basename(common_config($cat, 'path'))] = true;
+        }
+
         return in_array($str, array_keys($paths));
     }
 
