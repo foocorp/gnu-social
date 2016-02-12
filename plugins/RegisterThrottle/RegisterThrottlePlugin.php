@@ -134,6 +134,37 @@ class RegisterThrottlePlugin extends Plugin
         return true;
     }
 
+    function onEndShowSections(Action $action)
+    {
+        if (!$action instanceof ShowstreamAction) {
+            // early return for actions we're not interested in
+            return true;
+        }
+
+        $scoped = $action->getScoped();
+        if (!$scoped instanceof Profile || !$scoped->hasRight(self::VIEWMODLOG)) {
+            // only continue if we are allowed to VIEWMODLOG
+            return true;
+        }
+
+        $ri = Registration_ip::getKV('user_id', $profile->id);
+        $ipaddress = null;
+        if ($ri instanceof Registration_ip) {
+            $ipaddress = $ri->ipaddress;
+            unset($ri);
+        }
+
+        $action->elementStart('div', array('id' => 'entity_mod_log',
+                                           'class' => 'section'));
+
+        $action->element('h2', null, _('Registration IP'));
+
+        $action->element('strong', null, _('Registered from:'));
+        $action->element('span', ['class'=>'ipaddress'], $ipaddress ?: 'unknown');
+
+        $action->elementEnd('div');
+    }
+
     /**
      * Called after someone registers, by any means.
      *
