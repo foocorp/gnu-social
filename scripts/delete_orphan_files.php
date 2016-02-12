@@ -33,6 +33,9 @@ attached files weren't removed as well.
 
 Will print '.' for each deleted File entry and 'x' if it also had a locally stored file.
 
+WARNING WARNING WARNING, this will also delete Qvitter files such as background etc. since
+they are not linked to notices (yet anyway).
+
 END_OF_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
