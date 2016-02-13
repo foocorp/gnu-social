@@ -19,23 +19,22 @@
  */
 
 
-$s = "";
+// basename should make sure we can't escape this directory
+$u = basename($_GET['resource']);
 
-/* this should be a secret */
-
-$u = $_GET['uri'];
-
-$u = substr($u, 5);
-
-$f = $s . $u . ".xml";
-
-if (file_exists($f)) {
-  $fh = fopen($f, 'r');
-  $c = fread($fh, filesize($f));
-  fclose($fh);
-  header('Content-type: text/xml');
-  echo $c;
+if (!strpos($u, '@')) {
+    throw new Exception('Bad resource');
+    exit(1);
 }
 
+if (mb_strpos($u, 'acct:')===0) {
+    $u = substr($u, 5);
+}
 
-?>
+$f = $u . ".xml";
+
+if (file_exists($f)) {
+  header('Content-Disposition: attachment; filename="'.urlencode($f).'"');
+  header('Content-type: application/xrd+xml');
+  echo file_get_contents($f);
+}
