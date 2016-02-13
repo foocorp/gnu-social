@@ -26,7 +26,8 @@ class IpregistrationsAction extends ManagedAction
     public function showContent()
     {
         $this->elementStart('ul');
-        foreach (Profile::listGet('id', $this->profile_ids) as $profile) {
+        $profile = Profile::multiGet('id', $this->profile_ids);
+        while ($profile->fetch()) {
             $this->elementStart('li');
             try {
                 $this->element('a', ['href'=>$profile->getUrl()], $profile->getFancyName());
