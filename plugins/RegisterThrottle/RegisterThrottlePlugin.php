@@ -160,7 +160,7 @@ class RegisterThrottlePlugin extends Plugin
             return true;
         }
 
-        $ri = Registration_ip::getKV('user_id', $profile->id);
+        $ri = Registration_ip::getKV('user_id', $target->getID());
         $ipaddress = null;
         if ($ri instanceof Registration_ip) {
             $ipaddress = $ri->ipaddress;
@@ -172,12 +172,17 @@ class RegisterThrottlePlugin extends Plugin
 
         $action->element('h2', null, _('Registration IP'));
 
+        // TRANS: Label for the information about which IP a users registered from.
         $action->element('strong', null, _('Registered from:'));
-        $action->element('a',
-                            [ 'class'=>'ipaddress',
-                              'href'=>common_local_url('ipregistrations', array('ipaddress'=>$ipaddress)),
-                            ],
-                            $ipaddress ?: 'unknown');
+        $el = 'span';
+        $attrs = ['class'=>'ipaddress'];
+        if (!is_null($ipaddress)) {
+            $el = 'a';
+            $attrs['href'] = common_local_url('ipregistrations', array('ipaddress'=>$ipaddress));
+        }
+        $action->element($el, $attrs,
+                            // TRANS: Unknown IP address.
+                            $ipaddress ?: _('unknown'));
 
         $action->elementEnd('div');
     }
