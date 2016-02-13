@@ -155,8 +155,8 @@ class RegisterThrottlePlugin extends Plugin
         }
 
         $scoped = $action->getScoped();
-        if (!$scoped instanceof Profile || !$scoped->hasRight(self::VIEWMODLOG)) {
-            // only continue if we are allowed to VIEWMODLOG
+        if (!$scoped->hasRight(Right::SILENCEUSER)) {
+            // only show registration IP if we have the right to silence users
             return true;
         }
 

@@ -15,8 +15,8 @@ class IpregistrationsAction extends ManagedAction
 
     protected function doPreparation()
     {
-        if (!$scoped->hasRight(self::VIEWMODLOG) && !$scoped->hasRole(Profile_role::ADMINISTRATOR)) {
-            throw new AuthorizationException(_('You do not have privileges to see this page'));
+        if (!$scoped->hasRight(Right::SILENCEUSER) && !$scoped->hasRole(Profile_role::ADMINISTRATOR)) {
+            throw new AuthorizationException(_('You are not authorized to view this page.'));
         }
 
         $this->ipaddress    = $this->trimmed('ipaddress');
