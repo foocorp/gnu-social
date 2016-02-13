@@ -31,6 +31,9 @@ if (mb_strpos($u, 'acct:')===0) {
     $u = substr($u, 5);
 }
 
+// Just to be a little bit safer, you know, with all the unicode stuff going on
+$u = filter_var($u, FILTER_SANITIZE_EMAIL);
+
 $f = $u . ".xml";
 
 if (file_exists($f)) {
