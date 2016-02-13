@@ -81,6 +81,13 @@ class RegisterThrottlePlugin extends Plugin
         return true;
     }
 
+    public function onRouterInitialized(URLMapper $m)
+    {
+        $m->connect('main/ipregistrations/:ipaddress',
+                    array('action'      => 'ipregistrations'),
+                    array('ipaddress'   => '[0-9a-f\.\:]+'));
+    }
+
     /**
      * Called when someone tries to register.
      *
@@ -141,6 +148,12 @@ class RegisterThrottlePlugin extends Plugin
             return true;
         }
 
+        $target = $action->getTarget();
+        if (!$target->isSilenced()) {
+            // Only show the IP of users who are not silenced.
+            return true;
+        }
+
         $scoped = $action->getScoped();
         if (!$scoped instanceof Profile || !$scoped->hasRight(self::VIEWMODLOG)) {
             // only continue if we are allowed to VIEWMODLOG
@@ -160,7 +173,11 @@ class RegisterThrottlePlugin extends Plugin
         $action->element('h2', null, _('Registration IP'));
 
         $action->element('strong', null, _('Registered from:'));
-        $action->element('span', ['class'=>'ipaddress'], $ipaddress ?: 'unknown');
+        $action->element('a',
+                            [ 'class'=>'ipaddress',
+                              'href'=>common_local_url('ipregistrations', array('ipaddress'=>$ipaddress)),
+                            ],
+                            $ipaddress ?: 'unknown');
 
         $action->elementEnd('div');
     }
@@ -185,8 +202,8 @@ class RegisterThrottlePlugin extends Plugin
 
         $reg = new Registration_ip();
 
-        $reg->user_id   = $profile->id;
-        $reg->ipaddress = $ipaddress;
+        $reg->user_id   = $profile->getID();
+        $reg->ipaddress = mb_strtolower($ipaddress);
         $reg->created   = common_sql_now();
 
         $result = $reg->insert();
