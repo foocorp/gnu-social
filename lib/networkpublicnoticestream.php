@@ -46,9 +46,7 @@ class RawNetworkPublicNoticeStream extends NoticeStream
         Notice::addWhereSinceId($notice, $since_id);
         Notice::addWhereMaxId($notice, $max_id);
 
-        if (!empty($this->selectVerbs)) {
-            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
-        }
+        self::filterVerbs($notice, $this->selectVerbs);
 
         $ids = array();
 

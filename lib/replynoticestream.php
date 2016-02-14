@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Stream of mentions of me
@@ -92,8 +88,20 @@ class RawReplyNoticeStream extends NoticeStream
         Notice::addWhereMaxId($reply, $max_id, 'notice_id', 'reply.modified');
 
         if (!empty($this->selectVerbs)) {
+            // this is a little special since we have to join in Notice
             $reply->joinAdd(array('notice_id', 'notice:id'));
-            $reply->whereAddIn('notice.verb', $this->selectVerbs, 'string');
+
+            $filter = array_keys(array_filter($this->selectVerbs));
+            if (!empty($filter)) {
+                // include verbs in selectVerbs with values that equate to true
+                $reply->whereAddIn('notice.verb', $filter, 'string');
+            }
+
+            $filter = array_keys(array_filter($this->selectVerbs, function ($v) { return !$v; }));
+            if (!empty($filter)) {
+                // exclude verbs in selectVerbs with values that equate to false
+                $reply->whereAddIn('!notice.verb', $filter, 'string');
+            }
         }
 
         $reply->orderBy('reply.modified DESC, reply.notice_id DESC');

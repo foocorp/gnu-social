@@ -30,7 +30,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('GNUSOCIAL') && !defined('STATUSNET')) { exit(1); }
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Stream of notices for a profile's "all" feed
@@ -77,6 +77,8 @@ class RawInboxNoticeStream extends NoticeStream
     protected $target  = null;
     protected $inbox = null;
 
+    protected $selectVerbs = array();
+
     /**
      * Constructor
      *
@@ -84,8 +86,8 @@ class RawInboxNoticeStream extends NoticeStream
      */
     function __construct(Profile $target)
     {
+        parent::__construct();
         $this->target  = $target;
-        $this->unselectVerbs = array(ActivityVerb::DELETE);
     }
 
     /**
@@ -119,12 +121,9 @@ class RawInboxNoticeStream extends NoticeStream
         if (!empty($max_id)) {
             $notice->whereAdd(sprintf('notice.id <= %d', $max_id));
         }
-        if (!empty($this->selectVerbs)) {
-            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
-        }
-        if (!empty($this->unselectVerbs)) {
-            $notice->whereAddIn('!verb', $this->unselectVerbs, $notice->columnType('verb'));
-        }
+
+        self::filterVerbs($notice, $this->selectVerbs);
+
         $notice->limit($offset, $limit);
         // notice.id will give us even really old posts, which were
         // recently imported. For example if a remote instance had

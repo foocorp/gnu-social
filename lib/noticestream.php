@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Class for notice streams
@@ -46,16 +42,15 @@ if (!defined('STATUSNET')) {
  */
 abstract class NoticeStream
 {
-    protected $selectVerbs   = null;    // must be set to array
-    protected $unselectVerbs = null;    // must be set to array
+    protected $selectVerbs   = array(ActivityVerb::POST => true,
+                                     ActivityVerb::DELETE => false);
 
     public function __construct()
     {
-        if ($this->selectVerbs === null) {
-            $this->selectVerbs = array(ActivityVerb::POST, ActivityUtils::resolveUri(ActivityVerb::POST, true));
-        }
-        if ($this->unselectVerbs === null) {
-            $this->unselectVerbs = array(ActivityVerb::DELETE);
+        foreach ($this->selectVerbs as $key=>$val) {
+            // to avoid database inconsistency issues we select both relative and absolute verbs
+            $this->selectVerbs[ActivityUtils::resolveUri($key)] = $val;
+            $this->selectVerbs[ActivityUtils::resolveUri($key, true)] = $val;
         }
     }
 
@@ -73,5 +68,22 @@ abstract class NoticeStream
     static function getStreamByIds($ids)
     {
     	return Notice::multiGet('id', $ids);
+    }
+
+    static function filterVerbs(Notice $notice, array $selectVerbs)
+    {
+        $filter = array_keys(array_filter($selectVerbs));
+        if (!empty($filter)) {
+            // include verbs in selectVerbs with values that equate to true
+            $notice->whereAddIn('verb', $filter, $notice->columnType('verb'));
+        }
+
+        $filter = array_keys(array_filter($selectVerbs, function ($v) { return !$v; }));
+        if (!empty($filter)) {
+            // exclude verbs in selectVerbs with values that equate to false
+            $notice->whereAddIn('!verb', $filter, $notice->columnType('verb'));
+        }
+
+        unset($filter);
     }
 }
