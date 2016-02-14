@@ -43,7 +43,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 abstract class NoticeStream
 {
     protected $selectVerbs   = array(ActivityVerb::POST => true,
-                                     ActivityVerb::DELETE => false);
+                                     ActivityVerb::SHARE => true);
 
     public function __construct()
     {
