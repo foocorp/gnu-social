@@ -101,7 +101,7 @@ class RawTagNoticeStream extends NoticeStream
             }
         }
 
-        $nt->orderBy('created DESC, notice_id DESC');
+        $nt->orderBy('notice.created DESC, notice_id DESC');
 
         if (!is_null($offset)) {
             $nt->limit($offset, $limit);
