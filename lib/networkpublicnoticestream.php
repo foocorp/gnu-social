@@ -23,7 +23,7 @@ class NetworkPublicNoticeStream extends ScopingNoticeStream
  * @link      http://status.net/
  */
 
-class RawNetworkPublicNoticeStream extends NoticeStream
+class RawNetworkPublicNoticeStream extends FullNoticeStream
 {
     function getNoticeIds($offset, $limit, $since_id, $max_id)
     {
