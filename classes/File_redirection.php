@@ -170,19 +170,22 @@ class File_redirection extends Managed_DataObject
 
         try {
             $r = File_redirection::getByUrl($in_url);
-            try {
-                $f = File::getKV('id',$r->file_id);
+
+            $f = File::getKV('id',$r->file_id);
+
+            if($file instanceof File) {
                 $r->file = $f;
-                $r->redir_url = $f->url;
-            } catch (NoResultException $e) {
+                $r->redir_url = $f->url;            
+            } else {
                 // Invalid entry, delete and run again
                 common_log(LOG_ERR, "Could not find File with id=".$r->file_id." referenced in File_redirection, deleting File redirection entry and and trying again...");                 
                 $r->delete();
-                return self::where($in_url);
+                return self::where($in_url);            
             }
+            
             // File_redirecion and File record found, return both
             return $r;
-
+            
         } catch (NoResultException $e) {
             // File_redirecion record not found, but this might be a direct link to a file
             try {
@@ -207,15 +210,17 @@ class File_redirection extends Managed_DataObject
             // in that case we have the file id already
             try {
                 $r = File_redirection::getByUrl($redir_info['url']);
-                try {
-                    $f = File::getKV('id',$r->file_id);
+                
+                $f = File::getKV('id',$r->file_id);
+                
+                if($f instanceof File) {
                     $redir->file = $f;
-                    $redir->redir_url = $f->url;
-                } catch (NoResultException $e) {
+                    $redir->redir_url = $f->url;                
+                } else {
                     // Invalid entry in File_redirection, delete and run again
                     common_log(LOG_ERR, "Could not find File with id=".$r->file_id." referenced in File_redirection, deleting File_redirection entry and trying again...");                 
                     $r->delete();
-                    return self::where($in_url);
+                    return self::where($in_url);                
                 }
             } catch (NoResultException $e) {
                 // save the file now when we know that we don't have it in File_redirection
