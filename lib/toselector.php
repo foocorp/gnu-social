@@ -94,29 +94,36 @@ class ToSelector extends Widget
         $groups = $this->user->getGroups();
 
         while ($groups instanceof User_group && $groups->fetch()) {
-            $value = 'group:'.$groups->id;
+            $value = 'group:'.$groups->getID();
             if (($this->to instanceof User_group) && $this->to->id == $groups->id) {
                 $default = $value;
             }
-            $choices[$value] = $groups->getBestName();
+            $choices[$value] = "!{$groups->getNickname()} [{$groups->getBestName()}]";
         }
 
         // Add subscribed users to dropdown menu
         $users = $this->user->getSubscribed();
         while ($users->fetch()) {
-            $value = 'profile:'.$users->id;
-            if ($this->user->streamNicknames()) {
-                $choices[$value] = $users->getNickname();
-            } else {
-                $choices[$value] = $users->getBestName();
+            $value = 'profile:'.$users->getID();
+            try {
+                $choices[$value] = substr($users->getAcctUri(), 5) . " [{$users->getBestName()}]";
+            } catch (ProfileNoAcctUriException $e) {
+                $choices[$value] = "[?@?] " . $e->getBestName();
             }
         }
 
         if ($this->to instanceof Profile) {
-            $value = 'profile:'.$this->to->id;
+            $value = 'profile:'.$this->to->getID();
             $default = $value;
-            $choices[$value] = $this->to->getBestName();
+            try {
+                $choices[$value] = substr($this->to->getAcctUri(), 5) . " [{$this->to->getBestName()}]";
+            } catch (ProfileNoAcctUriException $e) {
+                $choices[$value] = "[?@?] " . $e->getBestName();
+            }
         }
+
+        // alphabetical order
+        asort($choices);
 
         $this->out->dropdown($this->id,
                              // TRANS: Label for drop-down of potential addressees.
