@@ -144,8 +144,8 @@ class WebFingerPlugin extends Plugin
     public function onStartShowHTML($action)
     {
         if ($action instanceof ShowstreamAction) {
-            $acct = 'acct:'. $action->getTarget()->getNickname() .'@'. common_config('site', 'server');
-            $url = common_local_url('webfinger') . '?resource='.$acct;
+            $resource = $action->getTarget()->getUri();
+            $url = common_local_url('webfinger') . '?resource='.urlencode($resource);
 
             foreach (array(Discovery::JRD_MIMETYPE, Discovery::XRD_MIMETYPE) as $type) {
                 header('Link: <'.$url.'>; rel="'. Discovery::LRDD_REL.'"; type="'.$type.'"', false);
