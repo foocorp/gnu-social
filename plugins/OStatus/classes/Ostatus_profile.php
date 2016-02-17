@@ -1297,7 +1297,7 @@ class Ostatus_profile extends Managed_DataObject
             try {
                 $this->updateAvatar($avatar);
             } catch (Exception $ex) {
-                common_log(LOG_WARNING, "Exception saving OStatus profile avatar: " . $ex->getMessage());
+                common_log(LOG_WARNING, "Exception updating OStatus profile avatar: " . $ex->getMessage());
             }
         }
     }
