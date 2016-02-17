@@ -80,16 +80,7 @@ class ToSelector extends Widget
     function show()
     {
         $choices = array();
-        $default = 'public:site';
-
-        if (!common_config('site', 'private')) {
-            // TRANS: Option in drop-down of potential addressees.
-            $choices['public:everyone'] = _m('SENDTO','Everyone');
-            $default = 'public:everyone';
-        }
-        // TRANS: Option in drop-down of potential addressees.
-        // TRANS: %s is a StatusNet sitename.
-        $choices['public:site'] = sprintf(_('Everyone at %s'), common_config('site', 'name'));
+        $default = common_config('site', 'private') ? 'public:site' : 'public:everyone';
 
         $groups = $this->user->getGroups();
 
@@ -124,6 +115,21 @@ class ToSelector extends Widget
 
         // alphabetical order
         asort($choices);
+
+        // Reverse so we can add entries at the end (can't unshift with a key)
+        $choices = array_reverse($choices);
+
+        // TRANS: Option in drop-down of potential addressees.
+        // TRANS: %s is a StatusNet sitename.
+        $choices['public:site'] = sprintf(_('Everyone at %s'), common_config('site', 'name'));
+
+        if (!common_config('site', 'private')) {
+            // TRANS: Option in drop-down of potential addressees.
+            $choices['public:everyone'] = _m('SENDTO','Everyone');
+        }
+
+        // Return the order
+        $choices = array_reverse($choices);
 
         $this->out->dropdown($this->id,
                              // TRANS: Label for drop-down of potential addressees.
