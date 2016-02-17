@@ -119,9 +119,11 @@ class ToSelector extends Widget
         // Reverse so we can add entries at the end (can't unshift with a key)
         $choices = array_reverse($choices);
 
-        // TRANS: Option in drop-down of potential addressees.
-        // TRANS: %s is a StatusNet sitename.
-        $choices['public:site'] = sprintf(_('Everyone at %s'), common_config('site', 'name'));
+        if (common_config('notice', 'allowprivate')) {
+            // TRANS: Option in drop-down of potential addressees.
+            // TRANS: %s is a StatusNet sitename.
+            $choices['public:site'] = sprintf(_('Everyone at %s'), common_config('site', 'name'));
+        }
 
         if (!common_config('site', 'private')) {
             // TRANS: Option in drop-down of potential addressees.
