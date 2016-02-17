@@ -110,7 +110,10 @@ class ProfilesettingsAction extends SettingsAction
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
             $this->input('fullname', _('Full name'),
-                         $this->trimmed('fullname') ?: $this->scoped->getFullname());
+                         $this->trimmed('fullname') ?: $this->scoped->getFullname(),
+                         // TRANS: Instructions for full name text field on profile settings
+                         _('A full name is required, if empty it will be set to your nickname.'),
+                         null, true);
             $this->elementEnd('li');
             $this->elementStart('li');
             // TRANS: Field label in form for profile settings.
