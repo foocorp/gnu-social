@@ -74,6 +74,7 @@ class ShownoticeAction extends ManagedAction
         }
 
         $this->notice = $this->getNotice();
+        $this->target = $this->notice;
 
         if (!$this->notice->inScope($this->scoped)) {
             // TRANS: Client exception thrown when trying a view a notice the user has no access to.
@@ -213,12 +214,24 @@ class ShownoticeAction extends ManagedAction
     {
     }
 
-    /**
-     * Don't show aside
-     *
-     * @return void
-     */
-    function showAside() {
+    function getFeeds()
+    {
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiStatusesShow',
+                                               array(
+                                                    'id' => $this->target->getID(),
+                                                    'format' => 'json')),
+                              // TRANS: Title for link to single notice representation.
+                              // TRANS: %s is a user nickname.
+                              sprintf(_('Single notice (JSON)'))),
+                     new Feed(Feed::ATOM,
+                              common_local_url('ApiStatusesShow',
+                                               array(
+                                                    'id' => $this->target->getID(),
+                                                    'format' => 'atom')),
+                              // TRANS: Title for link to notice feed.
+                              // TRANS: %s is a user nickname.
+                              sprintf(_('Single notice (Atom)'))));
     }
 
     /**
