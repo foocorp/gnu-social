@@ -190,6 +190,9 @@ class NewnoticeAction extends FormAction
             // and maybe even directly save whether they're local or not!
             $act->context->attention = common_get_attentions($content, $this->scoped, $parent);
 
+            // $options gets filled with possible scoping settings
+            ToSelector::fillActivity($this, $act, $options);
+
             $actobj = new ActivityObject();
             $actobj->type = ActivityObject::NOTE;
             $actobj->content = common_render_content($content, $this->scoped, $parent);

@@ -136,6 +136,26 @@ class ToSelector extends Widget
         $this->out->elementEnd('span');
     }
 
+    static function fillActivity(Action $action, Activity $act, array &$options)
+    {
+        if (!$act->context instanceof ActivityContext) {
+            $act->context = new ActivityContext();
+        }
+        self::fillOptions($action, $options);
+        if (isset($options['groups'])) {
+            foreach ($options['groups'] as $group_id) {
+                $group = User_group::getByID($group_id);
+                $act->context->attention[$group->getUri()] = $group->getObjectType();
+            }
+        }
+        if (isset($options['replies'])) {
+            foreach ($options['replies'] as $profile_uri) {
+                $profile = Profile::fromUri($profile_uri);
+                $act->context->attention[$profile->getUri()] = $profile->getObjectType();
+            }
+        }
+    }
+
     static function fillOptions($action, &$options)
     {
         // XXX: make arg name selectable
