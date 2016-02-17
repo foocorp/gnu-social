@@ -108,7 +108,7 @@ class ToSelector extends Widget
             try {
                 $choices[$value] = substr($users->getAcctUri(), 5) . " [{$users->getBestName()}]";
             } catch (ProfileNoAcctUriException $e) {
-                $choices[$value] = "[?@?] " . $e->getBestName();
+                $choices[$value] = "[?@?] " . $e->profile->getBestName();
             }
         }
 
@@ -118,7 +118,7 @@ class ToSelector extends Widget
             try {
                 $choices[$value] = substr($this->to->getAcctUri(), 5) . " [{$this->to->getBestName()}]";
             } catch (ProfileNoAcctUriException $e) {
-                $choices[$value] = "[?@?] " . $e->getBestName();
+                $choices[$value] = "[?@?] " . $e->profile->getBestName();
             }
         }
 
