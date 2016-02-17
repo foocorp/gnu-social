@@ -127,10 +127,12 @@ class ToSelector extends Widget
                              $default);
 
         $this->out->elementStart('span', 'checkbox-wrapper');
-        $this->out->checkbox('notice_private',
-                             // TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
-                             _('Private?'),
-                             $this->private);
+        if (common_config('notice', 'allowprivate')) {
+            $this->out->checkbox('notice_private',
+                                 // TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
+                                 _('Private?'),
+                                 $this->private);
+        }
         $this->out->elementEnd('span');
     }
 
@@ -138,7 +140,7 @@ class ToSelector extends Widget
     {
         // XXX: make arg name selectable
         $toArg = $action->trimmed('notice_to');
-        $private = $action->boolean('notice_private');
+        $private = common_config('notice', 'allowprivate') ? $action->boolean('notice_private') : false;
 
         if (empty($toArg)) {
             return;

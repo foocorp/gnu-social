@@ -291,6 +291,7 @@ $default =
         ),
         'notice' =>
         array('contentlimit' => null,
+              'allowprivate' => false,  // whether to allow users to "check the padlock" to publish notices available for their subscribers.
               'defaultscope' => null, // null means 1 if site/private, 0 otherwise
               'hidespam' => true), // Whether to hide silenced users from timelines
         'message' =>
