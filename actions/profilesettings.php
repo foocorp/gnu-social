@@ -207,13 +207,15 @@ class ProfilesettingsAction extends SettingsAction
                             (empty($user->subscribe_policy)) ? User::SUBSCRIBE_POLICY_OPEN : $user->subscribe_policy);
             $this->elementEnd('li');
         }
-        $this->elementStart('li');
-        $this->checkbox('private_stream',
-                        // TRANS: Checkbox label in profile settings.
-                        _('Make updates visible only to my followers'),
-                        ($this->arg('private_stream')) ?
-                        $this->boolean('private_stream') : $user->private_stream);
-        $this->elementEnd('li');
+        if (common_config('profile', 'allowprivate') || $user->private_stream) {
+            $this->elementStart('li');
+            $this->checkbox('private_stream',
+                            // TRANS: Checkbox label in profile settings.
+                            _('Make updates visible only to my followers'),
+                            ($this->arg('private_stream')) ?
+                            $this->boolean('private_stream') : $user->private_stream);
+            $this->elementEnd('li');
+        }
         $this->elementEnd('ul');
         // TRANS: Button to save input in profile settings.
         $this->submit('save', _m('BUTTON','Save'));
@@ -255,7 +257,6 @@ class ProfilesettingsAction extends SettingsAction
             $location = $this->trimmed('location');
             $autosubscribe = $this->booleanintstring('autosubscribe');
             $subscribe_policy = $this->trimmed('subscribe_policy');
-            $private_stream = $this->booleanintstring('private_stream');
             $language = $this->trimmed('language');
             $timezone = $this->trimmed('timezone');
             $tagstring = $this->trimmed('tags');
@@ -309,6 +310,15 @@ class ProfilesettingsAction extends SettingsAction
 
             $user = $this->scoped->getUser();
             $user->query('BEGIN');
+
+            // Only allow setting private_stream if site policy allows it
+            // (or user already _has_ a private stream, then you can unset it)
+            if (common_config('profile', 'allowprivate') || $user->private_stream) {
+                $private_stream = $this->booleanintstring('private_stream');
+            } else {
+                // if not allowed, we set to the existing value
+                $private_stream = $user->private_stream;
+            }
 
             // $user->nickname is updated through Profile->update();
 

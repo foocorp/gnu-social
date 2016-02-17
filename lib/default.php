@@ -129,6 +129,7 @@ $default =
         array('banned' => array(),
               'biolimit' => null,
               'changenick' => false,
+              'allowprivate' => false,  // whether to allow setting stream to private ("only followers can read")
               'backup' => false,    // can cause DoS, so should be done via CLI
               'restore' => false,
               'delete' => false,
