@@ -345,7 +345,7 @@ class ProfilesettingsAction extends SettingsAction
                 $this->scoped->nickname = $nickname;
                 $this->scoped->profileurl = common_profile_url($this->scoped->getNickname());
             }
-            $this->scoped->fullname = $fullname;
+            $this->scoped->fullname = (mb_strlen($fullname)>0 ? $fullname : $this->scoped->nickname);
             $this->scoped->homepage = $homepage;
             $this->scoped->bio = $bio;
             $this->scoped->location = $location;
