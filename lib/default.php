@@ -142,6 +142,10 @@ $default =
               'path' => $_path . '/avatar/',
               'ssl' => null,
               'maxsize' => 300),
+        'foaf' =>
+        array(
+              'mbox_sha1sum' => false,
+            ),
         'public' =>
         array('localonly' => false,
               'blacklist' => array(),
