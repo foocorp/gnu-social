@@ -1428,6 +1428,37 @@ function common_fake_local_fancy_url($url)
     return $fancy_url;
 }
 
+// FIXME: Maybe this should also be able to handle non-fancy URLs with index.php?p=...
+function common_fake_local_nonfancy_url($url)
+{
+    /**
+     * This is a hacky fix to make URIs NOT generated with "index.php/" match against
+     * locally stored URIs WITH that. The reverse from the above.
+     *
+     * It will also "repair" index.php URLs with multiple / prepended. Like https://some.example///index.php/user/1
+     */
+    if (!preg_match(
+                // [1] protocol part, we can only rewrite http/https anyway.
+                '/^(https?:\/\/)' .
+                // [2] site name.
+                // FIXME: Dunno how this acts if we're aliasing ourselves with a .onion domain etc.
+                '('.preg_quote(common_config('site', 'server'), '/').')' .
+                // [3] site path, or if that is empty just '/' (to retain the /)
+                '('.preg_quote(common_config('site', 'path') ?: '/', '/').')' .
+                // [4] should be empty (might contain one or more / and then maybe also index.php). Will be overwritten.
+                // [5] will have the extracted actual URL part (besides site path)
+                '((?!index.php\/)\/*(?:index.php\/)?)(.*)$/', $url, $matches)) {
+        // if preg_match failed to match
+        throw new Exception('No known change could be made to the URL.');
+    }
+
+    $matches[4] = 'index.php/'; // inject the index.php/ rewritethingy
+
+    // remove the first element, which is the full matching string
+    array_shift($matches);
+    return implode($matches);
+}
+
 function common_inject_session($url, $serverpart = null)
 {
     if (!common_have_session()) {

@@ -105,11 +105,16 @@ class WebFingerPlugin extends Plugin
                 $profile = $user->getProfile();
             } catch (NoResultException $e) {
                 try {
-                    // common_fake_local_fancy_url can throw an exception
-                    $fancy_url = common_fake_local_fancy_url($resource);
+                    try {   // if it's a /index.php/ url
+                        // common_fake_local_fancy_url can throw an exception
+                        $alt_url = common_fake_local_fancy_url($resource);
+                    } catch (Exception $e) {    // let's try to create a fake local /index.php/ url
+                        // this too if it can't do anything about the URL
+                        $alt_url = common_fake_local_nonfancy_url($resource);
+                    }
 
                     // and this will throw a NoResultException if not found
-                    $user = User::getByUri($fancy_url);
+                    $user = User::getByUri($alt_url);
                     $profile = $user->getProfile();
                 } catch (Exception $e) {
                     // if our rewrite hack didn't work, try to get something by profile URL
