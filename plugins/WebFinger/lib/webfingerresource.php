@@ -35,19 +35,20 @@ abstract class WebFingerResource
 
         // Add the URI as an identity, this is _not_ necessarily an HTTP url
         $uri = $this->object->getUri();
-        $aliases[] = $uri;
+        $aliases[$uri] = true;
         if (common_config('webfinger', 'http_alias')
                 && strtolower(parse_url($uri, PHP_URL_SCHEME)) === 'https') {
-            $aliases[] = preg_replace('/^https:/', 'http:', $uri, 1);
+            $aliases[preg_replace('/^https:/', 'http:', $uri, 1)] = true;
         }
 
         try {
-            $aliases[] = $this->object->getUrl();
+            $aliases[$this->object->getUrl()] = true;
         } catch (InvalidUrlException $e) {
             // getUrl failed because no valid URL could be returned, just ignore it
         }
 
-        return $aliases;
+        // return a unique set of aliases by extracting only the keys
+        return array_keys($aliases);
     }
 
     abstract public function updateXRD(XML_XRD $xrd);
