@@ -1391,6 +1391,42 @@ function common_path($relative, $ssl=false, $addSession=true)
     return $proto.'://'.$serverpart.'/'.$pathpart.$relative;
 }
 
+function common_fake_local_fancy_url($url)
+{
+    /**
+     * This is a hacky fix to make URIs generated with "index.php/" match against
+     * locally stored URIs without that. So for example if the remote site is looking
+     * up the webfinger for some user and for some reason knows about https://some.example/user/1
+     * but we locally store and report only https://some.example/index.php/user/1 then they would
+     * dismiss the profile for not having an identified alias.
+     *
+     * There are various live instances where these issues occur, for various reasons.
+     * Most of them being users fiddling with configuration while already having
+     * started federating (distributing the URI to other servers) or maybe manually
+     * editing the local database.
+     */
+    if (!preg_match(
+                // [1] protocol part, we can only rewrite http/https anyway.
+                '/^(https?:\/\/)' .
+                // [2] site name.
+                // FIXME: Dunno how this acts if we're aliasing ourselves with a .onion domain etc.
+                '('.preg_quote(common_config('site', 'server'), '/').')' .
+                // [3] site path, or if that is empty just '/' (to retain the /)
+                '('.preg_quote(common_config('site', 'path') ?: '/', '/').')' .
+                // [4] + [5] extract index.php (+ possible leading double /) and the rest of the URL separately.
+                '(\/?index\.php\/)(.*)$/', $url, $matches)) {
+        // if preg_match failed to match
+        throw Exception('No known change could be made to the URL.');
+    }
+
+    // now reconstruct the URL with everything except the "index.php/" part
+    $fancy_url = '';
+    foreach ([1,2,3,5] as $idx) {
+        $fancy_url .= $matches[$idx];
+    }
+    return $fancy_url;
+}
+
 function common_inject_session($url, $serverpart = null)
 {
     if (!common_have_session()) {
