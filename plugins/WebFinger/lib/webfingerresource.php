@@ -47,6 +47,20 @@ abstract class WebFingerResource
             // getUrl failed because no valid URL could be returned, just ignore it
         }
 
+        // We claim that we are for example https://site.example/user/1 even if the client
+        // requests https://site.example/index.php/user/1 due to behaviour seen in the wild.
+        foreach(array_keys($aliases) as $alias) {
+            try {
+                // get a "fancy url" version of the alias, even without index.php/
+                $fancy_url = common_fake_local_fancy_url($alias);
+                // store this as well so remote sites can be sure we really are the same profile
+                $aliases[$fancy_url] = true;
+            } catch (Exception $e) {
+                // in case we couldn't make a "fake local fancy URL", just continue the foreach-loop
+                continue;
+            }
+        }
+
         // return a unique set of aliases by extracting only the keys
         return array_keys($aliases);
     }
