@@ -140,6 +140,16 @@ class User extends Managed_DataObject
         return $this->uri;
     }
 
+    static function getByUri($uri)
+    {
+        $user = new User();
+        $user->uri = $uri;
+        if (!$user->find(true)) {
+            throw new NoResultException($user);
+        }
+        return $user;
+    }
+
     public function getNickname()
     {
         return $this->getProfile()->getNickname();
