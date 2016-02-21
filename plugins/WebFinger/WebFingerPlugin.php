@@ -100,12 +100,21 @@ class WebFingerPlugin extends Plugin
                 }
             }
         } else {
-            $user = User::getKV('uri', $resource);
-            if ($user instanceof User) {
+            try {
+                $user = User::getByUri($resource);
                 $profile = $user->getProfile();
-            } else {
-                // try and get it by profile url
-                $profile = Profile::getKV('profileurl', $resource);
+            } catch (NoResultException $e) {
+                try {
+                    // common_fake_local_fancy_url can throw an exception
+                    $fancy_url = common_fake_local_fancy_url($resource);
+
+                    // and this will throw a NoResultException if not found
+                    $user = User::getByUri($fancy_url);
+                    $profile = $user->getProfile();
+                } catch (Exception $e) {
+                    // if our rewrite hack didn't work, try to get something by profile URL
+                    $profile = Profile::getKV('profileurl', $resource);
+                }
             }
         }
 
