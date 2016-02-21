@@ -1391,6 +1391,7 @@ function common_path($relative, $ssl=false, $addSession=true)
     return $proto.'://'.$serverpart.'/'.$pathpart.$relative;
 }
 
+// FIXME: Maybe this should also be able to handle non-fancy URLs with index.php?p=...
 function common_fake_local_fancy_url($url)
 {
     /**
@@ -1416,7 +1417,7 @@ function common_fake_local_fancy_url($url)
                 // [4] + [5] extract index.php (+ possible leading double /) and the rest of the URL separately.
                 '(\/?index\.php\/)(.*)$/', $url, $matches)) {
         // if preg_match failed to match
-        throw Exception('No known change could be made to the URL.');
+        throw new Exception('No known change could be made to the URL.');
     }
 
     // now reconstruct the URL with everything except the "index.php/" part
