@@ -36,10 +36,12 @@ class WebFingerPlugin extends Plugin
     const OAUTH_AUTHORIZE_REL       = 'http://apinamespace.org/oauth/authorize';
 
     public $http_alias = false;
+    public $fancyurlfix = true; // adds + interprets some extra aliases related to 'index.php/' URLs
 
     public function initialize()
     {
         common_config_set('webfinger', 'http_alias', $this->http_alias);
+        common_config_set('webfinger', 'fancyurlfix', $this->fancyurlfix);
     }
 
     public function onRouterInitialized($m)
@@ -104,23 +106,30 @@ class WebFingerPlugin extends Plugin
                 $user = User::getByUri($resource);
                 $profile = $user->getProfile();
             } catch (NoResultException $e) {
-                try {
-                    try {   // if it's a /index.php/ url
-                        // common_fake_local_fancy_url can throw an exception
-                        $alt_url = common_fake_local_fancy_url($resource);
-                    } catch (Exception $e) {    // let's try to create a fake local /index.php/ url
-                        // this too if it can't do anything about the URL
-                        $alt_url = common_fake_local_nonfancy_url($resource);
-                    }
+                if (common_config('webfinger', 'fancyurlfix')) {
+                    try {
+                        try {   // if it's a /index.php/ url
+                            // common_fake_local_fancy_url can throw an exception
+                            $alt_url = common_fake_local_fancy_url($resource);
+                        } catch (Exception $e) {    // let's try to create a fake local /index.php/ url
+                            // this too if it can't do anything about the URL
+                            $alt_url = common_fake_local_nonfancy_url($resource);
+                        }
 
-                    // and this will throw a NoResultException if not found
-                    $user = User::getByUri($alt_url);
-                    $profile = $user->getProfile();
-                } catch (Exception $e) {
-                    // if our rewrite hack didn't work, try to get something by profile URL
-                    $profile = Profile::getKV('profileurl', $resource);
+                        // and this will throw a NoResultException if not found
+                        $user = User::getByUri($alt_url);
+                        $profile = $user->getProfile();
+                    } catch (Exception $e) {
+                        // apparently we didn't get any matches with that, so continue...
+                    }
                 }
             }
+        }
+
+        // if we still haven't found a match...
+        if (!$profile instanceof Profile) {
+            // if our rewrite hack didn't work, try to get something by profile URL
+            $profile = Profile::getKV('profileurl', $resource);
         }
 
         if ($profile instanceof Profile) {

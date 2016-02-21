@@ -47,33 +47,33 @@ abstract class WebFingerResource
             // getUrl failed because no valid URL could be returned, just ignore it
         }
 
-        /**
-         * Here we add some hacky hotfixes for remote lookups that have been taught the
-         * (at least now) wrong URI but it's still obviously the same user. Such as:
-         * - https://site.example/user/1 even if the client requests https://site.example/index.php/user/1
-         * - https://site.example/user/1 even if the client requests https://site.example//index.php/user/1
-         * - https://site.example/index.php/user/1 even if the client requests https://site.example/user/1
-         * - https://site.example/index.php/user/1 even if the client requests https://site.example///index.php/user/1
-         */
-
-
-        foreach(array_keys($aliases) as $alias) {
-            try {
-                // get a "fancy url" version of the alias, even without index.php/
-                $alt_url = common_fake_local_fancy_url($alias);
-                // store this as well so remote sites can be sure we really are the same profile
-                $aliases[$alt_url] = true;
-            } catch (Exception $e) {
-                // Apparently we couldn't rewrite that, the $alias was as the function wanted it to be
-            }
-
-            try {
-                // get a non-"fancy url" version of the alias, i.e. add index.php/
-                $alt_url = common_fake_local_nonfancy_url($alias);
-                // store this as well so remote sites can be sure we really are the same profile
-                $aliases[$alt_url] = true;
-            } catch (Exception $e) {
-                // Apparently we couldn't rewrite that, the $alias was as the function wanted it to be
+        if (common_config('webfinger', 'fancyurlfix')) {
+            /**
+             * Here we add some hacky hotfixes for remote lookups that have been taught the
+             * (at least now) wrong URI but it's still obviously the same user. Such as:
+             * - https://site.example/user/1 even if the client requests https://site.example/index.php/user/1
+             * - https://site.example/user/1 even if the client requests https://site.example//index.php/user/1
+             * - https://site.example/index.php/user/1 even if the client requests https://site.example/user/1
+             * - https://site.example/index.php/user/1 even if the client requests https://site.example///index.php/user/1
+             */
+            foreach(array_keys($aliases) as $alias) {
+                try {
+                    // get a "fancy url" version of the alias, even without index.php/
+                    $alt_url = common_fake_local_fancy_url($alias);
+                    // store this as well so remote sites can be sure we really are the same profile
+                    $aliases[$alt_url] = true;
+                } catch (Exception $e) {
+                    // Apparently we couldn't rewrite that, the $alias was as the function wanted it to be
+                }
+    
+                try {
+                    // get a non-"fancy url" version of the alias, i.e. add index.php/
+                    $alt_url = common_fake_local_nonfancy_url($alias);
+                    // store this as well so remote sites can be sure we really are the same profile
+                    $aliases[$alt_url] = true;
+                } catch (Exception $e) {
+                    // Apparently we couldn't rewrite that, the $alias was as the function wanted it to be
+                }
             }
         }
 
