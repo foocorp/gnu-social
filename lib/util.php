@@ -264,6 +264,11 @@ function common_logged_in()
     return (!is_null(common_current_user()));
 }
 
+function common_local_referer()
+{
+    return parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) === common_config('site', 'server');
+}
+
 function common_have_session()
 {
     return (0 != strcmp(session_id(), ''));
