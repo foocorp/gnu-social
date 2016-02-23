@@ -100,13 +100,34 @@ class WebFingerPlugin extends Plugin
                 }
             }
         } else {
-            $user = User::getKV('uri', $resource);
-            if ($user instanceof User) {
+            try {
+                $user = User::getByUri($resource);
                 $profile = $user->getProfile();
-            } else {
-                // try and get it by profile url
-                $profile = Profile::getKV('profileurl', $resource);
+            } catch (NoResultException $e) {
+                if (common_config('fix', 'fancyurls')) {
+                    try {
+                        try {   // if it's a /index.php/ url
+                            // common_fake_local_fancy_url can throw an exception
+                            $alt_url = common_fake_local_fancy_url($resource);
+                        } catch (Exception $e) {    // let's try to create a fake local /index.php/ url
+                            // this too if it can't do anything about the URL
+                            $alt_url = common_fake_local_nonfancy_url($resource);
+                        }
+
+                        // and this will throw a NoResultException if not found
+                        $user = User::getByUri($alt_url);
+                        $profile = $user->getProfile();
+                    } catch (Exception $e) {
+                        // apparently we didn't get any matches with that, so continue...
+                    }
+                }
             }
+        }
+
+        // if we still haven't found a match...
+        if (!$profile instanceof Profile) {
+            // if our rewrite hack didn't work, try to get something by profile URL
+            $profile = Profile::getKV('profileurl', $resource);
         }
 
         if ($profile instanceof Profile) {
@@ -144,8 +165,8 @@ class WebFingerPlugin extends Plugin
     public function onStartShowHTML($action)
     {
         if ($action instanceof ShowstreamAction) {
-            $acct = 'acct:'. $action->getTarget()->getNickname() .'@'. common_config('site', 'server');
-            $url = common_local_url('webfinger') . '?resource='.$acct;
+            $resource = $action->getTarget()->getUri();
+            $url = common_local_url('webfinger') . '?resource='.urlencode($resource);
 
             foreach (array(Discovery::JRD_MIMETYPE, Discovery::XRD_MIMETYPE) as $type) {
                 header('Link: <'.$url.'>; rel="'. Discovery::LRDD_REL.'"; type="'.$type.'"', false);

@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Public stream
@@ -66,7 +62,7 @@ class PublicNoticeStream extends ScopingNoticeStream
  * @link      http://status.net/
  */
 
-class RawPublicNoticeStream extends NoticeStream
+class RawPublicNoticeStream extends FullNoticeStream
 {
     function getNoticeIds($offset, $limit, $since_id, $max_id)
     {
@@ -87,9 +83,7 @@ class RawPublicNoticeStream extends NoticeStream
         Notice::addWhereSinceId($notice, $since_id);
         Notice::addWhereMaxId($notice, $max_id);
 
-        if (!empty($this->selectVerbs)) {
-            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
-        }
+        self::filterVerbs($notice, $this->selectVerbs);
 
         $ids = array();
 

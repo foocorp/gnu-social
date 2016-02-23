@@ -31,23 +31,23 @@ abstract class WebFingerResource
 
     public function getAliases()
     {
-        $aliases = array();
+        $aliases = $this->object->getAliasesWithIDs();
 
-        // Add the URI as an identity, this is _not_ necessarily an HTTP url
-        $uri = $this->object->getUri();
-        $aliases[] = $uri;
-        if (common_config('webfinger', 'http_alias')
-                && strtolower(parse_url($uri, PHP_URL_SCHEME)) === 'https') {
-            $aliases[] = preg_replace('/^https:/', 'http:', $uri, 1);
+        // Some sites have changed from http to https and still want
+        // (because remote sites look for it) verify that they are still
+        // the same identity as they were on HTTP. Should NOT be used if
+        // you've run HTTPS all the time!
+        if (common_config('webfinger', 'http_alias')) {
+            foreach ($aliases as $alias=>$id) {
+                if (!strtolower(parse_url($alias, PHP_URL_SCHEME)) === 'https') {
+                    continue;
+                }
+                $aliases[preg_replace('/^https:/', 'http:', $alias, 1)] = $id;
+            }
         }
 
-        try {
-            $aliases[] = $this->object->getUrl();
-        } catch (InvalidUrlException $e) {
-            // getUrl failed because no valid URL could be returned, just ignore it
-        }
-
-        return $aliases;
+        // return a unique set of aliases by extracting only the keys
+        return array_keys($aliases);
     }
 
     abstract public function updateXRD(XML_XRD $xrd);

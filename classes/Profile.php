@@ -1174,12 +1174,41 @@ class Profile extends Managed_DataObject
         }
     }
 
+    function silenceAs(Profile $actor)
+    {
+        if (!$actor->hasRight(Right::SILENCEUSER)) {
+            throw new AuthorizationException(_('You cannot silence users on this site.'));
+        }
+        // Only administrators can silence other privileged users (such as others who have the right to silence).
+        if ($this->isPrivileged() && !$actor->hasRole(Profile_role::ADMINISTRATOR)) {
+            throw new AuthorizationException(_('You cannot silence other privileged users.'));
+        }
+        if ($this->isSilenced()) {
+            // TRANS: Client error displayed trying to silence an already silenced user.
+            throw new AlreadyFulfilledException(_('User is already silenced.'));
+        }
+        return $this->silence();
+    }
+
     function unsilence()
     {
         $this->revokeRole(Profile_role::SILENCED);
         if (common_config('notice', 'hidespam')) {
             $this->flushVisibility();
         }
+    }
+
+    function unsilenceAs(Profile $actor)
+    {
+        if (!$actor->hasRight(Right::SILENCEUSER)) {
+            // TRANS: Client error displayed trying to unsilence a user when the user does not have the right.
+            throw new AuthorizationException(_('You cannot unsilence users on this site.'));
+        }
+        if (!$this->isSilenced()) {
+            // TRANS: Client error displayed trying to unsilence a user when the target user has not been silenced.
+            throw new AlreadyFulfilledException(_('User is not silenced.'));
+        }
+        return $this->unsilence();
     }
 
     function flushVisibility()
@@ -1190,6 +1219,22 @@ class Profile extends Managed_DataObject
         foreach ($ids as $id) {
             self::blow('notice:in-scope-for:%d:null', $id);
         }
+    }
+
+    public function isPrivileged()
+    {
+        // TODO: An Event::handle so plugins can report if users are privileged.
+        // The ModHelper is the only one I care about when coding this, and that
+        // can be tested with Right::SILENCEUSER which I do below:
+        switch (true) {
+        case $this->hasRight(Right::SILENCEUSER):
+        case $this->hasRole(Profile_role::MODERATOR):
+        case $this->hasRole(Profile_role::ADMINISTRATOR):
+        case $this->hasRole(Profile_role::OWNER):
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -1624,6 +1669,15 @@ class Profile extends Managed_DataObject
             $profile = null;
         } else {
             $profile = $user->getProfile();
+        }
+        return $profile;
+    }
+
+    static function ensureCurrent()
+    {
+        $profile = self::current();
+        if (!$profile instanceof Profile) {
+            throw new AuthorizationException('A currently scoped profile is required.');
         }
         return $profile;
     }

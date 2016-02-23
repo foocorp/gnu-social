@@ -90,7 +90,7 @@ class FoafAction extends ManagedAction
 
         // Would be nice to tell if they were a Person or not (e.g. a #person usertag?)
         $this->elementStart('Agent', array('rdf:about' => $this->user->getUri()));
-        if ($this->user->email) {
+        if (common_config('foaf', 'mbox_sha1sum') && $this->user->email) {
             $this->element('mbox_sha1sum', null, sha1('mailto:' . $this->user->email));
         }
         if ($this->profile->fullname) {

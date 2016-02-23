@@ -66,7 +66,7 @@ class URLMapper
             throw new Exception(sprintf("Can't connect %s; path has no action.", $path));
         }
 
-        $allpaths[] = $path;
+        $this->allpaths[] = $path;
 
         $action = $args[self::ACTION];
 

@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Notice stream for a conversation
@@ -96,9 +92,7 @@ class RawConversationNoticeStream extends NoticeStream
             $notice->limit($offset, $limit);
         }
 
-        if (!empty($this->selectVerbs)) {
-            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
-        }
+        self::filterVerbs($notice, $this->selectVerbs);
 
         // ORDER BY
         // currently imitates the previously used "_reverseChron" sorting

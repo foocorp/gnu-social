@@ -81,6 +81,13 @@ class RegisterThrottlePlugin extends Plugin
         return true;
     }
 
+    public function onRouterInitialized(URLMapper $m)
+    {
+        $m->connect('main/ipregistrations/:ipaddress',
+                    array('action'      => 'ipregistrations'),
+                    array('ipaddress'   => '[0-9a-f\.\:]+'));
+    }
+
     /**
      * Called when someone tries to register.
      *
@@ -134,6 +141,52 @@ class RegisterThrottlePlugin extends Plugin
         return true;
     }
 
+    function onEndShowSections(Action $action)
+    {
+        if (!$action instanceof ShowstreamAction) {
+            // early return for actions we're not interested in
+            return true;
+        }
+
+        $target = $action->getTarget();
+        if (!$target->isSilenced()) {
+            // Only show the IP of users who are not silenced.
+            return true;
+        }
+
+        $scoped = $action->getScoped();
+        if (!$scoped->hasRight(Right::SILENCEUSER)) {
+            // only show registration IP if we have the right to silence users
+            return true;
+        }
+
+        $ri = Registration_ip::getKV('user_id', $target->getID());
+        $ipaddress = null;
+        if ($ri instanceof Registration_ip) {
+            $ipaddress = $ri->ipaddress;
+            unset($ri);
+        }
+
+        $action->elementStart('div', array('id' => 'entity_mod_log',
+                                           'class' => 'section'));
+
+        $action->element('h2', null, _('Registration IP'));
+
+        // TRANS: Label for the information about which IP a users registered from.
+        $action->element('strong', null, _('Registered from:'));
+        $el = 'span';
+        $attrs = ['class'=>'ipaddress'];
+        if (!is_null($ipaddress)) {
+            $el = 'a';
+            $attrs['href'] = common_local_url('ipregistrations', array('ipaddress'=>$ipaddress));
+        }
+        $action->element($el, $attrs,
+                            // TRANS: Unknown IP address.
+                            $ipaddress ?: _('unknown'));
+
+        $action->elementEnd('div');
+    }
+
     /**
      * Called after someone registers, by any means.
      *
@@ -154,8 +207,8 @@ class RegisterThrottlePlugin extends Plugin
 
         $reg = new Registration_ip();
 
-        $reg->user_id   = $profile->id;
-        $reg->ipaddress = $ipaddress;
+        $reg->user_id   = $profile->getID();
+        $reg->ipaddress = mb_strtolower($ipaddress);
         $reg->created   = common_sql_now();
 
         $result = $reg->insert();

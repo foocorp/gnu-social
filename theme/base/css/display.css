@@ -503,6 +503,10 @@ address .poweredby {
     z-index: 99;
 }
 
+.form_notice .to-selector > select {
+    max-width: 300px;
+}
+
 .form_settings label[for=notice_to] {
     left: 5px;
     margin-left: 0px;

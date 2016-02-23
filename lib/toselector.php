@@ -80,43 +80,58 @@ class ToSelector extends Widget
     function show()
     {
         $choices = array();
-        $default = 'public:site';
-
-        if (!common_config('site', 'private')) {
-            // TRANS: Option in drop-down of potential addressees.
-            $choices['public:everyone'] = _m('SENDTO','Everyone');
-            $default = 'public:everyone';
-        }
-        // TRANS: Option in drop-down of potential addressees.
-        // TRANS: %s is a StatusNet sitename.
-        $choices['public:site'] = sprintf(_('Everyone at %s'), common_config('site', 'name'));
+        $default = common_config('site', 'private') ? 'public:site' : 'public:everyone';
 
         $groups = $this->user->getGroups();
 
         while ($groups instanceof User_group && $groups->fetch()) {
-            $value = 'group:'.$groups->id;
+            $value = 'group:'.$groups->getID();
             if (($this->to instanceof User_group) && $this->to->id == $groups->id) {
                 $default = $value;
             }
-            $choices[$value] = $groups->getBestName();
+            $choices[$value] = "!{$groups->getNickname()} [{$groups->getBestName()}]";
         }
 
         // Add subscribed users to dropdown menu
         $users = $this->user->getSubscribed();
         while ($users->fetch()) {
-            $value = 'profile:'.$users->id;
-            if ($this->user->streamNicknames()) {
-                $choices[$value] = $users->getNickname();
-            } else {
-                $choices[$value] = $users->getBestName();
+            $value = 'profile:'.$users->getID();
+            try {
+                $choices[$value] = substr($users->getAcctUri(), 5) . " [{$users->getBestName()}]";
+            } catch (ProfileNoAcctUriException $e) {
+                $choices[$value] = "[?@?] " . $e->profile->getBestName();
             }
         }
 
         if ($this->to instanceof Profile) {
-            $value = 'profile:'.$this->to->id;
+            $value = 'profile:'.$this->to->getID();
             $default = $value;
-            $choices[$value] = $this->to->getBestName();
+            try {
+                $choices[$value] = substr($this->to->getAcctUri(), 5) . " [{$this->to->getBestName()}]";
+            } catch (ProfileNoAcctUriException $e) {
+                $choices[$value] = "[?@?] " . $e->profile->getBestName();
+            }
         }
+
+        // alphabetical order
+        asort($choices);
+
+        // Reverse so we can add entries at the end (can't unshift with a key)
+        $choices = array_reverse($choices);
+
+        if (common_config('notice', 'allowprivate')) {
+            // TRANS: Option in drop-down of potential addressees.
+            // TRANS: %s is a StatusNet sitename.
+            $choices['public:site'] = sprintf(_('Everyone at %s'), common_config('site', 'name'));
+        }
+
+        if (!common_config('site', 'private')) {
+            // TRANS: Option in drop-down of potential addressees.
+            $choices['public:everyone'] = _m('SENDTO','Everyone');
+        }
+
+        // Return the order
+        $choices = array_reverse($choices);
 
         $this->out->dropdown($this->id,
                              // TRANS: Label for drop-down of potential addressees.
@@ -127,18 +142,40 @@ class ToSelector extends Widget
                              $default);
 
         $this->out->elementStart('span', 'checkbox-wrapper');
-        $this->out->checkbox('notice_private',
-                             // TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
-                             _('Private?'),
-                             $this->private);
+        if (common_config('notice', 'allowprivate')) {
+            $this->out->checkbox('notice_private',
+                                 // TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
+                                 _('Private?'),
+                                 $this->private);
+        }
         $this->out->elementEnd('span');
+    }
+
+    static function fillActivity(Action $action, Activity $act, array &$options)
+    {
+        if (!$act->context instanceof ActivityContext) {
+            $act->context = new ActivityContext();
+        }
+        self::fillOptions($action, $options);
+        if (isset($options['groups'])) {
+            foreach ($options['groups'] as $group_id) {
+                $group = User_group::getByID($group_id);
+                $act->context->attention[$group->getUri()] = $group->getObjectType();
+            }
+        }
+        if (isset($options['replies'])) {
+            foreach ($options['replies'] as $profile_uri) {
+                $profile = Profile::fromUri($profile_uri);
+                $act->context->attention[$profile->getUri()] = $profile->getObjectType();
+            }
+        }
     }
 
     static function fillOptions($action, &$options)
     {
         // XXX: make arg name selectable
         $toArg = $action->trimmed('notice_to');
-        $private = $action->boolean('notice_private');
+        $private = common_config('notice', 'allowprivate') ? $action->boolean('notice_private') : false;
 
         if (empty($toArg)) {
             return;

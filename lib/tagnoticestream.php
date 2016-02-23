@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Stream of notices with a given tag
@@ -90,13 +86,22 @@ class RawTagNoticeStream extends NoticeStream
         Notice::addWhereMaxId($nt, $max_id, 'notice_id');
 
         if (!empty($this->selectVerbs)) {
-            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
-        }
-        if (!empty($this->unselectVerbs)) {
-            $notice->whereAddIn('!verb', $this->unselectVerbs, $notice->columnType('verb'));
+            $nt->joinAdd(array('notice_id', 'notice:id'));
+
+            $filter = array_keys(array_filter($this->selectVerbs));
+            if (!empty($filter)) {
+                // include verbs in selectVerbs with values that equate to true
+                $nt->whereAddIn('notice.verb', $filter, 'string');
+            }
+
+            $filter = array_keys(array_filter($this->selectVerbs, function ($v) { return !$v; }));
+            if (!empty($filter)) {
+                // exclude verbs in selectVerbs with values that equate to false
+                $nt->whereAddIn('!notice.verb', $filter, 'string');
+            }
         }
 
-        $nt->orderBy('created DESC, notice_id DESC');
+        $nt->orderBy('notice.created DESC, notice_id DESC');
 
         if (!is_null($offset)) {
             $nt->limit($offset, $limit);

@@ -264,6 +264,11 @@ function common_logged_in()
     return (!is_null(common_current_user()));
 }
 
+function common_local_referer()
+{
+    return parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) === common_config('site', 'server');
+}
+
 function common_have_session()
 {
     return (0 != strcmp(session_id(), ''));
@@ -1389,6 +1394,74 @@ function common_path($relative, $ssl=false, $addSession=true)
     }
 
     return $proto.'://'.$serverpart.'/'.$pathpart.$relative;
+}
+
+// FIXME: Maybe this should also be able to handle non-fancy URLs with index.php?p=...
+function common_fake_local_fancy_url($url)
+{
+    /**
+     * This is a hacky fix to make URIs generated with "index.php/" match against
+     * locally stored URIs without that. So for example if the remote site is looking
+     * up the webfinger for some user and for some reason knows about https://some.example/user/1
+     * but we locally store and report only https://some.example/index.php/user/1 then they would
+     * dismiss the profile for not having an identified alias.
+     *
+     * There are various live instances where these issues occur, for various reasons.
+     * Most of them being users fiddling with configuration while already having
+     * started federating (distributing the URI to other servers) or maybe manually
+     * editing the local database.
+     */
+    if (!preg_match(
+                // [1] protocol part, we can only rewrite http/https anyway.
+                '/^(https?:\/\/)' .
+                // [2] site name.
+                // FIXME: Dunno how this acts if we're aliasing ourselves with a .onion domain etc.
+                '('.preg_quote(common_config('site', 'server'), '/').')' .
+                // [3] site path, or if that is empty just '/' (to retain the /)
+                '('.preg_quote(common_config('site', 'path') ?: '/', '/').')' .
+                // [4] + [5] extract index.php (+ possible leading double /) and the rest of the URL separately.
+                '(\/?index\.php\/)(.*)$/', $url, $matches)) {
+        // if preg_match failed to match
+        throw new Exception('No known change could be made to the URL.');
+    }
+
+    // now reconstruct the URL with everything except the "index.php/" part
+    $fancy_url = '';
+    foreach ([1,2,3,5] as $idx) {
+        $fancy_url .= $matches[$idx];
+    }
+    return $fancy_url;
+}
+
+// FIXME: Maybe this should also be able to handle non-fancy URLs with index.php?p=...
+function common_fake_local_nonfancy_url($url)
+{
+    /**
+     * This is a hacky fix to make URIs NOT generated with "index.php/" match against
+     * locally stored URIs WITH that. The reverse from the above.
+     *
+     * It will also "repair" index.php URLs with multiple / prepended. Like https://some.example///index.php/user/1
+     */
+    if (!preg_match(
+                // [1] protocol part, we can only rewrite http/https anyway.
+                '/^(https?:\/\/)' .
+                // [2] site name.
+                // FIXME: Dunno how this acts if we're aliasing ourselves with a .onion domain etc.
+                '('.preg_quote(common_config('site', 'server'), '/').')' .
+                // [3] site path, or if that is empty just '/' (to retain the /)
+                '('.preg_quote(common_config('site', 'path') ?: '/', '/').')' .
+                // [4] should be empty (might contain one or more / and then maybe also index.php). Will be overwritten.
+                // [5] will have the extracted actual URL part (besides site path)
+                '((?!index.php\/)\/*(?:index.php\/)?)(.*)$/', $url, $matches)) {
+        // if preg_match failed to match
+        throw new Exception('No known change could be made to the URL.');
+    }
+
+    $matches[4] = 'index.php/'; // inject the index.php/ rewritethingy
+
+    // remove the first element, which is the full matching string
+    array_shift($matches);
+    return implode($matches);
 }
 
 function common_inject_session($url, $serverpart = null)

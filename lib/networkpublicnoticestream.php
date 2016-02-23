@@ -23,7 +23,7 @@ class NetworkPublicNoticeStream extends ScopingNoticeStream
  * @link      http://status.net/
  */
 
-class RawNetworkPublicNoticeStream extends NoticeStream
+class RawNetworkPublicNoticeStream extends FullNoticeStream
 {
     function getNoticeIds($offset, $limit, $since_id, $max_id)
     {
@@ -46,9 +46,7 @@ class RawNetworkPublicNoticeStream extends NoticeStream
         Notice::addWhereSinceId($notice, $since_id);
         Notice::addWhereMaxId($notice, $max_id);
 
-        if (!empty($this->selectVerbs)) {
-            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
-        }
+        self::filterVerbs($notice, $this->selectVerbs);
 
         $ids = array();
 

@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Notice stream for favorites
@@ -77,14 +73,14 @@ class RawFaveNoticeStream extends NoticeStream
     protected $user_id;
     protected $own;
 
+    protected $selectVerbs = array();
+
     function __construct($user_id, $own)
     {
         parent::__construct();
 
         $this->user_id = $user_id;
         $this->own     = $own;
-
-        $this->selectVerbs = array();
     }
 
     /**

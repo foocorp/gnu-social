@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Stream of notices by a profile
@@ -134,12 +130,7 @@ class RawProfileNoticeStream extends NoticeStream
         Notice::addWhereSinceId($notice, $since_id);
         Notice::addWhereMaxId($notice, $max_id);
 
-        if (!empty($this->selectVerbs)) {
-            $notice->whereAddIn('verb', $this->selectVerbs, $notice->columnType('verb'));
-        }
-        if (!empty($this->unselectVerbs)) {
-            $notice->whereAddIn('!verb', $this->unselectVerbs, $notice->columnType('verb'));
-        }
+        self::filterVerbs($notice, $this->selectVerbs);
 
         $notice->orderBy('created DESC, id DESC');
 

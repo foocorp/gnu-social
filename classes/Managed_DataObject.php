@@ -412,6 +412,60 @@ abstract class Managed_DataObject extends Memcached_DataObject
         return intval($this->id);
     }
 
+    /**
+     * WARNING: Only use this on Profile and Notice. We should probably do
+     * this with traits/"implements" or whatever, but that's over the top
+     * right now, I'm just throwing this in here to avoid code duplication
+     * in Profile and Notice classes.
+     */
+    public function getAliases()
+    {
+        return array_keys($this->getAliasesWithIDs());
+    }
+
+    public function getAliasesWithIDs()
+    {
+        $aliases = array();
+        $aliases[$this->getUri()] = $this->getID();
+
+        try {
+            $aliases[$this->getUrl()] = $this->getID();
+        } catch (InvalidUrlException $e) {
+            // getUrl failed because no valid URL could be returned, just ignore it
+        }
+
+        if (common_config('fix', 'fancyurls')) {
+            /**
+             * Here we add some hacky hotfixes for remote lookups that have been taught the
+             * (at least now) wrong URI but it's still obviously the same user. Such as:
+             * - https://site.example/user/1 even if the client requests https://site.example/index.php/user/1
+             * - https://site.example/user/1 even if the client requests https://site.example//index.php/user/1
+             * - https://site.example/index.php/user/1 even if the client requests https://site.example/user/1
+             * - https://site.example/index.php/user/1 even if the client requests https://site.example///index.php/user/1
+             */
+            foreach ($aliases as $alias=>$id) {
+                try {
+                    // get a "fancy url" version of the alias, even without index.php/
+                    $alt_url = common_fake_local_fancy_url($alias);
+                    // store this as well so remote sites can be sure we really are the same profile
+                    $aliases[$alt_url] = $id;
+                } catch (Exception $e) {
+                    // Apparently we couldn't rewrite that, the $alias was as the function wanted it to be
+                }
+
+                try {
+                    // get a non-"fancy url" version of the alias, i.e. add index.php/
+                    $alt_url = common_fake_local_nonfancy_url($alias);
+                    // store this as well so remote sites can be sure we really are the same profile
+                    $aliases[$alt_url] = $id;
+                } catch (Exception $e) {
+                    // Apparently we couldn't rewrite that, the $alias was as the function wanted it to be
+                }
+            }
+        }
+        return $aliases;
+    }
+
     // 'update' won't write key columns, so we have to do it ourselves.
     // This also automatically calls "update" _before_ it sets the keys.
     // FIXME: This only works with single-column primary keys so far! Beware!

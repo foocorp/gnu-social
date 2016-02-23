@@ -85,8 +85,10 @@ class ApiAuthAction extends ApiAction
         // NOTE: $this->scoped and $this->auth_user has to get set in
         // prepare(), not handle(), as subclasses use them in prepares.
 
-        // Allow regular login session
-        if (common_logged_in()) {
+        // Allow regular login session, but we have to double-check the
+        // HTTP_REFERER value to avoid cross domain POSTing since the API
+        // doesn't use the "token" form field.
+        if (common_logged_in() && common_local_referer()) {
             $this->scoped = Profile::current();
             $this->auth_user = $this->scoped->getUser();
             if (!$this->auth_user->hasRight(Right::API)) {

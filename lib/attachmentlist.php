@@ -85,6 +85,12 @@ class AttachmentList extends Widget
             return 0;
         }
 
+        if ($this->notice->getProfile()->isSilenced()) {
+            // TRANS: Message for inline attachments list in notices when the author has been silenced.
+            $this->element('div', ['class'=>'error'], _('Attachments are hidden because this profile has been silenced.'));
+            return 0;
+        }
+
         $this->showListStart();
 
         foreach ($attachments as $att) {

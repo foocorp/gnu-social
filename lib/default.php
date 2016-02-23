@@ -81,6 +81,9 @@ $default =
               'log_queries' => false, // true to log all DB queries
               'log_slow_queries' => 0, // if set, log queries taking over N seconds
               'mysql_foreign_keys' => false), // if set, enables experimental foreign key support on MySQL
+        'fix' =>
+        array('fancyurls' => true,   // makes sure aliases in WebFinger etc. are not f'd by index.php/ URLs
+              ),
         'syslog' =>
         array('appname' => 'statusnet', # for syslog
               'priority' => 'debug', # XXX: currently ignored
@@ -129,6 +132,7 @@ $default =
         array('banned' => array(),
               'biolimit' => null,
               'changenick' => false,
+              'allowprivate' => false,  // whether to allow setting stream to private ("only followers can read")
               'backup' => false,    // can cause DoS, so should be done via CLI
               'restore' => false,
               'delete' => false,
@@ -141,6 +145,10 @@ $default =
               'path' => $_path . '/avatar/',
               'ssl' => null,
               'maxsize' => 300),
+        'foaf' =>
+        array(
+              'mbox_sha1sum' => false,
+            ),
         'public' =>
         array('localonly' => false,
               'blacklist' => array(),
@@ -233,6 +241,7 @@ $default =
                                 'application/vnd.oasis.opendocument.text-web'               => 'oth',
                                 'application/pdf'   => 'pdf',
                                 'application/zip'   => 'zip',
+                                'application/xml'   => 'xml',
                                 'image/png'         => 'png',
                                 'image/jpeg'        => 'jpg',
                                 'image/gif'         => 'gif',
@@ -289,6 +298,7 @@ $default =
         ),
         'notice' =>
         array('contentlimit' => null,
+              'allowprivate' => false,  // whether to allow users to "check the padlock" to publish notices available for their subscribers.
               'defaultscope' => null, // null means 1 if site/private, 0 otherwise
               'hidespam' => true), // Whether to hide silenced users from timelines
         'message' =>
