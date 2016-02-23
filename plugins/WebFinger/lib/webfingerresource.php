@@ -31,7 +31,7 @@ abstract class WebFingerResource
 
     public function getAliases()
     {
-        $aliases = $this->object->getAliases();
+        $aliases = $this->object->getAliasesWithIDs();
 
         // Some sites have changed from http to https and still want
         // (because remote sites look for it) verify that they are still

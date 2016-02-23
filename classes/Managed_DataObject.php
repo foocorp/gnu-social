@@ -420,6 +420,11 @@ abstract class Managed_DataObject extends Memcached_DataObject
      */
     public function getAliases()
     {
+        return array_keys($this->getAliasesWithIDs());
+    }
+
+    public function getAliasesWithIDs()
+    {
         $aliases = array();
         $aliases[$this->getUri()] = $this->getID();
 
