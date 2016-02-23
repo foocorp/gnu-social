@@ -669,7 +669,7 @@ class OStatusPlugin extends Plugin
                                $other->getBestName());
 
         $act->actor   = $profile->asActivityObject();
-        $act->object  = $other->asActivityObject();
+        $act->objects[] = $other->asActivityObject();
 
         $oprofile->notifyActivity($act, $profile);
 
@@ -707,7 +707,7 @@ class OStatusPlugin extends Plugin
 
         $act->actor = $profile->asActivityObject();
         $act->verb = ActivityVerb::JOIN;
-        $act->object = $oprofile->asActivityObject();
+        $act->objects[] = $oprofile->asActivityObject();
 
         $act->time = time();
         // TRANS: Title for joining a remote groep.
@@ -761,7 +761,7 @@ class OStatusPlugin extends Plugin
 
         $act->actor = $member->asActivityObject();
         $act->verb = ActivityVerb::LEAVE;
-        $act->object = $oprofile->asActivityObject();
+        $act->objects[] = $oprofile->asActivityObject();
 
         $act->time = time();
         // TRANS: Title for leaving a remote group.
@@ -807,7 +807,7 @@ class OStatusPlugin extends Plugin
 
         $act->actor = $sub->asActivityObject();
         $act->verb = ActivityVerb::FOLLOW;
-        $act->object = $oprofile->asActivityObject();
+        $act->objects[] = $oprofile->asActivityObject();
 
         $act->time = time();
         // TRANS: Title for following a remote list.
@@ -859,7 +859,7 @@ class OStatusPlugin extends Plugin
 
         $act->actor = $member->asActivityObject();
         $act->verb = ActivityVerb::UNFOLLOW;
-        $act->object = $oprofile->asActivityObject();
+        $act->objects[] = $oprofile->asActivityObject();
 
         $act->time = time();
         // TRANS: Title for unfollowing a remote list.
@@ -1051,7 +1051,7 @@ class OStatusPlugin extends Plugin
                                $notice->getUrl());
 
         $act->actor   = $profile->asActivityObject();
-        $act->object  = $notice->asActivityObject();
+        $act->objects[]  = $notice->asActivityObject();
 
         $oprofile->notifyActivity($act, $profile);
 
@@ -1173,7 +1173,7 @@ class OStatusPlugin extends Plugin
                                $profile->getBestName());
 
         $act->actor   = $profile->asActivityObject();
-        $act->object  = $act->actor;
+        $act->objects[]  = $act->actor;
 
         while ($oprofile->fetch()) {
             $oprofile->notifyDeferred($act, $profile);
