@@ -98,6 +98,41 @@ class SalmonAction extends Action
         assert($this->target instanceof Profile);
 
         common_log(LOG_DEBUG, "Got a " . $this->activity->verb);
+
+        // Notice must either be a) in reply to a notice by this user
+        // or b) in reply to a notice to the attention of this user
+        // or c) to the attention of this user
+        // or d) reference the user as an activity:object
+
+        $notice = null;
+
+        if (!empty($this->activity->context->replyToID)) {
+            try {
+                $notice = Notice::getKV('uri', $this->activity->context->replyToID);
+            } catch (NoResultException $e) {
+                $notice = false;
+            }
+        }
+
+        if ($notice instanceof Notice &&
+                ($this->target->sameAs($notice->getProfile())
+                    || array_key_exists($this->target->getID(), $notice->getAttentionProfileIDs())
+                )) {
+            // In reply to a notice either from or mentioning this user.
+            common_debug('User is the owner or was in the attention list of thr:in-reply-to activity.');
+        } elseif (!empty($this->activity->context->attention) &&
+                   array_key_exists($this->target->getUri(), $this->activity->context->attention)) {
+            // To the attention of this user.
+            common_debug('User was in attention list of salmon slap.');
+        } elseif (!empty($this->activity->objects) && $this->activity->objects[0]->id === $this->target->getUri()) {
+            // The user is the object of this slap (unfollow for example)
+            common_debug('User URI was the id of the salmon slap object.');
+        } else {
+            common_debug('User was NOT found in salmon slap context.');
+            // TRANS: Client exception.
+            throw new ClientException(_m('The owner of this salmon endpoint was not in the context of the carried slap.'));
+        }
+
         try {
             $options = [ 'source' => 'ostatus' ];
             common_debug('Save salmon slap directly with Notice::saveActivity for actor=='.$this->actor->getID());

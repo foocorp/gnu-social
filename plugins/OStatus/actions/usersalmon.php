@@ -71,30 +71,6 @@ class UsersalmonAction extends SalmonAction
             throw new ClientException(_m('Cannot handle that kind of post.'));
         }
 
-        // Notice must either be a) in reply to a notice by this user
-        // or b) in reply to a notice to the attention of this user
-        // or c) to the attention of this user
-
-        $context = $this->activity->context;
-        $notice = false;
-
-        if (!empty($context->replyToID)) {
-            $notice = Notice::getKV('uri', $context->replyToID);
-        }
-
-        if ($notice instanceof Notice &&
-            ($notice->profile_id == $this->target->id ||
-             array_key_exists($this->target->id, $notice->getReplies())))
-        {
-            // In reply to a notice either from or mentioning this user.
-        } elseif (!empty($context->attention) &&
-                   array_key_exists($this->target->getUri(), $context->attention)) {
-            // To the attention of this user.
-        } else {
-            // TRANS: Client exception.
-            throw new ClientException(_m('Not to anyone in reply to anything.'));
-        }
-
         try {
             $this->saveNotice();
         } catch (AlreadyFulfilledException $e) {
