@@ -63,8 +63,7 @@ class OpenidserverAction extends Action
         $request = $this->oserver->decodeRequest();
         if (in_array($request->mode, array('checkid_immediate',
             'checkid_setup'))) {
-            $user = common_current_user();
-            if(!$user){
+            if (!$this->scoped instanceof Profile) {
                 if($request->immediate){
                     //cannot prompt the user to login in immediate mode, so answer false
                     $response = $this->generateDenyResponse($request);
@@ -77,9 +76,9 @@ class OpenidserverAction extends Action
                     common_set_returnto($_SERVER['REQUEST_URI']);
                     common_redirect(common_local_url('login'), 303);
                 }
-            }else if(common_profile_url($user->nickname) == $request->identity || $request->idSelect()){
+            } elseif (in_array($request->identity, $this->scoped->getAliases()) || $request->idSelect()) {
                 $user_openid_trustroot = User_openid_trustroot::pkeyGet(
-                                                array('user_id'=>$user->id, 'trustroot'=>$request->trust_root));
+                                                array('user_id'=>$this->scoped->getID(), 'trustroot'=>$request->trust_root));
                 if(empty($user_openid_trustroot)){
                     if($request->immediate){
                         //cannot prompt the user to trust this trust root in immediate mode, so answer false
@@ -87,7 +86,7 @@ class OpenidserverAction extends Action
                     }else{
                         common_ensure_session();
                         $_SESSION['openid_trust_root'] = $request->trust_root;
-                        $allowResponse = $this->generateAllowResponse($request, $user);
+                        $allowResponse = $this->generateAllowResponse($request, $this->scoped);
                         $this->oserver->encodeResponse($allowResponse); //sign the response
                         $denyResponse = $this->generateDenyResponse($request);
                         $this->oserver->encodeResponse($denyResponse); //sign the response
@@ -101,12 +100,11 @@ class OpenidserverAction extends Action
                         // were POSTed here.
                         common_redirect(common_local_url('openidtrust'), 303);
                     }
-                }else{
+                } else {
                     //user has previously authorized this trust root
-                    $response = $this->generateAllowResponse($request, $user);
-                    //$response = $request->answer(true, null, common_profile_url($user->nickname));
+                    $response = $this->generateAllowResponse($request, $this->scoped);
                 }
-            } else if ($request->immediate) {
+            } elseif ($request->immediate) {
                 $response = $this->generateDenyResponse($request);
             } else {
                 //invalid
@@ -137,14 +135,14 @@ class OpenidserverAction extends Action
         }
     }
 
-    function generateAllowResponse($request, $user){
-        $response = $request->answer(true, null, common_profile_url($user->nickname));
+    function generateAllowResponse($request, Profile $profile){
+        $response = $request->answer(true, null, $profile->getUrl());
+        $user = $profile->getUser();
 
-        $profile = $user->getProfile();
         $sreg_data = array(
-            'fullname' => $profile->fullname,
-            'nickname' => $user->nickname,
-            'email' => $user->email,
+            'fullname' => $profile->getFullname(),
+            'nickname' => $profile->getNickname(),
+            'email' => $user->email,    // FIXME: Should we make the email optional?
             'language' => $user->language,
             'timezone' => $user->timezone);
         $sreg_request = Auth_OpenID_SRegRequest::fromOpenIDRequest($request);
