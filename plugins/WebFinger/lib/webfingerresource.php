@@ -31,49 +31,18 @@ abstract class WebFingerResource
 
     public function getAliases()
     {
-        $aliases = array();
+        $aliases = $this->object->getAliases();
 
-        // Add the URI as an identity, this is _not_ necessarily an HTTP url
-        $uri = $this->object->getUri();
-        $aliases[$uri] = true;
-        if (common_config('webfinger', 'http_alias')
-                && strtolower(parse_url($uri, PHP_URL_SCHEME)) === 'https') {
-            $aliases[preg_replace('/^https:/', 'http:', $uri, 1)] = true;
-        }
-
-        try {
-            $aliases[$this->object->getUrl()] = true;
-        } catch (InvalidUrlException $e) {
-            // getUrl failed because no valid URL could be returned, just ignore it
-        }
-
-        if (common_config('webfinger', 'fancyurlfix')) {
-            /**
-             * Here we add some hacky hotfixes for remote lookups that have been taught the
-             * (at least now) wrong URI but it's still obviously the same user. Such as:
-             * - https://site.example/user/1 even if the client requests https://site.example/index.php/user/1
-             * - https://site.example/user/1 even if the client requests https://site.example//index.php/user/1
-             * - https://site.example/index.php/user/1 even if the client requests https://site.example/user/1
-             * - https://site.example/index.php/user/1 even if the client requests https://site.example///index.php/user/1
-             */
-            foreach(array_keys($aliases) as $alias) {
-                try {
-                    // get a "fancy url" version of the alias, even without index.php/
-                    $alt_url = common_fake_local_fancy_url($alias);
-                    // store this as well so remote sites can be sure we really are the same profile
-                    $aliases[$alt_url] = true;
-                } catch (Exception $e) {
-                    // Apparently we couldn't rewrite that, the $alias was as the function wanted it to be
+        // Some sites have changed from http to https and still want
+        // (because remote sites look for it) verify that they are still
+        // the same identity as they were on HTTP. Should NOT be used if
+        // you've run HTTPS all the time!
+        if (common_config('webfinger', 'http_alias')) {
+            foreach ($aliases as $alias=>$id) {
+                if (!strtolower(parse_url($alias, PHP_URL_SCHEME)) === 'https') {
+                    continue;
                 }
-    
-                try {
-                    // get a non-"fancy url" version of the alias, i.e. add index.php/
-                    $alt_url = common_fake_local_nonfancy_url($alias);
-                    // store this as well so remote sites can be sure we really are the same profile
-                    $aliases[$alt_url] = true;
-                } catch (Exception $e) {
-                    // Apparently we couldn't rewrite that, the $alias was as the function wanted it to be
-                }
+                $aliases[preg_replace('/^https:/', 'http:', $alias, 1)] = $id;
             }
         }
 

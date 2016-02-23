@@ -81,6 +81,9 @@ $default =
               'log_queries' => false, // true to log all DB queries
               'log_slow_queries' => 0, // if set, log queries taking over N seconds
               'mysql_foreign_keys' => false), // if set, enables experimental foreign key support on MySQL
+        'fix' =>
+        array('fancyurls' => true,   // makes sure aliases in WebFinger etc. are not f'd by index.php/ URLs
+              ),
         'syslog' =>
         array('appname' => 'statusnet', # for syslog
               'priority' => 'debug', # XXX: currently ignored

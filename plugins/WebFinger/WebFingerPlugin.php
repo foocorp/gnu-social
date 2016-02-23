@@ -36,12 +36,10 @@ class WebFingerPlugin extends Plugin
     const OAUTH_AUTHORIZE_REL       = 'http://apinamespace.org/oauth/authorize';
 
     public $http_alias = false;
-    public $fancyurlfix = true; // adds + interprets some extra aliases related to 'index.php/' URLs
 
     public function initialize()
     {
         common_config_set('webfinger', 'http_alias', $this->http_alias);
-        common_config_set('webfinger', 'fancyurlfix', $this->fancyurlfix);
     }
 
     public function onRouterInitialized($m)
@@ -106,7 +104,7 @@ class WebFingerPlugin extends Plugin
                 $user = User::getByUri($resource);
                 $profile = $user->getProfile();
             } catch (NoResultException $e) {
-                if (common_config('webfinger', 'fancyurlfix')) {
+                if (common_config('fix', 'fancyurls')) {
                     try {
                         try {   // if it's a /index.php/ url
                             // common_fake_local_fancy_url can throw an exception
