@@ -42,7 +42,7 @@ class UsersalmonAction extends SalmonAction
 
         if (!empty($this->activity->context->replyToID)) {
             try {
-                $notice = Notice::getKV('uri', $this->activity->context->replyToID);
+                $notice = Notice::getByUri($this->activity->context->replyToID);
             } catch (NoResultException $e) {
                 $notice = false;
             }
@@ -50,7 +50,7 @@ class UsersalmonAction extends SalmonAction
 
         if ($notice instanceof Notice &&
                 ($this->target->sameAs($notice->getProfile())
-                    || array_key_exists($this->target->getID(), $notice->getAttentionProfileIDs())
+                    || in_array($this->target->getID(), $notice->getAttentionProfileIDs())
                 )) {
             // In reply to a notice either from or mentioning this user.
             common_debug('User is the owner or was in the attention list of thr:in-reply-to activity.');
