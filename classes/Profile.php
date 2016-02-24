@@ -900,6 +900,31 @@ class Profile extends Managed_DataObject
         return parent::update($dataObject);
     }
 
+    public function getRelSelf()
+    {
+        return ['href' => $this->getUrl(),
+                'text' => common_config('site', 'name'),
+                'image' => Avatar::urlByProfile($this)];
+    }
+
+    // All the known rel="me", used for the IndieWeb audience
+    public function getRelMes()
+    {
+        $relMes = array();
+        try {
+            $relMes[] = $this->getRelSelf();
+        } catch (InvalidUrlException $e) {
+            // no valid profile URL available
+        }
+        if (common_valid_http_url($this->getHomepage())) {
+            $relMes[] = ['href' => $this->getHomepage(),
+                         'text' => _('Homepage'),
+                         'image' => null];
+        }
+        Event::handle('OtherAccountProfiles', array($this, &$relMes));
+        return $relMes;
+    }
+
     function delete($useWhere=false)
     {
         // just in case it hadn't been done before... (usually set before adding deluser to queue handling!)
