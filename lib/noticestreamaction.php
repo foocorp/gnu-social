@@ -34,6 +34,18 @@ abstract class NoticestreamAction extends ProfileAction
         // pass by default
     }
 
+    public function extraHeaders()
+    {
+        parent::extraHeaders();
+        foreach ($this->getFeeds() as $feed) {
+            header('Link: <'.htmlspecialchars($feed->getUrl()).'>;' .
+                        ' rel="'.htmlspecialchars($feed->rel()).'";' .
+                        ' type="'.htmlspecialchars($feed->mimeType()).'"',
+                    false    // don't overwrite previous headers of this sort
+                    );
+        }
+    }
+
     // this fetches the NoticeStream
     abstract public function getStream();
 }
