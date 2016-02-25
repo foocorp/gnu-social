@@ -325,8 +325,10 @@ class OembedPlugin extends Plugin
             throw new UnsupportedMediaException(_('Image file had impossible geometry (0 width or height)'));
         }
 
+        $ext = File::guessMimeExtension($info['mime']);
+
         // We'll trust sha256 (File::FILEHASH_ALG) not to have collision issues any time soon :)
-        $filename = hash(File::FILEHASH_ALG, $imgData) . '.' . common_supported_mime_to_ext($info['mime']);
+        $filename = hash(File::FILEHASH_ALG, $imgData) . ".{$ext}";
         $fullpath = File_thumbnail::path($filename);
         // Write the file to disk. Throw Exception on failure
         if (!file_exists($fullpath) && file_put_contents($fullpath, $imgData) === false) {
