@@ -286,7 +286,7 @@ class File extends Managed_DataObject
                 if (array_key_exists($ext, $blacklist)) {
                     if (!is_string($blacklist[$ext])) {
                         // we don't have a safe replacement extension
-                        throw ClientException(_('Blacklisted file extension.'));
+                        throw new ClientException(_('Blacklisted file extension.'));
                     }
                     common_debug('Found replaced extension for filename '._ve($filename).': '._ve($ext));
 
