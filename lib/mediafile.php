@@ -253,15 +253,15 @@ class MediaFile
             File::respectsQuota($scoped, $_FILES[$param]['size']);
 
             $mimetype = self::getUploadedMimeType($_FILES[$param]['tmp_name'], $_FILES[$param]['name']);
+            $basename = basename($_FILES[$param]['name']);
 
             switch (common_config('attachments', 'filename_base')) {
             case 'upload':
-                $basename = basename($_FILES[$param]['name']);
                 $filename = File::filename($scoped, $basename, $mimetype);
                 break;
             case 'hash':
             default:
-                $filename = strtolower($filehash) . '.' . File::guessMimeExtension($mimetype); 
+                $filename = strtolower($filehash) . '.' . File::guessMimeExtension($mimetype, $basename);
             }
             $filepath = File::path($filename);
 
