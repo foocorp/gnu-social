@@ -264,7 +264,6 @@ class File extends Managed_DataObject
      */
     static function guessMimeExtension($mimetype, $filename=null)
     {
-        $ext = null;
         try {
             // first see if we know the extension for our mimetype
             $ext = common_supported_mime_to_ext($mimetype);
@@ -301,11 +300,11 @@ class File extends Managed_DataObject
         // If nothing else has given us a result, try to extract it from
         // the mimetype value (this turns .jpg to .jpeg for example...)
         $matches = array();
+        // FIXME: try to build a regexp that will get jpeg from image/jpeg as well as json from application/jrd+json
         if (!preg_match('/\/([a-z0-9]+)/', mb_strtolower($mimetype), $matches)) {
             throw new Exception('Malformed mimetype: '.$mimetype);
         }
-        $ext = mb_strtolower($matches[1]);
-        return $ext;
+        return mb_strtolower($matches[1]);
     }
 
     /**
