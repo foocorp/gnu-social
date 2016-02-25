@@ -260,7 +260,8 @@ class Notice extends Managed_DataObject
 
     public function getRendered()
     {
-        if (is_null($this->rendered) || $this->rendered === '') {
+        // we test $this->id because if it's not inserted yet, we can't update the field
+        if (!empty($this->id) && (is_null($this->rendered) || $this->rendered === '')) {
             // update to include rendered content on-the-fly, so we don't have to have a fix-up script in upgrade.php
             common_debug('Rendering notice '.$this->getID().' as it had no rendered HTML content.');
             $orig = clone($this);
@@ -854,8 +855,7 @@ class Notice extends Managed_DataObject
         }
         // Strip out any bad HTML
         $stored->rendered = common_purify($content);
-        // yeah, just don't use getRendered() here since it's not inserted yet ;)
-        $stored->content = common_strip_html($stored->rendered);
+        $stored->content  = common_strip_html($stored->getRendered(), true, true);
         if (trim($stored->content) === '') {
             // TRANS: Error message when the plain text content of a notice has zero length.
             throw new ClientException(_('Empty notice content, will not save this.'));
