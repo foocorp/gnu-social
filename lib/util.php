@@ -800,7 +800,7 @@ function common_find_mentions($text, Profile $sender, Notice $parent=null)
 
         // @#tag => mention of all subscriptions tagged 'tag'
 
-        preg_match_all('/(?:^|[\s\.\,\:\;]+)@#([\pL\pN_\-\.]{1,64})/',
+        preg_match_all('/'.Nickname::BEFORE_MENTIONS.'@#([\pL\pN_\-\.]{1,64})/',
                        $text, $hmatches, PREG_OFFSET_CAPTURE);
         foreach ($hmatches[1] as $hmatch) {
             $tag = common_canonical_tag($hmatch[0]);
@@ -822,7 +822,7 @@ function common_find_mentions($text, Profile $sender, Notice $parent=null)
                                 'url' => $url);
         }
 
-        preg_match_all('/(?:^|[\s\.\,\:\;]+)!(' . Nickname::DISPLAY_FMT . ')/',
+        preg_match_all('/'.Nickname::BEFORE_MENTIONS.'!(' . Nickname::DISPLAY_FMT . ')/',
                        $text, $hmatches, PREG_OFFSET_CAPTURE);
         foreach ($hmatches[1] as $hmatch) {
             $nickname = Nickname::normalize($hmatch[0]);
@@ -866,7 +866,7 @@ function common_find_mentions_raw($text)
 
     $atmatches = array();
     // the regexp's "(?!\@)" makes sure it doesn't matches the single "@remote" in "@remote@server.com"
-    preg_match_all('/(?:^|\s+)@(' . Nickname::DISPLAY_FMT . ')\b(?!\@)/',
+    preg_match_all('/'.Nickname::BEFORE_MENTIONS.'@(' . Nickname::DISPLAY_FMT . ')\b(?!\@)/',
                    $text,
                    $atmatches,
                    PREG_OFFSET_CAPTURE);
