@@ -1,6 +1,11 @@
 Initial simple way to Webfinger enable your domain -- needs PHP.
 ================================================================
 
+This guide needs some updating, since it will only guide you to present
+XML data (while the curl command likely gives you JSON). The workaround
+is to simply make curl get 'webfinger.xml' instead, and/or have another
+file that contains JSON, but that requires editing the PHP file as well.
+
 Step 1
 ======
 
