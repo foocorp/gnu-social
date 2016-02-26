@@ -539,7 +539,6 @@ class Ostatus_profile extends Managed_DataObject
 
         try {
             $stored = Notice::saveActivity($activity, $actor, $options);
-            Ostatus_source::saveNew($stored, $this, $method);
         } catch (Exception $e) {
             common_log(LOG_ERR, "OStatus save of remote message $sourceUri failed: " . $e->getMessage());
             throw $e;
