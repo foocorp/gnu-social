@@ -162,7 +162,7 @@ class MinifyPlugin extends Plugin
         $versions[] = array('name' => 'Minify',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:Minify',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Minify',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('The Minify plugin minifies StatusNet\'s CSS and JavaScript, removing whitespace and comments.'));

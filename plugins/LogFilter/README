@@ -1,0 +1,20 @@
+The LogFilter plugin provides server-side setting to filter log output by type or keyword.
+
+Installation
+============
+add "addPlugin('LogFilter');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+Disable all debug messages and those containing 'About to push':
+
+addPlugin('LogFilter', array(
+    'priority' => array(LOG_DEBUG => false),
+    'regex' => array('/About to push/' => false)
+));
+

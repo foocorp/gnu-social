@@ -1,1 +1,23 @@
-Depends on the oEmbed plugin (Oembed)
+The LinkPreview plugin adds a UI for previewing thumbnails from links.
+
+Note: This plugin depends on the "Oembed" plugin.
+
+Installation
+============
+add "addPlugin('LinkPreview');"
+to the bottom of your config.php
+
+Settings
+========
+process_links: Whether to process links or not
+thumbwidth: The width of the link preview
+thumbheight: The height of the link preview
+
+Example
+=======
+addPlugin('Oembed'); // Dependency
+$config['attachments']['process_links'] = true;
+$config['attachments']['thumbwidth'] = 42;
+$config['attachments']['thumbheight'] = 42;
+addPlugin('LinkPreview');
+

@@ -1,0 +1,22 @@
+The StoreRemoteMedia plugin downloads remotely attached files to local server.
+
+Installation
+============
+add "addPlugin('StoreRemoteMedia');"
+to the bottom of your config.php
+
+Settings
+========
+domain_whitelist: Array of regular expressions. Always escape your dots and end your strings.
+check_whitelist: Whether to check the domain_whitelist.
+
+Example
+=======
+addPlugin('StoreRemoteMedia', array(
+    'domain_whitelist' => array(
+        '^i\d*\.ytimg\.com$' => 'YouTube',
+        '^i\d*\.vimeocdn\.com$' => 'Vimeo'
+    ),
+    'check_whitelist' => true
+));
+

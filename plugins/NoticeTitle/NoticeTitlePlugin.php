@@ -86,7 +86,7 @@ class NoticeTitlePlugin extends Plugin
      */
     function onPluginVersion(array &$versions)
     {
-        $url = 'http://status.net/wiki/Plugin:NoticeTitle';
+        $url = 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/NoticeTitle';
 
         $versions[] = array('name' => 'NoticeTitle',
                             'version' => NOTICE_TITLE_PLUGIN_VERSION,

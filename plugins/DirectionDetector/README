@@ -1,0 +1,15 @@
+The DirectionDetector plugin detects notices with RTL content and displays them
+in the correct direction.
+
+Installation
+============
+add "addPlugin('DirectionDetector');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('DirectionDetector');

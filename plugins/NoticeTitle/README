@@ -1,0 +1,17 @@
+The NoticeTitle plugin allows users to add titles to notices.
+
+Installation
+============
+add "addPlugin('NoticeTitle');"
+to the bottom of your config.php
+
+Settings
+========
+restricted: Whether this option is restriced to users with the "richedit" role.
+
+Example
+=======
+addPlugin('NoticeTitle', array(
+    'restricted' => false
+));
+

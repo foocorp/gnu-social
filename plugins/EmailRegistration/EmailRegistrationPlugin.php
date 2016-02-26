@@ -177,7 +177,7 @@ class EmailRegistrationPlugin extends Plugin
         $versions[] = array('name' => 'EmailRegistration',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:EmailRegistration',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/EmailRegistration',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Use email only for registration.'));

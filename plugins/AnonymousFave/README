@@ -1,0 +1,14 @@
+The Anonymous Fave plugin allows anonymous (not logged in) users to favorite notices
+
+Installation
+============
+add "addPlugin('AnonymousFave');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('AnonymousFave');

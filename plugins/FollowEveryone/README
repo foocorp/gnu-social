@@ -1,0 +1,16 @@
+The FollowEveryone plugin makes it so that when a new user registers, all
+existing users follow them automatically.
+
+Installation
+============
+add "addPlugin('FollowEveryone');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('FollowEveryone');
+

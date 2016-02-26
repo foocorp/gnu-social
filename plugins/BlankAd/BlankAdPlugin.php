@@ -122,7 +122,7 @@ class BlankAdPlugin extends UAPPlugin
         $versions[] = array('name' => 'BlankAd',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:BlankAdPlugin',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/BlankAdPlugin',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Plugin for testing ad layout.'));

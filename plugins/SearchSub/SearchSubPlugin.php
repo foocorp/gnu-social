@@ -93,7 +93,7 @@ class SearchSubPlugin extends Plugin
         $versions[] = array('name' => 'SearchSub',
                             'version' => self::VERSION,
                             'author' => 'Brion Vibber',
-                            'homepage' => 'http://status.net/wiki/Plugin:SearchSub',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/SearchSub',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Plugin to allow following all messages with a given search.'));

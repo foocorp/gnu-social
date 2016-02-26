@@ -1,0 +1,17 @@
+The TabFocus plugin changes the notice form behavior so that, while in the text
+area, pressing the tab key focuses the "Send" button, matching the behavior of
+Twitter.
+
+Installation
+============
+add "addPlugin('TabFocus');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('TabFocus');
+

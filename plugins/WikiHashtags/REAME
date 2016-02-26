@@ -1,0 +1,17 @@
+The WikiHashtags plugin shows WikiHashtags content in the sidebar
+
+See: http://hashtags.wikia.com/wiki/WikiHashtags
+
+Installation
+============
+add "addPlugin('WikiHashtags');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('WikiHashtags');
+

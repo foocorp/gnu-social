@@ -62,7 +62,7 @@ class TightUrlPlugin extends UrlShortenerPlugin
         $versions[] = array('name' => sprintf('TightUrl (%s)', $this->shortenerName),
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:TightUrl',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/TightUrl',
                             'rawdescription' =>
                             // TRANS: Plugin description. %s is the shortener name.
                             sprintf(_m('Uses <a href="http://%1$s/">%1$s</a> URL-shortener service.'),

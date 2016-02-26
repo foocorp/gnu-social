@@ -1,0 +1,23 @@
+The PiwikAnalytics plugin adds JavaScript that sends various traffic details
+to a Piwik server to track web access.
+
+See:
+* http://piwik.org/
+
+Installation
+============
+add "addPlugin('PiwikAnalytics');"
+to the bottom of your config.php
+
+Settings
+========
+piwikroot: The root installation URL of the Piwik instance WITHOUT the protocol
+piwikId: The ID provided by the Pwiki instance.
+
+Example
+=======
+addPlugin('PiwikAnalytics', array(
+    'piwikroot' => 'example.org/piwik/',
+    'piwikId' => 'PIWIK_ID'
+));
+

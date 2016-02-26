@@ -1,0 +1,14 @@
+Fun sample plugin: tweaks input data and adds a 'Cornify' ( http://www.cornify.com ) widget to sidebar.
+
+Installation
+============
+add "addPlugin('Awesomeness');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('Awesomeness');

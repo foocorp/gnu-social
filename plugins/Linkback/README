@@ -1,0 +1,19 @@
+The Linkback plugin performs linkbacks (pingbacks, trackbacks, webmentions) for
+notices containing links.
+
+See:
+* https://en.wikipedia.org/wiki/Linkback
+
+Installation
+============
+add "addPlugin('Linkback');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('Linkback');
+

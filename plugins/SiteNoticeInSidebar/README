@@ -1,0 +1,16 @@
+The SiteNoticeInSidebar plugin puts the site notice in the sidebar.
+
+Installation
+============
+add "addPlugin('SiteNoticeInSidebar');"
+to the bottom of your config.php
+
+Settings
+========
+notice: The text to use in the site notice
+
+Example
+=======
+$config['site']['notice'] = 'Site notice content';
+addPlugin('SiteNoticeInSidebar');
+

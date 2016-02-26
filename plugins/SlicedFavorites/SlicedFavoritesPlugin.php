@@ -97,7 +97,7 @@ class SlicedFavoritesPlugin extends Plugin
      */
     function onPluginVersion(array &$versions)
     {
-        $url = 'http://status.net/wiki/Plugin:SlicedFavorites';
+        $url = 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/SlicedFavorites';
 
         $versions[] = array('name' => 'SlicedFavorites',
             'version' => GNUSOCIAL_VERSION,

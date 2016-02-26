@@ -1,0 +1,23 @@
+The ActivitySpam plugin is a spam filter for GNU social.
+
+It needs to connect to a activityspam server.
+You can run one yourself: https://github.com/e14n/activityspam
+Or use a public instance ( ex: https://spamicity.info/ )
+
+Installation
+============
+add "addPlugin('ActivitySpam');"
+to the bottom of your config.php
+
+Settings
+========
+server: URL to the activityspam server
+consumerkey: The "key" provided by the activityspam server after you've registered and configured an account.
+secret: The "secret" provided by the activityspam server after you've registered and configured an account
+
+Example
+=======
+$config['activityspam']['server'] = 'https://spamicity.info/';
+$config['activityspam']['consumerkey'] = 'CONSUMER_KEY';
+$config['activityspam']['secret'] = 'SECRET';
+addPlugin('ActivitySpam');
