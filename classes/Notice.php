@@ -997,7 +997,9 @@ class Notice extends Managed_DataObject
             }
         }
         if (!$stored instanceof Notice) {
-            throw new ServerException('StartNoticeSave did not give back a Notice');
+            throw new ServerException('StartNoticeSave did not give back a Notice.');
+        } elseif (empty($stored->id)) {
+            throw new ServerException('Supposedly saved Notice has no ID.');
         }
 
         // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
