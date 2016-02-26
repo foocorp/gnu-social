@@ -287,7 +287,7 @@ class OpenidsettingsAction extends SettingsAction
             // TRANS: Form validation error for a non-existing OpenID.
             throw new ClientException(_m('No such OpenID.'));
         }
-        if ($this->scoped->getID() !== $oid->user_id) {
+        if ($this->scoped->getID() !== $oid->getID()) {
             // TRANS: Form validation error if OpenID is connected to another user.
             throw new ClientException(_m('That OpenID does not belong to you.'));
         }
