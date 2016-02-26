@@ -112,7 +112,8 @@ class File extends Managed_DataObject
         $u = parse_url($given_url);
         if (isset($u['host']) && $u['host'] === common_config('site', 'server')) {
             $r = Router::get();
-            $args = $r->map(mb_substr($u['path']));
+            // Skip the / in the beginning or $r->map won't match
+            $args = $r->map(mb_substr($u['path'], 1));
             if ($args['action'] === 'attachment') {
                 try {
                     // $args['attachment'] should always be set if action===attachment, given our routing rules
