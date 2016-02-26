@@ -849,11 +849,12 @@ class Notice extends Managed_DataObject
         $stored->url = $url;
         $stored->verb = $act->verb;
 
-        $content = $act->content ?: $act->summary;
-        if (is_null($content) && !is_null($actobj)) {
-            $content = $actobj->content ?: $actobj->summary;
+        // we use mb_strlen because it _might_ be that the content is just the string "0"...
+        $content = mb_strlen($act->content) ? $act->content : $act->summary;
+        if (mb_strlen($content)===0 && !is_null($actobj)) {
+            $content = mb_strlen($actobj->content) ? $actobj->content : $actobj->summary;
         }
-        // Strip out any bad HTML
+        // Strip out any bad HTML from $content
         $stored->rendered = common_purify($content);
         $stored->content  = common_strip_html($stored->getRendered(), true, true);
         if (trim($stored->content) === '') {
