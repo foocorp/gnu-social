@@ -1,0 +1,14 @@
+Plugin for testing ad layout
+
+This plugin uses the UAPPlugin framework to output ad content. However,
+its ad content is just images with one red pixel stretched to the
+right size. It's mostly useful for debugging theme layout.
+
+To use this plugin, set the parameter for the ad size you want to use
+to true (or anything non-null).
+
+Example
+=======
+To make a leaderboard:
+
+addPlugin('BlankAd', array('leaderboard' => true));

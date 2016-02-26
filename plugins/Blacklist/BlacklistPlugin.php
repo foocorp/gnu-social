@@ -297,7 +297,7 @@ class BlacklistPlugin extends Plugin
                             'version' => self::VERSION,
                             'author' => 'Evan Prodromou',
                             'homepage' =>
-                            'http://status.net/wiki/Plugin:Blacklist',
+                            'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Blacklist',
                             'description' =>
                             // TRANS: Plugin description.
                             _m('Keeps a blacklist of forbidden nickname '.

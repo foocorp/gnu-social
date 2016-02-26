@@ -109,7 +109,7 @@ class CometPlugin extends RealtimePlugin
         $versions[] = array('name' => 'Comet',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:Comet',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Comet',
                             'rawdescription' =>
                             // TRANS: Plugin description message. Bayeux is a protocol for transporting asynchronous messages
                             // TRANS: and Comet is a web application model.

@@ -155,7 +155,7 @@ class AuthCryptPlugin extends AuthenticationPlugin
         $versions[] = array('name' => 'AuthCrypt',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Mikael Nordfeldth',
-                            'homepage' => 'http://status.net/wiki/Plugin:AuthCrypt',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/AuthCrypt',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Authentication and password hashing with crypt()'));

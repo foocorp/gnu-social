@@ -1,0 +1,21 @@
+The Memcached plugin implements cache interface for memcached.
+
+See: http://memcached.org/
+
+Installation
+============
+add "addPlugin('Memcached');"
+to the bottom of your config.php
+
+Settings
+========
+servers: Array of memcached servers addresses
+defaultExpiry: How long before cache expires (in seconds)
+
+Example
+=======
+addPlugin('Memcached', array(
+    'servers' => array('127.0.0.1;11211'),
+    'defaultExpiry' => 86400 // 24h
+));
+

@@ -8,9 +8,9 @@ Configuration
 In StatusNet's configuration, you can adjust the following settings
 under 'sphinx':
 
-enabled: Set to true to enable. Default false.
-server: a string with the hostname of the sphinx server.
-port: an integer with the port number of the sphinx server.
+enabled: Set to true to enable. Default true.
+server: a string with the hostname of the sphinx server. Default localhost
+port: an integer with the port number of the sphinx server. Default 3312
 
 
 Requirements

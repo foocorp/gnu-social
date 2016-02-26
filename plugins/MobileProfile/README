@@ -1,0 +1,20 @@
+The MobileProfile plugin implements XHTML MobileProfile output for supporting
+user agents.
+
+See: https://en.wikipedia.org/wiki/XHTML_Mobile_Profile
+
+Installation
+============
+add "addPlugin('MobileProfile');"
+to the bottom of your config.php
+
+Note: This plugin is enabled by default on private and single-user instances.
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('MobileProfile');
+

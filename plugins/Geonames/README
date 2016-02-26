@@ -1,0 +1,19 @@
+The Geonames plugin uses geonames.org to get human-readable names for locations
+based on user-provided lat/long pairs.
+
+The human-readable names appear after notices that have a lat/long location
+attached to them.
+
+Installation
+============
+add "addPlugin('Geonames');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('Geonames');
+

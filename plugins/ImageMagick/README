@@ -1,0 +1,21 @@
+The ImageMagick plugin handles more kinds of image formats for thumbnails,
+thanks to ImageMagick.
+
+Note: This plugin depends on php5-imagick
+
+Installation
+============
+add "addPlugin('ImageMagick');"
+to the bottom of your config.php
+
+Settings
+========
+animated: Whether to resize animated GIFs.
+
+Note: We are not infinitely fast, so resizing animated GIFs is _not_ recommended.
+
+Example
+=======
+$config['thumbnail']['animated'] = true;
+addPlugin('ImageMagick');
+

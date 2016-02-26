@@ -49,7 +49,7 @@ class TabFocusPlugin extends Plugin
         $versions[] = array('name' => 'TabFocus',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews and Paul Irish',
-                            'homepage' => 'http://status.net/wiki/Plugin:TabFocus',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/TabFocus',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('TabFocus changes the notice form behavior so that, while in the text area, pressing the tab key focuses the "Send" button, matching the behavior of Twitter.'));

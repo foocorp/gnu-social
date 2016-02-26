@@ -1,0 +1,18 @@
+The PtitUrl plugin shortens URLS via a PtitUrl URL-shortener service
+
+Installation
+============
+add "addPlugin('PtitUrl');"
+to the bottom of your config.php
+
+Settings
+========
+serviceUrl: The URL to the PtitUrl instance
+
+Example
+=======
+
+addPlugin('PtitUrl', array(
+    'serviceUrl' => 'http://example.org'
+));
+

@@ -1,0 +1,24 @@
+The RegisterThrottle plugin throttles registration by IP address
+
+Installation
+============
+This plugin is enabled by default on public instances, otherwise it can be
+enabled by adding "addPlugin('RegisterThrottle');" to the bottom of your
+config.php
+
+Settings
+========
+regLimits: Array of time spans in seconds to limits. Default is 3 registrations per hour, 5 per day, 10 per week.
+silenced: Disallow registration if a silenced user has registered from this IP address
+
+Example
+=======
+addPlugin('RegisterThrottle', array(
+    'regLimits' => array(
+                        604800 => 10, // per week
+                        86400 => 5,   // per day
+                        3600 => 3     // per hour
+                    ),
+    'silenced' => true
+));
+

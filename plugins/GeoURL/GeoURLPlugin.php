@@ -121,7 +121,7 @@ class GeoURLPlugin extends Plugin
         $versions[] = array('name' => 'GeoURL',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:GeoURL',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/GeoURL',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Ping <a href="http://geourl.org/">GeoURL</a> when '.

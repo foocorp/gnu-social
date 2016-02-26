@@ -212,7 +212,7 @@ class MemcachedPlugin extends Plugin
         $versions[] = array('name' => 'Memcached',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou, Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:Memcached',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Memcached',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Use <a href="http://memcached.org/">Memcached</a> to cache query results.'));

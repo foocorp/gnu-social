@@ -1,0 +1,25 @@
+The EmailRegistration plugin allows user registration with just an email
+address.
+
+When users register, the part before '@' in their email address will become
+their nickname/username (normalized). In case of collisions, a auto-increment
+number will be added to the username.
+
+For example, if someone registers with "user@example.org", their username
+will be "user". If someone else registers with "user@example.net", their
+username will be user1, and so on.
+
+Installation
+============
+add "addPlugin('EmailRegistration');"
+to the bottom of your config.php
+
+Note: This plugin is enabled by default on private instances.
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('EmailRegistration');

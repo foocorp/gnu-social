@@ -1,0 +1,15 @@
+The Directory plugin adds a user directory (list)
+
+Installation
+============
+This plugin is enabled by default except on single-user instances, in which
+case, it can be enabled by adding "addPlugin('Directory');" to the bottom of
+your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('Directory');

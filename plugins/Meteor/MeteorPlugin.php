@@ -165,7 +165,7 @@ class MeteorPlugin extends RealtimePlugin
         $versions[] = array('name' => 'Meteor',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:Meteor',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Meteor',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Plugin to do "real time" updates using Meteor.'));

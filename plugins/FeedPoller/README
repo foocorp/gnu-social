@@ -1,0 +1,16 @@
+The FeedPoller plugin allows users to subscribe to non-PuSH-enabled feeds
+by regularly polling the source for new content.
+
+Installation
+============
+add "addPlugin('FeedPoller');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('FeedPoller');
+

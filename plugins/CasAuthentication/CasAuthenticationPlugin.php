@@ -152,7 +152,7 @@ class CasAuthenticationPlugin extends AuthenticationPlugin
         $versions[] = array('name' => 'CAS Authentication',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:CasAuthentication',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/CasAuthentication',
                             // TRANS: Plugin description. CAS is Central Authentication Service.
                             'rawdescription' => _m('The CAS Authentication plugin allows for StatusNet to handle authentication through CAS (Central Authentication Service).'));
         return true;

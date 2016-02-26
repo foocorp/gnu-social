@@ -32,7 +32,7 @@ class ModPlusPlugin extends Plugin
         $versions[] = array('name' => 'ModPlus',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Brion Vibber',
-                            'homepage' => 'http://status.net/wiki/Plugin:ModPlus',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/ModPlus',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('UI extension for profile moderation actions.'));

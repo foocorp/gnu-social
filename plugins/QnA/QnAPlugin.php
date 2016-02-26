@@ -130,7 +130,7 @@ class QnAPlugin extends MicroAppPlugin
             'name'        => 'QnA',
             'version'     => GNUSOCIAL_VERSION,
             'author'      => 'Zach Copley',
-            'homepage'    => 'http://status.net/wiki/Plugin:QnA',
+            'homepage'    => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/QnA',
             'description' =>
              // TRANS: Plugin description.
              _m('Question and Answers micro-app.')
