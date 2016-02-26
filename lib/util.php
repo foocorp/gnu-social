@@ -580,7 +580,7 @@ function common_canonical_email($email)
     return $email;
 }
 
-function common_purify($html)
+function common_purify($html, array $args=array())
 {
     require_once INSTALLDIR.'/extlib/HTMLPurifier/HTMLPurifier.auto.php';
 
@@ -588,6 +588,10 @@ function common_purify($html)
     $cfg->set('Attr.AllowedRel', ['bookmark', 'directory', 'enclosure', 'home', 'license', 'nofollow', 'payment', 'tag']);  // http://microformats.org/wiki/rel
     $cfg->set('HTML.ForbiddenAttributes', array('style'));  // id, on* etc. are already filtered by default
     $cfg->set('URI.AllowedSchemes', array_fill_keys(common_url_schemes(), true));
+    if (isset($args['URI.Base'])) {
+        $cfg->set('URI.Base', $args['URI.Base']);   // if null this is like unsetting it I presume
+        $cfg->set('URI.MakeAbsolute', !is_null($args['URI.Base']));   // if we have a URI base, convert relative URLs to absolute ones.
+    }
 
     // Remove more elements than what the default filter removes, default in GNU social are remotely
     // linked resources such as img, video, audio

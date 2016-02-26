@@ -854,8 +854,8 @@ class Notice extends Managed_DataObject
         if (mb_strlen($content)===0 && !is_null($actobj)) {
             $content = mb_strlen($actobj->content) ? $actobj->content : $actobj->summary;
         }
-        // Strip out any bad HTML from $content
-        $stored->rendered = common_purify($content);
+        // Strip out any bad HTML from $content. URI.Base is used to sort out relative URLs.
+        $stored->rendered = common_purify($content, ['URI.Base' => $stored->url ?: null]);
         $stored->content  = common_strip_html($stored->getRendered(), true, true);
         if (trim($stored->content) === '') {
             // TRANS: Error message when the plain text content of a notice has zero length.
