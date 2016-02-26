@@ -108,13 +108,20 @@ class File extends Managed_DataObject
 
         // if the given url is an local attachment url and the id already exists, don't
         // save a new file record. This should never happen, but let's make it foolproof
-        $attachment_path = common_path('attachment/');
-        if (mb_strpos($given_url,$attachment_path) === 0) {
-            $possible_file_id = mb_substr($given_url, mb_strlen($attachment_path));
-            if(is_numeric($possible_file_id)) {
-                $file = File::getKV('id',$possible_file_id);
-                if($file instanceof File) {
+        // FIXME: how about attachments servers?
+        $u = parse_url($given_url);
+        if (isset($u['host']) && $u['host'] === common_config('site', 'server')) {
+            $r = Router::get();
+            $args = $r->map(mb_substr($u['path']));
+            if ($args['action'] === 'attachment') {
+                try {
+                    // $args['attachment'] should always be set if action===attachment, given our routing rules
+                    $file = File::getByID($args['attachment']);
                     return $file;
+                } catch (EmptyIdException $e) {
+                    // ...but $args['attachment'] can also be 0...
+                } catch (NoResultException $e) {
+                    // apparently this link goes to us, but is _not_ an existing attachment (File) ID?
                 }
             }
         }
