@@ -674,7 +674,7 @@ Web crawlers. See http://www.robotstxt.org/ for more information
 on the format of this file.
 
 crawldelay: if non-empty, this value is provided as the Crawl-Delay:
-    for the robots.txt file. see https://help.yahoo.com/kb/search
+    for the robots.txt file. see <https://en.wikipedia.org/wiki/Robots_exclusion_standard#Crawl-delay_directive>
     for more information. Default is zero, no explicit delay.
 disallow: Array of (virtual) directories to disallow. Default is 'main',
     'search', 'message', 'settings', 'admin'. Ignored when site
