@@ -105,6 +105,11 @@ class User_group extends Managed_DataObject
         return $this->getProfile()->getNickname();
     }
 
+    public function getFullname()
+    {
+        return $this->getProfile()->getFullname();
+    }
+
     public static function defaultLogo($size)
     {
         static $sizenames = array(AVATAR_PROFILE_SIZE => 'profile',
