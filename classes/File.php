@@ -109,8 +109,8 @@ class File extends Managed_DataObject
         // if the given url is an local attachment url and the id already exists, don't
         // save a new file record. This should never happen, but let's make it foolproof
         $attachment_path = common_path('attachment/');
-        if(strpos($given_url,$attachment_path) == 0) {
-            $possible_file_id = substr($given_url,strlen($attachment_path));
+        if (mb_strpos($given_url,$attachment_path) === 0) {
+            $possible_file_id = mb_substr($given_url, mb_strlen($attachment_path));
             if(is_numeric($possible_file_id)) {
                 $file = File::getKV('id',$possible_file_id);
                 if($file instanceof File) {
