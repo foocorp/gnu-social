@@ -50,7 +50,7 @@ class AwesomenessPlugin extends Plugin
             'name' => 'Awesomeness',
             'version' => self::VERSION,
             'author' => 'Jeroen De Dauw',
-            'homepage' => 'http://status.net/wiki/Plugin:Awesomeness',
+            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Awesomeness',
             // TRANS: Plugin description for a sample plugin.
             'rawdescription' => _m('The Awesomeness plugin adds additional awesomeness ' .
                 'to a StatusNet installation.'

@@ -93,9 +93,9 @@ function handleError($error)
             return;
         }
 
-        $logmsg = "PEAR error: " . $error->getMessage();
+        $logmsg = "Exception thrown: " . _ve($error->getMessage());
         if ($error instanceof PEAR_Exception && common_config('site', 'logdebug')) {
-            $logmsg .= " : ". $error->toText();
+            $logmsg .= " PEAR: ". $error->toText();
         }
         // DB queries often end up with a lot of newlines; merge to a single line
         // for easier grepability...

@@ -410,7 +410,7 @@ class GroupPrivateMessagePlugin extends Plugin
         $versions[] = array('name' => 'GroupPrivateMessage',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:GroupPrivateMessage',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/GroupPrivateMessage',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Allow posting private messages to groups.'));

@@ -61,7 +61,7 @@ class AutoSandboxPlugin extends Plugin
         $versions[] = array('name' => 'AutoSandbox',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Sean Carmody',
-                            'homepage' => 'http://status.net/wiki/Plugin:AutoSandbox',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/AutoSandbox',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Automatically sandboxes newly registered members.'));

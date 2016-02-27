@@ -1,0 +1,24 @@
+The DomainStatusNetwork plugin adds tools to map one status_network to one
+email domain in a multi-site installation.
+
+Relates to "status_network":
+* /scripts/setup.cfg.sample
+* /scripts/setup_status_network.sh
+* /scripts/settag.php
+* /scripts/delete_status_network.sh
+* /scripts/move_status_network.sh
+
+
+Installation
+============
+add "addPlugin('DomainStatusNetwork');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('DomainStatusNetwork');
+

@@ -373,7 +373,7 @@ class MobileProfilePlugin extends WAP20Plugin
         $versions[] = array('name' => 'MobileProfile',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Sarven Capadisli',
-                            'homepage' => 'http://status.net/wiki/Plugin:MobileProfile',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/MobileProfile',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('XHTML MobileProfile output for supporting user agents.'));

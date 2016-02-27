@@ -189,7 +189,7 @@ class ModLogPlugin extends Plugin
         $versions[] = array('name' => 'ModLog',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:ModLog',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/ModLog',
                             'description' =>
                             _m('Show the moderation history for a profile in the sidebar'));
         return true;

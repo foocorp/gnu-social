@@ -1,0 +1,19 @@
+The Sample plugin shows best practices for development of GNU social plugins.
+
+It adds a "Hello" menu item to the default menu and tracks how many times it
+has greeted each user.
+
+Installation
+============
+add "addPlugin('Sample');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+
+addPlugin('Sample');
+

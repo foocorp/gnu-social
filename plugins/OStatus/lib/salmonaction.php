@@ -98,6 +98,7 @@ class SalmonAction extends Action
         assert($this->target instanceof Profile);
 
         common_log(LOG_DEBUG, "Got a " . $this->activity->verb);
+
         try {
             $options = [ 'source' => 'ostatus' ];
             common_debug('Save salmon slap directly with Notice::saveActivity for actor=='.$this->actor->getID());

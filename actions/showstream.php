@@ -155,6 +155,17 @@ class ShowstreamAction extends NoticestreamAction
                               sprintf(_('FOAF for %s'), $this->target->getNickname())));
     }
 
+    public function extraHeaders()
+    {
+        parent::extraHeaders();
+        // Publish all the rel="me" in the HTTP headers on our main profile page
+        if (get_class($this) == 'ShowstreamAction') {
+            foreach ($this->target->getRelMes() as $relMe) {
+                header('Link: <'.htmlspecialchars($relMe['href']).'>'.$type.'; rel="me"', false);
+            }
+        }
+    }
+
     function extraHead()
     {
         if ($this->target->bio) {

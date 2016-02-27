@@ -1,0 +1,12 @@
+The Cronish plugin executes events on a near-minutely/hour/day/week basis.
+
+Intervals are approximate and will vary depending on how busy
+the instance is.
+
+Installation
+============
+This plugin is enabled by default
+
+Settings
+========
+none

@@ -166,7 +166,7 @@ class DiskCachePlugin extends Plugin
         $versions[] = array('name' => 'DiskCache',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:DiskCache',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/DiskCache',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Plugin to implement cache interface with disk files.'));

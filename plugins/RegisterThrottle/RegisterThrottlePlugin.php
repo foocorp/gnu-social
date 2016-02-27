@@ -61,6 +61,14 @@ class RegisterThrottlePlugin extends Plugin
     public $silenced = true;
 
     /**
+     * Auto-silence all other users from the same registration_ip
+     * as the one being silenced. Caution: Many users may come from
+     * the same IP (even entire countries) without having any sort
+     * of relevant connection for moderation.
+     */
+    public $auto_silence_by_ip = false;
+
+    /**
      * Whether we're enabled; prevents recursion.
      */
     static private $enabled = true;
@@ -233,7 +241,7 @@ class RegisterThrottlePlugin extends Plugin
         $versions[] = array('name' => 'RegisterThrottle',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:RegisterThrottle',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/RegisterThrottle',
                             'description' =>
                             // TRANS: Plugin description.
                             _m('Throttles excessive registration from a single IP address.'));
@@ -300,15 +308,15 @@ class RegisterThrottlePlugin extends Plugin
             return true;
         }
 
-        if ($role != Profile_role::SILENCED) {
+        if ($role !== Profile_role::SILENCED) {
             return true;
         }
 
-        if (!$this->silenced) {
+        if (!$this->auto_silence_by_ip) {
             return true;
         }
 
-        $ri = Registration_ip::getKV('user_id', $profile->id);
+        $ri = Registration_ip::getKV('user_id', $profile->getID());
 
         if (empty($ri)) {
             return true;
@@ -317,13 +325,13 @@ class RegisterThrottlePlugin extends Plugin
         $ids = Registration_ip::usersByIP($ri->ipaddress);
 
         foreach ($ids as $id) {
-            if ($id == $profile->id) {
+            if ($id == $profile->getID()) {
                 continue;
             }
 
-            $other = Profile::getKV('id', $id);
-
-            if (empty($other)) {
+            try {
+                $other = Profile::getByID($id);
+            } catch (NoResultException $e) {
                 continue;
             }
 
@@ -331,6 +339,11 @@ class RegisterThrottlePlugin extends Plugin
                 continue;
             }
 
+            // 'enabled' here is used to prevent recursion, since
+            // we'll end up in this function again on ->silence()
+            // though I actually think it doesn't matter since we
+            // do this in onEndGrantRole and that means the above
+            // $other->isSilenced() test should've 'continue'd...
             $old = self::$enabled;
             self::$enabled = false;
             $other->silence();

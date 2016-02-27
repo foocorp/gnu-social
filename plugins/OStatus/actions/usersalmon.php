@@ -29,21 +29,43 @@ class UsersalmonAction extends SalmonAction
     {
         parent::prepare($args);
 
-        $id = $this->trimmed('id');
-
-        if (!$id) {
-            // TRANS: Client error displayed trying to perform an action without providing an ID.
-            $this->clientError(_m('No ID.'));
-        }
-
-        $this->user = User::getKV('id', $id);
-
-        if (!$this->user instanceof User) {
-            // TRANS: Client error displayed when referring to a non-existing user.
-            $this->clientError(_m('No such user.'));
-        }
+        $this->user = User::getByID($this->trimmed('id'));
 
         $this->target = $this->user->getProfile();
+
+        // Notice must either be a) in reply to a notice by this user
+        // or b) in reply to a notice to the attention of this user
+        // or c) to the attention of this user
+        // or d) reference the user as an activity:object
+
+        $notice = null;
+
+        if (!empty($this->activity->context->replyToID)) {
+            try {
+                $notice = Notice::getByUri($this->activity->context->replyToID);
+            } catch (NoResultException $e) {
+                $notice = false;
+            }
+        }
+
+        if ($notice instanceof Notice &&
+                ($this->target->sameAs($notice->getProfile())
+                    || in_array($this->target->getID(), $notice->getAttentionProfileIDs())
+                )) {
+            // In reply to a notice either from or mentioning this user.
+            common_debug('User is the owner or was in the attention list of thr:in-reply-to activity.');
+        } elseif (!empty($this->activity->context->attention) &&
+                   array_key_exists($this->target->getUri(), $this->activity->context->attention)) {
+            // To the attention of this user.
+            common_debug('User was in attention list of salmon slap.');
+        } elseif (!empty($this->activity->objects) && $this->activity->objects[0]->id === $this->target->getUri()) {
+            // The user is the object of this slap (unfollow for example)
+            common_debug('User URI was the id of the salmon slap object.');
+        } else {
+            common_debug('User was NOT found in salmon slap context.');
+            // TRANS: Client exception.
+            throw new ClientException(_m('The owner of this salmon endpoint was not in the context of the carried slap.'));
+        }
 
         return true;
     }
@@ -69,30 +91,6 @@ class UsersalmonAction extends SalmonAction
         default:
             // TRANS: Client exception thrown when an undefied activity is performed.
             throw new ClientException(_m('Cannot handle that kind of post.'));
-        }
-
-        // Notice must either be a) in reply to a notice by this user
-        // or b) in reply to a notice to the attention of this user
-        // or c) to the attention of this user
-
-        $context = $this->activity->context;
-        $notice = false;
-
-        if (!empty($context->replyToID)) {
-            $notice = Notice::getKV('uri', $context->replyToID);
-        }
-
-        if ($notice instanceof Notice &&
-            ($notice->profile_id == $this->target->id ||
-             array_key_exists($this->target->id, $notice->getReplies())))
-        {
-            // In reply to a notice either from or mentioning this user.
-        } elseif (!empty($context->attention) &&
-                   array_key_exists($this->target->getUri(), $context->attention)) {
-            // To the attention of this user.
-        } else {
-            // TRANS: Client exception.
-            throw new ClientException(_m('Not to anyone in reply to anything.'));
         }
 
         try {

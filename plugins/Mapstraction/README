@@ -1,0 +1,21 @@
+The Mapstraction plugin provides map visualization of location data.
+
+Show maps of users' and friends' notices with http://www.mapstraction.com/.
+
+Installation
+============
+add "addPlugin('Mapstraction');"
+to the bottom of your config.php
+
+Settings
+========
+provider: Name of the service providing maps ('cloudmade', 'google', 'microsoft', 'openlayers', 'yahoo')
+apikey: provider API key (or 'appid'), if required
+
+Example
+=======
+addPlugin('Mapstraction', array(
+    'provider' => 'openlayers',
+    'apikey' => 'API_KEY'
+));
+

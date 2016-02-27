@@ -1,0 +1,23 @@
+Log cache access
+
+Adds "Cache MISS, Cache HIT, set cache value, delete cache value" etc.
+information to the log file.
+
+Note: entries are logged at the LOG_INFO level.
+
+Installation
+============
+add "addPlugin('CacheLog');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+Note that since most caching plugins return false for StartCache*
+methods, you should add this plugin before them, i.e.
+
+    addPlugin('CacheLog');
+    addPlugin('XCache');

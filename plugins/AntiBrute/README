@@ -1,0 +1,11 @@
+The AntiBrute plugin implements a time delay between successive failed login
+attempts to slow down brute force attacks ( https://en.wikipedia.org/wiki/Brute-force_attack#Countermeasures ).
+
+Installation
+============
+This plugin is enabled by default
+
+Settings
+========
+none
+

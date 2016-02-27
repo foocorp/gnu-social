@@ -1,0 +1,20 @@
+The Sitemap plugin creates a dynamic sitemap for Bing, Yahoo! and Google
+
+Installation
+============
+add "addPlugin('Sitemap');"
+to the bottom of your config.php
+
+Settings
+========
+googlekey: The key provided by Google
+yahookey: The key provided by Yahoo!
+bingkey: The key provided by Bing
+
+Example
+=======
+$config['sitemap']['googlekey'] = 'GOOGLE_KEY';
+$config['sitemap']['yahookey'] = 'YAHOO_KEY';
+$config['sitemap']['bingkey'] = 'BING_KEY';
+addPlugin('Sitemap');
+

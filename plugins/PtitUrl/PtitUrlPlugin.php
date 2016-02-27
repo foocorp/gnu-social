@@ -62,7 +62,7 @@ class PtitUrlPlugin extends UrlShortenerPlugin
         $versions[] = array('name' => sprintf('PtitUrl (%s)', $this->shortenerName),
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:PtitUrl',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/PtitUrl',
                             'rawdescription' =>
                             // TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
                             sprintf(_m('Uses <a href="http://%1$s/">%1$s</a> URL-shortener service.'),

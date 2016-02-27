@@ -73,18 +73,20 @@ class OembedPlugin extends Plugin
             $metadata = OpenGraphHelper::ogFromHtml($dom);
         }
 
-        // sometimes sites serve the path, not the full URL, for images
-        // let's "be liberal in what you accept from others"!
-        // add protocol and host if the thumbnail_url starts with /
-        if(substr($metadata->thumbnail_url,0,1) == '/') {
-            $thumbnail_url_parsed = parse_url($metadata->url);
-            $metadata->thumbnail_url = $thumbnail_url_parsed['scheme']."://".$thumbnail_url_parsed['host'].$metadata->thumbnail_url;
-        } 
+        if (isset($metadata->thumbnail_url)) {
+            // sometimes sites serve the path, not the full URL, for images
+            // let's "be liberal in what you accept from others"!
+            // add protocol and host if the thumbnail_url starts with /
+            if(substr($metadata->thumbnail_url,0,1) == '/') {
+                $thumbnail_url_parsed = parse_url($metadata->url);
+                $metadata->thumbnail_url = $thumbnail_url_parsed['scheme']."://".$thumbnail_url_parsed['host'].$metadata->thumbnail_url;
+            }
         
-        // some wordpress opengraph implementations sometimes return a white blank image
-        // no need for us to save that!
-        if($metadata->thumbnail_url == 'https://s0.wp.com/i/blank.jpg') {
-            unset($metadata->thumbnail_url);
+            // some wordpress opengraph implementations sometimes return a white blank image
+            // no need for us to save that!
+            if($metadata->thumbnail_url == 'https://s0.wp.com/i/blank.jpg') {
+                unset($metadata->thumbnail_url);
+            }
         }
 
     }
@@ -323,8 +325,10 @@ class OembedPlugin extends Plugin
             throw new UnsupportedMediaException(_('Image file had impossible geometry (0 width or height)'));
         }
 
+        $ext = File::guessMimeExtension($info['mime']);
+
         // We'll trust sha256 (File::FILEHASH_ALG) not to have collision issues any time soon :)
-        $filename = hash(File::FILEHASH_ALG, $imgData) . '.' . common_supported_mime_to_ext($info['mime']);
+        $filename = hash(File::FILEHASH_ALG, $imgData) . ".{$ext}";
         $fullpath = File_thumbnail::path($filename);
         // Write the file to disk. Throw Exception on failure
         if (!file_exists($fullpath) && file_put_contents($fullpath, $imgData) === false) {

@@ -1,0 +1,16 @@
+The ForceGroup plugin allows forced group memberships and forces all notices
+to appear in groups that users were forced in.
+
+Installation
+============
+add "addPlugin('ForceGroup');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('ForceGroup');
+

@@ -1,0 +1,15 @@
+The OpenExternalLinkTarget plugin opens external links in a new window or tab.
+
+Installation
+============
+add "addPlugin('OpenExternalLinkTarget');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('OpenExternalLinkTarget');
+

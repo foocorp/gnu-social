@@ -1,0 +1,22 @@
+Plugin to check submitted notices with blogspam.net
+
+When new notices are saved, we check their text with blogspam.net (or
+a compatible service).
+
+Blogspam.net is supposed to catch blog comment spam. Some of its tests
+(min/max size, bayesian match) gave a lot of false positives so those
+tests are turned off by default.
+
+Installation
+============
+add "addPlugin('BlogspamNet');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('BlogspamNet');
+

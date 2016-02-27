@@ -1,0 +1,16 @@
+The DomainWhitelist plugin restricts the email addresses in a domain to a
+select whitelist.
+
+Installation
+============
+add "addPlugin('DomainWhitelist');"
+to the bottom of your config.php
+
+Settings
+========
+whitelist: An array of whitelisted domains
+
+Example
+=======
+$config['email']['whitelist'] = array('example.org', 'example.net');
+addPlugin('DomainWhitelist');

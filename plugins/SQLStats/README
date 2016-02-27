@@ -1,0 +1,18 @@
+The SQLStats plugin logs statistics on performed SQL queries.
+
+Installation
+============
+add "addPlugin('SQLStats');"
+to the bottom of your config.php
+
+Settings
+========
+verbose: whether to be verbose or not
+
+Note: entries are logged at the LOG_INFO level.
+
+Example
+=======
+$config['sqlstats']['verbose'] = false;
+addPlugin('SQLStats');
+

@@ -170,7 +170,7 @@ class FollowEveryonePlugin extends Plugin
         $versions[] = array('name' => 'FollowEveryone',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:FollowEveryone',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/FollowEveryone',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('New users follow everyone at registration and are followed in return.'));

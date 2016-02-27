@@ -1,0 +1,26 @@
+The OpenX plugin enables support for OpenX Ad Server.
+
+See: http://www.openx.org/
+
+Installation
+============
+add "addPlugin('OpenX');"
+to the bottom of your config.php
+
+Settings
+========
+mediumRectangle:
+rectangle:
+leaderboard:
+wideSkyscraper:
+adScript:
+
+Example
+=======
+$config['openx']['mediumRectangle'] = '';
+$config['openx']['rectangle'] = '';
+$config['openx']['leaderboard'] = '';
+$config['openx']['wideSkyscraper'] = '';
+$config['openx']['adScript'] = '';
+addPlugin('OpenX');
+

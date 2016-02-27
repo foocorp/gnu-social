@@ -62,6 +62,11 @@ class Feed
         $this->title = $title;
     }
 
+    function getUrl()
+    {
+        return $this->url;
+    }
+
     function mimeType()
     {
         switch ($this->type) {

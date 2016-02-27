@@ -123,7 +123,7 @@ class LdapAuthorizationPlugin extends AuthorizationPlugin
         $versions[] = array('name' => 'LDAP Authorization',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Craig Andrews',
-                            'homepage' => 'http://status.net/wiki/Plugin:LdapAuthorization',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/LdapAuthorization',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('The LDAP Authorization plugin allows for StatusNet to handle authorization through LDAP.'));

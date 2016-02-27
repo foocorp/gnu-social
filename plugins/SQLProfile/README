@@ -1,0 +1,17 @@
+The SQLProfile plugin watches for poorly indexed DB queries.
+
+Installation
+============
+add "addPlugin('SQLProfile');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Note: entries are logged at the LOG_DEBUG level.
+
+Example
+=======
+addPlugin('SQLProfile');
+

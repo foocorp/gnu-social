@@ -272,7 +272,7 @@ class DomainWhitelistPlugin extends Plugin
         $versions[] = array('name' => 'DomainWhitelist',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Evan Prodromou, Zach Copley',
-                            'homepage' => 'http://status.net/wiki/Plugin:DomainWhitelist',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/DomainWhitelist',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Restrict domains for email users.'));

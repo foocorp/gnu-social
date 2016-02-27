@@ -109,7 +109,7 @@ class RecaptchaPlugin extends Plugin
         $versions[] = array('name' => 'Recaptcha',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Eric Helgeson',
-                            'homepage' => 'http://status.net/wiki/Plugin:Recaptcha',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Recaptcha',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Uses <a href="http://recaptcha.org/">Recaptcha</a> service to add a  '.

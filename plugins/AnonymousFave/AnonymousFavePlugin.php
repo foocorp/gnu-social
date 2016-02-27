@@ -273,7 +273,7 @@ class AnonymousFavePlugin extends Plugin
      */
     function onPluginVersion(array &$versions)
     {
-        $url = 'http://status.net/wiki/Plugin:AnonymousFave';
+        $url = 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/AnonymousFave';
 
         $versions[] = array('name' => 'AnonymousFave',
             'version' => ANONYMOUS_FAVE_PLUGIN_VERSION,

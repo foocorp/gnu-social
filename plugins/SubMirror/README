@@ -1,0 +1,15 @@
+The SubMirror plugin pull PuSH-enabled feeds into your timeline.
+
+Installation
+============
+add "addPlugin('SubMirror');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('SubMirror');
+

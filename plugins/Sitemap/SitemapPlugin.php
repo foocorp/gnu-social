@@ -176,7 +176,7 @@ class SitemapPlugin extends Plugin
      */
     function onPluginVersion(array &$versions)
     {
-        $url = 'http://status.net/wiki/Plugin:Sitemap';
+        $url = 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/Sitemap';
 
         $versions[] = array('name' => 'Sitemap',
             'version' => GNUSOCIAL_VERSION,

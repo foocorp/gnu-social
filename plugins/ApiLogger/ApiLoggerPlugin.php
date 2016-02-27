@@ -80,7 +80,7 @@ class ApiLoggerPlugin extends Plugin
         $versions[] = array('name' => 'ApiLogger',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Brion Vibber',
-                            'homepage' => 'http://status.net/wiki/Plugin:ApiLogger',
+                            'homepage' => 'https://git.gnu.io/gnu/gnu-social/tree/master/plugins/ApiLogger',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('Allows random sampling of API requests.'));

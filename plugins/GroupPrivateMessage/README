@@ -1,0 +1,15 @@
+The GroupPrivateMessage plugin allows users to send private messages to a group.
+
+Installation
+============
+add "addPlugin('GroupPrivateMessage');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('GroupPrivateMessage');
+

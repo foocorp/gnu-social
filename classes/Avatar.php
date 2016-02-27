@@ -207,7 +207,7 @@ class Avatar extends Managed_DataObject
         }
     }
 
-    static function defaultImage($size)
+    static function defaultImage($size=AVATAR_PROFILE_SIZE)
     {
         static $sizenames = array(AVATAR_PROFILE_SIZE => 'profile',
                                   AVATAR_STREAM_SIZE => 'stream',

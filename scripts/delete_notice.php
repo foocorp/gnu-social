@@ -20,8 +20,8 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 
-$shortoptions = 'i::n::u::y';
-$longoptions = array('id=', 'nickname=', 'uri=', 'yes');
+$shortoptions = 'i::u::y';
+$longoptions = array('id=', 'uri=', 'yes');
 
 $helptext = <<<END_OF_HELP
 delete_notice.php [options]
@@ -35,22 +35,19 @@ END_OF_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-if (have_option('i', 'id')) {
-    $id = get_option_value('i', 'id');
-    $notice = Notice::getByID($id);
-    if (!$notice instanceof Notice) {
-        print "Can't find notice with ID $id\n";
-        exit(1);
+try {
+    if (have_option('i', 'id')) {
+        $id = get_option_value('i', 'id');
+        $notice = Notice::getByID($id);
+    } else if (have_option('u', 'uri')) {
+        $uri = get_option_value('u', 'uri');
+        $notice = Notice::getByUri($uri);
+    } else {
+        print $helptext;
+        throw new ClientException('You must provide either an ID or a URI.');
     }
-} else if (have_option('u', 'uri')) {
-    $uri = get_option_value('u', 'uri');
-    $notice = Notice::getKV('uri', $uri);
-    if (!$notice instanceof Notice) {
-        print "Can't find notice with URI '$uri'\n";
-        exit(1);
-    }
-} else {
-    print "You must provide either an ID, a URI or a nickname.\n";
+} catch (Exception $e) {
+    print "ERROR: {$e->getMessage()}\n";
     exit(1);
 }
 

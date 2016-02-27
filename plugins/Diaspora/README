@@ -1,0 +1,17 @@
+The Diaspora plugin allows GNU social users to subscribe to Diaspora feeds
+
+Note: The feeds are read-only at the moment. That is, replying to an entry
+coming from Diaspora will not propagate to Diaspora.
+
+Installation
+============
+add "addPlugin('Diaspora');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('Diaspora');

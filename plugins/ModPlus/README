@@ -1,0 +1,15 @@
+The ModPlus plugin shows UI extension for profile moderation actions.
+
+Installation
+============
+add "addPlugin('ModPlus');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('ModPlus');
+

@@ -1,0 +1,23 @@
+The ShareNotice plugin allows sharing of notices to Twitter, Facebook and other
+platforms.
+
+Installation
+============
+add "addPlugin('ShareNotice');"
+to the bottom of your config.php
+
+Settings
+========
+targets: Array of platforms allowed to share to
+
+Example
+=======
+
+addPlugin('ShareNotice', array(
+    'targets' => array(
+        array('Twitter'),
+        array('Facebook'),
+        array('StatusNet', array('baseurl' => 'http://example.org'))
+    )
+));
+

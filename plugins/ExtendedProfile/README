@@ -1,0 +1,23 @@
+The ExtendedProfile plugin adds additional profile fields such as:
+
+* Phone
+* IM
+* Website
+* Work experience
+* Education
+
+Installation
+============
+add "addPlugin('ExtendedProfile');"
+to the bottom of your config.php
+
+Note: This plugin is enabled by default on private instances.
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('ExtendedProfile');
+

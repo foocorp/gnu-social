@@ -1,0 +1,18 @@
+The UserFlag plugin allows flagging of profiles for review and reviewing
+flagged profiles.
+
+Installation
+============
+add "addPlugin('UserFlag');"
+to the bottom of your config.php
+
+Settings
+========
+flagOnBlock: Whether to automatically flag a profile when a user blocks it.
+
+Example
+=======
+addPlugin('UserFlag', array(
+    'flagOnBlock' => true
+));
+

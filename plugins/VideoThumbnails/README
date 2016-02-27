@@ -1,0 +1,19 @@
+The VideoThumbnails plugin enables video thumbnail preview support.
+
+Installation
+============
+add "addPlugin('VideoThumbnails');"
+to the bottom of your config.php
+
+Note: This plugin depends on
+* avconv
+* php5-gd
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('VideoThumbnails');
+
