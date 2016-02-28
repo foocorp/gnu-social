@@ -296,11 +296,15 @@ $default =
         array('handle' => false,   // whether to handle sessions ourselves
               'debug' => false,    // debugging output for sessions
               'gc_limit' => 1000), // max sessions to expire at a time
-        'htmlfilter' => array(  // purify HTML through HTMLPurifier
+        'htmlfilter' => [  // remove tags from user/remotely generated HTML if they are === true
             'img' => true,
             'video' => true,
             'audio' => true,
-        ),
+        ],
+        'htmlpurifier' => [ // configurable options for HTMLPurifier
+            'Cache.DefinitionImpl'  => 'Serializer',
+            'Cache.SerializerPath'  => implode(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), 'gnusocial']),
+        ],
         'notice' =>
         array('contentlimit' => null,
               'allowprivate' => false,  // whether to allow users to "check the padlock" to publish notices available for their subscribers.

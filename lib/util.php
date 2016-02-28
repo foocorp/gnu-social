@@ -600,6 +600,9 @@ function common_purify($html, array $args=array())
         $cfg->set('URI.Base', $args['URI.Base']);   // if null this is like unsetting it I presume
         $cfg->set('URI.MakeAbsolute', !is_null($args['URI.Base']));   // if we have a URI base, convert relative URLs to absolute ones.
     }
+    foreach (common_config('htmlpurifier') as $key=>$val) {
+        $cfg->set($key, $val);
+    }
 
     // Remove more elements than what the default filter removes, default in GNU social are remotely
     // linked resources such as img, video, audio
