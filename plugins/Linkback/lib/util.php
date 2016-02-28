@@ -284,7 +284,7 @@ function linkback_profile($entry, $mf2, $response, $target) {
     }
 
     if(!$author) {
-        $author = array('name' => array($entry['name']));
+        $author = array('name' => $entry['name']);
     }
 
     if(!$author['url']) {
