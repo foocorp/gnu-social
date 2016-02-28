@@ -585,7 +585,15 @@ function common_purify($html, array $args=array())
     require_once INSTALLDIR.'/extlib/HTMLPurifier/HTMLPurifier.auto.php';
 
     $cfg = HTMLPurifier_Config::createDefault();
-    $cfg->set('Attr.AllowedRel', ['bookmark', 'directory', 'enclosure', 'home', 'license', 'nofollow', 'payment', 'tag']);  // http://microformats.org/wiki/rel
+    /**
+     * rel values that should be avoided since they can be used to infer
+     * information about the _current_ page, not the h-entry:
+     *
+     *      directory, home, license, payment
+     *
+     * Source: http://microformats.org/wiki/rel
+     */
+    $cfg->set('Attr.AllowedRel', ['bookmark', 'enclosure', 'nofollow', 'tag']);
     $cfg->set('HTML.ForbiddenAttributes', array('style'));  // id, on* etc. are already filtered by default
     $cfg->set('URI.AllowedSchemes', array_fill_keys(common_url_schemes(), true));
     if (isset($args['URI.Base'])) {
