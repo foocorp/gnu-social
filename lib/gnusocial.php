@@ -141,6 +141,8 @@ class GNUsocial
         // Load settings from database; note we need autoload for this
         Config::loadSettings();
 
+        self::verifyLoadedConfig();
+
         self::initPlugins();
     }
 
@@ -415,6 +417,23 @@ class GNUsocial
 
         if (empty($config['db']['database'])) {
             throw new ServerException("No database server for this site.");
+        }
+    }
+
+    /**
+     * Verify that the loaded config is good. Not complete, but will
+     * throw exceptions on common configuration problems I hope.
+     *
+     * Might make changes to the filesystem, to created dirs, but will
+     * not make database changes.
+     */
+    static function verifyLoadedConfig()
+    {
+        if (common_config('htmlpurifier', 'Cache.DefinitionImpl') === 'Serializer'
+                && !is_dir(common_config('htmlpurifier', 'Cache.SerializerPath'))) {
+            if (!mkdir(common_config('htmlpurifier', 'Cache.SerializerPath'))) {
+                throw new ServerException('Could not create HTMLPurifier cache dir: '._ve(common_config('htmlpurifier', 'Cache.SerializerPath')));
+            }
         }
     }
 
