@@ -169,6 +169,9 @@ if (have_option('t')) {
     $threads = intval(get_option_value('--threads'));
 } else {
     $threads = 0;
+    //If there is no argument for number of threads
+    //Try reading a config option for the number
+    $threads = common_config('queue','threads');
 }
 if (!$threads) {
     $threads = getProcessorCount();
