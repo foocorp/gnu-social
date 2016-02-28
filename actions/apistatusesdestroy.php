@@ -34,9 +34,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Deletes one of the authenticating user's statuses (notices).
@@ -55,86 +53,46 @@ if (!defined('STATUSNET')) {
  */
 class ApiStatusesDestroyAction extends ApiAuthAction
 {
-    var $status = null;
-
-    /**
-     * Take arguments for running
-     *
-     * @param array $args $_REQUEST args
-     *
-     * @return boolean success flag
-     */
-    function prepare($args)
+    protected function prepare(array $args=array())
     {
         parent::prepare($args);
 
-        $this->notice_id = (int)$this->trimmed('id');
-
-        if (empty($notice_id)) {
-            $this->notice_id = (int)$this->arg('id');
+        if (!in_array($_SERVER['REQUEST_METHOD'], array('POST', 'DELETE'))) {
+            // TRANS: Client error displayed trying to delete a status not using POST or DELETE.
+            // TRANS: POST and DELETE should not be translated.
+            throw new ClientException(_('This method requires a POST or DELETE.'));
         }
 
-        $this->notice = Notice::getKV((int)$this->notice_id);
+        // FIXME: Return with a Not Acceptable status code?
+        if (!in_array($this->format, array('xml', 'json'))) {
+            // TRANS: Client error displayed when coming across a non-supported API method.
+            throw new ClientException(_('API method not found.'), 404);
+        }
+
+        try {
+            $this->notice = Notice::getByID($this->trimmed('id'));
+        } catch (NoResultException $e) {
+            // TRANS: Client error displayed trying to delete a status with an invalid ID.
+            throw new ClientException(_('No status found with that ID.'), 404);
+        }
 
         return true;
      }
 
-    /**
-     * Handle the request
-     *
-     * Delete the notice and all related replies
-     *
-     * @param array $args $_REQUEST data (unused)
-     *
-     * @return void
-     */
-    function handle($args)
+    protected function handle()
     {
-        parent::handle($args);
+        parent::handle();
 
-        if (!in_array($this->format, array('xml', 'json'))) {
-            $this->clientError(
-                // TRANS: Client error displayed when coming across a non-supported API method.
-                _('API method not found.'),
-                404
-            );
-            return;
+        if (!$this->scoped->sameAs($this->notice->getProfile()) && !$this->scoped->hasRight(Right::DELETEOTHERSNOTICE)) {
+            // TRANS: Client error displayed trying to delete a status of another user.
+            throw new AuthorizationException(_('You may not delete another user\'s status.'));
         }
 
-        if (!in_array($_SERVER['REQUEST_METHOD'], array('POST', 'DELETE'))) {
-            $this->clientError(
-                // TRANS: Client error displayed trying to delete a status not using POST or DELETE.
-                // TRANS: POST and DELETE should not be translated.
-                _('This method requires a POST or DELETE.'),
-                400,
-                $this->format
-            );
-            return;
+        if (Event::handle('StartDeleteOwnNotice', array($this->scoped->getUser(), $this->notice))) {
+            $this->notice->deleteAs($this->scoped);
+            Event::handle('EndDeleteOwnNotice', array($this->scoped->getUser(), $this->notice));
         }
-
-        if (empty($this->notice)) {
-            $this->clientError(
-                // TRANS: Client error displayed trying to delete a status with an invalid ID.
-                _('No status found with that ID.'),
-                404, $this->format
-            );
-            return;
-        }
-
-        if ($this->scoped->sameAs($this->notice->getProfile()) || $this->scoped->hasRight(Right::DELETEOTHERSNOTICE)) {
-            if (Event::handle('StartDeleteOwnNotice', array($this->auth_user, $this->notice))) {
-                $this->notice->deleteAs($this->scoped);
-                Event::handle('EndDeleteOwnNotice', array($this->auth_user, $this->notice));
-            }
-	        $this->showNotice();
-        } else {
-            $this->clientError(
-                // TRANS: Client error displayed trying to delete a status of another user.
-                _('You may not delete another user\'s status.'),
-                403,
-                $this->format
-            );
-        }
+        $this->showNotice();
     }
 
     /**
