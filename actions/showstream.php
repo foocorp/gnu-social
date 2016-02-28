@@ -161,7 +161,7 @@ class ShowstreamAction extends NoticestreamAction
         // Publish all the rel="me" in the HTTP headers on our main profile page
         if (get_class($this) == 'ShowstreamAction') {
             foreach ($this->target->getRelMes() as $relMe) {
-                header('Link: <'.htmlspecialchars($relMe['href']).'>'.$type.'; rel="me"', false);
+                header('Link: <'.htmlspecialchars($relMe['href']).'>; rel="me"', false);
             }
         }
     }
