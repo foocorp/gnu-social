@@ -211,6 +211,10 @@ class GrouplogoAction extends GroupAction
                                         'height' => AVATAR_PROFILE_SIZE,
                                         'alt' => $this->group->nickname));
             $this->elementEnd('div');
+            if (!empty($this->group->homepage_logo)) {
+                // TRANS: Button on group logo upload page to delete current group logo.
+                $this->submit('delete', _('Delete'));
+            }
             $this->elementEnd('li');
         }
 
@@ -315,6 +319,8 @@ class GrouplogoAction extends GroupAction
             $this->uploadLogo();
         } else if ($this->arg('crop')) {
             $this->cropLogo();
+        } else if ($this->arg('delete')) {
+            $this->deleteLogo();
         } else {
             // TRANS: Form validation error message when an unsupported argument is used.
             $this->showForm(_('Unexpected form submission.'));
@@ -407,6 +413,29 @@ class GrouplogoAction extends GroupAction
             // TRANS: Form failure message after failing to update a group logo.
             $this->showForm(_('Failed updating logo.'));
         }
+    }
+
+    /**
+     * Get rid of the current group logo.
+     *
+     * @return void
+     */
+    function deleteLogo()
+    {
+        $orig = clone($this->group);
+        Avatar::deleteFromProfile($this->group->getProfile());
+        @unlink(Avatar::path(basename($this->group->original_logo)));
+        @unlink(Avatar::path(basename($this->group->homepage_logo)));
+        @unlink(Avatar::path(basename($this->group->stream_logo)));
+        @unlink(Avatar::path(basename($this->group->mini_logo)));
+        $this->group->original_logo=User_group::defaultLogo(AVATAR_PROFILE_SIZE);
+        $this->group->homepage_logo=User_group::defaultLogo(AVATAR_PROFILE_SIZE);
+        $this->group->stream_logo=User_group::defaultLogo(AVATAR_STREAM_SIZE);
+        $this->group->mini_logo=User_group::defaultLogo(AVATAR_MINI_SIZE);
+        $this->group->update($orig);
+
+        // TRANS: Success message for deleting the group logo.
+        $this->showForm(_('Logo deleted.'));
     }
 
     function showPageNotice()
