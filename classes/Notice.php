@@ -1647,8 +1647,6 @@ class Notice extends Managed_DataObject
         }
 
         $att = Attention::saveNew($this, $target, $reason);
-
-        self::blow('reply:stream:%d', $target->getID());
         return true;
     }
 
