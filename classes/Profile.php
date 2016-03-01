@@ -238,7 +238,7 @@ class Profile extends Managed_DataObject
         }
 
         if (mb_strlen($this->getFullname()) > 0) {
-            // TRANS: Full name of a profile or group (%1$s) followed by some URI (%2$s) in parentheses.
+            // TRANS: The "fancy name": Full name of a profile or group (%1$s) followed by some URI (%2$s) in parentheses.
             return sprintf(_m('FANCYNAME','%1$s (%2$s)'), $this->getFullname(), $uri);
         } else {
             return $uri;

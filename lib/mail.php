@@ -712,8 +712,8 @@ function mail_notify_attn(Profile $rcpt, Notice $notice)
     }
 
     // TRANS: E-mail subject for notice notification.
-    // TRANS: %1$s is the sending user's long name, %2$s is the adding user's nickname.
-    $subject = sprintf(_('%1$s (@%2$s) sent a notice to your attention'), $sender->getBestName(), $sender->getNickname());
+    // TRANS: %1$s is the "fancy name" for a profile.
+    $subject = sprintf(_('%1$s sent a notice to your attention'), $sender->getFancyName());
 
         // TRANS: Body of @-reply notification e-mail.
         // TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
