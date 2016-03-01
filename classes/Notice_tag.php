@@ -55,7 +55,9 @@ class Notice_tag extends Managed_DataObject
     
     static function getStream($tag, $offset=0, $limit=20, $sinceId=0, $maxId=0)
     {
-        $stream = new TagNoticeStream($tag);
+        // FIXME: Get the Profile::current value some other way
+        // to avoid confusino between queue processing and session.
+        $stream = new TagNoticeStream($tag, Profile::current());
         return $stream;
     }
 

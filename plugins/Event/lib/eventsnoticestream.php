@@ -1,5 +1,7 @@
 <?php
 
+if (!defined('GNUSOCIAL')) { exit(1); }
+
 class RawEventsNoticeStream extends NoticeStream
 {
     function getNoticeIds($offset, $limit, $since_id, $max_id)

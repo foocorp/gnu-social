@@ -167,7 +167,7 @@ class FavoritedAction extends Action
      */
     function showContent()
     {
-        $stream = new PopularNoticeStream(Profile::current());
+        $stream = new PopularNoticeStream($this->scoped);
         $notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE+1);
 
         $nl = new NoticeList($notice, $this);

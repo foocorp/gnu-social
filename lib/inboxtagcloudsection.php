@@ -27,9 +27,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Personal tag cloud section
@@ -60,9 +58,9 @@ class InboxTagCloudSection extends TagCloudSection
 
     function getTags()
     {
-        $profile = Profile::current();
-
-        $stream = new InboxNoticeStream($this->target, $profile);
+        // FIXME: Get the Profile::current() value some other way
+        // to avoid confusion between background stuff and session.
+        $stream = new InboxNoticeStream($this->target, Profile::current());
 
         $ids = $stream->getNoticeIds(0, self::MAX_NOTICES, null, null);
 

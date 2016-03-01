@@ -43,13 +43,11 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class TagNoticeStream extends ScopingNoticeStream
 {
-    function __construct($tag, $profile = -1)
+    function __construct($tag, Profile $scoped=null)
     {
-        if (is_int($profile) && $profile == -1) {
-            $profile = Profile::current();
-        }
         parent::__construct(new CachingNoticeStream(new RawTagNoticeStream($tag),
-                                                    'notice_tag:notice_ids:' . Cache::keyize($tag)));
+                                                    'notice_tag:notice_ids:' . Cache::keyize($tag)),
+                            $scoped);
     }
 }
 

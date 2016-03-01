@@ -43,11 +43,11 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class PublicNoticeStream extends ScopingNoticeStream
 {
-    function __construct($profile=null)
+    function __construct(Profile $scoped=null)
     {
         parent::__construct(new CachingNoticeStream(new RawPublicNoticeStream(),
                                                     'public'),
-                            $profile);
+                            $scoped);
     }
 }
 

@@ -701,15 +701,18 @@ class User extends Managed_DataObject
 
     function repeatedByMe($offset=0, $limit=20, $since_id=null, $max_id=null)
     {
-        $stream = new RepeatedByMeNoticeStream($this);
+        // FIXME: Use another way to get Profile::current() since we
+        // want to avoid confusion between session user and queue processing.
+        $stream = new RepeatedByMeNoticeStream($this->getProfile(), Profile::current());
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
 
     function repeatsOfMe($offset=0, $limit=20, $since_id=null, $max_id=null)
     {
-        $stream = new RepeatsOfMeNoticeStream($this);
-
+        // FIXME: Use another way to get Profile::current() since we
+        // want to avoid confusion between session user and queue processing.
+        $stream = new RepeatsOfMeNoticeStream($this->getProfile(), Profile::current());
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 

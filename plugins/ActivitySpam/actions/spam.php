@@ -74,19 +74,17 @@ class SpamAction extends Action
 
         // User must be logged in.
 
-        $user = common_current_user();
-
-        if (empty($user)) {
+        if (!$this->scoped instanceof Profile) {
             throw new ClientException(_("You must be logged in to review."), 403);
         }
 
         // User must have the right to review spam
 
-        if (!$user->hasRight(ActivitySpamPlugin::REVIEWSPAM)) {
+        if (!$this->scoped->hasRight(ActivitySpamPlugin::REVIEWSPAM)) {
             throw new ClientException(_('You cannot review spam on this site.'), 403);
         }
 
-        $stream = new SpamNoticeStream($user->getProfile());
+        $stream = new SpamNoticeStream($this->scoped);
 
         $this->notices = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
                                              NOTICES_PER_PAGE + 1);

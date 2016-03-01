@@ -1280,9 +1280,9 @@ class Notice extends Managed_DataObject
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
-    static function conversationStream($id, $offset=0, $limit=20, $since_id=null, $max_id=null)
+    static function conversationStream($id, $offset=0, $limit=20, $since_id=null, $max_id=null, Profile $scoped=null)
     {
-        $stream = new ConversationNoticeStream($id);
+        $stream = new ConversationNoticeStream($id, $scoped);
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
@@ -1300,8 +1300,9 @@ class Notice extends Managed_DataObject
             return false;
         }
 
-        $stream = new ConversationNoticeStream($this->conversation);
-        $notice = $stream->getNotices(/*offset*/ 1, /*limit*/ 1);
+        //FIXME: Get the Profile::current() stuff some other way
+        // to avoid confusion between queue processing and session.
+        $notice = self::conversationStream($this->conversation, 1, 1, null, null, Profile::current());
 
         // if our "offset 1, limit 1" query got a result, return true else false
         return $notice->N > 0;

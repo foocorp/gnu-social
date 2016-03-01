@@ -266,7 +266,9 @@ class Profile extends Managed_DataObject
 
     function getTaggedNotices($tag, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
     {
-        $stream = new TaggedProfileNoticeStream($this, $tag);
+        //FIXME: Get Profile::current() some other way to avoid possible
+        // confusion between current session profile and background processing.
+        $stream = new TaggedProfileNoticeStream($this, $tag, Profile::current());
 
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }

@@ -26,9 +26,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Handler for queue items of type 'usersum', sends an email summaries
@@ -95,15 +93,15 @@ class UserEmailSummaryHandler extends QueueHandler
             return true;
         }
 
-        $profile = $user->getProfile();
-
-        if (empty($profile)) {
+        try {
+            $profile = $user->getProfile();
+        } catch (UserNoProfileException $e) {
             common_log(LOG_WARNING, sprintf('Not sending email summary for user %s; no profile.', $user_id));
             return true;
         }
 
         // An InboxNoticeStream for a certain user, scoped to its own view
-        $stream = new InboxNoticeStream($profile);
+        $stream = new InboxNoticeStream($profile, $profile);
 
         $notice = $stream->getNotices(0, self::MAX_NOTICES, $since_id);
 

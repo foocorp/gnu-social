@@ -43,14 +43,11 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class ReplyNoticeStream extends ScopingNoticeStream
 {
-    function __construct($userId, $profile=-1)
+    function __construct($userId, Profile $scoped=null)
     {
-        if (is_int($profile) && $profile == -1) {
-            $profile = Profile::current();
-        }
         parent::__construct(new CachingNoticeStream(new RawReplyNoticeStream($userId),
                                                     'reply:stream:' . $userId),
-                            $profile);
+                            $scoped);
     }
 }
 

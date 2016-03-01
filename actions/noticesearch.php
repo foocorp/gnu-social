@@ -65,8 +65,7 @@ class NoticesearchAction extends SearchAction
 
         if (!empty($this->q)) {
 
-            $profile = Profile::current();
-            $stream  = new SearchNoticeStream($this->q, $profile);
+            $stream  = new SearchNoticeStream($this->q, $this->scoped);
             $page    = $this->trimmed('page');
 
             if (empty($page)) {

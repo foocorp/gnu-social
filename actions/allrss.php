@@ -46,7 +46,7 @@ class AllrssAction extends TargetedRss10Action
 {
     protected function getNotices()
     {
-        $stream = new InboxNoticeStream($this->target);
+        $stream = new InboxNoticeStream($this->target, $this->scoped);
         return $stream->getNotices(0, $this->limit)->fetchAll();
     }
 

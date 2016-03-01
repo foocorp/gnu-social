@@ -54,9 +54,6 @@ class InboxNoticeStream extends ScopingNoticeStream
      */
     function __construct(Profile $target, Profile $scoped=null)
     {
-        if ($scoped === null) {
-            $scoped = Profile::current();
-        }
         // FIXME: we don't use CachingNoticeStream - but maybe we should?
         parent::__construct(new CachingNoticeStream(new RawInboxNoticeStream($target), 'profileall'), $scoped);
     }

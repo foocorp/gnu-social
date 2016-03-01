@@ -579,7 +579,9 @@ class File extends Managed_DataObject
 
     function stream($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
     {
-        $stream = new FileNoticeStream($this);
+        // FIXME: Try to get the Profile::current() here in some other way to avoid mixing
+        // the current session user with possibly background/queue processing.
+        $stream = new FileNoticeStream($this, Profile::current());
         return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 

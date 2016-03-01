@@ -28,22 +28,15 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 class FileNoticeStream extends ScopingNoticeStream
 {
-    function __construct($file, $profile = -1)
+    function __construct($file, Profile $scoped=null)
     {
-        if (is_int($profile) && $profile == -1) {
-            $profile = Profile::current();
-        }
         parent::__construct(new CachingNoticeStream(new RawFileNoticeStream($file),
                                                     'file:notice-ids:'.$file->id),
-                            $profile);
+                            $scoped);
     }
 }
 

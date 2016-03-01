@@ -28,11 +28,7 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET')) {
-    // This check helps protect against security problems;
-    // your code file can't be executed directly from the web.
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * Stream of notices with a given profile and tag
@@ -47,14 +43,11 @@ if (!defined('STATUSNET')) {
 
 class TaggedProfileNoticeStream extends ScopingNoticeStream
 {
-    function __construct($profile, $tag, $userProfile=-1)
+    function __construct($profile, $tag, Profile $scoped=null)
     {
-        if (is_int($userProfile) && $userProfile == -1) {
-            $userProfile = Profile::current();
-        }
         parent::__construct(new CachingNoticeStream(new RawTaggedProfileNoticeStream($profile, $tag),
                                                     'profile:notice_ids_tagged:'.$profile->id.':'.Cache::keyize($tag)),
-                            $userProfile);
+                            $scoped);
     }
 }
 

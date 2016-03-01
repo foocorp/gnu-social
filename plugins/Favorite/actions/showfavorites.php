@@ -57,8 +57,7 @@ class ShowfavoritesAction extends ShowstreamAction
 
     public function getStream()
     {
-        $own = $this->scoped instanceof Profile ? $this->scoped->sameAs($this->getTarget()) : false;
-        return new FaveNoticeStream($this->getTarget()->getID(), $own);
+        return new FaveNoticeStream($this->getTarget(), $this->scoped);
     }
 
     function getFeeds()
