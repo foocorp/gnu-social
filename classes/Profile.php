@@ -225,11 +225,11 @@ class Profile extends Managed_DataObject
      */
     function getFancyName()
     {
-        if ($this->fullname) {
-            // TRANS: Full name of a profile or group (%1$s) followed by nickname (%2$s) in parentheses.
-            return sprintf(_m('FANCYNAME','%1$s (%2$s)'), $this->fullname, $this->nickname);
+        if ($this->getFullname()) {
+            // TRANS: Full name of a profile or group (%1$s) followed by acct URI (%2$s) in parentheses without acct:.
+            return sprintf(_m('FANCYNAME','%1$s (%2$s)'), $this->getFullname(), $this->getAcctUri());
         } else {
-            return $this->nickname;
+            return $this->getAcctUri(false);
         }
     }
 
@@ -1575,7 +1575,7 @@ class Profile extends Managed_DataObject
      *
      * @return string $uri
      */
-    public function getAcctUri()
+    public function getAcctUri($scheme=true)
     {
         $acct = null;
 
@@ -1586,11 +1586,15 @@ class Profile extends Managed_DataObject
         if ($acct === null) {
             throw new ProfileNoAcctUriException($this);
         }
+        if (parse_url($acct, PHP_URL_SCHEME) !== 'acct') {
+            throw new ServerException('Acct URI does not have acct: scheme');
+        }
 
-        return $acct;
+        // if we don't return the scheme, just remove the 'acct:' in the beginning
+        return $scheme ? $acct : mb_substr($acct, 5);
     }
 
-    function hasBlocked($other)
+    function hasBlocked(Profile $other)
     {
         $block = Profile_block::exists($this, $other);
         return !empty($block);
