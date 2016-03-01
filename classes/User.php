@@ -190,7 +190,7 @@ class User extends Managed_DataObject
         return Sms_carrier::getKV('id', $this->carrier);
     }
 
-    function hasBlocked($other)
+    function hasBlocked(Profile $other)
     {
         return $this->getProfile()->hasBlocked($other);
     }
