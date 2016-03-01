@@ -848,27 +848,29 @@ var SN = { // StatusNet
             NDA.change(function (event) {
                 form.find('.attach-status').remove();
 
-                var filename = $(this).val();
-                if (!filename) {
-                    // No file -- we've been tricked!
-                    return false;
-                }
-
-                var attachStatus = $('<div class="attach-status ' + SN.C.S.Success + '"><code></code> <button class="close">&#215;</button></div>');
-                attachStatus.find('code').text(filename);
-                attachStatus.find('button').click(function () {
-                    attachStatus.remove();
-                    NDA.val('');
-
-                    return false;
-                });
-                form.append(attachStatus);
-
                 if (typeof this.files === "object") {
+                    var attachStatus = $('<ul class="attach-status ' + SN.C.S.Success + '"></ul>');
+                    form.append(attachStatus);
                     // Some newer browsers will let us fetch the files for preview.
                     for (i = 0; i < this.files.length; i++) {
                         SN.U.PreviewAttach(form, this.files[i]);
                     }
+                } else {
+                    var filename = $(this).val();
+                    if (!filename) {
+                        // No file -- we've been tricked!
+                        return false;
+                    }
+
+                    var attachStatus = $('<div class="attach-status ' + SN.C.S.Success + '"><code></code> <button class="close">&#215;</button></div>');
+                    attachStatus.find('code').text(filename);
+                    attachStatus.find('button').click(function () {
+                        attachStatus.remove();
+                        NDA.val('');
+
+                        return false;
+                    });
+                    form.append(attachStatus);
                 }
             });
         },
@@ -964,12 +966,15 @@ var SN = { // StatusNet
 
             if (preview) {
                 blobAsDataURL(file, function (url) {
+                    var fileentry = $('<li class="attachment"></li>');
+                    fileentry.append($('<code>' + file.name + '</code>'));
                     var img = $('<img>')
                         .attr('title', tooltip)
                         .attr('alt', tooltip)
                         .attr('src', url)
                         .attr('style', 'height: 120px');
-                    form.find('.attach-status').append(img);
+                    fileentry.append(img);
+                    form.find('.attach-status').append(fileentry);
                 });
             } else {
                 var img = $('<div></div>').text(tooltip);
