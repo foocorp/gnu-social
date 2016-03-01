@@ -218,18 +218,30 @@ class Profile extends Managed_DataObject
     }
 
     /**
-     * Gets the full name (if filled) with nickname as a parenthetical, or the nickname alone
-     * if no fullname is provided.
+     * Gets the full name (if filled) with acct URI, URL, or URI as a
+     * parenthetical (in that order, for each not found). If no full
+     * name is found only the second part is returned, without ()s.
      *
      * @return string
      */
     function getFancyName()
     {
-        if ($this->getFullname()) {
-            // TRANS: Full name of a profile or group (%1$s) followed by acct URI (%2$s) in parentheses without acct:.
-            return sprintf(_m('FANCYNAME','%1$s (%2$s)'), $this->getFullname(), $this->getAcctUri());
+        $uri = null;
+        try {
+            $uri = $this->getAcctUri();
+        } catch (ProfileNoAcctUriException $e) {
+            try {
+                $uri = $this->getUrl();
+            } catch (InvalidUrlException $e) {
+                $uri = $this->getUri();
+            }
+        }
+
+        if (mb_strlen($this->getFullname()) > 0) {
+            // TRANS: Full name of a profile or group (%1$s) followed by some URI (%2$s) in parentheses.
+            return sprintf(_m('FANCYNAME','%1$s (%2$s)'), $this->getFullname(), $uri);
         } else {
-            return $this->getAcctUri(false);
+            return $uri;
         }
     }
 
