@@ -57,6 +57,7 @@ var SN = { // StatusNet
     },
 
     V: {    // Variables
+        // These get set on runtime via inline scripting, so don't put anything here.
     },
 
     /**
@@ -358,7 +359,7 @@ var SN = { // StatusNet
 
             form.ajaxForm({
                 dataType: 'xml',
-                timeout: '60000',
+                timeout: SN.V.xhrTimeout,
                 beforeSend: function (formData) {
                     if (form.find('.notice_data-text:first').val() == '') {
                         form.addClass(SN.C.S.Warning);
