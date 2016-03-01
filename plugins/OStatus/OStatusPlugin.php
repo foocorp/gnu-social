@@ -312,7 +312,7 @@ class OStatusPlugin extends Plugin
                 assert($profile instanceof Profile);
 
                 $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target)
-                        ? $profile->getNickname()   // TODO: we could do getFancyName() or getFullname() here
+                        ? $profile->getNickname()   // TODO: we could do getBestName() or getFullname() here
                         : $target;
                 $url = $profile->getUri();
                 if (!common_valid_http_url($url)) {

@@ -151,9 +151,11 @@ class Deleted_notice extends Managed_DataObject
         $actobj->title = ActivityUtils::verbToTitle($actobj->verb);
 
         $actor = $this->getActor();
+        // TRANS: Notice HTML content of a deleted notice. %1$s is the
+        // TRANS: actor's URL, %2$s its "fancy name" and %3$s the notice URI.
         $actobj->content = sprintf(_m('<a href="%1$s">%2$s</a> deleted notice {{%3$s}}.'),
                             htmlspecialchars($actor->getUrl()),
-                            htmlspecialchars($actor->getBestName()),
+                            htmlspecialchars($actor->getFancyName()),
                             htmlspecialchars($this->getUri())
                            );
 
