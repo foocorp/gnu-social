@@ -1834,7 +1834,7 @@ class Notice extends Managed_DataObject
             foreach ($recipientIds as $recipientId) {
                 try {
                     $user = User::getByID($recipientId);
-                    mail_notify_attn($user, $this);
+                    mail_notify_attn($user->getProfile(), $this);
                 } catch (NoResultException $e) {
                     // No such user
                 }
