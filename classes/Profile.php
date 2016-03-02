@@ -228,7 +228,7 @@ class Profile extends Managed_DataObject
     {
         $uri = null;
         try {
-            $uri = $this->getAcctUri();
+            $uri = $this->getAcctUri(false);
         } catch (ProfileNoAcctUriException $e) {
             try {
                 $uri = $this->getUrl();
