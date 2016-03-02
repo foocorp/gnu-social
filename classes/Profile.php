@@ -1325,7 +1325,7 @@ class Profile extends Managed_DataObject
             case Right::EMAILONREPLY:
             case Right::EMAILONSUBSCRIBE:
             case Right::EMAILONFAVE:
-                $result = !$this->isSandboxed();
+                $result = !$this->isSandboxed() && !$this->isSilenced();
                 break;
             case Right::WEBLOGIN:
                 $result = !$this->isSilenced();
