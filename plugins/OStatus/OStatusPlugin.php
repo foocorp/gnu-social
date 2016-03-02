@@ -129,7 +129,7 @@ class OStatusPlugin extends Plugin
      */
     function onStartEnqueueNotice($notice, &$transports)
     {
-        if ($notice->inScope(null)) {
+        if ($notice->inScope(null) && $notice->getProfile()->hasRight(Right::PUBLICNOTICE)) {
             // put our transport first, in case there's any conflict (like OMB)
             array_unshift($transports, 'ostatus');
             $this->log(LOG_INFO, "Notice {$notice->id} queued for OStatus processing");
