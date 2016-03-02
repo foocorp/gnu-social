@@ -64,7 +64,7 @@ class EventsNoticeStream extends ScopingNoticeStream
         parent::__construct(new CachingNoticeStream($stream, $key), $scoped);
     }
 
-    function filter($notice)
+    protected function filter(Notice $notice)
     {
         if (!parent::filter($notice)) {
             // if not in our scope, return false

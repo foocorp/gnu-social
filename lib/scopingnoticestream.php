@@ -61,7 +61,7 @@ class ScopingNoticeStream extends FilteringNoticeStream
      * @return boolean whether to include the notice
      */
 
-    function filter($notice)
+    protected function filter(Notice $notice)
     {
         return $notice->inScope($this->scoped);
     }
