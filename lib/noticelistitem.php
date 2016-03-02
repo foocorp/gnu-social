@@ -301,9 +301,15 @@ class NoticeListItem extends Widget
 
         foreach ($attentions as $attn) {
             $class = $attn->isGroup() ? 'group' : 'account';
-            $this->pa[] = array('href' => $attn->profileurl,
+            $profileurl = $attn->getUri();
+            if (common_valid_http_url($profileurl)) {
+                $class .= ' u-uid';
+            } else {
+                $profileurl = $attn->getUrl();
+            }
+            $this->pa[] = array('href' => $profileurl,
                                 'title' => $attn->getNickname(),
-                                'class' => "addressee {$class}",
+                                'class' => "addressee {$class} p-name u-url",
                                 'text' => $attn->getStreamName());
         }
 

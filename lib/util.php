@@ -692,7 +692,7 @@ function common_linkify_mention(array $mention)
         $xs = new XMLStringer(false);
 
         $attrs = array('href' => $mention['url'],
-                       'class' => 'h-card '.$mention['type']);
+                       'class' => 'h-card u-url p-nickname '.$mention['type']);
 
         if (!empty($mention['title'])) {
             $attrs['title'] = $mention['title'];
