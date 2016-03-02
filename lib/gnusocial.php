@@ -432,8 +432,12 @@ class GNUsocial
         if (common_config('htmlpurifier', 'Cache.DefinitionImpl') === 'Serializer'
                 && !is_dir(common_config('htmlpurifier', 'Cache.SerializerPath'))) {
             if (!mkdir(common_config('htmlpurifier', 'Cache.SerializerPath'))) {
-                throw new ServerException('Could not create HTMLPurifier cache dir: '._ve(common_config('htmlpurifier', 'Cache.SerializerPath')));
+                throw new ConfigException('Could not create HTMLPurifier cache dir: '._ve(common_config('htmlpurifier', 'Cache.SerializerPath')));
             }
+        }
+
+        if (!is_array(common_config('public', 'autosource'))) {
+            throw new ConfigException('Configuration option public/autosource is not an array.');
         }
     }
 

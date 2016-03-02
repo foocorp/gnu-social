@@ -507,8 +507,7 @@ class Notice extends Managed_DataObject
         $notice = new Notice();
         $notice->profile_id = $profile_id;
 
-        $autosource = common_config('public', 'autosource');
-        if ($source && $autosource && in_array($source, $autosource)) {
+        if ($source && in_array($source, common_config('public', 'autosource'))) {
             $notice->is_local = Notice::LOCAL_NONPUBLIC;
         } else {
             $notice->is_local = $is_local;
@@ -823,8 +822,7 @@ class Notice extends Managed_DataObject
         // Since then we have started just filtering _when_ it gets shown
         // instead of creating a mixed jumble of differently scoped notices.
 
-        $autosource = common_config('public', 'autosource');
-        if ($source && $autosource && in_array($source, $autosource)) {
+        if ($source && in_array($source, common_config('public', 'autosource'))) {
             $stored->is_local = Notice::LOCAL_NONPUBLIC;
         } else {
             $stored->is_local = intval($is_local);
