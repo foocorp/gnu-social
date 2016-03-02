@@ -321,7 +321,11 @@ class EmailregisterAction extends Action
             common_init_language();
 
             if (!empty($this->confirmation)) {
-                $this->confirmation->delete();
+                try {
+                    $this->confirmation->delete();
+                } catch (ServerException $e) {
+                    common_log(LOG_ERR, $e->getMessage());
+                }
             }
 
             Event::handle('EndRegistrationTry', array($this));
