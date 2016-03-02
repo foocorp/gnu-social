@@ -343,7 +343,8 @@ class User extends Managed_DataObject
                 $invite->convert($user);
             }
 
-            if (!empty($email) && !$user->email) {
+            if (!empty($email) && empty($user->email)) {
+                // The actual email will be sent further down, after the database COMMIT
 
                 $confirm = new Confirm_address();
                 $confirm->code = common_confirmation_code(128);
@@ -353,7 +354,7 @@ class User extends Managed_DataObject
 
                 $result = $confirm->insert();
 
-                if (!$result) {
+                if ($result===false) {
                     common_log_db_error($confirm, 'INSERT', __FILE__);
                     $profile->query('ROLLBACK');
                     // TRANS: Email confirmation data could not be inserted for some reason.
@@ -381,11 +382,12 @@ class User extends Managed_DataObject
 
             $profile->query('COMMIT');
 
-            if (!empty($email) && !empty($user->email)) {
+            if (!empty($email) && empty($user->email)) {
                 try {
-                    mail_confirm_address($user, $confirm->code, $profile->nickname, $email);
+                    require_once(INSTALLDIR . '/lib/mail.php');
+                    mail_confirm_address($user, $confirm->code, $profile->getNickname(), $email);
                 } catch (EmailException $e) {
-                    common_log(LOG_ERR, "Could not send user registration email for user id=={$user->id}: {$e->getMessage()}");
+                    common_log(LOG_ERR, "Could not send user registration email for user id=={$profile->getID()}: {$e->getMessage()}");
                     if (!$accept_email_fail) {
                         throw $e;
                     }
@@ -407,7 +409,7 @@ class User extends Managed_DataObject
                                               // TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
                                               sprintf(_('Welcome to %1$s, @%2$s!'),
                                                       common_config('site', 'name'),
-                                                      $user->nickname),
+                                                      $profile->getNickname()),
                                               'system');
                 }
             }
@@ -415,7 +417,7 @@ class User extends Managed_DataObject
             Event::handle('EndUserRegister', array($profile));
         }
 
-        if (!$user instanceof User) {
+        if (!$user instanceof User || empty($user->id)) {
             throw new ServerException('User could not be registered. Probably an event hook that failed.');
         }
 
@@ -433,13 +435,14 @@ class User extends Managed_DataObject
         if ($invites->find()) {
             while ($invites->fetch()) {
                 try {
-                    $other = Profile::getKV('id', $invites->user_id);
-                    if (!($other instanceof Profile)) {    // remove when getKV throws exceptions
-                        continue;
-                    }
+                    $other = Profile::getByID($invites->user_id);
                     Subscription::start($other, $this->getProfile());
+                } catch (NoResultException $e) {
+                    // profile did not exist
+                } catch (AlreadyFulfilledException $e) {
+                    // already subscribed to this profile
                 } catch (Exception $e) {
-                    continue;
+                    common_log(LOG_ERR, 'On-invitation-completion subscription failed when subscribing '._ve($invites->user_id).' to '.$this->getProfile()->getID().': '._ve($e->getMessage()));
                 }
             }
         }
@@ -873,6 +876,8 @@ class User extends Managed_DataObject
 
     static function recoverPassword($nore)
     {
+        require_once(INSTALLDIR . '/lib/mail.php');
+
         // $confirm_email will be used as a fallback if our user doesn't have a confirmed email
         $confirm_email = null;
 
