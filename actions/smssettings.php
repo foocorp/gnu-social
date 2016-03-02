@@ -368,13 +368,7 @@ class SmssettingsAction extends SettingsAction
             throw new AlreadyFulfilledException(_('No pending confirmation to cancel.'));
         }
 
-        $result = $confirm->delete();
-
-        if ($result === false) {
-            common_log_db_error($confirm, 'DELETE', __FILE__);
-            // TRANS: Server error thrown on database error canceling SMS phone number confirmation.
-            throw new ServerException(_('Could not delete SMS confirmation.'));
-        }
+        $confirm->delete();
 
         // TRANS: Message given after successfully canceling SMS phone number confirmation.
         return _('SMS confirmation cancelled.');

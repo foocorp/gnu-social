@@ -359,13 +359,7 @@ class ImsettingsAction extends SettingsAction
             throw new AlreadyFulfilledException(_('No pending confirmation to cancel.'));
         }
 
-        $result = $confirm->delete();
-
-        if ($result === false) {
-            common_log_db_error($confirm, 'DELETE', __FILE__);
-            // TRANS: Server error thrown on database error canceling IM address confirmation.
-            throw new ServerException(_('Could not delete confirmation.'));
-        }
+        $confirm->delete();
 
         // TRANS: Message given after successfully canceling IM address confirmation.
         return _('IM confirmation cancelled.');

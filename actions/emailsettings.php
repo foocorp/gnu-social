@@ -401,13 +401,7 @@ class EmailsettingsAction extends SettingsAction
             throw new AlreadyFulfilledException(_('No pending confirmation to cancel.'));
         }
 
-        $result = $confirm->delete();
-
-        if ($result === false) {
-            common_log_db_error($confirm, 'DELETE', __FILE__);
-            // TRANS: Server error thrown on database error canceling e-mail address confirmation.
-            throw new ServerException(_('Could not delete email confirmation.'));
-        }
+        $confirm->delete();
 
         // TRANS: Message given after successfully canceling e-mail address confirmation.
         return _('Email confirmation cancelled.');

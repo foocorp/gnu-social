@@ -66,4 +66,17 @@ class Confirm_address extends Managed_DataObject
 
         return $ca;
     }
+
+    public function delete($useWhere=false)
+    {
+        $result = parent::delete($useWhere);
+
+        if ($result === false) {
+            common_log_db_error($confirm, 'DELETE', __FILE__);
+            // TRANS: Server error displayed when an address confirmation code deletion from the
+            // TRANS: database fails in the contact address confirmation action.
+            throw new ServerException(_('Could not delete address confirmation.'));
+        }
+        return $result;
+    }
 }
