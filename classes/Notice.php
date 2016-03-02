@@ -508,11 +508,7 @@ class Notice extends Managed_DataObject
         $notice->profile_id = $profile_id;
 
         $autosource = common_config('public', 'autosource');
-
-        // Sandboxed are non-false, but not 1, either
-
-        if (!$profile->hasRight(Right::PUBLICNOTICE) ||
-            ($source && $autosource && in_array($source, $autosource))) {
+        if ($source && $autosource && in_array($source, $autosource)) {
             $notice->is_local = Notice::LOCAL_NONPUBLIC;
         } else {
             $notice->is_local = $is_local;
@@ -822,12 +818,13 @@ class Notice extends Managed_DataObject
             }
         }
 
-        $autosource = common_config('public', 'autosource');
+        // NOTE: Sandboxed users previously got all the notices _during_
+        // sandbox period set to to is_local=Notice::LOCAL_NONPUBLIC here.
+        // Since then we have started just filtering _when_ it gets shown
+        // instead of creating a mixed jumble of differently scoped notices.
 
-        // Sandboxed are non-false, but not 1, either
-        if (!$actor->hasRight(Right::PUBLICNOTICE) ||
-                ($source && $autosource && in_array($source, $autosource))) {
-            // FIXME: ...what about remote nonpublic? Hmmm. That is, if we sandbox remote profiles...
+        $autosource = common_config('public', 'autosource');
+        if ($source && $autosource && in_array($source, $autosource)) {
             $stored->is_local = Notice::LOCAL_NONPUBLIC;
         } else {
             $stored->is_local = intval($is_local);

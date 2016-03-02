@@ -28,8 +28,11 @@ class ModeratedNoticeStream extends ScopingNoticeStream
 
         // If the notice author is sandboxed
         if ($notice->getProfile()->isSandboxed()) {
-            // and we're either not logged in OR we aren't some kind of privileged user that can see spam etc.
-            if (!$this->scoped instanceof Profile || !$this->scoped->hasRight(Right::REVIEWSPAM)) {
+            if (!$this->scoped instanceof Profile) {
+                // Non-logged in users don't get to see posts by sandboxed users
+                return false;
+            } elseif (!$notice->getProfile()->sameAs($this->scoped) && !$this->scoped->hasRight(Right::REVIEWSPAM)) {
+                // And if we are logged in, deny if scoped user is neither the author nor has the right to review spam
                 return false;
             }
         }

@@ -54,6 +54,9 @@ abstract class FilteringNoticeStream extends NoticeStream
         $this->upstream = $upstream;
     }
 
+    /**
+     * @return boolean  true if we allow it, false if we deny it
+     */
     abstract protected function filter(Notice $notice);
 
     function getNoticeIds($offset, $limit, $since_id, $max_id)
