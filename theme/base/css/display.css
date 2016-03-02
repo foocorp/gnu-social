@@ -1013,7 +1013,7 @@ content: ":";
 clear:both;
 }
 
-.notice-title {
+.notice-headers > .u-uid {
     display:none;
 }
 

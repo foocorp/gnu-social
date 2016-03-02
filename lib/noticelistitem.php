@@ -179,8 +179,8 @@ class NoticeListItem extends Widget
     function showNoticeTitle()
     {
         if (Event::handle('StartShowNoticeTitle', array($this))) {
-            $this->element('a', array('href' => $this->notice->getUrl(true),
-                                      'class' => 'notice-title'),
+            $this->element('a', array('href' => $this->notice->getUri(),
+                                      'class' => 'p-name u-uid'),
                            $this->notice->getTitle());
             Event::handle('EndShowNoticeTitle', array($this));
         }
