@@ -2,7 +2,7 @@
 
 if (!defined('GNUSOCIAL')) { exit(1); } 
 
-class NetworkPublicNoticeStream extends ScopingNoticeStream
+class NetworkPublicNoticeStream extends ModeratedNoticeStream
 {
     function __construct(Profile $scoped=null)
     {
