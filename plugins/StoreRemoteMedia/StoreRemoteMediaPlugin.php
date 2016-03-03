@@ -15,6 +15,9 @@ class StoreRemoteMediaPlugin extends Plugin
     public $append_whitelist = array(); // fill this array as domain_whitelist to add more trusted sources
     public $check_whitelist  = false;    // security/abuse precaution
 
+    public $domain_blacklist = array();
+    public $check_blacklist = false;
+
     protected $imgData = array();
 
     // these should be declared protected everywhere
@@ -74,7 +77,10 @@ class StoreRemoteMediaPlugin extends Plugin
             return true;
         }
 
-        $this->checkWhitelist($file->getUrl());
+        if (!$this->checkWhiteList($file->getUrl()) ||
+            !$this->checkBlackList($file->getUrl())) {
+		    return true;
+        }
 
         // First we download the file to memory and test whether it's actually an image file
         common_debug(sprintf('Downloading remote file id==%u with URL: %s', $file->getID(), _ve($file->getUrl())));
@@ -124,23 +130,39 @@ class StoreRemoteMediaPlugin extends Plugin
     }
 
     /**
-     * @return boolean          false on no check made, provider name on success
-     * @throws ServerException  if check is made but fails
+     * @return boolean          true if given url passes blacklist check
      */
-    protected function checkWhitelist($url)
+    protected function checkBlackList($url)
     {
-        if (!$this->check_whitelist) {
-            return false;   // indicates "no check made"
+        if (!$this->check_blacklist) {
+            return true;
         }
-
         $host = parse_url($url, PHP_URL_HOST);
-        foreach ($this->domain_whitelist as $regex => $provider) {
+        foreach ($this->domain_blacklist as $regex => $provider) {
             if (preg_match("/$regex/", $host)) {
-                return $provider;    // we trust this source, return provider name
+                return false;
             }
         }
 
-        throw new ServerException(sprintf(_('Domain not in remote source whitelist: %s'), $host));
+        return true;
+    }
+
+    /***
+     * @return boolean          true if given url passes whitelist check
+     */
+    protected function checkWhiteList($url)
+    {
+        if (!$this->check_whitelist) {
+            return true;
+        }
+        $host = parse_url($url, PHP_URL_HOST);
+        foreach ($this->domain_whitelist as $regex => $provider) {
+            if (preg_match("/$regex/", $host)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function onPluginVersion(array &$versions)

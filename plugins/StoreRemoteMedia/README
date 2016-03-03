@@ -7,8 +7,18 @@ to the bottom of your config.php
 
 Settings
 ========
+domain_blacklist: Array of regular expressions. Always escape your dots and end your strings.
+check_blacklist: Whether to check the domain_blacklist.
+
 domain_whitelist: Array of regular expressions. Always escape your dots and end your strings.
 check_whitelist: Whether to check the domain_whitelist.
+
+When check_whitelist is set, only images from URLs matching a regex in the
+domain_whitelist array are accepted for local storage. When check_blacklist
+is set, images from URLs matching any regex in the domain_blacklist are
+denied local storage. When both lists are checked, only images from URLs
+that match a regex in the domain_whitelist and that match no regexen in the
+domain_blacklist are accepted for local storage.
 
 Example
 =======
@@ -17,6 +27,6 @@ addPlugin('StoreRemoteMedia', array(
         '^i\d*\.ytimg\.com$' => 'YouTube',
         '^i\d*\.vimeocdn\.com$' => 'Vimeo'
     ),
-    'check_whitelist' => true
+    'check_whitelist' => true,
 ));
 
