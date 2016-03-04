@@ -306,10 +306,10 @@ class MediaFile
             $result = copy($stream['uri'], $filepath) && chmod($filepath, 0664);
 
             if (!$result) {
+                common_log(LOG_ERR, 'File could not be moved (or chmodded) from '._ve($stream['uri']) . ' to ' . _ve($filepath));
                 // TRANS: Client exception thrown when a file upload operation fails because the file could
                 // TRANS: not be moved from the temporary folder to the permanent file location.
-                throw new ClientException(_('File could not be moved to destination directory.' .
-                    $stream['uri'] . ' ' . $filepath));
+                throw new ClientException(_('File could not be moved to destination directory.' ));
             }
         }
 

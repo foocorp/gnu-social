@@ -36,6 +36,7 @@ class FileNotFoundException extends ServerException
     public function __construct($path)
     {
         $this->path = $path;
+        common_debug('File not found exception for: '._ve($this->path));
         parent::__construct(_('File not found in filesystem.'), 404);
     }
 }
