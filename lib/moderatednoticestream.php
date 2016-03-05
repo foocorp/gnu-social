@@ -25,18 +25,40 @@ class ModeratedNoticeStream extends ScopingNoticeStream
         if (!parent::filter($notice)) {
             return false;
         }
+        
+        if(self::include_or_not($notice) === false) {
+            return false;
+        }
+        
+        // If this is a repeat the repeated notice is moderated
+        if($notice->isRepeat()) {
+            try {
+                $repeated_notice = Notice::getById($notice->repeat_of);
+            } catch (Exception $e) {
+                // if we can't get the repeated notice by id, something is seriously wrong with it, so don't include it
+                return false;
+            }
 
-        // If the notice author is sandboxed
-        if ($notice->getProfile()->isSandboxed()) {
+            if(self::include_or_not($repeated_notice) === false) {
+                return false;
+            }
+        }         
+
+        return true;
+    }
+    
+    protected function include_or_not(Notice $notice)
+    {    
+        $profile = $notice->getProfile();
+
+        if ($profile->isSandboxed()) {
             if (!$this->scoped instanceof Profile) {
                 // Non-logged in users don't get to see posts by sandboxed users
                 return false;
-            } elseif (!$notice->getProfile()->sameAs($this->scoped) && !$this->scoped->hasRight(Right::REVIEWSPAM)) {
+            } elseif (!$profile->sameAs($this->scoped) && !$this->scoped->hasRight(Right::REVIEWSPAM)) {
                 // And if we are logged in, deny if scoped user is neither the author nor has the right to review spam
                 return false;
-            }
-        }
-
-        return true;
+            } 
+        }    
     }
 }
