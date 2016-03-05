@@ -34,8 +34,6 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 
 class MediaFile
 {
-    protected $scoped   = null;
-
     var $filename      = null;
     var $fileRecord    = null;
     var $fileurl       = null;
@@ -236,7 +234,20 @@ class MediaFile
         try {
             $file = File::getByHash($filehash);
             // If no exception is thrown the file exists locally, so we'll use that and just add redirections.
-            $filename = $file->filename;
+            // but if the _actual_ locally stored file doesn't exist, getPath will throw FileNotFoundException
+            $filename = basename($file->getPath());
+            $mimetype = $file->mimetype;
+
+        } catch (FileNotFoundException $e) {
+            // The file does not exist in our local filesystem, so store this upload.
+
+            if (!move_uploaded_file($_FILES[$param]['tmp_name'], $e->path)) {
+                // TRANS: Client exception thrown when a file upload operation fails because the file could
+                // TRANS: not be moved from the temporary folder to the permanent file location.
+                throw new ClientException(_('File could not be moved to destination directory.'));
+            }
+
+            $filename = basename($file->getPath());
             $mimetype = $file->mimetype;
 
         } catch (NoResultException $e) {
