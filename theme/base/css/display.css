@@ -1476,7 +1476,7 @@ margin-left:0;
     margin-left: 56px;
 }
 
-.notice > footer > h3 {
+.notice > footer .attachments-title {
     margin-bottom: 0;
     margin-top: 1em;
 }

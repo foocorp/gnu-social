@@ -33,7 +33,7 @@ class InlineAttachmentList extends AttachmentList
 {
     function showListStart()
     {
-        $this->out->element('h3', 'attachments-title', _('Attachments'));
+        $this->out->element('h4', 'attachments-title', _('Attachments'));
         parent::showListStart();
     }
 
