@@ -286,8 +286,31 @@ class MediaFile
         try {
             $file = File::getByHash($filehash);
             // Already have it, so let's reuse the locally stored File
-            $filename = $file->filename;
+            // by using getPath we also check whether the file exists
+            // and throw a FileNotFoundException with the path if it doesn't.
+            $filename = basename($file->getPath());
             $mimetype = $file->mimetype;
+        } catch (FileNotFoundException $e) {
+            // This happens if the file we have uploaded has disappeared
+            // from the local filesystem for some reason. Since we got the
+            // File object from a sha256 check in fromFilehandle, it's safe
+            // to just copy the uploaded data to disk!
+
+            fseek($fh, 0);  // just to be sure, go to the beginning
+            // dump the contents of our filehandle to the path from our exception
+            // and report error if it failed.
+            if (false === file_put_contents($e->path, fread($fh, filesize($stream['uri'])))) {
+                // TRANS: Client exception thrown when a file upload operation fails because the file could
+                // TRANS: not be moved from the temporary folder to the permanent file location.
+                throw new ClientException(_('File could not be moved to destination directory.'));
+            }
+            if (!chmod($e->path, 0664)) {
+                common_log(LOG_ERR, 'Could not chmod uploaded file: '._ve($e->path));
+            }
+
+            $filename = basename($file->getPath());
+            $mimetype = $file->mimetype;
+
         } catch (NoResultException $e) {
             File::respectsQuota($scoped, filesize($stream['uri']));
 
