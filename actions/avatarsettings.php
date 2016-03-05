@@ -92,16 +92,6 @@ class AvatarsettingsAction extends SettingsAction
 
     function showUploadForm()
     {
-        $user = common_current_user();
-
-        $profile = $user->getProfile();
-
-        if (!$profile) {
-            common_log_db_error($user, 'SELECT', __FILE__);
-            // TRANS: Error message displayed when referring to a user without a profile.
-            $this->serverError(_('User has no profile.'));
-        }
-
         $this->elementStart('form', array('enctype' => 'multipart/form-data',
                                           'method' => 'post',
                                           'id' => 'form_settings_avatar',
@@ -116,7 +106,7 @@ class AvatarsettingsAction extends SettingsAction
         if (Event::handle('StartAvatarFormData', array($this))) {
             $this->elementStart('ul', 'form_data');
             try {
-                $original = Avatar::getUploaded($profile);
+                $original = Avatar::getUploaded($this->scoped);
 
                 $this->elementStart('li', array('id' => 'avatar_original',
                                                 'class' => 'avatar_view'));
@@ -126,7 +116,7 @@ class AvatarsettingsAction extends SettingsAction
                 $this->element('img', array('src' => $original->displayUrl(),
                                             'width' => $original->width,
                                             'height' => $original->height,
-                                            'alt' => $user->nickname));
+                                            'alt' => $this->scoped->getNickname()));
                 $this->elementEnd('div');
                 $this->elementEnd('li');
             } catch (NoAvatarException $e) {
@@ -134,7 +124,7 @@ class AvatarsettingsAction extends SettingsAction
             }
 
             try {
-                $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
+                $avatar = $this->scoped->getAvatar(AVATAR_PROFILE_SIZE);
                 $this->elementStart('li', array('id' => 'avatar_preview',
                                                 'class' => 'avatar_view'));
                 // TRANS: Header on avatar upload page for thumbnail of to be used rendition of uploaded avatar (h2).
@@ -143,7 +133,7 @@ class AvatarsettingsAction extends SettingsAction
                 $this->element('img', array('src' => $avatar->displayUrl(),
                                             'width' => AVATAR_PROFILE_SIZE,
                                             'height' => AVATAR_PROFILE_SIZE,
-                                            'alt' => $user->nickname));
+                                            'alt' => $this->scoped->getNickname()));
                 $this->elementEnd('div');
                 if (!empty($avatar->filename)) {
                     // TRANS: Button on avatar upload page to delete current avatar.
@@ -180,16 +170,6 @@ class AvatarsettingsAction extends SettingsAction
 
     function showCropForm()
     {
-        $user = common_current_user();
-
-        $profile = $user->getProfile();
-
-        if (!$profile) {
-            common_log_db_error($user, 'SELECT', __FILE__);
-            // TRANS: Error message displayed when referring to a user without a profile.
-            $this->serverError(_('User has no profile.'));
-        }
-
         $this->elementStart('form', array('method' => 'post',
                                           'id' => 'form_settings_avatar',
                                           'class' => 'form_settings',
@@ -211,7 +191,7 @@ class AvatarsettingsAction extends SettingsAction
         $this->element('img', array('src' => Avatar::url($this->filedata['filename']),
                                     'width' => $this->filedata['width'],
                                     'height' => $this->filedata['height'],
-                                    'alt' => $user->nickname));
+                                    'alt' => $this->scoped->getNickname()));
         $this->elementEnd('div');
         $this->elementEnd('li');
 
@@ -224,7 +204,7 @@ class AvatarsettingsAction extends SettingsAction
         $this->element('img', array('src' => Avatar::url($this->filedata['filename']),
                                     'width' => AVATAR_PROFILE_SIZE,
                                     'height' => AVATAR_PROFILE_SIZE,
-                                    'alt' => $user->nickname));
+                                    'alt' => $this->scoped->getNickname()));
         $this->elementEnd('div');
 
         foreach (array('avatar_crop_x', 'avatar_crop_y',
