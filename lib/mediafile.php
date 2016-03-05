@@ -42,10 +42,8 @@ class MediaFile
     var $short_fileurl = null;
     var $mimetype      = null;
 
-    function __construct(Profile $scoped, $filename = null, $mimetype = null, $filehash = null)
+    function __construct($filename = null, $mimetype = null, $filehash = null)
     {
-        $this->scoped = $scoped;
-
         $this->filename   = $filename;
         $this->mimetype   = $mimetype;
         $this->filehash   = $filehash;
@@ -189,10 +187,6 @@ class MediaFile
 
     static function fromUpload($param='media', Profile $scoped=null)
     {
-        if (is_null($scoped)) {
-            $scoped = Profile::current();
-        }
-
         // The existence of the "error" element means PHP has processed it properly even if it was ok.
         if (!isset($_FILES[$param]) || !isset($_FILES[$param]['error'])) {
             throw new NoUploadedMediaException($param);
@@ -248,21 +242,16 @@ class MediaFile
         } catch (NoResultException $e) {
             // We have to save the upload as a new local file. This is the normal course of action.
 
-            // Throws exception if additional size does not respect quota
-            // This test is only needed, of course, if we're uploading something new.
-            File::respectsQuota($scoped, $_FILES[$param]['size']);
+            if ($scoped instanceof Profile) {
+                // Throws exception if additional size does not respect quota
+                // This test is only needed, of course, if we're uploading something new.
+                File::respectsQuota($scoped, $_FILES[$param]['size']);
+            }
 
             $mimetype = self::getUploadedMimeType($_FILES[$param]['tmp_name'], $_FILES[$param]['name']);
             $basename = basename($_FILES[$param]['name']);
 
-            switch (common_config('attachments', 'filename_base')) {
-            case 'upload':
-                $filename = File::filename($scoped, $basename, $mimetype);
-                break;
-            case 'hash':
-            default:
-                $filename = strtolower($filehash) . '.' . File::guessMimeExtension($mimetype, $basename);
-            }
+            $filename = strtolower($filehash) . '.' . File::guessMimeExtension($mimetype, $basename);
             $filepath = File::path($filename);
 
             $result = move_uploaded_file($_FILES[$param]['tmp_name'], $filepath);
@@ -274,10 +263,10 @@ class MediaFile
             }
         }
 
-        return new MediaFile($scoped, $filename, $mimetype, $filehash);
+        return new MediaFile($filename, $mimetype, $filehash);
     }
 
-    static function fromFilehandle($fh, Profile $scoped) {
+    static function fromFilehandle($fh, Profile $scoped=null) {
         $stream = stream_get_meta_data($fh);
         // So far we're only handling filehandles originating from tmpfile(),
         // so we can always do hash_file on $stream['uri'] as far as I can tell!
@@ -312,18 +301,13 @@ class MediaFile
             $mimetype = $file->mimetype;
 
         } catch (NoResultException $e) {
-            File::respectsQuota($scoped, filesize($stream['uri']));
+            if ($scoped instanceof Profile) {
+                File::respectsQuota($scoped, filesize($stream['uri']));
+            }
 
             $mimetype = self::getUploadedMimeType($stream['uri']);
 
-            switch (common_config('attachments', 'filename_base')) {
-            case 'upload':
-                $filename = File::filename($scoped, "email", $mimetype);
-                break;
-            case 'hash':
-            default:
-                $filename = strtolower($filehash) . '.' . File::guessMimeExtension($mimetype);
-            }
+            $filename = strtolower($filehash) . '.' . File::guessMimeExtension($mimetype);
             $filepath = File::path($filename);
 
             $result = copy($stream['uri'], $filepath) && chmod($filepath, 0664);
@@ -336,7 +320,7 @@ class MediaFile
             }
         }
 
-        return new MediaFile($scoped, $filename, $mimetype, $filehash);
+        return new MediaFile($filename, $mimetype, $filehash);
     }
 
     /**
