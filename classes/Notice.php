@@ -308,7 +308,6 @@ class Notice extends Managed_DataObject
             // let's generate a valid link to our locally available notice on demand
             return common_local_url('shownotice', array('notice' => $this->getID()), null, null, false);
         default:
-            common_debug('No URL available for notice: id='.$this->getID());
             throw new InvalidUrlException($this->url);
         }
     }
@@ -521,9 +520,6 @@ class Notice extends Managed_DataObject
 
         if (!$notice->isLocal()) {
             // Only do these checks for non-local notices. Local notices will generate these values later.
-            if (!common_valid_http_url($url)) {
-                common_debug('Bad notice URL: ['.$url.'], URI: ['.$uri.']. Cannot link back to original! This is normal for shared notices etc.');
-            }
             if (empty($uri)) {
                 throw new ServerException('No URI for remote notice. Cannot accept that.');
             }
@@ -932,7 +928,6 @@ class Notice extends Managed_DataObject
         }
 
         if (array_key_exists('http://activityschema.org/collection/public', $act->context->attention)) {
-            common_debug('URI "http://activityschema.org/collection/public" was in notice attention, so we scope this public.');
             $stored->scope = Notice::PUBLIC_SCOPE;
             // TODO: maybe we should actually keep this? if the saveAttentions thing wants to use it...
             unset($act->context->attention['http://activityschema.org/collection/public']);
