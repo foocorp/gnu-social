@@ -35,18 +35,18 @@ class Confirm_address extends Managed_DataObject
         );
     }
 
-    static function getAddress($address, $addressType)
+    static function getByAddress($address, $addressType)
     {
         $ca = new Confirm_address();
 
         $ca->address      = $address;
         $ca->address_type = $addressType;
 
-        if ($ca->find(true)) {
-            return $ca;
+        if (!$ca->find(true)) {
+            throw new NoResultException($ca);
         }
 
-        return null;
+        return $ca;
     }
 
     static function saveNew($user, $address, $addressType, $extra=null)
@@ -65,6 +65,85 @@ class Confirm_address extends Managed_DataObject
         $ca->insert();
 
         return $ca;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    public function getAddressType()
+    {
+        return $this->address_type;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function getProfile()
+    {
+        return Profile::getByID($this->user_id);
+    }
+
+    public function getUrl()
+    {
+        return common_local_url('confirmaddress', array('code' => $this->code));
+    }
+
+    /**
+     * Supply arguments in $args. Currently known args:
+     *  headers     Array with headers (only used for email)
+     *  nickname    How we great the user (defaults to nickname, but can be any string)
+     *  sitename    Name we sign the email with (defaults to sitename, but can be any string)
+     *  url         The confirmation address URL.
+     */
+    public function sendConfirmation(array $args=array())
+    {
+        common_debug('Sending confirmation URL for user '._ve($this->user_id).' using '._ve($this->address_type));
+
+        $defaults = [
+                     'headers'  => array(),
+                     'nickname' => $this->getProfile()->getNickname(),
+                     'sitename' => common_config('site', 'name'),
+                     'url'      => $this->getUrl(),
+                    ];
+        foreach (array_keys($defaults) as $key) {
+            if (!isset($args[$key])) {
+                $args[$key] = $defaults[$key];
+            }
+        }
+
+        switch ($this->getAddressType()) {
+        case 'email':
+            $this->sendEmailConfirmation($args);
+            break;
+        default:
+            throw ServerException('Unable to handle confirm_address address type: '._ve($this->address_type));
+        }
+    }
+
+    public function sendEmailConfirmation(array $args=array())
+    {
+        // TRANS: Subject for address confirmation email.
+        $subject = _('Email address confirmation');
+
+        // TRANS: Body for address confirmation email.
+        // TRANS: %1$s is the addressed user's nickname, %2$s is the StatusNet sitename,
+        // TRANS: %3$s is the URL to confirm at.
+        $body = sprintf(_("Hey, %1\$s.\n\n".
+                          "Someone just entered this email address on %2\$s.\n\n" .
+                          "If it was you, and you want to confirm your entry, ".
+                          "use the URL below:\n\n\t%3\$s\n\n" .
+                          "If not, just ignore this message.\n\n".
+                          "Thanks for your time, \n%2\$s\n"),
+                        $args['nickname'],
+                        $args['sitename'],
+                        $args['url']);
+
+        require_once(INSTALLDIR . '/lib/mail.php');
+        return mail_to_user($this->getProfile()->getUser(), $subject, $body, $args['headers'], $this->getAddress());
     }
 
     public function delete($useWhere=false)

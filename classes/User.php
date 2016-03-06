@@ -384,8 +384,7 @@ class User extends Managed_DataObject
 
             if (!empty($email) && empty($user->email)) {
                 try {
-                    require_once(INSTALLDIR . '/lib/mail.php');
-                    mail_confirm_address($user, $confirm->code, $profile->getNickname(), $email);
+                    $confirm->sendConfirmation();
                 } catch (EmailException $e) {
                     common_log(LOG_ERR, "Could not send user registration email for user id=={$profile->getID()}: {$e->getMessage()}");
                     if (!$accept_email_fail) {

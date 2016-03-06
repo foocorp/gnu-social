@@ -144,7 +144,7 @@ function mail_notify_from()
  *
  * @return boolean success flag
  */
-function mail_to_user(&$user, $subject, $body, $headers=array(), $address=null)
+function mail_to_user($user, $subject, $body, $headers=array(), $address=null)
 {
     if (!$address) {
         $address = $user->email;
@@ -159,45 +159,6 @@ function mail_to_user(&$user, $subject, $body, $headers=array(), $address=null)
     $headers['Subject'] = $subject;
 
     return mail_send($recipients, $headers, $body);
-}
-
-/**
- * Send an email to confirm a user's control of an email address
- *
- * @param User   $user     User claiming the email address
- * @param string $code     Confirmation code
- * @param string $nickname Nickname of user
- * @param string $address  email address to confirm
- *
- * @see common_confirmation_code()
- *
- * @return success flag
- */
-function mail_confirm_address($user, $code, $nickname, $address, $url=null)
-{
-    if (empty($url)) {
-        $url = common_local_url('confirmaddress', array('code' => $code));
-    }
-
-    // TRANS: Subject for address confirmation email.
-    $subject = _('Email address confirmation');
-
-    // TRANS: Body for address confirmation email.
-    // TRANS: %1$s is the addressed user's nickname, %2$s is the StatusNet sitename,
-    // TRANS: %3$s is the URL to confirm at.
-    $body = sprintf(_("Hey, %1\$s.\n\n".
-                      "Someone just entered this email address on %2\$s.\n\n" .
-                      "If it was you, and you want to confirm your entry, ".
-                      "use the URL below:\n\n\t%3\$s\n\n" .
-                      "If not, just ignore this message.\n\n".
-                      "Thanks for your time, \n%2\$s\n"),
-                    $nickname,
-                    common_config('site', 'name'),
-                    $url);
-
-    $headers = array();
-
-    return mail_to_user($user, $subject, $body, $headers, $address);
 }
 
 /**
