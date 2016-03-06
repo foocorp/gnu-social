@@ -64,6 +64,11 @@ function mailConfirmAddress(Confirm_address $ca)
 {
     try {
         $user = User::getByID($ca->user_id);
+        $profile = $user->getProfile();
+        if ($profile->isSilenced()) {
+            $ca->delete();
+            return;
+        }
         if ($user->email === $ca->address) {
             throw new AlreadyFulfilledException('User already has identical confirmed email address.');
         }
