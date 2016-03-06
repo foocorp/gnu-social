@@ -931,7 +931,14 @@ class Notice extends Managed_DataObject
             $act->context = new ActivityContext();
         }
 
-        $stored->scope = self::figureOutScope($actor, $groups, $scope);
+        if (array_key_exists('http://activityschema.org/collection/public', $act->context->attention)) {
+            common_debug('URI "http://activityschema.org/collection/public" was in notice attention, so we scope this public.');
+            $stored->scope = Notice::PUBLIC_SCOPE;
+            // TODO: maybe we should actually keep this? if the saveAttentions thing wants to use it...
+            unset($act->context->attention['http://activityschema.org/collection/public']);
+        } else {
+            $stored->scope = self::figureOutScope($actor, $groups, $scope);
+        }
 
         foreach ($act->categories as $cat) {
             if ($cat->term) {
