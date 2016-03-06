@@ -246,7 +246,7 @@ class AdminPanelAction extends Action
         $this->clientError(_('saveSettings() not implemented.'));
     }
 
-    function canAdmin($name)
+    static function canAdmin($name)
     {
         $isOK = false;
 
