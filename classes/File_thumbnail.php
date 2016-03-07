@@ -134,7 +134,8 @@ class File_thumbnail extends Managed_DataObject
             throw new ClientException(_('Invalid filename.'));
         }
 
-        $dir = common_config('thumbnail', 'dir') ?: File::path('thumb');
+        // NOTE: If this is empty, it will be set to File::path('thumb')
+        $dir = common_config('thumbnail', 'dir');
 
         if (!in_array($dir[mb_strlen($dir)-1], ['/', '\\'])) {
             $dir .= DIRECTORY_SEPARATOR;

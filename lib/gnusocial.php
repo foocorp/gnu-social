@@ -141,6 +141,7 @@ class GNUsocial
         // Load settings from database; note we need autoload for this
         Config::loadSettings();
 
+        self::fillConfigVoids();
         self::verifyLoadedConfig();
 
         self::initPlugins();
@@ -417,6 +418,14 @@ class GNUsocial
 
         if (empty($config['db']['database'])) {
             throw new ServerException("No database server for this site.");
+        }
+    }
+
+    static function fillConfigVoids()
+    {
+        // special cases on empty configuration options
+        if (!common_config('thumbnail', 'dir')) {
+            common_config_set('thumbnail', 'dir', File::path('thumb'));
         }
     }
 
