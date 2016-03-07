@@ -328,7 +328,7 @@ class OembedPlugin extends Plugin
         $ext = File::guessMimeExtension($info['mime']);
 
         // We'll trust sha256 (File::FILEHASH_ALG) not to have collision issues any time soon :)
-        $filename = hash(File::FILEHASH_ALG, $imgData) . ".{$ext}";
+        $filename = 'oembed-'.hash(File::FILEHASH_ALG, $imgData) . ".{$ext}";
         $fullpath = File_thumbnail::path($filename);
         // Write the file to disk. Throw Exception on failure
         if (!file_exists($fullpath) && file_put_contents($fullpath, $imgData) === false) {

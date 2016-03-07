@@ -429,10 +429,28 @@ class GNUsocial
      */
     static function verifyLoadedConfig()
     {
+        $mkdirs = [];
+
         if (common_config('htmlpurifier', 'Cache.DefinitionImpl') === 'Serializer'
                 && !is_dir(common_config('htmlpurifier', 'Cache.SerializerPath'))) {
-            if (!mkdir(common_config('htmlpurifier', 'Cache.SerializerPath'))) {
-                throw new ConfigException('Could not create HTMLPurifier cache dir: '._ve(common_config('htmlpurifier', 'Cache.SerializerPath')));
+            $mkdirs[common_config('htmlpurifier', 'Cache.SerializerPath')] = 'HTMLPurifier Serializer cache';
+        }
+
+        // go through our configurable storage directories
+        foreach (['attachments', 'thumbnail'] as $dirtype) {
+            $dir = common_config($dirtype, 'dir');
+            if (!empty($dir) && !is_dir($dir)) {
+                $mkdirs[$dir] = $dirtype;
+            }
+        }
+
+        // try to create those that are not directories
+        foreach ($mkdirs as $dir=>$description) {
+            if (is_file($dir)) {
+                throw new ConfigException('Expected directory for '._ve($description).' is a file!');
+            }
+            if (!mkdir($dir)) {
+                throw new ConfigException('Could not create directory for '._ve($description).': '._ve($dir));
             }
         }
 

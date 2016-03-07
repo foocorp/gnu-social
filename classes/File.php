@@ -500,7 +500,7 @@ class File extends Managed_DataObject
     {
         if ($prefer_local && !empty($this->filename)) {
             // A locally stored file, so let's generate a URL for our instance.
-            return self::url($this->filename);
+            return self::url($this->getFilename());
         }
 
         // No local filename available, return the URL we have stored

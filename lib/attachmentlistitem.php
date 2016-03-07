@@ -204,11 +204,7 @@ class AttachmentListItem extends Widget
      */
     protected function scrubHtmlFile(File $attachment)
     {
-        $path = File::path($attachment->filename);
-        if (!file_exists($path) || !is_readable($path)) {
-            common_log(LOG_ERR, "Missing local HTML attachment $path");
-            return false;
-        }
+        $path = $attachment->getPath();
         $raw = file_get_contents($path);
 
         // Normalize...

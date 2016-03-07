@@ -271,13 +271,18 @@ $default =
                     'exe' => false,  // this would deny any uploads to keep the "exe" file extension
                 ],
               ),
-        'thumbnail' =>
-        array('crop' => false,      // overridden to true if thumb height === null
+        'thumbnail' => [
+              'dir' => null,    // falls back to File::path('thumb') (equivalent to ['attachments']['dir'] .  '/thumb/')
+              'path' => null,   // falls back to generating a URL with File::url('thumb/$filename') (equivalent to ['attachments']['path'] . '/thumb/')
+              'server' => null, // Only used if ['thumbnail']['path'] is NOT empty, and then it falls back to ['site']['server'], schema is decided from GNUsocial::useHTTPS()
+
+              'crop' => false,      // overridden to true if thumb height === null
               'maxsize' => 1000,     // thumbs with an edge larger than this will not be generated
               'width' => 450,
               'height' => 600,
               'upscale' => false,
-              'animated' => false), // null="UseFileAsThumbnail", false="can use still frame". true requires ImageMagickPlugin
+              'animated' => false, // null="UseFileAsThumbnail", false="can use still frame". true requires ImageMagickPlugin
+            ],
         'application' =>
         array('desclimit' => null),
         'group' =>

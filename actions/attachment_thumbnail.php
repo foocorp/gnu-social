@@ -62,6 +62,6 @@ class Attachment_thumbnailAction extends AttachmentAction
             common_redirect($e->file->getUrl(), 302);
         }
 
-        common_redirect(File_thumbnail::url($thumbnail->filename), 302);
+        common_redirect(File_thumbnail::url($thumbnail->getFilename()), 302);
     }
 }

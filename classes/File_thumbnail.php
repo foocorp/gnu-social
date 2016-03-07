@@ -129,23 +129,76 @@ class File_thumbnail extends Managed_DataObject
 
     static function path($filename)
     {
-        // TODO: Store thumbnails in their own directory and don't use File::path here
-        return File::path($filename);
+        if (!File::validFilename($filename)) {
+            // TRANS: Client exception thrown if a file upload does not have a valid name.
+            throw new ClientException(_('Invalid filename.'));
+        }
+
+        $dir = common_config('thumbnail', 'dir') ?: File::path('thumb');
+
+        if (!in_array($dir[mb_strlen($dir)-1], ['/', '\\'])) {
+            $dir .= DIRECTORY_SEPARATOR;
+        }
+
+        return $dir . $filename;
     }
 
     static function url($filename)
     {
-        // TODO: Store thumbnails in their own directory and don't use File::url here
-        return File::url($filename);
+        if (!File::validFilename($filename)) {
+            // TRANS: Client exception thrown if a file upload does not have a valid name.
+            throw new ClientException(_('Invalid filename.'));
+        }
+
+        // FIXME: private site thumbnails?
+
+        $path = common_config('thumbnail', 'path');
+        if (empty($path)) {
+            return File::url('thumb')."/{$filename}";
+        }
+
+        $protocol = (GNUsocial::useHTTPS() ? 'https' : 'http');
+        $server = common_config('thumbnail', 'server') ?: common_config('site', 'server');
+
+        if ($path[mb_strlen($path)-1] != '/') {
+            $path .= '/';
+        }
+        if ($path[0] != '/') {
+            $path = '/'.$path;
+        }
+
+        return $protocol.'://'.$server.$path.$filename;
+    }
+
+    public function getFilename()
+    {
+        if (!File::validFilename($this->filename)) {
+            // TRANS: Client exception thrown if a file upload does not have a valid name.
+            throw new ClientException(_("Invalid filename."));
+        }
+        return $this->filename;
     }
 
     public function getPath()
     {
-        $filepath = self::path($this->filename);
-        if (!file_exists($filepath)) {
-            throw new FileNotFoundException($filepath);
+        $oldpath = File::path($this->getFilename());
+        $thumbpath = self::path($this->getFilename());
+
+        // If we have a file in our old thumbnail storage path, move it to the new one
+        if (file_exists($oldpath) && !file_exists($thumbpath)) {
+            if ($this->getFilename() === $this->getFile()->filename) {
+                // special case where thumbnail file exactly matches stored File
+                common_debug('File filename and File_thumbnail filename match on '.$this->file_id);
+            } elseif (!rename($oldpath, $thumbpath)) {
+                common_log(LOG_ERR, 'Could not move thumbnail from '._ve($oldpath).' to '._ve($thumbpath));
+                throw new ServerException('Could not move thumbnail from old path to new path.');
+            } else {
+                common_log(LOG_DEBUG, 'Moved thumbnail '.$this->file_id.' from '._ve($oldpath).' to '._ve($thumbpath));
+            }
+        } elseif (!file_exists($thumbpath)) {
+            throw new FileNotFoundException($thumbpath);
         }
-        return $filepath;
+        return $thumbpath;
     }
 
     public function getUrl()
@@ -188,10 +241,14 @@ class File_thumbnail extends Managed_DataObject
 
     public function delete($useWhere=false)
     {
-        if (!empty($this->filename) && file_exists(File_thumbnail::path($this->filename))) {
-            $deleted = @unlink(self::path($this->filename));
-            if (!$deleted) {
-                common_log(LOG_ERR, sprintf('Could not unlink existing file: "%s"', self::path($this->filename)));
+        if (!empty($this->filename)) {
+            try {
+                $deleted = @unlink($this->getPath());
+                if (!$deleted) {
+                    common_log(LOG_ERR, 'Could not unlink existing thumbnail file: '._ve($this->getPath()));
+                }
+            } catch (FileNotFoundException $e) {
+                common_log(LOG_INFO, 'Thumbnail already gone from '._ve($e->path));
             }
         }
 

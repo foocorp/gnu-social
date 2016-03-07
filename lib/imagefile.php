@@ -153,8 +153,14 @@ class ImageFile
             $image = new ImageFile($file->getID(), $imgPath);
         } catch (UnsupportedMediaException $e) {
             // Avoid deleting the original
-            if ($imgPath != $file->getPath()) {
-                unlink($imgPath);
+            try {
+                if ($imgPath !== $file->getPath()) {
+                    @unlink($imgPath);
+                }
+            } catch (FileNotFoundException $e) {
+                // File reported (via getPath) that the original file
+                // doesn't exist anyway, so it's safe to delete $imgPath
+                @unlink($imgPath);
             }
             throw $e;
         }
@@ -607,10 +613,15 @@ class ImageFile
         // Perform resize and store into file
         $this->resizeTo($outpath, $box);
 
-        // Avoid deleting the original
-        if ($this->getPath() != File_thumbnail::path($this->filename)) {
-            $this->unlink();
+        try {
+            // Avoid deleting the original
+            if (!in_array($this->getPath(), [File::path($this->filename), File_thumbnail::path($this->filename)])) {
+                $this->unlink();
+            }
+        } catch (FileNotFoundException $e) {
+            // $this->getPath() says the file doesn't exist anyway, so no point in trying to delete it!
         }
+
         return File_thumbnail::saveThumbnail($this->fileRecord->getID(),
                                       null, // no url since we generated it ourselves and can dynamically generate the url
                                       $width, $height,
