@@ -461,6 +461,9 @@ class GNUsocial
             if (!mkdir($dir)) {
                 throw new ConfigException('Could not create directory for '._ve($description).': '._ve($dir));
             }
+            if (!chmod($dir, 0775)) {
+                common_log(LOG_WARNING, 'Could not chmod 0775 on directory for '._ve($description).': '._ve($dir));
+            }
         }
 
         if (!is_array(common_config('public', 'autosource'))) {
