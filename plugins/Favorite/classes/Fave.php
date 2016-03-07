@@ -79,7 +79,7 @@ class Fave extends Managed_DataObject
         return $stored;
     }
 
-    public function removeEntry(Profile $actor, Notice $target)
+    static function removeEntry(Profile $actor, Notice $target)
     {
         $fave            = new Fave();
         $fave->user_id   = $actor->getID();
