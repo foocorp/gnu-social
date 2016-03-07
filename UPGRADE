@@ -11,6 +11,9 @@ and follow this procedure:
 0. Backup your data. The StatusNet upgrade discussions below have some
     guidelines to back up the database and files (mysqldump and rsync).
 
+    MAKE SURE YOU ARE THE SAME USER THAT RUNS THE PHP FILES WHILE PERFORMING
+    THE COMMANDS BELOW (I usually prepend the commands with 'sudo -u social')
+
 1. Stop your queue daemons (you can run this command even if you do not
     use the queue daemons):
     $ bash scripts/stopdaemons.sh
