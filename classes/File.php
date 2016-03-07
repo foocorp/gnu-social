@@ -347,8 +347,8 @@ class File extends Managed_DataObject
         }
         $dir = common_config('attachments', 'dir');
 
-        if ($dir[strlen($dir)-1] != '/') {
-            $dir .= '/';
+        if (!in_array($dir[mb_strlen($dir)-1], ['/', '\\'])) {
+            $dir .= DIRECTORY_SEPARATOR;
         }
 
         return $dir . $filename;
