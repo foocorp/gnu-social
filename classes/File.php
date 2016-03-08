@@ -479,7 +479,13 @@ class File extends Managed_DataObject
             // null  means "always use file as thumbnail"
             // false means you get choice between frozen frame or original when calling getThumbnail
             if (is_null(common_config('thumbnail', 'animated')) || !$force_still) {
-                throw new UseFileAsThumbnailException($this->id);
+                try {
+                    // remote files with animated GIFs as thumbnails will match this
+                    return File_thumbnail::byFile($this);
+                } catch (NoResultException $e) {
+                    // and if it's not a remote file, it'll be safe to use the locally stored File
+                    throw new UseFileAsThumbnailException($this->id);
+                }
             }
         }
 
