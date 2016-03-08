@@ -833,19 +833,21 @@ class Profile extends Managed_DataObject
         $c = Cache::instance();
 
         if (!empty($c)) {
-            $cnt = $c->get(Cache::key('profile:notice_count:'.$this->id));
+            $cnt = $c->get(Cache::key('profile:notice_count:'.$this->getID()));
             if (is_integer($cnt)) {
                 return (int) $cnt;
             }
         }
 
         $notices = new Notice();
-        $notices->profile_id = $this->id;
-        $notices->verb = ActivityVerb::POST;        
-        $cnt = (int) $notices->count('distinct id');
+        $notices->profile_id = $this->getID();
+        $notices->whereAddIn('verb',
+                                [ActivityUtils::resolveUri(ActivityVerb::POST, true), ActivityVerb::POST],
+                                $notices->columnType('verb'));
+        $cnt = (int) $notices->count(); // we don't have to provide anything as Notice is key'd
 
         if (!empty($c)) {
-            $c->set(Cache::key('profile:notice_count:'.$this->id), $cnt);
+            $c->set(Cache::key('profile:notice_count:'.$this->getID()), $cnt);
         }
 
         return $cnt;
