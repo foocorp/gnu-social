@@ -188,8 +188,9 @@ class File_thumbnail extends Managed_DataObject
         // If we have a file in our old thumbnail storage path, move it to the new one
         if (file_exists($oldpath) && !file_exists($thumbpath)) {
             if ($this->getFilename() === $this->getFile()->filename) {
-                // special case where thumbnail file exactly matches stored File
-                common_debug('File filename and File_thumbnail filename match on '.$this->file_id);
+                // special case where thumbnail file exactly matches stored File filename
+                common_debug('File filename and File_thumbnail filename match on '.$this->file_id.', copying instead');
+                copy($oldpath, $thumbpath);
             } elseif (!rename($oldpath, $thumbpath)) {
                 common_log(LOG_ERR, 'Could not move thumbnail from '._ve($oldpath).' to '._ve($thumbpath));
                 throw new ServerException('Could not move thumbnail from old path to new path.');
