@@ -457,7 +457,7 @@ function deleteLocalFileThumbnailsWithoutFilename()
         while ($file->fetch()) {
             $thumbs = new File_thumbnail();
             $thumbs->file_id = $file->id;
-            $thumbs->whereAdd('filename IS NULL');
+            $thumbs->whereAdd('filename IS NULL OR filename = ""');
             // Checking if there were any File_thumbnail entries without filename
             if (!$thumbs->find()) {
                 continue;
@@ -480,7 +480,7 @@ function deleteMissingLocalFileThumbnails()
     printfnq("Removing all local File_thumbnail entries without existing files...");
 
     $thumbs = new File_thumbnail();
-    $thumbs->whereAdd('filename IS NOT NULL');  // only fill in names where they're missing
+    $thumbs->whereAdd('filename IS NOT NULL AND filename != ""');
     // Checking if there were any File_thumbnail entries without filename
     if ($thumbs->find()) {
         while ($thumbs->fetch()) {
