@@ -115,7 +115,7 @@ class NewnoticeAction extends FormAction
             // simply no attached media to the new notice
             if (empty($content)) {
                 // TRANS: Client error displayed trying to send a notice without content.
-                $this->clientError(_('No content!'));
+                throw new ClientException(_('No content!'));
             }
         }
 
