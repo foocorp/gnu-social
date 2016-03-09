@@ -113,17 +113,30 @@ class File extends Managed_DataObject
         if (isset($u['host']) && $u['host'] === common_config('site', 'server')) {
             $r = Router::get();
             // Skip the / in the beginning or $r->map won't match
-            $args = $r->map(mb_substr($u['path'], 1));
-            if ($args['action'] === 'attachment') {
-                try {
-                    // $args['attachment'] should always be set if action===attachment, given our routing rules
-                    $file = File::getByID($args['attachment']);
-                    return $file;
-                } catch (EmptyIdException $e) {
-                    // ...but $args['attachment'] can also be 0...
-                } catch (NoResultException $e) {
-                    // apparently this link goes to us, but is _not_ an existing attachment (File) ID?
+            try {
+                $args = $r->map(mb_substr($u['path'], 1));
+                if ($args['action'] === 'attachment') {
+                    try {
+                        // $args['attachment'] should always be set if action===attachment, given our routing rules
+                        $file = File::getByID($args['attachment']);
+                        return $file;
+                    } catch (EmptyIdException $e) {
+                        // ...but $args['attachment'] can also be 0...
+                    } catch (NoResultException $e) {
+                        // apparently this link goes to us, but is _not_ an existing attachment (File) ID?
+                    }
                 }
+            } catch (Exception $e) {
+                // Some other exception was thrown from $r->map, likely a
+                // ClientException (404) because of some malformed link to
+                // our own instance. It's still a valid URL however, so we
+                // won't abort anything... I noticed this when linking:
+                // https://social.umeahackerspace.se/mmn/foaf' (notice the
+                // apostrophe in the end, making it unrecognizable for our
+                // URL routing.
+                // That specific issue (the apostrophe being part of a link
+                // is something that may or may not have been fixed since,
+                // in lib/util.php in common_replace_urls_callback().
             }
         }
 
