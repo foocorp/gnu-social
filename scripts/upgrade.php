@@ -503,7 +503,7 @@ function setFilehashOnLocalFiles()
     printfnq('Ensuring all local files have the filehash field set...');
 
     $file = new File();
-    $file->whereAdd('filename IS NOT NULL');        // local files
+    $file->whereAdd('filename IS NOT NULL AND filename != ""');        // local files
     $file->whereAdd('filehash IS NULL', 'AND');     // without filehash value
 
     if ($file->find()) {

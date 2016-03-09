@@ -129,12 +129,9 @@ class File_thumbnail extends Managed_DataObject
 
     static function path($filename)
     {
-        if (!File::validFilename($filename)) {
-            // TRANS: Client exception thrown if a file upload does not have a valid name.
-            throw new ClientException(_('Invalid filename.'));
-        }
+        File::tryFilename($filename);
 
-        // NOTE: If this is empty, it will be set to File::path('thumb')
+        // NOTE: If this is left empty in default config, it will be set to File::path('thumb')
         $dir = common_config('thumbnail', 'dir');
 
         if (!in_array($dir[mb_strlen($dir)-1], ['/', '\\'])) {
@@ -146,10 +143,7 @@ class File_thumbnail extends Managed_DataObject
 
     static function url($filename)
     {
-        if (!File::validFilename($filename)) {
-            // TRANS: Client exception thrown if a file upload does not have a valid name.
-            throw new ClientException(_('Invalid filename.'));
-        }
+        File::tryFilename($filename);
 
         // FIXME: private site thumbnails?
 
@@ -173,21 +167,36 @@ class File_thumbnail extends Managed_DataObject
 
     public function getFilename()
     {
-        if (!File::validFilename($this->filename)) {
-            // TRANS: Client exception thrown if a file upload does not have a valid name.
-            throw new ClientException(_("Invalid filename."));
-        }
-        return $this->filename;
+        return File::tryFilename($this->filename);
     }
 
+    /**
+     *
+     * @return  string  full filesystem path to the locally stored thumbnail file
+     * @throws  
+     */
     public function getPath()
     {
         $oldpath = File::path($this->getFilename());
         $thumbpath = self::path($this->getFilename());
 
-        // If we have a file in our old thumbnail storage path, move it to the new one
+        // If we have a file in our old thumbnail storage path, move (or copy) it to the new one
+        // (if the if/elseif don't match, we have a $thumbpath just as we should and can return it)
         if (file_exists($oldpath) && !file_exists($thumbpath)) {
-            if ($this->getFilename() === $this->getFile()->filename) {
+            try {
+                // let's get the filename of the File, to check below if it happens to be identical
+                $file_filename = $this->getFile()->getFilename();
+            } catch (NoResultException $e) {
+                // reasonably the function calling us will handle the following as "File_thumbnail entry should be deleted"
+                throw FileNotFoundException($thumbpath);
+            } catch (InvalidFilenameException $e) {
+                // invalid filename in getFile()->getFilename(), just
+                // means the File object isn't stored locally and that
+                // means it's safe to move it below.
+                $file_filename = null;
+            }
+
+            if ($this->getFilename() === $file_filename) {
                 // special case where thumbnail file exactly matches stored File filename
                 common_debug('File filename and File_thumbnail filename match on '.$this->file_id.', copying instead');
                 copy($oldpath, $thumbpath);
@@ -200,6 +209,7 @@ class File_thumbnail extends Managed_DataObject
         } elseif (!file_exists($thumbpath)) {
             throw new FileNotFoundException($thumbpath);
         }
+
         return $thumbpath;
     }
 
@@ -243,15 +253,15 @@ class File_thumbnail extends Managed_DataObject
 
     public function delete($useWhere=false)
     {
-        if (!empty($this->filename)) {
-            try {
-                $deleted = @unlink($this->getPath());
-                if (!$deleted) {
-                    common_log(LOG_ERR, 'Could not unlink existing thumbnail file: '._ve($this->getPath()));
-                }
-            } catch (FileNotFoundException $e) {
-                common_log(LOG_INFO, 'Thumbnail already gone from '._ve($e->path));
+        try {
+            $thumbpath = self::path($this->getFilename());
+            // if file does not exist, try to delete it
+            $deleted = !file_exists($thumbpath) || @unlink($thumbpath);
+            if (!$deleted) {
+                common_log(LOG_ERR, 'Could not unlink existing thumbnail file: '._ve($thumbpath));
             }
+        } catch (InvalidFilenameException $e) {
+            common_log(LOG_ERR, 'Deleting object but not attempting deleting file: '._ve($e->getMessage()));
         }
 
         return parent::delete($useWhere);

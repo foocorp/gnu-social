@@ -260,11 +260,7 @@ class File extends Managed_DataObject
 
     public function getFilename()
     {
-        if (!self::validFilename($this->filename)) {
-            // TRANS: Client exception thrown if a file upload does not have a valid name.
-            throw new ClientException(_("Invalid filename."));
-        }
-        return $this->filename;
+        return self::tryFilename($this->filename);
     }
 
     // where should the file go?
@@ -349,15 +345,23 @@ class File extends Managed_DataObject
         return preg_match('/^[A-Za-z0-9._-]+$/', $filename);
     }
 
+    static function tryFilename($filename)
+    {
+        if (!self::validFilename($filename))
+        {
+            throw new InvalidFilenameException($filename);
+        }
+        // if successful, return the filename for easy if-statementing
+        return $filename;
+    }
+
     /**
      * @throws ClientException on invalid filename
      */
     static function path($filename)
     {
-        if (!self::validFilename($filename)) {
-            // TRANS: Client exception thrown if a file upload does not have a valid name.
-            throw new ClientException(_("Invalid filename."));
-        }
+        self::tryFilename($filename);
+
         $dir = common_config('attachments', 'dir');
 
         if (!in_array($dir[mb_strlen($dir)-1], ['/', '\\'])) {
@@ -369,10 +373,7 @@ class File extends Managed_DataObject
 
     static function url($filename)
     {
-        if (!self::validFilename($filename)) {
-            // TRANS: Client exception thrown if a file upload does not have a valid name.
-            throw new ClientException(_("Invalid filename."));
-        }
+        self::tryFilename($filename);
 
         if (common_config('site','private')) {
 
