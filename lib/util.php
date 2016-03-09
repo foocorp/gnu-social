@@ -1013,9 +1013,9 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
         ')'.
         '(?:'.
             '(?:\:\d+)?'. //:port
-            '(?:/[\pN\pL$\,\!\(\)\.\:\-\_\+\/\=\&\;\%\~\*\$\+\'@]*)?'. // /path
-            '(?:\?[\pN\pL\$\,\!\(\)\.\:\-\_\+\/\=\&\;\%\~\*\$\+\'@\/]*)?'. // ?query string
-            '(?:\#[\pN\pL$\,\!\(\)\.\:\-\_\+\/\=\&\;\%\~\*\$\+\'\@/\?\#]*)?'. // #fragment
+            '(?:/['  . URL_REGEX_VALID_PATH_CHARS    . ']*)?'.  // path
+            '(?:\?[' . URL_REGEX_VALID_QSTRING_CHARS . ']*)?'.  // ?query string
+            '(?:\#[' . URL_REGEX_VALID_FRAGMENT_CHARS . ']*)?'. // #fragment
         ')(?<![\?\.\,\#\,])'.
     ')'.
     '#ixu';
