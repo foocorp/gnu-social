@@ -57,9 +57,14 @@ define('NOTICE_INBOX_SOURCE_FORWARD', 4);
 define('NOTICE_INBOX_SOURCE_PROFILE_TAG', 5);
 define('NOTICE_INBOX_SOURCE_GATEWAY', -1);
 
-define('URL_REGEX_VALID_PATH_CHARS',        '\pN\pL\,\!\(\)\.\:\-\_\+\/\=\&\;\%\~\*\$\+\'\@');
-define('URL_REGEX_VALID_QSTRING_CHARS',     URL_REGEX_VALID_PATH_CHARS);
-define('URL_REGEX_VALID_FRAGMENT_CHARS',    URL_REGEX_VALID_PATH_CHARS . '\?\#');
+/**
+ * StatusNet had this string as valid path characters: '\pN\pL\,\!\(\)\.\:\-\_\+\/\=\&\;\%\~\*\$\'\@'
+ * Some of those characters can be troublesome when auto-linking plain text. Such as "http://some.com/)"
+ * URL encoding should be used whenever a weird character is used, the following strings are not definitive.
+ */
+define('URL_REGEX_VALID_PATH_CHARS',        '\pN\pL\,\-\_\+\/\=\:\;\%\~\*');
+define('URL_REGEX_VALID_QSTRING_CHARS',     URL_REGEX_VALID_PATH_CHARS    . '\&');
+define('URL_REGEX_VALID_FRAGMENT_CHARS',    URL_REGEX_VALID_QSTRING_CHARS . '\?\#');
 
 // append our extlib dir as the last-resort place to find libs
 
