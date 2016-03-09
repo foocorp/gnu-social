@@ -1016,7 +1016,7 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
             '(?:/['  . URL_REGEX_VALID_PATH_CHARS    . ']*)?'.  // path
             '(?:\?[' . URL_REGEX_VALID_QSTRING_CHARS . ']*)?'.  // ?query string
             '(?:\#[' . URL_REGEX_VALID_FRAGMENT_CHARS . ']*)?'. // #fragment
-        ')(?<![\?\.\,\#\,])'.
+        ')(?<!['. URL_REGEX_EXCLUDED_END_CHARS .'])'.
     ')'.
     '#ixu';
     //preg_match_all($regex,$text,$matches);
