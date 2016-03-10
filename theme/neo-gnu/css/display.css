@@ -16,12 +16,7 @@ body {
     /* background-color: #C6C8CC;
     background-image: url(../images/bg.png); */
     background-color: #e9eaed;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
     color: #222;
-}
-
-input, textarea, select, option {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
 }
 
 a {color: #666;}
