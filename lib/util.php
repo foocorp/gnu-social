@@ -1689,10 +1689,15 @@ function common_profile_url($nickname)
 
 /**
  * Should make up a reasonable root URL
+ *
+ * @param   bool    $tls    true or false to force TLS scheme, null to use server configuration
  */
-function common_root_url($ssl=false)
+function common_root_url($tls=null)
 {
-    $url = common_path('', $ssl, false);
+    if (is_null($tls)) {
+        $tls = GNUsocial::useHTTPS();
+    }
+    $url = common_path('', $tls, false);
     $i = strpos($url, '?');
     if ($i !== false) {
         $url = substr($url, 0, $i);

@@ -44,21 +44,20 @@ class OembedAction extends Action
         parent::handle();
 
         $url = $this->trimmed('url');
-        if (substr(strtolower($url),0,strlen(common_root_url())) !== strtolower(common_root_url())) {
+        $tls = parse_url($url, PHP_URL_SCHEME) == 'https';
+        $root_url = common_root_url($tls);
+
+        if (substr(strtolower($url),0,mb_strlen($root_url)) !== strtolower($root_url)) {
             // TRANS: Error message displaying attachments. %s is the site's base URL.
-            $this->clientError(sprintf(_('oEmbed data will only be provided for %s URLs.'), common_root_url()), 400);
+            throw new ClientException(sprintf(_('oEmbed data will only be provided for %s URLs.'), $root_url));
         }
 
-        $path = substr($url,strlen(common_root_url()));
+        $path = substr($url,strlen($root_url));
 
         $r = Router::get();
 
+        // $r->map will throw ClientException 404 if it fails to find a mapping
         $proxy_args = $r->map($path);
-        if (!$proxy_args) {
-            // TRANS: Client error displayed in oEmbed action when path not found.
-            // TRANS: %s is a path.
-            $this->clientError(sprintf(_('"%s" not found.'),$path), 404);
-        }
 
         $oembed=array();
         $oembed['version']='1.0';
@@ -68,18 +67,12 @@ class OembedAction extends Action
         switch ($proxy_args['action']) {
         case 'shownotice':
             $oembed['type']='link';
-            $id = $proxy_args['notice'];
-            $notice = Notice::getKV($id);
-            if(empty($notice)){
-                // TRANS: Client error displayed in oEmbed action when notice not found.
-                // TRANS: %s is a notice.
-                $this->clientError(sprintf(_("Notice %s not found."),$id), 404);
+            try {
+                $notice = Notice::getByID($proxy_args['notice']);
+            } catch (NoResultException $e) {
+                throw new ClientException($e->getMessage(), 404);
             }
             $profile = $notice->getProfile();
-            if (empty($profile)) {
-                // TRANS: Server error displayed in oEmbed action when notice has not profile.
-                $this->serverError(_('Notice has no profile.'), 500);
-            }
             $authorname = $profile->getFancyName();
             // TRANS: oEmbed title. %1$s is the author name, %2$s is the creation date.
             $oembed['title'] = sprintf(_('%1$s\'s status on %2$s'),
