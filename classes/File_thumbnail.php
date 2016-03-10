@@ -188,7 +188,7 @@ class File_thumbnail extends Managed_DataObject
                 $file_filename = $this->getFile()->getFilename();
             } catch (NoResultException $e) {
                 // reasonably the function calling us will handle the following as "File_thumbnail entry should be deleted"
-                throw FileNotFoundException($thumbpath);
+                throw new FileNotFoundException($thumbpath);
             } catch (InvalidFilenameException $e) {
                 // invalid filename in getFile()->getFilename(), just
                 // means the File object isn't stored locally and that
