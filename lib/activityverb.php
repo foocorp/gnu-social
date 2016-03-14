@@ -55,6 +55,7 @@ class ActivityVerb
     const JOIN     = 'http://activitystrea.ms/schema/1.0/join';
     const TAG      = 'http://activitystrea.ms/schema/1.0/tag';
     const DELETE   = 'http://activitystrea.ms/schema/1.0/delete';
+    const UPDATE   = 'http://activitystrea.ms/schema/1.0/update';
 
     // Custom OStatus verbs for the flipside until they're standardized
     const UNFAVORITE = 'http://activitystrea.ms/schema/1.0/unfavorite';
