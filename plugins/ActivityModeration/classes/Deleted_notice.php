@@ -195,6 +195,7 @@ class Deleted_notice extends Managed_DataObject
             echo "\nFound old $table table, upgrading it to add 'act_created' field...";
 
             $schemadef['fields']['act_created'] = array('type' => 'datetime', 'not null' => true, 'description' => 'datetime the notice record was created');
+            $schemadef['fields']['uri']['length'] = 191;    // we likely don't have to discover too long keys here
             $schema->ensureTable($table, $schemadef);
 
             $deleted = new Deleted_notice();
