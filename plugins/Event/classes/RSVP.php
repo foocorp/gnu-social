@@ -107,6 +107,7 @@ class RSVP extends Managed_DataObject
         echo "\nFound old $table table, upgrading it to add 'event_uri' field...";
 
         $schemadef['fields']['event_uri'] = array('type' => 'varchar', 'length' => 191, 'not null' => true, 'description' => 'Event URI');
+        $schemadef['fields']['uri']['length'] = 191;    // we likely don't have to discover too long keys here
         $schema->ensureTable($table, $schemadef);
 
         $rsvp = new RSVP();
