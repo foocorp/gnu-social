@@ -83,6 +83,8 @@ class SalmonAction extends Action
         // Cryptographic verification test, throws exception on failure
         $magic_env->verify($this->actor);
 
+        common_debug('Salmon slap is carrying activity URI=='._ve($this->activity->id));
+
         return true;
     }
 
