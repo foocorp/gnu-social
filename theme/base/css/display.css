@@ -811,7 +811,7 @@ position:static;
     margin-bottom: 1em;
 }
 
-.notice.h-entry .attachments .inline-attachment * {
+.notice.h-entry .attachments .inline-attachment > * {
     height: auto;
     max-width: 100%;
 }
