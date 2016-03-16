@@ -48,9 +48,13 @@ a img {
     text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
     font-weight: normal;
-    margin-bottom: 15px;
+    margin-bottom: 1ex;
+}
+h5, h6 {
+    font-weight: normal;
+    margin-bottom: 0;
 }
 
 h1 {font-size: 2.0em;}
