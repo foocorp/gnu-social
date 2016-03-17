@@ -248,7 +248,7 @@ class OembedPlugin extends Plugin
             $out->element('div', ['class'=>'error'], $e->getMessage());
         }
         $out->elementStart('h5', ['class'=>'oembed-title']);
-        $out->element('a', ['href'=>$file->getUrl()], $oembed->title);
+        $out->element('a', ['href'=>$file->getUrl()], common_strip_html($oembed->title));
         $out->elementEnd('h5');
         $out->elementStart('div', ['class'=>'oembed-source']);
         if (!empty($oembed->author_name)) {
@@ -279,7 +279,9 @@ class OembedPlugin extends Plugin
         }
         $out->elementEnd('div');
         $out->elementEnd('header');
-        $out->element('div', ['class'=>'oembed-item-body'], common_purify($oembed->html));
+        $out->elementStart('div', ['class'=>'oembed-html']);
+        $out->raw(common_purify($oembed->html));
+        $out->elementEnd('div');
         $out->elementStart('footer');
         $out->elementEnd('footer');
         $out->elementEnd('article');
