@@ -137,7 +137,7 @@ class SearchAction extends Action
 
 * [DuckDuckGo](https://duckduckgo.com/?q=site%%3A%%%%site.server%%%%+%s)
 * [Ixquick](https://ixquick.com/do/search?query=site%%3A%%%%site.server%%%%+%s)
-* [Google](https://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)
+* [Searx](https://searx.laquadrature.net/?q=site%%3A%%%%site.server%%%%+%s)
 * [Yahoo!](https://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)
 "), $qe, $qe, $qe, $qe);
             $message .= "\n";

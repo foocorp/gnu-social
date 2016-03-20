@@ -28,7 +28,7 @@ Why?
 
     I got used to having gettext work even without gettext
     library. It's there in my favourite language Python, so I was
-    surprised that I couldn't find it in PHP. I even Googled for it,
+    surprised that I couldn't find it in PHP. I even searched for it,
     but to no avail.
 
     So, I said, what the heck, I'm going to write it for this

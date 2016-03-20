@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -25,16 +25,6 @@ msgstr "Tres al lec'hienn"
 #. TRANS: Instructions for sitemap.
 #: actions/sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
-msgstr ""
-
-#. TRANS: Field label.
-#: actions/sitemapadminpanel.php:167
-msgid "Google key"
-msgstr "Alc'hwez Google"
-
-#. TRANS: Title for field label.
-#: actions/sitemapadminpanel.php:169
-msgid "Google Webmaster Tools verification key."
 msgstr ""
 
 #. TRANS: Field label.
@@ -81,5 +71,5 @@ msgstr "Tres al lec'hienn"
 
 #. TRANS: Plugin description.
 #: SitemapPlugin.php:187
-msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
-msgstr "Gant an astenn-mañ e c'haller sevel tresoù lec'hiennoù evit Bing, Yahoo! ha Google."
+msgid "This plugin allows creation of sitemaps for Bing and Yahoo!."
+msgstr "Gant an astenn-mañ e c'haller sevel tresoù lec'hiennoù evit Bing and Yahoo!."

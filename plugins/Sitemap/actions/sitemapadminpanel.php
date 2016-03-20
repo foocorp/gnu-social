@@ -83,7 +83,7 @@ class SitemapadminpanelAction extends AdminPanelAction
      */
     function saveSettings()
     {
-        static $settings = array('sitemap' => array('googlekey', 'yahookey', 'bingkey'));
+        static $settings = array('sitemap' => array('yahookey', 'bingkey'));
 
         $values = array();
 
@@ -161,14 +161,6 @@ class SitemapAdminPanelForm extends AdminForm
     function formData()
     {
         $this->out->elementStart('ul', 'form_data');
-        $this->li();
-        $this->input('googlekey',
-                     // TRANS: Field label.
-                     _m('Google key'),
-                     // TRANS: Title for field label.
-                     _m('Google Webmaster Tools verification key.'),
-                     'sitemap');
-        $this->unli();
         $this->li();
         $this->input('yahookey',
                      // TRANS: Field label.

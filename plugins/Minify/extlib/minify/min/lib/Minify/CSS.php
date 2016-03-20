@@ -12,7 +12,6 @@
  * 
  * @package Minify
  * @author Stephen Clay <steve@mrclay.org>
- * @author http://code.google.com/u/1stvamp/ (Issue 64 patch)
  */
 class Minify_CSS {
     
@@ -36,10 +35,10 @@ class Minify_CSS {
      * the desired files. For this to work, the files *must* exist and be
      * visible by the PHP process.
      *
-     * 'symlinks': (default = array()) If the CSS file is stored in 
+     * 'symlinks': (default = array()) If the CSS file is stored in
      * a symlink-ed directory, provide an array of link paths to
-     * target paths, where the link paths are within the document root. Because 
-     * paths need to be normalized for this to work, use "//" to substitute 
+     * target paths, where the link paths are within the document root. Because
+     * paths need to be normalized for this to work, use "//" to substitute
      * the doc root in the link paths (the array keys). E.g.:
      * <code>
      * array('//symlink' => '/real/target/path') // unix

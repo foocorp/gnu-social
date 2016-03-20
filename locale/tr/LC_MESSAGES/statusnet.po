@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Furkan Kalkan <furkan.kalkan3@gmail.com>, 2015
 # Uğur KUYU <ukuyu34@gmail.com>, 2015
@@ -10498,7 +10498,7 @@ msgid ""
 "\n"
 "* [DuckDuckGo](https://duckduckgo.com/?q=site%%3A%%%%site.server%%%%+%s)\n"
 "* [Ixquick](https://ixquick.com/do/search?query=site%%3A%%%%site.server%%%%+%s)\n"
-"* [Google](https://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)\n"
+"* [Searx](https://searx.laquadrature.net/?q=site%%3A%%%%site.server%%%%+%s)\n"
 "* [Yahoo!](https://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)\n"
 msgstr ""
 

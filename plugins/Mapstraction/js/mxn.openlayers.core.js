@@ -1,4 +1,4 @@
-mxn.register('openlayers', {	
+mxn.register('openlayers', {
 
     Mapstraction: {
 
@@ -86,21 +86,21 @@ mxn.register('openlayers', {
             // var myOptions = [];
             // if (this.options.enableDragging) {
             //     myOptions.draggable = true;
-            // } 
+            // }
             // if (this.options.enableScrollWheelZoom){
             //     myOptions.scrollwheel = true;
-            // } 
+            // }
             // map.setOptions(myOptions);
         },
 
-        resizeTo: function(width, height){	
+        resizeTo: function(width, height){
             this.currentElement.style.width = width;
             this.currentElement.style.height = height;
             this.maps[this.api].updateSize();
         },
 
         addControls: function( args ) {
-            var map = this.maps[this.api];	
+            var map = this.maps[this.api];
             // FIXME: OpenLayers has a bug removing all the controls says crschmidt
             for (var i = map.controls.length; i>1; i--) {
                 map.controls[i-1].deactivate();
@@ -112,12 +112,12 @@ mxn.register('openlayers', {
             else if ( args.zoom == 'small' ) {
                 map.addControl(new OpenLayers.Control.ZoomPanel());
                 if ( args.pan) {
-                    map.addControl(new OpenLayers.Control.PanPanel()); 
+                    map.addControl(new OpenLayers.Control.PanPanel());
                 }
             }
             else {
                 if ( args.pan){
-                    map.addControl(new OpenLayers.Control.PanPanel()); 
+                    map.addControl(new OpenLayers.Control.PanPanel());
                 }
             }
             if ( args.overview ) {
@@ -131,12 +131,12 @@ mxn.register('openlayers', {
         addSmallControls: function() {
             var map = this.maps[this.api];
             this.addControlsArgs.pan = false;
-            this.addControlsArgs.scale = false;                        
+            this.addControlsArgs.scale = false;
             this.addControlsArgs.zoom = 'small';
             map.addControl(new OpenLayers.Control.ZoomBox());
             map.addControl(new OpenLayers.Control.LayerSwitcher({
                 'ascending':false
-            }));            
+            }));
         },
 
         addLargeControls: function() {
@@ -154,7 +154,7 @@ mxn.register('openlayers', {
             this.addControlsArgs.map_type = true;
         },
 
-        setCenterAndZoom: function(point, zoom) { 
+        setCenterAndZoom: function(point, zoom) {
             var map = this.maps[this.api];
             var pt = point.toProprietary(this.api);
             map.setCenter(point.toProprietary(this.api), zoom);
@@ -215,7 +215,7 @@ mxn.register('openlayers', {
             for(var i = 0, length = this.polylines.length; i < length; i++){
                 olpolylines.push(this.polylines[i].toProprietary(this.api));
             }
-            if (this.layers['polylines']) this.layers['polylines'].removeFeatures(olpolylines);            
+            if (this.layers['polylines']) this.layers['polylines'].removeFeatures(olpolylines);
         },
 
         getCenter: function() {
@@ -228,7 +228,7 @@ mxn.register('openlayers', {
             var map = this.maps[this.api];
             var pt = point.toProprietary(this.api);
             map.setCenter(pt);
-            
+
         },
 
         setZoom: function(zoom) {
@@ -250,46 +250,18 @@ mxn.register('openlayers', {
         setMapType: function(type) {
             var map = this.maps[this.api];
             throw 'Not implemented (setMapType)';
-
-            // switch(type) {
-            //     case mxn.Mapstraction.ROAD:
-            //     map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
-            //     break;
-            //     case mxn.Mapstraction.SATELLITE:
-            //     map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
-            //     break;
-            //     case mxn.Mapstraction.HYBRID:
-            //     map.setMapTypeId(google.maps.MapTypeId.HYBRID);
-            //     break;
-            //     default:
-            //     map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
-            // }	 
         },
 
         getMapType: function() {
             var map = this.maps[this.api];
             // TODO: implement actual layer support
             return mxn.Mapstraction.ROAD;
-
-            // var type = map.getMapTypeId();
-            // switch(type) {
-            //     case google.maps.MapTypeId.ROADMAP:
-            //     return mxn.Mapstraction.ROAD;
-            //     case google.maps.MapTypeId.SATELLITE:
-            //     return mxn.Mapstraction.SATELLITE;
-            //     case google.maps.MapTypeId.HYBRID:
-            //     return mxn.Mapstraction.HYBRID;
-            //     //case google.maps.MapTypeId.TERRAIN:
-            //     //        return something;
-            //     default:
-            //     return null;
-            // }
         },
 
         getBounds: function () {
             var map = this.maps[this.api];
             var olbox = map.calculateBounds();
-            return new mxn.BoundingBox(olbox.bottom, olbox.left, olbox.top, olbox.right);            
+            return new mxn.BoundingBox(olbox.bottom, olbox.left, olbox.top, olbox.right);
         },
 
         setBounds: function(bounds){
@@ -302,7 +274,7 @@ mxn.register('openlayers', {
             }
 
             var obounds = new OpenLayers.Bounds();
-            
+
             obounds.extend(new mxn.LatLonPoint(sw.lat,sw.lon).toProprietary(this.api));
             obounds.extend(new mxn.LatLonPoint(ne.lat,ne.lon).toProprietary(this.api));
             map.zoomToExtent(obounds);
@@ -348,13 +320,13 @@ mxn.register('openlayers', {
         getPixelRatio: function() {
             var map = this.maps[this.api];
 
-            // TODO: Add provider code	
+            // TODO: Add provider code
         },
 
         mousePosition: function(element) {
             var map = this.maps[this.api];
 
-            // TODO: Add provider code	
+            // TODO: Add provider code
         }
     },
 
@@ -364,7 +336,7 @@ mxn.register('openlayers', {
             var ollon = this.lon * 20037508.34 / 180;
             var ollat = Math.log(Math.tan((90 + this.lat) * Math.PI / 360)) / (Math.PI / 180);
             ollat = ollat * 20037508.34 / 180;
-            return new OpenLayers.LonLat(ollon, ollat);            
+            return new OpenLayers.LonLat(ollon, ollat);
         },
 
         fromProprietary: function(olPoint) {
@@ -448,7 +420,7 @@ mxn.register('openlayers', {
                 return marker;
             },
 
-        openBubble: function() {		
+        openBubble: function() {
             // TODO: Add provider code
         },
 

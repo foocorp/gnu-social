@@ -107,7 +107,6 @@ class MagicEnvelope
      * you'll only get the public key ;)
      *
      * The string will (hopefully) be formatted as described in Magicsig specification:
-     * https://salmon-protocol.googlecode.com/svn/trunk/draft-panzer-magicsig-01.html#anchor13
      *
      * @return string formatted as Magicsig keypair
      */
@@ -156,7 +155,7 @@ class MagicEnvelope
         }
 
         if ($keypair === false) {
-            // For debugging clarity. Keypair did not pass count()-check above. 
+            // For debugging clarity. Keypair did not pass count()-check above.
             // TRANS: Exception when public key was not properly formatted.
             throw new Exception(_m('Incorrectly formatted public key element.'));
         }
@@ -270,7 +269,7 @@ class MagicEnvelope
             $prov->appendChild($alg);
             $sig = $dom->createElementNS(self::NS, 'me:sig', $this->getSignature());
             $prov->appendChild($sig);
-    
+
             $dom->documentElement->appendChild($prov);
             break;
         default:

@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Ciencisto Dementa <maliktunga@users.noreply.github.com>, 2015
 msgid ""
@@ -27,16 +27,6 @@ msgstr "Situomapo"
 #: actions/sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
 msgstr "Ajusti dil situomapo por ica retosituo GNU social"
-
-#. TRANS: Field label.
-#: actions/sitemapadminpanel.php:167
-msgid "Google key"
-msgstr "Google-klefo"
-
-#. TRANS: Title for field label.
-#: actions/sitemapadminpanel.php:169
-msgid "Google Webmaster Tools verification key."
-msgstr "Verifikado-klefo da Google Webmaster Tools."
 
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:175
@@ -82,5 +72,5 @@ msgstr "Situomapo"
 
 #. TRANS: Plugin description.
 #: SitemapPlugin.php:187
-msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
-msgstr "Ca extensigo posibligas la kreo di situomapi por Bing, Yahoo! e Google."
+msgid "This plugin allows creation of sitemaps for Bing and Yahoo!."
+msgstr "Ca extensigo posibligas la kreo di situomapi por Bing e Yahoo!."

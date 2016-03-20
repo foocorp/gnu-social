@@ -32,8 +32,8 @@ polls, announce events, or other social activities
 (and you can add more!). Users can choose which
 people to "follow" and receive only their friends'
 or colleagues' status messages. It provides a
-similar service to sites like Twitter, Google+ or
-Facebook, but is much more awesome.
+similar service to proprietary social network sites,
+but is much more awesome.
 
 With a little work, status messages can be sent to
 mobile phones, instant messenger programs (using
@@ -248,4 +248,3 @@ built the fediverse network to what it is today.
 ### License help from
 
 * Bradley M. Kuhn
-

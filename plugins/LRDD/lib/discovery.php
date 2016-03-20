@@ -37,7 +37,6 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class Discovery
 {
     const LRDD_REL    = 'lrdd';
-    const UPDATESFROM = 'http://schemas.google.com/g/2010#updates-from';
     const HCARD       = 'http://microformats.org/profile/hcard';
     const MF2_HCARD   = 'http://microformats.org/profile/h-card';   // microformats2 h-card
 
@@ -117,7 +116,7 @@ class Discovery
                     $headers[] = "Accept: {$link->type}";
                 }
 
-                $response = $client->get($xrd_uri, $headers); 
+                $response = $client->get($xrd_uri, $headers);
                 if ($response->getStatus() != 200) {
                     throw new Exception('Unexpected HTTP status code.');
                 }
@@ -199,5 +198,3 @@ class Discovery
         return $template;
     }
 }
-
-
