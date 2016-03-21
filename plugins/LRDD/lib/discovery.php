@@ -37,6 +37,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
 class Discovery
 {
     const LRDD_REL    = 'lrdd';
+    const UPDATESFROM = 'http://schemas.google.com/g/2010#updates-from';
     const HCARD       = 'http://microformats.org/profile/hcard';
     const MF2_HCARD   = 'http://microformats.org/profile/h-card';   // microformats2 h-card
 
