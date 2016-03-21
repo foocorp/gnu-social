@@ -434,7 +434,6 @@ class Action extends HTMLOutputter // lawsuit
             if (Event::handle('StartShowStatusNetScripts', array($this))) {
                 $this->script('util.js');
                 $this->script('xbImportNode.js');
-                $this->script('geometa.js');
 
                 // This route isn't available in single-user mode.
                 // Not sure why, but it causes errors here.
