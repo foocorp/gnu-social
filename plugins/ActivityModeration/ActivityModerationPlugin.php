@@ -74,7 +74,7 @@ class ActivityModerationPlugin extends ActivityVerbHandlerPlugin
         switch (true) {
         case ActivityUtils::compareVerbs($verb, array(ActivityVerb::DELETE)):
             // do whatever preparation is necessary to delete a verb
-            $target->delete();
+            $target->deleteAs($scoped);
             break;
         default:
             throw new ServerException('ActivityVerb POST not handled by plugin that was supposed to do it.');
