@@ -34,7 +34,6 @@ neither ID or name provided, will create a new user.
 END_OF_RESTOREUSER_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
-require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
 
 
 function getActivityStreamDocument()
