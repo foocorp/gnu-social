@@ -663,11 +663,10 @@ $_example6 = <<<EXAMPLE6
 			<category><![CDATA[rss]]></category>
 
 			<guid isPermaLink="false">http://en.blog.wordpress.com/?p=3857</guid>
-			<description><![CDATA[From the tongue twisting name department we welcome PubSubHubbub, or as some people have shortened it to: PuSH.  Like rssCloud, PuSH is a way for services that subscribe to updates from your blog (think Google Reader, Bloglines or Netvibes) to get updates even faster.  In a nutshell, instead of having to periodically ask [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=en.blog.wordpress.com&blog=3584907&post=3857&subd=en.blog&ref=&feed=1" />]]></description>
-				<content:encoded><![CDATA[<p>From the tongue twisting name department we welcome <a href="http://code.google.com/p/pubsubhubbub/">PubSubHubbub</a>, or as some people have shortened it to: PuSH.  Like <a href="http://en.blog.wordpress.com/2009/09/07/rss-in-the-clouds/">rssCloud</a>, PuSH is a way for services that subscribe to updates from your blog (think Google Reader, Bloglines or Netvibes) to get updates even faster.  In a nutshell, instead of having to periodically ask your blog if there are any updates they can now register to automatically receive updates each time you publish new content.  In most cases these updates are sent out within a second or two of when you hit the publish button.</p>
+			<description><![CDATA[From the tongue twisting name department we welcome PubSubHubbub, or as some people have shortened it to: PuSH.  Like rssCloud, PuSH is a way for services that subscribe to updates from your blog to get updates even faster.  In a nutshell, instead of having to periodically ask [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=en.blog.wordpress.com&blog=3584907&post=3857&subd=en.blog&ref=&feed=1" />]]></description>
+				<content:encoded><![CDATA[<p>From the tongue twisting name department we welcome PubSubHubbub, or as some people have shortened it to: PuSH.  Like <a href="http://en.blog.wordpress.com/2009/09/07/rss-in-the-clouds/">rssCloud</a>, PuSH is a way for services that subscribe to updates from your blog to get updates even faster.  In a nutshell, instead of having to periodically ask your blog if there are any updates they can now register to automatically receive updates each time you publish new content.  In most cases these updates are sent out within a second or two of when you hit the publish button.</p>
 	<p>Today we&#8217;ve turned on PuSH support for the more than 10.5 million blogs on WordPress.com.  There&#8217;s nothing to configure, it&#8217;s working right now behind the scenes to help others keep up to date with your posts.</p>
 	<p>For those using the WordPress.org software we are releasing a new PuSH plugin: <a href="http://wordpress.org/extend/plugins/pushpress/">PuSHPress</a>.  This plugin differs from the current PuSH related plugins by including a built-in hub.</p>
-	<p>For more PuSH related reading check out the <a href="http://code.google.com/p/pubsubhubbub/">PubSubHubbub project site</a> and <a href="http://groups.google.com/group/pubsubhubbub?pli=1">Google Group</a>.  And if you really want to geek out there&#8217;s always the <a href="http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.3.html">PubSubHubbub Spec</a> <img src='http://s.wordpress.com/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
 	<br />  <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gocomments/en.blog.wordpress.com/3857/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/en.blog.wordpress.com/3857/" /></a> <a rel="nofollow" href="http://feeds.wordpress.com/1.0/godelicious/en.blog.wordpress.com/3857/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/delicious/en.blog.wordpress.com/3857/" /></a> <a rel="nofollow" href="http://feeds.wordpress.com/1.0/gostumble/en.blog.wordpress.com/3857/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/stumble/en.blog.wordpress.com/3857/" /></a> <a rel="nofollow" href="http://feeds.wordpress.com/1.0/godigg/en.blog.wordpress.com/3857/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/digg/en.blog.wordpress.com/3857/" /></a> <a rel="nofollow" href="http://feeds.wordpress.com/1.0/goreddit/en.blog.wordpress.com/3857/"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/reddit/en.blog.wordpress.com/3857/" /></a> <img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=en.blog.wordpress.com&blog=3584907&post=3857&subd=en.blog&ref=&feed=1" />]]></content:encoded>
 				<wfw:commentRss>http://en.blog.wordpress.com/2010/03/03/rub-a-dub-dub-in-the-pubsubhubbub/feed/</wfw:commentRss>
 
@@ -796,22 +795,22 @@ EXAMPLE8;
 $_example9 = <<<EXAMPLE9
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:media="http://search.yahoo.com/mrss" xmlns:activity="http://activitystrea.ms/spec/1.0/">
-    <link rel="self" type="application/atom+xml" href="http://buzz.googleapis.com/feeds/117848251937215158042/public/posted"/>
+    <link rel="self" type="application/atom+xml" href=""/>
     <link rel="hub" href="http://pubsubhubbub.appspot.com/"/>
-    <title type="text">Google Buzz</title>
+    <title type="text">Test</title>
     <updated>2010-03-22T01:55:53.596Z</updated>
-    <id>tag:google.com,2009:buzz-feed/public/posted/117848251937215158042</id>
-    <generator>Google - Google Buzz</generator>
+    <id>test53725745374</id>
+    <generator>test</generator>
     <entry>
         <title type="html">Buzz by Zach Copley from Flickr</title>
         <summary type="text">IMG_1366</summary>
         <published>2010-03-18T04:29:23.000Z</published>
         <updated>2010-03-18T05:14:03.325Z</updated>
-        <id>tag:google.com,2009:buzz/z12zwdhxowq2d13q204cjr04kzu0cns5gh0</id>
-        <link rel="alternate" type="text/html" href="http://www.google.com/buzz/117848251937215158042/ZU7b6mHJEmC/IMG-1366"/>
+        <id></id>
+        <link rel="alternate" type="text/html" href=""/>
         <author>
             <name>Zach Copley</name>
-            <uri>http://www.google.com/profiles/zcopley</uri>
+            <uri>https://mywebsite.net/profiles/zcopley</uri>
         </author>
         <content type="html">&lt;div&gt;IMG_1366&lt;/div&gt;</content>
         <link rel="enclosure" href="http://www.flickr.com/photos/22823034@N00/4442630700" type="image/jpeg" title="IMG_1366"/>
@@ -825,15 +824,7 @@ $_example9 = <<<EXAMPLE9
             <media:player url="http://farm5.static.flickr.com/4043/4442630390_62da5560ae_o.jpg" height="1200" width="1600"/>
         </media:content>
         <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
-        <activity:object>
-            <activity:object-type>http://activitystrea.ms/schema/1.0/photo</activity:object-type>
-            <id>tag:google.com,2009:buzz/z12zwdhxowq2d13q204cjr04kzu0cns5gh0</id>
-            <title>Buzz by Zach Copley from Flickr</title>
-            <content type="html">&lt;div&gt;IMG_1366&lt;/div&gt;</content>
-            <link rel="enclosure" href="http://www.flickr.com/photos/22823034@N00/4442630700" type="image/jpeg" title="IMG_1366"/>
-            <link rel="enclosure" href="http://www.flickr.com/photos/22823034@N00/4442630390" type="image/jpeg" title="IMG_1365"/>
-        </activity:object>
-        <link rel="replies" type="application/atom+xml" href="http://buzz.googleapis.com/feeds/117848251937215158042/comments/z12zwdhxowq2d13q204cjr04kzu0cns5gh0" thr:count="0"/>
+        <link rel="replies" type="application/atom+xml" href="" thr:count="0"/>
         <thr:total>0</thr:total>
     </entry>
 </feed>

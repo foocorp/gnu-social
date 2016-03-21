@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -26,16 +26,6 @@ msgstr "Mapa do sitio"
 #: actions/sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
 msgstr "Configuración de mapa do sitio para este sitio StatusNet"
-
-#. TRANS: Field label.
-#: actions/sitemapadminpanel.php:167
-msgid "Google key"
-msgstr "Clave Google"
-
-#. TRANS: Title for field label.
-#: actions/sitemapadminpanel.php:169
-msgid "Google Webmaster Tools verification key."
-msgstr "Clave de verificación para as ferramentas de Google Webmaster."
 
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:175
@@ -81,5 +71,5 @@ msgstr "Mapa do sitio"
 
 #. TRANS: Plugin description.
 #: SitemapPlugin.php:187
-msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
-msgstr "Este complemento permite a creación de mapas do sitio para Bing, Yahoo! e Google."
+msgid "This plugin allows creation of sitemaps for Bing and Yahoo!."
+msgstr "Este complemento permite a creación de mapas do sitio para Bing e Yahoo!."

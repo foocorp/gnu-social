@@ -42,11 +42,10 @@ EndShowUAStyles: End showing custom User-Agent links; good place to add user-age
 StartShowScripts: Showing JavaScript links
 - $action: the current action
 
-EndShowScripts: End showing JavaScript links; good place to add custom
-		links like Google Analytics
+EndShowScripts: End showing JavaScript links; good place to add custom links
 - $action: the current action
 
-StartShowJQueryScripts: Showing JQuery script links (use this to link to e.g. Google mirrors)
+StartShowJQueryScripts: Showing JQuery script links
 - $action: the current action
 
 EndShowJQueryScripts: End showing JQuery script links
@@ -1431,7 +1430,7 @@ StartNoticeListPrefill: Before pre-filling a list of notices with extra data
 
 EndNoticeListPrefill: After pre-filling a list of notices with extra data
 - &$notices: Notices that were pre-filled
-- &$profiles: Profiles that were pre-filled 
+- &$profiles: Profiles that were pre-filled
 - $avatarSize: The avatar size for the list
 
 OtherAccountProfiles: Hook to add account profiles to a user account profile block

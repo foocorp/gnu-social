@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -26,16 +26,6 @@ msgstr "План на мреж. место"
 #: actions/sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
 msgstr "Нагодувања за планот на ова StatusNet-мрежно место"
-
-#. TRANS: Field label.
-#: actions/sitemapadminpanel.php:167
-msgid "Google key"
-msgstr "Google-клуч"
-
-#. TRANS: Title for field label.
-#: actions/sitemapadminpanel.php:169
-msgid "Google Webmaster Tools verification key."
-msgstr "Потврден клуч за Управните алатки на Google."
 
 #. TRANS: Field label.
 #: actions/sitemapadminpanel.php:175
@@ -81,5 +71,5 @@ msgstr "План на мреж. место"
 
 #. TRANS: Plugin description.
 #: SitemapPlugin.php:187
-msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
-msgstr "Овој приклучок овозможува создавање на планови на мреж. места на Bing, Yahoo! и Google."
+msgid "This plugin allows creation of sitemaps for Bing and Yahoo!."
+msgstr "Овој приклучок овозможува создавање на планови на мреж. места на Bing и Yahoo!."

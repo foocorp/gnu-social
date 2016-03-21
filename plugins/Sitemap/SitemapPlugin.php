@@ -100,7 +100,7 @@ class SitemapPlugin extends Plugin
     /**
      * Meta tags for "claiming" a site
      *
-     * We add extra meta tags that search engines like Yahoo!, Google, and Bing
+     * We add extra meta tags that search engines like Yahoo! and Bing
      * require to let you claim your site.
      *
      * @param Action $action Action being executed
@@ -118,8 +118,7 @@ class SitemapPlugin extends Plugin
         if (($singleUser && $actionName == 'showstream') ||
             (!$singleUser && $actionName == 'public')) {
 
-            $keys = array('googlekey' => 'google-site-verification',
-                          'yahookey' => 'y_key',
+            $keys = array('yahookey' => 'y_key',
                           'bingkey' => 'msvalidate.01'); // XXX: is this the same for all sites?
 
             foreach ($keys as $config => $metaname) {
@@ -184,7 +183,7 @@ class SitemapPlugin extends Plugin
             'homepage' => $url,
             'rawdescription' =>
             // TRANS: Plugin description.
-            _m('This plugin allows creation of sitemaps for Bing, Yahoo! and Google.'));
+            _m('This plugin allows creation of sitemaps for Bing and Yahoo!.'));
 
         return true;
     }

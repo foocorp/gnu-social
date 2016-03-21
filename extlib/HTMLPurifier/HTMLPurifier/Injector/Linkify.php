@@ -27,7 +27,7 @@ class HTMLPurifier_Injector_Linkify extends HTMLPurifier_Injector
         if (strpos($token->data, '://') === false) {
             // our really quick heuristic failed, abort
             // this may not work so well if we want to match things like
-            // "google.com", but then again, most people don't
+            // "domainname.com", but then again, most people don't
             return;
         }
 

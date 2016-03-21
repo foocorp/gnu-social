@@ -306,7 +306,6 @@ class ExtendedProfileWidget extends Form
                 'facebook' => 'Facebook',
                 'linkedin' => 'LinkedIn',
                 'flickr'   => 'Flickr',
-                'google'   => 'Google Profile',
                 'other'    => 'Other',
                 'twitter'  => 'Twitter'
             ),

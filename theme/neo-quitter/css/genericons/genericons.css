@@ -5,7 +5,7 @@
 */
 
 
-/* IE8 and below use EOT and allow cross-site embedding. 
+/* IE8 and below use EOT and allow cross-site embedding.
    IE9 uses WOFF which is base64 encoded to allow cross-site embedding.
    So unfortunately, IE9 will throw a console error, but it'll still work.
    When the font is base64 encoded, cross-site embedding works in Firefox */
@@ -108,8 +108,6 @@
 .genericon-fullscreen:before { content: "\f474"; }
 .genericon-gallery:before { content: "\f103"; }
 .genericon-github:before { content: "\f200"; }
-.genericon-googleplus:before { content: "\f206"; }
-.genericon-googleplus-alt:before { content: "\f218"; }
 .genericon-handset:before { content: "\f50c"; }
 .genericon-heart:before { content: "\f461"; }
 .genericon-help:before { content: "\f457"; }
@@ -207,7 +205,3 @@
 .genericon-xpost:before { content: "\f504"; }
 .genericon-youtube:before { content: "\f213"; }
 .genericon-zoom:before { content: "\f402"; }
-
-
-
-

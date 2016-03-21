@@ -394,8 +394,7 @@ class Action extends HTMLOutputter // lawsuit
     {
         $theme = new Theme($mainTheme);
 
-        // Some themes may have external stylesheets, such as using the
-        // Google Font APIs to load webfonts.
+        // Some themes may have external stylesheets
         foreach ($theme->getExternals() as $url) {
             $this->cssLink($url, $mainTheme, $media);
         }

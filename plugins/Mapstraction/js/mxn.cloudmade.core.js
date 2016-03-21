@@ -1,9 +1,9 @@
-mxn.register('cloudmade', {	
+mxn.register('cloudmade', {
 
     Mapstraction: {
 
-        init: function(element, api) {		
-            var me = this;		
+        init: function(element, api) {
+            var me = this;
             var cloudmade = new CM.Tiles.CloudMade.Web({key: cloudmade_key});
             this.maps[api] = new CM.Map(element, cloudmade);
             this.loaded[api] = true;
@@ -16,7 +16,7 @@ mxn.register('cloudmade', {
                     me.click.fire({'location': new mxn.LatLonPoint(location.lat(), location.lng())});
                 }
 
-                // If the user puts their own Google markers directly on the map
+                // If the user puts their own markers directly on the map
                 // then there is no location and this event should not fire.
                 if ( location ) {
                     me.clickHandler(location.lat(),location.lng(),location,me);
@@ -31,7 +31,7 @@ mxn.register('cloudmade', {
             }
         },
 
-        resizeTo: function(width, height){	
+        resizeTo: function(width, height){
             this.maps[this.api].checkResize();
         },
 
@@ -86,7 +86,7 @@ mxn.register('cloudmade', {
             }
         },
 
-        setCenterAndZoom: function(point, zoom) { 
+        setCenterAndZoom: function(point, zoom) {
             var map = this.maps[this.api];
             var pt = point.toProprietary(this.api);
             map.setCenter(pt, zoom);
@@ -179,7 +179,7 @@ mxn.register('cloudmade', {
                 break;
                 default:
                 // TODO: Add provider code
-            }	 
+            }
         },
 
         getMapType: function() {
@@ -247,13 +247,13 @@ mxn.register('cloudmade', {
         getPixelRatio: function() {
             var map = this.maps[this.api];
 
-            // TODO: Add provider code	
+            // TODO: Add provider code
         },
 
         mousePosition: function(element) {
             var map = this.maps[this.api];
 
-            // TODO: Add provider code	
+            // TODO: Add provider code
         }
     },
 
@@ -306,7 +306,7 @@ mxn.register('cloudmade', {
 	    return cmarker;
         },
 
-        openBubble: function() {		
+        openBubble: function() {
             var pin = this.proprietary_marker;
             pin.openInfoWindow(this.infoBubble);
         },

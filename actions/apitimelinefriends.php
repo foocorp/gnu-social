@@ -92,7 +92,7 @@
         <truncated>false</truncated>
         <created_at>Wed Mar 31 01:33:02 +0000 2010</created_at>
         <in_reply_to_status_id/>
-        <source>&lt;a href="http://code.google.com/p/microblog-purple/"&gt;mbpidgin&lt;/a&gt;</source>
+        <source>&lt;a href="http://somesourcecode.net/microblog/"&gt;mbpidgin&lt;/a&gt;</source>
         <id>26674201</id>
         <in_reply_to_user_id/>
         <in_reply_to_screen_name/>
@@ -275,7 +275,7 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
         $notices = array();
 
         $stream = new InboxNoticeStream($this->target, $this->scoped);
-        
+
         $notice = $stream->getNotices(($this->page-1) * $this->count,
                                       $this->count,
                                       $this->since_id,
