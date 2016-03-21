@@ -165,6 +165,18 @@ class Notice extends Managed_DataObject
             throw new AuthorizationException(_('You are not allowed to delete another user\'s notice.'));
         }
 
+        $result = null;
+        if (!$delete_event || Event::handle('DeleteNoticeAsProfile', array($this, $actor, &$result))) {
+            // If $delete_event is true, we run the event. If the Event then 
+            // returns false it is assumed everything was handled properly 
+            // and the notice was deleted.
+            $result = $this->delete();
+        }
+        return $result;
+    }
+
+    protected function deleteRelated()
+    {
         if (Event::handle('NoticeDeleteRelated', array($this))) {
             // Clear related records
             $this->clearReplies();
@@ -176,19 +188,12 @@ class Notice extends Managed_DataObject
             $this->clearAttentions();
             // NOTE: we don't clear queue items
         }
-
-        $result = null;
-        if (!$delete_event || Event::handle('DeleteNoticeAsProfile', array($this, $actor, &$result))) {
-            // If $delete_event is true, we run the event. If the Event then 
-            // returns false it is assumed everything was handled properly 
-            // and the notice was deleted.
-            $result = $this->delete();
-        }
-        return $result;
     }
 
     public function delete($useWhere=false)
     {
+        $this->deleteRelated();
+
         $result = parent::delete($useWhere);
 
         $this->blowOnDelete();
