@@ -1,0 +1,15 @@
+.oembed-thumb {
+    float: left;
+    margin-bottom: 1ex;
+    margin-right: 1em;
+    padding-bottom: 1ex;
+}
+
+.oembed-source {
+    font-style: italic;
+}
+
+.oembed-html {
+    max-height: 100px;
+    overflow: auto;
+}
