@@ -108,9 +108,9 @@ abstract class OAuthSignatureMethod {
 }
 
 /**
- * The HMAC-SHA1 signature method uses the HMAC-SHA1 signature algorithm as defined in [RFC2104] 
- * where the Signature Base String is the text and the key is the concatenated values (each first 
- * encoded per Parameter Encoding) of the Consumer Secret and Token Secret, separated by an '&' 
+ * The HMAC-SHA1 signature method uses the HMAC-SHA1 signature algorithm as defined in [RFC2104]
+ * where the Signature Base String is the text and the key is the concatenated values (each first
+ * encoded per Parameter Encoding) of the Consumer Secret and Token Secret, separated by an '&'
  * character (ASCII code 38) even if empty.
  *   - Chapter 9.2 ("HMAC-SHA1")
  */
@@ -136,7 +136,7 @@ class OAuthSignatureMethod_HMAC_SHA1 extends OAuthSignatureMethod {
 }
 
 /**
- * The PLAINTEXT method does not provide any security protection and SHOULD only be used 
+ * The PLAINTEXT method does not provide any security protection and SHOULD only be used
  * over a secure channel such as HTTPS. It does not use the Signature Base String.
  *   - Chapter 9.4 ("PLAINTEXT")
  */
@@ -146,8 +146,8 @@ class OAuthSignatureMethod_PLAINTEXT extends OAuthSignatureMethod {
   }
 
   /**
-   * oauth_signature is set to the concatenated encoded values of the Consumer Secret and 
-   * Token Secret, separated by a '&' character (ASCII code 38), even if either secret is 
+   * oauth_signature is set to the concatenated encoded values of the Consumer Secret and
+   * Token Secret, separated by a '&' character (ASCII code 38), even if either secret is
    * empty. The result MUST be encoded again.
    *   - Chapter 9.4.1 ("Generating Signatures")
    *
@@ -169,10 +169,10 @@ class OAuthSignatureMethod_PLAINTEXT extends OAuthSignatureMethod {
 }
 
 /**
- * The RSA-SHA1 signature method uses the RSASSA-PKCS1-v1_5 signature algorithm as defined in 
- * [RFC3447] section 8.2 (more simply known as PKCS#1), using SHA-1 as the hash function for 
- * EMSA-PKCS1-v1_5. It is assumed that the Consumer has provided its RSA public key in a 
- * verified way to the Service Provider, in a manner which is beyond the scope of this 
+ * The RSA-SHA1 signature method uses the RSASSA-PKCS1-v1_5 signature algorithm as defined in
+ * [RFC3447] section 8.2 (more simply known as PKCS#1), using SHA-1 as the hash function for
+ * EMSA-PKCS1-v1_5. It is assumed that the Consumer has provided its RSA public key in a
+ * verified way to the Service Provider, in a manner which is beyond the scope of this
  * specification.
  *   - Chapter 9.3 ("RSA-SHA1")
  */
@@ -573,7 +573,7 @@ class OAuthServer {
   private function get_version(&$request) {
     $version = $request->get_parameter("oauth_version");
     if (!$version) {
-      // Service Providers MUST assume the protocol version to be 1.0 if this parameter is not present. 
+      // Service Providers MUST assume the protocol version to be 1.0 if this parameter is not present.
       // Chapter 7.0 ("Accessing Protected Ressources")
       $version = '1.0';
     }
@@ -587,7 +587,7 @@ class OAuthServer {
    * figure out the signature with some defaults
    */
   private function get_signature_method($request) {
-    $signature_method = $request instanceof OAuthRequest 
+    $signature_method = $request instanceof OAuthRequest
         ? $request->get_parameter("oauth_signature_method")
         : NULL;
 
@@ -612,7 +612,7 @@ class OAuthServer {
    * try to find the consumer for the provided request's consumer key
    */
   private function get_consumer($request) {
-    $consumer_key = $request instanceof OAuthRequest 
+    $consumer_key = $request instanceof OAuthRequest
         ? $request->get_parameter("oauth_consumer_key")
         : NULL;
 
@@ -684,7 +684,7 @@ class OAuthServer {
       throw new OAuthException(
         'Missing timestamp parameter. The parameter is required'
       );
-    
+
     // verify that timestamp is recentish
     $now = time();
     if (abs($now - $timestamp) > $this->timestamp_threshold) {
@@ -770,7 +770,6 @@ class OAuthUtil {
   // parameters, has to do some unescaping
   // Can filter out any non-oauth parameters if needed (default behaviour)
   // May 28th, 2010 - method updated to tjerk.meesters for a speed improvement.
-  //                  see http://code.google.com/p/oauth/issues/detail?id=163
   public static function split_header($header, $only_allow_oauth_parameters = true) {
     $params = array();
     if (preg_match_all('/('.($only_allow_oauth_parameters ? 'oauth_' : '').'[a-z_-]*)=(:?"([^"]*)"|([^,]*))/', $header, $matches)) {

@@ -49,9 +49,9 @@ class MapstractionPlugin extends Plugin
     const VERSION = GNUSOCIAL_VERSION;
 
     /** provider name, one of:
-     'cloudmade', 'google', 'microsoft', 'openlayers', 'yahoo' */
+     'cloudmade', 'microsoft', 'openlayers', 'yahoo' */
     public $provider = 'openlayers';
-    /** provider API key (or 'appid'), if required ('google' and 'yahoo' only) */
+    /** provider API key (or 'appid'), if required ('yahoo' only) */
     public $apikey = null;
 
     /**
@@ -96,10 +96,6 @@ class MapstractionPlugin extends Plugin
         {
         case 'cloudmade':
             $action->script('http://tile.cloudmade.com/wml/0.2/web-maps-lite.js');
-            break;
-        case 'google':
-            $action->script(sprintf('http://maps.google.com/maps?file=api&v=2&sensor=false&key=%s',
-                                    urlencode($this->apikey)));
             break;
         case 'microsoft':
             $action->script((GNUsocial::isHTTPS()?'https':'http') + '://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6');

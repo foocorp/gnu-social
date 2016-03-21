@@ -16,7 +16,7 @@
 	var scriptBase;
 	var scripts = document.getElementsByTagName('script');
 
-	// Determine which scripts we need to load	
+	// Determine which scripts we need to load
 	for (var i = 0; i < scripts.length; i++) {
 		var match = scripts[i].src.replace(/%20/g , '').match(/^(.*?)mxn\.js(\?\(\[?(.*?)\]?\))?$/);
 		if (match != null) {
@@ -29,7 +29,7 @@
 			break;
 	   }
 	}
-	
+
     if (providers == null || providers == 'none') return; // Bail out if no auto-load has been found
 	providers = providers.replace(/ /g, '').split(',');
 	modules = modules.replace(/ /g, '').split(',');
@@ -57,9 +57,9 @@ var invoke = function(sApiId, sObjName, sFnName, oScope, args){
 	}
 	return apis[sApiId][sObjName][sFnName].apply(oScope, args);
 };
-	
+
 /**
- * Determines whether the specified API provides an implementation for the 
+ * Determines whether the specified API provides an implementation for the
  * specified object and function name.
  * @private
  */
@@ -68,7 +68,7 @@ var hasImplementation = function(sApiId, sObjName, sFnName){
 		throw 'API ' + sApiId + ' not loaded. Are you missing a script tag?';
 	}
 	if(typeof(apis[sApiId][sObjName]) == 'undefined') {
-		throw 'Object definition ' + sObjName + ' in API ' + sApiId + ' not loaded. Are you missing a script tag?'; 
+		throw 'Object definition ' + sObjName + ' in API ' + sApiId + ' not loaded. Are you missing a script tag?';
 	}
 	return typeof(apis[sApiId][sObjName][sFnName]) == 'function';
 };
@@ -78,7 +78,7 @@ var hasImplementation = function(sApiId, sObjName, sFnName){
  * @namespace
  */
 var mxn = window.mxn = /** @lends mxn */ {
-	
+
 	/**
 	 * Registers a set of provider specific implementation functions.
 	 * @function
@@ -90,10 +90,10 @@ var mxn = window.mxn = /** @lends mxn */ {
 			apis[sApiId] = {};
 		}
 		mxn.util.merge(apis[sApiId], oApiImpl);
-	},		
-	
+	},
+
 	/**
-	 * Adds a list of named proxy methods to the prototype of a 
+	 * Adds a list of named proxy methods to the prototype of a
 	 * specified constructor function.
 	 * @function
 	 * @param {Function} func Constructor function to add methods to
@@ -111,7 +111,7 @@ var mxn = window.mxn = /** @lends mxn */ {
 			}
 		}
 	},
-	
+
 	/*
 	checkLoad: function(funcDetails){
 		if(this.loaded[this.api] === false) {
@@ -122,7 +122,7 @@ var mxn = window.mxn = /** @lends mxn */ {
 		return false;
 	},
 	*/
-			
+
 	/**
 	 * Bulk add some named events to an object.
 	 * @function
@@ -138,11 +138,11 @@ var mxn = window.mxn = /** @lends mxn */ {
 			oEvtSrc[sEvtName] = new mxn.Event(sEvtName, oEvtSrc);
 		}
 	}
-	
+
 };
 
 /**
- * Instantiates a new Event 
+ * Instantiates a new Event
  * @constructor
  * @param {String} sEvtName The name of the event.
  * @param {Object} oEvtSource The source object of the event.
@@ -191,7 +191,7 @@ mxn.Event = function(sEvtName, oEvtSource){
 };
 
 /**
- * Creates a new Invoker, a class which helps with on-the-fly 
+ * Creates a new Invoker, a class which helps with on-the-fly
  * invocation of the correct API methods.
  * @constructor
  * @param {Object} aobj The core object whose methods will make cals to go()
@@ -202,12 +202,12 @@ mxn.Invoker = function(aobj, asClassName, afnApiIdGetter){
 	var obj = aobj;
 	var sClassName = asClassName;
 	var fnApiIdGetter = afnApiIdGetter;
-	var defOpts = { 
+	var defOpts = {
 		overrideApi: false, // {Boolean} API ID is overridden by value in first argument
 		context: null, // {Object} Local vars can be passed from the body of the method to the API method within this object
 		fallback: null // {Function} If an API implementation doesn't exist this function is run instead
 	};
-	
+
 	/**
 	 * Invoke the API implementation of a specific method.
 	 * @param {String} sMethodName The method name to invoke
@@ -218,40 +218,40 @@ mxn.Invoker = function(aobj, asClassName, afnApiIdGetter){
 	 * @param {Function} oOptions.fallback A fallback function to run if the provider implementation is missing.
 	 */
 	this.go = function(sMethodName, args, oOptions){
-		
+
 		if(typeof(oOptions) == 'undefined'){
 			oOptions = defOpts;
 		}
-						
+
 		var sApiId = oOptions.overrideApi ? args[0] : fnApiIdGetter.apply(obj);
-		
+
 		if(typeof(sApiId) != 'string'){
 			throw 'API ID not available.';
 		}
-		
+
 		if(typeof(oOptions.context) != 'undefined' && oOptions.context !== null){
 			// make sure args is an array
 			args = Array.prototype.slice.apply(args);
 			args.push(oOptions.context);
 		}
-		
+
 		if(typeof(oOptions.fallback) == 'function' && !hasImplementation(sApiId, sClassName, sMethodName)){
 			// we've got no implementation but have got a fallback function
 			return oOptions.fallback.apply(obj, args);
 		}
-		else {				
+		else {
 			return invoke(sApiId, sClassName, sMethodName, obj, args);
 		}
-		
+
 	};
-	
+
 };
 
 /**
  * @namespace
  */
 mxn.util = {
-			
+
 	/**
 	 * Merges properties of one object into another recursively.
 	 * @param {Object} oRecv The object receiveing properties
@@ -269,7 +269,7 @@ mxn.util = {
 			}
 		}
 	},
-	
+
 	/**
 	 * $m, the dollar function, elegantising getElementById()
 	 * @return An HTML element or array of HTML elements
@@ -310,7 +310,7 @@ mxn.util = {
 						callback();
 					}
 				});
-			}			
+			}
 		}
 		var h = document.getElementsByTagName('head')[0];
 		h.appendChild( script );
@@ -403,29 +403,6 @@ mxn.util = {
 		return miles * 1.609344;
 	},
 
-	// stuff to convert google zoom levels to/from degrees
-	// assumes zoom 0 = 256 pixels = 360 degrees
-	//		 zoom 1 = 256 pixels = 180 degrees
-	// etc.
-
-	/**
-	 *
-	 * @param {Object} pixels
-	 * @param {Object} zoom
-	 */
-	getDegreesFromGoogleZoomLevel: function(pixels, zoom) {
-		return (360 * pixels) / (Math.pow(2, zoom + 8));
-	},
-
-	/**
-	 *
-	 * @param {Object} pixels
-	 * @param {Object} degrees
-	 */
-	getGoogleZoomLevelFromDegrees: function(pixels, degrees) {
-		return mxn.util.logN((360 * pixels) / degrees, 2) - 8;
-	},
-
 	/**
 	 *
 	 * @param {Object} number
@@ -434,7 +411,7 @@ mxn.util = {
 	logN: function(number, base) {
 		return Math.log(number) / Math.log(base);
 	},
-			
+
 	/**
 	 * Returns array of loaded provider apis
 	 * @returns {Array} providers
@@ -448,7 +425,7 @@ mxn.util = {
 		}
 		return providers;
 	}
-	
+
 };
 
 /**
@@ -456,7 +433,7 @@ mxn.util = {
  * Accepts either a HTML color string argument or three integers for R, G and B.
  * @constructor
  */
-mxn.util.Color = function() {	
+mxn.util.Color = function() {
 	if(arguments.length == 3) {
 		this.red = arguments[0];
 		this.green = arguments[1];

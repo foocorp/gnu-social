@@ -84,7 +84,7 @@ and the URLs are listed here for your convenience.
 - PEAR Net_Socket, if you use the SMTP factory for notifications
   http://pear.php.net/package/Net_Socket
 - XMPPHP, the follow-up to Class.Jabber.php. Probably the best XMPP
-  library available for PHP. http://xmpphp.googlecode.com/. Note that
+  library available for PHP. https://github.com/heshanlk/XMPPHP. Note that
   as of this writing the version of this library that is available in
   the extlib directory is *significantly different* from the upstream
   version (patches have been submitted). Upgrading to the upstream

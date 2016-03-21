@@ -393,8 +393,7 @@ resource: a unique identifier for the connection to the server. This
     is actually used as a prefix for each XMPP component in the system.
 password: password for the user account.
 host: some XMPP domains are served by machines with a different
-    hostname. (For example, @gmail.com GTalk users connect to
-    talk.google.com). Set this to the correct hostname if that's the
+    hostname. Set this to the correct hostname if that's the
     case with your server.
 encryption: Whether to encrypt the connection between StatusNet and the
     XMPP server. Defaults to true, but you can get
@@ -502,7 +501,7 @@ restore: whether users can restore their profiles from backup files. Defaults
 	 to true.
 delete: whether users can delete their own accounts. Defaults to false.
 move: whether users can move their accounts to another server. Defaults
-      to true.	 
+      to true.
 
 newuser
 -------
@@ -583,7 +582,7 @@ maxaliases: maximum number of aliases a group can have. Default 3. Set
 desclimit: maximum number of characters to allow in group descriptions.
     null (default) means to use the site-wide text limits. 0
     means no limit.
-addtag: Whether to add a tag for the group nickname for every group post 
+addtag: Whether to add a tag for the group nickname for every group post
 	(pre-1.0.x behaviour). Defaults to false.
 
 search
@@ -709,7 +708,7 @@ external: external links in notices. One of three values: 'sometimes',
 url
 ---
 
-These are some options for fine-tuning how and when the server will 
+These are some options for fine-tuning how and when the server will
 shorten URLs.
 
 shortener: URL shortening service to use by default. Users can override
@@ -780,5 +779,3 @@ oldschool
 enabled: enable certain old-style user settings options, like stream-only mode,
 	 conversation trees, and nicknames in streams. Off by default, and
 	 may not be well supported in future versions.
-
-

@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
@@ -26,16 +26,6 @@ msgstr "Sidkarta"
 #. TRANS: Instructions for sitemap.
 #: actions/sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
-msgstr ""
-
-#. TRANS: Field label.
-#: actions/sitemapadminpanel.php:167
-msgid "Google key"
-msgstr "Google-nyckel"
-
-#. TRANS: Title for field label.
-#: actions/sitemapadminpanel.php:169
-msgid "Google Webmaster Tools verification key."
 msgstr ""
 
 #. TRANS: Field label.
@@ -82,5 +72,5 @@ msgstr "Sidkarta"
 
 #. TRANS: Plugin description.
 #: SitemapPlugin.php:187
-msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
+msgid "This plugin allows creation of sitemaps for Bing and Yahoo!."
 msgstr ""

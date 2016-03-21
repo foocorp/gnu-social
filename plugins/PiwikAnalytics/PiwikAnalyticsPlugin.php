@@ -33,7 +33,7 @@ if (!defined('STATUSNET')) {
 }
 
 /**
- * Plugin to use Piwik Analytics (based on the Google Analytics plugin by Evan)
+ * Plugin to use Piwik Analytics (based on the Analytics plugin by Evan)
  *
  * This plugin will spoot out the correct JavaScript spell to invoke
  * Piwik Analytics on a page.

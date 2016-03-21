@@ -1,129 +1,129 @@
-mxn.register('{{api_id}}', {	
+mxn.register('{{api_id}}', {
 
 Mapstraction: {
-	
-	init: function(element, api) {		
+
+	init: function(element, api) {
 		var me = this;
-		
-		// TODO: Add provider code
-	},
-	
-	applyOptions: function(){
-		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
 
-	resizeTo: function(width, height){	
+	applyOptions: function(){
+		var map = this.maps[this.api];
+
+		// TODO: Add provider code
+	},
+
+	resizeTo: function(width, height){
 		// TODO: Add provider code
 	},
 
 	addControls: function( args ) {
 		var map = this.maps[this.api];
-	
+
 		// TODO: Add provider code
 	},
 
 	addSmallControls: function() {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
 
 	addLargeControls: function() {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
 
 	addMapTypeControls: function() {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
 
-	setCenterAndZoom: function(point, zoom) { 
+	setCenterAndZoom: function(point, zoom) {
 		var map = this.maps[this.api];
 		var pt = point.toProprietary(this.api);
-		
+
 		// TODO: Add provider code
 	},
-	
+
 	addMarker: function(marker, old) {
 		var map = this.maps[this.api];
 		var pin = marker.toProprietary(this.api);
-		
+
 		// TODO: Add provider code
-		
+
 		return pin;
 	},
 
 	removeMarker: function(marker) {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
 
 	removeAllMarkers: function() {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
-	
+
 	declutterMarkers: function(opts) {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
 
 	addPolyline: function(polyline, old) {
 		var map = this.maps[this.api];
 		var pl = polyline.toProprietary(this.api);
-		
+
 		// TODO: Add provider code
-		
+
 		return pl;
 	},
 
 	removePolyline: function(polyline) {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
-	
+
 	getCenter: function() {
 		var point;
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
-		
+
 		return point;
 	},
 
 	setCenter: function(point, options) {
 		var map = this.maps[this.api];
 		var pt = point.toProprietary(this.api);
-		if(options && options.pan) { 
+		if(options && options.pan) {
 			// TODO: Add provider code
 		}
-		else { 
+		else {
 			// TODO: Add provider code
 		}
 	},
 
 	setZoom: function(zoom) {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
-		
+
 	},
-	
+
 	getZoom: function() {
 		var map = this.maps[this.api];
 		var zoom;
-		
+
 		// TODO: Add provider code
-		
+
 		return zoom;
 	},
 
@@ -133,9 +133,9 @@ Mapstraction: {
 		var ne = bbox.getNorthEast();
 		var sw = bbox.getSouthWest();
 		var zoom;
-		
+
 		// TODO: Add provider code
-		
+
 		return zoom;
 	},
 
@@ -153,12 +153,12 @@ Mapstraction: {
 				break;
 			default:
 				// TODO: Add provider code
-		}	 
+		}
 	},
 
 	getMapType: function() {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 
 		//return mxn.Mapstraction.ROAD;
@@ -169,9 +169,9 @@ Mapstraction: {
 
 	getBounds: function () {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
-		
+
 		//return new mxn.BoundingBox( ,  ,  ,  );
 	},
 
@@ -179,14 +179,14 @@ Mapstraction: {
 		var map = this.maps[this.api];
 		var sw = bounds.getSouthWest();
 		var ne = bounds.getNorthEast();
-		
+
 		// TODO: Add provider code
-		
+
 	},
 
 	addImageOverlay: function(id, src, opacity, west, south, east, north, oContext) {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
 
@@ -201,58 +201,58 @@ Mapstraction: {
 		//oContext.pixels.bottom = ...;
 		//oContext.pixels.right = ...;
 	},
-	
+
 	addOverlay: function(url, autoCenterAndZoom) {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
-		
+
 	},
 
 	addTileLayer: function(tile_url, opacity, copyright_text, min_zoom, max_zoom) {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
 
 	toggleTileLayer: function(tile_url) {
 		var map = this.maps[this.api];
-		
+
 		// TODO: Add provider code
 	},
 
 	getPixelRatio: function() {
 		var map = this.maps[this.api];
 
-		// TODO: Add provider code	
+		// TODO: Add provider code
 	},
-	
+
 	mousePosition: function(element) {
 		var map = this.maps[this.api];
 
-		// TODO: Add provider code	
+		// TODO: Add provider code
 	}
 },
 
 LatLonPoint: {
-	
+
 	toProprietary: function() {
 		// TODO: Add provider code
 	},
 
-	fromProprietary: function(googlePoint) {
+	fromProprietary: function(point) {
 		// TODO: Add provider code
 	}
-	
+
 },
 
 Marker: {
-	
+
 	toProprietary: function() {
 		// TODO: Add provider code
 	},
 
-	openBubble: function() {		
+	openBubble: function() {
 		// TODO: Add provider code
 	},
 
@@ -267,7 +267,7 @@ Marker: {
 	update: function() {
 		// TODO: Add provider code
 	}
-	
+
 },
 
 Polyline: {
@@ -275,7 +275,7 @@ Polyline: {
 	toProprietary: function() {
 		// TODO: Add provider code
 	},
-	
+
 	show: function() {
 		// TODO: Add provider code
 	},
@@ -283,7 +283,7 @@ Polyline: {
 	hide: function() {
 		// TODO: Add provider code
 	}
-	
+
 }
 
 });

@@ -27,7 +27,6 @@ class MagicEnvelopeTest extends PHPUnit_Framework_TestCase
     static public function provider()
     {
         // Sample case given in spec:
-        // http://salmon-protocol.googlecode.com/svn/trunk/draft-panzer-magicsig-00.html#signing
         $magic_env = new MagicEnvelope();
         $magic_env->data = 'Tm90IHJlYWxseSBBdG9t';
         $magic_env->data_type = 'application/atom+xml';

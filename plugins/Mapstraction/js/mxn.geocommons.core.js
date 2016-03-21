@@ -1,8 +1,8 @@
-mxn.register('geocommons', {	
+mxn.register('geocommons', {
 
     Mapstraction: {
 
-        init: function(element, api) {		
+        init: function(element, api) {
             var me = this;
             this.element = element;
             Maker.maker_host='http://maker.geocommons.com';
@@ -16,7 +16,7 @@ mxn.register('geocommons', {
             // TODO: Add provider code
         },
 
-        resizeTo: function(width, height){	
+        resizeTo: function(width, height){
             var map = this.maps[this.api];
             map.setSize(width,height);
         },
@@ -25,23 +25,23 @@ mxn.register('geocommons', {
             var map = this.maps[this.api];
             map.showControl("Zoom", args.zoom || false);
             map.showControl("Layers", args.layers || false);
-            map.showControl("Styles", args.styles || false); 
+            map.showControl("Styles", args.styles || false);
             map.showControl("Basemap", args.map_type || false);
-            map.showControl("Legend", args.legend || false, "open"); 
-            // showControl("Legend", true, "close"); 
+            map.showControl("Legend", args.legend || false, "open");
+            // showControl("Legend", true, "close");
         },
 
         addSmallControls: function() {
             var map = this.maps[this.api];
             showControl("Zoom", args.zoom);
-            showControl("Legend", args.legend, "open"); 
+            showControl("Legend", args.legend, "open");
         },
 
         addLargeControls: function() {
             var map = this.maps[this.api];
             showControl("Zoom", args.zoom);
             showControl("Layers", args.layers);
-            showControl("Legend", args.legend, "open"); 
+            showControl("Legend", args.legend, "open");
         },
 
         addMapTypeControls: function() {
@@ -56,7 +56,7 @@ mxn.register('geocommons', {
             // TODO: Add provider code
         },
 
-        setCenterAndZoom: function(point, zoom) { 
+        setCenterAndZoom: function(point, zoom) {
             var map = this.maps[this.api];
             map.setCenterZoom(point.lat, point.lon,zoom);
         },
@@ -69,7 +69,7 @@ mxn.register('geocommons', {
 
         setCenter: function(point, options) {
             var map = this.maps[this.api];
-            map.setCenter(point.lat, point.lon);            
+            map.setCenter(point.lat, point.lon);
         },
 
         setZoom: function(zoom) {
@@ -103,12 +103,9 @@ mxn.register('geocommons', {
                 case mxn.Mapstraction.SATELLITE:
                 map.setMapProvider("BlueMarble");
                 break;
-                case mxn.Mapstraction.HYBRID:
-                map.setMapProvider("Google Hybrid");
-                break;
                 default:
                 map.setMapProvider(type);
-            }	 
+            }
         },
 
         getMapType: function() {
@@ -116,7 +113,7 @@ mxn.register('geocommons', {
             switch(map.getMapProvider) {
                 case "OpenStreetMap (Road)":
                     retu
-                    
+
             }
             // TODO: Add provider code
 
@@ -168,13 +165,13 @@ mxn.register('geocommons', {
         getPixelRatio: function() {
             var map = this.maps[this.api];
 
-            // TODO: Add provider code	
+            // TODO: Add provider code
         },
 
         mousePosition: function(element) {
             var map = this.maps[this.api];
 
-            // TODO: Add provider code	
+            // TODO: Add provider code
         }
     },
 
@@ -184,7 +181,7 @@ mxn.register('geocommons', {
             // TODO: Add provider code
         },
 
-        fromProprietary: function(googlePoint) {
+        fromProprietary: function(point) {
             // TODO: Add provider code
         }
 
@@ -196,7 +193,7 @@ mxn.register('geocommons', {
             // TODO: Add provider code
         },
 
-        openBubble: function() {		
+        openBubble: function() {
             // TODO: Add provider code
         },
 

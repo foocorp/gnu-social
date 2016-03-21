@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -29,4 +29,4 @@ msgstr "%1$s erabiltzailea ezin izan da %2$s taldera gehitu."
 msgid ""
 "Allows forced group memberships and forces all notices to appear in groups "
 "that users were forced in."
-msgstr "<a href=\"http://www.google.com/analytics/\">Google Analytics</a> erabiltzen du web gunera atzipenak jarraitu ahal izateko."
+msgstr ""

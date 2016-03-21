@@ -111,7 +111,6 @@ class BitlyUrlPlugin extends UrlShortenerPlugin
      */
     protected function query($url)
     {
-        // http://code.google.com/p/bitly-api/wiki/ApiDocumentation#/shorten
         $params = http_build_query(array(
             'login' => $this->getLogin(),
             'apiKey' => $this->getApiKey()), '', '&');
