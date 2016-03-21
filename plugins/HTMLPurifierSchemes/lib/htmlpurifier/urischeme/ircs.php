@@ -8,7 +8,7 @@ class HTMLPurifier_URIScheme_ircs extends HTMLPurifier_URIScheme
     /**
      * @type int
      */
-    public $default_port = 6697;
+//    public $default_port = 6697;
 
     /**
      * @type bool
