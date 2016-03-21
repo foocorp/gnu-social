@@ -7,6 +7,10 @@
         type="text/html"
 	href="https://social.example.com/user/1"/>
 
+  <Link rel="http://schemas.google.com/g/2010#updates-from"
+       type="application/atom+xml"
+       href="https://social.example.com/api/statuses/user_timeline/1.atom"/>
+
   <!-- Is this/was this ever supported?
        <Link rel="http://microformats.org/profile/hcard"
        type="text/html"

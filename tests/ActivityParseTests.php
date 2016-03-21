@@ -795,7 +795,7 @@ EXAMPLE8;
 $_example9 = <<<EXAMPLE9
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:media="http://search.yahoo.com/mrss" xmlns:activity="http://activitystrea.ms/spec/1.0/">
-    <link rel="self" type="application/atom+xml" href=""/>
+    <link rel="self" type="application/atom+xml" href="http://"/>
     <link rel="hub" href="http://pubsubhubbub.appspot.com/"/>
     <title type="text">Test</title>
     <updated>2010-03-22T01:55:53.596Z</updated>
@@ -806,8 +806,8 @@ $_example9 = <<<EXAMPLE9
         <summary type="text">IMG_1366</summary>
         <published>2010-03-18T04:29:23.000Z</published>
         <updated>2010-03-18T05:14:03.325Z</updated>
-        <id></id>
-        <link rel="alternate" type="text/html" href=""/>
+        <id>test53725745374entry</id>
+        <link rel="alternate" type="text/html" href="http://buzz.example/117848251937215158042/ZU7b6mHJEmC/IMG-1366"/>
         <author>
             <name>Zach Copley</name>
             <uri>https://mywebsite.net/profiles/zcopley</uri>
@@ -824,7 +824,15 @@ $_example9 = <<<EXAMPLE9
             <media:player url="http://farm5.static.flickr.com/4043/4442630390_62da5560ae_o.jpg" height="1200" width="1600"/>
         </media:content>
         <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
-        <link rel="replies" type="application/atom+xml" href="" thr:count="0"/>
+        <activity:object>
+            <activity:object-type>http://activitystrea.ms/schema/1.0/photo</activity:object-type>
+            <id>test53725745374entry</id>
+            <title>Buzz by Zach Copley from Flickr</title>
+            <content type="html">&lt;div&gt;IMG_1366&lt;/div&gt;</content>
+            <link rel="enclosure" href="http://www.flickr.com/photos/22823034@N00/4442630700" type="image/jpeg" title="IMG_1366"/>
+            <link rel="enclosure" href="http://www.flickr.com/photos/22823034@N00/4442630390" type="image/jpeg" title="IMG_1365"/>
+        </activity:object>
+        <link rel="replies" type="application/atom+xml" href="http://buzz.example/test53725745374/comments" thr:count="0"/>
         <thr:total>0</thr:total>
     </entry>
 </feed>
