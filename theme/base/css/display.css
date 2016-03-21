@@ -810,9 +810,12 @@ position:static;
 }
 
 .notice.h-entry .attachments {
-    clear: both;
     position: relative;
     margin-bottom: 1em;
+}
+
+.notice.h-entry .attachments > * {
+    clear: both;
 }
 
 .notice.h-entry .attachments .inline-attachment > * {
