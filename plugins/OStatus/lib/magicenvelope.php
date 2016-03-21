@@ -107,6 +107,7 @@ class MagicEnvelope
      * you'll only get the public key ;)
      *
      * The string will (hopefully) be formatted as described in Magicsig specification:
+     * https://salmon-protocol.googlecode.com/svn/trunk/draft-panzer-magicsig-01.html
      *
      * @return string formatted as Magicsig keypair
      */
