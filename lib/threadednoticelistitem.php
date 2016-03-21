@@ -61,6 +61,11 @@ class ThreadedNoticeListItem extends NoticeListItem
                         // Skip!
                         continue;
                     }
+
+                    if (!$notice->isVerb([ActivityVerb::POST])) {
+                        continue;
+                    }
+
                     $cnt++;
                     if ($cnt > $max) {
                         // boo-yah
