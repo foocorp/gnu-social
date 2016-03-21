@@ -105,7 +105,8 @@ class PeopletagGroupNav extends Widget
 
         $this->out->elementStart('ul', array('class' => 'nav'));
 
-        if (Event::handle('StartPeopletagGroupNav', array($this))) {
+        if (Event::handle('StartPeopletagGroupNav', array($this))
+                && $tag instanceof Profile_list && $user_profile instanceof Profile) {
             // People tag timeline
             $this->out->menuItem(common_local_url('showprofiletag', array('nickname' => $user_profile->nickname,
                                                                           'tag'    => $tag->tag)),
