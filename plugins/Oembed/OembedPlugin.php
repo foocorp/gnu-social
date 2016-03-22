@@ -238,6 +238,11 @@ class OembedPlugin extends Plugin
             return true;
         }
 
+        // Show thumbnail as usual if it's a photo.
+        if ($oembed->type === 'photo') {
+            return true;
+        }
+
         $out->elementStart('article', ['class'=>'oembed-item']);
         $out->elementStart('header');
         try  {
