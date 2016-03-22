@@ -832,7 +832,7 @@ class Router
 
                 foreach (array('subscriptions', 'subscribers',
                                'all', 'foaf', 'replies',
-                               'microsummary') as $a) {
+                               ) as $a) {
                     $m->connect($a,
                                 array('action' => $a,
                                       'nickname' => $nickname));

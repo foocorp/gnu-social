@@ -173,12 +173,6 @@ class ShowstreamAction extends NoticestreamAction
                                          'content' => $this->target->getDescription()));
         }
 
-        // See https://wiki.mozilla.org/Microsummaries
-
-        $this->element('link', array('rel' => 'microsummary',
-                                     'href' => common_local_url('microsummary',
-                                                                array('nickname' => $this->target->getNickname()))));
-
         $rsd = common_local_url('rsd',
                                 array('nickname' => $this->target->getNickname()));
 
