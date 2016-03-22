@@ -944,7 +944,7 @@ class Router
 
             foreach (array('subscriptions', 'subscribers',
                            'nudge', 'all', 'foaf', 'replies',
-                           'inbox', 'outbox', 'microsummary') as $a) {
+                           'inbox', 'outbox') as $a) {
                 $m->connect(':nickname/'.$a,
                             array('action' => $a),
                             array('nickname' => Nickname::DISPLAY_FMT));
