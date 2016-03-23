@@ -183,9 +183,35 @@ class OStatusQueueHandler extends QueueHandler
      */
     function pushFeed($feed, $callback)
     {
+        // NOTE: external hub pings will not be fixed by
+        // our legacy_http thing!
         $hub = common_config('ostatus', 'hub');
         if ($hub) {
             $this->pushFeedExternal($feed, $hub);
+        }
+
+        // If we used to be http but now are https, see if we find an http entry for this feed URL
+        // and then upgrade it. This self-healing feature needs to be enabled manually in config.
+        // This code is based on a patch by @hannes2peer@quitter.se
+        if (common_config('fix', 'legacy_http') && parse_url($feed, PHP_URL_SCHEME) === 'https') {
+            common_log(LOG_DEBUG, 'OSTATUS: Searching for http scheme instead for HubSub feed topic: '._ve($feed));
+            $http_feed = str_replace('https://', 'http://', $feed);
+            $sub = new HubSub();
+            $sub->topic = $http_feed;
+            // If we find it we upgrade the rows in the hubsub table.
+            if ($sub->find()) {
+                common_log(LOG_INFO, 'OSTATUS: Found topic with http scheme for '._ve($feed).', will update the rows to use https instead!');
+                // we found an http:// URL but we use https:// now
+                // so let's update the rows to reflect on this!
+                while ($sub->fetch()) {
+                    common_debug('OSTATUS: Changing topic URL to https for feed callback '._ve($sub->callback));
+                    $orig = clone($sub);
+                    $sub->topic = $feed;
+                    // hashkey column will be set automagically in HubSub->onUpdateKeys through updateWithKeys
+                    $sub->updateWithKeys($orig);
+                    unset($orig);
+                }
+            }
         }
 
         $sub = new HubSub();
@@ -197,7 +223,6 @@ class OStatusQueueHandler extends QueueHandler
         } else {
             common_log(LOG_INFO, "No PuSH subscribers for $feed");
         }
-        return true;
     }
 
     /**
