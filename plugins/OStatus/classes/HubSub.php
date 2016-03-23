@@ -17,9 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET')) {
-    exit(1);
-}
+if (!defined('GNUSOCIAL')) { exit(1); }
 
 /**
  * PuSH feed subscription record
@@ -202,16 +200,25 @@ class HubSub extends Managed_DataObject
         }
     }
 
-    /**
-     * Insert wrapper; transparently set the hash key from topic and callback columns.
-     * @return mixed success
-     */
-    function insert()
+    // set the hashkey automagically on insert
+    protected function onInsert()
     {
-        $this->hashkey = self::hashkey($this->getTopic(), $this->callback);
+        $this->setHashkey();
         $this->created = common_sql_now();
         $this->modified = common_sql_now();
-        return parent::insert();
+    }
+
+    // update the hashkey automagically if needed
+    protected function onUpdateKeys(Managed_DataObject $orig)
+    {
+        if ($this->topic !== $orig->topic || $this->callback !== $orig->callback) {
+            $this->setHashkey();
+        }
+    }
+
+    protected function setHashkey()
+    {
+        $this->hashkey = self::hashkey($this->topic, $this->callback);
     }
 
     /**
@@ -322,7 +329,7 @@ class HubSub extends Managed_DataObject
             if ($response->isOk()) {
                 $orig = clone($this);
                 $this->callback = $httpscallback;
-                $this->hashkey = self::hashkey($this->getTopic(), $this->callback);
+                // NOTE: hashkey will be set in $this->onUpdateKeys($orig) through updateWithKeys
                 $this->updateWithKeys($orig);
                 return true;
             }
