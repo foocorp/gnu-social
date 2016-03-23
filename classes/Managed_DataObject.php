@@ -483,6 +483,8 @@ abstract class Managed_DataObject extends Memcached_DataObject
             throw new ServerException('DataObject must be the result of a query (N>=1) before updateWithKeys()');
         }
 
+        $this->onUpdateKeys($orig);
+
         // do it in a transaction
         $this->query('BEGIN');
 
@@ -576,6 +578,11 @@ abstract class Managed_DataObject extends Memcached_DataObject
     }
 
     protected function onUpdate($dataObject=false)
+    {
+        // NOOP by default
+    }
+
+    protected function onUpdateKeys(Managed_DataObject $orig)
     {
         // NOOP by default
     }
