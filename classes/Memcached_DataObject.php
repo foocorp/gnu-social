@@ -67,10 +67,11 @@ class Memcached_DataObject extends Safe_DataObject
      * @param string  $cls       Class to fetch
      * @param string  $keyCol    name of column for key
      * @param array   $keyVals   key values to fetch
+     * @param boolean $skipNulls skip provided null values
      *
      * @return array Array of objects, in order
      */
-    static function multiGetClass($cls, $keyCol, array $keyVals)
+    static function multiGetClass($cls, $keyCol, array $keyVals, $skipNulls=true)
     {
         $obj = new $cls;
 
@@ -81,6 +82,14 @@ class Memcached_DataObject extends Safe_DataObject
             // This is because I'm afraid to escape strings incorrectly
             // in the way we use them below in FIND_IN_SET for MariaDB
             throw new ServerException('Cannot do multiGet on anything but integer columns');
+        }
+
+        if ($skipNulls) {
+            foreach ($keyVals as $key=>$val) {
+                if (is_null($val)) {
+                    unset($keyVals[$key]);
+                }
+            }
         }
 
         $obj->whereAddIn($keyCol, $keyVals, $colType);
