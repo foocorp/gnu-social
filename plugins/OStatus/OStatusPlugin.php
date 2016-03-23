@@ -132,11 +132,11 @@ class OStatusPlugin extends Plugin
         if ($notice->inScope(null) && $notice->getProfile()->hasRight(Right::PUBLICNOTICE)) {
             // put our transport first, in case there's any conflict (like OMB)
             array_unshift($transports, 'ostatus');
-            $this->log(LOG_INFO, "Notice {$notice->id} queued for OStatus processing");
+            $this->log(LOG_INFO, "OSTATUS [{$notice->getID()}]: queued for OStatus processing");
         } else {
             // FIXME: we don't do privacy-controlled OStatus updates yet.
             // once that happens, finer grain of control here.
-            $this->log(LOG_NOTICE, "Not queueing notice {$notice->id} for OStatus because of privacy; scope = {$notice->scope}");
+            $this->log(LOG_NOTICE, "OSTATUS [{$notice->getID()}]: Not queueing because of privacy; scope = {$notice->scope}");
         }
         return true;
     }

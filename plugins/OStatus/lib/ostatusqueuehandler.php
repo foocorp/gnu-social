@@ -194,17 +194,17 @@ class OStatusQueueHandler extends QueueHandler
         // and then upgrade it. This self-healing feature needs to be enabled manually in config.
         // This code is based on a patch by @hannes2peer@quitter.se
         if (common_config('fix', 'legacy_http') && parse_url($feed, PHP_URL_SCHEME) === 'https') {
-            common_log(LOG_DEBUG, 'OSTATUS: Searching for http scheme instead for HubSub feed topic: '._ve($feed));
+            common_log(LOG_DEBUG, "OSTATUS [{$this->notice->getID()}]: Searching for http scheme instead for HubSub feed topic: "._ve($feed));
             $http_feed = str_replace('https://', 'http://', $feed);
             $sub = new HubSub();
             $sub->topic = $http_feed;
             // If we find it we upgrade the rows in the hubsub table.
             if ($sub->find()) {
-                common_log(LOG_INFO, 'OSTATUS: Found topic with http scheme for '._ve($feed).', will update the rows to use https instead!');
+                common_log(LOG_INFO, "OSTATUS [{$this->notice->getID()}]: Found topic with http scheme for "._ve($feed).", will update the rows to use https instead!");
                 // we found an http:// URL but we use https:// now
                 // so let's update the rows to reflect on this!
                 while ($sub->fetch()) {
-                    common_debug('OSTATUS: Changing topic URL to https for feed callback '._ve($sub->callback));
+                    common_debug("OSTATUS [{$this->notice->getID()}]: Changing topic URL to https for feed callback "._ve($sub->callback));
                     $orig = clone($sub);
                     $sub->topic = $feed;
                     // hashkey column will be set automagically in HubSub->onUpdateKeys through updateWithKeys
@@ -221,7 +221,7 @@ class OStatusQueueHandler extends QueueHandler
             $atom = call_user_func_array($callback, $args);
             $this->pushFeedInternal($atom, $sub);
         } else {
-            common_log(LOG_INFO, "No PuSH subscribers for $feed");
+            common_log(LOG_INFO, "OSTATUS [{$this->notice->getID()}]: No PuSH subscribers for $feed");
         }
     }
 
