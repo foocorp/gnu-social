@@ -1266,14 +1266,12 @@ class Notice extends Managed_DataObject
             $ids[] = $f2p->file_id;
         }
 
-		$files = File::multiGet('id', $ids);
-		$this->_attachments[$this->id] = $files->fetchAll();
-        return $this->_attachments[$this->id];
+        return $this->_setAttachments(File::multiGet('id', $ids)->fetchAll());
     }
 
-	function _setAttachments($attachments)
+	public function _setAttachments(array $attachments)
 	{
-	    $this->_attachments[$this->id] = $attachments;
+	    return $this->_attachments[$this->id] = $attachments;
 	}
 
     static function publicStream($offset=0, $limit=20, $since_id=null, $max_id=null)
@@ -3024,6 +3022,19 @@ class Notice extends Managed_DataObject
 			$files = array();
 			$f2ps = $f2pMap[$notice->id];
 			foreach ($f2ps as $f2p) {
+                if (!isset($fileMap[$f2p->file_id])) {
+                    // We have probably deleted value from fileMap since
+                    // it as a NULL entry (see the following elseif).
+                    continue;
+                } elseif (is_null($fileMap[$f2p->file_id])) {
+                    // If the file id lookup returned a NULL value, it doesn't
+                    // exist in our file table! So this is a remnant file_to_post
+                    // entry that is no longer valid and should be removed.
+                    common_debug('ATTACHMENT deleting f2p for post_id='.$f2p->post_id.' file_id='.$f2p->file_id);
+                    $f2p->delete();
+                    unset($fileMap[$f2p->file_id]);
+                    continue;
+                }
 			    $files[] = $fileMap[$f2p->file_id];
 			}
 		    $notice->_setAttachments($files);
