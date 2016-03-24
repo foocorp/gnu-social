@@ -38,7 +38,7 @@ if (!defined('GNUSOCIAL')) { exit(1); }
  *
  * This extends the HTTP_Request2_Response class with methods to get info
  * about any followed redirects.
- * 
+ *
  * Originally used the name 'HTTPResponse' to match earlier code, but
  * this conflicts with a class in in the PECL HTTP extension.
  *
@@ -119,7 +119,7 @@ class HTTPClient extends HTTP_Request2
         $this->config['connect_timeout'] = common_config('http', 'connect_timeout') ?: $this->config['connect_timeout'];
         $this->config['max_redirs'] = 10;
         $this->config['follow_redirects'] = true;
-        
+
         // We've had some issues with keepalive breaking with
         // HEAD requests, such as to youtube which seems to be
         // emitting chunked encoding info for an empty body
@@ -151,7 +151,7 @@ class HTTPClient extends HTTP_Request2
 
         foreach (array('host', 'port', 'user', 'password', 'auth_scheme') as $cf) {
             $k = 'proxy_'.$cf;
-            $v = common_config('http', $k); 
+            $v = common_config('http', $k);
             if (!empty($v)) {
                 $this->config[$k] = $v;
             }
@@ -173,7 +173,7 @@ class HTTPClient extends HTTP_Request2
     /**
      * Quick static function to GET a URL
      */
-    public static function quickGet($url, $accept=null, $params=array())
+    public static function quickGet($url, $accept=null, array $params=array(), array $headers=array())
     {
         if (!empty($params)) {
             $params = http_build_query($params, null, '&');
@@ -188,7 +188,7 @@ class HTTPClient extends HTTP_Request2
         if (!is_null($accept)) {
             $client->setHeader('Accept', $accept);
         }
-        $response = $client->get($url);
+        $response = $client->get($url, $headers);
         if (!$response->isOk()) {
             // TRANS: Exception. %s is the URL we tried to GET.
             throw new Exception(sprintf(_m('Could not GET URL %s.'), $url), $response->getStatus());
@@ -262,10 +262,16 @@ class HTTPClient extends HTTP_Request2
     }
 
     /**
+     * @param  string   $url        The URL including possible querystring
+     * @param  string   $method     The HTTP method to use
+     * @param  array    $headers    List of already formatted strings
+     *                              (not an associative array, to allow
+     *                              multiple same-named headers)
+     *
      * @return GNUsocial_HTTPResponse
      * @throws HTTP_Request2_Exception
      */
-    protected function doRequest($url, $method, $headers)
+    protected function doRequest($url, $method, array $headers=array())
     {
         $this->setUrl($url);
 
@@ -278,10 +284,8 @@ class HTTPClient extends HTTP_Request2
         }
 
         $this->setMethod($method);
-        if ($headers) {
-            foreach ($headers as $header) {
-                $this->setHeader($header);
-            }
+        foreach ($headers as $header) {
+            $this->setHeader($header);
         }
         $response = $this->send();
         if (is_null($response)) {
@@ -290,7 +294,7 @@ class HTTPClient extends HTTP_Request2
         }
         return $response;
     }
-    
+
     protected function log($level, $detail) {
         $method = $this->getMethod();
         $url = $this->getUrl();
@@ -334,8 +338,8 @@ class HTTPClient extends HTTP_Request2
                 throw $e;
             }
             $code = $response->getStatus();
-            $effectiveUrl = $response->getEffectiveUrl();            
-            $redirUrls[] = $effectiveUrl;       
+            $effectiveUrl = $response->getEffectiveUrl();
+            $redirUrls[] = $effectiveUrl;
             $response->redirUrls = $redirUrls;
             if ($code >= 200 && $code < 300) {
                 $reason = $response->getReasonPhrase();
@@ -343,7 +347,7 @@ class HTTPClient extends HTTP_Request2
             } elseif ($code >= 300 && $code < 400) {
                 $url = $this->getUrl();
                 $target = $response->getHeader('Location');
-                
+
                 if (++$redirs >= $maxRedirs) {
                     common_log(LOG_ERR, __CLASS__ . ": Too many redirects: skipping $code redirect from $url to $target");
                     break;
