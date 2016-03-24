@@ -59,41 +59,46 @@ class LinkbackPlugin extends Plugin
         parent::__construct();
     }
 
-    function onHandleQueuedNotice($notice)
+    function onHandleQueuedNotice(Notice $notice)
     {
-        if (intval($notice->is_local) === Notice::LOCAL_PUBLIC) {
-            // Try to avoid actually mucking with the
-            // notice content
-            $c = $notice->content;
-            $this->notice = $notice;
+        if (!$notice->isLocal() || !$notice->isPublic()) {
+            return true;
+        }
 
-            if(!$notice->getProfile()->
-                getPref("linkbackplugin", "disable_linkbacks")
-            ) {
-                // Ignoring results
-                common_replace_urls_callback($c,
-                                             array($this, 'linkbackUrl'));
-            }
+        // Try to avoid actually mucking with the
+        // notice content
+        $c = $notice->content;
+        $this->notice = $notice;
 
-            if($notice->isRepeat()) {
+        if (!$notice->getProfile()->getPref('linkbackplugin', 'disable_linkbacks')) {
+            // Ignoring results
+            common_replace_urls_callback($c, array($this, 'linkbackUrl'));
+        }
+
+        try {
+            if ($notice->isRepeat()) {
                 $repeat = Notice::getByID($notice->repeat_of);
                 $this->linkbackUrl($repeat->getUrl());
-            } else if(!empty($notice->reply_to)) {
-                try {
-                    $parent = $notice->getParent();
-                    $this->linkbackUrl($parent->getUrl());
-                } catch (NoParentNoticeException $e) {
-                    // can't link back to what we don't know (apparently parent notice disappeared from our db)
-                    return true;
-                }
+            } elseif (!empty($notice->reply_to)) {
+                $parent = $notice->getParent();
+                $this->linkbackUrl($parent->getUrl());
             }
+        } catch (InvalidUrlException $e) {
+            // can't send linkback to notice if we don't have a remote HTTP(S) URL
+            // but we can still ping the attention-receivers below
+        } catch (NoParentNoticeException $e) {
+            // can't send linkback to non-existing parent URL
+            return true;
+        }
 
-            // doubling up getReplies and getAttentionProfileIDs because we're not entirely migrated yet
-            $replyProfiles = Profile::multiGet('id', array_unique(array_merge($notice->getReplies(), $notice->getAttentionProfileIDs())));
-            foreach($replyProfiles->fetchAll('profileurl') as $profileurl) {
+        // doubling up getReplies and getAttentionProfileIDs because we're not entirely migrated yet
+        $replyProfiles = Profile::multiGet('id', array_unique(array_merge($notice->getReplies(), $notice->getAttentionProfileIDs())));
+        foreach ($replyProfiles->fetchAll('profileurl') as $profileurl) {
+            if (common_valid_http_url($profileurl)) {
                 $this->linkbackUrl($profileurl);
             }
         }
+
         return true;
     }
 
