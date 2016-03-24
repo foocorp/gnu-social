@@ -311,7 +311,7 @@ class RealtimePlugin extends Plugin
         return false; // No default processing
     }
 
-    function noticeAsJson($notice)
+    function noticeAsJson(Notice $notice)
     {
         // FIXME: this code should be abstracted to a neutral third
         // party, like Notice::asJson(). I'm not sure of the ethics
@@ -347,7 +347,7 @@ class RealtimePlugin extends Plugin
         return $arr;
     }
 
-    function getNoticeTags($notice)
+    function getNoticeTags(Notice $notice)
     {
         $tags = null;
 
