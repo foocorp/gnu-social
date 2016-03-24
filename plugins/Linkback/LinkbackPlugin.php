@@ -31,7 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once('Auth/Yadis/Yadis.php');
 require_once(__DIR__ . '/lib/util.php');
 
 define('LINKBACKPLUGIN_VERSION', '0.1');
@@ -114,34 +113,36 @@ class LinkbackPlugin extends Plugin
         }
 
         // XXX: Do a HEAD first to save some time/bandwidth
+        try {
+            $httpclient = new HTTPClient();
+            $response = $httpclient->get($url, ["User-Agent: {$this->userAgent()}",
+                                                "Accept: application/html+xml,text/html"]);
 
-        $fetcher = Auth_Yadis_Yadis::getHTTPFetcher();
-
-        $result = $fetcher->get($url,
-                                array('User-Agent: ' . $this->userAgent(),
-                                      'Accept: application/html+xml,text/html'));
-
-        if (!in_array($result->status, array('200', '206'))) {
+            if (!in_array($response->getStatus(), array(200, 206))) {
+                throw new Exception('Invalid response code for GET request');
+            }
+        } catch (Exception $e) {
+            // something didn't work out in our GET request
             return $orig;
         }
 
         // XXX: Should handle relative-URI resolution in these detections
 
-        $wm = $this->getWebmention($result);
+        $wm = $this->getWebmention($response);
         if(!empty($wm)) {
             // It is the webmention receiver's job to resolve source
             // Ref: https://github.com/converspace/webmention/issues/43
             $this->webmention($url, $wm);
         } else {
-            $pb = $this->getPingback($result);
+            $pb = $this->getPingback($response);
             if (!empty($pb)) {
                 // Pingback still looks for exact URL in our source, so we
                 // must send what we have
                 $this->pingback($url, $pb);
             } else {
-                $tb = $this->getTrackback($result);
+                $tb = $this->getTrackback($response);
                 if (!empty($tb)) {
-                    $this->trackback($result->final_url, $tb);
+                    $this->trackback($response->getEffectiveUrl(), $tb);
                 }
             }
         }
@@ -151,22 +152,23 @@ class LinkbackPlugin extends Plugin
 
     // Based on https://github.com/indieweb/mention-client-php
     // which is licensed Apache 2.0
-    function getWebmention($result) {
-        if (isset($result->headers['Link'])) {
-            // XXX: the fetcher only gives back one of each header, so this may fail on multiple Link headers
-            if(preg_match('~<((?:https?://)?[^>]+)>; rel="webmention"~', $result->headers['Link'], $match)) {
+    function getWebmention(HTTP_Request2_Response $response) {
+        $link = $response->getHeader('Link');
+        if (!is_null($link)) {
+            // XXX: the fetcher gives back a comma-separated string of all Link headers, I hope the parsing works reliably
+            if (preg_match('~<((?:https?://)?[^>]+)>; rel="webmention"~', $link, $match)) {
                 return $match[1];
-            } elseif(preg_match('~<((?:https?://)?[^>]+)>; rel="http://webmention.org/?"~', $result->headers['Link'], $match)) {
+            } elseif (preg_match('~<((?:https?://)?[^>]+)>; rel="http://webmention.org/?"~', $link, $match)) {
                 return $match[1];
             }
         }
 
         // FIXME: Do proper DOM traversal
-        if(preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="[^" ]* ?webmention ?[^" ]*"[ ]*\/?>/i', $result->body, $match)
-           || preg_match('/<(?:link|a)[ ]+rel="[^" ]* ?webmention ?[^" ]*"[ ]+href="([^"]+)"[ ]*\/?>/i', $result->body, $match)) {
+        if(preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="[^" ]* ?webmention ?[^" ]*"[ ]*\/?>/i', $response->getBody(), $match)
+                || preg_match('/<(?:link|a)[ ]+rel="[^" ]* ?webmention ?[^" ]*"[ ]+href="([^"]+)"[ ]*\/?>/i', $response->getBody(), $match)) {
             return $match[1];
-        } elseif(preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="http:\/\/webmention\.org\/?"[ ]*\/?>/i', $result->body, $match)
-                 || preg_match('/<(?:link|a)[ ]+rel="http:\/\/webmention\.org\/?"[ ]+href="([^"]+)"[ ]*\/?>/i', $result->body, $match)) {
+        } elseif (preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="http:\/\/webmention\.org\/?"[ ]*\/?>/i', $response->getBody(), $match)
+                || preg_match('/<(?:link|a)[ ]+rel="http:\/\/webmention\.org\/?"[ ]+href="([^"]+)"[ ]*\/?>/i', $response->getBody(), $match)) {
             return $match[1];
         }
     }
@@ -198,11 +200,11 @@ class LinkbackPlugin extends Plugin
         }
     }
 
-    function getPingback($result) {
-        if (array_key_exists('X-Pingback', $result->headers)) {
-            return $result->headers['X-Pingback'];
-        } else if(preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="[^" ]* ?pingback ?[^" ]*"[ ]*\/?>/i', $result->body, $match)
-                  || preg_match('/<(?:link|a)[ ]+rel="[^" ]* ?pingback ?[^" ]*"[ ]+href="([^"]+)"[ ]*\/?>/i', $result->body, $match)) {
+    function getPingback(HTTP_Request2_Response $response) {
+        if ($response->getHeader('X-Pingback')) {
+            return $response->getHeader('X-Pingback');
+        } elseif (preg_match('/<(?:link|a)[ ]+href="([^"]+)"[ ]+rel="[^" ]* ?pingback ?[^" ]*"[ ]*\/?>/i', $response->getBody(), $match)
+                || preg_match('/<(?:link|a)[ ]+rel="[^" ]* ?pingback ?[^" ]*"[ ]+href="([^"]+)"[ ]*\/?>/i', $response->getBody(), $match)) {
             return $match[1];
         }
     }
@@ -242,10 +244,10 @@ class LinkbackPlugin extends Plugin
     // Largely cadged from trackback_cls.php by
     // Ran Aroussi <ran@blogish.org>, GPL2 or any later version
     // http://phptrackback.sourceforge.net/
-    function getTrackback($result)
+    function getTrackback(HTTP_Request2_Response $response)
     {
-        $text = $result->body;
-        $url = $result->final_url;
+        $text = $response->getBody();
+        $url = $response->getEffectiveUrl();
 
         if (preg_match_all('/(<rdf:RDF.*?<\/rdf:RDF>)/sm', $text, $match, PREG_SET_ORDER)) {
             for ($i = 0; $i < count($match); $i++) {
@@ -296,26 +298,22 @@ class LinkbackPlugin extends Plugin
         // TRANS: Trackback title.
         // TRANS: %1$s is a profile nickname, %2$s is a timestamp.
         $args = array('title' => sprintf(_m('%1$s\'s status on %2$s'),
-                                         $profile->nickname,
-                                         common_exact_date($this->notice->created)),
-                      'excerpt' => $this->notice->content,
+                                         $profile->getNickname(),
+                                         common_exact_date($this->notice->getCreated())),
+                      'excerpt' => $this->notice->getContent(),
                       'url' => $this->notice->getUrl(),
-                      'blog_name' => $profile->nickname);
+                      'blog_name' => $profile->getNickname());
 
-        $fetcher = Auth_Yadis_Yadis::getHTTPFetcher();
-
-        $result = $fetcher->post($endpoint,
-                                 http_build_query($args),
-                                 array('User-Agent: ' . $this->userAgent()));
-
-        if ($result->status != '200') {
-            common_log(LOG_WARNING,
-                       "Trackback error for '$url' ($endpoint): ".
-                       "$result->body");
-        } else {
-            common_log(LOG_INFO,
-                       "Trackback success for '$url' ($endpoint): ".
-                       "'$result->body'");
+        try {
+            $httpclient = new HTTPClient(null, HTTPClient::METHOD_POST);
+            $response = $httpclient->post($endpoint, ["User-Agent: {$this->userAgent()}"], $args);
+            if ($response->getStatus() === 200) {
+                common_log(LOG_INFO, "Trackback success for '$url' ($endpoint): "._ve($response->getBody()));
+            } else {
+                common_log(LOG_WARNING, "Trackback error for '$url' ($endpoint): "._ve($response->getBody()));
+            }
+        } catch (Exception $e) {
+            common_log(LOG_INFO, "Trackback error for '$url' ($endpoint): "._ve($e->getMessage()));
         }
     }
 
