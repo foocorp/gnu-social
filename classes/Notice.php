@@ -2749,10 +2749,10 @@ class Notice extends Managed_DataObject
         }
     }
 
-    function isPublic()
+    public function isPublic()
     {
-        return (($this->is_local != Notice::LOCAL_NONPUBLIC) &&
-                ($this->is_local != Notice::GATEWAY));
+        $is_local = intval($this->is_local);
+        return !($is_local === Notice::LOCAL_NONPUBLIC || $is_local === Notice::GATEWAY);
     }
 
     /**
