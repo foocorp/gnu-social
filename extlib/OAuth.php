@@ -261,7 +261,7 @@ class OAuthRequest {
               ? 'http'
               : 'https';
     $http_url = ($http_url) ? $http_url : $scheme .
-                              '://' . $_SERVER['SERVER_NAME'] .
+                              '://' . $_SERVER['HTTP_HOST'] . //SERVER_NAME isn't always correct, should be HTTP_HOST
                               ':' .
                               $_SERVER['SERVER_PORT'] .
                               $_SERVER['REQUEST_URI'];
