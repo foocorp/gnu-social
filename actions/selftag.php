@@ -158,9 +158,9 @@ class SelftagAction extends Action
 
 class SelfTagProfileList extends ProfileList
 {
-    function newListItem($profile)
+    function newListItem(Profile $target)
     {
-        return new SelfTagProfileListItem($profile, $this->action);
+        return new SelfTagProfileListItem($target, $this->action);
     }
 }
 
