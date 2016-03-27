@@ -38,7 +38,6 @@ $default =
               'logfile' => null,
               'logo' => null,
               'ssllogo' => null,
-              'logdebug' => false,
               'logperf' => false, // Enable to dump performance counters to syslog
               'logperf_detail' => false, // Enable to dump every counter hit
               'fancy' => false,
@@ -85,6 +84,9 @@ $default =
         array('fancyurls' => true,   // makes sure aliases in WebFinger etc. are not f'd by index.php/ URLs
               'legacy_http' => false,   // set this to true if you have upgraded your site from http=>https
               ),
+        'log' => [
+                'debugtrace' => false,  // index.php handleError function, whether to include exception backtrace in log
+            ],
         'syslog' =>
         array('appname' => 'statusnet', # for syslog
               'priority' => 'debug', # XXX: currently ignored

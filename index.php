@@ -94,7 +94,7 @@ function handleError($error)
         }
 
         $logmsg = "Exception thrown: " . _ve($error->getMessage());
-        if ($error instanceof PEAR_Exception && common_config('site', 'logdebug')) {
+        if ($error instanceof PEAR_Exception && common_config('log', 'debugtrace')) {
             $logmsg .= " PEAR: ". $error->toText();
         }
         // DB queries often end up with a lot of newlines; merge to a single line
@@ -103,7 +103,7 @@ function handleError($error)
         common_log(LOG_ERR, $logmsg);
 
         // @fixme backtrace output should be consistent with exception handling
-        if (common_config('site', 'logdebug')) {
+        if (common_config('log', 'debugtrace')) {
             $bt = $error->getTrace();
             foreach ($bt as $n => $line) {
                 common_log(LOG_ERR, formatBacktraceLine($n, $line));
