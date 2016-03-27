@@ -20,17 +20,27 @@ class WebFingerResource_Notice extends WebFingerResource
     public function updateXRD(XML_XRD $xrd)
     {
         if (Event::handle('StartWebFingerNoticeLinks', array($xrd, $this->object))) {
-            $xrd->links[] = new XML_XRD_Element_Link('alternate',
+            if ($this->object->isLocal()) {
+                $xrd->links[] = new XML_XRD_Element_Link('alternate',
                                     common_local_url('ApiStatusesShow',
                                         array('id'=>$this->object->id,
                                               'format'=>'atom')),
                                     'application/atom+xml');
 
-            $xrd->links[] = new XML_XRD_Element_Link('alternate',
+                $xrd->links[] = new XML_XRD_Element_Link('alternate',
                                     common_local_url('ApiStatusesShow',
                                         array('id'=>$this->object->id,
                                               'format'=>'json')),
                                     'application/json');
+            } else {
+                try {
+                    $xrd->links[] = new XML_XRD_Element_Link('alternate',
+                                        $this->object->getUrl(),
+                                        'text/html');
+                } catch (InvalidUrlException $e) {
+                    // don't do a fallback in webfinger
+                }
+            }
             Event::handle('EndWebFingerNoticeLinks', array($xrd, $this->object));
         }
     }

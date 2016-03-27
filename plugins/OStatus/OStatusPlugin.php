@@ -1307,10 +1307,23 @@ class OStatusPlugin extends Plugin
 
     function onEndWebFingerNoticeLinks(XML_XRD $xrd, Notice $target)
     {
-        $author = $target->getProfile();
-        $profiletype = $this->profileTypeString($author);
-        $salmon_url = common_local_url("{$profiletype}salmon", array('id' => $author->id));
-        $xrd->links[] = new XML_XRD_Element_Link(Salmon::REL_SALMON, $salmon_url);
+        $salmon_url = null;
+        $actor = $target->getProfile();
+        if ($actor->isLocal()) {
+            $profiletype = $this->profileTypeString($actor);
+            $salmon_url = common_local_url("{$profiletype}salmon", array('id' => $actor->getID()));
+        } else {
+            try {
+                $oprofile = Ostatus_profile::fromProfile($actor);
+                $salmon_url = $oprofile->salmonuri;
+            } catch (Exception $e) {
+                // Even though it's not a local user, we couldn't get an Ostatus_profile?!
+            }
+        }
+        // Ostatus_profile salmon URL may be empty
+        if (!empty($salmon_url)) {
+            $xrd->links[] = new XML_XRD_Element_Link(Salmon::REL_SALMON, $salmon_url);
+        }
         return true;
     }
 
