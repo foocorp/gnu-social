@@ -839,7 +839,7 @@ class Notice extends Managed_DataObject
             }
         }
 
-        $stored->profile_id = $actor->id;
+        $stored->profile_id = $actor->getID();
         $stored->source = $source;
         $stored->uri = $uri;
         $stored->url = $url;
@@ -857,6 +857,7 @@ class Notice extends Managed_DataObject
             // TRANS: Error message when the plain text content of a notice has zero length.
             throw new ClientException(_('Empty notice content, will not save this.'));
         }
+        unset($content);    // garbage collect
 
         // Maybe a missing act-time should be fatal if the actor is not local?
         if (!empty($act->time)) {
@@ -865,13 +866,31 @@ class Notice extends Managed_DataObject
             $stored->created = common_sql_now();
         }
 
-        $reply = null;
+        $reply = null;  // this will store the in-reply-to Notice if found
+        $replyUris = [];    // this keeps a list of possible URIs to look up
         if ($act->context instanceof ActivityContext && !empty($act->context->replyToID)) {
-            $reply = self::getKV('uri', $act->context->replyToID);
+            $replyUris[] = $act->context->replyToID;
         }
-        if (!$reply instanceof Notice && $act->target instanceof ActivityObject) {
-            $reply = self::getKV('uri', $act->target->id);
+        if ($act->target instanceof ActivityObject && !empty($act->target->id)) {
+            $replyUris[] = $act->target->id;
         }
+        foreach (array_unique($replyUris) as $replyUri) {
+            $reply = self::getKV('uri', $replyUri);
+            // Only do remote fetching if we're not a private site
+            if (!common_config('site', 'private') && !$reply instanceof Notice) {
+                // the URI is the object we're looking for, $actor is a
+                // Profile that surely knows of it and &$reply where it
+                // will be stored when fetched
+                Event::handle('FetchRemoteNotice', array($replyUri, $actor, &$reply));
+            }
+            // we got what we're in-reply-to now, so let's move on
+            if ($reply instanceof Notice) {
+                break;
+            }
+            // otherwise reset whatever we might've gotten from the event
+            $reply = null;
+        }
+        unset($replyUris);  // garbage collect
 
         if ($reply instanceof Notice) {
             if (!$reply->inScope($actor)) {
@@ -915,6 +934,7 @@ class Notice extends Managed_DataObject
                 unset($conv);
             }
         }
+        unset($reply);  // garbage collect
 
         // If it's not part of a conversation, it's the beginning of a new conversation.
         if (empty($stored->conversation)) {
@@ -985,6 +1005,7 @@ class Notice extends Managed_DataObject
                 if (empty($object)) {
                     throw new NoticeSaveException('Unsuccessful call to StoreActivityObject '._ve($stored->getUri()) . ': '._ve($act->asString()));
                 }
+                unset($object);
 
                 // If something changed in the Notice during StoreActivityObject
                 $stored->update($orig);
@@ -998,6 +1019,8 @@ class Notice extends Managed_DataObject
                 throw $e;
             }
         }
+        unset($notloc); // garbage collect
+
         if (!$stored instanceof Notice) {
             throw new ServerException('StartNoticeSave did not give back a Notice.');
         } elseif (empty($stored->id)) {
