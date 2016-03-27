@@ -243,24 +243,24 @@ class OembedPlugin extends Plugin
             return true;
         }
 
-        $out->elementStart('article', ['class'=>'oembed-item']);
+        $out->elementStart('article', ['class'=>'h-entry oembed']);
         $out->elementStart('header');
         try  {
             $thumb = $file->getThumbnail(128, 128);
-            $out->element('img', $thumb->getHtmlAttrs(['class'=>'oembed-thumb']));
+            $out->element('img', $thumb->getHtmlAttrs(['class'=>'u-photo oembed']));
             unset($thumb);
         } catch (Exception $e) {
             $out->element('div', ['class'=>'error'], $e->getMessage());
         }
-        $out->elementStart('h5', ['class'=>'oembed-title']);
-        $out->element('a', ['href'=>$file->getUrl()], common_strip_html($oembed->title));
+        $out->elementStart('h5', ['class'=>'p-name oembed']);
+        $out->element('a', ['class'=>'u-url', 'href'=>$file->getUrl()], common_strip_html($oembed->title));
         $out->elementEnd('h5');
-        $out->elementStart('div', ['class'=>'oembed-source']);
+        $out->elementStart('div', ['class'=>'p-author oembed']);
         if (!empty($oembed->author_name)) {
             // TRANS: text before the author name of oEmbed attachment representation
             // FIXME: The whole "By x from y" should be i18n because of different language constructions.
             $out->text(_('By '));
-            $attrs = ['class'=>'h-card'];
+            $attrs = ['class'=>'h-card p-author'];
             if (!empty($oembed->author_url)) {
                 $attrs['href'] = $oembed->author_url;
                 $tag = 'a';
@@ -284,7 +284,7 @@ class OembedPlugin extends Plugin
         }
         $out->elementEnd('div');
         $out->elementEnd('header');
-        $out->elementStart('div', ['class'=>'oembed-html']);
+        $out->elementStart('div', ['class'=>'p-summary oembed']);
         $out->raw(common_purify($oembed->html));
         $out->elementEnd('div');
         $out->elementStart('footer');
