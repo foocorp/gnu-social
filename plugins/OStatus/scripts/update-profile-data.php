@@ -62,15 +62,16 @@ function fixProfile(Ostatus_profile $oprofile) {
         echo "Updating profile from feed: $feedurl\n";
         $dom = new DOMDocument();
         if ($dom->loadXML($response->getBody())) {
-            $feed = $dom->documentElement;
-            $entries = $dom->getElementsByTagNameNS(Activity::ATOM, 'entry');
-            if ($entries->length) {
-                $entry = $entries->item(0);
-                $activity = new Activity($entry, $feed);
-                $oprofile->checkAuthorship($activity);
+            if ($dom->documentElement->tagName !== 'feed') {
+                echo "  (no <feed> element in feed URL response; skipping)\n";
+                return false;
+            }
+            $actorObj = ActivityUtils::getFeedAuthor($dom->documentElement);
+            if ($actorObj) {
+                $oprofile->updateFromActivityObject($actorObj);
                 echo "  (ok)\n";
             } else {
-                echo "  (no entry; skipping)\n";
+                echo "  (no author on feed; skipping)\n";
                 return false;
             }
         } else {

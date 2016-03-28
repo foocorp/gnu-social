@@ -1281,6 +1281,12 @@ class Ostatus_profile extends Managed_DataObject
      */
     public function updateFromActivityObject(ActivityObject $object, array $hints=array())
     {
+        if (self::getActivityObjectProfileURI($actorObj) !== $this->getUri()) {
+            common_log(LOG_ERR, 'Trying to update profile with URI '._ve($this->getUri()).' from ActivityObject with URI: '._ve(self::getActivityObjectProfileURI($actorObj)));
+            // FIXME: Maybe not AuthorizationException?
+            throw new AuthorizationException('Trying to update profile from ActivityObject with different URI.');
+        }
+
         if ($this->isGroup()) {
             $group = $this->localGroup();
             self::updateGroup($group, $object, $hints);
