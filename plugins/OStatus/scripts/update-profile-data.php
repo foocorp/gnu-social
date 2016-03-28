@@ -44,30 +44,19 @@ function showProfileInfo(Ostatus_profile $oprofile) {
         echo "group\n";
     } else {
         $profile = $oprofile->localProfile();
-        try {
-            foreach (array('nickname', 'fullname', 'bio', 'homepage', 'location') as $field) {
-                print "  $field: {$profile->$field}\n";
-            }
-        } catch (NoProfileException $e) {
-            print "local profile not found";
+        foreach (array('nickname', 'fullname', 'bio', 'homepage', 'location') as $field) {
+            print "  $field: {$profile->$field}\n";
         }
     }
     echo "\n";
 }
 
-function fixProfile($uri) {
-    $oprofile = Ostatus_profile::getKV('uri', $uri);
-
-    if (!$oprofile) {
-        print "No OStatus remote profile known for URI $uri\n";
-        return false;
-    }
-
+function fixProfile(Ostatus_profile $oprofile) {
     echo "Before:\n";
     showProfileInfo($oprofile);
 
     $feedurl = $oprofile->feeduri;
-    $client = new HttpClient();
+    $client = new HTTPClient();
     $response = $client->get($feedurl);
     if ($response->isOk()) {
         echo "Updating profile from feed: $feedurl\n";
@@ -106,7 +95,7 @@ if (have_option('all')) {
     echo "Found $oprofile->N profiles:\n\n";
     while ($oprofile->fetch()) {
         try {
-            $ok = fixProfile($oprofile->uri) && $ok;
+            $ok = fixProfile($oprofile) && $ok;
         } catch (Exception $e) {
             $ok = false;
             echo "Failed on URI=="._ve($oprofile->uri).": {$e->getMessage()}\n";
@@ -120,7 +109,7 @@ if (have_option('all')) {
     echo "Found $oprofile->N matching profiles:\n\n";
     while ($oprofile->fetch()) {
         try {
-            $ok = fixProfile($oprofile->uri) && $ok;
+            $ok = fixProfile($oprofile) && $ok;
         } catch (Exception $e) {
             $ok = false;
             echo "Failed on URI=="._ve($oprofile->uri).": {$e->getMessage()}\n";
@@ -128,8 +117,15 @@ if (have_option('all')) {
     }
 } else if (!empty($args[0]) && $validate->uri($args[0])) {
     $uri = $args[0];
+    $oprofile = Ostatus_profile::getKV('uri', $uri);
+
+    if (!$oprofile instanceof Ostatus_profile) {
+        print "No OStatus remote profile known for URI $uri\n";
+        return false;
+    }
+
     try {
-        $ok = fixProfile($oprofile->uri) && $ok;
+        $ok = fixProfile($oprofile) && $ok;
     } catch (Exception $e) {
         $ok = false;
         echo "Failed on URI=="._ve($oprofile->uri).": {$e->getMessage()}\n";
