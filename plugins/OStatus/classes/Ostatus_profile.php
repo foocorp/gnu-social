@@ -1302,8 +1302,8 @@ class Ostatus_profile extends Managed_DataObject
         if ($avatar && !isset($ptag)) {
             try {
                 $this->updateAvatar($avatar);
-            } catch (Exception $ex) {
-                common_log(LOG_WARNING, "Exception updating OStatus profile avatar: " . $ex->getMessage());
+            } catch (Exception $e) {
+                common_log(LOG_WARNING, 'Exception ('.get_class($e).') updating OStatus profile avatar: ' . $e->getMessage());
             }
         }
     }
