@@ -356,7 +356,7 @@ class BookmarkPlugin extends MicroAppPlugin
         $notice = new Notice();
         
         $notice->joinAdd(array('uri', 'bookmark:uri'));
-        $notice->whereAdd('object_type IS NULL OR object_type = '.$notice->escape(ActivityObject::NOTE));
+        $notice->whereAdd('object_type IS NULL OR object_type = '.$notice->_quote(ActivityObject::NOTE));
 
         $notice->find();
 
