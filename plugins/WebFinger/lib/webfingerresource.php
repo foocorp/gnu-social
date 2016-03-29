@@ -42,7 +42,7 @@ abstract class WebFingerResource
                 if (!strtolower(parse_url($alias, PHP_URL_SCHEME)) === 'https') {
                     continue;
                 }
-                $aliases[preg_replace('/^https:/', 'http:', $alias, 1)] = $id;
+                $aliases[preg_replace('/^https:/i', 'http:', $alias, 1)] = $id;
             }
         }
 
