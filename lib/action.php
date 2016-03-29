@@ -662,7 +662,7 @@ class Action extends HTMLOutputter // lawsuit
                     $httpUrl = common_config('site', 'logo');
                     if (!empty($httpUrl)) {
                         try {
-                            $f = File::getByUrl('url', $httpUrl);
+                            $f = File::getByUrl($httpUrl);
                             if (!empty($f->filename)) {
                                 // this will handle the HTTPS case
                                 $logoUrl = File::url($f->filename);
