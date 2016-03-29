@@ -347,6 +347,8 @@ class BookmarkPlugin extends MicroAppPlugin
 
     function onEndUpgrade()
     {
+        printfnq('Making sure Bookmark notices have correct verb and object_type...');
+
         // Version 0.9.x of the plugin didn't stamp notices
         // with verb and object-type (for obvious reasons). Update
         // those notices here.
@@ -364,6 +366,8 @@ class BookmarkPlugin extends MicroAppPlugin
             $notice->object_type = ActivityObject::BOOKMARK;
             $notice->update($original);
         }
+
+        printfnq("DONE.\n");
     }
 
     public function activityObjectOutputJson(ActivityObject $obj, array &$out)
