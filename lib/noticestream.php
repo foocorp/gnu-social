@@ -48,9 +48,9 @@ abstract class NoticeStream
     public function __construct()
     {
         foreach ($this->selectVerbs as $key=>$val) {
-            // to avoid database inconsistency issues we select both relative and absolute verbs
             $this->selectVerbs[ActivityUtils::resolveUri($key)] = $val;
-            $this->selectVerbs[ActivityUtils::resolveUri($key, true)] = $val;
+            // to avoid database inconsistency issues we can select both relative and absolute verbs
+            //$this->selectVerbs[ActivityUtils::resolveUri($key, true)] = $val;
         }
     }
 

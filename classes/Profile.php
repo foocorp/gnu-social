@@ -841,10 +841,8 @@ class Profile extends Managed_DataObject
 
         $notices = new Notice();
         $notices->profile_id = $this->getID();
-        $notices->whereAddIn('verb',
-                                [ActivityUtils::resolveUri(ActivityVerb::POST, true), ActivityVerb::POST],
-                                $notices->columnType('verb'));
-        $cnt = (int) $notices->count(); // we don't have to provide anything as Notice is key'd
+        $notices->verb = ActivityVerb::POST;
+        $cnt = (int) $notices->count('id'); // Not sure if I imagine this, but 'id' was faster than the defaulting 'uri'?
 
         if (!empty($c)) {
             $c->set(Cache::key('profile:notice_count:'.$this->getID()), $cnt);
