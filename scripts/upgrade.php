@@ -171,9 +171,14 @@ function initConversation()
     printfnq("Ensuring all conversations have a row in conversation table...");
 
     $notice = new Notice();
-    $notice->query('select distinct notice.conversation from notice '.
-                   'where notice.conversation is not null '.
-                   'and not exists (select conversation.id from conversation where id = notice.conversation)');
+    $notice->selectAdd();
+    $notice->selectAdd('DISTINCT conversation');
+    $notice->joinAdd(['conversation', 'conversation:id'], 'LEFT');  // LEFT to get the null values for conversation.id
+    $notice->whereAdd('conversation.id IS NULL');
+
+    if ($notice->find()) {
+        printfnq(" fixing {$notice->N} missing conversation entries...");
+    }
 
     while ($notice->fetch()) {
 
