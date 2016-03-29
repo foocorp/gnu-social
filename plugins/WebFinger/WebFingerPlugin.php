@@ -81,49 +81,86 @@ class WebFingerPlugin extends Plugin
             $parts = explode('@', substr(urldecode($resource), 5)); // 5 is strlen of 'acct:'
             if (count($parts) == 2) {
                 list($nick, $domain) = $parts;
-                if ($domain === common_config('site', 'server')) {
-                    $nick = common_canonical_nickname($nick);
-                    $user = User::getKV('nickname', $nick);
-                    if (!($user instanceof User)) {
-                        throw new NoSuchUserException(array('nickname'=>$nick));
-                    }
-                    $profile = $user->getProfile();
-                } else {
+                if ($domain !== common_config('site', 'server')) {
                     throw new Exception(_('Remote profiles not supported via WebFinger yet.'));
                 }
+
+                $nick = common_canonical_nickname($nick);
+                $user = User::getKV('nickname', $nick);
+                if (!($user instanceof User)) {
+                    throw new NoSuchUserException(array('nickname'=>$nick));
+                }
+                $profile = $user->getProfile();
             }
-        } else {
+        } elseif (!common_valid_http_url($resource)) {
+            // If it's not a URL, we can't do our http<->https legacy fix thingie anyway,
+            // so just try the User URI lookup!
             try {
                 $user = User::getByUri($resource);
                 $profile = $user->getProfile();
             } catch (NoResultException $e) {
-                if (common_config('fix', 'fancyurls')) {
-                    try {
-                        try {   // if it's a /index.php/ url
-                            // common_fake_local_fancy_url can throw an exception
-                            $alt_url = common_fake_local_fancy_url($resource);
-                        } catch (Exception $e) {    // let's try to create a fake local /index.php/ url
-                            // this too if it can't do anything about the URL
-                            $alt_url = common_fake_local_nonfancy_url($resource);
-                        }
-
-                        // and this will throw a NoResultException if not found
-                        $user = User::getByUri($alt_url);
-                        $profile = $user->getProfile();
-                    } catch (Exception $e) {
-                        // apparently we didn't get any matches with that, so continue...
+                // not a User, maybe a Notice? we'll try that further down...
+            }
+        } else {
+            // this means $resource is a common_valid_http_url (or https)
+            // First build up a set of alternative resource URLs that we can use.
+            $alt_urls = [$resource => true];
+            if (strtolower(parse_url($resource, PHP_URL_SCHEME)) === 'https'
+                    && common_config('fix', 'legacy_http')) {
+                $alt_urls[preg_replace('/^https:/i', 'http:', $resource, 1)] = true;
+            }
+            if (common_config('fix', 'fancyurls')) {
+                foreach (array_keys($alt_urls) as $url) {
+                    try {   // if it's a /index.php/ url
+                        // common_fake_local_fancy_url can throw an exception
+                        $alt_url = common_fake_local_fancy_url($url);
+                    } catch (Exception $e) {    // let's try to create a fake local /index.php/ url
+                        // this too if it can't do anything about the URL
+                        $alt_url = common_fake_local_nonfancy_url($url);
                     }
+
+                    $alt_urls[$alt_url] = true;
+                }
+            }
+            common_debug(__METHOD__.': Generated these alternative URLs for various federation fixes: '._ve(array_keys($alt_urls)));
+
+            try {
+                common_debug(__METHOD__.': Finding User URI for WebFinger lookup on resource=='._ve($resource));
+                $user = new User();
+                $user->whereAddIn('uri', array_keys($alt_urls), $user->columnType('uri'));
+                $user->limit(1);
+                if ($user->find(true)) {
+                    $profile = $user->getProfile();
+                }
+                unset($user);
+            } catch (Exception $e) {
+                // Most likely a UserNoProfileException, if it ever happens
+                // and then we need to do some debugging and perhaps fixes.
+                common_log(LOG_ERR, get_class($e).': '._ve($e->getMessage()));
+                throw $e;
+            }
+
+            // User URI did not match, so let's try our alt_urls as Profile URL values
+            if (!$profile instanceof Profile) {
+                common_debug(__METHOD__.': Finding Profile URLs for WebFinger lookup on resource=='._ve($resource));
+                // if our rewrite hack didn't work, try to get something by profile URL
+                $profile = new Profile();
+                $profile->whereAddIn('profileurl', array_keys($alt_urls), $profile->columnType('profileurl'));
+                $profile->limit(1);
+                if (!$profile->find(true) || !$profile->isLocal()) {
+                    // * Either we didn't find the profile, then we want to make
+                    //   the $profile variable null for clarity.
+                    // * Or we did find it but for a possibly malicious remote
+                    //   user who might've set their profile URL to a Notice URL
+                    //   which would've caused a sort of DoS unless we continue
+                    //   our search here by discarding the remote profile.
+                    $profile = null;
                 }
             }
         }
 
-        // if we still haven't found a match...
-        if (!$profile instanceof Profile) {
-            // if our rewrite hack didn't work, try to get something by profile URL
-            $profile = Profile::getKV('profileurl', $resource);
-        }
-
         if ($profile instanceof Profile) {
+            common_debug(__METHOD__.': Found Profile with ID=='._ve($profile->getID()).' for resource=='._ve($resource));
             $target = new WebFingerResource_Profile($profile);
             return false;   // We got our target, stop handler execution
         }
