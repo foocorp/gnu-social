@@ -120,10 +120,10 @@ class File_oembed extends Managed_DataObject
             $file_oembed->url = $data->url;
             $given_url = File_redirection::_canonUrl($file_oembed->url);
             if (! empty($given_url)){
-                $file = File::getKV('url', $given_url);
-                if ($file instanceof File) {
+                try {
+                    $file = File::getByUrl($given_url);
                     $file_oembed->mimetype = $file->mimetype;
-                } else {
+                } catch (NoResultException $e) {
                     $redir = File_redirection::where($given_url);
                     if (empty($redir->file_id)) {
                         $f = $redir->getFile();
