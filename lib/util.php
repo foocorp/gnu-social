@@ -266,7 +266,8 @@ function common_logged_in()
 
 function common_local_referer()
 {
-    return parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) === common_config('site', 'server');
+    return isset($_SERVER['HTTP_REFERER'])
+            && parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) === common_config('site', 'server');
 }
 
 function common_have_session()
