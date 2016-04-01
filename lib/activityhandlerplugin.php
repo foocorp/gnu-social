@@ -279,6 +279,10 @@ abstract class ActivityHandlerPlugin extends Plugin
         if ($this->isMyNotice($notice)) {
             try {
                 $this->deleteRelated($notice);
+            } catch (NoProfileException $e) {
+                // we failed because of database lookup failure, Notice has no recognized profile as creator
+                // so we skip this. If we want to remove missing notices we should do a SQL constraints check
+                // in the affected plugin.
             } catch (AlreadyFulfilledException $e) {
                 // Nothing to see here, it's obviously already gone...
             }
