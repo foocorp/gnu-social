@@ -3087,68 +3087,77 @@ class Notice extends Managed_DataObject
         $schema = Schema::get();
         $schemadef = $schema->getTableDef($table);
 
-        printfnq("\nConstraint checking Notice table...\n");
         /**
-         *  Improve typing and make sure no NULL values in any id-related columns are 0
+         *  Make sure constraints are met before upgrading, if foreign keys
+         *  are not already in use.
          *  2016-03-31
          */
-        foreach (['reply_to', 'repeat_of'] as $field) {
-            $notice = new Notice(); // reset the object
-            $notice->query(sprintf('UPDATE %1$s SET %2$s=NULL WHERE %2$s=0', $notice->escapedTableName(), $field));
-            // Now we're sure that no Notice entries have repeat_of=0, only an id > 0 or NULL
-            unset($notice);
-        }
-
-        /**
-         *  Make sure constraints are met before upgrading.
-         *  2016-03-31
-         *
-         *  Will find foreign keys which do not fulfill the constraints and fix
-         *  where appropriate, such as delete when "repeat_of" ID not found in notice.id
-         *  or set to NULL for "reply_to" in the same case.
-         *
-         *  XXX: How does this work if we would use multicolumn foreign keys?
-         */
-        foreach (['reply_to' => 'reset', 'repeat_of' => 'delete', 'profile' => 'delete'] as $field=>$action) {
-            $notice = new Notice();
-
-            $fkeyname = $notice->tableName().'_'.$field.'_fkey';
-            assert(isset($schemadef['foreign keys'][$fkeyname]) && $schemadef['foreign keys'][$fkeyname]);
-            $foreign_key = $schemadef['foreign keys'][$fkeyname];
-            printfnq("\n"._ve($schemadef));
-            $fkeytable = $foreign_key[0];
-            assert(isset($foreign_key[1][$field]));
-            $fkeycol   = $foreign_key[1][$field];
-
-            // NOTE: Above we set all repeat_of to NULL if they were 0, so this really gets them all.
-            $notice->whereAdd(sprintf('%1$s NOT IN (SELECT %2$s FROM %3$s)', $field, $fkeycol, $fkeytable));
-            if ($notice->find()) {
-                printfnq("\tFound {$notice->N} notices with {$field} NOT IN notice.id, {$action}ing...");
-                switch ($action) {
-                case 'delete':  // since it's a directly dependant notice for an unknown ID we don't want it in our DB
-                    while ($notice->fetch()) {
-                        // $notice->delete();
-                        printfnq("\n deleting {$notice->id}");
-                    }
-                    break;
-                case 'reset':   // just set it to NULL to be compatible with our constraints, if it was related to an unknown ID
-                    $ids = [];
-                    foreach ($notice->fetchAll('id') as $id) {
-                        settype($id, 'int');
-                        $ids[] = $id;
-                    }
-                    $notice = new Notice();
-                    $notice->query(sprintf('UPDATE %1$s SET %2$s=NULL WHERE id IN (%3$s)',
-                                        $notice->escapedTableName(),
-                                        $field,
-                                        implode(',', $ids)));
-                    break;
-                default:
-                    throw new ServerException('The programmer sucks, invalid action name when fixing table.');
-                }
-                printfnq("DONE.\n");
+        if (!isset($schemadef['foreign keys'])) {
+            $newschemadef = self::schemaDef();
+            printfnq("\nConstraint checking Notice table...\n");
+            /**
+             *  Improve typing and make sure no NULL values in any id-related columns are 0
+             *  2016-03-31
+             */
+            foreach (['reply_to', 'repeat_of'] as $field) {
+                $notice = new Notice(); // reset the object
+                $notice->query(sprintf('UPDATE %1$s SET %2$s=NULL WHERE %2$s=0', $notice->escapedTableName(), $field));
+                // Now we're sure that no Notice entries have repeat_of=0, only an id > 0 or NULL
+                unset($notice);
             }
-            unset($notice);
+
+            /**
+             *  This Will find foreign keys which do not fulfill the constraints and fix
+             *  where appropriate, such as delete when "repeat_of" ID not found in notice.id
+             *  or set to NULL for "reply_to" in the same case.
+             *  2016-03-31
+             *
+             *  XXX: How does this work if we would use multicolumn foreign keys?
+             */
+            foreach (['reply_to' => 'reset', 'repeat_of' => 'delete', 'profile_id' => 'delete'] as $field=>$action) {
+                $notice = new Notice();
+
+                $fkeyname = $notice->tableName().'_'.$field.'_fkey';
+                assert(isset($newschemadef['foreign keys'][$fkeyname]));
+                assert($newschemadef['foreign keys'][$fkeyname]);
+
+                $foreign_key = $newschemadef['foreign keys'][$fkeyname];
+                $fkeytable = $foreign_key[0];
+                assert(isset($foreign_key[1][$field]));
+                $fkeycol   = $foreign_key[1][$field];
+
+                printfnq("* {$fkeyname} ({$field} => {$fkeytable}.{$fkeycol})\n");
+
+                // NOTE: Above we set all repeat_of to NULL if they were 0, so this really gets them all.
+                $notice->whereAdd(sprintf('%1$s NOT IN (SELECT %2$s FROM %3$s)', $field, $fkeycol, $fkeytable));
+                if ($notice->find()) {
+                    printfnq("\tFound {$notice->N} notices with {$field} NOT IN notice.id, {$action}ing...");
+                    switch ($action) {
+                    case 'delete':  // since it's a directly dependant notice for an unknown ID we don't want it in our DB
+                        while ($notice->fetch()) {
+                            $notice->delete();
+                        }
+                        break;
+                    case 'reset':   // just set it to NULL to be compatible with our constraints, if it was related to an unknown ID
+                        $ids = [];
+                        foreach ($notice->fetchAll('id') as $id) {
+                            settype($id, 'int');
+                            $ids[] = $id;
+                        }
+                        unset($notice);
+                        $notice = new Notice();
+                        $notice->query(sprintf('UPDATE %1$s SET %2$s=NULL WHERE id IN (%3$s)',
+                                            $notice->escapedTableName(),
+                                            $field,
+                                            implode(',', $ids)));
+                        break;
+                    default:
+                        throw new ServerException('The programmer sucks, invalid action name when fixing table.');
+                    }
+                    printfnq("DONE.\n");
+                }
+                unset($notice);
+            }
         }
 
         // 2015-09-04 We move Notice location data to Notice_location
