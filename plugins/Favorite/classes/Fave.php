@@ -193,6 +193,13 @@ class Fave extends Managed_DataObject
         $act->content = sprintf(_('%1$s favorited something by %2$s: %3$s'),
                                 $actor->getNickname(), $target->getProfile()->getNickname(),
                                 $target->getRendered());
+        $act->context = new ActivityContext();
+        $act->context->replyToID = $target->getUri();
+        try {
+            $act->context->replyToURL = $target->getUrl();
+        } catch (InvalidUrlException $e) {
+            // ok, no replyToURL, i.e. the href="" in <thr:in-reply-to/>
+        }
 
         $act->actor     = $actor->asActivityObject();
         $act->target    = $target->asActivityObject();
