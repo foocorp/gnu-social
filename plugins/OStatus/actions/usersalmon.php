@@ -43,7 +43,9 @@ class UsersalmonAction extends SalmonAction
         if (!empty($this->activity->context->replyToID)) {
             try {
                 $notice = Notice::getByUri($this->activity->context->replyToID);
+                common_debug('Referenced Notice object found with URI: '.$notice->getUri());
             } catch (NoResultException $e) {
+                common_debug('Referenced Notice object NOT found with URI: '.$this->activity->context->replyToID);
                 $notice = false;
             }
         }
