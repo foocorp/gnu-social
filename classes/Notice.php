@@ -1537,12 +1537,16 @@ class Notice extends Managed_DataObject
 
     function getProfileTags()
     {
-        $profile = $this->getProfile();
-        $list    = $profile->getOtherTags($profile);
         $ptags   = array();
+        try {
+            $profile = $this->getProfile();
+            $list    = $profile->getOtherTags($profile);
 
-        while($list->fetch()) {
-            $ptags[] = clone($list);
+            while($list->fetch()) {
+                $ptags[] = clone($list);
+            }
+        } catch (Exception $e) {
+            common_log(LOG_ERR, "Error during Notice->getProfileTags() for id=={$this->getID()}: {$e->getMessage()}");
         }
 
         return $ptags;
