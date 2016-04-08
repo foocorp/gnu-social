@@ -189,6 +189,7 @@ class NoticeListItem extends Widget
     function showNoticeInfo()
     {
         if (Event::handle('StartShowNoticeInfo', array($this))) {
+            $this->showContextLink();
             $this->showNoticeLink();
             $this->showNoticeSource();
             $this->showNoticeLocation();
@@ -375,14 +376,10 @@ class NoticeListItem extends Widget
      */
     function showNoticeLink()
     {
-        $this->out->elementStart('a', array('rel' => 'bookmark',
-                                            'class' => 'timestamp',
-                                            'href' => Conversation::getUrlFromNotice($this->notice)));
         $this->out->element('time', array('class' => 'dt-published',
                                           'datetime' => common_date_iso8601($this->notice->created),
                                           'title' => common_exact_date($this->notice->created)),
                             common_date_string($this->notice->created));
-        $this->out->elementEnd('a');
     }
 
     /**
@@ -566,6 +563,18 @@ class NoticeListItem extends Widget
         } catch (InvalidUrlException $e) {
             // no permalink available
         }
+    }
+
+    /**
+     * Show link to conversation view.
+     */
+    function showContextLink()
+    {
+        $this->out->element('a', array('rel' => 'bookmark',
+                                            'class' => 'timestamp',
+                                            'href' => Conversation::getUrlFromNotice($this->notice)),
+                            // TRANS: A link to the conversation view of a notice, on the local server.
+                            _('In conversation'));
     }
 
     /**
