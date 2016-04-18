@@ -955,10 +955,10 @@ class Notice extends Managed_DataObject
             $act->context = new ActivityContext();
         }
 
-        if (array_key_exists('http://activityschema.org/collection/public', $act->context->attention)) {
+        if (array_key_exists(ActivityContext::ATTN_PUBLIC, $act->context->attention)) {
             $stored->scope = Notice::PUBLIC_SCOPE;
             // TODO: maybe we should actually keep this? if the saveAttentions thing wants to use it...
-            unset($act->context->attention['http://activityschema.org/collection/public']);
+            unset($act->context->attention[ActivityContext::ATTN_PUBLIC]);
         } else {
             $stored->scope = self::figureOutScope($actor, $groups, $scope);
         }
