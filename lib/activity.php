@@ -625,9 +625,20 @@ class Activity
             }
 
             if (!empty($this->context->conversation)) {
-                $xs->element('link', array('rel' => ActivityContext::CONVERSATION,
-                                           'href' => $this->context->conversation));
-                $xs->element(ActivityContext::CONVERSATION, null, $this->context->conversation);
+                $convattr = [];
+                $conv = Conversation::getKV('uri', $this->context->conversation);
+                if ($conv instanceof Conversation) {
+                    $convattr['href'] = $conv->getUrl();
+                    $convattr['local_id'] = $conv->getID();
+                    $convattr['ref'] = $conv->getUri();
+                    $xs->element('link', array('rel' => ActivityContext::CONVERSATION,
+                                                'href' => $convattr['href']));
+                } else {
+                    $convattr['ref'] = $this->context->conversation;
+                }
+                $xs->element(ActivityContext::CONVERSATION,
+                                $convattr,
+                                $this->context->conversation);
                 /* Since we use XMLWriter we just use the previously hardcoded prefix for ostatus,
                     otherwise we should use something like this:
                 $xs->elementNS(array(ActivityContext::OSTATUS => 'ostatus'),    // namespace
