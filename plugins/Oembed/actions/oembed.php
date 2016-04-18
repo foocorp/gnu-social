@@ -84,26 +84,25 @@ class OembedAction extends Action
             $oembed['html']=$notice->getRendered();
 
 			// maybe add thumbnail
-			$attachments = $notice->attachments();
-			if (!empty($attachments)) {
-				foreach ($attachments as $attachment) {
-					if(is_object($attachment)) {
-						try {
-							$thumb = $attachment->getThumbnail();
-						} catch (ServerException $e) {
-							//
-						}
-						try {
-							$thumb_url = File_thumbnail::url($thumb->filename);
-							$oembed['thumbnail_url'] = $thumb_url;
-							break; // only first one
-						} catch (ClientException $e) {
-							//
-						}
-					}
-				}
-			}   
-			      
+            foreach ($notice->attachments() as $attachment) {
+                if (!$attachment instanceof File) {
+                    common_debug('ATTACHMENTS array entry from notice id=='._ve($notice->getID()).' is something else than a File dataobject: '._ve($attachment));
+                    continue;
+                }
+                try {
+                    $thumb = $attachment->getThumbnail();
+                    $thumb_url = File_thumbnail::url($thumb->filename);
+                    $oembed['thumbnail_url'] = $thumb_url;
+                    break;  // only first one
+                } catch (UseFileAsThumbnailException $e) {
+                    $oembed['thumbnail_url'] = $attachment->getUrl();
+                    break;  // we're happy with that
+                } catch (ServerException $e) {
+                    //
+                } catch (ClientException $e) {
+                    //
+                }
+            }
             break;
 
         case 'attachment':
