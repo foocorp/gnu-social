@@ -173,12 +173,11 @@ class File_redirection extends Managed_DataObject
         try {
             $r = File_redirection::getByUrl($in_url);
 
-            $f = File::getKV('id',$r->file_id);
-
-            if($file instanceof File) {
+            try {
+                $f = File::getByID($r->file_id);
                 $r->file = $f;
-                $r->redir_url = $f->url;            
-            } else {
+                $r->redir_url = $f->url;
+            } catch (NoResultException $e) {
                 // Invalid entry, delete and run again
                 common_log(LOG_ERR, "Could not find File with id=".$r->file_id." referenced in File_redirection, deleting File redirection entry and and trying again...");                 
                 $r->delete();
