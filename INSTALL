@@ -49,6 +49,19 @@ functional setup of GNU Social:
 - php5-mysqlnd  The native driver for PHP5 MariaDB connections. If you
                   use MySQL, 'php5-mysql' or 'php5-mysqli' may be enough.
 
+Or, for PHP7, some or all of these will be necessary. PHP7 support is still
+experimental and not necessarily working:
+    php7.0-bcmath
+    php7.0-curl
+    php7.0-exif
+    php7.0-gd
+    php7.0-intl
+    php7.0-mbstring
+    php7.0-mysqlnd
+    php7.0-opcache
+    php7.0-readline
+    php7.0-xmlwriter
+
 The above package names are for Debian based systems. In the case of
 Arch Linux, PHP is compiled with support for most extensions but they
 require manual enabling in the relevant php.ini file (mostly php5-gmp).
