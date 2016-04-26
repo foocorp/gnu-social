@@ -37,7 +37,7 @@ function getRegisteredDomain($signingDomain) {
 
 	global $tldTree;
 
-	$signingDomainParts = split('\.', $signingDomain);
+	$signingDomainParts = explode('.', $signingDomain);
 
 	$result = findRegisteredDomain($signingDomainParts, $tldTree);
 
