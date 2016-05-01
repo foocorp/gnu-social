@@ -516,6 +516,11 @@ class File extends Managed_DataObject
         return $filepath;
     }
 
+    public function getAttachmentUrl()
+    {
+        return common_local_url('attachment', array('attachment'=>$this->getID()));
+    }
+
     public function getUrl($prefer_local=true)
     {
         if ($prefer_local && !empty($this->filename)) {
