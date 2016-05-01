@@ -201,13 +201,13 @@ function linkback_hcard($mf2, $url) {
 }
 
 function linkback_notice($source, $notice_or_user, $entry, $author, $mf2) {
-    $content = $entry['content'] ? $entry['content'][0]['html'] :
-              ($entry['summary'] ? $entry['sumary'][0] : $entry['name'][0]);
+    $content = isset($entry['content']) ? $entry['content'][0]['html'] :
+              (isset($entry['summary']) ? $entry['summary'][0] : $entry['name'][0]);
 
     $rendered = common_purify($content);
 
     if($notice_or_user instanceof Notice && $entry['type'] == 'mention') {
-        $name = $entry['name'] ? $entry['name'][0] : substr(common_strip_html($content), 0, 20).'…';
+        $name = isset($entry['name']) ? $entry['name'][0] : substr(common_strip_html($content), 0, 20).'…';
         $rendered = _m('linked to this from <a href="'.htmlspecialchars($source).'">'.htmlspecialchars($name).'</a>');
     }
 
@@ -241,12 +241,16 @@ function linkback_notice($source, $notice_or_user, $entry, $author, $mf2) {
         }
     }
 
-    if($entry['published'] || $entry['updated']) {
-        $options['created'] = $entry['published'] ? common_sql_date($entry['published'][0]) : common_sql_date($entry['updated'][0]);
+    if (isset($entry['published']) || isset($entry['updated'])) {
+        $options['created'] = isset($entry['published'])
+                                ? common_sql_date($entry['published'][0])
+                                : common_sql_date($entry['updated'][0]);
     }
 
-    if($entry['photo']) {
+    if (isset($entry['photo']) && common_valid_http_url($entry['photo'])) {
         $options['urls'][] = $entry['photo'][0];
+    } elseif (isset($entry['photo'])) {
+        common_debug('Linkback got invalid HTTP URL for photo: '._ve($entry['photo']));
     }
 
     foreach((array)$entry['category'] as $tag) {
@@ -287,7 +291,7 @@ function linkback_profile($entry, $mf2, $response, $target) {
         $author = array('name' => $entry['name']);
     }
 
-    if(!$author['url']) {
+    if (!isset($author['url']) || empty($author['url'])) {
         $author['url'] = array($response->getEffectiveUrl());
     }
 
@@ -299,17 +303,16 @@ function linkback_profile($entry, $mf2, $response, $target) {
 
     try {
         $profile = Profile::fromUri($author['url'][0]);
-    } catch(UnknownUriException $ex) {}
-
-    if(!($profile instanceof Profile)) {
+    } catch(UnknownUriException $ex) {
         $profile = Profile::getKV('profileurl', $author['url'][0]);
     }
 
-    if(!($profile instanceof Profile)) {
+    // XXX: Is this a good way to create the profile?
+    if (!$profile instanceof Profile) {
         $profile = new Profile();
         $profile->profileurl = $author['url'][0];
         $profile->fullname = $author['name'][0];
-        $profile->nickname = $author['nickname'] ? $author['nickname'][0] : str_replace(' ', '', $author['name'][0]);
+        $profile->nickname = isset($author['nickname']) ? $author['nickname'][0] : str_replace(' ', '', $author['name'][0]);
         $profile->created = common_sql_now();
         $profile->insert();
     }
