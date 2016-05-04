@@ -132,7 +132,7 @@ class ImageFile
             // First some mimetype specific exceptions
             switch ($file->mimetype) {
             case 'image/svg+xml':
-                throw new UseFileAsThumbnailException($file->id);
+                throw new UseFileAsThumbnailException($file);
             }
 
             // And we'll only consider it an image if it has such a media type
@@ -282,7 +282,11 @@ class ImageFile
         }
 
         if (!file_exists($outpath)) {
-            throw new UseFileAsThumbnailException($this->id);
+            if ($this->fileRecord instanceof File) {
+                throw new UseFileAsThumbnailException($this->fileRecord);
+            } else {
+                throw new UnsupportedMediaException('No local File object exists for ImageFile.');
+            }
         }
 
         return $outpath;

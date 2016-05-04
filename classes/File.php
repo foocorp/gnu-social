@@ -498,7 +498,7 @@ class File extends Managed_DataObject
                     return File_thumbnail::byFile($this);
                 } catch (NoResultException $e) {
                     // and if it's not a remote file, it'll be safe to use the locally stored File
-                    throw new UseFileAsThumbnailException($this->id);
+                    throw new UseFileAsThumbnailException($this);
                 }
             }
         }
