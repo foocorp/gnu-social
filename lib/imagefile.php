@@ -548,7 +548,7 @@ class ImageFile
         }
 
         fclose($fh);
-        return $count > 1;
+        return $count >= 1; // number of animated frames apart from the original image
     }
 
     public function getFileThumbnail($width, $height, $crop, $upscale=false)
