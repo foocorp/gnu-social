@@ -114,7 +114,6 @@ class AccountMover extends QueueHandler
             $svcDocUrl = $link->href;
             if (isset($link['http://apinamespace.org/atom/username'])) {
                 $username = $link['http://apinamespace.org/atom/username'];
-                break;
             }
         }
 

@@ -219,7 +219,6 @@ class UserActivityStream extends AtomUserNoticeFeed
                 }
             } catch (Exception $e) {
                 common_log(LOG_ERR, $e->getMessage());
-                continue;
             }
         }
     }
