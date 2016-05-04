@@ -478,6 +478,8 @@ class File extends Managed_DataObject
      * @param $width  int   Max width of thumbnail in pixels. (if null, use common_config values)
      * @param $height int   Max height of thumbnail in pixels. (if null, square-crop to $width)
      * @param $crop   bool  Crop to the max-values' aspect ratio
+     * @param $force_still  bool    Don't allow fallback to showing original (such as animated GIF)
+     * @param $upscale      mixed   Whether or not to scale smaller images up to larger thumbnail sizes. (null = site default)
      *
      * @return File_thumbnail
      *
