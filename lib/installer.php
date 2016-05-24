@@ -285,6 +285,11 @@ abstract class Installer
         $this->updateStatus("Checking database...");
         $conn = $this->connectDatabase($dsn);
 
+        if (!$conn instanceof DB_common) {
+            // Is not the right instance
+            throw new Exception('Cannot connect to database: ' . $conn->getMessage());
+        }
+
         // ensure database encoding is UTF8
         if ($this->dbtype == 'mysql') {
             // @fixme utf8m4 support for mysql 5.5?
@@ -297,11 +302,6 @@ abstract class Installer
                 $this->updateStatus("GNU social requires UTF8 character encoding. Your database is ". htmlentities($record->server_encoding));
                 return false;
             }
-        }
-
-        if (!$conn instanceof DB_common) {
-            // Is not the right instance
-            throw new Exception('Cannot connect to database: ' . $conn->getMessage());
         }
 
         $res = $this->updateStatus("Creating database tables...");
