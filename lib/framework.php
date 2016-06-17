@@ -62,7 +62,7 @@ define('NOTICE_INBOX_SOURCE_GATEWAY', -1);
  * Some of those characters can be troublesome when auto-linking plain text. Such as "http://some.com/)"
  * URL encoding should be used whenever a weird character is used, the following strings are not definitive.
  */
-define('URL_REGEX_VALID_PATH_CHARS',        '\pN\pL\,\!\.\:\-\_\+\/\=\;\%\~\*');
+define('URL_REGEX_VALID_PATH_CHARS',        '\pN\pL\,\!\.\:\-\_\+\/\@\=\;\%\~\*');
 define('URL_REGEX_VALID_QSTRING_CHARS',     URL_REGEX_VALID_PATH_CHARS    . '\&');
 define('URL_REGEX_VALID_FRAGMENT_CHARS',    URL_REGEX_VALID_QSTRING_CHARS . '\?\#');
 define('URL_REGEX_EXCLUDED_END_CHARS',      '\?\.\,\!\#\:\'');  // don't include these if they are directly after a URL
