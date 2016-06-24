@@ -15,6 +15,11 @@ class StoreRemoteMediaPlugin extends Plugin
     public $append_whitelist = array(); // fill this array as domain_whitelist to add more trusted sources
     public $check_whitelist  = false;    // security/abuse precaution
 
+    public $domain_blacklist = array();
+    public $check_blacklist = false;
+
+    public $max_image_bytes = 10485760;  // 10MiB max image size by default
+
     protected $imgData = array();
 
     // these should be declared protected everywhere
@@ -50,7 +55,7 @@ class StoreRemoteMediaPlugin extends Plugin
         switch (common_get_mime_media($file->mimetype)) {
         case 'image':
             // Just to set something for now at least...
-            $file->title = $file->mimetype;
+            //$file->title = $file->mimetype;
             break;
         }
         
@@ -74,19 +79,53 @@ class StoreRemoteMediaPlugin extends Plugin
             return true;
         }
 
-        $this->checkWhitelist($file->getUrl());
+        $remoteUrl = $file->getUrl();
 
-        // First we download the file to memory and test whether it's actually an image file
-        common_debug(sprintf('Downloading remote file id==%u with URL: %s', $file->getID(), _ve($file->getUrl())));
+        if (!$this->checkWhiteList($remoteUrl) ||
+            !$this->checkBlackList($remoteUrl)) {
+		    return true;
+        }
+
         try {
-            $imgData = HTTPClient::quickGet($file->getUrl());
+            /*
+            $http = new HTTPClient();
+            common_debug(sprintf('Performing HEAD request for remote file id==%u to avoid unnecessarily downloading too large files. URL: %s', $file->getID(), $remoteUrl));
+            $head = $http->head($remoteUrl);
+            $remoteUrl = $head->getEffectiveUrl();   // to avoid going through redirects again
+            if (!$this->checkBlackList($remoteUrl)) {
+                common_log(LOG_WARN, sprintf('%s: Non-blacklisted URL %s redirected to blacklisted URL %s', __CLASS__, $file->getUrl(), $remoteUrl));
+                return true;
+            }
+
+            $headers = $head->getHeader();
+            $filesize = isset($headers['content-length']) ? $headers['content-length'] : null;
+            */
+            $filesize = $file->getSize();
+            if (empty($filesize)) {
+                // file size not specified on remote server
+                common_debug(sprintf('%s: Ignoring remote media because we did not get a content length for file id==%u', __CLASS__, $file->getID()));
+                return true;
+            } elseif ($filesize > $this->max_image_bytes) {
+                //FIXME: When we perhaps start fetching videos etc. we'll need to differentiate max_image_bytes from that...
+                // file too big according to plugin configuration
+                common_debug(sprintf('%s: Skipping remote media because content length (%u) is larger than plugin configured max_image_bytes (%u) for file id==%u', __CLASS__, intval($filesize), $this->max_image_bytes, $file->getID()));
+                return true;
+            } elseif ($filesize > common_config('attachments', 'file_quota')) {
+                // file too big according to site configuration
+                common_debug(sprintf('%s: Skipping remote media because content length (%u) is larger than file_quota (%u) for file id==%u', __CLASS__, intval($filesize), common_config('attachments', 'file_quota'), $file->getID()));
+                return true;
+            }
+
+            // Then we download the file to memory and test whether it's actually an image file
+            common_debug(sprintf('Downloading remote file id==%u (should be size %u) with effective URL: %s', $file->getID(), $filesize, _ve($remoteUrl)));
+            $imgData = HTTPClient::quickGet($remoteUrl);
         } catch (HTTP_Request2_ConnectionException $e) {
-            common_log(LOG_ERR, __CLASS__.': quickGet on URL: '._ve($file->getUrl()).' threw exception: '.$e->getMessage());
+            common_log(LOG_ERR, __CLASS__.': '._ve(get_class($e)).' on URL: '._ve($file->getUrl()).' threw exception: '.$e->getMessage());
             return true;
         }
         $info = @getimagesizefromstring($imgData);
         if ($info === false) {
-            throw new UnsupportedMediaException(_('Remote file format was not identified as an image.'), $file->getUrl());
+            throw new UnsupportedMediaException(_('Remote file format was not identified as an image.'), $remoteUrl);
         } elseif (!$info[0] || !$info[1]) {
             throw new UnsupportedMediaException(_('Image file had impossible geometry (0 width or height)'));
         }
@@ -124,23 +163,39 @@ class StoreRemoteMediaPlugin extends Plugin
     }
 
     /**
-     * @return boolean          false on no check made, provider name on success
-     * @throws ServerException  if check is made but fails
+     * @return boolean          true if given url passes blacklist check
      */
-    protected function checkWhitelist($url)
+    protected function checkBlackList($url)
     {
-        if (!$this->check_whitelist) {
-            return false;   // indicates "no check made"
+        if (!$this->check_blacklist) {
+            return true;
         }
-
         $host = parse_url($url, PHP_URL_HOST);
-        foreach ($this->domain_whitelist as $regex => $provider) {
+        foreach ($this->domain_blacklist as $regex => $provider) {
             if (preg_match("/$regex/", $host)) {
-                return $provider;    // we trust this source, return provider name
+                return false;
             }
         }
 
-        throw new ServerException(sprintf(_('Domain not in remote source whitelist: %s'), $host));
+        return true;
+    }
+
+    /***
+     * @return boolean          true if given url passes whitelist check
+     */
+    protected function checkWhiteList($url)
+    {
+        if (!$this->check_whitelist) {
+            return true;
+        }
+        $host = parse_url($url, PHP_URL_HOST);
+        foreach ($this->domain_whitelist as $regex => $provider) {
+            if (preg_match("/$regex/", $host)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function onPluginVersion(array &$versions)
