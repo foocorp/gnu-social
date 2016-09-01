@@ -552,6 +552,11 @@ abstract class ActivityHandlerPlugin extends Plugin
         if ($nli->notice->scope != 0 && $nli->notice->scope != 1) {
             $class .= ' limited-scope';
         }
+        try {
+            $class .= ' notice-source-'.common_to_alphanumeric($this->notice->source);
+        } catch (Exception $e) {
+            // either source or what we filtered out was a zero-length string
+        }
         $nli->out->elementStart('li', array('class' => $class,
                                             'id' => 'notice-' . $id));
     }

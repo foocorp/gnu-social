@@ -227,8 +227,10 @@ class NoticeListItem extends Widget
             if ($this->notice->scope != 0 && $this->notice->scope != 1) {
                 $class .= ' limited-scope';
             }
-            if (!empty($this->notice->source)) {
-                $class .= ' notice-source-'.$this->notice->source;
+            try {
+                $class .= ' notice-source-'.common_to_alphanumeric($this->notice->source);
+            } catch (Exception $e) {
+                // either source or what we filtered out was a zero-length string
             }
             $id_prefix = (strlen($this->id_prefix) ? $this->id_prefix . '-' : '');
             $this->out->elementStart($this->item_tag, array('class' => $class,

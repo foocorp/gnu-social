@@ -580,6 +580,15 @@ function common_canonical_email($email)
     return $email;
 }
 
+function common_to_alphanumeric($str)
+{
+    $filtered = preg_replace('/[^A-Za-z0-9]\s*/', '', $str);
+    if (strlen($filtered) < 1) {
+        throw new Exception('Filtered string was zero-length.');
+    }
+    return $filtered;
+}
+
 function common_purify($html)
 {
     require_once INSTALLDIR.'/extlib/HTMLPurifier/HTMLPurifier.auto.php';
