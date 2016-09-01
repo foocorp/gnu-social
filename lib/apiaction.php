@@ -337,22 +337,22 @@ class ApiAction extends Action
         $twitter_status['in_reply_to_status_id'] = $in_reply_to;
 
         $source = null;
+        $source_link = null;
 
         $ns = $notice->getSource();
         if ($ns instanceof Notice_source) {
-            if (!empty($ns->name) && !empty($ns->url)) {
-                $source = '<a href="'
-		    . htmlspecialchars($ns->url)
-		    . '" rel="nofollow">'
-		    . htmlspecialchars($ns->name)
-		    . '</a>';
-            } else {
-                $source = $ns->code;
+            $source = $ns->code;
+            if (!empty($ns->url)) {
+                $source_link = $ns->url;
+                if (!empty($ns->name)) {
+                    $source = $ns->name;
+                }
             }
         }
 
         $twitter_status['uri'] = $notice->getUri();
         $twitter_status['source'] = $source;
+        $twitter_status['source_link'] = $source_link;
         $twitter_status['id'] = intval($notice->id);
 
         $replier_profile = null;

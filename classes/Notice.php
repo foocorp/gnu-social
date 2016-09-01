@@ -2101,11 +2101,7 @@ class Notice extends Managed_DataObject
             if (!empty($ns->url)) {
                 $noticeInfoAttr['source_link'] = $ns->url;
                 if (!empty($ns->name)) {
-                    $noticeInfoAttr['source'] =  '<a href="'
-                        . htmlspecialchars($ns->url)
-                        . '" rel="nofollow">'
-                        . htmlspecialchars($ns->name)
-                        . '</a>';
+                    $noticeInfoAttr['source'] = $ns->name;
                 }
             }
         }

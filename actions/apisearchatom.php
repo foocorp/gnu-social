@@ -337,21 +337,21 @@ class ApiSearchAtomAction extends ApiPrivateAuthAction
         // @todo: Here is where we'd put in a link to an atom feed for threads
 
         $source = null;
+        $source_link = null;
 
         $ns = $notice->getSource();
         if ($ns instanceof Notice_source) {
-            if (!empty($ns->name) && !empty($ns->url)) {
-                $source = '<a href="'
-                   . htmlspecialchars($ns->url)
-                   . '" rel="nofollow">'
-                   . htmlspecialchars($ns->name)
-                   . '</a>';
-            } else {
-                $source = $ns->code;
+            $source = $ns->code;
+            if (!empty($ns->url)) {
+                $source_link = $ns->url;
+                if (!empty($ns->name)) {
+                    $source = $ns->name;
+                }
             }
         }
 
         $this->element("twitter:source", null, $source);
+        $this->element("twitter:source_link", null, $source_link);
 
         $this->elementStart('author');
 
