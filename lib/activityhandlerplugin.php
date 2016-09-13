@@ -553,7 +553,7 @@ abstract class ActivityHandlerPlugin extends Plugin
             $class .= ' limited-scope';
         }
         try {
-            $class .= ' notice-source-'.common_to_alphanumeric($this->notice->source);
+            $class .= ' notice-source-'.common_to_alphanumeric($nli->notice->source);
         } catch (Exception $e) {
             // either source or what we filtered out was a zero-length string
         }
