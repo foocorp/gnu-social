@@ -1561,8 +1561,10 @@ class Ostatus_profile extends Managed_DataObject
      */
     public static function ensureWebfinger($addr)
     {
-        // First, try the cache
+        // Normalize $addr, i.e. add 'acct:' if missing
+        $addr = Discovery::normalize($addr);
 
+        // Try the cache
         $uri = self::cacheGet(sprintf('ostatus_profile:webfinger:%s', $addr));
 
         if ($uri !== false) {
@@ -1578,7 +1580,7 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         // Try looking it up
-        $oprofile = Ostatus_profile::getKV('uri', Discovery::normalize($addr));
+        $oprofile = Ostatus_profile::getKV('uri', $addr);
 
         if ($oprofile instanceof Ostatus_profile) {
             self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->getUri());
