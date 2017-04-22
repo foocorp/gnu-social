@@ -300,7 +300,7 @@ class OStatusPlugin extends Plugin
     static function extractUrlMentions($text)
     {
         $wmatches = array();
-        $result = preg_match_all('!(?:^|\s+)@'.URL_REGEX_DOMAIN_NAME.'(?:/\w+)*)!',
+        $result = preg_match_all('/(?:^|\s+)@('.URL_REGEX_DOMAIN_NAME.'(?:\/\w+)*)/',
                        $text,
                        $wmatches,
                        PREG_OFFSET_CAPTURE);
