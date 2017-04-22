@@ -280,7 +280,7 @@ class OStatusPlugin extends Plugin
     static function extractWebfingerIds($text)
     {
         $wmatches = array();
-        $result = preg_match_all('/(?:^|\s+)@((?:\w+[\w\-\_\.]?)*(?:[\w\-\_\.]*\w+)@(?:(?!-)[A-Za-z0-9\-]{1,63}(?<!-)\.)+[A-Za-z]{2,10})/',
+        $result = preg_match_all('/(?:^|\s+)@((?:\w+[\w\-\_\.]?)*(?:[\w\-\_\.]*\w+)@'.URL_REGEX_DOMAIN_NAME.')/',
                        $text,
                        $wmatches,
                        PREG_OFFSET_CAPTURE);
@@ -300,7 +300,7 @@ class OStatusPlugin extends Plugin
     static function extractUrlMentions($text)
     {
         $wmatches = array();
-        $result = preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+(?:\w+\-\w+)*\.\w+(?:/\w+)*)!',
+        $result = preg_match_all('!(?:^|\s+)@'.URL_REGEX_DOMAIN_NAME.'(?:/\w+)*)!',
                        $text,
                        $wmatches,
                        PREG_OFFSET_CAPTURE);
