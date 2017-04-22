@@ -273,6 +273,46 @@ class OStatusPlugin extends Plugin
     }
 
     /**
+     * Webfinger matches: @user@example.com or even @user--one.george_orwell@1984.biz
+     *
+     * @return  array   The matching IDs (without @ or acct:) and each respective position in the given string.
+     */
+    static function extractWebfingerIds($text)
+    {
+        $wmatches = array();
+        $result = preg_match_all('/(?:^|\s+)@((?:\w+[\w\-\_\.]?)*(?:[\w\-\_\.]*\w+)@(?:(?!-)[A-Za-z0-9\-]{1,63}(?<!-)\.)+[A-Za-z]{2,10})/',
+                       $text,
+                       $wmatches,
+                       PREG_OFFSET_CAPTURE);
+        if ($result === false) {
+            common_log(LOG_ERR, __METHOD__ . ': Error parsing webfinger IDs from text (preg_last_error=='.preg_last_error().').');
+        } else {
+            common_debug(sprintf('Found %i matches for WebFinger IDs: %s', count($wmatches), _ve($wmatches)));
+        }
+        return $wmatches[1];
+    }
+
+    /**
+     * Profile URL matches: @example.com/mublog/user
+     *
+     * @return  array   The matching URLs (without @ or acct:) and each respective position in the given string.
+     */
+    static function extractUrlMentions($text)
+    {
+        $wmatches = array();
+        $result = preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+(?:\w+\-\w+)*\.\w+(?:/\w+)*)!',
+                       $text,
+                       $wmatches,
+                       PREG_OFFSET_CAPTURE);
+        if ($result === false) {
+            common_log(LOG_ERR, __METHOD__ . ': Error parsing profile URL mentions from text (preg_last_error=='.preg_last_error().').');
+        } else {
+            common_debug(sprintf('Found %i matches for profile URL mentions: %s', count($wmatches), _ve($wmatches)));
+        }
+        return $wmatches[1];
+    }
+
+    /**
      * Find any explicit remote mentions. Accepted forms:
      *   Webfinger: @user@example.com
      *   Profile link: @example.com/mublog/user
@@ -285,76 +325,63 @@ class OStatusPlugin extends Plugin
     {
         $matches = array();
 
-        $wmatches = array();
-        // Webfinger matches: @user@example.com or even @user--one.george_orwell@1984.biz
-        if (preg_match_all('/(?:^|\s+)@((?:\w+[\w\-\_\.]?)*(?:[\w\-\_\.]*\w+)@(?:(?!-)[A-Za-z0-9\-]{1,63}(?<!-)\.)+[A-Za-z]{2,10})/',
-                       $text,
-                       $wmatches,
-                       PREG_OFFSET_CAPTURE)) {
-            foreach ($wmatches[1] as $wmatch) {
-                list($target, $pos) = $wmatch;
-                $this->log(LOG_INFO, "Checking webfinger '$target'");
-                $profile = null;
-                try {
-                    $oprofile = Ostatus_profile::ensureWebfinger($target);
-                    if (!$oprofile instanceof Ostatus_profile || !$oprofile->isPerson()) {
-                        continue;
-                    }
-                    $profile = $oprofile->localProfile();
-                } catch (OStatusShadowException $e) {
-                    // This means we got a local user in the webfinger lookup
-                    $profile = $e->profile;
-                } catch (Exception $e) {
-                    $this->log(LOG_ERR, "Webfinger check failed: " . $e->getMessage());
+        foreach (self::extractWebfingerIds($text) as $wmatch) {
+            list($target, $pos) = $wmatch;
+            $this->log(LOG_INFO, "Checking webfinger '$target'");
+            $profile = null;
+            try {
+                $oprofile = Ostatus_profile::ensureWebfinger($target);
+                if (!$oprofile instanceof Ostatus_profile || !$oprofile->isPerson()) {
                     continue;
                 }
-
-                assert($profile instanceof Profile);
-
-                $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target)
-                        ? $profile->getNickname()   // TODO: we could do getFancyName() or getFullname() here
-                        : $target;
-                $url = $profile->getUri();
-                if (!common_valid_http_url($url)) {
-                    $url = $profile->getUrl();
-                }
-                $matches[$pos] = array('mentioned' => array($profile),
-                                       'type' => 'mention',
-                                       'text' => $text,
-                                       'position' => $pos,
-                                       'length' => mb_strlen($target),
-                                       'url' => $url);
+                $profile = $oprofile->localProfile();
+            } catch (OStatusShadowException $e) {
+                // This means we got a local user in the webfinger lookup
+                $profile = $e->profile;
+            } catch (Exception $e) {
+                $this->log(LOG_ERR, "Webfinger check failed: " . $e->getMessage());
+                continue;
             }
+
+            assert($profile instanceof Profile);
+
+            $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target)
+                    ? $profile->getNickname()   // TODO: we could do getBestName() or getFullname() here
+                    : $target;
+            $url = $profile->getUri();
+            if (!common_valid_http_url($url)) {
+                $url = $profile->getUrl();
+            }
+            $matches[$pos] = array('mentioned' => array($profile),
+                                   'type' => 'mention',
+                                   'text' => $text,
+                                   'position' => $pos,
+                                   'length' => mb_strlen($target),
+                                   'url' => $url);
         }
 
-        // Profile matches: @example.com/mublog/user
-        if (preg_match_all('!(?:^|\s+)@((?:\w+\.)*\w+(?:\w+\-\w+)*\.\w+(?:/\w+)*)!',
-                       $text,
-                       $wmatches,
-                       PREG_OFFSET_CAPTURE)) {
-            foreach ($wmatches[1] as $wmatch) {
-                list($target, $pos) = $wmatch;
-                $schemes = array('http', 'https');
-                foreach ($schemes as $scheme) {
-                    $url = "$scheme://$target";
-                    $this->log(LOG_INFO, "Checking profile address '$url'");
-                    try {
-                        $oprofile = Ostatus_profile::ensureProfileURL($url);
-                        if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
-                            $profile = $oprofile->localProfile();
-                            $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
-                                    $profile->nickname : $target;
-                            $matches[$pos] = array('mentioned' => array($profile),
-                                                   'type' => 'mention',
-                                                   'text' => $text,
-                                                   'position' => $pos,
-                                                   'length' => mb_strlen($target),
-                                                   'url' => $profile->getUrl());
-                            break;
-                        }
-                    } catch (Exception $e) {
-                        $this->log(LOG_ERR, "Profile check failed: " . $e->getMessage());
+        foreach (self::extractUrlMentions($text) as $wmatch) {
+            list($target, $pos) = $wmatch;
+            $schemes = array('http', 'https');
+            foreach ($schemes as $scheme) {
+                $url = "$scheme://$target";
+                $this->log(LOG_INFO, "Checking profile address '$url'");
+                try {
+                    $oprofile = Ostatus_profile::ensureProfileURL($url);
+                    if ($oprofile instanceof Ostatus_profile && !$oprofile->isGroup()) {
+                        $profile = $oprofile->localProfile();
+                        $text = !empty($profile->nickname) && mb_strlen($profile->nickname) < mb_strlen($target) ?
+                                $profile->nickname : $target;
+                        $matches[$pos] = array('mentioned' => array($profile),
+                                               'type' => 'mention',
+                                               'text' => $text,
+                                               'position' => $pos,
+                                               'length' => mb_strlen($target),
+                                               'url' => $profile->getUrl());
+                        break;
                     }
+                } catch (Exception $e) {
+                    $this->log(LOG_ERR, "Profile check failed: " . $e->getMessage());
                 }
             }
         }
