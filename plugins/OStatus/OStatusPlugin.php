@@ -300,7 +300,9 @@ class OStatusPlugin extends Plugin
     static function extractUrlMentions($text)
     {
         $wmatches = array();
-        $result = preg_match_all('/(?:^|\s+)@('.URL_REGEX_DOMAIN_NAME.'(?:\/\w+)*)/',
+        // In the regexp below we need to match / _before_ URL_REGEX_VALID_PATH_CHARS because it otherwise gets merged
+        // with the TLD before (but / is in URL_REGEX_VALID_PATH_CHARS anyway, it's just its positioning that is important)
+        $result = preg_match_all('/(?:^|\s+)@('.URL_REGEX_DOMAIN_NAME.'(?:\/['.URL_REGEX_VALID_PATH_CHARS.']*)*)/',
                        $text,
                        $wmatches,
                        PREG_OFFSET_CAPTURE);
