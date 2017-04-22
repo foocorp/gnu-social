@@ -93,6 +93,8 @@ class Discovery
         // Normalize the incoming $id to make sure we have a uri
         $uri = self::normalize($id);
 
+        common_debug(sprintf('Performing discovery for "%s" (normalized "%s")', $id, $uri));
+
         foreach ($this->methods as $class) {
             try {
                 $xrd = new XML_XRD();
