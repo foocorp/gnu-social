@@ -199,7 +199,7 @@ class PushHubAction extends Action
 
     /**
      * Grab and validate a URL from POST parameters.
-     * @throws ClientException for malformed or non-http/https URLs
+     * @throws ClientException for malformed or non-http/https or blacklisted URLs
      */
     protected function argUrl($arg)
     {
@@ -207,13 +207,14 @@ class PushHubAction extends Action
         $params = array('domain_check' => false, // otherwise breaks my local tests :P
                         'allowed_schemes' => array('http', 'https'));
         $validate = new Validate();
-        if ($validate->uri($url, $params)) {
-            return $url;
-        } else {
+        if (!$validate->uri($url, $params)) {
             // TRANS: Client exception.
             // TRANS: %1$s is this argument to the method this exception occurs in, %2$s is a URL.
             throw new ClientException(sprintf(_m('Invalid URL passed for %1$s: "%2$s"'),$arg,$url));
         }
+
+        Event::handle('UrlBlacklistTest', array($url));
+        return $url;
     }
 
     /**

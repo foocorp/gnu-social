@@ -249,6 +249,15 @@ class BlacklistPlugin extends Plugin
         return true;
     }
 
+    public function onUrlBlacklistTest($url)
+    {
+        common_debug('Checking URL against blacklist: '._ve($url));
+        if (!$this->_checkUrl($url)) {
+            throw new ClientException('Forbidden URL', 403);
+        }
+        return true;
+    }
+
     /**
      * Helper for checking nicknames
      *
