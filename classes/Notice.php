@@ -59,7 +59,6 @@ class Notice extends Managed_DataObject
     public $content;                         // text
     public $rendered;                        // text
     public $url;                             // varchar(191)   not 255 because utf8mb4 takes more space
-    public $self;                            // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                         // datetime  multiple_key not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
     public $reply_to;                        // int(4)
@@ -84,7 +83,6 @@ class Notice extends Managed_DataObject
                 'content' => array('type' => 'text', 'description' => 'update content', 'collate' => 'utf8mb4_general_ci'),
                 'rendered' => array('type' => 'text', 'description' => 'HTML version of the content'),
                 'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
-                'self' => array('type' => 'varchar', 'length' => 191, 'description' => 'Resolvable URL to the (remote) Atom entry representation'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
                 'reply_to' => array('type' => 'int', 'description' => 'notice replied to (usually a guess)'),
@@ -321,11 +319,13 @@ class Notice extends Managed_DataObject
             return common_local_url('ApiStatusesShow', array('id' => $this->getID(), 'format' => 'atom'));
         }
 
-        if (!common_valid_http_url($this->self)) {
-            throw new InvalidUrlException($this->url);
+        $selfLink = $this->getPref('ostatus', 'self');
+
+        if (!common_valid_http_url($selfLink)) {
+            throw new InvalidUrlException($selfLink);
         }
 
-        return $this->self;
+        return $selfLink;
     }
 
     public function getObjectType($canonical=false) {
@@ -555,9 +555,6 @@ class Notice extends Managed_DataObject
         $notice->source = $source;
         $notice->uri = $uri;
         $notice->url = $url;
-        if ($self && common_valid_http_url($self)) {
-            $notice->self = $self;
-        }
 
         // Get the groups here so we can figure out replies and such
         if (!isset($groups)) {
@@ -736,6 +733,10 @@ class Notice extends Managed_DataObject
             }
         }
 
+        if ($self && common_valid_http_url($self)) {
+            $notice->setPref('ostatus', 'self', $self);
+        }
+
         // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
         // the activityverb is a POST (since stuff like repeat, favorite etc.
         // reasonably handle notifications themselves.
@@ -873,9 +874,6 @@ class Notice extends Managed_DataObject
         $stored->source = $source;
         $stored->uri = $uri;
         $stored->url = $url;
-        if (common_valid_http_url($stored->self)) {
-            $stored->self = $self;
-        }
         $stored->verb = $act->verb;
 
         $content = $act->content ?: $act->summary;
@@ -1026,6 +1024,10 @@ class Notice extends Managed_DataObject
         }
         if (!$stored instanceof Notice) {
             throw new ServerException('StartNoticeSave did not give back a Notice');
+        }
+
+        if ($self && common_valid_http_url($self)) {
+            $stored->setPref('ostatus', 'self', $self);
         }
 
         // Only save 'attention' and metadata stuff (URLs, tags...) stuff if
@@ -3118,5 +3120,28 @@ class Notice extends Managed_DataObject
             print ".";
         }
         print "\n";
+    }
+
+    public function delPref($namespace, $topic) {
+        return Notice_prefs::setData($this, $namespace, $topic, null);
+    }
+
+    public function getPref($namespace, $topic, $default=null) {
+        // If you want an exception to be thrown, call Notice_prefs::getData directly
+        try {
+            return Notice_prefs::getData($this, $namespace, $topic, $default);
+        } catch (NoResultException $e) {
+            return null;
+        }
+    }
+
+    // The same as getPref but will fall back to common_config value for the same namespace/topic
+    public function getConfigPref($namespace, $topic)
+    {
+        return Notice_prefs::getConfigData($this, $namespace, $topic);
+    }
+
+    public function setPref($namespace, $topic, $data) {
+        return Notice_prefs::setData($this, $namespace, $topic, $data);
     }
 }
