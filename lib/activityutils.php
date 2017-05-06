@@ -65,9 +65,14 @@ class ActivityUtils
      *
      * @return string related link, if any
      */
-    static function getPermalink($element)
+    static function getPermalink(DOMNode $element)
     {
         return self::getLink($element, 'alternate', 'text/html');
+    }
+
+    static function getSelfLink(DOMNode $element)
+    {
+        return self::getLink($element, 'self', 'application/atom+xml');
     }
 
     /**
@@ -90,8 +95,9 @@ class ActivityUtils
                 $linkRel = $link->getAttribute(self::REL);
                 $linkType = $link->getAttribute(self::TYPE);
 
+                // XXX: Am I allowed to do this according to specs? (matching using common_bare_mime)
                 if ($linkRel == $rel &&
-                    (is_null($type) || $linkType == $type)) {
+                    (is_null($type) || common_bare_mime($linkType) == common_bare_mime($type))) {
                     return $link->getAttribute(self::HREF);
                 }
             }

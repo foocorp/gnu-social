@@ -267,7 +267,7 @@ class Activity
 
         // From APP. Might be useful.
 
-        $this->selfLink = ActivityUtils::getLink($entry, 'self', 'application/atom+xml');
+        $this->selfLink = ActivityUtils::getSelfLink($entry);
         $this->editLink = ActivityUtils::getLink($entry, 'edit', 'application/atom+xml');
     }
 

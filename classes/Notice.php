@@ -59,6 +59,7 @@ class Notice extends Managed_DataObject
     public $content;                         // text
     public $rendered;                        // text
     public $url;                             // varchar(191)   not 255 because utf8mb4 takes more space
+    public $self;                            // varchar(191)   not 255 because utf8mb4 takes more space
     public $created;                         // datetime  multiple_key not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
     public $reply_to;                        // int(4)
@@ -83,6 +84,7 @@ class Notice extends Managed_DataObject
                 'content' => array('type' => 'text', 'description' => 'update content', 'collate' => 'utf8mb4_general_ci'),
                 'rendered' => array('type' => 'text', 'description' => 'HTML version of the content'),
                 'url' => array('type' => 'varchar', 'length' => 191, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
+                'self' => array('type' => 'varchar', 'length' => 191, 'description' => 'Resolvable URL to the (remote) Atom entry representation'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
                 'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
                 'reply_to' => array('type' => 'int', 'description' => 'notice replied to (usually a guess)'),
@@ -445,6 +447,7 @@ class Notice extends Managed_DataObject
     static function saveNew($profile_id, $content, $source, array $options=null) {
         $defaults = array('uri' => null,
                           'url' => null,
+                          'self' => null,
                           'conversation' => null,   // URI of conversation
                           'reply_to' => null,       // This will override convo URI if the parent is known
                           'repeat_of' => null,      // This will override convo URI if the repeated notice is known
@@ -539,6 +542,9 @@ class Notice extends Managed_DataObject
         $notice->source = $source;
         $notice->uri = $uri;
         $notice->url = $url;
+        if ($self && common_valid_http_url($self)) {
+            $notice->self = $self;
+        }
 
         // Get the groups here so we can figure out replies and such
         if (!isset($groups)) {
@@ -776,6 +782,9 @@ class Notice extends Managed_DataObject
             // implied object
             $options['uri'] = $act->id;
             $options['url'] = $act->link;
+            if ($act->selfLink) {
+                $options['self'] = $act->selfLink;
+            }
         } else {
             $actobj = count($act->objects)===1 ? $act->objects[0] : null;
             if (!is_null($actobj) && !empty($actobj->id)) {
@@ -786,6 +795,9 @@ class Notice extends Managed_DataObject
                     $options['url'] = $actobj->id;
                 }
             }
+            if ($actobj->selfLink) {
+                $options['self'] = $actobj->selfLink;
+            }
         }
 
         $defaults = array(
@@ -795,6 +807,7 @@ class Notice extends Managed_DataObject
                           'reply_to' => null,
                           'repeat_of' => null,
                           'scope' => null,
+                          'self' => null,
                           'source' => 'unknown',
                           'tags' => array(),
                           'uri' => null,
@@ -847,6 +860,9 @@ class Notice extends Managed_DataObject
         $stored->source = $source;
         $stored->uri = $uri;
         $stored->url = $url;
+        if (common_valid_http_url($stored->self)) {
+            $stored->self = $self;
+        }
         $stored->verb = $act->verb;
 
         $content = $act->content ?: $act->summary;
