@@ -790,7 +790,8 @@ class ApiAction extends Action
 
     function showSingleAtomStatus($notice)
     {
-        header('Content-Type: application/atom+xml; charset=utf-8');
+        header('Content-Type: application/atom+xml;type=entry;charset="utf-8"');
+        print '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
         print $notice->asAtomEntry(true, true, true, $this->scoped);
     }
 
