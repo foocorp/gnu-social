@@ -315,6 +315,19 @@ class Notice extends Managed_DataObject
         }
     }
 
+    public function getSelfLink()
+    {
+        if ($this->isLocal()) {
+            return common_local_url('ApiStatusesShow', array('id' => $this->getID(), 'format' => 'atom'));
+        }
+
+        if (!common_valid_http_url($this->self)) {
+            throw new InvalidUrlException($this->url);
+        }
+
+        return $this->self;
+    }
+
     public function getObjectType($canonical=false) {
         if (is_null($this->object_type) || $this->object_type==='') {
             throw new NoObjectTypeException($this);
@@ -2064,9 +2077,12 @@ class Notice extends Managed_DataObject
                 }
             }
 
+            try {
+                $act->selfLink = $this->getSelfLink();
+            } catch (InvalidUrlException $e) {
+                $act->selfLink = null;
+            }
             if ($this->isLocal()) {
-                $act->selfLink = common_local_url('ApiStatusesShow', array('id' => $this->id,
-                                                                           'format' => 'atom'));
                 $act->editLink = $act->selfLink;
             }
 
@@ -2164,6 +2180,11 @@ class Notice extends Managed_DataObject
             $object->title   = sprintf('New %1$s by %2$s', ActivityObject::canonicalType($object->type), $this->getProfile()->getNickname());
             $object->content = $this->getRendered();
             $object->link    = $this->getUrl();
+            try {
+                $object->selfLink = $this->getSelfLink();
+            } catch (InvalidUrlException $e) {
+                $object->selfLink = null;
+            }
 
             $object->extra[] = array('status_net', array('notice_id' => $this->id));
 
