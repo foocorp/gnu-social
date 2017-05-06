@@ -1885,6 +1885,10 @@ function common_log_objstring(&$object)
 
 function common_valid_http_url($url, $secure=false)
 {
+    if (empty($url)) {
+        return false;
+    }
+
     // If $secure is true, only allow https URLs to pass
     // (if false, we use '?' in 'https?' to say the 's' is optional)
     $regex = $secure ? '/^https$/' : '/^https?$/';
