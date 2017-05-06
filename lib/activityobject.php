@@ -102,6 +102,7 @@ class ActivityObject
     public $content;
     public $owner;
     public $link;
+    public $selfLink;   // think APP (Atom Publishing Protocol)
     public $source;
     public $avatarLinks = array();
     public $geopoint;
@@ -263,6 +264,7 @@ class ActivityObject
         $this->source  = $this->_getSource($element);
 
         $this->link = ActivityUtils::getPermalink($element);
+        $this->selfLink = ActivityUtils::getSelfLink($element);
 
         $this->id = $this->_childContent($element, self::ID);
 
@@ -646,6 +648,18 @@ class ActivityObject
                         'rel' => 'alternate',
                         'type' => 'text/html',
                         'href' => $this->link
+                    ),
+                    null
+                );
+            }
+
+            if (!empty($this->selfLink)) {
+                $xo->element(
+                    'link',
+                    array(
+                        'rel' => 'self',
+                        'type' => 'application/atom+xml',
+                        'href' => $this->selfLink
                     ),
                     null
                 );
