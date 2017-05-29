@@ -14,7 +14,7 @@ check out [Beginner’s Guide to OAuth](http://hueniverse.com/oauth/)).
 
 To use OAuth, you'll need to register your client application via the web interface
 and obtain a consumer key and secret. You can find the interface for application
-registration at [http://%%site.server%%/%%site.path%%settings/oauthapps](http://%%site.server%%/%%site.path%%settings/oauthapps).
+registration at [%%action.oauthappssettings%%](%%action.oauthappssettings%%).
 
 ## JSONP callbacks
 
