@@ -180,7 +180,7 @@ class Activity
             foreach ($objectEls as $objectEl) {
                 // Special case for embedded activities
                 $objectType = ActivityUtils::childContent($objectEl, self::OBJECTTYPE, self::SPEC);
-                if (!empty($objectType) && $objectType == ActivityObject::ACTIVITY) {
+                if ((!empty($objectType) && $objectType == ActivityObject::ACTIVITY) || $this->verb == ActivityVerb::SHARE) {
                     $this->objects[] = new Activity($objectEl);
                 } else {
                     $this->objects[] = new ActivityObject($objectEl);
