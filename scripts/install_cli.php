@@ -47,10 +47,10 @@ class CliInstaller extends Installer
      */
     function main()
     {
+        if ($this->prepare()) {
         if (!$this->checkPrereqs()) {
             return false;
         }
-        if ($this->prepare()) {
             return $this->handle();
        } else {
             $this->showHelp();

@@ -85,7 +85,7 @@ abstract class Installer
         $pass = true;
 
         $config = INSTALLDIR.'/config.php';
-        if (file_exists($config)) {
+        if (!$this->skipConfig && file_exists($config)) {
             if (!is_writable($config) || filesize($config) > 0) {
                 if (filesize($config) == 0) {
                     $this->warning('Config file "config.php" already exists and is empty, but is not writable.');
@@ -126,14 +126,16 @@ abstract class Installer
         }
 
         // @fixme this check seems to be insufficient with Windows ACLs
-        if (!is_writable(INSTALLDIR)) {
+        if (!$this->skipConfig && !is_writable(INSTALLDIR)) {
             $this->warning(sprintf('Cannot write config file to: <code>%s</code></p>', INSTALLDIR),
                            sprintf('On your server, try this command: <code>chmod a+w %s</code>', INSTALLDIR));
             $pass = false;
         }
 
         // Check the subdirs used for file uploads
-        $fileSubdirs = array('avatar', 'file');
+        // TODO get another flag for this --skipFileSubdirCreation
+        if (!$this->skipConfig) {
+            $fileSubdirs = array($this->avatarDir, $this->fileDir);
         foreach ($fileSubdirs as $fileSubdir) {
             $fileFullPath = INSTALLDIR."/$fileSubdir";
             if (!file_exists($fileFullPath)) {
@@ -148,7 +150,7 @@ abstract class Installer
                 $pass = false;
             }
         }
-
+        }
         return $pass;
     }
 
@@ -580,10 +582,10 @@ abstract class Installer
             return false;
         }
 
+        if (!$this->skipConfig) {
         // Make sure we can write to the file twice
         $oldUmask = umask(000); 
 
-        if (!$this->skipConfig) {
             $this->updateStatus("Writing config file...");
             $res = $this->writeConf();
 
@@ -616,12 +618,12 @@ abstract class Installer
                 $this->updateStatus("Can't write to config file.", true);
                 return false;
             }
-        }
 
         // Restore original umask
         umask($oldUmask);
         // Set permissions back to something decent
         chmod(INSTALLDIR.'/config.php', 0644);
+        }
         
         $scheme = $this->ssl === 'always' ? 'https' : 'http';
         $link = "{$scheme}://{$this->server}/{$this->path}";
