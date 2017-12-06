@@ -597,6 +597,9 @@ function common_purify($html)
     $cfg->set('Attr.AllowedRel', ['bookmark', 'directory', 'enclosure', 'home', 'license', 'nofollow', 'payment', 'tag']);  // http://microformats.org/wiki/rel
     $cfg->set('HTML.ForbiddenAttributes', array('style'));  // id, on* etc. are already filtered by default
     $cfg->set('URI.AllowedSchemes', array_fill_keys(common_url_schemes(), true));
+    if (common_config('cache', 'dir')) {
+        $cfg->set('Cache.SerializerPath', common_config('cache', 'dir'));
+    }
 
     // Remove more elements than what the default filter removes, default in GNU social are remotely
     // linked resources such as img, video, audio

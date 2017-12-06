@@ -773,6 +773,13 @@ high: if you need high performance, or if you're seeing bad
       performance, set this to true. It will turn off some high-intensity code from
       the site.
 
+cache
+-----
+
+dir: A string path to a writable directory that will be used as temporary cache
+     for some functions (currently just the HtmlSanitizer).
+     If it is not set, the GNU social installation directory will be used.
+
 oldschool
 ---------
 
