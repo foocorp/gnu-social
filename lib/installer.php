@@ -517,6 +517,9 @@ abstract class Installer
      */
     function registerInitialUser()
     {
+        // initalize hostname from install arguments, so it can be used to find
+        // the /etc config file from the commandline installer
+        $server = $this->server;
         require_once INSTALLDIR . '/lib/common.php';
 
         $data = array('nickname' => $this->adminNick,
