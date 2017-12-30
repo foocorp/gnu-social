@@ -144,7 +144,7 @@ to install the development version of GNU social.
 To get it, use the git version control tool
 <http://git-scm.com/> like so:
 
-    git clone git@git.gnu.io:gnu/gnu-social.git
+    git clone https://git.gnu.io/gnu/gnu-social.git
 
 In the current phase of development it is probably
 recommended to use git as a means to stay up to date
